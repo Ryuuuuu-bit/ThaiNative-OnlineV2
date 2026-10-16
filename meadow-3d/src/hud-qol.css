@@ -37,3 +37,7 @@
 @media(max-width:650px){#ui .tools{width:144px}#ui .tools #quality{width:96px;min-width:96px;max-width:96px;font-size:12px}#npc-talk,#angel-talk{bottom:310px}}
 /* Scale the compact mobile frame and hotbar while keeping their edges within the viewport. */
 @media(max-width:650px){#ui .player{width:calc(232px / var(--ui-scale));transform:scale(var(--ui-scale))}#ui .combat-ui{width:calc((100vw - 16px) / var(--ui-scale));max-width:calc(374px / var(--ui-scale));transform:translateX(-50%) scale(var(--ui-scale))}#ui .player :is(small,#job-label,#job-exp){font-size:max(12px,calc(12px / var(--ui-scale)))}#ui .combat-ui :is(small,kbd,.rewards span,.legacy-actions button,#qol-controls button){font-size:max(12px,calc(12px / var(--ui-scale)))}#ui #stats-button,#ui #skills-button,#ui #inventory-button{top:max(200px,calc(185px * var(--ui-scale)))}#notices{bottom:max(300px,calc(300px * var(--ui-scale)))}}
+
+/* Hide immediately when a target frame appears, including during area fade-in. */
+#ui:has(#target:not([hidden])) #area-name,body.boss-active #area-name{opacity:0;visibility:hidden}
+#world:after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 48%,#182c3730 100%)}

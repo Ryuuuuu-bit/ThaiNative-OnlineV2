@@ -899,5 +899,31 @@
     "hitMask": null,
     "webp": "/assets/hero-skills/hero-skill-endure-v1-b941dfc45b.webp",
     "ktx2": "/assets/hero-skills/hero-skill-endure-v1-a59d098954.ktx2"
+  },
+  "/assets/city/city-trim-v1.png": {
+    "hitMask": null,
+    "mips": true,
+    "cpu": false,
+    "source": "art/texture-sources/city/city-trim-v1.png",
+    "ktx2": "/assets/city/city-trim-v1-c30f1e8789.ktx2",
+    "webp": "/assets/city/city-trim-v1-5ef5d76aa4.webp",
+    "size": [
+      1024,
+      768
+    ],
+    "mode": "uastc"
+  },
+  "/assets/city/city-npcs-v1.png": {
+    "hitMask": null,
+    "mips": false,
+    "cpu": false,
+    "source": "art/texture-sources/city/city-npcs-v1.png",
+    "ktx2": "/assets/city/city-npcs-v1-fe1893e34d.ktx2",
+    "webp": "/assets/city/city-npcs-v1-21ac88ccad.webp",
+    "size": [
+      1024,
+      1600
+    ],
+    "mode": "uastc"
   }
 }

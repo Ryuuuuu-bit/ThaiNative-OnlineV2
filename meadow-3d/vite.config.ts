@@ -25,24 +25,7 @@ function textureURLs() {
 				{ webp: string },
 			][])
 				html = html.replaceAll(url, asset.webp);
-			if (html.includes('id="world"')) {
-				const files = [
-					"env-near-v2.png",
-					"tile-dirt-v1.png",
-					"tile-water-v2.png",
-				]
-					.map((n) => manifest["/assets/env-painted/" + n]?.ktx2)
-					.filter(Boolean);
-				html = html.replace(
-					"</head>",
-					files
-						.map(
-							(url) =>
-								`<link rel="preload" as="fetch" crossorigin="anonymous" href="${url}">`,
-						)
-						.join("") + "</head>",
-				);
-			}
+
 			return html;
 		},
 	};

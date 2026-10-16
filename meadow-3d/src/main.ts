@@ -53,7 +53,7 @@ const scenes=new Map<MapId,any>();
 async function buildMap(id:MapId){const built=id==='city_plaza'?(await import('./city-scene')).buildCity(scene,loader):buildScene(scene,loader);scenes.set(id,built);return built;}
 let world=await buildMap(activeMap);sound.setMap(activeMap);
 const hero=makePaintedHero(loader);scene.add(hero.root);
-const previewMonster=makePaintedMonster(loader);previewMonster.dispose();
+if(activeMap==='meadow'){const previewMonster=makePaintedMonster(loader);previewMonster.dispose();}
 loader.load('/assets/hero-painted/portrait-v1.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--portrait',`url(${c.toDataURL()})`);});loader.load('/assets/skills-painted/skills-v1.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--skill-atlas',`url(${c.toDataURL()})`);});
 const heroName=label(selected.character.name,'#f4f5da');heroName.position.y=3.7;scene.add(heroName);
 const right=new T.Vector3(13,0,-9).normalize(),up=new T.Vector3(-9,0,-13).normalize(),ray=new T.Raycaster(),pointer=new T.Vector2(),floor=new T.Plane(new T.Vector3(0,1,0),0),point=new T.Vector3();

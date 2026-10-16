@@ -22,3 +22,6 @@ for(const folder of ['hero-painted','hero-skills','monsters-painted','env-painte
 for(const file of readdirSync(resolve(root,'public/assets')).filter(n=>n.endsWith('.png')))unlinkSync(resolve(root,'public/assets',file));
 console.log('Packed textures and versioned Three r185 transcoder.');
 await import('./pack-ktx2-worker.mjs');
+
+// Preserve city entries when rebuilding the shared manifest.
+await import('./pack-city-textures.mjs');
