@@ -5,13 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:server && npm run build:web",
     "preview": "vite preview",
-    "test": "node --test",
+    "test": "npm run test:meadow && npm run test:server && npm run test:web",
     "dev:meadow": "vite meadow-3d --host 127.0.0.1 --port 5173",
     "build:meadow": "vite build meadow-3d",
     "test:meadow": "node --test meadow-3d/tests/*.test.mjs",
-    "check:meadow": "tsc -p meadow-3d/tsconfig.json"
+    "check:meadow": "tsc -p meadow-3d/tsconfig.json",
+    "build:server": "npm --prefix server ci --include=dev && npm --prefix server run build",
+    "build:web": "node scripts/build-web.mjs",
+    "start": "node server/build/index.js",
+    "dev:server": "npm --prefix server run dev",
+    "test:server": "npm --prefix server test",
+    "test:web": "node --test meadow-3d/web-tests/*.test.mjs"
   },
   "dependencies": {
     "@colyseus/sdk": "^0.18.5",

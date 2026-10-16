@@ -1,13 +1,19 @@
+import{loadSelected,restoreProgress,attachAutosave}from'./web/game-session';
 import * as T from 'three';import './style.css';
 import{createGame,step,action,revive,walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';
 const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>(s)!;const $$=(s:string)=>[...document.querySelectorAll<HTMLElement>(s)];
+const selected=await loadSelected();
 const game=createGame(),sound=new AudioEngine(),keys=new Set<string>();let started=false,paused=false,wonShown=false,quality=true,time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=19.5,deathReveal=0;
+restoreProgress(game,selected.character);
+const autosave=attachAutosave(game,selected,()=>started&&!paused&&!game.p.dead);
+document.querySelector('#player-name')!.textContent=selected.character.name;
+if(game.bossSpawned){document.querySelector('#quest-name')!.textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';document.querySelector('#quest-note')!.textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';}
 const renderer=new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;renderer.outputColorSpace=T.SRGBColorSpace;$('#world').appendChild(renderer.domElement);
 const scene=new T.Scene();scene.background=new T.Color('#c8d1bd');scene.fog=new T.Fog('#c8d1bd',30,72);scene.add(new T.HemisphereLight('#fff0db','#888775',1.6));const sun=new T.DirectionalLight('#ffefd5',1.8);sun.position.set(-14,24,9);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-27;sun.shadow.camera.right=27;sun.shadow.camera.top=27;sun.shadow.camera.bottom=-27;sun.shadow.camera.near=1;sun.shadow.camera.far=65;sun.shadow.normalBias=.025;sun.shadow.bias=-.00008;sun.shadow.radius=4;scene.add(sun);
 const camera=new T.OrthographicCamera(-17,17,9.75,-9.75,.1,120),cameraOffset=new T.Vector3(9,16,13),focus=new T.Vector3(-1,0,4.5);camera.position.copy(focus).add(cameraOffset);camera.lookAt(focus);
 const loading=new T.LoadingManager();loading.onLoad=()=>{const state=$('#load-state');if(state)state.textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';};loading.onError=()=>{const state=$('#load-state');if(state)state.textContent='ใช้วัสดุสำรอง · กดเริ่มเล่นได้';};const loader=new T.TextureLoader(loading);const world=buildScene(scene,loader),hero=makePaintedHero(loader);scene.add(hero.root);
-const heroName=label('Aerin','#f4f5da');heroName.position.y=3.7;scene.add(heroName);
+const heroName=label(selected.character.name,'#f4f5da');heroName.position.y=3.7;scene.add(heroName);
 const right=new T.Vector3(13,0,-9).normalize(),up=new T.Vector3(-9,0,-13).normalize(),ray=new T.Raycaster(),pointer=new T.Vector2(),floor=new T.Plane(new T.Vector3(0,1,0),0),point=new T.Vector3();
 const enemies=new Map<number,any>(),drops=new Map<number,T.Mesh>(),effects:any[]=[],numbers:any[]=[];let markerTime=0;
 function ring(x:number,z:number,r:number,color:string,width=.03,opacity=.7){const mesh=new T.Mesh(new T.RingGeometry(Math.max(.01,r-width),r,72),new T.MeshBasicMaterial({color,transparent:true,opacity,side:T.DoubleSide,depthWrite:false}));mesh.rotation.x=-Math.PI/2;mesh.position.set(x,.045,z);scene.add(mesh);return mesh;}
@@ -23,7 +29,7 @@ function spinEffect(x:number,z:number){effectRing(x,z,'#b6f6f0',3.2,.55);effectR
 function meteorEffect(e:Event){const o=new T.Group();const rock=new T.Mesh(new T.IcosahedronGeometry(.43,1),mat('#613d34'));o.add(rock);const shell=new T.Mesh(new T.SphereGeometry(.5,12,10),new T.MeshBasicMaterial({color:'#ffbe66',transparent:true,opacity:.6,blending:T.AdditiveBlending,depthWrite:false}));o.add(shell);const tail=new T.Mesh(new T.ConeGeometry(.42,2.5,10,1,true),new T.MeshBasicMaterial({color:'#f4b96d',transparent:true,opacity:.45,side:T.DoubleSide,blending:T.AdditiveBlending,depthWrite:false}));tail.rotation.z=Math.PI;tail.position.y=1.3;o.add(tail);o.position.set(e.x,10,e.z);scene.add(o);effects.push({kind:'meteor',mesh:o,life:e.duration,max:e.duration});effectRing(e.x,e.z,'#f4d191',2.7,e.duration);}
 function notice(text:string){const el=document.createElement('div');el.className='notice';el.textContent=text;$('#notices').appendChild(el);setTimeout(()=>el.remove(),3500);}
 function number(text:string,e:{x:number;z:number},kind='',height=1.8){const el=document.createElement('span');el.className=`number ${kind}`;el.textContent=text;$('#numbers').appendChild(el);numbers.push({el,x:e.x,z:e.z,height,life:1,max:1,offset:(Math.random()-.5)*16});}
-function events(){for(const e of game.events.splice(0)){if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.play(e.type);switch(e.type){
+function events(){for(const e of game.events.splice(0)){if(['level','victory','death'].includes(e.type))void autosave.save();if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.play(e.type);switch(e.type){
  case'slash':slash(e);break;
  case'spin':spinEffect(e.x,e.z);shake=.1;break;
  case'meteor':meteorEffect(e);break;

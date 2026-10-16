@@ -1,0 +1,3 @@
+import{OAuth2Client}from'google-auth-library';import{AppError}from'./errors.js';import type{GoogleIdentity}from'./store/types.js';
+export type GoogleVerifier=(credential:string)=>Promise<GoogleIdentity>;
+export function googleVerifier(clientId?:string):GoogleVerifier{const client=new OAuth2Client(clientId);return async credential=>{if(!clientId)throw new AppError(503,'GOOGLE_DISABLED','Google login ยังไม่เปิดใช้ในเซิร์ฟเวอร์นี้');try{const ticket=await client.verifyIdToken({idToken:credential,audience:clientId}),p=ticket.getPayload();if(!p?.sub||p.email_verified===false)throw Error('Invalid identity');return{sub:p.sub,name:(p.name||'นักผจญภัย').slice(0,80)};}catch{throw new AppError(401,'GOOGLE_INVALID','ตรวจสอบบัญชี Google ไม่สำเร็จ กรุณาลองใหม่');}};}

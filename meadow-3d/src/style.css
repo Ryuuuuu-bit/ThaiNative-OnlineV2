@@ -23,3 +23,7 @@
 .skill .cooldown{top:14px;left:0;width:100%;font:600 24px/1 'Cormorant Garamond',Georgia,serif;color:#fff6d1;text-shadow:0 1px 3px #071b22,0 0 4px #071b22;pointer-events:none}
 @media(max-width:650px){.skill{--icon-size:40px;padding-bottom:3px}.skill small{font-size:8px;line-height:10px}.skill em{display:block;font-size:6px;top:2px}.skill .cooldown{top:12px;font-size:21px}.skill kbd{font-size:6px}.skill>.skill-icon{top:1px}}
 @media(prefers-reduced-motion:reduce){.skill{transition:none}}
+
+#save-status{position:absolute;left:24px;bottom:104px;font:10px 'Noto Sans Thai',sans-serif;color:#e0d5ad;background:#183b2bcc;padding:4px 8px;border-radius:3px;opacity:0;transition:opacity .2s;pointer-events:none}#save-status.shown{opacity:1}.footnote a{color:#e4cc97;text-decoration:underline;margin-left:8px}@media(max-width:650px){#save-status{left:12px;bottom:95px;font-size:9px}}
+
+#player-name{max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:650px){#player-name{max-width:125px}}

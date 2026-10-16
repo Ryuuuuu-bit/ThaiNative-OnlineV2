@@ -1,6 +1,6 @@
 # Jelly Meadow — painted hero combat preview
 
-A local single-player Three.js demo. A small meadow contains 10 respawning slimes, a camp that restores HP, and a ราชาวุ้น unlocked after 6 defeats. It does not connect to or modify the existing server.
+A local single-player Three.js demo. A small meadow contains 10 respawning slimes, a camp that restores HP, and a ราชาวุ้น unlocked after 6 defeats. The Express web shell now serves accounts, character selection and saved progress alongside the game.
 
 From the repository root:
 
@@ -10,7 +10,7 @@ npm run test:meadow
 npm run build:meadow
 ```
 
-Open the local URL printed by Vite, normally http://127.0.0.1:5173/. Visit `/character.html` for a separate animation viewer with motion/direction selection, pause and baseline guides. Both pages are included in the production build at `meadow-3d/dist/`.
+For the account API, also run `npm run dev:server`. Open the local URL printed by Vite, normally http://127.0.0.1:5173/. The portal is `/`; the selected-character game is `/play.html`. Visit `/character.html` for a separate animation viewer with motion/direction selection, pause and baseline guides. All five pages are included in the production build at `meadow-3d/dist/`.
 
 ## Controls
 
@@ -40,7 +40,7 @@ Large props use alpha-tested, depth-writing Sprites sharing an atlas texture, wi
 
 ## Limits
 
-Single-player only; page reload resets progression. No accounts, persistence, parties, MMO server, trading or PvP are included. Art is a playable 2.5D prototype, not a reproduction of the reference game's production quality. The generated sprite frames still have some pose, facial and costume drift; the run cadence and direction transitions need further animation polish. Four directions are provided, not eight. Audio is synthesized demo audio. Browser performance depends on GPU/device; HQ/LOW and zoom are available.
+Single-player only. Accounts and selected-character progress persist in the configured server store; MemoryStore is temporary, while Postgres survives process restarts. Parties, MMO combat, trading and PvP are not included. Art is a playable 2.5D prototype, not a reproduction of the reference game's production quality. The generated sprite frames still have some pose, facial and costume drift; the run cadence and direction transitions need further animation polish. Four directions are provided, not eight. Audio is synthesized demo audio. Browser performance depends on GPU/device; HQ/LOW and zoom are available.
 
 ## Verification
 
@@ -75,3 +75,9 @@ Comparable initial-camera HQ SwiftShader samples measured **13.72 → 14.59 FPS*
 The five active hotbar buttons share a generated ink-and-gouache icon strip on desktop and touch. The sixth leaf sigil is packed for future empty slots without adding a button or changing the bar dimensions. Source art and the exact built-in imagegen prompt are in `art/painted-ui/`; `tools/pack-icons.py` trims each of the six 512px source slots and proportionally centres the artwork on transparent 128px and 64px cells. Runtime files are `public/assets/ui-painted/skill-icons-v1.png` (768×128), `skill-icons-64-v1.png` (384×64), and `manifest.json`. The HUD uses the 128px strip for crisp HiDPI display at 52px on desktop and 40px on mobile.
 
 CSS darkens only the icon with a conic cooldown wedge, while a numeric timer stays readable above it. A soft gold rim means ready; unavailable MP/potions desaturate the icon, and pressing scales the button down. Key labels, Thai names, potion count and MP badges remain visible; the existing 63×64 desktop and 46×57 mobile button dimensions are retained. The spare sigil is deliberately quiet. The dash boot and individual wind leaves become secondary details at mobile size, but their main silhouettes remain distinct.
+
+## Web portal and saved characters
+
+`npm run build` compiles the Express server and five-page web build; `npm start` serves both on port 8787 (or `PORT`). See `server/README.md` for environment variables, routes, guest recovery, Google authorised origins and persistence choices. The new portal painting and exact prompt are in `art/painted-web/`; only two JPEG versions ship under `public/assets/web/`. No existing public PNGs are modified. The shared `mountPreview` API in `src/character-preview.ts` drives both character creation and the public atelier; atelier controls live in `src/character-atelier.ts`.
+
+Guest sessions can be recovered with the browser’s locally stored recovery key. Linking Google keeps the characters. Three slots per account, globally unique names and deletion confirmation are enforced by the API. The play page restores level, XP, gold, defeats, potions and a valid position before opening the welcome screen. A small corner toast reports server saves. Boss/combat state restarts on re-entry, while saved defeats retain the unlock. Production Google sign-in needs the owner’s OAuth client ID/origins; memory mode is explicitly temporary.

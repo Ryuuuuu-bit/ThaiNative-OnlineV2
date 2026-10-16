@@ -1,0 +1,11 @@
+import{Router}from'express';import type{Store}from'../store/types.js';import{publicAccount}from'../store/types.js';import{sessions,hashToken,randomToken,requireSession,type SessionOptions}from'../session.js';import{AppError}from'../errors.js';import type{GoogleVerifier}from'../google.js';
+export function authRoutes(store:Store,session:ReturnType<typeof sessions>,options:SessionOptions&{googleClientId?:string;build:string;verifyGoogle:GoogleVerifier}){
+ const r=Router();
+ r.get('/config',(_req,res)=>res.json({googleClientId:options.googleClientId||null,build:options.build}));
+ r.post('/guest',async(req,res)=>{if(req.auth)return res.json({account:publicAccount(req.auth.account)});const guestKey=randomToken(),a=await store.createGuest(hashToken('guest:'+guestKey,options.secret));await session.issue(req,res,a.id);res.status(201).json({account:publicAccount(a),guestKey});});
+ r.post('/guest/resume',async(req,res)=>{const key=req.body?.guestKey;if(typeof key!=='string'||! /^[\w-]{43}$/.test(key))throw new AppError(401,'GUEST_KEY_INVALID','ไม่พบข้อมูล Guest ที่กู้คืนได้');const a=await store.resumeGuest(hashToken('guest:'+key,options.secret));if(!a)throw new AppError(401,'GUEST_KEY_INVALID','ไม่พบข้อมูล Guest ที่กู้คืนได้');if(req.auth)await store.revoke(req.auth.hash);await session.issue(req,res,a.id);res.json({account:publicAccount(a)});});
+ r.post('/google',async(req,res)=>{const credential=req.body?.credential;if(typeof credential!=='string'||credential.length>12000)throw new AppError(400,'GOOGLE_INVALID','ข้อมูล Google ไม่ถูกต้อง');const identity=await options.verifyGoogle(credential),guest=req.auth?.account.kind==='guest'?req.auth.account.id:undefined,selected=req.auth?.session.selectedCharacterId;const a=await store.google(identity,guest);if(req.auth)await store.revoke(req.auth.hash);await session.issue(req,res,a.id,guest?selected:undefined);res.json({account:publicAccount(a)});});
+ r.get('/me',requireSession,async(req,res)=>{const a=req.auth!,selected=a.session.selectedCharacterId;res.json({account:publicAccount(a.account),selectedCharacterId:selected&&await store.character(a.account.id,selected)?selected:null});});
+ r.post('/logout',async(req,res)=>{if(req.auth)await store.revoke(req.auth.hash);session.clear(req,res);res.json({ok:true});});
+ return r;
+}
