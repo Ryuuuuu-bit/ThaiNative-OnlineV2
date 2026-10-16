@@ -2,10 +2,16 @@
   "dataVersion": 1,
   "options": {
     "levels": [
-      1
+      1,
+      10,
+      30,
+      50,
+      99
     ],
     "classes": [
-      "novice_knight"
+      "novice_knight",
+      "archer",
+      "mage"
     ],
     "monster": "all",
     "runs": 200,
@@ -146,6 +152,1774 @@
       },
       "expPerMinute": 0,
       "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3041712679,
+      "runs": 200,
+      "ttk": {
+        "mean": 1.1375000000000037,
+        "p10": 1.15,
+        "p90": 1.15
+      },
+      "hitsToDie": {
+        "mean": 10.985,
+        "p10": 11,
+        "p90": 11
+      },
+      "expPerMinute": 481.9123505976091,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 1401181144,
+      "runs": 200,
+      "ttk": {
+        "mean": 1.5945000000000014,
+        "p10": 1.6,
+        "p90": 1.6
+      },
+      "hitsToDie": {
+        "mean": 9,
+        "p10": 9,
+        "p90": 9
+      },
+      "expPerMinute": 630.9639727361246,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 4055616905,
+      "runs": 200,
+      "ttk": {
+        "mean": 2.560749999999999,
+        "p10": 2.5,
+        "p90": 2.95
+      },
+      "hitsToDie": {
+        "mean": 9,
+        "p10": 9,
+        "p90": 9
+      },
+      "expPerMinute": 497.28663048840673,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 2415085370,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 13.07,
+        "p10": 13,
+        "p90": 13
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 774553835,
+      "runs": 200,
+      "ttk": {
+        "mean": 134.34374999999997,
+        "p10": 129.45,
+        "p90": 137.45
+      },
+      "hitsToDie": {
+        "mean": 5,
+        "p10": 5,
+        "p90": 5
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3428989596,
+      "runs": 200,
+      "ttk": {
+        "mean": 1.1475000000000037,
+        "p10": 1.15,
+        "p90": 1.15
+      },
+      "hitsToDie": {
+        "mean": 9.84,
+        "p10": 9,
+        "p90": 10
+      },
+      "expPerMinute": 480.38125496425687,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 1788458061,
+      "runs": 200,
+      "ttk": {
+        "mean": 3.075,
+        "p10": 3.05,
+        "p90": 3.05
+      },
+      "hitsToDie": {
+        "mean": 8,
+        "p10": 8,
+        "p90": 8
+      },
+      "expPerMinute": 446.896551724138,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 147926526,
+      "runs": 200,
+      "ttk": {
+        "mean": 3.1120000000000005,
+        "p10": 2.95,
+        "p90": 3.85
+      },
+      "hitsToDie": {
+        "mean": 8,
+        "p10": 8,
+        "p90": 8
+      },
+      "expPerMinute": 443.661971830986,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 2802362287,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 11.785,
+        "p10": 11,
+        "p90": 12
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 1161830752,
+      "runs": 200,
+      "ttk": {
+        "mean": 151.16675000000006,
+        "p10": 148.1,
+        "p90": 156.05
+      },
+      "hitsToDie": {
+        "mean": 4,
+        "p10": 4,
+        "p90": 4
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3816266513,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 57.31,
+        "p10": 57,
+        "p90": 58
+      },
+      "expPerMinute": 570.5660377358486,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 2175734978,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 44.205,
+        "p10": 44,
+        "p90": 45
+      },
+      "expPerMinute": 855.849056603773,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 535203443,
+      "runs": 200,
+      "ttk": {
+        "mean": 1.3380000000000007,
+        "p10": 1.15,
+        "p90": 1.6
+      },
+      "hitsToDie": {
+        "mean": 44.24,
+        "p10": 44,
+        "p90": 45
+      },
+      "expPerMinute": 679.4487717195925,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3189639204,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 80,
+        "p10": 80,
+        "p90": 80
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 1549107669,
+      "runs": 200,
+      "ttk": {
+        "mean": 57.90500000000003,
+        "p10": 56.1,
+        "p90": 60.55
+      },
+      "hitsToDie": {
+        "mean": 17.305,
+        "p10": 17,
+        "p90": 18
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 4203543430,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 39.295,
+        "p10": 39,
+        "p90": 40
+      },
+      "expPerMinute": 570.5660377358486,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 2563011895,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 31.01,
+        "p10": 31,
+        "p90": 31
+      },
+      "expPerMinute": 855.849056603773,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 922480360,
+      "runs": 200,
+      "ttk": {
+        "mean": 1.0932499999999965,
+        "p10": 1.1,
+        "p90": 1.1
+      },
+      "hitsToDie": {
+        "mean": 31,
+        "p10": 31,
+        "p90": 31
+      },
+      "expPerMinute": 733.2094075810242,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3576916121,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 51.135,
+        "p10": 51,
+        "p90": 52
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 1936384586,
+      "runs": 200,
+      "ttk": {
+        "mean": 55.57075000000008,
+        "p10": 53,
+        "p90": 57.45
+      },
+      "hitsToDie": {
+        "mean": 13,
+        "p10": 13,
+        "p90": 13
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 295853051,
+      "runs": 200,
+      "ttk": {
+        "mean": 1.1450000000000038,
+        "p10": 1.15,
+        "p90": 1.15
+      },
+      "hitsToDie": {
+        "mean": 37,
+        "p10": 37,
+        "p90": 37
+      },
+      "expPerMinute": 480.76311605723316,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 2950288812,
+      "runs": 200,
+      "ttk": {
+        "mean": 2.085500000000006,
+        "p10": 2.1,
+        "p90": 2.1
+      },
+      "hitsToDie": {
+        "mean": 28.515,
+        "p10": 28,
+        "p90": 29
+      },
+      "expPerMinute": 555.1340105250268,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 1309757277,
+      "runs": 200,
+      "ttk": {
+        "mean": 3.113000000000008,
+        "p10": 2.6,
+        "p90": 4
+      },
+      "hitsToDie": {
+        "mean": 28.54,
+        "p10": 28,
+        "p90": 29
+      },
+      "expPerMinute": 443.5752004693911,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3964193038,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 56,
+        "p10": 56,
+        "p90": 56
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 2323661503,
+      "runs": 200,
+      "ttk": {
+        "mean": 115.52800000000006,
+        "p10": 113.45,
+        "p90": 117.45
+      },
+      "hitsToDie": {
+        "mean": 12,
+        "p10": 12,
+        "p90": 12
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 683129968,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 262,
+        "p10": 262,
+        "p90": 262
+      },
+      "expPerMinute": 570.5660377358486,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 3337565729,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 262,
+        "p10": 262,
+        "p90": 262
+      },
+      "expPerMinute": 855.849056603773,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 1697034194,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 262,
+        "p10": 262,
+        "p90": 262
+      },
+      "expPerMinute": 855.849056603773,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 56502659,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 393,
+        "p10": 393,
+        "p90": 393
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 2710938420,
+      "runs": 200,
+      "ttk": {
+        "mean": 22.767500000000044,
+        "p10": 20.95,
+        "p90": 24.05
+      },
+      "hitsToDie": {
+        "mean": 68.235,
+        "p10": 68,
+        "p90": 69
+      },
+      "expPerMinute": 508.7312001615011,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 1070406885,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 204,
+        "p10": 204,
+        "p90": 204
+      },
+      "expPerMinute": 581.5384615384621,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 3724842646,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 204,
+        "p10": 204,
+        "p90": 204
+      },
+      "expPerMinute": 872.3076923076932,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 2084311111,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 204,
+        "p10": 204,
+        "p90": 204
+      },
+      "expPerMinute": 872.3076923076932,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 443779576,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 306,
+        "p10": 306,
+        "p90": 306
+      },
+      "expPerMinute": 96.923076923077,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 3098215337,
+      "runs": 200,
+      "ttk": {
+        "mean": 21.886750000000017,
+        "p10": 20.95,
+        "p90": 24.05
+      },
+      "hitsToDie": {
+        "mean": 47.955,
+        "p10": 48,
+        "p90": 48
+      },
+      "expPerMinute": 527.489089139376,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 1457683802,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 182,
+        "p10": 182,
+        "p90": 182
+      },
+      "expPerMinute": 570.5660377358486,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 4112119563,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 182,
+        "p10": 182,
+        "p90": 182
+      },
+      "expPerMinute": 855.849056603773,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 2471588028,
+      "runs": 200,
+      "ttk": {
+        "mean": 1.9122499999999993,
+        "p10": 2,
+        "p90": 2
+      },
+      "hitsToDie": {
+        "mean": 182,
+        "p10": 182,
+        "p90": 182
+      },
+      "expPerMinute": 579.7175538373061,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 831056493,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 272,
+        "p10": 272,
+        "p90": 272
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 3485492254,
+      "runs": 200,
+      "ttk": {
+        "mean": 68.69449999999995,
+        "p10": 65.45,
+        "p90": 69.9
+      },
+      "hitsToDie": {
+        "mean": 45.705,
+        "p10": 45,
+        "p90": 46
+      },
+      "expPerMinute": 178.23168704779027,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 1844960719,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 429,
+        "p10": 429,
+        "p90": 429
+      },
+      "expPerMinute": 570.5660377358486,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 204429184,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 429,
+        "p10": 429,
+        "p90": 429
+      },
+      "expPerMinute": 855.849056603773,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 2858864945,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 429,
+        "p10": 429,
+        "p90": 429
+      },
+      "expPerMinute": 855.849056603773,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 1218333410,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.6500000000000025,
+        "p10": 0.65,
+        "p90": 0.65
+      },
+      "hitsToDie": {
+        "mean": 644,
+        "p10": 644,
+        "p90": 644
+      },
+      "expPerMinute": 95.09433962264141,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 3872769171,
+      "runs": 200,
+      "ttk": {
+        "mean": 13.65550000000005,
+        "p10": 13.4,
+        "p90": 13.4
+      },
+      "hitsToDie": {
+        "mean": 247.27,
+        "p10": 246,
+        "p90": 249
+      },
+      "expPerMinute": 804.8289738430558,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 2232237636,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 329,
+        "p10": 329,
+        "p90": 329
+      },
+      "expPerMinute": 581.5384615384621,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 591706101,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 329,
+        "p10": 329,
+        "p90": 329
+      },
+      "expPerMinute": 872.3076923076932,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 3246141862,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 329,
+        "p10": 329,
+        "p90": 329
+      },
+      "expPerMinute": 872.3076923076932,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 1605610327,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 493,
+        "p10": 493,
+        "p90": 493
+      },
+      "expPerMinute": 96.923076923077,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 4260046088,
+      "runs": 200,
+      "ttk": {
+        "mean": 13.418249999999995,
+        "p10": 13.25,
+        "p90": 13.25
+      },
+      "hitsToDie": {
+        "mean": 141,
+        "p10": 141,
+        "p90": 141
+      },
+      "expPerMinute": 817.2133672757935,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 2619514553,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9499999999999976,
+        "p10": 0.95,
+        "p90": 0.95
+      },
+      "hitsToDie": {
+        "mean": 298,
+        "p10": 298,
+        "p90": 298
+      },
+      "expPerMinute": 512.5423728813564,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 978983018,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9499999999999976,
+        "p10": 0.95,
+        "p90": 0.95
+      },
+      "hitsToDie": {
+        "mean": 298,
+        "p10": 298,
+        "p90": 298
+      },
+      "expPerMinute": 768.8135593220347,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 3633418779,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9499999999999976,
+        "p10": 0.95,
+        "p90": 0.95
+      },
+      "hitsToDie": {
+        "mean": 298,
+        "p10": 298,
+        "p90": 298
+      },
+      "expPerMinute": 768.8135593220347,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 1992887244,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9499999999999976,
+        "p10": 0.95,
+        "p90": 0.95
+      },
+      "hitsToDie": {
+        "mean": 447,
+        "p10": 447,
+        "p90": 447
+      },
+      "expPerMinute": 85.42372881355939,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 352355709,
+      "runs": 200,
+      "ttk": {
+        "mean": 41.9734999999999,
+        "p10": 41.45,
+        "p90": 45
+      },
+      "hitsToDie": {
+        "mean": 171.955,
+        "p10": 170,
+        "p90": 173
+      },
+      "expPerMinute": 286.53620930787923,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3006791470,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 881,
+        "p10": 881,
+        "p90": 881
+      },
+      "expPerMinute": 581.5384615384621,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 1366259935,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 881,
+        "p10": 881,
+        "p90": 881
+      },
+      "expPerMinute": 872.3076923076932,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 4020695696,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 881,
+        "p10": 881,
+        "p90": 881
+      },
+      "expPerMinute": 872.3076923076932,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 2380164161,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5999999999999979,
+        "p10": 0.6,
+        "p90": 0.6
+      },
+      "hitsToDie": {
+        "mean": 1321,
+        "p10": 1321,
+        "p90": 1321
+      },
+      "expPerMinute": 96.923076923077,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 739632626,
+      "runs": 200,
+      "ttk": {
+        "mean": 8.981999999999982,
+        "p10": 8.65,
+        "p90": 9.1
+      },
+      "hitsToDie": {
+        "mean": 507.21,
+        "p10": 505,
+        "p90": 510
+      },
+      "expPerMinute": 1147.3319978146076,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3394068387,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5499999999999982,
+        "p10": 0.55,
+        "p90": 0.55
+      },
+      "hitsToDie": {
+        "mean": 655,
+        "p10": 655,
+        "p90": 655
+      },
+      "expPerMinute": 592.9411764705887,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 1753536852,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5499999999999982,
+        "p10": 0.55,
+        "p90": 0.55
+      },
+      "hitsToDie": {
+        "mean": 655,
+        "p10": 655,
+        "p90": 655
+      },
+      "expPerMinute": 889.4117647058832,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 113005317,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5499999999999982,
+        "p10": 0.55,
+        "p90": 0.55
+      },
+      "hitsToDie": {
+        "mean": 655,
+        "p10": 655,
+        "p90": 655
+      },
+      "expPerMinute": 889.4117647058832,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 2767441078,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.5499999999999982,
+        "p10": 0.55,
+        "p90": 0.55
+      },
+      "hitsToDie": {
+        "mean": 982,
+        "p10": 982,
+        "p90": 982
+      },
+      "expPerMinute": 98.82352941176478,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 1126909543,
+      "runs": 200,
+      "ttk": {
+        "mean": 5.618999999999985,
+        "p10": 4.9,
+        "p90": 8.6
+      },
+      "hitsToDie": {
+        "mean": 377.24,
+        "p10": 375,
+        "p90": 379
+      },
+      "expPerMinute": 1653.7603360021033,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "jelly_pink",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3781345304,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9000000000000032,
+        "p10": 0.9,
+        "p90": 0.9
+      },
+      "hitsToDie": {
+        "mean": 607,
+        "p10": 607,
+        "p90": 607
+      },
+      "expPerMinute": 521.3793103448271,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "jelly_mint",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 2140813769,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9000000000000032,
+        "p10": 0.9,
+        "p90": 0.9
+      },
+      "hitsToDie": {
+        "mean": 607,
+        "p10": 607,
+        "p90": 607
+      },
+      "expPerMinute": 782.0689655172407,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "jelly_sky",
+      "opponentLevel": 3,
+      "mode": "pve",
+      "seed": 500282234,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9000000000000032,
+        "p10": 0.9,
+        "p90": 0.9
+      },
+      "hitsToDie": {
+        "mean": 607,
+        "p10": 607,
+        "p90": 607
+      },
+      "expPerMinute": 782.0689655172407,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "jelly_summon",
+      "opponentLevel": 1,
+      "mode": "pve",
+      "seed": 3154717995,
+      "runs": 200,
+      "ttk": {
+        "mean": 0.9000000000000032,
+        "p10": 0.9,
+        "p90": 0.9
+      },
+      "hitsToDie": {
+        "mean": 910,
+        "p10": 910,
+        "p90": 910
+      },
+      "expPerMinute": 86.89655172413784,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "king_jelly",
+      "opponentLevel": 5,
+      "mode": "pve",
+      "seed": 1514186460,
+      "runs": 200,
+      "ttk": {
+        "mean": 25.53450000000003,
+        "p10": 25.35,
+        "p90": 25.35
+      },
+      "hitsToDie": {
+        "mean": 349.55,
+        "p10": 348,
+        "p90": 351
+      },
+      "expPerMinute": 457.6077284860806,
+      "winRate": 1,
       "drawRate": 0,
       "censored": 0,
       "flags": []
