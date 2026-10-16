@@ -170,8 +170,11 @@ export function mountSkills(
 			.forEach(
 				(el) =>
 					(el.onkeydown = (e) => {
-						e.preventDefault();
-						e.stopPropagation();
+						if(e.code==='Tab')return;
+                        e.preventDefault();e.stopPropagation();
+                        const reserved=['KeyW','KeyA','KeyS','KeyD','KeyI','KeyC','KeyK','KeyM','KeyH','KeyZ','KeyR','KeyF','KeyT','KeyJ'];
+                        const uiKeys=[...document.querySelectorAll<HTMLInputElement>('#key-returnCity,#key-pickupAll')].map(el=>el.dataset.code);
+                        if(!/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(e.code)||reserved.includes(e.code)||uiKeys.includes(e.code)||job!.hotbar.some((s,i)=>i!==Number(el.dataset.keySlot)&&s.key===e.code)){$('#skills-status').textContent='ปุ่มนี้ถูกใช้อยู่แล้วหรือใช้ไม่ได้';return;}
 						const next = job!.hotbar.map((s, i) => ({
 							...s,
 							key: i === Number(el.dataset.keySlot) ? e.code : s.key,
@@ -270,17 +273,7 @@ export function mountSkills(
 			if (angel.open) drawAngel();
 		},
 		update(p: any) {
-			if (p.jobId) {
-				$("#job-label").textContent =
-					`${jobsData.jobs.find((j) => j.id === p.jobId)?.nameTh} · ระดับอาชีพ ${p.jobLevel}`;
-				const j = jobsData.jobs.find((j) => j.id === p.jobId),
-					table =
-						j?.tier === 1
-								? jobsData.expToNext.tier1
-								: jobsData.expToNext.tier2;
-				$("#job-exp").textContent =
-					`ประสบการณ์อาชีพ ${p.jobExp} / ${table[p.jobLevel - 1] || "สูงสุด"}`;
-			}
+
 			const key =
 				JSON.stringify(p.hotbar || []) + JSON.stringify(p.skills || {});
 			if (p.jobId && key !== last) {
@@ -306,12 +299,7 @@ export function mountSkills(
 				p.mapId === "city_plaza" && !p.dead && Math.hypot(p.x - jobsData.angel.x, p.z - jobsData.angel.z) <=
 				jobsData.angel.range;
 			$("#angel-talk").hidden = !near;
-			$("#buff-status").textContent = (p.statuses || [])
-				.map(
-					(s: any) =>
-						`${s.id === "endure" ? "✦ ใจเหล็ก" : s.id === "stun" ? "✧ มึนงง" : s.id === "knockup" ? "↑ ลอย" : "◌ ช้าลง"} ${s.remaining.toFixed(1)} วิ`,
-				)
-				.join(" · ");
+
 		},
 	};
 }

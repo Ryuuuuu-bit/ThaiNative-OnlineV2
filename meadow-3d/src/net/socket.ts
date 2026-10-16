@@ -8,6 +8,7 @@ export class GameSocket {
 	ping = 0;
 	you = "";
 	connected = false;
+ nextRetryAt=0;
 	stopped = false;
 	wantSpawn = false;
 	private attempt = 0;
@@ -21,6 +22,7 @@ export class GameSocket {
 	constructor(private callbacks: Callbacks) {
 		this.connect();
 		window.addEventListener("pagehide", () => this.close());
+ window.addEventListener("pageshow",e=>{if(e.persisted)location.reload();});
 		setInterval(() => {
 			this.flush();
 			if (this.connected) this.send({ t: "ping", c: Date.now() });
@@ -80,9 +82,9 @@ export class GameSocket {
 				return;
 			}
 			if (message.t === "kick") {
-				this.stopped = true;
+				this.stopped = true;this.connected=false;
 				this.callbacks.status(
-					message.reason === "opened elsewhere" ? "opened elsewhere" : "kicked",
+					(message.reason === "opened elsewhere"||message.reason === "เข้าสู่ระบบจากที่อื่น") ? "opened elsewhere" : "kicked",
 				);
 			}
 			this.callbacks.message(message);
@@ -94,6 +96,7 @@ export class GameSocket {
 			if(e.code===4401){this.stopped=true;this.callbacks.status('kicked');return;}
 			this.pending = undefined;
 			this.callbacks.status(++this.retries >= 5 ? "offline" : "reconnecting");
+			this.nextRetryAt=Date.now()+Math.min(30000,500*2**this.attempt);
 			this.reconnectTimer = window.setTimeout(
 				() => this.connect(),
 				Math.min(30000, 500 * 2 ** this.attempt++),

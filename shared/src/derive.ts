@@ -1,3 +1,4 @@
+const missingItems=new Set<string>();
 import {
 	CharacterSchema,
 	type CharacterInput,
@@ -65,12 +66,12 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 		job = data.classes.classes.find((c) => c.id === char.classId);
 	if (!race || !job)
 		throw new Error(`Unknown race/class: ${char.race}/${char.classId}`);
-	const equipment = char.equipment.map((id) => {
+	const equipment = char.equipment.flatMap((id) => {
 		const i = data.items.items.find((i) => i.id === id);
-		if (!i) throw new Error(`Unknown item: ${id}`);
+		if(!i){if(!missingItems.has(id)){missingItems.add(id);console.error('Missing item template',id);}return [];}
 		if (i.level > char.level)
 			throw new Error(`Item ${id} requires level ${i.level}`);
-		return i;
+		return [i];
 	});
 	const weapon = equipment.find((i) => i.type === "weapon"),
 		armour = equipment.find((i) => i.type === "armour");

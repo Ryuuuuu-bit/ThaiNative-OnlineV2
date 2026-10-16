@@ -176,12 +176,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			const quantity = document.createElement("input");
 			quantity.type = "number";
 			quantity.min = "1";
-			quantity.max = "9999";
+			quantity.max = "999";
 			quantity.value = "1";
 			quantity.setAttribute("aria-label", "จำนวนซื้อ");
 			buttons.append(quantity);
 			add(`ซื้อ · ${data.economy.shops[shop][t.id]} ทอง/ชิ้น`, () =>
-				request("buy", { shop, template: t.id, qty: Number(quantity.value) }),
+				request("buy", { shop, template: t.id, qty: Math.min(999,Math.max(1,Math.trunc(Number(quantity.value)||1))) }),
 			);
 		} else if (!shop) {
 			if (t.slot || t.type === "consumable")
@@ -197,7 +197,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				qty.setAttribute("aria-label", "จำนวนทิ้ง");
 				buttons.append(qty);
 				add("ทิ้ง ×n", () => {
-					const n = Number(qty.value);
+					const n = Math.min(i.qty,Math.max(1,Math.trunc(Number(qty.value)||1)));
 					if (confirm(`ยืนยันทิ้ง ${t.nameTh} ×${n}?`))
 						request("discard", { id: i.id, qty: n });
 				});
@@ -250,7 +250,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				row.ondrop = (e) => {
 					e.preventDefault();
 					const id = e.dataTransfer?.getData("text/plain");
-					if (id) request("equip", { id });
+					if(id&&inv?.items.some(i=>i.id===id&&template(i).slot===slot))request("equip",{id});
 				};
 				doll.append(row);
 			}
@@ -304,7 +304,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			const total = inv.items
 				.filter((i) => multi.has(i.id))
 				.reduce(
-					(n, i) => n + Math.floor(template(i).npcPrice * 0.5) * i.qty,
+					(n, i) => n + Math.floor(template(i).npcPrice * data.economy.sellMultiplier) * i.qty,
 					0,
 				);
 			const sell = document.createElement("button");
@@ -334,7 +334,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		shop = nextShop;
 		selected = null;
 		multi.clear();
-		status.textContent = "";
+		if(!pending)status.textContent = "";
 		panel.querySelector("h2")!.textContent =
 			shop === "market"
 				? "พ่อค้าเบ็ดเตล็ด"
@@ -370,7 +370,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			}
 		},
 		receive(m: any) {
+ if(m.t==='welcome'){pending=undefined;status.textContent="";}
 			if (m.t === "inv") {
+                if(m.error&&!panel.open){const el=document.createElement('div');el.className='notice';el.textContent=m.error;const stack=document.querySelector('#notices')!;stack.append(el);while(stack.children.length>4)stack.firstElementChild?.remove();setTimeout(()=>el.remove(),4000);}
 				if (m.inventory) {
 					inv = m.inventory;
 					if (p) {
@@ -380,7 +382,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				}
 				if (pending?.req === m.req) pending = undefined;
 				multi.clear();
-				status.textContent = m.error || "บันทึกแล้ว";
+				if(!pending)status.textContent = m.error || "บันทึกแล้ว";
 				draw();
 			}
 		},

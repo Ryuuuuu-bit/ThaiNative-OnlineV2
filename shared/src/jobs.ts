@@ -26,6 +26,7 @@ export const HOTBAR_KEYS = [
 	"Digit0",
 ];
 export const RESERVED_KEYS = [
+ "KeyI","KeyH","KeyZ",
  "KeyM",
 	"KeyW",
 	"KeyA",
@@ -232,7 +233,7 @@ export function validateHotbar(
 	const used = new Set<string>();
 	for (const [index, slot] of slots.entries()) {
 		if (
-			!/^(Key[A-Z]|Digit[0-9]|F[1-9]|F1[0-2])$/.test(slot.key) ||
+			!/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(slot.key) ||
 			RESERVED_KEYS.includes(slot.key) ||
 			used.has(slot.key)
 		)

@@ -1,4 +1,4 @@
-import {equipped,inventoryWeight,type InventoryOp} from '@thainative/shared';
+import {applyInventory,equipped,inventoryWeight,type InventoryOp} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, type MapId } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
 import type { Server } from "node:http";
@@ -38,6 +38,7 @@ import { IntentSchema, type Intent } from "@thainative/shared";
 import type { Store, Character, Progress } from "../store/types.js";
 import { hashToken } from "../session.js";
 interface Peer {
+ leaseOwner?:string; busy?:number; deferred?:Intent[]; uiLoading?:boolean;
  ui?:import('@thainative/shared').UISettings;
 	ws: WebSocket;
 	id: string;
@@ -60,14 +61,14 @@ export interface Room {
 	disconnected: Map<string, number>;
 	tick: number;
 	saveQueue: Promise<void>;
- economyBusy?:number; dropRequests?:Map<string,string>;
+ joining?:number; leases?:Map<string,string>; quarantined?:boolean; dropRequests?:Map<string,string>;
 }
 export interface RealtimeOptions {
 	store: Store;
 	build: string;
 	secret?: string;
 	sharedRooms?: boolean;
-	reconnectMs?: number;
+	heartbeatMs?:number;pruneMs?:number;reconnectMs?: number;
 	tickMs?: number;
 	adminIds?: string[];
 	production?: boolean;
@@ -75,7 +76,7 @@ export interface RealtimeOptions {
 }
 const round = (n: number) => Math.round(n * 1000) / 1000;
 const playerKeys = [
-	"id", "mapId", "healerReadyAt", "returnRemaining", "returnReadyAt",
+	"id", "reviveRemaining", "bossReadyAt", "mapId", "healerReadyAt", "returnRemaining", "returnReadyAt",
 	"name",
 	"x",
 	"z",
@@ -118,7 +119,7 @@ export function snapshot(room: Room, peer: Peer) {
 	const g = room.game;
 	return {
 		t: "snap", mapId: g.mapId,
- inventory: g.players.get(peer.id)?.inventory, weight: g.players.get(peer.id)?.inventory?inventoryWeight(g.players.get(peer.id)!.inventory!,g.data):0, weightLimit:g.players.get(peer.id)?.stats.weight,
+  weight: g.players.get(peer.id)?.inventory?inventoryWeight(g.players.get(peer.id)!.inventory!,g.data):0, weightLimit:g.players.get(peer.id)?.stats.weight,
 		tick: room.tick,
 		ack: peer.ack,
 		time: g.time,
@@ -127,7 +128,7 @@ export function snapshot(room: Room, peer: Peer) {
 		won: g.won,
 		players: [...g.players.values()].map((p) => ({
 			...Object.fromEntries(
-				playerKeys.map((k) => [
+				playerKeys.filter(k=>p.id===peer.id||!['gold','xp','nextXp','skills','hotbar','statPoints','skillPoints','jobExp','potions'].includes(k)).map((k) => [
 					k,
 					typeof p[k] === "number" ? round(p[k] as number) : p[k],
 				]),
@@ -201,7 +202,9 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		inRate = 0,
 		outRate = 0,
 		closing = false;
-	const joins=new Map<string,Promise<void>>();
+	const activeJoins=new Set<Promise<void>>();
+ const ipLimits=new Map<string,{active:number;count:number;until:number}>();
+ const joins=new Map<string,Promise<void>>(), saves=new Map<string,Promise<void>>();
  const wss = new WebSocketServer({
 		noServer: true,
 		maxPayload: 4096,
@@ -217,21 +220,26 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		sent++;
 	}
  function economy(peer:Peer,p:Player,op:InventoryOp,req:string,done=()=>{}) {
-  const room=peer.room,g=room.game;room.economyBusy=(room.economyBusy||0)+1;
+  const room=peer.room,g=room.game;
+  if(op.op==='pickup'){
+   if(peer.busy){const d=g.drops.find(d=>String(d.id)===op.id);if(d)d.pending=false;return;}
+   try{applyInventory({inventory:p.inventory!,gold:p.gold},op,p.profile,data,randomUUID);}catch(error){const d=g.drops.find(d=>String(d.id)===op.id);if(d){d.pending=false;d.blocked=true;}send(peer.ws,{t:'ev',list:[{type:'notice',playerId:p.id,text:(error as Error).message}]});return;}
+  }
+  peer.busy=(peer.busy||0)+1;
   const operation=room.saveQueue.then(async()=>{
-   const result=await store.inventoryOp(peer.accountId,p.id,req,op,{profile:structuredClone(p.profile),room:room.key,tick:room.tick});
+   const result=await store.inventoryOp(peer.accountId,p.id,req,op,{leaseOwner:peer.leaseOwner,bossLoot:op.op==='pickup'&&g.drops.some(d=>String(d.id)===op.id&&d.boss),profile:structuredClone(p.profile),room:room.key,tick:room.tick});
    const latest=result.duplicate?await store.inventory(peer.accountId,p.id):result;
    p.inventory=latest.inventory;p.gold=latest.gold;refreshStats(g,p);
    if(result.error){if(op.op==='pickup')room.dropRequests?.delete(op.id!);throw Error(result.error);}
    if(result.effect&&!result.duplicate){const e=result.effect;if(e.kind==='hp'){const amount=Math.min(e.amount,p.maxHp-p.hp);p.hp+=amount;g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount});}if(e.kind==='sp')p.mp=Math.min(p.maxMp,p.mp+e.amount);if(e.kind==='speed')p.statuses.push({id:'speed',sourceId:p.id,remaining:60,value:e.amount});p.cd.potion=data.skills.skills.find(s=>s.id==='potion')!.cooldown;}
-   done();sendStats(peer,p);send(peer.ws,{t:'inv',req,inventory:p.inventory,gold:p.gold});
+   done();if(op.op==='pickup')void save(room,p.id);sendStats(peer,p);send(peer.ws,{t:'inv',req,inventory:p.inventory,gold:p.gold});
    if(op.op==='pickup'){room.dropRequests?.delete(op.id!);}
    if(op.op==='pickup')send(peer.ws,{t:'ev',list:[{type:'itemPickup',playerId:p.id,loot:op.loot}]});
   });
   room.saveQueue=operation.catch(e=>{
-   const d=g.drops.find(d=>String(d.id)===op.id);if(op.op==='pickup'&&d){d.pending=false;d.noticeAt=g.time;}
+   const d=g.drops.find(d=>String(d.id)===op.id);if(op.op==='pickup'&&d){d.pending=false;d.noticeAt=g.time;d.blocked=true;}
    send(peer.ws,{t:'inv',req,error:(e as Error).message});send(peer.ws,{t:'ev',list:[{type:'notice',playerId:p.id,text:(e as Error).message}]});
-  }).finally(()=>{room.economyBusy!--;});
+  }).finally(()=>{peer.busy!--;while(!peer.busy&&peer.deferred?.length&&live.get(peer.id)===peer&&!closing)intent(peer,peer.deferred.shift()!,true);});
  }
  function getRoom(mapId: MapId, id: string): Room {
   const key=mapId+(options.sharedRooms?'':':'+id);
@@ -259,10 +267,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,attack:0,dash:0,castRemaining:0,statuses:[],moving:false});
   refreshStats(target.game,p);
   peer.input={x:0,z:0};peer.room=target;
-  target.game.players.set(p.id,p);target.peers.set(p.id,peer);target.accounts.set(p.id,peer.accountId);
+  target.game.players.set(p.id,p);target.peers.set(p.id,peer);target.accounts.set(p.id,peer.accountId);(target.leases??=new Map()).set(p.id,peer.leaseOwner!);
   if(!options.sharedRooms && destination.mapId==='meadow'){
    target.game.kills=Math.max(target.game.kills,p.kills);
-   if(p.kills>=6&&!target.game.bossSpawned){target.game.bossSpawned=true;spawn(target.game,ARENA.x,ARENA.z,true);}
+   if(p.kills>=6&&Date.now()>=(p.bossReadyAt??0)&&!target.game.bossSpawned){target.game.bossSpawned=true;spawn(target.game,ARENA.x,ARENA.z,true);}
   }
   target.saveQueue=Promise.all([source.saveQueue,target.saveQueue]).then(()=>{});
   void save(target,p.id);
@@ -270,11 +278,11 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
  }
 	function save(room: Room, id: string, strict = false) {
 		const p = room.game.players.get(id),
-			accountId = room.accounts.get(id);
+			accountId = room.accounts.get(id),leaseOwner=room.leases?.get(id);
 		if (!p || !accountId) return room.saveQueue;
 		const operation = room.saveQueue.then(async () => {
         const body: Progress = {
-			autoSeconds:p.autoSeconds,
+			bossReadyAt:p.bossReadyAt,autoSeconds:p.autoSeconds,
  jobId: p.jobId,
 			jobLevel: p.jobLevel,
 			jobExp: p.jobExp,
@@ -300,11 +308,12 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			autoAllocCursor: p.autoAllocCursor,
 			dataVersion: 1,
 		};
-			await store.saveProgress(accountId, id, body);
+			await store.saveProgress(accountId, id, body,leaseOwner);
 		});
 		room.saveQueue = operation.catch((e) => {
 			console.error("Realtime save failed", e instanceof Error ? e.message : e);
 		});
+		const saved=room.saveQueue;saves.set(id,saved);void saved.finally(()=>{if(saves.get(id)===saved)saves.delete(id);});
 		return strict ? operation : room.saveQueue;
 	}
 	function flush(room: Room) {
@@ -326,7 +335,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			}
 	}
 	function sendStats(peer: Peer, p: Player) {
- void store.uiSettings(peer.accountId).then(settings=>{peer.ui=settings;send(peer.ws,{t:'uiSettings',settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'โหลดการตั้งค่าไม่สำเร็จ'}));
+ if(!peer.ui&&!peer.uiLoading){peer.uiLoading=true;void store.uiSettings(peer.accountId).then(settings=>{peer.ui=settings;send(peer.ws,{t:'uiSettings',settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'โหลดการตั้งค่าไม่สำเร็จ'})).finally(()=>{peer.uiLoading=false;});}
 		send(peer.ws, {
 			t: "ev",
 			list: [
@@ -345,7 +354,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			],
 		});
 	}
-	function intent(peer: Peer, message: Intent) {
+	function intent(peer: Peer, message: Intent, queued=false) {
 		const { room } = peer,
 			g = room.game;
 		if (message.t === "hello") {
@@ -363,6 +372,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			return;
 		}
 		if (message.t === "spawnReady") {
+            const p=g.players.get(peer.id);if(p)send(peer.ws,{t:"inv",inventory:p.inventory,gold:p.gold});
 			if (!peer.ready) {
 				peer.ready = true;
 				room.disconnected.delete(peer.id);
@@ -372,32 +382,34 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			return;
 		}
 		if (!peer.ready) return;
-		if ("seq" in message) {
+		if (!queued && "seq" in message) {
 			if (message.seq <= peer.ack) return;
 			peer.ack = message.seq;
 		}
         const player=g.players.get(peer.id)!;
+        if(peer.busy&&(['travel','revive','returnCity'].includes(message.t)||(message.t==='inv'&&message.op==='use'))){(peer.deferred??=[]).push(message);return;}
         if(message.t==='inv'){
          const reject=(error:string)=>send(peer.ws,{t:'inv',req:message.req,error});
          if(player.dead){reject('รอฟื้นตัวก่อน');return;}
-         if(message.op==='pickup'){const d=g.drops.find(d=>d.id===message.drop);if(d&&!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(player.x-d.x,player.z-d.z)<4){moveTo(g,d.x,d.z);}return;}
+         if(message.op==='pickup'){const d=g.drops.find(d=>d.id===message.drop);if(d)d.blocked=false;if(d&&!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(player.x-d.x,player.z-d.z)<4){moveTo(g,d.x,d.z);}return;}
          if(message.op==='buy'||message.op==='sell'){const npc=CITY_BUILDINGS.find(b=>b.id===message.shop);if(g.mapId!=='city_plaza'||!npc||Math.hypot(player.x-npc.talk.x,player.z-npc.talk.z)>=3){reject('ไปพบพ่อค้าก่อน');return;}}
-         if(message.op==='use'&&(player.cd.potion>0||room.economyBusy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
+         if(message.op==='use'&&(player.cd.potion>0||peer.busy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
          economy(peer,player,message,message.req);return;
         }
         if(message.t==='uiSettings'){
- const reserved=['KeyW','KeyA','KeyS','KeyD','KeyK','KeyC','KeyI','KeyM','KeyR','KeyF','KeyT','KeyJ'];
+ const reserved=['KeyI','KeyH','KeyZ','Escape','KeyW','KeyA','KeyS','KeyD','KeyK','KeyC','KeyI','KeyM','KeyR','KeyF','KeyT','KeyJ'];
  const bindings=Object.values(message.settings.keys);
- if(new Set(bindings).size!==bindings.length||bindings.some(k=>reserved.includes(k)||player.hotbar.some(s=>s.key===k))){send(peer.ws,{t:'uiSettingsError',text:'ปุ่มนี้ถูกใช้อยู่แล้ว'});return;}
+ if(new Set(bindings).size!==bindings.length||Object.entries(message.settings.keys).some(([name,k])=> !/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(k)||(reserved.includes(k)&&k!==(name==='returnCity'?'KeyH':'KeyZ'))||player.hotbar.some(s=>s.key===k))){send(peer.ws,{t:'uiSettingsError',text:'ปุ่มนี้ถูกใช้อยู่แล้ว'});return;}
  void store.saveUISettings(peer.accountId,message.settings).then(()=>{peer.ui=message.settings;send(peer.ws,{t:'uiSettings',settings:message.settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'บันทึกการตั้งค่าไม่สำเร็จ'}));return;
  }
- if(room.economyBusy)return;
+
  if(message.t==='returnCity'){
  if(player.dead||g.mapId==='city_plaza'||Date.now()<(player.returnReadyAt||0)||g.enemies.some(e=>e.boss&&!e.dead&&e.engaged)){
  send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'ยังกลับเมืองไม่ได้: อยู่ในเมือง รอคูลดาวน์ หรือต่อสู้กับราชาวุ้น'}]});return;}
  if(!player.returnRemaining){player.returnRemaining=5;withPlayer(g,peer.id,()=>{setAuto(g,false);player.target=null;player.destination=null;});peer.input={x:0,z:0};}return;
  }
  if(message.t==='pickupAll'){
+ if(!player.dead)for(const d of g.drops){d.blocked=false;}
  if(!player.dead)for(const d of g.drops)if(!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(d.x-player.x,d.z-player.z)<=4){d.x=player.x;d.z=player.z;d.time=Math.max(.26,d.time);}return;
  }
  if(player.returnRemaining&&(['move','target','act','travel','auto'].includes(message.t)||(message.t==='steer'&&Math.hypot(message.dx,message.dz)>.05)))player.returnRemaining=0;
@@ -409,6 +421,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          return;
         }
         if(message.t==='revive' && player.dead){
+         if((player.reviveRemaining??0)>0)return;
          withPlayer(g,peer.id,()=>revive(g));flush(room);transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});return;
         }
 		withPlayer(g, peer.id, () => {
@@ -570,13 +583,26 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		flush(room);
 	}
 	server.on("upgrade", (req, socket, head) => {
-		const url = new URL(req.url || "/", `http://${req.headers.host}`);
+		if(closing){socket.destroy();return;}
+        const ip=(options.production?String(req.headers['x-forwarded-for']||req.socket.remoteAddress||'unknown').split(',').at(-1)!.trim():req.socket.remoteAddress||'unknown'),now=Date.now();
+        for(const[k,v]of ipLimits)if(v.until<=now&&!v.active)ipLimits.delete(k);
+        let limit=ipLimits.get(ip);if(!limit){limit={active:0,count:0,until:now+60000};ipLimits.set(ip,limit);}if(limit.until<=now){limit.count=0;limit.until=now+60000;}
+        if(++limit.count>20||limit.active>=5){socket.destroy();return;}
+        limit.active++;socket.once('close',()=>{limit!.active--;});
+        const url = new URL(req.url || "/", `http://${req.headers.host}`);
 		if (url.pathname !== "/api/ws") {
 			socket.destroy();
 			return;
 		}
 		wss.handleUpgrade(req, socket, head, (ws) => {
-			void (async () => {
+            let connectedPeer:Peer|undefined;
+            ws.on('error',()=>{});
+            ws.on('close',()=>{
+             const peer=connectedPeer;if(!peer||live.get(peer.id)!==peer)return;
+             live.delete(peer.id);peer.room.peers.delete(peer.id);peer.input={x:0,z:0};
+             peer.room.disconnected.set(peer.id,Date.now());if(!closing)void save(peer.room,peer.id);
+            });
+			const task=(async () => {
 				const origin = req.headers.origin,
 					host = req.headers.host;
 				const forwarded = String(req.headers["x-forwarded-proto"] || "")
@@ -594,7 +620,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				const token = parse(req.headers.cookie || "").tn_session,
 					hash = token ? hashToken(token, options.secret) : "",
 					session = hash ? await store.session(hash) : undefined;
-				const character = session?.selectedCharacterId
+				if(session?.selectedCharacterId)await saves.get(session.selectedCharacterId);
+				let character = session?.selectedCharacterId
 					? await store.character(
 							session.accountId,
 							session.selectedCharacterId,
@@ -620,14 +647,19 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				if (ws.readyState !== WebSocket.OPEN || closing) return;
 				const priorJoin=joins.get(character.id)||Promise.resolve();let releaseJoin!:()=>void;
                 const gateJoin=new Promise<void>(resolve=>releaseJoin=resolve),join=priorJoin.then(()=>gateJoin);joins.set(character.id,join);await priorJoin;
+                let claimed:string|undefined,joined=false,joiningRoom:Room|undefined,created=false;
                 try {
+                if(ws.readyState!==WebSocket.OPEN||closing)return;
                 const old = live.get(character.id);
 				if (old) {
-					send(old.ws, { t: "kick", reason: "opened elsewhere" });
-					old.ws.close(4409, "opened elsewhere");
+					send(old.ws, { t: "kick", reason: "เข้าสู่ระบบจากที่อื่น" });
+					old.ws.close(4409, "opened elsewhere");await save(old.room,old.id,true);
 				}
-                let room=[...rooms.values()].find(r=>r.accounts.has(character.id)&&(r.game.players.has(character.id)||pending.has(character.id)))||getRoom(character.mapId||'city_plaza',character.id);
-                const mapId=room.game.mapId;
+                claimed=randomUUID();await store.claimLease(character.id,claimed);
+                const refreshed=await store.character(session.accountId,character.id);if(!refreshed)throw Error('Character disappeared');character=refreshed;
+                if(ws.readyState!==WebSocket.OPEN||closing)return;
+                const characterId=character.id;let room=[...rooms.values()].find(r=>r.accounts.has(characterId)&&(r.game.players.has(characterId)||pending.has(characterId)))||getRoom(character.mapId||'city_plaza',character.id);
+                joiningRoom=room;room.joining=(room.joining??0)+1;const mapId=room.game.mapId;
 
 				if (!room.game.players.has(character.id)&&!pending.has(character.id)) {
 					const profile = {
@@ -638,11 +670,12 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 						classId: character.classId,
 					};
 					await room.saveQueue;const economyState=await store.inventory(session.accountId,character.id);
-                    const p = addPlayer(room.game, character.id, profile);p.inventory=economyState.inventory;p.gold=economyState.gold;
+                    if(ws.readyState!==WebSocket.OPEN||closing){return;}
+                    created=true;const p = addPlayer(room.game, character.id, profile);p.inventory=economyState.inventory;p.gold=economyState.gold;
                     p.profile.equipment=equipped(p.inventory);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
- p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
+ p.bossReadyAt=character.bossReadyAt||0;p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
 					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;
@@ -676,13 +709,17 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					pending.set(character.id, p);
 					if (!options.sharedRooms && mapId === "meadow") {
 						room.game.kills = character.kills;
-						if (character.kills >= 6 && !room.game.bossSpawned) {
+						if (character.kills >= 6 && Date.now()>=(character.bossReadyAt??0) && !room.game.bossSpawned) {
 							room.game.bossSpawned = true;
 							spawn(room.game, ARENA.x, ARENA.z, true);
 						}
 					}
 				}
-				const peer: Peer = {
+				if(ws.readyState!==WebSocket.OPEN||closing){pending.delete(character.id);room.game.players.delete(character.id);return;}
+                const leaseOwner=claimed;
+                if(ws.readyState!==WebSocket.OPEN||closing){await store.releaseLease(character.id,leaseOwner);pending.delete(character.id);return;}
+                const peer: Peer = {
+                    leaseOwner,
 					ws,
 					id: character.id,
 					accountId: session.accountId,
@@ -696,6 +733,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					count: 0,
 					room,
 				};
+				(room.leases??=new Map()).set(peer.id,leaseOwner);connectedPeer=peer;joined=true;
 				live.set(peer.id, peer);
 				room.peers.set(peer.id, peer);
 				room.accounts.set(peer.id, peer.accountId);
@@ -755,17 +793,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					}
 					intent(peer, parsed.data);
 				});
-				ws.on("close", () => {
-					if (live.get(peer.id) !== peer) return;
-					live.delete(peer.id);
-					peer.room.peers.delete(peer.id);
-					peer.input = { x: 0, z: 0 };
-					peer.room.disconnected.set(peer.id, Date.now());
-					void save(peer.room, peer.id);
-				});
+
 				ws.on("error", () => {});
-                } finally {releaseJoin();if(joins.get(character.id)===join)joins.delete(character.id);}
-			})().catch(() => ws.close(1011, "connection failed"));
+                } finally {if(joiningRoom)joiningRoom.joining!--;if(!joined){if(created&&joiningRoom){pending.delete(character.id);joiningRoom.game.players.delete(character.id);}if(joiningRoom&&!joiningRoom.joining&&!joiningRoom.peers.size&&!joiningRoom.game.players.size)rooms.delete(joiningRoom.key);if(claimed)await store.releaseLease(character.id,claimed).catch(e=>console.error('Join lease rollback failed',e));}releaseJoin();if(joins.get(character.id)===join)joins.delete(character.id);}
+			})();activeJoins.add(task);void task.catch(error=>{console.error('Join failed',error);ws.close(1011,'connection failed');}).finally(()=>activeJoins.delete(task));
 		});
 	});
 	const pending = new Map<string, Player>();
@@ -781,7 +812,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		for (let substep = 0; substep < catchup; substep++) {
 			ticks++;
 			for (const room of rooms.values()) {
-                if(room.economyBusy)continue;
+                if(room.quarantined)continue;
+                try {
 				for (const [id, at] of room.disconnected)
 					if (now - at >= (options.reconnectMs ?? 60000)) {
 						void save(room, id);
@@ -791,22 +823,22 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 						room.disconnected.delete(id);
 					}
 				if (
-					!room.peers.size &&
+					!room.peers.size && !room.joining &&
 					!room.game.players.size &&
 					!room.disconnected.size &&
-                    ![...live.values()].some(peer=>options.sharedRooms || room.key.endsWith(":"+peer.id))
+                    !live.has(room.key.slice(room.key.indexOf(':')+1))
 				) {
 					rooms.delete(room.key);
 					continue;
 				}
-				room.tick++;
+				room.tick++;room.game.wallTime=now;
 				const inputs = new Map<string, Vec>();
 				for (const peer of room.peers.values())
 					if (peer.ready) inputs.set(peer.id, peer.input);
 				if (room.game.players.size)
 					step(room.game, 0.05, { x: 0, z: 0 }, inputs);
 				for(const peer of [...room.peers.values()]){
- const p=room.game.players.get(peer.id);if(!p?.returnRemaining)continue;
+ const p=room.game.players.get(peer.id);if(!p?.returnRemaining||peer.busy)continue;
  if(p.dead||p.moving||room.game.events.some(e=>e.type==='hurt'&&e.playerId===p.id)||room.game.enemies.some(e=>e.boss&&!e.dead&&e.engaged)){p.returnRemaining=0;continue;}
  p.returnRemaining=Math.max(0,p.returnRemaining-.05);
  if(p.returnRemaining<1e-8){p.returnRemaining=0;p.returnReadyAt=now+60000;transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});}
@@ -817,6 +849,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 						if (peer.ready) send(peer.ws, snapshot(room, peer));
 				if (room.tick % 600 === 0)
 					for (const id of room.game.players.keys()) void save(room, id);
+                }catch(error){
+                 console.error('Room quarantined',room.key,error);room.quarantined=true;
+                 for(const peer of room.peers.values()){void save(room,peer.id);send(peer.ws,{t:'kick',reason:'เซิร์ฟเวอร์ขัดข้อง กรุณาเข้าใหม่'});peer.ws.close(1011,'room failed');}void room.saveQueue.finally(()=>rooms.delete(room.key));
+                }
 			}
 		}
 		samples.push(performance.now() - begin);
@@ -837,18 +873,21 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				continue;
 			}
 			peer.ws.ping();
+            if(peer.leaseOwner)void store.renewLease(peer.id,peer.leaseOwner).then(ok=>{if(!ok){send(peer.ws,{t:'kick',reason:'เข้าสู่ระบบจากที่อื่น'});peer.ws.close(4409,'opened elsewhere');}}).catch(e=>console.error('Lease heartbeat failed',e));
 			void store.session(peer.sessionHash).then((session) => {
 				if (!session || session.selectedCharacterId !== peer.id) {
 					send(peer.ws, { t: "kick", reason: "session ended" });
 					peer.ws.close(4401, "session ended");
 				}
-			});
+			}).catch(error=>console.error('Heartbeat failed',error));
 		}
-	}, 15000);
+	}, options.heartbeatMs??15000);
 	heartbeat.unref();
+ const prune=setInterval(()=>{void store.pruneRequests().catch(e=>console.error('Request prune failed',e));},options.pruneMs??3600000);prune.unref();
  const economyNightly=setInterval(()=>{void store.integrity().catch(e=>console.error('ECONOMY_ALERT',String(e)));},86400000);economyNightly.unref();
 	return {
 		rooms,
+        healthy:()=>!closing&&performance.now()-previousTick<2000,
 		metrics() {
 			const sorted = [...samples].sort((a, b) => a - b);
 			return {
@@ -866,15 +905,18 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			};
 		},
 		async close() {
-			closing = true;
+			if(closing)return;closing = true;
 			clearInterval(timer);
-			clearInterval(heartbeat);clearInterval(economyNightly);
-			for (const peer of live.values()) peer.ws.terminate();
+			clearInterval(heartbeat);clearInterval(prune);clearInterval(economyNightly);const closingPeers=[...live.values()];
+			for (const ws of wss.clients) ws.terminate();
+            await Promise.allSettled([...activeJoins]);
 			await Promise.all(
 				[...rooms.values()].flatMap((room) =>
 					[...room.game.players.keys()].map((id) => save(room, id)),
 				),
 			);
+			await Promise.all([...saves.values()]);
+			await Promise.all(closingPeers.filter(p=>p.leaseOwner).map(p=>store.releaseLease(p.id,p.leaseOwner!).catch(e=>console.error('Lease release failed',e))));
 			wss.close();
 		},
 		save,

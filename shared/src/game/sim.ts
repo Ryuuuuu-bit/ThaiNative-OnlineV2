@@ -36,6 +36,7 @@ export interface Enemy extends Vec {
 	statuses: TimedEffect[];
 	dataId: string;
 	damageBy: Record<string, number>;
+ lastEngagedAt?:number;
 	id: number;
 	hp: number;
 	maxHp: number;
@@ -76,6 +77,7 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
+ bossReadyAt?:number; reviveRemaining?:number;
  inventory?:Inventory; autoSeconds:number;
  mapId: MapId;
  healerReadyAt: number;
@@ -128,7 +130,7 @@ export interface Event extends Vec {
 	[key: string]: any;
 }
 export interface Drop extends Vec {
- loot?:{template:string;qty:number}[]; pending?:boolean; noticeAt?:number;
+ loot?:{template:string;qty:number}[]; pending?:boolean; noticeAt?:number; blocked?:boolean; boss?:boolean;
 	ownerId: string;
 	id: number;
 	gold: number;
@@ -280,7 +282,7 @@ export function createGame(
 		projectiles: [] as Projectile[],
 		nextId: 1,
 		kills: 0,
-		bossSpawned: false,
+		wallTime:0,bossSpawned: false,
 		won: false,
 		meteors: [] as {
 			ownerId: string;
@@ -440,6 +442,7 @@ function reward(g: Game, e: Enemy) {
 		ownerId = topDamage(g, e);
 	g.drops.push({
 		ownerId,
+ boss:e.boss,
  loot:rollDrops(spec,g.random,g.data,g.players.get(ownerId)?.autoSeconds||0,g.players.get(ownerId)?.stats.dropBonus||0),
 		id: g.nextId++,
 		x: e.x,
@@ -458,7 +461,7 @@ function reward(g: Game, e: Enemy) {
 function defeat(g: Game, e: Enemy) {
 	e.dead = true;
 	e.deathAge = 0;
-	e.respawn = 12;
+	e.respawn = e.boss?600:12;
 	e.windup = 0;
 	e.hurt = 0;
 	setMotion(e, "death");
@@ -483,7 +486,7 @@ function defeat(g: Game, e: Enemy) {
 				setMotion(minion, "death");
 			}
 	}
-	if (g.kills >= 6 && !g.bossSpawned) {
+	if (g.kills >= 6 && !g.bossSpawned && [...g.players.values()].some(p=>g.wallTime>=(p.bossReadyAt??0))) {
 		g.bossSpawned = true;
 		spawn(g, ARENA.x, ARENA.z, true);
 		emit(g, "boss");
@@ -536,6 +539,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 	);
 	const crit = result.crit;
 	if (damage > 0) g.p.lastCombat = g.time;
+	e.lastEngagedAt=g.time;
 	e.damageBy[g.p.id] = (e.damageBy[g.p.id] || 0) + Math.min(damage, e.hp);
 	e.hp = Math.max(0, e.hp - damage);
 	applyEffects(e, skillEffects(skill, g.p.skills[skill.id] || 1, g.p.id));
@@ -625,7 +629,7 @@ function hurt(
 	p.invulnerable = 0.55;
 	emit(g, "hurt", { amount, breakdown });
 	if (p.hp === 0) {
-		p.dead = true;
+		p.dead = true;p.reviveRemaining=5;
 		setAuto(g, false);
 		g.target = null;
 		g.destination = null;
@@ -862,7 +866,7 @@ export function action(g: Game, a: Action) {
 }
 export function revive(g: Game) {
 	const p = g.p;
-
+ if((p.reviveRemaining??0)>0)return;
 	setAuto(g, false);
 	p.mapId = "city_plaza";
  p.x = CITY_SPAWN.x;
@@ -1519,7 +1523,7 @@ export function step(
 			e.motionTime = e.deathAge;
 			e.respawn -= dt;
 			if (e.deathAge >= duration(e, "death")) reward(g, e);
-			if (e.respawn <= 0 && !e.boss && !e.summoned) {
+			if (e.respawn <= 0 && !e.summoned) {
 				e.dead = false;
 				e.hp = e.maxHp;
 				e.x = e.homeX;
@@ -1528,11 +1532,12 @@ export function step(
 				e.windup = 0;
 				e.rewarded = false;
 				e.deathAge = 0;
-				e.damageBy = {};
+				e.damageBy = {};e.bossPhase=1;e.engaged=false;
 				setMotion(e, "idle");
 			}
 			continue;
 		}
+        if(e.boss&&Object.keys(e.damageBy).length&&(g.time-(e.lastEngagedAt??g.time)>=30||!Object.keys(e.damageBy).some(id=>{const p=g.players.get(id);return p&&!p.dead;}))){e.hp=e.maxHp;e.damageBy={};e.engaged=false;e.bossPhase=1;e.statuses=[];e.x=e.homeX;e.z=e.homeZ;setMotion(e,'idle');}
 		if (!nearest) {
 			e.windup = 0;
 			setMotion(e, "idle");
@@ -1602,8 +1607,8 @@ export function step(
 		}
 	}
  for (const d of [...g.drops]) {
-  d.time+=dt;if(d.pending)continue;
-  const candidates=[...g.players.values()].filter(p=>!p.dead&&(p.id===d.ownerId||d.time>=g.data.economy.lootOwnershipSeconds)&&(!p.auto||p.id===d.ownerId)&&(!p.auto||p.inventory?.autoPickup!==false)).sort((a,b)=>Math.hypot(a.x-d.x,a.z-d.z)-Math.hypot(b.x-d.x,b.z-d.z));
+  d.time+=dt;if(d.time>=60&&!d.pending){g.drops=g.drops.filter(v=>v!==d);continue;}if(d.pending||d.blocked)continue;
+  const candidates=[...g.players.values()].filter(p=>!p.dead&&(!d.boss||g.wallTime>=(p.bossReadyAt??0))&&(p.id===d.ownerId||d.time>=g.data.economy.lootOwnershipSeconds)&&(!p.auto||p.id===d.ownerId)&&(!p.auto||p.inventory?.autoPickup!==false)).sort((a,b)=>Math.hypot(a.x-d.x,a.z-d.z)-Math.hypot(b.x-d.x,b.z-d.z));
   const p=candidates[0];if(!p)continue;g.p=p;
   const dx=p.x-d.x,dz=p.z-d.z,dist=Math.hypot(dx,dz);
   if(dist<4&&d.time>.25){const speed=Math.min(dist,dt*9);d.x+=dx/(dist||1)*speed;d.z+=dz/(dist||1)*speed;}
@@ -1638,16 +1643,17 @@ export function step(
 						granted: g.data.stats.pointsPerLevel,
 					});
 				}
-    g.drops=g.drops.filter(drop=>drop!==d);g.p=before;
+    if(d.boss)p.bossReadyAt=g.wallTime+600000;g.drops=g.drops.filter(drop=>drop!==d);g.p=before;
    };
    if(g.inventoryCommit){
-    if(d.noticeAt!==undefined&&g.time-d.noticeAt<2)continue;
+    if(d.blocked)continue;
     d.pending=true;g.inventoryCommit(p,{op:'pickup',id:String(d.id),gold:d.gold,loot:d.loot??[]},done);
-   }else if(p.inventory){try{const out=applyInventory({gold:p.gold,inventory:p.inventory},{op:'pickup',gold:d.gold,loot:d.loot??[]},p.profile,g.data,()=>String(g.nextId++));p.gold=out.state.gold;p.inventory=out.state.inventory;refreshStats(g,p);done();}catch{d.noticeAt=g.time;}}
+   }else if(p.inventory){try{const out=applyInventory({gold:p.gold,inventory:p.inventory},{op:'pickup',gold:d.gold,loot:d.loot??[]},p.profile,g.data,()=>String(g.nextId++));p.gold=out.state.gold;p.inventory=out.state.inventory;refreshStats(g,p);done();}catch{d.noticeAt=g.time;d.blocked=true;}}
    else{p.gold+=d.gold;done();}
   }
  }
 
+	for(const p of g.players.values())if(p.dead)p.reviveRemaining=Math.max(0,(p.reviveRemaining??0)-dt);
 	g.p = previous;
 	g.enemies = g.enemies.filter((e) => !e.summoned || !e.dead || e.deathAge < 3);
 }

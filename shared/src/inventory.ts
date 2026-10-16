@@ -63,12 +63,14 @@ export const rarityColors = {
 	epic: "#c697ed",
 	legendary: "#edc369",
 };
+const missingTemplates=new Set<string>();
+function knownTemplate(data:GameData,id:string){const t=data.items.items.find(t=>t.id===id);if(!t&&!missingTemplates.has(id)){missingTemplates.add(id);console.error('Missing item template',id);}return t;}
 export function inventoryWeight(inv: Inventory, data: GameData) {
 	return inv.items
 		.filter((i) => i.location === "bag" || i.location === "equip")
 		.reduce(
 			(n, i) =>
-				n + data.items.items.find((t) => t.id === i.template)!.weight * i.qty,
+				n + (knownTemplate(data,i.template)?.weight??0) * i.qty,
 			0,
 		);
 }
@@ -79,7 +81,7 @@ export function inventorySlots(inv: Inventory, data: GameData) {
 			(n, i) =>
 				n +
 				Math.ceil(
-					i.qty / data.items.items.find((t) => t.id === i.template)!.maxStack,
+					i.qty / (knownTemplate(data,i.template)?.maxStack??Infinity),
 				),
 			0,
 		);
@@ -156,7 +158,7 @@ export function rollDrops(
 	bonus = 0,
 ) {
 	return monster.drops.flatMap((d) => {
-		const t = data.items.items.find((t) => t.id === d.item)!;
+		const t = knownTemplate(data,d.item);if(!t)return [];
 		const rare = ["rare", "epic", "legendary"].includes(t.rarity);
 		const multiplier =
 			data.economy.dropMultiplier *

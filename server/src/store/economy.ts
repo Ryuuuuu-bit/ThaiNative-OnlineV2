@@ -16,7 +16,7 @@ export interface EconomyResult {
 	duplicate?: boolean;
 }
 export interface EconomyContext {
-	profile: CharacterInput;
+	leaseOwner?:string;bossLoot?:boolean;profile: CharacterInput;
 	room?: string;
 	tick?: number;
 }

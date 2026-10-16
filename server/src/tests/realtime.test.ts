@@ -15,7 +15,7 @@ async function fixture(t: any, sharedRooms = false) {
 		store,
 		build: "test",
 		sharedRooms,
-		reconnectMs: 250,
+		reconnectMs: 250,heartbeatMs:100,pruneMs:100,
 	});
 	const base = `http://127.0.0.1:${(server.address() as any).port}`;
 	const call = async (path: string, body?: unknown, cookie = "") => {
@@ -51,7 +51,7 @@ async function fixture(t: any, sharedRooms = false) {
 		ws.on("message", (raw) => messages.push(JSON.parse(raw.toString())));
 		ws.on("error", () => {});
 		sockets.push(ws);
-		const closed = once(ws, "close");
+		const closed = new Promise<[number,Buffer]>(resolve=>ws.once("close",(code,reason)=>resolve([code,reason])));
 		return {
 			ws,
 			closed,
@@ -212,7 +212,7 @@ test("reconnect retains state, new socket kicks old, then room expires", async (
 	const third = f.open(user.cookie);
 	await third.until((m) => m.t === "welcome");
 	const kick = await second.until((m) => m.t === "kick");
-	assert.equal(kick.reason, "opened elsewhere");
+	assert.equal(kick.reason, "เข้าสู่ระบบจากที่อื่น");
 	third.ws.close();
 	await third.closed;
 	await wait(350);
@@ -268,12 +268,12 @@ test('inventory precondition failures reply to the request so the bag can recove
  await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
  const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
  const before=await f.store.inventory(user.character.accountId,p.id);
- for(const condition of ['cooldown','busy','dead','shop']){
-  p.cd.potion=condition==='cooldown'?100:0;p.dead=condition==='dead';room.economyBusy=condition==='busy'?1:0;
+ for(const condition of ['cooldown','dead','shop']){
+  p.cd.potion=condition==='cooldown'?100:0;p.dead=condition==='dead';
   const req=crypto.randomUUID();peer.send({t:'inv',req,...(condition==='shop'?{op:'buy',shop:'market',template:'red_small'}:{op:'use',id:'stack:red_small'})});
   const reply=await peer.until(m=>m.t==='inv'&&m.req===req);assert.ok(reply.error,condition);
  }
- room.economyBusy=0;p.dead=false;p.cd.potion=0;
+ p.dead=false;p.cd.potion=0;
  assert.deepEqual(await f.store.inventory(user.character.accountId,p.id),before);
  const req=crypto.randomUUID();peer.send({t:'inv',req,op:'settings',on:false});
  const recovered=await peer.until(m=>m.t==='inv'&&m.req===req);assert.equal(recovered.error,undefined);assert.equal(recovered.inventory.autoPickup,false);
@@ -286,14 +286,14 @@ test('two sockets racing released loot award exactly once; disconnect during com
  let release!:()=>void;const barrier=new Promise<void>(r=>release=r),original=f.store.inventoryOp.bind(f.store);f.store.inventoryOp=async(...args)=>{await barrier;return original(...args);};
  const id=room.game.nextId++;room.game.drops.push({id,ownerId:p.id,x:1,z:5,gold:37,xp:0,time:11,loot:[{template:'king_crystal',qty:1}]});
  one.send({t:'inv',op:'pickup',req:crypto.randomUUID(),drop:id});two.send({t:'inv',op:'pickup',req:crypto.randomUUID(),drop:id});
- for(let i=0;i<50&&!room.economyBusy;i++)await wait(10);assert.ok(room.economyBusy);one.ws.close();await one.closed;release();await room.saveQueue;await wait(100);
+ for(let i=0;i<50&&![...room.peers.values()].some(p=>p.busy);i++)await wait(10);assert.ok([...room.peers.values()].some(p=>p.busy));one.ws.close();await one.closed;release();await room.saveQueue;await wait(100);
  const sa=await f.store.inventory(a.character.accountId,p.id),sb=await f.store.inventory(b.character.accountId,other.id);
  assert.equal(sa.gold+sb.gold,37);assert.equal([...sa.inventory.items,...sb.inventory.items].filter(i=>i.template==='king_crystal').length,1);assert.equal(room.game.drops.length,0);assert.ok((await f.store.integrity()).ok);
 });
 
 test('simultaneous joins for one character share the same unique inventory and live room',async t=>{
  const f=await fixture(t),a=await f.make('JoinEconomy');const original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{await wait(20);return original(...args);};
- const one=f.open(a.cookie),two=f.open(a.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});const state=await two.until(m=>m.t==='snap');assert.equal(state.inventory.items.filter((i:any)=>i.location==='equip').length,2);assert.equal(new Set(state.inventory.items.map((i:any)=>i.id)).size,3);assert.equal(f.rt.rooms.size,1);assert.ok((await f.store.integrity()).ok);
+ const one=f.open(a.cookie),two=f.open(a.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});await two.until(m=>m.t==='snap');const state=await two.until(m=>m.t==='inv'&&m.inventory);assert.equal(state.inventory.items.filter((i:any)=>i.location==='equip').length,2);assert.equal(new Set(state.inventory.items.map((i:any)=>i.id)).size,3);assert.equal(f.rt.rooms.size,1);assert.ok((await f.store.integrity()).ok);
 });
 
 test('HUD settings are account scoped; return cast cancels and cooldown survives transfer',async t=>{
@@ -308,7 +308,7 @@ test('HUD settings are account scoped; return cast cancels and cooldown survives
  peer.send({t:'steer',dx:0,dz:0,seq:2});peer.send({t:'returnCity'});await wait(100);assert.ok(p.returnRemaining!>0);
  room.game.events.push({type:'hurt',playerId:p.id,x:p.x,z:p.z,amount:1});await wait(100);assert.equal(p.returnRemaining,0);
  const {spawn}=await import('@thainative/shared');const boss=spawn(room.game,0,10,true);boss.engaged=true;
- peer.send({t:'returnCity'});await wait(100);assert.equal(p.returnRemaining,0);boss.dead=true;
+ peer.send({t:'returnCity'});await wait(100);assert.equal(p.returnRemaining,0);boss.dead=true;boss.respawn=600;
  peer.send({t:'returnCity'});await wait(100);assert.ok(p.returnRemaining!>0);p.returnRemaining=.05;
  await peer.until(m=>m.t==='snap'&&m.mapId==='city_plaza');assert.ok(p.returnReadyAt!>Date.now());
  await wait(100);const saved=await f.store.character(user.character.accountId,p.id);assert.equal(saved!.returnReadyAt,p.returnReadyAt);
@@ -319,4 +319,68 @@ test('pickup all respects four metre radius, ownership and pending inventory tra
  const room=[...f.rt.rooms.values()][0],g=room.game,p=g.players.get(user.character.id)!;g.enemies=[];p.x=0;p.z=0;
  g.drops=[{id:800,x:3.5,z:0,ownerId:p.id,gold:7,xp:0,time:0,loot:[]},{id:801,x:3,z:0,ownerId:'other',gold:9,xp:0,time:0,loot:[]},{id:802,x:5,z:0,ownerId:p.id,gold:11,xp:0,time:0,loot:[]}];
  peer.send({t:'pickupAll'});await peer.until(m=>m.t==='inv'&&m.gold===7);assert.equal(g.drops.some(d=>d.id===800),false);assert.ok(g.drops.some(d=>d.id===801));assert.ok(g.drops.some(d=>d.id===802));assert.equal(p.gold,7);
+});
+
+test('stability 3: steer stop and ordered deferred return during pickup do not freeze the room',async t=>{
+ const f=await fixture(t),a=await f.make('StopPickup',true),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],p=room.game.players.get(a.character.id)!;room.game.enemies=[];
+ let release!:()=>void;const gate=new Promise<void>(r=>release=r),original=f.store.inventoryOp.bind(f.store);f.store.inventoryOp=async(...args)=>{await gate;return original(...args);};t.after(()=>release());
+ room.game.drops.push({id:9876,x:p.x,z:p.z,ownerId:p.id,gold:2,xp:0,time:1,loot:[]});
+ await wait(70);assert.ok(room.peers.get(p.id)!.busy);one.send({t:'steer',dx:1,dz:0,seq:1});await wait(100);one.send({t:'steer',dx:0,dz:0,seq:2});one.send({t:'returnCity'});await wait(70);const x=p.x,tick=room.tick;await wait(120);assert.ok(Math.abs(p.x-x)<.01);assert.ok(room.tick>tick);assert.equal(p.returnRemaining,undefined);release();await wait(100);assert.ok(p.returnRemaining!>0);
+});
+
+test('stability 4: close mid join rolls back peer, pending player and room',async t=>{
+ const f=await fixture(t),a=await f.make('MidJoin');let release!:()=>void,entered!:()=>void;const gate=new Promise<void>(r=>release=r),seen=new Promise<void>(r=>entered=r),original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{entered();await gate;return original(...args);};t.after(()=>release());const one=f.open(a.cookie);await seen;await once(one.ws,"open");one.ws.close();await one.closed;release();await wait(120);assert.equal(f.rt.metrics().sockets,0);assert.equal(f.rt.rooms.size,0);
+});
+
+test('stability 5: a broken room is quarantined without stopping another room',async t=>{
+ const f=await fixture(t),a=await f.make('BadRoom'),b=await f.make('GoodRoom'),one=f.open(a.cookie),two=f.open(b.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');one.send({t:'spawnReady'});two.send({t:'spawnReady'});await one.until(m=>m.t==='snap');await two.until(m=>m.t==='snap');const bad=[...f.rt.rooms.values()].find(r=>r.game.players.has(a.character.id))!,good=[...f.rt.rooms.values()].find(r=>r.game.players.has(b.character.id))!,tick=good.tick;
+ Object.defineProperty(bad.game,'time',{get(){throw Error('injected room failure');}});await one.until(m=>m.t==='kick'&&m.reason==='เซิร์ฟเวอร์ขัดข้อง กรุณาเข้าใหม่');await wait(150);assert.ok(good.tick>tick);assert.equal(f.rt.rooms.has(bad.key),false);
+});
+
+test('stability 6: close handlers never save after shutdown has drained',async t=>{
+ const f=await fixture(t),a=await f.make('Closing'),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');await f.rt.close();let calls=0;f.store.saveProgress=async()=>{calls++;throw Error('closed store');};await wait(70);assert.equal(calls,0);
+});
+
+test('stability 9: full bag blocks automatic retry before store transaction; Z retries once',async t=>{
+ const f=await fixture(t),a=await f.make('FullBag',true),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],p=room.game.players.get(a.character.id)!;room.game.enemies=[];room.game.data.economy.inventorySlots=0;let calls=0;const original=f.store.inventoryOp.bind(f.store);f.store.inventoryOp=async(...args)=>{calls++;return original(...args);};room.game.drops.push({id:9899,x:p.x,z:p.z,ownerId:p.id,gold:1,xp:0,time:1,loot:[{template:'jelly_slime',qty:1}]});await wait(220);assert.equal(calls,0);assert.equal(room.game.drops[0].blocked,true);const count=()=>one.messages.flatMap(m=>m.list??[]).filter(e=>e.type==='notice'&&e.text==='กระเป๋าเต็ม').length;assert.equal(count(),1);one.send({t:'pickupAll'});await wait(100);assert.equal(count(),2);assert.equal(calls,0);
+});
+
+test('stability 11: snapshots omit inventory and private fields of other players',async t=>{
+ const f=await fixture(t,true),a=await f.make('PrivateOne'),b=await f.make('PrivateTwo'),one=f.open(a.cookie),two=f.open(b.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');one.send({t:'spawnReady'});two.send({t:'spawnReady'});const snap=await one.until(m=>m.t==='snap'&&m.players.length===2);assert.equal('inventory'in snap,false);const other=snap.players.find((p:any)=>p.id!==a.character.id);for(const key of ['gold','xp','skills','hotbar','statPoints'])assert.equal(key in other,false);
+});
+
+test('stability 12: disconnected private rooms expire independently',async t=>{
+ const f=await fixture(t),a=await f.make('ExpireOne'),b=await f.make('RemainTwo'),one=f.open(a.cookie),two=f.open(b.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');one.send({t:'spawnReady'});two.send({t:'spawnReady'});await one.until(m=>m.t==='snap');one.ws.close();await one.closed;await wait(400);assert.equal(f.rt.rooms.size,1);assert.ok([...f.rt.rooms.values()][0].peers.has(b.character.id));
+});
+
+test('stability 13: settings are loaded once per peer and updated from saved settings',async t=>{
+ const f=await fixture(t),a=await f.make('CachedUI');let calls=0;const original=f.store.uiSettings.bind(f.store);f.store.uiSettings=async(...args)=>{calls++;return original(...args);};const one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='uiSettings');one.send({t:'spawnReady'});one.send({t:'spawnReady'});await wait(100);assert.equal(calls,1);one.send({t:'uiSettings',settings:{scale:110,windows:{},keys:{returnCity:'KeyQ',pickupAll:'KeyE'}}});await one.until(m=>m.t==='uiSettings'&&m.settings.scale===110);assert.equal(calls,1);
+});
+
+test('stability 15: a join waits for an evicted characters save',async t=>{
+ const f=await fixture(t),a=await f.make('EvictSave'),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],p=room.game.players.get(a.character.id)!;p.kills=55;let release!:()=>void;const gate=new Promise<void>(r=>release=r),original=f.store.saveProgress.bind(f.store);f.store.saveProgress=async(...args)=>{await gate;return original(...args);};t.after(()=>release());one.ws.close();await one.closed;await wait(350);const two=f.open(a.cookie);await wait(100);assert.equal(two.messages.some(m=>m.t==='welcome'),false);release();await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});const snap=await two.until(m=>m.t==='snap');assert.equal(snap.players[0].kills,55);
+});
+
+test('stability 17: sixth concurrent socket is refused',async t=>{
+ const f=await fixture(t),a=await f.make('SocketLimit');let release!:()=>void;const gate=new Promise<void>(r=>release=r),original=f.store.session.bind(f.store);f.store.session=async(...args)=>{await gate;return original(...args);};t.after(()=>release());for(let i=0;i<5;i++){const one=f.open(a.cookie);await once(one.ws,'open');}const extra=f.open(a.cookie);await extra.closed;assert.notEqual(extra.ws.readyState,1);release();
+});
+
+test('stability 1: heartbeat DB rejection is caught and room keeps ticking',async t=>{
+ const f=await fixture(t),a=await f.make('Heartbeat'),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');const before=f.rt.metrics().ticks;f.store.session=async()=>{throw Error('temporary DB failure');};await wait(220);assert.ok(f.rt.metrics().ticks>before);assert.equal(one.ws.readyState,1);
+});
+test('stability 14: expired requests are pruned repeatedly while running',async t=>{const f=await fixture(t);let calls=0;f.store.pruneRequests=async()=>{calls++;};await wait(240);assert.ok(calls>=2);});
+test('stability 19: replacing DB lease kicks old peer and fences stale writes',async t=>{
+ const f=await fixture(t),a=await f.make('LeaseHero'),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],old=room.peers.get(a.character.id)!.leaseOwner!;await f.store.claimLease(a.character.id,'other-node');await one.until(m=>m.t==='kick'&&m.reason==='เข้าสู่ระบบจากที่อื่น');await assert.rejects(()=>f.store.saveProgress(a.character.accountId,a.character.id,a.character,old),/Lease lost/);
+});
+
+test('stability 17: twenty upgrades per minute includes failed authentication',async t=>{
+ const f=await fixture(t);for(let i=0;i<20;i++){const one=f.open();const [code]=await one.closed;assert.equal(code,4401);}const limited=f.open();const[code]=await limited.closed;assert.equal(code,1006);
+});
+
+test('stability 4: a successful slow join pins its room until registration',async t=>{
+ const f=await fixture(t),a=await f.make('SlowJoin'),original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{await wait(180);return original(...args);};const one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});const first=await one.until(m=>m.t==='snap');await one.until(m=>m.t==='snap'&&m.tick>first.tick);assert.equal(f.rt.rooms.size,1);assert.equal(f.rt.metrics().sockets,1);
+});
+
+test('stability 6: shutdown drains in-flight joins before the store can close',async t=>{
+ const f=await fixture(t),a=await f.make('DrainJoin');let release!:()=>void,entered!:()=>void;const gate=new Promise<void>(r=>release=r),seen=new Promise<void>(r=>entered=r),original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{entered();await gate;return original(...args);};const one=f.open(a.cookie);await seen;let done=false;const shutdown=f.rt.close().then(()=>done=true);await wait(40);assert.equal(done,false);release();await shutdown;assert.equal(f.rt.metrics().sockets,0);assert.equal(f.rt.rooms.size,0);await one.closed;
 });

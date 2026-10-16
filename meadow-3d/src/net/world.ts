@@ -106,7 +106,7 @@ export class NetworkWorld {
 		this.ack = snap.ack;
 		this.ready = true;
 		this.game.p.id = you;
- this.game.p.inventory=snap.inventory;(this.game.p as any).carryWeight=snap.weight;(this.game.p as any).weightLimit=snap.weightLimit;
+ if(snap.inventory)this.game.p.inventory=snap.inventory;(this.game.p as any).carryWeight=snap.weight;(this.game.p as any).weightLimit=snap.weightLimit;
 	}
 	animate(a: Action, now: number) {
 		if (a === "dash") {

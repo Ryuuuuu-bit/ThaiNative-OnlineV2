@@ -62,9 +62,9 @@ test("legacy mapping preserves the two learned skills without mage meteor; hotba
 	assert.equal(p.skills.earth_break, 1);
 	assert.equal(p.skills.meteor, undefined);
 	const slots = p.hotbar.map((s) => ({ ...s }));
-	slots[0].key = "KeyZ";
-	assert.equal(validateHotbar(p, slots, data)[0].key, "KeyZ");
-	slots[1].key = "KeyZ";
+	slots[0].key = "KeyQ";
+	assert.equal(validateHotbar(p, slots, data)[0].key, "KeyQ");
+	slots[1].key = "KeyQ";
 	assert.throws(() => validateHotbar(p, slots, data), /ปุ่ม/);
 	slots[1].key = "KeyW";
 	assert.throws(() => validateHotbar(p, slots, data), /ปุ่ม/);
@@ -244,8 +244,8 @@ test("followup migration grants once, preserves learned skills and custom bar, r
 	assert.equal(next.skills.fighter_basics, undefined);
 	assert.equal(next.hotbar[0].key, "Digit1");
 	const custom = structuredClone(old);
-	custom.hotbar[0].key = "KeyZ";
-	assert.equal(normalizeJob(custom).hotbar[0].key, "KeyZ");
+	custom.hotbar[0].key = "KeyB";
+	assert.equal(normalizeJob(custom).hotbar[0].key, "KeyB");
 	assert.deepEqual(normalizeJob({ ...next, level: 1, jobsVersion: 3 }), next);
 	assert.equal(migrateJob(99).skillPoints, 50);
 	const tier1 = { ...newJob(), jobId: "swordsman", skillPoints: 1 };
