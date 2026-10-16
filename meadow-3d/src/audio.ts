@@ -1,8 +1,117 @@
-export class AudioEngine{enabled=false;ctx:AudioContext|null=null;timer:ReturnType<typeof setInterval>|null=null;note=0;
- start(){if(!this.ctx)this.ctx=new AudioContext();this.ctx.resume();this.enabled=true;if(!this.timer){this.timer=setInterval(()=>this.music(),560);this.music();}}
- toggle(){if(this.enabled){this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;}else this.start();return this.enabled;}
- tone(f:number,d=.15,type:OscillatorType='sine',gain=.025,delay=0,slide=0){if(!this.enabled||!this.ctx)return;const t=this.ctx.currentTime+delay,o=this.ctx.createOscillator(),v=this.ctx.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(25,f+slide),t+d);v.gain.setValueAtTime(0,t);v.gain.linearRampToValueAtTime(gain,t+.01);v.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(v);v.connect(this.ctx.destination);o.start(t);o.stop(t+d+.02);}
- noise(d=.15,gain=.03,frequency=1000){if(!this.enabled||!this.ctx)return;const n=Math.ceil(this.ctx.sampleRate*d),b=this.ctx.createBuffer(1,n,this.ctx.sampleRate),data=b.getChannelData(0);for(let i=0;i<n;i++)data[i]=(Math.random()*2-1)*(1-i/n);const s=this.ctx.createBufferSource(),f=this.ctx.createBiquadFilter(),v=this.ctx.createGain();s.buffer=b;f.type='highpass';f.frequency.value=frequency;v.gain.value=gain;s.connect(f);f.connect(v);v.connect(this.ctx.destination);s.start();}
- play(t:string){if(t==='slash'){this.noise(.13,.035,1800);this.tone(330,.11,'triangle',.02,0,-200);}if(t==='hit'){this.tone(150,.09,'triangle',.05,0,-80);this.noise(.05,.03,200);}if(t==='spin'){this.noise(.4,.04,1500);[440,660,880].forEach((n,i)=>this.tone(n,.3,'sine',.02,i*.05));}if(t==='meteor')this.tone(600,.6,'triangle',.025,0,-400);if(t==='impact'||t==='slam'){this.tone(80,.5,'triangle',.08,0,-50);this.noise(.3,.08,80);}if(t==='dash')this.noise(.2,.02,2200);if(t==='hurt')this.tone(130,.18,'sawtooth',.02,0,-70);if(t==='pickup'){this.tone(880,.14,'sine',.02);this.tone(1320,.17,'sine',.015,.08);}if(t==='heal')[440,660,880].forEach((n,i)=>this.tone(n,.25,'sine',.02,i*.08));if(t==='level'||t==='victory')[523,659,784,1046].forEach((n,i)=>this.tone(n,.5,'triangle',.03,i*.12));}
- music(){if(document.hidden)return;const a=[659,0,784,0,880,784,0,659,587,0,523,0,587,659,0,0,659,0,784,880,1046,0,880,784,659,0,587,0,523,0,0,0];if(a[this.note%32])this.tone(a[this.note%32],.95,'sine',.008);if(this.note%4===0){const n=[130.81,174.61,164.81,146.83][Math.floor(this.note/8)%4];this.tone(n,1.8,'triangle',.007);this.tone(n*1.5,1.6,'sine',.004);}if(this.note%17===0){this.tone(2300,.12,'sine',.004,0,400);this.tone(2600,.12,'sine',.003,.17,-300);}this.note++;}
+﻿import { AudioSettingsSchema, DEFAULT_AUDIO, type AudioSettings } from '@thainative/shared';
+import { assetFetch, reportDeferred } from './asset-request';
+type Position = { x: number; z: number };
+type Sprite = { group: string; start: number; duration: number; pitch: number; cooldown: number; voices: number };
+type Manifest = { sounds: Record<string, Sprite>; groups: Record<string, { opus: { url: string }; aac: { url: string } }> };
+type Bus = 'sfx' | 'music' | 'ambience';
+/** One gesture-unlocked context; downloads never participate in boot progress. */
+export class AudioEngine {
+  settings: AudioSettings = { ...DEFAULT_AUDIO };
+  onChange = (_settings: AudioSettings) => {};
+  private ctx: AudioContext | null = null;
+  private master?: GainNode;
+  private buses = {} as Record<Bus, GainNode>;
+  private manifest?: Manifest;
+  private manifestTask?: Promise<void>;
+  private loads = new Map<string, Promise<void>>();
+  private encoded = new Map<string, ArrayBuffer>();
+  private buffers = new Map<string, AudioBuffer>();
+  private voices = new Map<AudioBufferSourceNode, string>();
+  private last = new Map<string, number>();
+  private playable = false;
+  private ambient?: AudioBufferSourceNode;
+  private listener: Position = { x: 0, z: 0 };
+  private storageKey: string;
+  constructor(characterId: string) {
+    this.storageKey = 'tn-audio:' + characterId;
+    try { this.restore(JSON.parse(localStorage.getItem(this.storageKey) || 'null')); } catch {}
+    const unlock = () => this.start();
+    for (const event of ['pointerdown', 'click', 'keydown', 'touchstart'])
+      window.addEventListener(event, unlock, { capture: true, passive: true });
+    document.addEventListener('visibilitychange', () => this.apply());
+  }
+  restore(value: unknown) {
+    const parsed = AudioSettingsSchema.safeParse(value);
+    if (parsed.success) { this.settings = parsed.data; this.apply(); this.persist(); this.onChange(this.settings); }
+  }
+  private persist() { try { localStorage.setItem(this.storageKey, JSON.stringify(this.settings)); } catch {} }
+  set(value: Partial<AudioSettings>) { this.restore({ ...this.settings, ...value }); }
+  toggle() { this.set({ muted: !this.settings.muted }); return !this.settings.muted; }
+  start() {
+    try {
+      if (!this.ctx) {
+        this.ctx = new AudioContext();
+        this.master = this.ctx.createGain(); this.master.connect(this.ctx.destination);
+        for (const name of ['sfx', 'music', 'ambience'] as const) {
+          this.buses[name] = this.ctx.createGain(); this.buses[name].connect(this.master);
+        }
+        this.apply();
+        for (const group of this.encoded.keys()) void this.decode(group);
+      }
+      if (this.ctx.state === 'suspended') void this.ctx.resume().catch(() => {});
+      this.ambience();
+    } catch { /* Unsupported audio remains silent. */ }
+  }
+  private apply() {
+    if (!this.ctx || !this.master) return;
+    this.master.gain.setTargetAtTime(this.settings.muted || document.hidden ? 0 : 1, this.ctx.currentTime, .08);
+    for (const bus of ['sfx', 'music', 'ambience'] as const)
+      this.buses[bus].gain.setTargetAtTime(this.settings[bus], this.ctx.currentTime, .08);
+  }
+  setListener(position: Position) { this.listener = { x: position.x, z: position.z }; }
+  private getManifest() {
+    return this.manifestTask ??= (async () => {
+      try { this.manifest = await (await assetFetch('/assets/audio/sprites.json?v=' + import.meta.env.VITE_BUILD_ID, 'low')).json(); }
+      catch { reportDeferred(); }
+    })();
+  }
+  load(group: string) {
+    if (!this.loads.has(group)) this.loads.set(group, (async () => {
+      await this.getManifest();
+      const files = this.manifest?.groups[group]; if (!files) return;
+      const opus = !!document.createElement('audio').canPlayType('audio/ogg; codecs="opus"');
+      try {
+        this.encoded.set(group, await (await assetFetch((opus ? files.opus : files.aac).url, 'low')).arrayBuffer());
+        await this.decode(group);
+      } catch { reportDeferred(); }
+    })());
+    return this.loads.get(group)!;
+  }
+  private async decode(group: string) {
+    const bytes = this.encoded.get(group); if (!this.ctx || !bytes) return;
+    this.encoded.delete(group);
+    try { this.buffers.set(group, await this.ctx.decodeAudioData(bytes)); this.ambience(); }
+    catch { reportDeferred(); }
+  }
+  afterPlayable() {
+    if (this.playable) return;
+    this.playable = true;
+    void this.load('sfx-core').then(() => this.load('sfx-skills')).then(() => this.load('amb-meadow'));
+  }
+  private ambience() {
+    const sprite = this.manifest?.sounds.amb_meadow, buffer = this.buffers.get('amb-meadow');
+    if (!this.playable || !this.ctx || !sprite || !buffer || this.ambient) return;
+    const source = this.ctx.createBufferSource(), fade = this.ctx.createGain();
+    source.buffer = buffer; source.loop = true; source.loopStart = sprite.start; source.loopEnd = Math.min(buffer.duration, sprite.start + sprite.duration);
+    fade.gain.setValueAtTime(0, this.ctx.currentTime); fade.gain.linearRampToValueAtTime(1, this.ctx.currentTime + 2);
+    source.connect(fade); fade.connect(this.buses.ambience); source.start(0, sprite.start); this.ambient = source;
+  }
+  play(id: string, position?: Position, bus: Bus = 'sfx') {
+    const ctx = this.ctx, sprite = this.manifest?.sounds[id], buffer = sprite && this.buffers.get(sprite.group);
+    if (!ctx || ctx.state !== 'running' || !sprite || !buffer || document.hidden || this.settings.muted) return;
+    const now = ctx.currentTime;
+    if (now - (this.last.get(id) ?? -Infinity) < sprite.cooldown || this.voices.size >= 16 || [...this.voices.values()].filter(v => v === id).length >= sprite.voices) return;
+    const dx = position ? position.x - this.listener.x : 0, dz = position ? position.z - this.listener.z : 0;
+    const distance = Math.hypot(dx, dz); if (distance >= 24) return;
+    const source = ctx.createBufferSource(), gain = ctx.createGain(), pan = ctx.createStereoPanner();
+    source.buffer = buffer; source.playbackRate.value = 1 + (Math.random() * 2 - 1) * sprite.pitch;
+    gain.gain.value = Math.pow(10, (Math.random() * 3 - 1.5) / 20) * Math.pow(1 - distance / 24, 2);
+    pan.pan.value = Math.max(-1, Math.min(1, (dx * .822 - dz * .569) / 10));
+    source.connect(gain); gain.connect(pan); pan.connect(this.buses[bus]);
+    source.onended = () => { this.voices.delete(source); source.disconnect(); gain.disconnect(); pan.disconnect(); };
+    source.start(now, sprite.start, sprite.duration); this.last.set(id, now); this.voices.set(source, id);
+    if (import.meta.env.DEV) {
+      const log = ((window as any).__sfxLog ??= []); log.push({ id, time: now, position, bus }); if (log.length > 256) log.shift();
+    }
+  }
 }

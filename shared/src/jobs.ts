@@ -26,6 +26,7 @@ export const HOTBAR_KEYS = [
 	"Digit0",
 ];
 export const RESERVED_KEYS = [
+ "KeyM",
 	"KeyW",
 	"KeyA",
 	"KeyS",

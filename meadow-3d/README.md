@@ -118,3 +118,9 @@ For **local UAT only**, start the local server with `UAT_JOB_EXP_MULTIPLIER=1000
 Whirlwind was tuned from2×70% to2×110% atLv1, still2×135% atLv10: neutral weapon element and per-hit defence made the literal draft default take102s against the retuned King. The final abstract balance model measures about87.5s for Lv1 swordsman with only whirlwind1/earth_break1; King HP1500 is unchanged. The model reports offensive TTK and survival separately; it does not reproduce movement, potions, scripted boss windows or skill CC.
 
 Original painted Angel,12-cell64px icon atlas and6-cell VFX sources/prompts are under `art/skills/`; repack with `node meadow-3d/tools/pack-skill-art.mjs`. Runtime uses hashed KTX2/WebP and deferred VFX. Existing cast/dodge/attack poses plus a visual leap and afterimages cover the new skills. Historical sections below describe earlier milestones and their old controls/assets.
+
+### Sound settings
+
+Press **M** (or the music-note button) to toggle mute. Open **K ? ??????????? / ?????** for live effects, music and ambience sliders. Settings save per character on the server with localStorage fallback. Audio unlocks on the first click, key or touch; sprites download after playable, with King sounds alongside King artwork. No music track is currently supplied; the music bus and its preview are ready for one.
+
+Run `npm run pack:audio` to rebuild hashed Opus/AAC sprites from `art/sfx-source/picks.json`. The ambience uses `amb_meadow_loop.mp3` with a 1.5-second circular crossfade; `amb_meadow_loop_b.mp3` is a source-only spare. In development, `window.__sfxLog` records actual SFX playback (up to 256 entries).

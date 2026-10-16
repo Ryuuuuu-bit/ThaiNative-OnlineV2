@@ -219,6 +219,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			jobExp: p.jobExp,
 			skillPoints: p.skillPoints,
 			skills: { ...p.skills },
+			audioSettings: p.audioSettings,
 			hotbar: p.hotbar.map((s) => ({ ...s })),
 			jobsVersion: 2,
 			level: p.level,
@@ -275,6 +276,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					profile: p.profile,
 					autoAllocate: p.autoAllocate,
 					statResetFree: peer.room.game.data.stats.statResetFree,
+					audioSettings: p.audioSettings,
 					job: normalizeJob(p),
 				},
 			],
@@ -313,6 +315,11 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		}
 		withPlayer(g, peer.id, () => {
 			const p = g.p;
+            if (message.t === "audioSettings") {
+              p.audioSettings = { ...message.settings };
+              void save(room, p.id, true).then(() => send(peer.ws, {t:"audioSettings", settings:p.audioSettings})).catch(() => send(peer.ws, {t:"audioSettingsError"}));
+              return;
+            }
 			if (
 				message.t === "skillUp" ||
 				message.t === "hotbar" ||
@@ -541,6 +548,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					};
 					const p = addPlayer(room.game, character.id, profile);
 					Object.assign(p, normalizeJob(character));
+                    p.audioSettings = character.audioSettings;
 					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;

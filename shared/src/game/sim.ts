@@ -74,6 +74,7 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
+ audioSettings?: import('../audio-settings.js').AudioSettings;
 	statuses: TimedEffect[];
 	castRemaining: number;
 	jobsVersion: number;

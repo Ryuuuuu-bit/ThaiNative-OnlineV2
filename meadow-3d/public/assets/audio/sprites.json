@@ -1,0 +1,364 @@
+{
+  "version": 1,
+  "sampleRate": 48000,
+  "groups": {
+    "sfx-core": {
+      "opus": {
+        "url": "/assets/audio/sfx-core-7319533d6f1d.ogg",
+        "bytes": 130896
+      },
+      "aac": {
+        "url": "/assets/audio/sfx-core-f03e5692cee7.m4a",
+        "bytes": 118104
+      },
+      "duration": 13.443291666666667
+    },
+    "sfx-skills": {
+      "opus": {
+        "url": "/assets/audio/sfx-skills-177b4d4663ab.ogg",
+        "bytes": 59941
+      },
+      "aac": {
+        "url": "/assets/audio/sfx-skills-9ecbb5967692.m4a",
+        "bytes": 56035
+      },
+      "duration": 6.437020833333333
+    },
+    "sfx-king": {
+      "opus": {
+        "url": "/assets/audio/sfx-king-40db4efcca6a.ogg",
+        "bytes": 23061
+      },
+      "aac": {
+        "url": "/assets/audio/sfx-king-0c08c8887cd6.m4a",
+        "bytes": 24389
+      },
+      "duration": 2.8869166666666666
+    },
+    "amb-meadow": {
+      "opus": {
+        "url": "/assets/audio/amb-meadow-3d4c363dffbd.ogg",
+        "bytes": 204710
+      },
+      "aac": {
+        "url": "/assets/audio/amb-meadow-2dd1abfb6569.m4a",
+        "bytes": 239727
+      },
+      "duration": 28.316229166666666
+    }
+  },
+  "sounds": {
+    "amb_meadow": {
+      "group": "amb-meadow",
+      "start": 0,
+      "duration": 28.316229166666666,
+      "source": "art/sfx-source/raw/amb_meadow_loop.mp3",
+      "targetDuration": 30,
+      "lufs": -24,
+      "crossfade": 1.5,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "combo1": {
+      "group": "sfx-core",
+      "start": 0,
+      "duration": 0.2937708333333333,
+      "source": "art/sfx-source/raw/combo1_v1.mp3",
+      "targetDuration": 0.5,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "combo2": {
+      "group": "sfx-core",
+      "start": 0.4137708333333333,
+      "duration": 0.8325416666666666,
+      "source": "art/sfx-source/raw/combo2_v1.mp3",
+      "targetDuration": 0.5,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "combo3": {
+      "group": "sfx-core",
+      "start": 1.3663125,
+      "duration": 1.1619375,
+      "source": "art/sfx-source/raw/combo3_v1.mp3",
+      "targetDuration": 0.8,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "crit": {
+      "group": "sfx-core",
+      "start": 2.64825,
+      "duration": 0.3718958333333333,
+      "source": "art/sfx-source/raw/crit_v1.mp3",
+      "targetDuration": 0.8,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "dash": {
+      "group": "sfx-skills",
+      "start": 0,
+      "duration": 0.7378333333333333,
+      "source": "art/sfx-source/raw/dash_v1.mp3",
+      "targetDuration": 0.8,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "death": {
+      "group": "sfx-core",
+      "start": 3.1401458333333334,
+      "duration": 1.9899791666666666,
+      "source": "art/sfx-source/raw/death_v1.mp3",
+      "targetDuration": 2.5,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "dodge": {
+      "group": "sfx-core",
+      "start": 5.250125,
+      "duration": 0.5272291666666666,
+      "source": "art/sfx-source/raw/dodge_v1.mp3",
+      "targetDuration": 0.6,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "earth_break": {
+      "group": "sfx-skills",
+      "start": 0.8578333333333333,
+      "duration": 0.6185416666666667,
+      "source": "art/sfx-source/raw/earth_break_v1.mp3",
+      "targetDuration": 1.2,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "endure": {
+      "group": "sfx-skills",
+      "start": 1.596375,
+      "duration": 0.8877291666666667,
+      "source": "art/sfx-source/raw/endure_v1.mp3",
+      "targetDuration": 1.5,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "hurt": {
+      "group": "sfx-core",
+      "start": 5.897354166666666,
+      "duration": 0.1965625,
+      "source": "art/sfx-source/raw/hurt_v1.mp3",
+      "targetDuration": 0.6,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "jelly_death": {
+      "group": "sfx-core",
+      "start": 6.213916666666667,
+      "duration": 0.6663333333333333,
+      "source": "art/sfx-source/raw/jelly_death_v1.mp3",
+      "targetDuration": 1,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "jelly_hit": {
+      "group": "sfx-core",
+      "start": 7.00025,
+      "duration": 0.405625,
+      "source": "art/sfx-source/raw/jelly_hit_v1.mp3",
+      "targetDuration": 0.5,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 3
+    },
+    "jelly_hop": {
+      "group": "sfx-core",
+      "start": 7.525875,
+      "duration": 0.7644791666666667,
+      "source": "art/sfx-source/raw/jelly_hop_v1.mp3",
+      "targetDuration": 0.4,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.8,
+      "voices": 2
+    },
+    "job_change": {
+      "group": "sfx-core",
+      "start": 8.410354166666666,
+      "duration": 2.1395208333333335,
+      "source": "art/sfx-source/raw/job_change_v1.mp3",
+      "targetDuration": 3,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "king_roar": {
+      "group": "sfx-king",
+      "start": 0,
+      "duration": 1.7976041666666667,
+      "source": "art/sfx-source/raw/king_roar_v1.mp3",
+      "targetDuration": 2,
+      "lufs": -14,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "king_slam": {
+      "group": "sfx-king",
+      "start": 1.9176041666666668,
+      "duration": 0.8493125,
+      "source": "art/sfx-source/raw/king_slam_v1.mp3",
+      "targetDuration": 1.5,
+      "lufs": -14,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "levelup": {
+      "group": "sfx-core",
+      "start": 10.669875,
+      "duration": 0.8904791666666667,
+      "source": "art/sfx-source/raw/levelup_v1.mp3",
+      "targetDuration": 2,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0,
+      "voices": 4
+    },
+    "pickup": {
+      "group": "sfx-core",
+      "start": 11.680354166666667,
+      "duration": 0.23333333333333334,
+      "source": "art/sfx-source/raw/pickup_v1.mp3",
+      "targetDuration": 0.6,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "potion": {
+      "group": "sfx-core",
+      "start": 12.0336875,
+      "duration": 0.4044375,
+      "source": "art/sfx-source/raw/potion_v1.mp3",
+      "targetDuration": 1.5,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "provoke": {
+      "group": "sfx-skills",
+      "start": 2.6041041666666667,
+      "duration": 0.9899791666666666,
+      "source": "art/sfx-source/raw/provoke_v1.mp3",
+      "targetDuration": 1.2,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "punch": {
+      "group": "sfx-skills",
+      "start": 3.7140833333333334,
+      "duration": 0.583875,
+      "source": "art/sfx-source/raw/punch_v1.mp3",
+      "targetDuration": 0.5,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "slash": {
+      "group": "sfx-skills",
+      "start": 4.417958333333333,
+      "duration": 0.9899791666666666,
+      "source": "art/sfx-source/raw/slash_v1.mp3",
+      "targetDuration": 0.8,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "ui_click": {
+      "group": "sfx-core",
+      "start": 12.558125,
+      "duration": 0.037083333333333336,
+      "source": "art/sfx-source/raw/ui_click_v1.mp3",
+      "targetDuration": 0.2,
+      "lufs": -20,
+      "crossfade": 0,
+      "pitch": 0,
+      "cooldown": 0.06,
+      "voices": 4
+    },
+    "ui_open": {
+      "group": "sfx-core",
+      "start": 12.715208333333333,
+      "duration": 0.6080833333333333,
+      "source": "art/sfx-source/raw/ui_open_v1.mp3",
+      "targetDuration": 0.6,
+      "lufs": -20,
+      "crossfade": 0,
+      "pitch": 0,
+      "cooldown": 0.06,
+      "voices": 4
+    },
+    "whirlwind": {
+      "group": "sfx-skills",
+      "start": 5.5279375,
+      "duration": 0.7890833333333334,
+      "source": "art/sfx-source/raw/whirlwind_v1.mp3",
+      "targetDuration": 1,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    }
+  }
+}

@@ -12,7 +12,9 @@ export function mountSkills(
 	send: (message: any) => void,
 	clear: () => void,
 	act: (id: string) => void,
+	play: (id: string) => void = () => {},
 ) {
+	let confirmedJob: string | undefined;
 	let job: JobProgress | null = null,
 		pending: Record<string, number> = {},
 		selected: string | null = null,
@@ -216,10 +218,13 @@ export function mountSkills(
 	};
 	$("#skills-settings").onclick = () => {
 		$("#key-settings").hidden = !$("#key-settings").hidden;
+		$("#audio-settings").hidden = $("#key-settings").hidden;
+		if (!$("#key-settings").hidden) play("ui_open");
 	};
 	$("#angel-talk").onclick = () => {
 		clear();
 		angel.showModal();
+		play("ui_open");
 		drawAngel();
 	};
 	function drawAngel() {
@@ -256,6 +261,7 @@ export function mountSkills(
 				pending = {};
 				draw();
 				panel.showModal();
+				play("ui_open");
 			}
 		},
 		key(code: string) {
@@ -273,6 +279,8 @@ export function mountSkills(
 				return;
 			}
 			if (e.type !== "stats" || !e.job) return;
+			if (confirmedJob && confirmedJob !== e.job.jobId) play("job_change");
+			confirmedJob = e.job.jobId;
 			job = e.job;
 			pending = {};
 			$("#skills-button").classList.toggle("has-points", job!.skillPoints > 0);
