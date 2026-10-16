@@ -1,0 +1,68 @@
+{
+  "dataVersion": 1,
+  "kind": {
+    "basic": 0.8,
+    "single": 0.7,
+    "area": 0.6,
+    "dot": 0.5,
+    "utility": 1
+  },
+  "modes": {
+    "duel": {
+      "reduction": 0.2,
+      "potions": true,
+      "equalizeLevel": null,
+      "minLevel": 1,
+      "gear": "equipped"
+    },
+    "freepk": {
+      "reduction": 0.2,
+      "potions": true,
+      "equalizeLevel": null,
+      "minLevel": 30,
+      "gear": "equipped"
+    },
+    "arena": {
+      "reduction": 0.2,
+      "potions": false,
+      "equalizeLevel": 99,
+      "minLevel": 1,
+      "gear": "standard"
+    },
+    "gvg": {
+      "reduction": 0.4,
+      "potions": true,
+      "equalizeLevel": null,
+      "minLevel": 1,
+      "gear": "equipped"
+    }
+  },
+  "cc": {
+    "window": 15,
+    "multipliers": [
+      1,
+      0.5,
+      0.25,
+      0
+    ]
+  },
+  "heal": {
+    "window": 5,
+    "reduction": 0.3
+  },
+  "potionCooldownMul": 2,
+  "honor": {
+    "winMin": 10,
+    "winMax": 25,
+    "loss": -5,
+    "repeatVictimWindow": 600,
+    "repeatVictimReward": 0,
+    "winRule": "levelGap"
+  },
+  "karma": {
+    "redNameSecondsPerKill": 3600,
+    "redDeathItemDrops": 1,
+    "mode": "freepk",
+    "requiresNonRetaliating": true
+  }
+}

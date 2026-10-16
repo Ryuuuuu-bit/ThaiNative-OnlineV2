@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:server && npm run build:web",
+    "build": "npm run build:shared && npm run build:server && npm run build:web",
     "preview": "vite preview",
-    "test": "npm run test:meadow && npm run test:server && npm run test:web",
+    "test": "npm run test:meadow && npm run test:server && npm run test:web && npm run test:shared",
     "dev:meadow": "vite meadow-3d --host 127.0.0.1 --port 5173",
     "build:meadow": "vite build meadow-3d",
     "test:meadow": "node --test meadow-3d/tests/*.test.mjs",
@@ -17,7 +17,10 @@
     "start": "node server/build/index.js",
     "dev:server": "npm --prefix server run dev",
     "test:server": "npm --prefix server test",
-    "test:web": "node --test meadow-3d/web-tests/*.test.mjs"
+    "test:web": "node --test meadow-3d/web-tests/*.test.mjs",
+    "build:shared": "npm --workspace @thainative/shared run build",
+    "test:shared": "npm --workspace @thainative/shared test",
+    "sim:balance": "npm --workspace @thainative/shared run sim:balance --"
   },
   "dependencies": {
     "@colyseus/sdk": "^0.18.5",
@@ -56,5 +59,8 @@
     "typescript": "^7.0.2",
     "vite": "^7.3.7",
     "vitest": "^5.0.4"
-  }
+  },
+  "workspaces": [
+    "shared"
+  ]
 }

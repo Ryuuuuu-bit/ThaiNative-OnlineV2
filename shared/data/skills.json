@@ -1,0 +1,80 @@
+{
+  "dataVersion": 1,
+  "skills": [
+    {
+      "id": "basic",
+      "nameTh": "โจมตี",
+      "percent": 100,
+      "element": "weapon",
+      "type": "physical",
+      "kind": "basic",
+      "sp": 0,
+      "cooldown": 0.38,
+      "cast": 0,
+      "range": 1.8,
+      "radius": 0,
+      "icon": 0,
+      "comboThirdPercent": 170
+    },
+    {
+      "id": "whirlwind",
+      "nameTh": "ฟันพายุ",
+      "percent": 210,
+      "element": "wind",
+      "type": "physical",
+      "kind": "area",
+      "sp": 20,
+      "cooldown": 4,
+      "cast": 0,
+      "range": 0,
+      "radius": 2.6,
+      "icon": 1
+    },
+    {
+      "id": "meteor",
+      "nameTh": "ดาวตก",
+      "percent": 320,
+      "element": "fire",
+      "type": "magic",
+      "kind": "area",
+      "sp": 30,
+      "cooldown": 6,
+      "cast": 0.65,
+      "range": 8,
+      "radius": 2.2,
+      "icon": 2
+    },
+    {
+      "id": "dodge",
+      "nameTh": "พุ่งหลบ",
+      "percent": 0,
+      "element": "weapon",
+      "type": "physical",
+      "kind": "utility",
+      "sp": 0,
+      "cooldown": 1.5,
+      "cast": 0,
+      "range": 3.08,
+      "radius": 0,
+      "icon": 3
+    },
+    {
+      "id": "potion",
+      "nameTh": "ยา",
+      "percent": 0,
+      "element": "weapon",
+      "type": "heal",
+      "kind": "utility",
+      "sp": 0,
+      "cooldown": 7,
+      "cast": 0,
+      "range": 0,
+      "radius": 0,
+      "icon": 4,
+      "heal": {
+        "flat": 65,
+        "vitPercent": 2
+      }
+    }
+  ]
+}

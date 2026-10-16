@@ -1,0 +1,95 @@
+{
+  "dataVersion": 1,
+  "names": {
+    "neutral": "ไร้ธาตุ",
+    "fire": "ไฟ",
+    "water": "น้ำ",
+    "wind": "ลม",
+    "earth": "ดิน",
+    "holy": "สายฟ้า",
+    "dark": "มืด",
+    "ghost": "ผี"
+  },
+  "table": {
+    "neutral": {
+      "neutral": 100,
+      "fire": 100,
+      "water": 100,
+      "wind": 100,
+      "earth": 100,
+      "holy": 100,
+      "dark": 100,
+      "ghost": 50
+    },
+    "fire": {
+      "neutral": 100,
+      "fire": 50,
+      "water": 50,
+      "wind": 100,
+      "earth": 150,
+      "holy": 100,
+      "dark": 125,
+      "ghost": 125
+    },
+    "water": {
+      "neutral": 100,
+      "fire": 150,
+      "water": 50,
+      "wind": 100,
+      "earth": 75,
+      "holy": 50,
+      "dark": 100,
+      "ghost": 100
+    },
+    "wind": {
+      "neutral": 100,
+      "fire": 100,
+      "water": 150,
+      "wind": 50,
+      "earth": 75,
+      "holy": 100,
+      "dark": 100,
+      "ghost": 125
+    },
+    "earth": {
+      "neutral": 100,
+      "fire": 75,
+      "water": 100,
+      "wind": 150,
+      "earth": 50,
+      "holy": 150,
+      "dark": 100,
+      "ghost": 100
+    },
+    "holy": {
+      "neutral": 100,
+      "fire": 100,
+      "water": 150,
+      "wind": 100,
+      "earth": 50,
+      "holy": 50,
+      "dark": 125,
+      "ghost": 100
+    },
+    "dark": {
+      "neutral": 100,
+      "fire": 100,
+      "water": 100,
+      "wind": 100,
+      "earth": 100,
+      "holy": 100,
+      "dark": 50,
+      "ghost": 150
+    },
+    "ghost": {
+      "neutral": 125,
+      "fire": 100,
+      "water": 100,
+      "wind": 100,
+      "earth": 100,
+      "holy": 100,
+      "dark": 150,
+      "ghost": 50
+    }
+  }
+}

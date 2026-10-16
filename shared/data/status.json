@@ -1,0 +1,127 @@
+{
+  "dataVersion": 1,
+  "statuses": [
+    {
+      "id": "stun",
+      "seconds": 2,
+      "resist": {
+        "vit": 0.01,
+        "luk": 0.003
+      },
+      "effects": {
+        "noMove": true,
+        "noSkill": true
+      }
+    },
+    {
+      "id": "slow",
+      "seconds": 5,
+      "resist": {
+        "agi": 0.01
+      },
+      "effects": {
+        "moveSpeed": -0.4,
+        "aspd": -0.4
+      }
+    },
+    {
+      "id": "poison",
+      "seconds": 10,
+      "resist": {
+        "vit": 0.01
+      },
+      "effects": {
+        "hpPerSecond": -0.02,
+        "hardDef": -0.25
+      }
+    },
+    {
+      "id": "burn",
+      "seconds": 6,
+      "resist": {
+        "fire": 1
+      },
+      "effects": {
+        "hpPerSecond": -0.03,
+        "fireResist": -0.2
+      }
+    },
+    {
+      "id": "freeze",
+      "seconds": 3,
+      "resist": {
+        "vit": 0.01,
+        "water": 1
+      },
+      "effects": {
+        "noMove": true,
+        "fireTaken": 1.5,
+        "waterTaken": 0.5
+      }
+    },
+    {
+      "id": "silence",
+      "seconds": 4,
+      "resist": {
+        "int": 0.01
+      },
+      "effects": {
+        "noSkill": true
+      }
+    },
+    {
+      "id": "blind",
+      "seconds": 6,
+      "resist": {
+        "dex": 0.01
+      },
+      "effects": {
+        "hit": -0.5
+      }
+    },
+    {
+      "id": "sleep",
+      "seconds": 6,
+      "resist": {
+        "int": 0.005,
+        "luk": 0.005
+      },
+      "effects": {
+        "noMove": true,
+        "wakeOnHit": true,
+        "firstHit": 1.5
+      }
+    },
+    {
+      "id": "curse",
+      "seconds": 8,
+      "resist": {
+        "luk": 0.01
+      },
+      "effects": {
+        "atk": -0.25,
+        "matk": -0.25,
+        "critShield": 0
+      }
+    },
+    {
+      "id": "fear",
+      "seconds": 3,
+      "resist": {
+        "luk": 0.005,
+        "vit": 0.005
+      },
+      "effects": {
+        "randomFlee": true,
+        "ghostOnly": true
+      }
+    }
+  ],
+  "bossImmune": [
+    "stun",
+    "freeze",
+    "sleep",
+    "fear"
+  ],
+  "stacking": "refresh"
+}

@@ -1,0 +1,2258 @@
+{
+  "dataVersion": 1,
+  "options": {
+    "levels": [
+      1,
+      10,
+      30,
+      50,
+      99
+    ],
+    "classes": [
+      "novice_knight",
+      "archer",
+      "mage"
+    ],
+    "monster": "all",
+    "runs": 200,
+    "seed": 1,
+    "pvp": true
+  },
+  "model": {
+    "stepSeconds": 0.05,
+    "maxSeconds": 600,
+    "walkSeconds": 2,
+    "bossUptime": 0.35,
+    "bossWindowSeconds": 4,
+    "bossIncomingInterval": 2,
+    "smallIncomingInterval": 1.5,
+    "consumables": false,
+    "notes": "TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP/HP regen uses shared per-5s values. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50."
+  },
+  "rows": [
+    {
+      "classId": "novice_knight",
+      "level": 1,
+      "opponent": "novice_knight",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 2654435762,
+      "runs": 200,
+      "ttk": {
+        "mean": 5.240500000000014,
+        "p10": 5.2,
+        "p90": 5.65
+      },
+      "hitsToDie": {
+        "mean": 13.24,
+        "p10": 13,
+        "p90": 14
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5175000000000001,
+      "drawRate": 0.665,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 1,
+      "opponent": "novice_knight",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 1013904227,
+      "runs": 200,
+      "ttk": {
+        "mean": 6.774999999999989,
+        "p10": 6.55,
+        "p90": 7
+      },
+      "hitsToDie": {
+        "mean": 17.82,
+        "p10": 17,
+        "p90": 18
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4875,
+      "drawRate": 0.405,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 1,
+      "opponent": "archer",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 3668339988,
+      "runs": 200,
+      "ttk": {
+        "mean": 3.8882500000000113,
+        "p10": 3.85,
+        "p90": 3.85
+      },
+      "hitsToDie": {
+        "mean": 21.635,
+        "p10": 21,
+        "p90": 22
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 1,
+      "opponent": "archer",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 2027808453,
+      "runs": 200,
+      "ttk": {
+        "mean": 5.076250000000005,
+        "p10": 4.75,
+        "p90": 5.2
+      },
+      "hitsToDie": {
+        "mean": 31.22,
+        "p10": 31,
+        "p90": 32
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 1,
+      "opponent": "mage",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 387276918,
+      "runs": 200,
+      "ttk": {
+        "mean": 3.4877499999999917,
+        "p10": 3.4,
+        "p90": 3.85
+      },
+      "hitsToDie": {
+        "mean": 28.185,
+        "p10": 27,
+        "p90": 29
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 1,
+      "opponent": "mage",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 3041712679,
+      "runs": 200,
+      "ttk": {
+        "mean": 4.497999999999991,
+        "p10": 4.3,
+        "p90": 5.2
+      },
+      "hitsToDie": {
+        "mean": 40.215,
+        "p10": 39,
+        "p90": 41
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "novice_knight",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 1401181144,
+      "runs": 200,
+      "ttk": {
+        "mean": 8.208250000000003,
+        "p10": 7.9,
+        "p90": 8.8
+      },
+      "hitsToDie": {
+        "mean": 9.77,
+        "p10": 9,
+        "p90": 10
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "novice_knight",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 4055616905,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.502249999999997,
+        "p10": 11.05,
+        "p90": 12.4
+      },
+      "hitsToDie": {
+        "mean": 12.905,
+        "p10": 13,
+        "p90": 13
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "archer",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 2415085370,
+      "runs": 200,
+      "ttk": {
+        "mean": 5.042749999999996,
+        "p10": 4.55,
+        "p90": 5.9
+      },
+      "hitsToDie": {
+        "mean": 14.875,
+        "p10": 14,
+        "p90": 15
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4725,
+      "drawRate": 0.255,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "archer",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 774553835,
+      "runs": 200,
+      "ttk": {
+        "mean": 7.717750000000015,
+        "p10": 7.45,
+        "p90": 8.35
+      },
+      "hitsToDie": {
+        "mean": 19.925,
+        "p10": 20,
+        "p90": 20
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5275000000000001,
+      "drawRate": 0.265,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "mage",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 3428989596,
+      "runs": 200,
+      "ttk": {
+        "mean": 4.361000000000004,
+        "p10": 4.1,
+        "p90": 4.55
+      },
+      "hitsToDie": {
+        "mean": 18.375,
+        "p10": 18,
+        "p90": 19
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 1,
+      "opponent": "mage",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 1788458061,
+      "runs": 200,
+      "ttk": {
+        "mean": 6.122749999999999,
+        "p10": 5.9,
+        "p90": 6.8
+      },
+      "hitsToDie": {
+        "mean": 24.815,
+        "p10": 24,
+        "p90": 25
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "novice_knight",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 147926526,
+      "runs": 200,
+      "ttk": {
+        "mean": 10.498499999999993,
+        "p10": 9.9,
+        "p90": 11.25
+      },
+      "hitsToDie": {
+        "mean": 8.435,
+        "p10": 8,
+        "p90": 9
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "novice_knight",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 2802362287,
+      "runs": 200,
+      "ttk": {
+        "mean": 14.467499999999998,
+        "p10": 13.5,
+        "p90": 15.3
+      },
+      "hitsToDie": {
+        "mean": 11,
+        "p10": 11,
+        "p90": 11
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "archer",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 1161830752,
+      "runs": 200,
+      "ttk": {
+        "mean": 7.062000000000023,
+        "p10": 6.7,
+        "p90": 7.65
+      },
+      "hitsToDie": {
+        "mean": 12.97,
+        "p10": 13,
+        "p90": 13
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "archer",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 3816266513,
+      "runs": 200,
+      "ttk": {
+        "mean": 9.585000000000022,
+        "p10": 9.45,
+        "p90": 9.9
+      },
+      "hitsToDie": {
+        "mean": 17.84,
+        "p10": 17,
+        "p90": 18
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "mage",
+      "opponentLevel": 1,
+      "mode": "duel",
+      "seed": 2175734978,
+      "runs": 200,
+      "ttk": {
+        "mean": 5.956000000000005,
+        "p10": 5.65,
+        "p90": 6.7
+      },
+      "hitsToDie": {
+        "mean": 16.195,
+        "p10": 16,
+        "p90": 17
+      },
+      "expPerMinute": 0,
+      "winRate": 0.49750000000000005,
+      "drawRate": 0.535,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "opponent": "mage",
+      "opponentLevel": 1,
+      "mode": "gvg",
+      "seed": 535203443,
+      "runs": 200,
+      "ttk": {
+        "mean": 8.392499999999979,
+        "p10": 8.1,
+        "p90": 9
+      },
+      "hitsToDie": {
+        "mean": 21.795,
+        "p10": 21,
+        "p90": 22
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4675,
+      "drawRate": 0.435,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "novice_knight",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 3189639204,
+      "runs": 200,
+      "ttk": {
+        "mean": 13.031999999999984,
+        "p10": 12.6,
+        "p90": 13.95
+      },
+      "hitsToDie": {
+        "mean": 33.7,
+        "p10": 33,
+        "p90": 34
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4925,
+      "drawRate": 0.275,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "novice_knight",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 1549107669,
+      "runs": 200,
+      "ttk": {
+        "mean": 17.457750000000022,
+        "p10": 16.65,
+        "p90": 18.45
+      },
+      "hitsToDie": {
+        "mean": 45.615,
+        "p10": 45,
+        "p90": 46
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5025000000000001,
+      "drawRate": 0.195,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "archer",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 4203543430,
+      "runs": 200,
+      "ttk": {
+        "mean": 9.864000000000019,
+        "p10": 9.45,
+        "p90": 10.35
+      },
+      "hitsToDie": {
+        "mean": 30.08,
+        "p10": 30,
+        "p90": 31
+      },
+      "expPerMinute": 0,
+      "winRate": 0.985,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "archer",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 2563011895,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.468749999999986,
+        "p10": 10.85,
+        "p90": 12.2
+      },
+      "hitsToDie": {
+        "mean": 39.93,
+        "p10": 40,
+        "p90": 40
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "mage",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 922480360,
+      "runs": 200,
+      "ttk": {
+        "mean": 7.63025000000001,
+        "p10": 7.25,
+        "p90": 8.15
+      },
+      "hitsToDie": {
+        "mean": 66.345,
+        "p10": 65,
+        "p90": 67
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 10,
+      "opponent": "mage",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 3576916121,
+      "runs": 200,
+      "ttk": {
+        "mean": 10.370750000000017,
+        "p10": 9.95,
+        "p90": 10.85
+      },
+      "hitsToDie": {
+        "mean": 92.345,
+        "p10": 90,
+        "p90": 94
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "novice_knight",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 1936384586,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.618000000000016,
+        "p10": 11.15,
+        "p90": 12.5
+      },
+      "hitsToDie": {
+        "mean": 24.94,
+        "p10": 25,
+        "p90": 25
+      },
+      "expPerMinute": 0,
+      "winRate": 0.005,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "novice_knight",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 295853051,
+      "runs": 200,
+      "ttk": {
+        "mean": 15.23150000000001,
+        "p10": 14.75,
+        "p90": 16.1
+      },
+      "hitsToDie": {
+        "mean": 32.945,
+        "p10": 32,
+        "p90": 34
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "archer",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 2950288812,
+      "runs": 200,
+      "ttk": {
+        "mean": 8.823500000000017,
+        "p10": 8.45,
+        "p90": 9.8
+      },
+      "hitsToDie": {
+        "mean": 22.505,
+        "p10": 22,
+        "p90": 23
+      },
+      "expPerMinute": 0,
+      "winRate": 0.47,
+      "drawRate": 0.37,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "archer",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 1309757277,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.654000000000007,
+        "p10": 11.15,
+        "p90": 12.5
+      },
+      "hitsToDie": {
+        "mean": 29.795,
+        "p10": 29,
+        "p90": 30
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4925,
+      "drawRate": 0.255,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "mage",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 3964193038,
+      "runs": 200,
+      "ttk": {
+        "mean": 7.05199999999999,
+        "p10": 6.8,
+        "p90": 7.25
+      },
+      "hitsToDie": {
+        "mean": 49.365,
+        "p10": 49,
+        "p90": 50
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 10,
+      "opponent": "mage",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 2323661503,
+      "runs": 200,
+      "ttk": {
+        "mean": 9.288499999999983,
+        "p10": 9.05,
+        "p90": 9.95
+      },
+      "hitsToDie": {
+        "mean": 62.565,
+        "p10": 62,
+        "p90": 63
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "novice_knight",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 683129968,
+      "runs": 200,
+      "ttk": {
+        "mean": 20.081000000000003,
+        "p10": 19.1,
+        "p90": 21.35
+      },
+      "hitsToDie": {
+        "mean": 22.865,
+        "p10": 22,
+        "p90": 23
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "novice_knight",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 3337565729,
+      "runs": 200,
+      "ttk": {
+        "mean": 28.68050000000001,
+        "p10": 27.65,
+        "p90": 29.9
+      },
+      "hitsToDie": {
+        "mean": 30.35,
+        "p10": 30,
+        "p90": 31
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "archer",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 1697034194,
+      "runs": 200,
+      "ttk": {
+        "mean": 14.192750000000013,
+        "p10": 13.7,
+        "p90": 14.6
+      },
+      "hitsToDie": {
+        "mean": 20.715,
+        "p10": 20,
+        "p90": 21
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "archer",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 56502659,
+      "runs": 200,
+      "ttk": {
+        "mean": 19.648999999999997,
+        "p10": 18.65,
+        "p90": 20.45
+      },
+      "hitsToDie": {
+        "mean": 27.34,
+        "p10": 27,
+        "p90": 28
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "mage",
+      "opponentLevel": 10,
+      "mode": "duel",
+      "seed": 2710938420,
+      "runs": 200,
+      "ttk": {
+        "mean": 13.038999999999996,
+        "p10": 12.75,
+        "p90": 13.7
+      },
+      "hitsToDie": {
+        "mean": 44.675,
+        "p10": 44,
+        "p90": 45
+      },
+      "expPerMinute": 0,
+      "winRate": 0.51,
+      "drawRate": 0.47,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 10,
+      "opponent": "mage",
+      "opponentLevel": 10,
+      "mode": "gvg",
+      "seed": 1070406885,
+      "runs": 200,
+      "ttk": {
+        "mean": 17.583499999999997,
+        "p10": 16.85,
+        "p90": 18.65
+      },
+      "hitsToDie": {
+        "mean": 55.575,
+        "p10": 55,
+        "p90": 56
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4975,
+      "drawRate": 0.275,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "novice_knight",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 3724842646,
+      "runs": 200,
+      "ttk": {
+        "mean": 17.333000000000006,
+        "p10": 16.7,
+        "p90": 18.05
+      },
+      "hitsToDie": {
+        "mean": 45.115,
+        "p10": 45,
+        "p90": 46
+      },
+      "expPerMinute": 0,
+      "winRate": 0.47750000000000004,
+      "drawRate": 0.335,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "novice_knight",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 2084311111,
+      "runs": 200,
+      "ttk": {
+        "mean": 23.379499999999986,
+        "p10": 22.7,
+        "p90": 24.5
+      },
+      "hitsToDie": {
+        "mean": 59.855,
+        "p10": 59,
+        "p90": 60
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4825,
+      "drawRate": 0.245,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "archer",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 443779576,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.324749999999987,
+        "p10": 10.85,
+        "p90": 11.75
+      },
+      "hitsToDie": {
+        "mean": 40.38,
+        "p10": 40,
+        "p90": 41
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "archer",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 3098215337,
+      "runs": 200,
+      "ttk": {
+        "mean": 15.257750000000009,
+        "p10": 14.45,
+        "p90": 16.25
+      },
+      "hitsToDie": {
+        "mean": 53.805,
+        "p10": 53,
+        "p90": 54
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "mage",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 1457683802,
+      "runs": 200,
+      "ttk": {
+        "mean": 10.30550000000002,
+        "p10": 9.95,
+        "p90": 10.85
+      },
+      "hitsToDie": {
+        "mean": 219.86,
+        "p10": 217,
+        "p90": 222
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 30,
+      "opponent": "mage",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 4112119563,
+      "runs": 200,
+      "ttk": {
+        "mean": 13.804250000000009,
+        "p10": 13.1,
+        "p90": 14.45
+      },
+      "hitsToDie": {
+        "mean": 219.93,
+        "p10": 218,
+        "p90": 223
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "novice_knight",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 2471588028,
+      "runs": 200,
+      "ttk": {
+        "mean": 15.673999999999984,
+        "p10": 15.35,
+        "p90": 16.7
+      },
+      "hitsToDie": {
+        "mean": 33.48,
+        "p10": 33,
+        "p90": 34
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "novice_knight",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 831056493,
+      "runs": 200,
+      "ttk": {
+        "mean": 21.1925,
+        "p10": 20.45,
+        "p90": 21.8
+      },
+      "hitsToDie": {
+        "mean": 44.725,
+        "p10": 44,
+        "p90": 45
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "archer",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 3485492254,
+      "runs": 200,
+      "ttk": {
+        "mean": 10.229000000000019,
+        "p10": 9.5,
+        "p90": 10.85
+      },
+      "hitsToDie": {
+        "mean": 29.935,
+        "p10": 30,
+        "p90": 30
+      },
+      "expPerMinute": 0,
+      "winRate": 0.47750000000000004,
+      "drawRate": 0.295,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "archer",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 1844960719,
+      "runs": 200,
+      "ttk": {
+        "mean": 15.745999999999981,
+        "p10": 15.35,
+        "p90": 16.7
+      },
+      "hitsToDie": {
+        "mean": 39.81,
+        "p10": 39,
+        "p90": 40
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5425,
+      "drawRate": 0.325,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "mage",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 204429184,
+      "runs": 200,
+      "ttk": {
+        "mean": 9.252499999999984,
+        "p10": 8.6,
+        "p90": 9.95
+      },
+      "hitsToDie": {
+        "mean": 152.22,
+        "p10": 151,
+        "p90": 153
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 30,
+      "opponent": "mage",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 2858864945,
+      "runs": 200,
+      "ttk": {
+        "mean": 12.391249999999998,
+        "p10": 11.75,
+        "p90": 13.1
+      },
+      "hitsToDie": {
+        "mean": 171.005,
+        "p10": 169,
+        "p90": 173
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "novice_knight",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 1218333410,
+      "runs": 200,
+      "ttk": {
+        "mean": 37.98875000000005,
+        "p10": 37.55,
+        "p90": 38.45
+      },
+      "hitsToDie": {
+        "mean": 30.91,
+        "p10": 31,
+        "p90": 31
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "novice_knight",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 3872769171,
+      "runs": 200,
+      "ttk": {
+        "mean": 52.255250000000004,
+        "p10": 50.3,
+        "p90": 53.9
+      },
+      "hitsToDie": {
+        "mean": 40.875,
+        "p10": 40,
+        "p90": 41
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "archer",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 2232237636,
+      "runs": 200,
+      "ttk": {
+        "mean": 27.17224999999999,
+        "p10": 26,
+        "p90": 28.25
+      },
+      "hitsToDie": {
+        "mean": 27.685,
+        "p10": 27,
+        "p90": 28
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "archer",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 591706101,
+      "runs": 200,
+      "ttk": {
+        "mean": 37.34675000000011,
+        "p10": 36.5,
+        "p90": 37.55
+      },
+      "hitsToDie": {
+        "mean": 36.79,
+        "p10": 36,
+        "p90": 37
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "mage",
+      "opponentLevel": 30,
+      "mode": "duel",
+      "seed": 3246141862,
+      "runs": 200,
+      "ttk": {
+        "mean": 25.24175000000002,
+        "p10": 25.1,
+        "p90": 26
+      },
+      "hitsToDie": {
+        "mean": 142.695,
+        "p10": 141,
+        "p90": 144
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5075,
+      "drawRate": 0.695,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 30,
+      "opponent": "mage",
+      "opponentLevel": 30,
+      "mode": "gvg",
+      "seed": 1605610327,
+      "runs": 200,
+      "ttk": {
+        "mean": 33.710750000000026,
+        "p10": 32.45,
+        "p90": 34.7
+      },
+      "hitsToDie": {
+        "mean": 152.335,
+        "p10": 150,
+        "p90": 155
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5025,
+      "drawRate": 0.135,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "novice_knight",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 4260046088,
+      "runs": 200,
+      "ttk": {
+        "mean": 20.488250000000004,
+        "p10": 19.55,
+        "p90": 21.35
+      },
+      "hitsToDie": {
+        "mean": 52.84,
+        "p10": 52,
+        "p90": 53
+      },
+      "expPerMinute": 0,
+      "winRate": 0.51,
+      "drawRate": 0.23,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "novice_knight",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 2619514553,
+      "runs": 200,
+      "ttk": {
+        "mean": 27.525499999999987,
+        "p10": 26.9,
+        "p90": 28.7
+      },
+      "hitsToDie": {
+        "mean": 70.195,
+        "p10": 70,
+        "p90": 71
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5175,
+      "drawRate": 0.195,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "archer",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 978983018,
+      "runs": 200,
+      "ttk": {
+        "mean": 12.712999999999992,
+        "p10": 12.2,
+        "p90": 13.55
+      },
+      "hitsToDie": {
+        "mean": 47.225,
+        "p10": 47,
+        "p90": 48
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "archer",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 3633418779,
+      "runs": 200,
+      "ttk": {
+        "mean": 17.17024999999999,
+        "p10": 16.25,
+        "p90": 18.05
+      },
+      "hitsToDie": {
+        "mean": 62.815,
+        "p10": 62,
+        "p90": 63
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "mage",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 1992887244,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.984000000000002,
+        "p10": 11.75,
+        "p90": 12.65
+      },
+      "hitsToDie": {
+        "mean": 321.025,
+        "p10": 320,
+        "p90": 322
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 50,
+      "opponent": "mage",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 352355709,
+      "runs": 200,
+      "ttk": {
+        "mean": 16.35799999999999,
+        "p10": 15.8,
+        "p90": 17.15
+      },
+      "hitsToDie": {
+        "mean": 321.11,
+        "p10": 320,
+        "p90": 322
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "novice_knight",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 3006791470,
+      "runs": 200,
+      "ttk": {
+        "mean": 16.264,
+        "p10": 15.85,
+        "p90": 16.65
+      },
+      "hitsToDie": {
+        "mean": 37.98,
+        "p10": 37,
+        "p90": 38
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "novice_knight",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 1366259935,
+      "runs": 200,
+      "ttk": {
+        "mean": 21.86800000000001,
+        "p10": 21.25,
+        "p90": 22.85
+      },
+      "hitsToDie": {
+        "mean": 50.665,
+        "p10": 50,
+        "p90": 51
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "archer",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 4020695696,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.72525000000001,
+        "p10": 11.25,
+        "p90": 12.45
+      },
+      "hitsToDie": {
+        "mean": 34.235,
+        "p10": 34,
+        "p90": 35
+      },
+      "expPerMinute": 0,
+      "winRate": 0.495,
+      "drawRate": 0.27,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "archer",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 2380164161,
+      "runs": 200,
+      "ttk": {
+        "mean": 13.81800000000001,
+        "p10": 13.25,
+        "p90": 14.45
+      },
+      "hitsToDie": {
+        "mean": 45.52,
+        "p10": 45,
+        "p90": 46
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5075,
+      "drawRate": 0.185,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "mage",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 739632626,
+      "runs": 200,
+      "ttk": {
+        "mean": 9.644000000000005,
+        "p10": 9.25,
+        "p90": 10.45
+      },
+      "hitsToDie": {
+        "mean": 245.545,
+        "p10": 245,
+        "p90": 247
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 50,
+      "opponent": "mage",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 3394068387,
+      "runs": 200,
+      "ttk": {
+        "mean": 13.091999999999985,
+        "p10": 12.85,
+        "p90": 13.65
+      },
+      "hitsToDie": {
+        "mean": 245.455,
+        "p10": 244,
+        "p90": 246
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "novice_knight",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 1753536852,
+      "runs": 200,
+      "ttk": {
+        "mean": 54.32300000000005,
+        "p10": 52.7,
+        "p90": 55.85
+      },
+      "hitsToDie": {
+        "mean": 36.275,
+        "p10": 36,
+        "p90": 37
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "novice_knight",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 113005317,
+      "runs": 200,
+      "ttk": {
+        "mean": 71.03174999999995,
+        "p10": 69.75,
+        "p90": 72.95
+      },
+      "hitsToDie": {
+        "mean": 48.28,
+        "p10": 48,
+        "p90": 49
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "archer",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 2767441078,
+      "runs": 200,
+      "ttk": {
+        "mean": 37.527,
+        "p10": 37.5,
+        "p90": 37.5
+      },
+      "hitsToDie": {
+        "mean": 32.59,
+        "p10": 32,
+        "p90": 33
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "archer",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 1126909543,
+      "runs": 200,
+      "ttk": {
+        "mean": 50.39049999999982,
+        "p10": 50.4,
+        "p90": 50.4
+      },
+      "hitsToDie": {
+        "mean": 43.21,
+        "p10": 43,
+        "p90": 44
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "mage",
+      "opponentLevel": 50,
+      "mode": "duel",
+      "seed": 3781345304,
+      "runs": 200,
+      "ttk": {
+        "mean": 37.444750000000006,
+        "p10": 37.5,
+        "p90": 37.5
+      },
+      "hitsToDie": {
+        "mean": 222.695,
+        "p10": 222,
+        "p90": 224
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5,
+      "drawRate": 0.93,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 50,
+      "opponent": "mage",
+      "opponentLevel": 50,
+      "mode": "gvg",
+      "seed": 2140813769,
+      "runs": 200,
+      "ttk": {
+        "mean": 48.94474999999991,
+        "p10": 47.15,
+        "p90": 50.4
+      },
+      "hitsToDie": {
+        "mean": 222.605,
+        "p10": 222,
+        "p90": 223
+      },
+      "expPerMinute": 0,
+      "winRate": 0.4875,
+      "drawRate": 0.125,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "novice_knight",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 500282234,
+      "runs": 200,
+      "ttk": {
+        "mean": 25.350500000000046,
+        "p10": 24.05,
+        "p90": 26.65
+      },
+      "hitsToDie": {
+        "mean": 76.055,
+        "p10": 75,
+        "p90": 77
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5175,
+      "drawRate": 0.215,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "novice_knight",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 3154717995,
+      "runs": 200,
+      "ttk": {
+        "mean": 34.48999999999998,
+        "p10": 33.25,
+        "p90": 35.65
+      },
+      "hitsToDie": {
+        "mean": 101.24,
+        "p10": 100,
+        "p90": 102
+      },
+      "expPerMinute": 0,
+      "winRate": 0.53,
+      "drawRate": 0.17,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "archer",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 1514186460,
+      "runs": 200,
+      "ttk": {
+        "mean": 17.498,
+        "p10": 16.65,
+        "p90": 18.25
+      },
+      "hitsToDie": {
+        "mean": 57.855,
+        "p10": 57,
+        "p90": 58
+      },
+      "expPerMinute": 0,
+      "winRate": 0.455,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "archer",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 4168622221,
+      "runs": 200,
+      "ttk": {
+        "mean": 23.86800000000001,
+        "p10": 22.85,
+        "p90": 24.85
+      },
+      "hitsToDie": {
+        "mean": 76.98,
+        "p10": 76,
+        "p90": 78
+      },
+      "expPerMinute": 0,
+      "winRate": 0.415,
+      "drawRate": 0.13,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "mage",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 2528090686,
+      "runs": 200,
+      "ttk": {
+        "mean": 15.029999999999989,
+        "p10": 14.45,
+        "p90": 15.65
+      },
+      "hitsToDie": {
+        "mean": 486.52,
+        "p10": 484,
+        "p90": 489
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "novice_knight",
+      "level": 99,
+      "opponent": "mage",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 887559151,
+      "runs": 200,
+      "ttk": {
+        "mean": 20.368,
+        "p10": 19.65,
+        "p90": 21.25
+      },
+      "hitsToDie": {
+        "mean": 486.505,
+        "p10": 484,
+        "p90": 489
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "novice_knight",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 3541994912,
+      "runs": 200,
+      "ttk": {
+        "mean": 17.461999999999986,
+        "p10": 16.85,
+        "p90": 18.45
+      },
+      "hitsToDie": {
+        "mean": 52.385,
+        "p10": 52,
+        "p90": 53
+      },
+      "expPerMinute": 0,
+      "winRate": 0.565,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "novice_knight",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 1901463377,
+      "runs": 200,
+      "ttk": {
+        "mean": 23.70599999999998,
+        "p10": 22.85,
+        "p90": 24.85
+      },
+      "hitsToDie": {
+        "mean": 69.605,
+        "p10": 69,
+        "p90": 70
+      },
+      "expPerMinute": 0,
+      "winRate": 0.525,
+      "drawRate": 0.12,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "archer",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 260931842,
+      "runs": 200,
+      "ttk": {
+        "mean": 12.23400000000001,
+        "p10": 11.65,
+        "p90": 12.85
+      },
+      "hitsToDie": {
+        "mean": 40.74,
+        "p10": 40,
+        "p90": 41
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5225,
+      "drawRate": 0.245,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "archer",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 2915367603,
+      "runs": 200,
+      "ttk": {
+        "mean": 16.62799999999999,
+        "p10": 15.65,
+        "p90": 17.25
+      },
+      "hitsToDie": {
+        "mean": 53.985,
+        "p10": 53,
+        "p90": 55
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5025,
+      "drawRate": 0.235,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "mage",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 1274836068,
+      "runs": 200,
+      "ttk": {
+        "mean": 11.780000000000012,
+        "p10": 11.25,
+        "p90": 12.45
+      },
+      "hitsToDie": {
+        "mean": 361.565,
+        "p10": 359,
+        "p90": 364
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "archer",
+      "level": 99,
+      "opponent": "mage",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 3929271829,
+      "runs": 200,
+      "ttk": {
+        "mean": 15.906000000000013,
+        "p10": 15.25,
+        "p90": 16.85
+      },
+      "hitsToDie": {
+        "mean": 361.73,
+        "p10": 359,
+        "p90": 364
+      },
+      "expPerMinute": 0,
+      "winRate": 1,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": []
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "novice_knight",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 2288740294,
+      "runs": 200,
+      "ttk": {
+        "mean": 83.6989999999997,
+        "p10": 83.8,
+        "p90": 83.8
+      },
+      "hitsToDie": {
+        "mean": 51.475,
+        "p10": 51,
+        "p90": 52
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "novice_knight",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 648208759,
+      "runs": 200,
+      "ttk": {
+        "mean": 106.65850000000006,
+        "p10": 103,
+        "p90": 109.4
+      },
+      "hitsToDie": {
+        "mean": 68.44,
+        "p10": 68,
+        "p90": 69
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "archer",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 3302644520,
+      "runs": 200,
+      "ttk": {
+        "mean": 53.10950000000002,
+        "p10": 51.8,
+        "p90": 55.85
+      },
+      "hitsToDie": {
+        "mean": 39.575,
+        "p10": 39,
+        "p90": 40
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "archer",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 1662112985,
+      "runs": 200,
+      "ttk": {
+        "mean": 71.11925,
+        "p10": 71,
+        "p90": 71
+      },
+      "hitsToDie": {
+        "mean": 52.52,
+        "p10": 52,
+        "p90": 53
+      },
+      "expPerMinute": 0,
+      "winRate": 0,
+      "drawRate": 0,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "mage",
+      "opponentLevel": 99,
+      "mode": "duel",
+      "seed": 21581450,
+      "runs": 200,
+      "ttk": {
+        "mean": 53.5835,
+        "p10": 51.8,
+        "p90": 55.85
+      },
+      "hitsToDie": {
+        "mean": 334.925,
+        "p10": 332,
+        "p90": 337
+      },
+      "expPerMinute": 0,
+      "winRate": 0.43499999999999994,
+      "drawRate": 0.18,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    },
+    {
+      "classId": "mage",
+      "level": 99,
+      "opponent": "mage",
+      "opponentLevel": 99,
+      "mode": "gvg",
+      "seed": 2676017211,
+      "runs": 200,
+      "ttk": {
+        "mean": 70.86549999999998,
+        "p10": 71,
+        "p90": 71
+      },
+      "hitsToDie": {
+        "mean": 334.695,
+        "p10": 333,
+        "p90": 337
+      },
+      "expPerMinute": 0,
+      "winRate": 0.5,
+      "drawRate": 0.84,
+      "censored": 0,
+      "flags": [
+        "PvP TTK outside 4–20s"
+      ]
+    }
+  ]
+}

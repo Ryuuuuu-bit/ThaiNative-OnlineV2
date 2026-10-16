@@ -1,0 +1,56 @@
+{
+  "dataVersion": 1,
+  "classes": [
+    {
+      "id": "novice_knight",
+      "nameTh": "อัศวินฝึกหัด",
+      "hpMul": 1,
+      "spMul": 1,
+      "weapons": [
+        "sword1h"
+      ],
+      "preset": {
+        "str": 4,
+        "agi": 2,
+        "vit": 3,
+        "int": 1,
+        "dex": 2,
+        "luk": 1
+      }
+    },
+    {
+      "id": "archer",
+      "nameTh": "นักธนู",
+      "hpMul": 0.8,
+      "spMul": 1.1,
+      "weapons": [
+        "bow"
+      ],
+      "preset": {
+        "str": 1,
+        "agi": 3,
+        "vit": 2,
+        "int": 1,
+        "dex": 5,
+        "luk": 1
+      }
+    },
+    {
+      "id": "mage",
+      "nameTh": "นักเวท",
+      "hpMul": 0.7,
+      "spMul": 1.5,
+      "weapons": [
+        "staff"
+      ],
+      "preset": {
+        "str": 1,
+        "agi": 1,
+        "vit": 3,
+        "int": 5,
+        "dex": 3,
+        "luk": 1
+      }
+    }
+  ]
+}

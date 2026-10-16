@@ -1,0 +1,189 @@
+{
+  "dataVersion": 1,
+  "monsters": [
+    {
+      "id": "jelly_pink",
+      "nameTh": "วุ้นจิ๋ว",
+      "level": 1,
+      "hp": 42,
+      "sp": 0,
+      "atk": 12,
+      "matk": 0,
+      "hardDef": 15,
+      "softDef": 1,
+      "hardMdef": 15,
+      "softMdef": 1,
+      "hit": 162,
+      "flee": 101,
+      "element": "water",
+      "race": "formless",
+      "size": "small",
+      "realm": "mythic_beast",
+      "tags": [
+        "jelly"
+      ],
+      "weakness": [
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 24,
+      "gold": [
+        7,
+        14
+      ],
+      "drops": []
+    },
+    {
+      "id": "jelly_mint",
+      "nameTh": "วุ้นเขียว",
+      "level": 3,
+      "hp": 75,
+      "sp": 0,
+      "atk": 14,
+      "matk": 0,
+      "hardDef": 4,
+      "softDef": 2,
+      "hardMdef": 4,
+      "softMdef": 2,
+      "hit": 166,
+      "flee": 103,
+      "element": "earth",
+      "race": "formless",
+      "size": "small",
+      "realm": "mythic_beast",
+      "tags": [
+        "jelly"
+      ],
+      "weakness": [
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 36,
+      "gold": [
+        10,
+        18
+      ],
+      "drops": []
+    },
+    {
+      "id": "jelly_sky",
+      "nameTh": "วุ้นฟ้า",
+      "level": 3,
+      "hp": 75,
+      "sp": 0,
+      "atk": 14,
+      "matk": 0,
+      "hardDef": 4,
+      "softDef": 2,
+      "hardMdef": 4,
+      "softMdef": 2,
+      "hit": 166,
+      "flee": 103,
+      "element": "wind",
+      "race": "formless",
+      "size": "small",
+      "realm": "mythic_beast",
+      "tags": [
+        "jelly"
+      ],
+      "weakness": [
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 36,
+      "gold": [
+        10,
+        18
+      ],
+      "drops": []
+    },
+    {
+      "id": "jelly_summon",
+      "nameTh": "วุ้นจิ๋ว (ถูกเรียก)",
+      "level": 1,
+      "hp": 28,
+      "sp": 0,
+      "atk": 10,
+      "matk": 0,
+      "hardDef": 1,
+      "softDef": 0,
+      "hardMdef": 1,
+      "softMdef": 0,
+      "hit": 162,
+      "flee": 101,
+      "element": "water",
+      "race": "formless",
+      "size": "small",
+      "realm": "mythic_beast",
+      "tags": [
+        "jelly"
+      ],
+      "weakness": [
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 4,
+      "gold": [
+        3,
+        3
+      ],
+      "drops": []
+    },
+    {
+      "id": "king_jelly",
+      "nameTh": "ราชาวุ้น",
+      "level": 5,
+      "hp": 1100,
+      "sp": 0,
+      "atk": 27,
+      "matk": 0,
+      "hardDef": 10,
+      "softDef": 4,
+      "hardMdef": 10,
+      "softMdef": 4,
+      "hit": 170,
+      "flee": 105,
+      "element": "water",
+      "race": "formless",
+      "size": "large",
+      "realm": "mythic_beast",
+      "tags": [
+        "jelly",
+        "boss"
+      ],
+      "weakness": [
+        "wind"
+      ],
+      "boss": true,
+      "skills": [
+        "slam",
+        "sweep",
+        "charge",
+        "spit",
+        "summon"
+      ],
+      "exp": 200,
+      "gold": [
+        180,
+        180
+      ],
+      "drops": [],
+      "phase2": {
+        "atk": 28,
+        "element": "dark"
+      }
+    }
+  ]
+}

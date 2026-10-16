@@ -1,0 +1,31 @@
+{
+  "dataVersion": 1,
+  "items": [
+    {
+      "id": "training_sword",
+      "nameTh": "ดาบฝึก",
+      "type": "weapon",
+      "weaponType": "sword1h",
+      "level": 1,
+      "atk": 5,
+      "matk": 0,
+      "interval": 0.44,
+      "slots": 1,
+      "modifiers": []
+    },
+    {
+      "id": "traveler_clothes",
+      "nameTh": "ชุดเดินทาง",
+      "type": "armour",
+      "level": 1,
+      "slots": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 3
+        }
+      ]
+    }
+  ]
+}

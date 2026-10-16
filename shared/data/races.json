@@ -1,0 +1,170 @@
+{
+  "dataVersion": 1,
+  "players": [
+    {
+      "id": "human",
+      "nameTh": "มนุษย์",
+      "bonus": {
+        "str": 1,
+        "agi": 1,
+        "vit": 1,
+        "int": 1,
+        "dex": 1,
+        "luk": 1
+      },
+      "element": "neutral",
+      "size": "medium",
+      "monsterRace": "demihuman",
+      "passives": {
+        "exp": 0.05,
+        "weight": 300
+      }
+    },
+    {
+      "id": "yaksha",
+      "nameTh": "ยักษ์",
+      "bonus": {
+        "str": 3,
+        "vit": 3
+      },
+      "element": "earth",
+      "size": "large",
+      "monsterRace": "demihuman",
+      "passives": {
+        "stunResist": 0.2
+      }
+    },
+    {
+      "id": "naga",
+      "nameTh": "นาคา",
+      "bonus": {
+        "int": 4,
+        "vit": 2
+      },
+      "element": "water",
+      "size": "medium",
+      "monsterRace": "demihuman",
+      "passives": {
+        "spRegen": 0.3,
+        "noShallowSlow": true
+      }
+    },
+    {
+      "id": "kinnari",
+      "nameTh": "กินรี",
+      "bonus": {
+        "agi": 4,
+        "dex": 2
+      },
+      "element": "wind",
+      "size": "medium",
+      "monsterRace": "demihuman",
+      "passives": {
+        "moveSpeed": 0.08
+      }
+    },
+    {
+      "id": "vanara",
+      "nameTh": "วานร",
+      "bonus": {
+        "dex": 3,
+        "luk": 3
+      },
+      "element": "neutral",
+      "size": "medium",
+      "monsterRace": "demihuman",
+      "passives": {
+        "drop": 0.1,
+        "critShield": 0.05
+      }
+    },
+    {
+      "id": "preta",
+      "nameTh": "เปรตพลัดถิ่น",
+      "bonus": {
+        "int": 3,
+        "luk": 3
+      },
+      "element": "ghost",
+      "size": "medium",
+      "monsterRace": "demihuman",
+      "passives": {
+        "darkDamage": 0.1,
+        "healReceived": -0.1
+      }
+    }
+  ],
+  "monsterRaces": {
+    "formless": "ไร้รูป",
+    "undead": "อันเดด",
+    "brute": "สัตว์ป่า",
+    "plant": "พืช",
+    "insect": "แมลง",
+    "fish": "สัตว์น้ำ",
+    "demon": "ปีศาจ",
+    "demihuman": "กึ่งมนุษย์",
+    "angel": "เทพ",
+    "dragon": "มังกร"
+  },
+  "realms": {
+    "deva": "เทวภูมิ",
+    "manussa": "มนุษยภูมิ",
+    "asura": "อสุรกาย",
+    "preta": "เปรตภูมิ",
+    "ghost": "ผีร้าย",
+    "house_spirit": "ผีบ้าน",
+    "naga": "นาคภพ",
+    "water_spirit": "ผีน้ำ",
+    "forest_spirit": "นางไม้/ผีป่า",
+    "mythic_beast": "สัตว์ในตำนาน",
+    "sage": "ครึ่งเทพ/นักสิทธิ์",
+    "naraka": "นรก"
+  },
+  "sizeTable": {
+    "dagger": {
+      "small": 100,
+      "medium": 85,
+      "large": 75
+    },
+    "mace": {
+      "small": 100,
+      "medium": 85,
+      "large": 75
+    },
+    "sword1h": {
+      "small": 90,
+      "medium": 100,
+      "large": 90
+    },
+    "sword2h": {
+      "small": 75,
+      "medium": 90,
+      "large": 100
+    },
+    "axe": {
+      "small": 75,
+      "medium": 90,
+      "large": 100
+    },
+    "spear": {
+      "small": 80,
+      "medium": 90,
+      "large": 100
+    },
+    "bow": {
+      "small": 100,
+      "medium": 100,
+      "large": 85
+    },
+    "staff": {
+      "small": 100,
+      "medium": 100,
+      "large": 100
+    },
+    "unarmed": {
+      "small": 100,
+      "medium": 90,
+      "large": 75
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "dataVersion": 1,
+  "cards": [
+    {
+      "id": "card_jelly_pink",
+      "slot": "armour",
+      "modifiers": [
+        {
+          "kind": "stat",
+          "stat": "vit",
+          "value": 1
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 50
+        }
+      ]
+    },
+    {
+      "id": "card_king_jelly",
+      "slot": "weapon",
+      "modifiers": [
+        {
+          "kind": "raceBonus",
+          "target": "formless",
+          "value": 0.2
+        }
+      ]
+    }
+  ]
+}
