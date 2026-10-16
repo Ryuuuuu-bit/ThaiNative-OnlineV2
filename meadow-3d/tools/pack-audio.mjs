@@ -5,6 +5,11 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import ffmpeg from 'ffmpeg-static';
 
+if (process.argv.includes('--bgm')) {
+  await import('./pack-bgm.mjs');
+  process.exit(0);
+}
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const source = resolve(root, 'art/sfx-source'), out = resolve(root, 'public/assets/audio');
 const picks = JSON.parse(readFileSync(resolve(source, 'picks.json')));

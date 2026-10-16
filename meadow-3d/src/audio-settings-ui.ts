@@ -29,7 +29,7 @@ export function mountAudioSettings(sound: AudioEngine, send: (message: any) => v
   for (const input of panel.querySelectorAll<HTMLInputElement>('[data-volume]')) {
     input.oninput = () => {
       const bus = input.dataset.volume as 'sfx' | 'music' | 'ambience';
-      sound.set({ [bus]: Number(input.value) }); sound.play('ui_click', undefined, bus); changed();
+      sound.set({ [bus]: Number(input.value) }); sound.play('ui_click', undefined, bus === 'music' ? 'sfx' : bus); changed();
     };
   }
   mute.onchange = () => { sound.set({ muted: mute.checked }); changed(); sound.play('ui_click'); };

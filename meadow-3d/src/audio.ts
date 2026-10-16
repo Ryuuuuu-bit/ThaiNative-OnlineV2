@@ -1,5 +1,7 @@
 ﻿import { AudioSettingsSchema, DEFAULT_AUDIO, type AudioSettings } from '@thainative/shared';
 import { assetFetch, reportDeferred } from './asset-request';
+import { MusicSelection, musicDuckGain, type MusicState } from './music-state';
+import { MusicPlayer } from './music';
 type Position = { x: number; z: number };
 type Sprite = { group: string; start: number; duration: number; pitch: number; cooldown: number; voices: number };
 type Manifest = { sounds: Record<string, Sprite>; groups: Record<string, { opus: { url: string }; aac: { url: string } }> };
@@ -20,6 +22,30 @@ export class AudioEngine {
   private last = new Map<string, number>();
   private playable = false;
   private city = false;
+  private music?: MusicPlayer;
+  private musicSelection = new MusicSelection();
+  private musicState: MusicState = { mapId: '', dead: false, bossAlive: false, bossTargeted: false, bossBarActive: false, bossAggro: false };
+  private impactUntil = 0;
+  private impactTimer?: ReturnType<typeof setTimeout>;
+  updateMusic(state: MusicState) {
+    const deathChanged = this.musicState.dead !== state.dead;
+    this.musicState = state;
+    if (deathChanged) this.apply();
+    this.syncMusic();
+  }
+  private syncMusic() {
+    if (!this.playable || !this.ctx) return;
+    this.music ??= new MusicPlayer(this.ctx, this.buses.music);
+    this.music.visibility(document.hidden);
+    this.music.select(this.musicSelection.select(this.musicState, performance.now() / 1000));
+  }
+  duckMusic(position?: Position) {
+    if (!this.ctx) return;
+    if (position && Math.hypot(position.x - this.listener.x, position.z - this.listener.z) >= 24) return;
+    this.impactUntil = this.ctx.currentTime + .25;
+    clearTimeout(this.impactTimer); this.apply();
+    this.impactTimer = setTimeout(() => this.apply(), 260);
+  }
   setMap(mapId: string) { this.city = mapId === "city_plaza"; this.apply(); }
   private ambient?: AudioBufferSourceNode;
   private listener: Position = { x: 0, z: 0 };
@@ -30,7 +56,7 @@ export class AudioEngine {
     const unlock = () => this.start();
     for (const event of ['pointerdown', 'click', 'keydown', 'touchstart'])
       window.addEventListener(event, unlock, { capture: true, passive: true });
-    document.addEventListener('visibilitychange', () => this.apply());
+    document.addEventListener('visibilitychange', () => { this.apply(); this.syncMusic(); });
   }
   restore(value: unknown) {
     const parsed = AudioSettingsSchema.safeParse(value);
@@ -52,13 +78,16 @@ export class AudioEngine {
       }
       if (this.ctx.state === 'suspended') void this.ctx.resume().catch(() => {});
       this.ambience();
+      this.syncMusic();
+      this.music?.gesture();
     } catch { /* Unsupported audio remains silent. */ }
   }
   private apply() {
     if (!this.ctx || !this.master) return;
     this.master.gain.setTargetAtTime(this.settings.muted || document.hidden ? 0 : 1, this.ctx.currentTime, .08);
     for (const bus of ['sfx', 'music', 'ambience'] as const)
-      this.buses[bus].gain.setTargetAtTime(this.settings[bus] * (bus === "ambience" && this.city ? .45 : 1), this.ctx.currentTime, .08);
+      this.buses[bus].gain.setTargetAtTime(this.settings[bus] * (bus === "ambience" && this.city ? .45 : 1) *
+        (bus === 'music' ? musicDuckGain(this.musicState.dead, this.ctx.currentTime < this.impactUntil) : 1), this.ctx.currentTime, .02);
   }
   setListener(position: Position) { this.listener = { x: position.x, z: position.z }; }
   private getManifest() {
@@ -88,6 +117,7 @@ export class AudioEngine {
   afterPlayable() {
     if (this.playable) return;
     this.playable = true;
+    this.syncMusic();
     void this.load('sfx-core').then(() => this.load('sfx-skills')).then(() => this.load('amb-meadow'));
   }
   private ambience() {

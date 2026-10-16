@@ -3,6 +3,7 @@ import type { AudioEngine } from './audio';
 export function playEventAudio(sound: AudioEngine, e: any, you: string, boss?: { x: number; z: number }) {
   const local = e.playerId === you;
   const play = (id: string) => sound.play(id, e);
+  if (['hit', 'hurt', 'skillImpact', 'slam'].includes(e.type)) sound.duckMusic(Number.isFinite(e.x) ? e : undefined);
   switch (e.type) {
     case 'slash': play('combo' + ((e.combo ?? 0) + 1)); break;
     case 'skill':
