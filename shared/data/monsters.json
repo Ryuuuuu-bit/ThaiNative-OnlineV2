@@ -5,26 +5,24 @@
       "id": "jelly_pink",
       "nameTh": "วุ้นจิ๋ว",
       "level": 1,
-      "hp": 42,
+      "hp": 45,
       "sp": 0,
       "atk": 12,
       "matk": 0,
-      "hardDef": 15,
+      "hardDef": 3,
       "softDef": 1,
-      "hardMdef": 15,
+      "hardMdef": 3,
       "softMdef": 1,
       "hit": 162,
       "flee": 101,
-      "element": "water",
+      "element": "neutral",
       "race": "formless",
       "size": "small",
       "realm": "mythic_beast",
       "tags": [
         "jelly"
       ],
-      "weakness": [
-        "wind"
-      ],
+      "weakness": [],
       "boss": false,
       "skills": [
         "basic"
@@ -120,16 +118,14 @@
       "softMdef": 0,
       "hit": 162,
       "flee": 101,
-      "element": "water",
+      "element": "neutral",
       "race": "formless",
       "size": "small",
       "realm": "mythic_beast",
       "tags": [
         "jelly"
       ],
-      "weakness": [
-        "wind"
-      ],
+      "weakness": [],
       "boss": false,
       "skills": [
         "basic"

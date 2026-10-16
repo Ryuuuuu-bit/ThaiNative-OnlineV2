@@ -256,7 +256,7 @@ test("ranged ATK uses DEX; race passives, equipment elements and magic size rule
 	assert.equal(naga.weaponElement, "holy");
 	assert.equal(naga.noShallowSlow, true);
 	assert.ok(naga.spRegen > naga.maxSp * 0.01 + naga.stats.int / 6);
-	assert.equal(midpoint(player(), pink(), "meteor").breakdown.S, 1);
+	assert.equal(midpoint(player(), pink(), "fire_bolt").breakdown.S, 1);
 });
 test("same seed produces identical damage sequences, different seeds vary", () => {
 	const sequence = (seed: number) => {
@@ -292,7 +292,7 @@ test("hit/crit rolls, PvP hit floor and magic/area guarantees", () => {
 			true,
 		);
 	assert.equal(
-		computeDamage(a, d, skill("meteor"), { rng: () => 0 }, data).crit,
+		computeDamage(a, d, skill("fire_bolt"), { rng: () => 0 }, data).crit,
 		false,
 	);
 });
@@ -368,9 +368,9 @@ test("stacked DEF/resists/PvP never reduce below 20% reference; immunity stays z
 test("heals skip defence/element/size, utility potion uses documented VIT interpretation", () => {
 	const a = player(),
 		d = { ...pink(), healReduction: 0.3 },
-		heal = { ...skill("meteor"), type: "heal" as const };
+		heal = { ...skill("fire_bolt"), type: "heal" as const };
 	const r = computeDamage(a, d, heal, { rng: () => 0.5 }, data);
-	assert.equal(r.damage, Math.round(a.matk * 3.2 * 0.7));
+	assert.equal(r.damage, Math.round(a.matk * 1.5 * 0.7));
 	assert.equal(r.breakdown.E, 1);
 	assert.equal(
 		computeDamage(a, a, skill("potion"), { rng: () => 0.5 }, data).damage,
@@ -419,7 +419,7 @@ test("PvP CC diminishes within 15s and resets at the boundary", () => {
 		2,
 	);
 });
-test("goldens anchor current sim constants and document the elemental exception honestly", () => {
+test("goldens anchor current sim constants; starter jelly is neutral so meteor and spin keep their feel", () => {
 	const sim = readFileSync(
 		new URL("../../../meadow-3d/src/sim.ts", import.meta.url),
 		"utf8",
@@ -435,7 +435,8 @@ test("goldens anchor current sim constants and document the elemental exception 
 		);
 	near(midpoint().damage, 16);
 	near(midpoint(player(), pink(), "basic", true).damage, 28);
-	near(midpoint(player(), pink(), "whirlwind").damage, 39);
+	near(midpoint(player(), pink(), "whirlwind").damage, 38);
+	near(midpoint(player(), pink(), "meteor").damage, 58);
 	near(midpoint(pink(), player()).damage, 9);
 	near(
 		midpoint(monsterStats(data.monsters.monsters.at(-1)!, data), player())
@@ -444,16 +445,13 @@ test("goldens anchor current sim constants and document the elemental exception 
 	);
 	near(player().maxHp, 120);
 	near(player().maxSp, 80);
-	assert.equal(midpoint().damage, 14);
-	assert.equal(midpoint(player(), pink(), "basic", true).damage, 24);
-	assert.equal(midpoint(player(), pink(), "whirlwind").damage, 44);
-	assert.ok(
-		Math.abs(44 - 38) / 38 > 0.15,
-		"Actual old spin 38 is a documented conflict, not a passing golden",
-	);
+	assert.equal(midpoint().damage, 15);
+	assert.equal(midpoint(player(), pink(), "basic", true).damage, 27);
+	assert.equal(midpoint(player(), pink(), "whirlwind").damage, 33);
 	const meteor = midpoint(player(), pink(), "meteor");
-	assert.equal(meteor.damage, 13);
-	assert.equal(meteor.breakdown.E, 0.5);
+	assert.equal(meteor.damage, 51);
+	assert.equal(meteor.breakdown.E, 1);
+	assert.ok(midpoint(player(), pink(), "whirlwind").damage < pink().maxHp, "spin must not one-shot the starter jelly");
 	assert.equal(Math.ceil(pink().maxHp / midpoint().damage), 3);
 });
 test("default King offensive TTK falls in 60–120s for average-play model", () => {
