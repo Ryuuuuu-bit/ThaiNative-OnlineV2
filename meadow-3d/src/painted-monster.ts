@@ -47,6 +47,8 @@ function paintShader(material:T.SpriteMaterial,uniforms:any,atlas=true){
 }
 export interface MonsterOptions{variant?:SlimeVariant;hueShift?:number;tint?:string;id?:number}
 /** Shared textures, per-instance frame/hue uniforms, one real ground anchor. */
+/** Visual size of the small jelly relative to its packed atlas size (about 0.6x the hero). */
+export const SMALL_JELLY_SCALE=.72;
 export function makePaintedMonster(loader:T.TextureLoader,boss=false,options:MonsterOptions={}){
  const species:MonsterSpecies=boss?'king':'slime',bank=assetBank(loader);bank.request(species);
  const root=new T.Group();const uniforms={uJellyCell:{value:new T.Vector4(0,0,1,1)},uJellyHue:{value:0},uJellyPhase:{value:0},uJellyFlash:{value:0},uJellyTime:{value:0},uJellyExpression:{value:null as T.Texture|null},uJellyFaceRect:{value:new T.Vector4(0,0,1,1)},uJellyFaceDirection:{value:0},uJellyFaceEnabled:{value:0}};
@@ -54,7 +56,7 @@ export function makePaintedMonster(loader:T.TextureLoader,boss=false,options:Mon
  const portrait=new T.Sprite(material);portrait.userData.enemyId=options.id;portrait.visible=false;root.add(portrait);
  const fallback=makeMonsterFallback(boss);fallback.userData.enemyId=options.id;root.add(fallback);
  const shadowMaterial=new T.MeshBasicMaterial({color:'#354333',transparent:true,opacity:.16,depthWrite:false});
- const shadow=new T.Mesh(new T.CircleGeometry(boss?1.8:.42,32),shadowMaterial);shadow.rotation.x=-Math.PI/2;shadow.scale.y=.62;shadow.position.y=.026;shadow.raycast=()=>{};root.add(shadow);
+ const shadow=new T.Mesh(new T.CircleGeometry(boss?1.8:.32,32),shadowMaterial);shadow.rotation.x=-Math.PI/2;shadow.scale.y=.62;shadow.position.y=.026;shadow.raycast=()=>{};root.add(shadow);
  let expressionVisible=false;
  let diagnostic={motion:'idle',actualMotion:'fallback',frame:0,direction:'SE',phase:1,variant:'pink',loaded:[] as string[],opacity:1,expression:false};
  // Sprite raycasting normally hits transparent padding. Sample only the clicked texel.
@@ -76,7 +78,7 @@ export function makePaintedMonster(loader:T.TextureLoader,boss=false,options:Mon
   uniforms.uJellyCell.value.set(cell.column/info.columns,1-(cell.row+1)/4,1/info.columns,.25);
   if(material.map!==texture){material.map=texture;material.needsUpdate=true;}
   uniforms.uJellyHue.value=options.hueShift??VARIANT_HUE[options.variant||e.variant];uniforms.uJellyPhase.value=e.bossPhase===2?1:0;uniforms.uJellyFlash.value=e.dead?0:Math.min(1,e.hurt/.18)*.8;uniforms.uJellyTime.value=time;
-  portrait.center.set(...definition.anchor);portrait.scale.set(definition.quadWorldSize[0],definition.quadWorldSize[1],1);
+  portrait.center.set(...definition.anchor);const sizeScale=boss?1:SMALL_JELLY_SCALE;portrait.scale.set(definition.quadWorldSize[0]*sizeScale,definition.quadWorldSize[1]*sizeScale,1);
   shadowMaterial.opacity=.16*opacity*((e.motion==='hop'||e.motion==='move'||e.motion==='slam')&&cell.column===1?.5:1);
   const face=info.directions[cell.row][cell.column].faceRect;
   if(boss&&e.bossPhase===2&&face&&bank.expression&&!['death','stun','transform'].includes(e.motion)){
