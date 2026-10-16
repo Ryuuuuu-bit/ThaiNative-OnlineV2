@@ -1,0 +1,246 @@
+{
+  "slime": {
+    "idle": {
+      "source": "slime",
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "frameDurations": [
+        0.55,
+        0.55,
+        0.55
+      ],
+      "duration": 1.65,
+      "loop": true
+    },
+    "hop": {
+      "source": "slime",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.18,
+        0.22,
+        0.2
+      ],
+      "duration": 0.6,
+      "loop": true
+    },
+    "attack": {
+      "source": "slime",
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "frameDurations": [
+        0.5,
+        0.18,
+        0.17
+      ],
+      "duration": 0.85,
+      "loop": false
+    },
+    "death": {
+      "source": "slime",
+      "indices": [
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "duration": 0.75,
+      "loop": false
+    }
+  },
+  "king": {
+    "idle": {
+      "source": "king-base",
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "frameDurations": [
+        0.6,
+        0.6,
+        0.6
+      ],
+      "duration": 1.8,
+      "loop": true
+    },
+    "move": {
+      "source": "king-base",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.3,
+        0.35,
+        0.25
+      ],
+      "duration": 0.9,
+      "loop": true
+    },
+    "hit": {
+      "source": "king-base",
+      "indices": [
+        6,
+        7
+      ],
+      "frameDurations": [
+        0.14,
+        0.14
+      ],
+      "duration": 0.28,
+      "loop": false
+    },
+    "stun": {
+      "source": "king-base",
+      "indices": [
+        8,
+        9
+      ],
+      "frameDurations": [
+        0.625,
+        0.625
+      ],
+      "duration": 1.25,
+      "loop": false
+    },
+    "roar": {
+      "source": "king-base",
+      "indices": [
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.45,
+        0.45
+      ],
+      "duration": 0.9,
+      "loop": false
+    },
+    "slam": {
+      "source": "king-attacks",
+      "indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "frameDurations": [
+        0.55,
+        0.3,
+        0.2,
+        0.45
+      ],
+      "duration": 1.5,
+      "loop": false
+    },
+    "sweep": {
+      "source": "king-attacks",
+      "indices": [
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.7,
+        0.5
+      ],
+      "duration": 1.2,
+      "loop": false
+    },
+    "charge": {
+      "source": "king-attacks",
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "frameDurations": [
+        0.8,
+        0.6,
+        0.25
+      ],
+      "duration": 1.65,
+      "loop": false
+    },
+    "spit": {
+      "source": "king-attacks",
+      "indices": [
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.8,
+        0.3,
+        0.4
+      ],
+      "duration": 1.5,
+      "loop": false
+    },
+    "summon": {
+      "source": "king-special",
+      "indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "frameDurations": [
+        0.45,
+        0.45,
+        0.35,
+        0.35
+      ],
+      "duration": 1.6,
+      "loop": false
+    },
+    "transform": {
+      "source": "king-special",
+      "indices": [
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.8,
+        0.8
+      ],
+      "duration": 1.6,
+      "loop": false
+    },
+    "death": {
+      "source": "king-special",
+      "indices": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ],
+      "duration": 1.8,
+      "loop": false
+    }
+  }
+}

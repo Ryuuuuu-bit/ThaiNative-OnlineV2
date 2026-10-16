@@ -1,0 +1,77 @@
+# Jelly Meadow — painted hero combat preview
+
+A local single-player Three.js demo. A small meadow contains 10 respawning slimes, a camp that restores HP, and a ราชาวุ้น unlocked after 6 defeats. It does not connect to or modify the existing server.
+
+From the repository root:
+
+```sh
+npm run dev:meadow
+npm run test:meadow
+npm run build:meadow
+```
+
+Open the local URL printed by Vite, normally http://127.0.0.1:5173/. Visit `/character.html` for a separate animation viewer with motion/direction selection, pause and baseline guides. Both pages are included in the production build at `meadow-3d/dist/`.
+
+## Controls
+
+- WASD/arrows: screen-relative movement. Click ground to move directly; click a slime to approach and attack automatically. Direct steering slides along obstacles; it is not a full pathfinding system.
+- J (hold): three-hit sword combo.
+- Q: whirlwind, 20 MP, 4-second cooldown.
+- F: meteor at the selected/nearest enemy, 30 MP, 6-second cooldown. Damage occurs at impact, after 0.65 seconds.
+- Space/E: dodge, short invulnerability, 1.5-second cooldown.
+- R: potion, restores 65 HP, 5 uses, 7-second cooldown.
+- Mouse wheel: zoom. Escape: pause. Buttons provide help, audio and HQ/LOW rendering. Touch controls include a joystick and skill buttons.
+- Avoid red ground circles. Return to the southern camp for free healing. Death returns to camp with current EXP and money intact.
+
+## Implementation
+
+`src/sim.ts` owns fixed-step gameplay outside the renderer. `src/painted-hero.ts` displays the hand-painted hero on a camera-facing sprite with depth occlusion, an anchored baseline and a ground shadow. `src/sprite-animation.ts` selects four screen-relative directions and idle/run/attack/skill/reaction frames. `src/actors.ts` retains the earlier articulated 3D hero as a loading/error fallback and a minimal missing-texture jelly silhouette. `src/scene.ts` defines the painted meadow, instanced billboard vegetation, pond, bridge, camp and ruins. `src/main.ts` connects rendering, HUD, inputs and visual effects. `src/audio.ts` synthesizes original background notes, ambience and combat sounds with Web Audio.
+
+The current hero is original AI-generated painted sprite artwork, with thin ink lines, teal cloth, ivory sleeves and gold embroidery. The built-in imagegen tool produced a turnaround, whole motion sheets and a corrected SE run strip. All source files and exact prompts are preserved under `art/painted-hero/`; the game uses separately packed `public/assets/hero-painted/*-v1.png` files. Each direction has one idle drawing with slight runtime breathing, six run frames and six sword-attack frames. The three-hit combo replays the sword sequence. Dedicated painted spin, meteor cast, three-frame hit, three-frame dodge, and six-frame death sequences cover all four directions. Death holds its final frame after 0.9 seconds; the revive overlay waits 1.5 seconds so the fall is visible. Hurt tint and invulnerability blink remain. Missing motion textures fall back to idle, with the 3D actor retained when no idle texture is available.
+
+`tools/prepare-painted.py` stages references using the sprite-pipeline canvas helper. `tools/pack-painted.py` extracts connected figures, uses a shared scale and torso anchor, preserves transparent alpha, and packs rectangular 384x256 cells so extended swords are not cut off. The runtime atlases total about 1.6 MB; higher-resolution preview atlases load only on the animation viewer. The packing report records frame bounds, source order and opposite foot contacts in frames 1 and 4 for all four directions. The plugin's strip normalizer was also run into `normalizer-audit-SE`; the final packer uses smooth resampling and additional lateral space for painted art. The preview-sheet helper produces the contact sheets for visual inspection.
+
+Dedicated hit and dodge use separate three-column atlases, while spin/cast/death use six columns. Death cells are 512×256; other motion cells are 384×256. New source canvases use one uniform scale to fit long sword/cape sweeps; the packing report records their one-time conversion to legacy source coordinates so all runtime motions match the existing hero size.
+
+The environment now uses 35 original built-in-imagegen painted props: four tree variants, bushes, ferns, flowers, grasses, mossy rocks/log/stump, camp pieces, ruins, reeds and a bridge. Sources and every prompt are under `art/painted-env/`. `tools/pack-env.py` isolates connected figures, records ground anchors from the bottom 15% of opaque pixels, normalizes physical source sizes at 113 pixels/world unit, and downsamples ×0.5 into one 2048×2048 runtime atlas (about 1.65 MB). `public/assets/env-painted/manifest.json` records all sizes, UVs, anchors and five 1024×1024 surface maps; the replacement meadow grass also remains at the original public path. HD sources and the environment contact preview stay outside `public/`.
+
+Large props use alpha-tested, depth-writing Sprites sharing an atlas texture, with alpha-mapped shadow proxies. Smaller foliage uses camera-facing instanced quads at the same fixed camera angle. Contact shadows share one instanced draw. The generated transition brush blends dirt into the ground; the pond has a painted water map with a 0.0015 UV ripple amplitude. LOW disables ripple motion and directional shadows. The simulation retains the original obstacle radii and water/bridge walkability. Jellies use painted billboard motion atlases with per-instance hue shifts. Warm lighting, a mild desaturation grade and a soft vignette match the painted art; skill effects remain additive. UI fonts are Noto Sans Thai and Cormorant Garamond via Google Fonts, with system fallbacks. Vite ignores art/assets in its file watcher to avoid Windows EBUSY errors during large image writes; refresh after repacking textures.
+
+
+## Limits
+
+Single-player only; page reload resets progression. No accounts, persistence, parties, MMO server, trading or PvP are included. Art is a playable 2.5D prototype, not a reproduction of the reference game's production quality. The generated sprite frames still have some pose, facial and costume drift; the run cadence and direction transitions need further animation polish. Four directions are provided, not eight. Audio is synthesized demo audio. Browser performance depends on GPU/device; HQ/LOW and zoom are available.
+
+## Verification
+
+`npm run check:meadow`, `npm run test:meadow` (21 tests), and `npm run build:meadow` pass. The build retains Vite's warning about the large Three.js game chunk.
+
+Before environment work started, the hero browser pass verified Q/spin, F/cast, Space/dodge, an actual slime hit, a normal gameplay death, frame-six hold, revival, all new viewer motions/directions, and missing-texture fallback. The required `.codex-run/motions-{spin,cast,hit,death}.jpg` screenshots and browser diagnostics are saved. Original idle/run/attack atlas SHA-256 hashes remained unchanged. Packing found no clipping/slot warnings, opposite run contact feet in all four directions, and lowest/widest final death poses in all four directions.
+
+After environment integration, browser checks visited camp, ruins, pond/bridge, and a tree-dense corner at 1280×720, verified HQ/LOW shadow and ripple states, checked spin art, and captured a 390×844 view. No console, shader, page, or HTTP errors were recorded. `.codex-run/env-{camp,ruins,pond,trees}.jpg` contains the required views. The environment manifest tests check atlas bounds/overlap, UVs, physical size conversion, anchors and surface-map dimensions.
+
+Comparable HQ samples on headless Chrome with SwiftShader at 1280×720 (120 rAF intervals after a 3-second warm-up) measured **6.86 FPS before → 13.53 FPS after**, with **929 → 339 draw calls** and **365,698 → 79,216 triangles** at the starting camera. These are software-renderer measurements, not physical-device/GPU benchmarks. Raw numbers are in `.codex-run/env-baseline.json` and `env-after.json`.
+
+Small generated face/costume/sword-length differences remain between hero frames. The environment is intentionally static painted art; simple flame/skill geometry remains a style difference. All environmental source figures are isolated without crossing/cropped atlas bounds. No server files were changed.
+
+## Painted jellies and King encounter
+
+The original leaf-sprout species is named วุ้นจิ๋ว; the mint and sky elites are วุ้นเขียว and วุ้นฟ้า. `src/painted-monster.ts` shares atlas textures but keeps frame, hue, hit-flash and phase uniforms independent per actor. Its alpha-aware picking ignores transparent padding. Ground shadows stay anchored; hop/leap height comes from the drawings. `src/monster-animation.ts` selects four velocity-derived directions and timed frames from generated `src/monster-motion-data.ts`. A missing motion falls back to idle, and a missing species texture uses one minimal unlit silhouette.
+
+After six defeats, ราชาวุ้น cycles slam, sweep, charge, spit and summon. Ground warnings precede damage. Slam gives a 1.25-second stun window with 25% extra damage received. Spit launches three painted projectiles; summon creates three jellies. At half HP, ราชาวุ้นกริ้ว transforms for 1.6 seconds, then runs its pattern 30% faster with shorter recovery. Phase two uses the same frames, a deeper magenta hue, warm crown glow and a generated angry facial overlay; back views remain faceless. Small enemies drop loot after their 0.75-second death; the King waits for its 1.8-second death. Final puddles hold and then fade. Summons do not respawn; repeated casts cap living summons at nine. Camp healing, potions, defeat recovery and the original unlock rule remain.
+
+Artwork and exact prompts are under `art/painted-monsters/`. `tools/prepare-monsters.py` normalizes source canvases; `tools/pack-monsters.py` extracts connected figure groups, preserves detached crowns and minions, packs fixed bottom-centre anchors, produces glow masks and facial placement metadata, and generates 64 contact sheets. `tools/painted_components.py` shares the extraction helper. Run preparation before packing when replacing generated source sheets. Canonical small sheets are 1536×512; King sheets are 3072×1024. The runtime manifest contains four small-jelly motions in 384×256 cells and twelve King motions in 768×512 cells: sixteen atlases, 192 directional frames, twelve crown masks and one small phase-two facial overlay. No second full phase-two set is shipped. See `art/painted-monsters/packing-report.json` for bounds and clipping checks.
+
+The pond uses a new versioned `public/assets/env-painted/tile-water-v2.png`, recoloured to muted slate blue-green. A feathered dirt-texture shore blends into grass, and the water itself fades at the rim. The original 0.0015 UV ripple amplitude remains; LOW uses the same soft edge without animated ripples. Water has no emissive or bloom pass. Three additional reed clumps sit at the bank. All pre-existing hero and environment PNGs are preserved.
+
+The added monster tests cover telegraph/lunge timing, attack cycling, slam stun, three-projectile volleys, three-minion casts, phase transitions, faster timing, death/loot order, non-respawning summons, frame selection and manifest geometry. Some hand-painted mass, breathing amplitude, crown and facial placement variation remains across extreme poses; four-direction transitions are intentionally discrete.
+
+The final monster pass completed `check:meadow`, all 21 tests and `build:meadow`. A normal-input browser run defeated six jellies, exercised all five King attacks, observed exactly one phase transition and a three-minion cast, then reached victory after the six-frame King death hold. It recorded no browser errors. Separate checks verified missing-image silhouettes and HQ/LOW pond states. The five requested screenshots, raw browser snapshots, packing diagnostics, preservation hashes and complete file inventory are in `.codex-run/monsters-report.json` and its referenced artifacts.
+
+Comparable initial-camera HQ SwiftShader samples measured **13.72 → 14.59 FPS**, **339 → 192 draw calls**, and **79,216 → 7,640 triangles** (1280×720, 120 rAF intervals after a three-second warm-up). This is a software-renderer comparison with ten small jellies, not a physical GPU benchmark. All 269 pre-existing hero/environment PNG hashes matched; the water v2 file is additional. No server files were changed. Vite still reports its existing large game-chunk warning.
+
+## Painted skill icons
+
+The five active hotbar buttons share a generated ink-and-gouache icon strip on desktop and touch. The sixth leaf sigil is packed for future empty slots without adding a button or changing the bar dimensions. Source art and the exact built-in imagegen prompt are in `art/painted-ui/`; `tools/pack-icons.py` trims each of the six 512px source slots and proportionally centres the artwork on transparent 128px and 64px cells. Runtime files are `public/assets/ui-painted/skill-icons-v1.png` (768×128), `skill-icons-64-v1.png` (384×64), and `manifest.json`. The HUD uses the 128px strip for crisp HiDPI display at 52px on desktop and 40px on mobile.
+
+CSS darkens only the icon with a conic cooldown wedge, while a numeric timer stays readable above it. A soft gold rim means ready; unavailable MP/potions desaturate the icon, and pressing scales the button down. Key labels, Thai names, potion count and MP badges remain visible; the existing 63×64 desktop and 46×57 mobile button dimensions are retained. The spare sigil is deliberately quiet. The dash boot and individual wind leaves become secondary details at mobile size, but their main silhouettes remain distinct.

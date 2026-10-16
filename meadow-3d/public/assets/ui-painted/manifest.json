@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "source": "skill-icons-sheet-v1.png",
+  "sourceSize": [
+    1536,
+    1024
+  ],
+  "layout": [
+    3,
+    2
+  ],
+  "sizes": {
+    "128": {
+      "file": "skill-icons-v1.png",
+      "size": 128,
+      "cellSize": [
+        128,
+        128
+      ],
+      "stripSize": [
+        768,
+        128
+      ],
+      "columns": 6,
+      "rows": 1
+    },
+    "64": {
+      "file": "skill-icons-64-v1.png",
+      "size": 64,
+      "cellSize": [
+        64,
+        64
+      ],
+      "stripSize": [
+        384,
+        64
+      ],
+      "columns": 6,
+      "rows": 1
+    }
+  },
+  "icons": [
+    {
+      "name": "attack",
+      "label": "โจมตี",
+      "index": 0,
+      "sourceSlot": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "sourceTrim": [
+        75,
+        49,
+        496,
+        483
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "spin",
+      "label": "ฟันพายุ",
+      "index": 1,
+      "sourceSlot": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "sourceTrim": [
+        38,
+        94,
+        501,
+        448
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "meteor",
+      "label": "ดาวตก",
+      "index": 2,
+      "sourceSlot": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "sourceTrim": [
+        47,
+        28,
+        464,
+        471
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "dash",
+      "label": "พุ่งหลบ",
+      "index": 3,
+      "sourceSlot": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "sourceTrim": [
+        51,
+        53,
+        502,
+        432
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "potion",
+      "label": "ยา",
+      "index": 4,
+      "sourceSlot": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "sourceTrim": [
+        52,
+        16,
+        449,
+        439
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "spare",
+      "label": "ว่าง",
+      "index": 5,
+      "sourceSlot": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "sourceTrim": [
+        58,
+        57,
+        452,
+        440
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    }
+  ]
+}

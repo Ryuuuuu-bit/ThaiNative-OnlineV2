@@ -1,0 +1,1248 @@
+{
+  "version": 1,
+  "sourcePixelsPerWorldUnit": 113,
+  "runtimeDownsample": 0.5,
+  "atlases": [
+    {
+      "file": "env-1-v1.png",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "name": "stone-circle",
+      "sourcePixelSize": [
+        712,
+        714
+      ],
+      "worldSize": [
+        6.300884955752212,
+        6.31858407079646
+      ],
+      "anchor": [
+        0.4964887640449438,
+        0.9985994397759104
+      ],
+      "source": "art/painted-env/ruins-pond.png#figure4",
+      "flat": true,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        356,
+        357
+      ],
+      "rect": [
+        8,
+        8,
+        356,
+        357
+      ],
+      "uvRect": [
+        0.00390625,
+        0.82177734375,
+        0.173828125,
+        0.17431640625
+      ]
+    },
+    {
+      "name": "tree-round",
+      "sourcePixelSize": [
+        692,
+        700
+      ],
+      "worldSize": [
+        6.123893805309734,
+        6.1946902654867255
+      ],
+      "anchor": [
+        0.5527456647398844,
+        1.0
+      ],
+      "source": "art/painted-env/tree-round.png",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        346,
+        350
+      ],
+      "rect": [
+        380,
+        8,
+        346,
+        350
+      ],
+      "uvRect": [
+        0.185546875,
+        0.8251953125,
+        0.1689453125,
+        0.1708984375
+      ]
+    },
+    {
+      "name": "tree-tall",
+      "sourcePixelSize": [
+        617,
+        700
+      ],
+      "worldSize": [
+        5.460176991150442,
+        6.1946902654867255
+      ],
+      "anchor": [
+        0.5113452188006483,
+        1.0
+      ],
+      "source": "art/painted-env/tree-tall.png",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        308,
+        350
+      ],
+      "rect": [
+        742,
+        8,
+        308,
+        350
+      ],
+      "uvRect": [
+        0.3623046875,
+        0.8251953125,
+        0.150390625,
+        0.1708984375
+      ]
+    },
+    {
+      "name": "tree-leaning",
+      "sourcePixelSize": [
+        692,
+        700
+      ],
+      "worldSize": [
+        6.123893805309734,
+        6.1946902654867255
+      ],
+      "anchor": [
+        0.3764450867052023,
+        0.9985714285714286
+      ],
+      "source": "art/painted-env/tree-leaning.png",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        346,
+        350
+      ],
+      "rect": [
+        1066,
+        8,
+        346,
+        350
+      ],
+      "uvRect": [
+        0.5205078125,
+        0.8251953125,
+        0.1689453125,
+        0.1708984375
+      ]
+    },
+    {
+      "name": "tree-flowering",
+      "sourcePixelSize": [
+        701,
+        700
+      ],
+      "worldSize": [
+        6.20353982300885,
+        6.1946902654867255
+      ],
+      "anchor": [
+        0.5099857346647646,
+        1.0
+      ],
+      "source": "art/painted-env/tree-flowering.png",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        350,
+        350
+      ],
+      "rect": [
+        1428,
+        8,
+        350,
+        350
+      ],
+      "uvRect": [
+        0.697265625,
+        0.8251953125,
+        0.1708984375,
+        0.1708984375
+      ]
+    },
+    {
+      "name": "arch",
+      "sourcePixelSize": [
+        550,
+        534
+      ],
+      "worldSize": [
+        4.867256637168142,
+        4.725663716814159
+      ],
+      "anchor": [
+        0.35909090909090907,
+        1.0
+      ],
+      "source": "art/painted-env/ruins-pond.png#figure3",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        275,
+        267
+      ],
+      "rect": [
+        8,
+        381,
+        275,
+        267
+      ],
+      "uvRect": [
+        0.00390625,
+        0.68359375,
+        0.13427734375,
+        0.13037109375
+      ]
+    },
+    {
+      "name": "pillar-fluted",
+      "sourcePixelSize": [
+        194,
+        270
+      ],
+      "worldSize": [
+        1.7168141592920354,
+        2.3893805309734515
+      ],
+      "anchor": [
+        0.49742268041237114,
+        1.0
+      ],
+      "source": "art/painted-env/ruins-pond.png#figure2",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        97,
+        135
+      ],
+      "rect": [
+        299,
+        381,
+        97,
+        135
+      ],
+      "uvRect": [
+        0.14599609375,
+        0.748046875,
+        0.04736328125,
+        0.06591796875
+      ]
+    },
+    {
+      "name": "tent",
+      "sourcePixelSize": [
+        252,
+        250
+      ],
+      "worldSize": [
+        2.230088495575221,
+        2.2123893805309733
+      ],
+      "anchor": [
+        0.5615079365079365,
+        1.0
+      ],
+      "source": "art/painted-env/camp.png#figure1",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        126,
+        125
+      ],
+      "rect": [
+        412,
+        381,
+        126,
+        125
+      ],
+      "uvRect": [
+        0.201171875,
+        0.7529296875,
+        0.0615234375,
+        0.06103515625
+      ]
+    },
+    {
+      "name": "pillar-square",
+      "sourcePixelSize": [
+        166,
+        240
+      ],
+      "worldSize": [
+        1.4690265486725664,
+        2.1238938053097347
+      ],
+      "anchor": [
+        0.48493975903614456,
+        1.0
+      ],
+      "source": "art/painted-env/ruins-pond.png#figure1",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        83,
+        120
+      ],
+      "rect": [
+        554,
+        381,
+        83,
+        120
+      ],
+      "uvRect": [
+        0.2705078125,
+        0.75537109375,
+        0.04052734375,
+        0.05859375
+      ]
+    },
+    {
+      "name": "fence-span",
+      "sourcePixelSize": [
+        280,
+        212
+      ],
+      "worldSize": [
+        2.47787610619469,
+        1.8761061946902655
+      ],
+      "anchor": [
+        0.1375,
+        1.0
+      ],
+      "source": "art/painted-env/camp.png#figure6",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        140,
+        106
+      ],
+      "rect": [
+        653,
+        381,
+        140,
+        106
+      ],
+      "uvRect": [
+        0.31884765625,
+        0.76220703125,
+        0.068359375,
+        0.0517578125
+      ]
+    },
+    {
+      "name": "bridge",
+      "sourcePixelSize": [
+        780,
+        166
+      ],
+      "worldSize": [
+        6.902654867256637,
+        1.4690265486725664
+      ],
+      "anchor": [
+        0.5019230769230769,
+        1.0
+      ],
+      "source": "art/painted-env/bridge.png",
+      "flat": true,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        390,
+        83
+      ],
+      "rect": [
+        809,
+        381,
+        390,
+        83
+      ],
+      "uvRect": [
+        0.39501953125,
+        0.7734375,
+        0.1904296875,
+        0.04052734375
+      ]
+    },
+    {
+      "name": "fallen-log",
+      "sourcePixelSize": [
+        250,
+        163
+      ],
+      "worldSize": [
+        2.2123893805309733,
+        1.4424778761061947
+      ],
+      "anchor": [
+        0.202,
+        1.0
+      ],
+      "source": "art/painted-env/rocks.png#figure5",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        125,
+        82
+      ],
+      "rect": [
+        1215,
+        381,
+        125,
+        82
+      ],
+      "uvRect": [
+        0.59326171875,
+        0.77392578125,
+        0.06103515625,
+        0.0400390625
+      ]
+    },
+    {
+      "name": "signpost",
+      "sourcePixelSize": [
+        112,
+        160
+      ],
+      "worldSize": [
+        0.9911504424778761,
+        1.415929203539823
+      ],
+      "anchor": [
+        0.4955357142857143,
+        1.0
+      ],
+      "source": "art/painted-env/camp.png#figure4",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        56,
+        80
+      ],
+      "rect": [
+        1356,
+        381,
+        56,
+        80
+      ],
+      "uvRect": [
+        0.662109375,
+        0.77490234375,
+        0.02734375,
+        0.0390625
+      ]
+    },
+    {
+      "name": "boulder-tall",
+      "sourcePixelSize": [
+        119,
+        155
+      ],
+      "worldSize": [
+        1.0530973451327434,
+        1.3716814159292035
+      ],
+      "anchor": [
+        0.4579831932773109,
+        1.0
+      ],
+      "source": "art/painted-env/rocks.png#figure2",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        60,
+        78
+      ],
+      "rect": [
+        1428,
+        381,
+        60,
+        78
+      ],
+      "uvRect": [
+        0.697265625,
+        0.77587890625,
+        0.029296875,
+        0.0380859375
+      ]
+    },
+    {
+      "name": "bench",
+      "sourcePixelSize": [
+        220,
+        152
+      ],
+      "worldSize": [
+        1.9469026548672566,
+        1.345132743362832
+      ],
+      "anchor": [
+        0.22954545454545455,
+        1.0
+      ],
+      "source": "art/painted-env/camp.png#figure3",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        110,
+        76
+      ],
+      "rect": [
+        1504,
+        381,
+        110,
+        76
+      ],
+      "uvRect": [
+        0.734375,
+        0.77685546875,
+        0.0537109375,
+        0.037109375
+      ]
+    },
+    {
+      "name": "rock-cluster",
+      "sourcePixelSize": [
+        190,
+        137
+      ],
+      "worldSize": [
+        1.6814159292035398,
+        1.2123893805309736
+      ],
+      "anchor": [
+        0.6605263157894737,
+        1.0
+      ],
+      "source": "art/painted-env/rocks.png#figure4",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        95,
+        68
+      ],
+      "rect": [
+        1630,
+        381,
+        95,
+        68
+      ],
+      "uvRect": [
+        0.7958984375,
+        0.78076171875,
+        0.04638671875,
+        0.033203125
+      ]
+    },
+    {
+      "name": "reeds-2",
+      "sourcePixelSize": [
+        133,
+        135
+      ],
+      "worldSize": [
+        1.176991150442478,
+        1.1946902654867257
+      ],
+      "anchor": [
+        0.4699248120300752,
+        1.0
+      ],
+      "source": "art/painted-env/ruins-pond.png#figure5",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        66,
+        68
+      ],
+      "rect": [
+        1741,
+        381,
+        66,
+        68
+      ],
+      "uvRect": [
+        0.85009765625,
+        0.78076171875,
+        0.0322265625,
+        0.033203125
+      ]
+    },
+    {
+      "name": "boulder-round",
+      "sourcePixelSize": [
+        165,
+        125
+      ],
+      "worldSize": [
+        1.4601769911504425,
+        1.1061946902654867
+      ],
+      "anchor": [
+        0.5303030303030303,
+        1.0
+      ],
+      "source": "art/painted-env/rocks.png#figure1",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        82,
+        62
+      ],
+      "rect": [
+        1823,
+        381,
+        82,
+        62
+      ],
+      "uvRect": [
+        0.89013671875,
+        0.78369140625,
+        0.0400390625,
+        0.0302734375
+      ]
+    },
+    {
+      "name": "fence-post",
+      "sourcePixelSize": [
+        58,
+        125
+      ],
+      "worldSize": [
+        0.5132743362831859,
+        1.1061946902654867
+      ],
+      "anchor": [
+        0.5086206896551724,
+        1.0
+      ],
+      "source": "art/painted-env/camp.png#figure5",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        29,
+        62
+      ],
+      "rect": [
+        1921,
+        381,
+        29,
+        62
+      ],
+      "uvRect": [
+        0.93798828125,
+        0.78369140625,
+        0.01416015625,
+        0.0302734375
+      ]
+    },
+    {
+      "name": "bush-round",
+      "sourcePixelSize": [
+        135,
+        120
+      ],
+      "worldSize": [
+        1.1946902654867257,
+        1.0619469026548674
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "source": "art/painted-env/foliage.png#figure1",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        68,
+        60
+      ],
+      "rect": [
+        1966,
+        381,
+        68,
+        60
+      ],
+      "uvRect": [
+        0.9599609375,
+        0.78466796875,
+        0.033203125,
+        0.029296875
+      ]
+    },
+    {
+      "name": "reeds-1",
+      "sourcePixelSize": [
+        106,
+        120
+      ],
+      "worldSize": [
+        0.9380530973451328,
+        1.0619469026548674
+      ],
+      "anchor": [
+        0.5047169811320755,
+        1.0
+      ],
+      "source": "art/painted-env/flowers.png#figure6",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        53,
+        60
+      ],
+      "rect": [
+        8,
+        664,
+        53,
+        60
+      ],
+      "uvRect": [
+        0.00390625,
+        0.646484375,
+        0.02587890625,
+        0.029296875
+      ]
+    },
+    {
+      "name": "bush-flowering",
+      "sourcePixelSize": [
+        139,
+        110
+      ],
+      "worldSize": [
+        1.2300884955752212,
+        0.9734513274336283
+      ],
+      "anchor": [
+        0.4784172661870504,
+        1.0
+      ],
+      "source": "art/painted-env/foliage.png#figure2",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        70,
+        55
+      ],
+      "rect": [
+        77,
+        664,
+        70,
+        55
+      ],
+      "uvRect": [
+        0.03759765625,
+        0.64892578125,
+        0.0341796875,
+        0.02685546875
+      ]
+    },
+    {
+      "name": "fern-upright",
+      "sourcePixelSize": [
+        87,
+        110
+      ],
+      "worldSize": [
+        0.7699115044247787,
+        0.9734513274336283
+      ],
+      "anchor": [
+        0.5459770114942529,
+        1.0
+      ],
+      "source": "art/painted-env/foliage.png#figure4",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        44,
+        55
+      ],
+      "rect": [
+        163,
+        664,
+        44,
+        55
+      ],
+      "uvRect": [
+        0.07958984375,
+        0.64892578125,
+        0.021484375,
+        0.02685546875
+      ]
+    },
+    {
+      "name": "reeds-3",
+      "sourcePixelSize": [
+        104,
+        105
+      ],
+      "worldSize": [
+        0.9203539823008849,
+        0.9292035398230089
+      ],
+      "anchor": [
+        0.5336538461538461,
+        1.0
+      ],
+      "source": "art/painted-env/ruins-pond.png#figure6",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        52,
+        52
+      ],
+      "rect": [
+        223,
+        664,
+        52,
+        52
+      ],
+      "uvRect": [
+        0.10888671875,
+        0.650390625,
+        0.025390625,
+        0.025390625
+      ]
+    },
+    {
+      "name": "fern-wide",
+      "sourcePixelSize": [
+        127,
+        100
+      ],
+      "worldSize": [
+        1.1238938053097345,
+        0.8849557522123894
+      ],
+      "anchor": [
+        0.452755905511811,
+        1.0
+      ],
+      "source": "art/painted-env/foliage.png#figure3",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        64,
+        50
+      ],
+      "rect": [
+        291,
+        664,
+        64,
+        50
+      ],
+      "uvRect": [
+        0.14208984375,
+        0.6513671875,
+        0.03125,
+        0.0244140625
+      ]
+    },
+    {
+      "name": "stump",
+      "sourcePixelSize": [
+        119,
+        100
+      ],
+      "worldSize": [
+        1.0530973451327434,
+        0.8849557522123894
+      ],
+      "anchor": [
+        0.5336134453781513,
+        1.0
+      ],
+      "source": "art/painted-env/rocks.png#figure6",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        60,
+        50
+      ],
+      "rect": [
+        371,
+        664,
+        60,
+        50
+      ],
+      "uvRect": [
+        0.18115234375,
+        0.6513671875,
+        0.029296875,
+        0.0244140625
+      ]
+    },
+    {
+      "name": "boulder-flat",
+      "sourcePixelSize": [
+        133,
+        85
+      ],
+      "worldSize": [
+        1.176991150442478,
+        0.7522123893805309
+      ],
+      "anchor": [
+        0.5526315789473685,
+        1.0
+      ],
+      "source": "art/painted-env/rocks.png#figure3",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        66,
+        42
+      ],
+      "rect": [
+        447,
+        664,
+        66,
+        42
+      ],
+      "uvRect": [
+        0.21826171875,
+        0.6552734375,
+        0.0322265625,
+        0.0205078125
+      ]
+    },
+    {
+      "name": "campfire",
+      "sourcePixelSize": [
+        125,
+        81
+      ],
+      "worldSize": [
+        1.1061946902654867,
+        0.7168141592920354
+      ],
+      "anchor": [
+        0.524,
+        1.0
+      ],
+      "source": "art/painted-env/camp.png#figure2",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        62,
+        40
+      ],
+      "rect": [
+        529,
+        664,
+        62,
+        40
+      ],
+      "uvRect": [
+        0.25830078125,
+        0.65625,
+        0.0302734375,
+        0.01953125
+      ]
+    },
+    {
+      "name": "flowers-lavender",
+      "sourcePixelSize": [
+        52,
+        60
+      ],
+      "worldSize": [
+        0.46017699115044247,
+        0.5309734513274337
+      ],
+      "anchor": [
+        0.5288461538461539,
+        1.0
+      ],
+      "source": "art/painted-env/flowers.png#figure3",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        26,
+        30
+      ],
+      "rect": [
+        607,
+        664,
+        26,
+        30
+      ],
+      "uvRect": [
+        0.29638671875,
+        0.6611328125,
+        0.0126953125,
+        0.0146484375
+      ]
+    },
+    {
+      "name": "grass-2",
+      "sourcePixelSize": [
+        56,
+        55
+      ],
+      "worldSize": [
+        0.49557522123893805,
+        0.48672566371681414
+      ],
+      "anchor": [
+        0.5089285714285714,
+        1.0
+      ],
+      "source": "art/painted-env/foliage.png#figure6",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        28,
+        28
+      ],
+      "rect": [
+        649,
+        664,
+        28,
+        28
+      ],
+      "uvRect": [
+        0.31689453125,
+        0.662109375,
+        0.013671875,
+        0.013671875
+      ]
+    },
+    {
+      "name": "grass-3",
+      "sourcePixelSize": [
+        46,
+        55
+      ],
+      "worldSize": [
+        0.40707964601769914,
+        0.48672566371681414
+      ],
+      "anchor": [
+        0.5108695652173914,
+        1.0
+      ],
+      "source": "art/painted-env/flowers.png#figure5",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        23,
+        28
+      ],
+      "rect": [
+        693,
+        664,
+        23,
+        28
+      ],
+      "uvRect": [
+        0.33837890625,
+        0.662109375,
+        0.01123046875,
+        0.013671875
+      ]
+    },
+    {
+      "name": "grass-1",
+      "sourcePixelSize": [
+        51,
+        50
+      ],
+      "worldSize": [
+        0.45132743362831856,
+        0.4424778761061947
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "source": "art/painted-env/foliage.png#figure5",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        26,
+        25
+      ],
+      "rect": [
+        732,
+        664,
+        26,
+        25
+      ],
+      "uvRect": [
+        0.357421875,
+        0.66357421875,
+        0.0126953125,
+        0.01220703125
+      ]
+    },
+    {
+      "name": "flowers-pink",
+      "sourcePixelSize": [
+        49,
+        50
+      ],
+      "worldSize": [
+        0.4336283185840708,
+        0.4424778761061947
+      ],
+      "anchor": [
+        0.47959183673469385,
+        1.0
+      ],
+      "source": "art/painted-env/flowers.png#figure4",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        24,
+        25
+      ],
+      "rect": [
+        774,
+        664,
+        24,
+        25
+      ],
+      "uvRect": [
+        0.3779296875,
+        0.66357421875,
+        0.01171875,
+        0.01220703125
+      ]
+    },
+    {
+      "name": "flowers-white",
+      "sourcePixelSize": [
+        44,
+        45
+      ],
+      "worldSize": [
+        0.3893805309734513,
+        0.39823008849557523
+      ],
+      "anchor": [
+        0.5340909090909091,
+        1.0
+      ],
+      "source": "art/painted-env/flowers.png#figure1",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        22,
+        22
+      ],
+      "rect": [
+        814,
+        664,
+        22,
+        22
+      ],
+      "uvRect": [
+        0.3974609375,
+        0.6650390625,
+        0.0107421875,
+        0.0107421875
+      ]
+    },
+    {
+      "name": "flowers-yellow",
+      "sourcePixelSize": [
+        41,
+        45
+      ],
+      "worldSize": [
+        0.36283185840707965,
+        0.39823008849557523
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "source": "art/painted-env/flowers.png#figure2",
+      "flat": false,
+      "atlas": "env-1-v1.png",
+      "pixelSize": [
+        20,
+        22
+      ],
+      "rect": [
+        852,
+        664,
+        20,
+        22
+      ],
+      "uvRect": [
+        0.416015625,
+        0.6650390625,
+        0.009765625,
+        0.0107421875
+      ]
+    }
+  ],
+  "tiles": {
+    "grass": {
+      "file": "tile-grass-v1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "transparent": false
+    },
+    "dirt": {
+      "file": "tile-dirt-v1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "transparent": false
+    },
+    "transition": {
+      "file": "tile-transition-v1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "transparent": true
+    },
+    "water": {
+      "file": "tile-water-v1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "transparent": false
+    },
+    "stone": {
+      "file": "tile-stone-v1.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "transparent": false
+    }
+  }
+}

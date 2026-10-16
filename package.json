@@ -7,12 +7,48 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --test"
+    "test": "node --test",
+    "dev:meadow": "vite meadow-3d --host 127.0.0.1 --port 5173",
+    "build:meadow": "vite build meadow-3d",
+    "test:meadow": "node --test meadow-3d/tests/*.test.mjs",
+    "check:meadow": "tsc -p meadow-3d/tsconfig.json"
   },
   "dependencies": {
-    "three": "0.185.0"
+    "@colyseus/sdk": "^0.18.5",
+    "@dimforge/rapier3d-compat": "^0.21.0",
+    "@recast-navigation/three": "^0.43.1",
+    "@sentry/browser": "^11.8.0",
+    "@three.ez/instanced-mesh": "^0.3.16",
+    "bitecs": "^0.4.0",
+    "camera-controls": "^3.1.2",
+    "gsap": "^3.15.0",
+    "howler": "^2.2.4",
+    "i18next": "^26.4.5",
+    "inkjs": "^2.4.0",
+    "nipplejs": "^1.0.4",
+    "postprocessing": "^6.39.5",
+    "preact": "^11.0.1",
+    "recast-navigation": "^0.43.1",
+    "three": "0.185.0",
+    "three-mesh-bvh": "^0.9.16",
+    "three.quarks": "^0.17.1",
+    "xstate": "^5.33.2",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "vite": "^7.1.0"
+    "@biomejs/biome": "2.5.15",
+    "@gltf-transform/cli": "^4.5.1",
+    "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
+    "@gltf-transform/functions": "^4.5.1",
+    "@preact/preset-vite": "^2.10.6",
+    "@types/howler": "^2.2.13",
+    "@types/three": "^0.185.4",
+    "lil-gui": "^0.21.0",
+    "meshoptimizer": "^1.3.0",
+    "stats-gl": "^4.2.3",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.7",
+    "vitest": "^5.0.4"
   }
 }

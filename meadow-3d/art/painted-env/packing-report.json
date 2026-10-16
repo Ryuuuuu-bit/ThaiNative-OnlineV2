@@ -1,0 +1,829 @@
+{
+  "sourcePixelsPerWorldUnit": 113,
+  "runtimeDownsample": 0.5,
+  "sources": {
+    "tree-round": {
+      "file": "art/painted-env/tree-round.png",
+      "trimBounds": [
+        166,
+        200,
+        858,
+        900
+      ],
+      "originalAlphaExtrema": [
+        0,
+        255
+      ],
+      "normalizeScale": 1.0,
+      "sourcePixelSize": [
+        692,
+        700
+      ]
+    },
+    "tree-tall": {
+      "file": "art/painted-env/tree-tall.png",
+      "trimBounds": [
+        204,
+        200,
+        821,
+        900
+      ],
+      "originalAlphaExtrema": [
+        0,
+        255
+      ],
+      "normalizeScale": 1.0,
+      "sourcePixelSize": [
+        617,
+        700
+      ]
+    },
+    "tree-leaning": {
+      "file": "art/painted-env/tree-leaning.png",
+      "trimBounds": [
+        166,
+        200,
+        858,
+        900
+      ],
+      "originalAlphaExtrema": [
+        0,
+        255
+      ],
+      "normalizeScale": 1.0,
+      "sourcePixelSize": [
+        692,
+        700
+      ]
+    },
+    "tree-flowering": {
+      "file": "art/painted-env/tree-flowering.png",
+      "trimBounds": [
+        161,
+        200,
+        862,
+        900
+      ],
+      "originalAlphaExtrema": [
+        0,
+        255
+      ],
+      "normalizeScale": 1.0,
+      "sourcePixelSize": [
+        701,
+        700
+      ]
+    },
+    "bush-round": {
+      "file": "art/painted-env/foliage.png#figure1",
+      "trimBounds": [
+        0,
+        0,
+        481,
+        426
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.28169014084507044,
+      "sourcePixelSize": [
+        135,
+        120
+      ],
+      "sheetBounds": [
+        11,
+        23,
+        492,
+        449
+      ]
+    },
+    "bush-flowering": {
+      "file": "art/painted-env/foliage.png#figure2",
+      "trimBounds": [
+        0,
+        0,
+        491,
+        388
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.28350515463917525,
+      "sourcePixelSize": [
+        139,
+        110
+      ],
+      "sheetBounds": [
+        519,
+        51,
+        1010,
+        439
+      ]
+    },
+    "fern-wide": {
+      "file": "art/painted-env/foliage.png#figure3",
+      "trimBounds": [
+        0,
+        0,
+        503,
+        395
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.25316455696202533,
+      "sourcePixelSize": [
+        127,
+        100
+      ],
+      "sheetBounds": [
+        1024,
+        67,
+        1527,
+        462
+      ]
+    },
+    "fern-upright": {
+      "file": "art/painted-env/foliage.png#figure4",
+      "trimBounds": [
+        0,
+        0,
+        375,
+        472
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.2330508474576271,
+      "sourcePixelSize": [
+        87,
+        110
+      ],
+      "sheetBounds": [
+        48,
+        528,
+        423,
+        1000
+      ]
+    },
+    "grass-1": {
+      "file": "art/painted-env/foliage.png#figure5",
+      "trimBounds": [
+        0,
+        0,
+        492,
+        486
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.102880658436214,
+      "sourcePixelSize": [
+        51,
+        50
+      ],
+      "sheetBounds": [
+        512,
+        511,
+        1004,
+        997
+      ]
+    },
+    "grass-2": {
+      "file": "art/painted-env/foliage.png#figure6",
+      "trimBounds": [
+        0,
+        0,
+        473,
+        461
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.1193058568329718,
+      "sourcePixelSize": [
+        56,
+        55
+      ],
+      "sheetBounds": [
+        1042,
+        528,
+        1515,
+        989
+      ]
+    },
+    "flowers-white": {
+      "file": "art/painted-env/flowers.png#figure1",
+      "trimBounds": [
+        0,
+        0,
+        413,
+        418
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.1076555023923445,
+      "sourcePixelSize": [
+        44,
+        45
+      ],
+      "sheetBounds": [
+        39,
+        55,
+        452,
+        473
+      ]
+    },
+    "flowers-yellow": {
+      "file": "art/painted-env/flowers.png#figure2",
+      "trimBounds": [
+        0,
+        0,
+        431,
+        469
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.09594882729211088,
+      "sourcePixelSize": [
+        41,
+        45
+      ],
+      "sheetBounds": [
+        554,
+        25,
+        985,
+        494
+      ]
+    },
+    "flowers-lavender": {
+      "file": "art/painted-env/flowers.png#figure3",
+      "trimBounds": [
+        0,
+        0,
+        405,
+        468
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.1282051282051282,
+      "sourcePixelSize": [
+        52,
+        60
+      ],
+      "sheetBounds": [
+        1080,
+        20,
+        1485,
+        488
+      ]
+    },
+    "flowers-pink": {
+      "file": "art/painted-env/flowers.png#figure4",
+      "trimBounds": [
+        0,
+        0,
+        451,
+        462
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.10822510822510822,
+      "sourcePixelSize": [
+        49,
+        50
+      ],
+      "sheetBounds": [
+        31,
+        533,
+        482,
+        995
+      ]
+    },
+    "grass-3": {
+      "file": "art/painted-env/flowers.png#figure5",
+      "trimBounds": [
+        0,
+        0,
+        431,
+        517
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.10638297872340426,
+      "sourcePixelSize": [
+        46,
+        55
+      ],
+      "sheetBounds": [
+        544,
+        484,
+        975,
+        1001
+      ]
+    },
+    "reeds-1": {
+      "file": "art/painted-env/flowers.png#figure6",
+      "trimBounds": [
+        0,
+        0,
+        427,
+        482
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.24896265560165975,
+      "sourcePixelSize": [
+        106,
+        120
+      ],
+      "sheetBounds": [
+        1064,
+        513,
+        1491,
+        995
+      ]
+    },
+    "boulder-round": {
+      "file": "art/painted-env/rocks.png#figure1",
+      "trimBounds": [
+        0,
+        0,
+        445,
+        338
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.3698224852071006,
+      "sourcePixelSize": [
+        165,
+        125
+      ],
+      "sheetBounds": [
+        21,
+        122,
+        466,
+        460
+      ]
+    },
+    "boulder-tall": {
+      "file": "art/painted-env/rocks.png#figure2",
+      "trimBounds": [
+        0,
+        0,
+        371,
+        482
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.3215767634854772,
+      "sourcePixelSize": [
+        119,
+        155
+      ],
+      "sheetBounds": [
+        572,
+        16,
+        943,
+        498
+      ]
+    },
+    "boulder-flat": {
+      "file": "art/painted-env/rocks.png#figure3",
+      "trimBounds": [
+        0,
+        0,
+        493,
+        316
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.2689873417721519,
+      "sourcePixelSize": [
+        133,
+        85
+      ],
+      "sheetBounds": [
+        1028,
+        137,
+        1521,
+        453
+      ]
+    },
+    "rock-cluster": {
+      "file": "art/painted-env/rocks.png#figure4",
+      "trimBounds": [
+        0,
+        0,
+        398,
+        288
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.47738693467336685,
+      "sourcePixelSize": [
+        190,
+        137
+      ],
+      "sheetBounds": [
+        48,
+        625,
+        446,
+        913
+      ]
+    },
+    "fallen-log": {
+      "file": "art/painted-env/rocks.png#figure5",
+      "trimBounds": [
+        0,
+        0,
+        518,
+        337
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.4826254826254826,
+      "sourcePixelSize": [
+        250,
+        163
+      ],
+      "sheetBounds": [
+        508,
+        603,
+        1026,
+        940
+      ]
+    },
+    "stump": {
+      "file": "art/painted-env/rocks.png#figure6",
+      "trimBounds": [
+        0,
+        0,
+        478,
+        403
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.24813895781637718,
+      "sourcePixelSize": [
+        119,
+        100
+      ],
+      "sheetBounds": [
+        1047,
+        568,
+        1525,
+        971
+      ]
+    },
+    "tent": {
+      "file": "art/painted-env/camp.png#figure1",
+      "trimBounds": [
+        0,
+        0,
+        490,
+        487
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.5133470225872689,
+      "sourcePixelSize": [
+        252,
+        250
+      ],
+      "sheetBounds": [
+        19,
+        12,
+        509,
+        499
+      ]
+    },
+    "campfire": {
+      "file": "art/painted-env/camp.png#figure2",
+      "trimBounds": [
+        0,
+        0,
+        369,
+        240
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.33875338753387535,
+      "sourcePixelSize": [
+        125,
+        81
+      ],
+      "sheetBounds": [
+        591,
+        191,
+        960,
+        431
+      ]
+    },
+    "bench": {
+      "file": "art/painted-env/camp.png#figure3",
+      "trimBounds": [
+        0,
+        0,
+        461,
+        318
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.4772234273318872,
+      "sourcePixelSize": [
+        220,
+        152
+      ],
+      "sheetBounds": [
+        1053,
+        124,
+        1514,
+        442
+      ]
+    },
+    "signpost": {
+      "file": "art/painted-env/camp.png#figure4",
+      "trimBounds": [
+        0,
+        0,
+        338,
+        485
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.32989690721649484,
+      "sourcePixelSize": [
+        112,
+        160
+      ],
+      "sheetBounds": [
+        87,
+        523,
+        425,
+        1008
+      ]
+    },
+    "fence-post": {
+      "file": "art/painted-env/camp.png#figure5",
+      "trimBounds": [
+        0,
+        0,
+        194,
+        418
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.29904306220095694,
+      "sourcePixelSize": [
+        58,
+        125
+      ],
+      "sheetBounds": [
+        672,
+        557,
+        866,
+        975
+      ]
+    },
+    "fence-span": {
+      "file": "art/painted-env/camp.png#figure6",
+      "trimBounds": [
+        0,
+        0,
+        481,
+        364
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 0.5821205821205822,
+      "sourcePixelSize": [
+        280,
+        212
+      ],
+      "sheetBounds": [
+        1036,
+        593,
+        1517,
+        957
+      ]
+    },
+    "pillar-square": {
+      "file": "art/painted-env/ruins-pond.png#figure1",
+      "trimBounds": [
+        0,
+        0,
+        333,
+        482
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.4979253112033195,
+      "sourcePixelSize": [
+        166,
+        240
+      ],
+      "sheetBounds": [
+        92,
+        17,
+        425,
+        499
+      ]
+    },
+    "pillar-fluted": {
+      "file": "art/painted-env/ruins-pond.png#figure2",
+      "trimBounds": [
+        0,
+        0,
+        348,
+        485
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.5567010309278351,
+      "sourcePixelSize": [
+        194,
+        270
+      ],
+      "sheetBounds": [
+        588,
+        12,
+        936,
+        497
+      ]
+    },
+    "arch": {
+      "file": "art/painted-env/ruins-pond.png#figure3",
+      "trimBounds": [
+        0,
+        0,
+        485,
+        471
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 1.134020618556701,
+      "sourcePixelSize": [
+        550,
+        534
+      ],
+      "sheetBounds": [
+        1038,
+        13,
+        1523,
+        484
+      ]
+    },
+    "stone-circle": {
+      "file": "art/painted-env/ruins-pond.png#figure4",
+      "trimBounds": [
+        0,
+        0,
+        435,
+        436
+      ],
+      "originalAlphaExtrema": [
+        0,
+        254
+      ],
+      "normalizeScale": 1.6367816091954024,
+      "sourcePixelSize": [
+        712,
+        714
+      ],
+      "sheetBounds": [
+        37,
+        538,
+        472,
+        974
+      ]
+    },
+    "reeds-2": {
+      "file": "art/painted-env/ruins-pond.png#figure5",
+      "trimBounds": [
+        0,
+        0,
+        449,
+        456
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.29605263157894735,
+      "sourcePixelSize": [
+        133,
+        135
+      ],
+      "sheetBounds": [
+        549,
+        523,
+        998,
+        979
+      ]
+    },
+    "reeds-3": {
+      "file": "art/painted-env/ruins-pond.png#figure6",
+      "trimBounds": [
+        0,
+        0,
+        440,
+        444
+      ],
+      "originalAlphaExtrema": [
+        0,
+        253
+      ],
+      "normalizeScale": 0.23648648648648649,
+      "sourcePixelSize": [
+        104,
+        105
+      ],
+      "sheetBounds": [
+        1067,
+        534,
+        1507,
+        978
+      ]
+    },
+    "bridge": {
+      "file": "art/painted-env/bridge.png",
+      "trimBounds": [
+        115,
+        134,
+        2053,
+        547
+      ],
+      "originalAlphaExtrema": [
+        0,
+        255
+      ],
+      "normalizeScale": 0.4024767801857585,
+      "sourcePixelSize": [
+        780,
+        166
+      ]
+    }
+  },
+  "warnings": [],
+  "assetCount": 35,
+  "tileCount": 5,
+  "atlasCount": 1,
+  "atlases": [
+    {
+      "file": "env-1-v1.png",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ]
+}
