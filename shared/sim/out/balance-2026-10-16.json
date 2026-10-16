@@ -14,7 +14,7 @@
       "mage"
     ],
     "monster": "all",
-    "runs": 200,
+    "runs": 1000,
     "seed": 1,
     "pvp": false
   },
@@ -37,9 +37,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2654435762,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -48,7 +48,7 @@
         "p10": 16,
         "p90": 16
       },
-      "expPerMinute": 570.5660377358486,
+      "expPerMinute": 570.5660377358518,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -63,18 +63,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 1013904227,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9525000000000035,
+        "mean": 0.9169999999999845,
         "p10": 0.65,
         "p90": 1.15
       },
       "hitsToDie": {
-        "mean": 13.105,
+        "mean": 13.086,
         "p10": 13,
-        "p90": 14
+        "p90": 13
       },
-      "expPerMinute": 768.1625740897538,
+      "expPerMinute": 777.5111415838232,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -89,18 +89,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 3668339988,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 1.6245000000000016,
+        "mean": 1.6271999999999767,
         "p10": 1.6,
         "p90": 1.6
       },
       "hitsToDie": {
-        "mean": 13.095,
+        "mean": 13.074,
         "p10": 13,
         "p90": 13
       },
-      "expPerMinute": 625.7414815836665,
+      "expPerMinute": 625.2756947507761,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -113,18 +113,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2027808453,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 20.965,
+        "mean": 20.951,
         "p10": 21,
         "p90": 21
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -139,14 +139,14 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 387276918,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 56.77875000000008,
-        "p10": 53.45,
-        "p90": 60.1
+        "mean": 78.42954999999998,
+        "p10": 76.55,
+        "p90": 80.1
       },
       "hitsToDie": {
-        "mean": 6.175,
+        "mean": 6.129,
         "p10": 6,
         "p90": 7
       },
@@ -163,18 +163,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3041712679,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 1.1475000000000037,
+        "mean": 1.1454999999999955,
         "p10": 1.15,
         "p90": 1.15
       },
       "hitsToDie": {
-        "mean": 10.99,
+        "mean": 10.991,
         "p10": 11,
         "p90": 11
       },
-      "expPerMinute": 480.38125496425687,
+      "expPerMinute": 480.68669527897066,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -187,9 +187,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 1401181144,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 2.4010000000000007,
+        "mean": 2.4230500000000013,
         "p10": 2.05,
         "p90": 2.5
       },
@@ -198,7 +198,7 @@
         "p10": 9,
         "p90": 9
       },
-      "expPerMinute": 515.3374233128834,
+      "expPerMinute": 512.768338589887,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -211,18 +211,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 4055616905,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 3.1209999999999978,
+        "mean": 3.1115499999999794,
         "p10": 2.95,
-        "p90": 3.85
+        "p90": 3.4
       },
       "hitsToDie": {
         "mean": 9,
         "p10": 9,
         "p90": 9
       },
-      "expPerMinute": 442.88224956063294,
+      "expPerMinute": 443.7010300202501,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -235,18 +235,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2415085370,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 13.07,
+        "mean": 13.094,
         "p10": 13,
         "p90": 13
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -261,11 +261,11 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 774553835,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 136.08999999999972,
-        "p10": 133,
-        "p90": 137.45
+        "mean": 186.11389999999875,
+        "p10": 181.4,
+        "p90": 188.5
       },
       "hitsToDie": {
         "mean": 5,
@@ -285,18 +285,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3428989596,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 1.1475000000000037,
+        "mean": 1.1429999999999951,
         "p10": 1.15,
         "p90": 1.15
       },
       "hitsToDie": {
-        "mean": 9.84,
+        "mean": 9.795,
         "p10": 9,
         "p90": 10
       },
-      "expPerMinute": 480.38125496425687,
+      "expPerMinute": 481.06904231625913,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -309,9 +309,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 1788458061,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 2.4167500000000004,
+        "mean": 2.423050000000001,
         "p10": 2.05,
         "p90": 2.5
       },
@@ -320,7 +320,7 @@
         "p10": 8,
         "p90": 8
       },
-      "expPerMinute": 513.4997452878248,
+      "expPerMinute": 512.7683385898871,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -333,18 +333,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 147926526,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 3.1120000000000005,
+        "mean": 3.115599999999982,
         "p10": 2.95,
-        "p90": 3.85
+        "p90": 3.4
       },
       "hitsToDie": {
         "mean": 8,
         "p10": 8,
         "p90": 8
       },
-      "expPerMinute": 443.661971830986,
+      "expPerMinute": 443.34975369458294,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -357,18 +357,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2802362287,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 11.785,
+        "mean": 11.748,
         "p10": 11,
         "p90": 12
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -383,11 +383,11 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 1161830752,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 115.76949999999995,
-        "p10": 113,
-        "p90": 117.45
+        "mean": 158.1397499999998,
+        "p10": 156.05,
+        "p90": 161.4
       },
       "hitsToDie": {
         "mean": 4,
@@ -407,18 +407,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3816266513,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 67.545,
+        "mean": 67.619,
         "p10": 67,
-        "p90": 69
+        "p90": 68
       },
-      "expPerMinute": 570.5660377358486,
+      "expPerMinute": 570.5660377358518,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -433,18 +433,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 2175734978,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 51.125,
-        "p10": 51,
+        "mean": 51.146,
+        "p10": 50,
         "p90": 52
       },
-      "expPerMinute": 855.849056603773,
+      "expPerMinute": 855.8490566037776,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -459,18 +459,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 535203443,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.7200000000000029,
+        "mean": 0.7224999999999868,
         "p10": 0.65,
         "p90": 1.15
       },
       "hitsToDie": {
-        "mean": 51.13,
+        "mean": 51.167,
         "p10": 50,
         "p90": 52
       },
-      "expPerMinute": 833.823529411764,
+      "expPerMinute": 833.0578512396736,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -485,9 +485,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3189639204,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -496,7 +496,7 @@
         "p10": 108,
         "p90": 108
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -511,19 +511,19 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 1549107669,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 35.439500000000045,
-        "p10": 33.4,
-        "p90": 36.5
+        "mean": 47.385899999999836,
+        "p10": 45.45,
+        "p90": 48.55
       },
       "hitsToDie": {
-        "mean": 18.81,
+        "mean": 18.761,
         "p10": 18,
         "p90": 19
       },
-      "expPerMinute": 324.76395251004914,
-      "winRate": 0.965,
+      "expPerMinute": 2.0410684021147802,
+      "winRate": 0.008,
       "drawRate": 0,
       "censored": 0,
       "flags": []
@@ -535,18 +535,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 4203543430,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 39.295,
+        "mean": 39.363,
         "p10": 39,
         "p90": 40
       },
-      "expPerMinute": 570.5660377358486,
+      "expPerMinute": 570.5660377358518,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -561,18 +561,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 2563011895,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 31.01,
+        "mean": 30.991,
         "p10": 31,
         "p90": 31
       },
-      "expPerMinute": 855.849056603773,
+      "expPerMinute": 855.8490566037776,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -587,18 +587,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 922480360,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 1.1425000000000038,
+        "mean": 1.1384999999999947,
         "p10": 1.15,
         "p90": 1.15
       },
       "hitsToDie": {
-        "mean": 31,
+        "mean": 31.002,
         "p10": 31,
         "p90": 31
       },
-      "expPerMinute": 721.7183770883048,
+      "expPerMinute": 722.6382029632003,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -611,18 +611,18 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3576916121,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 51.135,
+        "mean": 51.132,
         "p10": 51,
         "p90": 52
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -637,14 +637,14 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 1936384586,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 52.116500000000066,
-        "p10": 49.45,
-        "p90": 53.45
+        "mean": 71.05389999999974,
+        "p10": 68.55,
+        "p90": 72.55
       },
       "hitsToDie": {
-        "mean": 13.005,
+        "mean": 13.001,
         "p10": 13,
         "p90": 13
       },
@@ -661,9 +661,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 295853051,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 1.1450000000000038,
+        "mean": 1.1424999999999952,
         "p10": 1.15,
         "p90": 1.15
       },
@@ -672,7 +672,7 @@
         "p10": 37,
         "p90": 37
       },
-      "expPerMinute": 480.76311605723316,
+      "expPerMinute": 481.1455847255378,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -685,18 +685,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 2950288812,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 2.085500000000006,
+        "mean": 2.0709999999999638,
         "p10": 2.1,
         "p90": 2.1
       },
       "hitsToDie": {
-        "mean": 28.515,
+        "mean": 28.609,
         "p10": 28,
         "p90": 29
       },
-      "expPerMinute": 555.1340105250268,
+      "expPerMinute": 557.1112748710441,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -709,18 +709,18 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 1309757277,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 3.950500000000001,
+        "mean": 3.9486999999999983,
         "p10": 4,
         "p90": 4
       },
       "hitsToDie": {
-        "mean": 28.575,
+        "mean": 28.585,
         "p10": 28,
         "p90": 29
       },
-      "expPerMinute": 381.1444416435594,
+      "expPerMinute": 381.2597710424128,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -733,9 +733,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3964193038,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -744,7 +744,7 @@
         "p10": 56,
         "p90": 56
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -759,11 +759,11 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 2323661503,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 77.11700000000005,
-        "p10": 76.1,
-        "p90": 80.1
+        "mean": 104.05120000000007,
+        "p10": 101.45,
+        "p90": 105.45
       },
       "hitsToDie": {
         "mean": 12,
@@ -783,9 +783,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 683129968,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -794,7 +794,7 @@
         "p10": 267,
         "p90": 267
       },
-      "expPerMinute": 570.5660377358486,
+      "expPerMinute": 570.5660377358518,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -809,9 +809,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 3337565729,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -820,7 +820,7 @@
         "p10": 267,
         "p90": 267
       },
-      "expPerMinute": 855.849056603773,
+      "expPerMinute": 855.8490566037776,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -835,9 +835,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 1697034194,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -846,7 +846,7 @@
         "p10": 267,
         "p90": 267
       },
-      "expPerMinute": 855.849056603773,
+      "expPerMinute": 855.8490566037776,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -861,9 +861,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 56502659,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -872,7 +872,7 @@
         "p10": 400,
         "p90": 400
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -887,18 +887,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 2710938420,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 20.585250000000016,
-        "p10": 20.05,
-        "p90": 20.95
+        "mean": 28.204349999999682,
+        "p10": 28.05,
+        "p90": 28.5
       },
       "hitsToDie": {
-        "mean": 75.255,
+        "mean": 75.324,
         "p10": 75,
         "p90": 76
       },
-      "expPerMinute": 557.8862310578803,
+      "expPerMinute": 417.15845565291534,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -911,9 +911,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 1070406885,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -922,7 +922,7 @@
         "p10": 202,
         "p90": 202
       },
-      "expPerMinute": 581.5384615384621,
+      "expPerMinute": 581.5384615384592,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -937,9 +937,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 3724842646,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -948,7 +948,7 @@
         "p10": 202,
         "p90": 202
       },
-      "expPerMinute": 872.3076923076932,
+      "expPerMinute": 872.3076923076887,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -963,9 +963,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 2084311111,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -974,7 +974,7 @@
         "p10": 202,
         "p90": 202
       },
-      "expPerMinute": 872.3076923076932,
+      "expPerMinute": 872.3076923076887,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -989,9 +989,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 443779576,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1000,7 +1000,7 @@
         "p10": 303,
         "p90": 303
       },
-      "expPerMinute": 96.923076923077,
+      "expPerMinute": 96.92307692307651,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1015,18 +1015,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 3098215337,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 21.886750000000017,
-        "p10": 20.95,
-        "p90": 24.05
+        "mean": 29.90045000000019,
+        "p10": 28.95,
+        "p90": 32.05
       },
       "hitsToDie": {
-        "mean": 45.59,
+        "mean": 45.621,
         "p10": 45,
         "p90": 46
       },
-      "expPerMinute": 527.489089139376,
+      "expPerMinute": 394.97875421819833,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1039,9 +1039,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 1457683802,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -1050,7 +1050,7 @@
         "p10": 182,
         "p90": 182
       },
-      "expPerMinute": 570.5660377358486,
+      "expPerMinute": 570.5660377358518,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1065,9 +1065,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 4112119563,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -1076,7 +1076,7 @@
         "p10": 182,
         "p90": 182
       },
-      "expPerMinute": 855.849056603773,
+      "expPerMinute": 855.8490566037776,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1091,9 +1091,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 2471588028,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 1.9122499999999993,
+        "mean": 1.9581500000000005,
         "p10": 2,
         "p90": 2
       },
@@ -1102,7 +1102,7 @@
         "p10": 182,
         "p90": 182
       },
-      "expPerMinute": 579.7175538373061,
+      "expPerMinute": 572.9949597665576,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1115,9 +1115,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 831056493,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -1126,7 +1126,7 @@
         "p10": 272,
         "p90": 272
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1141,19 +1141,19 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 3485492254,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 71.13100000000017,
-        "p10": 69,
-        "p90": 72.1
+        "mean": 101.94010000000046,
+        "p10": 97.15,
+        "p90": 104.1
       },
       "hitsToDie": {
-        "mean": 45.72,
+        "mean": 45.656,
         "p10": 45,
         "p90": 46
       },
-      "expPerMinute": 172.2935554005821,
-      "winRate": 1,
+      "expPerMinute": 91.03897340872251,
+      "winRate": 0.751,
       "drawRate": 0,
       "censored": 0,
       "flags": []
@@ -1165,9 +1165,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 1844960719,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -1176,7 +1176,7 @@
         "p10": 437,
         "p90": 437
       },
-      "expPerMinute": 570.5660377358486,
+      "expPerMinute": 570.5660377358518,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1191,9 +1191,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 204429184,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -1202,7 +1202,7 @@
         "p10": 437,
         "p90": 437
       },
-      "expPerMinute": 855.849056603773,
+      "expPerMinute": 855.8490566037776,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1217,9 +1217,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 2858864945,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -1228,7 +1228,7 @@
         "p10": 437,
         "p90": 437
       },
-      "expPerMinute": 855.849056603773,
+      "expPerMinute": 855.8490566037776,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1243,9 +1243,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 1218333410,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.6500000000000025,
+        "mean": 0.6499999999999878,
         "p10": 0.65,
         "p90": 0.65
       },
@@ -1254,7 +1254,7 @@
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 95.09433962264141,
+      "expPerMinute": 95.09433962264194,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1269,18 +1269,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 3872769171,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 13.31675000000004,
-        "p10": 12.95,
-        "p90": 13.4
+        "mean": 20.039199999999692,
+        "p10": 20.05,
+        "p90": 20.5
       },
       "hitsToDie": {
-        "mean": 251.59,
+        "mean": 251.538,
         "p10": 250,
         "p90": 253
       },
-      "expPerMinute": 822.6288213883472,
+      "expPerMinute": 571.7085919634186,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1293,9 +1293,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2232237636,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1304,7 +1304,7 @@
         "p10": 326,
         "p90": 326
       },
-      "expPerMinute": 581.5384615384621,
+      "expPerMinute": 581.5384615384592,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1319,9 +1319,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 591706101,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1330,7 +1330,7 @@
         "p10": 326,
         "p90": 326
       },
-      "expPerMinute": 872.3076923076932,
+      "expPerMinute": 872.3076923076887,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1345,9 +1345,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 3246141862,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1356,7 +1356,7 @@
         "p10": 326,
         "p90": 326
       },
-      "expPerMinute": 872.3076923076932,
+      "expPerMinute": 872.3076923076887,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1371,9 +1371,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 1605610327,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1382,7 +1382,7 @@
         "p10": 489,
         "p90": 489
       },
-      "expPerMinute": 96.923076923077,
+      "expPerMinute": 96.92307692307651,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1397,18 +1397,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 4260046088,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 13.495500000000042,
-        "p10": 13.4,
-        "p90": 13.4
+        "mean": 20.410299999999886,
+        "p10": 20.05,
+        "p90": 20.95
       },
       "hitsToDie": {
-        "mean": 129.955,
+        "mean": 129.961,
         "p10": 129,
         "p90": 131
       },
-      "expPerMinute": 813.1392985060156,
+      "expPerMinute": 562.241469324376,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1421,9 +1421,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2619514553,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9499999999999976,
+        "mean": 0.9500000000000167,
         "p10": 0.95,
         "p90": 0.95
       },
@@ -1432,7 +1432,7 @@
         "p10": 298,
         "p90": 298
       },
-      "expPerMinute": 512.5423728813564,
+      "expPerMinute": 512.5423728813531,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1447,9 +1447,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 978983018,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9499999999999976,
+        "mean": 0.9500000000000167,
         "p10": 0.95,
         "p90": 0.95
       },
@@ -1458,7 +1458,7 @@
         "p10": 298,
         "p90": 298
       },
-      "expPerMinute": 768.8135593220347,
+      "expPerMinute": 768.8135593220297,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1473,9 +1473,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 3633418779,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9499999999999976,
+        "mean": 0.9500000000000167,
         "p10": 0.95,
         "p90": 0.95
       },
@@ -1484,7 +1484,7 @@
         "p10": 298,
         "p90": 298
       },
-      "expPerMinute": 768.8135593220347,
+      "expPerMinute": 768.8135593220297,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1499,9 +1499,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 1992887244,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9499999999999976,
+        "mean": 0.9500000000000167,
         "p10": 0.95,
         "p90": 0.95
       },
@@ -1510,7 +1510,7 @@
         "p10": 447,
         "p90": 447
       },
-      "expPerMinute": 85.42372881355939,
+      "expPerMinute": 85.42372881355884,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1525,18 +1525,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 352355709,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 41.2609999999999,
-        "p10": 41,
-        "p90": 41.45
+        "mean": 57.89120000000054,
+        "p10": 57,
+        "p90": 58.05
       },
       "hitsToDie": {
-        "mean": 171.935,
+        "mean": 171.964,
         "p10": 171,
         "p90": 173
       },
-      "expPerMinute": 291.2554032500411,
+      "expPerMinute": 210.3814917717442,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1549,9 +1549,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3006791470,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1560,7 +1560,7 @@
         "p10": 895,
         "p90": 895
       },
-      "expPerMinute": 581.5384615384621,
+      "expPerMinute": 581.5384615384592,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1575,9 +1575,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 1366259935,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1586,7 +1586,7 @@
         "p10": 895,
         "p90": 895
       },
-      "expPerMinute": 872.3076923076932,
+      "expPerMinute": 872.3076923076887,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1601,9 +1601,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 4020695696,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1612,7 +1612,7 @@
         "p10": 895,
         "p90": 895
       },
-      "expPerMinute": 872.3076923076932,
+      "expPerMinute": 872.3076923076887,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1627,9 +1627,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2380164161,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5999999999999979,
+        "mean": 0.6000000000000113,
         "p10": 0.6,
         "p90": 0.6
       },
@@ -1638,7 +1638,7 @@
         "p10": 1342,
         "p90": 1342
       },
-      "expPerMinute": 96.923076923077,
+      "expPerMinute": 96.92307692307651,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1653,18 +1653,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 739632626,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 8.839499999999994,
-        "p10": 8.65,
-        "p90": 9.1
+        "mean": 12.446000000000137,
+        "p10": 12.05,
+        "p90": 12.85
       },
       "hitsToDie": {
-        "mean": 515.255,
+        "mean": 515.359,
         "p10": 513,
         "p90": 518
       },
-      "expPerMinute": 1162.4152405553768,
+      "expPerMinute": 872.2137615948969,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1677,9 +1677,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3394068387,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5499999999999982,
+        "mean": 0.5500000000000044,
         "p10": 0.55,
         "p90": 0.55
       },
@@ -1688,7 +1688,7 @@
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 592.9411764705887,
+      "expPerMinute": 592.9411764705874,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1703,9 +1703,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 1753536852,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5499999999999982,
+        "mean": 0.5500000000000044,
         "p10": 0.55,
         "p90": 0.55
       },
@@ -1714,7 +1714,7 @@
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 889.4117647058832,
+      "expPerMinute": 889.4117647058811,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1729,9 +1729,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 113005317,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5499999999999982,
+        "mean": 0.5500000000000044,
         "p10": 0.55,
         "p90": 0.55
       },
@@ -1740,7 +1740,7 @@
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 889.4117647058832,
+      "expPerMinute": 889.4117647058811,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1755,9 +1755,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 2767441078,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.5499999999999982,
+        "mean": 0.5500000000000044,
         "p10": 0.55,
         "p90": 0.55
       },
@@ -1766,7 +1766,7 @@
         "p10": 982,
         "p90": 982
       },
-      "expPerMinute": 98.82352941176478,
+      "expPerMinute": 98.82352941176454,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1781,18 +1781,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 1126909543,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 5.728499999999986,
-        "p10": 4.9,
-        "p90": 8.6
+        "mean": 9.101349999999988,
+        "p10": 9,
+        "p90": 9.4
       },
       "hitsToDie": {
-        "mean": 377.235,
+        "mean": 377.269,
         "p10": 375,
         "p90": 379
       },
-      "expPerMinute": 1630.3293006404895,
+      "expPerMinute": 1134.997094947913,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1805,9 +1805,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3781345304,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9000000000000032,
+        "mean": 0.8999999999999849,
         "p10": 0.9,
         "p90": 0.9
       },
@@ -1816,7 +1816,7 @@
         "p10": 607,
         "p90": 607
       },
-      "expPerMinute": 521.3793103448271,
+      "expPerMinute": 521.3793103448304,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1831,9 +1831,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 2140813769,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9000000000000032,
+        "mean": 0.8999999999999849,
         "p10": 0.9,
         "p90": 0.9
       },
@@ -1842,7 +1842,7 @@
         "p10": 607,
         "p90": 607
       },
-      "expPerMinute": 782.0689655172407,
+      "expPerMinute": 782.0689655172456,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1857,9 +1857,9 @@
       "opponentLevel": 3,
       "mode": "pve",
       "seed": 500282234,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9000000000000032,
+        "mean": 0.8999999999999849,
         "p10": 0.9,
         "p90": 0.9
       },
@@ -1868,7 +1868,7 @@
         "p10": 607,
         "p90": 607
       },
-      "expPerMinute": 782.0689655172407,
+      "expPerMinute": 782.0689655172456,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1883,9 +1883,9 @@
       "opponentLevel": 1,
       "mode": "pve",
       "seed": 3154717995,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 0.9000000000000032,
+        "mean": 0.8999999999999849,
         "p10": 0.9,
         "p90": 0.9
       },
@@ -1894,7 +1894,7 @@
         "p10": 910,
         "p90": 910
       },
-      "expPerMinute": 86.89655172413784,
+      "expPerMinute": 86.89655172413839,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1909,18 +1909,18 @@
       "opponentLevel": 5,
       "mode": "pve",
       "seed": 1514186460,
-      "runs": 200,
+      "runs": 1000,
       "ttk": {
-        "mean": 25.122500000000027,
-        "p10": 24.05,
-        "p90": 25.35
+        "mean": 35.904750000000334,
+        "p10": 33.35,
+        "p90": 36.9
       },
       "hitsToDie": {
-        "mean": 349.55,
-        "p10": 347,
-        "p90": 352
+        "mean": 349.676,
+        "p10": 348,
+        "p90": 351
       },
-      "expPerMinute": 464.5589455249327,
+      "expPerMinute": 332.4121647023101,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,

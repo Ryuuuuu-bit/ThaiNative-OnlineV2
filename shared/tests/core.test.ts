@@ -447,14 +447,14 @@ test("goldens anchor current sim constants; starter jelly is neutral so meteor a
 	assert.ok(midpoint(player(), pink(), "whirlwind").damage < pink().maxHp, "spin must not one-shot the starter jelly");
 	assert.equal(Math.ceil(pink().maxHp / midpoint().damage), 3);
 });
-test("per-second SP regen brings default King offensive TTK to 50–90s", () => {
+test("retuned King keeps Lv1 offensive TTK at 70–90s with per-second SP regen", () => {
 	const boss = monsterStats(data.monsters.monsters.at(-1)!, data),
 		values = Array.from(
 			{ length: 50 },
 			(_, i) => trial(player(), boss, data, seededRng(i + 1)).ttk,
 		),
 		mean = values.reduce((a, b) => a + b) / values.length;
-	assert.ok(mean >= 50 && mean <= 90, `King TTK ${mean}`);
+	assert.ok(mean >= 70 && mean <= 90, `King TTK ${mean}`);
 });
 test("simulator options validate, reports reproduce, and PvP covers every ordered pair", () => {
 	assert.throws(() => parseOptions(["--runs", "0"]), /runs/);
