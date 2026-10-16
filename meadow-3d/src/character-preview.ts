@@ -1,7 +1,8 @@
+import{assetImage,assetJSON}from'./asset-request';
 import{atlasCell,motionFrame}from'./sprite-animation';import type{Direction,Motion}from'./sprite-animation';
 interface PreviewOptions{motion:Motion;direction:Direction;running?:boolean;anchors?:boolean;frame?:number;hd?:boolean}
-const images=new Map<string,Promise<HTMLImageElement>>();
-function imageFor(motion:Motion,hd:boolean){const path=`/assets/hero-painted/${hd?'preview/':''}hero-${motion}-v1.png`;if(!images.has(path))images.set(path,new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=()=>reject(Error('โหลดตัวละครไม่สำเร็จ'));image.src=path;}));return images.get(path)!;}
+const images=new Map<string,Promise<HTMLImageElement>>();const manifest=assetJSON<Record<string,{webp:string}>>('/texture-manifest.json?v='+import.meta.env.VITE_BUILD_ID);
+function imageFor(motion:Motion,hd:boolean){const path=`/assets/hero-painted/${hd?'preview/':''}hero-${motion}-v1.png`;if(!images.has(path))images.set(path,manifest.then(m=>assetImage(m[path].webp)));return images.get(path)!;}
 /** Shared idle/animation preview for the public atelier and character creation. */
 export function mountPreview(canvas:HTMLCanvasElement,options:PreviewOptions){
  let state={running:true,anchors:false,hd:false,...options},image:HTMLImageElement|null=null,clock=0,previous=performance.now(),raf=0,disposed=false;

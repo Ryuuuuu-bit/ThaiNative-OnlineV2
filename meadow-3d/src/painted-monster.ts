@@ -1,4 +1,4 @@
-import * as T from 'three';
+import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Enemy, MonsterMotion, SlimeVariant } from './sim';
 import { makeMonsterFallback } from './actors';
 import { monsterCell, monsterOpacity, VARIANT_HUE } from './monster-animation';
@@ -7,16 +7,16 @@ interface MotionAtlas{file:string;columns:number;rows:number;frames:number;durat
 interface SpeciesManifest{cellSize:[number,number];anchor:[number,number];quadWorldSize:[number,number];motions:Record<string,MotionAtlas>}
 interface Manifest{species:Record<MonsterSpecies,SpeciesManifest>;phase2:{expressionOverlay:string}}
 interface Bank{manifest:Manifest|null;textures:Record<MonsterSpecies,Record<string,T.Texture>>;expression:T.Texture|null;request:(species:MonsterSpecies)=>void}
-const banks=new WeakMap<T.TextureLoader,Bank>();
+const banks=new WeakMap<PaintedLoader,Bank>();
 const BASE='/assets/monsters-painted/';
-function assetBank(loader:T.TextureLoader){
+function assetBank(loader:PaintedLoader){
  const existing=banks.get(loader);if(existing)return existing;
  const requested=new Set<MonsterSpecies>(),started=new Set<MonsterSpecies>();
  const bank:Bank={manifest:null,textures:{slime:{},king:{}},expression:null,request(species){requested.add(species);if(!bank.manifest||started.has(species))return;started.add(species);
-  for(const[motion,atlas]of Object.entries(bank.manifest.species[species].motions))loader.load(BASE+atlas.file,t=>{t.colorSpace=T.SRGBColorSpace;t.magFilter=T.LinearFilter;t.minFilter=T.LinearMipmapLinearFilter;t.wrapS=t.wrapT=T.ClampToEdgeWrapping;bank.textures[species][motion]=t;},undefined,()=>{});
+  for(const[motion,atlas]of Object.entries(bank.manifest.species[species].motions))loader.load(BASE+atlas.file,t=>{t.colorSpace=T.SRGBColorSpace;t.magFilter=T.LinearFilter;t.minFilter=T.LinearFilter;t.wrapS=t.wrapT=T.ClampToEdgeWrapping;bank.textures[species][motion]=t;},undefined,()=>{});
   if(species==='king')loader.load(BASE+bank.manifest.phase2.expressionOverlay,t=>{t.colorSpace=T.SRGBColorSpace;bank.expression=t;},undefined,()=>{});
  }};
- banks.set(loader,bank);new T.FileLoader(loader.manager).setResponseType('json').load(BASE+'manifest.json',data=>{bank.manifest=data as unknown as Manifest;requested.forEach(s=>bank.request(s));},undefined,()=>{});return bank;
+ banks.set(loader,bank);loader.json<Manifest>(BASE+'manifest.json',data=>{bank.manifest=data as unknown as Manifest;requested.forEach(s=>bank.request(s));});return bank;
 }
 const colourShader=`
 vec3 jellyRgbToHsv(vec3 c){vec4 K=vec4(0.,-1./3.,2./3.,-1.);vec4 p=mix(vec4(c.bg,K.wz),vec4(c.gb,K.xy),step(c.b,c.g));vec4 q=mix(vec4(p.xyw,c.r),vec4(c.r,p.yzx),step(p.x,c.r));float d=q.x-min(q.w,q.y);return vec3(abs(q.z+(q.w-q.y)/(6.*d+1.e-8)),d/(q.x+1.e-8),q.x);}
@@ -49,7 +49,7 @@ export interface MonsterOptions{variant?:SlimeVariant;hueShift?:number;tint?:str
 /** Shared textures, per-instance frame/hue uniforms, one real ground anchor. */
 /** Visual size of the small jelly relative to its packed atlas size (about 0.6x the hero). */
 export const SMALL_JELLY_SCALE=.72;
-export function makePaintedMonster(loader:T.TextureLoader,boss=false,options:MonsterOptions={}){
+export function makePaintedMonster(loader:PaintedLoader,boss=false,options:MonsterOptions={}){
  const species:MonsterSpecies=boss?'king':'slime',bank=assetBank(loader);bank.request(species);
  const root=new T.Group();const uniforms={uJellyCell:{value:new T.Vector4(0,0,1,1)},uJellyHue:{value:0},uJellyPhase:{value:0},uJellyFlash:{value:0},uJellyTime:{value:0},uJellyExpression:{value:null as T.Texture|null},uJellyFaceRect:{value:new T.Vector4(0,0,1,1)},uJellyFaceDirection:{value:0},uJellyFaceEnabled:{value:0}};
  const material=new T.SpriteMaterial({transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false,color:options.tint||'#ffffff'});paintShader(material,uniforms);
@@ -63,7 +63,7 @@ export function makePaintedMonster(loader:T.TextureLoader,boss=false,options:Mon
  const sample=document.createElement('canvas');sample.width=sample.height=1;const sx=sample.getContext('2d',{willReadFrequently:true})!;
  const defaultRaycast=portrait.raycast.bind(portrait),fallbackRaycast=fallback.raycast.bind(fallback);
  portrait.raycast=(ray,hits)=>{if(!portrait.visible||!material.map?.image)return;const found:T.Intersection[]=[];defaultRaycast(ray,found);const cw=bank.manifest!.species[species].cellSize[0],ch=bank.manifest!.species[species].cellSize[1],uv=uniforms.uJellyCell.value;
-  for(const hit of found){if(!hit.uv)continue;const image=material.map.image as HTMLImageElement;const x=Math.min(image.width-1,Math.floor((uv.x+hit.uv.x*uv.z)*image.width)),y=Math.min(image.height-1,Math.floor((1-uv.y-hit.uv.y*uv.w)*image.height));sx.clearRect(0,0,1,1);sx.drawImage(image,x,y,1,1,0,0,1,1);if(sx.getImageData(0,0,1,1).data[3]>32)hits.push(hit);}
+  for(const hit of found){if(!hit.uv)continue;const image=(material.map.userData.hitMask||material.map.image) as HTMLImageElement;const x=Math.min(image.width-1,Math.floor((uv.x+hit.uv.x*uv.z)*image.width)),y=Math.min(image.height-1,Math.floor((1-uv.y-hit.uv.y*uv.w)*image.height));sx.clearRect(0,0,1,1);sx.drawImage(image,x,y,1,1,0,0,1,1);if(sx.getImageData(0,0,1,1).data[3]>32)hits.push(hit);}
  };
  fallback.raycast=(ray,hits)=>{if(fallback.visible)fallbackRaycast(ray,hits);};
  return{root,snapshot:()=>({...diagnostic,loaded:Object.keys(bank.textures[species])}),dispose(){material.dispose();shadow.geometry.dispose();shadowMaterial.dispose();fallback.geometry.dispose();(fallback.material as T.Material).dispose();},update(e:Enemy,time:number){
@@ -92,8 +92,11 @@ export function makePaintedMonster(loader:T.TextureLoader,boss=false,options:Mon
  }};
 }
 /** Painted projectile, reusing the small jelly idle art rather than a 3D blob. */
-export function makePaintedDroplet(loader:T.TextureLoader,phase:1|2=1){
+export function makePaintedDroplet(loader:PaintedLoader,phase:1|2=1){
  const actor=makePaintedMonster(loader,false,{hueShift:phase===2?-.045:0});actor.root.scale.setScalar(.24);
  return{root:actor.root,dispose:actor.dispose,update(x:number,z:number,time:number){actor.update({x,z,fx:0,fz:1,motion:'idle',motionTime:0,bossPhase:1,variant:'pink',hurt:0,dead:false,deathAge:0} as Enemy,time);actor.root.position.y=.65;}};
 }
 
+
+export function warmKing(loader:PaintedLoader){assetBank(loader).request('king');}
+export function kingReady(loader:PaintedLoader){const b=assetBank(loader);return !!b.manifest&&Object.keys(b.textures.king).length===Object.keys(b.manifest.species.king.motions).length&&!!b.expression;}

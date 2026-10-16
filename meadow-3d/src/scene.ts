@@ -1,4 +1,4 @@
-import * as T from 'three';
+import * as T from 'three';import type{PaintedLoader}from'./assets';
 import{CAMP,ARENA,OBSTACLES,water}from'./sim';
 export function random(seed=7){let n=seed;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};}
 export function label(text:string,color='#fff2d4'){const c=document.createElement('canvas');c.width=384;c.height=64;const x=c.getContext('2d')!;x.font='500 22px "Noto Sans Thai",sans-serif';x.textAlign='center';x.lineWidth=5;x.strokeStyle='#344b39';x.strokeText(text,192,37);x.fillStyle=color;x.fillText(text,192,37);const map=new T.CanvasTexture(c);map.colorSpace=T.SRGBColorSpace;const s=new T.Sprite(new T.SpriteMaterial({map,transparent:true,depthWrite:false}));s.scale.set(2.8,.47,1);return s;}
@@ -11,7 +11,7 @@ const ENV='/assets/env-painted/';
 const cameraRotation=new T.Quaternion().setFromRotationMatrix(new T.Matrix4().lookAt(new T.Vector3(9,16,13),new T.Vector3(),new T.Vector3(0,1,0)));
 
 /** Painted billboards share atlas textures; small foliage is instanced by asset. */
-export function buildScene(scene:T.Scene,loader:T.TextureLoader){
+export function buildScene(scene:T.Scene,loader:PaintedLoader){
  const r=random(17),root=new T.Group();scene.add(root);
  const ripple={time:{value:0},quality:{value:1}};
  const shadowProxies:T.Mesh[]=[];let highQuality=true,ready=false,propCount=0,coverCount=0,atlasCount=0;
@@ -30,14 +30,14 @@ export function buildScene(scene:T.Scene,loader:T.TextureLoader){
  function paintPaths(){
   ctx.fillStyle='#000';ctx.fillRect(0,0,1024,1024);ctx.globalCompositeOperation='screen';
   const stamp=document.createElement('canvas');stamp.width=stamp.height=256;const sc=stamp.getContext('2d')!;
-  sc.drawImage(brush.image,0,0,256,256);sc.globalCompositeOperation='source-in';sc.fillStyle='#fff';sc.fillRect(0,0,256,256);
+  sc.drawImage(brush.image as HTMLImageElement,0,0,256,256);sc.globalCompositeOperation='source-in';sc.fillStyle='#fff';sc.fillRect(0,0,256,256);
   for(const[a,b]of pathSegments){const length=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=0;t<=length;t+=.28){const k=t/length,[x,y]=coord(T.MathUtils.lerp(a[0],b[0],k),T.MathUtils.lerp(a[1],b[1],k));ctx.drawImage(stamp,x-49,y-49,98,98);}}
   ctx.globalCompositeOperation='source-over';ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#fff';
   pathSegments.forEach(([a,b],i)=>{const p=coord(a[0],a[1]),q=coord(b[0],b[1]);ctx.lineWidth=i<4?48:33;ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();});mask.needsUpdate=true;
  }
  // Texture loading is async; the loading manager accounts for it.
  const originalBrushUpdate=brush.onUpdate;let pathsPainted=false;
- brush.onUpdate=(t)=>{originalBrushUpdate?.(t);if(!pathsPainted&&brush.image){pathsPainted=true;paintPaths();}};
+ brush.onUpdate=(t)=>{originalBrushUpdate?.(t);if(!pathsPainted&&brush.userData.ready){pathsPainted=true;paintPaths();}};
  const waterTexture=texture(ENV+'tile-water-v2.png',3);
  const waterMaterial=new T.MeshStandardMaterial({map:waterTexture,color:'#ffffff',roughness:1,metalness:0,transparent:true,depthWrite:false});
  const stillWaterMaterial=waterMaterial.clone();
@@ -61,7 +61,7 @@ export function buildScene(scene:T.Scene,loader:T.TextureLoader){
  const shadowMap=new T.CanvasTexture(shadowCanvas),contactMatrices:T.Matrix4[]=[];
  const dummy=new T.Object3D();
  function contact(x:number,z:number,width:number){dummy.position.set(x,.038,z);dummy.rotation.set(-Math.PI/2,0,0);dummy.scale.set(width,width*.62,1);dummy.updateMatrix();contactMatrices.push(dummy.matrix.clone());}
- new T.FileLoader(loader.manager).setResponseType('json').load(ENV+'manifest.json',data=>{
+ loader.json<EnvironmentManifest>(ENV+'manifest.json',data=>{
   const manifest=data as unknown as EnvironmentManifest;atlasCount=manifest.atlases.length;
   const assets=new Map(manifest.assets.map(a=>[a.name,a]));
   const atlases=new Map(manifest.atlases.map(a=>{const map=texture(ENV+a.file);map.wrapS=map.wrapT=T.ClampToEdgeWrapping;map.repeat.set(1,1);return[a.file,map] as const;}));
@@ -106,5 +106,5 @@ export function buildScene(scene:T.Scene,loader:T.TextureLoader){
  const flame=new T.Group();flame.position.set(-5.7,.12,7.3);root.add(flame);const flames:T.Mesh[]=[];
  for(let i=0;i<3;i++){const f=new T.Mesh(new T.ConeGeometry(.09,.38,6),new T.MeshBasicMaterial({color:i%2?'#f8dfad':'#db9b65',transparent:true,opacity:.7,depthWrite:false}));f.position.set(Math.sin(i*2)*.08,.2,Math.cos(i*2)*.08);flame.add(f);flames.push(f);}
  const campName=label('แคมป์ · พักฟื้น','#e5efd3');campName.position.set(CAMP.x,2.1,CAMP.z);root.add(campName);
- return{setQuality(hq:boolean){highQuality=hq;ripple.quality.value=hq?1:0;pond.material=hq?waterMaterial:stillWaterMaterial;shadowProxies.forEach(o=>{o.castShadow=hq;o.visible=hq;});},snapshot:()=>({ready,propCount,coverCount,atlasCount,shadowCasters:shadowProxies.filter(o=>o.castShadow).length,quality:highQuality?'HQ':'LOW',ripple:pond.material===waterMaterial&&!!ripple.quality.value}),update(time:number){ripple.time.value=time;if(!pathsPainted&&brush.image){pathsPainted=true;paintPaths();}flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});}};
+ return{setQuality(hq:boolean){highQuality=hq;ripple.quality.value=hq?1:0;pond.material=hq?waterMaterial:stillWaterMaterial;shadowProxies.forEach(o=>{o.castShadow=hq;o.visible=hq;});},snapshot:()=>({ready,propCount,coverCount,atlasCount,shadowCasters:shadowProxies.filter(o=>o.castShadow).length,quality:highQuality?'HQ':'LOW',ripple:pond.material===waterMaterial&&!!ripple.quality.value}),update(time:number){ripple.time.value=time;arena.visible=!!stoneTexture.userData.ready;if(!pathsPainted&&brush.userData.ready){pathsPainted=true;paintPaths();}flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});}};
 }

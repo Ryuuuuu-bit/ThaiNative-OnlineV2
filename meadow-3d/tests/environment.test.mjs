@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const root=new URL('../public/assets/env-painted/',import.meta.url);
 const manifest=JSON.parse(readFileSync(new URL('manifest.json',root),'utf8'));
-const pngSize=file=>{const b=readFileSync(new URL(file,root));assert.equal(b.toString('ascii',1,4),'PNG');return[b.readUInt32BE(16),b.readUInt32BE(20)];};
+const pngSize=file=>{const b=readFileSync(new URL('../art/texture-sources/env-painted/'+file,import.meta.url));assert.equal(b.toString('ascii',1,4),'PNG');return[b.readUInt32BE(16),b.readUInt32BE(20)];};
 test('painted environment manifest keeps every asset in non-overlapping atlas bounds',()=>{
  assert.equal(manifest.assets.length,35);assert.equal(new Set(manifest.assets.map(a=>a.name)).size,35);
  assert.ok(manifest.atlases.length<=3);

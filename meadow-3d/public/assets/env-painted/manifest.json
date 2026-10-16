@@ -4,7 +4,14 @@
   "runtimeDownsample": 0.5,
   "atlases": [
     {
-      "file": "env-1-v1.png",
+      "file": "env-near-v2.png",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "env-far-v2.png",
       "size": [
         2048,
         2048
@@ -28,7 +35,7 @@
       ],
       "source": "art/painted-env/ruins-pond.png#figure4",
       "flat": true,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-far-v2.png",
       "pixelSize": [
         356,
         357
@@ -62,7 +69,7 @@
       ],
       "source": "art/painted-env/tree-round.png",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         346,
         350
@@ -96,7 +103,7 @@
       ],
       "source": "art/painted-env/tree-tall.png",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         308,
         350
@@ -130,7 +137,7 @@
       ],
       "source": "art/painted-env/tree-leaning.png",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         346,
         350
@@ -164,7 +171,7 @@
       ],
       "source": "art/painted-env/tree-flowering.png",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         350,
         350
@@ -198,7 +205,7 @@
       ],
       "source": "art/painted-env/ruins-pond.png#figure3",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-far-v2.png",
       "pixelSize": [
         275,
         267
@@ -232,7 +239,7 @@
       ],
       "source": "art/painted-env/ruins-pond.png#figure2",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-far-v2.png",
       "pixelSize": [
         97,
         135
@@ -266,7 +273,7 @@
       ],
       "source": "art/painted-env/camp.png#figure1",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         126,
         125
@@ -300,7 +307,7 @@
       ],
       "source": "art/painted-env/ruins-pond.png#figure1",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-far-v2.png",
       "pixelSize": [
         83,
         120
@@ -334,7 +341,7 @@
       ],
       "source": "art/painted-env/camp.png#figure6",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         140,
         106
@@ -368,7 +375,7 @@
       ],
       "source": "art/painted-env/bridge.png",
       "flat": true,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         390,
         83
@@ -402,7 +409,7 @@
       ],
       "source": "art/painted-env/rocks.png#figure5",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         125,
         82
@@ -436,7 +443,7 @@
       ],
       "source": "art/painted-env/camp.png#figure4",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         56,
         80
@@ -470,7 +477,7 @@
       ],
       "source": "art/painted-env/rocks.png#figure2",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         60,
         78
@@ -504,7 +511,7 @@
       ],
       "source": "art/painted-env/camp.png#figure3",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         110,
         76
@@ -538,7 +545,7 @@
       ],
       "source": "art/painted-env/rocks.png#figure4",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         95,
         68
@@ -572,7 +579,7 @@
       ],
       "source": "art/painted-env/ruins-pond.png#figure5",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         66,
         68
@@ -606,7 +613,7 @@
       ],
       "source": "art/painted-env/rocks.png#figure1",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         82,
         62
@@ -640,7 +647,7 @@
       ],
       "source": "art/painted-env/camp.png#figure5",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         29,
         62
@@ -674,7 +681,7 @@
       ],
       "source": "art/painted-env/foliage.png#figure1",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         68,
         60
@@ -708,7 +715,7 @@
       ],
       "source": "art/painted-env/flowers.png#figure6",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         53,
         60
@@ -742,7 +749,7 @@
       ],
       "source": "art/painted-env/foliage.png#figure2",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         70,
         55
@@ -776,7 +783,7 @@
       ],
       "source": "art/painted-env/foliage.png#figure4",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         44,
         55
@@ -810,7 +817,7 @@
       ],
       "source": "art/painted-env/ruins-pond.png#figure6",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         52,
         52
@@ -844,7 +851,7 @@
       ],
       "source": "art/painted-env/foliage.png#figure3",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         64,
         50
@@ -878,7 +885,7 @@
       ],
       "source": "art/painted-env/rocks.png#figure6",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         60,
         50
@@ -912,7 +919,7 @@
       ],
       "source": "art/painted-env/rocks.png#figure3",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         66,
         42
@@ -946,7 +953,7 @@
       ],
       "source": "art/painted-env/camp.png#figure2",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         62,
         40
@@ -980,7 +987,7 @@
       ],
       "source": "art/painted-env/flowers.png#figure3",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         26,
         30
@@ -1014,7 +1021,7 @@
       ],
       "source": "art/painted-env/foliage.png#figure6",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         28,
         28
@@ -1048,7 +1055,7 @@
       ],
       "source": "art/painted-env/flowers.png#figure5",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         23,
         28
@@ -1082,7 +1089,7 @@
       ],
       "source": "art/painted-env/foliage.png#figure5",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         26,
         25
@@ -1116,7 +1123,7 @@
       ],
       "source": "art/painted-env/flowers.png#figure4",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         24,
         25
@@ -1150,7 +1157,7 @@
       ],
       "source": "art/painted-env/flowers.png#figure1",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         22,
         22
@@ -1184,7 +1191,7 @@
       ],
       "source": "art/painted-env/flowers.png#figure2",
       "flat": false,
-      "atlas": "env-1-v1.png",
+      "atlas": "env-near-v2.png",
       "pixelSize": [
         20,
         22

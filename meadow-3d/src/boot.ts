@@ -1,6 +1,8 @@
+import { assetJSON } from "./asset-request";
 declare global {
 	interface Window {
 		tnBoot: {
+			activity?: () => void;
 			stage: (index: number, value?: number) => void;
 			fail: (message?: string, code?: string) => void;
 			readonly progress: number;
@@ -10,8 +12,7 @@ declare global {
 void import("./main").catch(() =>
 	window.tnBoot.fail("เปิดทุ่งหญ้าไม่สำเร็จ กรุณาลองใหม่", "module"),
 );
-fetch("/loading-tips.json")
-	.then((r) => r.json())
+assetJSON<string[]>("/loading-tips.json")
 	.then((tips: string[]) => {
 		let i = 0;
 		const el = document.querySelector("#loading-tip");

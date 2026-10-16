@@ -1,11 +1,11 @@
-import * as T from 'three';
+import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Player } from './sim';
 import { makeHero } from './actors';
 import { facingFor, motionFor, motionFrame, atlasCell, MOTIONS, MOTION_DURATION } from './sprite-animation';
 import type { Motion } from './sprite-animation';
 
 /** Hand-painted, alpha-tested billboard with one physical foot anchor. */
-export function makePaintedHero(loader: T.TextureLoader) {
+export function makePaintedHero(loader: PaintedLoader) {
   const root = new T.Group();
   const fallback = makeHero();
   root.add(fallback.root);
@@ -27,7 +27,7 @@ export function makePaintedHero(loader: T.TextureLoader) {
     loader.load(`/assets/hero-painted/hero-${motion}-v1.png`,texture=>{
       texture.colorSpace=T.SRGBColorSpace;
       texture.magFilter=T.LinearFilter;
-      texture.minFilter=T.LinearMipmapLinearFilter;
+      texture.minFilter=T.LinearFilter;
       texture.wrapS=texture.wrapT=T.ClampToEdgeWrapping;
       textures[motion]=texture;
     });

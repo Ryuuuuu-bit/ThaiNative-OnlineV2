@@ -20,7 +20,9 @@
     "test:web": "node --test meadow-3d/web-tests/*.test.mjs",
     "build:shared": "npm --workspace @thainative/shared run build",
     "test:shared": "npm --workspace @thainative/shared test",
-    "sim:balance": "npm --workspace @thainative/shared run sim:balance --"
+    "sim:balance": "npm --workspace @thainative/shared run sim:balance --",
+    "tools:ktx2": "node meadow-3d/tools/install-ktx2.mjs",
+    "pack:textures": "node meadow-3d/tools/pack-ktx2.mjs"
   },
   "dependencies": {
     "@colyseus/sdk": "^0.18.5",
