@@ -29,7 +29,7 @@ export const MODEL = {
 	smallIncomingInterval: 1.5,
 	consumables: false,
 	notes:
-		"TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP/HP regen uses shared per-5s values. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50.",
+		"TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP regen uses shared per-second values; HP in-combat regen is 20% of its per-second value. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50.",
 };
 export function parseOptions(args: string[]): Options {
 	const o: Options = {
@@ -143,23 +143,25 @@ export function trial(
 		enemyNext = 0,
 		won = true,
 		landed = 0,
+		lastCombat=-Infinity,
 		hitsToDie: number | undefined;
 	let pending: { at: number; skill: Skill; third: boolean } | undefined;
 	let enemyPending: { at: number; skill: Skill; third: boolean } | undefined;
 	const dt = MODEL.stepSeconds;
 	for (let t = 0; t <= MODEL.maxSeconds; t += dt) {
-		sp = Math.min(a.maxSp, sp + (a.spRegen / 5) * dt);
-		enemySp = Math.min(d.maxSp, enemySp + (d.spRegen / 5) * dt);
-		hp = Math.min(d.maxHp, hp + (d.hpRegen / 5) * dt);
-		if (won) ownHp = Math.min(a.maxHp, ownHp + (a.hpRegen / 5) * dt);
+		sp = Math.min(a.maxSp, sp + a.spRegen * dt);
+		enemySp = Math.min(d.maxSp, enemySp + d.spRegen * dt);
+		const hpMultiplier=t-lastCombat>=data.stats.regen.outOfCombatSeconds?1:data.stats.regen.inCombatHpMultiplier;
+		hp = Math.min(d.maxHp, hp + d.hpRegen * hpMultiplier * dt);
+		if (won) ownHp = Math.min(a.maxHp, ownHp + a.hpRegen * hpMultiplier * dt);
 		if (pending && t >= pending.at) {
-			hp -= computeDamage(
+			const impact = computeDamage(
 				a,
 				d,
 				pending.skill,
 				{ rng, mode, comboThird: pending.third },
 				data,
-			).damage;
+			).damage;hp-=impact;if(impact>0)lastCombat=t;
 			pending = undefined;
 		}
 		const aliveBeforeImpact = won;
@@ -172,6 +174,7 @@ export function trial(
 				data,
 			);
 			ownHp -= hit.damage;
+			if(hit.damage>0)lastCombat=t;
 			if (hit.hit) landed++;
 			enemyPending = undefined;
 		}

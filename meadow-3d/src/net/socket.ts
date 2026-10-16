@@ -76,7 +76,7 @@ export class GameSocket {
 			}
 			if (message.t === "reload") {
 				this.stopped = true;
-				location.reload();
+				const key='tn-stale-reload',previous=Number(sessionStorage.getItem(key)||0);if(Date.now()-previous<30000){window.tnBoot.fail('เวอร์ชันเกมกำลังอัปเดต กรุณาลองใหม่อีกครั้ง','stale-build');return;}sessionStorage.setItem(key,String(Date.now()));const next=new URL(location.href);next.searchParams.set('_reload',String(Date.now()));location.replace(next.href);
 				return;
 			}
 			if (message.t === "kick") {
@@ -87,9 +87,10 @@ export class GameSocket {
 			}
 			this.callbacks.message(message);
 		};
-		this.ws.onclose = () => {
+		this.ws.onclose = (e) => {
 			if (generation !== this.generation || this.stopped) return;
 			this.connected = false;
+			if(e.code===4401){this.stopped=true;this.callbacks.status('kicked');return;}
 			this.pending = undefined;
 			this.callbacks.status(++this.retries >= 5 ? "offline" : "reconnecting");
 			this.reconnectTimer = window.setTimeout(
@@ -118,7 +119,7 @@ export class GameSocket {
 			this.flush();
 			if (message.t === "target" || message.t === "auto") this.moveKey = "";
 		}
-		if (["move", "steer", "act"].includes(message.t))
+		if (["move", "steer", "act", "stats"].includes(message.t))
 			message = { ...message, seq: ++this.seq };
 		this.ws.send(JSON.stringify(message));
 		return this.seq;

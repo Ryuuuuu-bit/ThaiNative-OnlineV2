@@ -198,5 +198,16 @@
       "traveler_clothes"
     ],
     "starterGrant": true
+  },
+  "regen": {
+    "spBase": 2.5,
+    "spInt": 0.08,
+    "spMax": 0.004,
+    "hpBase": 0.5,
+    "hpVit": 0.1,
+    "hpMax": 0.002,
+    "outOfCombatSeconds": 5,
+    "inCombatHpMultiplier": 0.2,
+    "sittingMultiplier": 2
   }
 }

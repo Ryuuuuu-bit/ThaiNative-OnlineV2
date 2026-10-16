@@ -1,6 +1,7 @@
 import { loadGameData } from "../load.js";
 import { deriveStats, monsterStats, type Combatant } from "../derive.js";
 import { computeDamage } from "../damage.js";
+import{autoAllocateStats}from'../allocation.js';
 import type { GameData, CharacterInput, Skill } from "../schema.js";
 const DEFAULT_DATA = loadGameData();
 import { MONSTER_MOTIONS } from "./monster-motion-data.js";
@@ -63,6 +64,9 @@ export interface Player extends Vec {
 	profile: CharacterInput;
 	kills: number;
 	statPoints: number;
+	autoAllocate:boolean;
+	autoAllocCursor:number;
+	lastCombat:number;
 	target: number | null;
 	destination: Vec | null;
 	autoTimer: number;
@@ -144,6 +148,9 @@ export function createGame(
 		profile: structuredClone(profile),
 		kills: 0,
 		statPoints: 0,
+		autoAllocate:true,
+		autoAllocCursor:0,
+		lastCombat:-Infinity,
 		target: null,
 		destination: null,
 		autoTimer: 0,
@@ -280,6 +287,7 @@ export function refreshStats(g: Game, p: Player) {
 	p.stats = deriveStats(p.profile, g.data);
 	p.maxHp = p.stats.maxHp;
 	p.maxMp = p.stats.maxSp;
+	p.hp=Math.min(p.hp,p.maxHp);p.mp=Math.min(p.mp,p.maxMp);
 	p.nextXp = g.data.stats.expToNext[p.level - 1];
 }
 function topDamage(g: Game, e: Enemy) {
@@ -462,6 +470,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 		result.damage * (e.boss && e.motion === "stun" ? 1.25 : 1),
 	);
 	const crit = result.crit;
+	if(damage>0)g.p.lastCombat=g.time;
 	e.damageBy[g.p.id] = (e.damageBy[g.p.id] || 0) + Math.min(damage, e.hp);
 	e.hp = Math.max(0, e.hp - damage);
 	e.hurt = 0.18;
@@ -544,6 +553,7 @@ function hurt(
 		breakdown = result.breakdown;
 	}
 	p.hp = Math.max(0, p.hp - amount);
+	if(amount>0)p.lastCombat=g.time;
 	p.hurt = 0.3;
 	p.invulnerable = 0.55;
 	emit(g, "hurt", { amount, breakdown });
@@ -1189,9 +1199,10 @@ function playerStep(g: Game, dt: number, input: Vec) {
 	for (const a of ["attack", "comboWindow", "invulnerable", "hurt"] as const)
 		p[a] = Math.max(0, p[a] - dt);
 	if (!p.dead) {
-		p.mp = Math.min(p.maxMp, p.mp + (dt * p.stats.spRegen) / 5);
+		p.mp = Math.min(p.maxMp, p.mp + dt * p.stats.spRegen);
 		if (Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 2)
 			p.hp = Math.min(p.maxHp, p.hp + dt * 20);
+		else p.hp=Math.min(p.maxHp,p.hp+dt*p.stats.hpRegen*(g.time-p.lastCombat>=g.data.stats.regen.outOfCombatSeconds?1:g.data.stats.regen.inCombatHpMultiplier));
 		let ix = input.x,
 			iz = input.z;
 		if (Math.hypot(ix, iz) > 0.05) {
@@ -1377,10 +1388,11 @@ export function step(
 					p.xp -= p.nextXp;
 					p.level++;
 					p.statPoints += g.data.stats.pointsPerLevel;
+					Object.assign(p,autoAllocateStats(p,g.data));
 					refreshStats(g, p);
 					p.hp = p.maxHp;
 					p.mp = p.maxMp;
-					emit(g, "level", { level: p.level });
+					emit(g, "level", { level: p.level,points:p.statPoints,granted:g.data.stats.pointsPerLevel });
 				}
 				g.drops.splice(i, 1);
 				continue;

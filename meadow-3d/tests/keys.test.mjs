@@ -12,5 +12,5 @@ test('WASD-friendly bindings preserve J/T and remove the old F meteor/Space dodg
 });
 test('hotbar advertises each primary binding in order',()=>{
  const html=readFileSync(new URL('../play.html',import.meta.url),'utf8');
- assert.deepEqual([...html.matchAll(/<kbd>(.*?)<\/kbd>/g)].map(m=>m[1]),['SPACE','Q','E','SHIFT','R','F']);
+ assert.deepEqual([...html.slice(html.indexOf('<footer class="combat-ui">')).matchAll(/<kbd>(.*?)<\/kbd>/g)].map(m=>m[1]),['SPACE','Q','E','SHIFT','R','F']);
 });

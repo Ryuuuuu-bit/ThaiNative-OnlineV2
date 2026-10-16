@@ -1,6 +1,6 @@
 import'../web.css';import{api,post,showError}from'./api';import{requireLogin,mountAccountChip}from'./session';import{mountPreview}from'../character-preview';
 const error=document.querySelector<HTMLElement>('#character-error')!,grid=document.querySelector<HTMLElement>('#character-grid')!,dialog=document.querySelector<HTMLDialogElement>('#create-dialog')!,removeDialog=document.querySelector<HTMLDialogElement>('#delete-dialog')!;
-let deleteId='';
+window.tnBoot.stage(0);window.tnBoot.stage(1);window.tnBoot.stage(3);let deleteId='';
 mountPreview(document.querySelector('#create-preview')!,{motion:'idle',direction:'SE'});
 const format=(date:string)=>new Intl.DateTimeFormat('th-TH',{dateStyle:'medium',timeStyle:'short'}).format(new Date(date));
 function openCreate(){dialog.showModal();document.querySelector<HTMLInputElement>('#character-name')!.focus();}
@@ -12,4 +12,4 @@ async function refresh(){const{characters}=await api('/characters');grid.replace
 document.querySelector<HTMLFormElement>('#create-form')!.onsubmit=async e=>{e.preventDefault();const button=document.querySelector<HTMLButtonElement>('#create-submit')!;button.disabled=true;try{await post('/characters',{name:document.querySelector<HTMLInputElement>('#character-name')!.value});dialog.close();await refresh();}catch(e){showError(document.querySelector('#create-error')!,e);}finally{button.disabled=false;}};
 document.querySelector<HTMLButtonElement>('#confirm-delete')!.onclick=async function(this:HTMLButtonElement){this.disabled=true;try{await api(`/characters/${deleteId}`,{method:'DELETE'});removeDialog.close();await refresh();}catch(e){showError(error,e);removeDialog.close();}finally{this.disabled=false;}};
 document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog')!.close());
-void requireLogin().then(async me=>{if(!me)return;document.querySelector('#account-name')!.textContent=me.account.displayName;document.querySelector<HTMLElement>('#link-note')!.hidden=me.account.kind!=='guest';await mountAccountChip();await refresh();}).catch(e=>showError(error,e));
+void requireLogin().then(async me=>{if(!me)return;document.querySelector('#account-name')!.textContent=me.account.displayName;document.querySelector<HTMLElement>('#link-note')!.hidden=me.account.kind!=='guest';await mountAccountChip();window.tnBoot.stage(2);await refresh();window.tnBoot.stage(4);}).catch(e=>{showError(error,e);window.tnBoot.fail('เปิดสมุดตัวละครไม่สำเร็จ กรุณาลองใหม่');});

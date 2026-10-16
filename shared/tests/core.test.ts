@@ -114,11 +114,12 @@ test("Lv99 budget spends only within a monotonic cost table and leaves no afford
 	for (const job of data.classes.classes) {
 		const build = buildForLevel(job.id, 99, data);
 		let spent = 0;
-		for (const value of Object.values(build.baseStats)) {
+		for (const [stat,value] of Object.entries(build.baseStats)) {
 			assert.ok(value >= 1 && value <= 99);
-			for (let n = 1; n < value; n++) spent += statPointCost(n, data);
+			const start=job.id===data.stats.defaultBuild.classId?data.stats.defaultBuild.baseStats[stat as keyof typeof build.baseStats]:1;
+			for (let n = start; n < value; n++) spent += statPointCost(n, data);
 		}
-		const left = pointsForLevel(99, data) - spent;
+		const left = 98*data.stats.pointsPerLevel - spent;
 		assert.ok(left >= 0);
 		assert.ok(
 			data.stats.baseStats.every(
@@ -150,7 +151,7 @@ test("derived base formulas keep floats and apply armour only to hard DEF", () =
 	assert.equal(p.hit, 155);
 	assert.equal(p.flee, 105);
 	assert.equal(p.weight, 2480);
-	assert.equal(p.hpRegen, 2.26);
+	assert.equal(p.hpRegen, 1.252);
 });
 test("equipment flat values precede summed percentages and cards respect slots", () => {
 	const base = data.stats.defaultBuild;
@@ -446,14 +447,14 @@ test("goldens anchor current sim constants; starter jelly is neutral so meteor a
 	assert.ok(midpoint(player(), pink(), "whirlwind").damage < pink().maxHp, "spin must not one-shot the starter jelly");
 	assert.equal(Math.ceil(pink().maxHp / midpoint().damage), 3);
 });
-test("default King offensive TTK falls in 60–120s for average-play model", () => {
+test("per-second SP regen brings default King offensive TTK to 50–90s", () => {
 	const boss = monsterStats(data.monsters.monsters.at(-1)!, data),
 		values = Array.from(
 			{ length: 50 },
 			(_, i) => trial(player(), boss, data, seededRng(i + 1)).ttk,
 		),
 		mean = values.reduce((a, b) => a + b) / values.length;
-	assert.ok(mean >= 60 && mean <= 120, `King TTK ${mean}`);
+	assert.ok(mean >= 50 && mean <= 90, `King TTK ${mean}`);
 });
 test("simulator options validate, reports reproduce, and PvP covers every ordered pair", () => {
 	assert.throws(() => parseOptions(["--runs", "0"]), /runs/);

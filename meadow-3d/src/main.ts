@@ -1,27 +1,35 @@
 import{loadSelected}from'./web/game-session';
+import{mountStats}from'./stats-window';
 import{GameSocket}from'./net/socket';import{NetworkWorld}from'./net/world';
 import{KEYS,isKey}from'./keys';
 import * as T from 'three';import './style.css';
 import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';
 const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>(s)!;const $$=(s:string)=>[...document.querySelectorAll<HTMLElement>(s)];
-const selected=await loadSelected();
+window.tnBoot.stage(0);
+const selected=await loadSelected();window.tnBoot.stage(2);
+const statsUI=mountStats(message=>net.send(message),()=>clearInput());
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(),keys=new Set<string>();let started=false,paused=false,wonShown=false,quality=true,time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=19.5,deathReveal=0;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
  if(message.t==='snap')worldState.receive(message,net.you,performance.now());
- if(message.t==='ev'){game.events.push(...message.list.filter((e:any)=>!['death','level','notice','victory'].includes(e.type)||e.playerId===net.you||e.type==='victory'));events();}
+ if(message.t==='welcome')window.tnBoot.stage(3);
+ if(message.t==='ev'){for(const e of message.list)if(e.playerId===net.you&&['stats','statsError'].includes(e.type))statsUI.receive(e);game.events.push(...message.list.filter((e:any)=>!['death','level','notice','victory'].includes(e.type)||e.playerId===net.you||e.type==='victory'));events();}
 },status(state){
  let banner=document.querySelector<HTMLElement>('#network-status');if(!banner){banner=document.createElement('div');banner.id='network-status';banner.role='status';document.querySelector('#ui')!.append(banner);}
  banner.hidden=state==='connected';banner.textContent=state==='connecting'?'กำลังเชื่อมต่อ…':state==='reconnecting'?'การเชื่อมต่อขาด กำลังต่อใหม่':'';
- if(state==='offline'||state==='opened elsewhere'||state==='kicked'){netOverlay=true;overlay(`<h1>${state==='opened elsewhere'?'เปิดตัวละครในหน้าต่างอื่น':state==='kicked'?'เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่':'เซิร์ฟเวอร์ไม่ตอบ ลองใหม่อีกครั้ง'}</h1><button id="net-retry" class="primary">ลองใหม่อีกครั้ง</button>`);$('#net-retry').onclick=()=>{if(state==='kicked')location.assign('/login.html');else net.retry();};}
+ if(state==='offline'||state==='opened elsewhere'||state==='kicked'){if(window.tnBoot.progress<100)window.tnBoot.fail('เชื่อมต่อเซิร์ฟเวอร์ไม่สำเร็จ กรุณาลองใหม่','socket');netOverlay=true;overlay(`<h1>${state==='opened elsewhere'?'เปิดตัวละครในหน้าต่างอื่น':state==='kicked'?'เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่':'เซิร์ฟเวอร์ไม่ตอบ ลองใหม่อีกครั้ง'}</h1><button id="net-retry" class="primary">ลองใหม่อีกครั้ง</button>`);$('#net-retry').onclick=()=>{if(state==='kicked')location.assign('/login.html');else net.retry();};}
  if(state==='connected'&&netOverlay){netOverlay=false;paused=false;$('#overlay').hidden=true;}
 }});
 document.querySelector('#player-name')!.textContent=selected.character.name;
 if(game.bossSpawned){document.querySelector('#quest-name')!.textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';document.querySelector('#quest-note')!.textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';}
-const renderer=new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;renderer.outputColorSpace=T.SRGBColorSpace;$('#world').appendChild(renderer.domElement);
+const renderer=(()=>{try{return new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});}catch(e){window.tnBoot.fail('เปิดภาพสามมิติไม่สำเร็จ กรุณาลองใหม่หรือใช้เบราว์เซอร์ที่รองรับ WebGL','webgl');throw e;}})();renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;renderer.outputColorSpace=T.SRGBColorSpace;$('#world').appendChild(renderer.domElement);
 const scene=new T.Scene();scene.background=new T.Color('#c8d1bd');scene.fog=new T.Fog('#c8d1bd',30,72);scene.add(new T.HemisphereLight('#fff0db','#888775',1.6));const sun=new T.DirectionalLight('#ffefd5',1.8);sun.position.set(-14,24,9);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-27;sun.shadow.camera.right=27;sun.shadow.camera.top=27;sun.shadow.camera.bottom=-27;sun.shadow.camera.near=1;sun.shadow.camera.far=65;sun.shadow.normalBias=.025;sun.shadow.bias=-.00008;sun.shadow.radius=4;scene.add(sun);
 const camera=new T.OrthographicCamera(-17,17,9.75,-9.75,.1,120),cameraOffset=new T.Vector3(9,16,13),focus=new T.Vector3(-1,0,4.5);camera.position.copy(focus).add(cameraOffset);camera.lookAt(focus);
-const loading=new T.LoadingManager();loading.onLoad=()=>{sceneReady=true;if(started)net.ready();const state=$('#load-state');if(state)state.textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';};loading.onError=()=>{const state=$('#load-state');if(state)state.textContent='ใช้วัสดุสำรอง · กดเริ่มเล่นได้';};const loader=new T.TextureLoader(loading);const world=buildScene(scene,loader),hero=makePaintedHero(loader);scene.add(hero.root);
+let assetFailure=false;
+const loading=new T.LoadingManager();loading.onProgress=(_url,loaded,total)=>{window.tnBoot.stage(1,Math.min(.99,loaded/total));};loading.onLoad=()=>{if(assetFailure||sceneReady)return;sceneReady=true;window.tnBoot.stage(1);net.ready();const state=$('#load-state');if(state)state.textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';};loading.onError=()=>{assetFailure=true;window.tnBoot.fail('โหลดภาพวาดไม่สำเร็จ กรุณาลองใหม่','texture');};const loader=new T.TextureLoader(loading);const world=buildScene(scene,loader),hero=makePaintedHero(loader);scene.add(hero.root);
+// Warm both monster banks before the loading curtain opens, including boss art.
+const previewMonsters=[makePaintedMonster(loader),makePaintedMonster(loader,true)];previewMonsters.forEach(actor=>actor.dispose());
+loader.load('/assets/hero-painted/portrait-v1.png');loader.load('/assets/ui-painted/skill-icons-v1.png');
 const heroName=label(selected.character.name,'#f4f5da');heroName.position.y=3.7;scene.add(heroName);
 const right=new T.Vector3(13,0,-9).normalize(),up=new T.Vector3(-9,0,-13).normalize(),ray=new T.Raycaster(),pointer=new T.Vector2(),floor=new T.Plane(new T.Vector3(0,1,0),0),point=new T.Vector3();
 const enemies=new Map<number,any>(),drops=new Map<number,T.Mesh>(),effects:any[]=[],numbers:any[]=[];let markerTime=0;
@@ -50,7 +58,7 @@ function events(){for(const e of game.events.splice(0)){if(['kingAttack','phase2
  case'evade':number('DODGE',e,'evade',2.4);break;
  case'heal':number(`+${e.amount}`,e,'heal',2.4);effectRing(e.x,e.z,'#c3edb0',.9,.45);particles(e.x,e.z,'#d6f5b0',14,1);break;
  case'pickup':number(`+${e.xp} EXP   ◈ ${e.gold}`,e,'reward',2.8);break;
- case'level':notice(`✦ LEVEL ${e.level} — พลังชีวิตและ MP ฟื้นเต็มแล้ว`);effectRing(e.x,e.z,'#ffe6a0',2.2,.8);particles(e.x,e.z,'#ffedb7',45,3);break;
+ case'level':notice(`✦ LEVEL ${e.level} · +${e.granted||3} แต้มสเตตัส · C ดูสเตตัส`);$('#stats-button').classList.add('level-pulse');setTimeout(()=>$('#stats-button').classList.remove('level-pulse'),4500);effectRing(e.x,e.z,'#ffe6a0',2.2,.8);particles(e.x,e.z,'#ffedb7',45,3);break;
  case'dash':effectRing(e.x,e.z,'#c1e9e6',.6,.25);particles(e.x,e.z,'#d6eee2',16,1.4);break;
  case'warning':{const o=ring(e.x,e.z,e.r,'#e98074',.07,.8),fill=new T.Mesh(new T.CircleGeometry(e.r,48),new T.MeshBasicMaterial({color:'#df7162',transparent:true,opacity:.16,side:T.DoubleSide,depthWrite:false}));fill.rotation.x=-Math.PI/2;fill.position.set(e.x,.035,e.z);scene.add(fill);effects.push({kind:'warning',mesh:o,life:e.duration,max:e.duration});effects.push({kind:'warningFill',mesh:fill,life:e.duration,max:e.duration});break;}
  case'slam':effectRing(e.x,e.z,'#f2d8aa',2.8,.45);particles(e.x,e.z,'#dfd1ac',40,4);shake=.2;break;
@@ -78,6 +86,8 @@ function nextTarget(){
 }
 window.addEventListener('keydown',e=>{
  if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
+ if(isKey('stats',e.code)&&started&&!e.repeat){e.preventDefault();statsUI.toggle();return;}
+ if(statsUI.open)return;
  if(isKey('pause',e.code)){e.preventDefault();net.send({t:'auto',on:false});stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}if(started&&!game.p.dead)togglePause();return;}
  if(!started||paused||game.p.dead||$<HTMLDialogElement>('#guide').open)return;
  if(Object.values(KEYS).some(codes=>(codes as readonly string[]).includes(e.code)))e.preventDefault();
@@ -155,8 +165,8 @@ function resize(){const aspect=innerWidth/innerHeight,h=innerWidth<650?zoomHeigh
 renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();paused=true;overlay('<h1>การแสดงผลถูกพัก</h1><p>กรุณารีเฟรชหน้าเพื่อเริ่มเกมใหม่</p><button id="reload" class="primary">เริ่มใหม่</button>');$('#reload').onclick=()=>location.reload();});
 let hudTime=0,frameCount=0,fpsTime=0;
 function frame(now:number){requestAnimationFrame(frame);const wallDt=Math.max(0,(now-previous)/1000),dt=Math.min(wallDt,.05);previous=now;time+=dt;
- let input={x:0,z:0};if(started&&!paused&&!game.p.dead&&net.connected){let x=Number(held('right'))-Number(held('left'))+joy.x,y=Number(held('up'))-Number(held('down'))-joy.y;const len=Math.hypot(x,y);if(len>1){x/=len;y/=len;}input={x:right.x*x+up.x*y,z:right.z*x+up.z*y};net.send({t:'steer',dx:Math.round(input.x*1000)/1000,dz:Math.round(input.z*1000)/1000});if(held('attack')||pointerAttack(now))doAction('attack');}
- worldState.update(now,Math.min(wallDt,.1),input,net.seq);events();render(dt);renderer.render(scene,camera);hudTime+=dt;if(hudTime>.1){hud();hudTime=0;}frameCount++;fpsTime+=wallDt;if(fpsTime>=1){$('#fps').textContent=`${Math.round(frameCount/fpsTime)} FPS · ${Math.round(net.ping)} ms`;fpsTime=frameCount=0;}}
+ let input={x:0,z:0};if(started&&!paused&&!statsUI.open&&!game.p.dead&&net.connected){let x=Number(held('right'))-Number(held('left'))+joy.x,y=Number(held('up'))-Number(held('down'))-joy.y;const len=Math.hypot(x,y);if(len>1){x/=len;y/=len;}input={x:right.x*x+up.x*y,z:right.z*x+up.z*y};net.send({t:'steer',dx:Math.round(input.x*1000)/1000,dz:Math.round(input.z*1000)/1000});if(held('attack')||pointerAttack(now))doAction('attack');}
+ worldState.update(now,Math.min(wallDt,.1),input,net.seq);events();render(dt);renderer.render(scene,camera);if(sceneReady&&worldState.ready&&!assetFailure)window.tnBoot.stage(4);hudTime+=dt;if(hudTime>.1){hud();hudTime=0;}frameCount++;fpsTime+=wallDt;if(fpsTime>=1){$('#fps').textContent=`${Math.round(frameCount/fpsTime)} FPS · ${Math.round(net.ping)} ms`;fpsTime=frameCount=0;}}
 hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
 (window as any).__FIELDS__={snapshot:()=>({others:worldState.others.map(p=>({id:p.id,name:p.name,x:p.x,z:p.z,hp:p.hp})),network:{connected:net.connected,tick:worldState.lastTick,ack:worldState.ack,ping:net.ping,you:net.you},started,paused,time:game.time,hero:hero.snapshot(),environment:world.snapshot(),p:{...game.p,cd:{...game.p.cd}},target:game.target,destination:game.destination,kills:game.kills,bossSpawned:game.bossSpawned,won:game.won,encounterLog:encounterLog.map(e=>({...e})),projectiles:game.projectiles.map(p=>({...p})),enemies:game.enemies.map(e=>({id:e.id,x:e.x,z:e.z,hp:e.hp,maxHp:e.maxHp,boss:e.boss,dead:e.dead,deathAge:e.deathAge,motion:e.motion,motionTime:e.motionTime,bossPhase:e.bossPhase,variant:e.variant,summoned:e.summoned,aimX:e.aimX,aimZ:e.aimZ,windup:e.windup,history:[...e.history],actor:enemies.get(e.id)?.actor.snapshot()})),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles}),project:(x:number,z:number,y=0)=>{const p=new T.Vector3(x,y,z).project(camera);return{x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight};}};

@@ -11,6 +11,7 @@ import {
 	type Monster,
 	type Modifier,
 } from "./schema.js";
+import{autoAllocateStats}from'./allocation.js';
 export const clamp = (n: number, min: number, max: number) =>
 	Math.min(max, Math.max(min, n));
 export interface Combatant {
@@ -198,8 +199,9 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 			);
 		p[stat] = Math.max(0, p[stat]);
 	}
-	p.hpRegen = p.maxHp * 0.01 + vit / 5;
-	p.spRegen = (p.maxSp * 0.01 + int / 6) * (1 + (race.passives.spRegen || 0));
+	const regen=data.stats.regen;
+	p.hpRegen = regen.hpBase + vit*regen.hpVit + p.maxHp*regen.hpMax;
+	p.spRegen = (regen.spBase + int*regen.spInt + p.maxSp*regen.spMax) * (1 + (race.passives.spRegen || 0));
 	for (const stat of ["hpRegen", "spRegen"] as const) {
 		p[stat] += modifiers
 			.filter((m) => m.kind === "flat" && m.stat === stat)
@@ -337,7 +339,7 @@ export function statPointCost(current: number, data: GameData) {
 }
 export function pointsForLevel(level: number, data: GameData) {
 	return (
-		clamp(Math.floor(level), 1, data.stats.maxLevel) * data.stats.pointsPerLevel
+		(clamp(Math.floor(level), 1, data.stats.maxLevel)-1) * data.stats.pointsPerLevel
 	);
 }
 export function buildForLevel(
@@ -349,24 +351,11 @@ export function buildForLevel(
 	if (!job) throw new Error(`Unknown class ${classId}`);
 	if (level === 1 && classId === data.stats.defaultBuild.classId)
 		return structuredClone(data.stats.defaultBuild);
-	const baseStats = Object.fromEntries(
+	let baseStats = Object.fromEntries(
 		data.stats.baseStats.map((s) => [s, 1]),
 	) as Record<Stat, number>;
-	let points = pointsForLevel(level, data);
-	while (true) {
-		const stat = [...data.stats.baseStats]
-			.filter(
-				(s) =>
-					baseStats[s] < data.stats.maxStat &&
-					statPointCost(baseStats[s], data) <= points,
-			)
-			.sort(
-				(a, b) => baseStats[a] / job.preset[a] - baseStats[b] / job.preset[b],
-			)[0];
-		if (!stat) break;
-		points -= statPointCost(baseStats[stat], data);
-		baseStats[stat]++;
-	}
+	if(classId===data.stats.defaultBuild.classId)baseStats={...data.stats.defaultBuild.baseStats};
+	baseStats=autoAllocateStats({profile:{...data.stats.defaultBuild,classId,level,baseStats},statPoints:pointsForLevel(level,data),autoAllocate:true,autoAllocCursor:0},data).profile.baseStats;
 	const equipment = data.items.items
 		.filter(
 			(i) =>

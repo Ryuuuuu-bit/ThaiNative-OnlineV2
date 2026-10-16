@@ -27,7 +27,7 @@
     "bossIncomingInterval": 2,
     "smallIncomingInterval": 1.5,
     "consumables": false,
-    "notes": "TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP/HP regen uses shared per-5s values. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50."
+    "notes": "TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP regen uses shared per-second values; HP in-combat regen is 20% of its per-second value. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50."
   },
   "rows": [
     {
@@ -141,12 +141,12 @@
       "seed": 387276918,
       "runs": 200,
       "ttk": {
-        "mean": 72.72300000000007,
-        "p10": 69.45,
-        "p90": 76.1
+        "mean": 56.77875000000008,
+        "p10": 53.45,
+        "p90": 60.1
       },
       "hitsToDie": {
-        "mean": 6.165,
+        "mean": 6.175,
         "p10": 6,
         "p90": 7
       },
@@ -165,16 +165,16 @@
       "seed": 3041712679,
       "runs": 200,
       "ttk": {
-        "mean": 1.1375000000000037,
+        "mean": 1.1475000000000037,
         "p10": 1.15,
         "p90": 1.15
       },
       "hitsToDie": {
-        "mean": 10.985,
+        "mean": 10.99,
         "p10": 11,
         "p90": 11
       },
-      "expPerMinute": 481.9123505976091,
+      "expPerMinute": 480.38125496425687,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -189,16 +189,16 @@
       "seed": 1401181144,
       "runs": 200,
       "ttk": {
-        "mean": 1.5945000000000014,
-        "p10": 1.6,
-        "p90": 1.6
+        "mean": 2.4010000000000007,
+        "p10": 2.05,
+        "p90": 2.5
       },
       "hitsToDie": {
         "mean": 9,
         "p10": 9,
         "p90": 9
       },
-      "expPerMinute": 630.9639727361246,
+      "expPerMinute": 515.3374233128834,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -213,16 +213,16 @@
       "seed": 4055616905,
       "runs": 200,
       "ttk": {
-        "mean": 2.560749999999999,
-        "p10": 2.5,
-        "p90": 2.95
+        "mean": 3.1209999999999978,
+        "p10": 2.95,
+        "p90": 3.85
       },
       "hitsToDie": {
         "mean": 9,
         "p10": 9,
         "p90": 9
       },
-      "expPerMinute": 497.28663048840673,
+      "expPerMinute": 442.88224956063294,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -263,8 +263,8 @@
       "seed": 774553835,
       "runs": 200,
       "ttk": {
-        "mean": 134.34374999999997,
-        "p10": 129.45,
+        "mean": 136.08999999999972,
+        "p10": 133,
         "p90": 137.45
       },
       "hitsToDie": {
@@ -311,16 +311,16 @@
       "seed": 1788458061,
       "runs": 200,
       "ttk": {
-        "mean": 3.075,
-        "p10": 3.05,
-        "p90": 3.05
+        "mean": 2.4167500000000004,
+        "p10": 2.05,
+        "p90": 2.5
       },
       "hitsToDie": {
         "mean": 8,
         "p10": 8,
         "p90": 8
       },
-      "expPerMinute": 446.896551724138,
+      "expPerMinute": 513.4997452878248,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -385,9 +385,9 @@
       "seed": 1161830752,
       "runs": 200,
       "ttk": {
-        "mean": 151.16675000000006,
-        "p10": 148.1,
-        "p90": 156.05
+        "mean": 115.76949999999995,
+        "p10": 113,
+        "p90": 117.45
       },
       "hitsToDie": {
         "mean": 4,
@@ -414,9 +414,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 57.31,
-        "p10": 57,
-        "p90": 58
+        "mean": 67.545,
+        "p10": 67,
+        "p90": 69
       },
       "expPerMinute": 570.5660377358486,
       "winRate": 1,
@@ -440,9 +440,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 44.205,
-        "p10": 44,
-        "p90": 45
+        "mean": 51.125,
+        "p10": 51,
+        "p90": 52
       },
       "expPerMinute": 855.849056603773,
       "winRate": 1,
@@ -461,20 +461,22 @@
       "seed": 535203443,
       "runs": 200,
       "ttk": {
-        "mean": 1.3380000000000007,
-        "p10": 1.15,
-        "p90": 1.6
+        "mean": 0.7200000000000029,
+        "p10": 0.65,
+        "p90": 1.15
       },
       "hitsToDie": {
-        "mean": 44.24,
-        "p10": 44,
-        "p90": 45
+        "mean": 51.13,
+        "p10": 50,
+        "p90": 52
       },
-      "expPerMinute": 679.4487717195925,
+      "expPerMinute": 833.823529411764,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
-      "flags": []
+      "flags": [
+        "normal TTK outside 1–60s"
+      ]
     },
     {
       "classId": "novice_knight",
@@ -490,9 +492,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 80,
-        "p10": 80,
-        "p90": 80
+        "mean": 108,
+        "p10": 108,
+        "p90": 108
       },
       "expPerMinute": 95.09433962264141,
       "winRate": 1,
@@ -511,17 +513,17 @@
       "seed": 1549107669,
       "runs": 200,
       "ttk": {
-        "mean": 57.90500000000003,
-        "p10": 56.1,
-        "p90": 60.55
+        "mean": 35.439500000000045,
+        "p10": 33.4,
+        "p90": 36.5
       },
       "hitsToDie": {
-        "mean": 17.305,
-        "p10": 17,
-        "p90": 18
+        "mean": 18.81,
+        "p10": 18,
+        "p90": 19
       },
-      "expPerMinute": 0,
-      "winRate": 0,
+      "expPerMinute": 324.76395251004914,
+      "winRate": 0.965,
       "drawRate": 0,
       "censored": 0,
       "flags": []
@@ -587,16 +589,16 @@
       "seed": 922480360,
       "runs": 200,
       "ttk": {
-        "mean": 1.0932499999999965,
-        "p10": 1.1,
-        "p90": 1.1
+        "mean": 1.1425000000000038,
+        "p10": 1.15,
+        "p90": 1.15
       },
       "hitsToDie": {
         "mean": 31,
         "p10": 31,
         "p90": 31
       },
-      "expPerMinute": 733.2094075810242,
+      "expPerMinute": 721.7183770883048,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -637,12 +639,12 @@
       "seed": 1936384586,
       "runs": 200,
       "ttk": {
-        "mean": 55.57075000000008,
-        "p10": 53,
-        "p90": 57.45
+        "mean": 52.116500000000066,
+        "p10": 49.45,
+        "p90": 53.45
       },
       "hitsToDie": {
-        "mean": 13,
+        "mean": 13.005,
         "p10": 13,
         "p90": 13
       },
@@ -709,16 +711,16 @@
       "seed": 1309757277,
       "runs": 200,
       "ttk": {
-        "mean": 3.113000000000008,
-        "p10": 2.6,
+        "mean": 3.950500000000001,
+        "p10": 4,
         "p90": 4
       },
       "hitsToDie": {
-        "mean": 28.54,
+        "mean": 28.575,
         "p10": 28,
         "p90": 29
       },
-      "expPerMinute": 443.5752004693911,
+      "expPerMinute": 381.1444416435594,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -759,9 +761,9 @@
       "seed": 2323661503,
       "runs": 200,
       "ttk": {
-        "mean": 115.52800000000006,
-        "p10": 113.45,
-        "p90": 117.45
+        "mean": 77.11700000000005,
+        "p10": 76.1,
+        "p90": 80.1
       },
       "hitsToDie": {
         "mean": 12,
@@ -788,9 +790,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 262,
-        "p10": 262,
-        "p90": 262
+        "mean": 267,
+        "p10": 267,
+        "p90": 267
       },
       "expPerMinute": 570.5660377358486,
       "winRate": 1,
@@ -814,9 +816,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 262,
-        "p10": 262,
-        "p90": 262
+        "mean": 267,
+        "p10": 267,
+        "p90": 267
       },
       "expPerMinute": 855.849056603773,
       "winRate": 1,
@@ -840,9 +842,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 262,
-        "p10": 262,
-        "p90": 262
+        "mean": 267,
+        "p10": 267,
+        "p90": 267
       },
       "expPerMinute": 855.849056603773,
       "winRate": 1,
@@ -866,9 +868,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 393,
-        "p10": 393,
-        "p90": 393
+        "mean": 400,
+        "p10": 400,
+        "p90": 400
       },
       "expPerMinute": 95.09433962264141,
       "winRate": 1,
@@ -887,16 +889,16 @@
       "seed": 2710938420,
       "runs": 200,
       "ttk": {
-        "mean": 22.767500000000044,
-        "p10": 20.95,
-        "p90": 24.05
+        "mean": 20.585250000000016,
+        "p10": 20.05,
+        "p90": 20.95
       },
       "hitsToDie": {
-        "mean": 68.235,
-        "p10": 68,
-        "p90": 69
+        "mean": 75.255,
+        "p10": 75,
+        "p90": 76
       },
-      "expPerMinute": 508.7312001615011,
+      "expPerMinute": 557.8862310578803,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -916,9 +918,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 204,
-        "p10": 204,
-        "p90": 204
+        "mean": 202,
+        "p10": 202,
+        "p90": 202
       },
       "expPerMinute": 581.5384615384621,
       "winRate": 1,
@@ -942,9 +944,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 204,
-        "p10": 204,
-        "p90": 204
+        "mean": 202,
+        "p10": 202,
+        "p90": 202
       },
       "expPerMinute": 872.3076923076932,
       "winRate": 1,
@@ -968,9 +970,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 204,
-        "p10": 204,
-        "p90": 204
+        "mean": 202,
+        "p10": 202,
+        "p90": 202
       },
       "expPerMinute": 872.3076923076932,
       "winRate": 1,
@@ -994,9 +996,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 306,
-        "p10": 306,
-        "p90": 306
+        "mean": 303,
+        "p10": 303,
+        "p90": 303
       },
       "expPerMinute": 96.923076923077,
       "winRate": 1,
@@ -1020,9 +1022,9 @@
         "p90": 24.05
       },
       "hitsToDie": {
-        "mean": 47.955,
-        "p10": 48,
-        "p90": 48
+        "mean": 45.59,
+        "p10": 45,
+        "p90": 46
       },
       "expPerMinute": 527.489089139376,
       "winRate": 1,
@@ -1141,16 +1143,16 @@
       "seed": 3485492254,
       "runs": 200,
       "ttk": {
-        "mean": 68.69449999999995,
-        "p10": 65.45,
-        "p90": 69.9
+        "mean": 71.13100000000017,
+        "p10": 69,
+        "p90": 72.1
       },
       "hitsToDie": {
-        "mean": 45.705,
+        "mean": 45.72,
         "p10": 45,
         "p90": 46
       },
-      "expPerMinute": 178.23168704779027,
+      "expPerMinute": 172.2935554005821,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1170,9 +1172,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 429,
-        "p10": 429,
-        "p90": 429
+        "mean": 437,
+        "p10": 437,
+        "p90": 437
       },
       "expPerMinute": 570.5660377358486,
       "winRate": 1,
@@ -1196,9 +1198,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 429,
-        "p10": 429,
-        "p90": 429
+        "mean": 437,
+        "p10": 437,
+        "p90": 437
       },
       "expPerMinute": 855.849056603773,
       "winRate": 1,
@@ -1222,9 +1224,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 429,
-        "p10": 429,
-        "p90": 429
+        "mean": 437,
+        "p10": 437,
+        "p90": 437
       },
       "expPerMinute": 855.849056603773,
       "winRate": 1,
@@ -1248,9 +1250,9 @@
         "p90": 0.65
       },
       "hitsToDie": {
-        "mean": 644,
-        "p10": 644,
-        "p90": 644
+        "mean": 655,
+        "p10": 655,
+        "p90": 655
       },
       "expPerMinute": 95.09433962264141,
       "winRate": 1,
@@ -1269,16 +1271,16 @@
       "seed": 3872769171,
       "runs": 200,
       "ttk": {
-        "mean": 13.65550000000005,
-        "p10": 13.4,
+        "mean": 13.31675000000004,
+        "p10": 12.95,
         "p90": 13.4
       },
       "hitsToDie": {
-        "mean": 247.27,
-        "p10": 246,
-        "p90": 249
+        "mean": 251.59,
+        "p10": 250,
+        "p90": 253
       },
-      "expPerMinute": 804.8289738430558,
+      "expPerMinute": 822.6288213883472,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1298,9 +1300,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 329,
-        "p10": 329,
-        "p90": 329
+        "mean": 326,
+        "p10": 326,
+        "p90": 326
       },
       "expPerMinute": 581.5384615384621,
       "winRate": 1,
@@ -1324,9 +1326,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 329,
-        "p10": 329,
-        "p90": 329
+        "mean": 326,
+        "p10": 326,
+        "p90": 326
       },
       "expPerMinute": 872.3076923076932,
       "winRate": 1,
@@ -1350,9 +1352,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 329,
-        "p10": 329,
-        "p90": 329
+        "mean": 326,
+        "p10": 326,
+        "p90": 326
       },
       "expPerMinute": 872.3076923076932,
       "winRate": 1,
@@ -1376,9 +1378,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 493,
-        "p10": 493,
-        "p90": 493
+        "mean": 489,
+        "p10": 489,
+        "p90": 489
       },
       "expPerMinute": 96.923076923077,
       "winRate": 1,
@@ -1397,16 +1399,16 @@
       "seed": 4260046088,
       "runs": 200,
       "ttk": {
-        "mean": 13.418249999999995,
-        "p10": 13.25,
-        "p90": 13.25
+        "mean": 13.495500000000042,
+        "p10": 13.4,
+        "p90": 13.4
       },
       "hitsToDie": {
-        "mean": 141,
-        "p10": 141,
-        "p90": 141
+        "mean": 129.955,
+        "p10": 129,
+        "p90": 131
       },
-      "expPerMinute": 817.2133672757935,
+      "expPerMinute": 813.1392985060156,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1525,16 +1527,16 @@
       "seed": 352355709,
       "runs": 200,
       "ttk": {
-        "mean": 41.9734999999999,
-        "p10": 41.45,
-        "p90": 45
+        "mean": 41.2609999999999,
+        "p10": 41,
+        "p90": 41.45
       },
       "hitsToDie": {
-        "mean": 171.955,
-        "p10": 170,
+        "mean": 171.935,
+        "p10": 171,
         "p90": 173
       },
-      "expPerMinute": 286.53620930787923,
+      "expPerMinute": 291.2554032500411,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1554,9 +1556,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 881,
-        "p10": 881,
-        "p90": 881
+        "mean": 895,
+        "p10": 895,
+        "p90": 895
       },
       "expPerMinute": 581.5384615384621,
       "winRate": 1,
@@ -1580,9 +1582,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 881,
-        "p10": 881,
-        "p90": 881
+        "mean": 895,
+        "p10": 895,
+        "p90": 895
       },
       "expPerMinute": 872.3076923076932,
       "winRate": 1,
@@ -1606,9 +1608,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 881,
-        "p10": 881,
-        "p90": 881
+        "mean": 895,
+        "p10": 895,
+        "p90": 895
       },
       "expPerMinute": 872.3076923076932,
       "winRate": 1,
@@ -1632,9 +1634,9 @@
         "p90": 0.6
       },
       "hitsToDie": {
-        "mean": 1321,
-        "p10": 1321,
-        "p90": 1321
+        "mean": 1342,
+        "p10": 1342,
+        "p90": 1342
       },
       "expPerMinute": 96.923076923077,
       "winRate": 1,
@@ -1653,16 +1655,16 @@
       "seed": 739632626,
       "runs": 200,
       "ttk": {
-        "mean": 8.981999999999982,
+        "mean": 8.839499999999994,
         "p10": 8.65,
         "p90": 9.1
       },
       "hitsToDie": {
-        "mean": 507.21,
-        "p10": 505,
-        "p90": 510
+        "mean": 515.255,
+        "p10": 513,
+        "p90": 518
       },
-      "expPerMinute": 1147.3319978146076,
+      "expPerMinute": 1162.4152405553768,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1781,16 +1783,16 @@
       "seed": 1126909543,
       "runs": 200,
       "ttk": {
-        "mean": 5.618999999999985,
+        "mean": 5.728499999999986,
         "p10": 4.9,
         "p90": 8.6
       },
       "hitsToDie": {
-        "mean": 377.24,
+        "mean": 377.235,
         "p10": 375,
         "p90": 379
       },
-      "expPerMinute": 1653.7603360021033,
+      "expPerMinute": 1630.3293006404895,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1909,16 +1911,16 @@
       "seed": 1514186460,
       "runs": 200,
       "ttk": {
-        "mean": 25.53450000000003,
-        "p10": 25.35,
+        "mean": 25.122500000000027,
+        "p10": 24.05,
         "p90": 25.35
       },
       "hitsToDie": {
         "mean": 349.55,
-        "p10": 348,
-        "p90": 351
+        "p10": 347,
+        "p90": 352
       },
-      "expPerMinute": 457.6077284860806,
+      "expPerMinute": 464.5589455249327,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,

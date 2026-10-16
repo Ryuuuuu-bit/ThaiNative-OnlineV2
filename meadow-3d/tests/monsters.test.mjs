@@ -6,7 +6,7 @@ import {monsterFrame,monsterCell,monsterOpacity,VARIANT_HUE} from '../src/monste
 const tick=(g,seconds)=>{for(let t=0;t<seconds;t+=1/120)step(g,1/120);};
 function encounter(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=0;g.p.invulnerable=100;const e=spawn(g,0,2,true);return{g,e};}
 test('small jelly warns before one lunge and holds its final death puddle before loot',()=>{
- const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=g.p.z=0;const e=spawn(g,0,.9);e.cooldown=0;step(g,1/120);assert.equal(e.motion,'attack');assert.ok(g.events.some(e=>e.type==='warning'));tick(g,.45);assert.equal(g.p.hp,126);tick(g,.23);assert.equal(g.p.hp,118);tick(g,.15);assert.equal(g.p.hp,118);
+ const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=g.p.z=0;const e=spawn(g,0,.9);e.cooldown=0;step(g,1/120);assert.equal(e.motion,'attack');assert.ok(g.events.some(e=>e.type==='warning'));tick(g,.45);assert.equal(g.p.hp,126);tick(g,.23);assert.equal(g.events.filter(e=>e.type==='hurt').at(-1).amount,8);assert.ok(g.p.hp>=118&&g.p.hp<118.2);tick(g,.15);assert.equal(g.events.filter(e=>e.type==='hurt').at(-1).amount,8);assert.ok(g.p.hp>=118&&g.p.hp<118.2);
  e.hp=1;g.p.cd.spin=0;action(g,'spin');assert.equal(e.motion,'death');assert.equal(g.drops.length,0);tick(g,.7);assert.equal(e.rewarded,false);tick(g,.1);assert.equal(e.rewarded,true);assert.equal(monsterFrame('slime','death',9),2);assert.equal(monsterOpacity(e),1);tick(g,1.4);assert.equal(monsterOpacity(e),0);
 });
 test('king cycles all five attacks, stuns after slam, spits three projectiles and summons three',()=>{
@@ -15,7 +15,7 @@ test('king cycles all five attacks, stuns after slam, spits three projectiles an
  assert.deepEqual(e.history.slice(0,5),KING_PATTERN);assert.ok(stun);assert.ok(volley);assert.ok(summons);assert.equal(g.enemies.filter(m=>m.summoned).length,3);
 });
 test('king telegraph causes no early slam damage and phase two transforms once and accelerates',()=>{
- const {g,e}=encounter();g.p.invulnerable=0;while(e.motion!=='slam')step(g,1/120);tick(g,.8);assert.equal(g.p.hp,126);tick(g,.1);assert.equal(g.p.hp,102);
+ const {g,e}=encounter();g.p.invulnerable=0;while(e.motion!=='slam')step(g,1/120);tick(g,.8);assert.equal(g.p.hp,126);tick(g,.1);assert.equal(g.events.filter(e=>e.type==='hurt').at(-1).amount,24);assert.ok(g.p.hp>=102&&g.p.hp<102.1);
  e.hp=451;g.p.x=e.x;g.p.z=e.z+1;g.p.cd.spin=0;action(g,'spin');assert.equal(e.bossPhase,2);assert.equal(e.motion,'transform');tick(g,1.4);assert.equal(e.motion,'transform');tick(g,.25);assert.notEqual(e.motion,'transform');
  g.p.cd.spin=0;g.p.mp=80;action(g,'spin');assert.equal(g.events.filter(v=>v.type==='phase2').length,1);
  e.motion='sweep';e.motionTime=0;e.motionDuration=1.2;e.attackApplied=false;tick(g,.5);assert.ok(e.motionTime>.64);revive(g);assert.equal(e.bossPhase,2);assert.equal(g.projectiles.length,0);assert.equal(e.engaged,false);

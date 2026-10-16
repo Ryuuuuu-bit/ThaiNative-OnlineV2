@@ -18,6 +18,7 @@ import {
 	CAMP,
 	loadGameData,
 	gameSkill,
+	allocateStats,autoAllocateStats,resetStats,refreshStats,
 	type Game,
 	type Player,
 	type Vec,
@@ -183,7 +184,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		ws.send(JSON.stringify(body));
 		sent++;
 	}
-	function save(room: Room, id: string) {
+	function save(room: Room, id: string, strict=false) {
 		const p = room.game.players.get(id),
 			accountId = room.accounts.get(id);
 		if (!p || !accountId) return room.saveQueue;
@@ -199,19 +200,20 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			race: p.profile.race,
 			classId: p.profile.classId,
 			statPoints: p.statPoints,
+			autoAllocate:p.autoAllocate,autoAllocCursor:p.autoAllocCursor,
 			dataVersion: 1,
 		};
-		room.saveQueue = room.saveQueue
+		const operation = room.saveQueue
 			.then(async () => {
 				await store.saveProgress(accountId, id, body);
-			})
-			.catch((e) => {
+			});
+		room.saveQueue=operation.catch((e) => {
 				console.error(
 					"Realtime save failed",
 					e instanceof Error ? e.message : e,
 				);
 			});
-		return room.saveQueue;
+		return strict?operation:room.saveQueue;
 	}
 	function flush(room: Room) {
 		const list = room.game.events.splice(0);
@@ -219,12 +221,15 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		for (const peer of room.peers.values())
 			if (peer.ready) send(peer.ws, { t: "ev", tick: room.tick, list });
 		for (const e of list)
+			if(e.type==='level'){const p=room.game.players.get(String(e.playerId));const peer=room.peers.get(String(e.playerId));if(p&&peer)sendStats(peer,p);}
+		for (const e of list)
 			if (["level", "death", "victory"].includes(e.type)) {
 				if (e.type === "victory")
 					for (const id of room.game.players.keys()) void save(room, id);
 				else void save(room, String(e.playerId));
 			}
 	}
+	function sendStats(peer:Peer,p:Player){send(peer.ws,{t:'ev',list:[{type:'stats',playerId:p.id,base:{...p.profile.baseStats},points:p.statPoints,derived:p.stats,profile:p.profile,autoAllocate:p.autoAllocate,statResetFree:peer.room.game.data.stats.statResetFree}]});}
 	function intent(peer: Peer, message: Intent) {
 		const { room } = peer,
 			g = room.game;
@@ -248,6 +253,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				room.disconnected.delete(peer.id);
 			}
 			send(peer.ws, snapshot(room, peer));
+			sendStats(peer,g.players.get(peer.id)!);
 			return;
 		}
 		if (!peer.ready) return;
@@ -257,6 +263,9 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		}
 		withPlayer(g, peer.id, () => {
 			const p = g.p;
+			if(message.t==='stats'||message.t==='statsReset'||message.t==='autoAlloc'){
+				try{const next=message.t==='stats'?allocateStats(p,message.add,g.data):message.t==='statsReset'?resetStats(p,g.data):autoAllocateStats({...p,autoAllocate:message.on},g.data);Object.assign(p,next);refreshStats(g,p);void save(room,p.id,true).then(()=>sendStats(peer,p)).catch(()=>{sendStats(peer,p);send(peer.ws,{t:'ev',list:[{type:'statsError',playerId:p.id,text:'สเตตัสมีผลในรอบนี้ แต่บันทึกไม่สำเร็จ กรุณารอการเชื่อมต่อกลับมา'}]});});}catch(e){invalid++;send(peer.ws,{t:'ev',list:[{type:'statsError',playerId:p.id,text:e instanceof Error?e.message:'จัดสรรไม่สำเร็จ'}]});}return;
+			}
 			if (message.t === "steer") {
 				const len = Math.hypot(message.dx, message.dz) || 1;
 				peer.input = {
@@ -395,6 +404,9 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					p.kills = character.kills;
 					p.potions = character.potions;
 					p.statPoints = character.statPoints;
+					p.autoAllocate=character.autoAllocate??true;p.autoAllocCursor=character.autoAllocCursor??0;
+					const before=p.statPoints;Object.assign(p,autoAllocateStats(p,data));refreshStats(room.game,p);
+					if(before!==p.statPoints)await store.saveProgress(session.accountId,character.id,{...character,baseStats:p.profile.baseStats,statPoints:p.statPoints,autoAllocate:p.autoAllocate,autoAllocCursor:p.autoAllocCursor});
 					if (
 						character.posX !== undefined &&
 						character.posZ !== undefined &&
@@ -468,6 +480,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					const parsed = IntentSchema.safeParse(body);
 					if (!parsed.success) {
 						invalid++;
+						if(['stats','statsReset','autoAlloc'].includes(body?.t))send(ws,{t:'ev',list:[{type:'statsError',playerId:peer.id,text:'ค่าสเตตัสไม่ถูกต้อง กรุณาลองใหม่'}]});
 						return;
 					}
 					if (parsed.data.t === "spawnReady" && pending.has(peer.id)) {

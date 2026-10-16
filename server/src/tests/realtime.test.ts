@@ -74,6 +74,17 @@ async function fixture(t: any, sharedRooms = false) {
 	});
 	return { store, rt, call, make, open };
 }
+test('stat intents validate, persist and reconnect with manual auto-allocation disabled',async t=>{
+ const f=await fixture(t),user=await f.make('StatHero'),peer=f.open(user.cookie);await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;p.statPoints=8;
+ const index=peer.messages.length;peer.send({t:'stats',add:{str:2},seq:1});const result=await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'&&e.base.str===7));assert.equal(result.list[0].points,4);assert.equal(p.autoAllocate,false);assert.equal((await f.store.character(user.character.accountId,p.id))!.autoAllocate,false);
+ for(const add of[{str:99},{str:-1},{str:90}])peer.send({t:'stats',add,seq:2+peer.messages.length});await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='statsError'));assert.equal(p.profile.baseStats.str,7);
+ peer.ws.close();await peer.closed;await wait(350);const second=f.open(user.cookie);await second.until(m=>m.t==='welcome');second.send({t:'spawnReady'});const persisted=await second.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'));assert.equal(persisted.list[0].base.str,7);assert.equal(persisted.list[0].autoAllocate,false);assert.equal(persisted.list[0].points,4);
+ const secondRoom=[...f.rt.rooms.values()][0];secondRoom.game.data.stats.statResetFree=false;second.send({t:'statsReset'});await second.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='statsError'));const live=secondRoom.game.players.get(p.id)!;assert.equal(live.profile.baseStats.str,7);
+ second.send({t:'autoAlloc',on:true});await second.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'&&e.autoAllocate&&e.points===0));assert.equal((await f.store.character(user.character.accountId,p.id))!.autoAllocate,true);
+ live.statPoints=9999;live.profile.baseStats.str=98;second.send({t:'stats',add:{str:2},seq:1000});await second.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='statsError'&&e.text.includes('99')));assert.equal(live.profile.baseStats.str,98);
+});
+test('boot report strips extra fields, limits rate and accepts no personal data in logs',async t=>{const f=await fixture(t);for(let i=0;i<6;i++)assert.equal((await f.call('/api/boot-report',{code:'texture',page:'play',progress:40,email:'ignored@example.test'})).status,202);assert.equal((await f.call('/api/boot-report',{code:'texture',page:'play',progress:40})).status,429);});
+test('legacy unspent points migrate before first snapshot and save once on join',async t=>{const f=await fixture(t),user=await f.make('LegacyStats'),c=user.character;await f.store.saveProgress(c.accountId,c.id,{...c,level:5,statPoints:12});const peer=f.open(user.cookie);await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});const stats=(await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'))).list[0];assert.equal(stats.points,0);assert.ok(stats.base.str>c.baseStats.str);const saved=await f.store.character(c.accountId,c.id);assert.deepEqual(saved!.baseStats,stats.base);assert.equal(saved!.autoAllocate,true);});
 test("WebSocket auth, selected-character requirement, wrong build reload and spawnReady gate", async (t) => {
 	const f = await fixture(t),
 		anonymous = f.open();
@@ -159,7 +170,7 @@ test("server-earned kill saves XP/gold/base stats and obsolete progress returns4
 	await room.saveQueue;
 	const saved = await f.store.character(user.character.accountId, p.id);
 	assert.equal(saved!.level, 2);
-	assert.equal(saved!.statPoints, 3);
+	assert.equal(saved!.statPoints, 1);
 	assert.ok(saved!.gold > 0);
 	assert.equal(saved!.kills, 1);
 	assert.deepEqual(saved!.baseStats, p.profile.baseStats);

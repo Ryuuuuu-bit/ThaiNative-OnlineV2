@@ -151,7 +151,8 @@ export const StatsSchema = z
 		pointsPerLevel: z.literal(3),
 		maxStat: z.literal(99),
 		maxLevel: z.literal(99),
-		statResetFree: z.literal(true),
+		statResetFree: z.boolean(),
+		regen:z.object({spBase:nonnegative,spInt:nonnegative,spMax:nonnegative,hpBase:nonnegative,hpVit:nonnegative,hpMax:nonnegative,outOfCombatSeconds:nonnegative,inCombatHpMultiplier:fraction,sittingMultiplier:positive}).strict(),
 		pointCosts: z
 			.array(
 				z
