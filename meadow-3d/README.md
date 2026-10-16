@@ -127,3 +127,9 @@ Run `npm run pack:audio` to rebuild hashed Opus/AAC sprites from `art/sfx-source
 
 Inventory: **I** opens กระเป๋า (equipment tab, weight, consumables and materials). **R** uses the best owned red potion. Visit พ่อค้าเบ็ดเตล็ด (east city market) or ช่างตีเหล็ก (west) to buy/sell. Loot belongs to top damage for 10 seconds; AUTO only collects your drops and can be disabled in the bag. At 50% weight regeneration stops; at 90% attacks stop.
 Economy: schema `server/sql/009_items.sql` applies on local server initialization; each inventory request requires a UUID and commits inventory, gold, ledger and its cached response atomically. Requests deduplicate for 24 hours. Authenticated configured admins can POST `/api/admin/economy/integrity`; a daily server check logs `ECONOMY_ALERT` on mismatch. Run migrations only against an explicitly chosen development database.
+
+### หน้าจอและความสะดวก
+H กลับเมือง: ร่าย 5 วินาที ยกเลิกเมื่อเดินหรือรับความเสียหาย พัก 60 วินาที ใช้ไม่ได้ระหว่างสู้ราชาวุ้น
+Z เก็บของของฉันหรือของอิสระในระยะ 4 เมตร (มือถือแตะ เก็บรอบตัว)
+คลิกชาวเมืองเพื่อเดินไปคุย คลิกสัญลักษณ์ชาวเมืองหรือประตูบนแผนที่ย่อเพื่อเดินตามเส้นทาง กดปุ่มเดินเพื่อยกเลิก
+เมนู → ตั้งค่า: ขนาด UI 90/100/110/120%, เปลี่ยนปุ่ม H/Z และคืนตำแหน่งหน้าต่าง ลากหัวหน้าต่างกระเป๋า สเตตัส และสกิลเพื่อบันทึกตำแหน่งต่อบัญชี

@@ -295,3 +295,28 @@ test('simultaneous joins for one character share the same unique inventory and l
  const f=await fixture(t),a=await f.make('JoinEconomy');const original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{await wait(20);return original(...args);};
  const one=f.open(a.cookie),two=f.open(a.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});const state=await two.until(m=>m.t==='snap');assert.equal(state.inventory.items.filter((i:any)=>i.location==='equip').length,2);assert.equal(new Set(state.inventory.items.map((i:any)=>i.id)).size,3);assert.equal(f.rt.rooms.size,1);assert.ok((await f.store.integrity()).ok);
 });
+
+test('HUD settings are account scoped; return cast cancels and cooldown survives transfer',async t=>{
+ const f=await fixture(t),user=await f.make('HudHero',true),peer=f.open(user.cookie);await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;room.game.enemies=[];
+ const settings={scale:110,windows:{bag:{x:.2,y:.3}},keys:{returnCity:'KeyQ',pickupAll:'KeyE'}};
+ peer.send({t:'uiSettings',settings});await peer.until(m=>m.t==='uiSettings'&&m.settings.scale===110);
+ assert.deepEqual(await f.store.uiSettings(user.character.accountId),settings);
+ const second=await f.store.createCharacter(user.character.accountId,'HudOther','hudother');assert.deepEqual(await f.store.uiSettings(second.accountId),settings);
+ peer.send({t:'returnCity'});await peer.until(m=>m.t==='snap'&&m.players.some((v:any)=>v.returnRemaining>0));
+ peer.send({t:'steer',dx:1,dz:0,seq:1});await wait(100);assert.equal(p.returnRemaining,0);
+ peer.send({t:'steer',dx:0,dz:0,seq:2});peer.send({t:'returnCity'});await wait(100);assert.ok(p.returnRemaining!>0);
+ room.game.events.push({type:'hurt',playerId:p.id,x:p.x,z:p.z,amount:1});await wait(100);assert.equal(p.returnRemaining,0);
+ const {spawn}=await import('@thainative/shared');const boss=spawn(room.game,0,10,true);boss.engaged=true;
+ peer.send({t:'returnCity'});await wait(100);assert.equal(p.returnRemaining,0);boss.dead=true;
+ peer.send({t:'returnCity'});await wait(100);assert.ok(p.returnRemaining!>0);p.returnRemaining=.05;
+ await peer.until(m=>m.t==='snap'&&m.mapId==='city_plaza');assert.ok(p.returnReadyAt!>Date.now());
+ await wait(100);const saved=await f.store.character(user.character.accountId,p.id);assert.equal(saved!.returnReadyAt,p.returnReadyAt);
+});
+
+test('pickup all respects four metre radius, ownership and pending inventory transactions',async t=>{
+ const f=await fixture(t),user=await f.make('PickupHero',true),peer=f.open(user.cookie);await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ const room=[...f.rt.rooms.values()][0],g=room.game,p=g.players.get(user.character.id)!;g.enemies=[];p.x=0;p.z=0;
+ g.drops=[{id:800,x:3.5,z:0,ownerId:p.id,gold:7,xp:0,time:0,loot:[]},{id:801,x:3,z:0,ownerId:'other',gold:9,xp:0,time:0,loot:[]},{id:802,x:5,z:0,ownerId:p.id,gold:11,xp:0,time:0,loot:[]}];
+ peer.send({t:'pickupAll'});await peer.until(m=>m.t==='inv'&&m.gold===7);assert.equal(g.drops.some(d=>d.id===800),false);assert.ok(g.drops.some(d=>d.id===801));assert.ok(g.drops.some(d=>d.id===802));assert.equal(p.gold,7);
+});

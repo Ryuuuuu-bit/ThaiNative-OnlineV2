@@ -1,8 +1,12 @@
 import { z } from "zod";
 import { AudioSettingsSchema } from '../audio-settings.js';
+import {UISettingsSchema} from '../ui-settings.js';
 const seq = z.number().int().nonnegative().max(2147483647),
 	point = z.number().finite().min(-10000).max(10000);
 export const IntentSchema = z.discriminatedUnion("t", [
+ z.object({t:z.literal('uiSettings'),settings:UISettingsSchema}).strict(),
+ z.object({t:z.literal('returnCity')}).strict(),
+ z.object({t:z.literal('pickupAll')}).strict(),
  z.object({t:z.literal('inv'),op:z.enum(['buy','sell','equip','unequip','use','discard','pickup','settings']),req:z.uuid(),id:z.string().max(80).optional(),template:z.string().max(60).optional(),qty:z.number().int().min(1).max(9999).optional(),ids:z.array(z.string().max(80)).max(100).optional(),shop:z.enum(['market','forge']).optional(),drop:z.number().int().positive().optional(),on:z.boolean().optional()}).strict(),
  z.object({t:z.literal("travel"),gate:z.enum(["north","south","east","west"])}).strict(),
  z.object({t:z.literal("heal")}).strict(),

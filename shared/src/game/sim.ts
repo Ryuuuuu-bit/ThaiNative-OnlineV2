@@ -79,6 +79,7 @@ export interface Player extends Vec, JobProgress {
  inventory?:Inventory; autoSeconds:number;
  mapId: MapId;
  healerReadyAt: number;
+ returnReadyAt?:number; returnRemaining?:number;
  audioSettings?: import('../audio-settings.js').AudioSettings;
 	statuses: TimedEffect[];
 	castRemaining: number;

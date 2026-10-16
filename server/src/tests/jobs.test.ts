@@ -145,21 +145,21 @@ test("Angel cannot grant tier one; learned skills and remapped bar survive recon
 	const slots = p.hotbar.map((s, i) => ({
 		...s,
 		skill: i === 0 ? "slash" : s.skill,
-		key: i === 0 ? "KeyZ" : s.key,
+		key: i === 0 ? "KeyQ" : s.key,
 	}));
 	peer.send({ t: "hotbar", slots });
 	await peer.until(
 		(m) =>
-			m.t === "ev" && m.list.some((e: any) => e.job?.hotbar[0].key === "KeyZ"),
+			m.t === "ev" && m.list.some((e: any) => e.job?.hotbar[0].key === "KeyQ"),
 	);
 	const saved = await f.store.character(f.c.accountId, p.id);
-	assert.equal(saved!.hotbar![0].key, "KeyZ");
+	assert.equal(saved!.hotbar![0].key, "KeyQ");
 	peer.ws.close();
 	await wait(80);
 	const next = await f.open();
 	const snap = await next.until((m) => m.t === "snap");
 	assert.equal(snap.players[0].skills.slash, 1);
-	assert.equal(snap.players[0].hotbar[0].key, "KeyZ");
+	assert.equal(snap.players[0].hotbar[0].key, "KeyQ");
 });
 test("dev Job EXP multiplier is disabled in production rooms", async (t) => {
 	const f = await setup(t, true);

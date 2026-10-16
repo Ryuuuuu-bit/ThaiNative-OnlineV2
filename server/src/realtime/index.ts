@@ -38,6 +38,7 @@ import { IntentSchema, type Intent } from "@thainative/shared";
 import type { Store, Character, Progress } from "../store/types.js";
 import { hashToken } from "../session.js";
 interface Peer {
+ ui?:import('@thainative/shared').UISettings;
 	ws: WebSocket;
 	id: string;
 	accountId: string;
@@ -74,7 +75,7 @@ export interface RealtimeOptions {
 }
 const round = (n: number) => Math.round(n * 1000) / 1000;
 const playerKeys = [
-	"id", "mapId", "healerReadyAt",
+	"id", "mapId", "healerReadyAt", "returnRemaining", "returnReadyAt",
 	"name",
 	"x",
 	"z",
@@ -288,7 +289,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			kills: p.kills,
 			potions: p.potions,
 			mapId: p.dead ? "city_plaza" : p.mapId,
- healerReadyAt: p.healerReadyAt,
+ healerReadyAt: p.healerReadyAt, returnReadyAt:p.returnReadyAt,
  posX: p.dead ? CITY_SPAWN.x : p.x,
 			posZ: p.dead ? CITY_SPAWN.z : p.z,
 			baseStats: { ...p.profile.baseStats },
@@ -325,6 +326,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			}
 	}
 	function sendStats(peer: Peer, p: Player) {
+ void store.uiSettings(peer.accountId).then(settings=>{peer.ui=settings;send(peer.ws,{t:'uiSettings',settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'โหลดการตั้งค่าไม่สำเร็จ'}));
 		send(peer.ws, {
 			t: "ev",
 			list: [
@@ -383,7 +385,22 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          if(message.op==='use'&&(player.cd.potion>0||room.economyBusy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
          economy(peer,player,message,message.req);return;
         }
-        if(room.economyBusy)return;
+        if(message.t==='uiSettings'){
+ const reserved=['KeyW','KeyA','KeyS','KeyD','KeyK','KeyC','KeyI','KeyM','KeyR','KeyF','KeyT','KeyJ'];
+ const bindings=Object.values(message.settings.keys);
+ if(new Set(bindings).size!==bindings.length||bindings.some(k=>reserved.includes(k)||player.hotbar.some(s=>s.key===k))){send(peer.ws,{t:'uiSettingsError',text:'ปุ่มนี้ถูกใช้อยู่แล้ว'});return;}
+ void store.saveUISettings(peer.accountId,message.settings).then(()=>{peer.ui=message.settings;send(peer.ws,{t:'uiSettings',settings:message.settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'บันทึกการตั้งค่าไม่สำเร็จ'}));return;
+ }
+ if(room.economyBusy)return;
+ if(message.t==='returnCity'){
+ if(player.dead||g.mapId==='city_plaza'||Date.now()<(player.returnReadyAt||0)||g.enemies.some(e=>e.boss&&!e.dead&&e.engaged)){
+ send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'ยังกลับเมืองไม่ได้: อยู่ในเมือง รอคูลดาวน์ หรือต่อสู้กับราชาวุ้น'}]});return;}
+ if(!player.returnRemaining){player.returnRemaining=5;withPlayer(g,peer.id,()=>{setAuto(g,false);player.target=null;player.destination=null;});peer.input={x:0,z:0};}return;
+ }
+ if(message.t==='pickupAll'){
+ if(!player.dead)for(const d of g.drops)if(!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(d.x-player.x,d.z-player.z)<=4){d.x=player.x;d.z=player.z;d.time=Math.max(.26,d.time);}return;
+ }
+ if(player.returnRemaining&&(['move','target','act','travel','auto'].includes(message.t)||(message.t==='steer'&&Math.hypot(message.dx,message.dz)>.05)))player.returnRemaining=0;
 
         if(message.t==='travel'){
          const destination=travelDestination(g.mapId,message.gate,player);
@@ -409,7 +426,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			) {
 				try {
 					if (p.dead) throw Error("รอฟื้นตัวก่อน");
-					let next = normalizeJob(p);
+					if(message.t==='hotbar'&&message.slots.some(s=>Object.values(peer.ui?.keys??{returnCity:'KeyH',pickupAll:'KeyZ'}).includes(s.key)))throw Error('ปุ่มนี้ใช้กับกลับเมืองหรือเก็บรอบตัวแล้ว');
+                    let next = normalizeJob(p);
 					if (message.t === "skillUp") next = learnSkill(p, message.id, g.data);
 					if (message.t === "hotbar")
 						next = {
@@ -624,7 +642,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                     p.profile.equipment=equipped(p.inventory);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
- p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
+ p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
 					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;
@@ -787,7 +805,13 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					if (peer.ready) inputs.set(peer.id, peer.input);
 				if (room.game.players.size)
 					step(room.game, 0.05, { x: 0, z: 0 }, inputs);
-				flush(room);
+				for(const peer of [...room.peers.values()]){
+ const p=room.game.players.get(peer.id);if(!p?.returnRemaining)continue;
+ if(p.dead||p.moving||room.game.events.some(e=>e.type==='hurt'&&e.playerId===p.id)||room.game.enemies.some(e=>e.boss&&!e.dead&&e.engaged)){p.returnRemaining=0;continue;}
+ p.returnRemaining=Math.max(0,p.returnRemaining-.05);
+ if(p.returnRemaining<1e-8){p.returnRemaining=0;p.returnReadyAt=now+60000;transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});}
+ }
+ flush(room);
 				if (room.tick % 2 === 0)
 					for (const peer of room.peers.values())
 						if (peer.ready) send(peer.ws, snapshot(room, peer));

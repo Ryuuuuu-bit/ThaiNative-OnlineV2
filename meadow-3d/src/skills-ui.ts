@@ -1,9 +1,12 @@
+import {resolveSkill,loadGameData} from '@thainative/shared';
 import skillsData from "../../shared/data/skills.json";
 import jobsData from "../../shared/data/jobs.json";
 import type { HotbarSlot, JobProgress } from "@thainative/shared";
 import "./skills.css";
 import "./skill-art.css";
 const skills = skillsData.skills as any[];
+const itemTemplates=loadGameData().items.items;
+const slotSpec=(id:string|null)=>id?.startsWith('item:')?itemTemplates.find(t=>t.id===id.slice(5)):skills.find(s=>s.id===id);
 const $ = <T extends HTMLElement = HTMLElement>(s: string) =>
 	document.querySelector<T>(s)!;
 export const keyLabel = (key: string) =>
@@ -61,9 +64,9 @@ export function mountSkills(
 	function slotsHTML(mirror = false) {
 		return (job?.hotbar || [])
 			.map((slot, i) => {
-				const s = skills.find((s) => s.id === slot.skill),
-					learned = !!s && !!job?.skills[s.id];
-				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${learned ? "" : "unlearned"}" data-slot="${i}" ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
+				const s = slotSpec(slot.skill),
+					learned = !!s && (!!slot.skill?.startsWith('item:') || !!job?.skills[s.id]);
+				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}" data-slot="${i}" ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? slot.skill?.startsWith("item:") ? `<span class="hotbar-item">✚</span>` : icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
 			})
 			.join("");
 	}
@@ -91,7 +94,7 @@ export function mountSkills(
 			el.ondrop = (e) => {
 				e.preventDefault();
 				const id = e.dataTransfer?.getData("text/plain");
-				if (id) assign(Number(el.dataset.slot), id);
+				if (id && (skills.some(s=>s.id===id)||id.startsWith('item:'))) assign(Number(el.dataset.slot), id);
 			};
 			el.oncontextmenu = (e) => {
 				e.preventDefault();
@@ -107,7 +110,7 @@ export function mountSkills(
 	function draw() {
 		if (!job) return;
 		$("#skills-job").textContent =
-			`${jobsData.jobs.find((j) => j.id === job?.jobId)?.nameTh} · Job Lv.${job.jobLevel}`;
+			`${jobsData.jobs.find((j) => j.id === job?.jobId)?.nameTh} · ระดับอาชีพ ${job.jobLevel}`;
 		$("#skill-points").textContent = String(
 			job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0),
 		);
@@ -120,7 +123,7 @@ export function mountSkills(
 			const list = skills.filter(s => s.jobId === job?.jobId);
 			if (tier === 2) {
 				section.innerHTML +=
-					'<p class="skill-locked">ผู้พิทักษ์ / นักดาบคลั่ง<br>Job Lv.40 · ภารกิจเร็ว ๆ นี้</p>';
+					'<p class="skill-locked">ผู้พิทักษ์ / นักดาบคลั่ง<br>ระดับอาชีพ 40 · ภารกิจเร็ว ๆ นี้</p>';
 				tree.append(section);
 				continue;
 			}
@@ -133,7 +136,8 @@ export function mountSkills(
 				card.draggable = !s.passive && !!job.skills[s.id];
 				card.title = `${s.nameTh} · ${values(s, Math.max(1, lv))}\nถัดไป: ${values(s, Math.min(s.maxLevel, lv + 1))}`;
 				card.innerHTML = `${icon(s)}<div><b>${s.nameTh}</b><span>${lv}/${s.maxLevel} ${s.passive ? "· ติดตัว" : ""}${pending[s.id] ? " · รอยืนยัน" : ""}</span><p>${lv ? values(s, lv) : "ยังไม่ได้เรียน"}</p><p class="skill-next">→ ${values(s, Math.min(s.maxLevel, lv + 1))}</p><small>${s.requires.map((r: any) => `↳ ${skills.find((s) => s.id === r.id)?.nameTh} ${r.level}`).join(" · ") || "เริ่มเรียนได้ทันที"}</small><small class="lock-reason">${lock}</small></div><button data-up="${s.id}" ${lock ? "disabled" : ""} aria-label="เพิ่ม ${s.nameTh}">+</button>`;
-				card.ondragstart = (e) => e.dataTransfer?.setData("text/plain", s.id);
+				card.ondragstart = (e) => {document.body.classList.add('dragging-hotbar');e.dataTransfer?.setData('text/plain',s.id);};
+                card.ondragend=()=>document.body.classList.remove('dragging-hotbar');
 				card.onclick = (e) => {
 					if ((e.target as HTMLElement).closest("[data-up]")) return;
 					if (!s.passive && job?.skills[s.id]) {
@@ -221,9 +225,9 @@ export function mountSkills(
 	};
 	function drawAngel() {
 		if (!job) return;
-		$("#angel-note").textContent = "ข้าจะนำทางเจ้าสู่อาชีพขั้นสองที่ Job Lv.40 · ยังไม่ถึงเวลา";
+		$("#angel-note").textContent = "ข้าจะนำทางเจ้าสู่อาชีพขั้นสองที่ ระดับอาชีพ 40 · ยังไม่ถึงเวลา";
 		$("#job-cards").innerHTML = jobsData.jobs.filter(j => j.tier === 2 && j.parent === job!.jobId)
-			.map(j => `<button disabled><b>${j.nameTh}</b><small>ยังไม่ถึงเวลา · Job Lv.40</small></button>`).join("");
+			.map(j => `<button disabled><b>${j.nameTh}</b><small>ยังไม่ถึงเวลา · ระดับอาชีพ 40</small></button>`).join("");
 	}
 	return {
 		get open() {
@@ -268,14 +272,14 @@ export function mountSkills(
 		update(p: any) {
 			if (p.jobId) {
 				$("#job-label").textContent =
-					`${jobsData.jobs.find((j) => j.id === p.jobId)?.nameTh} · Job Lv.${p.jobLevel}`;
+					`${jobsData.jobs.find((j) => j.id === p.jobId)?.nameTh} · ระดับอาชีพ ${p.jobLevel}`;
 				const j = jobsData.jobs.find((j) => j.id === p.jobId),
 					table =
 						j?.tier === 1
 								? jobsData.expToNext.tier1
 								: jobsData.expToNext.tier2;
 				$("#job-exp").textContent =
-					`Job EXP ${p.jobExp} / ${table[p.jobLevel - 1] || "MAX"}`;
+					`ประสบการณ์อาชีพ ${p.jobExp} / ${table[p.jobLevel - 1] || "สูงสุด"}`;
 			}
 			const key =
 				JSON.stringify(p.hotbar || []) + JSON.stringify(p.skills || {});
@@ -293,8 +297,9 @@ export function mountSkills(
 			}
 			bar.querySelectorAll<HTMLElement>("[data-slot]").forEach((el) => {
 				const id = job?.hotbar[Number(el.dataset.slot)].skill,
-					cd = id ? p.cd[id] || 0 : 0;
-				el.classList.toggle("cooling", cd > 0.05);
+					cd = id ? p.cd[id.startsWith('item:')?'potion':id] || 0 : 0;
+				el.classList.toggle('low-sp',!!id&&!id.startsWith('item:')&&p.mp<resolveSkill(loadGameData(),id,p.skills[id]||1).sp);
+                el.classList.toggle("cooling", cd > 0.05);
 				el.querySelector("em")!.textContent = cd > 0.05 ? cd.toFixed(1) : "";
 			});
 			const near =

@@ -25,7 +25,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	document.querySelector("#ui")!.append(button);
 	const panel = document.createElement("dialog");
 	panel.id = "inventory-window";
-	panel.innerHTML = `<button class="close" aria-label="ปิด">×</button><p class="caption">BELONGINGS & EQUIPMENT</p><h2>กระเป๋า</h2><div class="inv-summary"></div><progress class="inv-weight" max="100"></progress><nav class="inv-tabs"></nav><label class="inv-auto"><input type="checkbox"> AUTO เก็บของของฉัน</label><div class="inv-content"></div><section class="inv-detail" aria-live="polite">เลือกไอเทมเพื่อดูข้อมูล</section><p class="inv-status" role="status"></p>`;
+	panel.innerHTML = `<button class="close" aria-label="ปิด">×</button><p class="caption">สัมภาระและอุปกรณ์</p><h2>กระเป๋า</h2><div class="inv-summary"></div><progress class="inv-weight" max="100"></progress><nav class="inv-tabs"></nav><label class="inv-auto"><input type="checkbox"> ออโต้เก็บของของฉัน</label><div class="inv-content"></div><section class="inv-detail" aria-live="polite">เลือกไอเทมเพื่อดูข้อมูล</section><p class="inv-status" role="status"></p>`;
 	document.body.append(panel);
 	const summary = panel.querySelector<HTMLElement>(".inv-summary")!,
 		tabs = panel.querySelector("nav")!,
@@ -89,7 +89,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		b.append(count);
 		if (multi.has(i.id)) b.classList.add("inv-selected");
 		b.draggable = mode === "bag";
-		b.ondragstart = (e) => e.dataTransfer?.setData("text/plain", i.id);
+		b.ondragstart = (e) => e.dataTransfer?.setData("text/plain", t.type==='consumable'?'item:'+t.id:i.id);
 		b.onclick = () => {
 			if (mode === "sell") {
 				multi.has(i.id) ? multi.delete(i.id) : multi.add(i.id);
@@ -385,19 +385,15 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			}
 		},
 		toast(loot: { template: string; qty: number }[]) {
-			let stack = document.querySelector("#pickup-toasts");
-			if (!stack) {
-				stack = document.createElement("div");
-				stack.id = "pickup-toasts";
-				document.body.append(stack);
-			}
+			const stack = document.querySelector("#notices")!;
 			for (const drop of loot || []) {
 				const t = templates.find((t) => t.id === drop.template)!;
 				const toast = document.createElement("div");
-				toast.style.color = rarityColors[t.rarity];
+				toast.className = "notice";
 				toast.textContent = `+ ${t.nameTh} ×${drop.qty}`;
 				stack.append(toast);
-				setTimeout(() => toast.remove(), 4500);
+                while(stack.children.length>4)stack.firstElementChild?.remove();
+				setTimeout(() => toast.remove(), 4000);
 			}
 		},
 	};

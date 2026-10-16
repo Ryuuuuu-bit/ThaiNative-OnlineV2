@@ -238,7 +238,8 @@ export function validateHotbar(
 		)
 			throw Error("ปุ่มซ้ำหรือสงวนไว้");
 		used.add(slot.key);
-		if (slot.skill !== null) {
+		if(slot.skill?.startsWith('item:')){if(!data.items.items.some(t=>t.id===slot.skill!.slice(5)&&t.type==='consumable'))throw Error('ใช้ไอเทมนี้ในแถบไม่ได้');continue;}
+        if (slot.skill !== null) {
 			const s = data.skills.skills.find((s) => s.id === slot.skill);
 			if (
 				!s ||

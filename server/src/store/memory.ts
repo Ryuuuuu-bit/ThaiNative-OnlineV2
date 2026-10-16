@@ -5,6 +5,10 @@ import {loadGameData,newJob,normalizeJob} from '@thainative/shared';
 import{randomUUID}from'node:crypto';import type{Account,Character,GoogleIdentity,Session,Store}from'./types.js';import{AppError,missing}from'../errors.js';
 const now=()=>new Date().toISOString();
 export class MemoryStore implements Store {
+ private ui=new Map<string,import('@thainative/shared').UISettings>();
+ async uiSettings(id:string):Promise<import('@thainative/shared').UISettings>{return structuredClone(this.ui.get(id)??{scale:100,windows:{},keys:{returnCity:'KeyH',pickupAll:'KeyZ'}});}
+ async saveUISettings(id:string,settings:import('@thainative/shared').UISettings){this.ui.set(id,structuredClone(settings));}
+
  private accounts=new Map<string,Account>();private sessions=new Map<string,Session>();private chars=new Map<string,Character>();
  private inventories=new Map<string,Inventory>();
  private requests=new Map<string,{at:number;result:EconomyResult}>();
