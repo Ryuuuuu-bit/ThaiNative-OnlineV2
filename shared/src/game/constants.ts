@@ -1,6 +1,6 @@
 import skills from "../../data/skills.json" with { type: "json" };
 import type { Action } from "./sim.js";
-export const ACTION_SKILLS: Record<Action, string> = {
+export const ACTION_SKILLS: Record<string, string> = {
 	attack: "basic",
 	spin: "whirlwind",
 	meteor: "meteor",
@@ -12,4 +12,4 @@ export const CD = Object.fromEntries(
 		action,
 		skills.skills.find((s) => s.id === id)!.cooldown,
 	]),
-) as Record<Action, number>;
+) as Record<string, number>;

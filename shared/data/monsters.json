@@ -32,7 +32,8 @@
         7,
         14
       ],
-      "drops": []
+      "drops": [],
+      "jobExp": 18
     },
     {
       "id": "jelly_mint",
@@ -67,7 +68,8 @@
         10,
         18
       ],
-      "drops": []
+      "drops": [],
+      "jobExp": 27
     },
     {
       "id": "jelly_sky",
@@ -102,7 +104,8 @@
         10,
         18
       ],
-      "drops": []
+      "drops": [],
+      "jobExp": 27
     },
     {
       "id": "jelly_summon",
@@ -135,7 +138,8 @@
         3,
         3
       ],
-      "drops": []
+      "drops": [],
+      "jobExp": 3
     },
     {
       "id": "king_jelly",
@@ -197,7 +201,8 @@
           "percent": 61,
           "phase2Percent": 75
         }
-      }
+      },
+      "jobExp": 150
     }
   ]
 }

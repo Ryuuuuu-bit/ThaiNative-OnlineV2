@@ -141,6 +141,7 @@ export const CharacterSchema = z
 		cards: z.array(id).default([]),
 		modifiers: z.array(ModifierSchema).default([]),
 		starterGrant: z.boolean().default(false),
+		skills: z.record(z.string(), z.number().int().min(0).max(10)).default({}),
 	})
 	.strict();
 export const StatsSchema = z
@@ -152,7 +153,19 @@ export const StatsSchema = z
 		maxStat: z.literal(99),
 		maxLevel: z.literal(99),
 		statResetFree: z.boolean(),
-		regen:z.object({spBase:nonnegative,spInt:nonnegative,spMax:nonnegative,hpBase:nonnegative,hpVit:nonnegative,hpMax:nonnegative,outOfCombatSeconds:nonnegative,inCombatHpMultiplier:fraction,sittingMultiplier:positive}).strict(),
+		regen: z
+			.object({
+				spBase: nonnegative,
+				spInt: nonnegative,
+				spMax: nonnegative,
+				hpBase: nonnegative,
+				hpVit: nonnegative,
+				hpMax: nonnegative,
+				outOfCombatSeconds: nonnegative,
+				inCombatHpMultiplier: fraction,
+				sittingMultiplier: positive,
+			})
+			.strict(),
 		pointCosts: z
 			.array(
 				z
@@ -253,6 +266,19 @@ export const ClassesSchema = z
 export const SkillSchema = z
 	.object({
 		id,
+		jobId: id,
+		maxLevel: positive.int().max(10),
+		requires: z.array(z.object({ id, level: positive.int().max(10) }).strict()),
+		passive: z.boolean(),
+		values: z.record(z.string(), z.array(nonnegative)).default({}),
+		hits: positive.int().max(10).default(1),
+		effect: z.enum(["dash", "knockup", "taunt", "endure", "heal"]).optional(),
+		duration: nonnegative.optional(),
+		pvpDurationMul: fraction.optional(),
+		pvpEffect: z
+			.object({ id: z.literal("slow"), duration: positive, value: fraction })
+			.strict()
+			.optional(),
 		nameTh: id,
 		percent: nonnegative,
 		comboThirdPercent: nonnegative.optional(),
@@ -270,7 +296,7 @@ export const SkillSchema = z
 			.optional(),
 		pvpMul: fraction.optional(),
 		ignoreSize: z.boolean().optional(),
-		icon: z.number().int().min(0).max(5),
+		icon: z.number().int().min(0).max(11),
 		heal: z
 			.object({ flat: nonnegative, vitPercent: nonnegative })
 			.strict()
@@ -304,6 +330,7 @@ export const MonsterSchema = z
 		boss: z.boolean(),
 		skills: z.array(id),
 		exp: nonnegative,
+		jobExp: nonnegative,
 		gold: z
 			.tuple([nonnegative, nonnegative])
 			.refine(([a, b]) => a <= b, "minimum exceeds maximum"),
@@ -448,7 +475,33 @@ export const CardsSchema = z
 			.min(1),
 	})
 	.strict();
+export const JobsSchema = z
+	.object({
+		...version,
+		jobs: z.array(
+			z
+				.object({
+					id,
+					nameTh: id,
+					tier: z.number().int().min(0).max(2),
+					maxLevel: positive.int().max(70),
+					parent: id.nullable(),
+					available: z.boolean(),
+				})
+				.strict(),
+		),
+		angel: z.object({ x: number, z: number, range: positive }).strict(),
+		expToNext: z
+			.object({
+				villager: z.array(positive).length(9),
+				tier1: z.array(positive).length(49),
+				tier2: z.array(positive).length(69),
+			})
+			.strict(),
+	})
+	.strict();
 export const schemas = {
+	jobs: JobsSchema,
 	stats: StatsSchema,
 	elements: ElementsSchema,
 	races: RacesSchema,

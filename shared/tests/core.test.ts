@@ -44,8 +44,8 @@ const midpoint = (a = player(), d = pink(), id = "basic", third = false) =>
 		{ rng: () => 0.5, comboThird: third },
 		data,
 	);
-test("all ten files validate and browser/Node loaders agree", () => {
-	assert.equal(Object.keys(data).length, 10);
+test("all eleven files validate and browser/Node loaders agree", () => {
+	assert.equal(Object.keys(data).length, 11);
 	assert.deepEqual(data, browserData());
 	for (const file of Object.values(data)) assert.equal(file.dataVersion, 1);
 });
@@ -116,7 +116,7 @@ test("Lv99 budget spends only within a monotonic cost table and leaves no afford
 		let spent = 0;
 		for (const [stat,value] of Object.entries(build.baseStats)) {
 			assert.ok(value >= 1 && value <= 99);
-			const start=job.id===data.stats.defaultBuild.classId?data.stats.defaultBuild.baseStats[stat as keyof typeof build.baseStats]:1;
+			const start=['swordsman',data.stats.defaultBuild.classId].includes(job.id)?data.stats.defaultBuild.baseStats[stat as keyof typeof build.baseStats]:1;
 			for (let n = start; n < value; n++) spent += statPointCost(n, data);
 		}
 		const left = 98*data.stats.pointsPerLevel - spent;
@@ -428,7 +428,7 @@ test("goldens anchor current sim constants; starter jelly is neutral so meteor a
 		);
 	near(midpoint().damage, 16);
 	near(midpoint(player(), pink(), "basic", true).damage, 28);
-	near(midpoint(player(), pink(), "whirlwind").damage, 38);
+	near(midpoint(player(), pink(), "whirlwind").damage*2, 38);
 	near(midpoint(player(), pink(), "meteor").damage, 58);
 	near(midpoint(pink(), player()).damage, 9);
 	near(
@@ -440,7 +440,7 @@ test("goldens anchor current sim constants; starter jelly is neutral so meteor a
 	near(player().maxSp, 80);
 	assert.equal(midpoint().damage, 15);
 	assert.equal(midpoint(player(), pink(), "basic", true).damage, 27);
-	assert.equal(midpoint(player(), pink(), "whirlwind").damage, 33);
+	assert.equal(midpoint(player(), pink(), "whirlwind").damage*2, 34);
 	const meteor = midpoint(player(), pink(), "meteor");
 	assert.equal(meteor.damage, 51);
 	assert.equal(meteor.breakdown.E, 1);

@@ -1,11 +1,26 @@
+import {
+	migrateJob,
+	newJob,
+	resolveSkill,
+	skillId,
+	skillValue,
+	belongsToJob,
+	gainJobExp,
+	skillEffects,
+	applyEffects,
+	tickEffects,
+	rhythmCooldowns,
+	type JobProgress,
+	type TimedEffect,
+} from "../jobs.js";
 import { loadGameData } from "../load.js";
 import { deriveStats, monsterStats, type Combatant } from "../derive.js";
 import { computeDamage } from "../damage.js";
-import{autoAllocateStats}from'../allocation.js';
+import { autoAllocateStats } from "../allocation.js";
 import type { GameData, CharacterInput, Skill } from "../schema.js";
 const DEFAULT_DATA = loadGameData();
 import { MONSTER_MOTIONS } from "./monster-motion-data.js";
-export type Action = "attack" | "spin" | "meteor" | "dash" | "potion";
+export type Action = string;
 export type SlimeVariant = "pink" | "mint" | "sky";
 export type KingAttack = "slam" | "sweep" | "charge" | "spit" | "summon";
 export type MonsterMotion =
@@ -16,6 +31,7 @@ export interface Vec {
 	z: number;
 }
 export interface Enemy extends Vec {
+	statuses: TimedEffect[];
 	dataId: string;
 	damageBy: Record<string, number>;
 	id: number;
@@ -57,16 +73,19 @@ export interface Enemy extends Vec {
 	moving: boolean;
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
-export interface Player extends Vec {
+export interface Player extends Vec, JobProgress {
+	statuses: TimedEffect[];
+	castRemaining: number;
+	jobsVersion: number;
 	id: string;
 	name: string;
 	stats: Combatant;
 	profile: CharacterInput;
 	kills: number;
 	statPoints: number;
-	autoAllocate:boolean;
-	autoAllocCursor:number;
-	lastCombat:number;
+	autoAllocate: boolean;
+	autoAllocCursor: number;
+	lastCombat: number;
 	target: number | null;
 	destination: Vec | null;
 	autoTimer: number;
@@ -106,6 +125,7 @@ export interface Drop extends Vec {
 	id: number;
 	gold: number;
 	xp: number;
+	jobExp?: number;
 	time: number;
 }
 export interface Projectile extends Vec {
@@ -141,16 +161,22 @@ export function createGame(
 		return n / 4294967296;
 	};
 	const stats = deriveStats(profile, data);
+	const job =
+		profile.classId === "villager" ? newJob() : migrateJob(profile.level);
 	let p: Player = {
+		...job,
+		statuses: [],
+		castRemaining: 0,
+		jobsVersion: 2,
 		id,
 		name: "Aerin",
 		stats,
 		profile: structuredClone(profile),
 		kills: 0,
 		statPoints: 0,
-		autoAllocate:true,
-		autoAllocCursor:0,
-		lastCombat:-Infinity,
+		autoAllocate: true,
+		autoAllocCursor: 0,
+		lastCombat: -Infinity,
 		target: null,
 		destination: null,
 		autoTimer: 0,
@@ -183,12 +209,15 @@ export function createGame(
 		hurt: 0,
 		cd: { attack: 0, spin: 0, meteor: 0, dash: 0, potion: 0 },
 	};
-	p.hp = p.maxHp = stats.maxHp;
-	p.mp = p.maxMp = stats.maxSp;
+	p.profile.skills = { ...p.skills };
+	p.stats = deriveStats(p.profile, data);
+	p.hp = p.maxHp = p.stats.maxHp;
+	p.mp = p.maxMp = p.stats.maxSp;
 	p.level = profile.level;
 	p.nextXp = data.stats.expToNext[p.level - 1];
 	const g = {
 		data,
+		jobExpMultiplier: 1,
 		players: new Map([[id, p]]),
 		get p() {
 			return p;
@@ -242,7 +271,14 @@ export function createGame(
 		kills: 0,
 		bossSpawned: false,
 		won: false,
-		meteors: [] as { ownerId: string; x: number; z: number; time: number }[],
+		meteors: [] as {
+			ownerId: string;
+			x: number;
+			z: number;
+			time: number;
+			skillId?: string;
+			level?: number;
+		}[],
 	};
 	const positions = [
 		[-4, 3],
@@ -284,10 +320,17 @@ export function addPlayer(
 }
 export function refreshStats(g: Game, p: Player) {
 	p.profile.level = p.level;
+	p.profile.skills = { ...p.skills };
 	p.stats = deriveStats(p.profile, g.data);
+	const endure = p.statuses.find((s) => s.id === "endure");
+	if (endure) {
+		p.stats.hardDef *= 1 + endure.value;
+		p.stats.softDef *= 1 + endure.value;
+	}
 	p.maxHp = p.stats.maxHp;
 	p.maxMp = p.stats.maxSp;
-	p.hp=Math.min(p.hp,p.maxHp);p.mp=Math.min(p.mp,p.maxMp);
+	p.hp = Math.min(p.hp, p.maxHp);
+	p.mp = Math.min(p.mp, p.maxMp);
 	p.nextXp = g.data.stats.expToNext[p.level - 1];
 }
 function topDamage(g: Game, e: Enemy) {
@@ -299,7 +342,7 @@ function topDamage(g: Game, e: Enemy) {
 }
 
 export function gameSkill(g: Game, a: Action) {
-	return g.data.skills.skills.find((s) => s.id === ACTION_SKILLS[a])!;
+	return resolveSkill(g.data, skillId(a), g.p.skills[skillId(a)] || 1);
 }
 function duration(e: Enemy, motion: MonsterMotion) {
 	return (
@@ -331,6 +374,7 @@ export function spawn(
 	const hp = spec.hp;
 	const e: Enemy = {
 		dataId,
+		statuses: [],
 		damageBy: {},
 		id: g.nextId++,
 		x,
@@ -401,6 +445,7 @@ function reward(g: Game, e: Enemy) {
 		gold:
 			spec.gold[0] + Math.floor(g.random() * (spec.gold[1] - spec.gold[0] + 1)),
 		xp: spec.exp,
+		jobExp: spec.jobExp,
 		time: 0,
 	});
 	if (e.boss) {
@@ -443,12 +488,30 @@ function defeat(g: Game, e: Enemy) {
 	}
 }
 function hit(g: Game, e: Enemy, skill: Skill, third = false) {
-	if (e.dead) return;
+	if (e.dead) return false;
 	const defender = monsterStats(
 		g.data.monsters.monsters.find((m) => m.id === e.dataId)!,
 		g.data,
 		e.bossPhase === 2,
 	);
+	const defDown = e.statuses.find((s) => s.id === "def_down");
+	if (defDown) {
+		defender.hardDef *= 1 - defDown.value;
+		defender.softDef *= 1 - defDown.value;
+	}
+	const rhythm = g.p.skills.sword_rhythm || 0;
+	if (third && rhythm)
+		skill = {
+			...skill,
+			comboThirdPercent:
+				(skill.comboThirdPercent || 170) *
+				(1 +
+					skillValue(
+						resolveSkill(g.data, "sword_rhythm", rhythm),
+						"comboBonus",
+						rhythm,
+					)),
+		};
 	const result = computeDamage(
 		g.p.stats,
 		defender,
@@ -464,15 +527,16 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 			boss: e.boss,
 			breakdown: result.breakdown,
 		});
-		return;
+		return false;
 	}
 	let damage = Math.round(
 		result.damage * (e.boss && e.motion === "stun" ? 1.25 : 1),
 	);
 	const crit = result.crit;
-	if(damage>0)g.p.lastCombat=g.time;
+	if (damage > 0) g.p.lastCombat = g.time;
 	e.damageBy[g.p.id] = (e.damageBy[g.p.id] || 0) + Math.min(damage, e.hp);
 	e.hp = Math.max(0, e.hp - damage);
+	applyEffects(e, skillEffects(skill, g.p.skills[skill.id] || 1, g.p.id));
 	e.hurt = 0.18;
 	e.aggro = e.boss ? 30 : 10;
 	if (!e.boss) {
@@ -498,7 +562,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 	});
 	if (e.hp === 0) {
 		defeat(g, e);
-		return;
+		return true;
 	}
 	if (e.boss && e.bossPhase === 1 && e.hp <= e.maxHp * 0.5) {
 		e.bossPhase = 2;
@@ -508,6 +572,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 		emit(g, "phase2", { x: e.x, z: e.z, id: e.id });
 	} else if (e.boss && (e.motion === "idle" || e.motion === "move"))
 		setMotion(e, "hit");
+	return true;
 }
 function hurt(
 	g: Game,
@@ -553,8 +618,8 @@ function hurt(
 		breakdown = result.breakdown;
 	}
 	p.hp = Math.max(0, p.hp - amount);
-	if(amount>0)p.lastCombat=g.time;
-	p.hurt = 0.3;
+	if (amount > 0) p.lastCombat = g.time;
+	if (!p.statuses.some((s) => s.id === "endure")) p.hurt = 0.3;
 	p.invulnerable = 0.55;
 	emit(g, "hurt", { amount, breakdown });
 	if (p.hp === 0) {
@@ -567,9 +632,24 @@ function hurt(
 }
 export function action(g: Game, a: Action) {
 	const p = g.p,
-		skill = gameSkill(g, a);
-	if (p.dead || p.cd[a] > 0) return false;
-	if (a === "attack") {
+		skill = g.data.skills.skills.some((s) => s.id === skillId(a))
+			? gameSkill(g, a)
+			: null;
+	if (
+		!skill ||
+		(skill.id === "punch" && p.jobId !== "villager") ||
+		skill.passive ||
+		!p.skills[skill.id] ||
+		!belongsToJob(p.jobId, skill.jobId, g.data) ||
+		p.dead ||
+		p.castRemaining > 0 ||
+		p.statuses.some((s) => s.id === "stun" || s.id === "knockup") ||
+		(p.cd[
+			skill.id === "basic" ? "attack" : skill.id === "dodge" ? "dash" : skill.id
+		] || 0) > 0
+	)
+		return false;
+	if (a === "attack" || a === "basic") {
 		if (p.dash > 0) return false;
 		p.combo = p.comboWindow > 0 ? (p.combo + 1) % 3 : 0;
 		p.comboWindow = 1.1;
@@ -598,6 +678,7 @@ export function action(g: Game, a: Action) {
 			p.fz = (nearby.z - p.z) / d;
 		}
 		emit(g, "slash", { dx: p.fx, dz: p.fz, combo: p.combo });
+		let connected = false;
 		for (const e of [...g.enemies]) {
 			const dx = e.x - p.x,
 				dz = e.z - p.z,
@@ -607,54 +688,144 @@ export function action(g: Game, a: Action) {
 				d < (e.boss ? 2.3 : 1.8) &&
 				(dx * p.fx + dz * p.fz) / (d || 1) > -0.2
 			)
-				hit(g, e, skill, p.combo === 2);
+				connected = hit(g, e, skill, p.combo === 2) || connected;
 		}
+		if (p.combo === 2 && connected)
+			rhythmCooldowns(p.cd, p.skills.sword_rhythm || 0, g.data);
 		return true;
 	}
-	if (a === "spin" || a === "meteor") {
-		const cost = skill.sp;
-		if (p.mp < cost) {
-			emit(g, "notice", { text: "MP ไม่พอ รอพลังฟื้นสักครู่" });
+	if (!["dodge", "potion"].includes(skill.id)) {
+		const level = p.skills[skill.id] || 1;
+		const target =
+			g.enemies.find((e) => e.id === g.target && !e.dead) ||
+			g.enemies
+				.filter((e) => !e.dead)
+				.sort(
+					(a, b) =>
+						Math.hypot(a.x - p.x, a.z - p.z) - Math.hypot(b.x - p.x, b.z - p.z),
+				)[0];
+		if (
+			skill.kind === "single" &&
+			skill.effect !== "dash" &&
+			(!target ||
+				Math.hypot(target.x - p.x, target.z - p.z) >
+					skill.range + (target.boss ? 0.5 : 0))
+		)
+			return false;
+		if (p.mp < skill.sp) {
+			emit(g, "notice", { text: "SP ไม่พอ รอพลังฟื้นสักครู่" });
 			return false;
 		}
-		p.mp -= cost;
-		p.cd[a] = skill.cooldown;
-		p.attack = a === "spin" ? 0.6 : 0.8;
-		p.attackKind = a;
-		if (a === "spin") {
-			emit(g, "spin");
-			for (const e of [...g.enemies])
-				if (!e.dead && Math.hypot(e.x - p.x, e.z - p.z) < skill.radius)
-					hit(g, e, skill);
-		} else {
-			const target =
-				g.enemies.find((e) => e.id === g.target && !e.dead) ||
-				g.enemies
-					.filter((e) => !e.dead && Math.hypot(e.x - p.x, e.z - p.z) < 8)
-					.sort(
-						(a, b) =>
-							Math.hypot(a.x - p.x, a.z - p.z) -
-							Math.hypot(b.x - p.x, b.z - p.z),
-					)[0];
-			if (target && Math.hypot(target.x - p.x, target.z - p.z) > skill.range) {
-				p.mp += cost;
-				p.cd[a] = 0;
-				return false;
+		if (skill.kind === "single" && target) {
+			const d = Math.hypot(target.x - p.x, target.z - p.z) || 1;
+			p.fx = (target.x - p.x) / d;
+			p.fz = (target.z - p.z) / d;
+		}
+		p.mp -= skill.sp;
+		p.cd[skill.id] = skill.cooldown;
+		if (skill.id === "whirlwind") p.cd.spin = skill.cooldown;
+		p.attack =
+			skill.id === "whirlwind"
+				? 0.6
+				: skill.effect === "dash"
+					? 0.5
+					: skill.cast || 0.5;
+		p.attackKind =
+			skill.id === "whirlwind"
+				? "spin"
+				: skill.id === "slash"
+					? "slash"
+					: skill.effect === "dash"
+						? "dash_strike"
+						: "meteor";
+		emit(g, "skill", {
+			skillId: skill.id,
+			duration: skill.cast || 0.7,
+			dx: p.fx,
+			dz: p.fz,
+		});
+		if (skill.effect === "heal") {
+			const amount = Math.min(
+				p.maxHp - p.hp,
+				skillValue(skill, "heal", level) + p.stats.stats.vit * 2,
+			);
+			p.hp += amount;
+			emit(g, "heal", { amount });
+			return true;
+		}
+		if (skill.effect === "endure") {
+			p.hurt = 0;
+			applyEffects(p, skillEffects(skill, level, p.id));
+			refreshStats(g, p);
+			return true;
+		}
+		if (skill.effect === "taunt") {
+			for (const e of g.enemies)
+				if (!e.dead && Math.hypot(e.x - p.x, e.z - p.z) <= skill.radius) {
+					applyEffects(e, skillEffects(skill, level, p.id));
+					e.aggro = 5;
+				}
+			return true;
+		}
+		if (skill.effect === "dash") {
+			if (target && Math.hypot(target.x - p.x, target.z - p.z) <= skill.range) {
+				const d = Math.hypot(target.x - p.x, target.z - p.z) || 1;
+				p.fx = (target.x - p.x) / d;
+				p.fz = (target.z - p.z) / d;
 			}
+			const seen = new Set<number>();
+			const start = { x: p.x, z: p.z };
+			g.destination = null;
+			g.target = null;
+			for (let n = 0; n < Math.round(skill.range / 0.1); n++) {
+				const x = p.x + p.fx * 0.1,
+					z = p.z + p.fz * 0.1;
+				if (!walkable(x, z, 0.35)) break;
+				p.x = x;
+				p.z = z;
+				for (const e of [...g.enemies])
+					if (
+						!e.dead &&
+						!seen.has(e.id) &&
+						Math.hypot(e.x - x, e.z - z) < (e.boss ? 1.3 : 0.9)
+					) {
+						seen.add(e.id);
+						hit(g, e, skill);
+					}
+			}
+			emit(g, "dashTrail", {
+				fromX: start.x,
+				fromZ: start.z,
+				toX: p.x,
+				toZ: p.z,
+			});
+			return true;
+		}
+		if (skill.cast > 0) {
+			p.castRemaining = skill.cast;
 			g.meteors.push({
 				ownerId: p.id,
-				x: target ? target.x : p.x + p.fx * 4,
-				z: target ? target.z : p.z + p.fz * 4,
+				x: skill.range && target ? target.x : p.x,
+				z: skill.range && target ? target.z : p.z,
 				time: skill.cast,
+				skillId: skill.id,
+				level,
 			});
-			emit(g, "meteor", {
-				...g.meteors[g.meteors.length - 1],
-				duration: skill.cast,
-			});
+			return true;
 		}
+		const targets =
+			skill.kind === "single"
+				? target
+					? [target]
+					: []
+				: g.enemies.filter(
+						(e) => !e.dead && Math.hypot(e.x - p.x, e.z - p.z) <= skill.radius,
+					);
+		for (const e of [...targets])
+			for (let i = 0; i < skill.hits; i++) hit(g, e, skill);
 		return true;
 	}
-	if (a === "dash") {
+	if (skill.id === "dodge") {
 		p.cd.dash = CD.dash;
 		p.dash = 0.22;
 		p.invulnerable = 0.35;
@@ -663,7 +834,7 @@ export function action(g: Game, a: Action) {
 		emit(g, "dash", { dx: p.fx, dz: p.fz });
 		return true;
 	}
-	if (a === "potion") {
+	if (skill.id === "potion") {
 		if (p.potions <= 0) {
 			emit(g, "notice", { text: "ยาหมดแล้ว กลับไปฟื้นพลังที่แคมป์" });
 			return false;
@@ -923,12 +1094,18 @@ function autoStep(g: Game, dt: number): Vec {
 				(e) => Math.hypot(e.x - p.x, e.z - p.z) <= 2.6,
 			);
 			if (
-				p.mp >= 30 &&
-				p.cd.meteor === 0 &&
+				p.skills.earth_break &&
+				p.mp >= gameSkill(g, "earth_break").sp &&
+				(p.cd.earth_break || 0) === 0 &&
 				(target.boss || nearby.length >= 3)
 			)
-				action(g, "meteor");
-			if (p.mp >= 20 && nearby.length >= 2 && p.cd.spin === 0)
+				action(g, "earth_break");
+			if (
+				p.skills.whirlwind &&
+				p.mp >= gameSkill(g, "spin").sp &&
+				nearby.length >= 2 &&
+				p.cd.spin === 0
+			)
 				action(g, "spin");
 		}
 	}
@@ -941,6 +1118,7 @@ function autoStep(g: Game, dt: number): Vec {
 		if (d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
+			if (p.skills.punch && (p.cd.punch || 0) === 0) action(g, "punch");
 			action(g, "attack");
 			g.destination = null;
 			if (!retreat) p.autoState = "fight";
@@ -1194,6 +1372,11 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 }
 function playerStep(g: Game, dt: number, input: Vec) {
 	const p = g.p;
+	const hadEndure = p.statuses.some((s) => s.id === "endure");
+	tickEffects(p, dt);
+	if (hadEndure !== p.statuses.some((s) => s.id === "endure"))
+		refreshStats(g, p);
+	p.castRemaining = p.castRemaining - dt < 1e-8 ? 0 : p.castRemaining - dt;
 	for (const a of Object.keys(p.cd) as Action[])
 		p.cd[a] = p.cd[a] - dt < 1e-8 ? 0 : p.cd[a] - dt;
 	for (const a of ["attack", "comboWindow", "invulnerable", "hurt"] as const)
@@ -1202,7 +1385,23 @@ function playerStep(g: Game, dt: number, input: Vec) {
 		p.mp = Math.min(p.maxMp, p.mp + dt * p.stats.spRegen);
 		if (Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 2)
 			p.hp = Math.min(p.maxHp, p.hp + dt * 20);
-		else p.hp=Math.min(p.maxHp,p.hp+dt*p.stats.hpRegen*(g.time-p.lastCombat>=g.data.stats.regen.outOfCombatSeconds?1:g.data.stats.regen.inCombatHpMultiplier));
+		else
+			p.hp = Math.min(
+				p.maxHp,
+				p.hp +
+					dt *
+						p.stats.hpRegen *
+						(g.time - p.lastCombat >= g.data.stats.regen.outOfCombatSeconds
+							? 1
+							: g.data.stats.regen.inCombatHpMultiplier),
+			);
+		if (
+			p.castRemaining > 0 ||
+			p.statuses.some((s) => s.id === "stun" || s.id === "knockup")
+		) {
+			p.moving = false;
+			return;
+		}
 		let ix = input.x,
 			iz = input.z;
 		if (Math.hypot(ix, iz) > 0.05) {
@@ -1251,7 +1450,12 @@ function playerStep(g: Game, dt: number, input: Vec) {
 				p.fz = iz;
 				const speed =
 					(p.auto && p.autoState === "idle" ? 1.8 : p.attack > 0 ? 1.6 : 4.5) *
-					p.stats.moveSpeed;
+					p.stats.moveSpeed *
+					(1 -
+						Math.max(
+							0,
+							...p.statuses.filter((s) => s.id === "slow").map((s) => s.value),
+						));
 				move(p, ix * speed * dt, iz * speed * dt);
 			}
 		}
@@ -1274,12 +1478,19 @@ export function step(
 		);
 	}
 	for (const e of [...g.enemies]) {
-		const nearest = [...g.players.values()]
-			.filter((p) => !p.dead)
-			.sort(
-				(a, b) =>
-					Math.hypot(a.x - e.x, a.z - e.z) - Math.hypot(b.x - e.x, b.z - e.z),
-			)[0];
+		tickEffects(e, dt);
+		const forced = e.statuses.find((s) => s.id === "taunt");
+		const taunter = forced ? g.players.get(forced.sourceId) : undefined;
+		const nearest =
+			taunter && !taunter.dead
+				? taunter
+				: [...g.players.values()]
+						.filter((p) => !p.dead)
+						.sort(
+							(a, b) =>
+								Math.hypot(a.x - e.x, a.z - e.z) -
+								Math.hypot(b.x - e.x, b.z - e.z),
+						)[0];
 		if (nearest) g.p = nearest;
 		const p = g.p;
 		e.hurt = Math.max(0, e.hurt - dt);
@@ -1315,6 +1526,7 @@ export function step(
 			z = e.z;
 		e.motionTime +=
 			dt * (e.boss && e.bossPhase === 2 && e.motion !== "transform" ? 1.3 : 1);
+		if (e.statuses.some((s) => s.id === "stun" || s.id === "knockup")) continue;
 		if (e.boss) kingStep(g, e, dt);
 		else slimeStep(g, e, dt);
 		e.vx = (e.x - x) / dt;
@@ -1352,12 +1564,20 @@ export function step(
 	for (let i = g.meteors.length - 1; i >= 0; i--) {
 		const m = g.meteors[i];
 		m.time -= dt;
-		if (m.time <= 0) {
+		if (m.time <= 1e-8) {
 			const owner = g.players.get(m.ownerId);
 			if (owner) {
 				g.p = owner;
-				emit(g, "impact", { x: m.x, z: m.z });
-				const skill = gameSkill(g, "meteor");
+				if (owner.dead) {
+					g.meteors.splice(i, 1);
+					continue;
+				}
+				emit(g, "skillImpact", {
+					x: m.x,
+					z: m.z,
+					skillId: m.skillId || "meteor",
+				});
+				const skill = resolveSkill(g.data, m.skillId || "meteor", m.level || 1);
 				for (const e of [...g.enemies])
 					if (!e.dead && Math.hypot(e.x - m.x, e.z - m.z) < skill.radius)
 						hit(g, e, skill);
@@ -1381,6 +1601,17 @@ export function step(
 			}
 			if (!p.dead && dist < 0.45) {
 				p.gold += d.gold;
+				const jobLevels = gainJobExp(
+					p,
+					Math.round((d.jobExp || 0) * (g.jobExpMultiplier || 1)),
+					g.data,
+				);
+				if (jobLevels)
+					emit(g, "jobLevel", {
+						jobLevel: p.jobLevel,
+						skillPoints: p.skillPoints,
+						granted: jobLevels,
+					});
 				const xp = Math.round(d.xp * (1 + p.stats.expBonus));
 				p.xp += xp;
 				emit(g, "pickup", { gold: d.gold, xp });
@@ -1388,11 +1619,16 @@ export function step(
 					p.xp -= p.nextXp;
 					p.level++;
 					p.statPoints += g.data.stats.pointsPerLevel;
-					Object.assign(p,autoAllocateStats(p,g.data));
+					Object.assign(p, autoAllocateStats(p, g.data));
 					refreshStats(g, p);
 					p.hp = p.maxHp;
 					p.mp = p.maxMp;
-					emit(g, "level", { level: p.level,points:p.statPoints,granted:g.data.stats.pointsPerLevel });
+					emit(g, "level", {
+						level: p.level,
+						skillPoints: p.skillPoints,
+						points: p.statPoints,
+						granted: g.data.stats.pointsPerLevel,
+					});
 				}
 				g.drops.splice(i, 1);
 				continue;

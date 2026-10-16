@@ -746,5 +746,56 @@
     "mips": false,
     "hitMask": null,
     "cpu": true
+  },
+  "/assets/skills-painted/angel-v1.png": {
+    "source": "art/skills/angel-v1.png",
+    "originalSize": [
+      1024,
+      1536
+    ],
+    "size": [
+      512,
+      768
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "ktx2": "/assets/skills-painted/angel-v1-841b31f085.ktx2",
+    "webp": "/assets/skills-painted/angel-v1-75fb231c77.webp"
+  },
+  "/assets/skills-painted/skills-v1.png": {
+    "source": "art/skills/skills-v1.png",
+    "originalSize": [
+      1448,
+      1086
+    ],
+    "size": [
+      256,
+      192
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": true,
+    "hitMask": null,
+    "ktx2": null,
+    "webp": "/assets/skills-painted/skills-v1-ae2b6d00f9.webp"
+  },
+  "/assets/skills-painted/skills-vfx-v1.png": {
+    "source": "art/skills/skills-vfx-v1.png",
+    "originalSize": [
+      1536,
+      1024
+    ],
+    "size": [
+      768,
+      512
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "ktx2": "/assets/skills-painted/skills-vfx-v1-426c6c3c7f.ktx2",
+    "webp": "/assets/skills-painted/skills-vfx-v1-77d91891d7.webp"
   }
 }

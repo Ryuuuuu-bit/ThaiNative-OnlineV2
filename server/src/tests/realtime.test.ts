@@ -135,10 +135,10 @@ test("speed clamp, range, cooldown, fake damage and rate limits cannot be bypass
 	await wait(50);
 	assert.equal(far.hp, hp);
 	assert.equal(p.cd.attack, 0);
-	peer.send({ t: "act", a: "spin", seq: 4 });
+	p.jobId='swordsman';p.skills.whirlwind=1;peer.send({ t: "act", a: "spin", seq: 4 });
 	peer.send({ t: "act", a: "spin", seq: 5 });
 	await wait(50);
-	assert.ok(p.mp > p.maxMp - 21 && p.mp < p.maxMp - 19);
+	assert.ok(p.mp > p.maxMp - 16 && p.mp < p.maxMp - 14);
 	assert.ok(p.cd.spin > 3);
 	const gold = p.gold;
 	peer.send({ t: "act", a: "attack", damage: 999999, seq: 6 });

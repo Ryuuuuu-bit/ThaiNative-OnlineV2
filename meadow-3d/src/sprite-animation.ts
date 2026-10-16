@@ -22,6 +22,7 @@ export function motionFor(p: Pick<Player, 'attack' | 'attackKind' | 'dash' | 'mo
   if (p.dead) return 'death';
   if (p.hurt > 0) return 'hit';
   if (p.dash > 0) return 'dodge';
+  if(p.attack>0&&p.attackKind==='dash_strike')return 'dodge';
   if (p.attack > 0) return p.attackKind==='spin'?'spin':p.attackKind==='meteor'?'cast':'attack';
   return p.moving ? 'run' : 'idle';
 }

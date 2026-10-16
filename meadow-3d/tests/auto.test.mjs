@@ -13,11 +13,11 @@ test('AUTO seeks then fights inside the combo reach',()=>{
  assert.ok(e.hp<e.maxHp);assert.ok(g.events.some(e=>e.type==='slash'));
 });
 test('AUTO Q requires two nearby enemies and sufficient MP; F requires boss or cluster',()=>{
- for(const [count,mp,spin,meteor]of[[1,80,false,false],[2,19,false,false],[2,20,true,false],[3,80,true,true]]){
+ for(const [count,mp,spin,meteor]of[[1,80,false,false],[2,14,false,false],[2,15,true,false],[3,80,false,true]]){
   const g=field();for(let i=0;i<count;i++)spawn(g,.6+i*.2,4);g.p.mp=mp;setAuto(g,true);tick(g);
-  assert.equal(g.events.some(e=>e.type==='spin'),spin);assert.equal(g.events.some(e=>e.type==='meteor'),meteor);
+  assert.equal(g.events.some(e=>e.type==='skill'&&e.skillId==='whirlwind'),spin);assert.equal(g.events.some(e=>e.type==='skill'&&e.skillId==='earth_break'),meteor);
  }
- const g=field();spawn(g,1,4,true);setAuto(g,true);tick(g);assert.ok(g.events.some(e=>e.type==='meteor'));
+ const g=field();spawn(g,1,4,true);setAuto(g,true);tick(g);assert.ok(g.events.some(e=>e.type==='skill'&&e.skillId==='earth_break'));
 });
 test('AUTO potions use strict 45% threshold and obey cooldown',()=>{
  const g=field();g.p.hp=g.p.maxHp*.45;setAuto(g,true);tick(g);assert.equal(g.p.potions,5);

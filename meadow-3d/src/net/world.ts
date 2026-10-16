@@ -8,7 +8,8 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 export class NetworkWorld {
 	game = {
 		p: {
-			id: "",
+			jobId:"villager",jobLevel:1,jobExp:0,skillPoints:0,skills:{},hotbar:[],statuses:[],castRemaining:0,
+            id: "",
 			name: "",
 			x: -1,
 			z: 6,
@@ -35,7 +36,7 @@ export class NetworkWorld {
 			invulnerable: 0,
 			hurt: 0,
 			cd: { attack: 0, spin: 0, meteor: 0, dash: 0, potion: 0 },
-		} as Player,
+		} as unknown as Player,
 		enemies: [],
 		drops: [],
 		projectiles: [],

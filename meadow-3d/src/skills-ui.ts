@@ -1,0 +1,331 @@
+import skillsData from "../../shared/data/skills.json";
+import jobsData from "../../shared/data/jobs.json";
+import type { HotbarSlot, JobProgress } from "@thainative/shared";
+import "./skills.css";
+import "./skill-art.css";
+const skills = skillsData.skills as any[];
+const $ = <T extends HTMLElement = HTMLElement>(s: string) =>
+	document.querySelector<T>(s)!;
+export const keyLabel = (key: string) =>
+	key.replace("Digit", "").replace("Key", "");
+export function mountSkills(
+	send: (message: any) => void,
+	clear: () => void,
+	act: (id: string) => void,
+) {
+	let job: JobProgress | null = null,
+		pending: Record<string, number> = {},
+		selected: string | null = null,
+		last = "",
+		more = false;
+	const panel = $<HTMLDialogElement>("#skills-window"),
+		angel = $<HTMLDialogElement>("#angel-window");
+	const bar = $("#job-hotbar");
+	function level(id: string) {
+		return (job?.skills[id] || 0) + (pending[id] || 0);
+	}
+	function owner(jobId: string) {
+		let j = jobsData.jobs.find((j) => j.id === job?.jobId);
+		while (j) {
+			if (j.id === jobId) return true;
+			j = jobsData.jobs.find((p) => p.id === j?.parent);
+		}
+		return jobId === "common";
+	}
+	function reason(s: any) {
+		if (!job) return "กำลังรับข้อมูล";
+		if (s.id === "fighter_basics") return "สืบทอดจากต่อยเมื่อเปลี่ยนอาชีพ";
+		if (!owner(s.jobId)) return "อาชีพไม่ตรง";
+		if (level(s.id) >= s.maxLevel) return "ระดับสูงสุด";
+		const req = s.requires.find((r: any) => level(r.id) < r.level);
+		if (req)
+			return `ต้องมี ${skills.find((s) => s.id === req.id)?.nameTh} Lv.${req.level}`;
+		if (job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0) < 1)
+			return "แต้มสกิลไม่พอ";
+		return "";
+	}
+	const icon = (s: any) =>
+		`<span class="job-icon" style="--ix:${s.icon % 4};--iy:${Math.floor(s.icon / 4)}" aria-hidden="true"></span>`;
+	function values(s: any, lv: number) {
+		const at = (key: string, fallback: number) =>
+			s.values?.[key]?.[Math.max(0, lv - 1)] ?? fallback;
+		if (s.passive)
+			return s.id === "sword_mastery"
+				? `ATK +${at("atk", 0)} เมื่อใช้ดาบ`
+				: s.id === "sword_rhythm"
+					? `คอมโบสาม +${at("comboBonus", 0) * 100}% · ลดคูลดาวน์อื่น ${at("cooldownReduction", 0).toFixed(1)} วิ`
+					: s.id === "fighter_basics"
+						? `ATK +${at("atk", 0)} · MATK +${at("matk", 0)} · Max HP +${Math.round(at("hpPercent", 0) * 100)}% · Max SP +${Math.round(at("spPercent", 0) * 100)}%`
+						: `HP +${at("hpPercent", 0) * 100}% · ฟื้น HP +${at("hpRegenPercent", 0) * 100}%`;
+		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}SP ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${s.effect === "taunt" ? ` · DEF −${Math.round(at("defDown", 0.05) * 100)}% 5 วิ` : s.effect === "endure" ? ` · DEF +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? " · 6 ม. สตั้น 0.6 วิ" : s.effect === "knockup" ? " · ยก 0.8 วิ ร่าย 0.4 วิ" : ""}`;
+	}
+	function slotsHTML(mirror = false) {
+		return (job?.hotbar || [])
+			.map((slot, i) => {
+				const s = skills.find((s) => s.id === slot.skill),
+					learned = !!s && !!job?.skills[s.id];
+				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${learned ? "" : "unlearned"}" data-slot="${i}" ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
+			})
+			.join("");
+	}
+	function assign(index: number, id: string | null) {
+		if (!job) return;
+		const next = job.hotbar.map((s, i) => ({
+			...s,
+			skill: i === index ? id : s.skill,
+		}));
+		send({ t: "hotbar", slots: next });
+		$("#skills-status").textContent = "กำลังบันทึกแถบสกิล…";
+		selected = null;
+	}
+	function bindSlots(root: HTMLElement) {
+		root.querySelectorAll<HTMLElement>("[data-slot]").forEach((el) => {
+			el.onclick = () => {
+				const i = Number(el.dataset.slot);
+				if (selected) assign(i, selected);
+				else if (!el.dataset.mirror) {
+					const id = job?.hotbar[i].skill;
+					if (id) act(id);
+				}
+			};
+			el.ondragover = (e) => e.preventDefault();
+			el.ondrop = (e) => {
+				e.preventDefault();
+				const id = e.dataTransfer?.getData("text/plain");
+				if (id) assign(Number(el.dataset.slot), id);
+			};
+			el.oncontextmenu = (e) => {
+				e.preventDefault();
+				assign(Number(el.dataset.slot), null);
+			};
+		});
+	}
+	function drawBar() {
+		bar.innerHTML = slotsHTML();
+		bar.classList.toggle("show-extra", more);
+		bindSlots(bar);
+	}
+	function draw() {
+		if (!job) return;
+		$("#skills-job").textContent =
+			`${jobsData.jobs.find((j) => j.id === job?.jobId)?.nameTh} · Job Lv.${job.jobLevel}`;
+		$("#skill-points").textContent = String(
+			job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0),
+		);
+		const tree = $("#skills-tree");
+		tree.replaceChildren();
+		for (const tier of [0, 1, 2]) {
+			const section = document.createElement("section");
+			section.className = "skill-tier";
+			section.innerHTML = `<h3>${tier === 0 ? "รากฐาน" : tier === 1 ? "นักดาบ" : "อาชีพขั้นต่อไป"}</h3>`;
+			const list = skills.filter(
+				(s) =>
+					s.jobId === (tier === 0 ? "villager" : "swordsman") &&
+					(s.id !== "punch" || job?.jobId === "villager") &&
+					(s.id !== "fighter_basics" || job?.jobId !== "villager"),
+			);
+			if (tier === 2) {
+				section.innerHTML +=
+					'<p class="skill-locked">ผู้พิทักษ์ / นักดาบคลั่ง<br>Job Lv.40 · ภารกิจเร็ว ๆ นี้</p>';
+				tree.append(section);
+				continue;
+			}
+			for (const s of list) {
+				const lv = level(s.id),
+					lock = reason(s),
+					card = document.createElement("article");
+				card.className = "skill-node" + (lock && !lv ? " skill-locked" : "");
+				card.dataset.skill = s.id;
+				card.draggable = !s.passive && !!job.skills[s.id];
+				card.title = `${s.nameTh} · ${values(s, Math.max(1, lv))}\nถัดไป: ${values(s, Math.min(s.maxLevel, lv + 1))}`;
+				card.innerHTML = `${icon(s)}<div><b>${s.nameTh}</b><span>${lv}/${s.maxLevel} ${s.passive ? "· ติดตัว" : ""}${pending[s.id] ? " · รอยืนยัน" : ""}</span><p>${lv ? values(s, lv) : "ยังไม่ได้เรียน"}</p><p class="skill-next">→ ${values(s, Math.min(s.maxLevel, lv + 1))}</p><small>${s.requires.map((r: any) => `↳ ${skills.find((s) => s.id === r.id)?.nameTh} ${r.level}`).join(" · ") || "เริ่มเรียนได้ทันที"}</small><small class="lock-reason">${lock}</small></div><button data-up="${s.id}" ${lock ? "disabled" : ""} aria-label="เพิ่ม ${s.nameTh}">+</button>`;
+				card.ondragstart = (e) => e.dataTransfer?.setData("text/plain", s.id);
+				card.onclick = (e) => {
+					if ((e.target as HTMLElement).closest("[data-up]")) return;
+					if (!s.passive && job?.skills[s.id]) {
+						selected = s.id;
+						$("#skills-status").textContent = `เลือกช่องด้านล่างเพื่อวาง ${s.nameTh}`;
+					}
+				};
+				card.querySelector<HTMLButtonElement>("[data-up]")!.onclick = () => {
+					pending[s.id] = (pending[s.id] || 0) + 1;
+					draw();
+				};
+				section.append(card);
+			}
+			tree.append(section);
+		}
+		$("#skill-slots").innerHTML = slotsHTML(true);
+		bindSlots($("#skill-slots"));
+		$("#skills-confirm").toggleAttribute(
+			"disabled",
+			!Object.keys(pending).length,
+		);
+		$("#key-settings").innerHTML = (job.hotbar || [])
+			.map(
+				(s, i) =>
+					`<label>ช่อง ${i + 1}<input data-key-slot="${i}" value="${keyLabel(s.key)}" aria-label="ปุ่มช่อง ${i + 1}" readonly></label>`,
+			)
+			.join("");
+		$("#key-settings")
+			.querySelectorAll<HTMLInputElement>("input")
+			.forEach(
+				(el) =>
+					(el.onkeydown = (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						const next = job!.hotbar.map((s, i) => ({
+							...s,
+							key: i === Number(el.dataset.keySlot) ? e.code : s.key,
+						}));
+						send({ t: "hotbar", slots: next });
+						$("#skills-status").textContent = "กำลังบันทึกปุ่ม…";
+					}),
+			);
+	}
+	$("#skills-confirm").onclick = () => {
+		for (const [id, count] of Object.entries(pending))
+			for (let i = 0; i < count; i++) send({ t: "skillUp", id });
+		pending = {};
+		$("#skills-status").textContent = "กำลังยืนยันกับเซิร์ฟเวอร์…";
+		draw();
+	};
+	$("#skills-cancel").onclick = () => {
+		pending = {};
+		selected = null;
+		draw();
+		$("#skills-status").textContent = "ยกเลิกตัวอย่างแล้ว";
+	};
+	$("#skills-close").onclick = () => panel.close();
+	$("#angel-close").onclick = () => angel.close();
+	$("#skills-more").onclick = () => {
+		more = !more;
+		document.body.classList.toggle("more-skills", more);
+		bar.classList.toggle("show-extra", more);
+		$("#skills-more").setAttribute("aria-expanded", String(more));
+	};
+	$("#skills-reset-keys").onclick = () => {
+		if (job)
+			send({
+				t: "hotbar",
+				slots: job.hotbar.map((s, i) => ({
+					...s,
+					key: "Digit" + ((i + 1) % 10),
+				})),
+			});
+	};
+	$("#skills-settings").onclick = () => {
+		$("#key-settings").hidden = !$("#key-settings").hidden;
+	};
+	$("#angel-talk").onclick = () => {
+		clear();
+		angel.showModal();
+		drawAngel();
+	};
+	function drawAngel() {
+		if (!job) return;
+		$("#angel-note").textContent =
+			job.jobId === "villager"
+				? `เจ้าเติบโตขึ้นทุกวัน · Job Lv.${job.jobLevel}/10 · ถึงระดับ 10 แล้วเลือกเส้นทางของเจ้าได้เลย`
+				: "ขอให้ดาบของเจ้าปกป้องผู้คน · งานขั้นต่อไปจะเปิดเมื่อถึงเวลา";
+		$("#job-cards").innerHTML = jobsData.jobs
+			.filter((j) => j.tier === 1)
+			.map(
+				(j) =>
+					`<button data-job="${j.id}" ${!j.available || job!.jobId !== "villager" || job!.jobLevel < 10 ? "disabled" : ""}><b>${j.nameTh}</b><small>${j.id === job!.jobId ? "อาชีพปัจจุบัน" : !j.available ? "เร็ว ๆ นี้" : job!.jobLevel < 10 ? "ต้องการ Job Lv.10" : "เริ่มเส้นทางนักดาบ →"}</small></button>`,
+			)
+			.join("");
+		$("#job-cards")
+			.querySelectorAll<HTMLButtonElement>("[data-job]")
+			.forEach(
+				(b) =>
+					(b.onclick = () => {
+						send({ t: "jobChange", job: b.dataset.job });
+						$("#angel-note").textContent = "กำลังขอเปลี่ยนอาชีพ…";
+					}),
+			);
+	}
+	return {
+		get open() {
+			return panel.open || angel.open;
+		},
+		toggle() {
+			if (panel.open) panel.close();
+			else {
+				clear();
+				pending = {};
+				draw();
+				panel.showModal();
+			}
+		},
+		key(code: string) {
+			const s = job?.hotbar.find((s) => s.key === code);
+			if (s?.skill) {
+				act(s.skill);
+				return true;
+			}
+			return !!s;
+		},
+		receive(e: any) {
+			if (e.type === "skillsError") {
+				$("#skills-status").textContent = e.text;
+				$("#angel-note").textContent = e.text;
+				return;
+			}
+			if (e.type !== "stats" || !e.job) return;
+			job = e.job;
+			pending = {};
+			$("#skills-button").classList.toggle("has-points", job!.skillPoints > 0);
+			$("#skills-status").textContent =
+				"ลากสกิล หรือแตะสกิลแล้วเลือกช่อง · คลิกขวาที่ช่องเพื่อล้าง";
+			drawBar();
+			if (panel.open) draw();
+			if (angel.open) drawAngel();
+		},
+		update(p: any) {
+			if (p.jobId) {
+				$("#job-label").textContent =
+					`${jobsData.jobs.find((j) => j.id === p.jobId)?.nameTh} · Job Lv.${p.jobLevel}`;
+				const j = jobsData.jobs.find((j) => j.id === p.jobId),
+					table =
+						j?.tier === 0
+							? jobsData.expToNext.villager
+							: j?.tier === 1
+								? jobsData.expToNext.tier1
+								: jobsData.expToNext.tier2;
+				$("#job-exp").textContent =
+					`Job EXP ${p.jobExp} / ${table[p.jobLevel - 1] || "MAX"}`;
+			}
+			const key =
+				JSON.stringify(p.hotbar || []) + JSON.stringify(p.skills || {});
+			if (p.jobId && key !== last) {
+				last = key;
+				job = {
+					jobId: p.jobId,
+					jobLevel: p.jobLevel,
+					jobExp: p.jobExp,
+					skillPoints: p.skillPoints,
+					skills: p.skills,
+					hotbar: p.hotbar,
+				};
+				drawBar();
+			}
+			bar.querySelectorAll<HTMLElement>("[data-slot]").forEach((el) => {
+				const id = job?.hotbar[Number(el.dataset.slot)].skill,
+					cd = id ? p.cd[id] || 0 : 0;
+				el.classList.toggle("cooling", cd > 0.05);
+				el.querySelector("em")!.textContent = cd > 0.05 ? cd.toFixed(1) : "";
+			});
+			const near =
+				Math.hypot(p.x - jobsData.angel.x, p.z - jobsData.angel.z) <=
+				jobsData.angel.range;
+			$("#angel-talk").hidden = !near;
+			$("#buff-status").textContent = (p.statuses || [])
+				.map(
+					(s: any) =>
+						`${s.id === "endure" ? "✦ ใจเหล็ก" : s.id === "stun" ? "✧ มึนงง" : s.id === "knockup" ? "↑ ลอย" : "◌ ช้าลง"} ${s.remaining.toFixed(1)} วิ`,
+				)
+				.join(" · ");
+		},
+	};
+}

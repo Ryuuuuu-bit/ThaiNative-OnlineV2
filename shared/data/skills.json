@@ -14,21 +14,11 @@
       "range": 1.8,
       "radius": 0,
       "icon": 0,
-      "comboThirdPercent": 170
-    },
-    {
-      "id": "whirlwind",
-      "nameTh": "ฟันพายุ",
-      "percent": 210,
-      "element": "wind",
-      "type": "physical",
-      "kind": "area",
-      "sp": 20,
-      "cooldown": 4,
-      "cast": 0,
-      "range": 0,
-      "radius": 2.6,
-      "icon": 1
+      "comboThirdPercent": 170,
+      "jobId": "common",
+      "maxLevel": 1,
+      "requires": [],
+      "passive": false
     },
     {
       "id": "meteor",
@@ -42,7 +32,11 @@
       "cast": 0.65,
       "range": 8,
       "radius": 2.2,
-      "icon": 2
+      "icon": 2,
+      "jobId": "mage",
+      "maxLevel": 1,
+      "requires": [],
+      "passive": false
     },
     {
       "id": "fire_bolt",
@@ -56,7 +50,11 @@
       "cast": 1.0,
       "range": 8,
       "radius": 0,
-      "icon": 5
+      "icon": 5,
+      "jobId": "mage",
+      "maxLevel": 1,
+      "requires": [],
+      "passive": false
     },
     {
       "id": "dodge",
@@ -70,7 +68,11 @@
       "cast": 0,
       "range": 3.08,
       "radius": 0,
-      "icon": 3
+      "icon": 3,
+      "jobId": "common",
+      "maxLevel": 1,
+      "requires": [],
+      "passive": false
     },
     {
       "id": "potion",
@@ -88,6 +90,474 @@
       "heal": {
         "flat": 65,
         "vitPercent": 2
+      },
+      "jobId": "common",
+      "maxLevel": 1,
+      "requires": [],
+      "passive": false
+    },
+    {
+      "id": "slash",
+      "nameTh": "ฟันเฉือน",
+      "jobId": "swordsman",
+      "maxLevel": 10,
+      "percent": 180,
+      "sp": 8,
+      "cooldown": 1.2,
+      "kind": "single",
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "icon": 1,
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "values": {
+        "percent": [
+          180.0,
+          200.0,
+          220.0,
+          240.0,
+          260.0,
+          280.0,
+          300.0,
+          320.0,
+          340.0,
+          360.0
+        ],
+        "sp": [
+          8.0,
+          8.4444,
+          8.8889,
+          9.3333,
+          9.7778,
+          10.2222,
+          10.6667,
+          11.1111,
+          11.5556,
+          12.0
+        ]
+      }
+    },
+    {
+      "id": "whirlwind",
+      "nameTh": "ฟันพายุ",
+      "jobId": "swordsman",
+      "maxLevel": 10,
+      "percent": 110,
+      "sp": 15,
+      "cooldown": 4,
+      "kind": "area",
+      "range": 0,
+      "radius": 2.6,
+      "cast": 0,
+      "icon": 2,
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "values": {
+        "percent": [
+          110.0,
+          112.7778,
+          115.5556,
+          118.3333,
+          121.1111,
+          123.8889,
+          126.6667,
+          129.4444,
+          132.2222,
+          135.0
+        ],
+        "sp": [
+          15.0,
+          15.7778,
+          16.5556,
+          17.3333,
+          18.1111,
+          18.8889,
+          19.6667,
+          20.4444,
+          21.2222,
+          22.0
+        ]
+      },
+      "hits": 2
+    },
+    {
+      "id": "dash_strike",
+      "nameTh": "พุ่งทะยาน",
+      "jobId": "swordsman",
+      "maxLevel": 10,
+      "percent": 150,
+      "sp": 15,
+      "cooldown": 8,
+      "kind": "single",
+      "range": 6,
+      "radius": 0,
+      "cast": 0,
+      "icon": 3,
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [
+        {
+          "id": "slash",
+          "level": 3
+        }
+      ],
+      "values": {
+        "percent": [
+          150.0,
+          166.6667,
+          183.3333,
+          200.0,
+          216.6667,
+          233.3333,
+          250.0,
+          266.6667,
+          283.3333,
+          300.0
+        ]
+      },
+      "effect": "dash",
+      "duration": 0.6,
+      "pvpDurationMul": 0.6
+    },
+    {
+      "id": "earth_break",
+      "nameTh": "ตอกพสุธา",
+      "jobId": "swordsman",
+      "maxLevel": 10,
+      "percent": 250,
+      "sp": 25,
+      "cooldown": 10,
+      "kind": "area",
+      "range": 0,
+      "radius": 2.2,
+      "cast": 0.4,
+      "icon": 4,
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [
+        {
+          "id": "whirlwind",
+          "level": 5
+        }
+      ],
+      "values": {
+        "percent": [
+          250.0,
+          268.8889,
+          287.7778,
+          306.6667,
+          325.5556,
+          344.4444,
+          363.3333,
+          382.2222,
+          401.1111,
+          420.0
+        ],
+        "sp": [
+          25.0,
+          25.7778,
+          26.5556,
+          27.3333,
+          28.1111,
+          28.8889,
+          29.6667,
+          30.4444,
+          31.2222,
+          32.0
+        ]
+      },
+      "effect": "knockup",
+      "duration": 0.8,
+      "pvpDurationMul": 0.6
+    },
+    {
+      "id": "provoke",
+      "nameTh": "คำรามท้าศึก",
+      "jobId": "swordsman",
+      "maxLevel": 5,
+      "percent": 0,
+      "sp": 10,
+      "cooldown": 12,
+      "kind": "area",
+      "range": 0,
+      "radius": 6,
+      "cast": 0,
+      "icon": 5,
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "values": {
+        "defDown": [
+          0.05,
+          0.075,
+          0.1,
+          0.125,
+          0.15
+        ]
+      },
+      "effect": "taunt",
+      "duration": 5,
+      "pvpEffect": {
+        "id": "slow",
+        "duration": 3,
+        "value": 0.2
+      }
+    },
+    {
+      "id": "endure",
+      "nameTh": "ใจเหล็ก",
+      "jobId": "swordsman",
+      "maxLevel": 5,
+      "percent": 0,
+      "sp": 15,
+      "cooldown": 25,
+      "kind": "utility",
+      "range": 0,
+      "radius": 0,
+      "cast": 0,
+      "icon": 6,
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [
+        {
+          "id": "iron_body",
+          "level": 3
+        }
+      ],
+      "values": {
+        "defUp": [
+          0.06,
+          0.09,
+          0.12,
+          0.15,
+          0.18
+        ]
+      },
+      "effect": "endure",
+      "duration": 8
+    },
+    {
+      "id": "sword_mastery",
+      "nameTh": "เชี่ยวชาญดาบ",
+      "jobId": "swordsman",
+      "maxLevel": 10,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "kind": "utility",
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "icon": 7,
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [],
+      "values": {
+        "atk": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40
+        ]
+      }
+    },
+    {
+      "id": "iron_body",
+      "nameTh": "กายเหล็ก",
+      "jobId": "swordsman",
+      "maxLevel": 10,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "kind": "utility",
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "icon": 8,
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [],
+      "values": {
+        "hpPercent": [
+          0.02,
+          0.04,
+          0.06,
+          0.08,
+          0.1,
+          0.12,
+          0.14,
+          0.16,
+          0.18,
+          0.2
+        ],
+        "hpRegenPercent": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "sword_rhythm",
+      "nameTh": "จังหวะดาบ",
+      "jobId": "swordsman",
+      "maxLevel": 5,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "kind": "utility",
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "icon": 9,
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [
+        {
+          "id": "sword_mastery",
+          "level": 5
+        }
+      ],
+      "values": {
+        "comboBonus": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25
+        ],
+        "cooldownReduction": [
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "punch",
+      "nameTh": "ต่อย",
+      "jobId": "villager",
+      "maxLevel": 10,
+      "percent": 120,
+      "sp": 3,
+      "cooldown": 1,
+      "kind": "single",
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "icon": 0,
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "values": {
+        "percent": [
+          120,
+          140,
+          160,
+          180,
+          200,
+          220,
+          240,
+          260,
+          280,
+          300
+        ]
+      }
+    },
+    {
+      "id": "fighter_basics",
+      "nameTh": "พื้นฐานนักสู้",
+      "jobId": "villager",
+      "maxLevel": 10,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "kind": "utility",
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "icon": 10,
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [],
+      "values": {
+        "atk": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "matk": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "hpPercent": [
+          0.01,
+          0.02,
+          0.03,
+          0.04,
+          0.05,
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1
+        ],
+        "spPercent": [
+          0.01,
+          0.02,
+          0.03,
+          0.04,
+          0.05,
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1
+        ]
       }
     }
   ]

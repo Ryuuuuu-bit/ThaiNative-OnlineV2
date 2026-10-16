@@ -9,7 +9,7 @@
       99
     ],
     "classes": [
-      "novice_knight",
+      "swordsman",
       "archer",
       "mage"
     ],
@@ -27,11 +27,11 @@
     "bossIncomingInterval": 2,
     "smallIncomingInterval": 1.5,
     "consumables": false,
-    "notes": "TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP regen uses shared per-second values; HP in-combat regen is 20% of its per-second value. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50."
+    "notes": "Skills are job-restricted; default swordsman uses basic, whirlwind1 and earth_break1 (no passive investment). Multi-hit skills apply each hit. This abstract offensive model does not simulate CC, dash movement or buffs. TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP regen uses shared per-second values; HP in-combat regen is 20% of its per-second value. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50."
   },
   "rows": [
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 1,
       "opponent": "jelly_pink",
       "opponentLevel": 1,
@@ -39,16 +39,16 @@
       "seed": 2654435762,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.890999999999985,
+        "p10": 0.9,
+        "p90": 0.9
       },
       "hitsToDie": {
         "mean": 16,
         "p10": 16,
         "p90": 16
       },
-      "expPerMinute": 570.5660377358518,
+      "expPerMinute": 523.0024213075088,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 1,
       "opponent": "jelly_mint",
       "opponentLevel": 3,
@@ -65,25 +65,23 @@
       "seed": 1013904227,
       "runs": 1000,
       "ttk": {
-        "mean": 0.9169999999999845,
-        "p10": 0.65,
-        "p90": 1.15
+        "mean": 1.3517999999999903,
+        "p10": 1.35,
+        "p90": 1.35
       },
       "hitsToDie": {
-        "mean": 13.086,
+        "mean": 13.091,
         "p10": 13,
         "p90": 13
       },
-      "expPerMinute": 777.5111415838232,
+      "expPerMinute": 676.6513515126222,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
-      "flags": [
-        "normal TTK outside 1–60s"
-      ]
+      "flags": []
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 1,
       "opponent": "jelly_sky",
       "opponentLevel": 3,
@@ -91,23 +89,23 @@
       "seed": 3668339988,
       "runs": 1000,
       "ttk": {
-        "mean": 1.6271999999999767,
-        "p10": 1.6,
-        "p90": 1.6
+        "mean": 1.360799999999989,
+        "p10": 1.35,
+        "p90": 1.35
       },
       "hitsToDie": {
-        "mean": 13.074,
+        "mean": 13.072,
         "p10": 13,
         "p90": 13
       },
-      "expPerMinute": 625.2756947507761,
+      "expPerMinute": 674.8393239704857,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
       "flags": []
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 1,
       "opponent": "jelly_summon",
       "opponentLevel": 1,
@@ -115,16 +113,16 @@
       "seed": 2027808453,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 20.951,
         "p10": 21,
         "p90": 21
       },
-      "expPerMinute": 95.09433962264194,
+      "expPerMinute": 105.00000000000026,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -133,7 +131,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 1,
       "opponent": "king_jelly",
       "opponentLevel": 5,
@@ -141,12 +139,12 @@
       "seed": 387276918,
       "runs": 1000,
       "ttk": {
-        "mean": 78.42954999999998,
-        "p10": 76.55,
-        "p90": 80.1
+        "mean": 87.5292500000002,
+        "p10": 84.55,
+        "p90": 89.45
       },
       "hitsToDie": {
-        "mean": 6.129,
+        "mean": 6.113,
         "p10": 6,
         "p90": 7
       },
@@ -165,16 +163,16 @@
       "seed": 3041712679,
       "runs": 1000,
       "ttk": {
-        "mean": 1.1454999999999955,
-        "p10": 1.15,
-        "p90": 1.15
+        "mean": 1.9413499999999697,
+        "p10": 1.85,
+        "p90": 2.3
       },
       "hitsToDie": {
-        "mean": 10.991,
+        "mean": 10.995,
         "p10": 11,
         "p90": 11
       },
-      "expPerMinute": 480.68669527897066,
+      "expPerMinute": 383.62490009768527,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -189,16 +187,16 @@
       "seed": 1401181144,
       "runs": 1000,
       "ttk": {
-        "mean": 2.4230500000000013,
-        "p10": 2.05,
-        "p90": 2.5
+        "mean": 3.429499999999989,
+        "p10": 3.2,
+        "p90": 3.65
       },
       "hitsToDie": {
         "mean": 9,
         "p10": 9,
         "p90": 9
       },
-      "expPerMinute": 512.768338589887,
+      "expPerMinute": 417.7180219173046,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -213,16 +211,16 @@
       "seed": 4055616905,
       "runs": 1000,
       "ttk": {
-        "mean": 3.1115499999999794,
-        "p10": 2.95,
-        "p90": 3.4
+        "mean": 3.4434499999999906,
+        "p10": 3.2,
+        "p90": 3.65
       },
       "hitsToDie": {
         "mean": 9,
         "p10": 9,
         "p90": 9
       },
-      "expPerMinute": 443.7010300202501,
+      "expPerMinute": 416.6475305183302,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -237,22 +235,20 @@
       "seed": 2415085370,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 1.0175000000000143,
+        "p10": 0.95,
+        "p90": 1.4
       },
       "hitsToDie": {
-        "mean": 13.094,
+        "mean": 13.119,
         "p10": 13,
-        "p90": 13
+        "p90": 14
       },
-      "expPerMinute": 95.09433962264194,
+      "expPerMinute": 83.51284175642049,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
-      "flags": [
-        "normal TTK outside 1–60s"
-      ]
+      "flags": []
     },
     {
       "classId": "archer",
@@ -263,9 +259,9 @@
       "seed": 774553835,
       "runs": 1000,
       "ttk": {
-        "mean": 186.11389999999875,
-        "p10": 181.4,
-        "p90": 188.5
+        "mean": 253.1026999999991,
+        "p10": 248.05,
+        "p90": 257.4
       },
       "hitsToDie": {
         "mean": 5,
@@ -287,16 +283,16 @@
       "seed": 3428989596,
       "runs": 1000,
       "ttk": {
-        "mean": 1.1429999999999951,
-        "p10": 1.15,
-        "p90": 1.15
+        "mean": 1.6314499999999774,
+        "p10": 1.6,
+        "p90": 1.6
       },
       "hitsToDie": {
-        "mean": 9.795,
+        "mean": 9.806,
         "p10": 9,
         "p90": 10
       },
-      "expPerMinute": 481.06904231625913,
+      "expPerMinute": 416.3626099767337,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -311,16 +307,16 @@
       "seed": 1788458061,
       "runs": 1000,
       "ttk": {
-        "mean": 2.423050000000001,
+        "mean": 2.453200000000003,
         "p10": 2.05,
-        "p90": 2.5
+        "p90": 2.95
       },
       "hitsToDie": {
         "mean": 8,
         "p10": 8,
         "p90": 8
       },
-      "expPerMinute": 512.7683385898871,
+      "expPerMinute": 509.2966855295067,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -335,7 +331,7 @@
       "seed": 147926526,
       "runs": 1000,
       "ttk": {
-        "mean": 3.115599999999982,
+        "mean": 3.2375500000000113,
         "p10": 2.95,
         "p90": 3.4
       },
@@ -344,7 +340,7 @@
         "p10": 8,
         "p90": 8
       },
-      "expPerMinute": 443.34975369458294,
+      "expPerMinute": 433.02689234470233,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -385,9 +381,9 @@
       "seed": 1161830752,
       "runs": 1000,
       "ttk": {
-        "mean": 158.1397499999998,
-        "p10": 156.05,
-        "p90": 161.4
+        "mean": 243.93945000000016,
+        "p10": 240.5,
+        "p90": 248.5
       },
       "hitsToDie": {
         "mean": 4,
@@ -401,7 +397,7 @@
       "flags": []
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 10,
       "opponent": "jelly_pink",
       "opponentLevel": 1,
@@ -409,16 +405,16 @@
       "seed": 3816266513,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 67.619,
         "p10": 67,
         "p90": 68
       },
-      "expPerMinute": 570.5660377358518,
+      "expPerMinute": 630.0000000000016,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -427,7 +423,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 10,
       "opponent": "jelly_mint",
       "opponentLevel": 3,
@@ -435,16 +431,16 @@
       "seed": 2175734978,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.8904999999999849,
+        "p10": 0.9,
+        "p90": 0.9
       },
       "hitsToDie": {
-        "mean": 51.146,
+        "mean": 51.155,
         "p10": 50,
         "p90": 52
       },
-      "expPerMinute": 855.8490566037776,
+      "expPerMinute": 784.6393357550639,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -453,7 +449,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 10,
       "opponent": "jelly_sky",
       "opponentLevel": 3,
@@ -461,16 +457,16 @@
       "seed": 535203443,
       "runs": 1000,
       "ttk": {
-        "mean": 0.7224999999999868,
-        "p10": 0.65,
-        "p90": 1.15
+        "mean": 0.886999999999985,
+        "p10": 0.9,
+        "p90": 0.9
       },
       "hitsToDie": {
-        "mean": 51.167,
+        "mean": 51.163,
         "p10": 50,
         "p90": 52
       },
-      "expPerMinute": 833.0578512396736,
+      "expPerMinute": 785.590578455148,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -479,7 +475,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 10,
       "opponent": "jelly_summon",
       "opponentLevel": 1,
@@ -487,16 +483,16 @@
       "seed": 3189639204,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 108,
         "p10": 108,
         "p90": 108
       },
-      "expPerMinute": 95.09433962264194,
+      "expPerMinute": 105.00000000000026,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -505,7 +501,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 10,
       "opponent": "king_jelly",
       "opponentLevel": 5,
@@ -513,17 +509,17 @@
       "seed": 1549107669,
       "runs": 1000,
       "ttk": {
-        "mean": 47.385899999999836,
-        "p10": 45.45,
-        "p90": 48.55
+        "mean": 49.19365000000042,
+        "p10": 48.1,
+        "p90": 52.1
       },
       "hitsToDie": {
-        "mean": 18.761,
+        "mean": 18.755,
         "p10": 18,
         "p90": 19
       },
-      "expPerMinute": 2.0410684021147802,
-      "winRate": 0.008,
+      "expPerMinute": 0.4922485503573157,
+      "winRate": 0.002,
       "drawRate": 0,
       "censored": 0,
       "flags": []
@@ -537,16 +533,16 @@
       "seed": 4203543430,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.9603500000000149,
+        "p10": 0.95,
+        "p90": 0.95
       },
       "hitsToDie": {
-        "mean": 39.363,
+        "mean": 39.365,
         "p10": 39,
         "p90": 40
       },
-      "expPerMinute": 570.5660377358518,
+      "expPerMinute": 510.7504180248932,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -563,22 +559,20 @@
       "seed": 2563011895,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 1.4972000000000105,
+        "p10": 1.4,
+        "p90": 1.85
       },
       "hitsToDie": {
-        "mean": 30.991,
+        "mean": 30.998,
         "p10": 31,
         "p90": 31
       },
-      "expPerMinute": 855.8490566037776,
+      "expPerMinute": 648.5188150520398,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
-      "flags": [
-        "normal TTK outside 1–60s"
-      ]
+      "flags": []
     },
     {
       "classId": "archer",
@@ -589,16 +583,16 @@
       "seed": 922480360,
       "runs": 1000,
       "ttk": {
-        "mean": 1.1384999999999947,
-        "p10": 1.15,
-        "p90": 1.15
+        "mean": 1.48595000000001,
+        "p10": 1.4,
+        "p90": 1.85
       },
       "hitsToDie": {
-        "mean": 31.002,
+        "mean": 31.001,
         "p10": 31,
         "p90": 31
       },
-      "expPerMinute": 722.6382029632003,
+      "expPerMinute": 650.6117414191236,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -613,16 +607,16 @@
       "seed": 3576916121,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.5382499999999993,
+        "p10": 0.5,
+        "p90": 0.95
       },
       "hitsToDie": {
-        "mean": 51.132,
+        "mean": 51.128,
         "p10": 51,
         "p90": 52
       },
-      "expPerMinute": 95.09433962264194,
+      "expPerMinute": 99.28100068945142,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -639,12 +633,12 @@
       "seed": 1936384586,
       "runs": 1000,
       "ttk": {
-        "mean": 71.05389999999974,
-        "p10": 68.55,
-        "p90": 72.55
+        "mean": 91.80990000000027,
+        "p10": 88.55,
+        "p90": 93.45
       },
       "hitsToDie": {
-        "mean": 13.001,
+        "mean": 13.002,
         "p10": 13,
         "p90": 13
       },
@@ -663,16 +657,16 @@
       "seed": 295853051,
       "runs": 1000,
       "ttk": {
-        "mean": 1.1424999999999952,
-        "p10": 1.15,
-        "p90": 1.15
+        "mean": 2.0709999999999638,
+        "p10": 2.1,
+        "p90": 2.1
       },
       "hitsToDie": {
         "mean": 37,
         "p10": 37,
         "p90": 37
       },
-      "expPerMinute": 481.1455847255378,
+      "expPerMinute": 371.40751658069604,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -711,7 +705,7 @@
       "seed": 1309757277,
       "runs": 1000,
       "ttk": {
-        "mean": 3.9486999999999983,
+        "mean": 3.972299999999999,
         "p10": 4,
         "p90": 4
       },
@@ -720,7 +714,7 @@
         "p10": 28,
         "p90": 29
       },
-      "expPerMinute": 381.2597710424128,
+      "expPerMinute": 379.7531939118934,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -761,9 +755,9 @@
       "seed": 2323661503,
       "runs": 1000,
       "ttk": {
-        "mean": 104.05120000000007,
-        "p10": 101.45,
-        "p90": 105.45
+        "mean": 170.1388999999982,
+        "p10": 165.4,
+        "p90": 173.4
       },
       "hitsToDie": {
         "mean": 12,
@@ -777,7 +771,7 @@
       "flags": []
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 30,
       "opponent": "jelly_pink",
       "opponentLevel": 1,
@@ -785,16 +779,16 @@
       "seed": 683129968,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 267,
         "p10": 267,
         "p90": 267
       },
-      "expPerMinute": 570.5660377358518,
+      "expPerMinute": 630.0000000000016,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -803,7 +797,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 30,
       "opponent": "jelly_mint",
       "opponentLevel": 3,
@@ -811,16 +805,16 @@
       "seed": 3337565729,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 267,
         "p10": 267,
         "p90": 267
       },
-      "expPerMinute": 855.8490566037776,
+      "expPerMinute": 945.0000000000025,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -829,7 +823,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 30,
       "opponent": "jelly_sky",
       "opponentLevel": 3,
@@ -837,16 +831,16 @@
       "seed": 1697034194,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 267,
         "p10": 267,
         "p90": 267
       },
-      "expPerMinute": 855.8490566037776,
+      "expPerMinute": 945.0000000000025,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -855,7 +849,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 30,
       "opponent": "jelly_summon",
       "opponentLevel": 1,
@@ -863,16 +857,16 @@
       "seed": 56502659,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 400,
         "p10": 400,
         "p90": 400
       },
-      "expPerMinute": 95.09433962264194,
+      "expPerMinute": 105.00000000000026,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -881,7 +875,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 30,
       "opponent": "king_jelly",
       "opponentLevel": 5,
@@ -889,16 +883,16 @@
       "seed": 2710938420,
       "runs": 1000,
       "ttk": {
-        "mean": 28.204349999999682,
-        "p10": 28.05,
+        "mean": 27.692649999999677,
+        "p10": 25.3,
         "p90": 28.5
       },
       "hitsToDie": {
-        "mean": 75.324,
+        "mean": 75.3,
         "p10": 75,
         "p90": 76
       },
-      "expPerMinute": 417.15845565291534,
+      "expPerMinute": 424.3474395178651,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -913,16 +907,16 @@
       "seed": 1070406885,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.445550000000001,
+        "p10": 0.05,
+        "p90": 0.5
       },
       "hitsToDie": {
         "mean": 202,
         "p10": 202,
         "p90": 202
       },
-      "expPerMinute": 581.5384615384592,
+      "expPerMinute": 618.2658297724437,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -939,16 +933,16 @@
       "seed": 3724842646,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.5431999999999994,
+        "p10": 0.5,
+        "p90": 0.5
       },
       "hitsToDie": {
         "mean": 202,
         "p10": 202,
         "p90": 202
       },
-      "expPerMinute": 872.3076923076887,
+      "expPerMinute": 891.7898710286258,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -965,16 +959,16 @@
       "seed": 2084311111,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.5409499999999994,
+        "p10": 0.5,
+        "p90": 0.5
       },
       "hitsToDie": {
         "mean": 202,
         "p10": 202,
         "p90": 202
       },
-      "expPerMinute": 872.3076923076887,
+      "expPerMinute": 892.5795470198158,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -991,16 +985,16 @@
       "seed": 443779576,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.07654999999999867,
+        "p10": 0.05,
+        "p90": 0.05
       },
       "hitsToDie": {
         "mean": 303,
         "p10": 303,
         "p90": 303
       },
-      "expPerMinute": 96.92307692307651,
+      "expPerMinute": 121.35513231080405,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1017,16 +1011,16 @@
       "seed": 3098215337,
       "runs": 1000,
       "ttk": {
-        "mean": 29.90045000000019,
-        "p10": 28.95,
-        "p90": 32.05
+        "mean": 36.513350000000145,
+        "p10": 33.4,
+        "p90": 37.4
       },
       "hitsToDie": {
-        "mean": 45.621,
+        "mean": 45.606,
         "p10": 45,
         "p90": 46
       },
-      "expPerMinute": 394.97875421819833,
+      "expPerMinute": 327.1592837288876,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1143,23 +1137,23 @@
       "seed": 3485492254,
       "runs": 1000,
       "ttk": {
-        "mean": 101.94010000000046,
-        "p10": 97.15,
-        "p90": 104.1
+        "mean": 154.76614999999978,
+        "p10": 154,
+        "p90": 156.95
       },
       "hitsToDie": {
-        "mean": 45.656,
+        "mean": 45.666,
         "p10": 45,
         "p90": 46
       },
-      "expPerMinute": 91.03897340872251,
-      "winRate": 0.751,
+      "expPerMinute": 0,
+      "winRate": 0,
       "drawRate": 0,
       "censored": 0,
       "flags": []
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 50,
       "opponent": "jelly_pink",
       "opponentLevel": 1,
@@ -1167,16 +1161,16 @@
       "seed": 1844960719,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 437,
         "p10": 437,
         "p90": 437
       },
-      "expPerMinute": 570.5660377358518,
+      "expPerMinute": 630.0000000000016,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1185,7 +1179,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 50,
       "opponent": "jelly_mint",
       "opponentLevel": 3,
@@ -1193,16 +1187,16 @@
       "seed": 204429184,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 437,
         "p10": 437,
         "p90": 437
       },
-      "expPerMinute": 855.8490566037776,
+      "expPerMinute": 945.0000000000025,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1211,7 +1205,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 50,
       "opponent": "jelly_sky",
       "opponentLevel": 3,
@@ -1219,16 +1213,16 @@
       "seed": 2858864945,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 437,
         "p10": 437,
         "p90": 437
       },
-      "expPerMinute": 855.8490566037776,
+      "expPerMinute": 945.0000000000025,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1237,7 +1231,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 50,
       "opponent": "jelly_summon",
       "opponentLevel": 1,
@@ -1245,16 +1239,16 @@
       "seed": 1218333410,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6499999999999878,
-        "p10": 0.65,
-        "p90": 0.65
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 655,
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 95.09433962264194,
+      "expPerMinute": 105.00000000000026,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1263,7 +1257,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 50,
       "opponent": "king_jelly",
       "opponentLevel": 5,
@@ -1271,16 +1265,16 @@
       "seed": 3872769171,
       "runs": 1000,
       "ttk": {
-        "mean": 20.039199999999692,
-        "p10": 20.05,
-        "p90": 20.5
+        "mean": 18.05669999999988,
+        "p10": 17.4,
+        "p90": 20.05
       },
       "hitsToDie": {
-        "mean": 251.538,
+        "mean": 251.523,
         "p10": 250,
         "p90": 253
       },
-      "expPerMinute": 571.7085919634186,
+      "expPerMinute": 628.2189991374491,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1295,16 +1289,16 @@
       "seed": 2232237636,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.07339999999999879,
+        "p10": 0.05,
+        "p90": 0.05
       },
       "hitsToDie": {
         "mean": 326,
         "p10": 326,
         "p90": 326
       },
-      "expPerMinute": 581.5384615384592,
+      "expPerMinute": 729.237002025659,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1321,16 +1315,16 @@
       "seed": 591706101,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.5238499999999995,
+        "p10": 0.5,
+        "p90": 0.5
       },
       "hitsToDie": {
         "mean": 326,
         "p10": 326,
         "p90": 326
       },
-      "expPerMinute": 872.3076923076887,
+      "expPerMinute": 898.6270974899463,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1347,16 +1341,16 @@
       "seed": 3246141862,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.5355499999999993,
+        "p10": 0.5,
+        "p90": 0.5
       },
       "hitsToDie": {
         "mean": 326,
         "p10": 326,
         "p90": 326
       },
-      "expPerMinute": 872.3076923076887,
+      "expPerMinute": 894.4804874682026,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1373,16 +1367,16 @@
       "seed": 1605610327,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.07159999999999876,
+        "p10": 0.05,
+        "p90": 0.05
       },
       "hitsToDie": {
         "mean": 489,
         "p10": 489,
         "p90": 489
       },
-      "expPerMinute": 96.92307692307651,
+      "expPerMinute": 121.64510523267047,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1399,16 +1393,16 @@
       "seed": 4260046088,
       "runs": 1000,
       "ttk": {
-        "mean": 20.410299999999886,
-        "p10": 20.05,
-        "p90": 20.95
+        "mean": 23.67775000000003,
+        "p10": 21.4,
+        "p90": 24.95
       },
       "hitsToDie": {
-        "mean": 129.961,
+        "mean": 129.976,
         "p10": 129,
         "p90": 131
       },
-      "expPerMinute": 562.241469324376,
+      "expPerMinute": 490.69719893682213,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1527,23 +1521,23 @@
       "seed": 352355709,
       "runs": 1000,
       "ttk": {
-        "mean": 57.89120000000054,
-        "p10": 57,
-        "p90": 58.05
+        "mean": 85.94864999999959,
+        "p10": 85,
+        "p90": 89
       },
       "hitsToDie": {
-        "mean": 171.964,
+        "mean": 171.975,
         "p10": 171,
         "p90": 173
       },
-      "expPerMinute": 210.3814917717442,
+      "expPerMinute": 143.26541680855885,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
       "flags": []
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 99,
       "opponent": "jelly_pink",
       "opponentLevel": 1,
@@ -1551,16 +1545,16 @@
       "seed": 3006791470,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 895,
         "p10": 895,
         "p90": 895
       },
-      "expPerMinute": 581.5384615384592,
+      "expPerMinute": 630.0000000000016,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1569,7 +1563,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 99,
       "opponent": "jelly_mint",
       "opponentLevel": 3,
@@ -1577,16 +1571,16 @@
       "seed": 1366259935,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 895,
         "p10": 895,
         "p90": 895
       },
-      "expPerMinute": 872.3076923076887,
+      "expPerMinute": 945.0000000000025,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1595,7 +1589,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 99,
       "opponent": "jelly_sky",
       "opponentLevel": 3,
@@ -1603,16 +1597,16 @@
       "seed": 4020695696,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 895,
         "p10": 895,
         "p90": 895
       },
-      "expPerMinute": 872.3076923076887,
+      "expPerMinute": 945.0000000000025,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1621,7 +1615,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 99,
       "opponent": "jelly_summon",
       "opponentLevel": 1,
@@ -1629,16 +1623,16 @@
       "seed": 2380164161,
       "runs": 1000,
       "ttk": {
-        "mean": 0.6000000000000113,
-        "p10": 0.6,
-        "p90": 0.6
+        "mean": 0.39999999999999436,
+        "p10": 0.4,
+        "p90": 0.4
       },
       "hitsToDie": {
         "mean": 1342,
         "p10": 1342,
         "p90": 1342
       },
-      "expPerMinute": 96.92307692307651,
+      "expPerMinute": 105.00000000000026,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1647,7 +1641,7 @@
       ]
     },
     {
-      "classId": "novice_knight",
+      "classId": "swordsman",
       "level": 99,
       "opponent": "king_jelly",
       "opponentLevel": 5,
@@ -1655,16 +1649,16 @@
       "seed": 739632626,
       "runs": 1000,
       "ttk": {
-        "mean": 12.446000000000137,
-        "p10": 12.05,
-        "p90": 12.85
+        "mean": 12.043899999999828,
+        "p10": 9.3,
+        "p90": 12.4
       },
       "hitsToDie": {
-        "mean": 515.359,
+        "mean": 515.374,
         "p10": 513,
         "p90": 518
       },
-      "expPerMinute": 872.2137615948969,
+      "expPerMinute": 897.1866789139879,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1679,16 +1673,16 @@
       "seed": 3394068387,
       "runs": 1000,
       "ttk": {
-        "mean": 0.5500000000000044,
-        "p10": 0.55,
-        "p90": 0.55
+        "mean": 0.06759999999999886,
+        "p10": 0.05,
+        "p90": 0.05
       },
       "hitsToDie": {
         "mean": 655,
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 592.9411764705874,
+      "expPerMinute": 731.2826465467214,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1705,16 +1699,16 @@
       "seed": 1753536852,
       "runs": 1000,
       "ttk": {
-        "mean": 0.5500000000000044,
-        "p10": 0.55,
-        "p90": 0.55
+        "mean": 0.07479999999999874,
+        "p10": 0.05,
+        "p90": 0.05
       },
       "hitsToDie": {
         "mean": 655,
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 889.4117647058811,
+      "expPerMinute": 1093.1174089068834,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1731,16 +1725,16 @@
       "seed": 113005317,
       "runs": 1000,
       "ttk": {
-        "mean": 0.5500000000000044,
-        "p10": 0.55,
-        "p90": 0.55
+        "mean": 0.07239999999999872,
+        "p10": 0.05,
+        "p90": 0.05
       },
       "hitsToDie": {
         "mean": 655,
         "p10": 655,
         "p90": 655
       },
-      "expPerMinute": 889.4117647058811,
+      "expPerMinute": 1094.3833236826877,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1757,16 +1751,16 @@
       "seed": 2767441078,
       "runs": 1000,
       "ttk": {
-        "mean": 0.5500000000000044,
-        "p10": 0.55,
-        "p90": 0.55
+        "mean": 0.06439999999999893,
+        "p10": 0.05,
+        "p90": 0.05
       },
       "hitsToDie": {
         "mean": 982,
         "p10": 982,
         "p90": 982
       },
-      "expPerMinute": 98.82352941176454,
+      "expPerMinute": 122.06936640186015,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1783,16 +1777,16 @@
       "seed": 1126909543,
       "runs": 1000,
       "ttk": {
-        "mean": 9.101349999999988,
-        "p10": 9,
-        "p90": 9.4
+        "mean": 12.86530000000015,
+        "p10": 12.45,
+        "p90": 13.25
       },
       "hitsToDie": {
-        "mean": 377.269,
+        "mean": 377.251,
         "p10": 375,
         "p90": 379
       },
-      "expPerMinute": 1134.997094947913,
+      "expPerMinute": 847.6115517345679,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,
@@ -1911,16 +1905,16 @@
       "seed": 1514186460,
       "runs": 1000,
       "ttk": {
-        "mean": 35.904750000000334,
-        "p10": 33.35,
-        "p90": 36.9
+        "mean": 52.57139999999932,
+        "p10": 49.95,
+        "p90": 52.95
       },
       "hitsToDie": {
-        "mean": 349.676,
+        "mean": 349.659,
         "p10": 348,
-        "p90": 351
+        "p90": 352
       },
-      "expPerMinute": 332.4121647023101,
+      "expPerMinute": 230.89017324093126,
       "winRate": 1,
       "drawRate": 0,
       "censored": 0,

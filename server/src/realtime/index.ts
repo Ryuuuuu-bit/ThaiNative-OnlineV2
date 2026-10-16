@@ -4,6 +4,11 @@ import { randomInt } from "node:crypto";
 import { WebSocketServer, WebSocket } from "ws";
 import { parse } from "cookie";
 import {
+	normalizeJob,
+	learnSkill,
+	changeJob,
+	validateHotbar,
+	skillId,
 	createGame,
 	addPlayer,
 	withPlayer,
@@ -18,7 +23,10 @@ import {
 	CAMP,
 	loadGameData,
 	gameSkill,
-	allocateStats,autoAllocateStats,resetStats,refreshStats,
+	allocateStats,
+	autoAllocateStats,
+	resetStats,
+	refreshStats,
 	type Game,
 	type Player,
 	type Vec,
@@ -57,6 +65,8 @@ export interface RealtimeOptions {
 	reconnectMs?: number;
 	tickMs?: number;
 	adminIds?: string[];
+	production?: boolean;
+	devJobExpMultiplier?: number;
 }
 const round = (n: number) => Math.round(n * 1000) / 1000;
 const playerKeys = [
@@ -90,6 +100,14 @@ const playerKeys = [
 	"target",
 	"destination",
 	"statPoints",
+	"jobId",
+	"jobLevel",
+	"jobExp",
+	"skillPoints",
+	"skills",
+	"hotbar",
+	"statuses",
+	"castRemaining",
 ] as const;
 export function snapshot(room: Room, peer: Peer) {
 	const g = room.game;
@@ -111,10 +129,17 @@ export function snapshot(room: Room, peer: Peer) {
 			cd: Object.fromEntries(
 				Object.entries(p.cd).map(([k, v]) => [k, round(v)]),
 			),
-			moveSpeed: p.stats.moveSpeed,
+			moveSpeed:
+				p.stats.moveSpeed *
+				(1 -
+					Math.max(
+						0,
+						...p.statuses.filter((s) => s.id === "slow").map((s) => s.value),
+					)),
 		})),
 		enemies: g.enemies.map((e) => ({
 			id: e.id,
+			statuses: e.statuses,
 			dataId: e.dataId,
 			x: round(e.x),
 			z: round(e.z),
@@ -184,11 +209,18 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		ws.send(JSON.stringify(body));
 		sent++;
 	}
-	function save(room: Room, id: string, strict=false) {
+	function save(room: Room, id: string, strict = false) {
 		const p = room.game.players.get(id),
 			accountId = room.accounts.get(id);
 		if (!p || !accountId) return room.saveQueue;
 		const body: Progress = {
+			jobId: p.jobId,
+			jobLevel: p.jobLevel,
+			jobExp: p.jobExp,
+			skillPoints: p.skillPoints,
+			skills: { ...p.skills },
+			hotbar: p.hotbar.map((s) => ({ ...s })),
+			jobsVersion: 2,
 			level: p.level,
 			xp: Math.floor(p.xp),
 			gold: p.gold,
@@ -200,20 +232,17 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			race: p.profile.race,
 			classId: p.profile.classId,
 			statPoints: p.statPoints,
-			autoAllocate:p.autoAllocate,autoAllocCursor:p.autoAllocCursor,
+			autoAllocate: p.autoAllocate,
+			autoAllocCursor: p.autoAllocCursor,
 			dataVersion: 1,
 		};
-		const operation = room.saveQueue
-			.then(async () => {
-				await store.saveProgress(accountId, id, body);
-			});
-		room.saveQueue=operation.catch((e) => {
-				console.error(
-					"Realtime save failed",
-					e instanceof Error ? e.message : e,
-				);
-			});
-		return strict?operation:room.saveQueue;
+		const operation = room.saveQueue.then(async () => {
+			await store.saveProgress(accountId, id, body);
+		});
+		room.saveQueue = operation.catch((e) => {
+			console.error("Realtime save failed", e instanceof Error ? e.message : e);
+		});
+		return strict ? operation : room.saveQueue;
 	}
 	function flush(room: Room) {
 		const list = room.game.events.splice(0);
@@ -221,15 +250,36 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		for (const peer of room.peers.values())
 			if (peer.ready) send(peer.ws, { t: "ev", tick: room.tick, list });
 		for (const e of list)
-			if(e.type==='level'){const p=room.game.players.get(String(e.playerId));const peer=room.peers.get(String(e.playerId));if(p&&peer)sendStats(peer,p);}
+			if (["level", "jobLevel"].includes(e.type)) {
+				const p = room.game.players.get(String(e.playerId));
+				const peer = room.peers.get(String(e.playerId));
+				if (p && peer) sendStats(peer, p);
+			}
 		for (const e of list)
-			if (["level", "death", "victory"].includes(e.type)) {
+			if (["level", "jobLevel", "death", "victory"].includes(e.type)) {
 				if (e.type === "victory")
 					for (const id of room.game.players.keys()) void save(room, id);
 				else void save(room, String(e.playerId));
 			}
 	}
-	function sendStats(peer:Peer,p:Player){send(peer.ws,{t:'ev',list:[{type:'stats',playerId:p.id,base:{...p.profile.baseStats},points:p.statPoints,derived:p.stats,profile:p.profile,autoAllocate:p.autoAllocate,statResetFree:peer.room.game.data.stats.statResetFree}]});}
+	function sendStats(peer: Peer, p: Player) {
+		send(peer.ws, {
+			t: "ev",
+			list: [
+				{
+					type: "stats",
+					playerId: p.id,
+					base: { ...p.profile.baseStats },
+					points: p.statPoints,
+					derived: p.stats,
+					profile: p.profile,
+					autoAllocate: p.autoAllocate,
+					statResetFree: peer.room.game.data.stats.statResetFree,
+					job: normalizeJob(p),
+				},
+			],
+		});
+	}
 	function intent(peer: Peer, message: Intent) {
 		const { room } = peer,
 			g = room.game;
@@ -253,7 +303,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				room.disconnected.delete(peer.id);
 			}
 			send(peer.ws, snapshot(room, peer));
-			sendStats(peer,g.players.get(peer.id)!);
+			sendStats(peer, g.players.get(peer.id)!);
 			return;
 		}
 		if (!peer.ready) return;
@@ -263,8 +313,98 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		}
 		withPlayer(g, peer.id, () => {
 			const p = g.p;
-			if(message.t==='stats'||message.t==='statsReset'||message.t==='autoAlloc'){
-				try{const next=message.t==='stats'?allocateStats(p,message.add,g.data):message.t==='statsReset'?resetStats(p,g.data):autoAllocateStats({...p,autoAllocate:message.on},g.data);Object.assign(p,next);refreshStats(g,p);void save(room,p.id,true).then(()=>sendStats(peer,p)).catch(()=>{sendStats(peer,p);send(peer.ws,{t:'ev',list:[{type:'statsError',playerId:p.id,text:'สเตตัสมีผลในรอบนี้ แต่บันทึกไม่สำเร็จ กรุณารอการเชื่อมต่อกลับมา'}]});});}catch(e){invalid++;send(peer.ws,{t:'ev',list:[{type:'statsError',playerId:p.id,text:e instanceof Error?e.message:'จัดสรรไม่สำเร็จ'}]});}return;
+			if (
+				message.t === "skillUp" ||
+				message.t === "hotbar" ||
+				message.t === "jobChange"
+			) {
+				try {
+					if (p.dead) throw Error("รอฟื้นตัวก่อน");
+					let next = normalizeJob(p);
+					if (message.t === "skillUp") next = learnSkill(p, message.id, g.data);
+					if (message.t === "hotbar")
+						next = {
+							...next,
+							hotbar: validateHotbar(p, message.slots, g.data),
+						};
+					if (message.t === "jobChange") {
+						next = changeJob(p, message.job, p.x, p.z, g.data);
+						p.profile.classId = next.jobId;
+					}
+					Object.assign(p, next);
+					refreshStats(g, p);
+					void save(room, p.id, true)
+						.then(() => sendStats(peer, p))
+						.catch(() =>
+							send(peer.ws, {
+								t: "ev",
+								list: [
+									{
+										type: "skillsError",
+										playerId: p.id,
+										text: "เปลี่ยนในรอบนี้แล้ว แต่บันทึกไม่สำเร็จ กรุณาลองใหม่",
+									},
+								],
+							}),
+						);
+				} catch (e) {
+					invalid++;
+					send(peer.ws, {
+						t: "ev",
+						list: [
+							{
+								type: "skillsError",
+								playerId: p.id,
+								text: e instanceof Error ? e.message : "เปลี่ยนไม่สำเร็จ",
+							},
+						],
+					});
+				}
+				return;
+			}
+			if (
+				message.t === "stats" ||
+				message.t === "statsReset" ||
+				message.t === "autoAlloc"
+			) {
+				try {
+					const next =
+						message.t === "stats"
+							? allocateStats(p, message.add, g.data)
+							: message.t === "statsReset"
+								? resetStats(p, g.data)
+								: autoAllocateStats({ ...p, autoAllocate: message.on }, g.data);
+					Object.assign(p, next);
+					refreshStats(g, p);
+					void save(room, p.id, true)
+						.then(() => sendStats(peer, p))
+						.catch(() => {
+							sendStats(peer, p);
+							send(peer.ws, {
+								t: "ev",
+								list: [
+									{
+										type: "statsError",
+										playerId: p.id,
+										text: "สเตตัสมีผลในรอบนี้ แต่บันทึกไม่สำเร็จ กรุณารอการเชื่อมต่อกลับมา",
+									},
+								],
+							});
+						});
+				} catch (e) {
+					invalid++;
+					send(peer.ws, {
+						t: "ev",
+						list: [
+							{
+								type: "statsError",
+								playerId: p.id,
+								text: e instanceof Error ? e.message : "จัดสรรไม่สำเร็จ",
+							},
+						],
+					});
+				}
+				return;
 			}
 			if (message.t === "steer") {
 				const len = Math.hypot(message.dx, message.dz) || 1;
@@ -305,16 +445,15 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					const target = g.enemies.find(
 						(e) => e.id === message.target && !e.dead,
 					);
+					const spec = g.data.skills.skills.find(
+						(s) => s.id === skillId(message.a),
+					);
+					if (!target || !spec) return;
 					const reach =
-						message.a === "meteor"
-							? gameSkill(g, "meteor").range
-							: message.a === "spin"
-								? gameSkill(g, "spin").radius
-								: target?.boss
-									? 2.3
-									: gameSkill(g, "attack").range;
-					if (!target || Math.hypot(target.x - p.x, target.z - p.z) > reach)
-						return;
+						spec.id === "basic" && target.boss
+							? 2.3
+							: Math.max(spec.range, spec.radius);
+					if (Math.hypot(target.x - p.x, target.z - p.z) > reach) return;
 					g.target = target.id;
 				}
 				action(g, message.a);
@@ -377,6 +516,9 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				let room = rooms.get(key);
 				if (!room) {
 					const game = createGame(randomInt(1, 0x7fffffff));
+					game.jobExpMultiplier = options.production
+						? 1
+						: Math.max(1, Math.min(1000, options.devJobExpMultiplier || 1));
 					game.players.clear();
 					room = {
 						key,
@@ -398,15 +540,27 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 						classId: character.classId,
 					};
 					const p = addPlayer(room.game, character.id, profile);
+					Object.assign(p, normalizeJob(character));
+					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;
 					p.gold = character.gold;
 					p.kills = character.kills;
 					p.potions = character.potions;
 					p.statPoints = character.statPoints;
-					p.autoAllocate=character.autoAllocate??true;p.autoAllocCursor=character.autoAllocCursor??0;
-					const before=p.statPoints;Object.assign(p,autoAllocateStats(p,data));refreshStats(room.game,p);
-					if(before!==p.statPoints)await store.saveProgress(session.accountId,character.id,{...character,baseStats:p.profile.baseStats,statPoints:p.statPoints,autoAllocate:p.autoAllocate,autoAllocCursor:p.autoAllocCursor});
+					p.autoAllocate = character.autoAllocate ?? true;
+					p.autoAllocCursor = character.autoAllocCursor ?? 0;
+					const before = p.statPoints;
+					Object.assign(p, autoAllocateStats(p, data));
+					refreshStats(room.game, p);
+					if (before !== p.statPoints)
+						await store.saveProgress(session.accountId, character.id, {
+							...character,
+							baseStats: p.profile.baseStats,
+							statPoints: p.statPoints,
+							autoAllocate: p.autoAllocate,
+							autoAllocCursor: p.autoAllocCursor,
+						});
 					if (
 						character.posX !== undefined &&
 						character.posZ !== undefined &&
@@ -480,7 +634,17 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					const parsed = IntentSchema.safeParse(body);
 					if (!parsed.success) {
 						invalid++;
-						if(['stats','statsReset','autoAlloc'].includes(body?.t))send(ws,{t:'ev',list:[{type:'statsError',playerId:peer.id,text:'ค่าสเตตัสไม่ถูกต้อง กรุณาลองใหม่'}]});
+						if (["stats", "statsReset", "autoAlloc"].includes(body?.t))
+							send(ws, {
+								t: "ev",
+								list: [
+									{
+										type: "statsError",
+										playerId: peer.id,
+										text: "ค่าสเตตัสไม่ถูกต้อง กรุณาลองใหม่",
+									},
+								],
+							});
 						return;
 					}
 					if (parsed.data.t === "spawnReady" && pending.has(peer.id)) {

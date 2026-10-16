@@ -11,11 +11,13 @@ import {
 	type Monster,
 	type Modifier,
 } from "./schema.js";
-import{autoAllocateStats}from'./allocation.js';
+import { autoAllocateStats } from "./allocation.js";
 export const clamp = (n: number, min: number, max: number) =>
 	Math.min(max, Math.max(min, n));
 export interface Combatant {
 	level: number;
+	jobId?: string;
+	skills?: Record<string, number>;
 	isPlayer: boolean;
 	boss: boolean;
 	maxHp: number;
@@ -87,7 +89,44 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 		if (selected.length && !(slot === "weapon" ? weapon : armour))
 			throw new Error(`Missing ${slot} for card`);
 	}
+	const learned = char.skills;
+	const learnedValue = (id: string, key: string) => {
+		const level = learned[id] || 0;
+		return level
+			? data.skills.skills.find((s) => s.id === id)?.values[key]?.[level - 1] ||
+					0
+			: 0;
+	};
+	const passive: Modifier[] = [];
+	if (["sword1h", "sword2h"].includes(weapon?.weaponType || ""))
+		passive.push({
+			kind: "flat",
+			stat: "atk",
+			value: learnedValue("sword_mastery", "atk"),
+		});
+	passive.push(
+		{ kind: "flat", stat: "atk", value: learnedValue("fighter_basics", "atk") },
+		{ kind: "flat", stat: "matk", value: learnedValue("fighter_basics", "matk") },
+		{
+			kind: "percent",
+			stat: "maxSp",
+			value: learnedValue("fighter_basics", "spPercent"),
+		},
+		{
+			kind: "percent",
+			stat: "maxHp",
+			value:
+				learnedValue("iron_body", "hpPercent") +
+				learnedValue("fighter_basics", "hpPercent"),
+		},
+		{
+			kind: "percent",
+			stat: "hpRegen",
+			value: learnedValue("iron_body", "hpRegenPercent"),
+		},
+	);
 	const modifiers: Modifier[] = [
+		...passive,
 		...equipment.flatMap((i) => i.modifiers),
 		...char.cards.flatMap(
 			(id) => data.cards.cards.find((c) => c.id === id)!.modifiers,
@@ -117,6 +156,8 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 	const ranged = weaponType === "bow";
 	const p: Combatant = {
 		level,
+		jobId: char.classId === "novice_knight" ? "swordsman" : char.classId,
+		skills: char.skills,
 		isPlayer: true,
 		boss: false,
 		stats,
@@ -199,9 +240,11 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 			);
 		p[stat] = Math.max(0, p[stat]);
 	}
-	const regen=data.stats.regen;
-	p.hpRegen = regen.hpBase + vit*regen.hpVit + p.maxHp*regen.hpMax;
-	p.spRegen = (regen.spBase + int*regen.spInt + p.maxSp*regen.spMax) * (1 + (race.passives.spRegen || 0));
+	const regen = data.stats.regen;
+	p.hpRegen = regen.hpBase + vit * regen.hpVit + p.maxHp * regen.hpMax;
+	p.spRegen =
+		(regen.spBase + int * regen.spInt + p.maxSp * regen.spMax) *
+		(1 + (race.passives.spRegen || 0));
 	for (const stat of ["hpRegen", "spRegen"] as const) {
 		p[stat] += modifiers
 			.filter((m) => m.kind === "flat" && m.stat === stat)
@@ -339,7 +382,8 @@ export function statPointCost(current: number, data: GameData) {
 }
 export function pointsForLevel(level: number, data: GameData) {
 	return (
-		(clamp(Math.floor(level), 1, data.stats.maxLevel)-1) * data.stats.pointsPerLevel
+		(clamp(Math.floor(level), 1, data.stats.maxLevel) - 1) *
+		data.stats.pointsPerLevel
 	);
 }
 export function buildForLevel(
@@ -349,13 +393,25 @@ export function buildForLevel(
 ): CharacterInput {
 	const job = data.classes.classes.find((c) => c.id === classId);
 	if (!job) throw new Error(`Unknown class ${classId}`);
-	if (level === 1 && classId === data.stats.defaultBuild.classId)
-		return structuredClone(data.stats.defaultBuild);
+	if (
+		level === 1 &&
+		["swordsman", data.stats.defaultBuild.classId].includes(classId)
+	)
+		return { ...structuredClone(data.stats.defaultBuild), classId };
 	let baseStats = Object.fromEntries(
 		data.stats.baseStats.map((s) => [s, 1]),
 	) as Record<Stat, number>;
-	if(classId===data.stats.defaultBuild.classId)baseStats={...data.stats.defaultBuild.baseStats};
-	baseStats=autoAllocateStats({profile:{...data.stats.defaultBuild,classId,level,baseStats},statPoints:pointsForLevel(level,data),autoAllocate:true,autoAllocCursor:0},data).profile.baseStats;
+	if (["swordsman", data.stats.defaultBuild.classId].includes(classId))
+		baseStats = { ...data.stats.defaultBuild.baseStats };
+	baseStats = autoAllocateStats(
+		{
+			profile: { ...data.stats.defaultBuild, classId, level, baseStats },
+			statPoints: pointsForLevel(level, data),
+			autoAllocate: true,
+			autoAllocCursor: 0,
+		},
+		data,
+	).profile.baseStats;
 	const equipment = data.items.items
 		.filter(
 			(i) =>

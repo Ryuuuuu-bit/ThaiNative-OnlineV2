@@ -119,7 +119,7 @@ export class GameSocket {
 			this.flush();
 			if (message.t === "target" || message.t === "auto") this.moveKey = "";
 		}
-		if (["move", "steer", "act", "stats"].includes(message.t))
+		if (["move", "steer", "act", "stats", "skillUp"].includes(message.t))
 			message = { ...message, seq: ++this.seq };
 		this.ws.send(JSON.stringify(message));
 		return this.seq;

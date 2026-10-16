@@ -5,7 +5,8 @@ import {
 	deriveStats,
 	monsterStats,
 	buildForLevel,
-	computeDamage,
+	computeDamage,resolveSkill,
+
 	seededRng,
 	type Combatant,
 	type GameData,
@@ -29,12 +30,12 @@ export const MODEL = {
 	smallIncomingInterval: 1.5,
 	consumables: false,
 	notes:
-		"TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP regen uses shared per-second values; HP in-combat regen is 20% of its per-second value. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50.",
+		"Skills are job-restricted; default swordsman uses basic, whirlwind1 and earth_break1 (no passive investment). Multi-hit skills apply each hit. This abstract offensive model does not simulate CC, dash movement or buffs. TTK is offensive kill time, including lost races (not censored). Win rate races HP concurrently; no potions, camp, movement, summons or scripted stun. Boss damage uptime 35% in 4s windows models telegraph/reposition time; enemy attacks still occur every 2s. SP regen uses shared per-second values; HP in-combat regen is 20% of its per-second value. Training weapon copies for stub classes retain +5 ATK, 0 MATK, .44s interval. PvP starts at full HP/SP, no tactical downtime; simultaneous kills split win credit 50/50.",
 };
 export function parseOptions(args: string[]): Options {
 	const o: Options = {
 		levels: [1, 10, 30, 50, 99],
-		classes: ["novice_knight", "archer", "mage"],
+		classes: ["swordsman", "archer", "mage"],
 		monster: "all",
 		runs: 1000,
 		seed: 1,
@@ -105,7 +106,7 @@ function rankedSkills(
 	mode?: "duel" | "gvg",
 ) {
 	return data.skills.skills
-		.filter((s) => s.type !== "heal" && s.kind !== "utility")
+		.filter((s)=>{const fallback=a.jobId==='swordsman'?{basic:1,whirlwind:1,earth_break:1}:a.jobId==='mage'?{basic:1,meteor:1,fire_bolt:1}:{basic:1};const learned=Object.keys(a.skills||{}).length?a.skills!:fallback;return !s.passive&&s.type!=='heal'&&s.kind!=='utility'&&!!(learned as Record<string,number>)[s.id];}).map(s=>resolveSkill(data,s.id,a.skills?.[s.id]||1))
 		.map((skill) => ({
 			skill,
 			score: computeDamage(
@@ -114,7 +115,7 @@ function rankedSkills(
 				skill,
 				{ rng: () => 0.5, mode },
 				data,
-			).damage,
+			).damage*skill.hits,
 		}))
 		.sort((a, b) => b.score - a.score);
 }
@@ -161,7 +162,7 @@ export function trial(
 				pending.skill,
 				{ rng, mode, comboThird: pending.third },
 				data,
-			).damage;hp-=impact;if(impact>0)lastCombat=t;
+			).damage*pending.skill.hits;hp-=impact;if(impact>0)lastCombat=t;
 			pending = undefined;
 		}
 		const aliveBeforeImpact = won;
@@ -173,7 +174,7 @@ export function trial(
 				{ rng, mode, comboThird: enemyPending.third },
 				data,
 			);
-			ownHp -= hit.damage;
+			ownHp -= hit.damage*enemyPending.skill.hits;
 			if(hit.damage>0)lastCombat=t;
 			if (hit.hit) landed++;
 			enemyPending = undefined;

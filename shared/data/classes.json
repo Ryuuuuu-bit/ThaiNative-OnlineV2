@@ -51,6 +51,40 @@
         "dex": 3,
         "luk": 1
       }
+    },
+    {
+      "id": "villager",
+      "nameTh": "ชาวบ้าน",
+      "hpMul": 1,
+      "spMul": 1,
+      "weapons": [
+        "sword1h"
+      ],
+      "preset": {
+        "str": 4,
+        "agi": 2,
+        "vit": 3,
+        "int": 1,
+        "dex": 2,
+        "luk": 1
+      }
+    },
+    {
+      "id": "swordsman",
+      "nameTh": "นักดาบ",
+      "hpMul": 1,
+      "spMul": 1,
+      "weapons": [
+        "sword1h"
+      ],
+      "preset": {
+        "str": 4,
+        "agi": 2,
+        "vit": 3,
+        "int": 1,
+        "dex": 2,
+        "luk": 1
+      }
     }
   ]
 }

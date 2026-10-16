@@ -1,0 +1,652 @@
+:root {
+	--skill-paper: #f1e5c9;
+	--skill-ink: #304a40;
+	--skill-brass: #b79b66;
+}
+#skills-button.has-points {
+	box-shadow:
+		0 0 0 2px #d8ba7c,
+		0 0 16px #e5c77570;
+}
+#skills-window,
+#angel-window {
+	background: radial-gradient(ellipse at top, #fff4d8, var(--skill-paper));
+	color: var(--skill-ink);
+	border: 1px solid var(--skill-brass);
+	border-radius: 16px 4px 16px 4px;
+	box-shadow:
+		0 24px 100px #071b16b0,
+		inset 0 0 30px #a88b5130;
+	padding: 28px;
+	width: min(920px, 94vw);
+	max-height: 90dvh;
+	overflow: auto;
+	font:
+		14px "Noto Sans Thai",
+		sans-serif;
+}
+#skills-window::backdrop,
+#angel-window::backdrop {
+	background: #102a2660;
+	backdrop-filter: blur(3px);
+}
+#skills-window button,
+#angel-window button {
+	font: inherit;
+	cursor: pointer;
+}
+#skills-window h2,
+#angel-window h2 {
+	margin: 3px 0 12px;
+	font:
+		32px Georgia,
+		"Noto Sans Thai",
+		serif;
+}
+#skills-window .close,
+#angel-window .close {
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	background: none;
+	border: 0;
+	font-size: 26px;
+}
+#skills-tree {
+	display: grid;
+	grid-template-columns: 1fr 2fr 0.7fr;
+	gap: 18px;
+	margin: 20px 0;
+}
+.skill-tier h3 {
+	font-size: 13px;
+	letter-spacing: 0.06em;
+	border-bottom: 1px solid #a48b5d66;
+	padding-bottom: 8px;
+}
+.skill-node {
+	position: relative;
+	display: flex;
+	gap: 8px;
+	padding: 12px 4px;
+	border-bottom: 1px solid #b29e7040;
+	align-items: flex-start;
+}
+.skill-node .job-icon {
+	flex: 0 0 42px;
+	width: 42px;
+	height: 42px;
+}
+.skill-node > div {
+	flex: 1;
+}
+.skill-node b {
+	font-size: 13px;
+}
+.skill-node span:not(.job-icon) {
+	display: block;
+	font-size: 11px;
+}
+.skill-node p {
+	font-size: 11px;
+	margin: 3px 0;
+}
+.skill-node small {
+	display: block;
+	font-size: 10px;
+}
+.skill-node .lock-reason {
+	color: #855d4c;
+}
+.skill-next {
+	color: #618066;
+}
+.skill-locked {
+	opacity: 0.65;
+}
+.skill-node button {
+	border: 1px solid #8a9b75;
+	background: #f7efd8;
+	color: #365940;
+	min-width: 28px;
+	height: 28px;
+	border-radius: 50%;
+}
+.skill-node button:disabled {
+	opacity: 0.35;
+	cursor: default;
+}
+.job-icon {
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	background-size: 400% 300%;
+	background-position: calc(var(--ix) * 100% / 3) calc(var(--iy) * 100% / 2);
+	border-radius: 8px;
+}
+#job-hotbar,
+#skill-slots {
+	display: grid;
+	grid-template-columns: repeat(5, 64px);
+	gap: 6px;
+	justify-content: center;
+}
+#job-hotbar {
+	grid-template-columns: repeat(10, 60px);
+	gap: 5px;
+}
+#skill-slots {
+	grid-template-columns: repeat(10, 1fr);
+	gap: 4px;
+}
+.job-slot {
+	position: relative;
+	min-height: 68px;
+	padding: 5px 2px 2px;
+	border: 1px solid #bba77a88;
+	border-radius: 9px 3px 9px 3px;
+	background: #18352ee8;
+	color: #f4e4bd;
+	cursor: pointer;
+}
+.job-slot .job-icon {
+	width: 42px;
+	height: 42px;
+}
+.job-slot kbd {
+	position: absolute;
+	top: -5px;
+	left: 0;
+	font-size: 10px;
+	padding: 2px 5px;
+	background: #f2e5bd;
+	color: #1e3c31;
+	border-radius: 3px;
+}
+.job-slot small {
+	display: block;
+	font-size: 9px;
+	line-height: 1.2;
+	white-space: nowrap;
+}
+.job-slot em {
+	position: absolute;
+	inset: 10px 0 auto;
+	text-align: center;
+	font: bold 19px Georgia;
+	color: white;
+	text-shadow: 0 1px 4px black;
+}
+.job-slot.cooling .job-icon,
+.job-slot.unlearned .job-icon {
+	filter: saturate(0.35);
+	opacity: 0.45;
+}
+.job-slot.unlearned {
+	opacity: 0.55;
+}
+.empty-mark {
+	display: block;
+	font-size: 28px;
+	height: 42px;
+}
+.skills-actions {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+	margin-top: 12px;
+}
+#skills-status {
+	min-height: 2em;
+	font-size: 12px;
+}
+#skills-settings,
+#skills-cancel {
+	border: 1px solid #b39c6c;
+	background: none;
+	border-radius: 5px;
+	padding: 8px 12px;
+	color: #365243;
+}
+#key-settings {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 8px;
+	margin-top: 14px;
+}
+#key-settings label {
+	font-size: 11px;
+}
+#key-settings input {
+	display: block;
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #b3a27b;
+	background: #fff8e6;
+	color: #2e4c3e;
+}
+#job-label {
+	font-size: 11px;
+	color: #e6d8ac;
+}
+#job-exp {
+	font-size: 9px;
+	color: #c3cda7;
+}
+#buff-status {
+	position: absolute;
+	top: 135px;
+	left: 24px;
+	color: #ffe3a0;
+	font-size: 12px;
+}
+#angel-talk {
+	position: absolute;
+	bottom: 145px;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 1px solid #d9bc7d;
+	background: #f5e9cf;
+	color: #284b3b;
+	padding: 10px 18px;
+	border-radius: 20px;
+	pointer-events: auto;
+}
+#job-cards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 12px;
+	margin-top: 20px;
+}
+#job-cards button {
+	padding: 18px 10px;
+	border: 1px solid #b4a075;
+	background: #fcf4dc;
+	border-radius: 8px;
+	color: #35533f;
+}
+#job-cards b,
+#job-cards small {
+	display: block;
+}
+#job-cards small {
+	font-size: 11px;
+	margin-top: 7px;
+}
+#job-cards button:disabled {
+	opacity: 0.45;
+	cursor: default;
+}
+#angel-window {
+	width: min(650px, 94vw);
+}
+#skills-more {
+	display: none;
+}
+.combat-ui .legacy-actions {
+	display: flex;
+	gap: 5px;
+	justify-content: center;
+	margin-top: 6px;
+}
+.legacy-actions button {
+	font: 10px "Noto Sans Thai";
+	border: 1px solid #a6ad7b66;
+	background: #213d32c9;
+	color: #e9dfbd;
+	border-radius: 12px;
+	padding: 4px 12px;
+}
+.keys {
+	margin-top: 6px !important;
+}
+@media (max-width: 650px) {
+	#skills-window,
+	#angel-window {
+		padding: 22px 14px;
+		max-height: 90dvh;
+	}
+	#skills-tree {
+		grid-template-columns: 1fr;
+		gap: 8px;
+		margin: 12px 0;
+	}
+	.skill-tier {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+	.skill-tier h3 {
+		margin: 6px 0;
+	}
+	.skill-node {
+		padding: 8px 2px;
+	}
+	.skill-node p {
+		font-size: 10px;
+	}
+	.skill-node .job-icon {
+		width: 40px;
+		height: 40px;
+		flex-basis: 40px;
+	}
+	#skill-slots {
+		grid-template-columns: repeat(5, 1fr);
+	}
+	#job-hotbar {
+		grid-template-columns: repeat(5, 52px);
+		gap: 5px;
+	}
+	#job-hotbar .extra-slot {
+		display: none;
+	}
+	#job-hotbar.show-extra .extra-slot {
+		display: block;
+	}
+	.job-slot {
+		min-height: 61px;
+	}
+	.job-slot .job-icon {
+		width: 36px;
+		height: 36px;
+	}
+	.job-slot small {
+		font-size: 8px;
+	}
+	#skills-more {
+		display: block;
+		margin: 6px auto 0;
+		font: 10px "Noto Sans Thai";
+		background: #233f32;
+		border: 1px solid #c3ac78;
+		color: #eee0bc;
+		border-radius: 10px;
+		padding: 4px 12px;
+	}
+	#angel-talk {
+		bottom: 140px;
+		max-width: 80vw;
+		font-size: 11px;
+		padding: 8px 14px;
+	}
+	#job-cards {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 8px;
+	}
+	#buff-status {
+		top: 98px;
+		left: 12px;
+		font-size: 10px;
+	}
+	#key-settings {
+		grid-template-columns: repeat(5, 1fr);
+	}
+	.combat-ui .legacy-actions button {
+		font-size: 9px;
+		padding: 4px 10px;
+	}
+	.combat-ui {
+		bottom: 8px !important;
+	}
+	.keys {
+		display: none !important;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	#skills-button {
+		animation: none !important;
+	}
+}
+
+#job-progress {
+	position: absolute;
+	left: 24px;
+	top: 112px;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.status-tag {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	background: #263c32db;
+	color: #ffe6ad;
+	padding: 3px 6px;
+	border-radius: 8px;
+	font-size: 10px;
+	white-space: nowrap;
+}
+@media (max-width: 650px) {
+	#job-progress {
+		left: 12px;
+		top: 77px;
+	}
+	#job-label {
+		font-size: 9px;
+	}
+	#job-exp {
+		font-size: 8px;
+	}
+}
+
+#skills-button {
+	position: absolute;
+	right: 24px;
+	top: 150px;
+	pointer-events: auto;
+	border: 1px solid #bba67488;
+	border-radius: 10px;
+	background: #203e33e8;
+	color: #eadcb6;
+	padding: 7px 13px;
+	font: 11px "Noto Sans Thai";
+}
+@media (max-width: 650px) {
+	#skills-button {
+		right: 12px;
+		top: 125px;
+		padding: 6px 9px;
+	}
+}
+
+#skills-window p:not(.caption),
+#angel-window p:not(.caption) {
+	color: #3f5a49;
+	line-height: 1.5;
+}
+#skills-window .caption,
+#angel-window .caption {
+	color: #7f6b43;
+}
+#skills-window small,
+#skills-window span:not(.job-icon) {
+	color: #47654f;
+}
+#skills-window .skill-next {
+	color: #547c58;
+}
+#skills-window .lock-reason {
+	color: #875b48;
+}
+#skills-window[open] {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+#skills-window > p {
+	margin: 3px 0;
+}
+#skills-tree {
+	min-height: 0;
+	overflow-y: auto;
+	flex: 1;
+}
+.skill-tier:nth-child(2) {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0 12px;
+	align-content: start;
+}
+.skill-tier h3 {
+	grid-column: 1 / -1;
+}
+.skill-node p {
+	margin: 3px 0 !important;
+	line-height: 1.45 !important;
+}
+#skill-slots,
+.skills-actions,
+#skills-settings,
+#key-settings,
+#skills-status {
+	flex-shrink: 0;
+}
+#skills-window .job-slot small {
+	color: #f4e4bd;
+}
+#skills-window .job-slot kbd {
+	color: #1e3c31;
+}
+@media (max-width: 650px) {
+	#skills-button {
+		left: 95px;
+		right: auto;
+		top: 108px;
+		padding: 4px 9px;
+		font-size: 9px;
+	}
+	.stats-button {
+		top: 108px;
+	}
+	#job-progress {
+		top: 82px;
+	}
+	#skills-tree {
+		display: block;
+		max-height: 42dvh;
+		overflow: auto;
+	}
+	.skill-tier:nth-child(2) {
+		display: block;
+	}
+	#skills-window > h2 {
+		font-size: 25px;
+		margin-bottom: 4px;
+	}
+	.skill-node {
+		padding: 8px 2px;
+	}
+	#skills-window .skill-tier h3 {
+		margin: 6px 0;
+	}
+	#skills-status {
+		font-size: 10px;
+		margin: 5px 0 !important;
+	}
+	.skills-actions {
+		margin-top: 6px;
+	}
+	#skills-settings {
+		padding: 4px 8px;
+	}
+	body.more-skills #angel-talk {
+		bottom: 220px;
+	}
+	#buff-status {
+		top: 164px;
+	}
+	#skills-window #skill-slots .job-slot {
+		min-height: 52px;
+	}
+	#skills-window #skill-slots .job-icon {
+		width: 30px;
+		height: 30px;
+	}
+}
+
+#skills-reset-keys {
+	background: transparent;
+	border: 0;
+	color: #61754c;
+	font-size: 11px;
+	align-self: flex-start;
+	padding: 5px 0;
+}
+#skills-window #skill-slots small {
+	color: #eadcb7;
+}
+#skill-slots .job-slot.unlearned {
+	opacity: 0.75;
+}
+#stats-button {
+	top: 148px;
+}
+#skills-button {
+	left: 110px;
+	right: auto;
+	top: 148px;
+}
+#job-progress {
+	top: 120px;
+}
+#buff-status {
+	top: 184px;
+}
+.skill-tier h3 {
+	color: #38573f;
+}
+.skill-settings-actions {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+	flex-shrink: 0;
+}
+#skills-window .skills-actions .primary {
+	width: auto;
+	min-width: 180px;
+	margin: 0;
+	padding: 10px 18px;
+	font-size: 12px;
+}
+#skills-cancel {
+	padding: 8px 14px;
+	width: auto;
+}
+#skills-settings {
+	align-self: flex-start;
+	padding: 7px 12px;
+}
+@media (max-width: 650px) {
+	#stats-button {
+		top: 114px;
+	}
+	#skills-button {
+		left: 94px;
+		top: 114px;
+	}
+	#job-progress {
+		top: 87px;
+	}
+	#ui .location {
+		top: 150px;
+	}
+	#buff-status {
+		top: 195px;
+	}
+	.skill-settings-actions {
+		gap: 10px;
+	}
+	#skills-window .skills-actions .primary {
+		min-width: 150px;
+		padding: 9px 12px;
+	}
+	#skills-cancel {
+		font-size: 11px;
+		padding: 8px;
+	}
+	#skills-settings {
+		font-size: 11px;
+		padding: 6px 10px;
+	}
+}
+
+@keyframes skill-point-pulse{50%{box-shadow:0 0 0 2px #d8ba7c,0 0 18px #e5c775a0}}#skills-button.has-points{animation:skill-point-pulse 1.8s ease-in-out infinite}

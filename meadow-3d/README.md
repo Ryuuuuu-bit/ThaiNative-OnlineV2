@@ -14,16 +14,13 @@ For the account API, also run `npm run dev:server`. Open the local URL printed b
 
 ## Controls
 
-- WASD/arrows: screen-relative movement. Click ground to move directly; click a slime to approach and attack automatically. Direct steering slides along obstacles; it is not a full pathfinding system.
-- Hold LMB on a jelly or use Space (legacy J): three-hit sword combo. Clicking a jelly approaches and attacks. Single ground clicks move; holding over ground continues steering after 0.18 seconds, and dragging keeps walking. A stationary hold with an already selected target in reach attacks it.
-- Q: whirlwind, 20 MP, 4-second cooldown.
-- E: meteor at the selected/nearest enemy, 30 MP, 6-second cooldown. Damage occurs at impact, after 0.65 seconds.
-- Shift (left or right): dodge, short invulnerability, 1.5-second cooldown.
-- R: potion, restores 65 HP, 5 uses, 7-second cooldown.
-- F (legacy T): toggle AUTO hunt. It prioritises the King, uses combo/skills/potions and returns to camp below 25% HP without potions. Manual movement or Escape cancels it; skill presses are allowed. AUTO routes around obstacles; manual click movement keeps direct steering. AUTO starts off after death or re-entry.
-- Tab: cycle living targets by distance, wrapping back to the nearest. Browser focus stays in the game during play.
-- Mouse wheel: zoom. Escape: stop AUTO/movement and open the menu (the server world continues). Buttons provide help, audio and HQ/LOW rendering. Touch controls include a joystick and skill buttons.
-- Avoid red ground circles. Return to the southern camp for free healing. Death returns to camp with current EXP and money intact.
+- WASD / arrows or ground click: move. Hold LMB / Space (legacy J) for the basic combo.
+- Main bar **1 2 3 4 5**, extra bar **6 7 8 9 0**. Default swordsman: slash, whirlwind, dash strike, earth break, Endure; extra6 Provoke. Villager slot1: punch (learn it with the initial point in K).
+- Shift: dodge. R: potion. F (legacy T): AUTO. Tab: next target. C: stats. K: skills. Escape: pause/menu; the server world continues.
+- Q/E are free for remapping. In K, learn with `+`, review current→next numbers, then confirm/cancel. Drag a learned active skill into a slot, or tap a skill then tap a slot. Right-click a slot to clear. Key settings and hotbar are saved on the server; reserved movement/menu keys and duplicates are rejected. Restore default keys with the reset button.
+- Mobile: joystick, five main skill buttons, More for6–0, separate attack/dodge/potion/AUTO controls. Text-heavy panels stop local controls, not the authoritative world.
+- Talk to the painted Angel near camp at Job Lv10 to become a swordsman. Other branches are locked. Punch converts to fighter_basics at its learned level (ATK+1 and HP+1%/Lv); it leaves the active list/bar. Basic attack, dodge and potion remain innate controls, not learnable villager skills.
+
 
 ## Implementation
 
@@ -109,3 +106,15 @@ AUTO continues in background tabs. The pause/help/victory overlays cannot freeze
 See `server/README.md` for persistence, protocol, metrics, retention and local load testing. The runtime data change report, browser evidence and 1/20-client measurements are in `.codex-run/server-authority-report.json`, with `net-play.jpg` and `net-reconnect.jpg`. Artwork PNGs and page markup are unchanged. No Railway environment or deployment was touched.
 
 Authoritative integration passes86 tests, frontend typecheck and the full build. At nominal variance versus the starter jelly, combo damage is now15/15/27 (was16/16/28), spin33 (38), physical-fire meteor51 (58), defaultHP126 (120), defaultSP68.64 (80), potion72 (65), and SP recovery~0.27/s (4/s). Pools keep floats internally; HUD HP uses ceilings and spendable SP uses floors. The King’s four nominal attack strengths are preserved through data coefficients; player hit/crit/variance rolls are now real. These changes come from the pushed stats data, except the explicitly documented King pattern calibration. All changes, level curves and gameplay differences are catalogued in the report.
+
+## Jobs and swordsman skills
+
+`shared/data/jobs.json` is the job tree and independent Job EXP curve. Each Job level, including1, grants one point:10/50/70 per tier. Unspent points carry through changes; learned skills remain except punch's passive conversion. Villager requires10900 Job EXP to reach10 (about606 pink-jelly equivalents). The initial2180 curve took only3.7minutes under AUTO; the final5× curve averages about14.5minutes over five seeded20Hz runs with immediate punch upgrades. Manual play and downtime vary. Monsters grant rounded75% base EXP as Job EXP. Tier2 requires Job40 but remains unavailable pending its NPC quest. Names for the other tier2 stubs are provisional because the supplied brief names only guardian/berserker.
+
+SQL004 migrates old novice_knight characters to swordsman; SQL005 applies the owner follow-up once. Legacy swordsmen retain whirlwind1/earth_break1 and receive the initial-level point difference, cap50 unspent, fighter_basics0. Only exact old default hotbars are replaced; custom mappings survive. Removed first_aid/survival ranks are refunded if present in a partial earlier save. JSON skill/hotbar changes are saved immediately by WebSocket intents, never client progress POSTs.
+
+For **local UAT only**, start the local server with `UAT_JOB_EXP_MULTIPLIER=1000`; it accelerates earned kill Job EXP without granting arbitrary client state. Production (`NODE_ENV=production` or Railway environment) forces the multiplier to1. Never use a production service for these tests. The flag is off by default. `npm test`, `npm run build`, `npm run sim:balance` cover the shared/server/client contracts.
+
+Whirlwind was tuned from2×70% to2×110% atLv1, still2×135% atLv10: neutral weapon element and per-hit defence made the literal draft default take102s against the retuned King. The final abstract balance model measures about87.5s for Lv1 swordsman with only whirlwind1/earth_break1; King HP1500 is unchanged. The model reports offensive TTK and survival separately; it does not reproduce movement, potions, scripted boss windows or skill CC.
+
+Original painted Angel,12-cell64px icon atlas and6-cell VFX sources/prompts are under `art/skills/`; repack with `node meadow-3d/tools/pack-skill-art.mjs`. Runtime uses hashed KTX2/WebP and deferred VFX. Existing cast/dodge/attack poses plus a visual leap and afterimages cover the new skills. Historical sections below describe earlier milestones and their old controls/assets.

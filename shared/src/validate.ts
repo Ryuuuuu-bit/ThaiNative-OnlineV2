@@ -16,12 +16,39 @@ export function validateGameData(raw: Record<string, unknown>): GameData {
 		"cards",
 		"skills",
 		"monsters",
+		"jobs",
 	] as const) {
 		const entries = (data[name] as unknown as Record<string, { id: string }[]>)[
 			name
 		];
 		if (new Set(entries.map((e) => e.id)).size !== entries.length)
 			throw new Error(`${name}.json: ${name}: duplicate id`);
+	}
+	const jobIds = new Set(data.jobs.jobs.map((j) => j.id));
+	for (const job of data.jobs.jobs) {
+		if (job.parent && !jobIds.has(job.parent))
+			throw Error("jobs.json: unknown parent");
+		let next = job;
+		const seen = new Set<string>();
+		while (next.parent) {
+			if (seen.has(next.id)) throw Error("jobs.json: parent cycle");
+			seen.add(next.id);
+			next = data.jobs.jobs.find((j) => j.id === next.parent)!;
+		}
+	}
+	for (const skill of data.skills.skills) {
+		if (skill.jobId !== "common" && !jobIds.has(skill.jobId))
+			throw Error("skills.json: unknown job");
+		for (const [key, values] of Object.entries(skill.values))
+			if (values.length !== skill.maxLevel)
+				throw Error(
+					"skills.json: " + skill.id + ".values." + key + " level count",
+				);
+		for (const req of skill.requires) {
+			const target = data.skills.skills.find((s) => s.id === req.id);
+			if (!target || req.level > target.maxLevel)
+				throw Error("skills.json: prerequisite reference");
+		}
 	}
 	const build = data.stats.defaultBuild;
 	for (const name of ["races", "status"] as const) {

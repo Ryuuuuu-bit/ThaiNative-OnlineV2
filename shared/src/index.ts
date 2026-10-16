@@ -8,3 +8,5 @@ export * from './game/sim.js';
 export * from './game/movement.js';
 export * from './game/protocol.js';
 export * from './game/prediction.js';
+
+export * from './jobs.js';
