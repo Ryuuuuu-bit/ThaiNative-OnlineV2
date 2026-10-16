@@ -1,3 +1,4 @@
+import {needsJob} from '../store/progress.js';
 import type { Server } from "node:http";
 import { performance } from "node:perf_hooks";
 import { randomInt } from "node:crypto";
@@ -221,7 +222,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			skills: { ...p.skills },
 			audioSettings: p.audioSettings,
 			hotbar: p.hotbar.map((s) => ({ ...s })),
-			jobsVersion: 2,
+			jobsVersion: 3,
 			level: p.level,
 			xp: Math.floor(p.xp),
 			gold: p.gold,
@@ -501,6 +502,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					: undefined;
 				if (!session || !character) {
 					ws.close(4401, "login and selected character required");
+					return;
+				}
+				if (needsJob(character)) {
+					ws.close(4412, "job selection required");
 					return;
 				}
 				if (url.searchParams.get("v") !== options.build) {

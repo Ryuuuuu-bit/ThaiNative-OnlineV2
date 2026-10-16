@@ -90,6 +90,7 @@ export class GameSocket {
 		this.ws.onclose = (e) => {
 			if (generation !== this.generation || this.stopped) return;
 			this.connected = false;
+			if(e.code===4412){this.stopped=true;location.replace("/characters.html?chooseJob="+encodeURIComponent(this.you));return;}
 			if(e.code===4401){this.stopped=true;this.callbacks.status('kicked');return;}
 			this.pending = undefined;
 			this.callbacks.status(++this.retries >= 5 ? "offline" : "reconnecting");

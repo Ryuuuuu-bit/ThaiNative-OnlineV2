@@ -2,19 +2,11 @@
   "dataVersion": 1,
   "jobs": [
     {
-      "id": "villager",
-      "nameTh": "ชาวบ้าน",
-      "tier": 0,
-      "maxLevel": 10,
-      "parent": null,
-      "available": true
-    },
-    {
       "id": "swordsman",
       "nameTh": "นักดาบ",
       "tier": 1,
       "maxLevel": 50,
-      "parent": "villager",
+      "parent": null,
       "available": true
     },
     {
@@ -22,7 +14,7 @@
       "nameTh": "นักธนู",
       "tier": 1,
       "maxLevel": 50,
-      "parent": "villager",
+      "parent": null,
       "available": false
     },
     {
@@ -30,7 +22,7 @@
       "nameTh": "นักเวท",
       "tier": 1,
       "maxLevel": 50,
-      "parent": "villager",
+      "parent": null,
       "available": false
     },
     {
@@ -38,7 +30,7 @@
       "nameTh": "หมอยา",
       "tier": 1,
       "maxLevel": 50,
-      "parent": "villager",
+      "parent": null,
       "available": false
     },
     {
@@ -46,7 +38,7 @@
       "nameTh": "หมอผี",
       "tier": 1,
       "maxLevel": 50,
-      "parent": "villager",
+      "parent": null,
       "available": false
     },
     {
@@ -54,7 +46,7 @@
       "nameTh": "นักมวย",
       "tier": 1,
       "maxLevel": 50,
-      "parent": "villager",
+      "parent": null,
       "available": false
     },
     {
@@ -62,7 +54,7 @@
       "nameTh": "นักย่องเบา",
       "tier": 1,
       "maxLevel": 50,
-      "parent": "villager",
+      "parent": null,
       "available": false
     },
     {
@@ -184,7 +176,7 @@
     "range": 3
   },
   "expToNext": {
-    "villager": [
+    "tier1": [
       300,
       450,
       600,
@@ -193,18 +185,7 @@
       1350,
       1700,
       2100,
-      2550
-    ],
-    "tier1": [
-      500,
-      570,
-      650,
-      741,
-      844,
-      963,
-      1097,
-      1251,
-      1426,
+      2550,
       1626,
       1854,
       2113,

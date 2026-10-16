@@ -493,7 +493,6 @@ export const JobsSchema = z
 		angel: z.object({ x: number, z: number, range: positive }).strict(),
 		expToNext: z
 			.object({
-				villager: z.array(positive).length(9),
 				tier1: z.array(positive).length(49),
 				tier2: z.array(positive).length(69),
 			})

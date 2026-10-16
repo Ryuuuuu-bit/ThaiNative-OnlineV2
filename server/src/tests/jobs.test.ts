@@ -28,7 +28,7 @@ async function setup(t: any, production = false) {
 			await fetch(base + "/api/characters", {
 				method: "POST",
 				headers: { Cookie: cookie, "Content-Type": "application/json" },
-				body: JSON.stringify({ name: "Job" + Date.now().toString().slice(-8) }),
+				body: JSON.stringify({ jobId:"swordsman",name: "Job" + Date.now().toString().slice(-8) }),
 			})
 		).json()) as any;
 	await fetch(base + `/api/characters/${c.character.id}/select`, {
@@ -71,7 +71,7 @@ async function setup(t: any, production = false) {
 	const peer = await open(),
 		room = [...rt.rooms.values()][0],
 		p = room.game.players.get(c.character.id)!;
-	return { store, rt, peer, room, p, c: c.character, open };
+	return { store, rt, peer, room, p, c: c.character, open, base, cookie };
 }
 test("authoritative skill requests reject budget/prerequisite/max/job and unlearned act", async (t) => {
 	const f = await setup(t),
@@ -115,7 +115,7 @@ test("authoritative skill requests reject budget/prerequisite/max/job and unlear
 	assert.equal(p.cd.endure || 0, 0);
 	assert.ok(p.mp >= mp);
 });
-test("Angel job changes require Lv10 and range; learned skills and remapped bar survive reconnect", async (t) => {
+test("Angel cannot grant tier one; learned skills and remapped bar survive reconnect", async (t) => {
 	const f = await setup(t),
 		{ p, peer } = f;
 	let seq = 1;
@@ -136,15 +136,7 @@ test("Angel job changes require Lv10 and range; learned skills and remapped bar 
 	await bad();
 	p.x = -5;
 	p.z = 7;
-	peer.send({ t: "jobChange", job: "swordsman" });
-	await peer.until(
-		(m) =>
-			m.t === "ev" &&
-			m.list.some(
-				(e: any) => e.type === "stats" && e.job.jobId === "swordsman",
-			),
-	);
-	assert.equal(p.jobLevel, 1);
+	await bad();
 	p.skillPoints = 5;
 	peer.send({ t: "skillUp", id: "slash", seq: seq++ });
 	await peer.until(
@@ -172,4 +164,18 @@ test("Angel job changes require Lv10 and range; learned skills and remapped bar 
 test("dev Job EXP multiplier is disabled in production rooms", async (t) => {
 	const f = await setup(t, true);
 	assert.equal(f.room.game.jobExpMultiplier, 1);
+});
+
+test('world join rejects a migrated villager until the authenticated job choice is saved',async t=>{
+ const store=new MemoryStore(),server=createApp({store,build:'picker'}).listen(0,'127.0.0.1');await once(server,'listening');
+ const rt=mountRealtime(server,{store,build:'picker'}),sockets:WebSocket[]=[];
+ t.after(async()=>{for(const ws of sockets)ws.terminate();await rt.close();server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));});
+ const base=`http://127.0.0.1:${(server.address() as any).port}`;
+ const guest=await fetch(base+'/api/guest',{method:'POST'}),cookie=guest.headers.get('set-cookie')!.split(';')[0],account=(await guest.json() as any).account;
+ const c=await store.createCharacter(account.id,'WaitingHero','waitinghero');await store.saveProgress(account.id,c.id,{...c,jobId:'villager',classId:'villager',jobsVersion:2});
+ await fetch(base+`/api/characters/${c.id}/select`,{method:'POST',headers:{Cookie:cookie}});
+ const connect=()=>{const ws=new WebSocket(base.replace('http','ws')+'/api/ws?v=picker&area=meadow-01',{headers:{Cookie:cookie}});sockets.push(ws);return ws;};
+ const rejected=connect();const [code]=await once(rejected,'close');assert.equal(code,4412);assert.equal(rt.rooms.size,0);
+ const choice=await fetch(base+`/api/characters/${c.id}/job`,{method:'POST',headers:{Cookie:cookie,'Content-Type':'application/json'},body:JSON.stringify({jobId:'swordsman'})});assert.equal(choice.status,200);
+ const accepted=connect();const [raw]=await once(accepted,'message');assert.equal(JSON.parse(raw.toString()).t,'welcome');
 });

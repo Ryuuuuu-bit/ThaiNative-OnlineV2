@@ -7,7 +7,7 @@ export function playEventAudio(sound: AudioEngine, e: any, you: string, boss?: {
     case 'slash': play('combo' + ((e.combo ?? 0) + 1)); break;
     case 'skill':
       // Earth Break has a cast; its impact event is emitted when damage resolves.
-      if (['slash', 'whirlwind', 'punch', 'provoke', 'endure'].includes(e.skillId)) play(e.skillId);
+      if (['slash', 'whirlwind', 'provoke', 'endure'].includes(e.skillId)) play(e.skillId);
       if (e.skillId === 'dash_strike') play('dash');
       break;
     case 'skillImpact': if (e.skillId === 'earth_break') play('earth_break'); break;

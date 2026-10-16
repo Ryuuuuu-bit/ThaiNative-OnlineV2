@@ -105,19 +105,11 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 			value: learnedValue("sword_mastery", "atk"),
 		});
 	passive.push(
-		{ kind: "flat", stat: "atk", value: learnedValue("fighter_basics", "atk") },
-		{ kind: "flat", stat: "matk", value: learnedValue("fighter_basics", "matk") },
-		{
-			kind: "percent",
-			stat: "maxSp",
-			value: learnedValue("fighter_basics", "spPercent"),
-		},
 		{
 			kind: "percent",
 			stat: "maxHp",
 			value:
-				learnedValue("iron_body", "hpPercent") +
-				learnedValue("fighter_basics", "hpPercent"),
+				learnedValue("iron_body", "hpPercent"),
 		},
 		{
 			kind: "percent",

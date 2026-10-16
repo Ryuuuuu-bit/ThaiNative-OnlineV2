@@ -23,30 +23,16 @@ import {
 	refreshStats,
 } from "../src/index.node.js";
 const data = loadGameData();
-test("job curves grant each level once, stop at caps, and enforce Angel and locked branches", () => {
-	const p = newJob();
-	assert.equal(gainJobExp(p, 1e9, data), 9);
-	assert.equal(p.skillPoints, 10);
-	assert.equal(gainJobExp(p, 1e9, data), 0);
-	assert.throws(() => changeJob(p, "swordsman", 10, 10, data), /ใกล้แคมป์/);
-	assert.throws(
-		() => changeJob({ ...p, jobLevel: 9 }, "swordsman", -5, 7, data),
-		/ไม่ถึง/,
-	);
-	assert.throws(() => changeJob(p, "mage", -5, 7, data), /ยังไม่เปิด/);
-	const next = changeJob(p, "swordsman", -5, 7, data);
-	assert.equal(next.jobLevel, 1);
-	assert.equal(next.jobExp, 0);
-	const two = structuredClone(data);
-	two.jobs.jobs.find((j) => j.id === "guardian")!.available = true;
-	assert.throws(
-		() => changeJob({ ...next, jobLevel: 39 }, "guardian", -5, 7, two),
-		/ไม่ถึง/,
-	);
-	assert.equal(
-		changeJob({ ...next, jobLevel: 40 }, "guardian", -5, 7, two).jobId,
-		"guardian",
-	);
+test("tier one and two grant one point per level including level one; Angel only offers tier two", () => {
+ const p=newJob();assert.equal(p.jobId,"swordsman");assert.equal(p.skillPoints,1);
+ assert.equal(gainJobExp(p,1e12,data),49);assert.equal(p.skillPoints,50);assert.equal(gainJobExp(p,1e12,data),0);
+ assert.throws(()=>changeJob(p,"swordsman",-5,7,data),/ยังไม่เปิด/);
+ assert.throws(()=>changeJob(p,"guardian",-5,7,data),/ยังไม่เปิด/);
+ const two=structuredClone(data);two.jobs.jobs.find(j=>j.id==="guardian")!.available=true;
+ assert.throws(()=>changeJob({...p,jobLevel:39},"guardian",-5,7,two),/ไม่ถึง/);
+ assert.throws(()=>changeJob(p,"guardian",10,10,two),/ใกล้แคมป์/);
+ assert.equal(changeJob(p,"guardian",-5,7,two).jobLevel,1);
+ const tier2={...newJob(),jobId:"guardian"};gainJobExp(tier2,1e12,data);assert.equal(tier2.skillPoints,70);
 });
 test("per-level skill values, prerequisites, max level, job and point budgets", () => {
 	assert.equal(resolveSkill(data, "slash", 1).percent, 180);
@@ -232,66 +218,14 @@ test("taunt makes a farther player override the nearest player until expiry", as
 	assert.ok(e.aimZ > 4);
 });
 
-test("owner followup: punch values, Lv1 point and fighter-basics conversion with numeric bar", () => {
-	const p = newJob();
-	assert.equal(p.skillPoints, 1);
-	assert.deepEqual(
-		p.hotbar.map((s) => s.key),
-		[
-			"Digit1",
-			"Digit2",
-			"Digit3",
-			"Digit4",
-			"Digit5",
-			"Digit6",
-			"Digit7",
-			"Digit8",
-			"Digit9",
-			"Digit0",
-		],
-	);
-	assert.equal(p.hotbar[0].skill, "punch");
-	assert.equal(resolveSkill(data, "punch", 1).percent, 120);
-	assert.equal(resolveSkill(data, "punch", 10).percent, 300);
-	let learned = learnSkill(p, "punch", data);
-	gainJobExp(learned, 1e9, data);
-	for (let i = 1; i < 10; i++) learned = learnSkill(learned, "punch", data);
-	assert.equal(learned.skillPoints, 0);
-	const swordsman = changeJob(learned, "swordsman", -5, 7, data);
-	assert.equal(swordsman.skills.punch, undefined);
-	assert.equal(swordsman.skills.fighter_basics, 10);
-	assert.equal(swordsman.skillPoints, 1);
-	assert.deepEqual(
-		swordsman.hotbar.slice(0, 6).map((s) => s.skill),
-		["slash", "whirlwind", "dash_strike", "earth_break", "endure", "provoke"],
-	);
-	assert.throws(() => learnSkill(swordsman, "punch", data), /พื้นฐาน/);
-	assert.throws(() => learnSkill(swordsman, "fighter_basics", data), /เปลี่ยน/);
-	const base = deriveStats(data.stats.defaultBuild, data),
-		boost = deriveStats(
-			{ ...data.stats.defaultBuild, skills: { fighter_basics: 10 } },
-			data,
-		);
-	assert.equal(boost.atk, base.atk + 10);
-	assert.equal(boost.matk, base.matk + 10);
-	assert.ok(Math.abs(boost.maxHp - base.maxHp * 1.1) < 1e-8);
-	assert.ok(Math.abs(boost.maxSp - base.maxSp * 1.1) < 1e-8);
-	assert.ok(
-		!data.skills.skills.some((s) => ["first_aid", "survival"].includes(s.id)),
-	);
-});
-test("fighter_basics grants all four bonuses at every level for every class", () => {
-	for (const job of data.classes.classes) {
-		const profile = { ...data.stats.defaultBuild, classId: job.id, equipment: [], skills: {} };
-		const base = deriveStats(profile, data);
-		for (let level = 0; level <= 10; level++) {
-			const boost = deriveStats({ ...profile, skills: { fighter_basics: level } }, data);
-			assert.equal(boost.atk, base.atk + level);
-			assert.equal(boost.matk, base.matk + level);
-			assert.ok(Math.abs(boost.maxHp - base.maxHp * (1 + level / 100)) < 1e-8);
-			assert.ok(Math.abs(boost.maxSp - base.maxSp * (1 + level / 100)) < 1e-8);
-		}
-	}
+test("creation starts with swordsman slots and obsolete skills are absent", () => {
+ const p=newJob();assert.equal(p.jobLevel,1);assert.equal(p.skillPoints,1);
+ assert.deepEqual(p.hotbar.slice(0,6).map(s=>s.skill),["slash","whirlwind","dash_strike","earth_break","endure","provoke"]);
+ assert.deepEqual(p.skills,{basic:1,dodge:1,potion:1});
+ for(const id of ["punch","fighter_basics"]){assert.ok(!data.skills.skills.some(s=>s.id===id));assert.throws(()=>resolveSkill(data,id));}
+ assert.ok(!data.jobs.jobs.some(j=>j.id==="villager"));
+ assert.equal(data.jobs.jobs.filter(j=>j.tier===1).length,7);
+ assert.throws(()=>newJob("mage"));assert.throws(()=>newJob("villager"));
 });
 test("followup migration grants once, preserves learned skills and custom bar, replaces only old defaults", async () => {
 	const { normalizeJob, oldDefaultHotbars } = await import("../src/jobs.js");
@@ -307,12 +241,12 @@ test("followup migration grants once, preserves learned skills and custom bar, r
 	};
 	const next = normalizeJob(old);
 	assert.equal(next.skillPoints, 10);
-	assert.equal(next.skills.fighter_basics, 0);
+	assert.equal(next.skills.fighter_basics, undefined);
 	assert.equal(next.hotbar[0].key, "Digit1");
 	const custom = structuredClone(old);
 	custom.hotbar[0].key = "KeyZ";
 	assert.equal(normalizeJob(custom).hotbar[0].key, "KeyZ");
-	assert.deepEqual(normalizeJob({ ...next, level: 1, jobsVersion: 2 }), next);
+	assert.deepEqual(normalizeJob({ ...next, level: 1, jobsVersion: 3 }), next);
 	assert.equal(migrateJob(99).skillPoints, 50);
 	const tier1 = { ...newJob(), jobId: "swordsman", skillPoints: 1 };
 	gainJobExp(tier1, 1e12, data);
@@ -347,22 +281,22 @@ test("PvP slow affects authoritative movement and expires; 20Hz slam resolves in
 	assert.ok(e.hp < 500);
 });
 
-test("normal AUTO villager progression reaches Job10 near fifteen minutes with punch upgrades", () => {
+test("normal AUTO swordsman progression reaches Job10 near fifteen minutes with slash upgrades", () => {
 	const g = createGame(
 		1,
-		{ ...data.stats.defaultBuild, classId: "villager" },
+		{ ...data.stats.defaultBuild, classId: "swordsman" },
 		"curve",
 		data,
 	);
-	Object.assign(g.p, learnSkill(g.p, "punch", data));
+	Object.assign(g.p, learnSkill(g.p, "slash", data));
 	setAuto(g, true);
 	for (let n = 0; n < 24000 && g.p.jobLevel < 10; n++) {
 		step(g, 0.05);
 		g.events.length = 0;
-		while (g.p.skillPoints > 0 && (g.p.skills.punch || 0) < 10)
-			Object.assign(g.p, learnSkill(g.p, "punch", data));
+		while (g.p.skillPoints > 0 && (g.p.skills.slash || 0) < 10)
+			Object.assign(g.p, learnSkill(g.p, "slash", data));
 	}
 	assert.equal(g.p.jobLevel, 10);
 	assert.ok(g.time >= 720 && g.time <= 1080, `Job10 at ${g.time}s`);
-	assert.equal(g.p.skills.punch, 10);
+	assert.equal(g.p.skills.slash, 10);
 });

@@ -56,8 +56,8 @@ export const skillId = (id: string) =>
 	)[id] || id;
 export function defaultHotbar(jobId: string): HotbarSlot[] {
 	const active =
-		jobId === "villager"
-			? ["punch"]
+		jobId === "needs_job" || jobId === "villager"
+			? []
 			: [
 					"slash",
 					"whirlwind",
@@ -68,14 +68,16 @@ export function defaultHotbar(jobId: string): HotbarSlot[] {
 				];
 	return HOTBAR_KEYS.map((key, i) => ({ key, skill: active[i] || null }));
 }
-export function newJob(): JobProgress {
+export function newJob(jobId = "swordsman"): JobProgress {
+	const job = jobDefinitions.jobs.find(j => j.id === jobId);
+	if (!job?.available || job.tier !== 1) throw Error("อาชีพนี้ยังไม่เปิด");
 	return {
-		jobId: "villager",
+		jobId,
 		jobLevel: 1,
 		jobExp: 0,
 		skillPoints: 1,
 		skills: { basic: 1, dodge: 1, potion: 1 },
-		hotbar: defaultHotbar("villager"),
+		hotbar: defaultHotbar(jobId),
 	};
 }
 export function migrateJob(level: number): JobProgress {
@@ -84,7 +86,7 @@ export function migrateJob(level: number): JobProgress {
 		...p,
 		jobId: "swordsman",
 		skillPoints: Math.min(50, 10 + level - 1),
-		skills: { ...p.skills, whirlwind: 1, earth_break: 1, fighter_basics: 0 },
+		skills: { ...p.skills, whirlwind: 1, earth_break: 1 },
 		hotbar: defaultHotbar("swordsman"),
 	};
 }
@@ -153,8 +155,6 @@ export function skillLock(
 ): string | null {
 	const s = data.skills.skills.find((s) => s.id === id);
 	if (!s) return "ไม่พบสกิล";
-	if (id === "fighter_basics") return "ได้รับจากต่อยเมื่อเปลี่ยนอาชีพ";
-	if (id === "punch" && p.jobId !== "villager") return "ต่อยเปลี่ยนเป็นพื้นฐานนักสู้แล้ว";
 	if (!belongsToJob(p.jobId, s.jobId, data)) return "อาชีพไม่ตรง";
 	if ((p.skills[id] || 0) >= s.maxLevel) return "ระดับสูงสุด";
 	const missing = s.requires.find((r) => (p.skills[r.id] || 0) < r.level);
@@ -181,13 +181,12 @@ export function gainJobExp(
 	amount: number,
 	data: GameData,
 ): number {
-	const job = data.jobs.jobs.find((j) => j.id === p.jobId)!;
+	const job = data.jobs.jobs.find((j) => j.id === p.jobId);
+	if (!job) return 0;
 	let gained = 0;
 	p.jobExp += Math.max(0, Math.floor(amount));
 	const table =
-		job.tier === 0
-			? data.jobs.expToNext.villager
-			: job.tier === 1
+		job.tier === 1
 				? data.jobs.expToNext.tier1
 				: data.jobs.expToNext.tier2;
 	while (p.jobLevel < job.maxLevel && p.jobExp >= table[p.jobLevel - 1]) {
@@ -208,15 +207,12 @@ export function changeJob(
 ): JobProgress {
 	const job = data.jobs.jobs.find((j) => j.id === jobId),
 		angel = data.jobs.angel;
-	if (!job?.available || job.parent !== p.jobId) throw Error("อาชีพนี้ยังไม่เปิด");
-	if (p.jobLevel < (job.tier === 1 ? 10 : 40)) throw Error("Job Lv ไม่ถึงเกณฑ์");
+	if (!job?.available || job.tier !== 2 || job.parent !== p.jobId) throw Error("อาชีพนี้ยังไม่เปิด");
+	if (p.jobLevel < 40) throw Error("Job Lv ไม่ถึงเกณฑ์");
 	if (Math.hypot(x - angel.x, z - angel.z) > angel.range)
 		throw Error("กรุณาคุยกับทูตสวรรค์ใกล้แคมป์");
 	const skills = { ...p.skills };
-	if (p.jobId === "villager") {
-		skills.fighter_basics = skills.punch || 0;
-		delete skills.punch;
-	}
+
 	return {
 		...p,
 		jobId,
@@ -375,5 +371,14 @@ export function normalizeJob(
 					: s.skill,
 		}));
 	}
+	if (p.jobId === "villager" || p.jobId === "needs_job") {
+		return { ...newJob(), jobId: "needs_job", hotbar: defaultHotbar("needs_job") };
+	}
+	if ((p.jobsVersion ?? 0) < 3) {
+		out.skillPoints += out.skills.fighter_basics || 0;
+	}
+	delete out.skills.punch;
+	delete out.skills.fighter_basics;
+	out.hotbar = out.hotbar.map(s => ({ ...s, skill: ["punch", "fighter_basics"].includes(s.skill || "") ? null : s.skill }));
 	return out;
 }

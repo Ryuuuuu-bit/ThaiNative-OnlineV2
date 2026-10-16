@@ -68,7 +68,7 @@ function events(){for(const e of game.events.splice(0)){skillArt.emit(e);if(['ki
  case'evade':number('DODGE',e,'evade',2.4);break;
  case'heal':number(`+${e.amount}`,e,'heal',2.4);effectRing(e.x,e.z,'#c3edb0',.9,.45);particles(e.x,e.z,'#d6f5b0',14,1);break;
  case'pickup':number(`+${e.xp} EXP   ◈ ${e.gold}`,e,'reward',2.8);break;
- case'jobLevel':if(e.playerId===net.you){notice(`✦ JOB LV.${e.jobLevel} · +${e.granted} แต้มสกิล · K`);if(e.jobLevel===10&&game.p.jobId==='villager')notice('✧ พร้อมเปลี่ยนอาชีพแล้ว · คุยกับทูตสวรรค์ใกล้แคมป์');}break;
+ case'jobLevel':if(e.playerId===net.you){notice(`✦ JOB LV.${e.jobLevel} · +${e.granted} แต้มสกิล · K`);if(e.jobLevel===40)notice('✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา');}break;
  case'level':notice(`✦ LEVEL ${e.level} · +${e.granted||3} แต้มสเตตัส · C ดูสเตตัส`);$('#stats-button').classList.add('level-pulse');setTimeout(()=>$('#stats-button').classList.remove('level-pulse'),4500);effectRing(e.x,e.z,'#ffe6a0',2.2,.8);particles(e.x,e.z,'#ffedb7',45,3);break;
  case'dash':effectRing(e.x,e.z,'#c1e9e6',.6,.25);particles(e.x,e.z,'#d6eee2',16,1.4);break;
  case'warning':{const o=ring(e.x,e.z,e.r,'#e98074',.07,.8),fill=new T.Mesh(new T.CircleGeometry(e.r,48),new T.MeshBasicMaterial({color:'#df7162',transparent:true,opacity:.16,side:T.DoubleSide,depthWrite:false}));fill.rotation.x=-Math.PI/2;fill.position.set(e.x,.035,e.z);scene.add(fill);effects.push({kind:'warning',mesh:o,life:e.duration,max:e.duration});effects.push({kind:'warningFill',mesh:fill,life:e.duration,max:e.duration});break;}

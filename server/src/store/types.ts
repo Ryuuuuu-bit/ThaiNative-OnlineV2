@@ -8,6 +8,6 @@ export interface Store {
  init():Promise<void>;close():Promise<void>;
  createGuest(guestKeyHash:string):Promise<Account>;resumeGuest(hash:string):Promise<Account|undefined>;google(identity:GoogleIdentity,guestId?:string):Promise<Account>;account(id:string):Promise<Account|undefined>;
  createSession(session:Session):Promise<void>;session(hash:string):Promise<Session|undefined>;revoke(hash:string):Promise<void>;select(sessionId:string,characterId:string):Promise<void>;
- characters(accountId:string):Promise<Character[]>;character(accountId:string,id:string):Promise<Character|undefined>;createCharacter(accountId:string,name:string,nameKey:string):Promise<Character>;deleteCharacter(accountId:string,id:string):Promise<void>;saveProgress(accountId:string,id:string,body:Progress):Promise<Character>;
+ characters(accountId:string):Promise<Character[]>;character(accountId:string,id:string):Promise<Character|undefined>;createCharacter(accountId:string,name:string,nameKey:string,jobId?:string):Promise<Character>;chooseJob(accountId:string,id:string,jobId:string):Promise<Character>;deleteCharacter(accountId:string,id:string):Promise<void>;saveProgress(accountId:string,id:string,body:Progress):Promise<Character>;
 }
 export const publicAccount=({guestKeyHash,googleSub,...safe}:Account)=>safe;

@@ -36,7 +36,6 @@ export function mountSkills(
 	}
 	function reason(s: any) {
 		if (!job) return "กำลังรับข้อมูล";
-		if (s.id === "fighter_basics") return "สืบทอดจากต่อยเมื่อเปลี่ยนอาชีพ";
 		if (!owner(s.jobId)) return "อาชีพไม่ตรง";
 		if (level(s.id) >= s.maxLevel) return "ระดับสูงสุด";
 		const req = s.requires.find((r: any) => level(r.id) < r.level);
@@ -56,8 +55,6 @@ export function mountSkills(
 				? `ATK +${at("atk", 0)} เมื่อใช้ดาบ`
 				: s.id === "sword_rhythm"
 					? `คอมโบสาม +${at("comboBonus", 0) * 100}% · ลดคูลดาวน์อื่น ${at("cooldownReduction", 0).toFixed(1)} วิ`
-					: s.id === "fighter_basics"
-						? `ATK +${at("atk", 0)} · MATK +${at("matk", 0)} · Max HP +${Math.round(at("hpPercent", 0) * 100)}% · Max SP +${Math.round(at("spPercent", 0) * 100)}%`
 						: `HP +${at("hpPercent", 0) * 100}% · ฟื้น HP +${at("hpRegenPercent", 0) * 100}%`;
 		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}SP ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${s.effect === "taunt" ? ` · DEF −${Math.round(at("defDown", 0.05) * 100)}% 5 วิ` : s.effect === "endure" ? ` · DEF +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? " · 6 ม. สตั้น 0.6 วิ" : s.effect === "knockup" ? " · ยก 0.8 วิ ร่าย 0.4 วิ" : ""}`;
 	}
@@ -116,16 +113,11 @@ export function mountSkills(
 		);
 		const tree = $("#skills-tree");
 		tree.replaceChildren();
-		for (const tier of [0, 1, 2]) {
+		for (const tier of [1, 2]) {
 			const section = document.createElement("section");
 			section.className = "skill-tier";
-			section.innerHTML = `<h3>${tier === 0 ? "รากฐาน" : tier === 1 ? "นักดาบ" : "อาชีพขั้นต่อไป"}</h3>`;
-			const list = skills.filter(
-				(s) =>
-					s.jobId === (tier === 0 ? "villager" : "swordsman") &&
-					(s.id !== "punch" || job?.jobId === "villager") &&
-					(s.id !== "fighter_basics" || job?.jobId !== "villager"),
-			);
+			section.innerHTML = `<h3>${tier === 1 ? "นักดาบ" : "อาชีพขั้นต่อไป"}</h3>`;
+			const list = skills.filter(s => s.jobId === job?.jobId);
 			if (tier === 2) {
 				section.innerHTML +=
 					'<p class="skill-locked">ผู้พิทักษ์ / นักดาบคลั่ง<br>Job Lv.40 · ภารกิจเร็ว ๆ นี้</p>';
@@ -229,26 +221,9 @@ export function mountSkills(
 	};
 	function drawAngel() {
 		if (!job) return;
-		$("#angel-note").textContent =
-			job.jobId === "villager"
-				? `เจ้าเติบโตขึ้นทุกวัน · Job Lv.${job.jobLevel}/10 · ถึงระดับ 10 แล้วเลือกเส้นทางของเจ้าได้เลย`
-				: "ขอให้ดาบของเจ้าปกป้องผู้คน · งานขั้นต่อไปจะเปิดเมื่อถึงเวลา";
-		$("#job-cards").innerHTML = jobsData.jobs
-			.filter((j) => j.tier === 1)
-			.map(
-				(j) =>
-					`<button data-job="${j.id}" ${!j.available || job!.jobId !== "villager" || job!.jobLevel < 10 ? "disabled" : ""}><b>${j.nameTh}</b><small>${j.id === job!.jobId ? "อาชีพปัจจุบัน" : !j.available ? "เร็ว ๆ นี้" : job!.jobLevel < 10 ? "ต้องการ Job Lv.10" : "เริ่มเส้นทางนักดาบ →"}</small></button>`,
-			)
-			.join("");
-		$("#job-cards")
-			.querySelectorAll<HTMLButtonElement>("[data-job]")
-			.forEach(
-				(b) =>
-					(b.onclick = () => {
-						send({ t: "jobChange", job: b.dataset.job });
-						$("#angel-note").textContent = "กำลังขอเปลี่ยนอาชีพ…";
-					}),
-			);
+		$("#angel-note").textContent = "ข้าจะนำทางเจ้าสู่อาชีพขั้นสองที่ Job Lv.40 · ยังไม่ถึงเวลา";
+		$("#job-cards").innerHTML = jobsData.jobs.filter(j => j.tier === 2 && j.parent === job!.jobId)
+			.map(j => `<button disabled><b>${j.nameTh}</b><small>ยังไม่ถึงเวลา · Job Lv.40</small></button>`).join("");
 	}
 	return {
 		get open() {
@@ -296,9 +271,7 @@ export function mountSkills(
 					`${jobsData.jobs.find((j) => j.id === p.jobId)?.nameTh} · Job Lv.${p.jobLevel}`;
 				const j = jobsData.jobs.find((j) => j.id === p.jobId),
 					table =
-						j?.tier === 0
-							? jobsData.expToNext.villager
-							: j?.tier === 1
+						j?.tier === 1
 								? jobsData.expToNext.tier1
 								: jobsData.expToNext.tier2;
 				$("#job-exp").textContent =

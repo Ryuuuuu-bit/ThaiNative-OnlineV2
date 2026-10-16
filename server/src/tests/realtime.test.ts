@@ -32,7 +32,7 @@ async function fixture(t: any, sharedRooms = false) {
 	};
 	const make = async (name: string) => {
 		const guest = await call("/api/guest", {}),
-			c = await call("/api/characters", { name }, guest.cookie);
+			c = await call("/api/characters", { name, jobId: "swordsman" }, guest.cookie);
 		await call(
 			`/api/characters/${c.data.character.id}/select`,
 			{},
@@ -234,3 +234,4 @@ test("shared option joins two ready players into the same room and snapshot", as
 	assert.equal(f.rt.rooms.size, 1);
 	assert.equal([...f.rt.rooms.values()][0].game.players.size, 2);
 });
+

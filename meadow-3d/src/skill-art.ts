@@ -98,7 +98,7 @@ export function mountSkillArt(
 				return;
 			}
 			if (e.type !== "skill") return;
-			if (id === "slash" || id === "punch")
+			if (id === "slash")
 				painted(0, e.x + (e.dx || 0), e.z + (e.dz || 0), 2.7, 0.55);
 			if (id === "whirlwind") painted(5, e.x, e.z, 5.2, 0.75);
 			if (id === "dash_strike") painted(1, e.x, e.z, 3, 0.45);

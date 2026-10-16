@@ -163,12 +163,12 @@ export function createGame(
 	};
 	const stats = deriveStats(profile, data);
 	const job =
-		profile.classId === "villager" ? newJob() : migrateJob(profile.level);
+		profile.classId === "swordsman" ? newJob() : migrateJob(profile.level);
 	let p: Player = {
 		...job,
 		statuses: [],
 		castRemaining: 0,
-		jobsVersion: 2,
+		jobsVersion: 3,
 		id,
 		name: "Aerin",
 		stats,
@@ -638,7 +638,6 @@ export function action(g: Game, a: Action) {
 			: null;
 	if (
 		!skill ||
-		(skill.id === "punch" && p.jobId !== "villager") ||
 		skill.passive ||
 		!p.skills[skill.id] ||
 		!belongsToJob(p.jobId, skill.jobId, g.data) ||
@@ -1119,7 +1118,7 @@ function autoStep(g: Game, dt: number): Vec {
 		if (d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
-			if (p.skills.punch && (p.cd.punch || 0) === 0) action(g, "punch");
+			if (p.skills.slash && (p.cd.slash || 0) === 0) action(g, "slash");
 			action(g, "attack");
 			g.destination = null;
 			if (!retreat) p.autoState = "fight";
