@@ -1,6 +1,6 @@
 # Shared stats core
 
-This is an isolated stats foundation. The live meadow, pages, saved characters and server routes still use their existing code. None imports this package yet.
+The server now runs the meadow simulation from `src/game/` using this stats core. The client imports only the movement/collision/prediction subpaths and presentation constants; it has no combat step, local HP/reward logic or save authority.
 
 From the repository root:
 
@@ -79,3 +79,13 @@ The SP regen formula is much lower than the live meadow's 4 SP/s (default here a
 Pink jelly is also a one-shot to an opening whirlwind in this rotation, unlike today’s fixed 38 vs 48 HP. That is flagged as sub-second TTK, not hidden by tuning away the elemental rule. The simulator is a tool to expose these conflicts, not a claim that the data are ready to replace live combat.
 
 Verification: all **71 tests** pass (35 meadow, 12 server, one web build, 23 shared), the full build passes, and workspace imports were independently compiled with Vite and the server’s TypeScript 5.9/NodeNext setup. At 200 runs/row, the saved PvE report covers 75 rows/15,000 trials and flags 42 rows; duel/GvG covers 90 rows/18,000 trials and flags 32. No 600s timeouts occurred. The default King potential TTK is **67.20s** (p10 65.00, p90 69.00), with **0% win rate** under the documented defensive limitations. Full before/after values and conflicts are in `.codex-run/stats-core-report.json`; the requested Markdown copy is `.codex-run/balance-step1.md`.
+
+## Server authority integration
+
+`src/game/sim.ts` now owns the deterministic N-player game; `withPlayer` scopes commands to one player, while one world step updates all players and shared enemies/loot. Stats and damage come from this package. The original meadow sim module is a presentation/type shim. Collision is a single shared implementation used by the server and client prediction. Timing-only monster motion data was copied into the pure package without changing art.
+
+The only new balance data in this integration are the King's pattern coefficients in `monsters.json.attacks`: slam112/133%, sweep95/113%, charge103/125%, spit61/75% (phase1/2). They preserve nominal default-human incoming24/20/22/12 and30/25/28/16 after the new ATK/DEF/size formula. Projectiles retain their attack kind after the boss changes animation. All player/monster hits call computeDamage and include the breakdown. Starter neutral jelly and physical-fire meteor remain exactly as pushed; fire_bolt remains an unused stub.
+
+The live numerical changes are catalogued in `.codex-run/server-authority-report.json`. Notable changes are126 HP/68.64 SP atLv1, about0.27 SP/s instead of4,72-potion healing instead of65, data-backed monster HP/EXP/gold, real hit/crit/variance rolls, smaller data-backed skill radii, and unspent stat points instead of automatic per-level ATK bonuses. Old behavior tests are ported to the shared sim with deterministic midpoint damage for exact number assertions; separate seeded tests verify real randomness and2000-tick determinism.
+
+Integration verification passes86 total tests (32 shared). The client bundle uses dedicated collision/movement/prediction/constants exports, so it does not instantiate a Game or include combat/data validation at runtime. Server timing uses an epsilon for cooldown expiry to prevent an extra50ms tick from floating-point residue. Incoming misses neither damage nor grant hurt/invulnerability frames. The final report includes before/after nominal damage, all resource/monster/level-curve changes, browser evidence and combined-wire1/20-client measurements.

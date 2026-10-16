@@ -4,3 +4,7 @@ export * from "./derive.js";
 export * from "./damage.js";
 export * from "./status.js";
 export { loadGameData } from "./load.node.js";
+export * from './game/sim.js';
+export * from './game/movement.js';
+export * from './game/protocol.js';
+export * from './game/prediction.js';

@@ -1,6 +1,6 @@
 # Jelly Meadow — painted hero combat preview
 
-A local single-player Three.js demo. A small meadow contains 10 respawning slimes, a camp that restores HP, and a ราชาวุ้น unlocked after 6 defeats. The Express web shell now serves accounts, character selection and saved progress alongside the game.
+A server-authoritative Three.js meadow, private per character by default. A small meadow contains 10 respawning slimes, a camp that restores HP, and a ราชาวุ้น unlocked after 6 defeats. The Express web shell now serves accounts, character selection and saved progress alongside the game.
 
 From the repository root:
 
@@ -22,7 +22,7 @@ For the account API, also run `npm run dev:server`. Open the local URL printed b
 - R: potion, restores 65 HP, 5 uses, 7-second cooldown.
 - F (legacy T): toggle AUTO hunt. It prioritises the King, uses combo/skills/potions and returns to camp below 25% HP without potions. Manual movement or Escape cancels it; skill presses are allowed. AUTO routes around obstacles; manual click movement keeps direct steering. AUTO starts off after death or re-entry.
 - Tab: cycle living targets by distance, wrapping back to the nearest. Browser focus stays in the game during play.
-- Mouse wheel: zoom. Escape: pause. Buttons provide help, audio and HQ/LOW rendering. Touch controls include a joystick and skill buttons.
+- Mouse wheel: zoom. Escape: stop AUTO/movement and open the menu (the server world continues). Buttons provide help, audio and HQ/LOW rendering. Touch controls include a joystick and skill buttons.
 - Avoid red ground circles. Return to the southern camp for free healing. Death returns to camp with current EXP and money intact.
 
 ## Implementation
@@ -99,3 +99,13 @@ A ground click walks immediately. After a stationary 180ms hold, an already sele
 The final typecheck, all 48 tests (35 meadow, 12 server, one web build) and full build passed. The normal-input browser pass verified WASD, both Shift keys, held LMB/Space/J, E meteor, F/T AUTO, twelve Tab presses with exact event-time distance ordering and focus retention, single ground clicks, ground holds/drags, attack release, and a real touch-context joystick interrupt. `.codex-run/hotkeys.jpg` was visually inspected, and results were appended under `hotkeys` in `.codex-run/auto-hunt-report.json`. No runtime errors or stuck cases appeared. No server source or PNGs changed and no commit was made.
 
 A final route regression also covers a jelly standing in the narrow gap between enemy collision clearance and AUTO route clearance beside a rock. AUTO uses a valid melee approach point in that case, avoiding a possible wait outside attack reach.
+
+## Authoritative rooms
+
+Combat moved to `shared/src/game/sim.ts`; the old client sim file exports only presentation constants/types. The browser predicts movement, renders100ms interpolation and immediate swing poses, and sends intents to `/api/ws`. HP, damage, kills, loot, level, XP, gold, potions, AUTO and saves come from the server. No progress POST/beacon remains. Packet/build mismatches request a reload; reconnect preserves a room for60s. Use the normal build/start commands; Vite's development proxy also supports WebSockets.
+
+AUTO continues in background tabs. The pause/help/victory overlays cannot freeze a server world; Escape stops local movement/AUTO. A room that has already defeated the King retains that encounter through reload within60s. The optional SHARED_ROOMS=1 mode displays other painted heroes and shares nearest-player enemy targeting, top-damage loot and one King unlock counter. It is off by default.
+
+See `server/README.md` for persistence, protocol, metrics, retention and local load testing. The runtime data change report, browser evidence and 1/20-client measurements are in `.codex-run/server-authority-report.json`, with `net-play.jpg` and `net-reconnect.jpg`. Artwork PNGs and page markup are unchanged. No Railway environment or deployment was touched.
+
+Authoritative integration passes86 tests, frontend typecheck and the full build. At nominal variance versus the starter jelly, combo damage is now15/15/27 (was16/16/28), spin33 (38), physical-fire meteor51 (58), defaultHP126 (120), defaultSP68.64 (80), potion72 (65), and SP recovery~0.27/s (4/s). Pools keep floats internally; HUD HP uses ceilings and spendable SP uses floors. The King’s four nominal attack strengths are preserved through data coefficients; player hit/crit/variance rolls are now real. These changes come from the pushed stats data, except the explicitly documented King pattern calibration. All changes, level curves and gameplay differences are catalogued in the report.

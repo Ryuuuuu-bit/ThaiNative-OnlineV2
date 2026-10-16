@@ -420,14 +420,6 @@ test("PvP CC diminishes within 15s and resets at the boundary", () => {
 	);
 });
 test("goldens anchor current sim constants; starter jelly is neutral so meteor and spin keep their feel", () => {
-	const sim = readFileSync(
-		new URL("../../../meadow-3d/src/sim.ts", import.meta.url),
-		"utf8",
-	);
-	assert.match(sim, /p\.combo===2\?28:16/);
-	assert.match(sim, /hit\(g,e,38\+/);
-	assert.match(sim, /hit\(g,e,58\+/);
-	assert.match(sim, /hp:120,maxHp:120,mp:80,maxMp:80/);
 	const near = (actual: number, target: number) =>
 		assert.ok(
 			Math.abs(actual - target) / target <= 0.15,

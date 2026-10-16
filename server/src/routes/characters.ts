@@ -6,6 +6,6 @@ export function characterRoutes(store:Store){const r=Router();r.use(requireSessi
  r.get('/:id',async(req,res)=>{const c=await store.character(req.auth!.account.id,String(req.params.id));if(!c)throw missing();res.json({character:c});});
  r.delete('/:id',async(req,res)=>{await store.deleteCharacter(req.auth!.account.id,String(req.params.id));res.json({ok:true});});
  r.post('/:id/select',async(req,res)=>{const c=await store.character(req.auth!.account.id,String(req.params.id));if(!c)throw missing();await store.select(req.auth!.session.id,c.id);res.json({character:c});});
- r.post('/:id/progress',async(req,res)=>res.json({character:await store.progress(req.auth!.account.id,String(req.params.id),req.body)}));
+ r.post('/:id/progress',async(req,res)=>{if(!await store.character(req.auth!.account.id,String(req.params.id)))throw missing();res.status(410).json({error:{code:'SERVER_AUTHORITY',message:'บันทึกจากเซิร์ฟเวอร์เท่านั้น'}});});
  return r;
 }

@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,spawn,step,setAuto,moveTo,action,revive,CAMP,walkable} from '../src/sim.ts';
+import {createGame,spawn,step,setAuto,moveTo,action,revive,CAMP,walkable} from '@thainative/shared';
 const tick=(g,seconds=1/60)=>{for(let t=0;t<seconds-1e-8;t+=1/60)step(g,1/60);};
-function field(){const g=createGame();g.enemies=[];g.p.x=0;g.p.z=4;return g;}
+function field(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=4;return g;}
 test('AUTO selects nearest, preserves clicked preference, then prioritises living King',()=>{
  const g=field(),near=spawn(g,1,4),far=spawn(g,5,4);setAuto(g,true);tick(g);assert.equal(g.target,near.id);
  g.target=far.id;tick(g,.2);assert.equal(g.target,far.id);
@@ -20,8 +20,8 @@ test('AUTO Q requires two nearby enemies and sufficient MP; F requires boss or c
  const g=field();spawn(g,1,4,true);setAuto(g,true);tick(g);assert.ok(g.events.some(e=>e.type==='meteor'));
 });
 test('AUTO potions use strict 45% threshold and obey cooldown',()=>{
- const g=field();g.p.hp=54;setAuto(g,true);tick(g);assert.equal(g.p.potions,5);
- g.p.hp=53;tick(g,.2);assert.equal(g.p.potions,4);g.p.hp=20;tick(g,.2);assert.equal(g.p.potions,4);
+ const g=field();g.p.hp=g.p.maxHp*.45;setAuto(g,true);tick(g);assert.equal(g.p.potions,5);
+ g.p.hp=g.p.maxHp*.45-1;tick(g,.2);assert.equal(g.p.potions,4);g.p.hp=20;tick(g,.2);assert.equal(g.p.potions,4);
 });
 test('AUTO retreats below 25%, heals at camp until 90%, and fights followers',()=>{
  const g=field();g.p.potions=0;g.p.hp=20;setAuto(g,true);tick(g);assert.equal(g.p.autoState,'retreat');

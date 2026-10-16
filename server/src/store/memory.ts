@@ -1,4 +1,5 @@
-import{randomUUID}from'node:crypto';import type{Account,Character,GoogleIdentity,Session,Store}from'./types.js';import{AppError,missing}from'../errors.js';import{clampProgress}from'./progress.js';
+import {loadGameData} from '@thainative/shared';
+import{randomUUID}from'node:crypto';import type{Account,Character,GoogleIdentity,Session,Store}from'./types.js';import{AppError,missing}from'../errors.js';
 const now=()=>new Date().toISOString();
 export class MemoryStore implements Store {
  private accounts=new Map<string,Account>();private sessions=new Map<string,Session>();private chars=new Map<string,Character>();
@@ -16,7 +17,7 @@ export class MemoryStore implements Store {
  async select(sessionId:string,characterId:string){const s=[...this.sessions.values()].find(s=>s.id===sessionId),c=this.chars.get(characterId);if(!s||!c||c.deletedAt||c.accountId!==s.accountId)throw missing();s.selectedCharacterId=characterId;c.lastPlayedAt=now();}
  async characters(accountId:string){return[...this.chars.values()].filter(c=>c.accountId===accountId&&!c.deletedAt).map(c=>({...c}));}
  async character(accountId:string,id:string){const c=this.chars.get(id);return c&&c.accountId===accountId&&!c.deletedAt?{...c}:undefined;}
- async createCharacter(accountId:string,name:string,nameKey:string){const active=[...this.chars.values()].filter(c=>!c.deletedAt);if(active.filter(c=>c.accountId===accountId).length>=3)throw new AppError(409,'SLOTS_FULL','สร้างตัวละครได้สูงสุด 3 ตัว');if(active.some(c=>c.nameKey===nameKey))throw new AppError(409,'NAME_TAKEN','ชื่อนี้มีผู้ใช้แล้ว');const c:Character={id:randomUUID(),accountId,name,nameKey,level:1,xp:0,gold:0,kills:0,potions:5,createdAt:now(),lastPlayedAt:now()};this.chars.set(c.id,c);return{...c};}
+ async createCharacter(accountId:string,name:string,nameKey:string){const active=[...this.chars.values()].filter(c=>!c.deletedAt);if(active.filter(c=>c.accountId===accountId).length>=3)throw new AppError(409,'SLOTS_FULL','สร้างตัวละครได้สูงสุด 3 ตัว');if(active.some(c=>c.nameKey===nameKey))throw new AppError(409,'NAME_TAKEN','ชื่อนี้มีผู้ใช้แล้ว');const defaults=loadGameData().stats.defaultBuild;const c:Character={baseStats:{...defaults.baseStats},race:defaults.race,classId:defaults.classId,statPoints:0,dataVersion:1,id:randomUUID(),accountId,name,nameKey,level:1,xp:0,gold:0,kills:0,potions:5,createdAt:now(),lastPlayedAt:now()};this.chars.set(c.id,c);return{...c};}
  async deleteCharacter(accountId:string,id:string){const c=this.chars.get(id);if(!c||c.accountId!==accountId||c.deletedAt)throw missing();c.deletedAt=now();for(const s of this.sessions.values())if(s.selectedCharacterId===id)delete s.selectedCharacterId;}
- async progress(accountId:string,id:string,body:unknown){const c=this.chars.get(id);if(!c||c.accountId!==accountId||c.deletedAt)throw missing();Object.assign(c,clampProgress(c,body),{lastPlayedAt:now()});return{...c};}
+ async saveProgress(accountId:string,id:string,body:import('./types.js').Progress){const c=this.chars.get(id);if(!c||c.accountId!==accountId||c.deletedAt)throw missing();Object.assign(c,structuredClone(body),{lastPlayedAt:now()});return{...c};}
 }

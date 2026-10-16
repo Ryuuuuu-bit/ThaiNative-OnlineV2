@@ -32,6 +32,7 @@
 @media(max-width:650px){.auto-symbol:after{top:9px;font-size:21px}#auto-status{left:13px;top:135px;transform:none;font-size:9px;padding:1px 5px}.boss-active #auto-status{top:200px}.brand{bottom:91px}.brand small{display:none}#ui .character-link{font-size:8px;margin-top:3px}}
 @media(prefers-reduced-motion:reduce){.skill.auto-active{animation:none;box-shadow:0 0 8px #e1c17a88}}
 @media(pointer:coarse){.skill kbd{display:none}}
+#network-status{position:absolute;top:180px;left:50%;transform:translateX(-50%);background:#183b2bee;padding:8px 16px;border:1px solid #dfc78a77;border-radius:3px;font-size:12px;z-index:40}
 
 #save-status{position:absolute;left:24px;bottom:104px;font:10px 'Noto Sans Thai',sans-serif;color:#e0d5ad;background:#183b2bcc;padding:4px 8px;border-radius:3px;opacity:0;transition:opacity .2s;pointer-events:none}#save-status.shown{opacity:1}.footnote a{color:#e4cc97;text-decoration:underline;margin-left:8px}@media(max-width:650px){#save-status{left:12px;bottom:95px;font-size:9px}}
 

@@ -307,6 +307,12 @@ export const MonsterSchema = z
 			.tuple([nonnegative, nonnegative])
 			.refine(([a, b]) => a <= b, "minimum exceeds maximum"),
 		drops: z.array(z.object({ itemId: id, chance: fraction }).strict()),
+		attacks: z
+			.record(
+				z.enum(["slam", "sweep", "charge", "spit"]),
+				z.object({ percent: nonnegative, phase2Percent: nonnegative }).strict(),
+			)
+			.optional(),
 		phase2: z
 			.object({ atk: nonnegative, element: ElementSchema })
 			.strict()

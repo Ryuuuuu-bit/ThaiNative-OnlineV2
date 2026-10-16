@@ -13,16 +13,18 @@
     "test": "tsx --test src/**/*.test.ts"
   },
   "dependencies": {
+    "cookie": "^1.0.2",
     "express": "^5.2.1",
-    "pg": "^8.23.1",
     "google-auth-library": "^10.0.0",
-    "cookie": "^1.0.2"
+    "pg": "^8.23.1",
+    "ws": "^8.22.0"
   },
   "devDependencies": {
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.0",
-    "@types/node": "^22.0.0",
     "@types/express": "^5.0.6",
-    "@types/pg": "^8.23.1"
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.23.1",
+    "@types/ws": "^8.18.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.0"
   }
 }

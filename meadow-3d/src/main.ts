@@ -1,19 +1,27 @@
-import{loadSelected,restoreProgress,attachAutosave}from'./web/game-session';
+import{loadSelected}from'./web/game-session';
+import{GameSocket}from'./net/socket';import{NetworkWorld}from'./net/world';
 import{KEYS,isKey}from'./keys';
 import * as T from 'three';import './style.css';
-import{createGame,step,action,revive,walkable,setAuto,moveTo,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
+import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';
 const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>(s)!;const $$=(s:string)=>[...document.querySelectorAll<HTMLElement>(s)];
 const selected=await loadSelected();
-const game=createGame(),sound=new AudioEngine(),keys=new Set<string>();let started=false,paused=false,wonShown=false,quality=true,time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=19.5,deathReveal=0;
-restoreProgress(game,selected.character);
-const autosave=attachAutosave(game,selected,()=>started&&!paused&&!game.p.dead);
+const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(),keys=new Set<string>();let started=false,paused=false,wonShown=false,quality=true,time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=19.5,deathReveal=0;
+let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
+ if(message.t==='snap')worldState.receive(message,net.you,performance.now());
+ if(message.t==='ev'){game.events.push(...message.list.filter((e:any)=>!['death','level','notice','victory'].includes(e.type)||e.playerId===net.you||e.type==='victory'));events();}
+},status(state){
+ let banner=document.querySelector<HTMLElement>('#network-status');if(!banner){banner=document.createElement('div');banner.id='network-status';banner.role='status';document.querySelector('#ui')!.append(banner);}
+ banner.hidden=state==='connected';banner.textContent=state==='connecting'?'กำลังเชื่อมต่อ…':state==='reconnecting'?'การเชื่อมต่อขาด กำลังต่อใหม่':'';
+ if(state==='offline'||state==='opened elsewhere'||state==='kicked'){netOverlay=true;overlay(`<h1>${state==='opened elsewhere'?'เปิดตัวละครในหน้าต่างอื่น':state==='kicked'?'เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่':'เซิร์ฟเวอร์ไม่ตอบ ลองใหม่อีกครั้ง'}</h1><button id="net-retry" class="primary">ลองใหม่อีกครั้ง</button>`);$('#net-retry').onclick=()=>{if(state==='kicked')location.assign('/login.html');else net.retry();};}
+ if(state==='connected'&&netOverlay){netOverlay=false;paused=false;$('#overlay').hidden=true;}
+}});
 document.querySelector('#player-name')!.textContent=selected.character.name;
 if(game.bossSpawned){document.querySelector('#quest-name')!.textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';document.querySelector('#quest-note')!.textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';}
 const renderer=new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;renderer.outputColorSpace=T.SRGBColorSpace;$('#world').appendChild(renderer.domElement);
 const scene=new T.Scene();scene.background=new T.Color('#c8d1bd');scene.fog=new T.Fog('#c8d1bd',30,72);scene.add(new T.HemisphereLight('#fff0db','#888775',1.6));const sun=new T.DirectionalLight('#ffefd5',1.8);sun.position.set(-14,24,9);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-27;sun.shadow.camera.right=27;sun.shadow.camera.top=27;sun.shadow.camera.bottom=-27;sun.shadow.camera.near=1;sun.shadow.camera.far=65;sun.shadow.normalBias=.025;sun.shadow.bias=-.00008;sun.shadow.radius=4;scene.add(sun);
 const camera=new T.OrthographicCamera(-17,17,9.75,-9.75,.1,120),cameraOffset=new T.Vector3(9,16,13),focus=new T.Vector3(-1,0,4.5);camera.position.copy(focus).add(cameraOffset);camera.lookAt(focus);
-const loading=new T.LoadingManager();loading.onLoad=()=>{const state=$('#load-state');if(state)state.textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';};loading.onError=()=>{const state=$('#load-state');if(state)state.textContent='ใช้วัสดุสำรอง · กดเริ่มเล่นได้';};const loader=new T.TextureLoader(loading);const world=buildScene(scene,loader),hero=makePaintedHero(loader);scene.add(hero.root);
+const loading=new T.LoadingManager();loading.onLoad=()=>{sceneReady=true;if(started)net.ready();const state=$('#load-state');if(state)state.textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';};loading.onError=()=>{const state=$('#load-state');if(state)state.textContent='ใช้วัสดุสำรอง · กดเริ่มเล่นได้';};const loader=new T.TextureLoader(loading);const world=buildScene(scene,loader),hero=makePaintedHero(loader);scene.add(hero.root);
 const heroName=label(selected.character.name,'#f4f5da');heroName.position.y=3.7;scene.add(heroName);
 const right=new T.Vector3(13,0,-9).normalize(),up=new T.Vector3(-9,0,-13).normalize(),ray=new T.Raycaster(),pointer=new T.Vector2(),floor=new T.Plane(new T.Vector3(0,1,0),0),point=new T.Vector3();
 const enemies=new Map<number,any>(),drops=new Map<number,T.Mesh>(),effects:any[]=[],numbers:any[]=[];let markerTime=0;
@@ -30,11 +38,12 @@ function spinEffect(x:number,z:number){effectRing(x,z,'#b6f6f0',3.2,.55);effectR
 function meteorEffect(e:Event){const o=new T.Group();const rock=new T.Mesh(new T.IcosahedronGeometry(.43,1),mat('#613d34'));o.add(rock);const shell=new T.Mesh(new T.SphereGeometry(.5,12,10),new T.MeshBasicMaterial({color:'#ffbe66',transparent:true,opacity:.6,blending:T.AdditiveBlending,depthWrite:false}));o.add(shell);const tail=new T.Mesh(new T.ConeGeometry(.42,2.5,10,1,true),new T.MeshBasicMaterial({color:'#f4b96d',transparent:true,opacity:.45,side:T.DoubleSide,blending:T.AdditiveBlending,depthWrite:false}));tail.rotation.z=Math.PI;tail.position.y=1.3;o.add(tail);o.position.set(e.x,10,e.z);scene.add(o);effects.push({kind:'meteor',mesh:o,life:e.duration,max:e.duration});effectRing(e.x,e.z,'#f4d191',2.7,e.duration);}
 function notice(text:string){const el=document.createElement('div');el.className='notice';el.textContent=text;$('#notices').appendChild(el);setTimeout(()=>el.remove(),3500);}
 function number(text:string,e:{x:number;z:number},kind='',height=1.8){const el=document.createElement('span');el.className=`number ${kind}`;el.textContent=text;$('#numbers').appendChild(el);numbers.push({el,x:e.x,z:e.z,height,life:1,max:1,offset:(Math.random()-.5)*16});}
-function events(){for(const e of game.events.splice(0)){if(['level','victory','death'].includes(e.type))void autosave.save();if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.play(e.type);switch(e.type){
+function events(){for(const e of game.events.splice(0)){if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.play(e.type);switch(e.type){
  case'slash':slash(e);break;
  case'spin':spinEffect(e.x,e.z);shake=.1;break;
  case'meteor':meteorEffect(e);break;
  case'impact':effectRing(e.x,e.z,'#ffd28c',3.1,.45);particles(e.x,e.z,'#ffd180',65,5);shake=.25;break;
+ case'miss':number('MISS',e,'evade',e.defender==='player'?2.4:e.boss?2.5:1.55);break;
  case'hit':number(e.damage,e,e.crit?'crit':'',e.boss?2.5:1.55);particles(e.x,e.z,e.variant==='mint'?'#a8cbb1':e.variant==='sky'?'#a5c2d3':'#e1b0c1',e.crit?14:8,2,.8,true);shake=Math.max(shake,e.crit?.09:.035);break;
  case'kill':particles(e.x,e.z,'#ddb0c2',e.boss?35:16,2.5,e.boss?2:.8,true);break;
  case'hurt':number(`−${e.amount}`,e,'hurt',2.4);shake=.13;break;
@@ -53,21 +62,23 @@ function events(){for(const e of game.events.splice(0)){if(['level','victory','d
  case'death':clearInput();deathReveal=1.5;break;
  case'victory':notice('✦ ราชาวุ้นถูกปราบแล้ว!');setTimeout(()=>{if(!game.p.dead)showVictory();},2000);break;
  }} }
-function toggleAuto(){if(!started||paused||game.p.dead)return;setAuto(game,!game.p.auto);events();hud();}
-function stopAuto(){setAuto(game,false);events();hud();}
-function doAction(name:Action){if(!started||paused||game.p.dead)return;action(game,name);events();}
+function toggleAuto(){if(!started||paused||game.p.dead)return;net.send({t:'auto',on:!game.p.auto});}
+function stopAuto(){if(game.p.auto)net.send({t:'auto',on:false});}
+const nextAction:Partial<Record<Action,number>>={};
+function doAction(name:Action){if(!started||paused||game.p.dead||!net.connected)return;const now=performance.now();if(now<(nextAction[name]||0)||game.p.cd[name]>.08)return;nextAction[name]=now+CD[name]*1000;
+ net.send({t:'act',a:name,...(['attack','meteor'].includes(name)&&game.target?{target:game.target}:{})});worldState.animate(name,now);}
 let heldPointer:{id:number;x:number;y:number;startX:number;startY:number;since:number;ground:boolean;dragged:boolean;nearTarget:number|null}|null=null;
-const joy={x:0,y:0},stick=$('#joystick');let stickId:number|null=null;function clearInput(){heldPointer=null;keys.clear();joy.x=joy.y=0;$('#joystick i').style.transform='';}
+const joy={x:0,y:0},stick=$('#joystick');let stickId:number|null=null;function clearInput(){heldPointer=null;keys.clear();net.send({t:'steer',dx:0,dz:0});joy.x=joy.y=0;$('#joystick i').style.transform='';}
 function joyMove(e:PointerEvent){const b=stick.getBoundingClientRect(),x=e.clientX-b.left-b.width/2,y=e.clientY-b.top-b.height/2,l=Math.hypot(x,y),k=Math.min(1,27/(l||1));joy.x=x*k/27;joy.y=y*k/27;$('#joystick i').style.transform=`translate(${x*k}px,${y*k}px)`;}
-stick.addEventListener('pointerdown',e=>{stopAuto();stickId=e.pointerId;stick.setPointerCapture(stickId);joyMove(e);});stick.addEventListener('pointermove',e=>{if(e.pointerId===stickId)joyMove(e);});for(const evt of['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(evt,()=>{stickId=null;joy.x=joy.y=0;$('#joystick i').style.transform='';});
+stick.addEventListener('pointerdown',e=>{net.send({t:'auto',on:false});stopAuto();stickId=e.pointerId;stick.setPointerCapture(stickId);joyMove(e);});stick.addEventListener('pointermove',e=>{if(e.pointerId===stickId)joyMove(e);});for(const evt of['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(evt,()=>{stickId=null;joy.x=joy.y=0;$('#joystick i').style.transform='';});
 const held=(binding:keyof typeof KEYS)=>KEYS[binding].some(code=>keys.has(code));
 function nextTarget(){
  const living=game.enemies.filter(e=>!e.dead).sort((a,b)=>Math.hypot(a.x-game.p.x,a.z-game.p.z)-Math.hypot(b.x-game.p.x,b.z-game.p.z)||a.id-b.id);
- const index=living.findIndex(e=>e.id===game.target);game.target=living.length?living[(index+1)%living.length].id:null;game.destination=null;
+ const index=living.findIndex(e=>e.id===game.target);const target=living.length?living[(index+1)%living.length].id:null;if(target)net.send({t:'target',id:target});game.target=target;game.destination=null;
 }
 window.addEventListener('keydown',e=>{
  if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
- if(isKey('pause',e.code)){e.preventDefault();stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}if(started&&!game.p.dead)togglePause();return;}
+ if(isKey('pause',e.code)){e.preventDefault();net.send({t:'auto',on:false});stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}if(started&&!game.p.dead)togglePause();return;}
  if(!started||paused||game.p.dead||$<HTMLDialogElement>('#guide').open)return;
  if(Object.values(KEYS).some(codes=>(codes as readonly string[]).includes(e.code)))e.preventDefault();
  if(['up','down','left','right'].some(a=>isKey(a as keyof typeof KEYS,e.code)))stopAuto();
@@ -76,11 +87,11 @@ window.addEventListener('keydown',e=>{
  else for(const a of ['spin','meteor','dash','potion'] as const)if(isKey(a,e.code))doAction(a);
 });
 window.addEventListener('keyup',e=>keys.delete(e.code));
-function loseFocus(){clearInput();if(started&&!paused&&!game.p.dead)togglePause();}window.addEventListener('blur',loseFocus);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseFocus();});
+function loseFocus(){clearInput();if(started&&!paused&&!game.p.dead&&!game.p.auto)togglePause();}window.addEventListener('blur',loseFocus);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseFocus();});
 $('#auto-hunt').addEventListener('click',toggleAuto);
 $$('[data-action]').forEach(b=>b.addEventListener('click',()=>doAction(b.dataset.action as Action)));
 function pointerRay(x:number,y:number){const b=renderer.domElement.getBoundingClientRect();pointer.set((x-b.left)/b.width*2-1,-(y-b.top)/b.height*2+1);ray.setFromCamera(pointer,camera);}
-function pointerGround(){if(ray.ray.intersectPlane(floor,point)&&walkable(point.x,point.z)){moveTo(game,point.x,point.z);marker.position.set(point.x,.04,point.z);markerTime=.65;}}
+function pointerGround(){if(ray.ray.intersectPlane(floor,point)&&walkable(point.x,point.z)){net.send({t:'move',x:Math.round(point.x*100)/100,z:Math.round(point.z*100)/100});marker.position.set(point.x,.04,point.z);markerTime=.65;}}
 renderer.domElement.addEventListener('contextmenu',e=>e.preventDefault());
 renderer.domElement.addEventListener('pointerdown',e=>{
  if(!started||paused||game.p.dead||e.button!==0)return;
@@ -90,7 +101,7 @@ renderer.domElement.addEventListener('pointerdown',e=>{
  const current=game.enemies.find(e=>e.id===game.target&&!e.dead&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<(e.boss?2.3:1.8));
  heldPointer={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,since:performance.now(),ground:!hit,dragged:false,nearTarget:current?.id??null};
  renderer.domElement.setPointerCapture(e.pointerId);
- if(hit){game.target=hit.object.userData.enemyId;game.destination=null;}
+ if(hit){game.target=hit.object.userData.enemyId;game.destination=null;net.send({t:'target',id:game.target});}
  else{pointerGround();events();hud();}
 });
 renderer.domElement.addEventListener('pointermove',e=>{
@@ -106,27 +117,28 @@ function pointerAttack(now:number){
  // jelly can be attacked; dragging always keeps steering across the ground.
  if(now-h.since<=180&&!h.dragged)return false;
  const target=!h.dragged&&game.enemies.find(e=>e.id===h.nearTarget&&!e.dead&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<(e.boss?2.3:1.8));
- if(target){game.target=target.id;game.destination=null;return true;}
+ if(target){if(game.target!==target.id||game.destination)net.send({t:'target',id:target.id});game.target=target.id;game.destination=null;return true;}
  pointerRay(h.x,h.y);pointerGround();return false;
 }
 renderer.domElement.addEventListener('wheel',e=>{e.preventDefault();zoomHeight=T.MathUtils.clamp(zoomHeight+e.deltaY*.008,12,25);resize();},{passive:false});
-$('#play').addEventListener('click',()=>{started=true;paused=false;$('#overlay').hidden=true;sound.start();notice('WASD เดิน · กดเมาส์ซ้ายค้าง / Space โจมตี · Q พายุ · E ดาวตก · Shift หลบ · F ออโต้');});
+$('#play').addEventListener('click',()=>{started=true;paused=false;if(sceneReady)net.ready();$('#overlay').hidden=true;sound.start();notice('WASD เดิน · กดเมาส์ซ้ายค้าง / Space โจมตี · Q พายุ · E ดาวตก · Shift หลบ · F ออโต้');});
 $('#audio').addEventListener('click',()=>{$('#audio').textContent=sound.toggle()?'♫':'♩';$('#audio').setAttribute('aria-pressed',String(sound.enabled));});
 $('#quality').addEventListener('click',()=>{quality=!quality;renderer.setPixelRatio(quality?Math.min(devicePixelRatio,1.5):1);sun.castShadow=quality;renderer.shadowMap.enabled=quality;world.setQuality(quality);renderer.shadowMap.needsUpdate=true;$('#quality').textContent=quality?'HQ':'LOW';resize();});
 $('#pause').addEventListener('click',()=>{if(started&&!game.p.dead)togglePause();});
 $('#help').addEventListener('click',()=>{clearInput();paused=true;$<HTMLDialogElement>('#guide').showModal();});$('#guide .close').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide .done').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide').addEventListener('close',()=>{if(started&&$('#overlay').hidden)paused=false;});
 function overlay(html:string){clearInput();paused=true;$('#overlay').className='overlay center';$('#overlay').innerHTML=`<section class="welcome">${html}</section>`;$('#overlay').hidden=false;}
-function togglePause(){if(!paused){overlay('<p class="caption">TAKE A BREATH</p><h1>พักการผจญภัย</h1><p>ทุ่งหญ้าจะรอคุณอยู่ตรงนี้</p><button id="resume" class="primary">เล่นต่อ →</button>');$('#resume').onclick=()=>{paused=false;$('#overlay').hidden=true;};}else{paused=false;$('#overlay').hidden=true;}}
-function showDeath(){overlay('<p class="caption">A NEW BEGINNING</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>EXP และเงินที่เก็บได้ยังอยู่<br>กลับไปฟื้นพลังที่แคมป์กันเถอะ</p><button id="revive" class="primary">กลับแคมป์ →</button>');$('#revive').onclick=()=>{revive(game);paused=false;$('#overlay').hidden=true;events();};}
+function togglePause(){if(!paused){overlay('<p class="caption">TAKE A BREATH</p><h1>พักการผจญภัย</h1><p>โลกยังดำเนินต่อบนเซิร์ฟเวอร์</p><button id="resume" class="primary">เล่นต่อ →</button>');$('#resume').onclick=()=>{paused=false;$('#overlay').hidden=true;};}else{paused=false;$('#overlay').hidden=true;}}
+function showDeath(){overlay('<p class="caption">A NEW BEGINNING</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>EXP และเงินที่เก็บได้ยังอยู่<br>กลับไปฟื้นพลังที่แคมป์กันเถอะ</p><button id="revive" class="primary">กลับแคมป์ →</button>');$('#revive').onclick=()=>{net.send({t:'revive'});paused=false;$('#overlay').hidden=true;events();};}
 function showVictory(){if(wonShown)return;wonShown=true;overlay(`<div class="ornament">✧ ───────── ✧</div><p class="caption">GUARDIAN OF THE FIELDS DEFEATED</p><h1>การผจญภัย<br>บทแรกสำเร็จ!</h1><p>Lv. ${game.p.level} · ${game.kills} defeated · ${game.p.gold} Zeny</p><button id="continue" class="primary">สำรวจทุ่งหญ้าต่อ →</button>`);$('#continue').onclick=()=>{paused=false;$('#overlay').hidden=true;};}
 const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;
 function minimap(){mx.fillStyle='#889d69';mx.fillRect(0,0,160,132);mx.lineCap='round';mx.strokeStyle='#d2c397';mx.lineWidth=7;mx.beginPath();mx.moveTo(75,132);mx.lineTo(75,96);mx.lineTo(80,75);mx.lineTo(75,57);mx.lineTo(85,24);mx.stroke();mx.lineWidth=5;mx.beginPath();mx.moveTo(0,75);mx.lineTo(80,75);mx.lineTo(104,66);mx.lineTo(160,66);mx.stroke();mx.fillStyle='#7fa9a1';mx.beginPath();mx.ellipse(132,61,14,20,0,0,6.28);mx.fill();mx.fillStyle='#bba16c';mx.fillRect(117,63,30,5);for(const[x,z]of[[-11,-6],[-8,-10],[8,-9],[-12,5],[10,8],[5,10]]){mx.fillStyle='#4f7654';mx.beginPath();mx.arc((x+17)/34*160,(z+14)/28*132,5,0,6.28);mx.fill();}mx.fillStyle='#e5dcb2';mx.fillRect(73,15,23,5);mx.fillRect((CAMP.x+17)/34*160-3,(CAMP.z+14)/28*132-3,6,6);for(const e of game.enemies){if(e.dead)continue;mx.fillStyle=e.boss?'#ffdb87':'#f4b3c5';mx.beginPath();mx.arc((e.x+17)/34*160,(e.z+14)/28*132,e.boss?3:1.7,0,6.28);mx.fill();}mx.fillStyle='#fff7d5';mx.strokeStyle='#314d39';mx.lineWidth=1.5;mx.beginPath();mx.arc((game.p.x+17)/34*160,(game.p.z+14)/28*132,3,0,6.28);mx.fill();mx.stroke();}
-function hud(){const p=game.p;const auto=$('#auto-hunt');auto.classList.toggle('auto-active',p.auto);auto.setAttribute('aria-pressed',String(p.auto));$('#auto-label').textContent=p.auto?'AUTO ON':'AUTO';const status=$('#auto-status');status.hidden=!p.auto;status.textContent='ออโต้: '+(p.autoState==='retreat'?'กลับแคมป์':p.autoState==='fight'?'กำลังสู้':'กำลังหาเป้าหมาย');$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${p.maxHp}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${p.maxMp}`;$('#xp').style.width=`${p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`${game.kills} defeated`;$('#potions').textContent=String(p.potions);
+function hud(){const p=game.p;const auto=$('#auto-hunt');auto.classList.toggle('auto-active',p.auto);auto.setAttribute('aria-pressed',String(p.auto));$('#auto-label').textContent=p.auto?'AUTO ON':'AUTO';const status=$('#auto-status');status.hidden=!p.auto;status.textContent='ออโต้: '+(p.autoState==='retreat'?'กลับแคมป์':p.autoState==='fight'?'กำลังสู้':'กำลังหาเป้าหมาย');$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${Math.ceil(p.maxHp)}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${Math.floor(p.maxMp)}`;$('#xp').style.width=`${p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`${game.kills} defeated`;$('#potions').textContent=String(p.potions);
  const boss=game.enemies.find(e=>e.boss&&(!e.dead||e.deathAge<3.8));$('#boss-hud').hidden=!boss;document.body.classList.toggle('boss-active',!!boss);if(boss){$('#boss-hp').style.width=`${boss.hp/boss.maxHp*100}%`;$('#boss-hud h3').textContent=enemyLabel(boss);$('#boss-hud small').textContent=boss.dead?'DEFEATED':`${boss.bossPhase===2?'PHASE II':'PHASE I'} · ${boss.motion.toUpperCase()}`;}
  if(game.won){$('#quest-line').innerHTML='ปราบผู้พิทักษ์สำเร็จ <b>✓</b>';$('#quest-progress').style.width='100%';$('#quest-note').textContent='ลองคอมโบและสำรวจทุ่งหญ้าต่อได้';}else if(game.bossSpawned){$('#quest-line').innerHTML='ปราบราชาวุ้น <b>0 / 1</b>';$('#quest-progress').style.width=boss?`${(1-boss.hp/boss.maxHp)*100}%`:'0';}else{$('#quest-line').innerHTML=`ปราบวุ้นจิ๋ว <b>${Math.min(6,game.kills)} / 6</b>`;$('#quest-progress').style.width=`${Math.min(1,game.kills/6)*100}%`;}
  const target=game.enemies.find(e=>e.id===game.target&&!e.dead);$('#target').hidden=!target||target.boss;if(target){$('#target-name').textContent=enemyLabel(target);$('#target-lv').textContent=target.boss?'Lv. 5':'Lv. 1';$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;}
  for(const b of $$('[data-action]')){const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();}
-function render(dt:number){if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;hero.update(p,time);playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,3.7,p.z);heroName.visible=!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));camera.position.copy(focus).add(cameraOffset);if(shake>0){camera.position.x+=(Math.random()-.5)*shake;camera.position.y+=(Math.random()-.5)*shake;shake=Math.max(0,shake-dt*.75);}camera.lookAt(focus);camera.updateMatrixWorld();
+const remoteHeroes=new Map<string,any>();
+function render(dt:number){for(const other of worldState.others){let v=remoteHeroes.get(other.id);if(!v){v={actor:makePaintedHero(loader),label:label(other.name,'#f4f5da')};scene.add(v.actor.root,v.label);remoteHeroes.set(other.id,v);}v.actor.update(other,time);v.label.position.set(other.x,3.7,other.z);v.label.visible=!other.dead;}for(const [id,v]of remoteHeroes)if(!worldState.others.some(p=>p.id===id)){scene.remove(v.actor.root,v.label);v.actor.dispose?.();v.label.material.map?.dispose();v.label.material.dispose();remoteHeroes.delete(id);}if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;hero.update(p,time);hero.root.visible=worldState.ready;playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,3.7,p.z);heroName.visible=worldState.ready&&!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));camera.position.copy(focus).add(cameraOffset);if(shake>0){camera.position.x+=(Math.random()-.5)*shake;camera.position.y+=(Math.random()-.5)*shake;shake=Math.max(0,shake-dt*.75);}camera.lookAt(focus);camera.updateMatrixWorld();
  for(const e of game.enemies){const v=enemies.get(e.id)||makeEnemy(e);v.actor.update(e,time);v.name.visible=!e.dead&&!e.boss;v.name.position.set(e.x,1.8,e.z);v.bg.visible=v.hp.visible=!e.dead&&!e.boss&&(e.hp<e.maxHp||game.target===e.id);v.bg.position.set(e.x,1.6,e.z);v.hp.position.copy(v.bg.position);const w=.85;v.hp.scale.x=w*e.hp/e.maxHp;v.hp.position.addScaledVector(right,-w*(1-e.hp/e.maxHp)/2);}
  for(const[id,v]of enemies)if(!game.enemies.some(e=>e.id===id)){scene.remove(v.actor.root,v.name,v.bg,v.hp);v.actor.dispose();v.name.material.map?.dispose();v.name.material.dispose();v.bg.material.dispose();v.hp.material.dispose();enemies.delete(id);}
  for(const p of game.projectiles){let actor=projectileActors.get(p.id);if(!actor){actor=makePaintedDroplet(loader,p.phase);projectileActors.set(p.id,actor);scene.add(actor.root);}actor.update(p.x,p.z,time);}
@@ -142,10 +154,12 @@ function render(dt:number){if(deathReveal>0){deathReveal=Math.max(0,deathReveal-
 function resize(){const aspect=innerWidth/innerHeight,h=innerWidth<650?zoomHeight+2:zoomHeight;camera.left=-h*aspect/2;camera.right=h*aspect/2;camera.top=h/2;camera.bottom=-h/2;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);}window.addEventListener('resize',resize);resize();
 renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();paused=true;overlay('<h1>การแสดงผลถูกพัก</h1><p>กรุณารีเฟรชหน้าเพื่อเริ่มเกมใหม่</p><button id="reload" class="primary">เริ่มใหม่</button>');$('#reload').onclick=()=>location.reload();});
 let hudTime=0,frameCount=0,fpsTime=0;
-function frame(now:number){requestAnimationFrame(frame);const wallDt=Math.max(0,(now-previous)/1000),dt=Math.min(wallDt,.05);previous=now;time+=dt;if(started&&!paused&&!game.p.dead){let x=Number(held('right'))-Number(held('left'))+joy.x,y=Number(held('up'))-Number(held('down'))-joy.y;const len=Math.hypot(x,y);if(len>1){x/=len;y/=len;}const input={x:right.x*x+up.x*y,z:right.z*x+up.z*y};const mouseAttack=pointerAttack(now);accumulator+=dt;while(accumulator>=1/60){if(held('attack')||mouseAttack)action(game,'attack');step(game,1/60,input);accumulator-=1/60;}events();}else accumulator=0;render(dt);renderer.render(scene,camera);hudTime+=dt;if(hudTime>.1){hud();hudTime=0;}frameCount++;fpsTime+=wallDt;if(fpsTime>=1){$('#fps').textContent=`${Math.round(frameCount/fpsTime)} FPS`;fpsTime=frameCount=0;}}
+function frame(now:number){requestAnimationFrame(frame);const wallDt=Math.max(0,(now-previous)/1000),dt=Math.min(wallDt,.05);previous=now;time+=dt;
+ let input={x:0,z:0};if(started&&!paused&&!game.p.dead&&net.connected){let x=Number(held('right'))-Number(held('left'))+joy.x,y=Number(held('up'))-Number(held('down'))-joy.y;const len=Math.hypot(x,y);if(len>1){x/=len;y/=len;}input={x:right.x*x+up.x*y,z:right.z*x+up.z*y};net.send({t:'steer',dx:Math.round(input.x*1000)/1000,dz:Math.round(input.z*1000)/1000});if(held('attack')||pointerAttack(now))doAction('attack');}
+ worldState.update(now,Math.min(wallDt,.1),input,net.seq);events();render(dt);renderer.render(scene,camera);hudTime+=dt;if(hudTime>.1){hud();hudTime=0;}frameCount++;fpsTime+=wallDt;if(fpsTime>=1){$('#fps').textContent=`${Math.round(frameCount/fpsTime)} FPS · ${Math.round(net.ping)} ms`;fpsTime=frameCount=0;}}
 hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
-(window as any).__FIELDS__={snapshot:()=>({started,paused,time:game.time,hero:hero.snapshot(),environment:world.snapshot(),p:{...game.p,cd:{...game.p.cd}},target:game.target,destination:game.destination,kills:game.kills,bossSpawned:game.bossSpawned,won:game.won,encounterLog:encounterLog.map(e=>({...e})),projectiles:game.projectiles.map(p=>({...p})),enemies:game.enemies.map(e=>({id:e.id,x:e.x,z:e.z,hp:e.hp,maxHp:e.maxHp,boss:e.boss,dead:e.dead,deathAge:e.deathAge,motion:e.motion,motionTime:e.motionTime,bossPhase:e.bossPhase,variant:e.variant,summoned:e.summoned,aimX:e.aimX,aimZ:e.aimZ,windup:e.windup,history:[...e.history],actor:enemies.get(e.id)?.actor.snapshot()})),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles}),project:(x:number,z:number,y=0)=>{const p=new T.Vector3(x,y,z).project(camera);return{x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight};}};
+(window as any).__FIELDS__={snapshot:()=>({others:worldState.others.map(p=>({id:p.id,name:p.name,x:p.x,z:p.z,hp:p.hp})),network:{connected:net.connected,tick:worldState.lastTick,ack:worldState.ack,ping:net.ping,you:net.you},started,paused,time:game.time,hero:hero.snapshot(),environment:world.snapshot(),p:{...game.p,cd:{...game.p.cd}},target:game.target,destination:game.destination,kills:game.kills,bossSpawned:game.bossSpawned,won:game.won,encounterLog:encounterLog.map(e=>({...e})),projectiles:game.projectiles.map(p=>({...p})),enemies:game.enemies.map(e=>({id:e.id,x:e.x,z:e.z,hp:e.hp,maxHp:e.maxHp,boss:e.boss,dead:e.dead,deathAge:e.deathAge,motion:e.motion,motionTime:e.motionTime,bossPhase:e.bossPhase,variant:e.variant,summoned:e.summoned,aimX:e.aimX,aimZ:e.aimZ,windup:e.windup,history:[...e.history],actor:enemies.get(e.id)?.actor.snapshot()})),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles}),project:(x:number,z:number,y=0)=>{const p=new T.Vector3(x,y,z).project(camera);return{x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight};}};
 
 
 

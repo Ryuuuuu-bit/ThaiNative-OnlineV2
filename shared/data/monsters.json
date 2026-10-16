@@ -179,6 +179,24 @@
       "phase2": {
         "atk": 28,
         "element": "dark"
+      },
+      "attacks": {
+        "slam": {
+          "percent": 112,
+          "phase2Percent": 133
+        },
+        "sweep": {
+          "percent": 95,
+          "phase2Percent": 113
+        },
+        "charge": {
+          "percent": 103,
+          "phase2Percent": 125
+        },
+        "spit": {
+          "percent": 61,
+          "phase2Percent": 75
+        }
       }
     }
   ]
