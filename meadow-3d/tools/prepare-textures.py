@@ -38,6 +38,7 @@ def pack(p,logical,mode='uastc',mips=False,cpu=False,mask=False):
         alpha=Image.new('RGBA',im.size,(255,255,255,0));alpha.putalpha(im.getchannel('A'));hit=dest.with_name(dest.stem+'-hit.webp');alpha.save(hit,'WEBP',lossless=True,method=6,exact=True)
     entries[logical]={'webp':'/'+webp.relative_to(PUBLIC).as_posix(),'ktx2':None if cpu else '/'+dest.with_suffix('.ktx2').relative_to(PUBLIC).as_posix(),'source':p.relative_to(ROOT).as_posix(),'input':str(stage),'size':list(size),'originalSize':[w,h],'mode':mode,'mips':mips,'hitMask':'/'+hit.relative_to(PUBLIC).as_posix() if hit else None,'cpu':cpu}
 for p in (SRC/'hero-painted').glob('*.png'):pack(p,'/assets/hero-painted/'+p.name,cpu=p.name=='portrait-v1.png')
+for p in (ROOT/'art/hero-skills').glob('hero-skill-*-v1.png'):pack(p,'/assets/hero-skills/'+p.name)
 for p in (SRC/'hero-painted/preview').glob('*.png'):pack(p,'/assets/hero-painted/preview/'+p.name,cpu=True)
 for p in (SRC/'monsters-painted').glob('*.png'):
     if '-glow-' not in p.name:pack(p,'/assets/monsters-painted/'+p.name,mask=True)

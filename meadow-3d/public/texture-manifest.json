@@ -797,5 +797,107 @@
     "hitMask": null,
     "ktx2": "/assets/skills-painted/skills-vfx-v1-426c6c3c7f.ktx2",
     "webp": "/assets/skills-painted/skills-vfx-v1-77d91891d7.webp"
+  },
+  "/assets/hero-skills/hero-skill-slash-v1.png": {
+    "source": "art/hero-skills/hero-skill-slash-v1.png",
+    "size": [
+      2048,
+      912
+    ],
+    "originalSize": [
+      2304,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-slash-v1-b4cd9a9a48.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-slash-v1-eeeed0def8.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-whirlwind-v1.png": {
+    "source": "art/hero-skills/hero-skill-whirlwind-v1.png",
+    "size": [
+      2048,
+      684
+    ],
+    "originalSize": [
+      3072,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-whirlwind-v1-83c2c0d27a.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-whirlwind-v1-1b347aa97c.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-dash_strike-v1.png": {
+    "source": "art/hero-skills/hero-skill-dash_strike-v1.png",
+    "size": [
+      1920,
+      1024
+    ],
+    "originalSize": [
+      1920,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-dash_strike-v1-07e3da3dd5.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-dash_strike-v1-3848d56d46.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-earth_break-v1.png": {
+    "source": "art/hero-skills/hero-skill-earth_break-v1.png",
+    "size": [
+      2048,
+      608
+    ],
+    "originalSize": [
+      3456,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-earth_break-v1-464afc450a.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-earth_break-v1-abd5966586.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-provoke-v1.png": {
+    "source": "art/hero-skills/hero-skill-provoke-v1.png",
+    "size": [
+      1920,
+      1024
+    ],
+    "originalSize": [
+      1920,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-provoke-v1-501bb0ced9.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-provoke-v1-f9ceecff44.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-endure-v1.png": {
+    "source": "art/hero-skills/hero-skill-endure-v1.png",
+    "size": [
+      1920,
+      1024
+    ],
+    "originalSize": [
+      1920,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-endure-v1-b941dfc45b.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-endure-v1-a59d098954.ktx2"
   }
 }

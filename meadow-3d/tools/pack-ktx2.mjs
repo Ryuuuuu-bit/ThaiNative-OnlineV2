@@ -16,7 +16,7 @@ for(const entry of Object.values(entries))for(const key of ['ktx2','webp','hitMa
 const basis=resolve(root,'public/basis/three-r185');mkdirSync(basis,{recursive:true});for(const file of ['basis_transcoder.js','basis_transcoder.wasm'])copyFileSync(resolve(repo,'node_modules/three/examples/jsm/libs/basis',file),resolve(basis,file));
 writeFileSync(resolve(root,'public/texture-manifest.json'),JSON.stringify(entries,null,2)+'\n');
 // Remove only archived PNG atlases and unversioned pack outputs from the shipping asset folders.
-for(const folder of ['hero-painted','monsters-painted','env-painted','ui-painted']){
+for(const folder of ['hero-painted','hero-skills','monsters-painted','env-painted','ui-painted']){
  const visit=dir=>{for(const item of readdirSync(dir,{withFileTypes:true})){const path=resolve(dir,item.name);if(item.isDirectory())visit(path);else if(item.name.endsWith('.png')||(/\.(webp|ktx2)$/.test(item.name)&&!/-[a-f0-9]{10}\.(webp|ktx2)$/.test(item.name)))unlinkSync(path);}};visit(resolve(root,'public/assets',folder));
 }
 for(const file of readdirSync(resolve(root,'public/assets')).filter(n=>n.endsWith('.png')))unlinkSync(resolve(root,'public/assets',file));

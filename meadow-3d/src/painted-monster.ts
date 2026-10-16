@@ -66,7 +66,7 @@ export function makePaintedMonster(loader:PaintedLoader,boss=false,options:Monst
   for(const hit of found){if(!hit.uv)continue;const image=(material.map.userData.hitMask||material.map.image) as HTMLImageElement;const x=Math.min(image.width-1,Math.floor((uv.x+hit.uv.x*uv.z)*image.width)),y=Math.min(image.height-1,Math.floor((1-uv.y-hit.uv.y*uv.w)*image.height));sx.clearRect(0,0,1,1);sx.drawImage(image,x,y,1,1,0,0,1,1);if(sx.getImageData(0,0,1,1).data[3]>32)hits.push(hit);}
  };
  fallback.raycast=(ray,hits)=>{if(fallback.visible)fallbackRaycast(ray,hits);};
- return{root,snapshot:()=>({...diagnostic,loaded:Object.keys(bank.textures[species])}),dispose(){material.dispose();shadow.geometry.dispose();shadowMaterial.dispose();fallback.geometry.dispose();(fallback.material as T.Material).dispose();},update(e:Enemy,time:number){
+ return{root,flash(value:number){uniforms.uJellyFlash.value=value;},snapshot:()=>({...diagnostic,loaded:Object.keys(bank.textures[species])}),dispose(){material.dispose();shadow.geometry.dispose();shadowMaterial.dispose();fallback.geometry.dispose();(fallback.material as T.Material).dispose();},update(e:Enemy,time:number){
   root.position.set(e.x,.04,e.z);root.userData.dead=e.dead;
   const opacity=monsterOpacity(e);root.visible=opacity>0;material.opacity=opacity;
   const definition=bank.manifest?.species[species],texture=bank.textures[species][e.motion]||bank.textures[species].idle;

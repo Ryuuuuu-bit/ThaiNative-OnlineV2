@@ -160,7 +160,7 @@ export class NetworkWorld {
 		this.game.time = b.time;
 		this.game.bossSpawned = b.bossSpawned;
 		this.game.won = b.won;
-		if (!p.dead && !p.auto && p.dash <= 0) {
+		if (!p.dead && !p.auto && p.dash <= 0 && p.castRemaining <= 0 && !p.statuses?.some((s:any)=>s.id==='stun'||s.id==='knockup')) {
 			let direction = input;
 			if (Math.hypot(input.x, input.z) < 0.05 && p.destination) {
 				const dx = p.destination.x - this.prediction.x,
