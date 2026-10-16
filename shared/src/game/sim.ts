@@ -1,3 +1,4 @@
+import {applyInventory,starterInventory,inventoryWeight,redPotion,equipped,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
 import {
 	migrateJob,
 	newJob,
@@ -75,6 +76,7 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
+ inventory?:Inventory; autoSeconds:number;
  mapId: MapId;
  healerReadyAt: number;
  audioSettings?: import('../audio-settings.js').AudioSettings;
@@ -125,6 +127,7 @@ export interface Event extends Vec {
 	[key: string]: any;
 }
 export interface Drop extends Vec {
+ loot?:{template:string;qty:number}[]; pending?:boolean; noticeAt?:number;
 	ownerId: string;
 	id: number;
 	gold: number;
@@ -170,7 +173,7 @@ export function createGame(
 		profile.classId === "swordsman" ? newJob() : migrateJob(profile.level);
 	let p: Player = {
 		...job,
- mapId, healerReadyAt: 0,
+ mapId, healerReadyAt: 0, autoSeconds:0,
 		statuses: [],
 		castRemaining: 0,
 		jobsVersion: 3,
@@ -223,6 +226,7 @@ export function createGame(
 	p.nextXp = data.stats.expToNext[p.level - 1];
 	const g = {
 		data, mapId,
+ inventoryCommit: undefined as undefined | ((p:Player,op:InventoryOp,done:()=>void)=>void),
 		jobExpMultiplier: 1,
 		players: new Map([[id, p]]),
 		get p() {
@@ -314,7 +318,8 @@ export function addPlayer(
 	return p;
 }
 export function refreshStats(g: Game, p: Player) {
-	p.profile.level = p.level;
+	if(p.inventory){p.profile.equipment=equipped(p.inventory);p.potions=p.inventory.items.filter(i=>i.location==='bag'&&g.data.items.items.find(t=>t.id===i.template)?.effect==='hp').reduce((n,i)=>n+i.qty,0);}
+ p.profile.level = p.level;
 	p.profile.skills = { ...p.skills };
 	p.stats = deriveStats(p.profile, g.data);
 	const endure = p.statuses.find((s) => s.id === "endure");
@@ -434,6 +439,7 @@ function reward(g: Game, e: Enemy) {
 		ownerId = topDamage(g, e);
 	g.drops.push({
 		ownerId,
+ loot:rollDrops(spec,g.random,g.data,g.players.get(ownerId)?.autoSeconds||0,g.players.get(ownerId)?.stats.dropBonus||0),
 		id: g.nextId++,
 		x: e.x,
 		z: e.z,
@@ -626,6 +632,7 @@ function hurt(
 	}
 }
 export function action(g: Game, a: Action) {
+ if(g.p.inventory&&a!=='potion'&&inventoryWeight(g.p.inventory,g.data)>=g.p.stats.weight*g.data.economy.attackWeightRatio){emit(g,'notice',{text:'น้ำหนักเกิน 90% โจมตีไม่ได้'});return false;}
  if(g.mapId==='city_plaza' && a!=='potion'){emit(g,"notice",{text:"เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้"});return false;}
 	const p = g.p,
 		skill = g.data.skills.skills.some((s) => s.id === skillId(a))
@@ -829,7 +836,12 @@ export function action(g: Game, a: Action) {
 		emit(g, "dash", { dx: p.fx, dz: p.fz });
 		return true;
 	}
-	if (skill.id === "potion") {
+	if (skill.id === "potion" && p.inventory) {
+  const best=redPotion(p.inventory,g.data);if(!best||p.hp>=p.maxHp||p.cd.potion>0)return false;
+  if(g.inventoryCommit){g.inventoryCommit(p,{op:'use',id:best.id},()=>{});return true;}
+  const out=applyInventory({gold:p.gold,inventory:p.inventory},{op:'use',id:best.id},p.profile,g.data,()=>String(g.nextId++));p.inventory=out.state.inventory;p.hp=Math.min(p.maxHp,p.hp+out.effect!.amount);p.cd.potion=skill.cooldown;refreshStats(g,p);return true;
+ }
+ if (skill.id === "potion") {
 		if (p.potions <= 0) {
 			emit(g, "notice", { text: "ยาหมดแล้ว กลับไปฟื้นพลังที่แคมป์" });
 			return false;
@@ -849,6 +861,7 @@ export function action(g: Game, a: Action) {
 }
 export function revive(g: Game) {
 	const p = g.p;
+
 	setAuto(g, false);
 	p.mapId = "city_plaza";
  p.x = CITY_SPAWN.x;
@@ -856,7 +869,7 @@ export function revive(g: Game) {
  p.statuses=[]; p.castRemaining=0; p.destination=null; p.target=null;
 	p.hp = p.maxHp;
 	p.mp = p.maxMp;
-	p.potions = 5;
+	if(!p.inventory)p.potions = 5;
 	p.dead = false;
 	p.invulnerable = 3;
 	p.dash = 0;
@@ -1369,6 +1382,7 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 }
 function playerStep(g: Game, dt: number, input: Vec) {
 	const p = g.p;
+ if(p.auto)p.autoSeconds+=dt;
 	const hadEndure = p.statuses.some((s) => s.id === "endure");
 	tickEffects(p, dt);
 	if (hadEndure !== p.statuses.some((s) => s.id === "endure"))
@@ -1379,6 +1393,8 @@ function playerStep(g: Game, dt: number, input: Vec) {
 	for (const a of ["attack", "comboWindow", "invulnerable", "hurt"] as const)
 		p[a] = Math.max(0, p[a] - dt);
 	if (!p.dead) {
+ const canRegen=!p.inventory||inventoryWeight(p.inventory,g.data)<p.stats.weight*g.data.economy.regenWeightRatio;
+ if(canRegen){
 		p.mp = Math.min(p.maxMp, p.mp + dt * p.stats.spRegen);
 		if (g.mapId === "meadow" && Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 2)
 			p.hp = Math.min(p.maxHp, p.hp + dt * 20);
@@ -1392,6 +1408,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
 							? 1
 							: g.data.stats.regen.inCombatHpMultiplier),
 			);
+ }
 		if (
 			p.castRemaining > 0 ||
 			p.statuses.some((s) => s.id === "stun" || s.id === "knockup")
@@ -1447,7 +1464,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
 				p.fz = iz;
 				const speed =
 					(p.auto && p.autoState === "idle" ? 1.8 : p.attack > 0 ? 1.6 : 4.5) *
-					p.stats.moveSpeed *
+					p.stats.moveSpeed * (1+Math.max(0,...p.statuses.filter(s=>s.id==='speed').map(s=>s.value))) *
 					(1 -
 						Math.max(
 							0,
@@ -1583,22 +1600,14 @@ export function step(
 			g.meteors.splice(i, 1);
 		}
 	}
-	for (let i = g.drops.length - 1; i >= 0; i--) {
-		const d = g.drops[i];
-		d.time += dt;
-		const p = g.players.get(d.ownerId);
-		if (p) {
-			g.p = p;
-			const dx = p.x - d.x,
-				dz = p.z - d.z,
-				dist = Math.hypot(dx, dz);
-			if (!p.dead && dist < 4 && d.time > 0.25) {
-				const speed = Math.min(dist, dt * 9);
-				d.x += (dx / (dist || 1)) * speed;
-				d.z += (dz / (dist || 1)) * speed;
-			}
-			if (!p.dead && dist < 0.45) {
-				p.gold += d.gold;
+ for (const d of [...g.drops]) {
+  d.time+=dt;if(d.pending)continue;
+  const candidates=[...g.players.values()].filter(p=>!p.dead&&(p.id===d.ownerId||d.time>=g.data.economy.lootOwnershipSeconds)&&(!p.auto||p.id===d.ownerId)&&(!p.auto||p.inventory?.autoPickup!==false)).sort((a,b)=>Math.hypot(a.x-d.x,a.z-d.z)-Math.hypot(b.x-d.x,b.z-d.z));
+  const p=candidates[0];if(!p)continue;g.p=p;
+  const dx=p.x-d.x,dz=p.z-d.z,dist=Math.hypot(dx,dz);
+  if(dist<4&&d.time>.25){const speed=Math.min(dist,dt*9);d.x+=dx/(dist||1)*speed;d.z+=dz/(dist||1)*speed;}
+  if(dist<.45){
+   const done=()=>{const before=g.p;g.p=p;
 				const jobLevels = gainJobExp(
 					p,
 					Math.round((d.jobExp || 0) * (g.jobExpMultiplier || 1)),
@@ -1628,12 +1637,16 @@ export function step(
 						granted: g.data.stats.pointsPerLevel,
 					});
 				}
-				g.drops.splice(i, 1);
-				continue;
-			}
-		}
-		if (d.time > 40) g.drops.splice(i, 1);
-	}
+    g.drops=g.drops.filter(drop=>drop!==d);g.p=before;
+   };
+   if(g.inventoryCommit){
+    if(d.noticeAt!==undefined&&g.time-d.noticeAt<2)continue;
+    d.pending=true;g.inventoryCommit(p,{op:'pickup',id:String(d.id),gold:d.gold,loot:d.loot??[]},done);
+   }else if(p.inventory){try{const out=applyInventory({gold:p.gold,inventory:p.inventory},{op:'pickup',gold:d.gold,loot:d.loot??[]},p.profile,g.data,()=>String(g.nextId++));p.gold=out.state.gold;p.inventory=out.state.inventory;refreshStats(g,p);done();}catch{d.noticeAt=g.time;}}
+   else{p.gold+=d.gold;done();}
+  }
+ }
+
 	g.p = previous;
 	g.enemies = g.enemies.filter((e) => !e.summoned || !e.dead || e.deathAge < 3);
 }

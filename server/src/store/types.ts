@@ -1,10 +1,11 @@
+import type {EconomyStore as importEconomyStore} from './economy.js';
 import type {Stat,JobProgress} from '@thainative/shared';
 export interface Account {id:string;kind:'guest'|'google';googleSub?:string;displayName:string;createdAt:string;lastLoginAt:string;guestKeyHash?:string}
 export interface Session {id:string;accountId:string;tokenHash:string;expiresAt:string;createdAt:string;userAgent:string;selectedCharacterId?:string}
-export interface Character extends Partial<JobProgress> {mapId?:import("@thainative/shared").MapId;healerReadyAt?:number;audioSettings?:import("@thainative/shared").AudioSettings;jobsVersion?:number;autoAllocate?:boolean;autoAllocCursor?:number;baseStats:Record<Stat,number>;race:string;classId:string;statPoints:number;dataVersion:number;id:string;accountId:string;name:string;nameKey:string;level:number;xp:number;gold:number;kills:number;potions:number;posX?:number;posZ?:number;createdAt:string;lastPlayedAt:string;deletedAt?:string}
-export type Progress=Pick<Character,'level'|'xp'|'gold'|'kills'|'potions'|'posX'|'posZ'|'baseStats'|'race'|'classId'|'statPoints'|'dataVersion'|'autoAllocate'|'autoAllocCursor'|'jobId'|'jobLevel'|'jobExp'|'skillPoints'|'skills'|'hotbar'|'jobsVersion'|'audioSettings'|'mapId'|'healerReadyAt'>;
+export interface Character extends Partial<JobProgress> {autoSeconds?:number;mapId?:import("@thainative/shared").MapId;healerReadyAt?:number;audioSettings?:import("@thainative/shared").AudioSettings;jobsVersion?:number;autoAllocate?:boolean;autoAllocCursor?:number;baseStats:Record<Stat,number>;race:string;classId:string;statPoints:number;dataVersion:number;id:string;accountId:string;name:string;nameKey:string;level:number;xp:number;gold:number;kills:number;potions:number;posX?:number;posZ?:number;createdAt:string;lastPlayedAt:string;deletedAt?:string}
+export type Progress=Pick<Character,'level'|'xp'|'gold'|'kills'|'potions'|'posX'|'posZ'|'baseStats'|'race'|'classId'|'statPoints'|'dataVersion'|'autoAllocate'|'autoAllocCursor'|'jobId'|'jobLevel'|'jobExp'|'skillPoints'|'skills'|'hotbar'|'jobsVersion'|'audioSettings'|'mapId'|'healerReadyAt'|'autoSeconds'>;
 export interface GoogleIdentity {sub:string;name:string}
-export interface Store {
+export interface Store extends importEconomyStore {
  init():Promise<void>;close():Promise<void>;
  createGuest(guestKeyHash:string):Promise<Account>;resumeGuest(hash:string):Promise<Account|undefined>;google(identity:GoogleIdentity,guestId?:string):Promise<Account>;account(id:string):Promise<Account|undefined>;
  createSession(session:Session):Promise<void>;session(hash:string):Promise<Session|undefined>;revoke(hash:string):Promise<void>;select(sessionId:string,characterId:string):Promise<void>;

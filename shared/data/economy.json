@@ -1,0 +1,33 @@
+{
+  "dataVersion": 1,
+  "sellMultiplier": 0.5,
+  "inventorySlots": 100,
+  "regenWeightRatio": 0.5,
+  "attackWeightRatio": 0.9,
+  "lootOwnershipSeconds": 10,
+  "dropMultiplier": 1,
+  "autoRareAfterSeconds": 7200,
+  "autoRareMultiplier": 0.7,
+  "shops": {
+    "market": {
+      "red_small": 16,
+      "red_medium": 45,
+      "blue_potion": 35,
+      "speed_potion": 60,
+      "training_sword": 80,
+      "leaf_sword": 240,
+      "traveler_clothes": 60
+    },
+    "forge": {
+      "training_sword": 80,
+      "leaf_sword": 240,
+      "reed_dagger": 90,
+      "wood_staff": 100,
+      "bamboo_bow": 100,
+      "traveler_clothes": 60,
+      "leaf_armour": 300,
+      "wood_shield": 80,
+      "trail_boots": 90
+    }
+  }
+}

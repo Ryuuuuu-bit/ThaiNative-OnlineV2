@@ -334,7 +334,7 @@ export const MonsterSchema = z
 		gold: z
 			.tuple([nonnegative, nonnegative])
 			.refine(([a, b]) => a <= b, "minimum exceeds maximum"),
-		drops: z.array(z.object({ itemId: id, chance: fraction }).strict()),
+		drops: z.array(z.object({ item: id, rate: fraction, min: positive.int(), max: positive.int() }).strict().refine(d=>d.max>=d.min,"minimum exceeds maximum")),
 		attacks: z
 			.record(
 				z.enum(["slam", "sweep", "charge", "spit"]),
@@ -445,7 +445,11 @@ export const ItemsSchema = z
 					.object({
 						id,
 						nameTh: id,
-						type: z.enum(["weapon", "armour"]),
+						type: z.enum(["weapon", "armour", "shield", "garment", "footgear", "accessory", "consumable", "material", "refine", "card"]),
+                        slot: z.enum(["weapon","body","shield","garment","footgear","accessory1","accessory2"]).nullable(),
+                        weight: nonnegative, npcPrice: nonnegative.int(), rarity: z.enum(["common","fine","rare","epic","legendary"]),
+                        stackable: z.boolean(), maxStack: positive.int(), bind: z.enum(["none","equip","account"]), icon: id,
+                        effect: z.enum(["hp","sp","speed"]).optional(), amount: nonnegative.optional(),
 						weaponType: WeaponSchema.optional(),
 						level: positive.int(),
 						atk: nonnegative.optional(),
@@ -499,7 +503,8 @@ export const JobsSchema = z
 			.strict(),
 	})
 	.strict();
-export const schemas = {
+export const EconomySchema = z.object({ dataVersion:z.literal(1), sellMultiplier:fraction, inventorySlots:positive.int(), regenWeightRatio:fraction, attackWeightRatio:fraction, lootOwnershipSeconds:nonnegative, dropMultiplier:nonnegative, autoRareAfterSeconds:nonnegative, autoRareMultiplier:fraction, shops:z.record(z.string(),z.record(z.string(),nonnegative.int())) }).strict();
+export const schemas = { economy: EconomySchema,
 	jobs: JobsSchema,
 	stats: StatsSchema,
 	elements: ElementsSchema,

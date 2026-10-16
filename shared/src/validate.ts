@@ -50,7 +50,8 @@ export function validateGameData(raw: Record<string, unknown>): GameData {
 				throw Error("skills.json: prerequisite reference");
 		}
 	}
-	const build = data.stats.defaultBuild;
+	for(const stock of Object.values(data.economy.shops))for(const id of Object.keys(stock))if(!data.items.items.some(i=>i.id===id))throw Error('economy.json: unknown shop item '+id);
+ const build = data.stats.defaultBuild;
 	for (const name of ["races", "status"] as const) {
 		const entries =
 			name === "races" ? data.races.players : data.status.statuses;
@@ -81,11 +82,11 @@ export function validateGameData(raw: Record<string, unknown>): GameData {
 	for (const [index, monster] of data.monsters.monsters.entries())
 		for (const drop of monster.drops)
 			if (
-				!data.items.items.some((i) => i.id === drop.itemId) &&
-				!data.cards.cards.some((c) => c.id === drop.itemId)
+				!data.items.items.some((i) => i.id === drop.item) &&
+				!data.cards.cards.some((c) => c.id === drop.item)
 			)
 				throw new Error(
-					`monsters.json: monsters.${index}.drops: unknown item ${drop.itemId}`,
+					`monsters.json: monsters.${index}.drops: unknown item ${drop.item}`,
 				);
 	for (const [file, ok, path] of [
 		[

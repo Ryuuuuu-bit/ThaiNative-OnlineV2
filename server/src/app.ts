@@ -12,6 +12,7 @@ export function createApp(options:AppOptions){const app=express(),session=sessio
  app.use('/api',(req,_res,next)=>{if(req.method==='POST'&&['/guest','/guest/resume','/google'].includes(req.path)){const now=Date.now(),key=req.ip||'unknown';let bucket=attempts.get(key);if(!bucket||bucket.until<=now){bucket={count:0,until:now+60000};attempts.set(key,bucket);}if(++bucket.count>20)return next(new AppError(429,'RATE_LIMIT','ลองบ่อยเกินไป กรุณารอสักครู่'));if(attempts.size>10000)for(const[k,v]of attempts)if(v.until<=now)attempts.delete(k);}next();});
  app.use('/api',session.read);
  app.get('/api/admin/realtime',(req,res)=>{if(!req.auth||!(options.adminIds||[]).includes(req.auth.account.id)){res.status(403).json({error:{code:'FORBIDDEN'}});return;}res.json(options.realtimeMetrics?.()||{});});
+ app.post('/api/admin/economy/integrity',async(req,res,next)=>{if(!req.auth||!(options.adminIds||[]).includes(req.auth.account.id)){res.sendStatus(403);return;}try{res.json(await options.store.integrity());}catch(e){next(e);}});
  app.use('/api',authRoutes(options.store,session,{...options,build:options.build||'dev',verifyGoogle:options.verifyGoogle||googleVerifier(options.googleClientId)}));app.use('/api/characters',characterRoutes(options.store));
  app.use('/api',(_req,_res,next)=>next(new AppError(404,'NOT_FOUND','ไม่พบ API นี้')));
  if(options.staticDir)serveStatic(app,options.staticDir);

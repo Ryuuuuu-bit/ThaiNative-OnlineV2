@@ -32,7 +32,32 @@
         7,
         14
       ],
-      "drops": [],
+      "drops": [
+        {
+          "item": "jelly_slime",
+          "rate": 0.8,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "leaf_seed",
+          "rate": 0.25,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_small",
+          "rate": 0.22,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
+          "min": 1,
+          "max": 1
+        }
+      ],
       "jobExp": 18
     },
     {
@@ -68,7 +93,32 @@
         10,
         18
       ],
-      "drops": [],
+      "drops": [
+        {
+          "item": "jelly_slime",
+          "rate": 0.8,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "leaf_seed",
+          "rate": 0.25,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_small",
+          "rate": 0.22,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
+          "min": 1,
+          "max": 1
+        }
+      ],
       "jobExp": 27
     },
     {
@@ -104,7 +154,32 @@
         10,
         18
       ],
-      "drops": [],
+      "drops": [
+        {
+          "item": "jelly_slime",
+          "rate": 0.8,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "leaf_seed",
+          "rate": 0.25,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_small",
+          "rate": 0.22,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
+          "min": 1,
+          "max": 1
+        }
+      ],
       "jobExp": 27
     },
     {
@@ -138,7 +213,32 @@
         3,
         3
       ],
-      "drops": [],
+      "drops": [
+        {
+          "item": "jelly_slime",
+          "rate": 0.8,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "leaf_seed",
+          "rate": 0.25,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_small",
+          "rate": 0.22,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
+          "min": 1,
+          "max": 1
+        }
+      ],
       "jobExp": 3
     },
     {
@@ -179,7 +279,32 @@
         180,
         180
       ],
-      "drops": [],
+      "drops": [
+        {
+          "item": "king_crystal",
+          "rate": 1,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "leaf_sword",
+          "rate": 0.12,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "crystal_sword",
+          "rate": 0.03,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "card_king_jelly",
+          "rate": 0.005,
+          "min": 1,
+          "max": 1
+        }
+      ],
       "phase2": {
         "atk": 28,
         "element": "dark"

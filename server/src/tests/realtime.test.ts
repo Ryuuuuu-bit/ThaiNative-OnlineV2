@@ -199,7 +199,8 @@ test("reconnect retains state, new socket kicks old, then room expires", async (
 	await first.until((m) => m.t === "snap");
 	const room = [...f.rt.rooms.values()][0],
 		p = room.game.players.get(user.character.id)!;
-	p.gold = 25;
+	const grant=await f.store.inventoryOp(user.character.accountId,p.id,crypto.randomUUID(),{op:'admin',gold:25},{profile:p.profile});
+ p.gold=grant.gold;
 	first.ws.close();
 	await first.closed;
 	await wait(30);
@@ -260,4 +261,21 @@ test('maps isolate rooms, persist transfers and healer cooldown, reject remote g
  assert.equal(p.dead,false);assert.equal(p.mapId,'city_plaza');assert.equal(p.x,0);assert.equal(p.z,5);await city.saveQueue;
  peer.ws.close();await peer.closed;const reconnect=f.open(user.cookie);await reconnect.until(m=>m.t==='welcome');reconnect.send({t:'spawnReady'});
  const snap=await reconnect.until(m=>m.t==='snap');assert.equal(snap.mapId,'city_plaza');assert.equal(snap.players.find((v:any)=>v.id===p.id).healerReadyAt,readyAt);
+});
+
+test('two sockets racing released loot award exactly once; disconnect during commit is atomic',async t=>{
+ const f=await fixture(t,true),a=await f.make('LootOne',true),b=await f.make('LootTwo',true),one=f.open(a.cookie),two=f.open(b.cookie);
+ await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');one.send({t:'spawnReady'});two.send({t:'spawnReady'});await one.until(m=>m.t==='snap');await two.until(m=>m.t==='snap');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(a.character.id)!,other=room.game.players.get(b.character.id)!;room.game.enemies=[];p.x=other.x=1;p.z=other.z=5;
+ let release!:()=>void;const barrier=new Promise<void>(r=>release=r),original=f.store.inventoryOp.bind(f.store);f.store.inventoryOp=async(...args)=>{await barrier;return original(...args);};
+ const id=room.game.nextId++;room.game.drops.push({id,ownerId:p.id,x:1,z:5,gold:37,xp:0,time:11,loot:[{template:'king_crystal',qty:1}]});
+ one.send({t:'inv',op:'pickup',req:crypto.randomUUID(),drop:id});two.send({t:'inv',op:'pickup',req:crypto.randomUUID(),drop:id});
+ for(let i=0;i<50&&!room.economyBusy;i++)await wait(10);assert.ok(room.economyBusy);one.ws.close();await one.closed;release();await room.saveQueue;await wait(100);
+ const sa=await f.store.inventory(a.character.accountId,p.id),sb=await f.store.inventory(b.character.accountId,other.id);
+ assert.equal(sa.gold+sb.gold,37);assert.equal([...sa.inventory.items,...sb.inventory.items].filter(i=>i.template==='king_crystal').length,1);assert.equal(room.game.drops.length,0);assert.ok((await f.store.integrity()).ok);
+});
+
+test('simultaneous joins for one character share the same unique inventory and live room',async t=>{
+ const f=await fixture(t),a=await f.make('JoinEconomy');const original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{await wait(20);return original(...args);};
+ const one=f.open(a.cookie),two=f.open(a.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});const state=await two.until(m=>m.t==='snap');assert.equal(state.inventory.items.filter((i:any)=>i.location==='equip').length,2);assert.equal(new Set(state.inventory.items.map((i:any)=>i.id)).size,3);assert.equal(f.rt.rooms.size,1);assert.ok((await f.store.integrity()).ok);
 });

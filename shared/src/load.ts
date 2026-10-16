@@ -1,3 +1,4 @@
+import economy from "../data/economy.json" with {type:"json"};
 import jobs from "../data/jobs.json" with {type:"json"};
 import stats from "../data/stats.json" with { type: "json" };
 import elements from "../data/elements.json" with { type: "json" };
@@ -15,7 +16,7 @@ export { validateGameData } from "./validate.js";
 /** Browser entry: no Node APIs; Vite bundles these static JSON imports. */
 export function loadGameData(): GameData {
 	return validateGameData({
-		jobs,stats,
+		economy,jobs,stats,
 		elements,
 		races,
 		classes,

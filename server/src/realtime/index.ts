@@ -1,8 +1,9 @@
-import { CITY_SPAWN, travelDestination, healerHeal, type MapId } from "@thainative/shared";
+import {equipped,inventoryWeight,type InventoryOp} from '@thainative/shared';
+import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, type MapId } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
 import type { Server } from "node:http";
 import { performance } from "node:perf_hooks";
-import { randomInt } from "node:crypto";
+import { randomUUID, randomInt } from "node:crypto";
 import { WebSocketServer, WebSocket } from "ws";
 import { parse } from "cookie";
 import {
@@ -58,6 +59,7 @@ export interface Room {
 	disconnected: Map<string, number>;
 	tick: number;
 	saveQueue: Promise<void>;
+ economyBusy?:number; dropRequests?:Map<string,string>;
 }
 export interface RealtimeOptions {
 	store: Store;
@@ -115,6 +117,7 @@ export function snapshot(room: Room, peer: Peer) {
 	const g = room.game;
 	return {
 		t: "snap", mapId: g.mapId,
+ inventory: g.players.get(peer.id)?.inventory, weight: g.players.get(peer.id)?.inventory?inventoryWeight(g.players.get(peer.id)!.inventory!,g.data):0, weightLimit:g.players.get(peer.id)?.stats.weight,
 		tick: room.tick,
 		ack: peer.ack,
 		time: g.time,
@@ -132,7 +135,7 @@ export function snapshot(room: Room, peer: Peer) {
 				Object.entries(p.cd).map(([k, v]) => [k, round(v)]),
 			),
 			moveSpeed:
-				p.stats.moveSpeed *
+				p.stats.moveSpeed * (1+Math.max(0,...p.statuses.filter(s=>s.id==='speed').map(s=>s.value))) *
 				(1 -
 					Math.max(
 						0,
@@ -197,7 +200,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		inRate = 0,
 		outRate = 0,
 		closing = false;
-	const wss = new WebSocketServer({
+	const joins=new Map<string,Promise<void>>();
+ const wss = new WebSocketServer({
 		noServer: true,
 		maxPayload: 4096,
 		perMessageDeflate: { threshold: 256 },
@@ -211,6 +215,23 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		ws.send(JSON.stringify(body));
 		sent++;
 	}
+ function economy(peer:Peer,p:Player,op:InventoryOp,req:string,done=()=>{}) {
+  const room=peer.room,g=room.game;room.economyBusy=(room.economyBusy||0)+1;
+  const operation=room.saveQueue.then(async()=>{
+   const result=await store.inventoryOp(peer.accountId,p.id,req,op,{profile:structuredClone(p.profile),room:room.key,tick:room.tick});
+   const latest=result.duplicate?await store.inventory(peer.accountId,p.id):result;
+   p.inventory=latest.inventory;p.gold=latest.gold;refreshStats(g,p);
+   if(result.error){if(op.op==='pickup')room.dropRequests?.delete(op.id!);throw Error(result.error);}
+   if(result.effect&&!result.duplicate){const e=result.effect;if(e.kind==='hp'){const amount=Math.min(e.amount,p.maxHp-p.hp);p.hp+=amount;g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount});}if(e.kind==='sp')p.mp=Math.min(p.maxMp,p.mp+e.amount);if(e.kind==='speed')p.statuses.push({id:'speed',sourceId:p.id,remaining:60,value:e.amount});p.cd.potion=data.skills.skills.find(s=>s.id==='potion')!.cooldown;}
+   done();sendStats(peer,p);send(peer.ws,{t:'inv',req,inventory:p.inventory,gold:p.gold});
+   if(op.op==='pickup'){room.dropRequests?.delete(op.id!);}
+   if(op.op==='pickup')send(peer.ws,{t:'ev',list:[{type:'itemPickup',playerId:p.id,loot:op.loot}]});
+  });
+  room.saveQueue=operation.catch(e=>{
+   const d=g.drops.find(d=>String(d.id)===op.id);if(op.op==='pickup'&&d){d.pending=false;d.noticeAt=g.time;}
+   send(peer.ws,{t:'inv',req,error:(e as Error).message});send(peer.ws,{t:'ev',list:[{type:'notice',playerId:p.id,text:(e as Error).message}]});
+  }).finally(()=>{room.economyBusy!--;});
+ }
  function getRoom(mapId: MapId, id: string): Room {
   const key=mapId+(options.sharedRooms?'':':'+id);
   let room=rooms.get(key);
@@ -220,6 +241,12 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
    game.players.clear();
    room={key,game,peers:new Map(),accounts:new Map(),disconnected:new Map(),tick:0,saveQueue:Promise.resolve()};
    rooms.set(key,room);
+   const current=room;
+   game.inventoryCommit=(p,op,done)=>{
+    const peer=current.peers.get(p.id);if(!peer){const d=current.game.drops.find(d=>String(d.id)===op.id);if(d)d.pending=false;return;}
+    current.dropRequests??=new Map();let req:string=randomUUID();if(op.op==='pickup'){const key=op.id!;req=current.dropRequests.get(key)||req;current.dropRequests.set(key,req);}
+    economy(peer,p,op,req,done);
+   };
   }
   return room;
  }
@@ -244,8 +271,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		const p = room.game.players.get(id),
 			accountId = room.accounts.get(id);
 		if (!p || !accountId) return room.saveQueue;
-		const body: Progress = {
-			jobId: p.jobId,
+		const operation = room.saveQueue.then(async () => {
+        const body: Progress = {
+			autoSeconds:p.autoSeconds,
+ jobId: p.jobId,
 			jobLevel: p.jobLevel,
 			jobExp: p.jobExp,
 			skillPoints: p.skillPoints,
@@ -270,7 +299,6 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			autoAllocCursor: p.autoAllocCursor,
 			dataVersion: 1,
 		};
-		const operation = room.saveQueue.then(async () => {
 			await store.saveProgress(accountId, id, body);
 		});
 		room.saveQueue = operation.catch((e) => {
@@ -347,6 +375,15 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			peer.ack = message.seq;
 		}
         const player=g.players.get(peer.id)!;
+        if(message.t==='inv'){
+         if(player.dead)return;
+         if(message.op==='pickup'){const d=g.drops.find(d=>d.id===message.drop);if(d&&!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(player.x-d.x,player.z-d.z)<4){moveTo(g,d.x,d.z);}return;}
+         if(message.op==='buy'||message.op==='sell'){const npc=CITY_BUILDINGS.find(b=>b.id===message.shop);if(g.mapId!=='city_plaza'||!npc||Math.hypot(player.x-npc.talk.x,player.z-npc.talk.z)>=3){send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'ไปพบพ่อค้าก่อน'}]});return;}}
+         if(message.op==='use'&&(player.cd.potion>0||room.economyBusy))return;
+         economy(peer,player,message,message.req);return;
+        }
+        if(room.economyBusy)return;
+
         if(message.t==='travel'){
          const destination=travelDestination(g.mapId,message.gate,player);
          if(destination)transfer(peer,destination);
@@ -562,15 +599,18 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					return;
 				}
 				if (ws.readyState !== WebSocket.OPEN || closing) return;
-				const old = live.get(character.id);
+				const priorJoin=joins.get(character.id)||Promise.resolve();let releaseJoin!:()=>void;
+                const gateJoin=new Promise<void>(resolve=>releaseJoin=resolve),join=priorJoin.then(()=>gateJoin);joins.set(character.id,join);await priorJoin;
+                try {
+                const old = live.get(character.id);
 				if (old) {
 					send(old.ws, { t: "kick", reason: "opened elsewhere" });
 					old.ws.close(4409, "opened elsewhere");
 				}
-                const mapId=character.mapId || 'city_plaza';
-                let room = getRoom(mapId, character.id);
+                let room=[...rooms.values()].find(r=>r.accounts.has(character.id)&&(r.game.players.has(character.id)||pending.has(character.id)))||getRoom(character.mapId||'city_plaza',character.id);
+                const mapId=room.game.mapId;
 
-				if (!room.game.players.has(character.id)) {
+				if (!room.game.players.has(character.id)&&!pending.has(character.id)) {
 					const profile = {
 						...data.stats.defaultBuild,
 						level: character.level,
@@ -578,14 +618,16 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 						race: character.race,
 						classId: character.classId,
 					};
-					const p = addPlayer(room.game, character.id, profile);
+					await room.saveQueue;const economyState=await store.inventory(session.accountId,character.id);
+                    const p = addPlayer(room.game, character.id, profile);p.inventory=economyState.inventory;p.gold=economyState.gold;
+                    p.profile.equipment=equipped(p.inventory);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
- p.healerReadyAt=character.healerReadyAt||0;
+ p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
 					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;
-					p.gold = character.gold;
+					
 					p.kills = character.kills;
 					p.potions = character.potions;
 					p.statPoints = character.statPoints;
@@ -703,6 +745,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					void save(peer.room, peer.id);
 				});
 				ws.on("error", () => {});
+                } finally {releaseJoin();if(joins.get(character.id)===join)joins.delete(character.id);}
 			})().catch(() => ws.close(1011, "connection failed"));
 		});
 	});
@@ -719,6 +762,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		for (let substep = 0; substep < catchup; substep++) {
 			ticks++;
 			for (const room of rooms.values()) {
+                if(room.economyBusy)continue;
 				for (const [id, at] of room.disconnected)
 					if (now - at >= (options.reconnectMs ?? 60000)) {
 						void save(room, id);
@@ -777,6 +821,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		}
 	}, 15000);
 	heartbeat.unref();
+ const economyNightly=setInterval(()=>{void store.integrity().catch(e=>console.error('ECONOMY_ALERT',String(e)));},86400000);economyNightly.unref();
 	return {
 		rooms,
 		metrics() {
@@ -798,7 +843,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		async close() {
 			closing = true;
 			clearInterval(timer);
-			clearInterval(heartbeat);
+			clearInterval(heartbeat);clearInterval(economyNightly);
 			for (const peer of live.values()) peer.ws.terminate();
 			await Promise.all(
 				[...rooms.values()].flatMap((room) =>

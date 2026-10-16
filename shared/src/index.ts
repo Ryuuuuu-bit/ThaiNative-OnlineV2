@@ -14,3 +14,5 @@ export * from './game/prediction.js';
 export * from './jobs.js';
 
 export * from './audio-settings.js';
+
+export * from "./inventory.js";
