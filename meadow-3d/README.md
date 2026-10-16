@@ -15,11 +15,13 @@ For the account API, also run `npm run dev:server`. Open the local URL printed b
 ## Controls
 
 - WASD/arrows: screen-relative movement. Click ground to move directly; click a slime to approach and attack automatically. Direct steering slides along obstacles; it is not a full pathfinding system.
-- J (hold): three-hit sword combo.
+- Hold LMB on a jelly or use Space (legacy J): three-hit sword combo. Clicking a jelly approaches and attacks. Single ground clicks move; holding over ground continues steering after 0.18 seconds, and dragging keeps walking. A stationary hold with an already selected target in reach attacks it.
 - Q: whirlwind, 20 MP, 4-second cooldown.
-- F: meteor at the selected/nearest enemy, 30 MP, 6-second cooldown. Damage occurs at impact, after 0.65 seconds.
-- Space/E: dodge, short invulnerability, 1.5-second cooldown.
+- E: meteor at the selected/nearest enemy, 30 MP, 6-second cooldown. Damage occurs at impact, after 0.65 seconds.
+- Shift (left or right): dodge, short invulnerability, 1.5-second cooldown.
 - R: potion, restores 65 HP, 5 uses, 7-second cooldown.
+- F (legacy T): toggle AUTO hunt. It prioritises the King, uses combo/skills/potions and returns to camp below 25% HP without potions. Manual movement or Escape cancels it; skill presses are allowed. AUTO routes around obstacles; manual click movement keeps direct steering. AUTO starts off after death or re-entry.
+- Tab: cycle living targets by distance, wrapping back to the nearest. Browser focus stays in the game during play.
 - Mouse wheel: zoom. Escape: pause. Buttons provide help, audio and HQ/LOW rendering. Touch controls include a joystick and skill buttons.
 - Avoid red ground circles. Return to the southern camp for free healing. Death returns to camp with current EXP and money intact.
 
@@ -72,7 +74,7 @@ Comparable initial-camera HQ SwiftShader samples measured **13.72 → 14.59 FPS*
 
 ## Painted skill icons
 
-The five active hotbar buttons share a generated ink-and-gouache icon strip on desktop and touch. The sixth leaf sigil is packed for future empty slots without adding a button or changing the bar dimensions. Source art and the exact built-in imagegen prompt are in `art/painted-ui/`; `tools/pack-icons.py` trims each of the six 512px source slots and proportionally centres the artwork on transparent 128px and 64px cells. Runtime files are `public/assets/ui-painted/skill-icons-v1.png` (768×128), `skill-icons-64-v1.png` (384×64), and `manifest.json`. The HUD uses the 128px strip for crisp HiDPI display at 52px on desktop and 40px on mobile.
+The five active hotbar buttons share a generated ink-and-gouache icon strip on desktop and touch. The sixth leaf sigil is used by the AUTO hunt toggle with a CSS rotation glyph. Source art and the exact built-in imagegen prompt are in `art/painted-ui/`; `tools/pack-icons.py` trims each of the six 512px source slots and proportionally centres the artwork on transparent 128px and 64px cells. Runtime files are `public/assets/ui-painted/skill-icons-v1.png` (768×128), `skill-icons-64-v1.png` (384×64), and `manifest.json`. The HUD uses the 128px strip for crisp HiDPI display at 52px on desktop and 40px on mobile.
 
 CSS darkens only the icon with a conic cooldown wedge, while a numeric timer stays readable above it. A soft gold rim means ready; unavailable MP/potions desaturate the icon, and pressing scales the button down. Key labels, Thai names, potion count and MP badges remain visible; the existing 63×64 desktop and 46×57 mobile button dimensions are retained. The spare sigil is deliberately quiet. The dash boot and individual wind leaves become secondary details at mobile size, but their main silhouettes remain distinct.
 
@@ -81,3 +83,19 @@ CSS darkens only the icon with a conic cooldown wedge, while a numeric timer sta
 `npm run build` compiles the Express server and five-page web build; `npm start` serves both on port 8787 (or `PORT`). See `server/README.md` for environment variables, routes, guest recovery, Google authorised origins and persistence choices. The new portal painting and exact prompt are in `art/painted-web/`; only two JPEG versions ship under `public/assets/web/`. No existing public PNGs are modified. The shared `mountPreview` API in `src/character-preview.ts` drives both character creation and the public atelier; atelier controls live in `src/character-atelier.ts`.
 
 Guest sessions can be recovered with the browser’s locally stored recovery key. Linking Google keeps the characters. Three slots per account, globally unique names and deletion confirmation are enforced by the API. The play page restores level, XP, gold, defeats, potions and a valid position before opening the welcome screen. A small corner toast reports server saves. Boss/combat state restarts on re-entry, while saved defeats retain the unlock. Production Google sign-in needs the owner’s OAuth client ID/origins; memory mode is explicitly temporary.
+
+## AUTO hunt verification
+
+AUTO makes strategic decisions every 0.2 seconds; defensive telegraph checks run at the fixed simulation step to hit the 0.15-second dodge window. A bounded grid route avoids rocks and water while manual ground clicks retain direct steering. Retreat holds within the camp healing zone, attacks followers in reach, and resumes at 90% HP. The leaf sigil uses the existing strip; no PNGs or server source changed.
+
+Typecheck, all 44 tests (31 sim/assets, 12 server, one web build) and the full production build passed. A fresh-character browser run with only one AUTO click earned six defeats and started the King slam in about 14 simulation seconds (25.5 kills/minute to engagement; about 16.3 per wall minute under SwiftShader). This is a short smoke rate, not a sustained farming benchmark. Keyboard/joystick cancellation and manual skill coexistence passed. Desktop and 390×844 screenshots were visually reviewed; no stuck cases or runtime errors were observed. Evidence and choices are in `.codex-run/auto-hunt-report.json`; screenshots are `auto-hunt.jpg` and `auto-hunt-mobile.jpg`. The existing large-chunk build warning remains.
+
+## WASD-friendly hotkeys verification
+
+Bindings now live in `src/keys.ts`, imported by the input controller and `tests/keys.test.mjs`. Primary button hints are SPACE / Q / E / SHIFT / R / F; J and T remain aliases. E casts meteor, and Space attacks. Tab cycles the current distance ordering of living enemies and prevents browser focus movement during active play. Touch keeps the Thai labels and hides keyboard hints on coarse pointers.
+
+A ground click walks immediately. After a stationary 180ms hold, an already selected in-range target can be attacked; dragging more than 6px keeps ground steering. Holding on a painted jelly selects it first, approaches and repeats the combo. Release/cancel, pause, help, blur and death clear the held pointer.
+
+The final typecheck, all 48 tests (35 meadow, 12 server, one web build) and full build passed. The normal-input browser pass verified WASD, both Shift keys, held LMB/Space/J, E meteor, F/T AUTO, twelve Tab presses with exact event-time distance ordering and focus retention, single ground clicks, ground holds/drags, attack release, and a real touch-context joystick interrupt. `.codex-run/hotkeys.jpg` was visually inspected, and results were appended under `hotkeys` in `.codex-run/auto-hunt-report.json`. No runtime errors or stuck cases appeared. No server source or PNGs changed and no commit was made.
+
+A final route regression also covers a jelly standing in the narrow gap between enemy collision clearance and AUTO route clearance beside a rock. AUTO uses a valid melee approach point in that case, avoiding a possible wait outside attack reach.

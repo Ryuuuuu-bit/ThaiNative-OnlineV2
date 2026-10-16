@@ -20,9 +20,18 @@
 .skill kbd,.skill em{z-index:3;background:#193b32b8;padding:1px 2px;border-radius:2px;line-height:1.1}
 .skill kbd{left:2px;top:2px}.skill em{right:2px;top:2px}
 .skill small{position:relative;z-index:3;font-size:9px;line-height:11px;text-shadow:0 1px 2px #10291f;background:#203e35a8;padding:0 2px;border-radius:2px}
-.skill .cooldown{top:14px;left:0;width:100%;font:600 24px/1 'Cormorant Garamond',Georgia,serif;color:#fff6d1;text-shadow:0 1px 3px #071b22,0 0 4px #071b22;pointer-events:none}
+.skill .cooldown{position:absolute;z-index:2;top:14px;left:0;width:100%;font:600 24px/1 'Cormorant Garamond',Georgia,serif;color:#fff6d1;text-shadow:0 1px 3px #071b22,0 0 4px #071b22;pointer-events:none}
 @media(max-width:650px){.skill{--icon-size:40px;padding-bottom:3px}.skill small{font-size:8px;line-height:10px}.skill em{display:block;font-size:6px;top:2px}.skill .cooldown{top:12px;font-size:21px}.skill kbd{font-size:6px}.skill>.skill-icon{top:1px}}
 @media(prefers-reduced-motion:reduce){.skill{transition:none}}
+
+.auto-symbol:after{content:'⟳';position:absolute;top:11px;left:50%;transform:translateX(-50%);font:24px/1 Georgia,serif;color:#fff0b7;text-shadow:0 1px 3px #1a382a;pointer-events:none}
+.skill.auto-active{border-color:#ffe29a;animation:auto-glow 2s ease-in-out infinite}
+@keyframes auto-glow{0%,100%{box-shadow:inset 0 0 8px #e9c77744,0 0 4px #e1c17a77}50%{box-shadow:inset 0 0 12px #e9c77766,0 0 12px #e1c17aaa}}
+#auto-status{position:absolute;top:80px;left:50%;transform:translateX(-50%);padding:3px 9px;border-radius:3px;background:#183b2bba;color:#f7dfa5;font-size:10px;text-shadow:0 1px 2px #172b20}
+.boss-active #auto-status{top:112px}
+@media(max-width:650px){.auto-symbol:after{top:9px;font-size:21px}#auto-status{left:13px;top:135px;transform:none;font-size:9px;padding:1px 5px}.boss-active #auto-status{top:200px}.brand{bottom:91px}.brand small{display:none}#ui .character-link{font-size:8px;margin-top:3px}}
+@media(prefers-reduced-motion:reduce){.skill.auto-active{animation:none;box-shadow:0 0 8px #e1c17a88}}
+@media(pointer:coarse){.skill kbd{display:none}}
 
 #save-status{position:absolute;left:24px;bottom:104px;font:10px 'Noto Sans Thai',sans-serif;color:#e0d5ad;background:#183b2bcc;padding:4px 8px;border-radius:3px;opacity:0;transition:opacity .2s;pointer-events:none}#save-status.shown{opacity:1}.footnote a{color:#e4cc97;text-decoration:underline;margin-left:8px}@media(max-width:650px){#save-status{left:12px;bottom:95px;font-size:9px}}
 

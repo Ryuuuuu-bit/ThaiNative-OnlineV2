@@ -1,6 +1,7 @@
 import{loadSelected,restoreProgress,attachAutosave}from'./web/game-session';
+import{KEYS,isKey}from'./keys';
 import * as T from 'three';import './style.css';
-import{createGame,step,action,revive,walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
+import{createGame,step,action,revive,walkable,setAuto,moveTo,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';
 const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>(s)!;const $$=(s:string)=>[...document.querySelectorAll<HTMLElement>(s)];
 const selected=await loadSelected();
@@ -52,16 +53,64 @@ function events(){for(const e of game.events.splice(0)){if(['level','victory','d
  case'death':clearInput();deathReveal=1.5;break;
  case'victory':notice('✦ ราชาวุ้นถูกปราบแล้ว!');setTimeout(()=>{if(!game.p.dead)showVictory();},2000);break;
  }} }
+function toggleAuto(){if(!started||paused||game.p.dead)return;setAuto(game,!game.p.auto);events();hud();}
+function stopAuto(){setAuto(game,false);events();hud();}
 function doAction(name:Action){if(!started||paused||game.p.dead)return;action(game,name);events();}
-const joy={x:0,y:0},stick=$('#joystick');let stickId:number|null=null;function clearInput(){keys.clear();joy.x=joy.y=0;$('#joystick i').style.transform='';}
+let heldPointer:{id:number;x:number;y:number;startX:number;startY:number;since:number;ground:boolean;dragged:boolean;nearTarget:number|null}|null=null;
+const joy={x:0,y:0},stick=$('#joystick');let stickId:number|null=null;function clearInput(){heldPointer=null;keys.clear();joy.x=joy.y=0;$('#joystick i').style.transform='';}
 function joyMove(e:PointerEvent){const b=stick.getBoundingClientRect(),x=e.clientX-b.left-b.width/2,y=e.clientY-b.top-b.height/2,l=Math.hypot(x,y),k=Math.min(1,27/(l||1));joy.x=x*k/27;joy.y=y*k/27;$('#joystick i').style.transform=`translate(${x*k}px,${y*k}px)`;}
-stick.addEventListener('pointerdown',e=>{stickId=e.pointerId;stick.setPointerCapture(stickId);joyMove(e);});stick.addEventListener('pointermove',e=>{if(e.pointerId===stickId)joyMove(e);});for(const evt of['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(evt,()=>{stickId=null;joy.x=joy.y=0;$('#joystick i').style.transform='';});
-window.addEventListener('keydown',e=>{if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();if(e.code==='Escape'){if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}if(started&&!game.p.dead)togglePause();return;}if(!started||paused||$<HTMLDialogElement>('#guide').open)return;keys.add(e.code);if(!e.repeat){if(e.code==='KeyQ')doAction('spin');if(e.code==='KeyF')doAction('meteor');if(e.code==='Space'||e.code==='KeyE')doAction('dash');if(e.code==='KeyR')doAction('potion');}});window.addEventListener('keyup',e=>keys.delete(e.code));
+stick.addEventListener('pointerdown',e=>{stopAuto();stickId=e.pointerId;stick.setPointerCapture(stickId);joyMove(e);});stick.addEventListener('pointermove',e=>{if(e.pointerId===stickId)joyMove(e);});for(const evt of['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(evt,()=>{stickId=null;joy.x=joy.y=0;$('#joystick i').style.transform='';});
+const held=(binding:keyof typeof KEYS)=>KEYS[binding].some(code=>keys.has(code));
+function nextTarget(){
+ const living=game.enemies.filter(e=>!e.dead).sort((a,b)=>Math.hypot(a.x-game.p.x,a.z-game.p.z)-Math.hypot(b.x-game.p.x,b.z-game.p.z)||a.id-b.id);
+ const index=living.findIndex(e=>e.id===game.target);game.target=living.length?living[(index+1)%living.length].id:null;game.destination=null;
+}
+window.addEventListener('keydown',e=>{
+ if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
+ if(isKey('pause',e.code)){e.preventDefault();stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}if(started&&!game.p.dead)togglePause();return;}
+ if(!started||paused||game.p.dead||$<HTMLDialogElement>('#guide').open)return;
+ if(Object.values(KEYS).some(codes=>(codes as readonly string[]).includes(e.code)))e.preventDefault();
+ if(['up','down','left','right'].some(a=>isKey(a as keyof typeof KEYS,e.code)))stopAuto();
+ keys.add(e.code);if(e.repeat)return;
+ if(isKey('auto',e.code))toggleAuto();else if(isKey('nextTarget',e.code))nextTarget();
+ else for(const a of ['spin','meteor','dash','potion'] as const)if(isKey(a,e.code))doAction(a);
+});
+window.addEventListener('keyup',e=>keys.delete(e.code));
 function loseFocus(){clearInput();if(started&&!paused&&!game.p.dead)togglePause();}window.addEventListener('blur',loseFocus);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseFocus();});
+$('#auto-hunt').addEventListener('click',toggleAuto);
 $$('[data-action]').forEach(b=>b.addEventListener('click',()=>doAction(b.dataset.action as Action)));
-renderer.domElement.addEventListener('contextmenu',e=>e.preventDefault());renderer.domElement.addEventListener('pointerdown',e=>{if(!started||paused||game.p.dead||e.button>0)return;const b=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1);ray.setFromCamera(pointer,camera);const targets=[...enemies.values()].filter(v=>v.actor.root.visible&&!v.actor.root.userData.dead).map(v=>v.actor.root);const hits=ray.intersectObjects(targets,true).filter(h=>h.object.userData.enemyId!==undefined);if(hits.length){game.target=hits[0].object.userData.enemyId;game.destination=null;return;}if(ray.ray.intersectPlane(floor,point)&&walkable(point.x,point.z)){game.destination={x:point.x,z:point.z};game.target=null;marker.position.set(point.x,.04,point.z);markerTime=.65;}});
+function pointerRay(x:number,y:number){const b=renderer.domElement.getBoundingClientRect();pointer.set((x-b.left)/b.width*2-1,-(y-b.top)/b.height*2+1);ray.setFromCamera(pointer,camera);}
+function pointerGround(){if(ray.ray.intersectPlane(floor,point)&&walkable(point.x,point.z)){moveTo(game,point.x,point.z);marker.position.set(point.x,.04,point.z);markerTime=.65;}}
+renderer.domElement.addEventListener('contextmenu',e=>e.preventDefault());
+renderer.domElement.addEventListener('pointerdown',e=>{
+ if(!started||paused||game.p.dead||e.button!==0)return;
+ pointerRay(e.clientX,e.clientY);
+ const targets=[...enemies.values()].filter(v=>v.actor.root.visible&&!v.actor.root.userData.dead).map(v=>v.actor.root);
+ const hit=ray.intersectObjects(targets,true).find(h=>h.object.userData.enemyId!==undefined);
+ const current=game.enemies.find(e=>e.id===game.target&&!e.dead&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<(e.boss?2.3:1.8));
+ heldPointer={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,since:performance.now(),ground:!hit,dragged:false,nearTarget:current?.id??null};
+ renderer.domElement.setPointerCapture(e.pointerId);
+ if(hit){game.target=hit.object.userData.enemyId;game.destination=null;}
+ else{pointerGround();events();hud();}
+});
+renderer.domElement.addEventListener('pointermove',e=>{
+ if(!heldPointer||heldPointer.id!==e.pointerId)return;
+ heldPointer.x=e.clientX;heldPointer.y=e.clientY;
+ if(Math.hypot(e.clientX-heldPointer.startX,e.clientY-heldPointer.startY)>6)heldPointer.dragged=true;
+});
+for(const name of ['pointerup','pointercancel','lostpointercapture'])renderer.domElement.addEventListener(name,()=>{heldPointer=null;});
+function pointerAttack(now:number){
+ const h=heldPointer;if(!h)return false;
+ if(!h.ground)return true;
+ // A single ground click moves immediately. After the hold threshold, a nearby selected
+ // jelly can be attacked; dragging always keeps steering across the ground.
+ if(now-h.since<=180&&!h.dragged)return false;
+ const target=!h.dragged&&game.enemies.find(e=>e.id===h.nearTarget&&!e.dead&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<(e.boss?2.3:1.8));
+ if(target){game.target=target.id;game.destination=null;return true;}
+ pointerRay(h.x,h.y);pointerGround();return false;
+}
 renderer.domElement.addEventListener('wheel',e=>{e.preventDefault();zoomHeight=T.MathUtils.clamp(zoomHeight+e.deltaY*.008,12,25);resize();},{passive:false});
-$('#play').addEventListener('click',()=>{started=true;paused=false;$('#overlay').hidden=true;sound.start();notice('WASD เดิน · คลิกวุ้นจิ๋วเพื่อโจมตี · Q ฟันพายุ · F ดาวตก');});
+$('#play').addEventListener('click',()=>{started=true;paused=false;$('#overlay').hidden=true;sound.start();notice('WASD เดิน · กดเมาส์ซ้ายค้าง / Space โจมตี · Q พายุ · E ดาวตก · Shift หลบ · F ออโต้');});
 $('#audio').addEventListener('click',()=>{$('#audio').textContent=sound.toggle()?'♫':'♩';$('#audio').setAttribute('aria-pressed',String(sound.enabled));});
 $('#quality').addEventListener('click',()=>{quality=!quality;renderer.setPixelRatio(quality?Math.min(devicePixelRatio,1.5):1);sun.castShadow=quality;renderer.shadowMap.enabled=quality;world.setQuality(quality);renderer.shadowMap.needsUpdate=true;$('#quality').textContent=quality?'HQ':'LOW';resize();});
 $('#pause').addEventListener('click',()=>{if(started&&!game.p.dead)togglePause();});
@@ -72,7 +121,7 @@ function showDeath(){overlay('<p class="caption">A NEW BEGINNING</p><h1>พั�
 function showVictory(){if(wonShown)return;wonShown=true;overlay(`<div class="ornament">✧ ───────── ✧</div><p class="caption">GUARDIAN OF THE FIELDS DEFEATED</p><h1>การผจญภัย<br>บทแรกสำเร็จ!</h1><p>Lv. ${game.p.level} · ${game.kills} defeated · ${game.p.gold} Zeny</p><button id="continue" class="primary">สำรวจทุ่งหญ้าต่อ →</button>`);$('#continue').onclick=()=>{paused=false;$('#overlay').hidden=true;};}
 const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;
 function minimap(){mx.fillStyle='#889d69';mx.fillRect(0,0,160,132);mx.lineCap='round';mx.strokeStyle='#d2c397';mx.lineWidth=7;mx.beginPath();mx.moveTo(75,132);mx.lineTo(75,96);mx.lineTo(80,75);mx.lineTo(75,57);mx.lineTo(85,24);mx.stroke();mx.lineWidth=5;mx.beginPath();mx.moveTo(0,75);mx.lineTo(80,75);mx.lineTo(104,66);mx.lineTo(160,66);mx.stroke();mx.fillStyle='#7fa9a1';mx.beginPath();mx.ellipse(132,61,14,20,0,0,6.28);mx.fill();mx.fillStyle='#bba16c';mx.fillRect(117,63,30,5);for(const[x,z]of[[-11,-6],[-8,-10],[8,-9],[-12,5],[10,8],[5,10]]){mx.fillStyle='#4f7654';mx.beginPath();mx.arc((x+17)/34*160,(z+14)/28*132,5,0,6.28);mx.fill();}mx.fillStyle='#e5dcb2';mx.fillRect(73,15,23,5);mx.fillRect((CAMP.x+17)/34*160-3,(CAMP.z+14)/28*132-3,6,6);for(const e of game.enemies){if(e.dead)continue;mx.fillStyle=e.boss?'#ffdb87':'#f4b3c5';mx.beginPath();mx.arc((e.x+17)/34*160,(e.z+14)/28*132,e.boss?3:1.7,0,6.28);mx.fill();}mx.fillStyle='#fff7d5';mx.strokeStyle='#314d39';mx.lineWidth=1.5;mx.beginPath();mx.arc((game.p.x+17)/34*160,(game.p.z+14)/28*132,3,0,6.28);mx.fill();mx.stroke();}
-function hud(){const p=game.p;$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${p.maxHp}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${p.maxMp}`;$('#xp').style.width=`${p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`${game.kills} defeated`;$('#potions').textContent=String(p.potions);
+function hud(){const p=game.p;const auto=$('#auto-hunt');auto.classList.toggle('auto-active',p.auto);auto.setAttribute('aria-pressed',String(p.auto));$('#auto-label').textContent=p.auto?'AUTO ON':'AUTO';const status=$('#auto-status');status.hidden=!p.auto;status.textContent='ออโต้: '+(p.autoState==='retreat'?'กลับแคมป์':p.autoState==='fight'?'กำลังสู้':'กำลังหาเป้าหมาย');$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${p.maxHp}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${p.maxMp}`;$('#xp').style.width=`${p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`${game.kills} defeated`;$('#potions').textContent=String(p.potions);
  const boss=game.enemies.find(e=>e.boss&&(!e.dead||e.deathAge<3.8));$('#boss-hud').hidden=!boss;document.body.classList.toggle('boss-active',!!boss);if(boss){$('#boss-hp').style.width=`${boss.hp/boss.maxHp*100}%`;$('#boss-hud h3').textContent=enemyLabel(boss);$('#boss-hud small').textContent=boss.dead?'DEFEATED':`${boss.bossPhase===2?'PHASE II':'PHASE I'} · ${boss.motion.toUpperCase()}`;}
  if(game.won){$('#quest-line').innerHTML='ปราบผู้พิทักษ์สำเร็จ <b>✓</b>';$('#quest-progress').style.width='100%';$('#quest-note').textContent='ลองคอมโบและสำรวจทุ่งหญ้าต่อได้';}else if(game.bossSpawned){$('#quest-line').innerHTML='ปราบราชาวุ้น <b>0 / 1</b>';$('#quest-progress').style.width=boss?`${(1-boss.hp/boss.maxHp)*100}%`:'0';}else{$('#quest-line').innerHTML=`ปราบวุ้นจิ๋ว <b>${Math.min(6,game.kills)} / 6</b>`;$('#quest-progress').style.width=`${Math.min(1,game.kills/6)*100}%`;}
  const target=game.enemies.find(e=>e.id===game.target&&!e.dead);$('#target').hidden=!target||target.boss;if(target){$('#target-name').textContent=enemyLabel(target);$('#target-lv').textContent=target.boss?'Lv. 5':'Lv. 1';$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;}
@@ -93,10 +142,10 @@ function render(dt:number){if(deathReveal>0){deathReveal=Math.max(0,deathReveal-
 function resize(){const aspect=innerWidth/innerHeight,h=innerWidth<650?zoomHeight+2:zoomHeight;camera.left=-h*aspect/2;camera.right=h*aspect/2;camera.top=h/2;camera.bottom=-h/2;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);}window.addEventListener('resize',resize);resize();
 renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();paused=true;overlay('<h1>การแสดงผลถูกพัก</h1><p>กรุณารีเฟรชหน้าเพื่อเริ่มเกมใหม่</p><button id="reload" class="primary">เริ่มใหม่</button>');$('#reload').onclick=()=>location.reload();});
 let hudTime=0,frameCount=0,fpsTime=0;
-function frame(now:number){requestAnimationFrame(frame);const wallDt=Math.max(0,(now-previous)/1000),dt=Math.min(wallDt,.05);previous=now;time+=dt;if(started&&!paused&&!game.p.dead){let x=Number(keys.has('KeyD')||keys.has('ArrowRight'))-Number(keys.has('KeyA')||keys.has('ArrowLeft'))+joy.x,y=Number(keys.has('KeyW')||keys.has('ArrowUp'))-Number(keys.has('KeyS')||keys.has('ArrowDown'))-joy.y;const len=Math.hypot(x,y);if(len>1){x/=len;y/=len;}const input={x:right.x*x+up.x*y,z:right.z*x+up.z*y};accumulator+=dt;while(accumulator>=1/60){if(keys.has('KeyJ'))action(game,'attack');step(game,1/60,input);accumulator-=1/60;}events();}else accumulator=0;render(dt);renderer.render(scene,camera);hudTime+=dt;if(hudTime>.1){hud();hudTime=0;}frameCount++;fpsTime+=wallDt;if(fpsTime>=1){$('#fps').textContent=`${Math.round(frameCount/fpsTime)} FPS`;fpsTime=frameCount=0;}}
+function frame(now:number){requestAnimationFrame(frame);const wallDt=Math.max(0,(now-previous)/1000),dt=Math.min(wallDt,.05);previous=now;time+=dt;if(started&&!paused&&!game.p.dead){let x=Number(held('right'))-Number(held('left'))+joy.x,y=Number(held('up'))-Number(held('down'))-joy.y;const len=Math.hypot(x,y);if(len>1){x/=len;y/=len;}const input={x:right.x*x+up.x*y,z:right.z*x+up.z*y};const mouseAttack=pointerAttack(now);accumulator+=dt;while(accumulator>=1/60){if(held('attack')||mouseAttack)action(game,'attack');step(game,1/60,input);accumulator-=1/60;}events();}else accumulator=0;render(dt);renderer.render(scene,camera);hudTime+=dt;if(hudTime>.1){hud();hudTime=0;}frameCount++;fpsTime+=wallDt;if(fpsTime>=1){$('#fps').textContent=`${Math.round(frameCount/fpsTime)} FPS`;fpsTime=frameCount=0;}}
 hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
-(window as any).__FIELDS__={snapshot:()=>({started,paused,hero:hero.snapshot(),environment:world.snapshot(),p:{...game.p,cd:{...game.p.cd}},target:game.target,destination:game.destination,kills:game.kills,bossSpawned:game.bossSpawned,won:game.won,encounterLog:encounterLog.map(e=>({...e})),projectiles:game.projectiles.map(p=>({...p})),enemies:game.enemies.map(e=>({id:e.id,x:e.x,z:e.z,hp:e.hp,maxHp:e.maxHp,boss:e.boss,dead:e.dead,deathAge:e.deathAge,motion:e.motion,motionTime:e.motionTime,bossPhase:e.bossPhase,variant:e.variant,summoned:e.summoned,aimX:e.aimX,aimZ:e.aimZ,windup:e.windup,history:[...e.history],actor:enemies.get(e.id)?.actor.snapshot()})),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles}),project:(x:number,z:number,y=0)=>{const p=new T.Vector3(x,y,z).project(camera);return{x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight};}};
+(window as any).__FIELDS__={snapshot:()=>({started,paused,time:game.time,hero:hero.snapshot(),environment:world.snapshot(),p:{...game.p,cd:{...game.p.cd}},target:game.target,destination:game.destination,kills:game.kills,bossSpawned:game.bossSpawned,won:game.won,encounterLog:encounterLog.map(e=>({...e})),projectiles:game.projectiles.map(p=>({...p})),enemies:game.enemies.map(e=>({id:e.id,x:e.x,z:e.z,hp:e.hp,maxHp:e.maxHp,boss:e.boss,dead:e.dead,deathAge:e.deathAge,motion:e.motion,motionTime:e.motionTime,bossPhase:e.bossPhase,variant:e.variant,summoned:e.summoned,aimX:e.aimX,aimZ:e.aimZ,windup:e.windup,history:[...e.history],actor:enemies.get(e.id)?.actor.snapshot()})),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles}),project:(x:number,z:number,y=0)=>{const p=new T.Vector3(x,y,z).project(camera);return{x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight};}};
 
 
 
