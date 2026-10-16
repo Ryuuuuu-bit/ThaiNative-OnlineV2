@@ -30,9 +30,10 @@ async function fixture(t: any, sharedRooms = false) {
 			cookie: r.headers.get("set-cookie")?.split(";")[0] || "",
 		};
 	};
-	const make = async (name: string) => {
+	const make = async (name: string, meadow = false) => {
 		const guest = await call("/api/guest", {}),
 			c = await call("/api/characters", { name, jobId: "swordsman" }, guest.cookie);
+		if(meadow)await store.saveProgress(c.data.character.accountId,c.data.character.id,{...c.data.character,mapId:"meadow",posX:-1,posZ:6});
 		await call(
 			`/api/characters/${c.data.character.id}/select`,
 			{},
@@ -116,7 +117,7 @@ test("WebSocket auth, selected-character requirement, wrong build reload and spa
 });
 test("speed clamp, range, cooldown, fake damage and rate limits cannot be bypassed", async (t) => {
 	const f = await fixture(t),
-		user = await f.make("IntentHero"),
+		user = await f.make("IntentHero", true),
 		peer = f.open(user.cookie);
 	await peer.until((m) => m.t === "welcome");
 	peer.send({ t: "spawnReady" });
@@ -151,7 +152,7 @@ test("speed clamp, range, cooldown, fake damage and rate limits cannot be bypass
 });
 test("server-earned kill saves XP/gold/base stats and obsolete progress returns410", async (t) => {
 	const f = await fixture(t),
-		user = await f.make("EarnHero"),
+		user = await f.make("EarnHero", true),
 		peer = f.open(user.cookie);
 	await peer.until((m) => m.t === "welcome");
 	peer.send({ t: "spawnReady" });
@@ -235,3 +236,28 @@ test("shared option joins two ready players into the same room and snapshot", as
 	assert.equal([...f.rt.rooms.values()][0].game.players.size, 2);
 });
 
+
+test('maps isolate rooms, persist transfers and healer cooldown, reject remote gates and respawn in city',async t=>{
+ const f=await fixture(t,true),user=await f.make('CityHero'),other=await f.make('CityFriend');
+ const peer=f.open(user.cookie),friend=f.open(other.cookie);await peer.until(m=>m.t==='welcome');await friend.until(m=>m.t==='welcome');
+ peer.send({t:'spawnReady'});friend.send({t:'spawnReady'});const initial=await peer.until(m=>m.t==='snap'&&m.players.length===2);
+ assert.equal(initial.mapId,'city_plaza');assert.equal(initial.enemies.length,0);
+ const city=[...f.rt.rooms.values()][0],p=city.game.players.get(user.character.id)!;
+ peer.send({t:'travel',gate:'south'});await wait(80);assert.equal(city.game.players.has(p.id),true);
+ p.x=0;p.z=-28;peer.send({t:'travel',gate:'north'});await wait(80);assert.equal(f.rt.rooms.size,1);
+ p.x=-9;p.z=6;p.hp=1;p.mp=0;peer.send({t:'heal'});await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='heal'));
+ assert.equal(p.hp,p.maxHp);assert.equal(p.mp,p.maxMp);const readyAt=p.healerReadyAt;await city.saveQueue;
+ assert.equal((await f.store.character(user.character.accountId,p.id))!.healerReadyAt,readyAt);
+ p.hp=5;peer.send({t:'heal'});await wait(80);assert.ok(p.hp<10);
+ peer.send({t:'act',a:'attack',seq:1});peer.send({t:'auto',on:true});await wait(80);assert.equal(p.attack,0);assert.equal(p.auto,false);
+ p.x=0;p.z=28;peer.send({t:'travel',gate:'south'});const meadowSnap=await peer.until(m=>m.t==='snap'&&m.mapId==='meadow');
+ assert.equal(meadowSnap.players.length,1);assert.ok(meadowSnap.enemies.length>0);assert.equal(city.game.players.has(p.id),false);assert.equal(city.game.players.size,1);
+ const meadow=[...f.rt.rooms.values()].find(r=>r.game.mapId==='meadow')!;await meadow.saveQueue;
+ assert.equal((await f.store.character(user.character.accountId,p.id))!.mapId,'meadow');
+ p.x=0;p.z=-12.8;peer.send({t:'travel',gate:'north'});await peer.until(m=>m.t==='snap'&&m.mapId==='city_plaza'&&m.players.some((v:any)=>v.id===p.id&&v.z===25));
+ assert.equal(p.healerReadyAt,readyAt);p.x=0;p.z=28;peer.send({t:'travel',gate:'south'});await wait(100);
+ p.dead=true;p.hp=0;const reviveStart=peer.messages.length;peer.send({t:'revive'});await peer.until(m=>peer.messages.indexOf(m)>=reviveStart&&m.t==='snap'&&m.mapId==='city_plaza'&&m.players.some((v:any)=>v.id===p.id&&v.z===5));
+ assert.equal(p.dead,false);assert.equal(p.mapId,'city_plaza');assert.equal(p.x,0);assert.equal(p.z,5);await city.saveQueue;
+ peer.ws.close();await peer.closed;const reconnect=f.open(user.cookie);await reconnect.until(m=>m.t==='welcome');reconnect.send({t:'spawnReady'});
+ const snap=await reconnect.until(m=>m.t==='snap');assert.equal(snap.mapId,'city_plaza');assert.equal(snap.players.find((v:any)=>v.id===p.id).healerReadyAt,readyAt);
+});

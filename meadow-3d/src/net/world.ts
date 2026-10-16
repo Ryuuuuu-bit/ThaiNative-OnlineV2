@@ -79,6 +79,8 @@ export class NetworkWorld {
 	receive(snap: any, you: string, now: number) {
 		const own = snap.players.find((p: any) => p.id === you);
 		if (!own) return;
+        if(this.latest?.mapId!==snap.mapId){this.pending=[];this.ready=false;this.latest=undefined;this.flash=null;}
+        this.game.p.mapId=snap.mapId;
 		const result = reconcileMovement(
 			own,
 			this.prediction,
@@ -166,7 +168,7 @@ export class NetworkWorld {
 				direction = d > 0.15 ? { x: dx / d, z: dz / d } : { x: 0, z: 0 };
 			}
 			const speed = (p.attack > 0 ? 1.6 : 4.5) * (p.moveSpeed || 1);
-			this.prediction = predictMovement(this.prediction, direction, dt, speed);
+			this.prediction = predictMovement({...this.prediction,mapId:p.mapId}, direction, dt, speed);
 			if (Math.hypot(direction.x, direction.z) > 0.01) {
 				this.pending.push({ seq, input: direction, dt, speed });
 				if (this.pending.length > 180) this.pending.shift();

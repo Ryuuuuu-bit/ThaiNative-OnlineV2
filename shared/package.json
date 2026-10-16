@@ -29,6 +29,10 @@
     "./constants": {
       "types": "./dist/src/game/constants.d.ts",
       "default": "./dist/src/game/constants.js"
+    },
+    "./maps": {
+      "types": "./dist/src/game/maps.d.ts",
+      "default": "./dist/src/game/maps.js"
     }
   },
   "scripts": {

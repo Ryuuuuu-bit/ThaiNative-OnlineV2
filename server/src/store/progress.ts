@@ -12,3 +12,5 @@ export function creationJob(input:unknown):string {
  return job.id;
 }
 export const needsJob=(c:Pick<Character,'jobId'>)=>c.jobId==='villager'||c.jobId==='needs_job';
+
+export function migrateMap(c: Character) {if(!c.mapId){c.mapId='city_plaza';c.posX=0;c.posZ=5;}return c;}

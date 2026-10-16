@@ -1,9 +1,11 @@
+import { cityWalkable, type MapId } from "./maps.js";
 export interface Vec {
+ mapId?: MapId;
 	x: number;
 	z: number;
 }
 export const CAMP = { x: -7, z: 8 },
-	ARENA = { x: 1, z: -9 };
+	ARENA = { x: 1, z: 10 };
 export const OBSTACLES = [
 	{ x: -11, z: -6, r: 1.1 },
 	{ x: -8, z: -10, r: 1 },
@@ -17,7 +19,8 @@ export const OBSTACLES = [
 export function water(x: number, z: number) {
 	return ((x - 11) / 3.1) ** 2 + ((z + 1) / 4.2) ** 2 < 1 && Math.abs(z) > 0.8;
 }
-export function walkable(x: number, z: number, r = 0.3) {
+export function walkable(x: number, z: number, r = 0.3, mapId: MapId = "meadow") {
+ if(mapId === "city_plaza") return cityWalkable(x,z,r);
 	return (
 		x > -17 + r &&
 		x < 17 - r &&
@@ -28,6 +31,6 @@ export function walkable(x: number, z: number, r = 0.3) {
 	);
 }
 export function moveSliding(e: Vec, x: number, z: number) {
-	if (walkable(e.x + x, e.z)) e.x += x;
-	if (walkable(e.x, e.z + z)) e.z += z;
+	if (walkable(e.x + x, e.z, .3, e.mapId)) e.x += x;
+	if (walkable(e.x, e.z + z, .3, e.mapId)) e.z += z;
 }

@@ -18,6 +18,7 @@ import { deriveStats, monsterStats, type Combatant } from "../derive.js";
 import { computeDamage } from "../damage.js";
 import { autoAllocateStats } from "../allocation.js";
 import type { GameData, CharacterInput, Skill } from "../schema.js";
+import { CITY_SPAWN, HEALER, type MapId } from "./maps.js";
 const DEFAULT_DATA = loadGameData();
 import { MONSTER_MOTIONS } from "./monster-motion-data.js";
 export type Action = string;
@@ -74,6 +75,8 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
+ mapId: MapId;
+ healerReadyAt: number;
  audioSettings?: import('../audio-settings.js').AudioSettings;
 	statuses: TimedEffect[];
 	castRemaining: number;
@@ -155,6 +158,7 @@ export function createGame(
 	profile: CharacterInput = DEFAULT_DATA.stats.defaultBuild,
 	id = "local",
 	data: GameData = DEFAULT_DATA,
+ mapId: MapId = "meadow",
 ) {
 	let n = seed;
 	const random = () => {
@@ -166,6 +170,7 @@ export function createGame(
 		profile.classId === "swordsman" ? newJob() : migrateJob(profile.level);
 	let p: Player = {
 		...job,
+ mapId, healerReadyAt: 0,
 		statuses: [],
 		castRemaining: 0,
 		jobsVersion: 3,
@@ -217,7 +222,7 @@ export function createGame(
 	p.level = profile.level;
 	p.nextXp = data.stats.expToNext[p.level - 1];
 	const g = {
-		data,
+		data, mapId,
 		jobExpMultiplier: 1,
 		players: new Map([[id, p]]),
 		get p() {
@@ -281,21 +286,10 @@ export function createGame(
 			level?: number;
 		}[],
 	};
-	const positions = [
-		[-4, 3],
-		[2, 3],
-		[-6, -0.5],
-		[3, -1],
-		[-8, -5],
-		[5, -6],
-		[7, 5],
-		[-2, -6],
-		[0, 0],
-		[7, -10],
-	];
-	positions.forEach(([x, z], i) =>
-		spawn(g, x, z, false, i === 6 ? "mint" : i === 9 ? "sky" : "pink"),
-	);
+	const positions = [[-4,-7],[3,-5],[-6,-1],[0,1],[5,5],[-4,6],[-1,8],[7,8],[-3,11],[7,12]];
+ if(mapId==='meadow') positions.forEach(([x,z],i)=>spawn(g,x,z,false,i<4?'pink':i%2?'sky':'mint'));
+ else Object.assign(p,CITY_SPAWN);
+
 	return g;
 }
 export type Game = ReturnType<typeof createGame>;
@@ -315,7 +309,7 @@ export function addPlayer(
 	id: string,
 	profile: CharacterInput = g.data.stats.defaultBuild,
 ) {
-	const p = createGame(1, profile, id, g.data).p;
+	const p = createGame(1, profile, id, g.data, g.mapId).p;
 	g.players.set(id, p);
 	return p;
 }
@@ -632,6 +626,7 @@ function hurt(
 	}
 }
 export function action(g: Game, a: Action) {
+ if(g.mapId==='city_plaza' && a!=='potion'){emit(g,"notice",{text:"เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้"});return false;}
 	const p = g.p,
 		skill = g.data.skills.skills.some((s) => s.id === skillId(a))
 			? gameSkill(g, a)
@@ -855,8 +850,10 @@ export function action(g: Game, a: Action) {
 export function revive(g: Game) {
 	const p = g.p;
 	setAuto(g, false);
-	p.x = CAMP.x;
-	p.z = CAMP.z;
+	p.mapId = "city_plaza";
+ p.x = CITY_SPAWN.x;
+ p.z = CITY_SPAWN.z;
+ p.statuses=[]; p.castRemaining=0; p.destination=null; p.target=null;
 	p.hp = p.maxHp;
 	p.mp = p.maxMp;
 	p.potions = 5;
@@ -883,7 +880,7 @@ export function revive(g: Game) {
 	emit(g, "notice", { text: "พักฟื้นแล้ว พร้อมออกผจญภัยอีกครั้ง" });
 }
 export function setAuto(g: Game, enabled: boolean) {
-	enabled = enabled && !g.p.dead;
+	enabled = enabled && !g.p.dead && g.mapId!=="city_plaza";
 	if (g.p.auto === enabled) return;
 	g.p.auto = enabled;
 	g.p.autoState = enabled ? "seek" : "idle";
@@ -1383,7 +1380,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
 		p[a] = Math.max(0, p[a] - dt);
 	if (!p.dead) {
 		p.mp = Math.min(p.maxMp, p.mp + dt * p.stats.spRegen);
-		if (Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 2)
+		if (g.mapId === "meadow" && Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 2)
 			p.hp = Math.min(p.maxHp, p.hp + dt * 20);
 		else
 			p.hp = Math.min(
@@ -1477,6 +1474,7 @@ export function step(
 			inputs?.get(p.id) || (p === previous ? input : { x: 0, z: 0 }),
 		);
 	}
+	if(g.mapId === "city_plaza"){g.p=previous;return;}
 	for (const e of [...g.enemies]) {
 		tickEffects(e, dt);
 		const forced = e.statuses.find((s) => s.id === "taunt");
@@ -1638,4 +1636,13 @@ export function step(
 	}
 	g.p = previous;
 	g.enemies = g.enemies.filter((e) => !e.summoned || !e.dead || e.deathAge < 3);
+}
+
+/** Wall-clock cooldown survives room changes, reconnects and server restarts. */
+export function healerHeal(g: Game, now: number) {
+ const p=g.p;
+ if(g.mapId!=='city_plaza'||p.dead||Math.hypot(p.x-HEALER.x,p.z-HEALER.z)>3) return false;
+ if(now<p.healerReadyAt){emit(g,'notice',{text:`พักก่อน อีก ${Math.ceil((p.healerReadyAt-now)/1000)} วินาที`});return false;}
+ const amount=p.maxHp-p.hp;p.hp=p.maxHp;p.mp=p.maxMp;p.healerReadyAt=now+60000;
+ emit(g,'heal',{amount});emit(g,'notice',{text:'ฟื้น HP / SP เต็มแล้ว'});return true;
 }

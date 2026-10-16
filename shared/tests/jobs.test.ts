@@ -26,12 +26,12 @@ const data = loadGameData();
 test("tier one and two grant one point per level including level one; Angel only offers tier two", () => {
  const p=newJob();assert.equal(p.jobId,"swordsman");assert.equal(p.skillPoints,1);
  assert.equal(gainJobExp(p,1e12,data),49);assert.equal(p.skillPoints,50);assert.equal(gainJobExp(p,1e12,data),0);
- assert.throws(()=>changeJob(p,"swordsman",-5,7,data),/ยังไม่เปิด/);
- assert.throws(()=>changeJob(p,"guardian",-5,7,data),/ยังไม่เปิด/);
+ assert.throws(()=>changeJob(p,"swordsman",0,3.2,data),/ยังไม่เปิด/);
+ assert.throws(()=>changeJob(p,"guardian",0,3.2,data),/ยังไม่เปิด/);
  const two=structuredClone(data);two.jobs.jobs.find(j=>j.id==="guardian")!.available=true;
- assert.throws(()=>changeJob({...p,jobLevel:39},"guardian",-5,7,two),/ไม่ถึง/);
- assert.throws(()=>changeJob(p,"guardian",10,10,two),/ใกล้แคมป์/);
- assert.equal(changeJob(p,"guardian",-5,7,two).jobLevel,1);
+ assert.throws(()=>changeJob({...p,jobLevel:39},"guardian",0,3.2,two),/ไม่ถึง/);
+ assert.throws(()=>changeJob(p,"guardian",10,10,two),/หอนาฬิกา/);
+ assert.equal(changeJob(p,"guardian",0,3.2,two).jobLevel,1);
  const tier2={...newJob(),jobId:"guardian"};gainJobExp(tier2,1e12,data);assert.equal(tier2.skillPoints,70);
 });
 test("per-level skill values, prerequisites, max level, job and point budgets", () => {

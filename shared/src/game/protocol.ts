@@ -3,6 +3,8 @@ import { AudioSettingsSchema } from '../audio-settings.js';
 const seq = z.number().int().nonnegative().max(2147483647),
 	point = z.number().finite().min(-10000).max(10000);
 export const IntentSchema = z.discriminatedUnion("t", [
+ z.object({t:z.literal("travel"),gate:z.enum(["north","south","east","west"])}).strict(),
+ z.object({t:z.literal("heal")}).strict(),
  z.object({t:z.literal("audioSettings"),settings:AudioSettingsSchema}).strict(),
 	z.object({t:z.literal('stats'),add:z.object({str:z.number().int().min(0).max(99).optional(),agi:z.number().int().min(0).max(99).optional(),vit:z.number().int().min(0).max(99).optional(),int:z.number().int().min(0).max(99).optional(),dex:z.number().int().min(0).max(99).optional(),luk:z.number().int().min(0).max(99).optional()}).strict(),seq}).strict(),
 	z.object({t:z.literal('statsReset')}).strict(),

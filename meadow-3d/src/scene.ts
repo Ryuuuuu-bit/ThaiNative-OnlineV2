@@ -2,7 +2,7 @@ import * as T from 'three';import type{PaintedLoader}from'./assets';
 import{CAMP,ARENA,OBSTACLES,water}from'./sim';
 export function random(seed=7){let n=seed;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};}
 export function label(text:string,color='#fff2d4'){const c=document.createElement('canvas');c.width=384;c.height=64;const x=c.getContext('2d')!;x.font='500 22px "Noto Sans Thai",sans-serif';x.textAlign='center';x.lineWidth=5;x.strokeStyle='#344b39';x.strokeText(text,192,37);x.fillStyle=color;x.fillText(text,192,37);const map=new T.CanvasTexture(c);map.colorSpace=T.SRGBColorSpace;const s=new T.Sprite(new T.SpriteMaterial({map,transparent:true,depthWrite:false}));s.scale.set(2.8,.47,1);return s;}
-const pathSegments=[[[-1,14],[-1,6]],[[-1,6],[0,2]],[[0,2],[-1,-2]],[[-1,-2],[1,-9]],[[-17,2],[-8,2]],[[-8,2],[0,2]],[[0,2],[5,0]],[[5,0],[17,0]],[[-1,6],[-7,8]]];
+const pathSegments=[[[0,-14],[0,-7]],[[0,2],[1,10]],[[-1,14],[-1,6]],[[-1,6],[0,2]],[[0,2],[-1,-2]],[[-1,-2],[1,-9]],[[-17,2],[-8,2]],[[-8,2],[0,2]],[[0,2],[5,0]],[[5,0],[17,0]],[[-1,6],[-7,8]]];
 function segmentDistance(x:number,z:number,a:number[],b:number[]){const dx=b[0]-a[0],dz=b[1]-a[1],t=T.MathUtils.clamp(((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz),0,1);return Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz);}
 function onPath(x:number,z:number){return pathSegments.some(([a,b],i)=>segmentDistance(x,z,a,b)<(i<4?1.15:.8));}
 interface PaintedAsset {name:string;atlas:string;pixelSize:[number,number];worldSize:[number,number];anchor:[number,number];uvRect:[number,number,number,number];flat:boolean}
@@ -96,7 +96,7 @@ export function buildScene(scene:T.Scene,loader:PaintedLoader){
   prop('tent',-8,9.2,1,true);prop('bench',-5.7,9.1);prop('campfire',-5.7,7.3);prop('fallen-log',-9.8,7.5,.65);prop('stump',-9.4,10.4,.8);
   prop('signpost',-2.8,6,.8);prop('signpost',6,1.6,.8);
   for(let i=0;i<3;i++)prop('fence-span',-10.5+i*2.3,11.5,.9);prop('fence-post',-12,11.5);
-  prop('arch',1,-11,1,true);prop('pillar-square',-2.3,-10.7,.85,true);prop('pillar-fluted',4,-11.2,.8,true);decal('stone-circle',ARENA.x,ARENA.z,6.3,6.3);
+  prop('arch',0,-13,1,true);prop('pillar-square',-2.3,11.7,.85,true);prop('pillar-fluted',4,11.2,.8,true);decal('stone-circle',ARENA.x,ARENA.z,6.3,6.3);
   decal('bridge',11,0,6.8,1.75);
   for(let i=0;i<15;i++){const angle=i/15*Math.PI*2,x=11+Math.cos(angle)*3.3,z=-1+Math.sin(angle)*4.45;if(Math.abs(z)<1.15)continue;prop(['reeds-1','reeds-2','reeds-3'][i%3],x,z,.7+r()*.25);if(i%3===0)prop('rock-cluster',x+.25,z,.55);}
   prop('reeds-2',8.3,-3.5,.65);prop('reeds-3',12.8,2.7,.6);prop('reeds-1',10.2,-5.2,.7);
@@ -105,6 +105,7 @@ export function buildScene(scene:T.Scene,loader:PaintedLoader){
  });
  const flame=new T.Group();flame.position.set(-5.7,.12,7.3);root.add(flame);const flames:T.Mesh[]=[];
  for(let i=0;i<3;i++){const f=new T.Mesh(new T.ConeGeometry(.09,.38,6),new T.MeshBasicMaterial({color:i%2?'#f8dfad':'#db9b65',transparent:true,opacity:.7,depthWrite:false}));f.position.set(Math.sin(i*2)*.08,.2,Math.cos(i*2)*.08);flame.add(f);flames.push(f);}
+ const gateName=label('นครที่ถูกลืมเลือน ↑');gateName.position.set(0,4,-13);root.add(gateName);
  const campName=label('แคมป์ · พักฟื้น','#e5efd3');campName.position.set(CAMP.x,2.1,CAMP.z);root.add(campName);
- return{setQuality(hq:boolean){highQuality=hq;ripple.quality.value=hq?1:0;pond.material=hq?waterMaterial:stillWaterMaterial;shadowProxies.forEach(o=>{o.castShadow=hq;o.visible=hq;});},snapshot:()=>({ready,propCount,coverCount,atlasCount,shadowCasters:shadowProxies.filter(o=>o.castShadow).length,quality:highQuality?'HQ':'LOW',ripple:pond.material===waterMaterial&&!!ripple.quality.value}),update(time:number){ripple.time.value=time;arena.visible=!!stoneTexture.userData.ready;if(!pathsPainted&&brush.userData.ready){pathsPainted=true;paintPaths();}flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});}};
+ return{root,setQuality(hq:boolean){highQuality=hq;ripple.quality.value=hq?1:0;pond.material=hq?waterMaterial:stillWaterMaterial;shadowProxies.forEach(o=>{o.castShadow=hq;o.visible=hq;});},snapshot:()=>({ready,propCount,coverCount,atlasCount,shadowCasters:shadowProxies.filter(o=>o.castShadow).length,quality:highQuality?'HQ':'LOW',ripple:pond.material===waterMaterial&&!!ripple.quality.value}),update(time:number){ripple.time.value=time;arena.visible=!!stoneTexture.userData.ready;if(!pathsPainted&&brush.userData.ready){pathsPainted=true;paintPaths();}flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});}};
 }

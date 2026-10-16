@@ -1,3 +1,4 @@
+import { CITY_SPAWN, travelDestination, healerHeal, type MapId } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
 import type { Server } from "node:http";
 import { performance } from "node:perf_hooks";
@@ -71,7 +72,7 @@ export interface RealtimeOptions {
 }
 const round = (n: number) => Math.round(n * 1000) / 1000;
 const playerKeys = [
-	"id",
+	"id", "mapId", "healerReadyAt",
 	"name",
 	"x",
 	"z",
@@ -113,7 +114,7 @@ const playerKeys = [
 export function snapshot(room: Room, peer: Peer) {
 	const g = room.game;
 	return {
-		t: "snap",
+		t: "snap", mapId: g.mapId,
 		tick: room.tick,
 		ack: peer.ack,
 		time: g.time,
@@ -210,6 +211,35 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		ws.send(JSON.stringify(body));
 		sent++;
 	}
+ function getRoom(mapId: MapId, id: string): Room {
+  const key=mapId+(options.sharedRooms?'':':'+id);
+  let room=rooms.get(key);
+  if(!room){
+   const game=createGame(randomInt(1,0x7fffffff),data.stats.defaultBuild,'local',data,mapId);
+   game.jobExpMultiplier=options.production?1:Math.max(1,Math.min(1000,options.devJobExpMultiplier||1));
+   game.players.clear();
+   room={key,game,peers:new Map(),accounts:new Map(),disconnected:new Map(),tick:0,saveQueue:Promise.resolve()};
+   rooms.set(key,room);
+  }
+  return room;
+ }
+ function transfer(peer: Peer, destination: {mapId:MapId;x:number;z:number}) {
+  const source=peer.room,p=source.game.players.get(peer.id)!;
+  const target=getRoom(destination.mapId,peer.id);
+  source.peers.delete(peer.id);source.game.players.delete(peer.id);source.accounts.delete(peer.id);source.disconnected.delete(peer.id);
+  source.game.meteors=source.game.meteors.filter(m=>m.ownerId!==peer.id);
+  Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,attack:0,dash:0,castRemaining:0,statuses:[],moving:false});
+  refreshStats(target.game,p);
+  peer.input={x:0,z:0};peer.room=target;
+  target.game.players.set(p.id,p);target.peers.set(p.id,peer);target.accounts.set(p.id,peer.accountId);
+  if(!options.sharedRooms && destination.mapId==='meadow'){
+   target.game.kills=Math.max(target.game.kills,p.kills);
+   if(p.kills>=6&&!target.game.bossSpawned){target.game.bossSpawned=true;spawn(target.game,ARENA.x,ARENA.z,true);}
+  }
+  target.saveQueue=Promise.all([source.saveQueue,target.saveQueue]).then(()=>{});
+  void save(target,p.id);
+  send(peer.ws,snapshot(target,peer));
+ }
 	function save(room: Room, id: string, strict = false) {
 		const p = room.game.players.get(id),
 			accountId = room.accounts.get(id);
@@ -228,8 +258,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			gold: p.gold,
 			kills: p.kills,
 			potions: p.potions,
-			posX: p.dead ? CAMP.x : p.x,
-			posZ: p.dead ? CAMP.z : p.z,
+			mapId: p.dead ? "city_plaza" : p.mapId,
+ healerReadyAt: p.healerReadyAt,
+ posX: p.dead ? CITY_SPAWN.x : p.x,
+			posZ: p.dead ? CITY_SPAWN.z : p.z,
 			baseStats: { ...p.profile.baseStats },
 			race: p.profile.race,
 			classId: p.profile.classId,
@@ -314,8 +346,19 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			if (message.seq <= peer.ack) return;
 			peer.ack = message.seq;
 		}
+        const player=g.players.get(peer.id)!;
+        if(message.t==='travel'){
+         const destination=travelDestination(g.mapId,message.gate,player);
+         if(destination)transfer(peer,destination);
+         else send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'หมอกหนาเกินไป ยังผ่านไม่ได้'}]});
+         return;
+        }
+        if(message.t==='revive' && player.dead){
+         withPlayer(g,peer.id,()=>revive(g));flush(room);transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});return;
+        }
 		withPlayer(g, peer.id, () => {
 			const p = g.p;
+ if(message.t==="heal"){if(healerHeal(g,Date.now()))void save(room,p.id);return;}
             if (message.t === "audioSettings") {
               p.audioSettings = { ...message.settings };
               void save(room, p.id, true).then(() => send(peer.ws, {t:"audioSettings", settings:p.audioSettings})).catch(() => send(peer.ws, {t:"audioSettingsError"}));
@@ -336,7 +379,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 							hotbar: validateHotbar(p, message.slots, g.data),
 						};
 					if (message.t === "jobChange") {
-						next = changeJob(p, message.job, p.x, p.z, g.data);
+						if(g.mapId!=="city_plaza")throw Error("ไปพบทูตสวรรค์ในเมืองก่อน");
+ next = changeJob(p, message.job, p.x, p.z, g.data);
 						p.profile.classId = next.jobId;
 					}
 					Object.assign(p, next);
@@ -428,7 +472,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				}
 			}
 			if (message.t === "move") {
-				if (walkable(message.x, message.z)) {
+				if (walkable(message.x, message.z,.3,g.mapId)) {
 					moveTo(g, message.x, message.z);
 					peer.input = { x: 0, z: 0 };
 				}
@@ -447,8 +491,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					g.destination = null;
 				}
 			}
-			if (message.t === "revive" && p.dead) revive(g);
 			if (message.t === "act") {
+ if(g.mapId==="city_plaza"){action(g,message.a);return;}
 				if (message.target !== undefined) {
 					const target = g.enemies.find(
 						(e) => e.id === message.target && !e.dead,
@@ -523,26 +567,9 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					send(old.ws, { t: "kick", reason: "opened elsewhere" });
 					old.ws.close(4409, "opened elsewhere");
 				}
-				const key =
-					"meadow-01" + (options.sharedRooms ? "" : ":" + character.id);
-				let room = rooms.get(key);
-				if (!room) {
-					const game = createGame(randomInt(1, 0x7fffffff));
-					game.jobExpMultiplier = options.production
-						? 1
-						: Math.max(1, Math.min(1000, options.devJobExpMultiplier || 1));
-					game.players.clear();
-					room = {
-						key,
-						game,
-						peers: new Map(),
-						accounts: new Map(),
-						disconnected: new Map(),
-						tick: 0,
-						saveQueue: Promise.resolve(),
-					};
-					rooms.set(key, room);
-				}
+                const mapId=character.mapId || 'city_plaza';
+                let room = getRoom(mapId, character.id);
+
 				if (!room.game.players.has(character.id)) {
 					const profile = {
 						...data.stats.defaultBuild,
@@ -554,6 +581,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					const p = addPlayer(room.game, character.id, profile);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
+ p.healerReadyAt=character.healerReadyAt||0;
 					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;
@@ -577,7 +605,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					if (
 						character.posX !== undefined &&
 						character.posZ !== undefined &&
-						walkable(character.posX, character.posZ)
+						walkable(character.posX, character.posZ,.3,mapId)
 					) {
 						p.x = character.posX;
 						p.z = character.posZ;
@@ -585,7 +613,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					// A not-ready character is retained for resume but excluded from simulation and snapshots.
 					room.game.players.delete(character.id);
 					pending.set(character.id, p);
-					if (!options.sharedRooms) {
+					if (!options.sharedRooms && mapId === "meadow") {
 						room.game.kills = character.kills;
 						if (character.kills >= 6 && !room.game.bossSpawned) {
 							room.game.bossSpawned = true;
@@ -661,7 +689,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 						return;
 					}
 					if (parsed.data.t === "spawnReady" && pending.has(peer.id)) {
-						room!.game.players.set(peer.id, pending.get(peer.id)!);
+						peer.room.game.players.set(peer.id, pending.get(peer.id)!);
 						pending.delete(peer.id);
 					}
 					intent(peer, parsed.data);
@@ -669,10 +697,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				ws.on("close", () => {
 					if (live.get(peer.id) !== peer) return;
 					live.delete(peer.id);
-					room!.peers.delete(peer.id);
+					peer.room.peers.delete(peer.id);
 					peer.input = { x: 0, z: 0 };
-					room!.disconnected.set(peer.id, Date.now());
-					void save(room!, peer.id);
+					peer.room.disconnected.set(peer.id, Date.now());
+					void save(peer.room, peer.id);
 				});
 				ws.on("error", () => {});
 			})().catch(() => ws.close(1011, "connection failed"));
@@ -702,7 +730,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				if (
 					!room.peers.size &&
 					!room.game.players.size &&
-					!room.disconnected.size
+					!room.disconnected.size &&
+                    ![...live.values()].some(peer=>options.sharedRooms || room.key.endsWith(":"+peer.id))
 				) {
 					rooms.delete(room.key);
 					continue;

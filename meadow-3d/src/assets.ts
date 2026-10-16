@@ -16,6 +16,8 @@ import {
 export { assetFetch, assetImage, assetJSON } from "./asset-request";
 /** Composite requests keep critical progress honest through retries, fallback, decode and transcode. */
 export class PaintedLoader {
+	private criticalPending = 0;
+	async whenReady(){while(this.criticalPending>0)await new Promise(r=>setTimeout(r,16));}
 	private metrics = {
 		ktx2: 0,
 		webp: 0,
@@ -123,7 +125,7 @@ export class PaintedLoader {
 			texture.image = blank;
 			texture.needsUpdate = true;
 		}
-		if (critical) this.manager.itemStart(url);
+		if (critical) {this.criticalPending++;this.manager.itemStart(url);}
 		this.schedule(url, async () => {
 			try {
 				let loaded: T.Texture | undefined;
@@ -202,13 +204,13 @@ export class PaintedLoader {
 				}
 				onError?.(error);
 			} finally {
-				if (critical) this.manager.itemEnd(url);
+				if (critical) {this.criticalPending--;this.manager.itemEnd(url);}
 			}
 		});
 		return texture;
 	}
 	json<T>(url: string, onLoad: (data: T) => void) {
-		this.manager.itemStart(url);
+		this.criticalPending++;this.manager.itemStart(url);
 		void assetJSON<T>(
 			url +
 				(url.includes("?") ? "&" : "?") +
@@ -217,6 +219,6 @@ export class PaintedLoader {
 		)
 			.then(onLoad)
 			.catch(() => this.manager.itemError(url))
-			.finally(() => this.manager.itemEnd(url));
+			.finally(() => {this.criticalPending--;this.manager.itemEnd(url);});
 	}
 }

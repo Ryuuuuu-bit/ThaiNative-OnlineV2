@@ -1,4 +1,3 @@
-import jobsData from "../../shared/data/jobs.json";
 import * as T from "three";
 import type { PaintedLoader } from "./assets";
 export function mountSkillArt(
@@ -6,21 +5,7 @@ export function mountSkillArt(
 	loader: PaintedLoader,
 	hero: T.Group,
 ) {
-	const angelMap = loader.load("/assets/skills-painted/angel-v1.png"),
-		atlas = loader.load("/assets/skills-painted/skills-vfx-v1.png");
-	const angel = new T.Sprite(
-		new T.SpriteMaterial({
-			map: angelMap,
-			transparent: true,
-			alphaTest: 0.04,
-			depthWrite: false,
-			toneMapped: false,
-		}),
-	);
-	angel.center.set(0.5, 0.025);
-	angel.scale.set(2.6, 3.9, 1);
-	angel.position.set(jobsData.angel.x, 0.04, jobsData.angel.z);
-	scene.add(angel);
+	const atlas = loader.load("/assets/skills-painted/skills-vfx-v1.png");
 	const active: {
 		mesh: T.Object3D;
 		life: number;

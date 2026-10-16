@@ -210,7 +210,7 @@ export function changeJob(
 	if (!job?.available || job.tier !== 2 || job.parent !== p.jobId) throw Error("อาชีพนี้ยังไม่เปิด");
 	if (p.jobLevel < 40) throw Error("Job Lv ไม่ถึงเกณฑ์");
 	if (Math.hypot(x - angel.x, z - angel.z) > angel.range)
-		throw Error("กรุณาคุยกับทูตสวรรค์ใกล้แคมป์");
+		throw Error("กรุณาคุยกับทูตสวรรค์ที่หอนาฬิกา");
 	const skills = { ...p.skills };
 
 	return {

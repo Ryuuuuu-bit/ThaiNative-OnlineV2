@@ -19,6 +19,8 @@ export class AudioEngine {
   private voices = new Map<AudioBufferSourceNode, string>();
   private last = new Map<string, number>();
   private playable = false;
+  private city = false;
+  setMap(mapId: string) { this.city = mapId === "city_plaza"; this.apply(); }
   private ambient?: AudioBufferSourceNode;
   private listener: Position = { x: 0, z: 0 };
   private storageKey: string;
@@ -56,7 +58,7 @@ export class AudioEngine {
     if (!this.ctx || !this.master) return;
     this.master.gain.setTargetAtTime(this.settings.muted || document.hidden ? 0 : 1, this.ctx.currentTime, .08);
     for (const bus of ['sfx', 'music', 'ambience'] as const)
-      this.buses[bus].gain.setTargetAtTime(this.settings[bus], this.ctx.currentTime, .08);
+      this.buses[bus].gain.setTargetAtTime(this.settings[bus] * (bus === "ambience" && this.city ? .45 : 1), this.ctx.currentTime, .08);
   }
   setListener(position: Position) { this.listener = { x: position.x, z: position.z }; }
   private getManifest() {

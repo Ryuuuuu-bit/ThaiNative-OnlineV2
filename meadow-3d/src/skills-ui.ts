@@ -298,7 +298,7 @@ export function mountSkills(
 				el.querySelector("em")!.textContent = cd > 0.05 ? cd.toFixed(1) : "";
 			});
 			const near =
-				Math.hypot(p.x - jobsData.angel.x, p.z - jobsData.angel.z) <=
+				p.mapId === "city_plaza" && !p.dead && Math.hypot(p.x - jobsData.angel.x, p.z - jobsData.angel.z) <=
 				jobsData.angel.range;
 			$("#angel-talk").hidden = !near;
 			$("#buff-status").textContent = (p.statuses || [])

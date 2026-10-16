@@ -1,4 +1,6 @@
 export * from "./schema.js";
+export * from "./game/maps.js";
+export * from "./game/maps.js";
 export * from "./load.js";
 export * from "./derive.js";
 export * from './allocation.js';
