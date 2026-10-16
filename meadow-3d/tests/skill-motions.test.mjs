@@ -26,3 +26,5 @@ test('quality steps down once after three slow seconds, with desktop/mobile thre
  assert.equal(q.update(.026,true),true);assert.equal(q.update(.1,true),false);
  q.reset();global.innerWidth=390;assert.equal(q.threshold(),28);assert.equal(q.update(4,false),false);
 });
+
+test('whirlwind contacts frames three and six at split impact times',()=>{assert.equal(skillFrame('whirlwind',0),2);assert.equal(skillFrame('whirlwind',.25),5);});

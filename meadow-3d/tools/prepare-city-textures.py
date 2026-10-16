@@ -4,7 +4,7 @@ from PIL import Image
 root=Path(__file__).resolve().parents[1]
 out=root/'art/texture-sources/city';out.mkdir(exist_ok=True)
 Image.open(root/'art/city/city-trim-generated.png').convert('RGBA').resize((1024,768),Image.Resampling.LANCZOS).save(out/'city-trim-v1.png')
-im=Image.open(root/'art/city/city-npcs-generated.png').convert('RGBA')
+im=Image.open(root/'art/city/city-npcs-polish-v2.png').convert('RGBA')
 # Generated rows/cells are not evenly padded. Normalize each to a fixed 256 x 320 cell.
 xs=[112,350,586,822,1060];ys=[0,280,570,856,1120,1402]
 frames=[]

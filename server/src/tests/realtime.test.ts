@@ -1,3 +1,4 @@
+import {CITY_SPAWN} from '@thainative/shared/maps';
 import test from "node:test";
 import assert from "node:assert/strict";
 import { once } from "node:events";
@@ -257,8 +258,8 @@ test('maps isolate rooms, persist transfers and healer cooldown, reject remote g
  assert.equal((await f.store.character(user.character.accountId,p.id))!.mapId,'meadow');
  p.x=0;p.z=-12.8;peer.send({t:'travel',gate:'north'});await peer.until(m=>m.t==='snap'&&m.mapId==='city_plaza'&&m.players.some((v:any)=>v.id===p.id&&v.z===25));
  assert.equal(p.healerReadyAt,readyAt);p.x=0;p.z=28;peer.send({t:'travel',gate:'south'});await wait(100);
- p.dead=true;p.hp=0;const reviveStart=peer.messages.length;peer.send({t:'revive'});await peer.until(m=>peer.messages.indexOf(m)>=reviveStart&&m.t==='snap'&&m.mapId==='city_plaza'&&m.players.some((v:any)=>v.id===p.id&&v.z===5));
- assert.equal(p.dead,false);assert.equal(p.mapId,'city_plaza');assert.equal(p.x,0);assert.equal(p.z,5);await city.saveQueue;
+ p.dead=true;p.hp=0;const reviveStart=peer.messages.length;peer.send({t:'revive'});await peer.until(m=>peer.messages.indexOf(m)>=reviveStart&&m.t==='snap'&&m.mapId==='city_plaza'&&m.players.some((v:any)=>v.id===p.id&&v.z===CITY_SPAWN.z));
+ assert.equal(p.dead,false);assert.equal(p.mapId,'city_plaza');assert.equal(p.x,0);assert.equal(p.z,CITY_SPAWN.z);await city.saveQueue;
  peer.ws.close();await peer.closed;const reconnect=f.open(user.cookie);await reconnect.until(m=>m.t==='welcome');reconnect.send({t:'spawnReady'});
  const snap=await reconnect.until(m=>m.t==='snap');assert.equal(snap.mapId,'city_plaza');assert.equal(snap.players.find((v:any)=>v.id===p.id).healerReadyAt,readyAt);
 });

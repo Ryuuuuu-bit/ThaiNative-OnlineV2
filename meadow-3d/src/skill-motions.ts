@@ -9,6 +9,7 @@ export function skillFrame(id:SkillMotion,elapsed:number){
  if(id==='earth_break')return elapsed<.4?Math.min(5,Math.floor(Math.max(0,elapsed)/.4*6)):Math.min(8,6+Math.floor((elapsed-.4)/.08));
  // Zero-cast skills already resolve in the start event. Begin on contact;
  // anticipation exists in the atlas but must never delay authoritative feedback.
+ if(id==='whirlwind')return Math.min(7,2+Math.floor(Math.max(0,elapsed)/(.25/3)));
  if(id==='endure')return elapsed<.12?3:3+Math.floor((elapsed-.12)/.12)%2;
  return Math.min(SKILL_FRAMES[id]-1,CONTACT_FRAME[id]+Math.floor(Math.max(0,elapsed)/SKILL_DURATION[id]*(SKILL_FRAMES[id]-CONTACT_FRAME[id])));
 }

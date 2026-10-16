@@ -55,7 +55,7 @@ export function makePaintedHero(loader: PaintedLoader) {
     event(e:any){
       if(e.type==='skill'&&isSkillMotion(e.skillId)){skill=e.skillId;elapsed=0;contact=null;fresh=true;skillFacing={x:e.dx??0,z:e.dz??1};}
       if(e.type==='skillImpact'&&e.skillId===skill){elapsed=.4;contact=CONTACT_FRAME[skill!];}
-      if(e.type==='hit'&&skill&&skill!=='earth_break')contact=CONTACT_FRAME[skill];
+      if(e.type==='hit'&&skill&&skill!=='earth_break'){contact=skill==='whirlwind'&&e.hitIndex===2?5:CONTACT_FRAME[skill];if(skill==='whirlwind'&&e.hitIndex===2)elapsed=Math.max(elapsed,.25);}
       if(e.type==='slash'){skill=null;combo=e.combo||0;fresh=true;}
       if(e.type==='dash'||e.type==='death'){skill=null;contact=null;}
     },

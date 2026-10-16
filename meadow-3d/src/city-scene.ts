@@ -33,12 +33,15 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
    float crossDistance=min(abs(world.x),abs(world.y));
    float road=1.-smoothstep(2.,3.,crossDistance);
    float grey=dot(stone,vec3(.299,.587,.114));
+   // Warm terracotta edge strokes become worn grey kerb stone rather than red grid lines.
+   float redTrim=smoothstep(.025,.10,stone.r-stone.g);
+   stone=mix(stone,vec3(grey)*vec3(1.04,1.025,.97),redTrim*.92);
    vec3 plaza=mix(stone,vec3(grey)*vec3(1.13,1.09,.98),.42);
    float variation=1.+.035*sin(world.x*.37+sin(world.y*.29))+.025*cos(world.y*.51-world.x*.19);
    diffuseColor.rgb*=mix(plaza,stone*.86,road)*variation;
   `);
  };
- paving.customProgramCacheKey=()=> 'city-cobbles-5m-cross-v2';
+ paving.customProgramCacheKey=()=> 'city-cobbles-worn-kerb-v3';
  const ground=new T.Mesh(new T.PlaneGeometry(60,60).rotateX(-Math.PI/2),paving);ground.position.y=.005;ground.receiveShadow=true;root.add(ground);
  // Exactly one medallion on the existing circular apron; the tower and steps stay fixed.
  cyl(0,.02,0,5,.08,1);
@@ -91,7 +94,7 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
  // Five fixed front-facing, four-frame idle sprites share one atlas and one material.
  const npcMap=loader.load('/assets/city/city-npcs-v1.png');const npcMaterial=new T.MeshBasicMaterial({map:npcMap,transparent:true,alphaTest:.05,side:T.DoubleSide,depthWrite:true,toneMapped:false});
  const npcs=[...CITY_BUILDINGS.map(b=>b.talk),HEALER,{x:4,z:25}].map((p,row)=>{
-  const g=new T.PlaneGeometry(2.6,3.5);const mesh=new T.Mesh(g,npcMaterial);mesh.position.set(p.x,1.75,p.z);mesh.onBeforeRender=(_r,_s,c)=>mesh.quaternion.copy(c.quaternion);root.add(mesh);return{mesh,row};
+  const height=row===4?3.53:3.23;const g=new T.PlaneGeometry(2.6*height/3.5,height);g.translate(0,height*(.5-8/320),0);const mesh=new T.Mesh(g,npcMaterial);mesh.position.set(p.x,.035,p.z);mesh.onBeforeRender=(_r,_s,c)=>mesh.quaternion.copy(c.quaternion);root.add(mesh);return{mesh,row};
  });
  const angel=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/skills-painted/angel-v1.png'),transparent:true,alphaTest:.04,depthWrite:false,toneMapped:false}));angel.center.set(.5,.025);angel.scale.set(2.6,3.9,1);angel.position.set(0,.2,3.2);root.add(angel);
  function fogTexture(size:number){const c=document.createElement('canvas');c.width=c.height=size;const ctx=c.getContext('2d')!,grad=ctx.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);grad.addColorStop(0,'#bacbd4aa');grad.addColorStop(1,'#bacbd400');ctx.fillStyle=grad;ctx.fillRect(0,0,size,size);return new T.CanvasTexture(c);}

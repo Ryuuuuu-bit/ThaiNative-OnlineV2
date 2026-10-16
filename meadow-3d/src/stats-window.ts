@@ -9,12 +9,12 @@ import {
 } from "@thainative/shared";
 const data = loadGameData(),
 	names: Record<Stat, string> = {
-		str: "พลัง STR",
-		agi: "ว่องไว AGI",
-		vit: "อึด VIT",
-		int: "ปัญญา INT",
-		dex: "แม่นยำ DEX",
-		luk: "โชค LUK",
+		str: "พละกำลัง",
+		agi: "ความว่องไว",
+		vit: "ความอดทน",
+		int: "สติปัญญา",
+		dex: "ความแม่นยำ",
+		luk: "โชค",
 	};
 interface State {
 	profile: CharacterInput;
@@ -89,21 +89,21 @@ export function mountStats(send: (message: any) => void, onOpen: () => void) {
 			rows.append(row);
 		}
 		const metrics: [string, keyof Combatant, (n: number) => string][] = [
-			["โจมตี ATK", "atk", fmt],
-			["เวท MATK", "matk", fmt],
-			["เกราะ DEF แข็ง", "hardDef", fmt],
-			["ป้องกัน DEF อ่อน", "softDef", fmt],
-			["เกราะเวท MDEF แข็ง", "hardMdef", fmt],
-			["ป้องกันเวท MDEF อ่อน", "softMdef", fmt],
-			["แม่นยำ HIT", "hit", fmt],
-			["หลบหลีก FLEE", "flee", fmt],
-			["คริติคอล CRIT", "crit", (n) => (n * 100).toFixed(1) + "%"],
-			["โจมตี/วิ ASPD", "aspd", fmt],
+			["พลังโจมตี", "atk", fmt],
+			["พลังเวท", "matk", fmt],
+			["เกราะกายภาพ", "hardDef", fmt],
+			["ป้องกันกายภาพ", "softDef", fmt],
+			["เกราะเวท", "hardMdef", fmt],
+			["ป้องกันเวท", "softMdef", fmt],
+			["ความแม่นยำ", "hit", fmt],
+			["หลบหลีก", "flee", fmt],
+			["คริติคอล", "crit", (n) => (n * 100).toFixed(1) + "%"],
+			["โจมตีต่อวินาที", "aspd", fmt],
 			["เวลาร่าย ×", "castMul", fmt],
-			["พลังชีวิต HP", "maxHp", fmt],
-			["พลังสกิล SP", "maxSp", fmt],
-			["ฟื้น HP/วิ (นอกต่อสู้)", "hpRegen", fmt],
-			["ฟื้น SP/วิ", "spRegen", fmt],
+			["พลังชีวิต", "maxHp", fmt],
+			["พลังสกิล", "maxSp", fmt],
+			["ฟื้นพลังชีวิต/วิ (นอกต่อสู้)", "hpRegen", fmt],
+			["ฟื้นพลังสกิล/วิ", "spRegen", fmt],
 			["ความเร็วเดิน ×", "moveSpeed", fmt],
 			["น้ำหนัก", "weight", fmt],
 		];

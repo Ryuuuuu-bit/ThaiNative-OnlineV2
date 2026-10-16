@@ -1,0 +1,43 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "mode": "generate/edit",
+  "prompts": [
+    {
+      "asset": "art/city/portal-city-mist-source-v1.png",
+      "prompt": "Use case: stylized-concept. Wide 16:9 portal key art in exquisite hand-painted ink-and-gouache storybook fantasy style matching meadow reference. Aerin, brown hair, cream tunic, leather boots, dark teal gold-hemmed cape, sword, seen from behind on the south cobbled road looking toward a forgotten medieval clock-tower city. Central distant tall clock tower, gate, pitched roofs, warm amber lanterns, cool blue-grey mist. Rich painterly paper texture, delicate ink outlines, muted sage and slate, warm highlights. Hero and tower near center-right, darker unobtrusive left side for live HTML copy. No text, logos or watermark."
+    },
+    {
+      "asset": "art/hero-skills/provoke-source-v3.png",
+      "prompt": "Edit transparent 5 by 4 Provoke sheet. Preserve rows 1,3,4. Redraw only second row SW as true left-facing three-quarter views. Do not mirror first row; anatomical right-hand sword, left fist taunt/shout, teal gold cape, cream sleeves, brown boots. Complete boots/sword, same grid and ink-and-gouache identity. Transparent background, no text."
+    },
+    {
+      "asset": "art/hero-skills/earth_break-source-v3.png",
+      "prompt": "Repair Earth Break 9 by 4 sheet clipped sword tips and incomplete boots, especially SE4,SE5,NE5,NW boots. Full sword/hands/boots, transparent margins per cell, retain scale, facings, phases and painted identity. No text."
+    },
+    {
+      "asset": "art/city/city-npcs-polish-v2.png",
+      "prompt": "Edit 4 by 5 NPC atlas only to erase detached paint marks beneath merchant row3/healer row4 feet in all four frames. Preserve complete boots, staff, human silhouettes, all poses/locations and ink-and-gouache style. True transparency, no shadows or text."
+    },
+    {
+      "asset": "art/hero-skills/slash-source-v3.png",
+      "prompt": "Repair Slash 6 by 4 transparent sheet, especially SW6, complete sword/boots with margins. Preserve poses, anatomy, character identity, four facings and six frames, ink-and-gouache style."
+    },
+    {
+      "asset": "art/hero-skills/whirlwind-source-v3.png",
+      "prompt": "Repair Whirlwind 8 by 4 transparent sheet, especially SW8 recovery. Full sword/boots with generous cell padding, same eight phases, four directions, identity and painted spinning arcs. No overlap or text."
+    },
+    {
+      "asset": "art/hero-skills/endure-source-v3.png",
+      "prompt": "Repair Endure 5 by 4 sheet cut sword tips/boots and touching row contours. Keep full sword and both boots inside cell margins, preserve all twenty poses/facings/gold aura, ink-and-gouache identity. True transparency."
+    },
+    {
+      "asset": "art/hero-skills/earth-break-repairs-v1.png",
+      "prompt": "New repair strip of three isolated full-body Earth Break jump sprites: SE anticipation, SE peak jump, NE rear peak jump. Both hands hold entire longsword overhead; complete hair/cape/hands/both boots. Same Aerin identity, cream sleeves, teal gold cape, brown boots. Centered 65% of height, generous transparent margins, no cropping/effects/text."
+    },
+    {
+      "asset": "art/hero-skills/earth-break-nw-repair-v1.png",
+      "prompt": "One complete isolated Aerin Earth Break peak jump NW rear-left view. Back of head/cape, blade toward left, both hands above head, complete sword and both tucked leather boots. Exact ink-and-gouache identity. Central 65% with generous transparent margin, no cropping/shadow/text."
+    }
+  ],
+  "packing": "Uniform scaling and alpha component extraction only; 384x256 cells, baseline240, anatomical x anchor. Repaired SW recovery from regenerated Provoke guard; complete NE recovery from canonical idle. No mirrored direction synthesis."
+}

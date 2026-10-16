@@ -25,7 +25,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	document.querySelector("#ui")!.append(button);
 	const panel = document.createElement("dialog");
 	panel.id = "inventory-window";
-	panel.innerHTML = `<button class="close" aria-label="ปิด">×</button><p class="caption">สัมภาระและอุปกรณ์</p><h2>กระเป๋า</h2><div class="inv-summary"></div><progress class="inv-weight" max="100"></progress><nav class="inv-tabs"></nav><label class="inv-auto"><input type="checkbox"> ออโต้เก็บของของฉัน</label><div class="inv-content"></div><section class="inv-detail" aria-live="polite">เลือกไอเทมเพื่อดูข้อมูล</section><p class="inv-status" role="status"></p>`;
+	panel.innerHTML = `<button class="close" aria-label="ปิด">×</button><p class="caption">สัมภาระและอุปกรณ์</p><h2>กระเป๋า</h2><div class="inv-summary"></div><progress class="inv-weight" max="100"></progress><nav class="inv-tabs"></nav><label class="inv-auto"><input type="checkbox"> เก็บของอัตโนมัติ</label><div class="inv-content"></div><section class="inv-detail" aria-live="polite">เลือกไอเทมเพื่อดูข้อมูล</section><p class="inv-status" role="status"></p>`;
 	document.body.append(panel);
 	const summary = panel.querySelector<HTMLElement>(".inv-summary")!,
 		tabs = panel.querySelector("nav")!,
@@ -87,6 +87,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const count = document.createElement("b");
 		count.textContent = i.qty > 1 ? String(i.qty) : i.bound ? "◆" : "";
 		b.append(count);
+        const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+        if(mode==='buy'||mode==='sell'){b.classList.add('shop-cell');const caption=document.createElement('span');caption.className='shop-caption';caption.textContent=t.nameTh;const price=document.createElement('small');price.textContent=`${mode==='buy'?data.economy.shops[shop!][t.id]:Math.floor(t.npcPrice*data.economy.sellMultiplier)} ทอง`;b.append(caption,price);}
+        if(incompatible){const note=document.createElement('small');note.textContent='อาชีพนี้ใช้ไม่ได้';b.append(note);b.title+=' · อาชีพนี้ใช้ไม่ได้';}
 		if (multi.has(i.id)) b.classList.add("inv-selected");
 		b.draggable = mode === "bag";
 		b.ondragstart = (e) => e.dataTransfer?.setData("text/plain", t.type==='consumable'?'item:'+t.id:i.id);
@@ -131,11 +134,13 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			(i) => i.location === "equip" && i.slot === t.slot,
 		);
 		const oldT = old && template(old);
-		text.textContent = `${slotNames[t.slot || ""] || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการ Lv. ${t.level}\nน้ำหนัก ${t.weight} · ขาย ${Math.floor(t.npcPrice * data.economy.sellMultiplier)} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
+		text.textContent = `${slotNames[t.slot || ""] || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${t.level}\nน้ำหนัก ${t.weight} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + data.economy.shops[shop][t.id] : "ขาย " + Math.floor(t.npcPrice * data.economy.sellMultiplier)} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
 		detail.append(text);
+        const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+        if(incompatible){const note=document.createElement('p');note.textContent='อาชีพนี้ใช้ไม่ได้';detail.append(note);}
 		const metrics = [
-			["ATK", t.atk || 0, oldT?.atk || 0],
-			["MATK", t.matk || 0, oldT?.matk || 0],
+			["พลังโจมตี", t.atk || 0, oldT?.atk || 0],
+			["พลังเวท", t.matk || 0, oldT?.matk || 0],
 			...t.modifiers
 				.filter(
 					(m): m is Extract<typeof m, { value: number }> =>
@@ -155,7 +160,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		for (const [name, value, oldValue] of metrics) {
 			if (!value && !oldValue) continue;
 			const row = document.createElement("div");
-			row.textContent = `${name} +${value}`;
+			const metricNames:Record<string,string>={atk:'พลังโจมตี',flee:'หลบหลีก',hardDef:'เกราะกายภาพ',maxSp:'พลังสกิลสูงสุด'};
+            row.textContent = `${metricNames[String(name)]||name} +${value}`;
 			const diff = Number(value) - Number(oldValue),
 				span = document.createElement("span");
 			span.textContent = ` (${diff >= 0 ? "+" : ""}${diff} เทียบที่สวม)`;
@@ -184,7 +190,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				request("buy", { shop, template: t.id, qty: Math.min(999,Math.max(1,Math.trunc(Number(quantity.value)||1))) }),
 			);
 		} else if (!shop) {
-			if (t.slot || t.type === "consumable")
+			if ((!t.slot || !incompatible) && (t.slot || t.type === "consumable"))
 				add(i.location === "equip" ? "ถอด" : t.slot ? "ใส่" : "ใช้", () =>
 					action(i),
 				);
@@ -261,7 +267,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		grid.className = "inv-grid";
 		content.append(grid);
 		if (shop && shopTab === "ซื้อ") {
-			for (const id of Object.keys(data.economy.shops[shop]))
+			for (const id of Object.keys(data.economy.shops[shop]).filter(id=>!["reed_dagger","wood_staff","bamboo_bow"].includes(id)))
 				grid.append(
 					cell(
 						{
@@ -281,6 +287,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		} else {
 			for (const i of inv.items.filter((i) => i.location === "bag")) {
 				const t = template(i);
+                if(shop&&["reed_dagger","wood_staff","bamboo_bow"].includes(t.id))continue;
 				if (!shop && filter === "อุปกรณ์" && !t.slot) continue;
 				if (!shop && filter === "ของใช้" && t.type !== "consumable") continue;
 				if (

@@ -1,3 +1,4 @@
+import {CITY_SPAWN} from '@thainative/shared/maps';
 import { predictMovement } from "@thainative/shared/movement";
 import {
 	reconcileMovement,
@@ -11,8 +12,8 @@ export class NetworkWorld {
 			jobId:"swordsman",jobLevel:1,jobExp:0,skillPoints:0,skills:{},hotbar:[],statuses:[],castRemaining:0,
             id: "",
 			name: "",
-			x: -1,
-			z: 6,
+			x: CITY_SPAWN.x,
+			z: CITY_SPAWN.z,
 			fx: 0,
 			fz: -1,
 			hp: 0,

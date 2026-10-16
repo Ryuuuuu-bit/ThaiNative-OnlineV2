@@ -812,8 +812,8 @@
     "mips": false,
     "cpu": false,
     "hitMask": null,
-    "webp": "/assets/hero-skills/hero-skill-slash-v1-b4cd9a9a48.webp",
-    "ktx2": "/assets/hero-skills/hero-skill-slash-v1-eeeed0def8.ktx2"
+    "webp": "/assets/hero-skills/hero-skill-slash-v1-2c9634ea06.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-slash-v1-922faaa937.ktx2"
   },
   "/assets/hero-skills/hero-skill-whirlwind-v1.png": {
     "source": "art/hero-skills/hero-skill-whirlwind-v1.png",
@@ -829,8 +829,8 @@
     "mips": false,
     "cpu": false,
     "hitMask": null,
-    "webp": "/assets/hero-skills/hero-skill-whirlwind-v1-83c2c0d27a.webp",
-    "ktx2": "/assets/hero-skills/hero-skill-whirlwind-v1-1b347aa97c.ktx2"
+    "webp": "/assets/hero-skills/hero-skill-whirlwind-v1-db465448c5.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-whirlwind-v1-563414718a.ktx2"
   },
   "/assets/hero-skills/hero-skill-dash_strike-v1.png": {
     "source": "art/hero-skills/hero-skill-dash_strike-v1.png",
@@ -846,8 +846,8 @@
     "mips": false,
     "cpu": false,
     "hitMask": null,
-    "webp": "/assets/hero-skills/hero-skill-dash_strike-v1-07e3da3dd5.webp",
-    "ktx2": "/assets/hero-skills/hero-skill-dash_strike-v1-3848d56d46.ktx2"
+    "webp": "/assets/hero-skills/hero-skill-dash_strike-v1-f27bc8cc55.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-dash_strike-v1-ccb370473c.ktx2"
   },
   "/assets/hero-skills/hero-skill-earth_break-v1.png": {
     "source": "art/hero-skills/hero-skill-earth_break-v1.png",
@@ -863,8 +863,8 @@
     "mips": false,
     "cpu": false,
     "hitMask": null,
-    "webp": "/assets/hero-skills/hero-skill-earth_break-v1-464afc450a.webp",
-    "ktx2": "/assets/hero-skills/hero-skill-earth_break-v1-abd5966586.ktx2"
+    "webp": "/assets/hero-skills/hero-skill-earth_break-v1-a2ca819e26.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-earth_break-v1-1ead715277.ktx2"
   },
   "/assets/hero-skills/hero-skill-provoke-v1.png": {
     "source": "art/hero-skills/hero-skill-provoke-v1.png",
@@ -880,8 +880,8 @@
     "mips": false,
     "cpu": false,
     "hitMask": null,
-    "webp": "/assets/hero-skills/hero-skill-provoke-v1-501bb0ced9.webp",
-    "ktx2": "/assets/hero-skills/hero-skill-provoke-v1-f9ceecff44.ktx2"
+    "webp": "/assets/hero-skills/hero-skill-provoke-v1-e351334534.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-provoke-v1-f0dc3e7554.ktx2"
   },
   "/assets/hero-skills/hero-skill-endure-v1.png": {
     "source": "art/hero-skills/hero-skill-endure-v1.png",
@@ -897,33 +897,33 @@
     "mips": false,
     "cpu": false,
     "hitMask": null,
-    "webp": "/assets/hero-skills/hero-skill-endure-v1-b941dfc45b.webp",
-    "ktx2": "/assets/hero-skills/hero-skill-endure-v1-a59d098954.ktx2"
+    "webp": "/assets/hero-skills/hero-skill-endure-v1-758c449d09.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-endure-v1-d51908a1af.ktx2"
   },
   "/assets/city/city-trim-v1.png": {
+    "size": [
+      1024,
+      768
+    ],
+    "mode": "uastc",
     "hitMask": null,
     "mips": true,
     "cpu": false,
     "source": "art/texture-sources/city/city-trim-v1.png",
     "ktx2": "/assets/city/city-trim-v1-c30f1e8789.ktx2",
-    "webp": "/assets/city/city-trim-v1-5ef5d76aa4.webp",
-    "size": [
-      1024,
-      768
-    ],
-    "mode": "uastc"
+    "webp": "/assets/city/city-trim-v1-5ef5d76aa4.webp"
   },
   "/assets/city/city-npcs-v1.png": {
-    "hitMask": null,
-    "mips": false,
-    "cpu": false,
-    "source": "art/texture-sources/city/city-npcs-v1.png",
-    "ktx2": "/assets/city/city-npcs-v1-fe1893e34d.ktx2",
-    "webp": "/assets/city/city-npcs-v1-21ac88ccad.webp",
     "size": [
       1024,
       1600
     ],
-    "mode": "uastc"
+    "mode": "uastc",
+    "hitMask": null,
+    "mips": false,
+    "cpu": false,
+    "source": "art/texture-sources/city/city-npcs-v1.png",
+    "ktx2": "/assets/city/city-npcs-v1-5a4ae586ff.ktx2",
+    "webp": "/assets/city/city-npcs-v1-e7b509b9d8.webp"
   }
 }

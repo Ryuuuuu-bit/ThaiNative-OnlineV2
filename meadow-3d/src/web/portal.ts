@@ -1,6 +1,6 @@
 import'../web.css';import{startGuest,mountAccountChip}from'./session';import{showError}from'./api';
 void mountAccountChip();
 document.querySelector<HTMLButtonElement>('#guest-play')!.onclick=async function(this:HTMLButtonElement){this.disabled=true;try{await startGuest();location.assign('/characters.html');}catch(e){showError(document.querySelector('#portal-error')!,e);this.disabled=false;}};
-document.querySelector('#build-id')!.textContent=import.meta.env.VITE_BUILD_ID||'dev';
+document.querySelector('#build-id')!.textContent=import.meta.env.VITE_BUILD_ID||'ทดสอบ';
 fetch('/changelog.json').then(r=>{if(!r.ok)throw Error('โหลดบันทึกไม่สำเร็จ');return r.json();}).then(entries=>{const list=document.querySelector('#changelog-list')!;for(const item of entries){const li=document.createElement('li'),time=document.createElement('time'),title=document.createElement('h3'),p=document.createElement('p');time.textContent=item.date;title.textContent=item.title;p.textContent=item.description;li.append(time,title,p);list.append(li);}}).catch(e=>{document.querySelector('#changelog-list')!.textContent=e.message;});
 for(const a of document.querySelectorAll<HTMLAnchorElement>('[data-placeholder]'))a.onclick=e=>{e.preventDefault();const note=document.querySelector<HTMLElement>('#footer-note')!;note.hidden=false;note.textContent='ลิงก์นี้อยู่ระหว่างเตรียมพร้อมสำหรับเปิดบริการ';};

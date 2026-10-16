@@ -41,3 +41,33 @@
 /* Hide immediately when a target frame appears, including during area fade-in. */
 #ui:has(#target:not([hidden])) #area-name,body.boss-active #area-name{opacity:0;visibility:hidden}
 #world:after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 48%,#182c3730 100%)}
+/* Director polish: one strip, paper icons, and unclipped map heading. */
+.sr-only{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+#ui .map-head{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:0;height:24px}#ui .map-foot:has(#fps[hidden]){display:none}
+#ui #stats-button,#ui #skills-button,#ui #inventory-button{width:100px;top:212px}#ui #stats-button{left:18px}#ui #skills-button{left:124px}#ui #inventory-button{left:230px}
+#ui .combat-ui{display:flex;align-items:center;gap:6px;padding:8px;max-width:calc(100vw - 32px)}
+#ui .rewards{position:absolute;left:0;right:0;bottom:100%;margin:0 0 5px;background:var(--hud-ink);border-radius:6px;padding:3px 8px;width:max-content;max-width:100%}
+#job-hotbar{grid-template-columns:repeat(5,54px);gap:4px}.job-slot{min-height:54px;height:54px}.job-slot small{display:none}.job-slot .job-icon{width:40px;height:40px}
+#skills-more{position:static;flex:none;align-self:center;font-size:16px;width:44px;height:54px;margin:0}
+#ui .legacy-actions{display:flex;flex-wrap:nowrap;gap:4px;margin:0}#ui #qol-controls{display:contents}
+#ui .legacy-actions button{position:relative;width:44px;height:54px;min-width:44px;padding:0;font-size:22px}#ui .legacy-actions kbd{position:absolute;right:3px;bottom:1px;font-size:10px;line-height:1.2}#potions{position:absolute;left:3px;top:2px;font-size:10px}
+#ui .tools{top:222px}#ui .tools #quality{width:126px;min-width:126px;max-width:none;white-space:nowrap}
+#npc-talk,#angel-talk{bottom:135px;z-index:8}#return-cast{bottom:150px}
+.npc-world-label{position:absolute;transform:translate(-50%,-100%);max-width:240px;white-space:nowrap;background:#142a25e8;border:1px solid #d6bc8855;border-radius:6px;padding:3px 8px;pointer-events:auto;font-size:calc(12px * var(--ui-scale));text-align:center;z-index:2}.npc-world-label small{display:none}.npc-world-label:is(:hover,.in-range) small{display:block;font-size:12px}
+.item-icon,.job-icon{filter:saturate(.78);position:relative}.item-icon:after,.job-icon:after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(17deg,#efe1b91a 0 1px,transparent 1px 3px),repeating-linear-gradient(103deg,#34271916 0 1px,transparent 1px 4px);mix-blend-mode:soft-light}
+#inventory-window:has(.shop-cell) .inv-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}.shop-cell{height:auto!important;min-height:115px!important;display:flex!important;flex-direction:column;align-items:center;gap:3px;padding:6px!important}.shop-caption{font-size:12px;line-height:1.5}.shop-cell small{position:static!important;font-size:12px}.shop-cell .item-icon{flex:none}
+@media(max-width:650px){
+ #ui .player{width:232px;max-width:60vw;padding:6px;gap:4px;transform:none;max-height:145px}#ui .avatar{display:none}.player-name{font-size:16px}#ui .player-info{width:100%}#ui #job-exp{font-size:10px}#ui #job-label{font-size:11px}.player .hp,.player .mp{height:16px;margin-top:3px}#ui .player .bar small{line-height:14px}#job-progress{max-width:none}
+ #ui .map{width:126px}#ui .map-head{height:20px;font-size:11px}#map{height:72px}
+ #ui #stats-button,#ui #skills-button,#ui #inventory-button{top:148px;width:76px;padding:2px}#ui #stats-button{left:8px}#ui #skills-button{left:88px}#ui #inventory-button{left:168px}
+ #ui .tools{top:110px;right:8px;width:92px;gap:4px}#ui .tools #quality{width:92px;min-width:92px;max-width:92px;font-size:11px}#ui .tools #help,#ui .tools #pause{display:none}
+ #ui .quest{top:258px;right:8px;width:144px;padding:2px 6px}#ui .quest.collapsed{width:144px}#journal-toggle{min-height:44px}
+ #ui .target,#ui .boss-hud{top:198px;left:8px;width:232px;max-height:80px;padding:6px}#ui .target small{font-size:11px}#area-name{top:204px;max-width:225px;left:8px;transform:none;font-size:12px}
+ #ui .combat-ui{width:calc(100vw - 16px);max-width:374px;padding:5px;gap:4px;transform:translateX(-50%);bottom:8px!important;flex-wrap:wrap}
+ #job-hotbar{flex:1;grid-template-columns:repeat(5,minmax(44px,1fr));gap:4px}#job-hotbar .job-slot{height:48px;min-height:48px;min-width:44px}#skills-more{width:64px;height:48px;font-size:12px}#ui .combat-ui .legacy-actions{display:none;width:100%;justify-content:center}body.more-skills #ui .combat-ui .legacy-actions{display:flex}#ui .legacy-actions button{height:44px}#ui .rewards{font-size:11px;gap:8px}
+ #game-menu{left:8px;bottom:84px;min-height:44px}#joystick{left:18px;bottom:155px;width:100px;height:100px}#npc-talk,#angel-talk{bottom:120px;max-width:240px}body.more-skills #npc-talk,body.more-skills #angel-talk{bottom:220px}#notices{bottom:285px}#ui #auto-status{top:310px}#control-hints{max-height:220px;overflow:auto}
+}
+#ui{overflow:hidden}#npc-talk,#angel-talk{min-height:44px;min-width:44px}
+@media(max-width:650px){#ui .player{width:220px;padding:5px}#ui .player .xp,#ui .player .job-xp{display:none}#ui .player #job-progress{margin-top:2px;gap:0}#ui .player .hp,#ui .player .mp{margin-top:2px}#ui .tools{top:204px;width:140px;flex-wrap:nowrap}#ui .tools #quality{width:92px;min-width:92px}#ui .target,#ui .boss-hud{top:198px;width:220px;padding:4px}#ui .target>div:first-child{display:flex;flex-wrap:wrap;align-items:center;gap:2px 6px}#ui .target small{font-size:10px;line-height:1.2}#ui .target .bar{height:14px;margin-top:3px}#ui .target b{font-size:13px!important}#skills-more{width:72px;white-space:nowrap}#ui .combat-ui{gap:3px}body.more-skills #job-hotbar>.job-slot:not(.extra-slot){display:none}body.more-skills #ui .map,body.more-skills #ui .tools,body.more-skills #ui .quest{visibility:hidden}body.more-skills #game-menu{bottom:220px}#npc-talk,#angel-talk{bottom:132px}}
+#ui .panel,#ui .quest,#ui .tools{z-index:5}
+@media(max-width:650px){#ui .quest:not(.collapsed){max-height:100px;overflow:auto}#ui:has(.quest:not(.collapsed)) .tools{visibility:hidden}}

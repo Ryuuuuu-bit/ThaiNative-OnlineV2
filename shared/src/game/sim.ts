@@ -78,6 +78,7 @@ export interface Enemy extends Vec {
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
  bossReadyAt?:number; reviveRemaining?:number;
+ whirlwindHits?:{id:number;due:number;damage:number;crit:boolean;breakdown:any;impact?:number}[];
  inventory?:Inventory; autoSeconds:number;
  mapId: MapId;
  healerReadyAt: number;
@@ -492,7 +493,7 @@ function defeat(g: Game, e: Enemy) {
 		emit(g, "boss");
 	}
 }
-function hit(g: Game, e: Enemy, skill: Skill, third = false) {
+function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number}) {
 	if (e.dead) return false;
 	const defender = monsterStats(
 		g.data.monsters.monsters.find((m) => m.id === e.dataId)!,
@@ -517,7 +518,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 						rhythm,
 					)),
 		};
-	const result = computeDamage(
+	const result = prepared ? {...prepared,hit:true} : computeDamage(
 		g.p.stats,
 		defender,
 		skill,
@@ -534,7 +535,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 		});
 		return false;
 	}
-	let damage = Math.round(
+	let damage = prepared ? prepared.damage : Math.round(
 		result.damage * (e.boss && e.motion === "stun" ? 1.25 : 1),
 	);
 	const crit = result.crit;
@@ -552,6 +553,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false) {
 		move(e, (dx / d) * 0.23, (dz / d) * 0.23);
 	}
 	emit(g, "hit", {
+        skillId:skill.id,hitIndex:prepared?.impact,
 		x: e.x,
 		z: e.z,
 		id: e.id,
@@ -828,8 +830,18 @@ export function action(g: Game, a: Action) {
 				: g.enemies.filter(
 						(e) => !e.dead && Math.hypot(e.x - p.x, e.z - p.z) <= skill.radius,
 					);
-		for (const e of [...targets])
-			for (let i = 0; i < skill.hits; i++) hit(g, e, skill);
+        for (const e of [...targets]) {
+            if(skill.id==='whirlwind') {
+                // Reserve both original rolls now, then divide their exact integer total.
+                const defender=monsterStats(g.data.monsters.monsters.find(m=>m.id===e.dataId)!,g.data,e.bossPhase===2);
+                const defDown=e.statuses.find(s=>s.id==='def_down');if(defDown){defender.hardDef*=1-defDown.value;defender.softDef*=1-defDown.value;}
+                const rolls=Array.from({length:skill.hits},()=>computeDamage(p.stats,defender,skill,{rng:g.random,comboThird:false},g.data));
+                const total=rolls.reduce((n,r)=>n+Math.round(r.damage*(e.boss&&e.motion==='stun'?1.25:1)),0);
+                const prepared={impact:1,damage:Math.ceil(total/2),crit:rolls.some(r=>r.crit),breakdown:rolls[0].breakdown};
+                hit(g,e,skill,false,prepared);
+                (p.whirlwindHits??=[]).push({id:e.id,due:g.time+.25,...prepared,impact:2,damage:Math.floor(total/2)});
+            } else for(let i=0;i<skill.hits;i++)hit(g,e,skill);
+        }
 		return true;
 	}
 	if (skill.id === "dodge") {
@@ -1490,6 +1502,9 @@ export function step(
 	const previous = g.p;
 	for (const p of g.players.values()) {
 		g.p = p;
+        if(p.dead||g.mapId!=='meadow')p.whirlwindHits=[];
+        const due=(p.whirlwindHits??[]).filter(h=>h.due<=g.time+1e-9);p.whirlwindHits=(p.whirlwindHits??[]).filter(h=>h.due>g.time+1e-9);
+        for(const h of due){const enemy=g.enemies.find(e=>e.id===h.id&&!e.dead);if(enemy)hit(g,enemy,resolveSkill(g.data,'whirlwind',p.skills.whirlwind||1),false,h);}
 		playerStep(
 			g,
 			dt,

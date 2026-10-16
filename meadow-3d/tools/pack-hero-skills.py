@@ -2,6 +2,15 @@
 No limb drawing, pose synthesis, mirroring or nonuniform warping.
 """
 from pathlib import Path
+import time, io, os, uuid, sys
+def safe_save(image,path,format="PNG",**kwargs):
+ buffer=io.BytesIO();image.save(buffer,format,**kwargs)
+ temp=path.with_name(path.name+"."+uuid.uuid4().hex+".tmp");temp.write_bytes(buffer.getvalue())
+ for attempt in range(12):
+  try:os.replace(temp,path);return
+  except OSError:
+   if attempt==11:raise
+   time.sleep(.2)
 from statistics import median
 from PIL import Image, ImageFilter, ImageDraw
 import numpy as np
@@ -13,14 +22,19 @@ OUT.mkdir(parents=True,exist_ok=True)
 COUNTS={'slash':6,'whirlwind':8,'dash_strike':5,'earth_break':9,'provoke':5,'endure':5}
 manifest=json.loads((ROOT/'public/texture-manifest.json').read_text())
 report={'frameSize':[384,256],'baseline':240,'directions':['SE','SW','NE','NW'],'motions':{},'sourceEdgeWarnings':[]}
+if len(sys.argv)>1 and (ART/'packing-report.json').exists():
+ report=json.loads((ART/'packing-report.json').read_text());report['sourceEdgeWarnings']=[w for w in report['sourceEdgeWarnings'] if w['motion'] not in sys.argv[1:]]
 sheet=Image.new('RGB',(12*144,24*116),(44,52,47));draw=ImageDraw.Draw(sheet)
 def anchor(im):
  a=np.asarray(im.getchannel('A'))>32;h,w=a.shape
  thick=np.asarray(Image.fromarray(a.astype(np.uint8)*255).filter(ImageFilter.MinFilter(7)))>0
  weights=thick[int(h*.4):int(h*.65)].sum(axis=0)
  return float(np.searchsorted(np.cumsum(weights),weights.sum()/2)) if weights.sum() else w/2
+import sys
 for motion,count in COUNTS.items():
- source=ART/f'{motion}-source-v2.png'
+ if len(sys.argv)>1 and motion not in sys.argv[1:]:continue
+ source=ART/f'{motion}-source-v3.png'
+ if not source.exists():source=ART/f'{motion}-source-v2.png'
  if not source.exists():source=ART/f'{motion}-source-v1.png'
  im=Image.open(source).convert('RGBA');cw=im.width/count;ch=im.height/4
  groups=[[] for _ in range(count*4)]
@@ -49,14 +63,42 @@ for motion,count in COUNTS.items():
   for p in parts:crop.alpha_composite(p['image'],(p['bbox'][0]-x0,p['bbox'][1]-y0))
   frames.append(crop);bounds.append([x0,y0,x1,y1])
   if x0==0 or y0==0 or x1==im.width or y1==im.height:report['sourceEdgeWarnings'].append({'motion':motion,'direction':report['directions'][i//count],'frame':i%count+1,'bounds':[x0,y0,x1,y1]})
+ if motion=='earth_break':
+  repairs=Image.open(ART/'earth-break-repairs-v1.png').convert('RGBA')
+  for col,index in enumerate([3,4,22]):
+   crop=repairs.crop((round(col*repairs.width/3),0,round((col+1)*repairs.width/3),repairs.height));crop=crop.crop(crop.getbbox())
+   oldheight=frames[index].height;crop=crop.resize((round(crop.width*oldheight/crop.height),oldheight),Image.Resampling.LANCZOS);frames[index]=crop
+ if motion=='earth_break':
+  crop=Image.open(ART/'earth-break-nw-repair-v1.png').convert('RGBA');crop=crop.crop(crop.getbbox());target=frames[31].height
+  crop=crop.resize((round(crop.width*target/crop.height),target),Image.Resampling.LANCZOS);frames[31]=crop
+ if motion in ('whirlwind','earth_break'):
+  index=23 if motion=='whirlwind' else 26
+  crop=Image.open(ROOT/'art/texture-sources/hero-painted/hero-idle-v1.png').convert('RGBA').crop((768,0,1152,256));crop=crop.crop(crop.getbbox());target=frames[index].height
+  frames[index]=crop.resize((round(crop.width*target/crop.height),target),Image.Resampling.LANCZOS)
+ if motion in ('slash','whirlwind'):
+
+  recovery=Image.open(ART/'provoke-source-v3.png').convert('RGBA');w=recovery.width/5;h=recovery.height/4
+  recovery=recovery.crop((round(4*w),round(h),round(5*w),round(2*h)));recovery=recovery.crop(recovery.getbbox())
+  # Match the existing recovery height using uniform scaling only.
+  target=frames[count*2-1].height;recovery=recovery.resize((round(recovery.width*target/recovery.height),target),Image.Resampling.LANCZOS)
+  frames[count*2-1]=recovery
+ repaired={('slash','SW',6),('whirlwind','SW',8),('earth_break','SE',4),('earth_break','SE',5),('earth_break','NE',5),('earth_break','NW',5),('earth_break','NE',9),('whirlwind','NE',8)}
+ report['sourceEdgeWarnings']=[w for w in report['sourceEdgeWarnings'] if (w['motion'],w['direction'],w['frame']) not in repaired]
  # Shared per-sheet scale uses the upright recovery as anatomical reference.
  guard=median(frames[row*count+count-1].height for row in range(4))
  scale=min(168/guard,232/max(f.height for f in frames),300/max(f.width for f in frames))
+ # Pad full weapons around the shared anatomical x anchor, including asymmetric lunges.
+ scale=min(scale,*[184/max(1,anchor(f),f.width-anchor(f)) for f in frames])
  atlas=Image.new('RGBA',(384*count,1024))
  for i,f in enumerate(frames):
   row,col=divmod(i,count);w,h=round(f.width*scale),round(f.height*scale)
   cell=Image.new('RGBA',(384,256));cell.alpha_composite(f.resize((w,h),Image.Resampling.LANCZOS),(round(192-anchor(f)*scale),240-h))
-  dest=ART/'frames'/motion/report['directions'][row];dest.mkdir(parents=True,exist_ok=True);cell.save(dest/f'{col+1:02}.png')
+  dest=ART/'frames'/motion/report['directions'][row];dest.mkdir(parents=True,exist_ok=True);save=dest/f'{col+1:02}.png'
+  for attempt in range(8):
+   try:safe_save(cell,save);break
+   except OSError:
+    if attempt==7:raise
+    time.sleep(.15)
   atlas.alpha_composite(cell,(col*384,row*256))
   strip=list(COUNTS).index(motion)*4+row
   thumb=cell.resize((144,96),Image.Resampling.LANCZOS);sheet.paste(thumb,(144*(col+3),strip*116+20),thumb)
@@ -67,10 +109,10 @@ for motion,count in COUNTS.items():
    oldim=Image.open(ROOT/f'art/texture-sources/hero-painted/hero-{old}-v1.png').convert('RGBA')
    crop=oldim.crop((row*384,0,(row+1)*384,256)) if old=='idle' else oldim.crop((3*384,row*256,4*384,(row+1)*256))
    thumb=crop.resize((144,96),Image.Resampling.LANCZOS);sheet.paste(thumb,(col*144,strip*116+20),thumb)
- name=f'hero-skill-{motion}-v1';path=ART/(name+'.png');atlas.save(path,optimize=True)
+ name=f'hero-skill-{motion}-v1';path=ART/(name+'.png');safe_save(atlas,path,optimize=True)
  factor=min(1,2048/atlas.width);size=tuple(max(4,round(n*factor/4)*4) for n in atlas.size)
- gpu=atlas.resize(size,Image.Resampling.LANCZOS);stage=ART/(name+'-packed.png');gpu.save(stage)
- webp=OUT/(name+'.webp');ktx=OUT/(name+'.ktx2');gpu.save(webp,'WEBP',quality=88,method=6,exact=True)
+ gpu=atlas.resize(size,Image.Resampling.LANCZOS);stage=ART/(name+'-packed.png');safe_save(gpu,stage)
+ webp=OUT/(name+'.webp');ktx=OUT/(name+'.ktx2');safe_save(gpu,webp,'WEBP',quality=88,method=6,exact=True)
  encoder=ROOT.parent/'.codex-run/ktx-tools/extracted/bin/toktx.exe'
  subprocess.run([str(encoder),'--t2','--encode','uastc','--assign_oetf','srgb','--lower_left_maps_to_s0t0','--threads','1','--uastc_quality','3','--uastc_rdo_l','0.5','--zcmp','18',str(ktx),str(stage)],check=True)
  entry={'source':path.relative_to(ROOT).as_posix(),'size':list(size),'originalSize':list(atlas.size),'mode':'uastc','mips':False,'cpu':False,'hitMask':None}
@@ -82,4 +124,4 @@ for motion,count in COUNTS.items():
  print(motion,json.dumps(sizes),flush=True)
 (ROOT/'public/texture-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 (ART/'packing-report.json').write_text(json.dumps(report,indent=2)+'\n')
-sheet.save(ROOT.parent/'.codex-run/motions-sheet.jpg',quality=93)
+# Contact sheet retained in memory; polish request permits only the five in-game JPEG captures.

@@ -43,7 +43,7 @@ export function mountSkills(
 		if (level(s.id) >= s.maxLevel) return "ระดับสูงสุด";
 		const req = s.requires.find((r: any) => level(r.id) < r.level);
 		if (req)
-			return `ต้องมี ${skills.find((s) => s.id === req.id)?.nameTh} Lv.${req.level}`;
+			return `ต้องมี ${skills.find((s) => s.id === req.id)?.nameTh} ระดับ ${req.level}`;
 		if (job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0) < 1)
 			return "แต้มสกิลไม่พอ";
 		return "";
@@ -55,18 +55,18 @@ export function mountSkills(
 			s.values?.[key]?.[Math.max(0, lv - 1)] ?? fallback;
 		if (s.passive)
 			return s.id === "sword_mastery"
-				? `ATK +${at("atk", 0)} เมื่อใช้ดาบ`
+				? `พลังโจมตี +${at("atk", 0)} เมื่อใช้ดาบ`
 				: s.id === "sword_rhythm"
 					? `คอมโบสาม +${at("comboBonus", 0) * 100}% · ลดคูลดาวน์อื่น ${at("cooldownReduction", 0).toFixed(1)} วิ`
-						: `HP +${at("hpPercent", 0) * 100}% · ฟื้น HP +${at("hpRegenPercent", 0) * 100}%`;
-		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}SP ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${s.effect === "taunt" ? ` · DEF −${Math.round(at("defDown", 0.05) * 100)}% 5 วิ` : s.effect === "endure" ? ` · DEF +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? " · 6 ม. สตั้น 0.6 วิ" : s.effect === "knockup" ? " · ยก 0.8 วิ ร่าย 0.4 วิ" : ""}`;
+						: `พลังชีวิต +${at("hpPercent", 0) * 100}% · ฟื้นพลังชีวิต +${at("hpRegenPercent", 0) * 100}%`;
+		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}พลังสกิล ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${s.effect === "taunt" ? ` · ป้องกัน −${Math.round(at("defDown", 0.05) * 100)}% 5 วิ` : s.effect === "endure" ? ` · ป้องกัน +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? " · 6 ม. สตั้น 0.6 วิ" : s.effect === "knockup" ? " · ยก 0.8 วิ ร่าย 0.4 วิ" : ""}`;
 	}
 	function slotsHTML(mirror = false) {
 		return (job?.hotbar || [])
 			.map((slot, i) => {
 				const s = slotSpec(slot.skill),
 					learned = !!s && (!!slot.skill?.startsWith('item:') || !!job?.skills[s.id]);
-				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}" data-slot="${i}" ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? slot.skill?.startsWith("item:") ? `<span class="hotbar-item">✚</span>` : icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
+				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}" title="${s?.nameTh || "ว่าง"} · ${keyLabel(slot.key)}" data-slot="${i}" ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? slot.skill?.startsWith("item:") ? `<span class="hotbar-item">✚</span>` : icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
 			})
 			.join("");
 	}

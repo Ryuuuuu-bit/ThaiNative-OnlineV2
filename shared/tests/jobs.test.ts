@@ -300,3 +300,12 @@ test("normal AUTO swordsman progression reaches Job10 near fifteen minutes with 
 	assert.ok(g.time >= 720 && g.time <= 1080, `Job10 at ${g.time}s`);
 	assert.equal(g.p.skills.slash, 10);
 });
+
+test("Whirlwind reserves the original total, rounds halves, and keeps delayed hits owned by the caster", () => {
+ const g=createGame();g.enemies=[];g.p.x=0;g.p.z=4;g.p.mp=80;g.random=()=>.5;
+ const e=spawn(g,0,5);e.hp=e.maxHp=1000;
+ assert.ok(action(g,'whirlwind'));const first=1000-e.hp,queued=g.p.whirlwindHits![0];
+ assert.equal(queued.due,.25);assert.ok(Math.abs(first-queued.damage)<=1);
+ step(g,.24);assert.equal(1000-e.hp,first);step(g,.01);assert.equal(1000-e.hp,first+queued.damage);assert.equal(g.p.whirlwindHits!.length,0);
+ g.p.cd.whirlwind=0;g.p.mp=80;action(g,'whirlwind');const before=e.hp;g.p.dead=true;step(g,.3);assert.equal(e.hp,before);
+});
