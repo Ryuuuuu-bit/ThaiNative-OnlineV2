@@ -138,7 +138,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			["MATK", t.matk || 0, oldT?.matk || 0],
 			...t.modifiers
 				.filter(
-					(m) => m.kind === "flat" || m.kind === "stat" || m.kind === "percent",
+					(m): m is Extract<typeof m, { value: number }> =>
+						m.kind === "flat" || m.kind === "stat" || m.kind === "percent",
 				)
 				.map((m) => [
 					"stat" in m ? m.stat : "",

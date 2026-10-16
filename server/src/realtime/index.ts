@@ -376,10 +376,11 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		}
         const player=g.players.get(peer.id)!;
         if(message.t==='inv'){
-         if(player.dead)return;
+         const reject=(error:string)=>send(peer.ws,{t:'inv',req:message.req,error});
+         if(player.dead){reject('รอฟื้นตัวก่อน');return;}
          if(message.op==='pickup'){const d=g.drops.find(d=>d.id===message.drop);if(d&&!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(player.x-d.x,player.z-d.z)<4){moveTo(g,d.x,d.z);}return;}
-         if(message.op==='buy'||message.op==='sell'){const npc=CITY_BUILDINGS.find(b=>b.id===message.shop);if(g.mapId!=='city_plaza'||!npc||Math.hypot(player.x-npc.talk.x,player.z-npc.talk.z)>=3){send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'ไปพบพ่อค้าก่อน'}]});return;}}
-         if(message.op==='use'&&(player.cd.potion>0||room.economyBusy))return;
+         if(message.op==='buy'||message.op==='sell'){const npc=CITY_BUILDINGS.find(b=>b.id===message.shop);if(g.mapId!=='city_plaza'||!npc||Math.hypot(player.x-npc.talk.x,player.z-npc.talk.z)>=3){reject('ไปพบพ่อค้าก่อน');return;}}
+         if(message.op==='use'&&(player.cd.potion>0||room.economyBusy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
          economy(peer,player,message,message.req);return;
         }
         if(room.economyBusy)return;

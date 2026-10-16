@@ -263,6 +263,22 @@ test('maps isolate rooms, persist transfers and healer cooldown, reject remote g
  const snap=await reconnect.until(m=>m.t==='snap');assert.equal(snap.mapId,'city_plaza');assert.equal(snap.players.find((v:any)=>v.id===p.id).healerReadyAt,readyAt);
 });
 
+test('inventory precondition failures reply to the request so the bag can recover',async t=>{
+ const f=await fixture(t),user=await f.make('BagRecovery'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
+ const before=await f.store.inventory(user.character.accountId,p.id);
+ for(const condition of ['cooldown','busy','dead','shop']){
+  p.cd.potion=condition==='cooldown'?100:0;p.dead=condition==='dead';room.economyBusy=condition==='busy'?1:0;
+  const req=crypto.randomUUID();peer.send({t:'inv',req,...(condition==='shop'?{op:'buy',shop:'market',template:'red_small'}:{op:'use',id:'stack:red_small'})});
+  const reply=await peer.until(m=>m.t==='inv'&&m.req===req);assert.ok(reply.error,condition);
+ }
+ room.economyBusy=0;p.dead=false;p.cd.potion=0;
+ assert.deepEqual(await f.store.inventory(user.character.accountId,p.id),before);
+ const req=crypto.randomUUID();peer.send({t:'inv',req,op:'settings',on:false});
+ const recovered=await peer.until(m=>m.t==='inv'&&m.req===req);assert.equal(recovered.error,undefined);assert.equal(recovered.inventory.autoPickup,false);
+});
+
 test('two sockets racing released loot award exactly once; disconnect during commit is atomic',async t=>{
  const f=await fixture(t,true),a=await f.make('LootOne',true),b=await f.make('LootTwo',true),one=f.open(a.cookie),two=f.open(b.cookie);
  await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');one.send({t:'spawnReady'});two.send({t:'spawnReady'});await one.until(m=>m.t==='snap');await two.until(m=>m.t==='snap');
