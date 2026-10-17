@@ -28,6 +28,10 @@ export function cityPaving(atlas:T.Texture,size:number){
    float tracks=exp(-pow((abs(p.x)-.85)*7.,2.))+exp(-pow((abs(p.y)-.85)*7.,2.));
    stone=mix(stone,vec3(.44,.39,.29),dirt*.22);stone=mix(stone,vec3(.30,.40,.28),moss);stone*=1.-tracks*.055*road*(.4+.6*wear);
    float puddle=0.;for(int i=0;i<5;i++){float k=float(i);vec2 centre=vec2(-22.+k*10.,sin(k*2.3)*23.);vec2 d=(p-centre)/vec2(2.4,1.2);puddle=max(puddle,(1.-smoothstep(.6,1.,dot(d,d)+cityNoise(p*2.)*.18))*.14);}
+   float cornerMoss=smoothstep(35.,47.,min(abs(p.x),abs(p.y)))*(.4+.6*wear);
+   stone=mix(stone,vec3(.26,.37,.18),cornerMoss*.65);
+   float pool=0.;for(int i=0;i<2;i++){float side=float(i)*9.-4.5;pool+=exp(-dot(p-vec2(side,47.9),p-vec2(side,47.9))/2.);pool+=exp(-dot(p-vec2(47.9,side),p-vec2(47.9,side))/2.);}
+   stone+=vec3(.34,.17,.035)*pool;
    stone=mix(stone,vec3(.41,.51,.51),puddle);float exterior=step(${(size/2).toFixed(1)},max(abs(p.x),abs(p.y)));stone=mix(stone,mix(vec3(.30,.40,.24),vec3(.48,.46,.29),wear),exterior*(1.-road));diffuseColor.rgb*=stone*(.87+pigment*.28)*(1.+(n-.5)*.12);
   `);
  };

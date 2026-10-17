@@ -109,12 +109,28 @@ export const CITY_PLANTERS = [...ring(12, 1), ...[[-40, -28], [40, -28], [-42, 2
 export const CITY_BENCHES = [...ring(15, 2), ...[[-18, 19], [15, 19], [-13, -15], [13, -15]].map(([x, z]) => ({ x, z }))].map(p => ({ ...p, w: 2.2, d: 0.7 }));
 /** Market stalls around the main market; `x/z/w/d` is the canopy, `solid` also covers the crate and barrel at its west front. */
 export const CITY_STALLS = [[25, -8], [25, 8], [37, -9], [37, 9]].map(([x, z]) => ({ x, z, w: 3, d: 2.1, solid: { x: x - 0.35, z: z + 0.125, w: 3.7, d: 2.35 } }));
-const cityBoxes = [...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid)];
+/** City polish 4 art (guard booths, wells, carts, hay, crate clusters, forge firewood); the scene draws them from this list. */
+export const CITY_ART_SOLIDS: ({ kind: 'box'; x: number; z: number; w: number; d: number; label: string } | { kind: 'circle'; x: number; z: number; r: number; label: string })[] = [
+	{kind:'box',x:-7,z:44.5,w:1.8,d:1.8,label:'guard-south'},
+	{kind:'box',x:44.5,z:-7,w:1.8,d:1.8,label:'guard-east'},
+	{kind:'circle',x:-24,z:-27,r:1.1,label:'well-north'},
+	{kind:'circle',x:27,z:24,r:1.1,label:'well-south'},
+	{kind:'box',x:-26,z:24,w:3.2,d:1.6,label:'cart-west'},
+	{kind:'box',x:10,z:-22,w:3.2,d:1.6,label:'cart-north'},
+	{kind:'box',x:-28.5,z:24,w:1.2,d:1.2,label:'hay-west'},
+	{kind:'box',x:12.5,z:-22,w:1.2,d:1.2,label:'hay-north'},
+	{kind:'box',x:-28,z:-35,w:1.8,d:2,label:'crates-north'},
+	{kind:'box',x:28,z:-35,w:1.8,d:2,label:'crates-east'},
+	{kind:'box',x:-32,z:16,w:1.8,d:2,label:'crates-west'},
+	{kind:'box',x:32,z:16,w:1.8,d:2,label:'crates-south'},
+	{kind:'box',x:-36.3,z:0,w:1.4,d:3,label:'firewood-forge'},
+];
+const cityBoxes = [...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid), ...CITY_ART_SOLIDS.filter(s => s.kind === 'box')];
 export function cityWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= CITY.halfX - 1 - r || Math.abs(z) >= CITY.halfZ - 1 - r) return false;
 	if (Math.abs(x) < CITY_TOWER.half + r && Math.abs(z) < CITY_TOWER.half + r) return false;
 	if (Math.hypot(x - CITY_FOUNTAIN.x, z - CITY_FOUNTAIN.z) < CITY_FOUNTAIN.r + r) return false;
-	if (CITY_PLANTERS.some(p => Math.hypot(x - p.x, z - p.z) < p.r + r)) return false;
+	if ([...CITY_PLANTERS, ...CITY_ART_SOLIDS.filter(s => s.kind === 'circle')].some(p => Math.hypot(x - p.x, z - p.z) < p.r + r)) return false;
 	return !cityBoxes.some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r);
 }
 
