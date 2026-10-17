@@ -8,6 +8,8 @@ const field = { mapId: 'meadow', dead: false, bossAlive: true, bossTargeted: fal
 test('map themes, unknown map silence, and city precedence over boss state', () => {
   const selection = new MusicSelection();
   assert.equal(selection.select(field, 0), 'meadow');
+  assert.equal(new MusicSelection().select({ ...field, mapId: 'forest', bossAlive: false }, 0), 'forest');
+  assert.equal(new MusicSelection().select({ ...field, mapId: 'forest', bossTargeted: true }, 0), 'king');
   assert.equal(selection.select({ ...field, mapId: 'city_plaza', bossAggro: true }, 1), 'city');
   assert.equal(selection.select({ ...field, mapId: 'unknown' }, 2), null);
 });
@@ -27,7 +29,7 @@ test('fight end, King death/removal, and player death release exactly four secon
     assert.equal(selection.select(end, 16), 'meadow');
     assert.equal(selection.select(end, 30), 'meadow');
   }
-  assert.equal(MUSIC_RELEASE, 4); assert.equal(MUSIC_CROSSFADE, 1.5);
+  assert.equal(MUSIC_RELEASE, 4); assert.equal(MUSIC_CROSSFADE, 3);
 });
 test('reengagement cancels release; map exit clears stale combat memory', () => {
   const selection = new MusicSelection();
@@ -42,10 +44,10 @@ const flush = () => new Promise(resolve => setImmediate(resolve));
 test('death ducks to 30%; impact attenuation is capped at -3 dB and composes with death', () => {
   assert.equal(musicDuckGain(false, false), 1);
   assert.equal(musicDuckGain(true, false), .3);
-  assert.equal(20 * Math.log10(musicDuckGain(false, true)), -3);
-  assert.equal(musicDuckGain(true, true), .3 * Math.pow(10, -3 / 20));
+  assert.ok(Math.abs(20 * Math.log10(musicDuckGain(false, true)) + 1.5) < 1e-9);
+  assert.equal(musicDuckGain(true, true), .3 * Math.pow(10, -1.5 / 20));
 });
-test('streaming is deferred, crossfades last 1.5 seconds, hidden pauses and focus resumes', async t => {
+test('streaming is deferred, crossfades last 3 seconds, hidden pauses and focus resumes', async t => {
   const media = [], ramps = [], requests = [];
   t.mock.timers.enable({ apis: ['setTimeout'] });
   t.mock.method(globalThis, 'fetch', async url => {
@@ -71,12 +73,12 @@ test('streaming is deferred, crossfades last 1.5 seconds, hidden pauses and focu
   assert.equal(requests.length, 0); assert.equal(media.length, 0);
   music.select('city'); await flush();
   assert.equal(requests.length, 1); assert.equal(media[0].loop, true); assert.equal(media[0].preload, 'none');
-  assert.deepEqual(ramps.at(-1), { value: 1, end: 11.5 });
+  assert.deepEqual(ramps.at(-1), { value: 1, end: 13 });
   for (let i = 0; i < 10; i++) { music.visibility(false); music.select('city'); }
   assert.equal(media[0].plays, 1);
   music.select('king'); await flush();
   assert.equal(media.length, 2); assert.equal(media[0].paused, false);
-  assert.deepEqual(ramps.slice(-2), [{ value: 0, end: 11.5 }, { value: 1, end: 11.5 }]);
+  assert.deepEqual(ramps.slice(-2), [{ value: 0, end: 13 }, { value: 1, end: 13 }]);
   music.visibility(true); assert.ok(media.every(m => m.paused));
   // If the browser revokes autoplay while hidden, the next gesture retries
   // the current track even though the selected track has not changed.
@@ -84,8 +86,8 @@ test('streaming is deferred, crossfades last 1.5 seconds, hidden pauses and focu
   media[1].play = () => Promise.reject(new DOMException('gesture required', 'NotAllowedError'));
   music.visibility(false); await flush(); assert.equal(media[1].paused, true);
   media[1].play = play; music.gesture(); await flush(); assert.equal(media[1].paused, false);
-  t.mock.timers.tick(1500); assert.equal(media[0].paused, true);
-  music.select(null); await flush(); t.mock.timers.tick(1500);
+  t.mock.timers.tick(3000); assert.equal(media[0].paused, true);
+  music.select(null); await flush(); t.mock.timers.tick(3000);
   assert.ok(media.every(m => m.paused));
 });
 test('manifest failure stays silent and logs once across repeated selections', async t => {
@@ -100,13 +102,16 @@ test('manifest failure stays silent and logs once across repeated selections', a
 test('packed tracks have both hashed codecs, stereo loops, and verified decoded seams', () => {
   const manifest = JSON.parse(readFileSync(new URL('../public/assets/audio/bgm.json', import.meta.url)));
   assert.equal(manifest.channels, 2);
+  assert.deepEqual(Object.keys(manifest.tracks), ['city', 'meadow', 'forest', 'king']);
   for (const [id, track] of Object.entries(manifest.tracks)) {
     assert.equal(track.loopCrossfade, 1.5); assert.equal(track.loopStart, 0);
-    assert.equal(track.loopEnd, id === 'king' ? 88.5 : 118.5);
+    // Loops are the source minus the 1.5 s overlap and any trimmed fade (at most a few seconds).
+    assert.ok(Math.abs(track.loopEnd - (track.sourceDuration - 1.5 - (track.trimmedStart ?? 0) - (track.trimmedEnd ?? 0))) < .01);
+    assert.ok(track.loopEnd > track.sourceDuration - 8);
     assert.ok(track.pcmSeam.passed);
     for (const codec of ['opus', 'aac']) {
       const file = track[codec];
-      assert.match(file.url, /bgm-(city|meadow|king)-[a-f0-9]{12}\.(ogg|m4a)$/);
+      assert.match(file.url, /bgm-(city|meadow|forest|king)-[a-f0-9]{12}\.(ogg|m4a)$/);
       assert.equal(statSync(new URL('../public' + file.url, import.meta.url)).size, file.bytes);
       assert.ok(file.seam.passed); assert.ok(file.seam.wrapJump < .02);
     }

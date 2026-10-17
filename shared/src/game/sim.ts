@@ -157,11 +157,11 @@ export interface Projectile extends Vec {
 }
 export { CAMP, ARENA, OBSTACLES, water, walkable } from "./collision.js";
 import { CAMP, ARENA, walkable, moveSliding as move } from "./collision.js";
-import { FOREST_SPAWNS, FOREST_CAMP, FIELD_BOSS, isField } from "./maps.js";
+import { MEADOW_SPAWNS, FOREST_SPAWNS, FIELD_BOSS, isField, nearestCamp, FOREST_ENTRY } from "./maps.js";
 /** The map of the game currently being stepped (the sim is synchronous, so one at a time). */
 let activeMap: MapId = "meadow";
 const walk = (x: number, z: number, r = 0.3) => walkable(x, z, r, activeMap);
-const campFor = (m: MapId) => (m === "forest" ? FOREST_CAMP : CAMP);
+const campFor = (m: MapId, p: Vec) => nearestCamp(m, p.x, p.z) ?? CAMP;
 /** Cooldown until this player can fight / loot a field boss again. */
 export function bossReadyAt(p: Pick<Player, "bossReadyAt" | "bossCooldowns">, dataId: string) {
 	return dataId === "king_jelly" ? p.bossReadyAt ?? 0 : p.bossCooldowns?.[dataId] ?? 0;
@@ -315,10 +315,19 @@ export function createGame(
 			level?: number;
 		}[],
 	};
-	const positions = [[-4,-7],[3,-5],[-6,-1],[0,1],[5,5],[-4,6],[-1,8],[7,8],[-3,11],[7,12]];
-  if(mapId==='meadow') positions.forEach(([x,z],i)=>spawn(g,x,z,false,i<4?'pink':i%2?'sky':'mint'));
- else if(mapId==='forest') for(const s of FOREST_SPAWNS) spawn(g,s.x,s.z,false,'pink',false,s.dataId);
- else Object.assign(p,CITY_SPAWN,{fx:0,fz:1});
+			if (mapId === "meadow") {
+		for (const s of MEADOW_SPAWNS) spawn(g, s.x, s.z, false, s.variant, false, s.dataId);
+	} else if (mapId === "forest") {
+		for (const s of FOREST_SPAWNS) spawn(g, s.x, s.z, false, "pink", false, s.dataId);
+		Object.assign(p, FOREST_ENTRY, { fx: 1, fz: 0 });
+	}
+	else Object.assign(p, CITY_SPAWN, { fx: 0, fz: 1 });
+	// Field boss: present from the start, then back `respawnMinutes` after each death (see bossTimer).
+		if (mapId === "meadow" || mapId === "forest")
+		[FIELD_BOSS[mapId]].forEach((rule) => {
+			spawn(g, rule.x, rule.z, true, "pink", false, rule.dataId);
+			g.bossSpawned = true;
+		});
 
 	return g;
 }
@@ -488,7 +497,7 @@ function reward(g: Game, e: Enemy) {
 function defeat(g: Game, e: Enemy) {
 	e.dead = true;
 	e.deathAge = 0;
-	e.respawn = e.boss?600:12;
+		e.respawn = e.boss ? (g.mapId === "meadow" || g.mapId === "forest" ? FIELD_BOSS[g.mapId].respawnMinutes * 60 : 1800) : 12;
 	e.windup = 0;
 	e.hurt = 0;
 	setMotion(e, "death");
@@ -515,12 +524,22 @@ function defeat(g: Game, e: Enemy) {
 				setMotion(minion, "death");
 			}
 	}
-		const rule = g.mapId === "meadow" || g.mapId === "forest" ? FIELD_BOSS[g.mapId] : undefined;
-	if (rule && g.kills >= rule.kills && !g.bossSpawned && [...g.players.values()].some(p=>g.wallTime>=bossReadyAt(p, rule.dataId))) {
-		g.bossSpawned = true;
-		spawn(g, rule.x, rule.z, true, "pink", false, rule.dataId);
-		emit(g, "boss");
-	}
+		}
+/** Seconds until the field boss is back (0 while it is alive or on maps without one). */
+export function bossTimer(g: Game) {
+	const boss = g.enemies.find((e) => e.boss && !e.summoned);
+	return boss && boss.dead ? Math.max(0, boss.respawn) : 0;
+}
+/** Restores a map-wide schedule (e.g. a room created while the boss is still on its timer). */
+export function setBossTimer(g: Game, seconds: number) {
+	const boss = g.enemies.find((e) => e.boss && !e.summoned);
+	if (!boss || seconds <= 0) return;
+	boss.dead = true;
+	boss.rewarded = true;
+	boss.deathAge = 99;
+	boss.respawn = seconds;
+	boss.hp = boss.maxHp;
+	setMotion(boss, "death");
 }
 function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number}) {
 	if (e.dead) return false;
@@ -1025,7 +1044,8 @@ function route(from: Vec, to: Vec): Vec[] {
 		queue = [start];
 	const parents = new Map<string, Vec | null>([[key(start), null]]);
 	let end: Vec | undefined;
-	for (let i = 0; i < queue.length; i++) {
+	// Bounded so a far or unreachable goal on a large map cannot stall the room tick.
+	for (let i = 0; i < queue.length && i < 6000; i++) {
 		const v = queue[i];
 		if (Math.hypot(v.x - to.x, v.z - to.z) < 1.5 && clearSegment(v, to)) {
 			end = v;
@@ -1185,7 +1205,7 @@ function autoStep(g: Game, dt: number): Vec {
 					? "fight"
 					: "seek"
 				: "idle";
-				const camp = campFor(g.mapId), atCamp = Math.hypot(p.x - camp.x, p.z - camp.z) < 1;
+				const camp = campFor(g.mapId, p), atCamp = Math.hypot(p.x - camp.x, p.z - camp.z) < 1;
 		if (target && d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
@@ -1210,7 +1230,7 @@ function autoStep(g: Game, dt: number): Vec {
 	}
 	const target = g.enemies.find((e) => e.id === g.target && !e.dead);
 	const retreat = p.autoState === "retreat",
-				atCamp = Math.hypot(p.x - campFor(g.mapId).x, p.z - campFor(g.mapId).z) < 1;
+				atCamp = Math.hypot(p.x - campFor(g.mapId, p).x, p.z - campFor(g.mapId, p).z) < 1;
 	if (target) {
 		const d = Math.hypot(target.x - p.x, target.z - p.z),
 			reach = target.boss ? 2.3 : 1.8;
@@ -1228,7 +1248,7 @@ function autoStep(g: Game, dt: number): Vec {
 			return navigate(g, target, reach);
 		}
 	}
-		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId));
+		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId, p));
 	p.autoState = target ? "seek" : "idle";
 	return Math.hypot(p.x, p.z) < 0.4 ? still : navigate(g, { x: 0, z: 0 });
 }
@@ -1499,7 +1519,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
  const canRegen=!p.inventory||inventoryWeight(p.inventory,g.data)<p.stats.weight*g.data.economy.regenWeightRatio;
  if(canRegen){
 		p.mp = Math.min(p.maxMp, p.mp + dt * p.stats.spRegen);
-				if (isField(g.mapId) && Math.hypot(p.x - campFor(g.mapId).x, p.z - campFor(g.mapId).z) < 2)
+				if (isField(g.mapId) && Math.hypot(p.x - campFor(g.mapId, p).x, p.z - campFor(g.mapId, p).z) < 2)
 			p.hp = Math.min(p.maxHp, p.hp + dt * 20);
 		else
 			p.hp = Math.min(
@@ -1634,8 +1654,9 @@ export function step(
 				e.windup = 0;
 				e.rewarded = false;
 				e.deathAge = 0;
-				e.damageBy = {};e.bossPhase=1;e.engaged=false;
+								e.damageBy = {};e.bossPhase=1;e.engaged=false;
 				setMotion(e, "idle");
+				if (e.boss) emit(g, "boss");
 			}
 			continue;
 		}

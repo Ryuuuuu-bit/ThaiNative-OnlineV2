@@ -14,7 +14,8 @@ test('painted environment manifest keeps every asset in non-overlapping atlas bo
    const[x,y,w,h]=a.rect;assert.ok(x>=8&&y>=8&&x+w<=2040&&y+h<=2040);
    assert.deepEqual(a.pixelSize,[w,h]);assert.deepEqual(a.uvRect,[x/2048,1-(y+h)/2048,w/2048,h/2048]);
    assert.ok(a.anchor.every(v=>v>=0&&v<=1));
-   assert.deepEqual(a.worldSize,a.sourcePixelSize.map(v=>v/113));
+   assert.ok(a.worldSize.every((v,i)=>Math.abs(v-a.sourcePixelSize[i]/113*(a.worldScale??1))<1e-8));
+   assert.ok(Math.abs(a.worldSize[0]/a.worldSize[1]-a.sourcePixelSize[0]/a.sourcePixelSize[1])<1e-8,'uniform physical scale');
    assert.ok(a.pixelSize.every((v,i)=>Math.abs(v-a.sourcePixelSize[i]*.5)<=.5));
    for(const b of entries.slice(i+1)){const[bx,by,bw,bh]=b.rect;assert.ok(x+w<=bx||bx+bw<=x||y+h<=by||by+bh<=y,`${a.name} overlaps ${b.name}`);}
   }

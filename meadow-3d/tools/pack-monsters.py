@@ -2,6 +2,11 @@
 Preserves airborne source offsets and uses one coordinate scale per species.
 """
 from pathlib import Path
+import sys
+if '--forest' in sys.argv:
+ import pack_forest_monsters
+ pack_forest_monsters.pack()
+ raise SystemExit(0)
 from statistics import median
 from PIL import Image,ImageDraw
 import json,numpy as np
@@ -86,4 +91,10 @@ runtime={sp:{m:{'frames':len(d['indices']),'duration':d['duration'],'frameDurati
 report.update({'speciesCount':2,'motionAtlasCount':sum(len(s['motions']) for s in manifest['species'].values()),'frameCount':sum(sum(m['frames']*4 for m in s['motions'].values()) for s in manifest['species'].values()),'phase2FullFrameCopies':0,'cells':{k:v['cellSize'] for k,v in manifest['species'].items()}})
 (ART/'packing-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
 print(json.dumps({k:report[k] for k in ['motionAtlasCount','frameCount','clippingWarnings','phase2FullFrameCopies']}))
+
+# A complete rebuild also includes the forest when its accepted sources exist.
+# --forest above is the non-destructive incremental route used for this art pass.
+if (ROOT/'art/painted-forest/wolf-NE-back-v2-generated.png').exists():
+ import pack_forest_monsters
+ pack_forest_monsters.pack()
 

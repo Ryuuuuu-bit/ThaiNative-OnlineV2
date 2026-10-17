@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "directions": [
     "SE",
     "SW",
@@ -3438,6 +3438,5489 @@
           "glowMask": "king-death-glow-v1.png"
         }
       }
+    },
+    "shroom": {
+      "cellSize": [
+        384,
+        256
+      ],
+      "baseline": 240,
+      "anchor": [
+        0.5,
+        0.0625
+      ],
+      "referenceHeightPixels": 193.0,
+      "bodyWorldHeight": 2.76,
+      "quadWorldSize": [
+        5.491398963730569,
+        3.6609326424870465
+      ],
+      "motions": {
+        "idle": {
+          "file": "shroom-idle-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.65,
+          "frameDurations": [
+            0.55,
+            0.55,
+            0.55
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  102,
+                  52,
+                  285,
+                  240
+                ],
+                "groundContact": [
+                  184.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  100,
+                  53,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  180.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  50,
+                  280,
+                  240
+                ],
+                "groundContact": [
+                  182.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  99,
+                  52,
+                  282,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  53,
+                  284,
+                  240
+                ],
+                "groundContact": [
+                  203.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  104,
+                  50,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  201.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  117,
+                  46,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  207.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  113,
+                  41,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  203.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  112,
+                  61,
+                  278,
+                  240
+                ],
+                "groundContact": [
+                  198.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  97,
+                  46,
+                  267,
+                  240
+                ],
+                "groundContact": [
+                  176.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  41,
+                  271,
+                  240
+                ],
+                "groundContact": [
+                  180.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  106,
+                  61,
+                  272,
+                  240
+                ],
+                "groundContact": [
+                  185.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "hop": {
+          "file": "shroom-hop-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.6,
+          "frameDurations": [
+            0.18,
+            0.22,
+            0.2
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  104,
+                  51,
+                  291,
+                  240
+                ],
+                "groundContact": [
+                  187.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  106,
+                  36,
+                  291,
+                  223
+                ],
+                "groundContact": [
+                  193.0,
+                  223
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  100,
+                  56,
+                  288,
+                  240
+                ],
+                "groundContact": [
+                  191.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  93,
+                  51,
+                  280,
+                  240
+                ],
+                "groundContact": [
+                  196.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  93,
+                  36,
+                  278,
+                  223
+                ],
+                "groundContact": [
+                  190.0,
+                  223
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  96,
+                  56,
+                  284,
+                  240
+                ],
+                "groundContact": [
+                  192.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  116,
+                  50,
+                  285,
+                  240
+                ],
+                "groundContact": [
+                  191.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  110,
+                  37,
+                  279,
+                  233
+                ],
+                "groundContact": [
+                  182.0,
+                  233
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  114,
+                  56,
+                  284,
+                  240
+                ],
+                "groundContact": [
+                  206.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  99,
+                  50,
+                  268,
+                  240
+                ],
+                "groundContact": [
+                  192.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  105,
+                  37,
+                  274,
+                  233
+                ],
+                "groundContact": [
+                  201.0,
+                  233
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  100,
+                  56,
+                  270,
+                  240
+                ],
+                "groundContact": [
+                  177.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "attack": {
+          "file": "shroom-attack-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.95,
+          "frameDurations": [
+            0.6,
+            0.18,
+            0.17
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  104,
+                  47,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  179.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  96,
+                  66,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  180.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  65,
+                  298,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  90,
+                  47,
+                  280,
+                  240
+                ],
+                "groundContact": [
+                  204.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  66,
+                  288,
+                  240
+                ],
+                "groundContact": [
+                  203.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  86,
+                  65,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  99,
+                  44,
+                  277,
+                  240
+                ],
+                "groundContact": [
+                  213.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  86,
+                  51,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  158.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  53,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  216.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  108,
+                  44,
+                  286,
+                  240
+                ],
+                "groundContact": [
+                  171.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  51,
+                  298,
+                  240
+                ],
+                "groundContact": [
+                  225.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  53,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  167.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "death": {
+          "file": "shroom-death-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.75,
+          "frameDurations": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  105,
+                  75,
+                  279,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  86,
+                  82,
+                  293,
+                  240
+                ],
+                "groundContact": [
+                  184.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  90,
+                  118,
+                  292,
+                  240
+                ],
+                "groundContact": [
+                  187.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  105,
+                  75,
+                  279,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  91,
+                  82,
+                  298,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  93,
+                  118,
+                  295,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  128,
+                  75,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  213.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  108,
+                  83,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  205.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  101,
+                  102,
+                  292,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  87,
+                  75,
+                  256,
+                  240
+                ],
+                "groundContact": [
+                  170.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  83,
+                  276,
+                  240
+                ],
+                "groundContact": [
+                  178.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  92,
+                  102,
+                  283,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "wolf": {
+      "cellSize": [
+        384,
+        256
+      ],
+      "baseline": 240,
+      "anchor": [
+        0.5,
+        0.0625
+      ],
+      "referenceHeightPixels": 198.0,
+      "bodyWorldHeight": 2.76,
+      "quadWorldSize": [
+        5.352727272727273,
+        3.5684848484848484
+      ],
+      "motions": {
+        "idle": {
+          "file": "wolf-idle-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.65,
+          "frameDurations": [
+            0.55,
+            0.55,
+            0.55
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  95,
+                  30,
+                  295,
+                  240
+                ],
+                "groundContact": [
+                  236.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  93,
+                  30,
+                  279,
+                  240
+                ],
+                "groundContact": [
+                  222.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  30,
+                  282,
+                  240
+                ],
+                "groundContact": [
+                  221.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  89,
+                  30,
+                  289,
+                  240
+                ],
+                "groundContact": [
+                  147.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  105,
+                  30,
+                  291,
+                  240
+                ],
+                "groundContact": [
+                  161.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  102,
+                  30,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  162.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  91,
+                  50,
+                  293,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  54,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  100,
+                  54,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  205.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  92,
+                  50,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  185.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  54,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  184.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  54,
+                  284,
+                  240
+                ],
+                "groundContact": [
+                  178.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "hop": {
+          "file": "wolf-hop-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.6,
+          "frameDurations": [
+            0.18,
+            0.22,
+            0.2
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  82,
+                  31,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  207.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  43,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  269.0,
+                  240
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  31,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  247.5,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  97,
+                  31,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  176.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  43,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  114.0,
+                  240
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  90,
+                  31,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  135.5,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  90,
+                  68,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  168.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  64,
+                  302,
+                  229
+                ],
+                "groundContact": [
+                  147.5,
+                  229
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  64,
+                  285,
+                  240
+                ],
+                "groundContact": [
+                  185.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  68,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  215.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  64,
+                  302,
+                  229
+                ],
+                "groundContact": [
+                  235.5,
+                  229
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  99,
+                  64,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  198.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "attack": {
+          "file": "wolf-attack-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.75,
+          "frameDurations": [
+            0.4,
+            0.18,
+            0.17
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  90,
+                  48,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  234.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  37,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  278.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  38,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  225.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  48,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  149.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  37,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  105.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  38,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  158.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  97,
+                  97,
+                  298,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  55,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  53,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  210.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  86,
+                  97,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  184.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  55,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  184.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  53,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  173.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "death": {
+          "file": "wolf-death-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.75,
+          "frameDurations": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  82,
+                  54,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  221.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  68,
+                  290,
+                  240
+                ],
+                "groundContact": [
+                  224.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  77,
+                  292,
+                  240
+                ],
+                "groundContact": [
+                  207.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  54,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  162.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  94,
+                  68,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  159.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  92,
+                  77,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  176.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  109,
+                  75,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  194.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  104,
+                  60,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  105,
+                  78,
+                  273,
+                  240
+                ],
+                "groundContact": [
+                  185.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  75,
+                  275,
+                  240
+                ],
+                "groundContact": [
+                  189.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  60,
+                  280,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  111,
+                  78,
+                  279,
+                  240
+                ],
+                "groundContact": [
+                  198.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "wisp": {
+      "cellSize": [
+        384,
+        256
+      ],
+      "baseline": 240,
+      "anchor": [
+        0.5,
+        0.0625
+      ],
+      "referenceHeightPixels": 201.0,
+      "bodyWorldHeight": 2.76,
+      "quadWorldSize": [
+        5.272835820895522,
+        3.5152238805970146
+      ],
+      "motions": {
+        "idle": {
+          "file": "wisp-idle-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.65,
+          "frameDurations": [
+            0.55,
+            0.55,
+            0.55
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  89,
+                  8,
+                  286,
+                  214
+                ],
+                "groundContact": [
+                  172.0,
+                  214
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  293,
+                  215
+                ],
+                "groundContact": [
+                  167.0,
+                  215
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  96,
+                  8,
+                  299,
+                  215
+                ],
+                "groundContact": [
+                  177.0,
+                  215
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  98,
+                  8,
+                  295,
+                  214
+                ],
+                "groundContact": [
+                  211.0,
+                  214
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  91,
+                  8,
+                  302,
+                  215
+                ],
+                "groundContact": [
+                  216.0,
+                  215
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  85,
+                  8,
+                  288,
+                  215
+                ],
+                "groundContact": [
+                  206.0,
+                  215
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  99,
+                  8,
+                  298,
+                  223
+                ],
+                "groundContact": [
+                  207.0,
+                  223
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  105,
+                  8,
+                  282,
+                  203
+                ],
+                "groundContact": [
+                  187.0,
+                  203
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  84,
+                  8,
+                  291,
+                  199
+                ],
+                "groundContact": [
+                  164.0,
+                  199
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  86,
+                  8,
+                  285,
+                  223
+                ],
+                "groundContact": [
+                  176.0,
+                  223
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  102,
+                  8,
+                  279,
+                  203
+                ],
+                "groundContact": [
+                  196.0,
+                  203
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  93,
+                  8,
+                  300,
+                  199
+                ],
+                "groundContact": [
+                  219.0,
+                  199
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "hop": {
+          "file": "wisp-hop-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.6,
+          "frameDurations": [
+            0.18,
+            0.22,
+            0.2
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  99,
+                  8,
+                  302,
+                  202
+                ],
+                "groundContact": [
+                  203.0,
+                  202
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  197
+                ],
+                "groundContact": [
+                  211.0,
+                  197
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  17,
+                  302,
+                  189
+                ],
+                "groundContact": [
+                  188.0,
+                  189
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  8,
+                  285,
+                  202
+                ],
+                "groundContact": [
+                  180.0,
+                  202
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  197
+                ],
+                "groundContact": [
+                  172.0,
+                  197
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  17,
+                  302,
+                  189
+                ],
+                "groundContact": [
+                  195.0,
+                  189
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  102,
+                  8,
+                  302,
+                  201
+                ],
+                "groundContact": [
+                  192.0,
+                  200
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  195
+                ],
+                "groundContact": [
+                  186.0,
+                  194
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  300,
+                  198
+                ],
+                "groundContact": [
+                  192.0,
+                  198
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  8,
+                  282,
+                  201
+                ],
+                "groundContact": [
+                  191.0,
+                  200
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  195
+                ],
+                "groundContact": [
+                  197.0,
+                  194
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  84,
+                  8,
+                  302,
+                  198
+                ],
+                "groundContact": [
+                  191.0,
+                  198
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "attack": {
+          "file": "wisp-attack-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.05,
+          "frameDurations": [
+            0.7,
+            0.18,
+            0.17
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  89,
+                  8,
+                  287,
+                  215
+                ],
+                "groundContact": [
+                  171.0,
+                  215
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  215
+                ],
+                "groundContact": [
+                  152.5,
+                  215
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  216
+                ],
+                "groundContact": [
+                  110.0,
+                  216
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  97,
+                  8,
+                  295,
+                  215
+                ],
+                "groundContact": [
+                  212.0,
+                  215
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  215
+                ],
+                "groundContact": [
+                  230.5,
+                  215
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  216
+                ],
+                "groundContact": [
+                  273.0,
+                  216
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  95,
+                  8,
+                  297,
+                  210
+                ],
+                "groundContact": [
+                  187.0,
+                  210
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  84,
+                  8,
+                  302,
+                  216
+                ],
+                "groundContact": [
+                  156.0,
+                  216
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  204
+                ],
+                "groundContact": [
+                  152.5,
+                  204
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  87,
+                  8,
+                  289,
+                  210
+                ],
+                "groundContact": [
+                  196.0,
+                  210
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  300,
+                  216
+                ],
+                "groundContact": [
+                  227.0,
+                  216
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  204
+                ],
+                "groundContact": [
+                  230.5,
+                  204
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "death": {
+          "file": "wisp-death-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.75,
+          "frameDurations": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  217
+                ],
+                "groundContact": [
+                  189.0,
+                  217
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  89,
+                  8,
+                  290,
+                  215
+                ],
+                "groundContact": [
+                  174.0,
+                  215
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  94,
+                  48,
+                  288,
+                  240
+                ],
+                "groundContact": [
+                  171.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  217
+                ],
+                "groundContact": [
+                  194.0,
+                  217
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  94,
+                  8,
+                  295,
+                  215
+                ],
+                "groundContact": [
+                  209.0,
+                  215
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  96,
+                  48,
+                  290,
+                  240
+                ],
+                "groundContact": [
+                  212.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  219
+                ],
+                "groundContact": [
+                  200.0,
+                  219
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  218
+                ],
+                "groundContact": [
+                  178.0,
+                  218
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  53,
+                  284,
+                  240
+                ],
+                "groundContact": [
+                  179.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  219
+                ],
+                "groundContact": [
+                  183.0,
+                  219
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  8,
+                  302,
+                  218
+                ],
+                "groundContact": [
+                  205.0,
+                  218
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  100,
+                  53,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  204.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "stump": {
+      "cellSize": [
+        384,
+        256
+      ],
+      "baseline": 240,
+      "anchor": [
+        0.5,
+        0.0625
+      ],
+      "referenceHeightPixels": 203.0,
+      "bodyWorldHeight": 3.312,
+      "quadWorldSize": [
+        6.265064039408867,
+        4.176709359605911
+      ],
+      "motions": {
+        "idle": {
+          "file": "stump-idle-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.65,
+          "frameDurations": [
+            0.55,
+            0.55,
+            0.55
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  91,
+                  46,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  180.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  98,
+                  44,
+                  300,
+                  240
+                ],
+                "groundContact": [
+                  187.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  53,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  177.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  90,
+                  46,
+                  293,
+                  240
+                ],
+                "groundContact": [
+                  203.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  85,
+                  44,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  90,
+                  53,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  206.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  100,
+                  30,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  173.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  108,
+                  30,
+                  301,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  104,
+                  43,
+                  299,
+                  240
+                ],
+                "groundContact": [
+                  187.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  87,
+                  30,
+                  284,
+                  240
+                ],
+                "groundContact": [
+                  210.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  83,
+                  30,
+                  276,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  85,
+                  43,
+                  280,
+                  240
+                ],
+                "groundContact": [
+                  196.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "hop": {
+          "file": "stump-hop-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.6,
+          "frameDurations": [
+            0.18,
+            0.22,
+            0.2
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  88,
+                  52,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  183.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  47,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  99,
+                  53,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  215.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  90,
+                  52,
+                  296,
+                  240
+                ],
+                "groundContact": [
+                  200.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  47,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  184.0,
+                  240
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  87,
+                  53,
+                  285,
+                  240
+                ],
+                "groundContact": [
+                  168.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  113,
+                  40,
+                  293,
+                  240
+                ],
+                "groundContact": [
+                  205.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  33,
+                  300,
+                  229
+                ],
+                "groundContact": [
+                  191.0,
+                  229
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  103,
+                  50,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  215.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  91,
+                  40,
+                  271,
+                  240
+                ],
+                "groundContact": [
+                  178.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  84,
+                  33,
+                  287,
+                  229
+                ],
+                "groundContact": [
+                  192.0,
+                  229
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  87,
+                  50,
+                  281,
+                  240
+                ],
+                "groundContact": [
+                  168.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "attack": {
+          "file": "stump-attack-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.15,
+          "frameDurations": [
+            0.8,
+            0.18,
+            0.17
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  90,
+                  34,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  169.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  56,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  189.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  84,
+                  62,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  160.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  34,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  214.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  56,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  194.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  62,
+                  300,
+                  240
+                ],
+                "groundContact": [
+                  223.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  91,
+                  30,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  148.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  95,
+                  28,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  157.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  77,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  207.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  30,
+                  293,
+                  240
+                ],
+                "groundContact": [
+                  235.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  28,
+                  289,
+                  240
+                ],
+                "groundContact": [
+                  226.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  77,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  176.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ]
+          ]
+        },
+        "death": {
+          "file": "stump-death-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.75,
+          "frameDurations": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  84,
+                  92,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  174.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  109,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  191.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  113,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  92,
+                  300,
+                  240
+                ],
+                "groundContact": [
+                  209.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  109,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  192.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  113,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  96,
+                  72,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  229.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  84,
+                  127,
+                  300,
+                  240
+                ],
+                "groundContact": [
+                  221.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  108,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  82,
+                  72,
+                  288,
+                  240
+                ],
+                "groundContact": [
+                  154.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  85,
+                  127,
+                  301,
+                  240
+                ],
+                "groundContact": [
+                  163.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  87,
+                  108,
+                  302,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "warden": {
+      "cellSize": [
+        768,
+        512
+      ],
+      "baseline": 480,
+      "anchor": [
+        0.5,
+        0.0625
+      ],
+      "referenceHeightPixels": 454.5,
+      "bodyWorldHeight": 6.8999999999999995,
+      "quadWorldSize": [
+        11.659405940594059,
+        7.772937293729372
+      ],
+      "motions": {
+        "idle": {
+          "file": "warden-idle-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.8,
+          "frameDurations": [
+            0.6,
+            0.6,
+            0.6
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  210,
+                  11,
+                  558,
+                  480
+                ],
+                "groundContact": [
+                  372.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  223,
+                  8,
+                  549,
+                  480
+                ],
+                "groundContact": [
+                  373.0,
+                  479
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  201,
+                  9,
+                  528,
+                  480
+                ],
+                "groundContact": [
+                  400.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  210,
+                  11,
+                  558,
+                  480
+                ],
+                "groundContact": [
+                  395.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  219,
+                  8,
+                  545,
+                  480
+                ],
+                "groundContact": [
+                  394.0,
+                  479
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  240,
+                  9,
+                  567,
+                  480
+                ],
+                "groundContact": [
+                  367.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  250,
+                  38,
+                  591,
+                  480
+                ],
+                "groundContact": [
+                  407.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  263,
+                  43,
+                  580,
+                  480
+                ],
+                "groundContact": [
+                  415.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  241,
+                  47,
+                  534,
+                  480
+                ],
+                "groundContact": [
+                  386.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  177,
+                  38,
+                  518,
+                  480
+                ],
+                "groundContact": [
+                  360.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  188,
+                  43,
+                  505,
+                  480
+                ],
+                "groundContact": [
+                  352.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  234,
+                  47,
+                  527,
+                  480
+                ],
+                "groundContact": [
+                  381.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-idle-glow-v1.png"
+        },
+        "move": {
+          "file": "warden-move-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 0.9,
+          "frameDurations": [
+            0.3,
+            0.35,
+            0.25
+          ],
+          "loop": true,
+          "holdLast": false,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  161,
+                  14,
+                  590,
+                  480
+                ],
+                "groundContact": [
+                  431.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  158,
+                  13,
+                  587,
+                  480
+                ],
+                "groundContact": [
+                  382.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  199,
+                  8,
+                  579,
+                  480
+                ],
+                "groundContact": [
+                  366.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  178,
+                  14,
+                  607,
+                  480
+                ],
+                "groundContact": [
+                  336.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  181,
+                  13,
+                  610,
+                  480
+                ],
+                "groundContact": [
+                  385.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  189,
+                  8,
+                  569,
+                  480
+                ],
+                "groundContact": [
+                  401.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  190,
+                  52,
+                  603,
+                  480
+                ],
+                "groundContact": [
+                  320.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  199,
+                  52,
+                  620,
+                  480
+                ],
+                "groundContact": [
+                  345.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  225,
+                  41,
+                  606,
+                  480
+                ],
+                "groundContact": [
+                  357.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  165,
+                  52,
+                  578,
+                  480
+                ],
+                "groundContact": [
+                  447.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  148,
+                  52,
+                  569,
+                  480
+                ],
+                "groundContact": [
+                  422.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  162,
+                  41,
+                  543,
+                  480
+                ],
+                "groundContact": [
+                  410.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-move-glow-v1.png"
+        },
+        "hit": {
+          "file": "warden-hit-v1.png",
+          "columns": 2,
+          "rows": 4,
+          "frames": 2,
+          "duration": 0.28,
+          "frameDurations": [
+            0.14,
+            0.14
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  173,
+                  20,
+                  594,
+                  480
+                ],
+                "groundContact": [
+                  362.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  175,
+                  64,
+                  598,
+                  480
+                ],
+                "groundContact": [
+                  322.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  173,
+                  20,
+                  594,
+                  480
+                ],
+                "groundContact": [
+                  404.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  170,
+                  64,
+                  593,
+                  480
+                ],
+                "groundContact": [
+                  445.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  178,
+                  77,
+                  610,
+                  480
+                ],
+                "groundContact": [
+                  440.0,
+                  479
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  199,
+                  87,
+                  605,
+                  480
+                ],
+                "groundContact": [
+                  419.0,
+                  479
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  158,
+                  77,
+                  590,
+                  480
+                ],
+                "groundContact": [
+                  327.0,
+                  479
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  163,
+                  87,
+                  569,
+                  480
+                ],
+                "groundContact": [
+                  348.0,
+                  479
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-hit-glow-v1.png"
+        },
+        "stun": {
+          "file": "warden-stun-v1.png",
+          "columns": 2,
+          "rows": 4,
+          "frames": 2,
+          "duration": 1.25,
+          "frameDurations": [
+            0.625,
+            0.625
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  195,
+                  29,
+                  584,
+                  480
+                ],
+                "groundContact": [
+                  323.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  176,
+                  61,
+                  574,
+                  480
+                ],
+                "groundContact": [
+                  339.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  185,
+                  29,
+                  574,
+                  480
+                ],
+                "groundContact": [
+                  445.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  194,
+                  61,
+                  592,
+                  480
+                ],
+                "groundContact": [
+                  428.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  224,
+                  132,
+                  542,
+                  480
+                ],
+                "groundContact": [
+                  362.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  214,
+                  156,
+                  516,
+                  480
+                ],
+                "groundContact": [
+                  350.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  226,
+                  132,
+                  544,
+                  480
+                ],
+                "groundContact": [
+                  405.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  251,
+                  156,
+                  553,
+                  480
+                ],
+                "groundContact": [
+                  416.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-stun-glow-v1.png"
+        },
+        "roar": {
+          "file": "warden-roar-v1.png",
+          "columns": 2,
+          "rows": 4,
+          "frames": 2,
+          "duration": 0.9,
+          "frameDurations": [
+            0.45,
+            0.45
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  165,
+                  14,
+                  595,
+                  480
+                ],
+                "groundContact": [
+                  337.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  161,
+                  14,
+                  607,
+                  480
+                ],
+                "groundContact": [
+                  436.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  173,
+                  14,
+                  603,
+                  480
+                ],
+                "groundContact": [
+                  430.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  161,
+                  14,
+                  607,
+                  480
+                ],
+                "groundContact": [
+                  331.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  159,
+                  44,
+                  594,
+                  480
+                ],
+                "groundContact": [
+                  379.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  168,
+                  42,
+                  599,
+                  480
+                ],
+                "groundContact": [
+                  394.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  173,
+                  44,
+                  608,
+                  480
+                ],
+                "groundContact": [
+                  387.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  170,
+                  42,
+                  601,
+                  480
+                ],
+                "groundContact": [
+                  374.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-roar-glow-v1.png"
+        },
+        "slam": {
+          "file": "warden-slam-v1.png",
+          "columns": 4,
+          "rows": 4,
+          "frames": 4,
+          "duration": 1.5,
+          "frameDurations": [
+            0.55,
+            0.3,
+            0.2,
+            0.45
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  172,
+                  67,
+                  561,
+                  480
+                ],
+                "groundContact": [
+                  326.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  149,
+                  20,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  367.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  177,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  377.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  162,
+                  93,
+                  601,
+                  480
+                ],
+                "groundContact": [
+                  366.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  207,
+                  67,
+                  596,
+                  480
+                ],
+                "groundContact": [
+                  441.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  20,
+                  619,
+                  480
+                ],
+                "groundContact": [
+                  400.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  177,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  390.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  167,
+                  93,
+                  606,
+                  480
+                ],
+                "groundContact": [
+                  401.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  199,
+                  70,
+                  606,
+                  480
+                ],
+                "groundContact": [
+                  357.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  194,
+                  38,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  352.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  136,
+                  616,
+                  480
+                ],
+                "groundContact": [
+                  376.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  170,
+                  156,
+                  618,
+                  480
+                ],
+                "groundContact": [
+                  391.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  162,
+                  70,
+                  569,
+                  480
+                ],
+                "groundContact": [
+                  410.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  38,
+                  574,
+                  480
+                ],
+                "groundContact": [
+                  415.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  152,
+                  136,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  391.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  150,
+                  156,
+                  598,
+                  480
+                ],
+                "groundContact": [
+                  376.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-slam-glow-v1.png"
+        },
+        "sweep": {
+          "file": "warden-sweep-v1.png",
+          "columns": 2,
+          "rows": 4,
+          "frames": 2,
+          "duration": 1.2,
+          "frameDurations": [
+            0.7,
+            0.5
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  168,
+                  71,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  349.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  70,
+                  614,
+                  480
+                ],
+                "groundContact": [
+                  377.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  147,
+                  71,
+                  600,
+                  480
+                ],
+                "groundContact": [
+                  418.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  154,
+                  70,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  390.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  185,
+                  77,
+                  591,
+                  480
+                ],
+                "groundContact": [
+                  410.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  163,
+                  80,
+                  606,
+                  480
+                ],
+                "groundContact": [
+                  371.0,
+                  479
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  177,
+                  77,
+                  583,
+                  480
+                ],
+                "groundContact": [
+                  357.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  162,
+                  80,
+                  605,
+                  480
+                ],
+                "groundContact": [
+                  396.0,
+                  479
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-sweep-glow-v1.png"
+        },
+        "charge": {
+          "file": "warden-charge-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.65,
+          "frameDurations": [
+            0.8,
+            0.6,
+            0.25
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  182,
+                  32,
+                  608,
+                  480
+                ],
+                "groundContact": [
+                  362.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  47,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  342.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  45,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  342.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  160,
+                  32,
+                  586,
+                  480
+                ],
+                "groundContact": [
+                  405.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  47,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  425.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  45,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  425.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  187,
+                  107,
+                  562,
+                  480
+                ],
+                "groundContact": [
+                  339.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  156,
+                  127,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  306.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  142,
+                  605,
+                  480
+                ],
+                "groundContact": [
+                  309.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  206,
+                  107,
+                  581,
+                  480
+                ],
+                "groundContact": [
+                  428.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  127,
+                  612,
+                  480
+                ],
+                "groundContact": [
+                  461.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  163,
+                  142,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  458.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-charge-glow-v1.png"
+        },
+        "spit": {
+          "file": "warden-spit-v1.png",
+          "columns": 3,
+          "rows": 4,
+          "frames": 3,
+          "duration": 1.5,
+          "frameDurations": [
+            0.8,
+            0.3,
+            0.4
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  147,
+                  34,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  377.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  32,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  321.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  29,
+                  565,
+                  480
+                ],
+                "groundContact": [
+                  367.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  147,
+                  34,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  390.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  32,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  446.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  203,
+                  29,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  400.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  173,
+                  133,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  345.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  60,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  300.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  64,
+                  561,
+                  480
+                ],
+                "groundContact": [
+                  355.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  147,
+                  133,
+                  595,
+                  480
+                ],
+                "groundContact": [
+                  422.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  60,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  467.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  207,
+                  64,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  412.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-spit-glow-v1.png"
+        },
+        "summon": {
+          "file": "warden-summon-v1.png",
+          "columns": 4,
+          "rows": 4,
+          "frames": 4,
+          "duration": 1.6,
+          "frameDurations": [
+            0.45,
+            0.45,
+            0.35,
+            0.35
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  192,
+                  21,
+                  575,
+                  480
+                ],
+                "groundContact": [
+                  381.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  172,
+                  19,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  394.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  18,
+                  615,
+                  480
+                ],
+                "groundContact": [
+                  375.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  168,
+                  16,
+                  573,
+                  480
+                ],
+                "groundContact": [
+                  352.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  193,
+                  21,
+                  576,
+                  480
+                ],
+                "groundContact": [
+                  386.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  19,
+                  596,
+                  480
+                ],
+                "groundContact": [
+                  373.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  153,
+                  18,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  392.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  196,
+                  16,
+                  601,
+                  480
+                ],
+                "groundContact": [
+                  416.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  301,
+                  27,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  475.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  374,
+                  69,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  534.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  27,
+                  344,
+                  480
+                ],
+                "groundContact": [
+                  227.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  35,
+                  432,
+                  480
+                ],
+                "groundContact": [
+                  263.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  147,
+                  27,
+                  467,
+                  480
+                ],
+                "groundContact": [
+                  292.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  69,
+                  394,
+                  480
+                ],
+                "groundContact": [
+                  233.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  424,
+                  27,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  540.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  336,
+                  35,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  504.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-summon-glow-v1.png"
+        },
+        "transform": {
+          "file": "warden-transform-v1.png",
+          "columns": 2,
+          "rows": 4,
+          "frames": 2,
+          "duration": 1.6,
+          "frameDurations": [
+            0.8,
+            0.8
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  170,
+                  13,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  389.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  206,
+                  9,
+                  598,
+                  480
+                ],
+                "groundContact": [
+                  397.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  147,
+                  13,
+                  598,
+                  480
+                ],
+                "groundContact": [
+                  378.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  170,
+                  9,
+                  562,
+                  480
+                ],
+                "groundContact": [
+                  370.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  147,
+                  38,
+                  464,
+                  480
+                ],
+                "groundContact": [
+                  289.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  28,
+                  539,
+                  480
+                ],
+                "groundContact": [
+                  346.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  304,
+                  38,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  478.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  229,
+                  28,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  421.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-transform-glow-v1.png"
+        },
+        "death": {
+          "file": "warden-death-v1.png",
+          "columns": 6,
+          "rows": 4,
+          "frames": 6,
+          "duration": 1.8,
+          "frameDurations": [
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3
+          ],
+          "loop": false,
+          "holdLast": true,
+          "directions": [
+            [
+              {
+                "bounds": [
+                  177,
+                  29,
+                  570,
+                  480
+                ],
+                "groundContact": [
+                  348.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  155,
+                  27,
+                  604,
+                  480
+                ],
+                "groundContact": [
+                  368.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  151,
+                  172,
+                  609,
+                  480
+                ],
+                "groundContact": [
+                  374.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  242,
+                  619,
+                  480
+                ],
+                "groundContact": [
+                  386.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  155,
+                  244,
+                  620,
+                  480
+                ],
+                "groundContact": [
+                  390.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  312,
+                  600,
+                  480
+                ],
+                "groundContact": [
+                  394.0,
+                  479
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  198,
+                  29,
+                  591,
+                  480
+                ],
+                "groundContact": [
+                  419.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  165,
+                  27,
+                  614,
+                  480
+                ],
+                "groundContact": [
+                  400.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  159,
+                  172,
+                  617,
+                  480
+                ],
+                "groundContact": [
+                  393.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  149,
+                  242,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  381.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  244,
+                  612,
+                  480
+                ],
+                "groundContact": [
+                  376.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  168,
+                  312,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  373.0,
+                  479
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  181,
+                  36,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  367.0,
+                  479
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  151,
+                  41,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  385.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  169,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  368.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  263,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  374.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  297,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  407.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  321,
+                  589,
+                  480
+                ],
+                "groundContact": [
+                  400.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  147,
+                  36,
+                  587,
+                  480
+                ],
+                "groundContact": [
+                  400.0,
+                  479
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  41,
+                  617,
+                  480
+                ],
+                "groundContact": [
+                  382.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  169,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  399.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  263,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  393.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  147,
+                  297,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  360.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  179,
+                  321,
+                  621,
+                  480
+                ],
+                "groundContact": [
+                  367.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ]
+          ],
+          "glowMask": "warden-death-glow-v1.png"
+        }
+      }
     }
   },
   "phase2": {
@@ -3447,5 +8930,25 @@
     "glowMask": "warm-gold pixels, alpha weighted; shader uses equivalent threshold without extra texture fetch",
     "expressionOverlay": "king-phase2-face-v1.png",
     "backViewsHaveNoExpressionOverlay": true
+  },
+  "projectiles": {
+    "bolt": {
+      "file": "wisp-bolt-v1.png",
+      "cellSize": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 1,
+      "frames": 4,
+      "duration": 0.3333333333333333,
+      "loop": true
+    }
+  },
+  "forestPhase2": {
+    "species": "warden",
+    "overlay": "pale bark cracks and amber lantern shader glow",
+    "expressionOverlay": null,
+    "fullFrameCopies": 0
   }
 }

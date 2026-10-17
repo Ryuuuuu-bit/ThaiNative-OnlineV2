@@ -1,0 +1,16 @@
+# Codex task: city art follow-up after the world-scale pass (นครที่ถูกลืมเลือน, 96 × 96 m)
+
+Read first: `meadow-3d/art/CODEX_WORLD_SCALE.md`, `meadow-3d/src/city-scene.ts`, `meadow-3d/src/world-art.ts`, `shared/src/game/maps.ts` (CITY, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, CITY_TOWER, HEALER, GATE_CAPTAIN, GATES), `.codex-run/city-overview-hq.jpg`, `.codex-run/city-market-hq.jpg`.
+
+The meadow and forest from your world-scale pass are approved and committed (3ee3f14). The city is the weak map now. Director review of `city-overview-hq.jpg` / `city-market-hq.jpg`:
+
+1. **Cobble tiling reads as a grid.** Strong dark/light stripes repeat every few metres across the whole plaza. Break it up: two or three cobble variants blended by a low-frequency world-space noise, worn patches, large painted ground decals (dirt, moss between stones, puddles, cart tracks), and a clearly different paving for the 6 m main roads vs. the plaza rings vs. side lanes. The stone size must stay true (~0.25 m next to the hero).
+2. **Buildings are plain boxes with pyramid roofs.** Give the 3 service buildings and 12 houses real silhouettes with the existing city trim atlas: gable or hip roofs with eaves and ridge beams, timber framing, chimneys (forge smokes), porches/awnings, signboards with icons only (no baked text), window glow at night colour. Vary roof colours and heights (1–2 storeys, 2.8–3.2 m per storey). Footprints must stay exactly the `CITY_BUILDINGS` / `CITY_HOUSES` rectangles.
+3. **The market roof shows stretched texture stripes.** Fix the UVs on the striped awning so the canvas pattern runs along the cloth at a believable scale; add 3–4 stalls around it (crates, barrels, produce baskets, hanging cloth) outside the walkable lanes.
+4. **The plaza is empty.** Fill it with life that does not block movement: planter trees at the plaza ring, benches, lamp posts every ~12 m along roads, banners on the walls, flower boxes, a notice board near the gate captain, birds/pigeon decals, a few idle townsfolk billboards near the market (non-interactive, cheap sprites; reuse the NPC atlas style).
+5. **Gates and walls:** the south (meadow) and east (forest) gates should look open and inviting — portcullis up, lanterns, a small guard post; north and west closed and misty as before. Wall top walkway and towers at the corners.
+6. **Lighting:** late-afternoon warm key, cool fill, long readable shadows from buildings on HQ; window and lantern glow. Keep the fountain water from blooming.
+
+Rules (unchanged): don't change `shared/` or `server/` or any collision — if a prop needs to be solid, list it with its footprint and I will add it to the layout; no baked text; original designs only; the small jelly is "วุ้นจิ๋ว"; keep the 32 older Tripo assets; don't touch the Railway production environment; don't commit. Keep HQ ≥ 50 fps / LOW ≥ 30 fps with the 48-actor crowd benchmark and keep city draw calls ≤ 220 HQ.
+
+Verification: `npm run check:meadow`, `npm test`, `npm run build`, then the art-review page and walk tool. Screenshots to `.codex-run/`: `city-overview-hq.jpg`, `city-market-hq.jpg`, `city-south-gate-hq.jpg`, `city-east-gate-hq.jpg`, `city-plaza-ring-hq.jpg`, `city-houses-hq.jpg`, plus LOW versions, and the performance table. Reply with changed files and any collision requests.

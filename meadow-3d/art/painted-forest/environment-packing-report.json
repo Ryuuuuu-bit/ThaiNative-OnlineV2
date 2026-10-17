@@ -1,0 +1,335 @@
+{
+  "clippingWarnings": [],
+  "sourcePixelsPerWorldUnit": 113,
+  "runtimeDownsample": 0.5,
+  "sources": {
+    "pine": {
+      "sheetBounds": [
+        13,
+        6,
+        321,
+        385
+      ],
+      "pixelSize": [
+        275,
+        339
+      ],
+      "worldSize": [
+        4.875989445910291,
+        6.0
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "oak": {
+      "sheetBounds": [
+        345,
+        10,
+        668,
+        393
+      ],
+      "pixelSize": [
+        262,
+        311
+      ],
+      "worldSize": [
+        4.638381201044386,
+        5.5
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "silver": {
+      "sheetBounds": [
+        701,
+        21,
+        997,
+        397
+      ],
+      "pixelSize": [
+        222,
+        282
+      ],
+      "worldSize": [
+        3.9361702127659575,
+        5.0
+      ],
+      "alphaExtrema": [
+        0,
+        253
+      ]
+    },
+    "hollow": {
+      "sheetBounds": [
+        1007,
+        10,
+        1307,
+        397
+      ],
+      "pixelSize": [
+        219,
+        282
+      ],
+      "worldSize": [
+        3.875968992248062,
+        5.0
+      ],
+      "alphaExtrema": [
+        0,
+        254
+      ]
+    },
+    "arch": {
+      "sheetBounds": [
+        8,
+        391,
+        379,
+        662
+      ],
+      "pixelSize": [
+        249,
+        182
+      ],
+      "worldSize": [
+        4.4,
+        3.214016172506739
+      ],
+      "alphaExtrema": [
+        0,
+        254
+      ]
+    },
+    "bedroll": {
+      "sheetBounds": [
+        394,
+        520,
+        674,
+        661
+      ],
+      "pixelSize": [
+        102,
+        51
+      ],
+      "worldSize": [
+        1.8,
+        0.9064285714285714
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "log-seat": {
+      "sheetBounds": [
+        690,
+        482,
+        1027,
+        664
+      ],
+      "pixelSize": [
+        136,
+        73
+      ],
+      "worldSize": [
+        2.4,
+        1.2961424332344214
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "campfire": {
+      "sheetBounds": [
+        1034,
+        481,
+        1301,
+        666
+      ],
+      "pixelSize": [
+        79,
+        55
+      ],
+      "worldSize": [
+        1.4,
+        0.9700374531835205
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "lantern": {
+      "sheetBounds": [
+        104,
+        661,
+        270,
+        945
+      ],
+      "pixelSize": [
+        89,
+        153
+      ],
+      "worldSize": [
+        1.5781690140845073,
+        2.7
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "stone-ring": {
+      "sheetBounds": [
+        354,
+        670,
+        685,
+        933
+      ],
+      "pixelSize": [
+        452,
+        359
+      ],
+      "worldSize": [
+        8.0,
+        6.356495468277946
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "fern": {
+      "sheetBounds": [
+        700,
+        701,
+        1009,
+        912
+      ],
+      "pixelSize": [
+        71,
+        48
+      ],
+      "worldSize": [
+        1.25,
+        0.8535598705501617
+      ],
+      "alphaExtrema": [
+        0,
+        253
+      ]
+    },
+    "mushrooms": {
+      "sheetBounds": [
+        1019,
+        705,
+        1302,
+        910
+      ],
+      "pixelSize": [
+        70,
+        51
+      ],
+      "worldSize": [
+        1.2424390243902441,
+        0.9000000000000001
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "fallen-log": {
+      "sheetBounds": [
+        10,
+        987,
+        408,
+        1181
+      ],
+      "pixelSize": [
+        158,
+        77
+      ],
+      "worldSize": [
+        2.8,
+        1.364824120603015
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "rock": {
+      "sheetBounds": [
+        411,
+        958,
+        713,
+        1178
+      ],
+      "pixelSize": [
+        85,
+        62
+      ],
+      "worldSize": [
+        1.5,
+        1.0927152317880795
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    },
+    "spores": {
+      "sheetBounds": [
+        723,
+        930,
+        959,
+        1187
+      ],
+      "pixelSize": [
+        52,
+        56
+      ],
+      "worldSize": [
+        0.9182879377431907,
+        1.0
+      ],
+      "alphaExtrema": [
+        0,
+        253
+      ]
+    },
+    "reeds": {
+      "sheetBounds": [
+        970,
+        919,
+        1303,
+        1181
+      ],
+      "pixelSize": [
+        102,
+        80
+      ],
+      "worldSize": [
+        1.8,
+        1.4162162162162164
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ]
+    }
+  },
+  "assetCount": 18,
+  "atlasCount": 1,
+  "atlasSize": [
+    2048,
+    2048
+  ],
+  "tileCount": 4,
+  "brushCount": 2
+}

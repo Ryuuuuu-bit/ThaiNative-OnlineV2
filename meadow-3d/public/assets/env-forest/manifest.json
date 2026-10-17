@@ -1,0 +1,668 @@
+{
+  "version": 1,
+  "sourcePixelsPerWorldUnit": 113,
+  "runtimeDownsample": 0.5,
+  "atlases": [
+    {
+      "file": "forest-props-v1.png",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "name": "stone-ring",
+      "worldSize": [
+        8.0,
+        6.356495468277946
+      ],
+      "sourcePixelSize": [
+        904,
+        718
+      ],
+      "anchor": [
+        0.36706948640483383,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure10",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        452,
+        359
+      ],
+      "rect": [
+        8,
+        8,
+        452,
+        359
+      ],
+      "uvRect": [
+        0.00390625,
+        0.82080078125,
+        0.220703125,
+        0.17529296875
+      ],
+      "worldScale": 1.0003955263445794
+    },
+    {
+      "name": "pine",
+      "worldSize": [
+        8.126649076517152,
+        10.0
+      ],
+      "sourcePixelSize": [
+        551,
+        678
+      ],
+      "anchor": [
+        0.5308441558441559,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure1",
+      "trunkWidth": 4.775725593667547,
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        275,
+        339
+      ],
+      "rect": [
+        476,
+        8,
+        275,
+        339
+      ],
+      "uvRect": [
+        0.232421875,
+        0.83056640625,
+        0.13427734375,
+        0.16552734375
+      ],
+      "worldScale": 1.6666666666666667
+    },
+    {
+      "name": "oak",
+      "worldSize": [
+        7.168407310704961,
+        8.5
+      ],
+      "sourcePixelSize": [
+        524,
+        622
+      ],
+      "anchor": [
+        0.5557275541795665,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure2",
+      "trunkWidth": 5.415143603133159,
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        262,
+        311
+      ],
+      "rect": [
+        767,
+        8,
+        262,
+        311
+      ],
+      "uvRect": [
+        0.37451171875,
+        0.84423828125,
+        0.1279296875,
+        0.15185546875
+      ],
+      "worldScale": 1.5442122186495177
+    },
+    {
+      "name": "silver",
+      "worldSize": [
+        7.085106382978724,
+        9.0
+      ],
+      "sourcePixelSize": [
+        445,
+        565
+      ],
+      "anchor": [
+        0.535472972972973,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure3",
+      "trunkWidth": 5.768617021276596,
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        222,
+        282
+      ],
+      "rect": [
+        1045,
+        8,
+        222,
+        282
+      ],
+      "uvRect": [
+        0.51025390625,
+        0.8583984375,
+        0.1083984375,
+        0.1376953125
+      ],
+      "worldScale": 1.8
+    },
+    {
+      "name": "hollow",
+      "worldSize": [
+        6.2015503875969,
+        8.0
+      ],
+      "sourcePixelSize": [
+        438,
+        565
+      ],
+      "anchor": [
+        0.385,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure4",
+      "trunkWidth": 4.380361757105936,
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        219,
+        282
+      ],
+      "rect": [
+        1283,
+        8,
+        219,
+        282
+      ],
+      "uvRect": [
+        0.62646484375,
+        0.8583984375,
+        0.10693359375,
+        0.1376953125
+      ],
+      "worldScale": 1.6
+    },
+    {
+      "name": "arch",
+      "worldSize": [
+        4.4,
+        3.214016172506739
+      ],
+      "sourcePixelSize": [
+        497,
+        363
+      ],
+      "anchor": [
+        0.601078167115903,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure5",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        249,
+        182
+      ],
+      "rect": [
+        1518,
+        8,
+        249,
+        182
+      ],
+      "uvRect": [
+        0.7412109375,
+        0.9072265625,
+        0.12158203125,
+        0.0888671875
+      ],
+      "worldScale": 1.0005064118271667
+    },
+    {
+      "name": "lantern",
+      "worldSize": [
+        1.5197183098591551,
+        2.6
+      ],
+      "sourcePixelSize": [
+        178,
+        305
+      ],
+      "anchor": [
+        0.3644578313253012,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure9",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        89,
+        153
+      ],
+      "rect": [
+        1783,
+        8,
+        89,
+        153
+      ],
+      "uvRect": [
+        0.87060546875,
+        0.92138671875,
+        0.04345703125,
+        0.07470703125
+      ],
+      "worldScale": 0.9632786885245902
+    },
+    {
+      "name": "signpost",
+      "worldSize": [
+        1.6227272727272726,
+        1.7999999999999998
+      ],
+      "sourcePixelSize": [
+        184,
+        204
+      ],
+      "anchor": [
+        0.5,
+        1
+      ],
+      "source": "art/painted-forest/utility-generated.png#signpost",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        92,
+        102
+      ],
+      "rect": [
+        1888,
+        8,
+        92,
+        102
+      ],
+      "uvRect": [
+        0.921875,
+        0.9462890625,
+        0.044921875,
+        0.0498046875
+      ],
+      "worldScale": 0.9970588235294117
+    },
+    {
+      "name": "lilies",
+      "worldSize": [
+        1.996833773087071,
+        1.5999999999999999
+      ],
+      "sourcePixelSize": [
+        226,
+        180
+      ],
+      "anchor": [
+        0.5,
+        1
+      ],
+      "source": "art/painted-forest/utility-generated.png#lilies",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        113,
+        90
+      ],
+      "rect": [
+        8,
+        383,
+        113,
+        90
+      ],
+      "uvRect": [
+        0.00390625,
+        0.76904296875,
+        0.05517578125,
+        0.0439453125
+      ],
+      "worldScale": 1.0044444444444443
+    },
+    {
+      "name": "reeds",
+      "worldSize": [
+        1.5251908396946563,
+        1.2
+      ],
+      "sourcePixelSize": [
+        203,
+        160
+      ],
+      "anchor": [
+        0.4159159159159159,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure16",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        102,
+        80
+      ],
+      "rect": [
+        137,
+        383,
+        102,
+        80
+      ],
+      "uvRect": [
+        0.06689453125,
+        0.77392578125,
+        0.0498046875,
+        0.0390625
+      ],
+      "worldScale": 0.8475
+    },
+    {
+      "name": "fallen-log",
+      "worldSize": [
+        2.8,
+        1.364824120603015
+      ],
+      "sourcePixelSize": [
+        316,
+        154
+      ],
+      "anchor": [
+        0.2449748743718593,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure13",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        158,
+        77
+      ],
+      "rect": [
+        255,
+        383,
+        158,
+        77
+      ],
+      "uvRect": [
+        0.12451171875,
+        0.775390625,
+        0.0771484375,
+        0.03759765625
+      ],
+      "worldScale": 1.0014618547281864
+    },
+    {
+      "name": "log-seat",
+      "worldSize": [
+        2.4,
+        1.2961424332344214
+      ],
+      "sourcePixelSize": [
+        271,
+        146
+      ],
+      "anchor": [
+        0.25370919881305637,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure7",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        136,
+        73
+      ],
+      "rect": [
+        429,
+        383,
+        136,
+        73
+      ],
+      "uvRect": [
+        0.20947265625,
+        0.77734375,
+        0.06640625,
+        0.03564453125
+      ],
+      "worldScale": 1.0031787325718466
+    },
+    {
+      "name": "rock",
+      "worldSize": [
+        1.5,
+        1.0927152317880795
+      ],
+      "sourcePixelSize": [
+        170,
+        123
+      ],
+      "anchor": [
+        0.3758278145695364,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure14",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        85,
+        62
+      ],
+      "rect": [
+        581,
+        383,
+        85,
+        62
+      ],
+      "uvRect": [
+        0.28369140625,
+        0.78271484375,
+        0.04150390625,
+        0.0302734375
+      ],
+      "worldScale": 1.0038765950573414
+    },
+    {
+      "name": "spores",
+      "worldSize": [
+        0.9182879377431907,
+        1.0
+      ],
+      "sourcePixelSize": [
+        104,
+        113
+      ],
+      "anchor": [
+        0.4851694915254237,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure15",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        52,
+        56
+      ],
+      "rect": [
+        682,
+        383,
+        52,
+        56
+      ],
+      "uvRect": [
+        0.3330078125,
+        0.78564453125,
+        0.025390625,
+        0.02734375
+      ],
+      "worldScale": 1.0
+    },
+    {
+      "name": "campfire",
+      "worldSize": [
+        0.7216216216216217,
+        0.5
+      ],
+      "sourcePixelSize": [
+        158,
+        110
+      ],
+      "anchor": [
+        0.4812734082397004,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure8",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        79,
+        55
+      ],
+      "rect": [
+        750,
+        383,
+        79,
+        55
+      ],
+      "uvRect": [
+        0.3662109375,
+        0.7861328125,
+        0.03857421875,
+        0.02685546875
+      ],
+      "worldScale": 0.5136363636363637
+    },
+    {
+      "name": "bedroll",
+      "worldSize": [
+        1.8,
+        0.9064285714285714
+      ],
+      "sourcePixelSize": [
+        203,
+        102
+      ],
+      "anchor": [
+        0.8017857142857143,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure6",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        102,
+        51
+      ],
+      "rect": [
+        845,
+        383,
+        102,
+        51
+      ],
+      "uvRect": [
+        0.41259765625,
+        0.7880859375,
+        0.0498046875,
+        0.02490234375
+      ],
+      "worldScale": 1.0041806722689075
+    },
+    {
+      "name": "mushrooms",
+      "worldSize": [
+        1.2424390243902441,
+        0.9000000000000001
+      ],
+      "sourcePixelSize": [
+        140,
+        102
+      ],
+      "anchor": [
+        0.46466431095406363,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure12",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        70,
+        51
+      ],
+      "rect": [
+        963,
+        383,
+        70,
+        51
+      ],
+      "uvRect": [
+        0.47021484375,
+        0.7880859375,
+        0.0341796875,
+        0.02490234375
+      ],
+      "worldScale": 0.997058823529412
+    },
+    {
+      "name": "fern",
+      "worldSize": [
+        1.2447867298578201,
+        0.85
+      ],
+      "sourcePixelSize": [
+        141,
+        96
+      ],
+      "anchor": [
+        0.46440129449838186,
+        1
+      ],
+      "source": "art/painted-forest/props-generated.png#figure11",
+      "atlas": "forest-props-v1.png",
+      "pixelSize": [
+        71,
+        48
+      ],
+      "rect": [
+        1049,
+        383,
+        71,
+        48
+      ],
+      "uvRect": [
+        0.51220703125,
+        0.78955078125,
+        0.03466796875,
+        0.0234375
+      ],
+      "worldScale": 1.0005208333333333
+    }
+  ],
+  "tiles": {
+    "moss": {
+      "file": "tile-moss-v1.png",
+      "size": [
+        512,
+        512
+      ]
+    },
+    "path": {
+      "file": "tile-path-v1.png",
+      "size": [
+        512,
+        512
+      ]
+    },
+    "litter": {
+      "file": "tile-litter-v1.png",
+      "size": [
+        512,
+        512
+      ]
+    },
+    "water": {
+      "file": "tile-water-v1.png",
+      "size": [
+        512,
+        512
+      ]
+    }
+  },
+  "brush": "brush-path-v1.png",
+  "mist": "mist-card-v1.png",
+  "scaleReference": {
+    "heroMetres": 1.8,
+    "method": "uniform worldSize; source pixels and atlas UVs unchanged"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "image": "items-v2.webp",
+  "width": 320,
+  "height": 320,
+  "cellSize": [
+    64,
+    64
+  ],
+  "columns": 5,
+  "rows": 5,
+  "reservedTransparentSlots": 20,
+  "frames": {
+    "mist_spore": {
+      "index": 25,
+      "slot": 0,
+      "x": 0,
+      "y": 0,
+      "w": 64,
+      "h": 64
+    },
+    "wolf_fur": {
+      "index": 26,
+      "slot": 1,
+      "x": 64,
+      "y": 0,
+      "w": 64,
+      "h": 64
+    },
+    "wisp_tear": {
+      "index": 27,
+      "slot": 2,
+      "x": 128,
+      "y": 0,
+      "w": 64,
+      "h": 64
+    },
+    "mist_wood": {
+      "index": 28,
+      "slot": 3,
+      "x": 192,
+      "y": 0,
+      "w": 64,
+      "h": 64
+    },
+    "warden_heart": {
+      "index": 29,
+      "slot": 4,
+      "x": 256,
+      "y": 0,
+      "w": 64,
+      "h": 64
+    }
+  }
+}

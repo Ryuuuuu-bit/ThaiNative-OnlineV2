@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,spawn,step,setAuto,moveTo,action,revive,CAMP,walkable} from '@thainative/shared';
+import {createGame,spawn,step,setAuto,moveTo,action,revive,nearestCamp,walkable,OBSTACLES} from '@thainative/shared';
 const tick=(g,seconds=1/60)=>{for(let t=0;t<seconds-1e-8;t+=1/60)step(g,1/60);};
 function field(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=4;return g;}
 test('AUTO selects nearest, preserves clicked preference, then prioritises living King',()=>{
@@ -25,7 +25,7 @@ test('AUTO potions use strict 45% threshold and obey cooldown',()=>{
 });
 test('AUTO retreats below 25%, heals at camp until 90%, and fights followers',()=>{
  const g=field();g.p.potions=0;g.p.hp=20;setAuto(g,true);tick(g);assert.equal(g.p.autoState,'retreat');
- tick(g,4);assert.ok(Math.hypot(g.p.x-CAMP.x,g.p.z-CAMP.z)<2);assert.equal(g.p.autoState,'retreat');
+ const camp=nearestCamp('meadow',g.p.x,g.p.z);tick(g,9);assert.ok(Math.hypot(g.p.x-camp.x,g.p.z-camp.z)<2);assert.equal(g.p.autoState,'retreat');
  const follower=spawn(g,g.p.x+.5,g.p.z);tick(g,.2);assert.ok(follower.hp<follower.maxHp);
  g.enemies=[];g.p.hp=g.p.maxHp*.89;g.autoTimer=0;tick(g);assert.equal(g.p.autoState,'retreat');
  tick(g,.5);assert.notEqual(g.p.autoState,'retreat');
@@ -50,8 +50,10 @@ test('AUTO routes around a blocking rock and waits idle without targets',()=>{
 test('deterministic fresh AUTO hunt unlocks and engages King without steering',()=>{
  const g=createGame();setAuto(g,true);tick(g,60);assert.ok(g.kills>=6);assert.ok(g.enemies.some(e=>e.boss&&e.engaged));assert.equal(g.p.dead,false);
 });
+// A boulder with open ground on its west side, so the test does not depend on the generated layout.
+const rock=OBSTACLES.find(o=>o.kind==='boulder'&&[...Array(8)].every((_,i)=>walkable(o.x-o.r-.6-i*.4,o.z,.4)&&walkable(o.x+o.r+.5,o.z,.3)));
 test('AUTO reaches a jelly standing between collision and route clearances beside a rock',()=>{
- const g=field();g.p.x=3;g.p.z=3;const e=spawn(g,5.95,3);e.wander=100;e.wx=e.x;e.wz=e.z;
+ const g=field();g.p.x=rock.x-rock.r-3;g.p.z=rock.z;const e=spawn(g,rock.x+rock.r+.35,rock.z);e.wander=100;e.wx=e.x;e.wz=e.z;
  assert.equal(walkable(e.x,e.z),true);assert.equal(walkable(e.x,e.z,.4),false);
  setAuto(g,true);tick(g,4);assert.ok(e.hp<e.maxHp);
 });

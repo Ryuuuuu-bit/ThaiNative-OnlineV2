@@ -6,6 +6,8 @@ type Position = { x: number; z: number };
 type Sprite = { group: string; start: number; duration: number; pitch: number; cooldown: number; voices: number };
 type Manifest = { sounds: Record<string, Sprite>; groups: Record<string, { opus: { url: string }; aac: { url: string } }> };
 type Bus = 'sfx' | 'music' | 'ambience';
+/** Fixed trims under the player's sliders for a soft overall balance. */
+const SOFT_TRIM: Record<Bus, number> = { sfx: .72, music: .85, ambience: .8 };
 /** One gesture-unlocked context; downloads never participate in boot progress. */
 export class AudioEngine {
   settings: AudioSettings = { ...DEFAULT_AUDIO };
@@ -69,9 +71,19 @@ export class AudioEngine {
     try {
       if (!this.ctx) {
         this.ctx = new AudioContext();
-        this.master = this.ctx.createGain(); this.master.connect(this.ctx.destination);
+                // Soft mix: a gentle glue compressor on the master keeps peaks down in crowded fights,
+        // and the SFX bus is warmed (high shelf + lowpass) so hits and swings never sound harsh.
+        const glue = this.ctx.createDynamicsCompressor();
+        glue.threshold.value = -20; glue.knee.value = 14; glue.ratio.value = 3; glue.attack.value = .012; glue.release.value = .3;
+        this.master = this.ctx.createGain(); this.master.connect(glue); glue.connect(this.ctx.destination);
         for (const name of ['sfx', 'music', 'ambience'] as const) {
-          this.buses[name] = this.ctx.createGain(); this.buses[name].connect(this.master);
+          this.buses[name] = this.ctx.createGain();
+          if (name === 'sfx') {
+            const shelf = this.ctx.createBiquadFilter(), soft = this.ctx.createBiquadFilter();
+            shelf.type = 'highshelf'; shelf.frequency.value = 4500; shelf.gain.value = -5;
+            soft.type = 'lowpass'; soft.frequency.value = 9500; soft.Q.value = .5;
+            this.buses[name].connect(shelf); shelf.connect(soft); soft.connect(this.master);
+          } else this.buses[name].connect(this.master);
         }
         this.apply();
         for (const group of this.encoded.keys()) void this.decode(group);
@@ -86,7 +98,7 @@ export class AudioEngine {
     if (!this.ctx || !this.master) return;
     this.master.gain.setTargetAtTime(this.settings.muted || document.hidden ? 0 : 1, this.ctx.currentTime, .08);
     for (const bus of ['sfx', 'music', 'ambience'] as const)
-      this.buses[bus].gain.setTargetAtTime(this.settings[bus] * (bus === "ambience" && this.city ? .45 : 1) *
+            this.buses[bus].gain.setTargetAtTime(this.settings[bus] * SOFT_TRIM[bus] * (bus === "ambience" && this.city ? .45 : 1) *
         (bus === 'music' ? musicDuckGain(this.musicState.dead, this.ctx.currentTime < this.impactUntil) : 1), this.ctx.currentTime, .02);
   }
   setListener(position: Position) { this.listener = { x: position.x, z: position.z }; }
@@ -128,16 +140,17 @@ export class AudioEngine {
     fade.gain.setValueAtTime(0, this.ctx.currentTime); fade.gain.linearRampToValueAtTime(1, this.ctx.currentTime + 2);
     source.connect(fade); fade.connect(this.buses.ambience); source.start(0, sprite.start); this.ambient = source;
   }
-  play(id: string, position?: Position, bus: Bus = 'sfx') {
+    play(id: string, position?: Position, bus: Bus = 'sfx', other = false) {
     const ctx = this.ctx, sprite = this.manifest?.sounds[id], buffer = sprite && this.buffers.get(sprite.group);
     if (!ctx || ctx.state !== 'running' || !sprite || !buffer || document.hidden || this.settings.muted) return;
     const now = ctx.currentTime;
-    if (now - (this.last.get(id) ?? -Infinity) < sprite.cooldown || this.voices.size >= 16 || [...this.voices.values()].filter(v => v === id).length >= sprite.voices) return;
+    if (now - (this.last.get(id) ?? -Infinity) < sprite.cooldown || this.voices.size >= 12 || [...this.voices.values()].filter(v => v === id).length >= sprite.voices) return;
     const dx = position ? position.x - this.listener.x : 0, dz = position ? position.z - this.listener.z : 0;
     const distance = Math.hypot(dx, dz); if (distance >= 24) return;
     const source = ctx.createBufferSource(), gain = ctx.createGain(), pan = ctx.createStereoPanner();
     source.buffer = buffer; source.playbackRate.value = 1 + (Math.random() * 2 - 1) * sprite.pitch;
-    gain.gain.value = Math.pow(10, (Math.random() * 3 - 1.5) / 20) * Math.pow(1 - distance / 24, 2);
+        // Other players' combat sits well behind your own so a busy map stays calm.
+    gain.gain.value = Math.pow(10, (Math.random() * 2 - 1) / 20) * Math.pow(1 - distance / 24, 2) * (other ? .45 : 1);
     pan.pan.value = Math.max(-1, Math.min(1, (dx * .822 - dz * .569) / 10));
     source.connect(gain); gain.connect(pan); pan.connect(this.buses[bus]);
     source.onended = () => { this.voices.delete(source); source.disconnect(); gain.disconnect(); pan.disconnect(); };
