@@ -1,5 +1,10 @@
-import'../web.css';import'../web-glass.css';import{startGuest,mountAccountChip}from'./session';import{showError}from'./api';
+import'../web.css';import'../web-glass.css';import{startGuest,mountAccountChip,getMe}from'./session';import{showError}from'./api';import{heroView}from'./portal-state';import{kindLabel,uidChip}from'./account-ui';
 void mountAccountChip();
+// Signed-in visitors get "continue" instead of guest/Google actions; both stay invisible until /api/me answers (no flash).
+const hero=document.querySelector<HTMLElement>('#hero-session')!,$=(s:string)=>document.querySelector<HTMLElement>(s)!;
+void getMe().catch(()=>null).then(me=>{const v=heroView(me);hero.dataset.session=v.session;hero.removeAttribute('aria-busy');if(v.session==='out')return;
+ $('#guest-actions').hidden=true;$('#account-actions').hidden=false;$('#hero-account-name').textContent=v.name;$('#hero-account-kind').textContent='· '+kindLabel(v.kind);$('#hero-uid').replaceChildren(uidChip(v.uid));
+ const go=document.querySelector<HTMLAnchorElement>('#hero-continue')!;go.href=v.continueHref;go.firstChild!.textContent=v.continueLabel+' ';$('#hero-characters').hidden=!v.showCharacters;$('#hero-guest-note').hidden=!v.guest;});
 document.querySelector<HTMLButtonElement>('#guest-play')!.onclick=async function(this:HTMLButtonElement){this.disabled=true;try{await startGuest();location.assign('/characters.html');}catch(e){showError(document.querySelector('#portal-error')!,e);this.disabled=false;}};
 document.querySelector('#build-id')!.textContent=import.meta.env.VITE_BUILD_ID||'ทดสอบ';
 fetch('/changelog.json').then(r=>{if(!r.ok)throw Error('โหลดบันทึกไม่สำเร็จ');return r.json();}).then(entries=>{const list=document.querySelector('#changelog-list')!;for(const item of entries){const li=document.createElement('li'),time=document.createElement('time'),title=document.createElement('h3'),p=document.createElement('p');time.textContent=item.date;title.textContent=item.title;p.textContent=item.description;li.append(time,title,p);list.append(li);}}).catch(e=>{document.querySelector('#changelog-list')!.textContent=e.message;});
