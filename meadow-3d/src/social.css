@@ -1,0 +1,42 @@
+/* Chat + party: same painted-ink panel language as the HUD. */
+#chat{position:absolute;left:18px;bottom:64px;width:min(360px,34vw);z-index:6;pointer-events:none;font-size:13px;color:var(--hud-text,#fff4d6)}
+#chat-log{list-style:none;margin:0;padding:6px 8px;max-height:168px;overflow-y:auto;border-radius:10px 3px 10px 3px;background:transparent;transition:background .2s,opacity .4s;opacity:0;scrollbar-width:thin}
+#chat.recent #chat-log,#chat.open #chat-log,#chat:hover #chat-log{opacity:1}
+#chat.open #chat-log,#chat:hover #chat-log{background:#132923cc;pointer-events:auto}
+#chat-log li{line-height:1.45;padding:1px 0;text-shadow:0 1px 2px #000c;overflow-wrap:anywhere}
+#chat-log .chat-tag{font-size:11px;opacity:.75;margin-right:4px}
+#chat-log li[data-ch=party]{color:#a9e3c4}#chat-log li[data-ch=whisper]{color:#e8b9e6}#chat-log li[data-ch=system]{color:#ecd28e}
+#chat-log .chat-name{all:unset;cursor:pointer;font-weight:700;pointer-events:auto}
+#chat-log .chat-name:hover,#chat-log .chat-name:focus-visible{text-decoration:underline}
+#chat-form{display:none;gap:4px;margin-top:4px;pointer-events:auto}
+#chat.typing #chat-form{display:flex}
+#chat-form input{flex:1;min-width:0;font:inherit;color:#fff4d6;background:#0d1f1af2;border:1px solid #d6bc8899;border-radius:6px;padding:7px 9px;outline:none}
+#chat-form input:focus{border-color:#ecd28e}
+#chat-form button{font:inherit;color:#fff4d6;background:#17372b;border:1px solid #b49e6999;border-radius:6px;padding:0 9px;min-height:34px;cursor:pointer}
+#chat-channel[data-ch=party]{color:#a9e3c4}#chat-channel[data-ch=whisper]{color:#e8b9e6}
+#chat-toggle{display:none}
+#party-frame{position:absolute;left:18px;top:272px;width:220px;padding:6px 8px;background:var(--hud-ink,#132923f2);color:var(--hud-text,#fff4d6);border:1px solid #d6bc8877;border-radius:10px 3px 10px 3px;font-size:13px;z-index:5}
+#party-frame header{display:flex;align-items:center;gap:6px}#party-frame header small{flex:1;font-size:11px;opacity:.75}
+#party-frame header button,#party-frame .party-kick{font:inherit;font-size:12px;color:#fff4d6;background:#17372b;border:1px solid #b49e6966;border-radius:5px;padding:1px 7px;cursor:pointer}
+#party-frame ul{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:4px}
+#party-frame li{display:grid;grid-template-columns:1fr auto;grid-template-areas:"name kick" "meta kick" "bar bar";column-gap:6px}
+#party-frame .party-name{grid-area:name;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#party-frame li small{grid-area:meta;font-size:11px;opacity:.8}
+#party-frame .party-kick{grid-area:kick;align-self:center}
+#party-frame .party-hp{grid-area:bar;height:5px;border-radius:3px;background:linear-gradient(90deg,#c9655b calc(var(--hp)*100%),#ffffff22 0)}
+#party-frame li.me .party-name{color:#ecd28e}#party-frame li.offline{opacity:.5}#party-frame li.dead .party-hp{filter:grayscale(1)}
+#party-invites{position:absolute;left:50%;top:150px;transform:translateX(-50%);display:grid;gap:8px;z-index:20}
+.party-invite{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--hud-ink,#132923f2);color:#fff4d6;border:1px solid #ecd28e;border-radius:10px 3px 10px 3px;box-shadow:0 6px 20px #0006}
+.party-invite p{margin:0 6px 0 0}
+.party-invite button{font:inherit;min-height:36px;padding:0 12px;color:#fff4d6;background:#17372b;border:1px solid #b49e69;border-radius:6px;cursor:pointer}
+.party-invite button:first-of-type{background:#5c4a1f;border-color:#ecd28e}
+@media(max-width:650px){
+ #chat{left:8px;right:8px;width:auto;bottom:136px;display:none}
+ #chat.open{display:block}
+ #chat.open #chat-log{max-height:150px}
+ #chat-form button,#chat-form input{min-height:44px}
+ #chat-toggle{display:block;position:absolute;left:104px;bottom:84px;min-width:44px;min-height:44px;font-size:18px;background:var(--hud-ink,#132923f2);color:#fff4d6;border:1px solid #d6bc8877;border-radius:10px 3px 10px 3px;z-index:6}
+ #chat-toggle[data-unread]::after{content:attr(data-unread);position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;border-radius:9px;background:#c9655b;font-size:11px;line-height:18px}
+ #party-frame{left:8px;top:262px;width:180px;max-height:126px;overflow:auto;padding:4px 6px;font-size:12px}
+ #party-frame header small{display:none}
+}

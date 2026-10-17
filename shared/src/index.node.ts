@@ -16,3 +16,4 @@ export * from './audio-settings.js';
 export * from "./inventory.js";
 
 export * from './ui-settings.js';
+export * from './chat.js';

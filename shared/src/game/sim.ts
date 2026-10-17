@@ -230,7 +230,9 @@ export function createGame(
 	p.nextXp = data.stats.expToNext[p.level - 1];
 	const g = {
 		data, mapId,
- inventoryCommit: undefined as undefined | ((p:Player,op:InventoryOp,done:()=>void)=>void),
+  inventoryCommit: undefined as undefined | ((p:Player,op:InventoryOp,done:()=>void)=>void),
+ /** Party lookup for EXP sharing; returns the player's party member ids (including the player). */
+ partyMembers: undefined as undefined | ((id:string)=>string[]),
 		jobExpMultiplier: 1,
 		players: new Map([[id, p]]),
 		get p() {
@@ -637,6 +639,17 @@ function hurt(
 		g.destination = null;
 		emit(g, "death", { xpLost: deathPenalty(p, g.data) });
 	}
+}
+export const PARTY_SHARE_RANGE = 30;
+/** Party EXP: living members on this map within range split the kill's EXP evenly, +10% per extra member. */
+export function expShares(g: Game, p: Player, xp: number, jobExp: number) {
+	const ids = g.partyMembers?.(p.id) ?? [p.id];
+	const members = ids
+		.map(id => g.players.get(id))
+		.filter((m): m is Player => !!m && (m === p || (!m.dead && Math.hypot(m.x - p.x, m.z - p.z) <= PARTY_SHARE_RANGE)));
+	if (members.length <= 1) return [{ player: p, xp, jobExp, shared: false }];
+	const bonus = 1 + 0.1 * (members.length - 1);
+	return members.map(m => ({ player: m, xp: Math.floor((xp * bonus) / members.length), jobExp: Math.floor((jobExp * bonus) / members.length), shared: true }));
 }
 /** Base EXP lost on death: a share of this level's requirement, never below 0 and never a de-level. */
 export function deathPenalty(p: Pick<Player, "level" | "xp" | "nextXp">, data: GameData) {
@@ -1637,36 +1650,27 @@ export function step(
   const dx=p.x-d.x,dz=p.z-d.z,dist=Math.hypot(dx,dz);
   if(dist<4&&d.time>.25){const speed=Math.min(dist,dt*9);d.x+=dx/(dist||1)*speed;d.z+=dz/(dist||1)*speed;}
   if(dist<.45){
-   const done=()=>{const before=g.p;g.p=p;
-				const jobLevels = gainJobExp(
-					p,
-					Math.round((d.jobExp || 0) * (g.jobExpMultiplier || 1)),
-					g.data,
-				);
-				if (jobLevels)
-					emit(g, "jobLevel", {
-						jobLevel: p.jobLevel,
-						skillPoints: p.skillPoints,
-						granted: jobLevels,
-					});
-				const xp = Math.round(d.xp * (1 + p.stats.expBonus));
-				p.xp += xp;
-				emit(g, "pickup", { gold: d.gold, xp });
-				while (p.level < g.data.stats.maxLevel && p.xp >= p.nextXp) {
-					p.xp -= p.nextXp;
-					p.level++;
-					p.statPoints += g.data.stats.pointsPerLevel;
-					Object.assign(p, autoAllocateStats(p, g.data));
-					refreshStats(g, p);
-					p.hp = p.maxHp;
-					p.mp = p.maxMp;
-					emit(g, "level", {
-						level: p.level,
-						skillPoints: p.skillPoints,
-						points: p.statPoints,
-						granted: g.data.stats.pointsPerLevel,
-					});
+   const done=()=>{const before=g.p;
+				for (const share of expShares(g, p, d.xp, d.jobExp || 0)) {
+					const r = share.player;
+					g.p = r;
+					const jobLevels = gainJobExp(r, Math.round(share.jobExp * (g.jobExpMultiplier || 1)), g.data);
+					if (jobLevels) emit(g, "jobLevel", { jobLevel: r.jobLevel, skillPoints: r.skillPoints, granted: jobLevels });
+					const xp = Math.round(share.xp * (1 + r.stats.expBonus));
+					r.xp += xp;
+					emit(g, "pickup", { gold: r === p ? d.gold : 0, xp, shared: share.shared });
+					while (r.level < g.data.stats.maxLevel && r.xp >= r.nextXp) {
+						r.xp -= r.nextXp;
+						r.level++;
+						r.statPoints += g.data.stats.pointsPerLevel;
+						Object.assign(r, autoAllocateStats(r, g.data));
+						refreshStats(g, r);
+						r.hp = r.maxHp;
+						r.mp = r.maxMp;
+						emit(g, "level", { level: r.level, skillPoints: r.skillPoints, points: r.statPoints, granted: g.data.stats.pointsPerLevel });
+					}
 				}
+				g.p = p;
     if(d.boss)p.bossReadyAt=g.wallTime+600000;g.drops=g.drops.filter(drop=>drop!==d);g.p=before;
    };
    if(g.inventoryCommit){

@@ -37,6 +37,7 @@ import {
 import { IntentSchema, type Intent } from "@thainative/shared";
 import type { Store, Character, Progress } from "../store/types.js";
 import { hashToken } from "../session.js";
+import { createSocial } from "./social.js";
 interface Peer {
  leaseOwner?:string; busy?:number; deferred?:Intent[]; uiLoading?:boolean;
  ui?:import('@thainative/shared').UISettings;
@@ -219,6 +220,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		ws.send(JSON.stringify(body));
 		sent++;
 	}
+ const social=createSocial<Peer>({live,send,adminIds:options.adminIds});
  function economy(peer:Peer,p:Player,op:InventoryOp,req:string,done=()=>{}) {
   const room=peer.room,g=room.game;
   if(op.op==='pickup'){
@@ -247,6 +249,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   if(!room){
    const game=createGame(randomInt(1,0x7fffffff),data.stats.defaultBuild,'local',data,mapId);
    game.jobExpMultiplier=options.production?1:Math.max(1,Math.min(1000,options.devJobExpMultiplier||1));
+   game.partyMembers=id=>social.partyMembers(id);
    game.players.clear();
    room={key,game,peers:new Map(),accounts:new Map(),disconnected:new Map(),tick:0,saveQueue:Promise.resolve()};
    rooms.set(key,room);
@@ -330,8 +333,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			}
 		for (const e of list)
 			if (["level", "jobLevel", "death", "victory"].includes(e.type)) {
-				if (e.type === "victory")
+				if (e.type === "victory"){
 					for (const id of room.game.players.keys()) void save(room, id);
+					const winner=room.game.players.get(String(e.playerId));if(winner)social.system(`✦ ${winner.name} ปราบราชาวุ้นสำเร็จ!`);
+				}
 				else void save(room, String(e.playerId));
 			}
 	}
@@ -380,9 +385,12 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			}
 			send(peer.ws, snapshot(room, peer));
 			sendStats(peer, g.players.get(peer.id)!);
+			social.ready(peer);
 			return;
 		}
 		if (!peer.ready) return;
+		if (message.t === "chat") { social.chat(peer, message); return; }
+		if (message.t === "party") { social.party(peer, message); return; }
 		if (!queued && "seq" in message) {
 			if (message.seq <= peer.ack) return;
 			peer.ack = message.seq;
@@ -601,7 +609,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
             ws.on('close',()=>{
              const peer=connectedPeer;if(!peer||live.get(peer.id)!==peer)return;
              live.delete(peer.id);peer.room.peers.delete(peer.id);peer.input={x:0,z:0};
-             peer.room.disconnected.set(peer.id,Date.now());if(!closing)void save(peer.room,peer.id);
+             peer.room.disconnected.set(peer.id,Date.now());social.offline(peer.id);if(!closing)void save(peer.room,peer.id);
             });
 			const task=(async () => {
 				const origin = req.headers.origin,
@@ -856,6 +864,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                 }
 			}
 		}
+		if (catchup && ticks % 20 < catchup) social.tick();
 		samples.push(performance.now() - begin);
 		if (samples.length > 1200) samples.shift();
 		if (now - lastMetric >= 1000) {
@@ -921,5 +930,6 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			wss.close();
 		},
 		save,
+		social,
 	};
 }

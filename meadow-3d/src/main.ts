@@ -6,6 +6,7 @@ import {loadGameData,rarityColors} from '@thainative/shared';
 import { CITY_BUILDINGS, HEALER, GATES, type MapId } from '@thainative/shared/maps';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import { playEventAudio } from './audio-events';
+import { mountSocial } from './social-ui';
 import { mountAudioSettings } from './audio-settings-ui';
 import{mountSkills}from'./skills-ui';import{mountSkillArt}from'./skill-art';
 import{loadSelected}from'./web/game-session';
@@ -32,7 +33,9 @@ const combatFeel=new CombatFeel(),autoQuality=new AutoQuality();autoQuality.auto
 const audioUI=mountAudioSettings(sound,message=>net.send(message));
 const feelLabel=document.createElement('label');feelLabel.innerHTML='<input type="checkbox" id="combat-feel">ภาพสั่น/หยุดภาพ';document.querySelector('#audio-settings')!.append(feelLabel);const feelInput=feelLabel.querySelector('input')!;feelInput.checked=combatFeel.enabled;feelInput.onchange=()=>combatFeel.setEnabled(feelInput.checked);
 document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.closest('button:not(:disabled)'))sound.play('ui_click');},true);
+let social:ReturnType<typeof mountSocial>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
+ if(social?.receive(message))return;
  audioUI.receive(message);inventoryUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
  if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you)audioUI.receive(e);
  if(message.t==='snap'){worldState.receive(message,net.you,performance.now());if(message.mapId!==activeMap)void switchMap(message.mapId);}
@@ -306,6 +309,7 @@ overview.onclick=()=>{overviewOn=!overviewOn;overview.setAttribute('aria-pressed
 applyQuality();hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
 
+social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
 qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>{if(!skillsUI.open)skillsUI.toggle();$('#key-settings').hidden=false;$('#audio-settings').hidden=false;},talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(['market','forge'].includes(kind)){inventoryUI.shop(kind);return;}if(nearNpc&&nearNpc.kind===kind)npcTalk.click();}});
 
 if(pendingUI)qol.receive(pendingUI);
