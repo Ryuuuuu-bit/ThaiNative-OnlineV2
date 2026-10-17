@@ -9,7 +9,7 @@ const BLOCKED = [
 ];
 // Innocent words that contain a blocked spelling.
 const ALLOWED = ["หีบ", "สัดส่วน", "แม่งาน", "แม่งู", "เหี้ยม", "scunthorpe", "dickens", "shitake", "shiitake", "cockpit"];
-const RESERVED_NAMES = ["gm", "admin", "administrator", "gamemaster", "moderator", "mod", "system", "ระบบ", "ทีมงาน", "ผู้ดูแล", "แอดมิน", "จีเอ็ม", "thainative"];
+const RESERVED_NAMES = ["admin", "administrator", "gamemaster", "moderator", "system", "staff", "support", "official", "ระบบ", "ทีมงาน", "ผู้ดูแล", "แอดมิน", "แอดมิ่น", "จีเอ็ม", "thainative", "ไทยเนทีฟ"];
 const SEP = "[\\s._\\-*~+|'\"`]*";
 const escape = (c: string) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const pattern = (word: string) => new RegExp([...word].map(escape).join(SEP), "giu");
@@ -46,10 +46,25 @@ export const hasBlockedWord = (text: string) => filterChat(text) !== cleanChat(t
 
 /** Character names: no staff look-alikes and no blocked words. Returns a Thai error or null. */
 export function namePolicyError(name: string) {
-	const key = name.normalize("NFC").toLowerCase().replace(/[\s._\-]/g, "");
-	const plain = [...key].map(c => LEET[c] ?? c).join("");
-	if (RESERVED_NAMES.some(r => key.includes(r) || plain.includes(r))) return "ชื่อนี้สงวนไว้สำหรับทีมงาน";
-	if (hasBlockedWord(name)) return "ชื่อนี้มีคำไม่เหมาะสม";
+	// Matching only: keep the player's original spelling for display and uniqueness.
+	const key = name.normalize("NFKC").toLowerCase().normalize("NFD")
+		.replace(/[\u0300-\u036f\u0e47-\u0e4c]/g, "");
+	const plain = [...key].map(c => LEET[c] ?? c).join("").replace(/[^\p{L}\p{M}\p{N}]/gu, "");
+	const forms = [key.replace(/[^\p{L}\p{M}\p{N}]/gu, ""), plain, plain.replace(/([a-z])\1+/g, "$1")];
+	const reserved = (value: string) => RESERVED_NAMES.some(r => {
+		const token = r.normalize("NFD").replace(/[\u0300-\u036f\u0e47-\u0e4c]/g, "");
+		const compact = token.replace(/([a-z])\1+/g, "$1");
+		return value.includes(token) || (compact !== token && value.startsWith(compact));
+	}) || (value.startsWith("gm") && !value.startsWith("gmail")) || value === "mod" || /^mod\d/.test(value);
+	if (forms.some(reserved)) return "ชื่อนี้สงวนไว้สำหรับทีมงาน";
+	const fold = (text: string) => text.normalize("NFKC").normalize("NFD").replace(/[\u0300-\u036f\u0e47-\u0e4c]/g, "").replace(/([a-z])\1+/g, "$1");
+	const insults = [...BLOCKED, "หำ", "แตด", "สวะ", "อีเวร", "ไอ้เวร"].map(fold);
+	const inappropriate = forms.some(value => {
+		let candidate = fold(value);
+		for (const word of ALLOWED) candidate = candidate.split(fold(word)).join("\u0000");
+		return insults.some(word => candidate.includes(word));
+	});
+	if (hasBlockedWord(name) || inappropriate) return "ชื่อนี้มีคำไม่เหมาะสม";
 	return null;
 }
 

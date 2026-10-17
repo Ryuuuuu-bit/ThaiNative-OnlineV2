@@ -15,6 +15,8 @@ test('password hashing: scrypt with per-user salt, verify, wrong password and ma
 test('username and password rules: 3–20 [A-Za-z0-9_], reserved names, 8+ chars, no obvious passwords',()=>{
  for(const bad of ['ab','a'.repeat(21),'มีไทย','with space','dash-name','',null,42])assert.throws(()=>username(bad),{code:'INVALID_USERNAME'},String(bad));
  for(const reserved of ['admin','Admin','ADMIN1','gm1','GameMaster','thainative','system_bot','mod_x','root','guest'])assert.throws(()=>username(reserved),{code:'USERNAME_RESERVED'},reserved);
+ for(const reserved of ['Adm1n','a_d_m_i_n','GMhero','Staaaff'])assert.throws(()=>username(reserved),{code:'USERNAME_RESERVED'},reserved);
+ for(const bad of ['Fuuuck','f_u_c_k','Sh1t','B1tch'])assert.throws(()=>username(bad),{code:'USERNAME_INAPPROPRIATE'},bad);
  assert.deepEqual(username('Aerin_01'),{username:'Aerin_01',usernameKey:'aerin_01'});assert.ok(username('gmailfan'));
  for(const bad of ['short','1234567','password','12345678','aaaaaaaaaa','xx-aerin_01-yy'])assert.throws(()=>newPassword(bad,'aerin_01'),{code:'WEAK_PASSWORD'},bad);
  assert.throws(()=>newPassword('x'.repeat(129)),{code:'WEAK_PASSWORD'});assert.equal(newPassword(PW,'aerin_01'),PW);
@@ -34,11 +36,21 @@ test('register validation: confirm mismatch, taken (case-insensitive), reserved,
  assert.equal((await call('/api/register','POST',{username:'Bram',password:PW,confirmPassword:PW+'!'})).data.error.code,'PASSWORD_MISMATCH');
  assert.equal((await call('/api/register','POST',{username:'Bram',password:'1234',confirmPassword:'1234'})).data.error.code,'WEAK_PASSWORD');
  assert.equal((await register(call,'Admin')).data.error.code,'USERNAME_RESERVED');
+ assert.equal((await register(call,'f_u_c_k')).data.error.code,'USERNAME_INAPPROPRIATE');
+ assert.equal((await register(call,'Adm1n')).data.error.code,'USERNAME_RESERVED');
  const a=await register(call,'Bram');assert.equal(a.status,201);const taken=await register(call,'bRAM');assert.equal(taken.status,409);assert.equal(taken.data.error.code,'USERNAME_TAKEN');
  const again=await register(call,'Bram_two',a.cookie);assert.equal(again.status,409);assert.equal(again.data.error.code,'ALREADY_SIGNED_IN');
 });
+test('legacy usernames can still log in after registration policy tightens',async t=>{
+ const{call,store}=await fixture(t);
+ const existing=await store.registerPassword({username:'Sh1t',usernameKey:'sh1t',passwordHash:await hashPassword(PW)});
+ const login=await call('/api/login','POST',{username:'SH1T',password:PW});
+ assert.equal(login.status,200);assert.equal(login.data.account.id,existing.id);
+});
 test('guest → username/password link keeps the account, uid, characters and selection; old guest key and sessions die',async t=>{const{call}=await fixture(t);
  const g=await call('/api/guest','POST',{});const c=await call('/api/characters','POST',{jobId:'swordsman',name:'ลิงก์01'},g.cookie);await call(`/api/characters/${c.data.character.id}/select`,'POST',{},g.cookie);
+ assert.equal((await register(call,'f_u_c_k',g.cookie)).data.error.code,'USERNAME_INAPPROPRIATE');
+ const unchanged=await call('/api/me','GET',undefined,g.cookie);assert.equal(unchanged.data.account.kind,'guest');assert.equal(unchanged.data.selectedCharacterId,c.data.character.id);
  const linked=await register(call,'Linker',g.cookie);assert.equal(linked.status,201);assert.equal(linked.data.linked,true);assert.equal(linked.data.account.id,g.data.account.id);assert.equal(linked.data.account.uid,g.data.account.uid);assert.equal(linked.data.account.kind,'password');
  assert.equal((await call('/api/me','GET',undefined,g.cookie)).status,401,'guest session revoked');assert.equal((await call('/api/guest/resume','POST',{guestKey:g.data.guestKey})).status,401,'guest key retired');
  const me=await call('/api/me','GET',undefined,linked.cookie);assert.equal(me.data.selectedCharacterId,c.data.character.id);

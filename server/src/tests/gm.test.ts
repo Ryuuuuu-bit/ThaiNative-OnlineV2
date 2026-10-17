@@ -141,7 +141,7 @@ test("players get a generic unknown command; GM text is never broadcast; denied 
 });
 
 test("admin commands: help, validation, teleport, heal, levels, god, speed, who, announce — each audited", async (t) => {
-	const f = await fixture(t), admin = await f.join("Staff"), other = await f.join("Hero");
+	const f = await fixture(t), admin = await f.join("Steward"), other = await f.join("Hero");
 	await f.promote(admin.uid);
 	assert.match(await admin.gm("/gm help", /คำสั่ง GM/), /คำสั่ง GM/);
 	assert.match(await admin.gm("/gm nope"), /ไม่มีคำสั่ง/);

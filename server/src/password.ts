@@ -1,4 +1,5 @@
 import{randomBytes,scrypt,timingSafeEqual,type ScryptOptions}from'node:crypto';import{AppError}from'./errors.js';
+import { usernamePolicyError } from '@thainative/shared';
 // scrypt N=2^15 r=8 p=1 (≈32 MiB, tens of ms): slow for attackers, affordable per login. Encoded so parameters can be raised later.
 const N=32768,R=8,P=1,KEYLEN=32,MAXMEM=96*1024*1024;
 const derive=(password:string,salt:Buffer,o:{N:number;r:number;p:number},keylen=KEYLEN)=>new Promise<Buffer>((resolve,reject)=>scrypt(password.normalize('NFKC'),salt,keylen,{...o,maxmem:MAXMEM} satisfies ScryptOptions,(e,key)=>e?reject(e):resolve(key)));
@@ -11,11 +12,9 @@ export async function verifyPassword(password:string,stored?:string){
 }
 const DUMMY_SALT=randomBytes(16);
 
-const RESERVED=/^(?:admin|administrator|root|system|sys|gm|gamemaster|mod|moderator|staff|support|help|official|owner|dev|developer|server|thainative|thai_native|guest|google|null|undefined|anonymous|everyone|player)(?:_?\d*)$/;
 export function username(input:unknown){
- if(typeof input!=='string'||!/^[A-Za-z0-9_]{3,20}$/.test(input))throw new AppError(400,'INVALID_USERNAME','ชื่อผู้ใช้ต้องยาว 3–20 ตัว ใช้ได้เฉพาะ a–z, 0–9 และ _');
- const key=input.toLowerCase();if(RESERVED.test(key)||/^(?:admin|gm|mod|staff|thainative|system)_/.test(key))throw new AppError(400,'USERNAME_RESERVED','ชื่อผู้ใช้นี้สงวนไว้ กรุณาเลือกชื่ออื่น');
- return{username:input,usernameKey:key};
+ const error=usernamePolicyError(input);if(error)throw new AppError(400,error.code,error.message);
+ return{username:input as string,usernameKey:(input as string).toLowerCase()};
 }
 const COMMON=new Set(['password','password1','password123','12345678','123456789','1234567890','11111111','00000000','qwertyui','qwerty123','iloveyou','abcd1234','asdfghjk','88888888','99999999','12341234']);
 export function newPassword(input:unknown,usernameKey?:string){

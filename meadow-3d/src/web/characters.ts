@@ -1,4 +1,5 @@
 import jobsData from "../../../shared/data/jobs.json";
+import { characterNameError } from '@thainative/shared';
 import skillsData from "../../../shared/data/skills.json";
 import statsData from "../../../shared/data/stats.json";
 import{assetJSON}from'../asset-request';
@@ -109,12 +110,12 @@ function showClass(id:string){
  checkName();
 }
 cards.addEventListener('change',e=>{const r=e.target as HTMLInputElement;if(r.name==='jobId')showClass(r.value);});
-// mirrors the server rule for quick feedback (Thai, Latin incl. accents, digits); the server still decides
-const NAME_OK=/^[฀-๿a-zA-Z0-9À-ɏ]{2,12}$/;
 function checkName(){
- const v=nameInput.value,n=[...v].length,ok=!!pickId||NAME_OK.test(v),st=$('#name-state');
+ const v=nameInput.value,n=[...v.normalize('NFC')].length,policy=characterNameError(v),ok=!!pickId||!policy,st=$('#name-state');
  $('#name-count').textContent=`${n} / 12`;st.className='cs-st '+(ok?'ok':'bad');
- st.querySelector('b')!.textContent=pickId?'ชื่อเดิม':!v?'ใส่ชื่อ':ok?'✓ ใช้ได้':/\s/.test(v)?'ห้ามเว้นวรรค':n<2?'สั้นไป':'ไทย/อังกฤษ/ตัวเลข';
+ st.querySelector('b')!.textContent=pickId?'ชื่อเดิม':!v?'ใส่ชื่อ':ok?'✓ รูปแบบผ่าน':policy!.includes('สงวน')?'ชื่อสงวน':policy!.includes('ไม่เหมาะสม')?'คำไม่เหมาะสม':/\s/.test(v)?'ห้ามเว้นวรรค':n<2?'สั้นไป':n>12?'ยาวเกินไป':/^\p{Nd}+$/u.test(v)?'ต้องมีตัวอักษร':'ไทย/อังกฤษ/ตัวเลข';
+ nameInput.setAttribute('aria-invalid',String(!pickId&&!!v&&!ok));
+ st.title=pickId?'ชื่อเดิม':ok?'รูปแบบผ่าน · ระบบจะตรวจชื่อซ้ำเมื่อสร้างตัวละคร':policy||'';
  $<HTMLButtonElement>('#create-submit').disabled=!ok||!playable(currentJob);
 }
 nameInput.addEventListener('input',checkName);
@@ -128,7 +129,7 @@ function openCreate(c?:any){
  showClass(tier1.find(j=>j.available)?.id||'swordsman');show('create');if(!c)nameInput.focus();
 }
 $('[data-back]').onclick=()=>show('select');
-$<HTMLFormElement>('#create-form').onsubmit=async e=>{e.preventDefault();const button=$<HTMLButtonElement>('#create-submit');if(!playable(currentJob))return;button.disabled=true;
+$<HTMLFormElement>('#create-form').onsubmit=async e=>{e.preventDefault();const button=$<HTMLButtonElement>('#create-submit');if(!playable(currentJob))return;if(!pickId&&characterNameError(nameInput.value)){checkName();nameInput.focus();return;}button.disabled=true;
  try{if(pickId){await post(`/characters/${pickId}/job`,{jobId:currentJob});await post(`/characters/${pickId}/select`);location.assign('/play.html');}
   else{const out=await post('/characters',{name:nameInput.value,jobId:currentJob});selectedId=out?.character?.id||selectedId;show('select');await refresh();}}
  catch(err){showError($('#create-error'),err);}finally{checkName();}};

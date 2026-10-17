@@ -1,5 +1,6 @@
 import'../web.css';import'../web-glass.css';import{api,post,showError,ApiError}from'./api';import{getMe,guestKey,startGuest,safeNext,forgetGuest,mountAccountChip,loginPassword,register,logout,type Me}from'./session';import{kindLabel,uidChip,mountBuild}from'./account-ui';
 declare global{interface Window{google?:any}}
+import { usernamePolicyError } from '@thainative/shared';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
 const error=$('#login-error'),note=$('#guest-note'),next=safeNext(new URLSearchParams(location.search).get('next'));
 mountBuild();
@@ -18,17 +19,18 @@ for(const b of document.querySelectorAll<HTMLButtonElement>('.reveal'))b.onclick
 
 // ---------- Field validation (mirrors the server rules; the server stays authoritative) ----------
 function fieldError(input:HTMLInputElement,message=''){const out=document.getElementById(input.id+'-error')!;out.textContent=message;out.hidden=!message;input.setAttribute('aria-invalid',String(!!message));return!message;}
-const USERNAME=/^[A-Za-z0-9_]{3,20}$/;
 function validate(form:'login'|'register'){
  const u=$<HTMLInputElement>(`#${form}-username`),p=$<HTMLInputElement>(`#${form}-password`),checks:[HTMLInputElement,string][]=[];
- checks.push([u,!u.value?'กรุณากรอกชื่อผู้ใช้':form==='register'&&!USERNAME.test(u.value)?'ชื่อผู้ใช้ 3–20 ตัว ใช้ได้เฉพาะ a–z, 0–9 และ _':'']);
+ checks.push([u,!u.value?'กรุณากรอกชื่อผู้ใช้':form==='register'?usernamePolicyError(u.value)?.message||'':'']);
  checks.push([p,!p.value?'กรุณากรอกรหัสผ่าน':form==='register'&&[...p.value].length<8?'รหัสผ่านต้องยาวอย่างน้อย 8 ตัว':'']);
  if(form==='register'){const c=$<HTMLInputElement>('#register-confirm');checks.push([c,!c.value?'กรุณายืนยันรหัสผ่าน':c.value!==p.value?'รหัสผ่านทั้งสองช่องไม่ตรงกัน':'']);}
  let first:HTMLInputElement|undefined;for(const[input,message]of checks)if(!fieldError(input,message))first??=input;first?.focus();return!first;
 }
 for(const input of document.querySelectorAll<HTMLInputElement>('.auth-form input:not([type=checkbox])'))input.addEventListener('input',()=>{if(input.getAttribute('aria-invalid')==='true')fieldError(input);});
+const registrationUsername=$<HTMLInputElement>('#register-username');
+registrationUsername.addEventListener('input',()=>fieldError(registrationUsername,registrationUsername.value?usernamePolicyError(registrationUsername.value)?.message||'':''));
 // Server codes that belong to one field; everything else (LOGIN_FAILED, LOGIN_LOCKED, RATE_LIMIT…) shows on the form.
-const FIELD:Record<string,string>={USERNAME_TAKEN:'register-username',INVALID_USERNAME:'register-username',USERNAME_RESERVED:'register-username',WEAK_PASSWORD:'register-password',PASSWORD_MISMATCH:'register-confirm'};
+const FIELD:Record<string,string>={USERNAME_TAKEN:'register-username',INVALID_USERNAME:'register-username',USERNAME_RESERVED:'register-username',USERNAME_INAPPROPRIATE:'register-username',WEAK_PASSWORD:'register-password',PASSWORD_MISMATCH:'register-confirm'};
 function serverError(form:'login'|'register',e:unknown){const target=e instanceof ApiError&&FIELD[e.code]&&form==='register'?document.getElementById(FIELD[e.code]) as HTMLInputElement:undefined;if(target){fieldError(target,(e as Error).message);target.focus();}else showError($(`#${form}-form-error`),e);}
 async function busy(button:HTMLButtonElement,run:()=>Promise<void>){button.disabled=true;button.setAttribute('aria-busy','true');try{await run();}finally{button.disabled=false;button.removeAttribute('aria-busy');}}
 

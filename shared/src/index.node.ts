@@ -19,6 +19,8 @@ export * from './ui-settings.js';
 export * from './keybinds.js';
 export * from './auto-potion.js';
 export * from './chat.js';
+export * from './character-names.js';
+export * from './usernames.js';
 export * from './quests.js';
 export * from './auto-settings.js';
 
