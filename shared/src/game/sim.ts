@@ -80,6 +80,8 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
+ /** ตั้งค่า AUTO for this account (server-side; never sent in snapshots). */
+ autoCfg?: AutoSettings; autoNext?: string | null;
    bossReadyAt?:number; reviveRemaining?:number;
  /** Field-boss cooldowns other than the King (which keeps bossReadyAt). */
  bossCooldowns?: Record<string, number>;
@@ -172,6 +174,7 @@ export function setBossCooldown(p: Pick<Player, "bossReadyAt" | "bossCooldowns">
 }
 export { CD } from "./constants.js";
 import { CD, ACTION_SKILLS } from "./constants.js";
+import { AUTO_RANGES, DEFAULT_AUTO, autoCastOrder, autoSkillSequence, isSurvivalSkill, wantedMonsters, type AutoSettings } from "../auto-settings.js";
 export const KING_PATTERN: KingAttack[] = [
 	"slam",
 	"sweep",
@@ -1180,21 +1183,12 @@ function autoStep(g: Game, dt: number): Vec {
 	g.autoTimer -= dt;
 	if (g.autoTimer <= 0) {
 		g.autoTimer += 0.2;
-		if (p.hp < p.maxHp * 0.45 && p.potions > 0) action(g, "potion");
+		const cfg = p.autoCfg ?? DEFAULT_AUTO;
+		if (cfg.hpPotion && p.hp < p.maxHp * cfg.hpPotion / 100 && p.potions > 0) action(g, "potion");
+		else if (cfg.mpPotion && p.mp < p.maxMp * cfg.mpPotion / 100) autoDrinkSp(g);
 		if (p.hp < p.maxHp * 0.25 && p.potions === 0) p.autoState = "retreat";
 		const retreat = p.autoState === "retreat" && p.hp < p.maxHp * 0.9;
-		const living = g.enemies.filter((e) => !e.dead),
-			boss = living.find((e) => e.boss),
-			current = living.find((e) => e.id === g.target);
-		const target =
-			boss ||
-			current ||
-			living
-				.filter((e) => Math.hypot(e.x - p.x, e.z - p.z) <= 14)
-				.sort(
-					(a, b) =>
-						Math.hypot(a.x - p.x, a.z - p.z) - Math.hypot(b.x - p.x, b.z - p.z),
-				)[0];
+		const target = autoPickTarget(g, cfg);
 		g.target = target?.id ?? null;
 		const reach = target ? (target.boss ? 2.3 : 1.8) : 0,
 			d = target ? Math.hypot(target.x - p.x, target.z - p.z) : Infinity;
@@ -1209,23 +1203,7 @@ function autoStep(g: Game, dt: number): Vec {
 		if (target && d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
-			const nearby = living.filter(
-				(e) => Math.hypot(e.x - p.x, e.z - p.z) <= 2.6,
-			);
-			if (
-				p.skills.earth_break &&
-				p.mp >= gameSkill(g, "earth_break").sp &&
-				(p.cd.earth_break || 0) === 0 &&
-				(target.boss || nearby.length >= 3)
-			)
-				action(g, "earth_break");
-			if (
-				p.skills.whirlwind &&
-				p.mp >= gameSkill(g, "spin").sp &&
-				nearby.length >= 2 &&
-				p.cd.spin === 0
-			)
-				action(g, "spin");
+			autoCast(g, cfg);
 		}
 	}
 	const target = g.enemies.find((e) => e.id === g.target && !e.dead);
@@ -1237,8 +1215,7 @@ function autoStep(g: Game, dt: number): Vec {
 		if (d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
-			if (p.skills.slash && (p.cd.slash || 0) === 0) action(g, "slash");
-			action(g, "attack");
+			if ((p.autoCfg ?? DEFAULT_AUTO).basic) action(g, "attack");
 			g.destination = null;
 			if (!retreat) p.autoState = "fight";
 			return still;
@@ -1251,6 +1228,55 @@ function autoStep(g: Game, dt: number): Vec {
 		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId, p));
 	p.autoState = target ? "seek" : "idle";
 	return Math.hypot(p.x, p.z) < 0.4 ? still : navigate(g, { x: 0, z: 0 });
+}
+/**
+ * AUTO target. A monster fighting this player comes first (with `attackers`), then bosses (with
+ * `elites`), then the nearest one in range on the map's hunt list. The current target is kept
+ * unless another is clearly better, so AUTO does not flip between two close monsters.
+ */
+function autoPickTarget(g: Game, cfg: AutoSettings) {
+	const p = g.p,
+		R = AUTO_RANGES[cfg.range],
+		wanted = wantedMonsters(cfg, g.mapId),
+		dist = (e: Enemy) => Math.hypot(e.x - p.x, e.z - p.z),
+		fighting = (e: Enemy) => cfg.attackers && e.aggro > 0 && (e.engaged || (e.damageBy[p.id] ?? 0) > 0) && dist(e) < 6,
+		allowed = (e: Enemy) => !wanted || wanted.has(e.dataId) || fighting(e),
+		living = g.enemies.filter((e) => !e.dead && !e.summoned || (!e.dead && fighting(e)));
+	const score = (e: Enemy) => (fighting(e) ? -1000 : 0) + (cfg.elites && e.boss ? -500 : 0) + dist(e);
+	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e)));
+	const best = pool.sort((a, b) => score(a) - score(b))[0];
+	const current = pool.find((e) => e.id === g.target);
+	return current && (!best || score(current) - 2 <= score(best)) ? current : best;
+}
+/** Cast the first ready skill in the player's AUTO order (cycle / priority, survival first when low). */
+function autoCast(g: Game, cfg: AutoSettings) {
+	const p = g.p,
+		hotbar = (p.hotbar ?? []).map((h) => h.skill),
+		spec = (id: string) => g.data.skills.skills.find((s) => s.id === id),
+		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !spec(id)?.passive && !!spec(id)),
+		order = autoCastOrder(seq, cfg, p.hp / p.maxHp, p.autoNext ?? null, (id) => isSurvivalSkill(spec(id)));
+	for (const id of order) {
+		if ((p.cd[id] || 0) > 0 || p.mp < gameSkill(g, id).sp) continue;
+		if (action(g, id)) {
+			p.autoNext = seq[(seq.indexOf(id) + 1) % seq.length] ?? null;
+			return true;
+		}
+	}
+	return false;
+}
+/** AUTO's SP potion: the first SP drink in the bag, on the shared potion cooldown. */
+function autoDrinkSp(g: Game) {
+	const p = g.p;
+	if (!p.inventory || (p.cd.potion || 0) > 0 || p.mp >= p.maxMp) return false;
+	const item = p.inventory.items.find((i) => i.location === "bag" && g.data.items.items.find((t) => t.id === i.template)?.effect === "sp");
+	if (!item) return false;
+	if (g.inventoryCommit) { g.inventoryCommit(p, { op: "use", id: item.id }, () => {}); return true; }
+	const out = applyInventory({ gold: p.gold, inventory: p.inventory }, { op: "use", id: item.id }, p.profile, g.data, () => String(g.nextId++));
+	p.inventory = out.state.inventory;
+	if (out.effect?.kind === "sp") p.mp = Math.min(p.maxMp, p.mp + out.effect.amount);
+	p.cd.potion = gameSkill(g, "potion").cooldown;
+	refreshStats(g, p);
+	return true;
 }
 function face(e: Enemy, x: number, z: number) {
 	const d = Math.hypot(x - e.x, z - e.z) || 1;

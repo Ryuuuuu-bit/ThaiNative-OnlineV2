@@ -4,6 +4,7 @@ import {nameplateCandidates,overlaps,type Rect} from './world-labels';
 import {CONTACT_FRAME,isSkillMotion} from './skill-motions';
 import {CombatFeel,AutoQuality} from './combat-feel';
 import {mountInventory} from './inventory-ui';
+import {mountAutoSettings} from './auto-ui';
 import {loadGameData,rarityColors} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, HEALER, GATE_CAPTAIN, GATES, LAYOUTS, FIELD_BOSS, type MapId } from '@thainative/shared/maps';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
@@ -30,6 +31,7 @@ const [selected,textureManifest]=await Promise.all([loadSelected(),assetJSON<Tex
 let statsController:any=null,lastStats:any=null;const statsUI={get open(){return !!statsController?.open;},async toggle(){if(!statsController){const{mountStats}=await import('./stats-window');statsController=mountStats(message=>net.send(message),()=>clearInput());if(lastStats)statsController.receive(lastStats);}if(!statsController.open)sound.play('ui_open');statsController.toggle();},receive(e:any){if(e.type==='stats'){lastStats=e;$('#stats-button').classList.toggle('has-points',e.points>=2);}statsController?.receive(e);}};$('#stats-button').onclick=()=>void statsUI.toggle();
 const skillsUI=mountSkills(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});},id=>doAction(id),id=>sound.play(id));$('#skills-button').onclick=()=>skillsUI.toggle();
 const inventoryUI=mountInventory(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});});
+const autoUI=mountAutoSettings({send:message=>net.send(message),player:()=>game.p,map:()=>activeMap,onOpen:()=>clearInput()});
 const itemData=loadGameData();
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(selected.character.id),keys=new Set<string>();let qualityPreference="high";try{qualityPreference=localStorage.getItem("tn-quality")||"high";}catch{}
 let started=false,paused=false,wonShown=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
@@ -41,7 +43,7 @@ document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.c
 let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
   if(social?.receive(message)||quests?.receive(message))return;
- audioUI.receive(message);inventoryUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
+ audioUI.receive(message);inventoryUI.receive(message);autoUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
  if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you)audioUI.receive(e);
  if(message.t==='snap'){worldState.receive(message,net.you,performance.now());if(message.mapId!==activeMap)void switchMap(message.mapId);}
   if(message.t==='inv'&&message.inventory){game.p.inventory=message.inventory;game.p.gold=message.gold;quests?.refresh();}

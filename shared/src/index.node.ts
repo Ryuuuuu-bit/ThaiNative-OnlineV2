@@ -18,3 +18,4 @@ export * from "./inventory.js";
 export * from './ui-settings.js';
 export * from './chat.js';
 export * from './quests.js';
+export * from './auto-settings.js';

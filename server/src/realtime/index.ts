@@ -1,4 +1,4 @@
-import {applyInventory,equipped,inventoryWeight,type InventoryOp} from '@thainative/shared';
+import {applyInventory,equipped,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, isField, BOSS_RESPAWN_MS, bossTimer, setBossTimer, type MapId } from "@thainative/shared";
 import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
@@ -359,7 +359,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			}
 	}
 	function sendStats(peer: Peer, p: Player) {
- if(!peer.ui&&!peer.uiLoading){peer.uiLoading=true;void store.uiSettings(peer.accountId).then(settings=>{peer.ui=settings;send(peer.ws,{t:'uiSettings',settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'โหลดการตั้งค่าไม่สำเร็จ'})).finally(()=>{peer.uiLoading=false;});}
+ if(!peer.ui&&!peer.uiLoading){peer.uiLoading=true;void store.uiSettings(peer.accountId).then(settings=>{peer.ui=settings;const {auto,...ui}=settings;p.autoCfg=normalizeAuto(auto);send(peer.ws,{t:'uiSettings',settings:ui});send(peer.ws,{t:'autoSettings',settings:p.autoCfg});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'โหลดการตั้งค่าไม่สำเร็จ'})).finally(()=>{peer.uiLoading=false;});}
 		send(peer.ws, {
 			t: "ev",
 			list: [
@@ -416,6 +416,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			peer.ack = message.seq;
 		}
         const player=g.players.get(peer.id)!;
+        if(!player.autoCfg&&peer.ui?.auto)player.autoCfg=normalizeAuto(peer.ui.auto);
         if(peer.busy&&(['travel','revive','returnCity'].includes(message.t)||(message.t==='inv'&&message.op==='use'))){(peer.deferred??=[]).push(message);return;}
         if(message.t==='inv'){
          const reject=(error:string)=>send(peer.ws,{t:'inv',req:message.req,error});
@@ -426,11 +427,15 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          if(message.op==='use'&&(player.cd.potion>0||peer.busy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
          economy(peer,player,message,message.req);return;
         }
+        if(message.t==='autoSettings'){
+ const auto=normalizeAuto(message.settings);player.autoCfg=auto;const merged={...(peer.ui??DEFAULT_UI),auto};peer.ui=merged;
+ void store.saveUISettings(peer.accountId,merged).then(()=>send(peer.ws,{t:'autoSettings',settings:auto})).catch(()=>send(peer.ws,{t:'autoSettingsError',text:'บันทึกตั้งค่า AUTO ไม่สำเร็จ'}));return;
+ }
         if(message.t==='uiSettings'){
  const reserved=['KeyI','KeyH','KeyZ','Escape','KeyW','KeyA','KeyS','KeyD','KeyK','KeyC','KeyI','KeyM','KeyR','KeyF','KeyT','KeyJ'];
  const bindings=Object.values(message.settings.keys);
  if(new Set(bindings).size!==bindings.length||Object.entries(message.settings.keys).some(([name,k])=> !/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(k)||(reserved.includes(k)&&k!==(name==='returnCity'?'KeyH':'KeyZ'))||player.hotbar.some(s=>s.key===k))){send(peer.ws,{t:'uiSettingsError',text:'ปุ่มนี้ถูกใช้อยู่แล้ว'});return;}
- void store.saveUISettings(peer.accountId,message.settings).then(()=>{peer.ui=message.settings;send(peer.ws,{t:'uiSettings',settings:message.settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'บันทึกการตั้งค่าไม่สำเร็จ'}));return;
+ const merged={...message.settings,...(peer.ui?.auto?{auto:peer.ui.auto}:{})};void store.saveUISettings(peer.accountId,merged).then(()=>{peer.ui=merged;send(peer.ws,{t:'uiSettings',settings:message.settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'บันทึกการตั้งค่าไม่สำเร็จ'}));return;
  }
 
  if(message.t==='returnCity'){
