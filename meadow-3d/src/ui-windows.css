@@ -329,3 +329,59 @@ dialog .close:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line
 [data-icon=quest]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M6 3h11a1 1 0 0 1 1 1v17l-3-2-3 2-3-2-3 2V4a1 1 0 0 1 1-1z'/%3E%3Cpath d='M9 8h6M9 12h6'/%3E%3C/svg%3E")}
 [data-icon=auto]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1'/%3E%3C/svg%3E")}
 [data-icon=art]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='m21 15-5-5L5 21'/%3E%3C/svg%3E")}
+
+/* ---------- Skill book as a tree (ThaiNativeOnline layout): job tabs · tree · card · bar ---------- */
+#skills-window[open]{width:min(1080px,96vw);height:min(720px,92dvh)}
+#skills-window #skills-tree{display:flex!important;flex-direction:column;gap:10px;flex:1;min-height:0}
+.sk-tabs{flex:none;display:flex;gap:6px}
+#skills-window .sk-tabs button{display:flex;flex-direction:column;align-items:flex-start;gap:0;min-height:0!important;padding:7px 14px!important;border-radius:10px!important;border:1px solid var(--g-line)!important;background:rgba(255,255,255,.03)!important;color:var(--g-muted)!important;font-size:13px;font-weight:600}
+#skills-window .sk-tabs button small{font-size:10px!important;font-weight:400;color:var(--g-faint)!important}
+#skills-window .sk-tabs button[aria-selected=true]{border-color:rgba(230,201,143,.6)!important;background:rgba(230,201,143,.1)!important;color:var(--g-gold)!important}
+.sk-main{flex:1;min-height:0;display:grid;grid-template-columns:1fr 300px;gap:12px}
+.sk-tree-wrap{position:relative;min-height:0;overflow:auto;border-radius:14px;border:1px solid var(--g-line);
+	background:radial-gradient(ellipse at 50% 0,rgba(95,182,232,.07),transparent 60%),rgba(0,0,0,.24)}
+.sk-lines{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.sk-lines path{fill:none;stroke:rgba(255,255,255,.16);stroke-width:2;stroke-linejoin:round}
+.sk-lines path.on{stroke:rgba(230,201,143,.7)}
+.sk-grid{position:relative;display:grid;grid-template-columns:52px repeat(var(--cols),minmax(108px,1fr));grid-auto-rows:auto;gap:0 6px;padding:12px 12px 18px}
+.sk-colh{margin:0 2px 8px;padding:8px 6px;border-radius:10px;text-align:center;border:1px solid var(--g-line);border-top:2px solid rgba(95,182,232,.7);background:rgba(255,255,255,.04)}
+.sk-colh.passive{border-top-color:rgba(143,209,138,.7)}
+#skills-window .sk-colh b{display:block;font-size:13px;color:var(--g-text)}
+#skills-window .sk-colh small{font-size:10px!important;color:var(--g-faint)!important}
+.sk-rowl{display:flex;align-items:center;justify-content:center}
+.sk-rowl span{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;text-align:center;font:600 10px/1.15 'Noto Sans Thai',sans-serif;color:var(--g-text);
+	background:radial-gradient(circle at 35% 30%,rgba(95,182,232,.45),rgba(95,182,232,.12) 70%);box-shadow:inset 0 0 0 1px rgba(95,182,232,.5)}
+.sk-cell{display:flex;justify-content:center;align-items:flex-start;gap:6px;padding:12px 0 16px}
+#skills-window .tree-node{position:relative;display:flex!important;flex-direction:column;align-items:center;gap:4px;width:92px;min-height:0!important;padding:0!important;border:0!important;background:transparent!important;color:var(--g-text)!important;cursor:pointer}
+#skills-window .tree-node .job-icon{width:56px;height:56px;border-radius:12px;border:2px solid rgba(255,255,255,.18);box-shadow:0 4px 10px rgba(0,0,0,.4)}
+#skills-window .tree-node.learned .job-icon{border-color:rgba(230,201,143,.75)}
+#skills-window .tree-node.avail .job-icon{border-color:rgba(143,209,138,.6)}
+#skills-window .tree-node.locked .job-icon{filter:grayscale(1) brightness(.5);border-color:rgba(255,255,255,.1)}
+#skills-window .tree-node.sel .job-icon{box-shadow:0 0 0 3px rgba(95,182,232,.55),0 0 18px rgba(95,182,232,.45)}
+#skills-window .tree-node.pending .job-icon{border-color:#f0d7a4;box-shadow:0 0 12px rgba(230,201,143,.55)}
+#skills-window .tree-node .lvp{position:relative;margin-top:-14px;z-index:1;min-width:40px;padding:0 6px;border-radius:9px;background:rgba(12,20,19,.92);border:1px solid var(--g-line-strong);font:700 10px/16px 'Noto Sans Thai',sans-serif;color:var(--g-gold);text-align:center}
+#skills-window .tree-node.locked .lvp{color:var(--g-faint)}
+#skills-window .tree-node .nm{font-size:11px!important;line-height:1.25;color:var(--g-muted)!important;text-align:center;max-width:92px}
+#skills-window .tree-node.learned .nm,#skills-window .tree-node.sel .nm{color:var(--g-text)!important}
+.tree-node .tag{position:absolute;top:-6px;left:12px;width:16px;height:16px;border-radius:5px;background:rgba(143,209,138,.85);color:#132220;font:800 9px/16px sans-serif;font-style:normal;text-align:center}
+.tree-node .plus{position:absolute;top:-6px;right:12px;width:20px;height:20px;border-radius:50%;background:var(--g-gold);color:#1a2523;font:800 14px/20px sans-serif;font-style:normal;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.tree-node .plus:hover{background:#f0d7a4}
+/* detail card */
+#skills-window .sk-detail{max-height:none;overflow:auto;padding:14px;border-radius:14px;align-self:stretch}
+.sk-dhead{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:start;margin-bottom:10px}
+#skills-window .sk-dhead .sk-big{width:56px;height:56px;margin:0}
+#skills-window .sk-dhead h3{margin:0;font-size:16px}
+#skills-window .sk-dhead small{font-size:11px!important;color:var(--g-faint)!important}
+.sk-dhead .sk-pips{margin-top:6px;flex-wrap:wrap}
+.sk-dlv{text-align:right;font:700 14px 'Noto Sans Thai',sans-serif;color:var(--g-gold)}
+#skills-window .sk-dlv small{display:block;font-weight:400;font-size:10px!important;color:var(--g-faint)!important}
+.sk-reqs{display:flex;flex-direction:column;gap:4px;margin:12px 0}
+#skills-window .sk-reqs span{font-size:12px!important}
+#skills-window .sk-reqs .ok{color:var(--g-ok)!important}
+#skills-window .sk-reqs .no{color:#f2a4a7!important}
+#skills-window .sk-learn{width:100%;height:40px;margin:0 0 10px;font-size:13px}
+#skills-window .sk-learn:disabled{background:rgba(255,255,255,.06)!important;border-color:var(--g-line)!important;color:var(--g-faint)!important;opacity:1}
+#skills-window .sk-empty{font-size:12px!important;color:var(--g-faint)!important}
+/* potions tab */
+.sk-grid.sk-items{display:flex;flex-direction:column;gap:4px}
+@media(max-width:860px){.sk-main{grid-template-columns:1fr}.sk-grid{grid-template-columns:44px repeat(var(--cols),minmax(92px,1fr))}}
