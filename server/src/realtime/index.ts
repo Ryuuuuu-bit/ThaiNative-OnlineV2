@@ -39,12 +39,16 @@ import { IntentSchema, normalizeAutoPotion, type Intent } from "@thainative/shar
 import type { Store, Character, Progress } from "../store/types.js";
 import { hashToken } from "../session.js";
 import { createSocial } from "./social.js";
+import { createGm } from "./gm.js";
+import { adminAccess } from "../admin.js";
 interface Peer {
  leaseOwner?:string; busy?:number; deferred?:Intent[]; uiLoading?:boolean;
  ui?:import('@thainative/shared').UISettings;
 	ws: WebSocket;
 	id: string;
 	accountId: string;
+	/** Public 9-digit account UID (GM commands address players by it). */
+	uid?: string;
 	sessionHash: string;
 	ready: boolean;
 	ack: number;
@@ -73,6 +77,8 @@ export interface RealtimeOptions {
 	heartbeatMs?:number;pruneMs?:number;reconnectMs?: number;
 	tickMs?: number;
 		adminIds?: string[];
+	/** Slash commands allowed per account per 10 s (default 8). */
+	gmCommandsPer10s?: number;
 	/** Internet cafés share one public IP, so keep these generous. */
 	ipMaxSockets?: number; ipUpgradesPerMinute?: number;
 	production?: boolean;
@@ -126,7 +132,7 @@ function ownEntry(p: Player) {
 	return {
 		...Object.fromEntries(playerKeys.map((k) => [k, num(p[k])])),
 		cd: Object.fromEntries(Object.entries(p.cd).map(([k, v]) => [k, round(v)])),
-		moveSpeed: p.stats.moveSpeed * (1 + Math.max(0, ...p.statuses.filter((s) => s.id === "speed").map((s) => s.value))) * (1 - Math.max(0, ...p.statuses.filter((s) => s.id === "slow").map((s) => s.value))),
+		moveSpeed: p.stats.moveSpeed * (p.gmSpeed ?? 1) * (1 + Math.max(0, ...p.statuses.filter((s) => s.id === "speed").map((s) => s.value))) * (1 - Math.max(0, ...p.statuses.filter((s) => s.id === "slow").map((s) => s.value))),
 	};
 }
 function publicEntry(p: Player) {
@@ -198,7 +204,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		ws.send(typeof body === "string" ? body : JSON.stringify(body));
 		sent++;
 	}
- const social=createSocial<Peer>({live,send,adminIds:options.adminIds});
+ const social=createSocial<Peer>({live,send,command:(peer,text)=>gm.command(peer,text)});
  function economy(peer:Peer,p:Player,op:InventoryOp,req:string,done=()=>{}) {
   const room=peer.room,g=room.game;
   if(op.op==='pickup'){
@@ -252,6 +258,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   if(pending)void pending.catch(()=>{}).finally(()=>questBusy.delete(p.id));else questBusy.delete(p.id);
  }
  const bossDue=new Map<MapId,number>();
+ const gm=createGm<Peer>({store,admins:adminAccess(store,options.adminIds),live,send,social,transfer:(peer,d)=>transfer(peer,d),economy:(peer,p,op,req)=>economy(peer,p,op,req),save:(room,id)=>save(room as Room,id),flush:room=>flush(room as Room),sendStats:(peer,p)=>sendStats(peer,p),bossDue,limit:options.gmCommandsPer10s});
  function getRoom(mapId: MapId, id: string): Room {
   const key=mapId+(options.sharedRooms?'':':'+id);
   let room=rooms.get(key);
@@ -405,7 +412,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			}
 			send(peer.ws, snapshotFrame(room, peer));
 			sendStats(peer, g.players.get(peer.id)!);
-						social.ready(peer);
+						social.ready(peer);void gm.ready(peer);
 			{const qp=g.players.get(peer.id);if(qp)sendQuests(peer,qp);}
 			return;
 		}
@@ -676,6 +683,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					ws.close(4412, "job selection required");
 					return;
 				}
+				const accountUid = (await store.account(session.accountId))?.uid;
 				if (url.searchParams.get("v") !== options.build) {
 					send(ws, { t: "reload" });
 					ws.close(4400, "stale build");
@@ -759,6 +767,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					id: character.id,
 					accountId: session.accountId,
 					sessionHash: hash,
+					uid: accountUid,
 					ready: false,
 					ack: 0,
 					input: { x: 0, z: 0 },

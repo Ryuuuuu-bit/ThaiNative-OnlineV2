@@ -68,6 +68,8 @@ export interface Enemy extends Vec {
 	history: KingAttack[];
 	engaged: boolean;
 		summoned: boolean;
+	/** Spawned by a GM command: never respawns, removed shortly after death like summons. */
+	gm?: boolean;
 	/** Data-driven AI tuning (jellies use built-in defaults). */
 	behavior?: import('../schema.js').GameData['monsters']['monsters'][number]['behavior'];
 	startX: number;
@@ -139,6 +141,9 @@ export interface Player extends Vec, JobProgress {
 	invulnerable: number;
 	hurt: number;
 	cd: Record<Action, number>;
+	/** GM tools (server-only, never in snapshots): takes no damage; movement multiplier. */
+	god?: boolean;
+	gmSpeed?: number;
 }
 export interface Event extends Vec {
 	type: string;
@@ -667,7 +672,7 @@ function hurt(
 	attack = source?.motion,
 ) {
 	const p = g.p;
-	if (p.dead) return;
+	if (p.dead || p.god) return;
 	if (p.invulnerable > 0) {
 		emit(g, "evade");
 		return;
@@ -1740,7 +1745,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
 				p.fz = iz;
 				const speed =
 					(p.auto && p.autoState === "idle" ? 1.8 : p.attack > 0 ? 1.6 : 4.5) *
-					p.stats.moveSpeed * (1+Math.max(0,...p.statuses.filter(s=>s.id==='speed').map(s=>s.value))) *
+					p.stats.moveSpeed * (p.gmSpeed ?? 1) * (1+Math.max(0,...p.statuses.filter(s=>s.id==='speed').map(s=>s.value))) *
 					(1 -
 						Math.max(
 							0,
@@ -1801,7 +1806,7 @@ export function step(
 			e.motionTime = e.deathAge;
 			e.respawn -= dt;
 			if (e.deathAge >= duration(e, "death")) reward(g, e);
-			if (e.respawn <= 0 && !e.summoned) {
+			if (e.respawn <= 0 && !e.summoned && !e.gm) {
 				e.dead = false;
 				e.hp = e.maxHp;
 				e.x = e.homeX;
@@ -1910,7 +1915,7 @@ export function step(
 
 	for(const p of g.players.values())if(p.dead)p.reviveRemaining=Math.max(0,(p.reviveRemaining??0)-dt);
 	g.p = previous;
-	g.enemies = g.enemies.filter((e) => !e.summoned || !e.dead || e.deathAge < 3);
+	g.enemies = g.enemies.filter((e) => !(e.summoned || e.gm) || !e.dead || e.deathAge < 3);
 }
 
 /** Wall-clock cooldown survives room changes, reconnects and server restarts. */

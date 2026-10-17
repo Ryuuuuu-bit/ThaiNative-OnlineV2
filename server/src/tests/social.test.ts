@@ -6,6 +6,7 @@ import { characterName } from '../store/progress.js';
 
 function world() {
 	let clock = 1_000_000;
+	const commands: [string, string][] = [];
 	const sent = new Map<string, any[]>(), live = new Map<string, SocialPeer>();
 	const rooms = { city: { game: { mapId: 'city_plaza', players: new Map<string, any>() } }, meadow: { game: { mapId: 'meadow', players: new Map<string, any>() } } };
 	const add = (id: string, name: string, map: 'city' | 'meadow' = 'city', accountId = 'acc-' + id) => {
@@ -16,9 +17,9 @@ function world() {
 		sent.set(id, []);
 		return peer;
 	};
-	const social = createSocial({ live, send: (ws: any, body) => sent.get(ws.id)!.push(body), adminIds: ['acc-admin'], now: () => clock, offlineMs: 300000 });
+	const social = createSocial({ live, send: (ws: any, body) => sent.get(ws.id)!.push(body), command: (peer: SocialPeer, text: string) => commands.push([peer.id, text]), now: () => clock, offlineMs: 300000 });
 	const of = (id: string, t: string) => sent.get(id)!.filter(m => m.t === t);
-	return { social, add, sent, of, live, tick: (ms: number) => { clock += ms; } };
+	return { social, add, sent, of, live, commands, tick: (ms: number) => { clock += ms; } };
 }
 
 test('chat filter masks strong insults, keeps look-alike words and leetspeak cannot dodge it', () => {
@@ -100,18 +101,23 @@ test('party: invite, accept, party chat, leader-only kick, max 6, offline cleanu
 	assert.equal(w.of('d', 'partyState').at(-1).party, null);
 });
 
-test('admin can mute and broadcast; players cannot', () => {
+test('slash commands go to the command handler and are never broadcast; staff mute blocks chat', () => {
 	const w = world();
-	const admin = w.add('admin', 'Staff', 'city', 'acc-admin'), p = w.add('p', 'Loud');
-	w.social.chat(p, { ch: 'map', text: '/notice hi' });
-	assert.equal(w.of('p', 'chat').at(-1).text, '/notice hi');
-	assert.ok(!w.of('admin', 'chat').some((m: any) => m.text.startsWith('📢')));
-	w.social.chat(admin, { ch: 'map', text: '/mute Loud 5' });
-	w.tick(2000);
+	const a = w.add('a', 'Staff'), p = w.add('p', 'Loud');
+	w.social.chat(p, { ch: 'map', text: '/gm announce hi' });
+	w.social.chat(a, { ch: 'whisper', to: 'Loud', text: '/notice hi' });
+	assert.deepEqual(w.commands, [['p', '/gm announce hi'], ['a', '/notice hi']]);
+	assert.equal(w.of('p', 'chat').length + w.of('a', 'chat').length, 0);
+	w.social.mute('p', 5);
 	w.social.chat(p, { ch: 'map', text: 'spam' });
 	assert.match(w.of('p', 'chatError').at(-1).text, /ปิดแชท/);
-	w.social.chat(admin, { ch: 'map', text: '/notice ปิดปรับปรุง 5 นาที' });
-	assert.equal(w.of('p', 'chat').at(-1).text, '📢 ปิดปรับปรุง 5 นาที');
+	assert.equal(w.social.unmute('p'), true);
+	w.tick(2000);
+	w.social.chat(p, { ch: 'map', text: 'ok now' });
+	assert.equal(w.of('a', 'chat').at(-1).text, 'ok now');
+	const bare = createSocial({ live: w.live, send: (ws: any, body) => w.sent.get(ws.id)!.push(body) });
+	bare.chat(p, { ch: 'map', text: '/gm help' });
+	assert.match(w.of('p', 'chatError').at(-1).text, /ไม่รู้จักคำสั่ง/);
 });
 
 test('party EXP: members in range split EXP with +10% per extra member; others get nothing', () => {

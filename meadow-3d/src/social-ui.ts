@@ -133,7 +133,8 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			case '/kick': if (arg) options.send({ t: 'party', op: 'kick', name: arg }); return;
 			case '/lead': if (arg) options.send({ t: 'party', op: 'lead', name: arg }); return;
 		}
-		if (text.startsWith('/') && !['/notice', '/mute', '/unmute'].includes(cmd)) { system('ไม่รู้จักคำสั่งนี้ · ' + HELP); return; }
+		// Any other command is the server's to answer (it never broadcasts it); players just get "unknown command".
+		if (text.startsWith('/')) { options.send({ t: 'chat', ch: 'map', text }); return; }
 		if (channel === 'whisper') {
 			if (!whisperTo) { system('ใช้ /w ชื่อ ข้อความ'); return; }
 			options.send({ t: 'chat', ch: 'whisper', to: whisperTo, text });
@@ -157,6 +158,19 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 		e.stopImmediatePropagation();
 		open();
 	}, true);
+
+	/** Own-HUD only: other players never see it. */
+	function gmBadge(on: boolean) {
+		let badge = document.querySelector<HTMLElement>('#gm-badge');
+		if (on && !badge) {
+			badge = document.createElement('b');
+			badge.id = 'gm-badge';
+			badge.textContent = 'GM';
+			badge.title = 'บัญชีแอดมิน · พิมพ์ /gm help';
+			document.querySelector('#player-name')?.after(badge);
+		}
+		if (badge) badge.hidden = !on;
+	}
 
 	function renderParty() {
 		partyBox.hidden = !party;
@@ -225,6 +239,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			if (m.t === 'chat') { if (m.ch === 'whisper' && !m.self) lastWhisper = m.from; line(m); return true; }
 			if (m.t === 'chatHistory') { for (const h of m.list) line(h); return true; }
 			if (m.t === 'chatError') { system(m.text); return true; }
+			if (m.t === 'gmRole') { gmBadge(!!m.admin); return true; }
 			if (m.t === 'partyState') { party = m.party; if (!party && channel === 'party') setChannel('map'); renderParty(); return true; }
 			if (m.t === 'partyInvite') { invite(m); return true; }
 			return false;
