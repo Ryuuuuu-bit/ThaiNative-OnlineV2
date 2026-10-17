@@ -18,6 +18,7 @@ import * as T from 'three';import './style.css';
 import {mountHUDQOL} from './hud-qol';
 import './hud-qol.css';
 import './ui-glass.css';
+import './ui-windows.css';
 let qol:ReturnType<typeof mountHUDQOL>|undefined;let pendingUI:any;
 import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet,warmKing,kingReady}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';

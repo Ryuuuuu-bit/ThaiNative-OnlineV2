@@ -67,14 +67,26 @@ export function mountStats(send: (message: any) => void, onOpen: () => void) {
 				name = document.createElement("span"),
 				value = document.createElement("b"),
 				bonus = document.createElement("small"),
+				minus = document.createElement("button"),
 				plus = document.createElement("button");
 			row.className = "stat-row";
-			name.textContent = names[stat];
+			name.innerHTML = `${names[stat]}<small>${stat.toUpperCase()}</small>`;
 			value.textContent = String(profile.baseStats[stat]);
 			value.classList.toggle("pending", !!pending[stat]);
-			bonus.textContent = "+" + (next.stats[stat] - profile.baseStats[stat]);
+			const extra = next.stats[stat] - profile.baseStats[stat];
+			bonus.textContent = extra ? "+" + extra : "";
+			minus.textContent = "−";
+			minus.type = plus.type = "button";
+			minus.className = "stat-step";
+			plus.className = "stat-step plus";
+			minus.setAttribute("aria-label", `ลด ${names[stat]}`);
+			minus.disabled = waiting || !pending[stat];
+			minus.onclick = () => {
+				pending[stat] = Math.max(0, (pending[stat] || 0) - 1);
+				if (!pending[stat]) delete pending[stat];
+				draw();
+			};
 			plus.textContent = "+";
-			plus.type = "button";
 			plus.dataset.stat = stat;
 			const cost = statPointCost(profile.baseStats[stat], data);
 			plus.title = `ใช้ ${cost} แต้ม`;
@@ -85,46 +97,58 @@ export function mountStats(send: (message: any) => void, onOpen: () => void) {
 				status.textContent = "สีทองคือค่าตัวอย่าง · กดยืนยันเพื่อบันทึก";
 				draw();
 			};
-			row.append(name, value, bonus, plus);
+			row.append(name, value, bonus, minus, plus);
 			rows.append(row);
 		}
-		const metrics: [string, keyof Combatant, (n: number) => string][] = [
-			["พลังโจมตี", "atk", fmt],
-			["พลังเวท", "matk", fmt],
-			["เกราะกายภาพ", "hardDef", fmt],
-			["ป้องกันกายภาพ", "softDef", fmt],
-			["เกราะเวท", "hardMdef", fmt],
-			["ป้องกันเวท", "softMdef", fmt],
-			["ความแม่นยำ", "hit", fmt],
-			["หลบหลีก", "flee", fmt],
-			["คริติคอล", "crit", (n) => (n * 100).toFixed(1) + "%"],
-			["โจมตีต่อวินาที", "aspd", fmt],
-			["เวลาร่าย ×", "castMul", fmt],
-			["พลังชีวิต", "maxHp", fmt],
-			["พลังสกิล", "maxSp", fmt],
-			["ฟื้นพลังชีวิต/วิ (นอกต่อสู้)", "hpRegen", fmt],
-			["ฟื้นพลังสกิล/วิ", "spRegen", fmt],
-			["ความเร็วเดิน ×", "moveSpeed", fmt],
-			["น้ำหนัก", "weight", fmt],
+		drawRadar(state.profile.baseStats, profile.baseStats);
+		const groups: [string, [string, keyof Combatant, (n: number) => string][]][] = [
+			["โจมตี", [["พลังโจมตี", "atk", fmt], ["พลังเวท", "matk", fmt], ["ความแม่นยำ", "hit", fmt], ["คริติคอล", "crit", (n) => (n * 100).toFixed(1) + "%"], ["โจมตีต่อวินาที", "aspd", fmt], ["เวลาร่าย ×", "castMul", fmt]]],
+			["ป้องกัน", [["เกราะกายภาพ", "hardDef", fmt], ["ป้องกันกายภาพ", "softDef", fmt], ["เกราะเวท", "hardMdef", fmt], ["ป้องกันเวท", "softMdef", fmt], ["หลบหลีก", "flee", fmt]]],
+			["ทั่วไป", [["พลังชีวิต", "maxHp", fmt], ["พลังสกิล", "maxSp", fmt], ["ฟื้นพลังชีวิต/วิ (นอกต่อสู้)", "hpRegen", fmt], ["ฟื้นพลังสกิล/วิ", "spRegen", fmt], ["ความเร็วเดิน ×", "moveSpeed", fmt], ["น้ำหนักสูงสุด", "weight", fmt]]],
 		];
 		derived.replaceChildren();
-		for (const [label, key, format] of metrics) {
-			const row = document.createElement("div"),
-				name = document.createElement("span"),
-				value = document.createElement("b");
-			name.textContent = label;
-			value.textContent = format(next[key] as number);
-			const old = state.derived[key] as number;
-			if (Math.abs((next[key] as number) - old) > 0.00001) {
-				value.className = "pending";
-				value.textContent = format(old) + " → " + format(next[key] as number);
+		for (const [title, metrics] of groups) {
+			const group = document.createElement("section"),
+				caption = document.createElement("p");
+			group.className = "stats-group";
+			caption.className = "caption";
+			caption.textContent = title;
+			group.append(caption);
+			for (const [label, key, format] of metrics) {
+				const row = document.createElement("div"),
+					name = document.createElement("span"),
+					value = document.createElement("b");
+				name.textContent = label;
+				value.textContent = format(next[key] as number);
+				const old = state.derived[key] as number,
+					diff = (next[key] as number) - old;
+				if (Math.abs(diff) > 0.00001) {
+					const delta = document.createElement("small");
+					delta.className = "pending";
+					delta.textContent = (diff > 0 ? "+" : "") + format(diff);
+					value.append(delta);
+				}
+				row.append(name, value);
+				group.append(row);
 			}
-			row.append(name, value);
-			derived.append(row);
+			derived.append(group);
 		}
 		confirm.disabled = waiting || !Object.values(pending).some(Boolean);
 		button.classList.toggle("has-points", state.points >= 2);
 		button.title = `สเตตัส C · ${state.points} แต้ม`;
+	}
+	/** Hexagon of the six base stats: filled = saved, dashed = with the pending preview. */
+	function drawRadar(saved: Record<Stat, number>, preview: Record<Stat, number>) {
+		const svg = document.querySelector("#stats-radar")!,
+			stats = data.stats.baseStats,
+			R = 76,
+			top = Math.max(10, Math.ceil(Math.max(...stats.map((s) => preview[s])) * 1.25)),
+			at = (i: number, r: number) => [Math.cos(-Math.PI / 2 + (i * Math.PI) / 3) * r, Math.sin(-Math.PI / 2 + (i * Math.PI) / 3) * r],
+			poly = (f: (s: Stat, i: number) => number) => stats.map((s, i) => at(i, f(s, i)).map((n) => n.toFixed(1)).join(",")).join(" ");
+		const rings = [0.34, 0.67, 1].map((k) => `<polygon points="${poly(() => R * k)}" fill="none" stroke="rgba(255,255,255,.1)"/>`).join(""),
+			labels = stats.map((s, i) => { const [x, y] = at(i, R + 15); return `<text x="${x.toFixed(1)}" y="${(y + 4).toFixed(1)}" text-anchor="middle">${s.toUpperCase()}</text>`; }).join(""),
+			changed = stats.some((s) => preview[s] !== saved[s]);
+		svg.innerHTML = rings + labels + `<polygon class="saved" points="${poly((s) => (R * Math.min(top, saved[s])) / top)}"/>` + (changed ? `<polygon class="preview" points="${poly((s) => (R * Math.min(top, preview[s])) / top)}"/>` : "");
 	}
 	function fmt(n: number) {
 		return Number(n.toFixed(2)).toString();

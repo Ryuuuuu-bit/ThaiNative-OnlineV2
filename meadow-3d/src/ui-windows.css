@@ -1,0 +1,217 @@
+/* Window layouts from ui-mockup/hud-minimal.html: stats (C), skill book (K), bag + paper doll (I), NPC shop and storage.
+   Loaded after ui-glass.css. hud-qol.css forces 13px on dialog text with !important, so sizes here repeat it. */
+
+/* ---------- Shared window parts ---------- */
+dialog .g-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:0 40px 14px 0}
+dialog .g-head h2{margin:0!important}
+dialog .g-sub{color:var(--g-muted);font-size:12px!important}
+dialog .g-sub b{color:var(--g-gold)!important;font-weight:600}
+dialog .g-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--g-line)}
+dialog .g-foot>p{margin:0;color:var(--g-muted)!important;font-size:12px!important;min-height:0}
+dialog .g-foot>div{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+dialog .caption{margin:2px 0 8px}
+.g-switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:var(--g-muted)!important;font-size:12px!important}
+.g-switch input{position:absolute;opacity:0;width:1px;height:1px}
+.g-switch i{position:relative;flex:none;width:30px;height:17px;border-radius:9px;background:rgba(255,255,255,.16);transition:background .15s}
+.g-switch i::after{content:'';position:absolute;left:2px;top:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:transform .15s}
+.g-switch input:checked+i{background:var(--g-gold)}
+.g-switch input:checked+i::after{transform:translateX(13px)}
+.g-switch input:focus-visible+i{outline:2px solid var(--g-gold);outline-offset:2px}
+.g-switch input:disabled+i{opacity:.4}
+
+/* ---------- Stats (C) ---------- */
+#stats-window{width:min(720px,94vw);padding:22px 24px 18px}
+#stats-window .stats-columns{grid-template-columns:300px 1fr;gap:30px}
+.stats-radar{display:block;margin:-6px auto 4px}
+.stats-radar text{font:600 10px 'Noto Sans Thai',sans-serif;fill:rgba(243,239,230,.6)}
+.stats-radar .saved{fill:rgba(230,201,143,.16);stroke:rgba(230,201,143,.75);stroke-width:1.5}
+.stats-radar .preview{fill:none;stroke:#f0d7a4;stroke-width:1.5;stroke-dasharray:3 3}
+#stats-window .stat-row{grid-template-columns:1fr 40px 30px 30px 30px;gap:6px;padding:0;height:36px;border-bottom:1px solid rgba(255,255,255,.05)!important}
+#stats-window .stat-row>span{color:var(--g-text)!important}
+#stats-window .stat-row>span small{margin-left:6px;color:var(--g-faint)!important;font-size:10px!important;letter-spacing:.08em}
+#stats-window .stat-row>b{text-align:right;font:600 15px 'Noto Sans Thai',sans-serif;color:var(--g-text);font-variant-numeric:tabular-nums}
+#stats-window .stat-row>b.pending{color:var(--g-gold)!important}
+#stats-window .stat-row>small{color:var(--g-ok)!important;font-size:11px!important}
+#stats-window .stat-step{width:28px!important;height:28px!important;min-width:28px!important;min-height:28px!important;padding:0!important;border-radius:8px!important;border:1px solid var(--g-line-strong)!important;background:transparent!important;color:var(--g-text)!important;font:600 15px/1 'Noto Sans Thai',sans-serif!important}
+#stats-window .stat-step.plus:not(:disabled){border-color:rgba(230,201,143,.65)!important;color:var(--g-gold)!important}
+#stats-window .stat-step:disabled{opacity:.22}
+.stats-auto-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.stats-auto-row small{color:var(--g-faint)!important;font-size:10px!important}
+#stats-reset{margin-top:10px}
+#stats-derived{display:block}
+.stats-group{margin-bottom:12px}
+#stats-derived .stats-group>div{display:flex;justify-content:space-between;padding:4px 0;border:0!important;color:var(--g-muted)!important}
+#stats-derived .stats-group>div span{color:var(--g-muted)!important}
+#stats-derived .stats-group>div b{color:var(--g-text)!important;font-weight:500;font-variant-numeric:tabular-nums}
+#stats-derived small.pending{margin-left:5px;font-size:10px!important;color:var(--g-gold)!important}
+
+/* ---------- Skill book (K) ---------- */
+#skills-window{width:min(800px,94vw);padding:22px 24px 18px}
+#skills-window #skills-tree{display:grid;grid-template-columns:1fr 260px;gap:18px;margin:0;min-height:0}
+.sk-list{display:flex;flex-direction:column;gap:2px;overflow:auto;min-height:0;padding-right:4px}
+#skills-window .skill-node{display:grid;grid-template-columns:40px 1fr auto 30px;gap:12px;align-items:center;padding:6px 8px;border:0;border-radius:10px;cursor:pointer}
+#skills-window .skill-node:hover{background:rgba(255,255,255,.05)}
+#skills-window .skill-node.sk-selected{background:rgba(230,201,143,.1);box-shadow:inset 0 0 0 1px rgba(230,201,143,.35)}
+#skills-window .skill-node .job-icon{width:40px;height:40px;flex:none;border-radius:8px}
+#skills-window .skill-locked{opacity:1}
+#skills-window .skill-locked .job-icon{filter:grayscale(1) brightness(.6)}
+#skills-window .skill-locked .sk-text b{color:var(--g-faint)}
+.sk-text{display:flex;flex-direction:column;min-width:0}
+#skills-window .sk-text b{font-size:13px;font-weight:600;color:var(--g-text)}
+#skills-window .sk-text b small{margin-left:6px;font-weight:400;color:var(--g-faint)!important;font-size:11px!important}
+#skills-window .sk-meta{font-size:11px!important;color:var(--g-muted)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#skills-window .sk-meta .lock-reason{color:#f2a4a7!important;font-size:11px!important}
+.sk-pips{display:flex;gap:3px}
+.sk-pips i{width:7px;height:12px;border-radius:2px;background:rgba(255,255,255,.12)}
+.sk-pips i.on{background:var(--g-gold)}
+.sk-pips i.new{background:transparent;box-shadow:inset 0 0 0 1.5px var(--g-gold);animation:sk-pulse 1s ease-in-out infinite alternate}
+@keyframes sk-pulse{to{opacity:.45}}
+#skills-window .skill-node button{width:28px;height:28px;min-width:28px;min-height:28px;padding:0;border-radius:8px}
+.sk-detail{padding:14px;border-radius:12px;background:rgba(0,0,0,.2);border:1px solid var(--g-line);align-self:start}
+#skills-window .sk-big{display:block;width:64px;height:64px;border-radius:12px;border:1px solid var(--g-line-strong);margin-bottom:10px}
+.sk-detail h3{margin:0;font-size:16px;font-weight:600;color:var(--g-text)}
+.sk-tags{display:flex;gap:6px;margin:5px 0 10px}
+#skills-window .sk-tags span{font-size:10px!important;padding:1px 7px;border-radius:8px;border:1px solid var(--g-line-strong);color:var(--g-muted)!important}
+.sk-detail dl{display:block;margin:0}
+#skills-window .sk-detail dt{color:var(--g-faint);font-size:11px!important;margin-top:6px}
+#skills-window .sk-detail dd{margin:2px 0 0;color:var(--g-text);font-size:12px!important;line-height:1.55}
+#skills-window .sk-detail dd.skill-next{color:var(--g-ok)!important}
+#skills-window .sk-req{margin:12px 0 0;font-size:11px!important;color:var(--g-faint)!important}
+#skills-window .sk-req.bad{color:#f2a4a7!important}
+#skills-window .sk-next-job{margin:8px 0 0;font-size:11px!important;color:var(--g-faint)!important}
+.skill-bar-row{display:flex;align-items:center;gap:12px;margin-top:14px}
+#skills-window #skill-slots{flex:1;grid-template-columns:repeat(10,1fr);gap:4px}
+#skills-window #skill-slots .job-slot{min-height:40px;height:40px;padding:0;display:grid;place-items:center}
+#skills-window #skill-slots .job-slot .job-icon{width:32px;height:32px}
+#skills-window #skill-slots .job-slot small,#skills-window #skill-slots .empty-mark{display:none}
+#skills-window #skill-slots .job-slot.vacant{display:grid}
+#skills-window #key-settings:not([hidden]){margin-top:10px}
+
+/* ---------- Bag, paper doll, shop, storage (I) ---------- */
+#inventory-window{width:min(1000px,96vw);padding:20px 22px 16px}
+#inventory-window[data-mode=shop]{width:min(1080px,96vw)}
+#inventory-window[data-mode=storage]{width:min(820px,96vw)}
+#inventory-window .g-head h2{font-size:18px!important}
+.inv-body{display:grid;gap:22px;align-items:start}
+#inventory-window[data-mode=bag] .inv-body{grid-template-columns:400px 1fr}
+#inventory-window[data-mode=shop] .inv-body{grid-template-columns:230px 1fr 260px}
+#inventory-window[data-mode=storage] .inv-body{grid-template-columns:200px 1fr}
+.inv-main{min-width:0}
+#inventory-window .inv-tabs{margin:0 0 12px}
+#inventory-window .inv-content{max-height:none;margin:0;overflow:visible}
+/* doll */
+#inventory-window .inv-paperdoll{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:start;height:396px;padding:12px;border-radius:14px;border:1px solid var(--g-line);
+	background:radial-gradient(ellipse 140px 22px at 50% 86%,rgba(0,0,0,.4),transparent 70%),radial-gradient(circle at 50% 45%,rgba(230,201,143,.13),transparent 58%),rgba(0,0,0,.16)}
+#inventory-window .inv-paperdoll>div{display:flex;background:none;padding:0}
+#inventory-window .inv-paperdoll>.inv-doll-col{flex-direction:column;gap:10px}
+#inventory-window .inv-paperdoll>.inv-doll-figure{display:block;align-self:stretch;margin:0 6px 40px;background:url('/assets/hero-painted/preview/hero-idle-v1.png') no-repeat;background-size:600% auto;background-position:4% 70%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.4))}
+.inv-doll-slot{display:flex;flex-direction:column;align-items:center;width:64px}
+.inv-doll-slot>:first-child{display:grid;place-items:center;width:64px;height:64px!important;border-radius:12px!important}
+#inventory-window .inv-doll-slot .inv-cell{width:64px}
+.inv-doll-empty{border:1px dashed rgba(255,255,255,.16);background:rgba(10,18,17,.35);color:rgba(255,255,255,.22)}
+.inv-doll-empty::before{content:'';width:26px;height:26px;background:currentColor;-webkit-mask:var(--slot-icon) center/contain no-repeat;mask:var(--slot-icon) center/contain no-repeat}
+#inventory-window .inv-doll-slot>span:last-child{margin-top:3px;font-size:11px!important;color:var(--g-faint)!important}
+#inventory-window .inv-paperdoll>.inv-doll-who{position:absolute;left:0;right:0;bottom:10px;display:block;text-align:center}
+.inv-doll-who b{display:block;font-size:15px;font-weight:600}
+#inventory-window .inv-doll-who small{color:var(--g-muted)!important;font-size:11px!important}
+[data-slot=weapon]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4'/%3E%3C/svg%3E")}
+[data-slot=body]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3-2 2h-4z'/%3E%3C/svg%3E")}
+[data-slot=shield]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6z'/%3E%3C/svg%3E")}
+[data-slot=garment]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M9 3h6l5 18H4zM9 3c0 2 1.3 3 3 3s3-1 3-3'/%3E%3C/svg%3E")}
+[data-slot=footgear]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M7 4h5v9l7 3v4H5V4'/%3E%3C/svg%3E")}
+[data-slot=accessory1]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Ccircle cx='12' cy='14' r='6'/%3E%3Cpath d='m10 5 2-2 2 2-2 3z'/%3E%3C/svg%3E")}
+[data-slot=accessory2]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M8 3c0 4 8 4 8 0M12 7v3'/%3E%3Cpath d='M12 10l4 5-4 6-4-6z'/%3E%3C/svg%3E")}
+.inv-bonus{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#inventory-window .inv-bonus span{padding:3px 10px;border-radius:12px;font-size:11px!important;background:rgba(255,255,255,.05);border:1px solid var(--g-line);color:var(--g-muted)!important}
+.inv-bonus b{margin-left:4px;color:var(--g-text)}
+.inv-weight-row{display:flex;align-items:center;gap:10px;margin-top:12px}
+#inventory-window .inv-weight-row span{font-size:11px!important;color:var(--g-muted)!important;white-space:nowrap}
+.inv-weight-row .inv-weight{flex:1;margin:0}
+/* grid */
+#inventory-window .inv-grid{grid-template-columns:repeat(8,1fr);gap:6px}
+#inventory-window .inv-grid .inv-cell{height:auto;aspect-ratio:1}
+#inventory-window .inv-grid .inv-cell .item-icon{width:84%;height:84%}
+.inv-cell-empty{aspect-ratio:1;border-radius:10px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.06)}
+.inv-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+#inventory-window .inv-count{font-size:12px!important;color:var(--g-muted)!important}
+#inventory-window .inv-detail{margin-top:12px;padding:12px 14px;min-height:0;border:1px solid var(--g-line);border-radius:12px;background:rgba(0,0,0,.18);font-size:12px}
+#inventory-window .inv-detail h3{font-size:14px!important}
+#inventory-window .inv-detail p{margin:4px 0;color:var(--g-muted)!important;font-size:12px!important}
+#inventory-window .inv-actions{margin:8px 0 0}
+#inventory-window .inv-actions input{width:64px}
+#inventory-window .inv-status{margin:8px 0 0;font-size:12px!important}
+#inventory-window .inv-status:empty{display:none}
+/* NPC */
+.inv-npc{position:relative;align-self:stretch;min-height:520px;margin:-20px 0 -16px -22px;padding:0 18px 18px;border-right:1px solid var(--g-line);border-radius:16px 0 0 16px;overflow:hidden;
+	background:radial-gradient(circle at 50% 38%,rgba(230,201,143,.14),transparent 60%),linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.25))}
+.inv-npc-figure{width:224px;height:280px;margin:34px auto 10px;background:url('/assets/city/city-npcs-v1.png') no-repeat;background-size:400% 500%;filter:drop-shadow(0 10px 16px rgba(0,0,0,.45))}
+.inv-npc[data-npc=storage] .inv-npc-figure{background-position:0 0}
+.inv-npc[data-npc=forge] .inv-npc-figure{background-position:0 25%}
+.inv-npc[data-npc=market] .inv-npc-figure{background-position:0 50%}
+#inventory-window .inv-npc-place{display:block;font-size:10px!important;letter-spacing:.14em;color:var(--g-faint)!important}
+.inv-npc-name{display:block;margin:2px 0 10px;font-size:18px;font-weight:600}
+#inventory-window .inv-npc-say{position:relative;margin:0;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--g-line);font-size:12px!important;line-height:1.6;color:var(--g-muted)!important}
+#inventory-window[data-mode=shop] .g-head,#inventory-window[data-mode=storage] .g-head{margin-left:0}
+/* shop list */
+.ware-list{display:flex;flex-direction:column;gap:2px;max-height:430px;overflow:auto;padding-right:4px}
+#inventory-window .ware{display:grid;grid-template-columns:46px 1fr auto 28px;gap:12px;align-items:center;width:100%;padding:6px 8px!important;border:0!important;border-radius:10px!important;background:transparent!important;text-align:left;cursor:pointer}
+#inventory-window .ware:hover{background:rgba(255,255,255,.05)!important}
+#inventory-window .ware.in{background:rgba(230,201,143,.08)!important;box-shadow:inset 2px 0 var(--g-gold)}
+#inventory-window .ware.sell{background:rgba(232,101,106,.08)!important;box-shadow:inset 2px 0 var(--g-hp)}
+.ware-ico{position:relative;display:grid;place-items:center;width:46px;height:46px;border-radius:9px;background:rgba(0,0,0,.24);border:1px solid color-mix(in srgb,var(--rarity,#fff) 40%,transparent)}
+.ware-ico .item-icon{width:40px;height:40px;margin:0}
+.ware-text{display:flex;flex-direction:column;min-width:0}
+.ware-text b{font-size:13px;font-weight:600;color:var(--g-text)}
+#inventory-window .ware-text small{font-size:11px!important;color:var(--g-muted)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ware-price{text-align:right;line-height:1.25}
+.ware-price b{font-size:13px;color:var(--g-gold);font-variant-numeric:tabular-nums}
+.ware-price b::before{content:'';display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:50%;vertical-align:.05em;background:radial-gradient(circle at 35% 35%,#fff3cf,#e6c98f 45%,#a8833f)}
+#inventory-window .ware-price small{display:block;font-size:10px!important;color:var(--g-faint)!important}
+#inventory-window .ware.cant .ware-price b{color:#f2a4a7}
+.ware-mark{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;border:1px solid rgba(230,201,143,.6);color:var(--g-gold);font-weight:600}
+/* cart */
+.inv-cart{align-self:stretch;display:flex;flex-direction:column;margin:-20px -22px -16px 0;padding:20px 18px 18px;border-left:1px solid var(--g-line)}
+.inv-cart h3{margin:0 30px 12px 0;font-size:14px;font-weight:600}
+.cart-lines{flex:1;display:flex;flex-direction:column;gap:10px;min-height:120px;overflow:auto}
+.cart-line{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center}
+.cart-line .ware-ico{width:34px;height:34px}
+.cart-line .ware-ico .item-icon{width:28px;height:28px}
+.cart-line b{display:block;font-size:12px;font-weight:500}
+#inventory-window .cart-line small{font-size:11px!important;color:var(--g-muted)!important}
+.cart-qty{display:flex;align-items:center;gap:6px;margin-top:3px}
+#inventory-window .cart-qty button{width:20px!important;height:20px!important;min-width:20px!important;min-height:20px!important;padding:0!important;border-radius:6px!important;font-size:12px}
+#inventory-window .cart-qty span{min-width:18px;text-align:center;font-weight:600;font-size:12px!important;color:var(--g-text)!important}
+.cart-sub{font-weight:600;font-size:12px;color:var(--g-gold);font-variant-numeric:tabular-nums}
+#inventory-window .inv-cart dl{display:grid;grid-template-columns:1fr auto;gap:5px;margin:12px 0 0;padding-top:12px;border-top:1px solid var(--g-line)}
+#inventory-window .inv-cart dt{color:var(--g-muted)!important;font-size:12px!important}
+#inventory-window .inv-cart dd{margin:0;text-align:right;color:var(--g-text)!important;font-size:12px!important;font-variant-numeric:tabular-nums}
+#inventory-window .inv-cart dd.total{font-size:16px!important;font-weight:700;color:var(--g-gold)!important}
+#inventory-window .inv-cart dd.bad{color:#f2a4a7!important}
+#inventory-window .cart-go{width:100%;height:40px;margin-top:12px;font-size:14px}
+#inventory-window .cart-white{width:100%;margin-top:8px}
+#inventory-window .inv-empty{margin:auto;text-align:center;font-size:12px!important;color:var(--g-faint)!important;line-height:1.7}
+
+/* ---------- Narrow screens: stack the columns ---------- */
+@media(max-width:860px){
+	#inventory-window[data-mode] .inv-body,#stats-window .stats-columns,#skills-window #skills-tree{grid-template-columns:1fr}
+	.inv-npc{min-height:0;margin:0;border-right:0;border-radius:12px;padding:12px}
+	.inv-npc-figure{width:112px;height:140px;margin:0 auto 6px}
+	.inv-cart{margin:0;padding:12px 0 0;border-left:0;border-top:1px solid var(--g-line)}
+	#inventory-window .inv-grid{grid-template-columns:repeat(5,1fr)}
+	#inventory-window .inv-paperdoll{height:360px}
+}
+
+/* ---------- Over the legacy window rules ---------- */
+dialog .g-foot button{width:auto!important;margin:0!important;min-width:0;padding:0 16px!important;height:36px;min-height:36px!important}
+dialog .g-foot .primary{padding:0 20px!important}
+#skills-window #skills-settings,#skills-window #skills-reset-keys,#skills-window #skills-cancel{color:var(--g-text)!important;border:1px solid var(--g-line-strong)!important;background:transparent!important;opacity:1}
+#skills-window .sk-text b small{display:inline!important}
+#skills-window .job-slot kbd{position:absolute;top:2px;left:4px;padding:0;background:none!important;color:var(--g-text)!important;font-size:10px!important;text-shadow:0 1px 2px #000}
+#inventory-window .inv-tabs{display:flex;gap:4px;border-bottom:1px solid var(--g-line)}
+#inventory-window .inv-tabs button{border:0!important;border-radius:0!important;background:transparent!important;color:var(--g-faint)!important;padding:8px 10px!important;min-height:0!important;box-shadow:none}
+#inventory-window .inv-tabs button.active{color:var(--g-text)!important;box-shadow:inset 0 -2px var(--g-gold)}
+#inventory-window .inv-cell{border:1px solid color-mix(in srgb,var(--rarity) 50%,transparent)!important;border-radius:10px!important;
+	background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--rarity) 12%,transparent),rgba(0,0,0,.24) 72%)!important;box-shadow:none;padding:0!important}
+#inventory-window .inv-cell:hover{border-color:var(--g-line-strong)!important;filter:none}
+#inventory-window .inv-cell b{right:5px;bottom:2px;font-size:11px!important;font-weight:700;color:var(--g-text)}
+#inventory-window .inv-doll-slot .inv-cell .item-icon{width:52px;height:52px}

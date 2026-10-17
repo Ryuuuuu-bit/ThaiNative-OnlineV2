@@ -36,12 +36,15 @@
 #ui .player .hp{height:14px}#ui .player .mp{height:12px;margin-top:4px}
 #ui .player .hp i{background:linear-gradient(90deg,var(--g-hp-deep),var(--g-hp))}
 #ui .player .mp i{background:linear-gradient(90deg,#3a86b8,var(--g-mp))}
-#ui .player .bar small{background:none;font:600 11px/14px 'Noto Sans Thai',sans-serif!important;text-shadow:0 1px 2px #000,0 0 4px #000;font-variant-numeric:tabular-nums}
+#ui .player .bar{overflow:visible;margin-right:80px}
+#ui .player .bar i{overflow:hidden}
+#ui .player .bar small{left:auto;right:-80px;width:74px;text-align:right;background:none;color:var(--g-muted)!important;font:600 11px/14px 'Noto Sans Thai',sans-serif!important;text-shadow:0 1px 2px #000,0 0 4px #000;font-variant-numeric:tabular-nums}
 #ui .player .mp small{line-height:12px!important}
 #ui .player .xp,#ui .player .job-xp{height:3px;box-shadow:none;background:rgba(0,0,0,.35)}
 #ui .player .xp i{background:linear-gradient(90deg,#b99558,var(--g-gold));box-shadow:0 0 6px rgba(230,201,143,.5)}
 #ui .player .job-xp i{background:var(--g-ok)}
-#ui .player :is(#job-label,#job-exp){color:var(--g-muted);font-size:12px}
+#ui .player :is(#job-label,#job-exp){color:var(--g-muted);font-size:11px!important;line-height:1.4!important}
+#ui .player #job-progress{margin-top:6px}
 #ui .buff-icon{width:26px;height:26px;font-size:14px;border:1px solid var(--g-line-strong);background:conic-gradient(rgba(230,201,143,.55) var(--remaining),var(--g-glass-strong) 0);color:var(--g-text)}
 
 /* ---------- Map, menu row, tools ---------- */
@@ -62,8 +65,9 @@
 #ui .tools #quality{font-size:12px!important;color:var(--g-muted)}
 
 /* ---------- Quest tracker ---------- */
-#ui .quest{padding:8px 12px 10px 22px;border-radius:12px;background:rgba(12,20,19,.34);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-#ui .quest::before{content:'';position:absolute;left:10px;top:38px;bottom:14px;width:2px;border-radius:2px;background:var(--g-gold);opacity:.75}
+#ui .quest{padding:0 0 0 14px;background:none;backdrop-filter:none}
+#ui .quest :is(h3,div,p,b){text-shadow:0 1px 2px #000,0 0 6px #000,0 0 12px rgba(0,0,0,.8)}
+#ui .quest::before{content:'';position:absolute;left:0;top:32px;bottom:6px;width:2px;border-radius:2px;background:var(--g-gold);opacity:.75}
 #ui #journal-toggle{color:var(--g-faint);font-size:11px!important;font-weight:600;letter-spacing:.12em;min-height:28px}
 #ui .quest h3{font-size:14px;font-weight:600;margin:4px 0}
 #ui .quest>div:not(.quest-bar){font-size:13px;color:var(--g-muted)}
@@ -162,77 +166,6 @@ dialog input:not([type=checkbox]):not([type=range]),dialog select{background:rgb
 dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 #game-menu-window a,#game-menu-window>button:not(.close){display:block;width:100%;text-align:left;background:rgba(255,255,255,.05)!important;border:1px solid var(--g-line)!important;border-radius:10px;color:var(--g-text)!important}
 
-/* ---------- Skill book (K) + angel ---------- */
-#skills-tree{gap:20px}
-.skill-tier h3{font-size:11px!important;font-weight:600;letter-spacing:.14em;color:var(--g-faint);border-bottom:1px solid var(--g-line)}
-#skills-window .skill-node{border-bottom:1px solid rgba(255,255,255,.06);border-radius:10px;padding:10px 8px;transition:background .12s}
-#skills-window .skill-node:hover{background:rgba(255,255,255,.04)}
-#skills-window .skill-node b{color:var(--g-text);font-weight:600}
-#skills-window .skill-node .job-icon{border:1px solid var(--g-line)}
-#skills-window .skill-node button{border:1px solid rgba(230,201,143,.6);background:transparent;color:var(--g-gold);border-radius:8px;min-width:30px;height:30px;padding:0}
-#skills-window .skill-next{color:var(--g-ok)!important}
-#skills-window .lock-reason{color:#f2a4a7!important}
-#skills-window .skill-locked .job-icon{filter:grayscale(1) brightness(.6)}
-#skills-window .job-slot{background:rgba(0,0,0,.24);border:1px solid var(--g-line);border-radius:10px;color:var(--g-text)}
-#skills-window .job-slot small{color:var(--g-muted)!important}
-#skills-window .job-slot kbd{background:none;color:var(--g-text)!important;text-shadow:0 1px 2px #000;top:2px;left:4px;padding:0}
-#skills-settings,#skills-cancel,#skills-reset-keys{border:1px solid var(--g-line-strong)!important;color:var(--g-text)!important;background:transparent!important;border-radius:9px!important}
-#job-cards button{background:rgba(255,255,255,.05)!important;border:1px solid var(--g-line-strong)!important;color:var(--g-text)!important;border-radius:12px!important}
-#job-cards button:not(:disabled):hover{border-color:var(--g-gold)!important}
-#angel-talk{background:var(--g-glass);color:var(--g-gold);border:1px solid rgba(230,201,143,.55)}
-
-/* ---------- Stats (C) ---------- */
-#stats-window .stat-row{border-bottom:1px solid rgba(255,255,255,.06)}
-#stats-window .stat-row small{color:var(--g-faint)}
-#stats-window .stat-row button{font:600 16px/1 'Noto Sans Thai',sans-serif;width:30px;height:30px;min-width:30px;min-height:30px;padding:0;border-radius:8px;border:1px solid rgba(230,201,143,.6);background:transparent;color:var(--g-gold)}
-#stats-derived>div{border-bottom:1px solid rgba(255,255,255,.05)!important;color:var(--g-muted)}
-#stats-derived b{color:var(--g-text)}
-#stats-window .pending{color:var(--g-gold)!important}
-#stats-status{color:var(--g-gold)!important}
-
-/* ---------- Bag / equipment / shop (I) ---------- */
-#inventory-window{border-width:1px}
-.inv-tabs{gap:4px;border-bottom:1px solid var(--g-line)}
-#inventory-window .inv-tabs button{border:0!important;border-radius:0!important;background:transparent!important;color:var(--g-faint)!important;padding:8px 10px!important;box-shadow:none}
-#inventory-window .inv-tabs button.active{color:var(--g-text)!important;box-shadow:inset 0 -2px var(--g-gold)}
-.inv-summary{color:var(--g-muted)}
-.inv-weight{-webkit-appearance:none;appearance:none;height:4px;border:0;border-radius:2px;background:rgba(0,0,0,.35);accent-color:var(--g-gold)}
-.inv-weight::-webkit-progress-bar{background:rgba(0,0,0,.35);border-radius:2px}
-.inv-weight::-webkit-progress-value{background:linear-gradient(90deg,var(--g-ok),#c9d97a);border-radius:2px}
-.inv-weight::-moz-progress-bar{background:linear-gradient(90deg,var(--g-ok),#c9d97a);border-radius:2px}
-.inv-grid{gap:6px;grid-template-columns:repeat(auto-fill,minmax(62px,1fr))}
-#inventory-window .inv-cell{height:62px;border:1px solid color-mix(in srgb,var(--rarity) 50%,transparent)!important;border-radius:10px!important;
-	background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--rarity) 12%,transparent),rgba(0,0,0,.24) 72%)!important;box-shadow:none}
-#inventory-window .inv-cell:hover{border-color:var(--g-line-strong)!important;filter:none}
-#inventory-window .inv-cell .item-icon{width:52px;height:52px}
-.inv-cell b{font-size:11px;font-weight:700}
-.inv-selected{outline:0;box-shadow:0 0 0 2px var(--g-gold),0 0 0 5px rgba(230,201,143,.14)!important}
-.inv-detail{border-top:1px solid var(--g-line);color:var(--g-muted)}
-.inv-detail h3{font-size:16px;font-weight:600;color:var(--g-text)}
-.inv-status{color:var(--g-gold)}
-#inventory-window .shop-cell{border-radius:12px!important}
-.shop-caption{color:var(--g-muted)}
-#pickup-toasts>div{background:var(--g-glass);border:1px solid var(--g-line);border-radius:16px;backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
-/* paper doll: full-body figure between two slot columns (built in inventory-ui.ts) */
-#inventory-window .inv-paperdoll{display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:0;height:394px;padding:12px;border-radius:14px;border:1px solid var(--g-line);
-	background:radial-gradient(ellipse 140px 22px at 50% 90%,rgba(0,0,0,.4),transparent 70%),radial-gradient(circle at 50% 45%,rgba(230,201,143,.13),transparent 58%),rgba(0,0,0,.16)}
-#inventory-window .inv-content:has(.inv-paperdoll){max-height:none;overflow:visible}
-#inventory-window .inv-paperdoll>div{display:flex;background:none;padding:0;justify-content:flex-start;align-items:center}
-#inventory-window .inv-paperdoll>.inv-doll-col{flex-direction:column;gap:10px}
-#inventory-window .inv-paperdoll>.inv-doll-figure{display:block;align-self:stretch;margin:0 8px;background:url('/assets/hero-painted/preview/hero-idle-v1.png') no-repeat;background-size:600% auto;background-position:4% 70%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.4))}
-.inv-doll-slot{width:64px;text-align:center}
-.inv-doll-slot>:first-child{display:grid;place-items:center;width:64px;height:64px!important;border-radius:12px!important}
-.inv-doll-empty{border:1px dashed rgba(255,255,255,.16);background:rgba(10,18,17,.35);color:rgba(255,255,255,.22)}
-.inv-doll-empty::before{content:'';width:26px;height:26px;background:currentColor;-webkit-mask:var(--slot-icon) center/contain no-repeat;mask:var(--slot-icon) center/contain no-repeat}
-.inv-doll-slot>span:last-child{display:block;margin-top:3px;font-size:11px!important;color:var(--g-faint)!important}
-[data-slot=weapon]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4'/%3E%3C/svg%3E")}
-[data-slot=body]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3-2 2h-4z'/%3E%3C/svg%3E")}
-[data-slot=shield]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6z'/%3E%3C/svg%3E")}
-[data-slot=garment]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M9 3h6l5 18H4zM9 3c0 2 1.3 3 3 3s3-1 3-3'/%3E%3C/svg%3E")}
-[data-slot=footgear]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M7 4h5v9l7 3v4H5V4'/%3E%3C/svg%3E")}
-[data-slot=accessory1]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Ccircle cx='12' cy='14' r='6'/%3E%3Cpath d='m10 5 2-2 2 2-2 3z'/%3E%3C/svg%3E")}
-[data-slot=accessory2]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M8 3c0 4 8 4 8 0M12 7v3'/%3E%3Cpath d='M12 10l4 5-4 6-4-6z'/%3E%3C/svg%3E")}
-
 /* ---------- Boss HUD ---------- */
 #ui .boss-hud{background:none!important;border:0!important;box-shadow:none;backdrop-filter:none;padding:0!important;text-align:center;text-shadow:var(--g-shadow)}
 #ui .boss-hud small{display:block;font-size:11px!important;font-weight:600;letter-spacing:.2em!important;color:var(--g-gold)!important}
@@ -265,11 +198,6 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 .party-invite button{background:transparent;border:1px solid var(--g-line-strong);border-radius:9px;color:var(--g-text)}
 .party-invite button:first-of-type{background:var(--g-gold);border-color:var(--g-gold);color:#1a2523;font-weight:600}
 
-/* ---------- Shop cells ---------- */
-#inventory-window .shop-cell .shop-caption{color:var(--g-text);font-weight:500}
-#inventory-window .shop-cell small{color:var(--g-gold)!important;font-weight:600}
-#inventory-window .shop-cell small::before{content:'';display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:50%;vertical-align:.05em;background:radial-gradient(circle at 35% 35%,#fff3cf,#e6c98f 45%,#a8833f)}
-
 /* ---------- NPC dialog + quest cards ---------- */
 #npc-dialog .npc-close,.quest-actions button{background:transparent;color:var(--g-text);border:1px solid var(--g-line-strong);border-radius:9px}
 #npc-dialog .npc-shop-open,.quest-actions button.primary{background:var(--g-gold);border-color:var(--g-gold);color:#1a2523;font-weight:600}
@@ -281,3 +209,6 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 #quest-tracker{border-top:1px solid var(--g-line)}
 #quest-tracker b{color:var(--g-text);font-weight:600}
 #quest-tracker li.ready small{color:var(--g-ok)}
+
+/* Narrow desktop: the centred hotbar reaches the left edge, so the chat sits above it. */
+@media(min-width:651px) and (max-width:1279px){#chat{bottom:130px}}
