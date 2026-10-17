@@ -62,13 +62,18 @@ export function mountSkills(
 	function values(s: any, lv: number) {
 		const at = (key: string, fallback: number) =>
 			s.values?.[key]?.[Math.max(0, lv - 1)] ?? fallback;
+		const pct = (v: number) => Math.round(v * 100);
+		if (s.passive && s.id === "guardian_spirit") return `ป้องกัน +${pct(at("defPercent", 0))}% · พลังชีวิต +${pct(at("hpPercent", 0))}%`;
+		if (s.passive && s.id === "retribution") return `สะท้อนความเสียหายระยะประชิด ${pct(at("reflect", 0))}% กลับใส่ผู้โจมตี`;
+		if (s.passive && s.id === "berserk_soul") return `พลังโจมตี +${pct(at("atkPercent", 0))}%`;
+		if (s.passive && s.id === "bloodlust") return `ดูดเลือด ${pct(at("lifesteal", 0))}% ของความเสียหายที่ทำ`;
 		if (s.passive)
 			return s.id === "sword_mastery"
 				? `พลังโจมตี +${at("atk", 0)} เมื่อใช้ดาบ`
 				: s.id === "sword_rhythm"
 					? `คอมโบสาม +${at("comboBonus", 0) * 100}% · ลดคูลดาวน์อื่น ${at("cooldownReduction", 0).toFixed(1)} วิ`
 						: `พลังชีวิต +${at("hpPercent", 0) * 100}% · ฟื้นพลังชีวิต +${at("hpRegenPercent", 0) * 100}%`;
-		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}พลังสกิล ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${s.effect === "taunt" ? ` · ป้องกัน −${Math.round(at("defDown", 0.05) * 100)}% 5 วิ` : s.effect === "endure" ? ` · ป้องกัน +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? " · 6 ม. สตั้น 0.6 วิ" : s.effect === "knockup" ? " · ยก 0.8 วิ ร่าย 0.4 วิ" : ""}`;
+		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}พลังสกิล ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${s.effect === "taunt" ? ` · ป้องกัน −${Math.round(at("defDown", 0.05) * 100)}% ${s.duration ?? 5} วิ` : s.effect === "endure" ? ` · ป้องกัน +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? ` · ${s.range} ม. สตั้น ${s.duration} วิ` : s.effect === "knockup" ? ` · ยก ${s.duration} วิ ร่าย ${s.cast} วิ` : s.effect === "stun" ? ` · สตั้น ${s.duration} วิ` : s.effect === "guard" ? ` · ลดความเสียหายที่ได้รับ ${pct(at("guard", 0.1))}% ${s.duration} วิ` : s.effect === "rage" ? ` · พลังโจมตี +${pct(at("atkUp", 0.1))}% เร็วขึ้น 10% ${s.duration} วิ · เสียพลังชีวิต ${pct(at("hpCost", 0.08))}%` : ""}`;
 	}
 	function slotsHTML(mirror = false) {
 		return (job?.hotbar || [])
@@ -130,15 +135,19 @@ export function mountSkills(
 		);
 		const tree = $("#skills-tree");
 		tree.innerHTML = '<div class="sk-list"></div><aside class="sk-detail" aria-live="polite"></aside>';
-		const list = skills.filter((s) => s.jobId === job?.jobId),
+		// The whole job line: a second job keeps learning its first job's skills. Newest job first.
+		const chain: typeof jobsData.jobs = [];
+		for (let j = jobsData.jobs.find((j) => j.id === job?.jobId); j && !chain.includes(j); j = jobsData.jobs.find((p) => p.id === j?.parent)) chain.push(j);
+		const list = chain.flatMap((j) => skills.filter((s) => s.jobId === j.id)),
 			listEl = tree.querySelector<HTMLElement>(".sk-list")!;
 		if (!list.some((s) => s.id === detailId)) detailId = list[0]?.id ?? null;
+		for (const line of chain)
 		for (const passive of [false, true]) {
-			const group = list.filter((s) => !!s.passive === passive);
+			const group = list.filter((s) => s.jobId === line.id && !!s.passive === passive);
 			if (!group.length) continue;
 			const caption = document.createElement("p");
 			caption.className = "caption";
-			caption.textContent = passive ? "ติดตัว" : "กดใช้";
+			caption.textContent = (chain.length > 1 ? line.nameTh + " · " : "") + (passive ? "ติดตัว" : "กดใช้");
 			listEl.append(caption);
 			for (const s of group) {
 				const lv = level(s.id),
@@ -196,7 +205,7 @@ export function mountSkills(
 				nextLv = Math.min(d.maxLevel, lv + 1),
 				lock = reason(d),
 				reqs = d.requires.map((r: any) => `${skills.find((s) => s.id === r.id)?.nameTh} Lv ${r.level}${level(r.id) >= r.level ? " ✓" : ""}`).join(" · ");
-			tree.querySelector(".sk-detail")!.innerHTML = `<span class="sk-big job-icon" style="--ix:${d.icon % 4};--iy:${Math.floor(d.icon / 4)}" aria-hidden="true"></span><h3>${d.nameTh}</h3><div class="sk-tags"><span>${d.passive ? "ติดตัว" : "กดใช้"}</span><span>Lv ${lv} / ${d.maxLevel}</span></div><dl><dt>ตอนนี้</dt><dd>${lv ? values(d, lv) : "ยังไม่ได้เรียน"}</dd>${lv < d.maxLevel ? `<dt>ระดับถัดไป · Lv ${nextLv}</dt><dd class="skill-next">${values(d, nextLv)}</dd>` : ""}</dl><p class="sk-req${lock && lock !== "ระดับสูงสุด" ? " bad" : ""}">${reqs ? "ต้องการ " + reqs : "เริ่มเรียนได้ทันที"}${lock ? ` · ${lock}` : ""}</p><p class="sk-next-job">อาชีพขั้นต่อไป: ผู้พิทักษ์ / นักดาบคลั่ง · ระดับอาชีพ 40</p>`;
+			tree.querySelector(".sk-detail")!.innerHTML = `<span class="sk-big job-icon" style="--ix:${d.icon % 4};--iy:${Math.floor(d.icon / 4)}" aria-hidden="true"></span><h3>${d.nameTh}</h3><div class="sk-tags"><span>${d.passive ? "ติดตัว" : "กดใช้"}</span><span>Lv ${lv} / ${d.maxLevel}</span></div><dl><dt>ตอนนี้</dt><dd>${lv ? values(d, lv) : "ยังไม่ได้เรียน"}</dd>${lv < d.maxLevel ? `<dt>ระดับถัดไป · Lv ${nextLv}</dt><dd class="skill-next">${values(d, nextLv)}</dd>` : ""}</dl><p class="sk-req${lock && lock !== "ระดับสูงสุด" ? " bad" : ""}">${reqs ? "ต้องการ " + reqs : "เริ่มเรียนได้ทันที"}${lock ? ` · ${lock}` : ""}</p>${nextJobHTML()}`;
 		}
 		$("#skill-slots").innerHTML = slotsHTML(true);
 		bindSlots($("#skill-slots"));
@@ -267,15 +276,60 @@ export function mountSkills(
 	};
 	$("#angel-talk").onclick = () => {
 		clear();
+		choosing = null;
 		angel.showModal();
 		play("ui_open");
 		drawAngel();
 	};
+	// Second-job branches the angel offers; the server re-checks job, level and distance.
+	const BRANCH_NOTES: Record<string, string> = {
+		guardian: "แนวหน้าโล่เหล็ก · ทนทาน ดึงศัตรู สะท้อนความเสียหาย",
+		berserker: "ดาบคลั่งไม่ถอย · ตีแรง โจมตีหลายครั้ง ดูดเลือดจากศัตรู",
+	};
+	let choosing: string | null = null;
+	/** Hint toward the second job; empty once the player has one (or the line has none). */
+	function nextJobHTML() {
+		const branches = jobsData.jobs.filter((j) => j.tier === 2 && j.parent === job?.jobId);
+		return branches.length ? `<p class="sk-next-job">อาชีพขั้นต่อไป: ${branches.map((j) => j.nameTh).join(" / ")} · ระดับอาชีพ 40 · คุยกับทูตสวรรค์ที่หอนาฬิกา</p>` : "";
+	}
 	function drawAngel() {
 		if (!job) return;
-		$("#angel-note").textContent = "ข้าจะนำทางเจ้าสู่อาชีพขั้นสองที่ ระดับอาชีพ 40 · ยังไม่ถึงเวลา";
-		$("#job-cards").innerHTML = jobsData.jobs.filter(j => j.tier === 2 && j.parent === job!.jobId)
-			.map(j => `<button disabled><b>${j.nameTh}</b><small>ยังไม่ถึงเวลา · ระดับอาชีพ 40</small></button>`).join("");
+		const current = jobsData.jobs.find((j) => j.id === job!.jobId);
+		const branches = jobsData.jobs.filter((j) => j.tier === 2 && j.parent === job!.jobId);
+		if (current?.tier === 2) {
+			$("#angel-note").textContent = `เจ้าก้าวสู่เส้นทาง${current.nameTh}แล้ว ขอพรให้ดาบของเจ้าไม่สั่นคลอน`;
+			$("#job-cards").innerHTML = "";
+			return;
+		}
+		const ready = job.jobLevel >= 40;
+		$("#angel-note").textContent = !branches.some((j) => j.available)
+			? "เส้นทางอาชีพขั้นสองของเจ้ายังไม่เปิด"
+			: !ready
+				? `ข้าจะนำทางเจ้าสู่อาชีพขั้นสองที่ระดับอาชีพ 40 · ตอนนี้ ${job.jobLevel}`
+				: choosing
+					? `แน่ใจหรือไม่? เมื่อเป็น${branches.find((j) => j.id === choosing)?.nameTh}แล้วจะเปลี่ยนกลับไม่ได้ · กดอีกครั้งเพื่อยืนยัน`
+					: "เลือกเส้นทางของเจ้า สกิลนักดาบทั้งหมดยังติดตัวไป";
+		$("#job-cards").innerHTML = branches
+			.map((j) => {
+				const open = j.available && ready;
+				const note = !j.available ? "ยังไม่เปิด" : !ready ? "ต้องการระดับอาชีพ 40" : choosing === j.id ? "กดเพื่อยืนยัน" : BRANCH_NOTES[j.id] || "";
+				return `<button data-job="${j.id}" ${open ? "" : "disabled"} class="${choosing === j.id ? "choosing" : ""}"><b>${j.nameTh}</b><small>${note}</small></button>`;
+			})
+			.join("");
+		$("#job-cards").querySelectorAll<HTMLButtonElement>("button[data-job]").forEach((b) => {
+			b.onclick = () => {
+				const id = b.dataset.job!;
+				if (choosing !== id) {
+					choosing = id;
+					play("ui_open");
+					drawAngel();
+					return;
+				}
+				choosing = null;
+				$("#angel-note").textContent = "ทูตสวรรค์กำลังประทานพร…";
+				send({ t: "jobChange", job: id });
+			};
+		});
 	}
 	return {
 		get open() {

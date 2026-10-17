@@ -63,7 +63,7 @@
       "tier": 2,
       "maxLevel": 70,
       "parent": "swordsman",
-      "available": false
+      "available": true
     },
     {
       "id": "berserker",
@@ -71,7 +71,7 @@
       "tier": 2,
       "maxLevel": 70,
       "parent": "swordsman",
-      "available": false
+      "available": true
     },
     {
       "id": "ranger",

@@ -85,6 +85,40 @@
         "dex": 2,
         "luk": 1
       }
+    },
+    {
+      "id": "guardian",
+      "nameTh": "ผู้พิทักษ์",
+      "hpMul": 1.15,
+      "spMul": 1,
+      "weapons": [
+        "sword1h"
+      ],
+      "preset": {
+        "str": 4,
+        "agi": 2,
+        "vit": 3,
+        "int": 1,
+        "dex": 2,
+        "luk": 1
+      }
+    },
+    {
+      "id": "berserker",
+      "nameTh": "นักดาบคลั่ง",
+      "hpMul": 1.05,
+      "spMul": 0.95,
+      "weapons": [
+        "sword1h"
+      ],
+      "preset": {
+        "str": 4,
+        "agi": 2,
+        "vit": 3,
+        "int": 1,
+        "dex": 2,
+        "luk": 1
+      }
     }
   ]
 }

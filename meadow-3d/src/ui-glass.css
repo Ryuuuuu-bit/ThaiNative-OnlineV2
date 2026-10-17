@@ -266,3 +266,9 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 #audio-settings :is(label,output,small,p){color:var(--g-muted)}
 #audio-settings input[type=range]{accent-color:var(--g-gold)}
 #audio-settings section+section,#audio-settings #auto-potion-settings{padding-bottom:10px;border-bottom:1px solid var(--g-line)}
+/* Angel branch cards in the glass style (the old parchment cards made the glass text unreadable). */
+#job-cards button{background:var(--g-glass-strong);border:1px solid var(--g-line);color:var(--g-text);border-radius:12px;text-align:left;padding:16px 14px}
+#job-cards button b{color:var(--g-gold);font-size:16px}
+#job-cards button small{color:var(--g-muted);line-height:1.5}
+#job-cards button:not(:disabled):hover{border-color:var(--g-line-strong);background:rgba(30,40,38,.82)}
+#job-cards button.choosing{border-color:var(--g-gold);outline:none;box-shadow:0 0 0 2px rgba(230,201,143,.35)}

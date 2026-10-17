@@ -225,7 +225,8 @@ export function changeJob(
 		jobExp: 0,
 		skillPoints: p.skillPoints + 1,
 		skills,
-		hotbar: defaultHotbar(jobId),
+		// Keep the player's own bar; the new skills go in from the skill book.
+		hotbar: p.hotbar.map((s) => ({ ...s })),
 	};
 }
 export function validateHotbar(
@@ -258,7 +259,7 @@ export function validateHotbar(
 	return slots.map((s) => ({ ...s }));
 }
 export interface TimedEffect {
-	id: "stun" | "knockup" | "taunt" | "def_down" | "slow" | "endure" | "speed";
+	id: "stun" | "knockup" | "taunt" | "def_down" | "slow" | "endure" | "speed" | "guard" | "rage";
 	remaining: number;
 	value: number;
 	sourceId: string;
@@ -290,6 +291,11 @@ export function skillEffects(
 				];
 	if (s.effect === "endure")
 		return [effect("endure", s.duration || 8, skillValue(s, "defUp", level))];
+	if (s.effect === "stun")
+		return [effect("stun", (s.duration || 1) * (isPlayer ? (s.pvpDurationMul ?? 1) : 1))];
+	if (s.effect === "guard") return [effect("guard", s.duration || 10, skillValue(s, "guard", level))];
+	if (s.effect === "rage")
+		return [effect("rage", s.duration || 12, skillValue(s, "atkUp", level)), effect("speed", s.duration || 12, 0.1)];
 	return [];
 }
 export function applyEffects(

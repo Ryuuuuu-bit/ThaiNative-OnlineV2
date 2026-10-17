@@ -366,6 +366,8 @@ export function refreshStats(g: Game, p: Player) {
 		p.stats.hardDef *= 1 + endure.value;
 		p.stats.softDef *= 1 + endure.value;
 	}
+	const rage = p.statuses.find((s) => s.id === "rage");
+	if (rage) p.stats.atk *= 1 + rage.value;
 	p.maxHp = p.stats.maxHp;
 	p.maxMp = p.stats.maxSp;
 	p.hp = Math.min(p.hp, p.maxHp);
@@ -545,6 +547,11 @@ export function setBossTimer(g: Game, seconds: number) {
 	boss.hp = boss.maxHp;
 	setMotion(boss, "death");
 }
+/** Value of a learned passive at the player's level (0 when not learned). */
+function learnedValue(g: Game, p: Player, id: string, key: string) {
+	const level = p.skills[id] || 0;
+	return level ? skillValue(resolveSkill(g.data, id, level), key, level) : 0;
+}
 function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number}) {
 	if (e.dead) return false;
 	const defender = monsterStats(
@@ -594,7 +601,10 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 	if (damage > 0) g.p.lastCombat = g.time;
 	e.lastEngagedAt=g.time;
 	e.damageBy[g.p.id] = (e.damageBy[g.p.id] || 0) + Math.min(damage, e.hp);
+	const dealt = Math.min(damage, e.hp);
 	e.hp = Math.max(0, e.hp - damage);
+	const lifesteal = learnedValue(g, g.p, "bloodlust", "lifesteal");
+	if (lifesteal && dealt > 0 && !g.p.dead) g.p.hp = Math.min(g.p.maxHp, g.p.hp + Math.round(dealt * lifesteal));
 	applyEffects(e, skillEffects(skill, g.p.skills[skill.id] || 1, g.p.id));
 	e.hurt = 0.18;
 	e.aggro = e.boss ? 30 : 10;
@@ -605,7 +615,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 		move(e, (dx / d) * 0.23, (dz / d) * 0.23);
 	}
 	emit(g, "hit", {
-        skillId:skill.id,hitIndex:prepared?.impact,
+        skillId:skill.id,visual:skill.visual,hitIndex:prepared?.impact,
 		x: e.x,
 		z: e.z,
 		id: e.id,
@@ -677,8 +687,18 @@ function hurt(
 		amount = result.damage;
 		breakdown = result.breakdown;
 	}
+	const guard = p.statuses.find((s) => s.id === "guard");
+	if (guard) amount = Math.round(amount * (1 - guard.value));
 	p.hp = Math.max(0, p.hp - amount);
 	if (amount > 0) p.lastCombat = g.time;
+	const reflect = learnedValue(g, p, "retribution", "reflect");
+	if (reflect && source && !source.dead && amount > 0) {
+		const back = Math.max(1, Math.round(amount * reflect));
+		source.damageBy[p.id] = (source.damageBy[p.id] || 0) + Math.min(back, source.hp);
+		source.hp = Math.max(0, source.hp - back);
+		emit(g, "hit", { skillId: "retribution", x: source.x, z: source.z, id: source.id, damage: back, crit: false, element: "weapon", boss: source.boss, variant: source.variant, reflect: true });
+		if (source.hp === 0) defeat(g, source);
+	}
 	if (!p.statuses.some((s) => s.id === "endure")) p.hurt = 0.3;
 	p.invulnerable = 0.55;
 	emit(g, "hurt", { amount, breakdown });
@@ -826,22 +846,24 @@ export function action(g: Game, a: Action) {
 		p.mp -= skill.sp;
 		p.cd[skill.id] = skill.cooldown;
 		if (skill.id === "whirlwind") p.cd.spin = skill.cooldown;
+		const look = skill.visual ?? skill.id;
 		p.attack =
-			skill.id === "whirlwind"
+			look === "whirlwind"
 				? 0.6
 				: skill.effect === "dash"
 					? 0.5
 					: skill.cast || 0.5;
 		p.attackKind =
-			skill.id === "whirlwind"
+			look === "whirlwind"
 				? "spin"
-				: skill.id === "slash"
+				: look === "slash"
 					? "slash"
 					: skill.effect === "dash"
 						? "dash_strike"
 						: "meteor";
 		emit(g, "skill", {
 			skillId: skill.id,
+			visual: skill.visual,
 			duration: skill.cast || 0.7,
 			dx: p.fx,
 			dz: p.fz,
@@ -853,6 +875,12 @@ export function action(g: Game, a: Action) {
 			);
 			p.hp += amount;
 			emit(g, "heal", { amount });
+			return true;
+		}
+		if (skill.effect === "guard" || skill.effect === "rage") {
+			if (skill.effect === "rage") p.hp = Math.max(1, p.hp - Math.round(p.maxHp * skillValue(skill, "hpCost", level)));
+			applyEffects(p, skillEffects(skill, level, p.id));
+			refreshStats(g, p);
 			return true;
 		}
 		if (skill.effect === "endure") {
@@ -1256,13 +1284,15 @@ function autoStep(g: Game, dt: number): Vec {
 			const nearby = living.filter(
 				(e) => Math.hypot(e.x - p.x, e.z - p.z) <= 2.6,
 			);
-			if (
-				p.skills.earth_break &&
-				p.mp >= gameSkill(g, "earth_break").sp &&
-				(p.cd.earth_break || 0) === 0 &&
-				(target.boss || nearby.length >= 3)
-			)
-				action(g, "earth_break");
+			const ready = (id: string) =>
+				!!p.skills[id] && belongsToJob(p.jobId, gameSkill(g, id).jobId, g.data) && p.mp >= gameSkill(g, id).sp && (p.cd[id] || 0) === 0;
+			// Job 2 self buffs: Guardian braces when hurt, Berserker rages into a pack or a boss while healthy.
+			if (ready("bulwark") && p.hp < p.maxHp * 0.6) action(g, "bulwark");
+			if (ready("blood_rage") && p.hp > p.maxHp * 0.5 && (target.boss || nearby.length >= 2)) action(g, "blood_rage");
+			// Branch skills before their first-job counterparts, so SP goes to the stronger move.
+			if (ready("quake_slam") && (target.boss || nearby.length >= 3)) action(g, "quake_slam");
+			if (ready("blade_cyclone") && nearby.length >= 2) action(g, "blade_cyclone");
+			if (ready("earth_break") && (target.boss || nearby.length >= 3)) action(g, "earth_break");
 			if (
 				p.skills.whirlwind &&
 				p.mp >= gameSkill(g, "spin").sp &&
@@ -1281,7 +1311,8 @@ function autoStep(g: Game, dt: number): Vec {
 		if (d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
-			if (p.skills.slash && (p.cd.slash || 0) === 0) action(g, "slash");
+			for (const id of ["slash", "shield_bash", "frenzy_slash"])
+				if (p.skills[id] && (p.cd[id] || 0) === 0 && belongsToJob(p.jobId, gameSkill(g, id).jobId, g.data)) action(g, id);
 			action(g, "attack");
 			g.destination = null;
 			if (!retreat) p.autoState = "fight";
@@ -1559,10 +1590,10 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 function playerStep(g: Game, dt: number, input: Vec) {
 	const p = g.p;
  if(p.auto)p.autoSeconds+=dt;
-	const hadEndure = p.statuses.some((s) => s.id === "endure");
+	const statBuffs = () => p.statuses.filter((s) => s.id === "endure" || s.id === "rage").length;
+	const hadBuffs = statBuffs();
 	tickEffects(p, dt);
-	if (hadEndure !== p.statuses.some((s) => s.id === "endure"))
-		refreshStats(g, p);
+	if (hadBuffs !== statBuffs()) refreshStats(g, p);
 	p.castRemaining = p.castRemaining - dt < 1e-8 ? 0 : p.castRemaining - dt;
 	for (const a of Object.keys(p.cd) as Action[])
 		p.cd[a] = p.cd[a] - dt < 1e-8 ? 0 : p.cd[a] - dt;
@@ -1775,6 +1806,7 @@ export function step(
 					x: m.x,
 					z: m.z,
 					skillId: m.skillId || "meteor",
+					visual: resolveSkill(g.data, m.skillId || "meteor", 1).visual,
 				});
 				const skill = resolveSkill(g.data, m.skillId || "meteor", m.level || 1);
 				for (const e of [...g.enemies])

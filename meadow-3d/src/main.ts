@@ -42,6 +42,8 @@ const feelLabel=document.createElement('label');feelLabel.innerHTML='<input type
 document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.closest('button:not(:disabled)'))sound.play('ui_click');},true);
 let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
+ // Job 2 skills borrow a Job 1 skill's motion, VFX and sound until they get their own art; keep the real id as learnedSkill.
+ if(message.t==='ev')for(const e of message.list)if(e.visual){e.learnedSkill=e.skillId;e.skillId=e.visual;}
   if(social?.receive(message)||quests?.receive(message))return;
  audioUI.receive(message);autoPotionUI.receive(message);inventoryUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
  if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you){audioUI.receive(e);autoPotionUI.receive(e);}
