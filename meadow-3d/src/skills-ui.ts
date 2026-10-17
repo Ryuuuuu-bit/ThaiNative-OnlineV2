@@ -21,6 +21,7 @@ export function mountSkills(
 	let job: JobProgress | null = null,
 		pending: Record<string, number> = {},
 		selected: string | null = null,
+		detailId: string | null = null,
 		last = "",
 		more = false;
 	const panel = $<HTMLDialogElement>("#skills-window"),
@@ -115,43 +116,54 @@ export function mountSkills(
 			job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0),
 		);
 		const tree = $("#skills-tree");
-		tree.replaceChildren();
-		for (const tier of [1, 2]) {
-			const section = document.createElement("section");
-			section.className = "skill-tier";
-			section.innerHTML = `<h3>${tier === 1 ? "นักดาบ" : "อาชีพขั้นต่อไป"}</h3>`;
-			const list = skills.filter(s => s.jobId === job?.jobId);
-			if (tier === 2) {
-				section.innerHTML +=
-					'<p class="skill-locked">ผู้พิทักษ์ / นักดาบคลั่ง<br>ระดับอาชีพ 40 · ภารกิจเร็ว ๆ นี้</p>';
-				tree.append(section);
-				continue;
-			}
-			for (const s of list) {
+		tree.innerHTML = '<div class="sk-list"></div><aside class="sk-detail" aria-live="polite"></aside>';
+		const list = skills.filter((s) => s.jobId === job?.jobId),
+			listEl = tree.querySelector<HTMLElement>(".sk-list")!;
+		if (!list.some((s) => s.id === detailId)) detailId = list[0]?.id ?? null;
+		for (const passive of [false, true]) {
+			const group = list.filter((s) => !!s.passive === passive);
+			if (!group.length) continue;
+			const caption = document.createElement("p");
+			caption.className = "caption";
+			caption.textContent = passive ? "ติดตัว" : "กดใช้";
+			listEl.append(caption);
+			for (const s of group) {
 				const lv = level(s.id),
+					learned = job.skills[s.id] || 0,
 					lock = reason(s),
 					card = document.createElement("article");
-				card.className = "skill-node" + (lock && !lv ? " skill-locked" : "");
+				card.className = "skill-node" + (lock && !lv ? " skill-locked" : "") + (s.id === detailId ? " sk-selected" : "");
 				card.dataset.skill = s.id;
 				card.draggable = !s.passive && !!job.skills[s.id];
-				card.title = `${s.nameTh} · ${values(s, Math.max(1, lv))}\nถัดไป: ${values(s, Math.min(s.maxLevel, lv + 1))}`;
-				card.innerHTML = `${icon(s)}<div><b>${s.nameTh}</b><span>${lv}/${s.maxLevel} ${s.passive ? "· ติดตัว" : ""}${pending[s.id] ? " · รอยืนยัน" : ""}</span><p>${lv ? values(s, lv) : "ยังไม่ได้เรียน"}</p><p class="skill-next">→ ${values(s, Math.min(s.maxLevel, lv + 1))}</p><small>${s.requires.map((r: any) => `↳ ${skills.find((s) => s.id === r.id)?.nameTh} ${r.level}`).join(" · ") || "เริ่มเรียนได้ทันที"}</small><small class="lock-reason">${lock}</small></div><button data-up="${s.id}" ${lock ? "disabled" : ""} aria-label="เพิ่ม ${s.nameTh}">+</button>`;
+				const pips = Array.from({ length: s.maxLevel }, (_, i) => `<i class="${i < learned ? "on" : i < lv ? "new" : ""}"></i>`).join("");
+				const meta = lock && !lv ? `<span class="lock-reason">${lock}</span>` : s.passive ? values(s, Math.max(1, lv)) : `พลังสกิล ${s.sp} · คูลดาวน์ ${s.cooldown} วิ`;
+				card.innerHTML = `${icon(s)}<div class="sk-text"><b>${s.nameTh}<small>Lv ${lv} / ${s.maxLevel}</small></b><span class="sk-meta">${meta}</span></div><span class="sk-pips" aria-hidden="true">${pips}</span><button data-up="${s.id}" ${lock ? "disabled" : ""} aria-label="เพิ่ม ${s.nameTh}">+</button>`;
 				card.ondragstart = (e) => {document.body.classList.add('dragging-hotbar');e.dataTransfer?.setData('text/plain',s.id);};
-                card.ondragend=()=>document.body.classList.remove('dragging-hotbar');
+				card.ondragend=()=>document.body.classList.remove('dragging-hotbar');
 				card.onclick = (e) => {
 					if ((e.target as HTMLElement).closest("[data-up]")) return;
+					detailId = s.id;
 					if (!s.passive && job?.skills[s.id]) {
 						selected = s.id;
 						$("#skills-status").textContent = `เลือกช่องด้านล่างเพื่อวาง ${s.nameTh}`;
 					}
+					draw();
 				};
 				card.querySelector<HTMLButtonElement>("[data-up]")!.onclick = () => {
 					pending[s.id] = (pending[s.id] || 0) + 1;
+					detailId = s.id;
 					draw();
 				};
-				section.append(card);
+				listEl.append(card);
 			}
-			tree.append(section);
+		}
+		const d = list.find((s) => s.id === detailId);
+		if (d) {
+			const lv = level(d.id),
+				nextLv = Math.min(d.maxLevel, lv + 1),
+				lock = reason(d),
+				reqs = d.requires.map((r: any) => `${skills.find((s) => s.id === r.id)?.nameTh} Lv ${r.level}${level(r.id) >= r.level ? " ✓" : ""}`).join(" · ");
+			tree.querySelector(".sk-detail")!.innerHTML = `<span class="sk-big job-icon" style="--ix:${d.icon % 4};--iy:${Math.floor(d.icon / 4)}" aria-hidden="true"></span><h3>${d.nameTh}</h3><div class="sk-tags"><span>${d.passive ? "ติดตัว" : "กดใช้"}</span><span>Lv ${lv} / ${d.maxLevel}</span></div><dl><dt>ตอนนี้</dt><dd>${lv ? values(d, lv) : "ยังไม่ได้เรียน"}</dd>${lv < d.maxLevel ? `<dt>ระดับถัดไป · Lv ${nextLv}</dt><dd class="skill-next">${values(d, nextLv)}</dd>` : ""}</dl><p class="sk-req${lock && lock !== "ระดับสูงสุด" ? " bad" : ""}">${reqs ? "ต้องการ " + reqs : "เริ่มเรียนได้ทันที"}${lock ? ` · ${lock}` : ""}</p><p class="sk-next-job">อาชีพขั้นต่อไป: ผู้พิทักษ์ / นักดาบคลั่ง · ระดับอาชีพ 40</p>`;
 		}
 		$("#skill-slots").innerHTML = slotsHTML(true);
 		bindSlots($("#skill-slots"));

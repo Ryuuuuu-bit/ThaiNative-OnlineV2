@@ -19,6 +19,8 @@ import{KEYS,isKey}from'./keys';
 import * as T from 'three';import './style.css';
 import {mountHUDQOL} from './hud-qol';
 import './hud-qol.css';
+import './ui-glass.css';
+import './ui-windows.css';
 let qol:ReturnType<typeof mountHUDQOL>|undefined;let pendingUI:any;
 import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet,makePaintedWispBolt,makePaintedMistSpore,warmKing,kingReady,warmWarden,wardenReady}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';
@@ -65,7 +67,9 @@ let world=await buildMap(activeMap);world.setQuality(quality);mapLightRig(active
 const hero=makePaintedHero(loader);scene.add(hero.root);
 if(activeMap==='meadow'){const previewMonster=makePaintedMonster(loader);previewMonster.dispose();}
 loader.load('/assets/hero-painted/portrait-v1.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--portrait',`url(${c.toDataURL()})`);});loader.load('/assets/skills-painted/skills-v1.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--skill-atlas',`url(${c.toDataURL()})`);});
-const heroName=label(selected.character.name,'#f4f5da');heroName.position.y=2.3;scene.add(heroName);
+// Player names hang above the head (hero is 1.8 m tall on screen, see world-scale.ts): anchored at the text baseline, lifted by the sprite's on-screen head height.
+const NAME_ANCHOR=.28,HERO_HEAD=2.05;
+const heroName=label(selected.character.name,'#f4f5da');heroName.center.set(.5,NAME_ANCHOR);heroName.position.y=3.7;scene.add(heroName);
 const right=new T.Vector3(13,0,-9).normalize(),up=new T.Vector3(-9,0,-13).normalize(),ray=new T.Raycaster(),pointer=new T.Vector2(),floor=new T.Plane(new T.Vector3(0,1,0),0),point=new T.Vector3();
 const skillArt=mountSkillArt(scene,loader,hero.root);
 const areaName=(id:MapId)=>id==='city_plaza'?'นครที่ถูกลืมเลือน · ลานกลางเมือง':id==='forest'?'ป่าหมอก · ระดับ 6–15':'ทุ่งวุ้นจิ๋ว';
@@ -110,7 +114,8 @@ function mapInteractions(){
  if(closed&&closed!==closedGate)notice('หมอกหนาเกินไป ยังผ่านไม่ได้');closedGate=closed;
  const fog=overviewOn&&activeMap==='city_plaza'?null:activeMap==='city_plaza'?cityFog:activeMap==='forest'?forestFog:meadowFog;if(scene.fog!==fog)scene.fog=fog;
 }
-const npcLabels=[...CITY_BUILDINGS.map(b=>({...b.talk,name:b.npc,role:b.name})),{...HEALER,name:'นักบวชหมอ',role:'ฟื้นพลังชีวิตและพลังสกิล'},{...jobs.angel,name:'ทูตสวรรค์',role:'เส้นทางอาชีพ'},{...GATE_CAPTAIN,name:'หัวหน้าทหารประตู',role:'ประตูสู่ทุ่งหญ้า'}].map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.name;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
+// head: on-screen height of each NPC sprite's head top (city NPCs ~2 m, gate captain 2.1 m, angel sprite 3.9 tall).
+const npcLabels=[...CITY_BUILDINGS.map(b=>({...b.talk,name:b.npc,role:b.name,head:2.0})),{...HEALER,name:'นักบวชหมอ',role:'ฟื้นพลังชีวิตและพลังสกิล',head:2.0},{...jobs.angel,name:'ทูตสวรรค์',role:'เส้นทางอาชีพ',head:3.75},{...GATE_CAPTAIN,name:'หัวหน้าทหารประตู',role:'ประตูสู่ทุ่งหญ้า',head:2.1}].map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.name;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
 const statusLabels=new Map<number,HTMLElement>();
 const dropLabels=new Map<number,T.Sprite>(),dropPillars=new Map<number,T.Mesh>();
 const enemies=new Map<number,any>(),drops=new Map<number,T.Mesh>(),effects:any[]=[],numbers:any[]=[];let markerTime=0;
@@ -247,6 +252,7 @@ $('#audio').addEventListener('click',()=>audioUI.toggleMute());
 function applyQuality(automatic=qualityPreference==="auto"){try{localStorage.setItem("tn-quality",qualityPreference);}catch{}renderer.setPixelRatio(quality?Math.min(devicePixelRatio,1.5):1);sun.castShadow=quality;renderer.shadowMap.enabled=quality;world.setQuality(quality);skillArt.setQuality(quality);renderer.shadowMap.needsUpdate=true;$('#quality').textContent=automatic?'ภาพ: อัตโนมัติ':quality?'ภาพ: สูง':'ภาพ: ต่ำ';$('#quality').title='คุณภาพภาพ · '+(automatic?'อัตโนมัติ':'เลือกเอง');resize();}
 $('#quality').addEventListener('click',()=>{qualityPreference=qualityPreference==="high"?"low":qualityPreference==="low"?"auto":"high";quality=qualityPreference!=="low";autoQuality.automatic=false;autoQuality.reset();applyQuality();});
 $('#pause').addEventListener('click',()=>{if(started&&!game.p.dead)togglePause();});
+$('#quest-button').addEventListener('click',()=>$('#journal-toggle').click());
 $('#help').addEventListener('click',()=>{clearInput();paused=true;$<HTMLDialogElement>('#guide').showModal();});$('#guide .close').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide .done').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide').addEventListener('close',()=>{if(started&&$('#overlay').hidden)paused=false;});
 function overlay(html:string){clearInput();paused=true;$('#overlay').className='overlay center';$('#overlay').innerHTML=`<section class="welcome">${html}</section>`;$('#overlay').hidden=false;}
 function togglePause(){if(netOverlay||game.p.dead)return;if(!paused){overlay('<p class="caption">พักสักครู่</p><h1>พักการผจญภัย</h1><p>โลกยังดำเนินต่อบนเซิร์ฟเวอร์</p><button id="resume" class="primary">เล่นต่อ →</button>');$('#resume').onclick=()=>{paused=false;$('#overlay').hidden=true;};}else{paused=false;$('#overlay').hidden=true;}}
@@ -255,18 +261,25 @@ function showDeath(){if(netOverlay)return;overlay('<p class="caption">เริ�
 
 function showVictory(){if(wonShown)return;wonShown=true;overlay(`<div class="ornament">✧ ───────── ✧</div><p class="caption">${activeMap==='forest'?'ปราบผู้เฝ้าป่าหมอกแล้ว':'ปราบผู้พิทักษ์แห่งทุ่งหญ้าแล้ว'}</p><h1>${activeMap==='forest'?'ความสงบกลับคืน<br>สู่ป่าหมอก':'การผจญภัย<br>บทแรกสำเร็จ!'}</h1><p>ระดับ ${game.p.level} · ปราบแล้ว ${game.kills} · ${game.p.gold} ทอง</p><button id="continue" class="primary">${activeMap==='forest'?'สำรวจป่าหมอกต่อ':'สำรวจทุ่งหญ้าต่อ'} →</button>`);$('#continue').onclick=()=>{paused=false;$('#overlay').hidden=true;};}
 const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;
+// Round, player-centred minimap. Terrain and markers are drawn in the 160×132 map space; hud-qol draws its
+// markers right after this on the same transform and inverts it (map.view) for clicks.
+// Zoom is set in screen pixels per world metre so the circle shows ~60 m around the player on every map size.
+const MAP_SIZE=168,MAP_PX_PER_METRE=2.8;
+function minimap(){const m=mapScale(activeMap),cx=m.x(game.p.x),cy=m.z(game.p.z),zoom=MAP_PX_PER_METRE/m.k,view={k:zoom,ox:MAP_SIZE/2-zoom*cx,oy:MAP_SIZE/2-zoom*cy};(map as any).view=view;
+ mx.setTransform(1,0,0,1,0,0);mx.clearRect(0,0,MAP_SIZE,MAP_SIZE);mx.beginPath();mx.arc(MAP_SIZE/2,MAP_SIZE/2,MAP_SIZE/2,0,Math.PI*2);mx.clip();mx.fillStyle='rgba(12,20,19,.5)';mx.fillRect(0,0,MAP_SIZE,MAP_SIZE);
+ mx.setTransform(view.k,0,0,view.k,view.ox,view.oy);drawMinimap();
+ $('#map-coords').textContent=`${Math.round(game.p.x)}, ${Math.round(game.p.z)}`;}
 /** Minimap: the terrain is drawn once per map from the shared layout; only markers redraw each frame. */
 const minimapBase=new Map<MapId,HTMLCanvasElement>();
 const mapScale=(id:MapId)=>{const l=LAYOUTS[id];return{x:(x:number)=>(x+l.halfX)/(l.halfX*2)*160,z:(z:number)=>(z+l.halfZ)/(l.halfZ*2)*132,k:160/(l.halfX*2)};};
 function minimapTerrain(id:MapId){
  let c=minimapBase.get(id);if(c)return c;c=document.createElement('canvas');c.width=160;c.height=132;const g=c.getContext('2d')!,m=mapScale(id),l=LAYOUTS[id];
  if(id==='city_plaza'){
-  g.fillStyle='#88938f';g.fillRect(0,0,160,132);g.strokeStyle='#d5cdb5';g.lineWidth=5*m.k*1.6;g.beginPath();g.moveTo(80,2);g.lineTo(80,130);g.moveTo(2,66);g.lineTo(158,66);g.stroke();g.strokeStyle='#505e5d';g.lineWidth=3;g.strokeRect(2,2,156,128);
-  for(const b of [...CITY_BUILDINGS,...CITY_HOUSES]){g.fillStyle='#56645f';g.fillRect(m.x(b.x-b.w/2),m.z(b.z-b.d/2),b.w*m.k,b.d*m.k*1.1);}
+  g.fillStyle='rgba(40,58,54,.55)';g.fillRect(0,0,160,132);g.lineCap='round';g.strokeStyle='rgba(230,201,143,.45)';g.lineWidth=5*m.k*1.6;g.beginPath();g.moveTo(80,2);g.lineTo(80,130);g.moveTo(2,66);g.lineTo(158,66);g.stroke();
+  for(const b of [...CITY_BUILDINGS,...CITY_HOUSES]){g.fillStyle='rgba(255,255,255,.14)';g.fillRect(m.x(b.x-b.w/2),m.z(b.z-b.d/2),b.w*m.k,b.d*m.k*1.1);}
   g.fillStyle='#e3dcc3';g.beginPath();g.arc(80,66,4,0,6.28);g.fill();g.fillStyle='#8bc3d0';g.beginPath();g.arc(m.x(CITY_FOUNTAIN.x),m.z(CITY_FOUNTAIN.z),3.5,0,6.28);g.fill();
-  g.fillStyle='#fff';g.font='10px sans-serif';g.fillText('น',84,12);
  }else{
-  const forest=id==='forest';g.fillStyle=forest?'#5f7a66':'#889d69';g.fillRect(0,0,160,132);g.lineCap='round';g.lineJoin='round';g.strokeStyle=forest?'#a99f7c':'#d2c397';
+  const forest=id==='forest';g.fillStyle=forest?'rgba(47,75,61,.55)':'rgba(84,108,68,.5)';g.fillRect(0,0,160,132);g.lineCap='round';g.lineJoin='round';g.strokeStyle=forest?'#a99f7c':'#d2c397';
   for(const p of l.paths){g.lineWidth=Math.max(2,p.width*m.k*1.4);g.beginPath();p.points.forEach(([x,z],i)=>i?g.lineTo(m.x(x),m.z(z)):g.moveTo(m.x(x),m.z(z)));g.stroke();}
   for(const w of l.water){g.fillStyle=forest?'#7fa3a8':'#7fa9a1';g.beginPath();g.ellipse(m.x(w.x),m.z(w.z),w.rx*m.k,w.rz*m.k*1.1,0,0,6.28);g.fill();if(w.bridgeZ!==undefined){g.fillStyle='#bba16c';g.fillRect(m.x(w.x-w.rx-.5),m.z(w.bridgeZ)-1.5,(w.rx*2+1)*m.k,3);}}
   for(const o of l.obstacles){g.fillStyle=o.kind==='boulder'?'#8c8f7e':forest?'#2f4b3d':'#4f7654';g.beginPath();g.arc(m.x(o.x),m.z(o.z),Math.max(1.6,o.r*m.k*1.3),0,6.28);g.fill();}
@@ -275,9 +288,9 @@ function minimapTerrain(id:MapId){
  }
  minimapBase.set(id,c);return c;
 }
-function minimap(){
+function drawMinimap(){
  const m=mapScale(activeMap);mx.drawImage(minimapTerrain(activeMap),0,0);
- const dot=(x:number,z:number,r:number,color:string,stroke?:string)=>{mx.fillStyle=color;mx.beginPath();mx.arc(m.x(x),m.z(z),r,0,6.28);mx.fill();if(stroke){mx.strokeStyle=stroke;mx.lineWidth=1.5;mx.stroke();}};
+ const k=((map as any).view?.k)||1,dot=(x:number,z:number,r:number,color:string,stroke?:string)=>{mx.fillStyle=color;mx.beginPath();mx.arc(m.x(x),m.z(z),r*1.3/k,0,6.28);mx.fill();if(stroke){mx.strokeStyle=stroke;mx.lineWidth=1.5/k;mx.stroke();}};
  for(const e of game.enemies){if(e.dead)continue;dot(e.x,e.z,e.boss?3.5:1.5,e.boss?'#ffdb87':activeMap==='forest'?'#e7c3a0':'#f4b3c5');}
  for(const o of worldState.others)dot(o.x,o.z,2,'#9fd3ff');
  dot(game.p.x,game.p.z,3,'#fff7d5','#314d39');
@@ -301,11 +314,13 @@ function hud(){if(game.p.dead&&$('#overlay').hidden)showDeath();const revive=$<H
 const remoteHeroes=new Map<string,any>();
 const hudSelector='#ui .panel,#ui .quest,#ui .tools,#ui .combat-ui,#ui .rewards,#game-menu,#stats-button,#skills-button,#inventory-button,#area-name,#npc-talk,#angel-talk,#joystick,#auto-status';
 function hudRects():Rect[]{return [...document.querySelectorAll<HTMLElement>(hudSelector)].filter(el=>!el.hidden&&getComputedStyle(el).visibility!=='hidden'&&Number(getComputedStyle(el).opacity)>0).map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);}
-function spriteRect(tag:T.Sprite):Rect{const q=tag.position.clone().project(camera),h=tag.scale.y/(camera.top-camera.bottom)*innerHeight,w=tag.scale.x/(camera.right-camera.left)*innerWidth,x=(q.x*.5+.5)*innerWidth,y=(-q.y*.5+.5)*innerHeight;return{left:x-w/2,right:x+w/2,top:y-h/2,bottom:y+h/2};}
+function spriteRect(tag:T.Sprite):Rect{const q=tag.position.clone().project(camera),h=tag.scale.y/(camera.top-camera.bottom)*innerHeight,w=tag.scale.x/(camera.right-camera.left)*innerWidth,x=(q.x*.5+.5)*innerWidth,y=(-q.y*.5+.5)*innerHeight;return{left:x-tag.center.x*w,right:x+(1-tag.center.x)*w,top:y-(1-tag.center.y)*h,bottom:y+tag.center.y*h};}
+// Camera-facing sprites keep their full height on screen, but a world-Y lift is foreshortened by the camera tilt.
+function screenUp(){return Math.max(.3,Math.sqrt(1-(cameraOffset.y/cameraOffset.length())**2));}
 function blocked(r:Rect,panels:Rect[]){return r.left<0||r.top<0||r.right>innerWidth||r.bottom>innerHeight||panels.some(p=>overlaps(r,p));}
-function render(dt:number){sound.setListener(game.p);for(const other of worldState.others){let v=remoteHeroes.get(other.id);if(!v){v={actor:makePaintedHero(loader),label:label(other.name,'#f4f5da')};scene.add(v.actor.root,v.label);remoteHeroes.set(other.id,v);}v.actor.update(other,time,combatFeel.frozen(other.id,performance.now()));v.label.position.set(other.x,2.3,other.z);v.label.visible=!other.dead;}for(const [id,v]of remoteHeroes)if(!worldState.others.some(p=>p.id===id)){scene.remove(v.actor.root,v.label);v.actor.dispose?.();v.label.material.map?.dispose();v.label.material.dispose();remoteHeroes.delete(id);}if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;skillArt.update(dt,[p,...worldState.others],id=>combatFeel.frozen(id,performance.now()));hero.update(p,time,combatFeel.frozen(net.you,performance.now()));for(const c of pendingContacts.splice(0)){motionContacts.push({...c,renderedAt:performance.now(),renderFrame:presentationFrame,hero:hero.snapshot()});if(motionContacts.length>64)motionContacts.shift();}hero.root.visible=worldState.ready;playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,2.3,p.z);heroName.visible=worldState.ready&&!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));followSun(sun,focus,activeMap==='city_plaza'?CITY_SUN_OFFSET:SUN_OFFSET,zoomHeight,innerWidth/innerHeight);nearestArtLights(world.root,focus);camera.position.copy(focus).add(cameraOffset);const cameraShake=combatFeel.camera(dt);if(cameraShake>0){camera.position.x+=(Math.random()-.5)*cameraShake;camera.position.y+=(Math.random()-.5)*cameraShake;}shake=0;camera.lookAt(focus);if(overviewOn&&activeMap==='city_plaza'){camera.position.set(0,70,.01);camera.lookAt(0,0,0);}camera.updateMatrixWorld();
+function render(dt:number){sound.setListener(game.p);for(const other of worldState.others){let v=remoteHeroes.get(other.id);if(!v){v={actor:makePaintedHero(loader),label:label(other.name,'#f4f5da')};v.label.center.set(.5,NAME_ANCHOR);scene.add(v.actor.root,v.label);remoteHeroes.set(other.id,v);}v.actor.update(other,time,combatFeel.frozen(other.id,performance.now()));v.label.position.set(other.x,HERO_HEAD/screenUp(),other.z);v.label.visible=!other.dead;}for(const [id,v]of remoteHeroes)if(!worldState.others.some(p=>p.id===id)){scene.remove(v.actor.root,v.label);v.actor.dispose?.();v.label.material.map?.dispose();v.label.material.dispose();remoteHeroes.delete(id);}if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;skillArt.update(dt,[p,...worldState.others],id=>combatFeel.frozen(id,performance.now()));hero.update(p,time,combatFeel.frozen(net.you,performance.now()));for(const c of pendingContacts.splice(0)){motionContacts.push({...c,renderedAt:performance.now(),renderFrame:presentationFrame,hero:hero.snapshot()});if(motionContacts.length>64)motionContacts.shift();}hero.root.visible=worldState.ready;playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,HERO_HEAD/screenUp(),p.z);heroName.visible=worldState.ready&&!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));followSun(sun,focus,activeMap==='city_plaza'?CITY_SUN_OFFSET:SUN_OFFSET,zoomHeight,innerWidth/innerHeight);nearestArtLights(world.root,focus);camera.position.copy(focus).add(cameraOffset);const cameraShake=combatFeel.camera(dt);if(cameraShake>0){camera.position.x+=(Math.random()-.5)*cameraShake;camera.position.y+=(Math.random()-.5)*cameraShake;}shake=0;camera.lookAt(focus);if(overviewOn&&activeMap==='city_plaza'){camera.position.set(0,70,.01);camera.lookAt(0,0,0);}camera.updateMatrixWorld();
  const panels=hudRects();
- for(const n of npcLabels){const distance=Math.hypot(n.x-p.x,n.z-p.z),screen=new T.Vector3(n.x,3.6,n.z).project(camera);n.el.hidden=activeMap!=='city_plaza'||distance>10;const overlapping=distance<2.2;n.el.style.left=((screen.x*.5+.5)*innerWidth)+'px';n.el.style.top=((-screen.y*.5+.5)*innerHeight-(overlapping?56:0))+'px';n.el.classList.toggle('in-range',distance<3);n.el.style.opacity=overlapping?'.65':'1';if(!n.el.hidden&&blocked(n.el.getBoundingClientRect(),panels))n.el.hidden=true;}
+ for(const n of npcLabels){const distance=Math.hypot(n.x-p.x,n.z-p.z),screen=new T.Vector3(n.x,n.head/screenUp(),n.z).project(camera);n.el.hidden=activeMap!=='city_plaza'||distance>10;const overlapping=distance<2.2;n.el.style.left=((screen.x*.5+.5)*innerWidth)+'px';n.el.style.top=((-screen.y*.5+.5)*innerHeight-(overlapping?56:0))+'px';n.el.classList.toggle('in-range',distance<3);n.el.style.opacity=overlapping?'.65':'1';if(!n.el.hidden&&blocked(n.el.getBoundingClientRect(),panels))n.el.hidden=true;}
  const labelHeight=64/22*12*(Number(getComputedStyle(document.documentElement).getPropertyValue('--ui-scale'))||1)*(camera.top-camera.bottom)/innerHeight;
  for(const tag of [heroName,...[...remoteHeroes.values()].map(v=>v.label),...[...enemies.values()].map(v=>v.name)]){const ratio=tag.scale.x/tag.scale.y;tag.scale.set(labelHeight*ratio,labelHeight,1);}
 

@@ -1,0 +1,237 @@
+/* Minimal glass UI (ui-mockup/hud-minimal.html). Loaded last: re-skins existing ids without touching game logic.
+   Colour/material rules apply everywhere; layout moves are desktop-only (min-width:651px) so the tuned mobile layout stays. */
+:root{
+	--g-glass:rgba(12,20,19,.42);--g-glass-strong:rgba(12,20,19,.7);--g-window:rgba(14,22,21,.74);
+	--g-line:rgba(255,255,255,.13);--g-line-strong:rgba(255,255,255,.24);
+	--g-text:#f3efe6;--g-muted:rgba(243,239,230,.76);--g-faint:rgba(243,239,230,.55);
+	--g-gold:#e6c98f;--g-hp:#e8656a;--g-hp-deep:#b8404a;--g-mp:#5fb6e8;--g-ok:#8fd18a;
+	--g-blur:blur(14px) saturate(1.3);--g-shadow:0 1px 2px rgba(0,0,0,.75),0 0 8px rgba(0,0,0,.55);
+	--hud-ink:var(--g-glass);--hud-text:var(--g-text);
+}
+
+/* ---------- Shared materials ---------- */
+#ui{color:var(--g-text);text-shadow:var(--g-shadow)}
+#ui::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:
+	radial-gradient(720px 460px at 0 0,rgba(6,12,11,.6),transparent 70%),
+	radial-gradient(480px 380px at 100% 0,rgba(6,12,11,.5),transparent 70%),
+	radial-gradient(300px 420px at 100% 48%,rgba(6,12,11,.38),transparent 70%),
+	radial-gradient(520px 300px at 0 100%,rgba(6,12,11,.5),transparent 70%),
+	linear-gradient(transparent 80%,rgba(6,12,11,.42))}
+#ui .panel,#ui .quest,#ui .combat-ui{background:none;border:0;box-shadow:none;backdrop-filter:none;border-radius:0}
+#ui :is(.tools button,#game-menu,#stats-button,#skills-button,#inventory-button,#skills-more,.legacy-actions button,#qol-controls button,#journal-toggle){text-shadow:none}
+#ui :is(.tools button,#game-menu,#stats-button,#skills-button,#inventory-button,#skills-more,.legacy-actions button,#qol-controls button){
+	background:var(--g-glass);border:1px solid var(--g-line);border-radius:10px;color:var(--g-muted);
+	backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);box-shadow:none;transition:color .15s,border-color .15s,background .15s}
+#ui :is(.tools button,#game-menu,#stats-button,#skills-button,#inventory-button,#skills-more,.legacy-actions button,#qol-controls button):hover{color:var(--g-text);border-color:var(--g-line-strong);background:rgba(255,255,255,.1);filter:none}
+#ui kbd{font-family:'Noto Sans Thai',sans-serif;font-weight:600;color:var(--g-muted);background:none}
+
+/* ---------- Player ---------- */
+#ui .player{gap:14px;align-items:center}
+#ui .avatar{width:62px;height:62px;border-radius:50%;border:0;background:#203431;overflow:visible;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 0 0 4px rgba(0,0,0,.25)}
+#ui .avatar>img{border-radius:50%;object-position:50% 18%}
+#ui .avatar b{left:auto;right:-6px;bottom:-4px;min-width:26px;height:20px;padding:0 6px;border-radius:10px;border:1px solid var(--g-line-strong);background:var(--g-glass-strong);color:var(--g-gold);font:700 12px/18px 'Noto Sans Thai',sans-serif;text-shadow:none}
+#ui .player-name{font:600 17px/1.3 'Noto Sans Thai',sans-serif;letter-spacing:.01em}
+#ui .bar{border:0;border-radius:6px;background:rgba(0,0,0,.38);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+#ui .bar i{border-radius:inherit}
+#ui .player .hp{height:14px}#ui .player .mp{height:12px;margin-top:4px}
+#ui .player .hp i{background:linear-gradient(90deg,var(--g-hp-deep),var(--g-hp))}
+#ui .player .mp i{background:linear-gradient(90deg,#3a86b8,var(--g-mp))}
+#ui .player .bar{overflow:visible;margin-right:80px}
+#ui .player .bar i{overflow:hidden}
+#ui .player .bar small{left:auto;right:-80px;width:74px;text-align:right;background:none;color:var(--g-muted)!important;font:600 11px/14px 'Noto Sans Thai',sans-serif!important;text-shadow:0 1px 2px #000,0 0 4px #000;font-variant-numeric:tabular-nums}
+#ui .player .mp small{line-height:12px!important}
+#ui .player .xp,#ui .player .job-xp{height:3px;box-shadow:none;background:rgba(0,0,0,.35)}
+#ui .player .xp i{background:linear-gradient(90deg,#b99558,var(--g-gold));box-shadow:0 0 6px rgba(230,201,143,.5)}
+#ui .player .job-xp i{background:var(--g-ok)}
+#ui .player :is(#job-label,#job-exp){color:var(--g-muted);font-size:11px!important;line-height:1.4!important}
+#ui .player #job-progress{margin-top:6px}
+#ui .buff-icon{width:26px;height:26px;font-size:14px;border:1px solid var(--g-line-strong);background:conic-gradient(rgba(230,201,143,.55) var(--remaining),var(--g-glass-strong) 0);color:var(--g-text)}
+
+/* ---------- Map, menu row, tools ---------- */
+#ui .map .map-head{color:var(--g-muted);font-weight:600}
+#ui #map{border-radius:50%;border:1px solid var(--g-line-strong);background:var(--g-glass);box-shadow:0 6px 24px rgba(0,0,0,.25)}
+#ui .map{position:absolute}
+#ui .map::before{content:'N';position:absolute;top:4px;left:50%;transform:translateX(-50%);z-index:1;font:700 10px 'Noto Sans Thai',sans-serif;color:var(--g-gold);pointer-events:none}
+#ui .map-foot,#ui .map-foot :is(span,#fps,#map-coords){color:var(--g-faint)!important;font-size:10px!important;font-variant-numeric:tabular-nums}
+#ui .map-foot .dot{display:none}
+/* the six icons under the map are plain glyphs, not boxed buttons */
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){background:transparent!important;border:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:8px!important;color:rgba(243,239,230,.8)!important;filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio):hover{background:rgba(255,255,255,.1)!important;color:var(--g-text)!important}
+#ui #quest-button{font-size:0!important;padding:0;display:grid;place-items:center;pointer-events:auto}
+#ui #quest-button::before{content:'';width:18px;height:18px;background:currentColor;-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat;
+	--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M6 3h11a1 1 0 0 1 1 1v17l-3-2-3 2-3-2-3 2V4a1 1 0 0 1 1-1z'/%3E%3Cpath d='M9 8h6M9 12h6'/%3E%3C/svg%3E")}
+#game-menu-window .menu-tools{display:contents}
+#game-menu-window .menu-tools button{display:block;width:100%;margin:8px 0;padding:12px;text-align:left;font-size:15px}
+/* icon buttons: text stays for screen readers (aria-label), glyph comes from a mask */
+#ui :is(#stats-button,#skills-button,#inventory-button,#game-menu,#audio,#help,#pause){font-size:0!important;padding:0;display:grid;place-items:center}
+#ui :is(#stats-button,#skills-button,#inventory-button,#game-menu,#audio,#help,#pause)::before{content:'';width:18px;height:18px;background:currentColor;-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat}
+#ui #stats-button{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4 3.6-7 8-7s8 3 8 7'/%3E%3C/svg%3E")}
+#ui #skills-button{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.6 5.6L20 9.5l-4 4.2.9 6.3L12 17l-4.9 3 .9-6.3-4-4.2 5.4-.9z'/%3E%3C/svg%3E")}
+#ui #inventory-button{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M5 8h14l-1 12H6z'/%3E%3Cpath d='M9 8V6a3 3 0 0 1 6 0v2'/%3E%3C/svg%3E")}
+#ui #game-menu{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E")}
+#ui #audio{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9z'/%3E%3Cpath d='M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12'/%3E%3C/svg%3E")}
+#ui #help{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.5v.01'/%3E%3C/svg%3E")}
+#ui #pause{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 6v12M15 6v12'/%3E%3C/svg%3E")}
+#ui :is(#stats-button,#skills-button).has-points::after{content:'';position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--g-hp);box-shadow:0 0 0 2px rgba(12,20,19,.8)}
+#ui .tools #quality{font-size:12px!important;color:var(--g-muted)}
+
+/* ---------- Quest tracker ---------- */
+#ui .quest{padding:0;background:none;backdrop-filter:none}
+#ui .quest :is(h3,div,p,b,li,small){text-shadow:0 1px 2px #000,0 0 6px #000,0 0 12px rgba(0,0,0,.8)}
+#ui #journal-toggle{display:flex;justify-content:space-between;color:var(--g-faint);font-size:10px!important;font-weight:600;letter-spacing:.14em;min-height:24px!important;margin-bottom:6px}
+/* main quest: gold rule beside title, objective and bar */
+#ui .quest>:is(h3,#quest-line,.quest-bar,#quest-note){margin-left:0;padding-left:12px;border-left:2px solid rgba(230,201,143,.75)}
+#ui .quest h3{font-size:13px;font-weight:600;margin:0;padding-top:1px}
+#ui .quest>div:not(.quest-bar){font-size:12px;color:var(--g-muted);display:block}
+#ui .quest>.quest-bar{height:3px;border-left-width:2px;background-clip:content-box;padding-top:5px;padding-bottom:3px}
+#ui .quest>#quest-note{margin:0;padding-bottom:2px;font-size:11px!important;color:var(--g-faint)!important}
+/* side quests */
+#ui #quest-tracker{margin:12px 0 0;padding:0;border:0;gap:12px}
+#ui #quest-tracker li{padding-left:12px;border-left:2px solid var(--g-line-strong)}
+#ui #quest-tracker b{font-size:13px;font-weight:600;color:var(--g-text)}
+#ui #quest-tracker small{font-size:12px!important;color:var(--g-muted)}
+#ui #quest-tracker li.ready{border-left-color:rgba(143,209,138,.7)}
+#ui .quest b{color:var(--g-text)}
+#ui .quest-bar{height:3px;border-radius:2px;background:rgba(0,0,0,.35)}
+#ui .quest-bar i{background:var(--g-gold);border-radius:inherit}
+#ui .quest p{color:var(--g-faint);font-size:12px!important}
+
+/* ---------- Target / boss / area ---------- */
+#ui .target{text-align:center}
+#ui .target b{font-weight:600}
+#ui .target small{color:var(--g-muted)}
+#ui .target .bar{height:8px;margin-top:6px}
+#ui .target .bar i{background:linear-gradient(90deg,var(--g-hp-deep),var(--g-hp))}
+#ui .target .bar small{display:none}
+#ui #target-percent{display:block;margin-top:3px;font-size:11px!important;color:var(--g-muted)}
+#ui #area-name{background:none;border:0;font-weight:600;letter-spacing:.06em;text-shadow:var(--g-shadow)}
+#ui #area-name::after{content:'';display:block;width:120px;height:1px;margin:6px auto 0;background:linear-gradient(90deg,transparent,var(--g-gold),transparent);opacity:.6}
+#ui #auto-status{background:var(--g-glass);border:1px solid rgba(230,201,143,.45);border-radius:14px;padding:3px 12px;color:var(--g-gold);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+
+/* ---------- Hotbar ---------- */
+#ui .combat-ui{padding:0}
+#ui .rewards{background:none;padding:0;color:var(--g-muted)}
+#ui .rewards span{color:var(--g-muted)}
+#ui #job-hotbar{padding:6px;border-radius:14px;background:var(--g-glass);border:1px solid var(--g-line);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+#ui .job-slot{border-radius:10px;border:1px solid var(--g-line);background:rgba(0,0,0,.22);box-shadow:none;overflow:hidden}
+#ui .job-slot:hover{border-color:var(--g-line-strong);filter:none}
+#ui .job-slot.unlearned .job-icon{filter:grayscale(.85) brightness(.6)}
+#ui .job-slot .job-icon{border-radius:7px}
+#ui .job-slot .job-icon::after{display:none}
+#ui .job-slot kbd{position:absolute;left:4px;top:2px;z-index:3;background:none;padding:0;color:var(--g-text);font-size:10px;text-shadow:0 1px 2px #000}
+#ui .job-slot em{background:rgba(0,0,0,.55);inset:0;border-radius:0;display:grid;place-items:center;font:700 16px 'Noto Sans Thai',sans-serif}
+#ui .job-slot em:empty{display:none}
+#ui .job-slot.vacant{border-style:dashed;background:rgba(0,0,0,.12)}
+#ui .legacy-actions button{border-radius:50%!important;color:var(--g-muted)}
+#ui .legacy-actions button>span{font-size:17px}
+#ui .legacy-actions kbd{right:auto!important;left:50%;bottom:-17px!important;transform:translateX(-50%);font-size:10px}
+#ui #auto-hunt[aria-pressed='true']{color:var(--g-gold);border-color:var(--g-gold);box-shadow:0 0 0 3px rgba(230,201,143,.14)}
+#ui #potions{color:var(--g-text);font-weight:700}
+#ui #skills-more{border-radius:10px;color:var(--g-muted)}
+
+/* ---------- Toasts, numbers, prompts ---------- */
+#ui .notice{background:var(--g-glass);border:1px solid var(--g-line);border-radius:16px;color:var(--g-text);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+#ui .number{text-shadow:0 2px 0 rgba(0,0,0,.45),0 0 10px rgba(0,0,0,.5)}
+#ui .number.crit{color:#ffd98a}#ui .number.heal{color:#9ee6a0}
+:is(#npc-talk,#angel-talk){background:var(--g-glass);border:1px solid rgba(230,201,143,.55);border-radius:20px;color:var(--g-text);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);text-shadow:none}
+#return-cast{background:var(--g-glass);border:1px solid var(--g-line);border-radius:12px;backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+#control-hints{background:var(--g-window);border:1px solid var(--g-line-strong);border-radius:14px;backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+#control-hints button{background:var(--g-gold);color:#1a2523;border-radius:9px}
+
+/* ---------- Desktop layout ---------- */
+@media(min-width:651px){
+	#ui .player{left:24px;top:22px;width:340px;padding:0}
+	/* round map, a coords line, then one row of six plain icons */
+	#ui .map{top:20px;right:22px;width:184px;padding:0}
+	#ui .map .map-head{display:none}
+	#ui #map{display:block;width:168px;height:168px;margin:0 auto}
+	#ui .map-foot{display:flex!important;justify-content:space-between;margin:6px 10px 0;height:16px;line-height:16px}
+	#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu){position:absolute;top:218px;left:auto;bottom:auto;z-index:6}
+	#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important}
+	#ui #stats-button{right:179px}#ui #skills-button{right:148px}#ui #inventory-button{right:117px}#ui #quest-button{right:86px}#ui #game-menu{right:24px}
+	#ui .tools{top:218px;right:55px;gap:0}
+	#ui .quest{top:268px;right:24px;width:250px}
+	#ui .target{top:70px;width:340px}
+	#ui #area-name{top:22px}
+	#ui .combat-ui{bottom:22px;gap:10px}
+	#ui #job-hotbar{grid-template-columns:repeat(5,52px);gap:6px}
+	#ui #job-hotbar.show-extra{grid-template-columns:repeat(10,52px)}
+	#ui .job-slot{width:52px;height:52px;min-height:52px}
+	#ui .job-slot .job-icon{width:46px;height:46px}
+	#ui #skills-more{width:32px;height:52px;min-width:32px;font-size:12px}
+	#ui .legacy-actions{gap:8px!important;padding-bottom:14px}
+	#ui .legacy-actions button{width:42px!important;height:42px!important;min-width:42px;min-height:42px}
+	#ui .rewards{bottom:calc(100% + 6px)}
+	#notices,#pickup-toasts{right:24px;bottom:28px}
+}
+
+/* ================= Windows ================= */
+dialog:is(#skills-window,#angel-window,#stats-window,#inventory-window,#npc-dialog,#game-menu-window,#guide),dialog[open]{
+	background:var(--g-window);color:var(--g-text);border:1px solid var(--g-line-strong);border-radius:16px;
+	backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);box-shadow:0 24px 70px rgba(0,0,0,.45);text-shadow:none}
+dialog::backdrop,dialog:is(#skills-window,#angel-window,#inventory-window)::backdrop{background:rgba(6,12,11,.32);backdrop-filter:none}
+dialog h2,#skills-window h2,#angel-window h2,#inventory-window h2{font:600 20px/1.3 'Noto Sans Thai',sans-serif;color:var(--g-text);margin:2px 0 8px}
+dialog .caption,#skills-window .caption,#angel-window .caption{font:600 10px/1.6 'Noto Sans Thai',sans-serif!important;letter-spacing:.16em;color:var(--g-faint)!important}
+dialog :is(p:not(.caption),dd,label,small),#skills-window :is(small,span:not(.job-icon),p:not(.caption)),#angel-window p:not(.caption),dialog:not(#skills-window):not(#angel-window) p:not(.caption){color:var(--g-muted)}
+dialog dt{color:var(--g-gold)}
+dialog b{color:var(--g-text)}
+dialog .close,#skills-window .close,#angel-window .close,#inventory-window .close{position:absolute;right:12px;top:12px;float:none;width:34px;height:34px;min-width:34px;min-height:34px;padding:0;border-radius:9px;border:0!important;background:transparent!important;color:var(--g-muted)!important;font-size:22px;line-height:1}
+dialog .close:hover{background:rgba(255,255,255,.08)!important;color:var(--g-text)!important}
+dialog button:not(.close):not(.job-slot):not(.inv-cell):not(.primary),#inventory-window button:not(.close):not(.inv-cell){background:transparent;color:var(--g-text);border:1px solid var(--g-line-strong);border-radius:9px;padding:7px 14px;transition:background .15s,border-color .15s}
+dialog button:not(.close):not(.job-slot):not(.inv-cell):not(.primary):hover{background:rgba(255,255,255,.08);filter:none}
+dialog .primary,#skills-window .primary,#stats-window .primary,#inventory-window .primary{background:var(--g-gold)!important;border:1px solid var(--g-gold)!important;color:#1a2523!important;border-radius:9px;font-weight:600;box-shadow:none;text-shadow:none}
+dialog .primary:hover{background:#f0d7a4!important;filter:none}
+dialog button:disabled{opacity:.38;cursor:default}
+dialog input:not([type=checkbox]):not([type=range]),dialog select{background:rgba(0,0,0,.28)!important;color:var(--g-text)!important;border:1px solid var(--g-line-strong)!important;border-radius:8px}
+dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
+#game-menu-window a,#game-menu-window>button:not(.close){display:block;width:100%;text-align:left;background:rgba(255,255,255,.05)!important;border:1px solid var(--g-line)!important;border-radius:10px;color:var(--g-text)!important}
+
+/* ---------- Boss HUD ---------- */
+#ui .boss-hud{background:none!important;border:0!important;box-shadow:none;backdrop-filter:none;padding:0!important;text-align:center;text-shadow:var(--g-shadow)}
+#ui .boss-hud small{display:block;font-size:11px!important;font-weight:600;letter-spacing:.2em!important;color:var(--g-gold)!important}
+#ui .boss-hud h3{margin:2px 0 8px;font:600 20px/1.2 'Noto Sans Thai',sans-serif;letter-spacing:.06em;color:var(--g-text)}
+#ui .boss-hud h3::after{content:'';display:block;width:160px;height:1px;margin:6px auto 0;background:linear-gradient(90deg,transparent,var(--g-gold),transparent);opacity:.6}
+#ui .boss-hud .bar{height:10px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(230,201,143,.35),0 0 18px rgba(232,101,106,.18)}
+#ui .boss-hud .bar i{background:linear-gradient(90deg,#8e2f45,var(--g-hp) 70%,#f2a07f)}
+#ui .boss-hud .bar:after{border-left:1px solid rgba(255,255,255,.7)}
+
+/* ---------- Chat + party ---------- */
+#chat{color:var(--g-text)}
+#chat-log li{text-shadow:var(--g-shadow)}
+#chat.open #chat-log,#chat:hover #chat-log{background:rgba(12,20,19,.42);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);border-radius:12px}
+#chat-log li[data-ch=party]{color:#9fd5f5}#chat-log li[data-ch=system]{color:var(--g-gold)}
+#chat-log .chat-tag{color:var(--g-faint);opacity:1}
+#chat-form input{background:var(--g-glass-strong);border:1px solid var(--g-line-strong);border-radius:16px;color:var(--g-text);padding:7px 14px;backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+#chat-form input:focus{border-color:rgba(230,201,143,.7)}
+#chat-form button{background:var(--g-glass-strong);border:1px solid var(--g-line-strong);border-radius:16px;color:var(--g-muted)}
+#chat-toggle{background:var(--g-glass)!important;border:1px solid var(--g-line)!important;border-radius:10px!important}
+#party-frame{background:none;border:0;border-radius:0;padding:0;text-shadow:var(--g-shadow)}
+#party-frame header b{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--g-faint)}
+#party-frame header small{color:var(--g-faint)}
+#party-frame header button,#party-frame .party-kick{min-height:26px!important;min-width:0!important;padding:0 10px!important;font-size:11px!important;border-radius:13px!important;background:var(--g-glass)!important;border:1px solid var(--g-line)!important;color:var(--g-muted)!important;text-shadow:none}
+#party-frame ul{gap:10px}
+#party-frame .party-name{font-weight:600}
+#party-frame li small{color:var(--g-faint);opacity:1}
+#party-frame .party-hp{height:4px;border-radius:2px;margin-top:3px;background:linear-gradient(90deg,var(--g-hp) calc(var(--hp)*100%),rgba(0,0,0,.4) 0)}
+#party-frame li.me .party-name{color:var(--g-gold)}
+.party-invite{background:var(--g-window);border:1px solid rgba(230,201,143,.6);border-radius:14px;backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+.party-invite button{background:transparent;border:1px solid var(--g-line-strong);border-radius:9px;color:var(--g-text)}
+.party-invite button:first-of-type{background:var(--g-gold);border-color:var(--g-gold);color:#1a2523;font-weight:600}
+
+/* ---------- NPC dialog + quest cards ---------- */
+#npc-dialog .npc-close,.quest-actions button{background:transparent;color:var(--g-text);border:1px solid var(--g-line-strong);border-radius:9px}
+#npc-dialog .npc-shop-open,.quest-actions button.primary{background:var(--g-gold);border-color:var(--g-gold);color:#1a2523;font-weight:600}
+.npc-quest{background:rgba(255,255,255,.04);border:1px solid var(--g-line);border-radius:12px}
+.npc-quest h3{color:var(--g-text);font-weight:600}
+.npc-quest .quest-badge{background:transparent;border:1px solid var(--g-line-strong);color:var(--g-muted)}
+.npc-quest[data-status=available] .quest-badge{border-color:rgba(230,201,143,.7);color:var(--g-gold);background:transparent}
+.npc-quest[data-status=ready] .quest-badge{border-color:rgba(143,209,138,.7);color:var(--g-ok);background:transparent}
+#quest-tracker{border-top:1px solid var(--g-line)}
+#quest-tracker b{color:var(--g-text);font-weight:600}
+#quest-tracker li.ready small{color:var(--g-ok)}
+
+/* Narrow desktop: the centred hotbar reaches the left edge, so the chat sits above it. */
+@media(min-width:651px) and (max-width:1279px){#chat{bottom:130px}}
+
+/* Phone layout keeps its own menu; the journal is toggled from the tracker itself. */
+@media(max-width:650px){#ui #quest-button{display:none}}
