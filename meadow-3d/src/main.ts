@@ -11,6 +11,7 @@ import { playEventAudio } from './audio-events';
 import { mountSocial } from './social-ui';
 import { mountQuests } from './quest-ui';
 import { mountAudioSettings } from './audio-settings-ui';
+import { mountAutoPotion } from './auto-potion-ui';
 import{mountSkills}from'./skills-ui';import{mountSkillArt}from'./skill-art';
 import{loadSelected}from'./web/game-session';
 import{PaintedLoader,assetJSON}from'./assets';import type{TextureManifest}from'./assets';
@@ -35,14 +36,14 @@ const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(s
 let started=false,paused=false,wonShown=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
 sound.restore(selected.character.audioSettings);
 const combatFeel=new CombatFeel(),autoQuality=new AutoQuality();autoQuality.automatic=false;
-const audioUI=mountAudioSettings(sound,message=>net.send(message));
+const audioUI=mountAudioSettings(sound,message=>net.send(message));const autoPotionUI=mountAutoPotion(message=>net.send(message));
 const feelLabel=document.createElement('label');feelLabel.innerHTML='<input type="checkbox" id="combat-feel">ภาพสั่น/หยุดภาพ';document.querySelector('#audio-settings')!.append(feelLabel);const feelInput=feelLabel.querySelector('input')!;feelInput.checked=combatFeel.enabled;feelInput.onchange=()=>combatFeel.setEnabled(feelInput.checked);
 document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.closest('button:not(:disabled)'))sound.play('ui_click');},true);
 let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
   if(social?.receive(message)||quests?.receive(message))return;
- audioUI.receive(message);inventoryUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
- if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you)audioUI.receive(e);
+ audioUI.receive(message);autoPotionUI.receive(message);inventoryUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
+ if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you){audioUI.receive(e);autoPotionUI.receive(e);}
  if(message.t==='snap'){worldState.receive(message,net.you,performance.now());if(message.mapId!==activeMap)void switchMap(message.mapId);}
   if(message.t==='inv'&&message.inventory){game.p.inventory=message.inventory;game.p.gold=message.gold;quests?.refresh();}
  if(message.t==='welcome')window.tnBoot.stage(3);
@@ -156,6 +157,7 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'hurt':number(`−${e.amount}`,e,'hurt',2.4);shake=.13;break;
  case'evade':number('หลบ',e,'evade',2.4);break;
  case'heal':number(`+${e.amount}`,e,'heal',2.4);effectRing(e.x,e.z,'#c3edb0',.9,.45);particles(e.x,e.z,'#d6f5b0',14,1);break;
+ case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);if(e.kind==='hp'){const b=$('[data-action="potion"]');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
  case'itemPickup':if(e.playerId===net.you)inventoryUI.toast(e.loot);break;
  case'pickup':number(`+${e.xp} ประสบการณ์   ◈ ${e.gold}`,e,'reward',2.8);break;
  case'jobLevel':if(e.playerId===net.you){notice(`✦ ระดับอาชีพ ${e.jobLevel} · +${e.granted} แต้มสกิล · K`);if(e.jobLevel===40)notice('✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา');}break;
@@ -176,7 +178,7 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
 function toggleAuto(){if(activeMap==='city_plaza'){notice('เขตปลอดภัย ต่อสู้ในเมืองไม่ได้');return;}if(!started||paused||game.p.dead)return;net.send({t:'auto',on:!game.p.auto});}
 function stopAuto(){if(game.p.auto)net.send({t:'auto',on:false});}
 const nextAction:Partial<Record<Action,number>>={};
-function doAction(name:Action){if(name.startsWith('item:')){if(!started||paused||game.p.dead)return;const item=game.p.inventory?.items.find(i=>i.template===name.slice(5)&&i.location==='bag');if(item)net.send({t:'inv',op:'use',req:crypto.randomUUID(),id:item.id});else notice('ไอเทมหมดแล้ว');return;}if(!started||paused||inventoryUI.open||skillsUI.open||statsUI.open||game.p.dead||!net.connected)return;if(activeMap==='city_plaza'&&name!=='potion'){notice('เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้');return;}const id=({attack:'basic',spin:'whirlwind',dash:'dodge'} as Record<string,string>)[name]||name;if(!game.p.skills?.[id]){notice('ยังไม่ได้เรียนสกิลนี้ · เปิด K เพื่อเรียน');return;}const now=performance.now();if(now<(nextAction[name]||0)||game.p.cd[name]>.08)return;nextAction[name]=now+(CD[name]||.12)*1000;
+function doAction(name:Action){if(name.startsWith('item:')){if(!started||paused||game.p.dead||!net.connected)return;if(game.p.cd.potion>.05)return;const item=game.p.inventory?.items.find(i=>i.template===name.slice(5)&&i.location==='bag');if(item)net.send({t:'inv',op:'use',req:crypto.randomUUID(),id:item.id});else notice('ไอเทมหมดแล้ว');return;}if(!started||paused||inventoryUI.open||skillsUI.open||statsUI.open||game.p.dead||!net.connected)return;if(activeMap==='city_plaza'&&name!=='potion'){notice('เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้');return;}const id=({attack:'basic',spin:'whirlwind',dash:'dodge'} as Record<string,string>)[name]||name;if(!game.p.skills?.[id]){notice('ยังไม่ได้เรียนสกิลนี้ · เปิด K เพื่อเรียน');return;}const now=performance.now();if(now<(nextAction[name]||0)||game.p.cd[name]>.08)return;nextAction[name]=now+(CD[name]||.12)*1000;
  net.send({t:'act',a:name,...(['attack','meteor'].includes(name)&&game.target?{target:game.target}:{})});worldState.animate(name,now);}
 let heldPointer:{id:number;x:number;y:number;startX:number;startY:number;since:number;ground:boolean;dragged:boolean;nearTarget:number|null}|null=null;
 const joy={x:0,y:0},stick=$('#joystick');let stickId:number|null=null;function clearInput(){heldPointer=null;keys.clear();net.send({t:'steer',dx:0,dz:0});joy.x=joy.y=0;$('#joystick i').style.transform='';}

@@ -235,3 +235,34 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 
 /* Phone layout keeps its own menu; the journal is toggled from the tracker itself. */
 @media(max-width:650px){#ui #quest-button{display:none}}
+
+/* ---------- Potions on the hotbar + auto-potion ---------- */
+.job-slot.item-slot .hotbar-potion{display:block;width:44px;height:44px;margin:0 auto;filter:drop-shadow(0 2px 2px #0009)}
+#ui .job-slot.item-slot{background:rgba(0,0,0,.22)}
+.job-slot .slot-count{position:absolute;right:4px;bottom:2px;z-index:3;font:700 11px/1 'Noto Sans Thai',sans-serif;color:var(--g-text,#f3efe6);text-shadow:0 1px 2px #000,0 0 3px #000;font-variant-numeric:tabular-nums}
+.job-slot.item-slot.out .hotbar-potion{filter:grayscale(1) brightness(.55);opacity:.55}
+.job-slot.item-slot.out .slot-count{color:var(--g-hp,#e8656a)}
+/* Cooldown sweep: the dark wedge shrinks clockwise as the shared potion cooldown runs out. */
+.job-slot.item-slot.cooling::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:conic-gradient(rgba(0,0,0,.6) var(--cd-sweep,0deg),transparent 0)}
+#ui .job-slot.item-slot.cooling em{background:none}
+.job-slot.item-slot.cooling .hotbar-potion{filter:saturate(.5)}
+@keyframes auto-drank{0%{box-shadow:0 0 0 0 rgba(143,209,138,.9),inset 0 0 14px rgba(143,209,138,.8)}100%{box-shadow:0 0 0 10px rgba(143,209,138,0),inset 0 0 0 rgba(143,209,138,0)}}
+#ui .auto-drank{animation:auto-drank .9s ease-out;border-color:var(--g-ok,#8fd18a)!important}
+#ui .legacy-actions button[data-action="potion"].auto-on::after{content:'A';position:absolute;right:-2px;top:-2px;width:14px;height:14px;border-radius:50%;background:var(--g-ok,#8fd18a);color:#10201a;font:800 9px/14px 'Noto Sans Thai',sans-serif;text-align:center;text-shadow:none}
+#skills-window .item-node .item-icon{width:42px;height:42px;margin:0;flex:none}
+#skills-window .item-node{cursor:grab}
+#auto-potion-settings{display:grid;gap:8px;margin-bottom:12px}
+#auto-potion-settings .ap-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+#auto-potion-settings .ap-toggle{display:flex;align-items:center;gap:6px;min-width:150px}
+#auto-potion-settings .ap-range{display:flex;align-items:center;gap:8px;flex:1;min-width:180px}
+#auto-potion-settings .ap-range input{flex:1}
+#auto-potion-settings .ap-hp input[type=range]{accent-color:var(--g-hp,#e8656a)}
+#auto-potion-settings .ap-mp input[type=range]{accent-color:var(--g-mp,#5fb6e8)}
+#auto-potion-settings output{min-width:3ch;font-variant-numeric:tabular-nums}
+#auto-potion-settings small{opacity:.75}
+/* Settings panel (auto-potion, sound, HUD) in the glass palette instead of the old parchment card. */
+#audio-settings{background:rgba(0,0,0,.24);border:1px solid var(--g-line);color:var(--g-text)}
+#audio-settings h3{color:var(--g-gold);font-size:14px;margin:4px 0 6px}
+#audio-settings :is(label,output,small,p){color:var(--g-muted)}
+#audio-settings input[type=range]{accent-color:var(--g-gold)}
+#audio-settings section+section,#audio-settings #auto-potion-settings{padding-bottom:10px;border-bottom:1px solid var(--g-line)}

@@ -1,5 +1,9 @@
 import type { GameData, Skill } from "./schema.js";
 import jobDefinitions from "../data/jobs.json" with { type: "json" };
+import itemDefinitions from "../data/items.json" with { type: "json" };
+/** Item ids that may sit on the hotbar as "item:<id>" (usable consumables). */
+export const HOTBAR_ITEMS = new Set(itemDefinitions.items.filter((t: any) => t.type === "consumable" && t.effect).map((t) => t.id));
+export const isHotbarItem = (slot: string | null) => !!slot?.startsWith("item:") && HOTBAR_ITEMS.has(slot.slice(5));
 
 export interface HotbarSlot {
 	skill: string | null;
@@ -239,7 +243,7 @@ export function validateHotbar(
 		)
 			throw Error("ปุ่มซ้ำหรือสงวนไว้");
 		used.add(slot.key);
-		if(slot.skill?.startsWith('item:')){if(!data.items.items.some(t=>t.id===slot.skill!.slice(5)&&t.type==='consumable'))throw Error('ใช้ไอเทมนี้ในแถบไม่ได้');continue;}
+		if(slot.skill?.startsWith('item:')){if(!data.items.items.some(t=>t.id===slot.skill!.slice(5)&&t.type==='consumable'&&t.effect))throw Error('ใช้ไอเทมนี้ในแถบไม่ได้');continue;}
         if (slot.skill !== null) {
 			const s = data.skills.skills.find((s) => s.id === slot.skill);
 			if (
@@ -381,6 +385,7 @@ export function normalizeJob(
 	}
 	delete out.skills.punch;
 	delete out.skills.fighter_basics;
-	out.hotbar = out.hotbar.map(s => ({ ...s, skill: ["punch", "fighter_basics"].includes(s.skill || "") ? null : s.skill }));
+	// Item slots ("item:<id>") survive saves; ones naming an item that is no longer a usable consumable are cleared.
+	out.hotbar = out.hotbar.map(s => ({ ...s, skill: ["punch", "fighter_basics"].includes(s.skill || "") || (s.skill?.startsWith("item:") && !isHotbarItem(s.skill)) ? null : s.skill }));
 	return out;
 }

@@ -4,9 +4,16 @@ import jobsData from "../../shared/data/jobs.json";
 import type { HotbarSlot, JobProgress } from "@thainative/shared";
 import "./skills.css";
 import "./skill-art.css";
+import { itemIconCell } from "./item-icon";
 const skills = skillsData.skills as any[];
 const itemTemplates=loadGameData().items.items;
 const slotSpec=(id:string|null)=>id?.startsWith('item:')?itemTemplates.find(t=>t.id===id.slice(5)):skills.find(s=>s.id===id);
+/** Consumables that can sit on the bar (HP, MP and speed potions). */
+const barItems=itemTemplates.filter(t=>t.type==='consumable'&&t.effect);
+const POTION_CD=skills.find(s=>s.id==='potion')?.cooldown||1;
+const itemIconHTML=(template:string,extra='')=>{const c=itemIconCell(template);return `<span class="item-icon${c.v2?' item-icon-v2':''} ${extra}" style="background-position:${c.position}" aria-hidden="true"></span>`;};
+/** How many of this template the bag holds (equipped or stored copies do not count). */
+export function bagCount(inventory:{items:{template:string;qty:number;location:string}[]}|undefined,template:string){return (inventory?.items||[]).filter(i=>i.template===template&&i.location==='bag').reduce((n,i)=>n+i.qty,0);}
 const $ = <T extends HTMLElement = HTMLElement>(s: string) =>
 	document.querySelector<T>(s)!;
 export const keyLabel = (key: string) =>
@@ -23,7 +30,8 @@ export function mountSkills(
 		selected: string | null = null,
 		detailId: string | null = null,
 		last = "",
-		more = false;
+		more = false,
+		inventory: any;
 	const panel = $<HTMLDialogElement>("#skills-window"),
 		angel = $<HTMLDialogElement>("#angel-window");
 	const bar = $("#job-hotbar");
@@ -67,7 +75,7 @@ export function mountSkills(
 			.map((slot, i) => {
 				const s = slotSpec(slot.skill),
 					learned = !!s && (!!slot.skill?.startsWith('item:') || !!job?.skills[s.id]);
-				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}" title="${s?.nameTh || "ว่าง"} · ${keyLabel(slot.key)}" data-slot="${i}" ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? slot.skill?.startsWith("item:") ? `<span class="hotbar-item">✚</span>` : icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
+				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${slot.skill?.startsWith("item:") ? "item-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}" title="${s?.nameTh || "ว่าง"} · ${keyLabel(slot.key)}" data-slot="${i}" ${slot.skill?.startsWith("item:") ? `data-item="${slot.skill.slice(5)}"` : ""} ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? slot.skill?.startsWith("item:") ? `${itemIconHTML(slot.skill.slice(5),'hotbar-potion')}<b class="slot-count"></b>` : icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
 			})
 			.join("");
 	}
@@ -103,8 +111,13 @@ export function mountSkills(
 			};
 		});
 	}
+	/** Auto-potion highlight per template, kept across bar redraws (a stats refresh follows every drink). */
+	const flashUntil: Record<string, number> = {};
 	function drawBar() {
-		bar.innerHTML = slotsHTML();
+		const html = slotsHTML();
+		if (bar.dataset.html !== html) { bar.innerHTML = html; bar.dataset.html = html; }
+		for (const [template, until] of Object.entries(flashUntil))
+			if (until > performance.now()) bar.querySelectorAll(`[data-item="${template}"]`).forEach((el) => el.classList.add("auto-drank"));
 		bar.classList.toggle("show-extra", more);
 		bindSlots(bar);
 	}
@@ -156,6 +169,26 @@ export function mountSkills(
 				};
 				listEl.append(card);
 			}
+		}
+		const caption = document.createElement("p");
+		caption.className = "caption";
+		caption.textContent = "ยา · ลากใส่แถบได้";
+		listEl.append(caption);
+		for (const t of barItems) {
+			const card = document.createElement("article"),
+				id = "item:" + t.id;
+			card.className = "skill-node item-node" + (selected === id ? " sk-selected" : "");
+			card.dataset.skill = id;
+			card.draggable = true;
+			card.innerHTML = `${itemIconHTML(t.id, "job-icon-item")}<div class="sk-text"><b>${t.nameTh}<small>มี ${bagCount(inventory, t.id)}</small></b><span class="sk-meta">${t.effect === "hp" ? `ฟื้นพลังชีวิต ${t.amount}` : t.effect === "sp" ? `ฟื้นพลังสกิล ${t.amount}` : "เร่งความเร็ว 60 วิ"} · คูลดาวน์ยา ${POTION_CD} วิ</span></div>`;
+			card.ondragstart = (e) => {document.body.classList.add('dragging-hotbar');e.dataTransfer?.setData('text/plain', id);};
+			card.ondragend = () => document.body.classList.remove('dragging-hotbar');
+			card.onclick = () => {
+				selected = id;
+				$("#skills-status").textContent = `เลือกช่องด้านล่างเพื่อวาง ${t.nameTh}`;
+				draw();
+			};
+			listEl.append(card);
 		}
 		const d = list.find((s) => s.id === detailId);
 		if (d) {
@@ -284,7 +317,20 @@ export function mountSkills(
 			if (panel.open) draw();
 			if (angel.open) drawAngel();
 		},
+		/** Briefly highlights the bar slots holding this potion (auto-potion fired). */
+		flash(template: string) {
+			flashUntil[template] = performance.now() + 900;
+			bar.querySelectorAll<HTMLElement>(`[data-item="${template}"]`).forEach((el) => {
+				el.classList.remove("auto-drank");
+				void el.offsetWidth;
+				el.classList.add("auto-drank");
+			});
+			setTimeout(() => {
+				if ((flashUntil[template] ?? 0) <= performance.now() + 1) bar.querySelectorAll(`[data-item="${template}"]`).forEach((el) => el.classList.remove("auto-drank"));
+			}, 900);
+		},
 		update(p: any) {
+			inventory = p.inventory;
 
 			const key =
 				JSON.stringify(p.hotbar || []) + JSON.stringify(p.skills || {});
@@ -304,6 +350,12 @@ export function mountSkills(
 				const id = job?.hotbar[Number(el.dataset.slot)].skill,
 					cd = id ? p.cd[id.startsWith('item:')?'potion':id] || 0 : 0;
 				el.classList.toggle('low-sp',!!id&&!id.startsWith('item:')&&p.mp<resolveSkill(loadGameData(),id,p.skills[id]||1).sp);
+				if(id?.startsWith('item:')){
+					const n=bagCount(p.inventory,id.slice(5)),count=el.querySelector('.slot-count');
+					if(count&&count.textContent!==String(n))count.textContent=String(n);
+					el.classList.toggle('out',n===0);
+					el.style.setProperty('--cd-sweep',`${Math.min(1,cd/POTION_CD)*360}deg`);
+				}
                 el.classList.toggle("cooling", cd > 0.05);
 				el.querySelector("em")!.textContent = cd > 0.05 ? cd.toFixed(1) : "";
 			});

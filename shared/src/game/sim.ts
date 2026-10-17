@@ -1,4 +1,4 @@
-import {applyInventory,starterInventory,inventoryWeight,redPotion,equipped,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
+import {applyInventory,starterInventory,inventoryWeight,bestPotion,equipped,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
 import {
 	migrateJob,
 	newJob,
@@ -90,6 +90,8 @@ export interface Player extends Vec, JobProgress {
  healerReadyAt: number;
  returnReadyAt?:number; returnRemaining?:number;
  audioSettings?: import('../audio-settings.js').AudioSettings;
+ /** Per-character auto-drink thresholds; the server drinks from the bag when a bar falls below them. */
+ autoPotion?: import('../auto-potion.js').AutoPotion;
 	statuses: TimedEffect[];
 	castRemaining: number;
 	jobsVersion: number;
@@ -944,11 +946,7 @@ export function action(g: Game, a: Action) {
 		emit(g, "dash", { dx: p.fx, dz: p.fz });
 		return true;
 	}
-	if (skill.id === "potion" && p.inventory) {
-  const best=redPotion(p.inventory,g.data);if(!best||p.hp>=p.maxHp||p.cd.potion>0)return false;
-  if(g.inventoryCommit){g.inventoryCommit(p,{op:'use',id:best.id},()=>{});return true;}
-  const out=applyInventory({gold:p.gold,inventory:p.inventory},{op:'use',id:best.id},p.profile,g.data,()=>String(g.nextId++));p.inventory=out.state.inventory;p.hp=Math.min(p.maxHp,p.hp+out.effect!.amount);p.cd.potion=skill.cooldown;refreshStats(g,p);return true;
- }
+	if (skill.id === "potion" && p.inventory) return drinkPotion(g, "hp", skill.cooldown);
  if (skill.id === "potion") {
 		if (p.potions <= 0) {
 			emit(g, "notice", { text: "ยาหมดแล้ว กลับไปฟื้นพลังที่แคมป์" });
@@ -966,6 +964,47 @@ export function action(g: Game, a: Action) {
 		return true;
 	}
 	return false;
+}
+/** Drinks the strongest bag potion of this kind, sharing the one potion cooldown. */
+function drinkPotion(g: Game, kind: "hp" | "sp", cooldown: number) {
+	const p = g.p;
+	if (!p.inventory || p.dead || p.cd.potion > 0) return false;
+	if (kind === "hp" ? p.hp >= p.maxHp : p.mp >= p.maxMp) return false;
+	const best = bestPotion(p.inventory, g.data, kind);
+	if (!best) return false;
+	if (g.inventoryCommit) {
+		// The server applies the effect once the bag write commits; hold the cooldown now so nothing queues twice.
+		p.cd.potion = cooldown;
+		g.inventoryCommit(p, { op: "use", id: best.id }, () => {});
+		return true;
+	}
+	const out = applyInventory({ gold: p.gold, inventory: p.inventory }, { op: "use", id: best.id }, p.profile, g.data, () => String(g.nextId++));
+	p.inventory = out.state.inventory;
+	if (kind === "hp") p.hp = Math.min(p.maxHp, p.hp + out.effect!.amount);
+	else p.mp = Math.min(p.maxMp, p.mp + out.effect!.amount);
+	p.cd.potion = cooldown;
+	refreshStats(g, p);
+	return true;
+}
+/** Auto-potion: drink when HP or MP is below the player's threshold. HP goes first; both share the cooldown. */
+export function autoDrink(g: Game): "hp" | "mp" | null {
+	const p = g.p,
+		rule = p.autoPotion;
+	if (!rule || !p.inventory || p.dead || p.cd.potion > 0 || p.castRemaining > 0) return null;
+	if (p.statuses.some((s) => s.id === "stun" || s.id === "knockup")) return null;
+	const cooldown = gameSkill(g, "potion").cooldown;
+	for (const [kind, on, at, now, max] of [
+		["hp", rule.hp.on, rule.hp.at, p.hp, p.maxHp],
+		["mp", rule.mp.on, rule.mp.at, p.mp, p.maxMp],
+	] as const) {
+		if (!on || now >= (max * at) / 100) continue;
+		const best = bestPotion(p.inventory, g.data, kind === "hp" ? "hp" : "sp");
+		if (best && drinkPotion(g, kind === "hp" ? "hp" : "sp", cooldown)) {
+			emit(g, "autoPotion", { kind, template: best.template });
+			return kind;
+		}
+	}
+	return null;
 }
 export function revive(g: Game) {
 	const p = g.p;
@@ -1183,7 +1222,7 @@ function autoStep(g: Game, dt: number): Vec {
 	g.autoTimer -= dt;
 	if (g.autoTimer <= 0) {
 		g.autoTimer += 0.2;
-		if (p.hp < p.maxHp * 0.45 && p.potions > 0) action(g, "potion");
+		if (!p.autoPotion?.hp.on && p.hp < p.maxHp * 0.45 && p.potions > 0) action(g, "potion");
 		if (p.hp < p.maxHp * 0.25 && p.potions === 0) p.autoState = "retreat";
 		const retreat = p.autoState === "retreat" && p.hp < p.maxHp * 0.9;
 		// Targets with no route (a far field boss beyond the bounded search) are set aside for a while.
@@ -1546,6 +1585,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
 							: g.data.stats.regen.inCombatHpMultiplier),
 			);
  }
+		autoDrink(g);
 		if (
 			p.castRemaining > 0 ||
 			p.statuses.some((s) => s.id === "stun" || s.id === "knockup")

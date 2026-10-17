@@ -18,5 +18,6 @@ export * from './audio-settings.js';
 export * from "./inventory.js";
 
 export * from './ui-settings.js';
+export * from './auto-potion.js';
 export * from './chat.js';
 export * from './quests.js';
