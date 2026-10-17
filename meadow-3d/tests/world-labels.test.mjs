@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {nameplateCandidates,overlaps} from '../src/world-labels.ts';
 import {createGame,revive} from '@thainative/shared';
 import {CITY_SPAWN} from '@thainative/shared/maps';
+import jobs from '../../shared/data/jobs.json' with {type:'json'};
 test('nameplate budget reserves target and hover, then nearest living monsters within five metres',()=>{
  const es=[1,2,3,4,5,6,7,8].map(id=>({id,x:id,z:0}));
  assert.deepEqual(nameplateCandidates(es,{x:0,z:0},8,7),[8,7,1,2]);
@@ -17,7 +18,7 @@ test('labels detect partial panel occlusion and adjacent text lanes',()=>{
 });
 test('city spawn and revive clear the Angel and face south',()=>{
  const g=createGame(123,undefined,'local',undefined,'city_plaza');
- assert.ok(CITY_SPAWN.z-3.2>=3);
+ assert.ok(Math.hypot(CITY_SPAWN.x-jobs.angel.x,CITY_SPAWN.z-jobs.angel.z)>=3);
  g.p.dead=true;g.p.fx=1;g.p.fz=0;revive(g);
  assert.equal(g.p.z,CITY_SPAWN.z);assert.equal(g.p.fx,0);assert.equal(g.p.fz,1);
 });

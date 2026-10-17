@@ -4,6 +4,7 @@ import {CombatFeel,AutoQuality} from './combat-feel';
 import {mountInventory} from './inventory-ui';
 import {loadGameData,rarityColors} from '@thainative/shared';
 import { CITY_BUILDINGS, HEALER, GATES, type MapId } from '@thainative/shared/maps';
+import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import { playEventAudio } from './audio-events';
 import { mountAudioSettings } from './audio-settings-ui';
 import{mountSkills}from'./skills-ui';import{mountSkillArt}from'./skill-art';
@@ -103,7 +104,7 @@ function mapInteractions(){
  if(closed&&closed!==closedGate)notice('หมอกหนาเกินไป ยังผ่านไม่ได้');closedGate=closed;
  const fog=overviewOn&&activeMap==='city_plaza'?null:activeMap==='city_plaza'?cityFog:meadowFog;if(scene.fog!==fog)scene.fog=fog;
 }
-const npcLabels=[...CITY_BUILDINGS.map(b=>({...b.talk,name:b.id==='storage'?'🔒 คลังเก็บของ — เปิดเร็ว ๆ นี้':b.npc,role:b.name})),{...HEALER,name:'นักบวชหมอ',role:'ฟื้นพลังชีวิตและพลังสกิล'},{x:0,z:3.2,name:'ทูตสวรรค์',role:'เส้นทางอาชีพ'},{x:4,z:25,name:'หัวหน้าทหารประตู',role:'ประตูสู่ทุ่งหญ้า'}].map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.name;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
+const npcLabels=[...CITY_BUILDINGS.map(b=>({...b.talk,name:b.id==='storage'?'🔒 คลังเก็บของ — เปิดเร็ว ๆ นี้':b.npc,role:b.name})),{...HEALER,name:'นักบวชหมอ',role:'ฟื้นพลังชีวิตและพลังสกิล'},{...jobs.angel,name:'ทูตสวรรค์',role:'เส้นทางอาชีพ'},{x:4,z:25,name:'หัวหน้าทหารประตู',role:'ประตูสู่ทุ่งหญ้า'}].map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.name;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
 const statusLabels=new Map<number,HTMLElement>();
 const dropLabels=new Map<number,T.Sprite>(),dropPillars=new Map<number,T.Mesh>();
 const enemies=new Map<number,any>(),drops=new Map<number,T.Mesh>(),effects:any[]=[],numbers:any[]=[];let markerTime=0;

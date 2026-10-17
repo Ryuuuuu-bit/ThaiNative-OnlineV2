@@ -2,6 +2,7 @@ import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { CITY_BUILDINGS, HEALER } from '@thainative/shared/maps';
 import type { PaintedLoader } from './assets';
+import jobs from '../../shared/data/jobs.json' with {type:'json'};
 
 /** Visual-only dressing. Shared map footprints, navigation and interaction anchors are authoritative. */
 export function buildCity(scene:T.Scene,loader:PaintedLoader){
@@ -96,7 +97,8 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
  const npcs=[...CITY_BUILDINGS.map(b=>b.talk),HEALER,{x:4,z:25}].map((p,row)=>{
   const height=row===4?3.53:3.23;const g=new T.PlaneGeometry(2.6*height/3.5,height);g.translate(0,height*(.5-8/320),0);const mesh=new T.Mesh(g,npcMaterial);mesh.position.set(p.x,.035,p.z);mesh.onBeforeRender=(_r,_s,c)=>mesh.quaternion.copy(c.quaternion);root.add(mesh);return{mesh,row};
  });
- const angel=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/skills-painted/angel-v1.png'),transparent:true,alphaTest:.04,depthWrite:false,toneMapped:false}));angel.center.set(.5,.025);angel.scale.set(2.6,3.9,1);angel.position.set(0,.2,3.2);root.add(angel);
+ // South of the bottom step: the camera-facing upper edge tilts north toward the tower.
+ const angel=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/skills-painted/angel-v1.png'),transparent:true,alphaTest:.04,depthWrite:false,toneMapped:false}));angel.center.set(.5,.025);angel.scale.set(2.6,3.9,1);angel.position.set(jobs.angel.x,.05,jobs.angel.z);root.add(angel);
  function fogTexture(size:number){const c=document.createElement('canvas');c.width=c.height=size;const ctx=c.getContext('2d')!,grad=ctx.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);grad.addColorStop(0,'#bacbd4aa');grad.addColorStop(1,'#bacbd400');ctx.fillStyle=grad;ctx.fillRect(0,0,size,size);return new T.CanvasTexture(c);}
  const fogHQ=fogTexture(128),fogLOW=fogTexture(64);
  // The existing painted mist/castle cell fills both the horizon and the ground outside the walls.
