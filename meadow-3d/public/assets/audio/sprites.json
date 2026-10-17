@@ -4,14 +4,14 @@
   "groups": {
     "sfx-core": {
       "opus": {
-        "url": "/assets/audio/sfx-core-68379cf52b88.ogg",
-        "bytes": 116467
+        "url": "/assets/audio/sfx-core-049a5a4ced57.ogg",
+        "bytes": 133556
       },
       "aac": {
-        "url": "/assets/audio/sfx-core-e9a44584797b.m4a",
-        "bytes": 104073
+        "url": "/assets/audio/sfx-core-31a96c4d096d.m4a",
+        "bytes": 116044
       },
-      "duration": 11.709354166666667
+      "duration": 13.1933125
     },
     "sfx-skills": {
       "opus": {
@@ -168,9 +168,20 @@
       "cooldown": 0.04,
       "voices": 4
     },
-    "hurt": {
+    "hit_thock": {
       "group": "sfx-core",
       "start": 4.406416666666667,
+      "duration": 0.14872916666666666,
+      "source": "art/sfx-source/synth/hit_thock.wav",
+      "lufs": -21,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.05,
+      "voices": 3
+    },
+    "hurt": {
+      "group": "sfx-core",
+      "start": 4.675145833333334,
       "duration": 0.1965625,
       "source": "art/sfx-source/raw/hurt_v1.mp3",
       "targetDuration": 0.6,
@@ -182,7 +193,7 @@
     },
     "jelly_death": {
       "group": "sfx-core",
-      "start": 4.722979166666667,
+      "start": 4.991708333333333,
       "duration": 0.6663333333333333,
       "source": "art/sfx-source/raw/jelly_death_v1.mp3",
       "targetDuration": 1,
@@ -192,21 +203,9 @@
       "cooldown": 0.04,
       "voices": 4
     },
-    "jelly_hit": {
-      "group": "sfx-core",
-      "start": 5.5093125,
-      "duration": 0.162625,
-      "source": "art/sfx-source/raw/jelly_hit_v1.mp3",
-      "targetDuration": 0.5,
-      "lufs": -19,
-      "crossfade": 0,
-      "pitch": 0.05,
-      "cooldown": 0.06,
-      "voices": 3
-    },
     "jelly_hop": {
       "group": "sfx-core",
-      "start": 5.7919375,
+      "start": 5.778041666666667,
       "duration": 0.7644791666666667,
       "source": "art/sfx-source/raw/jelly_hop_v1.mp3",
       "targetDuration": 0.4,
@@ -218,7 +217,7 @@
     },
     "job_change": {
       "group": "sfx-core",
-      "start": 6.676416666666666,
+      "start": 6.662520833333334,
       "duration": 2.1395208333333335,
       "source": "art/sfx-source/raw/job_change_v1.mp3",
       "targetDuration": 3,
@@ -254,7 +253,7 @@
     },
     "levelup": {
       "group": "sfx-core",
-      "start": 8.9359375,
+      "start": 8.922041666666667,
       "duration": 0.8904791666666667,
       "source": "art/sfx-source/raw/levelup_v1.mp3",
       "targetDuration": 2,
@@ -264,9 +263,64 @@
       "cooldown": 0,
       "voices": 4
     },
+    "mat_fur": {
+      "group": "sfx-core",
+      "start": 9.932520833333333,
+      "duration": 0.1211875,
+      "source": "art/sfx-source/synth/mat_fur.wav",
+      "lufs": -22,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.05,
+      "voices": 3
+    },
+    "mat_jelly": {
+      "group": "sfx-core",
+      "start": 10.173708333333334,
+      "duration": 0.1895625,
+      "source": "art/sfx-source/synth/mat_jelly.wav",
+      "lufs": -22,
+      "crossfade": 0,
+      "pitch": 0.08,
+      "cooldown": 0.05,
+      "voices": 3
+    },
+    "mat_shroom": {
+      "group": "sfx-core",
+      "start": 10.483270833333334,
+      "duration": 0.148375,
+      "source": "art/sfx-source/synth/mat_shroom.wav",
+      "lufs": -22,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.05,
+      "voices": 3
+    },
+    "mat_wisp": {
+      "group": "sfx-core",
+      "start": 10.751645833333333,
+      "duration": 0.24760416666666665,
+      "source": "art/sfx-source/synth/mat_wisp.wav",
+      "lufs": -23,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.05,
+      "voices": 3
+    },
+    "mat_wood": {
+      "group": "sfx-core",
+      "start": 11.11925,
+      "duration": 0.191125,
+      "source": "art/sfx-source/synth/mat_wood.wav",
+      "lufs": -22,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.05,
+      "voices": 3
+    },
     "pickup": {
       "group": "sfx-core",
-      "start": 9.946416666666666,
+      "start": 11.430375,
       "duration": 0.23333333333333334,
       "source": "art/sfx-source/raw/pickup_v1.mp3",
       "targetDuration": 0.6,
@@ -278,7 +332,7 @@
     },
     "potion": {
       "group": "sfx-core",
-      "start": 10.29975,
+      "start": 11.783708333333333,
       "duration": 0.4044375,
       "source": "art/sfx-source/raw/potion_v1.mp3",
       "targetDuration": 1.5,
@@ -326,7 +380,7 @@
     },
     "ui_click": {
       "group": "sfx-core",
-      "start": 10.8241875,
+      "start": 12.308145833333333,
       "duration": 0.037083333333333336,
       "source": "art/sfx-source/raw/ui_click_v1.mp3",
       "targetDuration": 0.2,
@@ -338,7 +392,7 @@
     },
     "ui_open": {
       "group": "sfx-core",
-      "start": 10.981270833333333,
+      "start": 12.465229166666667,
       "duration": 0.6080833333333333,
       "source": "art/sfx-source/raw/ui_open_v1.mp3",
       "targetDuration": 0.6,

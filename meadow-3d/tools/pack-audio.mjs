@@ -34,10 +34,10 @@ const skills = new Set(['slash', 'whirlwind', 'dash', 'earth_break', 'provoke', 
 const TONE = {
   body: 'highpass=f=75,lowshelf=f=140:g=-2,equalizer=f=2800:t=o:w=1.5:g=-3,highshelf=f=6000:g=-4',
   warm: 'highpass=f=60,equalizer=f=800:t=o:w=1:g=2,equalizer=f=3000:t=o:w=1.5:g=-4,highshelf=f=5500:g=-6',
+  clean: 'highpass=f=50',
   bright: 'highpass=f=120,equalizer=f=900:t=o:w=1:g=2,equalizer=f=3200:t=o:w=2:g=-9,highshelf=f=6000:g=-8',
 };
 const SOFT = {
-  jelly_hit: { lead: .012, tone: 'warm', lufs: -19, lowpass: 8000 },
   crit: { lead: .004, tone: 'bright', lufs: -19, lowpass: 5500, max: .3 },
   combo1: { lead: .04, tone: 'body', lufs: -21, lowpass: 8000 },
   combo2: { lead: .04, tone: 'body', lufs: -22, lowpass: 8000 },
@@ -45,6 +45,13 @@ const SOFT = {
   slash: { lead: .01, tone: 'bright', lufs: -21, lowpass: 6000, max: .35 },
   whirlwind: { lead: .04, tone: 'warm', lufs: -19, lowpass: 8000 },
   earth_break: { lead: .02, tone: 'body', lufs: -18, lowpass: 8000 },
+  // Synthesised layers (tools/synth-hit-sfx.mjs): weapon thock + per-species material, played together.
+  hit_thock: { tone: 'clean', lufs: -21, lowpass: 7000 },
+  mat_jelly: { tone: 'clean', lufs: -22, lowpass: 6000 },
+  mat_fur: { tone: 'clean', lufs: -22, lowpass: 4000 },
+  mat_wood: { tone: 'clean', lufs: -22, lowpass: 6000 },
+  mat_shroom: { tone: 'clean', lufs: -22, lowpass: 4000 },
+  mat_wisp: { tone: 'clean', lufs: -23, lowpass: 5000 },
 };
 /** Start `lead` seconds before the loudest 5 ms window. */
 function trimToImpact(pcm, lead) {
@@ -75,7 +82,7 @@ for (const [id, path] of Object.entries(picks).sort(([a], [b]) => a.localeCompar
   let pcm = run(['-i', resolve(source, path), '-af', 'silenceremove=start_periods=1:start_duration=0.005:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_duration=0.005:start_threshold=-50dB,areverse', '-f', 'f32le', '-ar', String(rate), '-ac', '1', 'pipe:1']).stdout;
   if (!pcm.length) throw Error('Empty take: ' + id);
   if (soft) {
-    pcm = softenTransients(filter(trimToImpact(pcm, soft.lead), TONE[soft.tone]));
+    pcm = softenTransients(filter(soft.lead === undefined ? pcm : trimToImpact(pcm, soft.lead), TONE[soft.tone]));
     pcm = filter(pcm, `apad=pad_dur=0.2,aecho=0.9:0.85:17|29|43|61:0.1|0.06|0.035|0.02,lowpass=f=${soft.lowpass},lowpass=f=${soft.lowpass},areverse,silenceremove=start_periods=1:start_duration=0.005:start_threshold=-60dB,areverse${soft.max ? `,atrim=end=${soft.max}` : ''}`);
   }
   // EBU R128 requires a 400ms window; repeat short transients for measurement only.
@@ -104,7 +111,7 @@ for (const [id, path] of Object.entries(picks).sort(([a], [b]) => a.localeCompar
       : `afade=t=in:d=0.003,afade=t=out:st=${Math.max(0, duration - .035)}:d=0.035`);
   }
   const start = groups[group].reduce((s, b) => s + b.length, 0) / 4 / rate;
-  manifest.sounds[id] = { group, start, duration: pcm.length / 4 / rate, source: 'art/sfx-source/' + path, targetDuration: metadata[id]?.target, lufs, crossfade, pitch: ui ? 0 : soft ? .05 : .04, cooldown: id === 'jelly_hop' ? .8 : ui ? .06 : id === 'levelup' ? 0 : id === 'jelly_hit' ? .06 : id === 'crit' ? .1 : .04, voices: id === 'jelly_hit' ? 3 : id === 'jelly_hop' ? 2 : 4 };
+  manifest.sounds[id] = { group, start, duration: pcm.length / 4 / rate, source: 'art/sfx-source/' + path, targetDuration: metadata[id]?.target, lufs, crossfade, pitch: ui ? 0 : id === 'mat_jelly' ? .08 : soft ? .05 : .04, cooldown: id === 'jelly_hop' ? .8 : ui ? .06 : id === 'levelup' ? 0 : id === 'hit_thock' || id.startsWith('mat_') ? .05 : id === 'crit' ? .1 : .04, voices: id === 'hit_thock' || id.startsWith('mat_') ? 3 : id === 'jelly_hop' ? 2 : 4 };
   groups[group].push(pcm); if (!ambience) groups[group].push(gap);
 }
 for (const [group, parts] of Object.entries(groups)) {

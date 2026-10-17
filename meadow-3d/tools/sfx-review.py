@@ -11,7 +11,9 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[2]
 FF = subprocess.run(['node', '-p', "require('ffmpeg-static')"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
 AUDIO = 'meadow-3d/public/assets/audio'
-IDS = ['jelly_hit', 'crit', 'combo1', 'combo2', 'combo3', 'slash', 'whirlwind', 'earth_break']
+# Monster hits are layered (weapon thock + species material); older builds played jelly_hit for every monster.
+HITS = {'hit_slime': 'mat_jelly', 'hit_wolf': 'mat_fur', 'hit_stump': 'mat_wood', 'hit_shroom': 'mat_shroom', 'hit_wisp': 'mat_wisp'}
+IDS = [*HITS, 'crit', 'combo1', 'combo2', 'combo3', 'slash', 'whirlwind', 'earth_break']
 R = 48000
 
 
@@ -22,12 +24,17 @@ def read(rev, rel):
 
 def clips(rev):
     man = json.loads(read(rev, AUDIO + '/sprites.json')); cache = {}; out = {}
-    for i in IDS:
+    def cut(i):
         s = man['sounds'][i]; g = s['group']
         if g not in cache:
             data = read(rev, AUDIO + '/' + man['groups'][g]['opus']['url'].split('/')[-1])
             cache[g] = np.frombuffer(subprocess.run([FF, '-v', 'error', '-i', 'pipe:0', '-f', 'f32le', '-ac', '1', '-ar', str(R), '-'], input=data, capture_output=True, check=True).stdout, np.float32)
-        out[i] = cache[g][int(s['start'] * R):int((s['start'] + s['duration']) * R)].copy()
+        return cache[g][int(s['start'] * R):int((s['start'] + s['duration']) * R)]
+    for i in IDS:
+        layers = ([i] if i in man['sounds'] else ['hit_thock', HITS[i]] if 'hit_thock' in man['sounds'] else ['jelly_hit'])
+        parts = [cut(l) for l in layers]; mix = np.zeros(max(len(p) for p in parts), np.float32)
+        for p in parts: mix[:len(p)] += p
+        out[i] = mix
     return out
 
 
@@ -60,6 +67,7 @@ page = f'''<!doctype html><meta charset=utf-8><title>Hit SFX A/B</title>
 th:first-child{{text-align:left}}.n{{color:#9fe0a8}}button{{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid #555;background:#23262c;color:inherit;cursor:pointer}}
 button.n{{border-color:#4c8a57}}section{{margin:18px 0}}</style>
 <h1>เสียงตีมอนสเตอร์: เดิม vs ใหม่</h1>
+<p>hit_* = เสียงตีแต่ละชนิดมอนสเตอร์ (ใหม่: ทุกครั้งที่ตีมีเสียงอาวุธกระทบสั้นๆ แห้งๆ สไตล์ RO / ToS + เสียงเนื้อวัสดุของมอน เช่น วุ้นเป็นเสียง &quot;บล็อป&quot; เด้งๆ ไม่ใช่เสียงน้ำ — เดิมใช้ jelly_hit เสียงเดียวกับทุกมอน)</p>
 <p>เทียบ <code>{html.escape(rev)}</code> กับไฟล์ปัจจุบัน ผ่านสาย SFX bus เดียวกับในเกม (shelf −5 dB @4.5 kHz, lowpass 9.5 kHz, glue compressor)</p>
 <section><b>ตีรัว (จำลอง Whirlwind / ตีหลายตัว):</b>
 <button id=rapidOld>เดิม: 8 hits ทุก 60 ms</button> <button id=rapidNew class=n>ใหม่: 8 hits ทุก 60 ms</button>
@@ -75,13 +83,13 @@ for(const[id,v]of Object.entries(S))for(const k of['old','new'])buf[id+k]=await 
 const recent={{}},last={{}},ends={{}};
 function play(id,v,at){{const now=at??ctx.currentTime,s=ctx.createBufferSource(),g=ctx.createGain();s.buffer=buf[id+v];
 if(v==='old'){{if(now-(last[id+v]??-1)<.04)return;s.playbackRate.value=1+(Math.random()*2-1)*.04;g.gain.value=Math.pow(10,(Math.random()*2-1)/20);}}
-else{{const cd={{jelly_hit:.06,crit:.1}}[id]??.04;if(now-(last[id+v]??-1)<cd)return;const r=(recent[id]=(recent[id]??[]).filter(t=>now-t<.25));r.push(now);
+else{{const cd=id.startsWith('hit_')?.05:id==='crit'?.1:.04;if(now-(last[id+v]??-1)<cd)return;const r=(recent[id]=(recent[id]??[]).filter(t=>now-t<.25));r.push(now);
 s.playbackRate.value=1+(Math.random()*2-1)*.05;const lv=Math.pow(10,(Math.random()*2-1)/20)/(1+.35*(r.length-1));g.gain.setValueAtTime(0,now);g.gain.linearRampToValueAtTime(lv,now+.005);}}
-const e=(ends[id+v]=(ends[id+v]??[]).filter(t=>t>now));if(id==='jelly_hit'&&e.length>=3)return;e.push(now+s.buffer.duration/s.playbackRate.value);
+const e=(ends[id+v]=(ends[id+v]??[]).filter(t=>t>now));if(id.startsWith('hit_')&&e.length>=3)return;e.push(now+s.buffer.duration/s.playbackRate.value);
 last[id+v]=now;s.connect(g);g.connect(bus);s.start(now);}}
 document.querySelectorAll('button[data-id]').forEach(b=>b.onclick=async()=>{{await init();play(b.dataset.id,b.dataset.v);}});
-const rapid=v=>async()=>{{await init();const t=ctx.currentTime+.05;for(let i=0;i<8;i++)play('jelly_hit',v,t+i*.06);}};
-const combo=v=>async()=>{{await init();const t=ctx.currentTime+.05;['combo1','combo2','combo3'].forEach((c,i)=>{{play(c,v,t+i*.45);play('jelly_hit',v,t+i*.45+.12);}});play('crit',v,t+.9+.12);}};
+const rapid=v=>async()=>{{await init();const t=ctx.currentTime+.05;for(let i=0;i<8;i++)play('hit_slime',v,t+i*.06);}};
+const combo=v=>async()=>{{await init();const t=ctx.currentTime+.05;['combo1','combo2','combo3'].forEach((c,i)=>{{play(c,v,t+i*.45);play('hit_slime',v,t+i*.45+.12);}});play('crit',v,t+.9+.12);}};
 rapidOld.onclick=rapid('old');rapidNew.onclick=rapid('new');comboOld.onclick=combo('old');comboNew.onclick=combo('new');
 </script>'''
 out = ROOT / 'meadow-3d/art/sfx-review.html'
