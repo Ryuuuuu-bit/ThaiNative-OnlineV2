@@ -80,8 +80,6 @@
 #ui .target .bar i{background:linear-gradient(90deg,var(--g-hp-deep),var(--g-hp))}
 #ui .target .bar small{display:none}
 #ui #target-percent{display:block;margin-top:3px;font-size:11px!important;color:var(--g-muted)}
-#ui .boss-hud{background:var(--g-glass);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);border:1px solid var(--g-line);border-radius:12px}
-#ui .boss-hud .bar{height:10px}
 #ui #area-name{background:none;border:0;font-weight:600;letter-spacing:.06em;text-shadow:var(--g-shadow)}
 #ui #area-name::after{content:'';display:block;width:120px;height:1px;margin:6px auto 0;background:linear-gradient(90deg,transparent,var(--g-gold),transparent);opacity:.6}
 #ui #auto-status{background:var(--g-glass);border:1px solid rgba(230,201,143,.45);border-radius:14px;padding:3px 12px;color:var(--g-gold);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
@@ -234,3 +232,52 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 [data-slot=footgear]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M7 4h5v9l7 3v4H5V4'/%3E%3C/svg%3E")}
 [data-slot=accessory1]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Ccircle cx='12' cy='14' r='6'/%3E%3Cpath d='m10 5 2-2 2 2-2 3z'/%3E%3C/svg%3E")}
 [data-slot=accessory2]{--slot-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M8 3c0 4 8 4 8 0M12 7v3'/%3E%3Cpath d='M12 10l4 5-4 6-4-6z'/%3E%3C/svg%3E")}
+
+/* ---------- Boss HUD ---------- */
+#ui .boss-hud{background:none!important;border:0!important;box-shadow:none;backdrop-filter:none;padding:0!important;text-align:center;text-shadow:var(--g-shadow)}
+#ui .boss-hud small{display:block;font-size:11px!important;font-weight:600;letter-spacing:.2em!important;color:var(--g-gold)!important}
+#ui .boss-hud h3{margin:2px 0 8px;font:600 20px/1.2 'Noto Sans Thai',sans-serif;letter-spacing:.06em;color:var(--g-text)}
+#ui .boss-hud h3::after{content:'';display:block;width:160px;height:1px;margin:6px auto 0;background:linear-gradient(90deg,transparent,var(--g-gold),transparent);opacity:.6}
+#ui .boss-hud .bar{height:10px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(230,201,143,.35),0 0 18px rgba(232,101,106,.18)}
+#ui .boss-hud .bar i{background:linear-gradient(90deg,#8e2f45,var(--g-hp) 70%,#f2a07f)}
+#ui .boss-hud .bar:after{border-left:1px solid rgba(255,255,255,.7)}
+
+/* ---------- Chat + party ---------- */
+#chat{color:var(--g-text)}
+#chat-log li{text-shadow:var(--g-shadow)}
+#chat.open #chat-log,#chat:hover #chat-log{background:rgba(12,20,19,.42);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);border-radius:12px}
+#chat-log li[data-ch=party]{color:#9fd5f5}#chat-log li[data-ch=system]{color:var(--g-gold)}
+#chat-log .chat-tag{color:var(--g-faint);opacity:1}
+#chat-form input{background:var(--g-glass-strong);border:1px solid var(--g-line-strong);border-radius:16px;color:var(--g-text);padding:7px 14px;backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+#chat-form input:focus{border-color:rgba(230,201,143,.7)}
+#chat-form button{background:var(--g-glass-strong);border:1px solid var(--g-line-strong);border-radius:16px;color:var(--g-muted)}
+#chat-toggle{background:var(--g-glass)!important;border:1px solid var(--g-line)!important;border-radius:10px!important}
+#party-frame{background:none;border:0;border-radius:0;padding:0;text-shadow:var(--g-shadow)}
+#party-frame header b{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--g-faint)}
+#party-frame header small{color:var(--g-faint)}
+#party-frame header button,#party-frame .party-kick{min-height:26px!important;min-width:0!important;padding:0 10px!important;font-size:11px!important;border-radius:13px!important;background:var(--g-glass)!important;border:1px solid var(--g-line)!important;color:var(--g-muted)!important;text-shadow:none}
+#party-frame ul{gap:10px}
+#party-frame .party-name{font-weight:600}
+#party-frame li small{color:var(--g-faint);opacity:1}
+#party-frame .party-hp{height:4px;border-radius:2px;margin-top:3px;background:linear-gradient(90deg,var(--g-hp) calc(var(--hp)*100%),rgba(0,0,0,.4) 0)}
+#party-frame li.me .party-name{color:var(--g-gold)}
+.party-invite{background:var(--g-window);border:1px solid rgba(230,201,143,.6);border-radius:14px;backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur)}
+.party-invite button{background:transparent;border:1px solid var(--g-line-strong);border-radius:9px;color:var(--g-text)}
+.party-invite button:first-of-type{background:var(--g-gold);border-color:var(--g-gold);color:#1a2523;font-weight:600}
+
+/* ---------- Shop cells ---------- */
+#inventory-window .shop-cell .shop-caption{color:var(--g-text);font-weight:500}
+#inventory-window .shop-cell small{color:var(--g-gold)!important;font-weight:600}
+#inventory-window .shop-cell small::before{content:'';display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:50%;vertical-align:.05em;background:radial-gradient(circle at 35% 35%,#fff3cf,#e6c98f 45%,#a8833f)}
+
+/* ---------- NPC dialog + quest cards ---------- */
+#npc-dialog .npc-close,.quest-actions button{background:transparent;color:var(--g-text);border:1px solid var(--g-line-strong);border-radius:9px}
+#npc-dialog .npc-shop-open,.quest-actions button.primary{background:var(--g-gold);border-color:var(--g-gold);color:#1a2523;font-weight:600}
+.npc-quest{background:rgba(255,255,255,.04);border:1px solid var(--g-line);border-radius:12px}
+.npc-quest h3{color:var(--g-text);font-weight:600}
+.npc-quest .quest-badge{background:transparent;border:1px solid var(--g-line-strong);color:var(--g-muted)}
+.npc-quest[data-status=available] .quest-badge{border-color:rgba(230,201,143,.7);color:var(--g-gold);background:transparent}
+.npc-quest[data-status=ready] .quest-badge{border-color:rgba(143,209,138,.7);color:var(--g-ok);background:transparent}
+#quest-tracker{border-top:1px solid var(--g-line)}
+#quest-tracker b{color:var(--g-text);font-weight:600}
+#quest-tracker li.ready small{color:var(--g-ok)}
