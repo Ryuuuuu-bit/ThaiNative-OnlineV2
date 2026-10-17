@@ -219,7 +219,7 @@ window.addEventListener('keydown',e=>{
  if(isKey('inventory',e.code)&&started&&!e.repeat){e.preventDefault();inventoryUI.toggle();return;}
  if(inventoryUI.open)return;
  if(isKey('mute',e.code)){e.preventDefault();if(!e.repeat)audioUI.toggleMute();return;}
- if(e.code==='KeyK'&&started&&!e.repeat){e.preventDefault();if(!statsUI.open)skillsUI.toggle();return;}
+ if(isKey('skills',e.code)&&started&&!e.repeat){e.preventDefault();if(!statsUI.open)skillsUI.toggle();return;}
  if(skillsUI.open)return;
  if(isKey('stats',e.code)&&started&&!e.repeat){e.preventDefault();statsUI.toggle();return;}
  if(statsUI.open)return;

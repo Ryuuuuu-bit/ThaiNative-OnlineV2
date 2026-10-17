@@ -5,6 +5,8 @@ import type { HotbarSlot, JobProgress } from "@thainative/shared";
 import "./skills.css";
 import "./skill-art.css";
 import { itemIconCell } from "./item-icon";
+import { BINDABLE_KEY } from "@thainative/shared";
+import { takenByActions } from "./keys";
 const skills = skillsData.skills as any[];
 const itemTemplates=loadGameData().items.items;
 const slotSpec=(id:string|null)=>id?.startsWith('item:')?itemTemplates.find(t=>t.id===id.slice(5)):skills.find(s=>s.id===id);
@@ -232,9 +234,8 @@ export function mountSkills(
 					(el.onkeydown = (e) => {
 						if(e.code==='Tab')return;
                         e.preventDefault();e.stopPropagation();
-                        const reserved=['KeyW','KeyA','KeyS','KeyD','KeyI','KeyC','KeyK','KeyM','KeyH','KeyZ','KeyR','KeyF','KeyT','KeyJ'];
-                        const uiKeys=[...document.querySelectorAll<HTMLInputElement>('#key-returnCity,#key-pickupAll')].map(el=>el.dataset.code);
-                        if(!/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(e.code)||reserved.includes(e.code)||uiKeys.includes(e.code)||job!.hotbar.some((s,i)=>i!==Number(el.dataset.keySlot)&&s.key===e.code)){keyStatus('ปุ่มนี้ถูกใช้อยู่แล้วหรือใช้ไม่ได้');return;}
+                        // Action keys are rebindable now: the live table says which codes they hold.
+                        if(!BINDABLE_KEY.test(e.code)||takenByActions().includes(e.code)||job!.hotbar.some((s,i)=>i!==Number(el.dataset.keySlot)&&s.key===e.code)){keyStatus('ปุ่มนี้ถูกใช้อยู่แล้วหรือใช้ไม่ได้');return;}
 						const next = job!.hotbar.map((s, i) => ({
 							...s,
 							key: i === Number(el.dataset.keySlot) ? e.code : s.key,

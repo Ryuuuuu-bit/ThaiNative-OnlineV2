@@ -333,3 +333,23 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 	#ui #action-launcher #pickup-all{--tint:#c495f2}
 	#ui #action-launcher [data-action=potion].auto-on::after{content:'ยา · อัตโนมัติ';color:var(--g-ok)}
 }
+/* Rebindable action keys (ตั้งค่า → ปุ่มลัด) */
+#action-keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px;margin:6px 0 12px}
+#action-keys .caption,#action-keys .settings-hint,#reset-action-keys{grid-column:1/-1}
+#action-keys .key-row{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--g-muted)}
+#action-keys input{width:72px;text-align:center;cursor:pointer;background:rgba(0,0,0,.25);border:1px solid var(--g-line);border-radius:8px;color:var(--g-text);padding:4px 6px}
+#action-keys input:focus{outline:none;border-color:var(--g-gold);box-shadow:0 0 0 2px rgba(230,201,143,.25)}
+#action-keys input.changed{color:var(--g-gold)}
+#reset-action-keys{justify-self:start}
+@media(max-width:520px){#action-keys{grid-template-columns:1fr}}
+/* On a mouse-and-keyboard computer the launcher keeps only AUTO, ตั้งค่า AUTO, กลับเมือง, เก็บรอบตัว:
+   attack, dodge and potion live on Space/Shift/R and the hotbar. Touch screens keep all tiles. */
+@media(min-width:651px) and (hover:hover) and (pointer:fine){
+	#ui #action-launcher [data-action=attack],#ui #action-launcher [data-action=dash],#ui #action-launcher [data-action=potion]{display:none!important}
+}
+/* The action-key list spans the whole settings row; each key is label | key, side by side. */
+#settings-window #hud-settings #action-keys{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 18px}
+#settings-window #hud-settings #action-keys .key-row{flex-direction:row;align-items:center;justify-content:space-between;font-size:13px!important}
+#settings-window #hud-settings #action-keys input{width:84px!important;height:34px;min-height:34px!important;flex:none}
+@media(max-width:760px){#settings-window #hud-settings #action-keys{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#settings-window #hud-settings #action-keys{grid-template-columns:1fr}}

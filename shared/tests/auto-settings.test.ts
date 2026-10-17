@@ -93,3 +93,33 @@ test("AUTO casts the skills its settings allow, and skips switched-off ones", ()
 	assert.equal(fight({ ...DEFAULT_AUTO }), true, "slash is cast");
 	assert.equal(fight({ ...DEFAULT_AUTO, off: ["slash"] }), false, "slash switched off");
 });
+
+import { resolveKeys, actionKeys, reservedKeys, bindingProblem, DEFAULT_KEYS, UISettingsSchema, validateHotbar, newJob, loadGameData as loadData } from "../src/index.node.js";
+test("action keys: defaults with old alternates, rebinding frees the old key, conflicts are refused", () => {
+	const d = resolveKeys(undefined);
+	assert.equal(d.attack, "Space");
+	assert.deepEqual(actionKeys(d).attack, ["Space", "KeyJ"]);
+	assert.deepEqual(actionKeys(d).auto, ["KeyF", "KeyT"]);
+	// Saved settings from before this change (only two keys) still resolve to full defaults.
+	assert.deepEqual(resolveKeys({ returnCity: "KeyB", pickupAll: "KeyZ" }), { ...DEFAULT_KEYS, returnCity: "KeyB" });
+	// Moving attack to Q drops its J alternate; moving inventory off I frees I for the hotbar.
+	const moved = resolveKeys({ attack: "KeyQ", inventory: "KeyO" });
+	assert.deepEqual(actionKeys(moved).attack, ["KeyQ"]);
+	assert.ok(!reservedKeys(moved).includes("KeyI"));
+	assert.ok(reservedKeys(moved).includes("KeyO"));
+	const job = newJob(), data = loadData();
+	const bar = job.hotbar.map((s, i) => (i === 9 ? { ...s, key: "KeyI" } : s));
+	assert.equal(validateHotbar(job, bar, data, reservedKeys(moved))[9].key, "KeyI");
+	assert.throws(() => validateHotbar(job, bar, data, reservedKeys(d)), /ปุ่ม/);
+	// Problems: duplicate, movement/Esc, a hotbar key.
+	assert.match(bindingProblem({ ...d, potion: "KeyF" })!, /ใช้อยู่/);
+	assert.match(bindingProblem({ ...d, potion: "KeyW" })!, /เปลี่ยนไม่ได้/);
+	assert.match(bindingProblem({ ...d, potion: "Digit1" }, ["Digit1"])!, /แถบสกิล/);
+	assert.equal(bindingProblem(moved), null);
+	// Fixed or malformed saved keys fall back to the default instead of locking the player out.
+	assert.equal(resolveKeys({ attack: "KeyW", dash: "Nope" }).attack, "Space");
+	assert.equal(resolveKeys({ attack: "KeyW", dash: "Nope" }).dash, "ShiftLeft");
+	// The stored schema accepts the new optional keys and still accepts old records.
+	assert.ok(UISettingsSchema.safeParse({ scale: 100, windows: {}, keys: { returnCity: "KeyH", pickupAll: "KeyZ" } }).success);
+	assert.ok(UISettingsSchema.safeParse({ scale: 100, windows: {}, keys: { ...DEFAULT_KEYS, attack: "KeyQ" } }).success);
+});

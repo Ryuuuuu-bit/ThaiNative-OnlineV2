@@ -1,4 +1,5 @@
 import type { GameData, Skill } from "./schema.js";
+import { BINDABLE_KEY } from "./keybinds.js";
 import jobDefinitions from "../data/jobs.json" with { type: "json" };
 import itemDefinitions from "../data/items.json" with { type: "json" };
 /** Item ids that may sit on the hotbar as "item:<id>" (usable consumables). */
@@ -233,13 +234,15 @@ export function validateHotbar(
 	p: JobProgress,
 	slots: HotbarSlot[],
 	data: GameData,
+	/** codes taken by actions (keybinds.reservedKeys); defaults to the original fixed layout */
+	reserved: readonly string[] = RESERVED_KEYS,
 ): HotbarSlot[] {
 	if (slots.length !== 10) throw Error("ต้องมี 10 ช่อง");
 	const used = new Set<string>();
 	for (const [index, slot] of slots.entries()) {
 		if (
-			!/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(slot.key) ||
-			RESERVED_KEYS.includes(slot.key) ||
+			!BINDABLE_KEY.test(slot.key) ||
+			reserved.includes(slot.key) ||
 			used.has(slot.key)
 		)
 			throw Error("ปุ่มซ้ำหรือสงวนไว้");

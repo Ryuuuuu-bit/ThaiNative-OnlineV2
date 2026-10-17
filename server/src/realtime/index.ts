@@ -1,4 +1,4 @@
-import {applyInventory,equipped,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI} from '@thainative/shared';
+import {applyInventory,equipped,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI,resolveKeys,reservedKeys,bindingProblem} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, isField, BOSS_RESPAWN_MS, bossTimer, setBossTimer, type MapId } from "@thainative/shared";
 import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
@@ -434,9 +434,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
  void store.saveUISettings(peer.accountId,merged).then(()=>send(peer.ws,{t:'autoSettings',settings:auto})).catch(()=>send(peer.ws,{t:'autoSettingsError',text:'บันทึกตั้งค่า AUTO ไม่สำเร็จ'}));return;
  }
         if(message.t==='uiSettings'){
- const reserved=['KeyI','KeyH','KeyZ','Escape','KeyW','KeyA','KeyS','KeyD','KeyK','KeyC','KeyI','KeyM','KeyR','KeyF','KeyT','KeyJ'];
- const bindings=Object.values(message.settings.keys);
- if(new Set(bindings).size!==bindings.length||Object.entries(message.settings.keys).some(([name,k])=> !/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(k)||(reserved.includes(k)&&k!==(name==='returnCity'?'KeyH':'KeyZ'))||player.hotbar.some(s=>s.key===k))){send(peer.ws,{t:'uiSettingsError',text:'ปุ่มนี้ถูกใช้อยู่แล้ว'});return;}
+ // Every action key is rebindable; the shared rules check fixed keys, duplicates and the hotbar's own keys.
+ const problem=bindingProblem(resolveKeys(message.settings.keys),player.hotbar.map(s=>s.key));if(problem){send(peer.ws,{t:'uiSettingsError',text:problem});return;}
  const merged={...message.settings,...(peer.ui?.auto?{auto:peer.ui.auto}:{})};void store.saveUISettings(peer.accountId,merged).then(()=>{peer.ui=merged;send(peer.ws,{t:'uiSettings',settings:message.settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'บันทึกการตั้งค่าไม่สำเร็จ'}));return;
  }
 
@@ -481,13 +480,13 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			) {
 				try {
 					if (p.dead) throw Error("รอฟื้นตัวก่อน");
-					if(message.t==='hotbar'&&message.slots.some(s=>Object.values(peer.ui?.keys??{returnCity:'KeyH',pickupAll:'KeyZ'}).includes(s.key)))throw Error('ปุ่มนี้ใช้กับกลับเมืองหรือเก็บรอบตัวแล้ว');
+					if(message.t==='hotbar'&&message.slots.some(s=>reservedKeys(resolveKeys(peer.ui?.keys)).includes(s.key)))throw Error('ปุ่มนี้ใช้กับคำสั่งอื่นอยู่');
                     let next = normalizeJob(p);
 					if (message.t === "skillUp") next = learnSkill(p, message.id, g.data);
 					if (message.t === "hotbar")
 						next = {
 							...next,
-							hotbar: validateHotbar(p, message.slots, g.data),
+							hotbar: validateHotbar(p, message.slots, g.data, reservedKeys(resolveKeys(peer.ui?.keys))),
 						};
 					if (message.t === "jobChange") {
 						if(g.mapId!=="city_plaza")throw Error("ไปพบทูตสวรรค์ในเมืองก่อน");
