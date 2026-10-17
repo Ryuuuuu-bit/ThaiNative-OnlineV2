@@ -244,7 +244,7 @@ export function createGame(
 		castRemaining: 0,
 		jobsVersion: 3,
 		id,
-		name: "Aerin",
+		name: "อาเธอร์",
 		stats,
 		profile: structuredClone(profile),
 		kills: 0,
