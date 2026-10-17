@@ -38,7 +38,7 @@ export class PaintedLoader {
 		this.manifest = manifest;
 	}
 	isDeferred(url: string) {
-		return /hero-skill-|hero-(?:spin|cast|hit|dodge|death)|king-|env-far|tile-stone|skills-vfx/.test(
+		return /hero-skill-|hero-(?:spin|cast|hit|dodge|death)|king-|(?:shroom|wolf|wisp|stump|warden)-|env-far|tile-stone|skills-vfx/.test(
 			url,
 		);
 	}

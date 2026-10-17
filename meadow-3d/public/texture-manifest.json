@@ -925,5 +925,634 @@
     "source": "art/texture-sources/city/city-npcs-v1.png",
     "ktx2": "/assets/city/city-npcs-v1-5a4ae586ff.ktx2",
     "webp": "/assets/city/city-npcs-v1-e7b509b9d8.webp"
+  },
+  "/assets/env-forest/brush-path-v1.png": {
+    "webp": "/assets/env-forest/brush-path-v1-9d95fdc7fd.webp",
+    "ktx2": null,
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/brush-path-v1.png",
+    "size": [
+      512,
+      512
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": true
+  },
+  "/assets/env-forest/forest-props-v1.png": {
+    "webp": "/assets/env-forest/forest-props-v1-4b95c90026.webp",
+    "ktx2": "/assets/env-forest/forest-props-v1-028e7668c7-3285764377.ktx2",
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/forest-props-v1.png",
+    "size": [
+      2048,
+      2048
+    ],
+    "originalSize": [
+      2048,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/env-forest/mist-card-v1.png": {
+    "webp": "/assets/env-forest/mist-card-v1-02e3c386aa.webp",
+    "ktx2": "/assets/env-forest/mist-card-v1-45c1b1a445-85c74ac2a4.ktx2",
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/mist-card-v1.png",
+    "size": [
+      512,
+      256
+    ],
+    "originalSize": [
+      512,
+      256
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/env-forest/signpost-v1.png": {
+    "webp": "/assets/env-forest/signpost-v1-6ba32a1de9.webp",
+    "ktx2": "/assets/env-forest/signpost-v1-da98a4d48f-c6585f6eb3.ktx2",
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/signpost-v1.png",
+    "size": [
+      128,
+      192
+    ],
+    "originalSize": [
+      128,
+      192
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/env-forest/tile-litter-v1.png": {
+    "webp": "/assets/env-forest/tile-litter-v1-86099acec4.webp",
+    "ktx2": "/assets/env-forest/tile-litter-v1-71095cfac9-68058cc503.ktx2",
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/tile-litter-v1.png",
+    "size": [
+      512,
+      512
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "mode": "uastc",
+    "mips": true,
+    "cpu": false
+  },
+  "/assets/env-forest/tile-moss-v1.png": {
+    "webp": "/assets/env-forest/tile-moss-v1-61f376921e.webp",
+    "ktx2": "/assets/env-forest/tile-moss-v1-f45c8399b1-54aa313b20.ktx2",
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/tile-moss-v1.png",
+    "size": [
+      512,
+      512
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "mode": "uastc",
+    "mips": true,
+    "cpu": false
+  },
+  "/assets/env-forest/tile-path-v1.png": {
+    "webp": "/assets/env-forest/tile-path-v1-07f8f2b829.webp",
+    "ktx2": "/assets/env-forest/tile-path-v1-db828d968c-70e34770a3.ktx2",
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/tile-path-v1.png",
+    "size": [
+      512,
+      512
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "mode": "uastc",
+    "mips": true,
+    "cpu": false
+  },
+  "/assets/env-forest/tile-water-v1.png": {
+    "webp": "/assets/env-forest/tile-water-v1-f7dae1bb5c.webp",
+    "ktx2": "/assets/env-forest/tile-water-v1-5f89e53a73-ab18e2d6d5.ktx2",
+    "hitMask": null,
+    "source": "art/texture-sources/env-forest/tile-water-v1.png",
+    "size": [
+      512,
+      512
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "mode": "uastc",
+    "mips": true,
+    "cpu": false
+  },
+  "/assets/monsters-painted/shroom-attack-v1.png": {
+    "webp": "/assets/monsters-painted/shroom-attack-v1-6056c4ac86.webp",
+    "ktx2": "/assets/monsters-painted/shroom-attack-v1-0e0d22358e-750f721711.ktx2",
+    "hitMask": "/assets/monsters-painted/shroom-attack-v1-hit-319f7fc5c5.webp",
+    "source": "art/texture-sources/monsters-painted/shroom-attack-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/shroom-death-v1.png": {
+    "webp": "/assets/monsters-painted/shroom-death-v1-67f231db68.webp",
+    "ktx2": "/assets/monsters-painted/shroom-death-v1-eae2d1d3e9-a13160cee9.ktx2",
+    "hitMask": "/assets/monsters-painted/shroom-death-v1-hit-98eed548dc.webp",
+    "source": "art/texture-sources/monsters-painted/shroom-death-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/shroom-hop-v1.png": {
+    "webp": "/assets/monsters-painted/shroom-hop-v1-9d93a8abff.webp",
+    "ktx2": "/assets/monsters-painted/shroom-hop-v1-ff678faac3-2f9551e779.ktx2",
+    "hitMask": "/assets/monsters-painted/shroom-hop-v1-hit-ca0561728a.webp",
+    "source": "art/texture-sources/monsters-painted/shroom-hop-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/shroom-idle-v1.png": {
+    "webp": "/assets/monsters-painted/shroom-idle-v1-cfcce4cea7.webp",
+    "ktx2": "/assets/monsters-painted/shroom-idle-v1-1161c958fe-6f996b000b.ktx2",
+    "hitMask": "/assets/monsters-painted/shroom-idle-v1-hit-3cefce8329.webp",
+    "source": "art/texture-sources/monsters-painted/shroom-idle-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wolf-attack-v1.png": {
+    "webp": "/assets/monsters-painted/wolf-attack-v1-b2c4928603.webp",
+    "ktx2": "/assets/monsters-painted/wolf-attack-v1-efd22198a1-e06028823f.ktx2",
+    "hitMask": "/assets/monsters-painted/wolf-attack-v1-hit-cd0b6b256e.webp",
+    "source": "art/texture-sources/monsters-painted/wolf-attack-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wolf-death-v1.png": {
+    "webp": "/assets/monsters-painted/wolf-death-v1-12d984de12.webp",
+    "ktx2": "/assets/monsters-painted/wolf-death-v1-b79e15639e-b77fa13980.ktx2",
+    "hitMask": "/assets/monsters-painted/wolf-death-v1-hit-ca1e0f7145.webp",
+    "source": "art/texture-sources/monsters-painted/wolf-death-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wolf-hop-v1.png": {
+    "webp": "/assets/monsters-painted/wolf-hop-v1-f1c07984d6.webp",
+    "ktx2": "/assets/monsters-painted/wolf-hop-v1-27c6d78ccc-aec8c63cba.ktx2",
+    "hitMask": "/assets/monsters-painted/wolf-hop-v1-hit-235ae005d5.webp",
+    "source": "art/texture-sources/monsters-painted/wolf-hop-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wolf-idle-v1.png": {
+    "webp": "/assets/monsters-painted/wolf-idle-v1-21ac3c13dc.webp",
+    "ktx2": "/assets/monsters-painted/wolf-idle-v1-928f50fde2-2ac7f3094d.ktx2",
+    "hitMask": "/assets/monsters-painted/wolf-idle-v1-hit-04dfaaf699.webp",
+    "source": "art/texture-sources/monsters-painted/wolf-idle-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wisp-attack-v1.png": {
+    "webp": "/assets/monsters-painted/wisp-attack-v1-9f038b44b9.webp",
+    "ktx2": "/assets/monsters-painted/wisp-attack-v1-0680381a22-8d81668e8e.ktx2",
+    "hitMask": "/assets/monsters-painted/wisp-attack-v1-hit-12c33d73e4.webp",
+    "source": "art/texture-sources/monsters-painted/wisp-attack-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wisp-bolt-v1.png": {
+    "webp": "/assets/monsters-painted/wisp-bolt-v1-42fec75aa0.webp",
+    "ktx2": "/assets/monsters-painted/wisp-bolt-v1-a1db352dfa-7fa0053226.ktx2",
+    "hitMask": "/assets/monsters-painted/wisp-bolt-v1-hit-733cd56e77.webp",
+    "source": "art/texture-sources/monsters-painted/wisp-bolt-v1.png",
+    "size": [
+      512,
+      128
+    ],
+    "originalSize": [
+      512,
+      128
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wisp-death-v1.png": {
+    "webp": "/assets/monsters-painted/wisp-death-v1-a05d2e9d94.webp",
+    "ktx2": "/assets/monsters-painted/wisp-death-v1-f269ee2da0-9d78ca2ae7.ktx2",
+    "hitMask": "/assets/monsters-painted/wisp-death-v1-hit-7a87f86773.webp",
+    "source": "art/texture-sources/monsters-painted/wisp-death-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wisp-hop-v1.png": {
+    "webp": "/assets/monsters-painted/wisp-hop-v1-4e10ad60af.webp",
+    "ktx2": "/assets/monsters-painted/wisp-hop-v1-1dbb1ca8cd-a26b427489.ktx2",
+    "hitMask": "/assets/monsters-painted/wisp-hop-v1-hit-bdce09b32d.webp",
+    "source": "art/texture-sources/monsters-painted/wisp-hop-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/wisp-idle-v1.png": {
+    "webp": "/assets/monsters-painted/wisp-idle-v1-8bd0ed0171.webp",
+    "ktx2": "/assets/monsters-painted/wisp-idle-v1-d7d859205b-fb4f6d6d74.ktx2",
+    "hitMask": "/assets/monsters-painted/wisp-idle-v1-hit-52bfc021d0.webp",
+    "source": "art/texture-sources/monsters-painted/wisp-idle-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/stump-attack-v1.png": {
+    "webp": "/assets/monsters-painted/stump-attack-v1-a70b170cbe.webp",
+    "ktx2": "/assets/monsters-painted/stump-attack-v1-a134254249-796a981a90.ktx2",
+    "hitMask": "/assets/monsters-painted/stump-attack-v1-hit-511eb67388.webp",
+    "source": "art/texture-sources/monsters-painted/stump-attack-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/stump-death-v1.png": {
+    "webp": "/assets/monsters-painted/stump-death-v1-d52ab2310b.webp",
+    "ktx2": "/assets/monsters-painted/stump-death-v1-8fd6aa4c5d-0dccaf4013.ktx2",
+    "hitMask": "/assets/monsters-painted/stump-death-v1-hit-7879c8b75c.webp",
+    "source": "art/texture-sources/monsters-painted/stump-death-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/stump-hop-v1.png": {
+    "webp": "/assets/monsters-painted/stump-hop-v1-f2eda00d28.webp",
+    "ktx2": "/assets/monsters-painted/stump-hop-v1-db198f9478-f008dc450e.ktx2",
+    "hitMask": "/assets/monsters-painted/stump-hop-v1-hit-da214444df.webp",
+    "source": "art/texture-sources/monsters-painted/stump-hop-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/stump-idle-v1.png": {
+    "webp": "/assets/monsters-painted/stump-idle-v1-7afa767746.webp",
+    "ktx2": "/assets/monsters-painted/stump-idle-v1-859c013965-33d7628daa.ktx2",
+    "hitMask": "/assets/monsters-painted/stump-idle-v1-hit-45e77eaf9a.webp",
+    "source": "art/texture-sources/monsters-painted/stump-idle-v1.png",
+    "size": [
+      1152,
+      1024
+    ],
+    "originalSize": [
+      1152,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-charge-v1.png": {
+    "webp": "/assets/monsters-painted/warden-charge-v1-1f14deee24.webp",
+    "ktx2": "/assets/monsters-painted/warden-charge-v1-00eaa181a1-e500fc6087.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-charge-v1-hit-e2f07fbf85.webp",
+    "source": "art/texture-sources/monsters-painted/warden-charge-v1.png",
+    "size": [
+      2048,
+      1820
+    ],
+    "originalSize": [
+      2304,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-death-v1.png": {
+    "webp": "/assets/monsters-painted/warden-death-v1-3bd641f817.webp",
+    "ktx2": "/assets/monsters-painted/warden-death-v1-293d48fef9-fb8aaae051.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-death-v1-hit-8f0d33f6ef.webp",
+    "source": "art/texture-sources/monsters-painted/warden-death-v1.png",
+    "size": [
+      2048,
+      912
+    ],
+    "originalSize": [
+      4608,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-hit-v1.png": {
+    "webp": "/assets/monsters-painted/warden-hit-v1-28664fa16e.webp",
+    "ktx2": "/assets/monsters-painted/warden-hit-v1-5b9d4e54eb-6bc99efada.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-hit-v1-hit-125423e9ae.webp",
+    "source": "art/texture-sources/monsters-painted/warden-hit-v1.png",
+    "size": [
+      1536,
+      2048
+    ],
+    "originalSize": [
+      1536,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-idle-v1.png": {
+    "webp": "/assets/monsters-painted/warden-idle-v1-9ad9cb8ea4.webp",
+    "ktx2": "/assets/monsters-painted/warden-idle-v1-9b18bc85fc-ad3d6342ec.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-idle-v1-hit-ede7e57dd6.webp",
+    "source": "art/texture-sources/monsters-painted/warden-idle-v1.png",
+    "size": [
+      2048,
+      1820
+    ],
+    "originalSize": [
+      2304,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-move-v1.png": {
+    "webp": "/assets/monsters-painted/warden-move-v1-7890a61266.webp",
+    "ktx2": "/assets/monsters-painted/warden-move-v1-9c86c0dca5-d6ff082d8d.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-move-v1-hit-923cb814a4.webp",
+    "source": "art/texture-sources/monsters-painted/warden-move-v1.png",
+    "size": [
+      2048,
+      1820
+    ],
+    "originalSize": [
+      2304,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-roar-v1.png": {
+    "webp": "/assets/monsters-painted/warden-roar-v1-dd1d0b5787.webp",
+    "ktx2": "/assets/monsters-painted/warden-roar-v1-63a676d548-fd3094b370.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-roar-v1-hit-5d3c6b7aa0.webp",
+    "source": "art/texture-sources/monsters-painted/warden-roar-v1.png",
+    "size": [
+      1536,
+      2048
+    ],
+    "originalSize": [
+      1536,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-slam-v1.png": {
+    "webp": "/assets/monsters-painted/warden-slam-v1-243d18561a.webp",
+    "ktx2": "/assets/monsters-painted/warden-slam-v1-a4b16c099b-bda757a6d9.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-slam-v1-hit-f185fb19a2.webp",
+    "source": "art/texture-sources/monsters-painted/warden-slam-v1.png",
+    "size": [
+      2048,
+      1364
+    ],
+    "originalSize": [
+      3072,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-spit-v1.png": {
+    "webp": "/assets/monsters-painted/warden-spit-v1-e91620556d.webp",
+    "ktx2": "/assets/monsters-painted/warden-spit-v1-d439c226e2-ca5f51c698.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-spit-v1-hit-1754382ec1.webp",
+    "source": "art/texture-sources/monsters-painted/warden-spit-v1.png",
+    "size": [
+      2048,
+      1820
+    ],
+    "originalSize": [
+      2304,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-stun-v1.png": {
+    "webp": "/assets/monsters-painted/warden-stun-v1-9a19dfc86c.webp",
+    "ktx2": "/assets/monsters-painted/warden-stun-v1-78b77101f3-2041308121.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-stun-v1-hit-50d6f36235.webp",
+    "source": "art/texture-sources/monsters-painted/warden-stun-v1.png",
+    "size": [
+      1536,
+      2048
+    ],
+    "originalSize": [
+      1536,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-summon-v1.png": {
+    "webp": "/assets/monsters-painted/warden-summon-v1-e126c26f2b.webp",
+    "ktx2": "/assets/monsters-painted/warden-summon-v1-f66d6a6ae6-2c6bcb0bb8.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-summon-v1-hit-b4894caa2d.webp",
+    "source": "art/texture-sources/monsters-painted/warden-summon-v1.png",
+    "size": [
+      2048,
+      1364
+    ],
+    "originalSize": [
+      3072,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-sweep-v1.png": {
+    "webp": "/assets/monsters-painted/warden-sweep-v1-d3cd3850f6.webp",
+    "ktx2": "/assets/monsters-painted/warden-sweep-v1-5c82192b42-037f085e85.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-sweep-v1-hit-a3524f2a51.webp",
+    "source": "art/texture-sources/monsters-painted/warden-sweep-v1.png",
+    "size": [
+      1536,
+      2048
+    ],
+    "originalSize": [
+      1536,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
+  },
+  "/assets/monsters-painted/warden-transform-v1.png": {
+    "webp": "/assets/monsters-painted/warden-transform-v1-ab84b1b7df.webp",
+    "ktx2": "/assets/monsters-painted/warden-transform-v1-dac14c94ce-e39ba9626c.ktx2",
+    "hitMask": "/assets/monsters-painted/warden-transform-v1-hit-13db13bd82.webp",
+    "source": "art/texture-sources/monsters-painted/warden-transform-v1.png",
+    "size": [
+      1536,
+      2048
+    ],
+    "originalSize": [
+      1536,
+      2048
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false
   }
 }

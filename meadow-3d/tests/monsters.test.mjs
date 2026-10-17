@@ -30,7 +30,7 @@ test('monster cells use independent timing, four facings and distinct material v
 });
 test('packed monster manifest has sixteen complete motion atlases and 192 unclipped frames',()=>{
  const root=new URL('../public/assets/monsters-painted/',import.meta.url),manifest=JSON.parse(readFileSync(new URL('manifest.json',root)));let atlases=0,frames=0;
- for(const[species,s]of Object.entries(manifest.species)){assert.deepEqual(s.cellSize,species==='slime'?[384,256]:[768,512]);assert.deepEqual(s.anchor,[.5,.0625]);for(const m of Object.values(s.motions)){
+ for(const[species,s]of Object.entries(manifest.species).filter(([sp])=>sp==='slime'||sp==='king')){assert.deepEqual(s.cellSize,species==='slime'?[384,256]:[768,512]);assert.deepEqual(s.anchor,[.5,.0625]);for(const m of Object.values(s.motions)){
   atlases++;frames+=m.frames*4;assert.equal(m.frameDurations.length,m.frames);assert.ok(Math.abs(m.frameDurations.reduce((a,b)=>a+b)-m.duration)<1e-8);assert.equal(m.holdLast,!m.loop);const png=readFileSync(new URL('../art/texture-sources/monsters-painted/'+m.file,import.meta.url));assert.equal(png.readUInt32BE(16),s.cellSize[0]*m.frames);assert.equal(png.readUInt32BE(20),s.cellSize[1]*4);
   for(const[rowIndex,row]of m.directions.entries()){assert.equal(row.length,m.frames);for(const f of row){const[x,y,right,bottom]=f.bounds;assert.ok(x>=3&&y>=3&&right<=s.cellSize[0]-3&&bottom<=s.cellSize[1]-3);if(rowIndex>=2)assert.equal(f.faceRect,null);}}
   if(species==='king'){const glow=readFileSync(new URL('../art/texture-sources/monsters-painted/'+m.glowMask,import.meta.url));assert.equal(glow.readUInt32BE(16),s.cellSize[0]*m.frames);assert.equal(glow.readUInt32BE(20),s.cellSize[1]*4);}

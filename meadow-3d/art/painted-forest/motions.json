@@ -1,0 +1,432 @@
+{
+  "shroom": {
+    "idle": {
+      "source": "shroom",
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "frameDurations": [
+        0.55,
+        0.55,
+        0.55
+      ],
+      "duration": 1.65,
+      "loop": true
+    },
+    "hop": {
+      "source": "shroom",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.18,
+        0.22,
+        0.2
+      ],
+      "duration": 0.6,
+      "loop": true
+    },
+    "attack": {
+      "source": "shroom",
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "frameDurations": [
+        0.6,
+        0.18,
+        0.17
+      ],
+      "duration": 0.95,
+      "loop": false
+    },
+    "death": {
+      "source": "shroom",
+      "indices": [
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "duration": 0.75,
+      "loop": false
+    }
+  },
+  "wolf": {
+    "idle": {
+      "source": "wolf",
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "frameDurations": [
+        0.55,
+        0.55,
+        0.55
+      ],
+      "duration": 1.65,
+      "loop": true
+    },
+    "hop": {
+      "source": "wolf",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.18,
+        0.22,
+        0.2
+      ],
+      "duration": 0.6,
+      "loop": true
+    },
+    "attack": {
+      "source": "wolf",
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "frameDurations": [
+        0.4,
+        0.18,
+        0.17
+      ],
+      "duration": 0.75,
+      "loop": false
+    },
+    "death": {
+      "source": "wolf",
+      "indices": [
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "duration": 0.75,
+      "loop": false
+    }
+  },
+  "wisp": {
+    "idle": {
+      "source": "wisp",
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "frameDurations": [
+        0.55,
+        0.55,
+        0.55
+      ],
+      "duration": 1.65,
+      "loop": true
+    },
+    "hop": {
+      "source": "wisp",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.18,
+        0.22,
+        0.2
+      ],
+      "duration": 0.6,
+      "loop": true
+    },
+    "attack": {
+      "source": "wisp",
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "frameDurations": [
+        0.7,
+        0.18,
+        0.17
+      ],
+      "duration": 1.05,
+      "loop": false
+    },
+    "death": {
+      "source": "wisp",
+      "indices": [
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "duration": 0.75,
+      "loop": false
+    }
+  },
+  "stump": {
+    "idle": {
+      "source": "stump",
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "frameDurations": [
+        0.55,
+        0.55,
+        0.55
+      ],
+      "duration": 1.65,
+      "loop": true
+    },
+    "hop": {
+      "source": "stump",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.18,
+        0.22,
+        0.2
+      ],
+      "duration": 0.6,
+      "loop": true
+    },
+    "attack": {
+      "source": "stump",
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "frameDurations": [
+        0.8,
+        0.18,
+        0.17
+      ],
+      "duration": 1.15,
+      "loop": false
+    },
+    "death": {
+      "source": "stump",
+      "indices": [
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "duration": 0.75,
+      "loop": false
+    }
+  },
+  "warden": {
+    "idle": {
+      "source": "warden-base",
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "frameDurations": [
+        0.6,
+        0.6,
+        0.6
+      ],
+      "duration": 1.8,
+      "loop": true
+    },
+    "move": {
+      "source": "warden-base",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.3,
+        0.35,
+        0.25
+      ],
+      "duration": 0.9,
+      "loop": true
+    },
+    "hit": {
+      "source": "warden-base",
+      "indices": [
+        6,
+        7
+      ],
+      "frameDurations": [
+        0.14,
+        0.14
+      ],
+      "duration": 0.28,
+      "loop": false
+    },
+    "stun": {
+      "source": "warden-base",
+      "indices": [
+        8,
+        9
+      ],
+      "frameDurations": [
+        0.625,
+        0.625
+      ],
+      "duration": 1.25,
+      "loop": false
+    },
+    "roar": {
+      "source": "warden-base",
+      "indices": [
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.45,
+        0.45
+      ],
+      "duration": 0.9,
+      "loop": false
+    },
+    "slam": {
+      "source": "warden-attacks",
+      "indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "frameDurations": [
+        0.55,
+        0.3,
+        0.2,
+        0.45
+      ],
+      "duration": 1.5,
+      "loop": false
+    },
+    "sweep": {
+      "source": "warden-attacks",
+      "indices": [
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.7,
+        0.5
+      ],
+      "duration": 1.2,
+      "loop": false
+    },
+    "charge": {
+      "source": "warden-attacks",
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "frameDurations": [
+        0.8,
+        0.6,
+        0.25
+      ],
+      "duration": 1.65,
+      "loop": false
+    },
+    "spit": {
+      "source": "warden-attacks",
+      "indices": [
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.8,
+        0.3,
+        0.4
+      ],
+      "duration": 1.5,
+      "loop": false
+    },
+    "summon": {
+      "source": "warden-special",
+      "indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "frameDurations": [
+        0.45,
+        0.45,
+        0.35,
+        0.35
+      ],
+      "duration": 1.6,
+      "loop": false
+    },
+    "transform": {
+      "source": "warden-special",
+      "indices": [
+        4,
+        5
+      ],
+      "frameDurations": [
+        0.8,
+        0.8
+      ],
+      "duration": 1.6,
+      "loop": false
+    },
+    "death": {
+      "source": "warden-special",
+      "indices": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "frameDurations": [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ],
+      "duration": 1.8,
+      "loop": false
+    }
+  }
+}

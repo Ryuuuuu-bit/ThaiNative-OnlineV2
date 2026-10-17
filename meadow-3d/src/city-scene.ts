@@ -7,6 +7,7 @@ import jobs from '../../shared/data/jobs.json' with {type:'json'};
 /** Visual-only dressing. Shared map footprints, navigation and interaction anchors are authoritative. */
 export function buildCity(scene:T.Scene,loader:PaintedLoader){
  const root=new T.Group();root.name='city_plaza';scene.add(root);
+ const eastSign=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/env-forest/signpost-v1.png'),transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false}));eastSign.center.set(.5,0);eastSign.scale.set(1.2,1.8,1);eastSign.position.set(27,.04,2.2);root.add(eastSign);
  const atlas=loader.load('/assets/city/city-trim-v1.png');
  const paint=new T.MeshStandardMaterial({map:atlas,roughness:1});
  const glow=new T.MeshBasicMaterial({map:atlas,color:'#ffcf87'});
@@ -69,10 +70,10 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
    box(x,0,z,axis==='x'?1:27,5,axis==='z'?1:27);box(x-side*(axis==='x'?.5:0),4.5,z-side*(axis==='z'?.5:0),axis==='x'?2:27,.3,axis==='z'?2:27);
    for(let i=-12;i<=12;i+=2)box(x+(axis==='z'?i:0),5,z+(axis==='x'?i:0),1,.7,1);
   }
-  const x=axis==='x'?side*30:0,z=axis==='z'?side*30:0,open=axis==='z'&&side===1;
+  const x=axis==='x'?side*30:0,z=axis==='z'?side*30:0,open=side===1;
   box(x,5,z,axis==='x'?2:7,1.2,axis==='z'?2:7);if(!open)box(x,0,z,axis==='x'?1:6,5,axis==='z'?1:6,6);
   for(const offset of [-3.5,3.5]){const a=x+(axis==='z'?offset:0),b=z+(axis==='x'?offset:0);box(a,0,b,2,6.5,2);roof(a,6.5,b,2.5,2.5,4);}
-  if(open)for(let i=-2.5;i<=2.5;i+=.5)box(i,4.1,30,.08,1.8,.12,10);
+  if(open)for(let i=-2.5;i<=2.5;i+=.5)box(axis==='x'?30:i,4.1,axis==='x'?i:30,axis==='x'?.12:.08,1.8,axis==='x'?.08:.12,10);
  }
  // Repeated tiny props are instanced; no additional collision shapes.
  const props=new Map<string,{g:T.BufferGeometry;m:T.Material;transforms:T.Matrix4[]}>();
@@ -119,12 +120,15 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
  const curtains=new T.Group();root.add(curtains);
  // Layer-major order keeps one complete four-sided mist bank on LOW.
  for(let layer=0;layer<3;layer++)for(const side of [-1,1])for(const axis of [0,1]){
-  const f=new T.Mesh(new T.PlaneGeometry(94,30),fogMaterial);f.position.set(axis?side*(30+layer*2):0,6+layer,axis?0:side*(30+layer*2));f.rotation.set(-Math.PI/4,axis?Math.PI/2:0,0);curtains.add(f);
+  // Split the east bank around the open passage, rather than hanging fog in the doorway.
+  for(const offset of axis===1&&side===1?[-26,26]:[0]){
+   const f=new T.Mesh(new T.PlaneGeometry(offset?42:94,30),fogMaterial);f.position.set(axis?side*(30+layer*2):0,6+layer,axis?offset:side*(30+layer*2));f.rotation.set(-Math.PI/4,axis?Math.PI/2:0,0);f.userData.forestFogLayer=layer;curtains.add(f);
+  }
  }
  // Flat banks make the plaza boundary visibly hazy even from the top-down overview.
  const edgeBanks=new T.Group();root.add(edgeBanks);
  for(const side of [-1,1])for(const axis of [0,1]){
-  const f=new T.Mesh(new T.PlaneGeometry(axis?16:85,axis?85:16).rotateX(-Math.PI/2),fogMaterial);f.position.set(axis?side*29:0,.22,axis?0:side*29);edgeBanks.add(f);
+  for(const offset of axis===1&&side===1?[-24,24]:[0]){const f=new T.Mesh(new T.PlaneGeometry(axis?16:85,axis?(offset?36:85):16).rotateX(-Math.PI/2),fogMaterial);f.position.set(axis?side*29:0,.22,axis?offset:side*29);edgeBanks.add(f);}
  }
   const seam=new T.Sprite(new T.SpriteMaterial({map:fogHQ,transparent:true,opacity:.45,depthWrite:false}));seam.position.set(.55,.35,2.2);seam.scale.set(2,.7,1);root.add(seam);
  const mistPositions=new Float32Array(36*3);for(let i=0;i<36;i++){mistPositions[i*3]=Math.sin(i*17.1)*26;mistPositions[i*3+1]=.2+(i%5)*.13;mistPositions[i*3+2]=Math.cos(i*13.7)*26;}
@@ -132,7 +136,7 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
  // Two local points + the shared hemisphere and key light = four real lights total.
  for(const [x,z]of [[-16,0],[4,5]]){const l=new T.PointLight('#ffc681',2,8,2);l.position.set(x,2.5,z);root.add(l);}
  let high=true,frame=-1;
- return{root,npcActors:[...npcs.map(n=>n.mesh),angel],setQuality(hq:boolean){high=hq;mist.visible=hq;fogMaterial.uniforms.softness.value=hq?fogHQ:fogLOW;seam.material.map=hq?fogHQ:fogLOW;curtains.children.forEach((o,i)=>o.visible=hq||i<4);root.traverse(o=>{if(o instanceof T.Mesh&&!(o instanceof T.InstancedMesh))o.castShadow=hq&&o.material===paint;});},snapshot:()=>({ready:!!atlas.userData.ready&&!!npcMap.userData.ready,mapId:'city_plaza',size:[60,60],quality:high?'HQ':'LOW',mistParticles:high?36:0,fogResolution:high?128:64,groundTileMetres:5,compassMedallions:1,paintedBackdrop:true,fogCards:high?16:8,npcFrames:4,npcCount:5,realLights:4}),update(time:number){
+ return{root,npcActors:[...npcs.map(n=>n.mesh),angel],setQuality(hq:boolean){high=hq;mist.visible=hq;fogMaterial.uniforms.softness.value=hq?fogHQ:fogLOW;seam.material.map=hq?fogHQ:fogLOW;curtains.children.forEach(o=>o.visible=hq||o.userData.forestFogLayer===0);root.traverse(o=>{if(o instanceof T.Mesh&&!(o instanceof T.InstancedMesh))o.castShadow=hq&&o.material===paint;});},snapshot:()=>({ready:!!atlas.userData.ready&&!!npcMap.userData.ready,mapId:'city_plaza',size:[60,60],quality:high?'HQ':'LOW',mistParticles:high?36:0,fogResolution:high?128:64,groundTileMetres:5,compassMedallions:1,paintedBackdrop:true,fogCards:curtains.children.filter(o=>o.visible).length+edgeBanks.children.length,npcFrames:4,npcCount:5,realLights:4}),update(time:number){
   const next=Math.floor(time*4)%4;if(next!==frame){frame=next;for(const {mesh,row}of npcs){const a=mesh.geometry.getAttribute('uv');a.setXY(0,(frame+.02)/4,(5-row-.02)/5);a.setXY(1,(frame+.98)/4,(5-row-.02)/5);a.setXY(2,(frame+.02)/4,(4-row+.02)/5);a.setXY(3,(frame+.98)/4,(4-row+.02)/5);a.needsUpdate=true;}}
   mist.position.x=Math.sin(time*.07)*.7;mist.position.z=Math.cos(time*.05)*.6;seam.material.opacity=.32+Math.sin(time*.8)*.08;
  }};

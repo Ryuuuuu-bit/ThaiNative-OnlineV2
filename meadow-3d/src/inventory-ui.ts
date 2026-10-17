@@ -85,10 +85,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const icon = document.createElement("span");
 		icon.className = "item-icon";
 		const n = templates.indexOf(t);
-				// Atlas v1 holds items 0-24; items 25+ live in atlas v2 (5x5), with a rarity-tinted orb underneath until it ships.
+		// Atlas v1 holds items 0–24; the forest materials occupy the first row of v2.
 		const page = n >= 25 ? 1 : 0, k = n - page * 25;
 		if (page) icon.classList.add("item-icon-v2");
-		icon.style.backgroundPosition = `${(k % 5) * 25}% ${Math.floor(k / 5) * 25}%${page ? ", 50% 50%" : ""}`;
+		icon.style.backgroundPosition = `${(k % 5) * 25}% ${Math.floor(k / 5) * 25}%`;
 		b.append(icon);
 		const count = document.createElement("b");
 		count.textContent = i.qty > 1 ? String(i.qty) : i.bound ? "◆" : "";

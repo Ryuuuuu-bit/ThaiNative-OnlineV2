@@ -1,5 +1,10 @@
 """Trim six generated slot emblems and pack proportional alpha-preserving UI strips."""
 from pathlib import Path
+import sys
+if '--forest' in sys.argv:
+ from pack_forest_icons import pack
+ pack()
+ raise SystemExit(0)
 from PIL import Image,ImageDraw
 import json
 
@@ -49,3 +54,7 @@ if report['clippingWarnings']:raise ValueError(report['clippingWarnings'])
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False),encoding='utf-8')
 (ART/'packing-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
 print(json.dumps({'icons':len(names),'sizes':[128,64],'clippingWarnings':report['clippingWarnings']}))
+
+if (ROOT/'art/painted-forest/items-generated.png').exists():
+ from pack_forest_icons import pack
+ pack()
