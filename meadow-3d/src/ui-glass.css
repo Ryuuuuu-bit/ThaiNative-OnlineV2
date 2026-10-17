@@ -49,8 +49,19 @@
 
 /* ---------- Map, menu row, tools ---------- */
 #ui .map .map-head{color:var(--g-muted);font-weight:600}
-#ui #map{border-radius:12px;border:1px solid var(--g-line-strong);background:var(--g-glass);box-shadow:0 6px 24px rgba(0,0,0,.25)}
-#ui .map-foot,#ui #fps{color:var(--g-faint)}
+#ui #map{border-radius:50%;border:1px solid var(--g-line-strong);background:var(--g-glass);box-shadow:0 6px 24px rgba(0,0,0,.25)}
+#ui .map{position:absolute}
+#ui .map::before{content:'N';position:absolute;top:4px;left:50%;transform:translateX(-50%);z-index:1;font:700 10px 'Noto Sans Thai',sans-serif;color:var(--g-gold);pointer-events:none}
+#ui .map-foot,#ui .map-foot :is(span,#fps,#map-coords){color:var(--g-faint)!important;font-size:10px!important;font-variant-numeric:tabular-nums}
+#ui .map-foot .dot{display:none}
+/* the six icons under the map are plain glyphs, not boxed buttons */
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){background:transparent!important;border:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:8px!important;color:rgba(243,239,230,.8)!important;filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio):hover{background:rgba(255,255,255,.1)!important;color:var(--g-text)!important}
+#ui #quest-button{font-size:0!important;padding:0;display:grid;place-items:center;pointer-events:auto}
+#ui #quest-button::before{content:'';width:18px;height:18px;background:currentColor;-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat;
+	--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M6 3h11a1 1 0 0 1 1 1v17l-3-2-3 2-3-2-3 2V4a1 1 0 0 1 1-1z'/%3E%3Cpath d='M9 8h6M9 12h6'/%3E%3C/svg%3E")}
+#game-menu-window .menu-tools{display:contents}
+#game-menu-window .menu-tools button{display:block;width:100%;margin:8px 0;padding:12px;text-align:left;font-size:15px}
 /* icon buttons: text stays for screen readers (aria-label), glyph comes from a mask */
 #ui :is(#stats-button,#skills-button,#inventory-button,#game-menu,#audio,#help,#pause){font-size:0!important;padding:0;display:grid;place-items:center}
 #ui :is(#stats-button,#skills-button,#inventory-button,#game-menu,#audio,#help,#pause)::before{content:'';width:18px;height:18px;background:currentColor;-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat}
@@ -65,12 +76,21 @@
 #ui .tools #quality{font-size:12px!important;color:var(--g-muted)}
 
 /* ---------- Quest tracker ---------- */
-#ui .quest{padding:0 0 0 14px;background:none;backdrop-filter:none}
-#ui .quest :is(h3,div,p,b){text-shadow:0 1px 2px #000,0 0 6px #000,0 0 12px rgba(0,0,0,.8)}
-#ui .quest::before{content:'';position:absolute;left:0;top:32px;bottom:6px;width:2px;border-radius:2px;background:var(--g-gold);opacity:.75}
-#ui #journal-toggle{color:var(--g-faint);font-size:11px!important;font-weight:600;letter-spacing:.12em;min-height:28px}
-#ui .quest h3{font-size:14px;font-weight:600;margin:4px 0}
-#ui .quest>div:not(.quest-bar){font-size:13px;color:var(--g-muted)}
+#ui .quest{padding:0;background:none;backdrop-filter:none}
+#ui .quest :is(h3,div,p,b,li,small){text-shadow:0 1px 2px #000,0 0 6px #000,0 0 12px rgba(0,0,0,.8)}
+#ui #journal-toggle{display:flex;justify-content:space-between;color:var(--g-faint);font-size:10px!important;font-weight:600;letter-spacing:.14em;min-height:24px!important;margin-bottom:6px}
+/* main quest: gold rule beside title, objective and bar */
+#ui .quest>:is(h3,#quest-line,.quest-bar,#quest-note){margin-left:0;padding-left:12px;border-left:2px solid rgba(230,201,143,.75)}
+#ui .quest h3{font-size:13px;font-weight:600;margin:0;padding-top:1px}
+#ui .quest>div:not(.quest-bar){font-size:12px;color:var(--g-muted);display:block}
+#ui .quest>.quest-bar{height:3px;border-left-width:2px;background-clip:content-box;padding-top:5px;padding-bottom:3px}
+#ui .quest>#quest-note{margin:0;padding-bottom:2px;font-size:11px!important;color:var(--g-faint)!important}
+/* side quests */
+#ui #quest-tracker{margin:12px 0 0;padding:0;border:0;gap:12px}
+#ui #quest-tracker li{padding-left:12px;border-left:2px solid var(--g-line-strong)}
+#ui #quest-tracker b{font-size:13px;font-weight:600;color:var(--g-text)}
+#ui #quest-tracker small{font-size:12px!important;color:var(--g-muted)}
+#ui #quest-tracker li.ready{border-left-color:rgba(143,209,138,.7)}
 #ui .quest b{color:var(--g-text)}
 #ui .quest-bar{height:3px;border-radius:2px;background:rgba(0,0,0,.35)}
 #ui .quest-bar i{background:var(--g-gold);border-radius:inherit}
@@ -121,16 +141,16 @@
 /* ---------- Desktop layout ---------- */
 @media(min-width:651px){
 	#ui .player{left:24px;top:22px;width:340px;padding:0}
-	#ui .map{top:20px;right:22px;width:196px;padding:0}
-	#ui .map .map-head{text-align:center;height:22px}
-	#ui #map{width:196px;height:150px}
-	/* menu row under the map, tools row beneath it */
-	#ui :is(#stats-button,#skills-button,#inventory-button,#game-menu){position:absolute;top:206px;left:auto;bottom:auto;width:40px;height:40px;min-width:40px;min-height:40px;z-index:6}
-	#ui #stats-button{right:172px}#ui #skills-button{right:124px}#ui #inventory-button{right:76px}#ui #game-menu{right:28px}
-	#ui .tools{top:254px;right:22px;gap:6px}
-	#ui .tools button{width:40px;height:40px;min-width:40px;min-height:40px}
-	#ui .tools #quality{width:auto;min-width:0;max-width:none;padding:0 10px}
-	#ui .quest{top:316px;right:24px;width:240px}
+	/* round map, a coords line, then one row of six plain icons */
+	#ui .map{top:20px;right:22px;width:184px;padding:0}
+	#ui .map .map-head{display:none}
+	#ui #map{display:block;width:168px;height:168px;margin:0 auto}
+	#ui .map-foot{display:flex!important;justify-content:space-between;margin:6px 10px 0;height:16px;line-height:16px}
+	#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu){position:absolute;top:218px;left:auto;bottom:auto;z-index:6}
+	#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important}
+	#ui #stats-button{right:179px}#ui #skills-button{right:148px}#ui #inventory-button{right:117px}#ui #quest-button{right:86px}#ui #game-menu{right:24px}
+	#ui .tools{top:218px;right:55px;gap:0}
+	#ui .quest{top:268px;right:24px;width:250px}
 	#ui .target{top:70px;width:340px}
 	#ui #area-name{top:22px}
 	#ui .combat-ui{bottom:22px;gap:10px}
@@ -212,3 +232,6 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 
 /* Narrow desktop: the centred hotbar reaches the left edge, so the chat sits above it. */
 @media(min-width:651px) and (max-width:1279px){#chat{bottom:130px}}
+
+/* Phone layout keeps its own menu; the journal is toggled from the tracker itself. */
+@media(max-width:650px){#ui #quest-button{display:none}}
