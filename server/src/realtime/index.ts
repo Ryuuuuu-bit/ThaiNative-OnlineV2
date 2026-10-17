@@ -1,5 +1,5 @@
 import {applyInventory,equipped,inventoryWeight,type InventoryOp} from '@thainative/shared';
-import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, type MapId } from "@thainative/shared";
+import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, isField, BOSS_RESPAWN_MS, bossTimer, setBossTimer, type MapId } from "@thainative/shared";
 import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
 import type { Server } from "node:http";
@@ -137,25 +137,29 @@ export function snapshotParts(room: Room) {
 	const g = room.game;
 	const others = new Map<string, string>();
 	for (const p of g.players.values()) others.set(p.id, JSON.stringify(publicEntry(p)));
-	const world = JSON.stringify({
-		enemies: g.enemies.map((e) => ({ id: e.id, statuses: e.statuses, dataId: e.dataId, x: round(e.x), z: round(e.z), hp: e.hp, maxHp: e.maxHp, boss: e.boss, dead: e.dead, motion: e.motion, motionTime: round(e.motionTime), motionDuration: e.motionDuration, bossPhase: e.bossPhase, variant: e.variant, deathAge: round(e.deathAge), hurt: round(e.hurt), fx: round(e.fx), fz: round(e.fz), vx: round(e.vx), vz: round(e.vz), moving: e.moving, windup: round(e.windup), aimX: round(e.aimX), aimZ: round(e.aimZ), summoned: e.summoned })),
-		drops: g.drops.map((d) => ({ ...d, x: round(d.x), z: round(d.z), time: round(d.time) })),
-		projectiles: g.projectiles.map((p) => ({ ...p, x: round(p.x), z: round(p.z) })),
-	}).slice(1, -1);
+	// Entities are serialised once per room; each viewer then joins only those within ENTITY_RANGE (bosses always).
+	const entity = <T extends { x: number; z: number }>(list: T[], map: (v: T) => unknown, always = (_v: T) => false) => list.map((v) => ({ x: v.x, z: v.z, always: always(v), json: JSON.stringify(map(v)) }));
+	const enemies = entity(g.enemies, (e) => ({ id: e.id, statuses: e.statuses, dataId: e.dataId, x: round(e.x), z: round(e.z), hp: e.hp, maxHp: e.maxHp, boss: e.boss, dead: e.dead, motion: e.motion, motionTime: round(e.motionTime), motionDuration: e.motionDuration, bossPhase: e.bossPhase, variant: e.variant, deathAge: round(e.deathAge), hurt: round(e.hurt), fx: round(e.fx), fz: round(e.fz), vx: round(e.vx), vz: round(e.vz), moving: e.moving, windup: round(e.windup), aimX: round(e.aimX), aimZ: round(e.aimZ), summoned: e.summoned }), (e) => e.boss);
+	const drops = entity(g.drops, (d) => ({ ...d, x: round(d.x), z: round(d.z), time: round(d.time) }));
+	const projectiles = entity(g.projectiles, (p) => ({ ...p, x: round(p.x), z: round(p.z) }));
+	const world = (me?: { x: number; z: number }) => {
+		const pick = (list: typeof enemies) => list.filter((v) => !me || v.always || Math.abs(v.x - me.x) <= ENTITY_RANGE && Math.abs(v.z - me.z) <= ENTITY_RANGE).map((v) => v.json).join(",");
+		return '"enemies":[' + pick(enemies) + '],"drops":[' + pick(drops) + '],"projectiles":[' + pick(projectiles) + "]";
+	};
 	return { others, world };
 }
 /** One viewer's snapshot as a JSON string: own entry carries private fields, others are public only. */
 /** Interest management: other players beyond this range, or past the nearest cap, are left out of a viewer's snapshot. */
-export const VIEW_RANGE = 32, VIEW_MAX_PLAYERS = 30;
+export const VIEW_RANGE = 32, VIEW_MAX_PLAYERS = 30, ENTITY_RANGE = 40;
 export function snapshotFrame(room: Room, peer: Peer, parts = snapshotParts(room), always: string[] = []) {
 	const g = room.game, me = g.players.get(peer.id);
-	const head = JSON.stringify({ t: "snap", mapId: g.mapId, weight: me?.inventory ? inventoryWeight(me.inventory, g.data) : 0, weightLimit: me?.stats.weight, tick: room.tick, ack: peer.ack, time: g.time, kills: g.kills, bossSpawned: g.bossSpawned, won: g.won });
+	const head = JSON.stringify({ t: "snap", mapId: g.mapId, bossIn: Math.ceil(bossTimer(g)), weight: me?.inventory ? inventoryWeight(me.inventory, g.data) : 0, weightLimit: me?.stats.weight, tick: room.tick, ack: peer.ack, time: g.time, kills: g.kills, bossSpawned: g.bossSpawned, won: g.won });
 		const players: string[] = me ? [JSON.stringify(ownEntry(me))] : [];
 	let nearby = [...g.players.values()].filter((p) => p.id !== peer.id && (!me || always.includes(p.id) || Math.hypot(p.x - me.x, p.z - me.z) <= VIEW_RANGE));
 	if (me && nearby.length > VIEW_MAX_PLAYERS)
 		nearby = nearby.map((p) => ({ p, d: always.includes(p.id) ? -1 : Math.hypot(p.x - me.x, p.z - me.z) })).sort((a, b) => a.d - b.d).slice(0, VIEW_MAX_PLAYERS).map((x) => x.p);
 	for (const p of nearby) players.push(parts.others.get(p.id) ?? JSON.stringify(publicEntry(p)));
-	return head.slice(0, -1) + ',"players":[' + players.join(",") + "]," + parts.world + "}";
+	return head.slice(0, -1) + ',"players":[' + players.join(",") + "]," + parts.world(me) + "}";
 }
 export function snapshot(room: Room, peer: Peer) {
 	return JSON.parse(snapshotFrame(room, peer));
@@ -247,6 +251,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   const pending=economy(peer,p,op,randomUUID(),done);
   if(pending)void pending.catch(()=>{}).finally(()=>questBusy.delete(p.id));else questBusy.delete(p.id);
  }
+ const bossDue=new Map<MapId,number>();
  function getRoom(mapId: MapId, id: string): Room {
   const key=mapId+(options.sharedRooms?'':':'+id);
   let room=rooms.get(key);
@@ -257,6 +262,9 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
    game.players.clear();
    room={key,game,peers:new Map(),accounts:new Map(),disconnected:new Map(),tick:0,saveQueue:Promise.resolve()};
    rooms.set(key,room);
+   // Field bosses run on one schedule per map, surviving empty rooms being recycled.
+   const due=isField(mapId)?bossDue.get(mapId):undefined;
+   if(due&&due>Date.now())setBossTimer(game,(due-Date.now())/1000);
    const current=room;
    game.inventoryCommit=(p,op,done)=>{
     const peer=current.peers.get(p.id);if(!peer){const d=current.game.drops.find(d=>String(d.id)===op.id);if(d)d.pending=false;return;}
@@ -276,10 +284,6 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   refreshStats(target.game,p);
   peer.input={x:0,z:0};peer.room=target;
   target.game.players.set(p.id,p);target.peers.set(p.id,peer);target.accounts.set(p.id,peer.accountId);(target.leases??=new Map()).set(p.id,peer.leaseOwner!);
-  if(!options.sharedRooms && destination.mapId==='meadow'){
-   target.game.kills=Math.max(target.game.kills,p.kills);
-   if(p.kills>=6&&Date.now()>=(p.bossReadyAt??0)&&!target.game.bossSpawned){target.game.bossSpawned=true;spawn(target.game,ARENA.x,ARENA.z,true);}
-  }
   target.saveQueue=Promise.all([source.saveQueue,target.saveQueue]).then(()=>{});
   void save(target,p.id);
   send(peer.ws,snapshotFrame(target,peer));
@@ -327,6 +331,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		function flush(room: Room) {
 		const list = room.game.events.splice(0);
 		if (!list.length) return;
+		for (const e of list) if (e.type === "kill" && e.boss && (room.game.mapId === "meadow" || room.game.mapId === "forest")) bossDue.set(room.game.mapId, Date.now() + BOSS_RESPAWN_MS(room.game.mapId));
 		for (const e of list)
 			if (e.type === "kill" && e.dataId && e.ownerId) {
 				const ids = social.partyMembers(String(e.ownerId));
@@ -732,13 +737,6 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					// A not-ready character is retained for resume but excluded from simulation and snapshots.
 					room.game.players.delete(character.id);
 					pending.set(character.id, p);
-					if (!options.sharedRooms && mapId === "meadow") {
-						room.game.kills = character.kills;
-						if (character.kills >= 6 && Date.now()>=(character.bossReadyAt??0) && !room.game.bossSpawned) {
-							room.game.bossSpawned = true;
-							spawn(room.game, ARENA.x, ARENA.z, true);
-						}
-					}
 				}
 				if(ws.readyState!==WebSocket.OPEN||closing){pending.delete(character.id);room.game.players.delete(character.id);return;}
                 const leaseOwner=claimed;

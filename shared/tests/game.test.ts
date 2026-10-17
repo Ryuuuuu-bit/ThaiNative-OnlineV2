@@ -63,7 +63,7 @@ test("two players share enemies: nearest player gets the telegraph; top damage e
 	assert.ok(a.xp > 0);
 	assert.equal(b.xp, 0);
 });
-test("King unlock is per room rather than one counter per player", () => {
+test("kills are counted per room and per player; they no longer unlock the King", () => {
 	const g = createGame();
 	g.random = () => 0.5;
 	g.enemies = [];
@@ -81,7 +81,7 @@ test("King unlock is per room rather than one counter per player", () => {
 	assert.equal(g.kills, 6);
 	assert.equal(g.players.get("local")!.kills, 3);
 	assert.equal(b.kills, 3);
-	assert.equal(g.enemies.filter((e) => e.boss).length, 1);
+	assert.equal(g.enemies.filter((e) => e.boss).length, 0);
 });
 test("movement prediction replays only unacknowledged inputs and chooses snap threshold", () => {
 	const pending = [
