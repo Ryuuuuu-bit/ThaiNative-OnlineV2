@@ -80,7 +80,7 @@ export interface RealtimeOptions {
 }
 const round = (n: number) => Math.round(n * 1000) / 1000;
 const playerKeys = [
-	"id", "reviveRemaining", "bossReadyAt", "mapId", "healerReadyAt", "returnRemaining", "returnReadyAt",
+	"id", "reviveRemaining", "bossReadyAt", "bossCooldowns", "mapId", "healerReadyAt", "returnRemaining", "returnReadyAt",
 	"name",
 	"x",
 	"z",
@@ -203,7 +203,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   }
   peer.busy=(peer.busy||0)+1;
   const operation=room.saveQueue.then(async()=>{
-   const result=await store.inventoryOp(peer.accountId,p.id,req,op,{leaseOwner:peer.leaseOwner,bossLoot:op.op==='pickup'&&g.drops.some(d=>String(d.id)===op.id&&d.boss),profile:structuredClone(p.profile),room:room.key,tick:room.tick});
+   const result=await store.inventoryOp(peer.accountId,p.id,req,op,{leaseOwner:peer.leaseOwner,bossLoot:op.op==='pickup'?(g.drops.find(d=>String(d.id)===op.id&&d.boss)?.bossId??(g.drops.some(d=>String(d.id)===op.id&&d.boss)?'king_jelly':undefined)):undefined,profile:structuredClone(p.profile),room:room.key,tick:room.tick});
    const latest=result.duplicate?await store.inventory(peer.accountId,p.id):result;
    p.inventory=latest.inventory;p.gold=latest.gold;refreshStats(g,p);
    if(result.error){if(op.op==='pickup')room.dropRequests?.delete(op.id!);throw Error(result.error);}
@@ -290,7 +290,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		if (!p || !accountId) return room.saveQueue;
 		const operation = room.saveQueue.then(async () => {
         const body: Progress = {
-						bossReadyAt:p.bossReadyAt,autoSeconds:p.autoSeconds,quests:p.quests,
+						bossReadyAt:p.bossReadyAt,bossCooldowns:{...p.bossCooldowns},autoSeconds:p.autoSeconds,quests:p.quests,
  jobId: p.jobId,
 			jobLevel: p.jobLevel,
 			jobExp: p.jobExp,
@@ -700,7 +700,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                     p.profile.equipment=equipped(p.inventory);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
- 	 p.quests=normalizeQuests(character.quests,data);p.bossReadyAt=character.bossReadyAt||0;p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
+ 	 p.quests=normalizeQuests(character.quests,data);p.bossReadyAt=character.bossReadyAt||0;p.bossCooldowns={...(character.bossCooldowns??{})};p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
 					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;

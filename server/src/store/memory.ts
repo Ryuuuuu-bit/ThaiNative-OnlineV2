@@ -27,7 +27,7 @@ export class MemoryStore implements Store {
   checkRequest(req);if(context.leaseOwner&&this.leases.get(id)!==context.leaseOwner)throw Error('Lease lost');const c=this.econCharacter(accountId,id),key=id+':'+req,previous=this.requests.get(key);
   if(previous&&Date.now()-previous.at<86400000)return {...structuredClone(previous.result),duplicate:true};
   let result:EconomyResult;
-  try{const out=applyInventory({gold:c.gold,inventory:this.inventories.get(id)!},op,context.profile,economyData,randomUUID);this.inventories.set(id,out.state.inventory);c.gold=out.state.gold;if(context.bossLoot)c.bossReadyAt=Date.now()+600000;this.ledger.push(...out.ledger.map(entry=>({character:id,entry})));result={...out.state,effect:out.effect};}
+  try{const out=applyInventory({gold:c.gold,inventory:this.inventories.get(id)!},op,context.profile,economyData,randomUUID);this.inventories.set(id,out.state.inventory);c.gold=out.state.gold;if(context.bossLoot){if(context.bossLoot===true||context.bossLoot==='king_jelly')c.bossReadyAt=Date.now()+600000;else c.bossCooldowns={...c.bossCooldowns,[context.bossLoot]:Date.now()+600000};}this.ledger.push(...out.ledger.map(entry=>({character:id,entry})));result={...out.state,effect:out.effect};}
   catch(e){result={inventory:this.inventories.get(id)!,gold:c.gold,error:(e as Error).message};}
   this.requests.set(key,{at:Date.now(),result:structuredClone(result)});
   for(const[k,r]of this.requests)if(Date.now()-r.at>86400000)this.requests.delete(k);

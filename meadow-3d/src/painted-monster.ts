@@ -45,16 +45,17 @@ function paintShader(material:T.SpriteMaterial,uniforms:any,atlas=true){
  diffuseColor.rgb=mix(diffuseColor.rgb,vec3(1.),uJellyFlash);
  `);};material.customProgramCacheKey=()=>atlas?'painted-jelly-atlas-v1':'painted-jelly-expression-v1';
 }
-export interface MonsterOptions{variant?:SlimeVariant;hueShift?:number;tint?:string;id?:number}
+export interface MonsterOptions{variant?:SlimeVariant;hueShift?:number;tint?:string;id?:number;placeholder?:{color:string;height:number}}
 /** Shared textures, per-instance frame/hue uniforms, one real ground anchor. */
 /** Visual size of the small jelly relative to its packed atlas size (about 0.6x the hero). */
 export const SMALL_JELLY_SCALE=.72;
 export function makePaintedMonster(loader:PaintedLoader,boss=false,options:MonsterOptions={}){
- const species:MonsterSpecies=boss?'king':'slime',bank=assetBank(loader);bank.request(species);
+ const species:MonsterSpecies=boss?'king':'slime',bank=assetBank(loader);const placeholder=options.placeholder;if(!placeholder)bank.request(species);
  const root=new T.Group();const uniforms={uJellyCell:{value:new T.Vector4(0,0,1,1)},uJellyHue:{value:0},uJellyPhase:{value:0},uJellyFlash:{value:0},uJellyTime:{value:0},uJellyExpression:{value:null as T.Texture|null},uJellyFaceRect:{value:new T.Vector4(0,0,1,1)},uJellyFaceDirection:{value:0},uJellyFaceEnabled:{value:0}};
  const material=new T.SpriteMaterial({transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false,color:options.tint||'#ffffff'});paintShader(material,uniforms);
  const portrait=new T.Sprite(material);portrait.userData.enemyId=options.id;portrait.visible=false;root.add(portrait);
  const fallback=makeMonsterFallback(boss);fallback.userData.enemyId=options.id;root.add(fallback);
+ if(placeholder){(fallback.material as T.MeshBasicMaterial).color.set(placeholder.color);const h=placeholder.height;fallback.scale.set(h*.5,h*.5,h*.4);fallback.position.y=h*.5;}
  const shadowMaterial=new T.MeshBasicMaterial({color:'#354333',transparent:true,opacity:.16,depthWrite:false});
  const shadow=new T.Mesh(new T.CircleGeometry(boss?1.8:.32,32),shadowMaterial);shadow.rotation.x=-Math.PI/2;shadow.scale.y=.62;shadow.position.y=.026;shadow.raycast=()=>{};root.add(shadow);
  let expressionVisible=false;
@@ -69,6 +70,7 @@ export function makePaintedMonster(loader:PaintedLoader,boss=false,options:Monst
  return{root,flash(value:number){uniforms.uJellyFlash.value=value;},snapshot:()=>({...diagnostic,loaded:Object.keys(bank.textures[species])}),dispose(){material.dispose();shadow.geometry.dispose();shadowMaterial.dispose();fallback.geometry.dispose();(fallback.material as T.Material).dispose();},update(e:Enemy,time:number){
   root.position.set(e.x,.04,e.z);root.userData.dead=e.dead;
   const opacity=monsterOpacity(e);root.visible=opacity>0;material.opacity=opacity;
+    if(placeholder){fallback.visible=true;portrait.visible=false;(fallback.material as T.MeshBasicMaterial).opacity=.85*opacity;(fallback.material as T.MeshBasicMaterial).color.set(e.hurt>0?'#ffffff':placeholder.color);const bob=e.motion==='attack'?1.12:e.motion==='hop'?1+Math.abs(Math.sin(time*9))*.06:1;fallback.scale.y=placeholder.height*.5*bob;diagnostic={...diagnostic,motion:e.motion,actualMotion:'placeholder',opacity};return;}
   const definition=bank.manifest?.species[species],texture=bank.textures[species][e.motion]||bank.textures[species].idle;
   const actual=bank.textures[species][e.motion]?e.motion:'idle';
   fallback.visible=!definition||!texture;portrait.visible=!fallback.visible;

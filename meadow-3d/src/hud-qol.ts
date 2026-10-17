@@ -37,7 +37,7 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
  const map=$<HTMLCanvasElement>('#map');map.tabIndex=0;map.setAttribute('role','button');map.setAttribute('aria-label','แผนที่ย่อ แตะเพื่อขยายและเลือกจุดหมาย');map.title='คลิกจุดบนแผนที่เพื่อเดินไป';
  const npcs=()=>o.map()==='city_plaza'?[...CITY_BUILDINGS.map(b=>({x:b.talk.x,z:b.talk.z,kind:b.id,icon:b.id==='forge'?'⚒':b.id==='market'?'◈':'▣',name:b.npc})),{...HEALER,kind:'heal',icon:'✚',name:'นักบวชหมอ'},{x:jobs.angel.x,z:jobs.angel.z,kind:'angel',icon:'✧',name:'ทูตสวรรค์'},{x:4,z:25,kind:'guard',icon:'⚑',name:'หัวหน้าทหารประตู'}]:[];
  const points=()=>[...npcs(),...Object.entries(GATES[o.map()]).map(([kind,p])=>({...p,kind:'gate:'+kind,icon:'◇',name:'ประตู'}))];
- const coords=(p:{x:number;z:number})=>o.map()==='city_plaza'?{x:(p.x+30)/60*160,y:(p.z+30)/60*132}:{x:(p.x+17)/34*160,y:(p.z+14)/28*132};
+ const coords=(p:{x:number;z:number})=>o.map()==='city_plaza'?{x:(p.x+30)/60*160,y:(p.z+30)/60*132}:o.map()==='forest'?{x:(p.x+20)/40*160,y:(p.z+16)/32*132}:{x:(p.x+17)/34*160,y:(p.z+14)/28*132};
  const cancel=()=>{route=[];arrival=null;};
  const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();route=gridPath(o.player(),p,o.walkable);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
  const returnCity=()=>{cancel();o.send({t:'returnCity'});};$('#return-city').onclick=returnCity;$('#pickup-all').onclick=()=>o.send({t:'pickupAll'});

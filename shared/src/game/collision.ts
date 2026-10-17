@@ -1,4 +1,4 @@
-import { cityWalkable, type MapId } from "./maps.js";
+import { cityWalkable, forestWalkable, type MapId } from "./maps.js";
 export interface Vec {
  mapId?: MapId;
 	x: number;
@@ -21,6 +21,7 @@ export function water(x: number, z: number) {
 }
 export function walkable(x: number, z: number, r = 0.3, mapId: MapId = "meadow") {
  if(mapId === "city_plaza") return cityWalkable(x,z,r);
+ if(mapId === "forest") return forestWalkable(x,z,r);
 	return (
 		x > -17 + r &&
 		x < 17 - r &&

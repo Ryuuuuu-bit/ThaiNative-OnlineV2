@@ -382,7 +382,7 @@ test("heals skip defence/element/size, utility potion uses documented VIT interp
 });
 test("statuses resist, refresh without stacking, and obey boss immunities/scripted windows", () => {
 	const a = player(),
-		king = monsterStats(data.monsters.monsters.at(-1)!, data);
+		king = monsterStats(data.monsters.monsters.find((m) => m.id === "king_jelly")!, data);
 	assert.equal(statusChance(a, "stun", 1, data), 1 - (0.05 + 0.006));
 	assert.equal(statusChance(king, "stun", 1, data), 0);
 	assert.equal(
@@ -432,7 +432,7 @@ test("goldens anchor current sim constants; starter jelly is neutral so meteor a
 	near(midpoint(player(), pink(), "meteor").damage, 58);
 	near(midpoint(pink(), player()).damage, 9);
 	near(
-		midpoint(monsterStats(data.monsters.monsters.at(-1)!, data), player())
+		midpoint(monsterStats(data.monsters.monsters.find((m) => m.id === "king_jelly")!, data), player())
 			.damage,
 		22,
 	);
@@ -448,7 +448,7 @@ test("goldens anchor current sim constants; starter jelly is neutral so meteor a
 	assert.equal(Math.ceil(pink().maxHp / midpoint().damage), 3);
 });
 test("retuned King keeps Lv1 offensive TTK at 70–90s with per-second SP regen", () => {
-	const boss = monsterStats(data.monsters.monsters.at(-1)!, data),
+	const boss = monsterStats(data.monsters.monsters.find((m) => m.id === "king_jelly")!, data),
 		values = Array.from(
 			{ length: 50 },
 			(_, i) => trial(player(), boss, data, seededRng(i + 1)).ttk,

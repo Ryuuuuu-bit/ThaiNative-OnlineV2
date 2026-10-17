@@ -345,6 +345,22 @@ export const MonsterSchema = z
 			.object({ atk: nonnegative, element: ElementSchema })
 			.strict()
 			.optional(),
+		/** AI tuning; jellies keep their built-in defaults when omitted. */
+		behavior: z
+			.object({
+				ai: z.enum(["melee", "ranged"]),
+				speed: positive,
+				aggroRange: positive,
+				attackRange: positive,
+				lunge: nonnegative,
+				cooldown: positive,
+				windup: positive,
+				/** Ranged: preferred distance and projectile speed. */
+				keepAway: nonnegative.optional(),
+				projectileSpeed: positive.optional(),
+			})
+			.strict()
+			.optional(),
 	})
 	.strict();
 export const MonstersSchema = z

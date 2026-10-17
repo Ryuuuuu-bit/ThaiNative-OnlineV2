@@ -8,7 +8,8 @@ test('travel accepts only the open gate, living character and authoritative radi
  assert.equal(travelDestination('city_plaza','south',CITY_SPAWN),null);
  assert.deepEqual(travelDestination('city_plaza','south',{x:0,z:28}),{mapId:'meadow',...MEADOW_ENTRY});
  assert.deepEqual(travelDestination('meadow','north',{x:0,z:-12.8}),{mapId:'city_plaza',...CITY_RETURN});
- for(const [gate,x,z]of [['north',0,-28],['east',28,0],['west',-28,0]] as const)assert.equal(travelDestination('city_plaza',gate,{x,z}),null);
+ assert.equal(travelDestination('city_plaza','east',{x:28,z:0})?.mapId,'forest');
+ for(const [gate,x,z]of [['north',0,-28],['west',-28,0]] as const)assert.equal(travelDestination('city_plaza',gate,{x,z}),null);
  assert.equal(travelDestination('city_plaza','south',{x:0,z:26.49}),null);
  assert.equal(travelDestination('city_plaza','south',{x:0,z:28,dead:true}),null);
  assert.equal(travelDestination('meadow','south',{x:0,z:13}),null);

@@ -328,6 +328,326 @@
         }
       },
       "jobExp": 150
+    },
+    {
+      "id": "mist_shroom",
+      "nameTh": "เห็ดหมอก",
+      "level": 6,
+      "hp": 160,
+      "sp": 0,
+      "atk": 26,
+      "matk": 0,
+      "hardDef": 6,
+      "softDef": 3,
+      "hardMdef": 4,
+      "softMdef": 2,
+      "hit": 176,
+      "flee": 112,
+      "element": "earth",
+      "race": "plant",
+      "size": "small",
+      "realm": "forest_spirit",
+      "tags": [
+        "forest"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 70,
+      "gold": [
+        12,
+        22
+      ],
+      "drops": [
+        {
+          "item": "mist_spore",
+          "rate": 0.7,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "red_small",
+          "rate": 0.2,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 50,
+      "behavior": {
+        "ai": "melee",
+        "speed": 1.6,
+        "aggroRange": 3,
+        "attackRange": 1.35,
+        "lunge": 4,
+        "cooldown": 1.7,
+        "windup": 0.55
+      }
+    },
+    {
+      "id": "shade_wolf",
+      "nameTh": "หมาป่าเงา",
+      "level": 9,
+      "hp": 240,
+      "sp": 0,
+      "atk": 38,
+      "matk": 0,
+      "hardDef": 9,
+      "softDef": 4,
+      "hardMdef": 5,
+      "softMdef": 3,
+      "hit": 192,
+      "flee": 132,
+      "element": "dark",
+      "race": "brute",
+      "size": "medium",
+      "realm": "mythic_beast",
+      "tags": [
+        "forest",
+        "beast"
+      ],
+      "weakness": [
+        "holy"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 115,
+      "gold": [
+        18,
+        30
+      ],
+      "drops": [
+        {
+          "item": "wolf_fur",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "red_medium",
+          "rate": 0.12,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 80,
+      "behavior": {
+        "ai": "melee",
+        "speed": 3.3,
+        "aggroRange": 5.5,
+        "attackRange": 1.5,
+        "lunge": 7,
+        "cooldown": 1.3,
+        "windup": 0.4
+      }
+    },
+    {
+      "id": "lantern_wisp",
+      "nameTh": "ภูตตะเกียง",
+      "level": 11,
+      "hp": 220,
+      "sp": 0,
+      "atk": 0,
+      "matk": 44,
+      "hardDef": 6,
+      "softDef": 3,
+      "hardMdef": 14,
+      "softMdef": 6,
+      "hit": 198,
+      "flee": 140,
+      "element": "ghost",
+      "race": "demon",
+      "size": "small",
+      "realm": "ghost",
+      "tags": [
+        "forest",
+        "spirit"
+      ],
+      "weakness": [
+        "holy",
+        "dark"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 140,
+      "gold": [
+        20,
+        34
+      ],
+      "drops": [
+        {
+          "item": "wisp_tear",
+          "rate": 0.55,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "blue_potion",
+          "rate": 0.15,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 100,
+      "behavior": {
+        "ai": "ranged",
+        "speed": 1.8,
+        "aggroRange": 6.5,
+        "attackRange": 6,
+        "lunge": 0,
+        "cooldown": 2.2,
+        "windup": 0.7,
+        "keepAway": 4,
+        "projectileSpeed": 6
+      }
+    },
+    {
+      "id": "stump_guard",
+      "nameTh": "ตอไม้เฝ้าป่า",
+      "level": 13,
+      "hp": 520,
+      "sp": 0,
+      "atk": 46,
+      "matk": 0,
+      "hardDef": 25,
+      "softDef": 8,
+      "hardMdef": 8,
+      "softMdef": 4,
+      "hit": 205,
+      "flee": 118,
+      "element": "earth",
+      "race": "plant",
+      "size": "medium",
+      "realm": "forest_spirit",
+      "tags": [
+        "forest"
+      ],
+      "weakness": [
+        "fire",
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 210,
+      "gold": [
+        26,
+        44
+      ],
+      "drops": [
+        {
+          "item": "mist_wood",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.02,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 140,
+      "behavior": {
+        "ai": "melee",
+        "speed": 1.2,
+        "aggroRange": 3,
+        "attackRange": 1.6,
+        "lunge": 3,
+        "cooldown": 2,
+        "windup": 0.75
+      }
+    },
+    {
+      "id": "mist_warden",
+      "nameTh": "ผู้เฝ้าป่าหมอก",
+      "level": 15,
+      "hp": 6000,
+      "sp": 0,
+      "atk": 70,
+      "matk": 0,
+      "hardDef": 28,
+      "softDef": 12,
+      "hardMdef": 20,
+      "softMdef": 8,
+      "hit": 230,
+      "flee": 130,
+      "element": "earth",
+      "race": "plant",
+      "size": "large",
+      "realm": "forest_spirit",
+      "tags": [
+        "forest",
+        "boss"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": true,
+      "skills": [
+        "slam",
+        "sweep",
+        "charge",
+        "spit",
+        "summon"
+      ],
+      "exp": 2500,
+      "gold": [
+        600,
+        900
+      ],
+      "drops": [
+        {
+          "item": "warden_heart",
+          "rate": 1,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "weapon_stone",
+          "rate": 0.3,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.3,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 1200,
+      "phase2": {
+        "atk": 78,
+        "element": "dark"
+      },
+      "attacks": {
+        "slam": {
+          "percent": 112,
+          "phase2Percent": 133
+        },
+        "sweep": {
+          "percent": 95,
+          "phase2Percent": 113
+        },
+        "charge": {
+          "percent": 103,
+          "phase2Percent": 125
+        },
+        "spit": {
+          "percent": 61,
+          "phase2Percent": 75
+        }
+      }
     }
   ]
 }

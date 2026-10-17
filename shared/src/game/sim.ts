@@ -33,6 +33,7 @@ export interface Vec {
 	z: number;
 }
 export interface Enemy extends Vec {
+	mapId?: MapId;
 	statuses: TimedEffect[];
 	dataId: string;
 	damageBy: Record<string, number>;
@@ -66,7 +67,9 @@ export interface Enemy extends Vec {
 	patternIndex: number;
 	history: KingAttack[];
 	engaged: boolean;
-	summoned: boolean;
+		summoned: boolean;
+	/** Data-driven AI tuning (jellies use built-in defaults). */
+	behavior?: import('../schema.js').GameData['monsters']['monsters'][number]['behavior'];
 	startX: number;
 	startZ: number;
 	fx: number;
@@ -77,7 +80,9 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
-  bossReadyAt?:number; reviveRemaining?:number;
+   bossReadyAt?:number; reviveRemaining?:number;
+ /** Field-boss cooldowns other than the King (which keeps bossReadyAt). */
+ bossCooldowns?: Record<string, number>;
  quests?: import('../quests.js').QuestState;
  whirlwindHits?:{id:number;due:number;damage:number;crit:boolean;breakdown:any;impact?:number}[];
  inventory?:Inventory; autoSeconds:number;
@@ -132,7 +137,7 @@ export interface Event extends Vec {
 	[key: string]: any;
 }
 export interface Drop extends Vec {
- loot?:{template:string;qty:number}[]; pending?:boolean; noticeAt?:number; blocked?:boolean; boss?:boolean;
+ loot?:{template:string;qty:number}[]; pending?:boolean; noticeAt?:number; blocked?:boolean; boss?:boolean; bossId?:string;
 	ownerId: string;
 	id: number;
 	gold: number;
@@ -152,6 +157,19 @@ export interface Projectile extends Vec {
 }
 export { CAMP, ARENA, OBSTACLES, water, walkable } from "./collision.js";
 import { CAMP, ARENA, walkable, moveSliding as move } from "./collision.js";
+import { FOREST_SPAWNS, FOREST_CAMP, FIELD_BOSS, isField } from "./maps.js";
+/** The map of the game currently being stepped (the sim is synchronous, so one at a time). */
+let activeMap: MapId = "meadow";
+const walk = (x: number, z: number, r = 0.3) => walkable(x, z, r, activeMap);
+const campFor = (m: MapId) => (m === "forest" ? FOREST_CAMP : CAMP);
+/** Cooldown until this player can fight / loot a field boss again. */
+export function bossReadyAt(p: Pick<Player, "bossReadyAt" | "bossCooldowns">, dataId: string) {
+	return dataId === "king_jelly" ? p.bossReadyAt ?? 0 : p.bossCooldowns?.[dataId] ?? 0;
+}
+export function setBossCooldown(p: Pick<Player, "bossReadyAt" | "bossCooldowns">, dataId: string, until: number) {
+	if (dataId === "king_jelly") p.bossReadyAt = until;
+	else (p.bossCooldowns ??= {})[dataId] = until;
+}
 export { CD } from "./constants.js";
 import { CD, ACTION_SKILLS } from "./constants.js";
 export const KING_PATTERN: KingAttack[] = [
@@ -298,7 +316,8 @@ export function createGame(
 		}[],
 	};
 	const positions = [[-4,-7],[3,-5],[-6,-1],[0,1],[5,5],[-4,6],[-1,8],[7,8],[-3,11],[7,12]];
- if(mapId==='meadow') positions.forEach(([x,z],i)=>spawn(g,x,z,false,i<4?'pink':i%2?'sky':'mint'));
+  if(mapId==='meadow') positions.forEach(([x,z],i)=>spawn(g,x,z,false,i<4?'pink':i%2?'sky':'mint'));
+ else if(mapId==='forest') for(const s of FOREST_SPAWNS) spawn(g,s.x,s.z,false,'pink',false,s.dataId);
  else Object.assign(p,CITY_SPAWN,{fx:0,fz:1});
 
 	return g;
@@ -369,15 +388,17 @@ export function spawn(
 	x: number,
 	z: number,
 	boss = false,
-	variant: SlimeVariant = "pink",
+		variant: SlimeVariant = "pink",
 	summoned = false,
+	explicitId?: string,
 ) {
-	const dataId = boss
+	const dataId = explicitId ?? (boss
 			? "king_jelly"
 			: summoned
 				? "jelly_summon"
-				: `jelly_${variant}`,
+				: `jelly_${variant}`),
 		spec = g.data.monsters.monsters.find((m) => m.id === dataId)!;
+	boss = spec.boss;
 	const hp = spec.hp;
 	const e: Enemy = {
 		dataId,
@@ -414,7 +435,9 @@ export function spawn(
 		patternIndex: 0,
 		history: [],
 		engaged: false,
-		summoned,
+				summoned,
+		behavior: spec.behavior,
+		mapId: g.mapId,
 		startX: x,
 		startZ: z,
 		fx: 0,
@@ -446,7 +469,7 @@ function reward(g: Game, e: Enemy) {
 		ownerId = topDamage(g, e);
 	g.drops.push({
 		ownerId,
- boss:e.boss,
+  boss:e.boss, bossId:e.boss?e.dataId:undefined,
  loot:rollDrops(spec,g.random,g.data,g.players.get(ownerId)?.autoSeconds||0,g.players.get(ownerId)?.stats.dropBonus||0),
 		id: g.nextId++,
 		x: e.x,
@@ -492,9 +515,10 @@ function defeat(g: Game, e: Enemy) {
 				setMotion(minion, "death");
 			}
 	}
-	if (g.kills >= 6 && !g.bossSpawned && [...g.players.values()].some(p=>g.wallTime>=(p.bossReadyAt??0))) {
+		const rule = g.mapId === "meadow" || g.mapId === "forest" ? FIELD_BOSS[g.mapId] : undefined;
+	if (rule && g.kills >= rule.kills && !g.bossSpawned && [...g.players.values()].some(p=>g.wallTime>=bossReadyAt(p, rule.dataId))) {
 		g.bossSpawned = true;
-		spawn(g, ARENA.x, ARENA.z, true);
+		spawn(g, rule.x, rule.z, true, "pink", false, rule.dataId);
 		emit(g, "boss");
 	}
 }
@@ -684,6 +708,7 @@ export function deathPenalty(p: Pick<Player, "level" | "xp" | "nextXp">, data: G
 	return lost;
 }
 export function action(g: Game, a: Action) {
+ activeMap = g.mapId;
  if(g.p.inventory&&a!=='potion'&&inventoryWeight(g.p.inventory,g.data)>=g.p.stats.weight*g.data.economy.attackWeightRatio){emit(g,'notice',{text:'น้ำหนักเกิน 90% โจมตีไม่ได้'});return false;}
  if(g.mapId==='city_plaza' && a!=='potion'){emit(g,"notice",{text:"เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้"});return false;}
 	const p = g.p,
@@ -834,7 +859,7 @@ export function action(g: Game, a: Action) {
 			for (let n = 0; n < Math.round(skill.range / 0.1); n++) {
 				const x = p.x + p.fx * 0.1,
 					z = p.z + p.fz * 0.1;
-				if (!walkable(x, z, 0.35)) break;
+				if (!walk(x, z, 0.35)) break;
 				p.x = x;
 				p.z = z;
 				for (const e of [...g.enemies])
@@ -972,6 +997,7 @@ export function setAuto(g: Game, enabled: boolean) {
 }
 /** The manual ground command keeps its original direct steering. AUTO supplies routed waypoints. */
 export function moveTo(g: Game, x: number, z: number, manual = true) {
+	activeMap = g.mapId;
 	if (manual) {
 		setAuto(g, false);
 		g.target = null;
@@ -982,7 +1008,7 @@ function clearSegment(a: Vec, b: Vec) {
 	const count = Math.ceil(Math.hypot(b.x - a.x, b.z - a.z) / 0.2);
 	for (let i = 1; i <= count; i++)
 		if (
-			!walkable(
+			!walk(
 				a.x + ((b.x - a.x) * i) / count,
 				a.z + ((b.z - a.z) * i) / count,
 				0.4,
@@ -1018,7 +1044,7 @@ function route(from: Vec, to: Vec): Vec[] {
 			const n = { x: v.x + dx, z: v.z + dz };
 			if (
 				parents.has(key(n)) ||
-				!walkable(n.x, n.z, 0.4) ||
+				!walk(n.x, n.z, 0.4) ||
 				!clearSegment(i === 0 ? from : v, n)
 			)
 				continue;
@@ -1037,12 +1063,12 @@ function navigate(g: Game, goal: Vec, reach = 0): Vec {
 	const p = g.p;
 	// Enemies use .3 clearance and may stand closer to a rock than our .4 route margin.
 	// Route to a melee approach point instead of requiring their exact centre to be traversable.
-	if (reach && !walkable(goal.x, goal.z, 0.4)) {
+	if (reach && !walk(goal.x, goal.z, 0.4)) {
 		const angle = Math.atan2(p.z - goal.z, p.x - goal.x);
 		const approach = Array.from({ length: 12 }, (_, i) => ({
 			x: goal.x + Math.cos(angle + (i * Math.PI) / 6) * (reach - 0.3),
 			z: goal.z + Math.sin(angle + (i * Math.PI) / 6) * (reach - 0.3),
-		})).find((v) => walkable(v.x, v.z, 0.4));
+		})).find((v) => walk(v.x, v.z, 0.4));
 		if (approach) goal = approach;
 	}
 	if (
@@ -1159,7 +1185,7 @@ function autoStep(g: Game, dt: number): Vec {
 					? "fight"
 					: "seek"
 				: "idle";
-		const atCamp = Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 1;
+				const camp = campFor(g.mapId), atCamp = Math.hypot(p.x - camp.x, p.z - camp.z) < 1;
 		if (target && d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
@@ -1184,7 +1210,7 @@ function autoStep(g: Game, dt: number): Vec {
 	}
 	const target = g.enemies.find((e) => e.id === g.target && !e.dead);
 	const retreat = p.autoState === "retreat",
-		atCamp = Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 1;
+				atCamp = Math.hypot(p.x - campFor(g.mapId).x, p.z - campFor(g.mapId).z) < 1;
 	if (target) {
 		const d = Math.hypot(target.x - p.x, target.z - p.z),
 			reach = target.boss ? 2.3 : 1.8;
@@ -1202,7 +1228,7 @@ function autoStep(g: Game, dt: number): Vec {
 			return navigate(g, target, reach);
 		}
 	}
-	if (retreat) return atCamp ? still : navigate(g, CAMP);
+		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId));
 	p.autoState = target ? "seek" : "idle";
 	return Math.hypot(p.x, p.z) < 0.4 ? still : navigate(g, { x: 0, z: 0 });
 }
@@ -1274,12 +1300,13 @@ function summon(g: Game, e: Enemy) {
 			const a = (i / 3) * Math.PI * 2 + j * 0.27,
 				tx = e.x + Math.cos(a) * 2.2,
 				tz = e.z + Math.sin(a) * 2.2;
-			if (walkable(tx, tz)) {
+			if (walk(tx, tz)) {
 				x = tx;
 				z = tz;
 				break;
 			}
 		}
+		const minion = e.dataId === "king_jelly" ? undefined : (Object.values(FIELD_BOSS).find((r) => r.dataId === e.dataId)?.minion ?? undefined);
 		const m = spawn(
 			g,
 			x,
@@ -1287,7 +1314,9 @@ function summon(g: Game, e: Enemy) {
 			false,
 			e.bossPhase === 2 ? (i % 2 ? "sky" : "mint") : "pink",
 			true,
+			minion,
 		);
+		if (minion) m.summoned = true;
 		m.aggro = 30;
 		ids.push(m.id);
 	}
@@ -1392,40 +1421,51 @@ function kingStep(g: Game, e: Enemy, dt: number) {
 		if (e.cooldown <= 0) startKingAttack(g, e);
 	}
 }
+const JELLY_BEHAVIOR = { ai: "melee" as const, speed: 2.2, aggroRange: 2.6, attackRange: 1.35, lunge: 5, cooldown: 1.5, windup: 0.5 };
+/** Regular monsters: jelly defaults, or the monster's data-driven behavior (melee lunge or ranged caster). */
 function slimeStep(g: Game, e: Enemy, dt: number) {
+	const b = e.behavior ?? { ...JELLY_BEHAVIOR, speed: e.variant === "pink" ? 2 : 2.2 };
 	const p = g.p,
 		dx = p.x - e.x,
 		dz = p.z - e.z,
 		d = Math.hypot(dx, dz) || 1;
-	if (d < 2.6) e.aggro = Math.max(e.aggro, 6);
+	if (d < b.aggroRange) e.aggro = Math.max(e.aggro, 6);
 	if (e.motion === "attack") {
-		e.windup = Math.max(0, 0.5 - e.motionTime);
-		if (e.motionTime >= 0.5 && e.motionTime < 0.68) {
-			move(e, e.fx * 5 * dt, e.fz * 5 * dt);
-			if (!e.attackApplied && Math.hypot(p.x - e.x, p.z - e.z) < 1.7) {
+		e.windup = Math.max(0, b.windup - e.motionTime);
+		if (b.ai === "ranged") {
+			if (e.motionTime >= b.windup && !e.attackApplied) {
+				e.attackApplied = true;
+				const spec = g.data.monsters.monsters.find((m) => m.id === e.dataId)!;
+				const a = Math.atan2(p.z - e.z, p.x - e.x), v = b.projectileSpeed ?? 6;
+				g.projectiles.push({ id: g.nextId++, owner: e.id, attack: "bolt", x: e.x + Math.cos(a) * 0.6, z: e.z + Math.sin(a) * 0.6, vx: Math.cos(a) * v, vz: Math.sin(a) * v, life: (b.attackRange + 1.5) / v, damage: Math.round(spec.matk * (0.85 + g.random() * 0.3)), phase: 1 });
+				emit(g, "bolt", { x: e.x, z: e.z, id: e.id });
+			}
+		} else if (e.motionTime >= b.windup && e.motionTime < b.windup + 0.18) {
+			move(e, e.fx * b.lunge * dt, e.fz * b.lunge * dt);
+			if (!e.attackApplied && Math.hypot(p.x - e.x, p.z - e.z) < b.attackRange + 0.35) {
 				e.attackApplied = true;
 				hurt(g, 0, e);
 			}
 		}
 		if (e.motionTime >= e.motionDuration) {
 			setMotion(e, "idle");
-			e.cooldown = 1.5;
+			e.cooldown = b.cooldown;
 		}
 		return;
 	}
 	if (e.aggro > 0) {
-		if (e.cooldown <= 0 && d < 1.35) {
+		const ranged = b.ai === "ranged";
+		if (e.cooldown <= 0 && d < b.attackRange && (!ranged || d >= (b.keepAway ?? 0) * 0.6)) {
 			face(e, p.x, p.z);
 			setMotion(e, "attack");
-			e.windup = 0.5;
-			warn(g, e, p.x, p.z, 0.9, 0.5);
-		} else if (d > 1.0) {
+			e.windup = b.windup;
+			if (!ranged) warn(g, e, p.x, p.z, 0.9, b.windup);
+		} else if (ranged && d < (b.keepAway ?? 0)) {
 			setMotion(e, "hop");
-			move(
-				e,
-				(dx / d) * (e.variant === "pink" ? 2 : 2.2) * dt,
-				(dz / d) * (e.variant === "pink" ? 2 : 2.2) * dt,
-			);
+			move(e, (-dx / d) * b.speed * dt, (-dz / d) * b.speed * dt);
+		} else if (d > (ranged ? b.attackRange * 0.9 : 1.0)) {
+			setMotion(e, "hop");
+			move(e, (dx / d) * b.speed * dt, (dz / d) * b.speed * dt);
 		} else setMotion(e, "idle");
 	} else {
 		e.wander -= dt;
@@ -1459,7 +1499,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
  const canRegen=!p.inventory||inventoryWeight(p.inventory,g.data)<p.stats.weight*g.data.economy.regenWeightRatio;
  if(canRegen){
 		p.mp = Math.min(p.maxMp, p.mp + dt * p.stats.spRegen);
-		if (g.mapId === "meadow" && Math.hypot(p.x - CAMP.x, p.z - CAMP.z) < 2)
+				if (isField(g.mapId) && Math.hypot(p.x - campFor(g.mapId).x, p.z - campFor(g.mapId).z) < 2)
 			p.hp = Math.min(p.maxHp, p.hp + dt * 20);
 		else
 			p.hp = Math.min(
@@ -1544,11 +1584,12 @@ export function step(
 	input: Vec = { x: 0, z: 0 },
 	inputs?: Map<string, Vec>,
 ) {
-	g.time += dt;
+		g.time += dt;
+	activeMap = g.mapId;
 	const previous = g.p;
 	for (const p of g.players.values()) {
 		g.p = p;
-        if(p.dead||g.mapId!=='meadow')p.whirlwindHits=[];
+                if(p.dead||!isField(g.mapId))p.whirlwindHits=[];
         const due=(p.whirlwindHits??[]).filter(h=>h.due<=g.time+1e-9);p.whirlwindHits=(p.whirlwindHits??[]).filter(h=>h.due>g.time+1e-9);
         for(const h of due){const enemy=g.enemies.find(e=>e.id===h.id&&!e.dead);if(enemy)hit(g,enemy,resolveSkill(g.data,'whirlwind',p.skills.whirlwind||1),false,h);}
 		playerStep(
@@ -1631,7 +1672,8 @@ export function step(
 				Math.hypot(p.x - projectile.x, p.z - projectile.z) < 0.55
 			) {
 				g.p = p;
-				hurt(
+				if (projectile.attack === "bolt") hurt(g, Math.max(1, Math.round(projectile.damage * (1 - Math.min(0.5, (p.stats.softMdef ?? 0) / 200)))));
+				else hurt(
 					g,
 					projectile.damage,
 					g.enemies.find((e) => e.id === projectile.owner),
@@ -1640,7 +1682,7 @@ export function step(
 				projectile.life = 0;
 				break;
 			}
-		if (projectile.life <= 0 || !walkable(projectile.x, projectile.z, 0.05))
+		if (projectile.life <= 0 || !walk(projectile.x, projectile.z, 0.05))
 			g.projectiles.splice(i, 1);
 	}
 	for (let i = g.meteors.length - 1; i >= 0; i--) {
@@ -1669,7 +1711,7 @@ export function step(
 	}
  for (const d of [...g.drops]) {
   d.time+=dt;if(d.time>=60&&!d.pending){g.drops=g.drops.filter(v=>v!==d);continue;}if(d.pending||d.blocked)continue;
-  const candidates=[...g.players.values()].filter(p=>!p.dead&&(!d.boss||g.wallTime>=(p.bossReadyAt??0))&&(p.id===d.ownerId||d.time>=g.data.economy.lootOwnershipSeconds)&&(!p.auto||p.id===d.ownerId)&&(!p.auto||p.inventory?.autoPickup!==false)).sort((a,b)=>Math.hypot(a.x-d.x,a.z-d.z)-Math.hypot(b.x-d.x,b.z-d.z));
+  const candidates=[...g.players.values()].filter(p=>!p.dead&&(!d.boss||g.wallTime>=bossReadyAt(p,d.bossId??'king_jelly'))&&(p.id===d.ownerId||d.time>=g.data.economy.lootOwnershipSeconds)&&(!p.auto||p.id===d.ownerId)&&(!p.auto||p.inventory?.autoPickup!==false)).sort((a,b)=>Math.hypot(a.x-d.x,a.z-d.z)-Math.hypot(b.x-d.x,b.z-d.z));
   const p=candidates[0];if(!p)continue;g.p=p;
   const dx=p.x-d.x,dz=p.z-d.z,dist=Math.hypot(dx,dz);
   if(dist<4&&d.time>.25){const speed=Math.min(dist,dt*9);d.x+=dx/(dist||1)*speed;d.z+=dz/(dist||1)*speed;}
@@ -1678,7 +1720,7 @@ export function step(
 								for (const share of expShares(g, p, d.xp, d.jobExp || 0))
 					grantExp(g, share.player, share.xp, share.jobExp, { gold: share.player === p ? d.gold : 0, shared: share.shared });
 				g.p = p;
-    if(d.boss)p.bossReadyAt=g.wallTime+600000;g.drops=g.drops.filter(drop=>drop!==d);g.p=before;
+        if(d.boss)setBossCooldown(p,d.bossId??'king_jelly',g.wallTime+600000);g.drops=g.drops.filter(drop=>drop!==d);g.p=before;
    };
    if(g.inventoryCommit){
     if(d.blocked)continue;

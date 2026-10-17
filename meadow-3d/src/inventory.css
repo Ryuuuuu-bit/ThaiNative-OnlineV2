@@ -209,3 +209,9 @@
 }
 
 #inventory-window .inv-hint,#inventory-window .inv-empty{font-size:13px;opacity:.8;margin:8px 0}
+
+.item-icon-v2 {
+	background-image: url("/assets/items/items-v2.webp"), radial-gradient(circle at 42% 38%, #fff8e0 0 8%, var(--rarity, #c9b98f) 30%, #2b3a33 72%, transparent 74%);
+	background-size: 500% 500%, 70% 70%;
+	background-repeat: no-repeat;
+}

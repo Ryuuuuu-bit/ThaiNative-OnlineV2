@@ -6,7 +6,7 @@ interface Member { id: string; name: string; online: boolean; level?: number; jo
 interface PartyState { id: string; leader: string; members: Member[] }
 
 const CHANNEL_LABEL = { map: 'ทั่วไป', party: 'ปาร์ตี้', whisper: 'กระซิบ', system: 'ระบบ' } as const;
-const MAP_LABEL: Record<string, string> = { city_plaza: 'เมือง', meadow: 'ทุ่งวุ้นจิ๋ว' };
+const MAP_LABEL: Record<string, string> = { city_plaza: 'เมือง', meadow: 'ทุ่งวุ้นจิ๋ว', forest: 'ป่าหมอก' };
 const HELP = 'คำสั่ง: /p ข้อความ (ปาร์ตี้) · /w ชื่อ ข้อความ (กระซิบ) · /r ข้อความ (ตอบกลับ) · /invite ชื่อ · /leave · /kick ชื่อ · /lead ชื่อ';
 const MAX_LINES = 80;
 

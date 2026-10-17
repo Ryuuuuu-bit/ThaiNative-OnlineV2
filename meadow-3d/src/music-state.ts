@@ -17,7 +17,7 @@ export class MusicSelection {
   private wasFighting = false;
   private releaseAt = -Infinity;
   select(state: MusicState, seconds: number): MusicTrack | null {
-    if (state.mapId !== 'meadow') {
+    if (state.mapId !== 'meadow' && state.mapId !== 'forest') {
       this.wasFighting = false; this.releaseAt = -Infinity;
       return state.mapId === 'city_plaza' ? 'city' : null;
     }
