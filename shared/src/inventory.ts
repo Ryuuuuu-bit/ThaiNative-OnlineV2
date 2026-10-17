@@ -39,6 +39,9 @@ export interface InventoryOp {
 		| "discard"
 		| "pickup"
 		| "settings"
+		| "store"
+		| "retrieve"
+		| "quest"
 		| "admin";
 	template?: string;
 	id?: string;
@@ -46,7 +49,9 @@ export interface InventoryOp {
 	ids?: string[];
 	shop?: string;
 	gold?: number;
-	loot?: { template: string; qty: number }[];
+		loot?: { template: string; qty: number }[];
+	/** Quest turn-in: items granted after `loot` (items required) are taken. */
+	reward?: { template: string; qty: number }[];
 	on?: boolean;
 }
 export interface LedgerEntry {
@@ -86,6 +91,13 @@ export function inventorySlots(inv: Inventory, data: GameData) {
 			0,
 		);
 }
+/** Slots used in storage: one per stack (split by max stack) or per unique item. */
+export function storageSlots(inv: Inventory, data: GameData) {
+	return inv.items
+		.filter((i) => i.location === "storage")
+		.reduce((n, i) => n + Math.ceil(i.qty / (knownTemplate(data, i.template)?.maxStack ?? Infinity)), 0);
+}
+export const storageStackId = (template: string) => "stack:storage:" + template;
 export function equipped(inv: Inventory) {
 	return inv.items.filter((i) => i.location === "equip").map((i) => i.template);
 }
@@ -320,6 +332,49 @@ export function applyInventory(
 		next.gold += gold;
 		ledger.push({ kind: op.op, qty: 0, goldDelta: gold });
 	}
+		if (op.op === "store" || op.op === "retrieve") {
+		const from = op.op === "store" ? "bag" : "storage",
+			to = op.op === "store" ? "storage" : "bag";
+		const i = inv.items.find((i) => i.id === op.id && i.location === from);
+		if (!i) throw Error(op.op === "store" ? "ฝากได้เฉพาะของในกระเป๋า (ถอดอุปกรณ์ก่อน)" : "ไม่พบของในคลัง");
+		const t = template(i.template);
+		if (count > i.qty) throw Error("ไอเทมไม่พอ");
+		if (t.stackable) {
+			i.qty -= count;
+			if (!i.qty) inv.items.splice(inv.items.indexOf(i), 1);
+			const target = inv.items.find((s) => s.template === t.id && s.location === to);
+			if (target) target.qty += count;
+			else
+				inv.items.push({ ...i, id: to === "storage" ? storageStackId(t.id) : "stack:" + t.id, qty: count, location: to, slot: null });
+		} else {
+			if (count !== 1) throw Error("จำนวนไม่ถูกต้อง");
+			i.location = to;
+			i.slot = null;
+		}
+		log(op.op === "store" ? "storage_in" : "storage_out", i, count);
+		if (storageSlots(inv, data) > data.economy.storageSlots) throw Error("คลังเต็ม");
+	}
+	if (op.op === "quest") {
+		for (const need of op.loot ?? []) {
+			let left = need.qty;
+			for (const i of inv.items.filter((i) => i.template === need.template && i.location === "bag")) {
+				const take = Math.min(left, i.qty);
+				remove(i, take);
+				log("quest", i, -take);
+				left -= take;
+				if (!left) break;
+			}
+			if (left > 0) throw Error(`ต้องมี ${template(need.template).nameTh} ×${need.qty}`);
+		}
+		for (const reward of op.reward ?? []) {
+			add(reward.template, reward.qty, "quest");
+			ledger.push({ kind: "quest", template: reward.template, qty: reward.qty, goldDelta: 0 });
+		}
+		const gold = op.gold ?? 0;
+		if (!Number.isSafeInteger(gold) || gold < 0) throw Error("ทองไม่ถูกต้อง");
+		next.gold += gold;
+		ledger.push({ kind: "quest", qty: 0, goldDelta: gold });
+	}
 	if (op.op === "settings") inv.autoPickup = !!op.on;
 	if (
 		!Number.isSafeInteger(next.gold) ||
@@ -327,7 +382,7 @@ export function applyInventory(
 		next.gold > 2147483647
 	)
 		throw Error("ทองเกินขีดจำกัด");
-	if (["buy", "pickup", "equip", "unequip"].includes(op.op)) {
+	if (["buy", "pickup", "equip", "unequip", "retrieve", "quest"].includes(op.op)) {
 		if (inventorySlots(inv, data) > data.economy.inventorySlots)
 			throw Error("กระเป๋าเต็ม");
 		const max = deriveStats(

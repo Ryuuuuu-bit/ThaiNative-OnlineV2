@@ -207,3 +207,5 @@
 		padding: 7px !important;
 	}
 }
+
+#inventory-window .inv-hint,#inventory-window .inv-empty{font-size:13px;opacity:.8;margin:8px 0}

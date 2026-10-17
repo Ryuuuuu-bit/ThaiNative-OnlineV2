@@ -1,7 +1,8 @@
 import {
 	loadGameData,
 	rarityColors,
-	inventorySlots,
+		inventorySlots,
+	storageSlots,
 	type Inventory,
 	type OwnedItem,
 	type Player,
@@ -36,7 +37,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	let p: Player | undefined,
 		inv: Inventory | undefined,
 		filter = "ทั้งหมด",
-		shop: string | null = null,
+				shop: string | null = null,
+		storage = false,
+		storageTab = "ฝากของ",
 		shopTab = "ซื้อ",
 		selected: string | null = null,
 		lastTouch = "",
@@ -105,7 +108,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				lastTouch = i.id;
 			}
 		};
-		b.ondblclick = () => {
+				b.ondblclick = () => {
+			if (mode === "store" || mode === "withdraw") { request(mode === "store" ? "store" : "retrieve", { id: i.id, qty: i.qty }); return; }
 			if (mode === "buy")
 				request("buy", { shop, template: i.template, qty: 1 });
 			else if (mode !== "sell") action(i);
@@ -169,7 +173,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			row.append(span);
 			detail.append(row);
 		}
-		if (!actions) return;
+				if (!actions) return;
 		const buttons = document.createElement("div");
 		buttons.className = "inv-actions";
 		const add = (label: string, fn: () => void) => {
@@ -178,6 +182,21 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			b.onclick = fn;
 			buttons.append(b);
 		};
+		if (storage) {
+			const into = i.location === "bag";
+			const qty = document.createElement("input");
+			qty.type = "number";
+			qty.min = "1";
+			qty.max = String(i.qty);
+			qty.value = String(i.qty);
+			qty.setAttribute("aria-label", into ? "จำนวนฝาก" : "จำนวนถอน");
+			buttons.append(qty);
+			add(into ? "ฝากเข้าคลัง" : "ถอนใส่กระเป๋า", () =>
+				request(into ? "store" : "retrieve", { id: i.id, qty: Math.min(i.qty, Math.max(1, Math.trunc(Number(qty.value) || 1))) }),
+			);
+			detail.append(buttons);
+			return;
+		}
 		if (shop && shopTab === "ซื้อ") {
 			const quantity = document.createElement("input");
 			quantity.type = "number";
@@ -215,21 +234,24 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (!panel.open) return;
 		inv = p?.inventory || inv;
 		if (!inv) return;
-		summary.textContent = `◈ ${p?.gold ?? 0} ทอง · ${inventorySlots(inv, data)} / ${data.economy.inventorySlots} ช่อง · น้ำหนัก ${Math.round((p as any)?.carryWeight || 0)} / ${Math.round((p as any)?.weightLimit || 0)}`;
+				summary.textContent = `◈ ${p?.gold ?? 0} ทอง · ${inventorySlots(inv, data)} / ${data.economy.inventorySlots} ช่อง${storage ? ` · คลัง ${storageSlots(inv, data)} / ${data.economy.storageSlots}` : ""} · น้ำหนัก ${Math.round((p as any)?.carryWeight || 0)} / ${Math.round((p as any)?.weightLimit || 0)}`;
 		const weight = panel.querySelector<HTMLProgressElement>("progress")!;
 		weight.value =
 			(((p as any)?.carryWeight || 0) / ((p as any)?.weightLimit || 1)) * 100;
 		auto.checked = inv.autoPickup;
 		tabs.replaceChildren();
 		content.replaceChildren();
-		for (const name of shop
+				for (const name of storage
+			? ["ฝากของ", "ในคลัง"]
+			: shop
 			? ["ซื้อ", "ขาย"]
 			: ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ", "สวมใส่"]) {
 			const b = document.createElement("button");
 			b.textContent = name;
-			b.classList.toggle("active", name === (shop ? shopTab : filter));
+			b.classList.toggle("active", name === (storage ? storageTab : shop ? shopTab : filter));
 			b.onclick = () => {
-				if (shop) shopTab = name;
+				if (storage) storageTab = name;
+				else if (shop) shopTab = name;
 				else filter = name;
 				selected = null;
 				multi.clear();
@@ -237,6 +259,29 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				draw();
 			};
 			tabs.append(b);
+		}
+				if (storage) {
+			const grid = document.createElement("div");
+			grid.className = "inv-grid";
+			const location = storageTab === "ฝากของ" ? "bag" : "storage";
+			const items = inv.items.filter((i) => i.location === location);
+			for (const i of items) {
+				const t = template(i);
+				for (let left = i.qty; left > 0; left -= t.maxStack)
+					grid.append(cell({ ...i, qty: Math.min(left, t.maxStack) }, location === "bag" ? "store" : "withdraw"));
+			}
+			if (!items.length) {
+				const empty = document.createElement("p");
+				empty.className = "inv-empty";
+				empty.textContent = location === "bag" ? "กระเป๋าว่าง (ของที่สวมอยู่ต้องถอดก่อนฝาก)" : "คลังยังว่าง · เลือกของจากแท็บ ฝากของ";
+				content.append(empty);
+			}
+			content.append(grid);
+			const hint = document.createElement("p");
+			hint.className = "inv-hint";
+			hint.textContent = "ดับเบิลคลิกเพื่อฝาก/ถอนทั้งกอง · คลังแยกตามตัวละคร";
+			content.append(hint);
+			return;
 		}
 		if (!shop && filter === "สวมใส่") {
 			const doll = document.createElement("div");
@@ -336,14 +381,18 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			content.append(actions);
 		}
 	}
-	function open(nextShop: string | null = null) {
+		function open(nextShop: string | null = null) {
 		onOpen();
-		shop = nextShop;
+		storage = nextShop === "storage";
+		if (storage) storageTab = "ฝากของ";
+		shop = storage ? null : nextShop;
 		selected = null;
 		multi.clear();
 		if(!pending)status.textContent = "";
 		panel.querySelector("h2")!.textContent =
-			shop === "market"
+						storage
+				? "คลังเก็บของ"
+				: shop === "market"
 				? "พ่อค้าเบ็ดเตล็ด"
 				: shop === "forge"
 					? "ช่างตีเหล็ก"

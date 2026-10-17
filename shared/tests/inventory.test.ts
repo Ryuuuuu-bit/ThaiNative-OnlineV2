@@ -151,3 +151,51 @@ test("weight rules disable all regen at 50%, attack at 90%, enforce 100 slots an
 		/กระเป๋าเต็ม/,
 	);
 });
+
+test("storage: deposit/withdraw stacks and gear, equipped gear stays out, capacity and bag limits apply", async () => {
+	const { applyInventory, starterInventory, storageSlots, loadGameData } = await import("../src/index.node.js");
+	const data = loadGameData();
+	let n = 0;
+	const uuid = () => "id-" + ++n;
+	const profile = { ...data.stats.defaultBuild, level: 5 };
+	let state = { gold: 100, inventory: starterInventory(10, uuid) };
+	const sword = state.inventory.items.find(i => i.template === "training_sword")!;
+	assert.throws(() => applyInventory(state, { op: "store", id: sword.id }, profile, data, uuid), /ถอดอุปกรณ์/);
+	let out = applyInventory(state, { op: "store", id: "stack:red_small", qty: 4 }, profile, data, uuid);
+	state = out.state;
+	assert.equal(state.inventory.items.find(i => i.id === "stack:red_small")!.qty, 6);
+	assert.equal(state.inventory.items.find(i => i.id === "stack:storage:red_small")!.qty, 4);
+	assert.deepEqual(out.ledger.map(l => [l.kind, l.qty, l.goldDelta]), [["storage_in", 4, 0]]);
+	state = applyInventory(state, { op: "store", id: "stack:red_small", qty: 6 }, profile, data, uuid).state;
+	assert.ok(!state.inventory.items.some(i => i.id === "stack:red_small"));
+	state = applyInventory(state, { op: "retrieve", id: "stack:storage:red_small", qty: 3 }, profile, data, uuid).state;
+	assert.equal(state.inventory.items.find(i => i.id === "stack:red_small")!.qty, 3);
+	assert.equal(state.inventory.items.find(i => i.id === "stack:storage:red_small")!.qty, 7);
+	state = applyInventory(state, { op: "unequip", id: sword.id }, profile, data, uuid).state;
+	state = applyInventory(state, { op: "store", id: sword.id }, profile, data, uuid).state;
+	assert.equal(state.inventory.items.find(i => i.id === sword.id)!.location, "storage");
+	assert.equal(storageSlots(state.inventory, data), 2);
+	assert.throws(() => applyInventory(state, { op: "retrieve", id: "stack:storage:red_small", qty: 99 }, profile, data, uuid), /ไม่พอ/);
+	const full = structuredClone(state);
+	for (let i = 0; i < data.economy.storageSlots; i++) full.inventory.items.push({ ...sword, id: "x" + i, location: "storage" });
+	full.inventory.items.push({ ...sword, id: "bagged", location: "bag" });
+	assert.throws(() => applyInventory(full, { op: "store", id: "bagged" }, profile, data, uuid), /คลังเต็ม/);
+	assert.equal(state.gold, 100);
+});
+
+test("quest turn-in takes required items and grants rewards in one ledgered step", async () => {
+	const { applyInventory, starterInventory, loadGameData } = await import("../src/index.node.js");
+	const data = loadGameData();
+	let n = 0;
+	const uuid = () => "q-" + ++n;
+	const profile = { ...data.stats.defaultBuild, level: 5 };
+	const state = { gold: 10, inventory: starterInventory(2, uuid) };
+	state.inventory.items.push({ id: "stack:jelly_slime", template: "jelly_slime", qty: 12, location: "bag", slot: null, refine: 0, cards: [], bound: false, source: "drop" });
+	assert.throws(() => applyInventory(state, { op: "quest", loot: [{ template: "jelly_slime", qty: 20 }], gold: 50 }, profile, data, uuid), /ต้องมี/);
+	const out = applyInventory(state, { op: "quest", loot: [{ template: "jelly_slime", qty: 10 }], reward: [{ template: "red_medium", qty: 3 }], gold: 50 }, profile, data, uuid);
+	assert.equal(out.state.gold, 60);
+	assert.equal(out.state.inventory.items.find(i => i.template === "jelly_slime")!.qty, 2);
+	assert.equal(out.state.inventory.items.find(i => i.template === "red_medium")!.qty, 3);
+	assert.equal(out.ledger.reduce((s, l) => s + l.goldDelta, 0), 50);
+	assert.ok(out.ledger.every(l => l.kind === "quest"));
+});

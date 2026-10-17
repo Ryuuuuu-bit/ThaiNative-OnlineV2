@@ -9,7 +9,7 @@ export const IntentSchema = z.discriminatedUnion("t", [
  z.object({t:z.literal('chat'),ch:z.enum(['map','party','whisper']),text:z.string().min(1).max(160),to:z.string().min(1).max(24).optional()}).strict(),
  z.object({t:z.literal('party'),op:z.enum(['invite','accept','decline','leave','kick','lead']),name:z.string().min(1).max(24).optional(),id:z.string().max(60).optional()}).strict(),
  z.object({t:z.literal('pickupAll')}).strict(),
- z.object({t:z.literal('inv'),op:z.enum(['buy','sell','equip','unequip','use','discard','pickup','settings']),req:z.uuid(),id:z.string().max(80).optional(),template:z.string().max(60).optional(),qty:z.number().int().min(1).max(9999).optional(),ids:z.array(z.string().max(80)).max(100).optional(),shop:z.enum(['market','forge']).optional(),drop:z.number().int().positive().optional(),on:z.boolean().optional()}).strict(),
+ z.object({t:z.literal('inv'),op:z.enum(['buy','sell','equip','unequip','use','discard','pickup','settings','store','retrieve']),req:z.uuid(),id:z.string().max(80).optional(),template:z.string().max(60).optional(),qty:z.number().int().min(1).max(9999).optional(),ids:z.array(z.string().max(80)).max(100).optional(),shop:z.enum(['market','forge']).optional(),drop:z.number().int().positive().optional(),on:z.boolean().optional()}).strict(),
  z.object({t:z.literal("travel"),gate:z.enum(["north","south","east","west"])}).strict(),
  z.object({t:z.literal("heal")}).strict(),
  z.object({t:z.literal("audioSettings"),settings:AudioSettingsSchema}).strict(),

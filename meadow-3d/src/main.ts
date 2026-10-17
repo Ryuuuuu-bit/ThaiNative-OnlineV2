@@ -87,13 +87,13 @@ async function switchMap(id:MapId){
 const npcTalk=document.createElement('button');npcTalk.id='npc-talk';npcTalk.hidden=true;$('#ui').append(npcTalk);
 const npcDialog=document.createElement('dialog');npcDialog.id='npc-dialog';npcDialog.innerHTML='<h2></h2><p></p><button>ปิด</button>';document.body.append(npcDialog);npcDialog.querySelector('button')!.onclick=()=>npcDialog.close();
 let nearNpc: {name:string;kind:string;text:string}|null=null;
-npcTalk.onclick=()=>{if(!nearNpc)return;clearInput();if(['market','forge'].includes(nearNpc.kind)){inventoryUI.shop(nearNpc.kind);return;}if(nearNpc.kind==='heal')net.send({t:'heal'});npcDialog.querySelector('h2')!.textContent=nearNpc.name;npcDialog.querySelector('p')!.textContent=nearNpc.text;npcDialog.showModal();};
+npcTalk.onclick=()=>{if(!nearNpc)return;clearInput();if(['market','forge','storage'].includes(nearNpc.kind)){inventoryUI.shop(nearNpc.kind);return;}if(nearNpc.kind==='heal')net.send({t:'heal'});npcDialog.querySelector('h2')!.textContent=nearNpc.name;npcDialog.querySelector('p')!.textContent=nearNpc.text;npcDialog.showModal();};
 const cityFog=new T.Fog('#c8d1cd',35,68),meadowFog=scene.fog;
 function mapInteractions(){
  const mapTitle=document.querySelector('.map-head');if(mapTitle)mapTitle.textContent=areaName(activeMap);
  overview.hidden=activeMap!=='city_plaza';const p=game.p;nearNpc=null;
  if(activeMap==='city_plaza'&&!p.dead){
-  for(const b of CITY_BUILDINGS)if(b.id!=='storage'&&Math.hypot(p.x-b.talk.x,p.z-b.talk.z)<3)nearNpc={name:b.npc,kind:b.id,text:'เร็ว ๆ นี้'};
+  for(const b of CITY_BUILDINGS)if(Math.hypot(p.x-b.talk.x,p.z-b.talk.z)<3)nearNpc={name:b.npc,kind:b.id,text:'เร็ว ๆ นี้'};
   if(Math.hypot(p.x-HEALER.x,p.z-HEALER.z)<3)nearNpc={name:'นักบวชหมอ',kind:'heal',text:'ขอให้พลังกลับคืนมา · ฟื้นพลังชีวิตและพลังสกิล เต็มได้ทุก 60 วินาที'};
   if(Math.hypot(p.x-4,p.z-25)<3)nearNpc={name:'หัวหน้าทหารประตู',kind:'guard',text:'ผ่านประตูใต้สู่ทุ่งวุ้นจิ๋ว เริ่มฝึกกับวุ้นใกล้ทางเข้า หากบาดเจ็บให้กลับมาพบนักบวชหมอข้างน้ำพุ'};
  }
@@ -107,7 +107,7 @@ function mapInteractions(){
  if(closed&&closed!==closedGate)notice('หมอกหนาเกินไป ยังผ่านไม่ได้');closedGate=closed;
  const fog=overviewOn&&activeMap==='city_plaza'?null:activeMap==='city_plaza'?cityFog:meadowFog;if(scene.fog!==fog)scene.fog=fog;
 }
-const npcLabels=[...CITY_BUILDINGS.map(b=>({...b.talk,name:b.id==='storage'?'🔒 คลังเก็บของ — เปิดเร็ว ๆ นี้':b.npc,role:b.name})),{...HEALER,name:'นักบวชหมอ',role:'ฟื้นพลังชีวิตและพลังสกิล'},{...jobs.angel,name:'ทูตสวรรค์',role:'เส้นทางอาชีพ'},{x:4,z:25,name:'หัวหน้าทหารประตู',role:'ประตูสู่ทุ่งหญ้า'}].map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.name;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
+const npcLabels=[...CITY_BUILDINGS.map(b=>({...b.talk,name:b.npc,role:b.name})),{...HEALER,name:'นักบวชหมอ',role:'ฟื้นพลังชีวิตและพลังสกิล'},{...jobs.angel,name:'ทูตสวรรค์',role:'เส้นทางอาชีพ'},{x:4,z:25,name:'หัวหน้าทหารประตู',role:'ประตูสู่ทุ่งหญ้า'}].map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.name;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
 const statusLabels=new Map<number,HTMLElement>();
 const dropLabels=new Map<number,T.Sprite>(),dropPillars=new Map<number,T.Mesh>();
 const enemies=new Map<number,any>(),drops=new Map<number,T.Mesh>(),effects:any[]=[],numbers:any[]=[];let markerTime=0;
@@ -310,7 +310,7 @@ applyQuality();hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
 
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
-qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>{if(!skillsUI.open)skillsUI.toggle();$('#key-settings').hidden=false;$('#audio-settings').hidden=false;},talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(['market','forge'].includes(kind)){inventoryUI.shop(kind);return;}if(nearNpc&&nearNpc.kind===kind)npcTalk.click();}});
+qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>{if(!skillsUI.open)skillsUI.toggle();$('#key-settings').hidden=false;$('#audio-settings').hidden=false;},talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(['market','forge','storage'].includes(kind)){inventoryUI.shop(kind);return;}if(nearNpc&&nearNpc.kind===kind)npcTalk.click();}});
 
 if(pendingUI)qol.receive(pendingUI);
 function measureHeroScreen(actor:T.Object3D=hero.root,threshold=200){
