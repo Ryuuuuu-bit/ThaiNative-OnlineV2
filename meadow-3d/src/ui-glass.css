@@ -33,18 +33,24 @@
 #ui .player-name{font:600 17px/1.3 'Noto Sans Thai',sans-serif;letter-spacing:.01em}
 #ui .bar{border:0;border-radius:6px;background:rgba(0,0,0,.38);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
 #ui .bar i{border-radius:inherit}
-#ui .player .hp{height:14px}#ui .player .mp{height:12px;margin-top:4px}
+/* info column as a grid: name + job on one line, HP / MP with numbers inside, EXP and job EXP side by side */
+#ui .player-info{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"name label" "hp hp" "mp mp" "xp jxp" "exp exp";column-gap:8px;align-items:center;min-width:0}
+#ui .player #job-progress{display:contents}
+#ui .player .player-name{grid-area:name;margin:0}
+#ui .player #job-label{grid-area:label;justify-self:end;text-align:right;font-size:11px!important;color:var(--g-muted)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#ui .player .bar{margin:0;overflow:hidden}
+#ui .player .hp{grid-area:hp;height:16px;margin-top:4px}
+#ui .player .mp{grid-area:mp;height:12px;margin-top:4px}
 #ui .player .hp i{background:linear-gradient(90deg,var(--g-hp-deep),var(--g-hp))}
 #ui .player .mp i{background:linear-gradient(90deg,#3a86b8,var(--g-mp))}
-#ui .player .bar{overflow:visible;margin-right:80px}
-#ui .player .bar i{overflow:hidden}
-#ui .player .bar small{left:auto;right:-80px;width:74px;text-align:right;background:none;color:var(--g-muted)!important;font:600 11px/14px 'Noto Sans Thai',sans-serif!important;text-shadow:0 1px 2px #000,0 0 4px #000;font-variant-numeric:tabular-nums}
-#ui .player .mp small{line-height:12px!important}
-#ui .player .xp,#ui .player .job-xp{height:3px;box-shadow:none;background:rgba(0,0,0,.35)}
+#ui .player .bar small{left:0;right:8px;width:auto;text-align:right;background:none;color:#fff!important;font:600 10.5px/16px 'Noto Sans Thai',sans-serif!important;text-shadow:0 1px 2px #000,0 0 3px #000;font-variant-numeric:tabular-nums}
+#ui .player .mp small{line-height:12px!important;font-size:9.5px!important}
+#ui .player .xp,#ui .player .job-xp{height:4px;margin-top:7px;box-shadow:none;background:rgba(0,0,0,.4)}
+#ui .player .xp{grid-area:xp}
+#ui .player .job-xp{grid-area:jxp}
 #ui .player .xp i{background:linear-gradient(90deg,#b99558,var(--g-gold));box-shadow:0 0 6px rgba(230,201,143,.5)}
 #ui .player .job-xp i{background:var(--g-ok)}
-#ui .player :is(#job-label,#job-exp){color:var(--g-muted);font-size:11px!important;line-height:1.4!important}
-#ui .player #job-progress{margin-top:6px}
+#ui .player #job-exp{grid-area:exp;margin-top:3px;font-size:10px!important;color:var(--g-faint)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #ui .buff-icon{width:26px;height:26px;font-size:14px;border:1px solid var(--g-line-strong);background:conic-gradient(rgba(230,201,143,.55) var(--remaining),var(--g-glass-strong) 0);color:var(--g-text)}
 
 /* ---------- Map, menu row, tools ---------- */
@@ -138,7 +144,7 @@
 
 /* ---------- Desktop layout ---------- */
 @media(min-width:651px){
-	#ui .player{left:24px;top:22px;width:340px;padding:0}
+	#ui .player{left:24px;top:22px;width:320px;padding:0}
 	/* round map, a coords line, then one row of six plain icons */
 	#ui .map{top:20px;right:22px;width:184px;padding:0}
 	#ui .map .map-head{display:none}
@@ -342,3 +348,6 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 	#ui #action-launcher #pickup-all{--tint:#c495f2}
 	#ui #action-launcher [data-action=potion].auto-on::after{content:'ยา · อัตโนมัติ';color:var(--g-ok)}
 }
+
+/* phones: the round minimap stays round */
+@media(max-width:650px){#ui #map{width:104px!important;height:104px!important;margin:0 auto}}
