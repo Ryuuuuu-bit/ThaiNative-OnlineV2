@@ -1309,8 +1309,8 @@ function autoStep(g: Game, dt: number): Vec {
 }
 /**
  * AUTO target. A monster fighting this player comes first (with `attackers`), then bosses (with
- * `elites`), then the nearest one in range on the map's hunt list. The current target is kept
- * unless another is clearly better, so AUTO does not flip between two close monsters.
+ * `elites`), then the nearest one in range on the map's hunt list. The current (or clicked) target is
+ * kept until it dies or a boss appears, so AUTO neither flips between close monsters nor ignores a click.
  */
 function autoPickTarget(g: Game, cfg: AutoSettings) {
 	const p = g.p,
@@ -1321,27 +1321,46 @@ function autoPickTarget(g: Game, cfg: AutoSettings) {
 		allowed = (e: Enemy) => !wanted || wanted.has(e.dataId) || fighting(e),
 		skip = p.autoUnreachable || {},
 		living = g.enemies.filter((e) => !e.dead && !((skip[e.id] ?? 0) > g.time) && (!e.summoned || fighting(e)));
-	const score = (e: Enemy) => (fighting(e) ? -1000 : 0) + (cfg.elites && e.boss ? -500 : 0) + dist(e);
-	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e)));
+	const rank = (e: Enemy) => (fighting(e) ? 2 : 0) + (cfg.elites && e.boss ? 1 : 0);
+	const score = (e: Enemy) => -rank(e) * 500 + dist(e);
+	// Bosses ('elites') are worth the walk from anywhere on the map; unreachable ones are skipped above.
+	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e) || (cfg.elites && e.boss)));
 	const best = pool.sort((a, b) => score(a) - score(b))[0];
 	const current = pool.find((e) => e.id === g.target);
-	return current && (!best || score(current) - 2 <= score(best)) ? current : best;
+	// Keep the current (or clicked) target; only a boss (with `elites`) takes over. Attackers win when picking anew.
+	const boss = cfg.elites ? pool.filter((e) => e.boss).sort((a, b) => dist(a) - dist(b))[0] : undefined;
+	if (boss && !current?.boss) return boss;
+	return current ?? best;
 }
 /** Cast the first ready skill in the player's AUTO order (cycle / priority, survival first when low). */
 function autoCast(g: Game, cfg: AutoSettings) {
 	const p = g.p,
 		hotbar = (p.hotbar ?? []).map((h) => h.skill),
 		spec = (id: string) => g.data.skills.skills.find((s) => s.id === id),
-		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !spec(id)?.passive && !!spec(id) && belongsToJob(p.jobId, spec(id)!.jobId, g.data), Object.keys(p.skills), (id) => skillTierRank(g.data, id)),
+		// Job skills only: basic attack, dodge and potion are common skills with their own handling (dodge would drop the target).
+		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !!spec(id) && !spec(id)!.passive && spec(id)!.jobId !== "common" && belongsToJob(p.jobId, spec(id)!.jobId, g.data), Object.keys(p.skills), (id) => skillTierRank(g.data, id)),
 		order = autoCastOrder(seq, cfg, p.hp / p.maxHp, p.autoNext ?? null, (id) => isSurvivalSkill(spec(id)));
+	const target = g.enemies.find((e) => e.id === g.target && !e.dead);
 	for (const id of order) {
 		if ((p.cd[id] || 0) > 0 || p.mp < gameSkill(g, id).sp) continue;
+		if (!worthCasting(g, gameSkill(g, id), target)) continue;
 		if (action(g, id)) {
 			p.autoNext = seq[(seq.indexOf(id) + 1) % seq.length] ?? null;
 			return true;
 		}
 	}
 	return false;
+}
+/**
+ * Area damage waits for a group so AUTO does not spend SP on one monster: 2 in reach, or 3 for a slow
+ * cast like earth_break; a boss is always worth it. Everything else (single target, buffs, taunts) is fine.
+ */
+function worthCasting(g: Game, skill: Skill, target: Enemy | undefined) {
+	if (skill.kind !== "area" || !skill.percent || !skill.radius) return true;
+	if (target?.boss) return true;
+	const p = g.p,
+		around = g.enemies.filter((e) => !e.dead && Math.hypot(e.x - p.x, e.z - p.z) <= skill.radius + 0.4).length;
+	return around >= (skill.cast > 0 ? 3 : 2);
 }
 function face(e: Enemy, x: number, z: number) {
 	const d = Math.hypot(x - e.x, z - e.z) || 1;
