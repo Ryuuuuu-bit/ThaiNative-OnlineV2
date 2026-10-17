@@ -6,6 +6,8 @@
     "city": {
       "source": "art/bgm-source/bgm_city.mp3",
       "sourceDuration": 120,
+      "trimmedStart": 0,
+      "trimmedEnd": 0,
       "loopStart": 0,
       "loopEnd": 118.5,
       "tailStart": 118.5,
@@ -13,28 +15,28 @@
       "boundaryFadeSeconds": 0.004,
       "pcmSeam": {
         "wrapJump": 0,
-        "maxAdjacentStep": 0.11845321208238602,
+        "maxAdjacentStep": 0.02986353635787964,
         "passed": true
       },
       "opus": {
-        "url": "/assets/audio/bgm-city-679b69bb091e.ogg",
-        "bytes": 1438305,
-        "sizeKB": 1404.5947265625,
+        "url": "/assets/audio/bgm-city-eac02515ccb2.ogg",
+        "bytes": 1438638,
+        "sizeKB": 1404.919921875,
         "decodedDuration": 118.5,
         "seam": {
-          "wrapJump": 0.0012966229114681482,
-          "maxAdjacentStep": 0.1263180896639824,
+          "wrapJump": 0.0025283529539592564,
+          "maxAdjacentStep": 0.02938681561499834,
           "passed": true
         }
       },
       "aac": {
-        "url": "/assets/audio/bgm-city-2dc253f44c2b.m4a",
-        "bytes": 1452418,
-        "sizeKB": 1418.376953125,
+        "url": "/assets/audio/bgm-city-75d96b26b742.m4a",
+        "bytes": 1451025,
+        "sizeKB": 1417.0166015625,
         "decodedDuration": 118.50666666666666,
         "seam": {
-          "wrapJump": 0.0018738639482762665,
-          "maxAdjacentStep": 0.11982003785669804,
+          "wrapJump": 0.0019336392870172858,
+          "maxAdjacentStep": 0.030213793739676476,
           "passed": true
         }
       }
@@ -42,35 +44,75 @@
     "meadow": {
       "source": "art/bgm-source/bgm_meadow.mp3",
       "sourceDuration": 120,
+      "trimmedStart": 0.3,
+      "trimmedEnd": 0,
       "loopStart": 0,
-      "loopEnd": 118.5,
-      "tailStart": 118.5,
+      "loopEnd": 118.2,
+      "tailStart": 118.2,
       "loopCrossfade": 1.5,
       "boundaryFadeSeconds": 0.004,
       "pcmSeam": {
         "wrapJump": 0,
-        "maxAdjacentStep": 0.12751591205596924,
+        "maxAdjacentStep": 0.1912140091881156,
         "passed": true
       },
       "opus": {
-        "url": "/assets/audio/bgm-meadow-9a00ca48c9e2.ogg",
-        "bytes": 1438713,
-        "sizeKB": 1404.9931640625,
-        "decodedDuration": 118.5,
+        "url": "/assets/audio/bgm-meadow-6e3c90c9ae50.ogg",
+        "bytes": 1434648,
+        "sizeKB": 1401.0234375,
+        "decodedDuration": 118.2,
         "seam": {
-          "wrapJump": 0.0027019068656954914,
-          "maxAdjacentStep": 0.18727365136146545,
+          "wrapJump": 0.001100393128581345,
+          "maxAdjacentStep": 0.202882987447083,
           "passed": true
         }
       },
       "aac": {
-        "url": "/assets/audio/bgm-meadow-228e043147ee.m4a",
-        "bytes": 1455210,
-        "sizeKB": 1421.103515625,
-        "decodedDuration": 118.50666666666666,
+        "url": "/assets/audio/bgm-meadow-e3c72e76ca85.m4a",
+        "bytes": 1448158,
+        "sizeKB": 1414.216796875,
+        "decodedDuration": 118.208,
         "seam": {
-          "wrapJump": 0.0025546252145431936,
-          "maxAdjacentStep": 0.1301867440342903,
+          "wrapJump": 0.0017599647107999772,
+          "maxAdjacentStep": 0.17267248407006264,
+          "passed": true
+        }
+      }
+    },
+    "forest": {
+      "source": "art/bgm-source/bgm_forest.mp3",
+      "sourceDuration": 120,
+      "trimmedStart": 0,
+      "trimmedEnd": 2.2,
+      "loopStart": 0,
+      "loopEnd": 116.3,
+      "tailStart": 116.3,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.0252003725618124,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-forest-3ab793d2ead0.ogg",
+        "bytes": 1411634,
+        "sizeKB": 1378.548828125,
+        "decodedDuration": 116.3,
+        "seam": {
+          "wrapJump": 0.0009450149191252422,
+          "maxAdjacentStep": 0.026271434500813484,
+          "passed": true
+        }
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-forest-d13901e84421.m4a",
+        "bytes": 1424211,
+        "sizeKB": 1390.8310546875,
+        "decodedDuration": 116.30933333333333,
+        "seam": {
+          "wrapJump": 0.001012396842270391,
+          "maxAdjacentStep": 0.024679705500602722,
           "passed": true
         }
       }
@@ -78,6 +120,8 @@
     "king": {
       "source": "art/bgm-source/bgm_king.mp3",
       "sourceDuration": 90,
+      "trimmedStart": 0,
+      "trimmedEnd": 0,
       "loopStart": 0,
       "loopEnd": 88.5,
       "tailStart": 88.5,
@@ -85,28 +129,28 @@
       "boundaryFadeSeconds": 0.004,
       "pcmSeam": {
         "wrapJump": 0,
-        "maxAdjacentStep": 0.16092809289693832,
+        "maxAdjacentStep": 0.06778286397457123,
         "passed": true
       },
       "opus": {
-        "url": "/assets/audio/bgm-king-f86b1cd7f1a6.ogg",
-        "bytes": 1074089,
-        "sizeKB": 1048.9150390625,
+        "url": "/assets/audio/bgm-king-dfcfe73e0a57.ogg",
+        "bytes": 1074201,
+        "sizeKB": 1049.0244140625,
         "decodedDuration": 88.5,
         "seam": {
-          "wrapJump": 0.003872712899465114,
-          "maxAdjacentStep": 0.15605644136667252,
+          "wrapJump": 0.001998271320189815,
+          "maxAdjacentStep": 0.06254469440318644,
           "passed": true
         }
       },
       "aac": {
-        "url": "/assets/audio/bgm-king-21157e1040bf.m4a",
-        "bytes": 1083892,
-        "sizeKB": 1058.48828125,
+        "url": "/assets/audio/bgm-king-122a418a702a.m4a",
+        "bytes": 1085923,
+        "sizeKB": 1060.4716796875,
         "decodedDuration": 88.512,
         "seam": {
-          "wrapJump": 0.003912158543244004,
-          "maxAdjacentStep": 0.17528155073523521,
+          "wrapJump": 0.0018236419127788395,
+          "maxAdjacentStep": 0.060077935457229614,
           "passed": true
         }
       }

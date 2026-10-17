@@ -1,4 +1,4 @@
-export type MusicTrack = 'city' | 'meadow' | 'king';
+export type MusicTrack = 'city' | 'meadow' | 'forest' | 'king';
 export type MusicState = {
   mapId: string;
   dead: boolean;
@@ -26,6 +26,6 @@ export class MusicSelection {
     if (fighting) this.releaseAt = Infinity;
     else if (this.wasFighting) this.releaseAt = seconds + MUSIC_RELEASE;
     this.wasFighting = fighting;
-    return fighting || seconds < this.releaseAt ? 'king' : 'meadow';
+    return fighting || seconds < this.releaseAt ? 'king' : state.mapId === 'forest' ? 'forest' : 'meadow';
   }
 }

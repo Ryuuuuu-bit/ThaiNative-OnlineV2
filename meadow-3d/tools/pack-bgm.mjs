@@ -24,11 +24,19 @@ function seam(pcm) {
   return { wrapJump: jump, maxAdjacentStep: maxStep, passed: jump < .02 && jump <= maxStep };
 }
 const manifest = { version: 1, sampleRate: rate, channels, tracks: {} };
-for (const id of ['city', 'meadow', 'king']) {
+for (const id of ['city', 'meadow', 'forest', 'king']) {
   const source = `art/bgm-source/bgm_${id}.mp3`;
-  const data = run(['-i', resolve(root, source), '-af', 'loudnorm=I=-20:TP=-2:LRA=11',
+  const data = run(['-i', resolve(root, source), '-af', 'loudnorm=I=-22:TP=-3:LRA=9',
     '-f', 'f32le', '-ar', String(rate), '-ac', '2', 'pipe:1']);
-  const samples = new Float32Array(data.buffer, data.byteOffset, data.length / 4);
+  const full = new Float32Array(data.buffer, data.byteOffset, data.length / 4);
+  // Trim a fade-in / fade-out so the loop never dips: keep the span whose 100 ms RMS stays within 9 dB of the body.
+  const win = rate / 10, blocks = Math.floor(full.length / channels / win), level = [];
+  for (let b = 0; b < blocks; b++) { let e = 0; for (let i = b * win * channels; i < (b + 1) * win * channels; i++) e += full[i] * full[i]; level.push(10 * Math.log10(e / (win * channels) + 1e-12)); }
+  const body = [...level].sort((a, b) => a - b)[Math.floor(blocks / 2)];
+  let first = 0, last = blocks - 1;
+  while (first < blocks / 4 && level[first] < body - 9) first++;
+  while (last > blocks * 3 / 4 && level[last] < body - 9) last--;
+  const samples = full.subarray(first * win * channels, (last + 1) * win * channels);
   const frames = samples.length / channels, loop = new Float32Array((frames - overlap) * channels);
   // Circular overlap: tail -> head, then untouched middle. The playback wrap
   // continues from the middle into the tail with adjacent original samples.
@@ -49,7 +57,7 @@ for (const id of ['city', 'meadow', 'king']) {
     }
   }
   const pcm = Buffer.from(loop.buffer), duration = loop.length / channels / rate;
-  const track = { source, sourceDuration: frames / rate, loopStart: 0, loopEnd: duration,
+  const track = { source, sourceDuration: full.length / channels / rate, trimmedStart: first / 10, trimmedEnd: (blocks - 1 - last) / 10, loopStart: 0, loopEnd: duration,
     tailStart: (frames - overlap) / rate, loopCrossfade: 1.5, boundaryFadeSeconds: .004, pcmSeam: seam(pcm) };
   for (const [key, ext, codec] of [['opus', 'ogg', 'libopus'], ['aac', 'm4a', 'aac']]) {
     // A seekable MP4 output preserves AAC encoder-delay/edit-list metadata.

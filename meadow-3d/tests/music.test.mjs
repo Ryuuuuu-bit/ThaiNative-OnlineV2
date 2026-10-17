@@ -8,6 +8,8 @@ const field = { mapId: 'meadow', dead: false, bossAlive: true, bossTargeted: fal
 test('map themes, unknown map silence, and city precedence over boss state', () => {
   const selection = new MusicSelection();
   assert.equal(selection.select(field, 0), 'meadow');
+  assert.equal(new MusicSelection().select({ ...field, mapId: 'forest', bossAlive: false }, 0), 'forest');
+  assert.equal(new MusicSelection().select({ ...field, mapId: 'forest', bossTargeted: true }, 0), 'king');
   assert.equal(selection.select({ ...field, mapId: 'city_plaza', bossAggro: true }, 1), 'city');
   assert.equal(selection.select({ ...field, mapId: 'unknown' }, 2), null);
 });
@@ -100,13 +102,16 @@ test('manifest failure stays silent and logs once across repeated selections', a
 test('packed tracks have both hashed codecs, stereo loops, and verified decoded seams', () => {
   const manifest = JSON.parse(readFileSync(new URL('../public/assets/audio/bgm.json', import.meta.url)));
   assert.equal(manifest.channels, 2);
+  assert.deepEqual(Object.keys(manifest.tracks), ['city', 'meadow', 'forest', 'king']);
   for (const [id, track] of Object.entries(manifest.tracks)) {
     assert.equal(track.loopCrossfade, 1.5); assert.equal(track.loopStart, 0);
-    assert.equal(track.loopEnd, id === 'king' ? 88.5 : 118.5);
+    // Loops are the source minus the 1.5 s overlap and any trimmed fade (at most a few seconds).
+    assert.ok(Math.abs(track.loopEnd - (track.sourceDuration - 1.5 - (track.trimmedStart ?? 0) - (track.trimmedEnd ?? 0))) < .01);
+    assert.ok(track.loopEnd > track.sourceDuration - 8);
     assert.ok(track.pcmSeam.passed);
     for (const codec of ['opus', 'aac']) {
       const file = track[codec];
-      assert.match(file.url, /bgm-(city|meadow|king)-[a-f0-9]{12}\.(ogg|m4a)$/);
+      assert.match(file.url, /bgm-(city|meadow|forest|king)-[a-f0-9]{12}\.(ogg|m4a)$/);
       assert.equal(statSync(new URL('../public' + file.url, import.meta.url)).size, file.bytes);
       assert.ok(file.seam.passed); assert.ok(file.seam.wrapJump < .02);
     }
