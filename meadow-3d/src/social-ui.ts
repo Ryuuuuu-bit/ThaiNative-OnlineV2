@@ -1,11 +1,13 @@
 import './social.css';
 
 type Send = (message: unknown) => void;
-interface ChatLine { t: 'chat'; ch: 'map' | 'party' | 'whisper' | 'system'; from?: string; fromId?: string; to?: string; text: string; at: number; self?: boolean }
+interface ChatLine { t: 'chat'; ch: 'map' | 'party' | 'whisper' | 'system' | 'loot'; from?: string; fromId?: string; to?: string; text: string; at: number; self?: boolean }
 interface Member { id: string; name: string; online: boolean; level?: number; jobId?: string; hp?: number; maxHp?: number; mapId?: string; dead?: boolean }
 interface PartyState { id: string; leader: string; members: Member[] }
 
-const CHANNEL_LABEL = { map: 'ทั่วไป', party: 'ปาร์ตี้', whisper: 'กระซิบ', system: 'ระบบ' } as const;
+const CHANNEL_LABEL = { map: 'ทั่วไป', party: 'ปาร์ตี้', whisper: 'กระซิบ', system: 'ระบบ', loot: 'รางวัล' } as const;
+const TABS = [['all', 'ทั้งหมด'], ['chat', 'แชท'], ['party', 'ปาร์ตี้'], ['loot', 'รางวัล'], ['system', 'ระบบ']] as const;
+type Tab = typeof TABS[number][0];
 const MAP_LABEL: Record<string, string> = { city_plaza: 'เมือง', meadow: 'ทุ่งวุ้นจิ๋ว', forest: 'ป่าหมอก' };
 const HELP = 'คำสั่ง: /p ข้อความ (ปาร์ตี้) · /w ชื่อ ข้อความ (กระซิบ) · /r ข้อความ (ตอบกลับ) · /invite ชื่อ · /leave · /kick ชื่อ · /lead ชื่อ';
 const MAX_LINES = 80;
@@ -16,7 +18,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	const box = document.createElement('section');
 	box.id = 'chat';
 	box.setAttribute('aria-label', 'แชท');
-	box.innerHTML = '<ol id="chat-log" aria-live="polite"></ol><form id="chat-form" autocomplete="off"><button type="button" id="chat-channel" title="เปลี่ยนช่องแชท (Tab)"></button><input id="chat-input" maxlength="120" enterkeyhint="send" placeholder="กด Enter เพื่อพิมพ์ · /help"><button type="submit" id="chat-send" aria-label="ส่ง">➤</button></form>';
+	box.innerHTML = '<nav id="chat-tabs" role="tablist" aria-label="กรองแชท"></nav><ol id="chat-log" aria-live="polite"></ol><form id="chat-form" autocomplete="off"><button type="button" id="chat-channel" title="เปลี่ยนช่องแชท (Tab)"></button><input id="chat-input" maxlength="120" enterkeyhint="send" placeholder="Enter เพื่อพิมพ์ · /help"><button type="submit" id="chat-send" aria-label="ส่ง">➤</button></form>';
 	const toggle = document.createElement('button');
 	toggle.id = 'chat-toggle';
 	toggle.type = 'button';
@@ -31,6 +33,27 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	ui.append(box, toggle, partyBox, invites);
 	const log = box.querySelector<HTMLOListElement>('#chat-log')!, form = box.querySelector<HTMLFormElement>('#chat-form')!;
 	const input = box.querySelector<HTMLInputElement>('#chat-input')!, channelButton = box.querySelector<HTMLButtonElement>('#chat-channel')!;
+	const tabs = box.querySelector<HTMLElement>('#chat-tabs')!;
+	let filter: Tab = 'all';
+	try { const saved = localStorage.getItem('chat-filter'); if (TABS.some(([k]) => k === saved)) filter = saved as Tab; } catch { /* storage blocked */ }
+	const setFilter = (next: Tab) => {
+		filter = next;
+		log.dataset.filter = next;
+		for (const b of tabs.children) b.setAttribute('aria-selected', String((b as HTMLElement).dataset.tab === next));
+		log.scrollTop = log.scrollHeight;
+		try { localStorage.setItem('chat-filter', next); } catch { /* storage blocked */ }
+	};
+	for (const [key, label] of TABS) {
+		const b = document.createElement('button');
+		b.type = 'button';
+		b.role = 'tab';
+		b.dataset.tab = key;
+		b.textContent = label;
+		b.onclick = () => setFilter(key);
+		tabs.append(b);
+	}
+	setFilter(filter);
+	let lastLoot: { li: HTMLLIElement; xp: number; gold: number; at: number } | null = null;
 	let channel: 'map' | 'party' | 'whisper' = 'map', whisperTo = '', lastWhisper = '', party: PartyState | null = null, unread = 0;
 
 	const setChannel = (next: typeof channel) => {
@@ -42,10 +65,17 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	const line = (m: ChatLine) => {
 		const li = document.createElement('li');
 		li.dataset.ch = m.ch;
-		const tag = document.createElement('span');
-		tag.className = 'chat-tag';
-		tag.textContent = `[${CHANNEL_LABEL[m.ch]}]`;
-		li.append(tag);
+		if (m.ch === 'party' || m.ch === 'whisper') {
+			const tag = document.createElement('span');
+			tag.className = 'chat-tag';
+			tag.textContent = `[${CHANNEL_LABEL[m.ch]}]`;
+			li.append(tag);
+		} else if (!m.from) {
+			const mark = document.createElement('span');
+			mark.className = 'chat-mark';
+			mark.textContent = m.ch === 'loot' ? '◆' : '·';
+			li.append(mark);
+		}
 		if (m.from) {
 			const who = document.createElement('button');
 			who.type = 'button';
@@ -56,16 +86,21 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			who.onclick = () => { whisperTo = name; setChannel('whisper'); open(); };
 			li.append(who, document.createTextNode(': '));
 		}
-		li.append(document.createTextNode(m.text));
+		const body = document.createElement('span');
+		body.className = 'chat-text';
+		body.textContent = m.text;
+		li.append(body);
 		log.append(li);
 		while (log.children.length > MAX_LINES) log.firstElementChild!.remove();
 		log.scrollTop = log.scrollHeight;
 		box.classList.add('recent');
 		clearTimeout((box as any).fade);
 		(box as any).fade = setTimeout(() => box.classList.remove('recent'), 8000);
-		if (!box.classList.contains('open') && m.ch !== 'system') { unread++; toggle.dataset.unread = String(Math.min(99, unread)); }
+		if (!box.classList.contains('open') && m.ch !== 'system' && m.ch !== 'loot') { unread++; toggle.dataset.unread = String(Math.min(99, unread)); }
+		return li;
 	};
 	const system = (text: string) => line({ t: 'chat', ch: 'system', text, at: Date.now() });
+	const lootText = (xp: number, gold: number) => `ได้รับ ${xp.toLocaleString()} EXP · ◈ ${gold.toLocaleString()} ทอง`;
 	const open = () => {
 		if (!options.enabled()) return;
 		box.classList.add('open', 'typing');
@@ -110,6 +145,8 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 		if (e.key === 'Tab') { e.preventDefault(); setChannel(channel === 'map' ? (party ? 'party' : whisperTo ? 'whisper' : 'map') : channel === 'party' ? (whisperTo ? 'whisper' : 'map') : 'map'); }
 	});
 	channelButton.onclick = () => { setChannel(channel === 'map' ? 'party' : channel === 'party' ? 'whisper' : 'map'); input.focus(); };
+	input.addEventListener('focus', () => box.classList.add('open', 'typing'));
+	input.addEventListener('blur', () => { box.classList.remove('typing'); if (!matchMedia('(max-width:650px)').matches) box.classList.remove('open'); });
 	toggle.onclick = () => { if (box.classList.contains('open')) { box.classList.remove('open', 'typing'); input.blur(); } else open(); };
 	// Enter opens chat unless the player is already typing somewhere or a dialog is open.
 	window.addEventListener('keydown', e => {
@@ -191,6 +228,19 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			if (m.t === 'partyState') { party = m.party; if (!party && channel === 'party') setChannel('map'); renderParty(); return true; }
 			if (m.t === 'partyInvite') { invite(m); return true; }
 			return false;
+		},
+		/** EXP/gold from a kill; bursts within a few seconds merge into one line. */
+		loot(xp: number, gold: number) {
+			const now = Date.now();
+			if (lastLoot && now - lastLoot.at < 6000 && log.lastElementChild === lastLoot.li) {
+				lastLoot.xp += xp; lastLoot.gold += gold; lastLoot.at = now;
+				lastLoot.li.querySelector('.chat-text')!.textContent = lootText(lastLoot.xp, lastLoot.gold);
+				lastLoot.li.classList.remove('bump'); void lastLoot.li.offsetWidth; lastLoot.li.classList.add('bump');
+				box.classList.add('recent'); clearTimeout((box as any).fade); (box as any).fade = setTimeout(() => box.classList.remove('recent'), 8000);
+				return;
+			}
+			const li = line({ t: 'chat', ch: 'loot', text: lootText(xp, gold), at: now });
+			lastLoot = { li, xp, gold, at: now };
 		},
 		/** Invite from elsewhere in the UI (e.g. clicking another player). */
 		invite(name: string) { options.send({ t: 'party', op: 'invite', name }); },

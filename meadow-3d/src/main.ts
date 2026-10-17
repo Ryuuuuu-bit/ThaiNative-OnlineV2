@@ -188,7 +188,7 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'heal':number(`+${e.amount}`,e,'heal',2.4);effectRing(e.x,e.z,'#c3edb0',.9,.45);particles(e.x,e.z,'#d6f5b0',14,1);break;
  case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);if(e.kind==='hp'){const b=$('[data-action="potion"]');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
  case'itemPickup':if(e.playerId===net.you)inventoryUI.toast(e.loot);break;
- case'pickup':number(`+${e.xp} ประสบการณ์   ◈ ${e.gold}`,e,'reward',2.8);break;
+ case'pickup':if(!e.playerId||e.playerId===net.you)social?.loot(e.xp,e.gold);break;
  case'jobLevel':if(e.playerId===net.you){notice(`✦ ระดับอาชีพ ${e.jobLevel} · +${e.granted} แต้มสกิล · K`);if(e.jobLevel===40)notice('✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา');}break;
  case'level':notice(`✦ ระดับ ${e.level} · +${e.granted||3} แต้มสเตตัส · C ดูสเตตัส`);$('#stats-button').classList.add('level-pulse');setTimeout(()=>$('#stats-button').classList.remove('level-pulse'),4500);effectRing(e.x,e.z,'#ffe6a0',2.2,.8);particles(e.x,e.z,'#ffedb7',45,3);break;
  case'dash':effectRing(e.x,e.z,'#c1e9e6',.6,.25);particles(e.x,e.z,'#d6eee2',16,1.4);break;
