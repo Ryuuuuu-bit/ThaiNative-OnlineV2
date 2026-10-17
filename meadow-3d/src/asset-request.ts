@@ -63,6 +63,8 @@ async function retryAsset<T>(
 				await new Promise((r) => setTimeout(r, 300 * 3 ** attempt));
 		}
 	}
+	// An asset that keeps failing is usually a deploy in progress: reload onto the new build if there is one.
+	if (typeof window !== "undefined") void window.tnBoot?.staleCheck?.();
 	throw last;
 }
 export async function assetJSON<T>(url: string) {
