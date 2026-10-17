@@ -596,17 +596,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				draw();
 			}
 		},
-		toast(loot: { template: string; qty: number }[]) {
-			const stack = document.querySelector("#notices")!;
-			for (const drop of loot || []) {
-				const t = templates.find((t) => t.id === drop.template)!;
-				const toast = document.createElement("div");
-				toast.className = "notice";
-				toast.textContent = `+ ${t.nameTh} ×${drop.qty}`;
-				stack.append(toast);
-                while(stack.children.length>4)stack.firstElementChild?.remove();
-				setTimeout(() => toast.remove(), 4000);
-			}
+		/** Display names for a pickup, for the chat log. */
+		names(loot: { template: string; qty: number }[]) {
+			return (loot || []).flatMap((drop) => {
+				const t = templates.find((t) => t.id === drop.template);
+				return t ? [{ name: t.nameTh, qty: drop.qty }] : [];
+			});
 		},
 	};
 }

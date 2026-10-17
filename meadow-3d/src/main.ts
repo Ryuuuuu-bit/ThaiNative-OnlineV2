@@ -177,6 +177,8 @@ function effectRing(x:number,z:number,color:string,r=2,life=.5){if(document.hidd
 function slash(e:Event){if(document.hidden)return;const angle=Math.atan2(e.dx,e.dz),o=new T.Mesh(effectGeometry(`slash:${e.combo===2}`,()=>new T.RingGeometry(.9,e.combo===2?2:1.6,40,1,0,Math.PI*1.3)),new T.MeshBasicMaterial({color:e.combo===2?'#ffe2a0':'#f3f7e6',transparent:true,opacity:.8,side:T.DoubleSide,depthWrite:false,blending:T.AdditiveBlending}));if(e.combo===2)o.scale.setScalar(1.12);o.rotation.set(-Math.PI/2,.1,-angle-2);o.position.set(e.x,.95,e.z);scene.add(o);effects.push({kind:'slash',mesh:o,life:.26,max:.26});particles(e.x+e.dx,e.z+e.dz,'#ffebae',7,1.5);}
 function spinEffect(x:number,z:number){if(document.hidden)return;effectRing(x,z,'#b6f6f0',3.2,.55);effectRing(x,z,'#f9e9a8',2.5,.42);for(let j=0;j<(lighterVfx?1:3);j++){const curve=[];for(let i=0;i<=50;i++){const a=i/50*Math.PI*1.65+j*2.1;curve.push(new T.Vector3(Math.cos(a)*(1.7+j*.35),.25+i/50*1.1,Math.sin(a)*(1.7+j*.35)));}const o=new T.Mesh(effectGeometry(`spiral:${j}`,()=>new T.TubeGeometry(new T.CatmullRomCurve3(curve),50,.025+j*.01,5,false)),new T.MeshBasicMaterial({color:j%2?'#eaffd9':'#8fe6e4',transparent:true,opacity:.8,blending:T.AdditiveBlending,depthWrite:false}));o.position.set(x,0,z);scene.add(o);effects.push({kind:'spiral',mesh:o,life:.6,max:.6});}particles(x,z,'#baf6e6',38,4.5);}
 function meteorEffect(e:Event){if(document.hidden)return;const o=new T.Group();const rock=new T.Mesh(effectGeometry('meteor-rock',()=>new T.IcosahedronGeometry(.43,1)),mat('#613d34'));o.add(rock);const shell=new T.Mesh(effectGeometry('meteor-shell',()=>new T.SphereGeometry(.5,12,10)),new T.MeshBasicMaterial({color:'#ffbe66',transparent:true,opacity:.6,blending:T.AdditiveBlending,depthWrite:false}));o.add(shell);const tail=new T.Mesh(effectGeometry('meteor-tail',()=>new T.ConeGeometry(.42,2.5,10,1,true)),new T.MeshBasicMaterial({color:'#f4b96d',transparent:true,opacity:.45,side:T.DoubleSide,blending:T.AdditiveBlending,depthWrite:false}));tail.rotation.z=Math.PI;tail.position.y=1.3;o.add(tail);o.position.set(e.x,10,e.z);scene.add(o);effects.push({kind:'meteor',mesh:o,life:e.duration,max:e.duration});effectRing(e.x,e.z,'#f4d191',2.7,e.duration);}
+/** On screen and kept in the chat log under ระบบ or รางวัล. */
+function tell(text:string,chat?:'system'|'loot'){notice(text);if(chat)social?.note(chat,text);}
 function notice(text:string){if([...$('#notices').children].some(el=>el.textContent===text))return;const el=document.createElement('div');el.className='notice';el.textContent=text;$('#notices').appendChild(el);while($('#notices').children.length>4)$('#notices').firstElementChild?.remove();setTimeout(()=>el.remove(),4000);}
 // Floating combat text: anchored where it spawned (screen jitter fixed at birth), pops in, rises on an
 // ease-out curve and fades. Numbers on the same spot within a moment stack upward instead of overlapping.
@@ -200,21 +202,21 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'evade':number('หลบ',e,'evade',2.4);break;
  case'heal':number(`+${e.amount}`,e,'heal',2.4);effectRing(e.x,e.z,'#c3edb0',.9,.45);particles(e.x,e.z,'#d6f5b0',14,1);break;
  case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);if(e.kind==='hp'){const b=$('[data-action="potion"]');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
- case'itemPickup':if(e.playerId===net.you)inventoryUI.toast(e.loot);break;
+ case'itemPickup':if(e.playerId===net.you)social?.items(inventoryUI.names(e.loot));break;
  case'pickup':if(!e.playerId||e.playerId===net.you)social?.loot(e.xp,e.gold);break;
- case'jobLevel':if(e.playerId===net.you){notice(`✦ ระดับอาชีพ ${e.jobLevel} · +${e.granted} แต้มสกิล · K`);if(e.jobLevel===40)notice('✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา');}break;
- case'level':notice(`✦ ระดับ ${e.level} · +${e.granted||3} แต้มสเตตัส · C ดูสเตตัส`);$('#stats-button').classList.add('level-pulse');setTimeout(()=>$('#stats-button').classList.remove('level-pulse'),4500);effectRing(e.x,e.z,'#ffe6a0',2.2,.8);particles(e.x,e.z,'#ffedb7',45,3);break;
+ case'jobLevel':if(e.playerId===net.you){tell(`✦ ระดับอาชีพ ${e.jobLevel} · +${e.granted} แต้มสกิล · K`,'loot');if(e.jobLevel===40)tell('✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา','system');}break;
+ case'level':if(e.playerId!==net.you){effectRing(e.x,e.z,'#ffe6a0',2.2,.8);break;}tell(`✦ ระดับ ${e.level} · +${e.granted||3} แต้มสเตตัส · C ดูสเตตัส`,'loot');$('#stats-button').classList.add('level-pulse');setTimeout(()=>$('#stats-button').classList.remove('level-pulse'),4500);effectRing(e.x,e.z,'#ffe6a0',2.2,.8);particles(e.x,e.z,'#ffedb7',45,3);break;
  case'dash':effectRing(e.x,e.z,'#c1e9e6',.6,.25);particles(e.x,e.z,'#d6eee2',16,1.4);break;
  case'warning':{if(document.hidden)break;if(e.shape){telegraph(e);break;}const o=ring(e.x,e.z,e.r,'#e98074',.07,.8),fill=new T.Mesh(effectGeometry(`warning:${e.r}`,()=>new T.CircleGeometry(e.r,48)),new T.MeshBasicMaterial({color:'#df7162',transparent:true,opacity:.16,side:T.DoubleSide,depthWrite:false}));fill.rotation.x=-Math.PI/2;fill.position.set(e.x,.035,e.z);scene.add(fill);effects.push({kind:'warning',mesh:o,life:e.duration,max:e.duration});effects.push({kind:'warningFill',mesh:fill,life:e.duration,max:e.duration});break;}
  case'warningCancel':for(let i=effects.length-1;i>=0;i--)if(effects[i].warnOf===e.id){scene.remove(effects[i].mesh);disposeEffect(effects[i].mesh);effects.splice(i,1);}break;
  case'bossBlast':{if(document.hidden)break;const m=new T.Mesh(telegraphGeometry(e),effectMaterial(e.shape==='ring'?'#b9e6ff':'#ffe2b0',.55));m.rotation.x=-Math.PI/2;m.position.set(e.x,.05,e.z);scene.add(m);effects.push({kind:'blast',mesh:m,life:.45,max:.45});particles(e.x,e.z,'#f0d6b4',30,4);shake=Math.max(shake,.22);break;}
  case'slam':effectRing(e.x,e.z,'#f2d8aa',2.8,.45);particles(e.x,e.z,'#dfd1ac',40,4);shake=.2;break;
- case'phase2':notice(activeMap==='forest'?'✦ ผู้เฝ้าป่าหมอกคลั่ง — ระวังจังหวะโจมตีที่เร็วขึ้น!':'✦ ราชาวุ้นกริ้ว — ระวังจังหวะโจมตีที่เร็วขึ้น!');effectRing(e.x,e.z,'#d28daf',3.5,1);break;
+ case'phase2':tell(activeMap==='forest'?'✦ ผู้เฝ้าป่าหมอกคลั่ง — ระวังจังหวะโจมตีที่เร็วขึ้น!':'✦ ราชาวุ้นกริ้ว — ระวังจังหวะโจมตีที่เร็วขึ้น!','system');effectRing(e.x,e.z,'#d28daf',3.5,1);break;
  case'sweep':effectRing(e.x,e.z,'#ddbacb',3.5,.4);break;
  case'summon':particles(e.x,e.z,'#c1c9a0',18,1.6,.8,true);break;
- case'boss':notice('✦ ผู้พิทักษ์ตื่นขึ้นแล้ว — ไปที่ซากโบราณทางใต้');$('#quest-name').textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';$('#quest-note').textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';break;
+ case'boss':tell('✦ ผู้พิทักษ์ตื่นขึ้นแล้ว — ไปที่ซากโบราณทางใต้','system');$('#quest-name').textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';$('#quest-note').textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';break;
  case'skillsError':case'statsError':if(!inventoryUI.open)notice(e.text);break;
- case'notice':notice(e.text);break;
+ case'notice':if(!e.playerId||e.playerId===net.you)tell(e.text,'system');break;
   case'questComplete':if(e.playerId===net.you)quests?.event(e);break;
  case'death':clearInput();deathReveal=1.5;lastXpLost=Number(e.xpLost)||0;break;
  }for(let i=effectStart;i<effects.length;i++)effects[i].owner=e.playerId;} }
@@ -409,8 +411,8 @@ overview.onclick=()=>{overviewOn=!overviewOn;overview.setAttribute('aria-pressed
 applyQuality();hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
 
-social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
-quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice});
+social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started,announce:notice});
+quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice:tell});
 qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);
 
 guide=mountTutorialGuide({characterId:selected.character.id,started:()=>started&&!paused,map:()=>activeMap,game:()=>game,autoPotionOn:()=>autoPotionUI.settings.hp.on||autoPotionUI.settings.mp.on,quests:()=>quests?.state,project:(x,z,y)=>{const v=new T.Vector3(x,y,z).project(camera);return{x:(v.x*.5+.5)*innerWidth,y:(-v.y*.5+.5)*innerHeight};}});

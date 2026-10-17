@@ -8,7 +8,7 @@ const isGiver = (kind: string): kind is QuestGiver => kind in GIVER_NAME;
 interface PlayerView { level: number; inventory?: Inventory }
 
 /** NPC quest dialogs and the journal tracker. The server validates every accept/turn-in. */
-export function mountQuests(options: { send: (m: unknown) => void; player: () => PlayerView; notice: (text: string) => void }) {
+export function mountQuests(options: { send: (m: unknown) => void; player: () => PlayerView; notice: (text: string, chat?: 'system' | 'loot') => void }) {
 	let state: QuestState = emptyQuests(), ready = new Set<string>(), openGiver: QuestGiver | null = null, onChange: (() => void) | null = null;
 	const tracker = document.createElement('ol');
 	tracker.id = 'quest-tracker';
@@ -49,7 +49,7 @@ export function mountQuests(options: { send: (m: unknown) => void; player: () =>
 		for (const id of Object.keys(state.active)) {
 			const q = data.quests.quests.find(q => q.id === id)!;
 			const isReady = questStatus(q, state, p.level, Date.now(), p.inventory) === 'ready';
-			if (isReady && !ready.has(id)) options.notice(`✓ ${q.nameTh} ครบแล้ว · กลับไปส่งที่${GIVER_NAME[q.giver]}`);
+			if (isReady && !ready.has(id)) options.notice(`✓ ${q.nameTh} ครบแล้ว · กลับไปส่งที่${GIVER_NAME[q.giver]}`, 'system');
 			if (isReady) ready.add(id);
 			else ready.delete(id);
 		}
@@ -147,7 +147,7 @@ export function mountQuests(options: { send: (m: unknown) => void; player: () =>
 		event(e: any) {
 			if (e.type !== 'questComplete') return;
 			const q = data.quests.quests.find(q => q.id === e.id);
-			if (q) options.notice(`✦ ส่งเควสต์ ${q.nameTh} · ${rewardText(q)}`);
+			if (q) options.notice(`✦ ส่งเควสต์ ${q.nameTh} · ${rewardText(q)}`, 'loot');
 		},
 		/** Call when the bag changes so collect objectives refresh. */
 		refresh() { checkReady(); renderTracker(); if (openGiver) onChange?.(); },

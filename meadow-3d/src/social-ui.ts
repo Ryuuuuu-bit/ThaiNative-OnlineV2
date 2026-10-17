@@ -13,7 +13,7 @@ const HELP = 'คำสั่ง: /p ข้อความ (ปาร์ตี�
 const MAX_LINES = 80;
 
 /** Chat box (Enter to type), party frame and invite prompts. Server is authoritative for filtering and limits. */
-export function mountSocial(options: { send: Send; you: () => string; enabled: () => boolean }) {
+export function mountSocial(options: { send: Send; you: () => string; enabled: () => boolean; /** GM announcements also go up on screen. */ announce?: (text: string) => void }) {
 	const ui = document.querySelector('#ui')!;
 	const box = document.createElement('section');
 	box.id = 'chat';
@@ -54,6 +54,8 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	}
 	setFilter(filter);
 	let lastLoot: { li: HTMLLIElement; xp: number; gold: number; at: number } | null = null;
+	let lastItems: { li: HTMLLIElement; items: Map<string, number>; at: number } | null = null;
+	const recentNotes = new Map<string, number>();
 	let channel: 'map' | 'party' | 'whisper' = 'map', whisperTo = '', lastWhisper = '', party: PartyState | null = null, unread = 0;
 
 	const setChannel = (next: typeof channel) => {
@@ -101,6 +103,8 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	};
 	const system = (text: string) => line({ t: 'chat', ch: 'system', text, at: Date.now() });
 	const lootText = (xp: number, gold: number) => `ได้รับ ${xp.toLocaleString()} EXP · ◈ ${gold.toLocaleString()} ทอง`;
+	const itemsText = (items: Map<string, number>) => `เก็บได้ ${[...items].map(([name, qty]) => `${name} ×${qty}`).join(' · ')}`;
+	const bump = (li: HTMLLIElement) => { li.classList.remove('bump'); void li.offsetWidth; li.classList.add('bump'); box.classList.add('recent'); clearTimeout((box as any).fade); (box as any).fade = setTimeout(() => box.classList.remove('recent'), 8000); };
 	const open = () => {
 		if (!options.enabled()) return;
 		box.classList.add('open', 'typing');
@@ -236,7 +240,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	return {
 		/** Feed every server message; returns true when it was a social message. */
 		receive(m: any) {
-			if (m.t === 'chat') { if (m.ch === 'whisper' && !m.self) lastWhisper = m.from; line(m); return true; }
+			if (m.t === 'chat') { if (m.ch === 'whisper' && !m.self) lastWhisper = m.from; line(m); if (m.ch === 'system' && !m.from && m.text.startsWith('📢')) options.announce?.(m.text); return true; }
 			if (m.t === 'chatHistory') { for (const h of m.list) line(h); return true; }
 			if (m.t === 'chatError') { system(m.text); return true; }
 			if (m.t === 'gmRole') { gmBadge(!!m.admin); return true; }
@@ -256,6 +260,29 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			}
 			const li = line({ t: 'chat', ch: 'loot', text: lootText(xp, gold), at: now });
 			lastLoot = { li, xp, gold, at: now };
+		},
+		/** Items picked up; pickups within a few seconds merge into one line, adding up repeats. */
+		items(list: { name: string; qty: number }[]) {
+			if (!list.length) return;
+			const now = Date.now();
+			if (lastItems && now - lastItems.at < 6000 && log.lastElementChild === lastItems.li) {
+				for (const { name, qty } of list) lastItems.items.set(name, (lastItems.items.get(name) ?? 0) + qty);
+				lastItems.at = now;
+				lastItems.li.querySelector('.chat-text')!.textContent = itemsText(lastItems.items);
+				bump(lastItems.li);
+				return;
+			}
+			const items = new Map<string, number>();
+			for (const { name, qty } of list) items.set(name, (items.get(name) ?? 0) + qty);
+			lastItems = { li: line({ t: 'chat', ch: 'loot', text: itemsText(items), at: now }), items, at: now };
+		},
+		/** A game notice kept in the log: rewards and progress under รางวัล, the rest under ระบบ. Repeats within 5 s are dropped. */
+		note(ch: 'system' | 'loot', text: string) {
+			const now = Date.now();
+			if (now - (recentNotes.get(text) ?? 0) < 5000) return;
+			recentNotes.set(text, now);
+			for (const [k, at] of recentNotes) if (now - at > 5000) recentNotes.delete(k);
+			line({ t: 'chat', ch, text, at: now });
 		},
 		/** Invite from elsewhere in the UI (e.g. clicking another player). */
 		invite(name: string) { options.send({ t: 'party', op: 'invite', name }); },
