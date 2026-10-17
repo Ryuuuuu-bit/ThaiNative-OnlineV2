@@ -2,6 +2,7 @@ import {HERO_PIXEL_METRES} from './world-scale.ts';
 import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Player } from './sim';
 import { makeHero } from './actors';
+import { uprightSprite } from './upright-depth.ts';
 import { facingFor, motionFor, motionFrame, atlasCell, MOTIONS, MOTION_DURATION } from './sprite-animation';
 import type { Motion } from './sprite-animation';
 import { SKILL_MOTIONS, SKILL_FRAMES, SKILL_DURATION, CONTACT_FRAME, isSkillMotion, skillFrame, earthHeight, type SkillMotion } from './skill-motions';
@@ -22,7 +23,7 @@ export function makePaintedHero(loader: PaintedLoader) {
   const root = new T.Group();
   const fallback = makeHero();
   root.add(fallback.root);
-  const material = new T.SpriteMaterial({transparent:true, alphaTest:.08, depthWrite:true, toneMapped:false});
+  const material = uprightSprite(new T.SpriteMaterial({transparent:true, alphaTest:.08, depthWrite:true, toneMapped:false}));
   const portrait = new T.Sprite(material);
   // Normalized art baseline is y=240/256, independent of weapon extent.
   portrait.center.set(.5, 16/256);

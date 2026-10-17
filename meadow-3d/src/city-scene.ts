@@ -6,6 +6,7 @@ import { CITY, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, CITY_PLANTERS, CITY_B
 /** Plaza size and wall line (1 m outside the walkable edge). */
 const S=CITY.halfX*2,H=CITY.halfX+1,F=CITY_FOUNTAIN,K=S/60;
 import type { PaintedLoader } from './assets';
+import {uprightCard,uprightSprite,seeThroughSolid} from './upright-depth.ts';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 
 /** Re-exported for the scene tests; the footprints are solid in shared/maps. */
@@ -14,12 +15,12 @@ export { CITY_ART_SOLIDS };
 /** Visual-only dressing. Shared map footprints, navigation and interaction anchors are authoritative. */
 export function buildCity(scene:T.Scene,loader:PaintedLoader){
  const root=new T.Group();root.name='city_plaza';scene.add(root);
- const eastSign=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/env-forest/signpost-v1.png'),transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false}));eastSign.center.set(.5,0);eastSign.scale.set(1.2,1.8,1);eastSign.position.set(H-3,.04,2.2);root.add(eastSign);
+ const eastSign=new T.Sprite(uprightSprite(new T.SpriteMaterial({map:loader.load('/assets/env-forest/signpost-v1.png'),transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false})));eastSign.center.set(.5,0);eastSign.scale.set(1.2,1.8,1);eastSign.position.set(H-3,.04,2.2);root.add(eastSign);
  const atlas=loader.load('/assets/city/city-trim-v1.png');
- const paint=new T.MeshStandardMaterial({map:atlas,roughness:1,side:T.DoubleSide,vertexColors:true});
+ const paint=seeThroughSolid(new T.MeshStandardMaterial({map:atlas,roughness:1,side:T.DoubleSide,vertexColors:true}));
  const glow=new T.MeshBasicMaterial({map:atlas,color:'#ffcf87'});
  const water=new T.MeshStandardMaterial({color:'#739da3',roughness:.3,metalness:.15,transparent:true,opacity:.87});
- const canvasPaint=cityCanvas();
+ const canvasPaint=seeThroughSolid(cityCanvas());
  const buildingBounds:{name:string;x:number;z:number;w:number;d:number;storeys:number;bounds:number[]}[]=[];let buildingParts:T.BufferGeometry[]|null=null;
  const batches=new Map<string,{material:T.Material;geometries:T.BufferGeometry[]}>();
  const scaleSamples:{name:string;root:T.Group}[]=[],sampleOrigin=new T.Vector3();let sample:T.Group|null=null;
@@ -226,18 +227,18 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
 
  for(const {material,geometries}of batches.values()){const mesh=new T.Mesh(mergeGeometries(geometries),material);mesh.receiveShadow=true;mesh.castShadow=material===paint||material===canvasPaint;root.add(mesh);geometries.forEach(g=>g.dispose());}
  // Five fixed front-facing, four-frame idle sprites share one atlas and one material.
- const npcMap=loader.load('/assets/city/city-npcs-v1.png');const npcMaterial=new T.MeshBasicMaterial({map:npcMap,transparent:true,alphaTest:.05,side:T.DoubleSide,depthWrite:true,toneMapped:false});
+ const npcMap=loader.load('/assets/city/city-npcs-v1.png');const npcMaterial=uprightCard(new T.MeshBasicMaterial({map:npcMap,transparent:true,alphaTest:.05,side:T.DoubleSide,depthWrite:true,toneMapped:false}));
  const npcs=[...CITY_BUILDINGS.map(b=>b.talk),HEALER,GATE_CAPTAIN].map((p,row)=>{
   const height=row===4?2.1:2.0;const g=new T.PlaneGeometry(2.6*height/3.5,height);g.translate(0,height*(.5-8/320),0);const mesh=new T.Mesh(g,npcMaterial);mesh.position.set(p.x,.035,p.z);mesh.onBeforeRender=(_r,_s,c)=>mesh.quaternion.copy(c.quaternion);root.add(mesh);return{mesh,row};
  });
  const townGeo=new T.PlaneGeometry(1.45,1.95);townGeo.translate(0,.94,0);
  const townMat=new T.MeshBasicMaterial({map:npcMap,transparent:true,alphaTest:.08,side:T.DoubleSide,toneMapped:false});const townFrame={value:0};
- townMat.onBeforeCompile=shader=>{shader.uniforms.cityIdleFrame=townFrame;shader.vertexShader='attribute float cityNpcRow;uniform float cityIdleFrame;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvMapUv=vec2((uv.x+cityIdleFrame)/4.,(uv.y+4.-cityNpcRow)/5.);');};townMat.customProgramCacheKey=()=> 'city-idle-residents-v1';
+ townMat.onBeforeCompile=shader=>{shader.uniforms.cityIdleFrame=townFrame;shader.vertexShader='attribute float cityNpcRow;uniform float cityIdleFrame;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvMapUv=vec2((uv.x+cityIdleFrame)/4.,(uv.y+4.-cityNpcRow)/5.);');};townMat.customProgramCacheKey=()=> 'city-idle-residents-v1';uprightCard(townMat);
  const townsfolk=new T.InstancedMesh(townGeo,townMat,12),dummy=new T.Object3D();townsfolk.name='city-townsfolk';const rows=new Float32Array(12);
  for(let i=0;i<12;i++){const anchor=stalls[i%4];dummy.position.set(anchor[0]-2.5+(i%3)*1.3,.04,anchor[1]+(i%2?2.4:-2.5));dummy.quaternion.setFromRotationMatrix(new T.Matrix4().lookAt(new T.Vector3(9,16,13),new T.Vector3(),new T.Vector3(0,1,0)));dummy.updateMatrix();townsfolk.setMatrixAt(i,dummy.matrix);rows[i]=i%5;}
  townGeo.setAttribute('cityNpcRow',new T.InstancedBufferAttribute(rows,1));root.add(townsfolk);
  // South of the bottom step: the camera-facing upper edge tilts north toward the tower.
- const angel=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/skills-painted/angel-v1.png'),transparent:true,alphaTest:.04,depthWrite:false,toneMapped:false}));angel.center.set(.5,.025);angel.scale.set(2.6,3.9,1);angel.position.set(jobs.angel.x,.05,jobs.angel.z);root.add(angel);
+ const angel=new T.Sprite(uprightSprite(new T.SpriteMaterial({map:loader.load('/assets/skills-painted/angel-v1.png'),transparent:true,alphaTest:.04,depthWrite:true,toneMapped:false})));angel.center.set(.5,.025);angel.scale.set(2.6,3.9,1);angel.position.set(jobs.angel.x,.05,jobs.angel.z);root.add(angel);
  function fogTexture(size:number){const c=document.createElement('canvas');c.width=c.height=size;const ctx=c.getContext('2d')!,grad=ctx.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);grad.addColorStop(0,'#bacbd4aa');grad.addColorStop(1,'#bacbd400');ctx.fillStyle=grad;ctx.fillRect(0,0,size,size);return new T.CanvasTexture(c);}
  const fogHQ=fogTexture(128),fogLOW=fogTexture(64);
  // World-sized billboards keep the daylight halo legible with an orthographic camera.
