@@ -1,0 +1,110 @@
+/* Portal pages (index/login/characters) in the in-game glass style (ui-glass.css tokens). Loaded after web.css. */
+:root{
+	--g-glass:rgba(12,20,19,.42);--g-glass-strong:rgba(12,20,19,.7);--g-window:rgba(14,22,21,.74);
+	--g-line:rgba(255,255,255,.13);--g-line-strong:rgba(255,255,255,.24);
+	--g-text:#f3efe6;--g-muted:rgba(243,239,230,.76);--g-faint:rgba(243,239,230,.55);
+	--g-gold:#e6c98f;--g-hp:#e8656a;--g-ok:#8fd18a;--g-blur:blur(18px) saturate(1.3);
+	--muted:var(--g-muted);--line:var(--g-line);--gold:var(--g-gold)
+}
+html:has(body.glass-portal){background:#0e1917}
+body.glass-portal{color:var(--g-text);background:transparent;font-size:14px}
+body.glass-portal::before{content:'';position:fixed;inset:0;z-index:-2;background:url('/assets/web/city-mist-1920-v1.webp') center/cover}
+body.glass-portal::after{content:'';position:fixed;inset:0;z-index:-1;background:
+	radial-gradient(900px 600px at 15% 0,rgba(6,12,11,.35),transparent 70%),linear-gradient(rgba(8,15,14,.62),rgba(8,15,14,.86))}
+@media(max-width:800px){body.glass-portal::before{background-image:url('/assets/web/city-mist-mobile-v1.webp')}}
+
+/* Header / footer */
+.glass-portal .site-header{border-bottom:1px solid var(--g-line);background:var(--g-glass);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);max-width:none;padding-left:max(28px,calc((100vw - 1144px)/2));padding-right:max(28px,calc((100vw - 1144px)/2))}
+.glass-portal .site-header nav{color:var(--g-muted);font-size:13px}
+.glass-portal .account-chip{font-size:12px;gap:10px}
+.glass-portal .account-chip .uid-chip{font-size:11px}
+.glass-portal .site-footer{color:var(--g-faint);border-top-color:var(--g-line);font-size:11px}
+
+/* Material */
+.glass-card,.glass-portal .auth-card,.glass-portal .character-card,.glass-portal dialog{background:var(--g-window);border:1px solid var(--g-line-strong);border-radius:16px;
+	backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);box-shadow:0 24px 70px rgba(0,0,0,.45);color:var(--g-text)}
+.glass-portal .eyebrow{font:600 11px/1.6 'Noto Sans Thai',sans-serif;letter-spacing:.16em;color:var(--g-gold)}
+.glass-portal .muted{color:var(--g-muted)}
+.glass-portal .gold-button,.glass-portal .outline-button{border-radius:10px;min-height:46px;font-weight:600;gap:12px}
+.glass-portal .gold-button{color:#1d2a26;background:linear-gradient(125deg,#f2dfb2,#d7b679);border-color:#f2dfb2;box-shadow:0 6px 22px rgba(0,0,0,.3)}
+.glass-portal .outline-button{color:var(--g-text);background:rgba(255,255,255,.06);border-color:var(--g-line-strong)}
+.glass-portal .outline-button:hover{background:rgba(255,255,255,.12)}
+.glass-portal .link-button{color:var(--g-gold);font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.glass-portal .error-strip{border-radius:10px;border-color:rgba(232,101,106,.5);background:rgba(120,30,36,.35);color:#ffc9c3}
+.glass-portal .session-note{border-radius:10px;border-color:var(--g-line);background:rgba(230,201,143,.08);color:var(--g-gold);font-size:12px}
+.glass-portal button:focus-visible,.glass-portal a:focus-visible,.glass-portal input:focus-visible{outline:2px solid var(--g-gold);outline-offset:2px}
+
+/* Auth page */
+.glass-portal .auth-page{grid-template-columns:1fr 440px;gap:48px}
+.glass-portal .auth-art{border-radius:16px;border-color:var(--g-line-strong);min-height:520px}
+.glass-portal .auth-card{padding:32px}
+.glass-portal .auth-card h1{font:600 26px/1.3 'Noto Sans Thai',sans-serif;margin:6px 0 16px}
+.auth-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;margin:4px 0 18px;border-radius:12px;background:rgba(0,0,0,.28);border:1px solid var(--g-line)}
+.auth-tabs [role=tab]{border:0;border-radius:9px;background:none;color:var(--g-muted);padding:10px 6px;min-height:42px;font-weight:600;font-size:13px}
+.auth-tabs [role=tab][aria-selected=true]{background:rgba(255,255,255,.12);color:var(--g-text);box-shadow:inset 0 0 0 1px var(--g-line-strong)}
+.auth-tabs [role=tab]:hover{color:var(--g-text);filter:none}
+.auth-panel .panel-title{font:600 16px/1.4 'Noto Sans Thai',sans-serif;margin:0 0 14px;color:var(--g-text)}
+.auth-panel>.small{margin:0 0 16px}
+.auth-panel .gold-button{width:100%}
+.auth-form .field{margin:0 0 14px}
+.auth-form label{display:block;font-size:13px;font-weight:600;margin:0 0 6px;color:var(--g-text)}
+.auth-form input:not([type=checkbox]){width:100%;min-height:46px;padding:10px 14px;border-radius:10px;border:1px solid var(--g-line-strong);background:rgba(0,0,0,.32);color:var(--g-text);font-size:16px}
+.auth-form input:not([type=checkbox]):focus{border-color:var(--g-gold);outline:none;box-shadow:0 0 0 3px rgba(230,201,143,.2)}
+.auth-form input[aria-invalid=true]{border-color:var(--g-hp)}
+.password-row{display:flex;gap:6px;align-items:stretch}
+.auth-form .field input{margin:0}
+.password-row input{flex:1;min-width:0}
+.reveal{flex:none;min-width:58px;border-radius:10px;border:1px solid var(--g-line-strong);background:rgba(255,255,255,.06);color:var(--g-muted);font-size:12px}
+.field-hint{margin:6px 0 0;font-size:11px;line-height:1.6;color:var(--g-faint)}
+.field-error{margin:6px 0 0;font-size:12px;line-height:1.6;color:#ffb3ab}
+.field-error::before{content:'⚠ '}
+.check-row:not([hidden]){display:flex!important;gap:10px;align-items:flex-start;font-weight:400!important;font-size:12px!important;line-height:1.7;color:var(--g-muted)!important;margin:2px 0 14px!important;cursor:pointer}
+.check-row input{width:18px;height:18px;margin:2px 0 0;accent-color:#d7b679;flex:none}
+.switch-line{text-align:center;margin:14px 0 0}
+.auth-form .error-strip{margin:0 0 14px}
+.glass-portal .back-link{display:inline-block;margin-top:20px;font-size:12px}
+
+/* Signed-in panel and UID chip */
+.signed-in{padding:16px;border-radius:12px;background:rgba(0,0,0,.22);border:1px solid var(--g-line);margin:0 0 18px}
+.signed-in p{margin:0 0 8px}
+.signed-in-title{font-size:11px;letter-spacing:.12em;color:var(--g-ok)}
+.signed-in-name{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.signed-in-name b{font-size:18px;overflow-wrap:anywhere}
+.signed-in-name small{font-size:11px;color:var(--g-faint)}
+.signed-in .actions{display:flex;gap:8px;margin-top:14px}
+.signed-in .actions>*{flex:1;padding:10px 12px}
+.uid-chip{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;padding:4px 4px 4px 10px;border-radius:999px;border:1px solid var(--g-line-strong);background:rgba(0,0,0,.3);font-size:12px;color:var(--g-muted);vertical-align:middle}
+.uid-label{font-weight:700;letter-spacing:.1em;color:var(--g-faint);font-size:10px}
+.uid-code{font:600 14px/1 ui-monospace,Consolas,monospace;letter-spacing:.08em;color:var(--g-gold);user-select:all}
+.uid-copy{border:0;border-radius:999px;background:rgba(255,255,255,.1);color:var(--g-text);font-size:11px;padding:5px 10px;min-height:28px}
+.uid-copy:hover{background:rgba(255,255,255,.18);filter:none}
+.uid-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* Character page */
+.glass-portal .intro-row h1{font:600 34px/1.3 'Noto Sans Thai',sans-serif}
+.account-panel{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:6px 0 0;font-size:13px}
+.glass-portal .link-note{border-left-color:var(--g-gold);color:var(--g-gold);font-size:12px}
+.glass-portal .character-card{background:linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.01)),var(--g-window)}
+.glass-portal .character-card img{border-radius:12px;border-color:var(--g-line-strong)}
+.glass-portal .character-card.empty-slot{background:var(--g-glass);border-style:dashed}
+.glass-portal dialog{border-color:var(--g-line-strong)}
+.glass-portal dialog::backdrop{background:rgba(6,12,11,.55);backdrop-filter:blur(4px)}
+#password-dialog .auth-form .actions{display:flex;gap:8px}
+
+/* Portal hero */
+.glass-portal .hero{border-radius:20px;border-color:var(--g-line-strong)}
+.glass-portal .feature,.glass-portal .teaser,.glass-portal .changelog li{border-radius:14px}
+
+@media(max-width:800px){
+	.glass-portal .site-header{padding:12px 16px}
+	.glass-portal .auth-page{grid-template-columns:1fr;max-width:520px;padding:20px 16px 8px;min-height:0;align-content:start}
+	.glass-portal .auth-card{padding:24px 18px}
+	.glass-portal .site-footer{margin:12px 16px 0}
+}
+@media(max-width:450px){
+	.glass-portal .auth-card h1{font-size:22px}
+	.auth-tabs [role=tab]{font-size:12px;padding:8px 4px}
+	.signed-in .actions{flex-direction:column}
+	.glass-portal .intro-row h1{font-size:28px}
+}
+@media(prefers-reduced-transparency:reduce){.glass-card,.glass-portal .auth-card,.glass-portal .character-card,.glass-portal dialog{background:#141f1d;backdrop-filter:none;-webkit-backdrop-filter:none}}

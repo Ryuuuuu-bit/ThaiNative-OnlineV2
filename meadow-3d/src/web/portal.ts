@@ -1,4 +1,4 @@
-import'../web.css';import{startGuest,mountAccountChip}from'./session';import{showError}from'./api';
+import'../web.css';import'../web-glass.css';import{startGuest,mountAccountChip}from'./session';import{showError}from'./api';
 void mountAccountChip();
 document.querySelector<HTMLButtonElement>('#guest-play')!.onclick=async function(this:HTMLButtonElement){this.disabled=true;try{await startGuest();location.assign('/characters.html');}catch(e){showError(document.querySelector('#portal-error')!,e);this.disabled=false;}};
 document.querySelector('#build-id')!.textContent=import.meta.env.VITE_BUILD_ID||'ทดสอบ';

@@ -1,5 +1,5 @@
 import{api,post,ApiError}from'./api';
-export interface Account{id:string;kind:'guest'|'google';displayName:string}
+export interface Account{id:string;uid:string;kind:'guest'|'google'|'password';displayName:string;username?:string}
 export interface Me{account:Account;selectedCharacterId:string|null}
 const KEY='tn_guest_key';
 export function guestKey(){try{return localStorage.getItem(KEY);}catch{return null;}}
@@ -10,5 +10,7 @@ export async function logout(){await post('/logout');location.assign('/login.htm
 export async function startGuest(){const existing=await getMe();if(existing)return existing;const key=guestKey();if(key){try{return await post('/guest/resume',{guestKey:key});}catch(e){if(!(e instanceof ApiError&&e.status===401))throw e;forgetGuest();}}
  const data=await post('/guest');if(data.guestKey)try{localStorage.setItem(KEY,data.guestKey);}catch{}return data;
 }
+export const loginPassword=(username:string,password:string)=>post<{account:Account}>('/login',{username,password});
+export async function register(body:{username:string;password:string;confirmPassword:string;linkGuest:boolean}){const data=await post<{account:Account;linked:boolean}>('/register',body);if(data.linked)forgetGuest();return data;}
 export function safeNext(value:string|null){return value&&/^\/(?!\/)/.test(value)&&!/[\\\r\n]/.test(value)&&!/^\/(?:login|index)\.html(?:[?#]|$)/.test(value)?value:'/characters.html';}
 export async function mountAccountChip(){const chip=document.querySelector<HTMLElement>('#account-chip');if(!chip)return;try{const me=await getMe();chip.replaceChildren();if(me){const name=document.createElement('a');name.href='/characters.html';name.textContent=me.account.kind==='guest'?'ผู้เยี่ยมชม':me.account.displayName;const out=document.createElement('button');out.className='link-button';out.textContent='ออกจากระบบ';out.onclick=()=>void logout().catch(e=>{chip.textContent=e.message;});chip.append(name,out);}else{const a=document.createElement('a');a.href='/login.html';a.textContent='เข้าสู่ระบบ';chip.append(a);}}catch{chip.textContent='เชื่อมต่อบัญชีไม่ได้';}}

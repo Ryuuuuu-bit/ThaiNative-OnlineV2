@@ -19,9 +19,9 @@ Default address: `http://127.0.0.1:8787`. Development uses two terminals: `npm r
 | Variable | Default / use |
 | --- | --- |
 | `PORT` | `8787`; Railway supplies its own port. |
-| `DATABASE_URL` | Absent: temporary MemoryStore. Present: `pg` PostgresStore. Use a Railway Postgres connection URL for persistent UAT accounts/progress. |
+| `DATABASE_URL` | Absent: temporary MemoryStore (local only). Present: `pg` PostgresStore. **Required in production/any Railway environment**: startup refuses MemoryStore there unless `ALLOW_MEMORY_STORE=1`. |
 | `GOOGLE_CLIENT_ID` | Optional Google OAuth **Web application** client ID. Absent: sign-in page explains that Google is unavailable; Guest still works. No client secret is needed for GIS ID-token verification. |
-| `SESSION_SECRET` | Optional stable pepper mixed into session/recovery-key hashes. Set a long random value for hosted use. Changing it invalidates existing session cookies and guest recovery keys. |
+| `SESSION_SECRET` | Stable pepper mixed into session/recovery-key hashes. **Required in production/any Railway environment and at least 32 characters** (startup refuses otherwise); optional locally. Changing it invalidates existing session cookies and guest recovery keys. |
 | `STATIC_DIR` | `meadow-3d/dist`, relative to the Node process working directory. |
 | `NODE_ENV` | Set to `production` in hosting; session cookies are also Secure whenever the trusted proxy reports HTTPS. |
 | `RAILWAY_GIT_COMMIT_SHA` | First eight characters become the build ID. Otherwise `VITE_BUILD_ID`, then the UTC build date. |
@@ -34,7 +34,11 @@ Boot runs `sql/001_init.sql` and `sql/002_stats.sql` inside a transaction and mi
 
 Cookies contain a random 32-byte opaque token, last 30 days, and are HttpOnly, SameSite=Lax, Path=/, Secure in production/HTTPS. Only SHA-256 hashes reach storage. Selected character is session-scoped. Guest recovery keys are returned once, hashed separately on the server, and saved by the client in localStorage. Logout removes the session but retains the local recovery key; returning to login offers the old Guest. Losing both the cookie and local recovery key loses access to an unlinked guest. Guest recovery from MemoryStore cannot survive server restarts. Linking Google keeps characters, invalidates guest recovery and earlier sessions, and issues a new session. Accounts bound to another Google subject cannot be silently merged.
 
-The API accepts JSON and text/plain JSON beacons, limited to 16 kB. Auth creation/resume/Google requests share a 20-per-minute IP budget. Cross-origin browser writes are rejected. The app trusts one proxy hop for Railway; do not expose it behind an untrusted proxy chain.
+Username/password accounts (`sql/015_accounts_password_uid.sql`): `POST /api/register {username,password,confirmPassword,linkGuest?}`, `POST /api/login {username,password}`, `POST /api/password {currentPassword,newPassword,confirmPassword}`. Usernames are 3–20 `[A-Za-z0-9_]`, unique case-insensitively (`username_key`), with reserved staff/system names refused. Passwords are 8–128 characters, hashed with scrypt (N=2^15, r=8, p=1, 16-byte per-user salt, constant-time compare); the plaintext is never logged or returned. A signed-in guest who registers becomes that account (characters and UID kept, guest key and old sessions revoked) unless `linkGuest:false`. Wrong username and wrong password return the same `LOGIN_FAILED`; unknown names still run the KDF. Failed logins back off per username (5 free, then 30 s doubling to 15 min, existing or not) and per IP (20 free); register is capped at 30/hour/IP. Lockout counters are per process. Changing the password signs out every other device.
+
+Every account has a `uid`: 9 random digits, separate from the internal UUID and never derived from email/Google. The migration backfills existing rows, sets a unique index and a trigger that refuses any change once set. `/api/me` returns `uid`; the login, character and in-game menu screens show it with a copy button.
+
+The API accepts JSON and text/plain JSON beacons, limited to 16 kB. Auth creation/resume/Google/login/register/password requests share a 20-per-minute IP budget. Cross-origin browser writes are rejected. The app trusts one proxy hop for Railway; do not expose it behind an untrusted proxy chain.
 
 Only the room calls `Store.saveProgress`; the old progress POST returns **410 Gone** after ownership checks. The server saves every 30 seconds, on level-up/King defeat/death and disconnect, with serialized per-room write queues. No client beacon or progress body can write level, gold, damage or stats. A reconnect within 60 seconds resumes the retained room exactly (time, AUTO, enemies and loot continue); after expiry a new room restores saved progression/position and full derived HP/SP. MemoryStore remains temporary across process restarts.
 
