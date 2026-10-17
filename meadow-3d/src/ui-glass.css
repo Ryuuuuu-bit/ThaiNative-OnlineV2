@@ -359,6 +359,7 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
  -webkit-text-stroke:3px rgba(18,14,10,.85);paint-order:stroke fill;text-shadow:0 3px 6px rgba(0,0,0,.45)}
 #numbers .number.crit{font-size:32px;color:#ffe08a;-webkit-text-stroke:3.5px #4a2a06;text-shadow:0 0 14px rgba(255,180,60,.75),0 3px 6px rgba(0,0,0,.5)}
 #numbers .number.crit::before{content:'CRITICAL';display:block;margin-bottom:2px;font:800 10px/1 'Noto Sans Thai',sans-serif;letter-spacing:.24em;color:#ffcf6b;-webkit-text-stroke:2px #3a2206;text-align:center}
+#numbers .number.boss-skill{padding:4px 14px;border-radius:12px;font:800 16px/1.4 'Noto Sans Thai',sans-serif;color:#ffe6d8;-webkit-text-stroke:0;background:rgba(120,24,20,.72);border:1px solid rgba(255,150,120,.6);box-shadow:0 0 16px rgba(255,90,70,.45);white-space:nowrap}
 #numbers .number.hurt{font-size:20px;color:#ff8f8f;-webkit-text-stroke:3px #3a0d10}
 #numbers .number.heal{font-size:21px;color:#a8f0a6;-webkit-text-stroke:3px #0d2b14;text-shadow:0 0 10px rgba(143,209,138,.55)}
 #numbers .number.evade{padding:2px 10px;border-radius:10px;font:700 13px/1.4 'Noto Sans Thai',sans-serif;color:#cfeaff;-webkit-text-stroke:0;letter-spacing:.06em;

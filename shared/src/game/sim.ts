@@ -28,6 +28,30 @@ export type KingAttack = "slam" | "sweep" | "charge" | "spit" | "summon";
 export type MonsterMotion =
 	| keyof typeof MONSTER_MOTIONS.slime
 	| keyof typeof MONSTER_MOTIONS.king;
+export interface BossTelegraph {
+	id: string;
+	nameTh: string;
+	shape: "circle" | "ring" | "cone";
+	x: number;
+	z: number;
+	fx: number;
+	fz: number;
+	radius: number;
+	inner: number;
+	/** Cone opening in degrees (0 for other shapes). */
+	angle: number;
+	left: number;
+}
+/** Whether a point is inside a telegraphed area. */
+export function inTelegraph(t: Pick<BossTelegraph, "shape" | "x" | "z" | "fx" | "fz" | "radius" | "inner" | "angle">, x: number, z: number) {
+	const dx = x - t.x,
+		dz = z - t.z,
+		d = Math.hypot(dx, dz);
+	if (d > t.radius) return false;
+	if (t.shape === "ring") return d >= t.inner;
+	if (t.shape === "cone") return d < 0.6 || (dx * t.fx + dz * t.fz) / d >= Math.cos(((t.angle / 2) * Math.PI) / 180);
+	return true;
+}
 export interface Vec {
 	x: number;
 	z: number;
@@ -66,6 +90,11 @@ export interface Enemy extends Vec {
 	attackApplied: boolean;
 	patternIndex: number;
 	history: KingAttack[];
+	/** Telegraphed skill being wound up: its area is fixed when the warning starts. */
+	telegraph?: BossTelegraph;
+	/** Ordinary boss attacks since the last telegraphed skill, and which one comes next. */
+	sinceTelegraph?: number;
+	telegraphIndex?: number;
 	engaged: boolean;
 		summoned: boolean;
 	/** Spawned by a GM command: never respawns, removed shortly after death like summons. */
@@ -515,6 +544,7 @@ function defeat(g: Game, e: Enemy) {
 	e.deathAge = 0;
 		e.respawn = e.boss ? (g.mapId === "meadow" || g.mapId === "forest" ? FIELD_BOSS[g.mapId].respawnMinutes * 60 : 1800) : 12;
 	e.windup = 0;
+	cancelTelegraph(g, e);
 	e.hurt = 0;
 	setMotion(e, "death");
 	g.kills++;
@@ -658,6 +688,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 	if (e.boss && e.bossPhase === 1 && e.hp <= e.maxHp * 0.5) {
 		e.bossPhase = 2;
 		e.windup = 0;
+		cancelTelegraph(g, e);
 		setMotion(e, "transform");
 		g.projectiles = g.projectiles.filter((p) => p.owner !== e.id);
 		emit(g, "phase2", { x: e.x, z: e.z, id: e.id });
@@ -682,7 +713,7 @@ function hurt(
 		const spec = g.data.monsters.monsters.find((m) => m.id === source.dataId)!,
 			attacker = monsterStats(spec, g.data, source.bossPhase === 2);
 		const basic = gameSkill(g, "attack"),
-			pattern = spec.attacks?.[attack as "slam"];
+			pattern = spec.attacks?.[attack as "slam"] ?? spec.telegraphs?.find((t) => t.id === attack);
 		const skill = source.boss
 			? {
 					...basic,
@@ -1109,6 +1140,7 @@ export function revive(g: Game) {
 		for (const e of g.enemies) {
 			e.aggro = 0;
 			e.windup = 0;
+			cancelTelegraph(g, e);
 			if (!e.dead) {
 				setMotion(e, "idle");
 				e.cooldown = 1;
@@ -1236,6 +1268,27 @@ function navigate(g: Game, goal: Vec, reach = 0): Vec {
 function autoDodge(g: Game) {
 	const p = g.p;
 	if (p.cd.dash > 0 || p.dash > 0) return;
+	// Telegraphed skills: roll out just before the blast, towards the nearest safe spot (into a ring's hole too).
+	for (const e of g.enemies) {
+		const t = e.telegraph;
+		if (e.dead || !t || t.left > 0.3 || !inTelegraph(t, p.x, p.z)) continue;
+		const away = Math.atan2(p.z - t.z, p.x - t.x),
+			inward = t.shape === "ring" && Math.hypot(p.x - t.x, p.z - t.z) - t.inner < t.radius - Math.hypot(p.x - t.x, p.z - t.z);
+		const angles = [0, Math.PI / 2, -Math.PI / 2, Math.PI / 4, -Math.PI / 4, (3 * Math.PI) / 4, (-3 * Math.PI) / 4, Math.PI].map((o) => away + (inward ? Math.PI : 0) + o);
+		for (const a of angles) {
+			const dx = Math.cos(a),
+				dz = Math.sin(a),
+				end = { x: p.x + dx * 3.08, z: p.z + dz * 3.08 };
+			if (inTelegraph(t, end.x, end.z) || !clearSegment(p, end)) continue;
+			p.fx = dx;
+			p.fz = dz;
+			if (action(g, "dash")) {
+				g.autoPath = [];
+				g.autoGoal = null;
+			}
+			return;
+		}
+	}
 	for (const e of g.enemies) {
 		if (
 			e.dead ||
@@ -1511,6 +1564,10 @@ function kingStep(g: Game, e: Enemy, dt: number) {
 		face(e, p.x, p.z);
 		return;
 	}
+	if (e.telegraph) {
+		telegraphStep(g, e, dt);
+		return;
+	}
 	const speed = e.bossPhase === 2 ? 1.3 : 1;
 	if (["slam", "sweep", "charge", "spit", "summon"].includes(e.motion)) {
 		const t = e.motionTime;
@@ -1595,8 +1652,58 @@ function kingStep(g: Game, e: Enemy, dt: number) {
 		move(e, (dx / d) * 1.5 * dt * speed, (dz / d) * 1.5 * dt * speed);
 	} else {
 		setMotion(e, "idle");
-		if (e.cooldown <= 0) startKingAttack(g, e);
+		if (e.cooldown <= 0 && !startTelegraph(g, e)) startKingAttack(g, e);
 	}
+}
+/** Every few ordinary attacks (more often once enraged) the boss winds up one of its telegraphed skills. */
+function startTelegraph(g: Game, e: Enemy) {
+	const list = g.data.monsters.monsters.find((m) => m.id === e.dataId)?.telegraphs;
+	if (!list?.length) return false;
+	if ((e.sinceTelegraph ?? 0) < (e.bossPhase === 2 ? 2 : 3)) {
+		e.sinceTelegraph = (e.sinceTelegraph ?? 0) + 1;
+		return false;
+	}
+	const spec = list[(e.telegraphIndex ?? 0) % list.length],
+		p = g.p;
+	e.telegraphIndex = (e.telegraphIndex ?? 0) + 1;
+	e.sinceTelegraph = 0;
+	face(e, p.x, p.z);
+	const onTarget = spec.shape === "circle";
+	e.telegraph = {
+		id: spec.id,
+		nameTh: spec.nameTh,
+		shape: spec.shape,
+		x: onTarget ? p.x : e.x,
+		z: onTarget ? p.z : e.z,
+		fx: e.fx,
+		fz: e.fz,
+		radius: spec.radius,
+		inner: spec.inner ?? 0,
+		angle: spec.angle ?? 0,
+		left: spec.windup,
+	};
+	e.windup = spec.windup;
+	setMotion(e, "roar");
+	const t = e.telegraph;
+	emit(g, "warning", { x: t.x, z: t.z, r: t.radius, duration: spec.windup, id: e.id, attack: t.id, shape: t.shape, inner: t.inner, angle: t.angle, fx: t.fx, fz: t.fz, name: t.nameTh });
+	return true;
+}
+function telegraphStep(g: Game, e: Enemy, dt: number) {
+	const t = e.telegraph!;
+	t.left -= dt;
+	e.windup = Math.max(0, t.left);
+	if (t.left > 0) return;
+	e.telegraph = undefined;
+	for (const victim of g.players.values())
+		if (!victim.dead && inTelegraph(t, victim.x, victim.z)) withPlayer(g, victim.id, () => hurt(g, 0, e, t.id as MonsterMotion));
+	emit(g, "bossBlast", { x: t.x, z: t.z, id: e.id, attack: t.id, shape: t.shape, r: t.radius, inner: t.inner, angle: t.angle, fx: t.fx, fz: t.fz });
+	setMotion(e, "idle");
+	e.cooldown = e.bossPhase === 2 ? 0.9 : 1.4;
+}
+function cancelTelegraph(g: Game, e: Enemy) {
+	if (!e.telegraph) return;
+	e.telegraph = undefined;
+	emit(g, "warningCancel", { id: e.id });
 }
 const JELLY_BEHAVIOR = { ai: "melee" as const, speed: 2.2, aggroRange: 2.6, attackRange: 1.35, lunge: 5, cooldown: 1.5, windup: 0.5 };
 /** Regular monsters: jelly defaults, or the monster's data-driven behavior (melee lunge or ranged caster). */
@@ -1821,9 +1928,10 @@ export function step(
 			}
 			continue;
 		}
-        if(e.boss&&Object.keys(e.damageBy).length&&(g.time-(e.lastEngagedAt??g.time)>=30||!Object.keys(e.damageBy).some(id=>{const p=g.players.get(id);return p&&!p.dead;}))){e.hp=e.maxHp;e.damageBy={};e.engaged=false;e.bossPhase=1;e.statuses=[];e.x=e.homeX;e.z=e.homeZ;setMotion(e,'idle');}
+        if(e.boss&&Object.keys(e.damageBy).length&&(g.time-(e.lastEngagedAt??g.time)>=30||!Object.keys(e.damageBy).some(id=>{const p=g.players.get(id);return p&&!p.dead;}))){e.hp=e.maxHp;e.damageBy={};e.engaged=false;e.bossPhase=1;e.statuses=[];cancelTelegraph(g,e);e.x=e.homeX;e.z=e.homeZ;setMotion(e,'idle');}
 		if (!nearest) {
 			e.windup = 0;
+			cancelTelegraph(g, e);
 			setMotion(e, "idle");
 			continue;
 		}

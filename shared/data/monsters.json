@@ -327,7 +327,29 @@
           "phase2Percent": 75
         }
       },
-      "jobExp": 150
+      "jobExp": 150,
+      "telegraphs": [
+        {
+          "id": "jelly_wave",
+          "nameTh": "คลื่นวุ้นถล่ม",
+          "shape": "cone",
+          "windup": 2.0,
+          "radius": 6,
+          "angle": 80,
+          "percent": 140,
+          "phase2Percent": 165
+        },
+        {
+          "id": "jelly_burst",
+          "nameTh": "วุ้นแตกกระจาย",
+          "shape": "ring",
+          "windup": 2.2,
+          "radius": 5.5,
+          "inner": 2.2,
+          "percent": 130,
+          "phase2Percent": 155
+        }
+      ]
     },
     {
       "id": "mist_shroom",
@@ -647,7 +669,28 @@
           "percent": 61,
           "phase2Percent": 75
         }
-      }
+      },
+      "telegraphs": [
+        {
+          "id": "mist_crush",
+          "nameTh": "หมอกทับร่าง",
+          "shape": "circle",
+          "windup": 1.8,
+          "radius": 3,
+          "percent": 150,
+          "phase2Percent": 175
+        },
+        {
+          "id": "mist_tide",
+          "nameTh": "วงหมอกล้อมป่า",
+          "shape": "ring",
+          "windup": 2.4,
+          "radius": 7,
+          "inner": 2.5,
+          "percent": 140,
+          "phase2Percent": 165
+        }
+      ]
     }
   ]
 }

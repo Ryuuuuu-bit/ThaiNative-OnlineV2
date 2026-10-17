@@ -347,6 +347,29 @@ export const MonsterSchema = z
 				z.object({ percent: nonnegative, phase2Percent: nonnegative }).strict(),
 			)
 			.optional(),
+		/** Telegraphed boss skills: a long, readable windup over an area locked when the warning starts. */
+		telegraphs: z
+			.array(
+				z
+					.object({
+						id: z.string().regex(/^[a-z_]{1,40}$/),
+						nameTh: z.string().min(1).max(40),
+						shape: z.enum(["circle", "ring", "cone"]),
+						/** circle: on the target's spot; ring and cone: around / from the boss. */
+						windup: positive.max(4),
+						radius: positive.max(12),
+						inner: nonnegative.optional(),
+						/** Cone opening in degrees. */
+						angle: positive.max(360).optional(),
+						percent: nonnegative,
+						phase2Percent: nonnegative,
+					})
+					.strict()
+					.refine((t) => t.shape !== "ring" || (t.inner ?? 0) < t.radius, "ring inner must be inside radius")
+					.refine((t) => t.shape !== "cone" || t.angle !== undefined, "cone needs an angle"),
+			)
+			.max(4)
+			.optional(),
 		phase2: z
 			.object({ atk: nonnegative, element: ElementSchema })
 			.strict()
