@@ -28,9 +28,9 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
    +tile('auto','ตั้งค่า AUTO','#5fb6e8','data-go="#auto-settings-button"')+'<a class="menu-tile" data-icon="art" style="--tint:#f0b6c8" href="/character.html"><i></i><span>ภาพวาด</span></a>'+'</div></section>'
   +'<section class="menu-group"><p class="caption">เกม</p><div class="menu-grid menu-play">'+tile('settings','ตั้งค่า','#9fb3c8','id="menu-settings"')+'</div></section>'
   +'<section class="menu-group"><div class="menu-grid"><a class="menu-tile danger" data-icon="exit" style="--tint:#e8656a" href="/characters.html"><i></i><span>ออกจากเกม</span></a></div></section>';document.body.append(menu);
- // Pause, guide and image quality are the HUD's own buttons, moved in as tiles (their listeners stay).
+ // Guide and image quality are the HUD's own buttons, moved in as tiles (their listeners stay).
  const play=menu.querySelector('.menu-play')!;
- for(const [id,icon,label,tint,key] of [['pause','pause','พักเกม','#e6c98f','Esc'],['help','help','คู่มือ','#8fd18a','?']] as const){const b=$('#'+id);b.className='menu-tile';b.dataset.icon=icon;b.style.setProperty('--tint',tint);b.innerHTML=`<i></i><span>${label}</span><kbd>${key}</kbd>`;b.addEventListener('click',()=>menu.close());play.prepend(b);}
+ for(const [id,icon,label,tint,key] of [['help','help','คู่มือ','#8fd18a','?']] as const){const b=$('#'+id);b.className='menu-tile';b.dataset.icon=icon;b.style.setProperty('--tint',tint);b.innerHTML=`<i></i><span>${label}</span><kbd>${key}</kbd>`;b.addEventListener('click',()=>menu.close());play.prepend(b);}
  // #quality keeps rewriting its own text ("ภาพ: สูง"), which becomes the tile label.
  const quality=$('#quality');quality.classList.add('menu-tile','menu-quality');quality.dataset.icon='quality';quality.style.setProperty('--tint','#5fb6e8');play.append(quality);
  menu.addEventListener('click',e=>{const go=(e.target as HTMLElement).closest<HTMLElement>('[data-go]');if(!go)return;menu.close();document.querySelector<HTMLElement>(go.dataset.go!)?.click();});

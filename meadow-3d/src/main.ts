@@ -24,6 +24,8 @@ import {mountHUDQOL} from './hud-qol';
 import './hud-qol.css';
 import './ui-glass.css';
 import './ui-windows.css';
+import {mountTutorialGuide} from './tutorial-guide';
+let guide:ReturnType<typeof mountTutorialGuide>|undefined;
 let qol:ReturnType<typeof mountHUDQOL>|undefined;let settingsUI:ReturnType<typeof mountSettingsWindow>|undefined;let pendingUI:any;
 import{updateSeeThrough,OVERLAY_ORDER}from'./upright-depth.ts';
 import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
@@ -51,7 +53,7 @@ const launcher=(()=>{const bar=$('.legacy-actions'),open=document.createElement(
  return {adopt:(el:Element)=>panel.append(el)};})();
 const itemData=loadGameData();
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(selected.character.id),keys=new Set<string>();let qualityPreference="high";try{qualityPreference=localStorage.getItem("tn-quality")||"high";}catch{}
-let started=false,paused=false,wonShown=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
+let started=false,paused=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
 sound.restore(selected.character.audioSettings);
 const combatFeel=new CombatFeel(),autoQuality=new AutoQuality();autoQuality.automatic=false;
 const audioUI=mountAudioSettings(sound,message=>net.send(message));const autoPotionUI=mountAutoPotion(message=>net.send(message));
@@ -104,7 +106,7 @@ async function switchMap(id:MapId){
  try{
   const next=scenes.get(id)||await buildMap(id);await loader.whenReady();world.root.visible=false;world=next;world.root.visible=true;activeMap=id;
   world.setQuality(quality);mapLightRig(id,scene,renderer,hemisphere,sun);sound.setMap(id);$('#quest-name').textContent=id==='city_plaza'?'นครที่ถูกลืมเลือน':id==='forest'?'ป่าหมอก':'ก้าวแรกของนักผจญภัย';resize();area.textContent=areaName(id);qol?.banner();
-  const own=game.p;focus.set(own.x,0,own.z-1.1);markerTime=0;wonShown=false;
+  const own=game.p;focus.set(own.x,0,own.z-1.1);markerTime=0;
   for(const tag of statusLabels.values())tag.remove();statusLabels.clear();
   for(const e of effects){scene.remove(e.mesh);disposeEffect(e.mesh);}effects.length=0;
   await new Promise(r=>setTimeout(r,180));
@@ -167,7 +169,7 @@ function meteorEffect(e:Event){if(document.hidden)return;const o=new T.Group();c
 function notice(text:string){if([...$('#notices').children].some(el=>el.textContent===text))return;const el=document.createElement('div');el.className='notice';el.textContent=text;$('#notices').appendChild(el);while($('#notices').children.length>4)$('#notices').firstElementChild?.remove();setTimeout(()=>el.remove(),4000);}
 function number(text:string,e:{x:number;z:number},kind='',height=1.8){if(document.hidden)return;while(numbers.length>=40)numbers.shift().el.remove();const index=numbers.length%5,el=document.createElement('span');el.className=`number ${kind} ${lighterVfx?'other':''}`;el.textContent=text;$('#numbers').appendChild(el);numbers.push({el,x:e.x,z:e.z,height:Math.min(height,1.5),life:1,max:1,offset:(index-2)*28});}
 
-function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&&e.playerId!==net.you;const now=performance.now();combatFeel.event(e,net.you,game.p,now);if(e.playerId===net.you){hero.event(e);if((e.type==='skill'&&isSkillMotion(e.skillId)&&!CAST_SECONDS[e.skillId])||(e.type==='skillImpact'&&isSkillMotion(e.skillId)&&!!CAST_SECONDS[e.skillId]))pendingContacts.push({skill:e.skillId,eventAt:now,eventFrame:presentationFrame,expectedFrame:CONTACT_FRAME[e.skillId]});}else remoteHeroes.get(e.playerId)?.actor.event(e);if(e.type==='dashTrail'&&e.playerId===net.you)hero.update({...game.p,x:e.toX,z:e.toZ},time);if(!document.hidden)skillArt.emit({...e,guarded:[game.p,...worldState.others].find(p=>p.id===e.playerId)?.statuses?.some(s=>s.id==='guard'),lighter:e.playerId!==net.you});const effectStart=effects.length;if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.setListener(game.p);playEventAudio(sound,{...e,guarded:game.p.statuses?.some(s=>s.id==='guard')},net.you,game.enemies.find(e=>e.boss)||ARENA,id=>{const m=game.enemies.find(x=>x.id===id);return monsterSpecies(m?.dataId,m?.boss);});switch(e.type){
+function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&&e.playerId!==net.you;const now=performance.now();combatFeel.event(e,net.you,game.p,now);if(e.playerId===net.you){hero.event(e);guide?.event(e);if((e.type==='skill'&&isSkillMotion(e.skillId)&&!CAST_SECONDS[e.skillId])||(e.type==='skillImpact'&&isSkillMotion(e.skillId)&&!!CAST_SECONDS[e.skillId]))pendingContacts.push({skill:e.skillId,eventAt:now,eventFrame:presentationFrame,expectedFrame:CONTACT_FRAME[e.skillId]});}else remoteHeroes.get(e.playerId)?.actor.event(e);if(e.type==='dashTrail'&&e.playerId===net.you)hero.update({...game.p,x:e.toX,z:e.toZ},time);if(!document.hidden)skillArt.emit({...e,guarded:[game.p,...worldState.others].find(p=>p.id===e.playerId)?.statuses?.some(s=>s.id==='guard'),lighter:e.playerId!==net.you});const effectStart=effects.length;if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.setListener(game.p);playEventAudio(sound,{...e,guarded:game.p.statuses?.some(s=>s.id==='guard')},net.you,game.enemies.find(e=>e.boss)||ARENA,id=>{const m=game.enemies.find(x=>x.id===id);return monsterSpecies(m?.dataId,m?.boss);});switch(e.type){
  case'skillImpact':if(e.skillId==='earth_break'){effectRing(e.x,e.z,'#c8b78f',2.5,.45);particles(e.x,e.z,'#c8b78f',18,2.6,.12);}break;
  case'slash':slash(e);break;
  case'spin':spinEffect(e.x,e.z);shake=.1;break;
@@ -195,7 +197,6 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'notice':notice(e.text);break;
   case'questComplete':if(e.playerId===net.you)quests?.event(e);break;
  case'death':clearInput();deathReveal=1.5;lastXpLost=Number(e.xpLost)||0;break;
- case'victory':notice(activeMap==='forest'?'✦ ผู้เฝ้าป่าหมอกถูกปราบแล้ว!':'✦ ราชาวุ้นถูกปราบแล้ว!');setTimeout(()=>{if(!game.p.dead)showVictory();},2000);break;
  }for(let i=effectStart;i<effects.length;i++)effects[i].owner=e.playerId;} }
 function toggleAuto(){if(activeMap==='city_plaza'){notice('เขตปลอดภัย ต่อสู้ในเมืองไม่ได้');return;}if(!started||paused||game.p.dead)return;net.send({t:'auto',on:!game.p.auto});}
 function stopAuto(){if(game.p.auto)net.send({t:'auto',on:false});}
@@ -221,7 +222,7 @@ window.addEventListener('keydown',e=>{
  if(skillsUI.open)return;
  if(isKey('stats',e.code)&&started&&!e.repeat){e.preventDefault();statsUI.toggle();return;}
  if(statsUI.open)return;
- if(isKey('pause',e.code)){e.preventDefault();net.send({t:'auto',on:false});stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}if(started&&!game.p.dead)togglePause();return;}
+ if(isKey('pause',e.code)){e.preventDefault();net.send({t:'auto',on:false});stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}return;}
  if(!started||paused||game.p.dead||$<HTMLDialogElement>('#guide').open)return;
  if(Object.values(KEYS).some(codes=>(codes as readonly string[]).includes(e.code)))e.preventDefault();
  if(['up','down','left','right'].some(a=>isKey(a as keyof typeof KEYS,e.code))){qol?.cancel();stopAuto();}
@@ -231,7 +232,7 @@ window.addEventListener('keydown',e=>{
  else if(skillsUI.key(e.code))e.preventDefault();else for(const a of ['dash','potion'] as const)if(isKey(a,e.code))doAction(a);
 });
 window.addEventListener('keyup',e=>keys.delete(e.code));
-function loseFocus(){clearInput();if(started&&!paused&&!game.p.dead&&!game.p.auto)togglePause();}window.addEventListener('blur',loseFocus);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseFocus();});
+function loseFocus(){clearInput();}window.addEventListener('blur',loseFocus);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseFocus();});
 $('#auto-hunt').addEventListener('click',toggleAuto);
 $$('[data-action]').forEach(b=>b.addEventListener('click',()=>doAction(b.dataset.action as Action)));
 function pointerRay(x:number,y:number){const b=renderer.domElement.getBoundingClientRect();pointer.set((x-b.left)/b.width*2-1,-(y-b.top)/b.height*2+1);ray.setFromCamera(pointer,camera);}
@@ -275,15 +276,12 @@ $('#play').addEventListener('click',()=>{started=true;paused=false;if(sceneReady
 $('#audio').addEventListener('click',()=>audioUI.toggleMute());
 function applyQuality(automatic=qualityPreference==="auto"){try{localStorage.setItem("tn-quality",qualityPreference);}catch{}renderer.setPixelRatio(quality?Math.min(devicePixelRatio,1.5):1);sun.castShadow=quality;renderer.shadowMap.enabled=quality;world.setQuality(quality);skillArt.setQuality(quality);renderer.shadowMap.needsUpdate=true;$('#quality').textContent=automatic?'ภาพ: อัตโนมัติ':quality?'ภาพ: สูง':'ภาพ: ต่ำ';$('#quality').title='คุณภาพภาพ · '+(automatic?'อัตโนมัติ':'เลือกเอง');resize();}
 $('#quality').addEventListener('click',()=>{qualityPreference=qualityPreference==="high"?"low":qualityPreference==="low"?"auto":"high";quality=qualityPreference!=="low";autoQuality.automatic=false;autoQuality.reset();applyQuality();});
-$('#pause').addEventListener('click',()=>{if(started&&!game.p.dead)togglePause();});
 $('#quest-button').addEventListener('click',()=>$('#journal-toggle').click());
 $('#help').addEventListener('click',()=>{clearInput();paused=true;$<HTMLDialogElement>('#guide').showModal();});$('#guide .close').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide .done').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide').addEventListener('close',()=>{if(started&&$('#overlay').hidden)paused=false;});
 function overlay(html:string){clearInput();paused=true;$('#overlay').className='overlay center';$('#overlay').innerHTML=`<section class="welcome">${html}</section>`;$('#overlay').hidden=false;}
-function togglePause(){if(netOverlay||game.p.dead)return;if(!paused){overlay('<p class="caption">พักสักครู่</p><h1>พักการผจญภัย</h1><p>โลกยังดำเนินต่อบนเซิร์ฟเวอร์</p><button id="resume" class="primary">เล่นต่อ →</button>');$('#resume').onclick=()=>{paused=false;$('#overlay').hidden=true;};}else{paused=false;$('#overlay').hidden=true;}}
 let lastXpLost=0;
 function showDeath(){if(netOverlay)return;overlay('<p class="caption">เริ่มต้นใหม่</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>'+(lastXpLost>0?`เสียประสบการณ์ ${lastXpLost.toLocaleString('th-TH')} (1% ของระดับนี้) · ทองและไอเทมยังอยู่ครบ`:'ประสบการณ์และเงินที่เก็บได้ยังอยู่')+'</p><p id="revive-countdown"></p><button id="revive" class="primary">กลับเมือง →</button>');$('#revive').onclick=()=>{if(!net.connected){notice('ยังไม่ได้เชื่อมต่อ');return;}if((game.p.reviveRemaining??0)>0)return;net.send({t:'revive'});};}
 
-function showVictory(){if(wonShown)return;wonShown=true;overlay(`<div class="ornament">✧ ───────── ✧</div><p class="caption">${activeMap==='forest'?'ปราบผู้เฝ้าป่าหมอกแล้ว':'ปราบผู้พิทักษ์แห่งทุ่งหญ้าแล้ว'}</p><h1>${activeMap==='forest'?'ความสงบกลับคืน<br>สู่ป่าหมอก':'การผจญภัย<br>บทแรกสำเร็จ!'}</h1><p>ระดับ ${game.p.level} · ปราบแล้ว ${game.kills} · ${game.p.gold} ทอง</p><button id="continue" class="primary">${activeMap==='forest'?'สำรวจป่าหมอกต่อ':'สำรวจทุ่งหญ้าต่อ'} →</button>`);$('#continue').onclick=()=>{paused=false;$('#overlay').hidden=true;};}
 const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;
 // Round, player-centred minimap. Terrain and markers are drawn in the 160×132 map space; hud-qol draws its
 // markers right after this on the same transform and inverts it (map.view) for clicks.
@@ -334,7 +332,7 @@ function hud(){if(game.p.dead&&$('#overlay').hidden)showDeath();const revive=$<H
  sound.updateMusic({mapId:activeMap,dead:game.p.dead,bossAlive:!!boss&&!boss.dead,bossTargeted:!!boss&&game.target===boss.id,bossBarActive:!!boss&&!$('#boss-hud').hidden,bossAggro:!!boss?.engaged});
  if(activeMap==='city_plaza'){$('#quest-name').textContent='นครที่ถูกลืมเลือน';$('#quest-line').textContent='ประตูใต้: ทุ่งวุ้นจิ๋ว · ประตูตะวันออก: ป่าหมอก (ระดับ 6+)';$('#quest-progress').style.width='0';$('#quest-note').textContent='คุยกับทูตสวรรค์ หรือพักฟื้นข้างน้ำพุ';}else if(activeMap==='forest'||activeMap==='meadow'){fieldQuest(boss);}
  const target=game.enemies.find(e=>e.id===game.target&&!e.dead);$('#target').hidden=!target||target.boss;if(target){$('#target-name').textContent=enemyLabel(target);$('#target-lv').textContent=`ระดับ ${monsterSpec(target)?.level??1}`;$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;}
- for(const b of $$('[data-action]')){const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);}
+ for(const b of $$('[data-action]')){const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);guide?.update();}
 const remoteHeroes=new Map<string,any>();
 const hudSelector='#ui .panel,#ui .quest,#ui .tools,#ui .combat-ui,#ui .rewards,#game-menu,#stats-button,#skills-button,#inventory-button,#area-name,#npc-talk,#angel-talk,#joystick,#auto-status';
 function hudRects():Rect[]{return [...document.querySelectorAll<HTMLElement>(hudSelector)].filter(el=>!el.hidden&&getComputedStyle(el).visibility!=='hidden'&&Number(getComputedStyle(el).opacity)>0).map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);}
@@ -394,6 +392,7 @@ social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice});
 qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));
 
+guide=mountTutorialGuide({characterId:selected.character.id,started:()=>started&&!paused,map:()=>activeMap,game:()=>game,autoPotionOn:()=>autoPotionUI.settings.hp.on||autoPotionUI.settings.mp.on,quests:()=>quests?.state,project:(x,z,y)=>{const v=new T.Vector3(x,y,z).project(camera);return{x:(v.x*.5+.5)*innerWidth,y:(-v.y*.5+.5)*innerHeight};}});
 if(pendingUI)qol.receive(pendingUI);
 function measureHeroScreen(actor:T.Object3D=hero.root,threshold=200){
  const width=innerWidth,height=innerHeight,target=new T.WebGLRenderTarget(width,height),probe=new T.Scene();probe.add(actor.clone(true));

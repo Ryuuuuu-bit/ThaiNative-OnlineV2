@@ -1,0 +1,48 @@
+/* Early-game navigator card and on-screen arrow (glass style). */
+#guide-nav{position:absolute;left:18px;top:318px;width:270px;z-index:6;padding:10px 12px 10px;pointer-events:auto;
+	background:var(--g-glass,rgba(12,20,19,.42));border:1px solid rgba(230,201,143,.4);border-radius:14px;color:var(--g-text,#f3efe6);
+	backdrop-filter:var(--g-blur,blur(14px));-webkit-backdrop-filter:var(--g-blur,blur(14px));text-shadow:none;font-size:13px;line-height:1.55;
+	transform:scale(var(--ui-scale,1));transform-origin:top left;animation:gn-in .35s ease-out}
+#guide-nav header{display:flex;align-items:center;gap:6px}
+#guide-nav .gn-toggle{flex:1;display:flex;align-items:center;gap:7px;min-width:0;background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+#guide-nav .gn-badge{flex:none;font-size:10px;letter-spacing:.5px;color:#14231f;background:var(--g-gold,#e6c98f);border-radius:999px;padding:1px 7px;font-weight:700}
+#guide-nav .gn-title{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;color:var(--g-gold,#e6c98f)}
+#guide-nav .gn-count{flex:none;color:var(--g-faint,rgba(243,239,230,.55));font-size:11px}
+#guide-nav .gn-close{flex:none;width:24px;height:24px;border-radius:50%;border:1px solid var(--g-line,rgba(255,255,255,.13));background:none;color:var(--g-muted,rgba(243,239,230,.76));font-size:15px;line-height:1;padding:0;cursor:pointer}
+#guide-nav .gn-text{margin:7px 0 8px;color:var(--g-text,#f3efe6)}
+#guide-nav .gn-track{height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+#guide-nav .gn-track i{display:block;height:100%;background:var(--g-gold,#e6c98f);transition:width .4s}
+#guide-nav footer{display:flex;justify-content:flex-end;margin-top:6px}
+#guide-nav .gn-skip{background:none;border:0;color:var(--g-faint,rgba(243,239,230,.55));font:inherit;font-size:11px;padding:2px 0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+#guide-nav .gn-skip:hover,#guide-nav .gn-close:hover{color:var(--g-text,#f3efe6)}
+#guide-nav.min{width:auto;max-width:270px;padding:6px 10px}
+#guide-nav.min :is(.gn-text,.gn-track,footer){display:none}
+@keyframes gn-in{from{opacity:0;transform:translateY(-6px) scale(var(--ui-scale,1))}}
+
+/* Arrow: bobbing above the target when it is on screen, pinned to the screen edge and rotated toward it when not. */
+#guide-arrow{position:absolute;z-index:4;pointer-events:none;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px}
+#guide-arrow i{width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:18px solid #ffe39a;
+	filter:drop-shadow(0 0 6px rgba(255,214,120,.8)) drop-shadow(0 1px 1px rgba(0,0,0,.7));transform:rotate(var(--rot,180deg));animation:gn-bob 1s ease-in-out infinite}
+#guide-arrow span{order:-1;font-size:11px;white-space:nowrap;color:#fff4d6;background:rgba(12,20,19,.62);border-radius:999px;padding:1px 8px;text-shadow:none}
+#guide-arrow.edge span{order:1}
+@keyframes gn-bob{50%{translate:0 5px}}
+
+/* The HUD control the current step is about. */
+.guide-focus{outline:2px solid rgba(255,227,154,.9)!important;outline-offset:3px;animation:gn-glow 1.4s ease-in-out infinite}
+@keyframes gn-glow{50%{outline-color:rgba(255,227,154,.25)}}
+
+#guide-step-toast{position:absolute;left:50%;top:132px;transform:translateX(-50%);z-index:6;pointer-events:none;opacity:0;
+	color:#14231f;background:var(--g-gold,#e6c98f);border-radius:999px;padding:3px 14px;font-size:13px;font-weight:600;text-shadow:none}
+#guide-step-toast.show{animation:gn-toast 2.2s ease-out}
+@keyframes gn-toast{0%{opacity:0;translate:0 6px}12%,75%{opacity:1;translate:0 0}100%{opacity:0}}
+
+
+@media(max-width:650px){
+	#guide-nav{left:8px;top:150px;width:calc(100vw - 176px);max-width:240px;padding:8px 10px;font-size:12px;transform:none}
+	#guide-nav.min{max-width:calc(100vw - 176px)}
+	#guide-nav .gn-title{white-space:normal;line-height:1.3}
+	#guide-nav .gn-text{margin:5px 0 6px;line-height:1.5}
+	#guide-nav .gn-close{width:28px;height:28px}
+	#guide-nav .gn-skip{padding:6px 0}
+	#guide-step-toast{top:112px}
+}
