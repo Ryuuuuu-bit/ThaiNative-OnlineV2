@@ -32,8 +32,6 @@
 @media(max-width:650px){#ui #stats-button,#ui #skills-button,#ui #inventory-button{top:200px}#ui .target,#ui .boss-hud{top:250px;width:208px}#ui .player :is(small,#job-label,#job-exp),#ui .target small,#ui .map :is(.map-head,#fps),#ui .quest :is(p,#journal-toggle){font-size:12px}}
 #ui .tools #quality{width:auto;min-width:92px;max-width:120px;padding-inline:8px}
 #npc-talk,#angel-talk{bottom:260px}
-#skills-window:has(#audio-settings:not([hidden])){overflow:auto}
-#skills-window:has(#audio-settings:not([hidden])) #skills-tree{flex:none;max-height:200px}
 @media(max-width:650px){#ui .tools{width:144px}#ui .tools #quality{width:96px;min-width:96px;max-width:96px;font-size:12px}#npc-talk,#angel-talk{bottom:310px}}
 /* Scale the compact mobile frame and hotbar while keeping their edges within the viewport. */
 @media(max-width:650px){#ui .player{width:calc(232px / var(--ui-scale));transform:scale(var(--ui-scale))}#ui .combat-ui{width:calc((100vw - 16px) / var(--ui-scale));max-width:calc(374px / var(--ui-scale));transform:translateX(-50%) scale(var(--ui-scale))}#ui .player :is(small,#job-label,#job-exp){font-size:max(12px,calc(12px / var(--ui-scale)))}#ui .combat-ui :is(small,kbd,.rewards span,.legacy-actions button,#qol-controls button){font-size:max(12px,calc(12px / var(--ui-scale)))}#ui #stats-button,#ui #skills-button,#ui #inventory-button{top:max(200px,calc(185px * var(--ui-scale)))}#notices{bottom:max(300px,calc(300px * var(--ui-scale)))}}

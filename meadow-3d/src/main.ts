@@ -5,6 +5,7 @@ import {CONTACT_FRAME,isSkillMotion} from './skill-motions';
 import {CombatFeel,AutoQuality} from './combat-feel';
 import {mountInventory} from './inventory-ui';
 import {mountAutoSettings} from './auto-ui';
+import {mountSettingsWindow} from './settings-ui';
 import {loadGameData,rarityColors} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, HEALER, GATE_CAPTAIN, GATES, LAYOUTS, FIELD_BOSS, type MapId } from '@thainative/shared/maps';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
@@ -23,7 +24,7 @@ import {mountHUDQOL} from './hud-qol';
 import './hud-qol.css';
 import './ui-glass.css';
 import './ui-windows.css';
-let qol:ReturnType<typeof mountHUDQOL>|undefined;let pendingUI:any;
+let qol:ReturnType<typeof mountHUDQOL>|undefined;let settingsUI:ReturnType<typeof mountSettingsWindow>|undefined;let pendingUI:any;
 import{updateSeeThrough,OVERLAY_ORDER}from'./upright-depth.ts';
 import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet,makePaintedWispBolt,makePaintedMistSpore,warmKing,kingReady,warmWarden,wardenReady}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';
@@ -376,7 +377,7 @@ applyQuality();hud();requestAnimationFrame(frame);
 
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice});
-qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>{if(!skillsUI.open)skillsUI.toggle();$('#key-settings').hidden=false;$('#audio-settings').hidden=false;},talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});
+qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});
 
 if(pendingUI)qol.receive(pendingUI);
 function measureHeroScreen(actor:T.Object3D=hero.root,threshold=200){

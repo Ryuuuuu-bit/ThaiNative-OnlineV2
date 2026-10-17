@@ -85,7 +85,6 @@ dialog .caption{margin:2px 0 8px}
 #skills-window #skill-slots .job-slot .job-icon{width:32px;height:32px}
 #skills-window #skill-slots .job-slot small,#skills-window #skill-slots .empty-mark{display:none}
 #skills-window #skill-slots .job-slot.vacant{display:grid}
-#skills-window #key-settings:not([hidden]){margin-top:10px}
 
 /* ---------- Bag, paper doll, shop, storage (I) ---------- */
 #inventory-window{width:min(1000px,96vw);padding:20px 22px 16px}
@@ -247,3 +246,57 @@ dialog .g-foot .primary{padding:0 20px!important}
 [data-icon=exit]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l-4-4 4-4M6 12h10'/%3E%3C/svg%3E")}
 /* the close button gets keyboard focus on open; keep that focus quiet instead of a gold ring */
 dialog .close:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line-strong)}
+
+/* ---------- Skill book: fixed proportions, the list scrolls inside ---------- */
+#skills-window[open]{display:flex;flex-direction:column;width:min(860px,94vw);height:min(640px,90dvh);overflow:hidden}
+#skills-window #skills-tree{flex:1;min-height:0;grid-template-columns:1fr 280px;align-items:stretch}
+#skills-window .sk-list{min-height:0;overflow:auto}
+#skills-window .sk-detail{align-self:start;max-height:100%;overflow:auto}
+#skills-window .skill-bar-row{flex:none;padding-top:12px;border-top:1px solid var(--g-line)}
+#skills-window .g-foot{flex:none}
+
+/* ---------- Settings window (เมนู → ตั้งค่า): tabs over one card per section ---------- */
+#settings-window[open]{display:flex;flex-direction:column;width:min(640px,94vw);height:min(600px,90dvh);overflow:hidden;padding:20px 22px 18px}
+.settings-tabs{flex:none;display:flex;gap:4px;margin:0 0 14px;border-bottom:1px solid var(--g-line)}
+#settings-window .settings-tabs button{border:0!important;border-radius:0!important;background:transparent!important;color:var(--g-faint)!important;padding:8px 12px!important;min-height:0!important;font-size:13px}
+#settings-window .settings-tabs button[aria-selected=true]{color:var(--g-text)!important;box-shadow:inset 0 -2px var(--g-gold)}
+.settings-pane{flex:1;min-height:0;overflow:auto;padding-right:4px}
+#settings-window .settings-pane>.caption{margin:4px 0 8px}
+#settings-window .settings-hint{margin:-4px 0 10px;font-size:11px!important;color:var(--g-faint)!important}
+/* hotbar keys: 5 × 2 key caps */
+#settings-window #key-settings{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0}
+#settings-window #key-settings label{display:flex;flex-direction:column;gap:4px;font-size:11px!important;color:var(--g-faint)!important}
+#settings-window #key-settings input{height:40px;padding:0;text-align:center;font:600 15px 'Noto Sans Thai',sans-serif;border-radius:9px;cursor:pointer;caret-color:transparent}
+#settings-window #key-settings input:focus{outline:none;border-color:var(--g-gold)!important;background:rgba(230,201,143,.1)!important}
+.settings-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 0 14px}
+#settings-window .settings-actions p{margin:0;font-size:12px!important;color:var(--g-gold)!important}
+#settings-window #skills-reset-keys{order:2;height:32px;padding:0 14px!important;font-size:12px;color:var(--g-text)!important;border:1px solid var(--g-line-strong)!important;background:transparent!important;border-radius:9px!important}
+/* other keys + screen (hud-qol) */
+#settings-window #hud-settings{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px 14px;padding:14px;border-radius:12px;background:rgba(0,0,0,.18);border:1px solid var(--g-line)}
+#settings-window #hud-settings h3{display:none}
+#settings-window #hud-settings label{display:flex;flex-direction:column;gap:4px;font-size:12px!important;color:var(--g-muted)!important}
+#settings-window #hud-settings :is(input,select){height:38px;min-height:38px!important;padding:0 10px;font:600 14px 'Noto Sans Thai',sans-serif;width:100%!important}
+#settings-window #hud-settings input{text-align:center;cursor:pointer}
+#settings-window #reset-windows{grid-column:1/-1;justify-self:start;height:32px;padding:0 14px!important;font-size:12px}
+#settings-window #hud-save{grid-column:1/-1;margin:0;font-size:12px!important;color:var(--g-gold)!important}
+#settings-window #hud-save:empty{display:none}
+/* sound & display: one row per control */
+#settings-window #audio-settings{margin:0;padding:6px 14px;border-radius:12px;background:rgba(0,0,0,.18);border:1px solid var(--g-line);color:var(--g-text)}
+#settings-window #audio-settings h3{margin:10px 0 2px;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--g-faint)}
+#settings-window #audio-settings label{display:grid;grid-template-columns:130px 1fr 52px;align-items:center;gap:12px;min-height:46px;margin:0;border-top:1px solid rgba(255,255,255,.06);font-size:13px!important;color:var(--g-text)!important}
+#settings-window #audio-settings label:has(input[type=checkbox]){grid-template-columns:22px 1fr}
+#settings-window #audio-settings input[type=range]{width:100%;max-width:none;accent-color:var(--g-gold)}
+#settings-window #audio-settings output{text-align:right;color:var(--g-gold)!important;font-variant-numeric:tabular-nums}
+#settings-window #audio-settings input[type=checkbox]{width:18px;height:18px;accent-color:var(--g-gold)}
+#settings-window #audio-settings :is(p,small):not(:empty){margin:6px 0;font-size:11px!important;color:var(--g-faint)!important}
+/* auto-potion */
+#settings-window #auto-potion-settings{margin:0;padding:6px 14px 12px;border-radius:12px;background:rgba(0,0,0,.18);border:1px solid var(--g-line);gap:0}
+#settings-window #auto-potion-settings h3{margin:10px 0 2px;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--g-faint)}
+#settings-window #auto-potion-settings .ap-row{display:grid;grid-template-columns:160px 1fr;align-items:center;gap:12px;min-height:52px;border-top:1px solid rgba(255,255,255,.06)}
+#settings-window #auto-potion-settings .ap-toggle{min-width:0;font-size:13px!important;color:var(--g-text)!important}
+#settings-window #auto-potion-settings .ap-toggle input{width:18px;height:18px;accent-color:var(--g-gold)}
+#settings-window #auto-potion-settings .ap-range{display:grid;grid-template-columns:auto 1fr 44px;gap:10px;min-width:0;font-size:12px!important;color:var(--g-faint)!important}
+#settings-window #auto-potion-settings .ap-range input{width:100%}
+#settings-window #auto-potion-settings output{text-align:right;color:var(--g-gold)!important}
+#settings-window #auto-potion-settings small{display:block;margin-top:8px;font-size:11px!important;color:var(--g-faint)!important;opacity:1}
+@media(max-width:560px){#settings-window #hud-settings{grid-template-columns:1fr}#settings-window #audio-settings label{grid-template-columns:90px 1fr 44px}#settings-window #auto-potion-settings .ap-row{grid-template-columns:1fr}}

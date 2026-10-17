@@ -213,6 +213,12 @@ export function mountSkills(
 			"disabled",
 			!Object.keys(pending).length,
 		);
+		drawKeys();
+	}
+	/** Hotbar key fields (shown in the settings window). Runs on every job update, not only with the skill book open. */
+	function drawKeys() {
+		if (!job) return;
+		const keyStatus = (text: string) => ((document.querySelector("#key-status") ?? $("#skills-status")).textContent = text);
 		$("#key-settings").innerHTML = (job.hotbar || [])
 			.map(
 				(s, i) =>
@@ -228,13 +234,13 @@ export function mountSkills(
                         e.preventDefault();e.stopPropagation();
                         const reserved=['KeyW','KeyA','KeyS','KeyD','KeyI','KeyC','KeyK','KeyM','KeyH','KeyZ','KeyR','KeyF','KeyT','KeyJ'];
                         const uiKeys=[...document.querySelectorAll<HTMLInputElement>('#key-returnCity,#key-pickupAll')].map(el=>el.dataset.code);
-                        if(!/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(e.code)||reserved.includes(e.code)||uiKeys.includes(e.code)||job!.hotbar.some((s,i)=>i!==Number(el.dataset.keySlot)&&s.key===e.code)){$('#skills-status').textContent='ปุ่มนี้ถูกใช้อยู่แล้วหรือใช้ไม่ได้';return;}
+                        if(!/^(Key[A-Z]|Digit[0-9]|F[0-9]+)$/.test(e.code)||reserved.includes(e.code)||uiKeys.includes(e.code)||job!.hotbar.some((s,i)=>i!==Number(el.dataset.keySlot)&&s.key===e.code)){keyStatus('ปุ่มนี้ถูกใช้อยู่แล้วหรือใช้ไม่ได้');return;}
 						const next = job!.hotbar.map((s, i) => ({
 							...s,
 							key: i === Number(el.dataset.keySlot) ? e.code : s.key,
 						}));
 						send({ t: "hotbar", slots: next });
-						$("#skills-status").textContent = "กำลังบันทึกปุ่ม…";
+						keyStatus("กำลังบันทึกปุ่ม…");
 					}),
 			);
 	}
@@ -268,11 +274,6 @@ export function mountSkills(
 					key: "Digit" + ((i + 1) % 10),
 				})),
 			});
-	};
-	$("#skills-settings").onclick = () => {
-		$("#key-settings").hidden = !$("#key-settings").hidden;
-		$("#audio-settings").hidden = $("#key-settings").hidden;
-		if (!$("#key-settings").hidden) play("ui_open");
 	};
 	$("#angel-talk").onclick = () => {
 		clear();
@@ -335,6 +336,7 @@ export function mountSkills(
 		get open() {
 			return panel.open || angel.open;
 		},
+		drawKeys,
 		toggle() {
 			if (panel.open) panel.close();
 			else {
@@ -368,6 +370,9 @@ export function mountSkills(
 			$("#skills-status").textContent =
 				"ลากสกิล หรือแตะสกิลแล้วเลือกช่อง · คลิกขวาที่ช่องเพื่อล้าง";
 			drawBar();
+			drawKeys();
+			const ks = document.querySelector("#key-status");
+			if (ks?.textContent === "กำลังบันทึกปุ่ม…") ks.textContent = "บันทึกแล้ว";
 			if (panel.open) draw();
 			if (angel.open) drawAngel();
 		},
