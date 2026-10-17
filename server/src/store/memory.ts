@@ -14,7 +14,7 @@ export class MemoryStore implements Store {
  async renewLease(id:string,owner:string){return this.leases.get(id)===owner;}
  async releaseLease(id:string,owner:string){if(this.leases.get(id)===owner)this.leases.delete(id);}
  private ui=new Map<string,import('@thainative/shared').UISettings>();
- async uiSettings(id:string):Promise<import('@thainative/shared').UISettings>{return structuredClone(this.ui.get(id)??{scale:100,windows:{},keys:{returnCity:'KeyH',pickupAll:'KeyZ'}});}
+ async uiSettings(id:string):Promise<import('@thainative/shared').UISettings>{return structuredClone(this.ui.get(id)??{scale:100,windows:{},keys:{returnCity:'KeyH'}});}
  async saveUISettings(id:string,settings:import('@thainative/shared').UISettings){this.ui.set(id,structuredClone(settings));}
 
  private accounts=new Map<string,Account>();private sessions=new Map<string,Session>();private chars=new Map<string,Character>();

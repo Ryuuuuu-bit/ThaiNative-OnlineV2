@@ -102,6 +102,8 @@ test("action keys: defaults with old alternates, rebinding frees the old key, co
 	assert.deepEqual(actionKeys(d).auto, ["KeyF", "KeyT"]);
 	// Saved settings from before this change (only two keys) still resolve to full defaults.
 	assert.deepEqual(resolveKeys({ returnCity: "KeyB", pickupAll: "KeyZ" }), { ...DEFAULT_KEYS, returnCity: "KeyB" });
+	assert.ok(!reservedKeys(d).includes("KeyZ"));
+	assert.equal(bindingProblem(resolveKeys({ attack: "KeyZ", pickupAll: "KeyZ" })), null);
 	// Moving attack to Q drops its J alternate; moving inventory off I frees I for the hotbar.
 	const moved = resolveKeys({ attack: "KeyQ", inventory: "KeyO" });
 	assert.deepEqual(actionKeys(moved).attack, ["KeyQ"]);

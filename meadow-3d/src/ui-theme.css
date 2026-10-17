@@ -31,7 +31,6 @@
 #ui [data-action=potion]{--icon:url('./ui-icons/potion.svg')!important}
 #ui #auto-hunt,[data-icon=auto]{--icon:url('./ui-icons/auto.svg')!important}
 #ui #return-city{--icon:url('./ui-icons/city.svg')!important}
-#ui #pickup-all{--icon:url('./ui-icons/pickup.svg')!important}
 
 /* Bronze seals: consistent stroke, colour, backing and keyboard feedback. */
 #ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){
@@ -136,6 +135,7 @@ dialog .prestige-card[data-state=unlocked]{background:linear-gradient(90deg,#d7b
 
 /* Existing layouts remain compact; mouse controls gain a little more hit area. */
 @media(min-width:651px){
+ #ui #action-launcher{grid-template-columns:repeat(3,76px)}
  #ui .player{width:350px}
  #ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important}
  #ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu),#ui .tools{top:calc(20px + 198px * var(--ui-scale,1))}

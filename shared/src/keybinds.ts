@@ -13,7 +13,6 @@ export const KEY_ACTIONS = [
 	"skills",
 	"stats",
 	"returnCity",
-	"pickupAll",
 ] as const;
 export type KeyAction = (typeof KEY_ACTIONS)[number];
 export type KeyBindings = Record<KeyAction, string>;
@@ -28,7 +27,6 @@ export const DEFAULT_KEYS: KeyBindings = {
 	skills: "KeyK",
 	stats: "KeyC",
 	returnCity: "KeyH",
-	pickupAll: "KeyZ",
 };
 /** Second keys kept from the old fixed layout; live only while the action still has its default key. */
 export const ALT_KEYS: Partial<KeyBindings> = { attack: "KeyJ", auto: "KeyT", dash: "ShiftRight" };

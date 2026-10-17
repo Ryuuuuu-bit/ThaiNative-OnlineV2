@@ -265,7 +265,6 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 #ui [data-action=potion]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 3h4M10 3v5L6 14a6 6 0 1 0 12 0l-4-6V3'/%3E%3Cpath d='M7.5 15h9'/%3E%3C/svg%3E")}
 #ui #auto-hunt{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 12a8 8 0 1 1-2.3-5.6M20 4v5h-5'/%3E%3C/svg%3E")}
 #ui #return-city{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 11 9-7 9 7M5 10v10h14V10'/%3E%3Cpath d='M10 20v-6h4v6'/%3E%3C/svg%3E")}
-#ui #pickup-all{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l7 4v10l-7 4-7-4V7z'/%3E%3Cpath d='M5 7l7 4 7-4M12 11v10'/%3E%3C/svg%3E")}
 @media(min-width:651px){
 	#ui .combat-ui{gap:8px;align-items:stretch}
 	/* the two groups are two glass bars of the same height */
@@ -326,7 +325,6 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 	#ui #action-launcher #auto-settings-button::before{width:42px;height:42px;margin-left:-21px;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--tint) 38%,transparent),color-mix(in srgb,var(--tint) 12%,transparent) 70%);-webkit-mask:none;mask:none}
 	#ui #action-launcher #auto-settings-button{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1'/%3E%3C/svg%3E")}
 	#ui #action-launcher #return-city{--tint:#8fd18a}
-	#ui #action-launcher #pickup-all{--tint:#c495f2}
 	#ui #action-launcher [data-action=potion].auto-on::after{content:'ยา · อัตโนมัติ';color:var(--g-ok)}
 }
 /* Rebindable action keys (ตั้งค่า → ปุ่มลัด) */
@@ -338,7 +336,7 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 #action-keys input.changed{color:var(--g-gold)}
 #reset-action-keys{justify-self:start}
 @media(max-width:520px){#action-keys{grid-template-columns:1fr}}
-/* On a mouse-and-keyboard computer the launcher keeps only AUTO, ตั้งค่า AUTO, กลับเมือง, เก็บรอบตัว:
+/* On a mouse-and-keyboard computer the launcher keeps only AUTO, ตั้งค่า AUTO and กลับเมือง:
    attack, dodge and potion live on Space/Shift/R and the hotbar. Touch screens keep all tiles. */
 @media(min-width:651px) and (hover:hover) and (pointer:fine){
 	#ui #action-launcher [data-action=attack],#ui #action-launcher [data-action=dash],#ui #action-launcher [data-action=potion]{display:none!important}
