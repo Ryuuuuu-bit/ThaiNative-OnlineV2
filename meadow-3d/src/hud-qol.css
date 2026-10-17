@@ -87,3 +87,11 @@
 /* Job 2 status art keeps the duration ring outside the painted cell. */
 .buff-icon.job-icon{position:relative;background-image:var(--skill-atlas);background-size:400% 600%;background-position:calc(var(--ix)*100%/3) calc(var(--iy)*100%/5)}
 .buff-icon.job-icon::after{content:"";position:absolute;inset:-3px;border-radius:50%;padding:2px;background:conic-gradient(#f4d994 var(--remaining),#516a5d 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;pointer-events:none}
+/* In-game menu: account name + copyable UID */
+#game-menu-window .menu-account{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 10px;margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.13)}
+#game-menu-window .menu-account .caption{margin:0;overflow-wrap:anywhere}
+#game-menu-window .uid-chip{display:inline-flex;align-items:center;gap:8px;padding:3px 3px 3px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(0,0,0,.3)}
+#game-menu-window .uid-label{font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(243,239,230,.55)}
+#game-menu-window .uid-code{font:600 13px/1 ui-monospace,Consolas,monospace;letter-spacing:.08em;color:#e6c98f;user-select:all}
+#game-menu-window .uid-copy{display:inline-block!important;margin:0!important;border:0;border-radius:999px;background:rgba(255,255,255,.1)!important;color:#f3efe6;font-size:11px;padding:5px 10px!important;min-height:26px}
+#game-menu-window .uid-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}

@@ -15,7 +15,7 @@ import { mountQuests } from './quest-ui';
 import { mountAudioSettings } from './audio-settings-ui';
 import { mountAutoPotion } from './auto-potion-ui';
 import{mountSkills}from'./skills-ui';import{mountSkillArt}from'./skill-art';
-import{loadSelected}from'./web/game-session';
+import{loadSelected,mountMenuAccount}from'./web/game-session';
 import{PaintedLoader,assetJSON}from'./assets';import type{TextureManifest}from'./assets';
 import{GameSocket}from'./net/socket';import{NetworkWorld}from'./net/world';
 import{KEYS,isKey}from'./keys';
@@ -391,7 +391,7 @@ applyQuality();hud();requestAnimationFrame(frame);
 
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice});
-qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));
+qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);
 
 guide=mountTutorialGuide({characterId:selected.character.id,started:()=>started&&!paused,map:()=>activeMap,game:()=>game,autoPotionOn:()=>autoPotionUI.settings.hp.on||autoPotionUI.settings.mp.on,quests:()=>quests?.state,project:(x,z,y)=>{const v=new T.Vector3(x,y,z).project(camera);return{x:(v.x*.5+.5)*innerWidth,y:(-v.y*.5+.5)*innerHeight};}});
 if(pendingUI)qol.receive(pendingUI);
