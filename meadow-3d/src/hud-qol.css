@@ -78,3 +78,11 @@
  #ui .quest{top:310px}
  #ui .rewards{left:auto;right:0;justify-content:flex-end;text-align:right}
 }
+
+/* Monster identity stays separate from level, phase and health. */
+#ui .monster-tags{display:flex;flex-wrap:wrap;gap:4px;margin:5px 0 7px;text-align:left}
+#ui .monster-tag{display:inline-block;padding:1px 6px;border:1px solid #839c91;border-radius:4px;background:#203d35;color:#f5f1db;font:12px/1.5 'Noto Sans Thai',sans-serif;white-space:nowrap}
+#ui .monster-tag-element{border-color:#81b9c3;background:#1e3c49;color:#d6f5ff}
+#ui .monster-tag-size{border-color:#c4ad77;background:#453c27;color:#ffe9b5}
+#ui .monster-tag-race{border-color:#ab98bf;background:#3c304c;color:#f0e0ff}
+@media(max-width:650px){#ui .target,#ui .boss-hud{max-height:none}#ui .monster-tags{gap:3px;margin:3px 0 4px}#ui .monster-tag{font-size:11px;padding:0 4px}#ui .boss-hud h3{margin:2px 0}}
