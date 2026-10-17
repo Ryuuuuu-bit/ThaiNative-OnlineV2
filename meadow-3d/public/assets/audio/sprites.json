@@ -15,14 +15,14 @@
     },
     "sfx-skills": {
       "opus": {
-        "url": "/assets/audio/sfx-skills-86a76f9c01cf.ogg",
-        "bytes": 51011
+        "url": "/assets/audio/sfx-skills-d3f47b2a40d4.ogg",
+        "bytes": 112229
       },
       "aac": {
-        "url": "/assets/audio/sfx-skills-0aede1e90d59.m4a",
-        "bytes": 47736
+        "url": "/assets/audio/sfx-skills-9a6b50fe5571.m4a",
+        "bytes": 100835
       },
-      "duration": 5.470604166666667
+      "duration": 11.900104166666667
     },
     "sfx-king": {
       "opus": {
@@ -57,6 +57,54 @@
       "lufs": -24,
       "crossfade": 1.5,
       "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "blade_cyclone": {
+      "group": "sfx-skills",
+      "start": 0,
+      "duration": 0.592875,
+      "source": "art/sfx-source/synth/blade_cyclone.wav",
+      "targetDuration": 0.6,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "blade_cyclone_tick": {
+      "group": "sfx-skills",
+      "start": 0.712875,
+      "duration": 0.10354166666666667,
+      "source": "art/sfx-source/synth/blade_cyclone_tick.wav",
+      "targetDuration": 0.1,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "blood_rage": {
+      "group": "sfx-skills",
+      "start": 0.9364166666666667,
+      "duration": 0.6725,
+      "source": "art/sfx-source/synth/blood_rage.wav",
+      "targetDuration": 0.7,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "bulwark": {
+      "group": "sfx-skills",
+      "start": 1.7289166666666667,
+      "duration": 0.7949375,
+      "source": "art/sfx-source/synth/bulwark.wav",
+      "targetDuration": 0.8,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
       "cooldown": 0.04,
       "voices": 4
     },
@@ -110,7 +158,7 @@
     },
     "dash": {
       "group": "sfx-skills",
-      "start": 0,
+      "start": 2.643854166666667,
       "duration": 0.7378333333333333,
       "source": "art/sfx-source/raw/dash_v1.mp3",
       "targetDuration": 0.8,
@@ -146,7 +194,7 @@
     },
     "earth_break": {
       "group": "sfx-skills",
-      "start": 0.8578333333333333,
+      "start": 3.5016875,
       "duration": 0.3892291666666667,
       "source": "art/sfx-source/raw/earth_break_v1.mp3",
       "targetDuration": 1.2,
@@ -158,7 +206,7 @@
     },
     "endure": {
       "group": "sfx-skills",
-      "start": 1.3670625,
+      "start": 4.010916666666667,
       "duration": 0.8877291666666667,
       "source": "art/sfx-source/raw/endure_v1.mp3",
       "targetDuration": 1.5,
@@ -166,6 +214,30 @@
       "crossfade": 0,
       "pitch": 0.04,
       "cooldown": 0.04,
+      "voices": 4
+    },
+    "frenzy_slash": {
+      "group": "sfx-skills",
+      "start": 5.018645833333333,
+      "duration": 0.18125,
+      "source": "art/sfx-source/synth/frenzy_slash.wav",
+      "targetDuration": 0.18,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "guard_block": {
+      "group": "sfx-skills",
+      "start": 5.319895833333334,
+      "duration": 0.17170833333333332,
+      "source": "art/sfx-source/synth/guard_block.wav",
+      "targetDuration": 0.22,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.3,
       "voices": 4
     },
     "hit_thock": {
@@ -248,6 +320,30 @@
       "lufs": -14,
       "crossfade": 0,
       "pitch": 0.04,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "leap_strike": {
+      "group": "sfx-skills",
+      "start": 5.611604166666667,
+      "duration": 0.2985,
+      "source": "art/sfx-source/synth/leap_strike.wav",
+      "targetDuration": 0.3,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "leap_strike_land": {
+      "group": "sfx-skills",
+      "start": 6.030104166666667,
+      "duration": 0.19002083333333333,
+      "source": "art/sfx-source/synth/leap_strike_land.wav",
+      "targetDuration": 0.24,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
       "cooldown": 0.04,
       "voices": 4
     },
@@ -344,7 +440,7 @@
     },
     "provoke": {
       "group": "sfx-skills",
-      "start": 2.374791666666667,
+      "start": 6.340125,
       "duration": 0.9899791666666666,
       "source": "art/sfx-source/raw/provoke_v1.mp3",
       "targetDuration": 1.2,
@@ -356,7 +452,7 @@
     },
     "punch": {
       "group": "sfx-skills",
-      "start": 3.484770833333333,
+      "start": 7.450104166666667,
       "duration": 0.583875,
       "source": "art/sfx-source/raw/punch_v1.mp3",
       "targetDuration": 0.5,
@@ -366,9 +462,57 @@
       "cooldown": 0.04,
       "voices": 4
     },
+    "quake_slam": {
+      "group": "sfx-skills",
+      "start": 8.153979166666666,
+      "duration": 0.7647916666666666,
+      "source": "art/sfx-source/synth/quake_slam.wav",
+      "targetDuration": 0.8,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "rally_roar": {
+      "group": "sfx-skills",
+      "start": 9.038770833333333,
+      "duration": 0.741,
+      "source": "art/sfx-source/synth/rally_roar.wav",
+      "targetDuration": 0.75,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "reflect": {
+      "group": "sfx-skills",
+      "start": 9.899770833333333,
+      "duration": 0.17170833333333332,
+      "source": "art/sfx-source/synth/reflect.wav",
+      "targetDuration": 0.22,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
+    "shield_bash": {
+      "group": "sfx-skills",
+      "start": 10.191479166666667,
+      "duration": 0.30666666666666664,
+      "source": "art/sfx-source/synth/shield_bash.wav",
+      "targetDuration": 0.36,
+      "lufs": -16,
+      "crossfade": 0,
+      "pitch": 0.05,
+      "cooldown": 0.04,
+      "voices": 4
+    },
     "slash": {
       "group": "sfx-skills",
-      "start": 4.188645833333333,
+      "start": 10.618145833333333,
       "duration": 0.35,
       "source": "art/sfx-source/raw/slash_v1.mp3",
       "targetDuration": 0.8,
@@ -404,7 +548,7 @@
     },
     "whirlwind": {
       "group": "sfx-skills",
-      "start": 4.658645833333333,
+      "start": 11.088145833333334,
       "duration": 0.6919583333333333,
       "source": "art/sfx-source/raw/whirlwind_v1.mp3",
       "targetDuration": 1,

@@ -298,7 +298,7 @@ export const SkillSchema = z
 			.optional(),
 		pvpMul: fraction.optional(),
 		ignoreSize: z.boolean().optional(),
-		icon: z.number().int().min(0).max(11),
+		icon: z.number().int().min(0).max(23),
 		heal: z
 			.object({ flat: nonnegative, vitPercent: nonnegative })
 			.strict()

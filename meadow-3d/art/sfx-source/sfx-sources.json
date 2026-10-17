@@ -1,6 +1,6 @@
 {
  "whirlwind": {
-  "target": 1.0,
+  "target": 1,
   "vars": [
    {
     "id": "UhwZcDOOAT3gvDZeE6Rn",
@@ -565,7 +565,7 @@
   ]
  },
  "jelly_death": {
-  "target": 1.0,
+  "target": 1,
   "vars": [
    {
     "id": "BYtTBGHYI1CcyhGG5VGL",
@@ -590,7 +590,7 @@
   ]
  },
  "king_roar": {
-  "target": 2.0,
+  "target": 2,
   "vars": [
    {
     "id": "Clz3BNWUKKFkld4aNcHp",
@@ -623,5 +623,65 @@
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/ad9NFjs7LQBkTmqrOZGd/OpMku9m7G8WpDWKHMcIP/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125520Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=3d5c8a359dcb474edb2a6d4f84cf76de5e84f60885fa16cff930dcf4918e103e3ee7cdf7f637384d7852e976c5d7e075ac5bf73cca1c6704b829897da37b8245f7d9ad0d00214ca5474142e597666660ea38c82f75cf68f32eba1a6746b76519150ac46422259ac9f1031fbd2dabbafae9acab594a1f25fefa3b2573242055837ae3c0bd1c92733bb6c4121b4828e0871be5ae531e6cd98438c60e527c90c1e7fb0e63c6dae6de6e58e9080808fa73bcc5dc25fa34d4cc8a818504e623b264e52aef321145cce316a75d8f93c4403a90bb55dcf086b92fbaba029ef4aa1d5350c2cd67b74e9579a24c3e969a17d18de68b667ea62c35985b68e7f7cec5a71f3b"
    }
   ]
+ },
+ "shield_bash": {
+  "target": 0.36,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "bulwark": {
+  "target": 0.8,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "quake_slam": {
+  "target": 0.8,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "rally_roar": {
+  "target": 0.75,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "frenzy_slash": {
+  "target": 0.18,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "blood_rage": {
+  "target": 0.7,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "blade_cyclone": {
+  "target": 0.6,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "leap_strike": {
+  "target": 0.3,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "guard_block": {
+  "target": 0.22,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "reflect": {
+  "target": 0.22,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "blade_cyclone_tick": {
+  "target": 0.1,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
+ },
+ "leap_strike_land": {
+  "target": 0.24,
+  "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
+  "license": "Original project asset; no third-party samples"
  }
 }

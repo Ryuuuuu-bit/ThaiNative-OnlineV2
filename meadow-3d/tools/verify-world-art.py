@@ -1,5 +1,10 @@
 """Local-only, reproducible world-art captures. Requires Python Playwright + Chrome."""
 import json, sys, subprocess
+if '--job2' in sys.argv:
+ import runpy
+ from pathlib import Path
+ runpy.run_path(str(Path(__file__).with_name('verify-job2-art.py')),run_name='__main__')
+ raise SystemExit
 from PIL import Image
 from pathlib import Path
 from playwright.sync_api import sync_playwright

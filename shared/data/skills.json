@@ -476,7 +476,7 @@
       "jobId": "guardian",
       "maxLevel": 10,
       "kind": "single",
-      "icon": 1,
+      "icon": 12,
       "visual": "slash",
       "values": {
         "percent": [
@@ -524,7 +524,7 @@
       "jobId": "guardian",
       "maxLevel": 5,
       "kind": "utility",
-      "icon": 6,
+      "icon": 13,
       "visual": "endure",
       "values": {
         "guard": [
@@ -559,7 +559,7 @@
       "jobId": "guardian",
       "maxLevel": 10,
       "kind": "area",
-      "icon": 4,
+      "icon": 14,
       "visual": "earth_break",
       "values": {
         "percent": [
@@ -612,7 +612,7 @@
       "jobId": "guardian",
       "maxLevel": 5,
       "kind": "area",
-      "icon": 5,
+      "icon": 15,
       "visual": "provoke",
       "values": {
         "defDown": [
@@ -647,7 +647,7 @@
       "jobId": "guardian",
       "maxLevel": 10,
       "kind": "utility",
-      "icon": 8,
+      "icon": 16,
       "values": {
         "defPercent": [
           0.03,
@@ -696,7 +696,7 @@
       "jobId": "guardian",
       "maxLevel": 5,
       "kind": "utility",
-      "icon": 9,
+      "icon": 17,
       "values": {
         "reflect": [
           0.03,
@@ -724,7 +724,7 @@
       "maxLevel": 10,
       "kind": "single",
       "hits": 3,
-      "icon": 1,
+      "icon": 18,
       "visual": "slash",
       "values": {
         "percent": [
@@ -769,7 +769,7 @@
       "jobId": "berserker",
       "maxLevel": 5,
       "kind": "utility",
-      "icon": 6,
+      "icon": 19,
       "visual": "endure",
       "values": {
         "atkUp": [
@@ -812,7 +812,7 @@
       "maxLevel": 10,
       "kind": "area",
       "hits": 4,
-      "icon": 2,
+      "icon": 20,
       "visual": "whirlwind",
       "values": {
         "percent": [
@@ -862,7 +862,7 @@
       "jobId": "berserker",
       "maxLevel": 10,
       "kind": "single",
-      "icon": 3,
+      "icon": 21,
       "visual": "dash_strike",
       "values": {
         "percent": [
@@ -898,7 +898,7 @@
       "jobId": "berserker",
       "maxLevel": 10,
       "kind": "utility",
-      "icon": 7,
+      "icon": 22,
       "values": {
         "atkPercent": [
           0.02,
@@ -935,7 +935,7 @@
       "jobId": "berserker",
       "maxLevel": 5,
       "kind": "utility",
-      "icon": 9,
+      "icon": 23,
       "values": {
         "lifesteal": [
           0.01,

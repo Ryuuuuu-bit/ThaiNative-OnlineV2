@@ -19,12 +19,12 @@ from painted_components import components
 ROOT=Path(__file__).resolve().parents[1]
 ART=ROOT/'art/hero-skills';OUT=ROOT/'public/assets/hero-skills'
 OUT.mkdir(parents=True,exist_ok=True)
-COUNTS={'slash':6,'whirlwind':8,'dash_strike':5,'earth_break':9,'provoke':5,'endure':5}
+COUNTS={'slash':6,'whirlwind':8,'dash_strike':5,'earth_break':9,'provoke':5,'endure':5,'shield_bash':6,'bulwark':5,'quake_slam':9,'rally_roar':5,'frenzy_slash':8,'blood_rage':5,'blade_cyclone':8,'leap_strike':6}
 manifest=json.loads((ROOT/'public/texture-manifest.json').read_text())
 report={'frameSize':[384,256],'baseline':240,'directions':['SE','SW','NE','NW'],'motions':{},'sourceEdgeWarnings':[]}
 if len(sys.argv)>1 and (ART/'packing-report.json').exists():
  report=json.loads((ART/'packing-report.json').read_text());report['sourceEdgeWarnings']=[w for w in report['sourceEdgeWarnings'] if w['motion'] not in sys.argv[1:]]
-sheet=Image.new('RGB',(12*144,24*116),(44,52,47));draw=ImageDraw.Draw(sheet)
+sheet=Image.new('RGB',(12*144,len(COUNTS)*4*116),(44,52,47));draw=ImageDraw.Draw(sheet)
 def anchor(im):
  a=np.asarray(im.getchannel('A'))>32;h,w=a.shape
  thick=np.asarray(Image.fromarray(a.astype(np.uint8)*255).filter(ImageFilter.MinFilter(7)))>0
@@ -55,6 +55,19 @@ for motion,count in COUNTS.items():
      pieces.append({'image':crop,'bbox':(x0,lo,x1,hi),'center':((x0+x1)/2,(lo+hi)/2)})
   for piece in pieces:
    col=min(count-1,int(piece['center'][0]/cw));row=min(3,int(piece['center'][1]/ch));groups[row*count+col].append(piece)
+ if motion in list(COUNTS)[6:]:
+  # Equal-cell sources can contain connected glow across cells. Preserve each
+  # supplied cell; report boundary alpha instead of guessing a missing figure.
+  groups=[]
+  for row in range(4):
+   for col in range(count):
+    left,top,right,bottom=round(col*cw),round(row*ch),round((col+1)*cw),round((row+1)*ch)
+    cell=im.crop((left,top,right,bottom));box=cell.getchannel('A').point(lambda x:255 if x>32 else 0).getbbox()
+    if not box:raise ValueError(f'{motion} empty cell {row}/{col}')
+    x0,y0,x1,y1=box
+    if x0==0 or y0==0 or x1==cell.width or y1==cell.height:
+     report['sourceEdgeWarnings'].append({'motion':motion,'direction':report['directions'][row],'frame':col+1,'cellBoundary':True})
+    crop=cell.crop(box);groups.append([{'image':crop,'bbox':(left+x0,top+y0,left+x1,top+y1),'center':(left+(x0+x1)/2,top+(y0+y1)/2)}])
  frames=[];bounds=[]
  for i,parts in enumerate(groups):
   if not parts:raise ValueError(f'{motion} missing source figure {i}')
@@ -110,9 +123,11 @@ for motion,count in COUNTS.items():
    crop=oldim.crop((row*384,0,(row+1)*384,256)) if old=='idle' else oldim.crop((3*384,row*256,4*384,(row+1)*256))
    thumb=crop.resize((144,96),Image.Resampling.LANCZOS);sheet.paste(thumb,(col*144,strip*116+20),thumb)
  name=f'hero-skill-{motion}-v1';path=ART/(name+'.png');safe_save(atlas,path,optimize=True)
- factor=min(1,2048/atlas.width);size=tuple(max(4,round(n*factor/4)*4) for n in atlas.size)
+ factor=min(1,(1664 if motion in ('bulwark','rally_roar','blade_cyclone','leap_strike') else 2048)/atlas.width);size=tuple(max(4,round(n*factor/4)*4) for n in atlas.size)
  gpu=atlas.resize(size,Image.Resampling.LANCZOS);stage=ART/(name+'-packed.png');safe_save(gpu,stage)
- webp=OUT/(name+'.webp');ktx=OUT/(name+'.ktx2');safe_save(gpu,webp,'WEBP',quality=88,method=6,exact=True)
+ webp=OUT/(name+'.webp');ktx=OUT/(name+'.ktx2')
+ if motion in list(COUNTS)[6:]:subprocess.run([sys.executable,str(ROOT/'tools/prepare-textures.py'),'--hero-skill',motion],check=True)
+ else:safe_save(gpu,webp,'WEBP',quality=88,method=6,exact=True)
  encoder=ROOT.parent/'.codex-run/ktx-tools/extracted/bin/toktx.exe'
  subprocess.run([str(encoder),'--t2','--encode','uastc','--assign_oetf','srgb','--lower_left_maps_to_s0t0','--threads','1','--uastc_quality','3','--uastc_rdo_l','0.5','--zcmp','18',str(ktx),str(stage)],check=True)
  entry={'source':path.relative_to(ROOT).as_posix(),'size':list(size),'originalSize':list(atlas.size),'mode':'uastc','mips':False,'cpu':False,'hitMask':None}
@@ -121,6 +136,8 @@ for motion,count in COUNTS.items():
   data=file.read_bytes();hashed=file.with_name(name+'-'+hashlib.sha256(data).hexdigest()[:10]+file.suffix);hashed.write_bytes(data);file.unlink();entry[kind]='/'+hashed.relative_to(ROOT/'public').as_posix();sizes[kind]=len(data)
  manifest[f'/assets/hero-skills/{name}.png']=entry
  report['motions'][motion]={'frames':count,'directions':4,'source':source.name,'scale':scale,'size':list(size),'bytes':sizes,'sourceBounds':bounds}
+ (ROOT/'public/texture-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ (ART/'packing-report.json').write_text(json.dumps(report,indent=2)+'\n')
  print(motion,json.dumps(sizes),flush=True)
 (ROOT/'public/texture-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 (ART/'packing-report.json').write_text(json.dumps(report,indent=2)+'\n')

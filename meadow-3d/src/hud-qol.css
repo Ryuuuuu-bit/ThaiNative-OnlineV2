@@ -84,3 +84,6 @@
 #ui .monster-tag-size{border-color:#c4ad77;background:#453c27;color:#ffe9b5}
 #ui .monster-tag-race{border-color:#ab98bf;background:#3c304c;color:#f0e0ff}
 @media(max-width:650px){#ui .target,#ui .boss-hud{max-height:none}#ui .monster-tags{gap:3px;margin:3px 0 4px}#ui .monster-tag{font-size:11px;padding:0 4px}#ui .boss-hud h3{margin:2px 0}}
+/* Job 2 status art keeps the duration ring outside the painted cell. */
+.buff-icon.job-icon{position:relative;background-image:var(--skill-atlas);background-size:400% 600%;background-position:calc(var(--ix)*100%/3) calc(var(--iy)*100%/5)}
+.buff-icon.job-icon::after{content:"";position:absolute;inset:-3px;border-radius:50%;padding:2px;background:conic-gradient(#f4d994 var(--remaining),#516a5d 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;pointer-events:none}

@@ -1554,5 +1554,39 @@
     "mode": "uastc",
     "mips": false,
     "cpu": false
+  },
+  "/assets/skills-painted/skills-v2.png": {
+    "source": "art/skills/skills-v2.png",
+    "originalSize": [
+      256,
+      384
+    ],
+    "size": [
+      256,
+      384
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": true,
+    "hitMask": null,
+    "ktx2": null,
+    "webp": "/assets/skills-painted/skills-v2-96b015cb4b.webp"
+  },
+  "/assets/skills-painted/skills-vfx-job2-v1.png": {
+    "source": "art/skills/skills-vfx-job2-v1.png",
+    "originalSize": [
+      1024,
+      768
+    ],
+    "size": [
+      1024,
+      768
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "ktx2": "/assets/skills-painted/skills-vfx-job2-v1-41a5544e09.ktx2",
+    "webp": "/assets/skills-painted/skills-vfx-job2-v1-bfcf4ae82c.webp"
   }
 }
