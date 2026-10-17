@@ -40,3 +40,4 @@
  #party-frame{left:8px;top:262px;width:180px;max-height:126px;overflow:auto;padding:4px 6px;font-size:12px}
  #party-frame header small{display:none}
 }
+#gm-badge{flex:none;margin:0 auto 0 6px;padding:0 5px;border:1px solid #f0cf7a;border-radius:3px;background:#5a2a1fcc;color:#ffe1a0;font:700 10px/16px system-ui;letter-spacing:.08em;pointer-events:auto}

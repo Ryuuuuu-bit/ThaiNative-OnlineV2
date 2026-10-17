@@ -13,7 +13,8 @@ export interface Party { id: string; leader: string; members: string[]; invites:
 interface Options<P extends SocialPeer> {
 	live: Map<string, P>;
 	send: (ws: WebSocket, body: unknown) => void;
-	adminIds?: string[];
+	/** Every slash command that reaches the server (GM commands); it is never broadcast. */
+	command?: (peer: P, text: string) => void;
 	now?: () => number;
 	/** Offline members are dropped from their party after this long. */
 	offlineMs?: number;
@@ -86,7 +87,7 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		names.set(peer.id, me.name);
 		const raw = cleanChat(message.text);
 		if (!raw) return;
-		if (raw.startsWith("/") && admin(peer, raw)) return;
+		if (raw.startsWith("/")) { if (options.command) options.command(peer, raw); else error(peer, "ไม่รู้จักคำสั่งนี้ · พิมพ์ /help ดูคำสั่ง"); return; }
 		const limiter = limiters.get(peer.id) ?? { times: [], strikes: [] };
 		limiters.set(peer.id, limiter);
 		const blocked = chatAllowed(limiter, raw, now());
@@ -114,26 +115,18 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		send(peer.ws, { t: "chat", ch: "whisper", from: me.name, fromId: me.id, to: targetName, text, at, self: true });
 	}
 
-	/** Staff commands. Returns true when the text was a command for an admin. */
-	function admin(peer: P, text: string) {
-		if (!(options.adminIds ?? []).includes(peer.accountId)) return false;
-		const [cmd, ...args] = text.split(" ");
-		if (cmd === "/notice") {
-			const body = { t: "chat", ch: "system", text: "📢 " + args.join(" "), at: now() };
-			for (const other of live.values()) if (other.ready) send(other.ws, body);
-			return true;
-		}
-		if (cmd === "/mute" || cmd === "/unmute") {
-			const target = byName(args[0] ?? "");
-			if (!target) { notify(peer, "ไม่พบผู้เล่น"); return true; }
-			const l = limiters.get(target.id) ?? { times: [], strikes: [] };
-			l.mutedUntil = cmd === "/mute" ? now() + Math.max(1, Math.min(1440, Number(args[1]) || 10)) * 60000 : 0;
-			limiters.set(target.id, l);
-			notify(peer, `${cmd === "/mute" ? "ปิดแชท" : "เปิดแชท"} ${player(target)?.name ?? ""} แล้ว`);
-			if (cmd === "/mute") notify(target, `ทีมงานปิดแชทของคุณ ${Math.ceil((l.mutedUntil - now()) / 60000)} นาที`);
-			return true;
-		}
-		return false;
+	/** Staff mute: blocks the player's chat for `minutes` (kept while offline). */
+	function mute(id: string, minutes: number) {
+		const l = limiters.get(id) ?? { times: [], strikes: [] };
+		l.mutedUntil = now() + minutes * 60000;
+		limiters.set(id, l);
+		return true;
+	}
+	function unmute(id: string) {
+		const l = limiters.get(id);
+		if (!l?.mutedUntil) return false;
+		l.mutedUntil = 0;
+		return true;
 	}
 
 	function party(peer: P, message: { op: string; name?: string; id?: string }) {
@@ -185,6 +178,8 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 	return {
 		chat,
 		party,
+		mute,
+		unmute,
 		/** Members of the same party (including the player), for EXP sharing. */
 		partyMembers(id: string) { return parties.get(partyOf.get(id) ?? "")?.members ?? [id]; },
 		ready(peer: P) {

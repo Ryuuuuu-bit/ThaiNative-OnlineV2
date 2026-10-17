@@ -3,7 +3,7 @@ import {applyInventory,starterInventory,economyData,checkRequest,alertIntegrity,
 import type {InventoryOp} from '@thainative/shared';
 import {creationJob,needsJob,migrateMap} from './progress.js';
 import {loadGameData,newJob,normalizeJob} from '@thainative/shared';
-import{randomUUID}from'node:crypto';import type{Account,Character,GoogleIdentity,PasswordIdentity,Session,Store}from'./types.js';import{newUid}from'./types.js';import{AppError,missing}from'../errors.js';
+import{randomUUID}from'node:crypto';import type{Account,AuditEntry,Character,GoogleIdentity,PasswordIdentity,Session,Store}from'./types.js';import{newUid,ADMIN_SEED_UIDS}from'./types.js';import{AppError,missing}from'../errors.js';
 const now=()=>new Date().toISOString();
 export class MemoryStore implements Store {
  private leases=new Map<string,string>();
@@ -20,7 +20,17 @@ export class MemoryStore implements Store {
  private inventories=new Map<string,Inventory>();
  private requests=new Map<string,{at:number;result:EconomyResult}>();
  private ledger:{character:string;entry:LedgerEntry}[]=[];
- async init(){}async close(){}
+ /** Mirrors migration 016: each seed uid becomes admin once, as soon as its account exists. */
+ async init(){for(const uid of ADMIN_SEED_UIDS){if(this.seeded.has(uid))continue;const a=[...this.accounts.values()].find(a=>a.uid===uid);if(!a)continue;this.seeded.add(uid);a.isAdmin=true;this.audits.push({at:now(),action:'admin.seed',targetUid:uid,detail:{source:'016_admin.sql'}});}}
+ async close(){}
+ private seeded=new Set<string>();private audits:AuditEntry[]=[];
+ async accountByUid(uid:string){const a=[...this.accounts.values()].find(a=>a.uid===uid);return a?{...a}:undefined;}
+ async adminAccounts(){return[...this.accounts.values()].filter(a=>a.isAdmin).sort((a,b)=>a.createdAt.localeCompare(b.createdAt)).map(a=>({...a}));}
+ async setAdmin(targetUid:string,admin:boolean,actor:{accountId:string;uid:string}){const a=[...this.accounts.values()].find(a=>a.uid===targetUid);if(!a)throw new AppError(404,'NOT_FOUND','ไม่พบบัญชี UID นี้');const changed=!!a.isAdmin!==admin;
+  if(changed&&!admin&&[...this.accounts.values()].filter(x=>x.isAdmin).length<=1)throw new AppError(409,'LAST_ADMIN','เป็นแอดมินคนสุดท้าย ลบสิทธิ์ไม่ได้');
+  if(changed){a.isAdmin=admin;this.audits.push({at:now(),actorAccountId:actor.accountId,actorUid:actor.uid,action:admin?'admin.add':'admin.remove',targetUid});}return{account:{...a},changed};}
+ async audit(entry:AuditEntry){this.audits.push({at:now(),...structuredClone(entry)});if(this.audits.length>10000)this.audits.splice(0,this.audits.length-10000);}
+ async auditLog(limit=50){return structuredClone(this.audits.slice(-limit).reverse());}
  private econCharacter(accountId:string,id:string) {const c=this.chars.get(id);if(!c||c.accountId!==accountId||c.deletedAt)throw missing();if(!this.inventories.has(id)){const inv=starterInventory(c.potions,randomUUID);this.inventories.set(id,inv);this.ledger.push({character:id,entry:{kind:'admin',qty:0,goldDelta:c.gold}},...inv.items.map(i=>({character:id,entry:{kind:'admin',template:i.template,itemId:i.id,qty:i.qty,goldDelta:0}})));}return c;}
  async inventory(accountId:string,id:string):Promise<EconomyResult> {const c=this.econCharacter(accountId,id);return structuredClone({inventory:this.inventories.get(id)!,gold:c.gold});}
  async inventoryOp(accountId:string,id:string,req:string,op:InventoryOp,context:EconomyContext):Promise<EconomyResult> {
