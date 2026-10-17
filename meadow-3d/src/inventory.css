@@ -92,7 +92,8 @@
 	margin: auto;
 	width: 60px;
 	height: 60px;
-	background-image: url("/assets/items/items-v1.webp");
+	/* Transparent atlas cut from art/painted-items/items-v1-source.png by scripts/cut-item-backgrounds.py */
+	background-image: url("/assets/items/items-v1-alpha.webp");
 	background-size: 500% 500%;
 	border-radius: 4px;
 }
