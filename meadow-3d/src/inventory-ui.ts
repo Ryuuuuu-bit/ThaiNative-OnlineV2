@@ -20,6 +20,8 @@ const slotNames: Record<string, string> = {
 	accessory1: "แหวน",
 	accessory2: "เครื่องราง",
 };
+/** Weights are decimals now (materials 0.1, potions 0.2): show at most one decimal, no float noise. */
+const fmtWeight = (w: number) => String(Math.round(w * 10) / 10);
 export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	const button = document.createElement("button");
 	button.id = "inventory-button";
@@ -157,7 +159,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			(i) => i.location === "equip" && i.slot === t.slot,
 		);
 		const oldT = old && template(old);
-		text.textContent = `${slotNames[t.slot || ""] || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${t.level}\nน้ำหนัก ${t.weight} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + data.economy.shops[shop][t.id] : "ขาย " + Math.floor(t.npcPrice * data.economy.sellMultiplier)} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
+		text.textContent = `${slotNames[t.slot || ""] || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${t.level}\nน้ำหนัก ${fmtWeight(t.weight)} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + data.economy.shops[shop][t.id] : "ขาย " + Math.floor(t.npcPrice * data.economy.sellMultiplier)} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
 		detail.append(text);
         const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
         if(incompatible){const note=document.createElement('p');note.textContent='อาชีพนี้ใช้ไม่ได้';detail.append(note);}
@@ -369,7 +371,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			}
 			if (!count) lines.innerHTML = `<p class="inv-empty">คลิกสินค้าเพื่อใส่ตะกร้า<br>Shift+คลิก ใส่ทีละ 10</p>`;
 			const after = gold - total;
-			sum.innerHTML = `<dt>รวม</dt><dd class="total">${total}</dd><dt>ทองคงเหลือ</dt><dd class="${after < 0 ? "bad" : ""}">${gold} → ${after}</dd><dt>น้ำหนัก</dt><dd>+${weight}</dd>`;
+			sum.innerHTML = `<dt>รวม</dt><dd class="total">${total}</dd><dt>ทองคงเหลือ</dt><dd class="${after < 0 ? "bad" : ""}">${gold} → ${after}</dd><dt>น้ำหนัก</dt><dd>+${fmtWeight(weight)}</dd>`;
 			go.textContent = !count ? "ซื้อ" : after < 0 ? "ทองไม่พอ" : `ซื้อ · ${total} ทอง`;
 			go.disabled = !count || after < 0 || !!pending || buyQueue.length > 0;
 			go.onclick = () => {
@@ -387,7 +389,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			lines.append(cartLine(t, `<b></b><small>×${i.qty}</small>`, "+" + sellPrice(i)).line);
 		}
 		if (!count) lines.innerHTML = `<p class="inv-empty">เลือกของที่จะขาย<br>ของที่สวมอยู่จะไม่แสดงที่นี่</p>`;
-		sum.innerHTML = `<dt>ได้รับ</dt><dd class="total">+${total}</dd><dt>ทองคงเหลือ</dt><dd>${gold} → ${gold + total}</dd><dt>น้ำหนัก</dt><dd>${weight}</dd>`;
+		sum.innerHTML = `<dt>ได้รับ</dt><dd class="total">+${total}</dd><dt>ทองคงเหลือ</dt><dd>${gold} → ${gold + total}</dd><dt>น้ำหนัก</dt><dd>${fmtWeight(weight)}</dd>`;
 		go.textContent = count ? `ขาย · ${total} ทอง` : "ขาย";
 		go.disabled = !count;
 		go.onclick = () => request("sell", { shop, ids: [...multi] });
