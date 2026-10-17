@@ -1,5 +1,11 @@
 # City art prompts
 
+## Occupational idle personalities v4 (current)
+Built-in imagegen edit of the shipped `art/texture-sources/city/city-npcs-v1.png`, saved as `city-npcs-personality-v4.png`. Preserve all five identities, costumes, proportions, brown ink/gouache technique, palette and upper-left light. One transparent atlas: five role rows, four consecutive idle phases each, front-facing, fixed feet, no walking or camera movement, transparent gutters and no text. Storage keeper: grounded rest, open ledger, touch belt keys, settle ledger. Blacksmith: wide resting stance with one lowered hammer, shoulder roll, wipe brow with free arm, lower arm. Merchant: friendly slight forward lean, open free palm, outward invitation, settle hand; one coin purse at belt. Healer: calm rest with one staff and herbs, raise herb sprig, examine leaves near chest, lower sprig. Captain: erect watch, subtle left scan, tighten the existing spear grip, settle gaze; exactly one upright held spear, never behind the left shoulder. Preserve anatomy, props, complete weapons and loop continuity. Each role must use its own gesture, not a shared side-look/bow cycle. Packing uses a shared scale per role and a boot anchor; runtime adds role-specific holds and crowd phase offsets. This replaces the original four-phase motions; previous sources below are retained for provenance.
+
+## Guard spear repair v3
+Built-in imagegen edit of `city-npcs-polish-v2.png`, saved as `city-npcs-guard-repair-v3.png`. Only bottom-row first cell is consumed; other 19 packed cells retain the previous source. Preserve all poses, faces, armor, red capes, held spears, transparent background, exact atlas layout and ink/gouache style. Remove the extra spearhead and shaft behind the first guard's viewer-left shoulder; keep exactly one spear held on viewer-right. Reconstruct the small cape/background patch only. No text or borders.
+
 Generated with built-in imagegen. Original outputs retained here. The packing step normalizes NPC frame bounds and feet; no new poses are synthesized.
 
 ## Trim atlas
