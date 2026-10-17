@@ -108,6 +108,8 @@ export interface Player extends Vec, JobProgress {
 	autoPath: Vec[];
 	autoGoal: Vec | null;
 	autoCharge: number;
+	/** AUTO: enemy id → game time until which it is skipped because no route reached it. */
+	autoUnreachable?: Record<number, number>;
 	auto: boolean;
 	autoState: AutoState;
 	hp: number;
@@ -1008,6 +1010,7 @@ export function setAuto(g: Game, enabled: boolean) {
 	g.autoPath = [];
 	g.autoGoal = null;
 	g.autoCharge = -1;
+	g.p.autoUnreachable = undefined;
 	g.destination = null;
 	if (!enabled) g.target = null;
 	emit(g, "notice", {
@@ -1183,7 +1186,9 @@ function autoStep(g: Game, dt: number): Vec {
 		if (p.hp < p.maxHp * 0.45 && p.potions > 0) action(g, "potion");
 		if (p.hp < p.maxHp * 0.25 && p.potions === 0) p.autoState = "retreat";
 		const retreat = p.autoState === "retreat" && p.hp < p.maxHp * 0.9;
-		const living = g.enemies.filter((e) => !e.dead),
+		// Targets with no route (a far field boss beyond the bounded search) are set aside for a while.
+		const skip = p.autoUnreachable || {};
+		const living = g.enemies.filter((e) => !e.dead && !((skip[e.id] ?? 0) > g.time)),
 			boss = living.find((e) => e.boss),
 			current = living.find((e) => e.id === g.target);
 		const target =
@@ -1245,7 +1250,16 @@ function autoStep(g: Game, dt: number): Vec {
 		}
 		if (!retreat) {
 			p.autoState = "seek";
-			return navigate(g, target, reach);
+			const direction = navigate(g, target, reach);
+			if (g.autoPath.length) return direction;
+			// No route: standing still on this target would freeze AUTO, so hunt something else.
+			p.autoUnreachable = Object.fromEntries(
+				Object.entries(p.autoUnreachable || {}).filter(([, until]) => until > g.time),
+			);
+			p.autoUnreachable[target.id] = g.time + 8;
+			g.target = null;
+			g.autoTimer = 0;
+			return still;
 		}
 	}
 		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId, p));
