@@ -133,11 +133,24 @@ const meadowObstacles = (() => {
 	const rocks = scatter(1202, 18, { x: MEADOW.halfX, z: MEADOW.halfZ }, meadowBase, ['boulder'], 0.6, 0.9, [], trees);
 	return [...trees, ...rocks];
 })();
-const meadowHits = circleGrid(meadowObstacles);
+/** Painted landmarks (world-scale art pass): solid, but drawn by the scene itself rather than as trees/boulders. */
+export const MEADOW_LANDMARKS = {
+	circles: [
+		{ x: 40, z: 18, r: 1.1, kind: 'giant-tree' },
+		{ x: -21.2, z: -14, r: 0.6, kind: 'standing-stone' },
+		{ x: -23.135, z: -11.337, r: 0.6, kind: 'standing-stone' },
+		{ x: -26.265, z: -12.354, r: 0.6, kind: 'standing-stone' },
+		{ x: -26.265, z: -15.646, r: 0.6, kind: 'standing-stone' },
+		{ x: -23.135, z: -16.663, r: 0.6, kind: 'standing-stone' },
+	] as Circle[],
+	boxes: [{ x: -38, z: 32, w: 6, d: 6, kind: 'watchtower' }],
+};
+const meadowHits = circleGrid([...meadowObstacles, ...MEADOW_LANDMARKS.circles]);
 export function meadowWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= MEADOW.halfX - 1 - r || Math.abs(z) >= MEADOW.halfZ - 1 - r) return false;
 	if (inWater(meadowBase.water, x, z)) return false;
-	return r <= GRID_MAX_R ? !meadowHits(x, z, r) : !meadowObstacles.some(o => Math.hypot(x - o.x, z - o.z) < o.r + r);
+	if (MEADOW_LANDMARKS.boxes.some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r)) return false;
+	return r <= GRID_MAX_R ? !meadowHits(x, z, r) : ![...meadowObstacles, ...MEADOW_LANDMARKS.circles].some(o => Math.hypot(x - o.x, z - o.z) < o.r + r);
 }
 
 /* ---------------------------------------------------------------- forest: ป่าหมอก, 120 x 96 m, Lv 6-15 */

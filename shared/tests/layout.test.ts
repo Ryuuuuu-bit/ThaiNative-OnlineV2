@@ -76,3 +76,16 @@ test("layouts are deterministic across processes", () => {
 	assert.equal(Math.round(sum("meadow") * 1000), Math.round(sum("meadow") * 1000));
 	assert.ok(LAYOUTS.forest.obstacles.length >= 100, "forest is dense");
 });
+
+test("meadow landmarks are solid and no spawn, camp or path sits inside them", async () => {
+	const { MEADOW_LANDMARKS, onPath } = await import("../src/game/maps.js");
+	for (const c of MEADOW_LANDMARKS.circles) assert.equal(walkable(c.x, c.z, 0.3, "meadow"), false, c.kind);
+	for (const b of MEADOW_LANDMARKS.boxes) {
+		assert.equal(walkable(b.x, b.z, 0.3, "meadow"), false, b.kind);
+		assert.equal(walkable(b.x + b.w / 2 + 0.6, b.z, 0.3, "meadow") || walkable(b.x - b.w / 2 - 0.6, b.z, 0.3, "meadow"), true, "walk around the tower");
+	}
+	for (const s of LAYOUTS.meadow.spawns) assert.ok(walkable(s.x, s.z, 0.3, "meadow"), `spawn ${s.x},${s.z}`);
+	for (const c of LAYOUTS.meadow.camps) assert.ok(walkable(c.x, c.z, 0.3, "meadow"));
+	const all = [...MEADOW_LANDMARKS.circles.map(c => ({ x: c.x, z: c.z, r: c.r })), ...MEADOW_LANDMARKS.boxes.map(b => ({ x: b.x, z: b.z, r: Math.hypot(b.w, b.d) / 2 }))];
+	for (const o of all) assert.equal(onPath(LAYOUTS.meadow.paths, o.x, o.z, o.r), false, `landmark on a path at ${o.x},${o.z}`);
+});
