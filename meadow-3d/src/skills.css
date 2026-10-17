@@ -120,8 +120,8 @@
 	display: inline-block;
 	width: 48px;
 	height: 48px;
-	background-size: 400% 300%;
-	background-position: calc(var(--ix) * 100% / 3) calc(var(--iy) * 100% / 2);
+	background-size: 400% 600%;
+	background-position: calc(var(--ix) * 100% / 3) calc(var(--iy) * 100% / 5);
 	border-radius: 8px;
 }
 #job-hotbar,
@@ -150,8 +150,8 @@
 	cursor: pointer;
 }
 .job-slot .job-icon {
-	width: 42px;
-	height: 42px;
+	width: 48px;
+	height: 48px;
 }
 .job-slot kbd {
 	position: absolute;

@@ -86,7 +86,9 @@ export interface Player extends Vec, JobProgress {
  /** Field-boss cooldowns other than the King (which keeps bossReadyAt). */
  bossCooldowns?: Record<string, number>;
  quests?: import('../quests.js').QuestState;
- whirlwindHits?:{id:number;due:number;damage:number;crit:boolean;breakdown:any;impact?:number}[];
+ whirlwindHits?:{id:number;due:number;damage:number;crit:boolean;breakdown:any;impact?:number;hit?:boolean;skillId?:string;level?:number;cast?:number}[];
+ /** leap_strike landings: the hit lands at the end of the airborne arc. */
+ landings?:{due:number;x:number;z:number;skillId:string;level:number;cast:number}[];
  inventory?:Inventory; autoSeconds:number;
  mapId: MapId;
  healerReadyAt: number;
@@ -550,12 +552,19 @@ export function setBossTimer(g: Game, seconds: number) {
 	boss.hp = boss.maxHp;
 	setMotion(boss, "death");
 }
+/** A leap lands: one impact event, then every enemy in the landing radius is struck (and stunned by the dash effect). */
+function land(g: Game, l: { x: number; z: number; skillId: string; level: number; cast: number }) {
+	const skill = resolveSkill(g.data, l.skillId, l.level);
+	emit(g, "skillImpact", { x: l.x, z: l.z, skillId: skill.id, visual: skill.visual, cast: l.cast });
+	const r = skill.landing?.radius ?? 1.6;
+	for (const e of [...g.enemies]) if (!e.dead && Math.hypot(e.x - l.x, e.z - l.z) <= r + (e.boss ? 0.6 : 0)) hit(g, e, skill, false);
+}
 /** Value of a learned passive at the player's level (0 when not learned). */
 function learnedValue(g: Game, p: Player, id: string, key: string) {
 	const level = p.skills[id] || 0;
 	return level ? skillValue(resolveSkill(g.data, id, level), key, level) : 0;
 }
-function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number}) {
+function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number;hit?:boolean;cast?:number}) {
 	if (e.dead) return false;
 	const defender = monsterStats(
 		g.data.monsters.monsters.find((m) => m.id === e.dataId)!,
@@ -580,7 +589,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 						rhythm,
 					)),
 		};
-	const result = prepared ? {...prepared,hit:true} : computeDamage(
+	const result = prepared ? {...prepared,hit:prepared.hit ?? true} : computeDamage(
 		g.p.stats,
 		defender,
 		skill,
@@ -594,6 +603,10 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 			id: e.id,
 			boss: e.boss,
 			breakdown: result.breakdown,
+			skillId: skill.id,
+			visual: skill.visual,
+			hitIndex: prepared?.impact,
+			cast: prepared?.cast,
 		});
 		return false;
 	}
@@ -618,7 +631,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 		move(e, (dx / d) * 0.23, (dz / d) * 0.23);
 	}
 	emit(g, "hit", {
-        skillId:skill.id,visual:skill.visual,hitIndex:prepared?.impact,
+        skillId:skill.id,visual:skill.visual,hitIndex:prepared?.impact,cast:prepared?.cast,
 		x: e.x,
 		z: e.z,
 		id: e.id,
@@ -910,6 +923,23 @@ export function action(g: Game, a: Action) {
 			const start = { x: p.x, z: p.z };
 			g.destination = null;
 			g.target = null;
+			if (skill.landing) {
+				// Leap: fly over the path (no hits on the way) and land just short of the target; the strike
+				// resolves on landing after landing.delay, while the leaper is airborne and untouchable.
+				const reach = target ? Math.min(skill.range, Math.max(0, Math.hypot(target.x - p.x, target.z - p.z) - 0.8)) : skill.range;
+				for (let n = 0; n < Math.round(reach / 0.1); n++) {
+					const x = p.x + p.fx * 0.1, z = p.z + p.fz * 0.1;
+					if (!walk(x, z, 0.35)) break;
+					p.x = x;
+					p.z = z;
+				}
+				const cast = g.nextId++;
+				p.invulnerable = Math.max(p.invulnerable, skill.landing.delay);
+				p.castRemaining = Math.max(p.castRemaining, skill.landing.delay);
+				(p.landings ??= []).push({ due: g.time + skill.landing.delay, x: p.x, z: p.z, skillId: skill.id, level, cast });
+				emit(g, "dashTrail", { fromX: start.x, fromZ: start.z, toX: p.x, toZ: p.z, skillId: skill.id, visual: skill.visual, duration: skill.landing.delay, cast });
+				return true;
+			}
 			for (let n = 0; n < Math.round(skill.range / 0.1); n++) {
 				const x = p.x + p.fx * 0.1,
 					z = p.z + p.fz * 0.1;
@@ -964,6 +994,18 @@ export function action(g: Game, a: Action) {
                 const prepared={impact:1,damage:Math.ceil(total/2),crit:rolls.some(r=>r.crit),breakdown:rolls[0].breakdown};
                 hit(g,e,skill,false,prepared);
                 (p.whirlwindHits??=[]).push({id:e.id,due:g.time+.25,...prepared,impact:2,damage:Math.floor(total/2)});
+            } else if(skill.hitInterval && skill.hits>1) {
+                // Staged multi-hit (frenzy_slash, blade_cyclone): every roll is made now, hit 1 lands now and the
+                // rest land hitInterval apart; a miss keeps its slot, and hits queued after the target dies are dropped.
+                const defender=monsterStats(g.data.monsters.monsters.find(m=>m.id===e.dataId)!,g.data,e.bossPhase===2);
+                const defDown=e.statuses.find(s=>s.id==='def_down');if(defDown){defender.hardDef*=1-defDown.value;defender.softDef*=1-defDown.value;}
+                const cast=g.nextId++;
+                for(let i=0;i<skill.hits;i++){
+                    const r=computeDamage(p.stats,defender,skill,{rng:g.random,comboThird:false},g.data);
+                    const staged={impact:i+1,hit:r.hit,damage:Math.round(r.damage*(e.boss&&e.motion==='stun'?1.25:1)),crit:r.crit,breakdown:r.breakdown,cast};
+                    if(i===0)hit(g,e,skill,false,staged);
+                    else (p.whirlwindHits??=[]).push({id:e.id,due:g.time+skill.hitInterval*i,...staged,skillId:skill.id,level});
+                }
             } else for(let i=0;i<skill.hits;i++)hit(g,e,skill);
         }
 		return true;
@@ -1309,8 +1351,8 @@ function autoStep(g: Game, dt: number): Vec {
 }
 /**
  * AUTO target. A monster fighting this player comes first (with `attackers`), then bosses (with
- * `elites`), then the nearest one in range on the map's hunt list. The current target is kept
- * unless another is clearly better, so AUTO does not flip between two close monsters.
+ * `elites`), then the nearest one in range on the map's hunt list. The current (or clicked) target is
+ * kept until it dies or a boss appears, so AUTO neither flips between close monsters nor ignores a click.
  */
 function autoPickTarget(g: Game, cfg: AutoSettings) {
 	const p = g.p,
@@ -1321,27 +1363,46 @@ function autoPickTarget(g: Game, cfg: AutoSettings) {
 		allowed = (e: Enemy) => !wanted || wanted.has(e.dataId) || fighting(e),
 		skip = p.autoUnreachable || {},
 		living = g.enemies.filter((e) => !e.dead && !((skip[e.id] ?? 0) > g.time) && (!e.summoned || fighting(e)));
-	const score = (e: Enemy) => (fighting(e) ? -1000 : 0) + (cfg.elites && e.boss ? -500 : 0) + dist(e);
-	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e)));
+	const rank = (e: Enemy) => (fighting(e) ? 2 : 0) + (cfg.elites && e.boss ? 1 : 0);
+	const score = (e: Enemy) => -rank(e) * 500 + dist(e);
+	// Bosses ('elites') are worth the walk from anywhere on the map; unreachable ones are skipped above.
+	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e) || (cfg.elites && e.boss)));
 	const best = pool.sort((a, b) => score(a) - score(b))[0];
 	const current = pool.find((e) => e.id === g.target);
-	return current && (!best || score(current) - 2 <= score(best)) ? current : best;
+	// Keep the current (or clicked) target; only a boss (with `elites`) takes over. Attackers win when picking anew.
+	const boss = cfg.elites ? pool.filter((e) => e.boss).sort((a, b) => dist(a) - dist(b))[0] : undefined;
+	if (boss && !current?.boss) return boss;
+	return current ?? best;
 }
 /** Cast the first ready skill in the player's AUTO order (cycle / priority, survival first when low). */
 function autoCast(g: Game, cfg: AutoSettings) {
 	const p = g.p,
 		hotbar = (p.hotbar ?? []).map((h) => h.skill),
 		spec = (id: string) => g.data.skills.skills.find((s) => s.id === id),
-		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !spec(id)?.passive && !!spec(id) && belongsToJob(p.jobId, spec(id)!.jobId, g.data), Object.keys(p.skills), (id) => skillTierRank(g.data, id)),
+		// Job skills only: basic attack, dodge and potion are common skills with their own handling (dodge would drop the target).
+		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !!spec(id) && !spec(id)!.passive && spec(id)!.jobId !== "common" && belongsToJob(p.jobId, spec(id)!.jobId, g.data), Object.keys(p.skills), (id) => skillTierRank(g.data, id)),
 		order = autoCastOrder(seq, cfg, p.hp / p.maxHp, p.autoNext ?? null, (id) => isSurvivalSkill(spec(id)));
+	const target = g.enemies.find((e) => e.id === g.target && !e.dead);
 	for (const id of order) {
 		if ((p.cd[id] || 0) > 0 || p.mp < gameSkill(g, id).sp) continue;
+		if (!worthCasting(g, gameSkill(g, id), target)) continue;
 		if (action(g, id)) {
 			p.autoNext = seq[(seq.indexOf(id) + 1) % seq.length] ?? null;
 			return true;
 		}
 	}
 	return false;
+}
+/**
+ * Area damage waits for a group so AUTO does not spend SP on one monster: 2 in reach, or 3 for a slow
+ * cast like earth_break; a boss is always worth it. Everything else (single target, buffs, taunts) is fine.
+ */
+function worthCasting(g: Game, skill: Skill, target: Enemy | undefined) {
+	if (skill.kind !== "area" || !skill.percent || !skill.radius) return true;
+	if (target?.boss) return true;
+	const p = g.p,
+		around = g.enemies.filter((e) => !e.dead && Math.hypot(e.x - p.x, e.z - p.z) <= skill.radius + 0.4).length;
+	return around >= (skill.cast > 0 ? 3 : 2);
 }
 function face(e: Enemy, x: number, z: number) {
 	const d = Math.hypot(x - e.x, z - e.z) || 1;
@@ -1703,7 +1764,10 @@ export function step(
 		g.p = p;
                 if(p.dead||!isField(g.mapId))p.whirlwindHits=[];
         const due=(p.whirlwindHits??[]).filter(h=>h.due<=g.time+1e-9);p.whirlwindHits=(p.whirlwindHits??[]).filter(h=>h.due>g.time+1e-9);
-        for(const h of due){const enemy=g.enemies.find(e=>e.id===h.id&&!e.dead);if(enemy)hit(g,enemy,resolveSkill(g.data,'whirlwind',p.skills.whirlwind||1),false,h);}
+        for(const h of due){const enemy=g.enemies.find(e=>e.id===h.id&&!e.dead);const id=h.skillId??'whirlwind';if(enemy)hit(g,enemy,resolveSkill(g.data,id,h.level??(p.skills[id]||1)),false,h);}
+        if(p.dead||!isField(g.mapId))p.landings=[];
+        const landed=(p.landings??[]).filter(l=>l.due<=g.time+1e-9);p.landings=(p.landings??[]).filter(l=>l.due>g.time+1e-9);
+        for(const l of landed)land(g,l);
 		playerStep(
 			g,
 			dt,

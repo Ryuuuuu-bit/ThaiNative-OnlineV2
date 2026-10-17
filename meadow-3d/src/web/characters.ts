@@ -2,7 +2,7 @@ import jobsData from "../../../shared/data/jobs.json";
 import skillsData from "../../../shared/data/skills.json";
 import statsData from "../../../shared/data/stats.json";
 import{assetJSON}from'../asset-request';
-import'../web.css';import'./characters.css';import{api,post,showError}from'./api';import{requireLogin,mountAccountChip}from'./session';import{mountPreview}from'../character-preview';
+import'../web.css';import'../web-glass.css';import'./characters.css';import{api,post,showError,ApiError}from'./api';import{kindLabel,uidChip,mountBuild}from'./account-ui';import{requireLogin,mountAccountChip}from'./session';import{mountPreview}from'../character-preview';
 
 /* Character select + creation, laid out as ui-mockup/characters.html: the chosen hero on a lit pedestal,
    roster cards along the bottom, and a class showcase for creation. The API calls are unchanged. */
@@ -135,4 +135,12 @@ $<HTMLFormElement>('#create-form').onsubmit=async e=>{e.preventDefault();const b
 
 $<HTMLButtonElement>('#confirm-delete').onclick=async function(this:HTMLButtonElement){this.disabled=true;try{await api(`/characters/${deleteId}`,{method:'DELETE'});removeDialog.close();if(selectedId===deleteId)selectedId='';await refresh();}catch(e){showError(error,e);removeDialog.close();}finally{this.disabled=false;}};
 document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog')!.close());
-void requireLogin().then(async me=>{if(!me)return;$('#account-name').textContent=me.account.kind==='guest'?'ผู้เยี่ยมชม':me.account.displayName;$('#link-note').hidden=me.account.kind!=='guest';await mountAccountChip();window.tnBoot.stage(2);await refresh();window.tnBoot.stage(4);}).catch(e=>{showError(error,e);window.tnBoot.fail('เปิดสมุดตัวละครไม่สำเร็จ กรุณาลองใหม่');});
+// Change password (username accounts only). The server signs out every other device and re-issues this session.
+function mountPassword(account:{kind:string;username?:string}){if(account.kind!=='password')return;const open=document.querySelector<HTMLButtonElement>('#change-password')!,d=document.querySelector<HTMLDialogElement>('#password-dialog')!,form=document.querySelector<HTMLFormElement>('#password-form')!,inputs=['current-password','new-password','confirm-new-password'].map(id=>document.getElementById(id) as HTMLInputElement),failure=document.querySelector<HTMLElement>('#password-error')!,done=document.querySelector<HTMLElement>('#password-done')!;
+ document.querySelector<HTMLInputElement>('#password-username')!.value=account.username||'';open.hidden=false;
+ const mark=(input:HTMLInputElement,message='')=>{const out=document.getElementById(input.id+'-error')!;out.textContent=message;out.hidden=!message;input.setAttribute('aria-invalid',String(!!message));return!message;};
+ open.onclick=()=>{form.reset();failure.hidden=true;done.hidden=true;inputs.forEach(i=>mark(i));d.showModal();inputs[0].focus();};
+ form.onsubmit=async e=>{e.preventDefault();failure.hidden=true;const[current,next,confirm]=inputs,ok=[mark(current,current.value?'':'กรุณากรอกรหัสผ่านปัจจุบัน'),mark(next,[...next.value].length>=8?'':'รหัสผ่านต้องยาวอย่างน้อย 8 ตัว'),mark(confirm,confirm.value===next.value?'':'รหัสผ่านทั้งสองช่องไม่ตรงกัน')];if(ok.includes(false)){inputs[ok.indexOf(false)].focus();return;}
+  const button=document.querySelector<HTMLButtonElement>('#password-submit')!;button.disabled=true;try{await post('/password',{currentPassword:current.value,newPassword:next.value,confirmPassword:confirm.value});form.reset();done.hidden=false;}catch(err){const field=err instanceof ApiError?{PASSWORD_WRONG:current,WEAK_PASSWORD:next,PASSWORD_MISMATCH:confirm}[err.code]:undefined;if(field){mark(field,(err as Error).message);field.focus();}else showError(failure,err);}finally{button.disabled=false;}};}
+mountBuild();
+void requireLogin().then(async me=>{if(!me)return;document.querySelector('#account-name')!.textContent=me.account.displayName;document.querySelector('#account-kind')!.textContent='· '+kindLabel(me.account.kind);document.querySelector('#account-uid')!.replaceChildren(uidChip(me.account.uid));mountPassword(me.account);document.querySelector<HTMLElement>('#link-note')!.hidden=me.account.kind!=='guest';await mountAccountChip();window.tnBoot.stage(2);await refresh();window.tnBoot.stage(4);}).catch(e=>{showError(error,e);window.tnBoot.fail('เปิดสมุดตัวละครไม่สำเร็จ กรุณาลองใหม่');});

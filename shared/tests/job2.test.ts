@@ -108,8 +108,16 @@ test("Berserker: frenzy hits three times, blood rage costs HP and raises ATK unt
 	g.p.hp = Math.round(g.p.maxHp * 0.5);
 	const hpBefore = g.p.hp;
 	assert.ok(action(g, "frenzy_slash"));
-	for (const ev of g.events) if ((ev as any).type === "hit" && (ev as any).skillId === "frenzy_slash") hits.push((ev as any).damage);
-	assert.equal(hits.length, 3);
+	// Staged: hit 1 lands at once, hits 2 and 3 follow hitInterval apart, all from one cast.
+	const strikes = () => g.events.filter((ev: any) => (ev.type === "hit" || ev.type === "miss") && ev.skillId === "frenzy_slash") as any[];
+	assert.equal(strikes().length, 1);
+	assert.equal(strikes()[0].hitIndex, 1);
+	for (let i = 0; i < 8; i++) step(g, 0.05);
+	const all = strikes();
+	assert.deepEqual(all.map((ev) => ev.hitIndex), [1, 2, 3]);
+	assert.equal(new Set(all.map((ev) => ev.cast)).size, 1, "one cast id for all three");
+	for (const ev of all) if (ev.type === "hit") hits.push(ev.damage);
+	assert.ok(hits.length >= 1);
 	assert.ok(g.events.some((ev: any) => ev.type === "hit" && ev.visual === "slash"), "hits carry the borrowed look");
 	assert.ok(g.p.hp > hpBefore, "bloodlust heals from damage dealt");
 	const atk = g.p.stats.atk;
@@ -135,4 +143,34 @@ test("AUTO uses the branch skills in a fight", () => {
 	assert.ok(used.has("frenzy_slash"), [...used].join());
 	assert.ok(used.has("blade_cyclone"), [...used].join());
 	assert.ok(used.has("blood_rage"), [...used].join());
+});
+
+test("staged hits stop when the target dies; leap strike lands after its delay and stuns where it lands", () => {
+	const g = job2Game("berserker", { frenzy_slash: 10, leap_strike: 1 });
+	const e = spawn(g, 1.2, 4);
+	e.hp = e.maxHp = 1;
+	assert.ok(action(g, "frenzy_slash"));
+	for (let i = 0; i < 8; i++) step(g, 0.05);
+	assert.ok(e.dead);
+	assert.equal(g.events.filter((ev: any) => ev.type === "hit" && ev.skillId === "frenzy_slash").length, 1, "no hits after the kill");
+
+	const h = job2Game("berserker", { leap_strike: 1 });
+	const far = spawn(h, 5, 4);
+	far.hp = far.maxHp = 50000;
+	h.target = far.id;
+	h.p.cd = { ...h.p.cd, leap_strike: 0 };
+	assert.ok(action(h, "leap_strike"));
+	const trail = h.events.find((ev: any) => ev.type === "dashTrail") as any;
+	assert.equal(trail.skillId, "leap_strike");
+	assert.equal(trail.duration, 0.4);
+	assert.ok(Math.hypot(far.x - h.p.x, far.z - h.p.z) < 1.2, "lands just short of the target");
+	assert.equal(far.hp, 50000, "no damage while airborne");
+	assert.ok(h.p.invulnerable >= 0.4 - 1e-9);
+	for (let i = 0; i < 6; i++) step(h, 0.05);
+	assert.equal(far.hp, 50000, "still airborne at 0.3 s");
+	for (let i = 0; i < 4; i++) step(h, 0.05);
+	const impact = h.events.find((ev: any) => ev.type === "skillImpact" && ev.skillId === "leap_strike") as any;
+	assert.ok(impact && impact.cast === trail.cast, "landing impact belongs to the same leap");
+	assert.ok(far.hp < 50000, "struck on landing");
+	assert.ok(far.statuses.some((s) => s.id === "stun"));
 });

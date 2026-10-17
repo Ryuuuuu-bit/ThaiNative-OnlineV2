@@ -2,8 +2,22 @@
 from pathlib import Path
 from PIL import Image
 import json,shutil,hashlib
+import sys
 ROOT=Path(__file__).resolve().parents[1];PUBLIC=ROOT/'public';SRC=ROOT/'art/texture-sources';STAGE=ROOT.parent/'.codex-run/texture-inputs'
 SRC.mkdir(exist_ok=True);STAGE.mkdir(parents=True,exist_ok=True)
+# Bounded skill-only path: never regenerates environment or critical boot assets.
+if '--hero-skill' in sys.argv:
+    name=sys.argv[sys.argv.index('--hero-skill')+1]
+    allowed={'shield_bash','bulwark','quake_slam','rally_roar','frenzy_slash','blood_rage','blade_cyclone','leap_strike'}
+    if name not in allowed:raise ValueError('Unknown Job 2 motion')
+    stem=f'hero-skill-{name}-v1'
+    im=Image.open(ROOT/'art/hero-skills'/f'{stem}.png').convert('RGBA')
+    factor=min(1,(1664 if name in ('bulwark','rally_roar','blade_cyclone','leap_strike') else 2048)/im.width);size=tuple(max(4,round(n*factor/4)*4) for n in im.size)
+    im=im.resize(size,Image.Resampling.LANCZOS)
+    im.save(ROOT/'art/hero-skills'/f'{stem}-packed.png')
+    out=PUBLIC/'assets/hero-skills';out.mkdir(exist_ok=True,parents=True)
+    im.save(out/f'{stem}.webp','WEBP',quality=88,method=6,exact=True)
+    raise SystemExit
 # Archive originals non-destructively before the shipping tree is repacked.
 for p in (PUBLIC/'assets').rglob('*.png'):
     if 'brand' in p.parts:continue

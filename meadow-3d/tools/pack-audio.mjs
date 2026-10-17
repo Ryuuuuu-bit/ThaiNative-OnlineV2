@@ -27,7 +27,7 @@ const pcmArgs = ['-f', 'f32le', '-ar', String(rate), '-ac', '1', '-i', 'pipe:0']
 function filter(input, af) { return run([...pcmArgs, '-af', af, '-f', 'f32le', '-ar', String(rate), '-ac', '1', 'pipe:1'], input).stdout; }
 const manifest = { version: 1, sampleRate: rate, groups: {}, sounds: {} };
 const groups = { 'sfx-core': [], 'sfx-skills': [], 'sfx-king': [], 'amb-meadow': [] };
-const skills = new Set(['slash', 'whirlwind', 'dash', 'earth_break', 'provoke', 'endure', 'punch']);
+const skills = new Set(['slash', 'whirlwind', 'dash', 'earth_break', 'provoke', 'endure', 'punch', 'shield_bash', 'bulwark', 'quake_slam', 'rally_roar', 'frenzy_slash', 'blood_rage', 'blade_cyclone', 'leap_strike', 'guard_block', 'reflect', 'blade_cyclone_tick', 'leap_strike_land']);
 // Soft combat hits: trim smeared pre-roll so the impact lands on time, cut the 2-6 kHz bite,
 // round off the transient, add a short dark room tail and sit a few dB under the other SFX.
 // Reference feel: RO / Tree of Savior - short, dry, mid-range "thock" hits and brief swings.
@@ -38,6 +38,19 @@ const TONE = {
   bright: 'highpass=f=120,equalizer=f=900:t=o:w=1:g=2,equalizer=f=3200:t=o:w=2:g=-9,highshelf=f=6000:g=-8',
 };
 const SOFT = {
+  shield_bash: {tone:'clean',lufs:-16,lowpass:8000},
+  bulwark: {tone:'clean',lufs:-16,lowpass:8000},
+  quake_slam: {tone:'clean',lufs:-16,lowpass:8000},
+  rally_roar: {tone:'clean',lufs:-16,lowpass:8000},
+  frenzy_slash: {tone:'clean',lufs:-16,lowpass:8000},
+  blood_rage: {tone:'clean',lufs:-16,lowpass:8000},
+  blade_cyclone: {tone:'clean',lufs:-16,lowpass:8000},
+  leap_strike: {tone:'clean',lufs:-16,lowpass:8000},
+  guard_block: {tone:'clean',lufs:-16,lowpass:8000},
+  reflect: {tone:'clean',lufs:-16,lowpass:8000},
+  blade_cyclone_tick: {tone:'clean',lufs:-16,lowpass:8000},
+  leap_strike_land: {tone:'clean',lufs:-16,lowpass:8000},
+
   crit: { lead: .004, tone: 'bright', lufs: -19, lowpass: 5500, max: .3 },
   combo1: { lead: .04, tone: 'body', lufs: -21, lowpass: 8000 },
   combo2: { lead: .04, tone: 'body', lufs: -22, lowpass: 8000 },
@@ -111,7 +124,7 @@ for (const [id, path] of Object.entries(picks).sort(([a], [b]) => a.localeCompar
       : `afade=t=in:d=0.003,afade=t=out:st=${Math.max(0, duration - .035)}:d=0.035`);
   }
   const start = groups[group].reduce((s, b) => s + b.length, 0) / 4 / rate;
-  manifest.sounds[id] = { group, start, duration: pcm.length / 4 / rate, source: 'art/sfx-source/' + path, targetDuration: metadata[id]?.target, lufs, crossfade, pitch: ui ? 0 : id === 'mat_jelly' ? .08 : soft ? .05 : .04, cooldown: id === 'jelly_hop' ? .8 : ui ? .06 : id === 'levelup' ? 0 : id === 'hit_thock' || id.startsWith('mat_') ? .05 : id === 'crit' ? .1 : .04, voices: id === 'hit_thock' || id.startsWith('mat_') ? 3 : id === 'jelly_hop' ? 2 : 4 };
+  manifest.sounds[id] = { group, start, duration: pcm.length / 4 / rate, source: 'art/sfx-source/' + path, targetDuration: metadata[id]?.target, lufs, crossfade, pitch: ui ? 0 : id === 'mat_jelly' ? .08 : soft ? .05 : .04, cooldown: id === 'guard_block' ? .3 : id === 'jelly_hop' ? .8 : ui ? .06 : id === 'levelup' ? 0 : id === 'hit_thock' || id.startsWith('mat_') ? .05 : id === 'crit' ? .1 : .04, voices: id === 'hit_thock' || id.startsWith('mat_') ? 3 : id === 'jelly_hop' ? 2 : 4 };
   groups[group].push(pcm); if (!ambience) groups[group].push(gap);
 }
 for (const [group, parts] of Object.entries(groups)) {

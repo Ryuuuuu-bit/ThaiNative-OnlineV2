@@ -96,14 +96,20 @@ test("equipment adds exact modifiers, binds on equip, and reducer failures are a
 	);
 	assert.deepEqual(granted.state, before);
 });
+test("materials and consumables are nearly weightless: 1,000 of any one stays under 10% of the starting limit", () => {
+	const p = createGame().p;
+	for (const t of data.items.items.filter((t) => t.type === "material" || t.type === "consumable"))
+		assert.ok(t.weight * 1000 < p.stats.weight * 0.1, `${t.id} weighs ${t.weight}`);
+});
 test("weight rules disable all regen at 50%, attack at 90%, enforce 100 slots and capacity", () => {
 	const g = createGame(),
 		p = g.p;
 	p.inventory = starterInventory(0, () => String(g.nextId++));
 	p.inventory.items.push({
-		id: "stack:jelly_slime",
-		template: "jelly_slime",
-		qty: 400,
+		// Heavy refine stones (10 each); materials and potions are nearly weightless now.
+		id: "stack:weapon_stone",
+		template: "weapon_stone",
+		qty: 130,
 		location: "bag",
 		slot: null,
 		refine: 0,
@@ -119,7 +125,7 @@ test("weight rules disable all regen at 50%, attack at 90%, enforce 100 slots an
 	step(g, 0.1);
 	assert.equal(p.hp, 20);
 	assert.equal(p.mp, 10);
-	p.inventory.items.at(-1)!.qty = 800;
+	p.inventory.items.at(-1)!.qty = 240;
 	assert.equal(action(g, "attack"), false);
 	p.inventory.items.at(-1)!.qty = 1;
 	refreshStats(g, p);

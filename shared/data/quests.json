@@ -83,6 +83,41 @@
       "complete": "ค่าหัววันนี้ของเจ้า พรุ่งนี้มาใหม่นะ",
       "objectives": [{ "kind": "kill", "monsters": ["jelly_pink", "jelly_mint", "jelly_sky"], "count": 20, "label": "ปราบวุ้นชนิดใดก็ได้" }],
       "rewards": { "exp": 220, "jobExp": 110, "gold": 150, "items": [{ "template": "red_small", "qty": 3 }] }
+    },
+    {
+      "id": "guard_king_bounty",
+      "nameTh": "เงินรางวัลราชาวุ้น",
+      "giver": "guard",
+      "level": 4,
+      "requires": ["guard_king"],
+      "repeatHours": 6,
+      "offer": "ราชาวุ้นฟื้นตัวทุกครึ่งชั่วโมง ทุกครั้งที่มันตื่น ทุ่งหญ้าก็วุ่นวาย ปราบมันอีกรอบแล้วกลับมารับเงินรางวัล",
+      "complete": "ทุ่งหญ้าสงบไปอีกพัก นี่เงินรางวัลของเจ้า",
+      "objectives": [{ "kind": "kill", "monsters": ["king_jelly"], "count": 1, "label": "ปราบราชาวุ้น" }],
+      "rewards": { "exp": 400, "jobExp": 200, "gold": 250, "items": [{ "template": "red_medium", "qty": 2 }] }
+    },
+    {
+      "id": "guard_warden",
+      "nameTh": "ผู้เฝ้าป่าหมอก",
+      "giver": "guard",
+      "level": 6,
+      "requires": ["guard_first_hunt"],
+      "offer": "หมอกทางตะวันออกหนาขึ้นทุกวัน มีบางอย่างใหญ่โตเฝ้าป่าอยู่ ออกประตูตะวันออก ปราบผู้เฝ้าป่าหมอก แล้วกลับมาเล่าให้ข้าฟัง",
+      "complete": "เจ้าทำให้ป่าหมอกสงบลงได้จริง ๆ รับนี่ไว้ ของคู่ควรกับวีรกรรม",
+      "objectives": [{ "kind": "kill", "monsters": ["mist_warden"], "count": 1, "label": "ปราบผู้เฝ้าป่าหมอก" }],
+      "rewards": { "exp": 4000, "jobExp": 1800, "gold": 1200, "items": [{ "template": "red_medium", "qty": 5 }] }
+    },
+    {
+      "id": "guard_warden_bounty",
+      "nameTh": "เงินรางวัลป่าหมอก",
+      "giver": "guard",
+      "level": 6,
+      "requires": ["guard_warden"],
+      "repeatHours": 6,
+      "offer": "ผู้เฝ้าป่าหมอกกลับมาอีกแล้ว ไปสยบมันอีกครั้ง ทหารจะได้เดินผ่านป่าได้",
+      "complete": "ความสงบกลับคืนสู่ป่าหมอก นี่เงินรางวัลของเจ้า",
+      "objectives": [{ "kind": "kill", "monsters": ["mist_warden"], "count": 1, "label": "ปราบผู้เฝ้าป่าหมอก" }],
+      "rewards": { "exp": 1500, "jobExp": 700, "gold": 600, "items": [{ "template": "red_medium", "qty": 3 }] }
     }
   ]
 }

@@ -5,7 +5,7 @@ import { makeHero } from './actors';
 import { uprightSprite } from './upright-depth.ts';
 import { facingFor, motionFor, motionFrame, atlasCell, MOTIONS, MOTION_DURATION } from './sprite-animation';
 import type { Motion } from './sprite-animation';
-import { SKILL_MOTIONS, SKILL_FRAMES, SKILL_DURATION, CONTACT_FRAME, isSkillMotion, skillFrame, earthHeight, type SkillMotion } from './skill-motions';
+import { MULTI_CONTACTS, contactOffset, JOB2_MOTIONS, BORROWED_MOTION, MOTION_READY, CAST_SECONDS, SKILL_MOTIONS, SKILL_FRAMES, SKILL_DURATION, CONTACT_FRAME, isSkillMotion, skillFrame, earthHeight, leapHeight, type SkillMotion } from './skill-motions';
 
 // One download/GPU source per loader; each actor owns its UV transform.
 const banks=new WeakMap<PaintedLoader,Map<string,{texture?:T.Texture;subscribers:((t:T.Texture)=>void)[]}>>();
@@ -47,7 +47,8 @@ export function makePaintedHero(loader: PaintedLoader) {
       textures[motion]=texture;
     });
   }
-  for(const id of SKILL_MOTIONS)request(loader,id,t=>{t.magFilter=t.minFilter=T.LinearFilter;skills[id]=t;});
+  for(const id of SKILL_MOTIONS.filter(id=>!BORROWED_MOTION[id]))request(loader,id,t=>{t.magFilter=t.minFilter=T.LinearFilter;skills[id]=t;});
+  const requestedJobs=new Set<string>();
   let lastMotion:Motion='idle', lastTime=0, motionClock=0;
   let skill:SkillMotion|null=null,elapsed=0,contact:number|null=null,combo=0;
   let skillFacing={x:0,z:1};
@@ -56,13 +57,14 @@ export function makePaintedHero(loader: PaintedLoader) {
   return {root, snapshot:()=>({...diagnostic,loaded:Object.keys(textures),skillsLoaded:Object.keys(skills),skill,skillElapsed:elapsed,height:portrait.position.y-.035}),
     event(e:any){
       if(e.type==='skill'&&isSkillMotion(e.skillId)){skill=e.skillId;elapsed=0;contact=null;fresh=true;skillFacing={x:e.dx??0,z:e.dz??1};}
-      if(e.type==='skillImpact'&&e.skillId===skill){elapsed=.4;contact=CONTACT_FRAME[skill!];}
-      if(e.type==='hit'&&skill&&skill!=='earth_break'){contact=skill==='whirlwind'&&e.hitIndex===2?5:CONTACT_FRAME[skill];if(skill==='whirlwind'&&e.hitIndex===2)elapsed=Math.max(elapsed,.25);}
+      if(e.type==='skillImpact'&&e.skillId===skill){elapsed=CAST_SECONDS[skill!]??0;contact=CONTACT_FRAME[skill!];}
+      if(e.type==='hit'&&skill&&!CAST_SECONDS[skill]){const multi=(MULTI_CONTACTS as Record<string,readonly number[]>)[skill];if(multi&&e.hitIndex){const n=Math.min(multi.length,e.hitIndex)-1;contact=multi[n];elapsed=Math.max(elapsed,contactOffset(skill as keyof typeof MULTI_CONTACTS,n));}else{contact=skill==='whirlwind'&&e.hitIndex===2?5:CONTACT_FRAME[skill];if(skill==='whirlwind'&&e.hitIndex===2)elapsed=Math.max(elapsed,.25);}}
       if(e.type==='slash'){skill=null;combo=e.combo||0;fresh=true;}
       if(e.type==='dash'||e.type==='death'){skill=null;contact=null;}
     },
     dispose(){Object.values(textures).forEach(t=>t.dispose());Object.values(skills).forEach(t=>t.dispose());material.dispose();shadow.geometry.dispose();(shadow.material as T.Material).dispose();},
-    update(p:Player,time:number,frozen=false) {
+    update(p:Player,time:number,frozen=false,visible=true) {
+    if(visible && p.jobId in JOB2_MOTIONS && !requestedJobs.has(p.jobId)){requestedJobs.add(p.jobId);for(const id of JOB2_MOTIONS[p.jobId as keyof typeof JOB2_MOTIONS].filter(id=>MOTION_READY.has(id)))request(loader,id,t=>{t.magFilter=t.minFilter=T.LinearFilter;skills[id]=t;});}
     const dt=Math.min(.05,Math.max(0,time-lastTime));lastTime=time;
     if(frozen&&contact===null&&presented&&!fresh)return;
     if(!frozen&&!fresh)elapsed+=dt;
@@ -73,7 +75,8 @@ export function makePaintedHero(loader: PaintedLoader) {
     if(motion!==lastMotion)motionClock=0;
     else motionClock+=dt;
     lastMotion=motion;
-    const texture=skill&&skills[skill]||textures[motion]||textures.idle;
+    const shownSkill=skill&&(skills[skill]&&(!BORROWED_MOTION[skill]||MOTION_READY.has(skill))?skill:BORROWED_MOTION[skill])||null;
+    const texture=shownSkill&&skills[shownSkill]||textures[motion]||textures.idle;
     if(!texture) {fallback.root.visible=true;portrait.visible=false;root.position.set(0,0,0);fallback.update(p,time);return;}
     fallback.root.visible=false;portrait.visible=true;
     const actualMotion=textures[motion]?motion:'idle';
@@ -83,9 +86,9 @@ export function makePaintedHero(loader: PaintedLoader) {
       motion==='dodge'?MOTION_DURATION.dodge-p.dash:motion==='hit'?MOTION_DURATION.hit-p.hurt:motionClock;
     let frame=motionFrame(motion,legacyElapsed);
     let cell=atlasCell(actualMotion,direction,frame);
-    if(skill&&skills[skill]){frame=contact??skillFrame(skill,elapsed);cell={column:frame,row:['SE','SW','NE','NW'].indexOf(direction),columns:SKILL_FRAMES[skill],rows:4};}
+    if(skill&&shownSkill&&skills[shownSkill]){frame=shownSkill===skill?(contact??skillFrame(skill,elapsed)):skillFrame(shownSkill,elapsed);cell={column:frame,row:['SE','SW','NE','NW'].indexOf(direction),columns:SKILL_FRAMES[shownSkill],rows:4};}
     else if(motion==='attack'&&p.attackKind==='slash'){frame=[2,3,4][combo];cell=atlasCell(actualMotion,direction,frame);}
-    diagnostic={motion:(skill||motion) as Motion,actualMotion:(skill&&skills[skill]?skill:actualMotion) as Motion,frame,direction,loaded:[]};
+    diagnostic={motion:(skill||motion) as Motion,actualMotion:(shownSkill&&skills[shownSkill]?shownSkill:actualMotion) as Motion,frame,direction,loaded:[]};
     texture.repeat.set(1/cell.columns,1/cell.rows);
     texture.offset.set(cell.column/cell.columns,1-(cell.row+1)/cell.rows);
     if(material.map!==texture){
@@ -94,12 +97,12 @@ export function makePaintedHero(loader: PaintedLoader) {
       material.map=texture;material.needsUpdate=true;
     }
     root.position.set(p.x,.015,p.z);
-    material.color.set(!p.dead&&p.hurt>0?'#ffb6aa':'#ffffff');
+    material.color.set(!p.dead&&p.hurt>0?'#ffb6aa':!p.dead&&p.statuses?.some(s=>s.id==='rage'&&s.remaining>0)?'#ffd2c8':'#ffffff');
     material.opacity=!p.dead&&p.invulnerable>0&&Math.floor(time*18)%2===0?.65:1;
     material.rotation=0;
     const breath=motion==='idle'?Math.sin(time*2.2)*.006:0;
     portrait.scale.set(actualMotion==='death'?512*HERO_PIXEL_METRES:384*HERO_PIXEL_METRES,256*HERO_PIXEL_METRES+breath,1);
-    const lift=skill==='earth_break'?earthHeight(elapsed):0;
+    const lift=skill==='earth_break'?earthHeight(elapsed):skill==='leap_strike'&&shownSkill===skill?leapHeight(elapsed):0;
     portrait.position.y=.035+lift;
     shadow.scale.set((p.dash>0?1.4:1)*(1-lift*.35),.7*(1-lift*.35),1);
     (shadow.material as T.MeshBasicMaterial).opacity=.22*(1-lift*.45);

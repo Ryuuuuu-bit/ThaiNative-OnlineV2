@@ -11,19 +11,14 @@ const generated =
 	process.env.SKILL_ART_SOURCE ||
 	"C:/Users/panup/.codex/generated_images/01a14294-ead1-7c33-b516-4987233af959";
 const assets = [
+ ["skills-vfx-job2-v1", "", 1024, 768, false],
+ ["skills-v2", "", 256, 384, true],
 	[
 		"angel-v1",
 		"exec-0cdc6e68-e7d7-4537-a408-10642ccf69ab.png",
 		512,
 		768,
 		false,
-	],
-	[
-		"skills-v1",
-		"exec-ff05de7d-f1a6-4c95-81f6-dd6c509b4939.png",
-		256,
-		192,
-		true,
 	],
 	[
 		"skills-vfx-v1",
@@ -64,6 +59,7 @@ for (const [name, generatedName, w, h, cpu] of assets) {
 	const entry = {
 		source: "art/skills/" + name + ".png",
 		originalSize:
+            name === "skills-v2" ? [256,384] : name === "skills-vfx-job2-v1" ? [1024,768] :
 			name === "angel-v1"
 				? [1024, 1536]
 				: name === "skills-v1"
@@ -120,7 +116,7 @@ writeFileSync(
 	resolve(root, "public/texture-manifest.json"),
 	JSON.stringify(manifest, null, 2) + "\n",
 );
-const icon = manifest["/assets/skills-painted/skills-v1.png"].webp;
+const icon = manifest["/assets/skills-painted/skills-v2.png"].webp;
 writeFileSync(
 	resolve(root, "src/skill-art.css"),
 	`.job-icon{background-image:var(--skill-atlas,url('${icon}'))}\n`,

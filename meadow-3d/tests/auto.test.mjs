@@ -13,11 +13,16 @@ test('AUTO seeks then fights inside the combo reach',()=>{
  assert.ok(e.hp<e.maxHp);assert.ok(g.events.some(e=>e.type==='slash'));
 });
 test('AUTO Q requires two nearby enemies and sufficient MP; F requires boss or cluster',()=>{
- for(const [count,mp,spin,meteor]of[[1,80,false,false],[2,14,false,false],[2,15,true,false],[3,80,false,true]]){
+ const cast=(g,id)=>g.events.some(e=>e.type==='skill'&&e.skillId===id);
+ // First decision only: Q needs 2 in reach, F needs 3 (or a boss); SP is checked.
+ for(const [count,mp,spin,meteor]of[[1,80,false,false],[2,14,false,false],[2,15,true,false],[2,80,true,false]]){
   const g=field();for(let i=0;i<count;i++)spawn(g,.6+i*.2,4);g.p.mp=mp;setAuto(g,true);tick(g);
-  assert.equal(g.events.some(e=>e.type==='skill'&&e.skillId==='whirlwind'),spin);assert.equal(g.events.some(e=>e.type==='skill'&&e.skillId==='earth_break'),meteor);
+  assert.equal(cast(g,'whirlwind'),spin,`${count}/${mp} Q`);assert.equal(cast(g,'earth_break'),meteor,`${count}/${mp} F`);
  }
- const g=field();spawn(g,1,4,true);setAuto(g,true);tick(g);assert.ok(g.events.some(e=>e.type==='skill'&&e.skillId==='earth_break'));
+ // A cluster of 3 qualifies both; AUTO follows the player's cycle, so both land within a few decisions.
+ {const g=field();for(let i=0;i<3;i++)spawn(g,.6+i*.2,4).hp=1e5;g.p.mp=80;setAuto(g,true);tick(g,1);assert.ok(cast(g,'whirlwind')&&cast(g,'earth_break'));}
+ // A single boss is always worth the area skills.
+ const g=field();spawn(g,1,4,true);setAuto(g,true);tick(g,1);assert.ok(cast(g,'earth_break'));
 });
 test('AUTO potions use strict 45% threshold and obey cooldown',()=>{
  const g=field();g.p.hp=g.p.maxHp*.45;setAuto(g,true);tick(g);assert.equal(g.p.potions,5);

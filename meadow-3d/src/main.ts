@@ -1,7 +1,7 @@
 import {mapLightRig,followSun,nearestArtLights,CITY_SUN_OFFSET} from './world-art.ts';
 import {monsterSpecies,SPECIES_HIT_COLOUR} from './monster-animation';
 import {nameplateCandidates,overlaps,type Rect} from './world-labels';
-import {CONTACT_FRAME,isSkillMotion} from './skill-motions';
+import {CONTACT_FRAME,CAST_SECONDS,isSkillMotion,preferOwnArt} from './skill-motions';
 import {CombatFeel,AutoQuality} from './combat-feel';
 import {mountInventory} from './inventory-ui';
 import {mountAutoSettings} from './auto-ui';
@@ -15,7 +15,7 @@ import { mountQuests } from './quest-ui';
 import { mountAudioSettings } from './audio-settings-ui';
 import { mountAutoPotion } from './auto-potion-ui';
 import{mountSkills}from'./skills-ui';import{mountSkillArt}from'./skill-art';
-import{loadSelected}from'./web/game-session';
+import{loadSelected,mountMenuAccount}from'./web/game-session';
 import{PaintedLoader,assetJSON}from'./assets';import type{TextureManifest}from'./assets';
 import{GameSocket}from'./net/socket';import{NetworkWorld}from'./net/world';
 import{KEYS,isKey}from'./keys';
@@ -24,6 +24,8 @@ import {mountHUDQOL} from './hud-qol';
 import './hud-qol.css';
 import './ui-glass.css';
 import './ui-windows.css';
+import {mountTutorialGuide} from './tutorial-guide';
+let guide:ReturnType<typeof mountTutorialGuide>|undefined;
 let qol:ReturnType<typeof mountHUDQOL>|undefined;let settingsUI:ReturnType<typeof mountSettingsWindow>|undefined;let pendingUI:any;
 import{updateSeeThrough,OVERLAY_ORDER}from'./upright-depth.ts';
 import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
@@ -32,8 +34,9 @@ const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>
 window.tnBoot.stage(0);
 const [selected,textureManifest]=await Promise.all([loadSelected(),assetJSON<TextureManifest>('/texture-manifest.json?v='+import.meta.env.VITE_BUILD_ID)]);window.tnBoot.stage(2);
 let statsController:any=null,lastStats:any=null;const statsUI={get open(){return !!statsController?.open;},async toggle(){if(!statsController){const{mountStats}=await import('./stats-window');statsController=mountStats(message=>net.send(message),()=>clearInput());if(lastStats)statsController.receive(lastStats);}if(!statsController.open)sound.play('ui_open');statsController.toggle();},receive(e:any){if(e.type==='stats'){lastStats=e;$('#stats-button').classList.toggle('has-points',e.points>=2);}statsController?.receive(e);}};$('#stats-button').onclick=()=>void statsUI.toggle();
-const skillsUI=mountSkills(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});},id=>doAction(id),id=>sound.play(id));$('#skills-button').onclick=()=>skillsUI.toggle();
-const inventoryUI=mountInventory(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});});
+// Opening a window only releases held movement; AUTO keeps hunting on the server (players manage bag/skills mid-hunt).
+const skillsUI=mountSkills(message=>net.send(message),()=>clearInput(),id=>doAction(id),id=>sound.play(id));$('#skills-button').onclick=()=>skillsUI.toggle();
+const inventoryUI=mountInventory(message=>net.send(message),()=>clearInput());
 const autoUI=mountAutoSettings({send:message=>net.send(message),player:()=>game.p,map:()=>activeMap,onOpen:()=>clearInput(),potion:()=>autoPotionUI});
 // Action launcher: the action buttons (J ⇧ R F H Z, AUTO settings) sit in a tile popup opened from one button.
 // They are the original buttons moved in, so their listeners and keys are unchanged. On phones the popup is
@@ -51,7 +54,7 @@ const launcher=(()=>{const bar=$('.legacy-actions'),open=document.createElement(
  return {adopt:(el:Element)=>panel.append(el)};})();
 const itemData=loadGameData();
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(selected.character.id),keys=new Set<string>();let qualityPreference="high";try{qualityPreference=localStorage.getItem("tn-quality")||"high";}catch{}
-let started=false,paused=false,wonShown=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
+let started=false,paused=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
 sound.restore(selected.character.audioSettings);
 const combatFeel=new CombatFeel(),autoQuality=new AutoQuality();autoQuality.automatic=false;
 const audioUI=mountAudioSettings(sound,message=>net.send(message));const autoPotionUI=mountAutoPotion(message=>net.send(message));
@@ -60,7 +63,7 @@ document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.c
 let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
  // Job 2 skills borrow a Job 1 skill's motion, VFX and sound until they get their own art; keep the real id as learnedSkill.
- if(message.t==='ev')for(const e of message.list)if(e.visual){e.learnedSkill=e.skillId;e.skillId=e.visual;}
+ if(message.t==='ev')message.list=message.list.map(preferOwnArt);
   if(social?.receive(message)||quests?.receive(message))return;
  audioUI.receive(message);autoPotionUI.receive(message);inventoryUI.receive(message);autoUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
  if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you){audioUI.receive(e);autoPotionUI.receive(e);}
@@ -87,7 +90,7 @@ async function buildMap(id:MapId){const built=id==='city_plaza'?(await import('.
 let world=await buildMap(activeMap);world.setQuality(quality);mapLightRig(activeMap,scene,renderer,hemisphere,sun);sound.setMap(activeMap);
 const hero=makePaintedHero(loader);scene.add(hero.root);
 if(activeMap==='meadow'){const previewMonster=makePaintedMonster(loader);previewMonster.dispose();}
-loader.load('/assets/hero-painted/portrait-v1.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--portrait',`url(${c.toDataURL()})`);});loader.load('/assets/skills-painted/skills-v1.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--skill-atlas',`url(${c.toDataURL()})`);});
+loader.load('/assets/hero-painted/portrait-v1.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--portrait',`url(${c.toDataURL()})`);});loader.load('/assets/skills-painted/skills-v2.png',texture=>{const c=document.createElement('canvas'),im=texture.image as HTMLImageElement;c.width=im.width;c.height=im.height;c.getContext('2d')!.drawImage(im,0,0);document.documentElement.style.setProperty('--skill-atlas',`url(${c.toDataURL()})`);});
 // Player names hang above the head (hero is 1.8 m tall on screen, see world-scale.ts): anchored at the text baseline, lifted by the sprite's on-screen head height.
 const NAME_ANCHOR=.28,HERO_HEAD=2.05;
 const heroName=nameTag(label(selected.character.name,'#f4f5da'));heroName.center.set(.5,NAME_ANCHOR);heroName.position.y=3.7;scene.add(heroName);
@@ -104,7 +107,7 @@ async function switchMap(id:MapId){
  try{
   const next=scenes.get(id)||await buildMap(id);await loader.whenReady();world.root.visible=false;world=next;world.root.visible=true;activeMap=id;
   world.setQuality(quality);mapLightRig(id,scene,renderer,hemisphere,sun);sound.setMap(id);$('#quest-name').textContent=id==='city_plaza'?'นครที่ถูกลืมเลือน':id==='forest'?'ป่าหมอก':'ก้าวแรกของนักผจญภัย';resize();area.textContent=areaName(id);qol?.banner();
-  const own=game.p;focus.set(own.x,0,own.z-1.1);markerTime=0;wonShown=false;
+  const own=game.p;focus.set(own.x,0,own.z-1.1);markerTime=0;
   for(const tag of statusLabels.values())tag.remove();statusLabels.clear();
   for(const e of effects){scene.remove(e.mesh);disposeEffect(e.mesh);}effects.length=0;
   await new Promise(r=>setTimeout(r,180));
@@ -174,7 +177,7 @@ function number(text:string,e:{x:number;z:number},kind='',height=1.8){if(documen
  const life=NUMBER_LIFE[kind]??.95;
  numbers.push({el,kind,x:e.x,z:e.z,height:Math.min(height,1.5),life,max:life,jx:(Math.random()-.5)*(kind==='reward'?0:34),stack,drift:kind==='hurt'?(Math.random()<.5?-1:1)*22:(Math.random()-.5)*12});}
 
-function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&&e.playerId!==net.you;const now=performance.now();combatFeel.event(e,net.you,game.p,now);if(e.playerId===net.you){hero.event(e);if((e.type==='skill'&&isSkillMotion(e.skillId)&&e.skillId!=='earth_break')||(e.type==='skillImpact'&&e.skillId==='earth_break'))pendingContacts.push({skill:e.skillId,eventAt:now,eventFrame:presentationFrame,expectedFrame:CONTACT_FRAME[e.skillId]});}else remoteHeroes.get(e.playerId)?.actor.event(e);if(e.type==='dashTrail'&&e.playerId===net.you)hero.update({...game.p,x:e.toX,z:e.toZ},time);if(!document.hidden)skillArt.emit({...e,lighter:e.playerId!==net.you});const effectStart=effects.length;if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.setListener(game.p);playEventAudio(sound,e,net.you,game.enemies.find(e=>e.boss)||ARENA,id=>{const m=game.enemies.find(x=>x.id===id);return monsterSpecies(m?.dataId,m?.boss);});switch(e.type){
+function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&&e.playerId!==net.you;const now=performance.now();combatFeel.event(e,net.you,game.p,now);if(e.playerId===net.you){hero.event(e);guide?.event(e);if((e.type==='skill'&&isSkillMotion(e.skillId)&&!CAST_SECONDS[e.skillId])||(e.type==='skillImpact'&&isSkillMotion(e.skillId)&&!!CAST_SECONDS[e.skillId]))pendingContacts.push({skill:e.skillId,eventAt:now,eventFrame:presentationFrame,expectedFrame:CONTACT_FRAME[e.skillId]});}else remoteHeroes.get(e.playerId)?.actor.event(e);if(e.type==='dashTrail'&&e.playerId===net.you)hero.update({...game.p,x:e.toX,z:e.toZ},time);if(!document.hidden)skillArt.emit({...e,guarded:[game.p,...worldState.others].find(p=>p.id===e.playerId)?.statuses?.some(s=>s.id==='guard'),lighter:e.playerId!==net.you});const effectStart=effects.length;if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}sound.setListener(game.p);playEventAudio(sound,{...e,guarded:game.p.statuses?.some(s=>s.id==='guard')},net.you,game.enemies.find(e=>e.boss)||ARENA,id=>{const m=game.enemies.find(x=>x.id===id);return monsterSpecies(m?.dataId,m?.boss);});switch(e.type){
  case'skillImpact':if(e.skillId==='earth_break'){effectRing(e.x,e.z,'#c8b78f',2.5,.45);particles(e.x,e.z,'#c8b78f',18,2.6,.12);}break;
  case'slash':slash(e);break;
  case'spin':spinEffect(e.x,e.z);shake=.1;break;
@@ -202,7 +205,6 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'notice':notice(e.text);break;
   case'questComplete':if(e.playerId===net.you)quests?.event(e);break;
  case'death':clearInput();deathReveal=1.5;lastXpLost=Number(e.xpLost)||0;break;
- case'victory':notice(activeMap==='forest'?'✦ ผู้เฝ้าป่าหมอกถูกปราบแล้ว!':'✦ ราชาวุ้นถูกปราบแล้ว!');setTimeout(()=>{if(!game.p.dead)showVictory();},2000);break;
  }for(let i=effectStart;i<effects.length;i++)effects[i].owner=e.playerId;} }
 function toggleAuto(){if(activeMap==='city_plaza'){notice('เขตปลอดภัย ต่อสู้ในเมืองไม่ได้');return;}if(!started||paused||game.p.dead)return;net.send({t:'auto',on:!game.p.auto});}
 function stopAuto(){if(game.p.auto)net.send({t:'auto',on:false});}
@@ -224,11 +226,11 @@ window.addEventListener('keydown',e=>{
  if(isKey('inventory',e.code)&&started&&!e.repeat){e.preventDefault();inventoryUI.toggle();return;}
  if(inventoryUI.open)return;
  if(isKey('mute',e.code)){e.preventDefault();if(!e.repeat)audioUI.toggleMute();return;}
- if(e.code==='KeyK'&&started&&!e.repeat){e.preventDefault();if(!statsUI.open)skillsUI.toggle();return;}
+ if(isKey('skills',e.code)&&started&&!e.repeat){e.preventDefault();if(!statsUI.open)skillsUI.toggle();return;}
  if(skillsUI.open)return;
  if(isKey('stats',e.code)&&started&&!e.repeat){e.preventDefault();statsUI.toggle();return;}
  if(statsUI.open)return;
- if(isKey('pause',e.code)){e.preventDefault();net.send({t:'auto',on:false});stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}if(started&&!game.p.dead)togglePause();return;}
+ if(isKey('pause',e.code)){e.preventDefault();net.send({t:'auto',on:false});stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}return;}
  if(!started||paused||game.p.dead||$<HTMLDialogElement>('#guide').open)return;
  if(Object.values(KEYS).some(codes=>(codes as readonly string[]).includes(e.code)))e.preventDefault();
  if(['up','down','left','right'].some(a=>isKey(a as keyof typeof KEYS,e.code))){qol?.cancel();stopAuto();}
@@ -238,7 +240,7 @@ window.addEventListener('keydown',e=>{
  else if(skillsUI.key(e.code))e.preventDefault();else for(const a of ['dash','potion'] as const)if(isKey(a,e.code))doAction(a);
 });
 window.addEventListener('keyup',e=>keys.delete(e.code));
-function loseFocus(){clearInput();if(started&&!paused&&!game.p.dead&&!game.p.auto)togglePause();}window.addEventListener('blur',loseFocus);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseFocus();});
+function loseFocus(){clearInput();}window.addEventListener('blur',loseFocus);document.addEventListener('visibilitychange',()=>{if(document.hidden)loseFocus();});
 $('#auto-hunt').addEventListener('click',toggleAuto);
 $$('[data-action]').forEach(b=>b.addEventListener('click',()=>doAction(b.dataset.action as Action)));
 function pointerRay(x:number,y:number){const b=renderer.domElement.getBoundingClientRect();pointer.set((x-b.left)/b.width*2-1,-(y-b.top)/b.height*2+1);ray.setFromCamera(pointer,camera);}
@@ -282,15 +284,12 @@ $('#play').addEventListener('click',()=>{started=true;paused=false;if(sceneReady
 $('#audio').addEventListener('click',()=>audioUI.toggleMute());
 function applyQuality(automatic=qualityPreference==="auto"){try{localStorage.setItem("tn-quality",qualityPreference);}catch{}renderer.setPixelRatio(quality?Math.min(devicePixelRatio,1.5):1);sun.castShadow=quality;renderer.shadowMap.enabled=quality;world.setQuality(quality);skillArt.setQuality(quality);renderer.shadowMap.needsUpdate=true;$('#quality').textContent=automatic?'ภาพ: อัตโนมัติ':quality?'ภาพ: สูง':'ภาพ: ต่ำ';$('#quality').title='คุณภาพภาพ · '+(automatic?'อัตโนมัติ':'เลือกเอง');resize();}
 $('#quality').addEventListener('click',()=>{qualityPreference=qualityPreference==="high"?"low":qualityPreference==="low"?"auto":"high";quality=qualityPreference!=="low";autoQuality.automatic=false;autoQuality.reset();applyQuality();});
-$('#pause').addEventListener('click',()=>{if(started&&!game.p.dead)togglePause();});
 $('#quest-button').addEventListener('click',()=>$('#journal-toggle').click());
 $('#help').addEventListener('click',()=>{clearInput();paused=true;$<HTMLDialogElement>('#guide').showModal();});$('#guide .close').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide .done').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide').addEventListener('close',()=>{if(started&&$('#overlay').hidden)paused=false;});
 function overlay(html:string){clearInput();paused=true;$('#overlay').className='overlay center';$('#overlay').innerHTML=`<section class="welcome">${html}</section>`;$('#overlay').hidden=false;}
-function togglePause(){if(netOverlay||game.p.dead)return;if(!paused){overlay('<p class="caption">พักสักครู่</p><h1>พักการผจญภัย</h1><p>โลกยังดำเนินต่อบนเซิร์ฟเวอร์</p><button id="resume" class="primary">เล่นต่อ →</button>');$('#resume').onclick=()=>{paused=false;$('#overlay').hidden=true;};}else{paused=false;$('#overlay').hidden=true;}}
 let lastXpLost=0;
 function showDeath(){if(netOverlay)return;overlay('<p class="caption">เริ่มต้นใหม่</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>'+(lastXpLost>0?`เสียประสบการณ์ ${lastXpLost.toLocaleString('th-TH')} (1% ของระดับนี้) · ทองและไอเทมยังอยู่ครบ`:'ประสบการณ์และเงินที่เก็บได้ยังอยู่')+'</p><p id="revive-countdown"></p><button id="revive" class="primary">กลับเมือง →</button>');$('#revive').onclick=()=>{if(!net.connected){notice('ยังไม่ได้เชื่อมต่อ');return;}if((game.p.reviveRemaining??0)>0)return;net.send({t:'revive'});};}
 
-function showVictory(){if(wonShown)return;wonShown=true;overlay(`<div class="ornament">✧ ───────── ✧</div><p class="caption">${activeMap==='forest'?'ปราบผู้เฝ้าป่าหมอกแล้ว':'ปราบผู้พิทักษ์แห่งทุ่งหญ้าแล้ว'}</p><h1>${activeMap==='forest'?'ความสงบกลับคืน<br>สู่ป่าหมอก':'การผจญภัย<br>บทแรกสำเร็จ!'}</h1><p>ระดับ ${game.p.level} · ปราบแล้ว ${game.kills} · ${game.p.gold} ทอง</p><button id="continue" class="primary">${activeMap==='forest'?'สำรวจป่าหมอกต่อ':'สำรวจทุ่งหญ้าต่อ'} →</button>`);$('#continue').onclick=()=>{paused=false;$('#overlay').hidden=true;};}
 const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;
 // Round, player-centred minimap. Terrain and markers are drawn in the 160×132 map space; hud-qol draws its
 // markers right after this on the same transform and inverts it (map.view) for clicks.
@@ -341,7 +340,7 @@ function hud(){if(game.p.dead&&$('#overlay').hidden)showDeath();const revive=$<H
  sound.updateMusic({mapId:activeMap,dead:game.p.dead,bossAlive:!!boss&&!boss.dead,bossTargeted:!!boss&&game.target===boss.id,bossBarActive:!!boss&&!$('#boss-hud').hidden,bossAggro:!!boss?.engaged});
  if(activeMap==='city_plaza'){$('#quest-name').textContent='นครที่ถูกลืมเลือน';$('#quest-line').textContent='ประตูใต้: ทุ่งวุ้นจิ๋ว · ประตูตะวันออก: ป่าหมอก (ระดับ 6+)';$('#quest-progress').style.width='0';$('#quest-note').textContent='คุยกับทูตสวรรค์ หรือพักฟื้นข้างน้ำพุ';}else if(activeMap==='forest'||activeMap==='meadow'){fieldQuest(boss);}
  const target=game.enemies.find(e=>e.id===game.target&&!e.dead);$('#target').hidden=!target||target.boss;if(target){$('#target-name').textContent=enemyLabel(target);$('#target-lv').textContent=`ระดับ ${monsterSpec(target)?.level??1}`;$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;}
- for(const b of $$('[data-action]')){const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);}
+ for(const b of $$('[data-action]')){const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);guide?.update();}
 const remoteHeroes=new Map<string,any>();
 const hudSelector='#ui .panel,#ui .quest,#ui .tools,#ui .combat-ui,#ui .rewards,#game-menu,#stats-button,#skills-button,#inventory-button,#area-name,#npc-talk,#angel-talk,#joystick,#auto-status';
 function hudRects():Rect[]{return [...document.querySelectorAll<HTMLElement>(hudSelector)].filter(el=>!el.hidden&&getComputedStyle(el).visibility!=='hidden'&&Number(getComputedStyle(el).opacity)>0).map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);}
@@ -349,7 +348,8 @@ function spriteRect(tag:T.Sprite):Rect{const q=tag.position.clone().project(came
 // Camera-facing sprites keep their full height on screen, but a world-Y lift is foreshortened by the camera tilt.
 function screenUp(){return Math.max(.3,Math.sqrt(1-(cameraOffset.y/cameraOffset.length())**2));}
 function blocked(r:Rect,panels:Rect[]){return r.left<0||r.top<0||r.right>innerWidth||r.bottom>innerHeight||panels.some(p=>overlaps(r,p));}
-function render(dt:number){sound.setListener(game.p);for(const other of worldState.others){let v=remoteHeroes.get(other.id);if(!v){v={actor:makePaintedHero(loader),label:nameTag(label(other.name,'#f4f5da'))};v.label.center.set(.5,NAME_ANCHOR);scene.add(v.actor.root,v.label);remoteHeroes.set(other.id,v);}v.actor.update(other,time,combatFeel.frozen(other.id,performance.now()));v.label.position.set(other.x,HERO_HEAD/screenUp(),other.z);v.label.visible=!other.dead;}for(const [id,v]of remoteHeroes)if(!worldState.others.some(p=>p.id===id)){scene.remove(v.actor.root,v.label);v.actor.dispose?.();v.label.material.map?.dispose();v.label.material.dispose();remoteHeroes.delete(id);}if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;skillArt.update(dt,[p,...worldState.others],id=>combatFeel.frozen(id,performance.now()));hero.update(p,time,combatFeel.frozen(net.you,performance.now()));for(const c of pendingContacts.splice(0)){motionContacts.push({...c,renderedAt:performance.now(),renderFrame:presentationFrame,hero:hero.snapshot()});if(motionContacts.length>64)motionContacts.shift();}hero.root.visible=worldState.ready;playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,HERO_HEAD/screenUp(),p.z);heroName.visible=worldState.ready&&!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));followSun(sun,focus,activeMap==='city_plaza'?CITY_SUN_OFFSET:SUN_OFFSET,zoomHeight,innerWidth/innerHeight);nearestArtLights(world.root,focus);camera.position.copy(focus).add(cameraOffset);const cameraShake=combatFeel.camera(dt);if(cameraShake>0){camera.position.x+=(Math.random()-.5)*cameraShake;camera.position.y+=(Math.random()-.5)*cameraShake;}shake=0;camera.lookAt(focus);if(overviewOn&&activeMap==='city_plaza'){camera.position.set(0,70,.01);camera.lookAt(0,0,0);}camera.updateMatrixWorld();updateSeeThrough(camera,worldState.ready&&!p.dead&&!overviewOn?p:null);
+function remoteOnScreen(p:{x:number;z:number}){const q=new T.Vector3(p.x,1,p.z).project(camera);return Math.abs(q.x)<1.1&&Math.abs(q.y)<1.1&&q.z>=-1&&q.z<=1;}
+function render(dt:number){sound.setListener(game.p);for(const other of worldState.others){let v=remoteHeroes.get(other.id);if(!v){v={actor:makePaintedHero(loader),label:nameTag(label(other.name,'#f4f5da'))};v.label.center.set(.5,NAME_ANCHOR);scene.add(v.actor.root,v.label);remoteHeroes.set(other.id,v);}v.actor.update(other,time,combatFeel.frozen(other.id,performance.now()),remoteOnScreen(other));v.label.position.set(other.x,HERO_HEAD/screenUp(),other.z);v.label.visible=!other.dead;}for(const [id,v]of remoteHeroes)if(!worldState.others.some(p=>p.id===id)){scene.remove(v.actor.root,v.label);v.actor.dispose?.();v.label.material.map?.dispose();v.label.material.dispose();remoteHeroes.delete(id);}if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;if([p,...worldState.others.filter(remoteOnScreen)].some(o=>o.jobId==='guardian'||o.jobId==='berserker'))skillArt.warmJob2();skillArt.update(dt,[p,...worldState.others],id=>combatFeel.frozen(id,performance.now()),game.enemies);hero.update(p,time,combatFeel.frozen(net.you,performance.now()));for(const c of pendingContacts.splice(0)){motionContacts.push({...c,renderedAt:performance.now(),renderFrame:presentationFrame,hero:hero.snapshot()});if(motionContacts.length>64)motionContacts.shift();}hero.root.visible=worldState.ready;playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,HERO_HEAD/screenUp(),p.z);heroName.visible=worldState.ready&&!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));followSun(sun,focus,activeMap==='city_plaza'?CITY_SUN_OFFSET:SUN_OFFSET,zoomHeight,innerWidth/innerHeight);nearestArtLights(world.root,focus);camera.position.copy(focus).add(cameraOffset);const cameraShake=combatFeel.camera(dt);if(cameraShake>0){camera.position.x+=(Math.random()-.5)*cameraShake;camera.position.y+=(Math.random()-.5)*cameraShake;}shake=0;camera.lookAt(focus);if(overviewOn&&activeMap==='city_plaza'){camera.position.set(0,70,.01);camera.lookAt(0,0,0);}camera.updateMatrixWorld();updateSeeThrough(camera,worldState.ready&&!p.dead&&!overviewOn?p:null);
  const panels=hudRects();
  for(const n of npcLabels){const distance=Math.hypot(n.x-p.x,n.z-p.z),screen=new T.Vector3(n.x,n.head/screenUp(),n.z).project(camera);n.el.hidden=activeMap!=='city_plaza'||distance>10;const overlapping=distance<2.2;n.el.style.left=((screen.x*.5+.5)*innerWidth)+'px';n.el.style.top=((-screen.y*.5+.5)*innerHeight-(overlapping?56:0))+'px';n.el.classList.toggle('in-range',distance<3);n.el.style.opacity=overlapping?'.65':'1';if(!n.el.hidden&&blocked(n.el.getBoundingClientRect(),panels))n.el.hidden=true;}
  const labelHeight=64/22*12*(Number(getComputedStyle(document.documentElement).getPropertyValue('--ui-scale'))||1)*(camera.top-camera.bottom)/innerHeight;
@@ -399,8 +399,9 @@ applyQuality();hud();requestAnimationFrame(frame);
 
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice});
-qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));
+qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);
 
+guide=mountTutorialGuide({characterId:selected.character.id,started:()=>started&&!paused,map:()=>activeMap,game:()=>game,autoPotionOn:()=>autoPotionUI.settings.hp.on||autoPotionUI.settings.mp.on,quests:()=>quests?.state,project:(x,z,y)=>{const v=new T.Vector3(x,y,z).project(camera);return{x:(v.x*.5+.5)*innerWidth,y:(-v.y*.5+.5)*innerHeight};}});
 if(pendingUI)qol.receive(pendingUI);
 function measureHeroScreen(actor:T.Object3D=hero.root,threshold=200){
  const width=innerWidth,height=innerHeight,target=new T.WebGLRenderTarget(width,height),probe=new T.Scene();probe.add(actor.clone(true));

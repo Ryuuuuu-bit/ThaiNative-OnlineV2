@@ -3,7 +3,7 @@ import {applyInventory,starterInventory,economyData,checkRequest,alertIntegrity,
 import type {InventoryOp} from '@thainative/shared';
 import {creationJob,needsJob,migrateMap} from './progress.js';
 import {loadGameData,newJob,normalizeJob} from '@thainative/shared';
-import{randomUUID}from'node:crypto';import type{Account,Character,GoogleIdentity,Session,Store}from'./types.js';import{AppError,missing}from'../errors.js';
+import{randomUUID}from'node:crypto';import type{Account,Character,GoogleIdentity,PasswordIdentity,Session,Store}from'./types.js';import{newUid}from'./types.js';import{AppError,missing}from'../errors.js';
 const now=()=>new Date().toISOString();
 export class MemoryStore implements Store {
  private leases=new Map<string,string>();
@@ -35,12 +35,21 @@ export class MemoryStore implements Store {
  }
  async integrity(){const issues:string[]=[],seen=new Set<string>();for(const[id,inv]of this.inventories){const c=this.chars.get(id)!;if(c.gold!==this.ledger.filter(l=>l.character===id).reduce((n,l)=>n+l.entry.goldDelta,0))issues.push(id+': gold != ledger');for(const i of inv.items){if(i.qty<=0)issues.push(id+': negative stack');if(!i.id.startsWith('stack:')){if(seen.has(i.id))issues.push('duplicate '+i.id);seen.add(i.id);}}}return alertIntegrity(issues);}
 
- async createGuest(guestKeyHash:string){const a:Account={id:randomUUID(),kind:'guest',displayName:'Guest · '+randomUUID().slice(0,6),guestKeyHash,createdAt:now(),lastLoginAt:now()};this.accounts.set(a.id,a);return{...a};}
- async resumeGuest(hash:string){const a=[...this.accounts.values()].find(a=>a.kind==='guest'&&a.guestKeyHash===hash);if(a)a.lastLoginAt=now();return a?{...a}:undefined;}
- async account(id:string){const a=this.accounts.get(id);return a?{...a}:undefined;}
+ private uid(){let uid=newUid();while([...this.accounts.values()].some(a=>a.uid===uid))uid=newUid();return uid;}
+ /** Backfill for accounts restored without a uid (mirrors migration 015); a uid, once set, is never rewritten. */
+ private withUid(a:Account){if(!a.uid)a.uid=this.uid();return a;}
+ async createGuest(guestKeyHash:string){const a:Account={id:randomUUID(),uid:this.uid(),kind:'guest',displayName:'Guest · '+randomUUID().slice(0,6),guestKeyHash,createdAt:now(),lastLoginAt:now()};this.accounts.set(a.id,a);return{...a};}
+ async resumeGuest(hash:string){const a=[...this.accounts.values()].find(a=>a.kind==='guest'&&a.guestKeyHash===hash);if(a)a.lastLoginAt=now();return a?{...this.withUid(a)}:undefined;}
+ async account(id:string){const a=this.accounts.get(id);return a?{...this.withUid(a)}:undefined;}
+ async registerPassword(identity:PasswordIdentity,guestId?:string){if([...this.accounts.values()].some(a=>a.usernameKey===identity.usernameKey))throw new AppError(409,'USERNAME_TAKEN','ชื่อผู้ใช้นี้มีผู้ใช้แล้ว');const guest=guestId?this.accounts.get(guestId):undefined;
+  if(guest?.kind==='guest'){Object.assign(this.withUid(guest),{kind:'password',...identity,displayName:identity.username,lastLoginAt:now()});delete guest.guestKeyHash;for(const[h,s]of this.sessions)if(s.accountId===guest.id)this.sessions.delete(h);return{...guest};}
+  const a:Account={id:randomUUID(),uid:this.uid(),kind:'password',...identity,displayName:identity.username,createdAt:now(),lastLoginAt:now()};this.accounts.set(a.id,a);return{...a};}
+ async passwordAccount(usernameKey:string){const a=[...this.accounts.values()].find(a=>a.kind==='password'&&a.usernameKey===usernameKey);return a?{...this.withUid(a)}:undefined;}
+ async loggedIn(id:string){const a=this.accounts.get(id);if(a)a.lastLoginAt=now();}
+ async changePassword(id:string,passwordHash:string){const a=this.accounts.get(id);if(!a||a.kind!=='password')throw new AppError(404,'NOT_FOUND','ไม่พบบัญชีนี้');a.passwordHash=passwordHash;for(const[h,s]of this.sessions)if(s.accountId===id)this.sessions.delete(h);}
  async google(identity:GoogleIdentity,guestId?:string){const bound=[...this.accounts.values()].find(a=>a.googleSub===identity.sub),guest=guestId?this.accounts.get(guestId):undefined;
-  if(guest?.kind==='guest'){if(bound&&bound.id!==guest.id)throw new AppError(409,'GOOGLE_ALREADY_LINKED','Google นี้ผูกกับบัญชีอื่นแล้ว กรุณาออกจาก Guest ก่อนเข้าสู่บัญชีนั้น');guest.kind='google';guest.googleSub=identity.sub;guest.displayName=identity.name;delete guest.guestKeyHash;guest.lastLoginAt=now();for(const[h,s]of this.sessions)if(s.accountId===guest.id)this.sessions.delete(h);return{...guest};}
-  if(bound){bound.lastLoginAt=now();return{...bound};}const a:Account={id:randomUUID(),kind:'google',googleSub:identity.sub,displayName:identity.name,createdAt:now(),lastLoginAt:now()};this.accounts.set(a.id,a);return{...a};
+  if(guest?.kind==='guest'){if(bound&&bound.id!==guest.id)throw new AppError(409,'GOOGLE_ALREADY_LINKED','Google นี้ผูกกับบัญชีอื่นแล้ว กรุณาออกจาก Guest ก่อนเข้าสู่บัญชีนั้น');this.withUid(guest);guest.kind='google';guest.googleSub=identity.sub;guest.displayName=identity.name;delete guest.guestKeyHash;guest.lastLoginAt=now();for(const[h,s]of this.sessions)if(s.accountId===guest.id)this.sessions.delete(h);return{...guest};}
+  if(bound){bound.lastLoginAt=now();return{...this.withUid(bound)};}const a:Account={id:randomUUID(),uid:this.uid(),kind:'google',googleSub:identity.sub,displayName:identity.name,createdAt:now(),lastLoginAt:now()};this.accounts.set(a.id,a);return{...a};
  }
  async createSession(s:Session){this.sessions.set(s.tokenHash,{...s});}
  async session(hash:string){const s=this.sessions.get(hash);if(!s)return;if(Date.parse(s.expiresAt)<=Date.now()){this.sessions.delete(hash);return;}return{...s};}
