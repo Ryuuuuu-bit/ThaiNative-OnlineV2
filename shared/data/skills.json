@@ -47,7 +47,7 @@
       "kind": "single",
       "sp": 12,
       "cooldown": 1.5,
-      "cast": 1.0,
+      "cast": 1,
       "range": 8,
       "radius": 0,
       "icon": 5,
@@ -115,19 +115,19 @@
       "requires": [],
       "values": {
         "percent": [
-          180.0,
-          200.0,
-          220.0,
-          240.0,
-          260.0,
-          280.0,
-          300.0,
-          320.0,
-          340.0,
-          360.0
+          180,
+          200,
+          220,
+          240,
+          260,
+          280,
+          300,
+          320,
+          340,
+          360
         ],
         "sp": [
-          8.0,
+          8,
           8.4444,
           8.8889,
           9.3333,
@@ -136,7 +136,7 @@
           10.6667,
           11.1111,
           11.5556,
-          12.0
+          12
         ]
       }
     },
@@ -159,7 +159,7 @@
       "requires": [],
       "values": {
         "percent": [
-          110.0,
+          110,
           112.7778,
           115.5556,
           118.3333,
@@ -168,10 +168,10 @@
           126.6667,
           129.4444,
           132.2222,
-          135.0
+          135
         ],
         "sp": [
-          15.0,
+          15,
           15.7778,
           16.5556,
           17.3333,
@@ -180,7 +180,7 @@
           19.6667,
           20.4444,
           21.2222,
-          22.0
+          22
         ]
       },
       "hits": 2
@@ -209,16 +209,16 @@
       ],
       "values": {
         "percent": [
-          150.0,
+          150,
           166.6667,
           183.3333,
-          200.0,
+          200,
           216.6667,
           233.3333,
-          250.0,
+          250,
           266.6667,
           283.3333,
-          300.0
+          300
         ]
       },
       "effect": "dash",
@@ -249,7 +249,7 @@
       ],
       "values": {
         "percent": [
-          250.0,
+          250,
           268.8889,
           287.7778,
           306.6667,
@@ -258,10 +258,10 @@
           363.3333,
           382.2222,
           401.1111,
-          420.0
+          420
         ],
         "sp": [
-          25.0,
+          25,
           25.7778,
           26.5556,
           27.3333,
@@ -270,7 +270,7 @@
           29.6667,
           30.4444,
           31.2222,
-          32.0
+          32
         ]
       },
       "effect": "knockup",
@@ -457,6 +457,492 @@
           0.3,
           0.4,
           0.5
+        ]
+      }
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "percent": 200,
+      "sp": 12,
+      "cooldown": 6,
+      "id": "shield_bash",
+      "nameTh": "กระแทกโล่",
+      "jobId": "guardian",
+      "maxLevel": 10,
+      "kind": "single",
+      "icon": 1,
+      "visual": "slash",
+      "values": {
+        "percent": [
+          200,
+          220,
+          240,
+          260,
+          280,
+          300,
+          320,
+          340,
+          360,
+          380
+        ],
+        "sp": [
+          12,
+          12.6667,
+          13.3333,
+          14,
+          14.6667,
+          15.3333,
+          16,
+          16.6667,
+          17.3333,
+          18
+        ]
+      },
+      "effect": "stun",
+      "duration": 1.2,
+      "pvpDurationMul": 0.5
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "range": 0,
+      "radius": 0,
+      "cast": 0,
+      "percent": 0,
+      "sp": 20,
+      "cooldown": 30,
+      "id": "bulwark",
+      "nameTh": "ป้อมปราการ",
+      "jobId": "guardian",
+      "maxLevel": 5,
+      "kind": "utility",
+      "icon": 6,
+      "visual": "endure",
+      "values": {
+        "guard": [
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3
+        ]
+      },
+      "effect": "guard",
+      "duration": 10
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [
+        {
+          "id": "shield_bash",
+          "level": 3
+        }
+      ],
+      "range": 0,
+      "radius": 3.2,
+      "cast": 0.5,
+      "percent": 260,
+      "sp": 28,
+      "cooldown": 12,
+      "id": "quake_slam",
+      "nameTh": "ทุบแผ่นดินไหว",
+      "jobId": "guardian",
+      "maxLevel": 10,
+      "kind": "area",
+      "icon": 4,
+      "visual": "earth_break",
+      "values": {
+        "percent": [
+          260,
+          280,
+          300,
+          320,
+          340,
+          360,
+          380,
+          400,
+          420,
+          440
+        ],
+        "sp": [
+          28,
+          28.8889,
+          29.7778,
+          30.6667,
+          31.5556,
+          32.4444,
+          33.3333,
+          34.2222,
+          35.1111,
+          36
+        ]
+      },
+      "effect": "knockup",
+      "duration": 0.8,
+      "pvpDurationMul": 0.6
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [
+        {
+          "id": "bulwark",
+          "level": 2
+        }
+      ],
+      "range": 0,
+      "radius": 8,
+      "cast": 0,
+      "percent": 0,
+      "sp": 15,
+      "cooldown": 15,
+      "id": "rally_roar",
+      "nameTh": "คำรามรวมพล",
+      "jobId": "guardian",
+      "maxLevel": 5,
+      "kind": "area",
+      "icon": 5,
+      "visual": "provoke",
+      "values": {
+        "defDown": [
+          0.1,
+          0.125,
+          0.15,
+          0.175,
+          0.2
+        ]
+      },
+      "effect": "taunt",
+      "duration": 6,
+      "pvpEffect": {
+        "id": "slow",
+        "duration": 3,
+        "value": 0.25
+      }
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [],
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "id": "guardian_spirit",
+      "nameTh": "จิตผู้พิทักษ์",
+      "jobId": "guardian",
+      "maxLevel": 10,
+      "kind": "utility",
+      "icon": 8,
+      "values": {
+        "defPercent": [
+          0.03,
+          0.06,
+          0.09,
+          0.12,
+          0.15,
+          0.18,
+          0.21,
+          0.24,
+          0.27,
+          0.3
+        ],
+        "hpPercent": [
+          0.01,
+          0.02,
+          0.03,
+          0.04,
+          0.05,
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1
+        ]
+      }
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [
+        {
+          "id": "guardian_spirit",
+          "level": 3
+        }
+      ],
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "id": "retribution",
+      "nameTh": "โต้กลับ",
+      "jobId": "guardian",
+      "maxLevel": 5,
+      "kind": "utility",
+      "icon": 9,
+      "values": {
+        "reflect": [
+          0.03,
+          0.06,
+          0.09,
+          0.12,
+          0.15
+        ]
+      }
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "percent": 90,
+      "sp": 10,
+      "cooldown": 3,
+      "id": "frenzy_slash",
+      "nameTh": "ฟันคลั่ง",
+      "jobId": "berserker",
+      "maxLevel": 10,
+      "kind": "single",
+      "hits": 3,
+      "icon": 1,
+      "visual": "slash",
+      "values": {
+        "percent": [
+          90,
+          96.6667,
+          103.3333,
+          110,
+          116.6667,
+          123.3333,
+          130,
+          136.6667,
+          143.3333,
+          150
+        ],
+        "sp": [
+          10,
+          10.6667,
+          11.3333,
+          12,
+          12.6667,
+          13.3333,
+          14,
+          14.6667,
+          15.3333,
+          16
+        ]
+      }
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [],
+      "range": 0,
+      "radius": 0,
+      "cast": 0,
+      "percent": 0,
+      "sp": 15,
+      "cooldown": 35,
+      "id": "blood_rage",
+      "nameTh": "โลหิตเดือด",
+      "jobId": "berserker",
+      "maxLevel": 5,
+      "kind": "utility",
+      "icon": 6,
+      "visual": "endure",
+      "values": {
+        "atkUp": [
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3
+        ],
+        "hpCost": [
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08
+        ]
+      },
+      "effect": "rage",
+      "duration": 12
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [
+        {
+          "id": "frenzy_slash",
+          "level": 3
+        }
+      ],
+      "range": 0,
+      "radius": 3,
+      "cast": 0,
+      "percent": 80,
+      "sp": 26,
+      "cooldown": 9,
+      "id": "blade_cyclone",
+      "nameTh": "พายุใบมีด",
+      "jobId": "berserker",
+      "maxLevel": 10,
+      "kind": "area",
+      "hits": 4,
+      "icon": 2,
+      "visual": "whirlwind",
+      "values": {
+        "percent": [
+          80,
+          85.5556,
+          91.1111,
+          96.6667,
+          102.2222,
+          107.7778,
+          113.3333,
+          118.8889,
+          124.4444,
+          130
+        ],
+        "sp": [
+          26,
+          26.8889,
+          27.7778,
+          28.6667,
+          29.5556,
+          30.4444,
+          31.3333,
+          32.2222,
+          33.1111,
+          34
+        ]
+      }
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": false,
+      "requires": [
+        {
+          "id": "frenzy_slash",
+          "level": 5
+        }
+      ],
+      "range": 7,
+      "radius": 0,
+      "cast": 0,
+      "percent": 220,
+      "sp": 20,
+      "cooldown": 10,
+      "id": "leap_strike",
+      "nameTh": "กระโจนฟัน",
+      "jobId": "berserker",
+      "maxLevel": 10,
+      "kind": "single",
+      "icon": 3,
+      "visual": "dash_strike",
+      "values": {
+        "percent": [
+          220,
+          240,
+          260,
+          280,
+          300,
+          320,
+          340,
+          360,
+          380,
+          400
+        ]
+      },
+      "effect": "dash",
+      "duration": 0.5,
+      "pvpDurationMul": 0.6
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [],
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "id": "berserk_soul",
+      "nameTh": "วิญญาณคลั่ง",
+      "jobId": "berserker",
+      "maxLevel": 10,
+      "kind": "utility",
+      "icon": 7,
+      "values": {
+        "atkPercent": [
+          0.02,
+          0.04,
+          0.06,
+          0.08,
+          0.1,
+          0.12,
+          0.14,
+          0.16,
+          0.18,
+          0.2
+        ]
+      }
+    },
+    {
+      "element": "weapon",
+      "type": "physical",
+      "passive": true,
+      "requires": [
+        {
+          "id": "berserk_soul",
+          "level": 3
+        }
+      ],
+      "range": 1.8,
+      "radius": 0,
+      "cast": 0,
+      "percent": 0,
+      "sp": 0,
+      "cooldown": 0,
+      "id": "bloodlust",
+      "nameTh": "กระหายเลือด",
+      "jobId": "berserker",
+      "maxLevel": 5,
+      "kind": "utility",
+      "icon": 9,
+      "values": {
+        "lifesteal": [
+          0.01,
+          0.02,
+          0.03,
+          0.04,
+          0.05
         ]
       }
     }

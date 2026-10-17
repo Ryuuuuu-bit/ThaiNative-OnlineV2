@@ -35,7 +35,7 @@ import {
 	type Player,
 	type Vec,
 } from "@thainative/shared";
-import { IntentSchema, type Intent } from "@thainative/shared";
+import { IntentSchema, normalizeAutoPotion, type Intent } from "@thainative/shared";
 import type { Store, Character, Progress } from "../store/types.js";
 import { hashToken } from "../session.js";
 import { createSocial } from "./social.js";
@@ -211,7 +211,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
    const latest=result.duplicate?await store.inventory(peer.accountId,p.id):result;
    p.inventory=latest.inventory;p.gold=latest.gold;refreshStats(g,p);
    if(result.error){if(op.op==='pickup')room.dropRequests?.delete(op.id!);throw Error(result.error);}
-   if(result.effect&&!result.duplicate){const e=result.effect;if(e.kind==='hp'){const amount=Math.min(e.amount,p.maxHp-p.hp);p.hp+=amount;g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount});}if(e.kind==='sp')p.mp=Math.min(p.maxMp,p.mp+e.amount);if(e.kind==='speed')p.statuses.push({id:'speed',sourceId:p.id,remaining:60,value:e.amount});p.cd.potion=data.skills.skills.find(s=>s.id==='potion')!.cooldown;}
+   if(result.effect&&!result.duplicate){const e=result.effect;if(e.kind==='hp'){const amount=Math.min(e.amount,p.maxHp-p.hp);p.hp+=amount;g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount:Math.round(amount)});}if(e.kind==='sp')p.mp=Math.min(p.maxMp,p.mp+e.amount);if(e.kind==='speed')p.statuses.push({id:'speed',sourceId:p.id,remaining:60,value:e.amount});p.cd.potion=data.skills.skills.find(s=>s.id==='potion')!.cooldown;}
       done();if(op.op==='store'&&p.quests&&recordStore(p.quests,data).length)sendQuests(peer,p);if(op.op==='pickup')void save(room,p.id);sendStats(peer,p);send(peer.ws,{t:'inv',req,inventory:p.inventory,gold:p.gold});
    if(op.op==='pickup'){room.dropRequests?.delete(op.id!);}
    if(op.op==='pickup')send(peer.ws,{t:'ev',list:[{type:'itemPickup',playerId:p.id,loot:op.loot}]});
@@ -279,7 +279,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   const target=getRoom(destination.mapId,peer.id);
   source.peers.delete(peer.id);source.game.players.delete(peer.id);source.accounts.delete(peer.id);source.disconnected.delete(peer.id);
   source.game.meteors=source.game.meteors.filter(m=>m.ownerId!==peer.id);
-  Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,attack:0,dash:0,castRemaining:0,statuses:[],moving:false});
+  Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,autoUnreachable:undefined,attack:0,dash:0,castRemaining:0,statuses:[],moving:false});
   if(destination.mapId==='city_plaza'&&destination.x===CITY_SPAWN.x&&destination.z===CITY_SPAWN.z){p.fx=0;p.fz=1;}
   refreshStats(target.game,p);
   peer.input={x:0,z:0};peer.room=target;
@@ -301,6 +301,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			skillPoints: p.skillPoints,
 			skills: { ...p.skills },
 			audioSettings: p.audioSettings,
+			autoPotion: p.autoPotion && { hp: { ...p.autoPotion.hp }, mp: { ...p.autoPotion.mp } },
 			hotbar: p.hotbar.map((s) => ({ ...s })),
 			jobsVersion: 3,
 			level: p.level,
@@ -373,6 +374,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					autoAllocate: p.autoAllocate,
 					statResetFree: peer.room.game.data.stats.statResetFree,
 					audioSettings: p.audioSettings,
+					autoPotion: p.autoPotion,
 					job: normalizeJob(p),
 				},
 			],
@@ -462,6 +464,11 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		withPlayer(g, peer.id, () => {
 			const p = g.p;
  if(message.t==="heal"){if(healerHeal(g,Date.now()))void save(room,p.id);return;}
+            if (message.t === "autoPotion") {
+              p.autoPotion = { hp: { ...message.settings.hp }, mp: { ...message.settings.mp } };
+              void save(room, p.id, true).then(() => send(peer.ws, {t:"autoPotion", settings:p.autoPotion})).catch(() => send(peer.ws, {t:"autoPotionError"}));
+              return;
+            }
             if (message.t === "audioSettings") {
               p.audioSettings = { ...message.settings };
               void save(room, p.id, true).then(() => send(peer.ws, {t:"audioSettings", settings:p.audioSettings})).catch(() => send(peer.ws, {t:"audioSettingsError"}));
@@ -710,6 +717,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                     p.profile.equipment=equipped(p.inventory);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
+                    p.autoPotion = normalizeAutoPotion(character.autoPotion);
  	 p.quests=normalizeQuests(character.quests,data);p.bossReadyAt=character.bossReadyAt||0;p.bossCooldowns={...(character.bossCooldowns??{})};p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
 					p.profile.classId = p.jobId;
 					p.name = character.name;

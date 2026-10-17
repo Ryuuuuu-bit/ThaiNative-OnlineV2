@@ -5,7 +5,8 @@ import { FIELD_BOSS, LAYOUTS, type MapId } from "./game/maps.js";
 /**
  * AUTO (auto-hunt) settings, chosen in the ตั้งค่า AUTO window and run by the server sim (autoStep).
  * Ported from ThaiNativeOnline src/ui/autoSettings.js; skills are kept by skill id instead of bar slot,
- * because the server, not the browser, casts them.
+ * because the server, not the browser, casts them. Potion thresholds are the per-character AutoPotion
+ * rule (auto-potion.ts), which also works outside AUTO.
  */
 export const AUTO_RANGES = { near: 7, mid: 11, far: 14, map: Infinity } as const;
 export type AutoRange = keyof typeof AUTO_RANGES;
@@ -23,9 +24,6 @@ export const AutoSettingsSchema = z
 		mobs: z.record(z.string().max(20), z.array(id).max(32)),
 		/** basic attacks between skills (casters may turn it off to save SP) */
 		basic: z.boolean(),
-		/** drink an HP / SP potion below this % (0 = never) */
-		hpPotion: pct,
-		mpPotion: pct,
 		/** below this % HP, survival skills go first */
 		survive: pct,
 		/** monsters already fighting me come first */
@@ -42,8 +40,6 @@ export const DEFAULT_AUTO: AutoSettings = {
 	mode: "cycle",
 	mobs: {},
 	basic: true,
-	hpPotion: 40,
-	mpPotion: 25,
 	survive: 45,
 	attackers: true,
 	elites: true,
@@ -62,7 +58,7 @@ export function normalizeAuto(s: unknown): AutoSettings {
 
 /** Skills that keep the player alive (buffs, heals): cast first once HP drops under `survive`. */
 export const isSurvivalSkill = (skill: { effect?: string } | undefined) =>
-	!!skill && ["endure", "heal", "barrier"].includes(skill.effect ?? "");
+	!!skill && ["endure", "heal", "barrier", "guard"].includes(skill.effect ?? "");
 
 /** The monsters a field map spawns (its boss included), weakest first, for the hunt list. */
 export function huntList(mapId: MapId, data: GameData) {
@@ -78,10 +74,15 @@ export function huntList(mapId: MapId, data: GameData) {
 export const wantedMonsters = (s: AutoSettings, mapId: string) =>
 	s.mobs[mapId]?.length ? new Set(s.mobs[mapId]) : null;
 
-/** Active skills AUTO may cast, in the player's order: s.order first, then the rest in hotbar order. */
-export function autoSkillSequence(s: AutoSettings, hotbar: readonly (string | null)[], learned: (id: string) => boolean) {
-	const bar = hotbar.filter((id): id is string => !!id && !id.startsWith("item:"));
-	const seq = [...s.order.filter((id) => bar.includes(id)), ...bar.filter((id) => !s.order.includes(id))];
+/**
+ * Active skills AUTO may cast, in the player's order: s.order first, then the rest in hotbar order,
+ * then learned skills that are not on the bar (so a newly learned job skill is used before it is placed).
+ */
+export function autoSkillSequence(s: AutoSettings, hotbar: readonly (string | null)[], learned: (id: string) => boolean, known: readonly string[] = [], rank: (id: string) => number = () => 0) {
+	const bar = [...hotbar.filter((id): id is string => !!id && !id.startsWith("item:")), ...known];
+	// skills the player has not ordered follow by rank (higher job tier first), then bar order
+	const rest = bar.filter((id) => !s.order.includes(id)).map((id, i) => ({ id, i, r: rank(id) })).sort((a, b) => a.r - b.r || a.i - b.i).map((x) => x.id);
+	const seq = [...s.order.filter((id) => bar.includes(id)), ...rest];
 	return [...new Set(seq)].filter((id) => learned(id) && !s.off.includes(id));
 }
 /**
@@ -94,4 +95,10 @@ export function autoCastOrder(seq: string[], s: AutoSettings, hpFrac: number, ne
 	const order = [...seq.slice(start), ...seq.slice(0, start)];
 	if (s.survive && hpFrac * 100 < s.survive) return [...order.filter(survival), ...order.filter((id) => !survival(id))];
 	return order;
+}
+/** Default AUTO rank of a skill: skills of a higher job tier come first (SP goes to the stronger move). */
+export function skillTierRank(data: GameData, skillId: string) {
+	const skill = data.skills.skills.find((x) => x.id === skillId),
+		tier = data.jobs.jobs.find((j) => j.id === skill?.jobId)?.tier ?? 1;
+	return -tier;
 }

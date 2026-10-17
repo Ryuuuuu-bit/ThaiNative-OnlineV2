@@ -11,6 +11,7 @@ import {
 	setBossCooldown,
 	bossTimer,
 	setBossTimer,
+	setAuto,
 	loadGameData,
 	FOREST_SPAWNS,
 	FOREST_ENTRY,
@@ -177,4 +178,21 @@ test("warden summons forest minions, not jellies", () => {
 	const minions = g.enemies.filter((e) => e.summoned);
 	assert.ok(minions.length > 0, "warden summoned");
 	assert.ok(minions.every((m) => m.dataId === "mist_shroom"));
+});
+
+test("AUTO from the forest entry hunts nearby monsters instead of freezing on the far-away warden", () => {
+	const g = createGame(1, { ...data.stats.defaultBuild, classId: "swordsman", level: 8 }, "local", data, "forest");
+	const warden = g.enemies.find((e) => e.boss)!;
+	assert.ok(Math.hypot(warden.x - g.p.x, warden.z - g.p.z) > 60, "warden is across the map");
+	const start = { x: g.p.x, z: g.p.z };
+	setAuto(g, true);
+	let kills = 0;
+	for (let n = 0; n < 1200 && !kills; n++) {
+		step(g, 0.05);
+		kills += g.events.filter((e) => e.type === "kill").length;
+		g.events.length = 0;
+	}
+	assert.ok(Math.hypot(g.p.x - start.x, g.p.z - start.z) > 2, "hero left the entry");
+	assert.notEqual(g.target, warden.id);
+	assert.ok(g.enemies.some((e) => !e.boss && e.hp < e.maxHp) || kills > 0, "hero hit a forest monster");
 });

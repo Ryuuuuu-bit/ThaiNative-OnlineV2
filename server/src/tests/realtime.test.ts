@@ -386,3 +386,52 @@ test('stability 4: a successful slow join pins its room until registration',asyn
 test('stability 6: shutdown drains in-flight joins before the store can close',async t=>{
  const f=await fixture(t),a=await f.make('DrainJoin');let release!:()=>void,entered!:()=>void;const gate=new Promise<void>(r=>release=r),seen=new Promise<void>(r=>entered=r),original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{entered();await gate;return original(...args);};const one=f.open(a.cookie);await seen;let done=false;const shutdown=f.rt.close().then(()=>done=true);await wait(40);assert.equal(done,false);release();await shutdown;assert.equal(f.rt.metrics().sockets,0);assert.equal(f.rt.rooms.size,0);await one.closed;
 });
+
+const bagQty=(inv:{items:{template:string;qty:number;location:string}[]},template:string)=>inv.items.filter(i=>i.template===template&&i.location==='bag').reduce((n,i)=>n+i.qty,0);
+test('auto-potion settings persist per character and the server drinks from the bag once per cooldown',async t=>{
+ const f=await fixture(t),user=await f.make('PotA'),other=await f.make('PotB'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
+ assert.equal(room.game.mapId,'city_plaza');assert.deepEqual(p.autoPotion,{hp:{on:false,at:40},mp:{on:false,at:30}});
+ const stats=await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'));assert.deepEqual(stats.list.find((e:any)=>e.type==='stats').autoPotion,p.autoPotion);
+ const settings={hp:{on:true,at:50},mp:{on:true,at:25}};
+ peer.send({t:'autoPotion',settings});assert.deepEqual((await peer.until(m=>m.t==='autoPotion')).settings,settings);
+ assert.deepEqual((await f.store.character(user.character.accountId,p.id))!.autoPotion,settings);
+ assert.equal((await f.store.character(other.character.accountId,other.character.id))!.autoPotion,undefined,'saved per character');
+ const before=bagQty((await f.store.inventory(user.character.accountId,p.id)).inventory,'red_small');assert.ok(before>0);
+ p.hp=Math.floor(p.maxHp*.3);
+ const fired=await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='autoPotion'&&e.playerId===p.id&&e.kind==='hp'));
+ assert.equal(fired.list.find((e:any)=>e.type==='autoPotion').template,'red_small');
+ await peer.until(m=>m.t==='inv'&&m.inventory&&bagQty(m.inventory,'red_small')===before-1);await room.saveQueue;
+ assert.equal(bagQty((await f.store.inventory(user.character.accountId,p.id)).inventory,'red_small'),before-1);assert.ok(p.hp>p.maxHp*.3);assert.ok(p.cd.potion>0);
+ for(let i=0;i<6;i++){p.hp=1;await wait(50);}await room.saveQueue;
+ assert.equal(bagQty((await f.store.inventory(user.character.accountId,p.id)).inventory,'red_small'),before-1,'cooldown blocks a second drink');
+ // MP: no blue potion in a fresh bag, so nothing is drunk and the cooldown is not spent on it.
+ p.cd.potion=0;p.hp=p.maxHp;p.mp=0;await wait(150);await room.saveQueue;assert.equal(p.cd.potion,0);
+ peer.send({t:'autoPotion',settings:{hp:{on:true,at:200},mp:{on:true,at:25}}});await wait(80);
+ assert.deepEqual(p.autoPotion,settings,'invalid thresholds are rejected');
+ peer.ws.close();await peer.closed;const again=f.open(user.cookie);await again.until(m=>m.t==='welcome');again.send({t:'spawnReady'});
+ const restored=await again.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'));assert.deepEqual(restored.list.find((e:any)=>e.type==='stats').autoPotion,settings);
+});
+
+test('hotbar potion slots persist, use the bag through the server and survive migration',async t=>{
+ const f=await fixture(t),user=await f.make('PotBar'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
+ const slots=p.hotbar.map((s,i)=>({...s,skill:i===6?'item:red_small':i===7?'item:blue_potion':s.skill}));
+ peer.send({t:'hotbar',slots});await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'&&e.job?.hotbar?.[6]?.skill==='item:red_small'));
+ assert.equal((await f.store.character(user.character.accountId,p.id))!.hotbar![6].skill,'item:red_small');
+ const bad=p.hotbar.map((s,i)=>({...s,skill:i===8?'item:jelly_slime':s.skill}));const at=peer.messages.length;peer.send({t:'hotbar',slots:bad});
+ await peer.until(m=>peer.messages.indexOf(m)>=at&&m.t==='ev'&&m.list.some((e:any)=>e.type==='skillsError'));assert.equal(p.hotbar[8].skill,slots[8].skill);
+ const before=bagQty(p.inventory!,'red_small');p.hp=1;
+ const req=crypto.randomUUID();peer.send({t:'inv',op:'use',req,id:'stack:red_small'});
+ const used=await peer.until(m=>m.t==='inv'&&m.req===req);assert.equal(used.error,undefined);assert.equal(bagQty(used.inventory,'red_small'),before-1);assert.ok(p.hp>1);assert.ok(p.cd.potion>0);
+ const second=crypto.randomUUID();peer.send({t:'inv',op:'use',req:second,id:'stack:red_small'});assert.ok((await peer.until(m=>m.t==='inv'&&m.req===second)).error,'potion cooldown');
+ peer.ws.close();await peer.closed;for(let i=0;i<100&&room.game.players.has(p.id);i++)await wait(20);await room.saveQueue;
+ // An older save naming a retired item keeps its other slots; the stale item slot is cleared on load.
+ const saved=(await f.store.character(user.character.accountId,p.id))!;
+ await f.store.saveProgress(user.character.accountId,p.id,{...saved,hotbar:saved.hotbar!.map((s,i)=>({...s,skill:i===7?'item:retired_elixir':s.skill}))});
+ const again=f.open(user.cookie);await again.until(m=>m.t==='welcome');again.send({t:'spawnReady'});
+ const snap=await again.until(m=>m.t==='snap'&&m.players.some((v:any)=>v.id===p.id&&v.hotbar)),bar=snap.players.find((v:any)=>v.id===p.id).hotbar;
+ assert.equal(bar[6].skill,'item:red_small');assert.equal(bar[7].skill,null);assert.equal(bar[0].skill,slots[0].skill);
+});

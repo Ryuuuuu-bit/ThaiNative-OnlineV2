@@ -117,6 +117,10 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 			stat: "hpRegen",
 			value: learnedValue("iron_body", "hpRegenPercent"),
 		},
+		// Job 2 passives: Guardian toughness, Berserker attack.
+		{ kind: "percent", stat: "hardDef", value: learnedValue("guardian_spirit", "defPercent") },
+		{ kind: "percent", stat: "maxHp", value: learnedValue("guardian_spirit", "hpPercent") },
+		{ kind: "percent", stat: "atk", value: learnedValue("berserk_soul", "atkPercent") },
 	);
 	const modifiers: Modifier[] = [
 		...passive,

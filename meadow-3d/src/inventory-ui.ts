@@ -8,6 +8,7 @@ import {
 	type Player,
 } from "@thainative/shared";
 import "./inventory.css";
+import { itemIconCell } from "./item-icon";
 const data = loadGameData(),
 	templates = data.items.items;
 const slotNames: Record<string, string> = {
@@ -90,11 +91,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	function itemIcon(t: (typeof templates)[number]) {
 		const icon = document.createElement("span");
 		icon.className = "item-icon";
-		const n = templates.indexOf(t);
-		// Atlas v1 holds items 0–24; the forest materials occupy the first row of v2.
-		const page = n >= 25 ? 1 : 0, k = n - page * 25;
-		if (page) icon.classList.add("item-icon-v2");
-		icon.style.backgroundPosition = `${(k % 5) * 25}% ${Math.floor(k / 5) * 25}%`;
+		const cell = itemIconCell(t.id);
+		if (cell.v2) icon.classList.add("item-icon-v2");
+		icon.style.backgroundPosition = cell.position;
 		return icon;
 	}
 	function cell(i: OwnedItem, mode = "bag") {

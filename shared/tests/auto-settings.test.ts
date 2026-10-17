@@ -17,8 +17,9 @@ import {
 const data = loadGameData();
 
 test("normalizeAuto keeps valid fields and resets broken ones to the defaults", () => {
-	const s = normalizeAuto({ hpPotion: 55, range: "far", mode: "nope", off: ["slash", 3], mobs: { meadow: ["jelly_pink"] } });
-	assert.equal(s.hpPotion, 55);
+	const s = normalizeAuto({ survive: 55, hpPotion: 70, range: "far", mode: "nope", off: ["slash", 3], mobs: { meadow: ["jelly_pink"] } });
+	assert.equal(s.survive, 55);
+	assert.ok(!("hpPotion" in s), "old potion fields are dropped");
 	assert.equal(s.range, "far");
 	assert.equal(s.mode, DEFAULT_AUTO.mode);
 	assert.deepEqual(s.off, DEFAULT_AUTO.off);

@@ -4,6 +4,7 @@ import type { PaintedLoader } from './assets';
 import { FOREST, FOREST_TREES, FOREST_ARENA, GATES, LAYOUTS } from '@thainative/shared/maps';
 const L=LAYOUTS.forest,W=FOREST.halfX*2,D=FOREST.halfZ*2,K=W/40;
 import { walkable } from './sim';
+import { uprightCard, TALL_PROP } from './upright-depth.ts';
 import { label, random } from './scene';
 
 interface Asset {name:string;atlas:string;worldSize:[number,number];anchor:[number,number];uvRect:[number,number,number,number];trunkWidth?:number}
@@ -80,7 +81,7 @@ export function buildForest(scene:T.Scene,loader:PaintedLoader){
    const material=new T.MeshBasicMaterial({map:atlases.get(a.atlas),transparent:true,alphaTest:foreground?.01:.08,depthWrite:!foreground,opacity:foreground?.24:1,side:T.DoubleSide,toneMapped:false,color:'#d8e3db'}),batch=new T.InstancedMesh(g,material,list.length);batch.name='forest-'+name;
    batch.userData.groundCover=name.includes(':cover');batch.userData.shadowCaster=['pine','oak','silver','hollow','arch'].includes(a.name);batch.castShadow=high&&batch.userData.shadowCaster;batch.customDepthMaterial=new T.MeshDepthMaterial({map:atlases.get(a.atlas),alphaTest:.2,depthPacking:T.RGBADepthPacking,side:T.DoubleSide});
    g.setAttribute('forestFlip',new T.InstancedBufferAttribute(new Float32Array(list.map(p=>p.flip?1:0)),1));
-   material.onBeforeCompile=shader=>{shader.uniforms.uForestFlipBounds={value:new T.Vector3(a.uvRect[0]*2,a.uvRect[2],a.anchor[0]*2-1)};shader.vertexShader='attribute float forestFlip;uniform vec3 uForestFlipBounds;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvMapUv.x=mix(vMapUv.x,uForestFlipBounds.x+uForestFlipBounds.y-vMapUv.x,forestFlip);').replace('#include <begin_vertex>','#include <begin_vertex>\ntransformed.x+=forestFlip*uForestFlipBounds.z;');};material.customProgramCacheKey=()=> 'forest-prop-flip-v1';
+   material.onBeforeCompile=shader=>{shader.uniforms.uForestFlipBounds={value:new T.Vector3(a.uvRect[0]*2,a.uvRect[2],a.anchor[0]*2-1)};shader.vertexShader='attribute float forestFlip;uniform vec3 uForestFlipBounds;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvMapUv.x=mix(vMapUv.x,uForestFlipBounds.x+uForestFlipBounds.y-vMapUv.x,forestFlip);').replace('#include <begin_vertex>','#include <begin_vertex>\ntransformed.x+=forestFlip*uForestFlipBounds.z;');};material.customProgramCacheKey=()=> 'forest-prop-flip-v1';uprightCard(material,!foreground&&a.worldSize[1]>=TALL_PROP);
    list.forEach((p,i)=>{dummy.position.set(p.x,.045,p.z);dummy.quaternion.copy(facing);dummy.scale.set(a.worldSize[0]*p.sx,a.worldSize[1]*p.sy,1);dummy.updateMatrix();batch.setMatrixAt(i,dummy.matrix);});batch.computeBoundingSphere();root.add(batch);batches++;
   }
   // One instanced draw for all soft contact ellipses.

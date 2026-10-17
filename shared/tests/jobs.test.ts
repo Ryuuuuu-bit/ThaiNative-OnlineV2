@@ -27,7 +27,8 @@ test("tier one and two grant one point per level including level one; Angel only
  const p=newJob();assert.equal(p.jobId,"swordsman");assert.equal(p.skillPoints,1);
  assert.equal(gainJobExp(p,1e12,data),49);assert.equal(p.skillPoints,50);assert.equal(gainJobExp(p,1e12,data),0);
  assert.throws(()=>changeJob(p,"swordsman",data.jobs.angel.x,data.jobs.angel.z,data),/ยังไม่เปิด/);
- assert.throws(()=>changeJob(p,"guardian",data.jobs.angel.x,data.jobs.angel.z,data),/ยังไม่เปิด/);
+ assert.throws(()=>changeJob(p,"ranger",data.jobs.angel.x,data.jobs.angel.z,data),/ยังไม่เปิด/);
+ assert.throws(()=>changeJob(p,"assassin",data.jobs.angel.x,data.jobs.angel.z,data),/ยังไม่เปิด/);
  const two=structuredClone(data);two.jobs.jobs.find(j=>j.id==="guardian")!.available=true;
  assert.throws(()=>changeJob({...p,jobLevel:39},"guardian",data.jobs.angel.x,data.jobs.angel.z,two),/ไม่ถึง/);
  assert.throws(()=>changeJob(p,"guardian",10,10,two),/หอนาฬิกา/);

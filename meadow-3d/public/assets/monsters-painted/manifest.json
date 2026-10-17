@@ -3449,11 +3449,11 @@
         0.5,
         0.0625
       ],
-      "referenceHeightPixels": 193.0,
+      "referenceHeightPixels": 210.0,
       "bodyWorldHeight": 2.76,
       "quadWorldSize": [
-        5.491398963730569,
-        3.6609326424870465
+        5.046857142857142,
+        3.3645714285714283
       ],
       "motions": {
         "idle": {
@@ -3473,71 +3473,27 @@
             [
               {
                 "bounds": [
-                  102,
-                  52,
-                  285,
-                  240
-                ],
-                "groundContact": [
-                  184.0,
-                  240
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  100,
-                  53,
-                  287,
-                  240
-                ],
-                "groundContact": [
-                  180.0,
-                  240
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  97,
-                  50,
-                  280,
+                  95,
+                  35,
+                  294,
                   240
                 ],
                 "groundContact": [
                   182.0,
                   240
                 ],
-                "sourceFrame": 3,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  99,
-                  52,
-                  282,
-                  240
-                ],
-                "groundContact": [
-                  199.0,
-                  240
-                ],
                 "sourceFrame": 1,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  97,
-                  53,
-                  284,
+                  92,
+                  36,
+                  296,
                   240
                 ],
                 "groundContact": [
-                  203.0,
+                  177.0,
                   240
                 ],
                 "sourceFrame": 2,
@@ -3545,13 +3501,13 @@
               },
               {
                 "bounds": [
-                  104,
-                  50,
-                  287,
+                  89,
+                  34,
+                  288,
                   240
                 ],
                 "groundContact": [
-                  201.0,
+                  181.0,
                   240
                 ],
                 "sourceFrame": 3,
@@ -3561,41 +3517,41 @@
             [
               {
                 "bounds": [
-                  117,
-                  46,
-                  287,
+                  91,
+                  35,
+                  290,
+                  240
+                ],
+                "groundContact": [
+                  202.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  89,
+                  36,
+                  293,
                   240
                 ],
                 "groundContact": [
                   207.0,
                   240
                 ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  113,
-                  41,
-                  287,
-                  240
-                ],
-                "groundContact": [
-                  203.0,
-                  240
-                ],
                 "sourceFrame": 2,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  112,
-                  61,
-                  278,
+                  96,
+                  34,
+                  295,
                   240
                 ],
                 "groundContact": [
-                  198.0,
+                  202.0,
                   240
                 ],
                 "sourceFrame": 3,
@@ -3605,13 +3561,13 @@
             [
               {
                 "bounds": [
-                  97,
-                  46,
-                  267,
+                  111,
+                  29,
+                  295,
                   240
                 ],
                 "groundContact": [
-                  176.0,
+                  209.0,
                   240
                 ],
                 "sourceFrame": 1,
@@ -3619,13 +3575,13 @@
               },
               {
                 "bounds": [
-                  97,
-                  41,
-                  271,
+                  106,
+                  24,
+                  295,
                   240
                 ],
                 "groundContact": [
-                  180.0,
+                  204.0,
                   240
                 ],
                 "sourceFrame": 2,
@@ -3633,13 +3589,57 @@
               },
               {
                 "bounds": [
-                  106,
-                  61,
-                  272,
+                  105,
+                  46,
+                  286,
                   240
                 ],
                 "groundContact": [
-                  185.0,
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  89,
+                  29,
+                  273,
+                  240
+                ],
+                "groundContact": [
+                  174.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  89,
+                  24,
+                  278,
+                  240
+                ],
+                "groundContact": [
+                  179.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  98,
+                  46,
+                  279,
+                  240
+                ],
+                "groundContact": [
+                  184.0,
                   240
                 ],
                 "sourceFrame": 3,
@@ -3665,13 +3665,13 @@
             [
               {
                 "bounds": [
-                  104,
-                  51,
-                  291,
+                  96,
+                  35,
+                  299,
                   240
                 ],
                 "groundContact": [
-                  187.0,
+                  185.0,
                   240
                 ],
                 "sourceFrame": 4,
@@ -3679,43 +3679,43 @@
               },
               {
                 "bounds": [
-                  106,
-                  36,
-                  291,
-                  223
+                  98,
+                  18,
+                  299,
+                  222
                 ],
                 "groundContact": [
-                  193.0,
-                  223
+                  191.0,
+                  222
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  100,
-                  56,
+                  92,
+                  40,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  193.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  85,
+                  35,
                   288,
                   240
                 ],
                 "groundContact": [
-                  191.0,
-                  240
-                ],
-                "sourceFrame": 6,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  93,
-                  51,
-                  280,
-                  240
-                ],
-                "groundContact": [
-                  196.0,
+                  198.0,
                   240
                 ],
                 "sourceFrame": 4,
@@ -3723,27 +3723,27 @@
               },
               {
                 "bounds": [
-                  93,
-                  36,
-                  278,
-                  223
+                  85,
+                  18,
+                  286,
+                  222
                 ],
                 "groundContact": [
-                  190.0,
-                  223
+                  192.0,
+                  222
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  96,
-                  56,
-                  284,
+                  88,
+                  40,
+                  293,
                   240
                 ],
                 "groundContact": [
-                  192.0,
+                  191.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -3751,55 +3751,11 @@
               }
             ],
             [
-              {
-                "bounds": [
-                  116,
-                  50,
-                  285,
-                  240
-                ],
-                "groundContact": [
-                  191.0,
-                  240
-                ],
-                "sourceFrame": 4,
-                "faceRect": null
-              },
               {
                 "bounds": [
                   110,
-                  37,
-                  279,
-                  233
-                ],
-                "groundContact": [
-                  182.0,
-                  233
-                ],
-                "sourceFrame": 5,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  114,
-                  56,
-                  284,
-                  240
-                ],
-                "groundContact": [
-                  206.0,
-                  240
-                ],
-                "sourceFrame": 6,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  99,
-                  50,
-                  268,
+                  34,
+                  294,
                   240
                 ],
                 "groundContact": [
@@ -3811,27 +3767,71 @@
               },
               {
                 "bounds": [
-                  105,
-                  37,
-                  274,
-                  233
+                  103,
+                  19,
+                  287,
+                  232
                 ],
                 "groundContact": [
-                  201.0,
-                  233
+                  177.0,
+                  232
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  100,
-                  56,
-                  270,
+                  107,
+                  40,
+                  291,
                   240
                 ],
                 "groundContact": [
-                  177.0,
+                  209.0,
+                  240
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  91,
+                  34,
+                  275,
+                  240
+                ],
+                "groundContact": [
+                  192.0,
+                  240
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  97,
+                  19,
+                  281,
+                  232
+                ],
+                "groundContact": [
+                  206.0,
+                  232
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  93,
+                  40,
+                  277,
+                  240
+                ],
+                "groundContact": [
+                  174.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -3857,57 +3857,13 @@
             [
               {
                 "bounds": [
-                  104,
-                  47,
-                  294,
-                  240
-                ],
-                "groundContact": [
-                  179.0,
-                  240
-                ],
-                "sourceFrame": 7,
-                "faceRect": null
-              },
-              {
-                "bounds": [
                   96,
-                  66,
+                  31,
                   302,
                   240
                 ],
                 "groundContact": [
-                  180.0,
-                  240
-                ],
-                "sourceFrame": 8,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  82,
-                  65,
-                  298,
-                  240
-                ],
-                "groundContact": [
-                  197.0,
-                  240
-                ],
-                "sourceFrame": 9,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  90,
-                  47,
-                  280,
-                  240
-                ],
-                "groundContact": [
-                  204.0,
+                  175.0,
                   240
                 ],
                 "sourceFrame": 7,
@@ -3915,57 +3871,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  66,
-                  288,
-                  240
-                ],
-                "groundContact": [
-                  203.0,
-                  240
-                ],
-                "sourceFrame": 8,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  86,
-                  65,
-                  302,
-                  240
-                ],
-                "groundContact": [
-                  186.0,
-                  240
-                ],
-                "sourceFrame": 9,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  99,
-                  44,
-                  277,
-                  240
-                ],
-                "groundContact": [
-                  213.0,
-                  240
-                ],
-                "sourceFrame": 7,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  86,
+                  88,
                   51,
-                  302,
+                  347,
                   240
                 ],
                 "groundContact": [
-                  158.0,
+                  182.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -3973,43 +3885,87 @@
               },
               {
                 "bounds": [
-                  82,
-                  53,
-                  302,
+                  103,
+                  50,
+                  308,
+                  240
+                ],
+                "groundContact": [
+                  198.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  81,
+                  31,
+                  287,
+                  240
+                ],
+                "groundContact": [
+                  207.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  37,
+                  51,
+                  296,
+                  240
+                ],
+                "groundContact": [
+                  201.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  76,
+                  50,
+                  281,
+                  240
+                ],
+                "groundContact": [
+                  185.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  91,
+                  27,
+                  284,
                   240
                 ],
                 "groundContact": [
                   216.0,
                   240
                 ],
-                "sourceFrame": 9,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  108,
-                  44,
-                  286,
-                  240
-                ],
-                "groundContact": [
-                  171.0,
-                  240
-                ],
                 "sourceFrame": 7,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
-                  51,
-                  298,
+                  76,
+                  35,
+                  368,
                   240
                 ],
                 "groundContact": [
-                  225.0,
+                  156.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -4017,13 +3973,57 @@
               },
               {
                 "bounds": [
-                  82,
-                  53,
-                  302,
+                  132,
+                  36,
+                  314,
+                  240
+                ],
+                "groundContact": [
+                  219.0,
+                  240
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  100,
+                  27,
+                  293,
                   240
                 ],
                 "groundContact": [
                   167.0,
+                  240
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  16,
+                  35,
+                  308,
+                  240
+                ],
+                "groundContact": [
+                  227.0,
+                  240
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  71,
+                  36,
+                  253,
+                  240
+                ],
+                "groundContact": [
+                  165.0,
                   240
                 ],
                 "sourceFrame": 9,
@@ -4049,111 +4049,111 @@
             [
               {
                 "bounds": [
-                  105,
-                  75,
-                  279,
-                  240
-                ],
-                "groundContact": [
-                  186.0,
-                  240
-                ],
-                "sourceFrame": 10,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  86,
-                  82,
-                  293,
+                  97,
+                  60,
+                  286,
                   240
                 ],
                 "groundContact": [
                   184.0,
                   240
                 ],
-                "sourceFrame": 11,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  90,
-                  118,
-                  292,
-                  240
-                ],
-                "groundContact": [
-                  187.0,
-                  240
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  105,
-                  75,
-                  279,
-                  240
-                ],
-                "groundContact": [
-                  197.0,
-                  240
-                ],
                 "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  91,
-                  82,
-                  298,
-                  240
-                ],
-                "groundContact": [
-                  199.0,
-                  240
-                ],
-                "sourceFrame": 11,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  93,
-                  118,
-                  295,
-                  240
-                ],
-                "groundContact": [
-                  197.0,
-                  240
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  128,
-                  75,
-                  297,
-                  240
-                ],
-                "groundContact": [
-                  213.0,
-                  240
-                ],
-                "sourceFrame": 10,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  108,
-                  83,
+                  77,
+                  69,
                   302,
+                  240
+                ],
+                "groundContact": [
+                  183.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  81,
+                  107,
+                  300,
+                  240
+                ],
+                "groundContact": [
+                  186.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  97,
+                  60,
+                  286,
+                  240
+                ],
+                "groundContact": [
+                  198.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  69,
+                  307,
+                  240
+                ],
+                "groundContact": [
+                  200.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  84,
+                  107,
+                  303,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  122,
+                  61,
+                  306,
+                  240
+                ],
+                "groundContact": [
+                  215.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  100,
+                  70,
+                  312,
                   240
                 ],
                 "groundContact": [
@@ -4165,13 +4165,13 @@
               },
               {
                 "bounds": [
-                  101,
-                  102,
-                  292,
+                  94,
+                  90,
+                  301,
                   240
                 ],
                 "groundContact": [
-                  197.0,
+                  199.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -4181,13 +4181,13 @@
             [
               {
                 "bounds": [
-                  87,
-                  75,
-                  256,
+                  78,
+                  61,
+                  262,
                   240
                 ],
                 "groundContact": [
-                  170.0,
+                  168.0,
                   240
                 ],
                 "sourceFrame": 10,
@@ -4195,9 +4195,9 @@
               },
               {
                 "bounds": [
-                  82,
-                  83,
-                  276,
+                  72,
+                  70,
+                  284,
                   240
                 ],
                 "groundContact": [
@@ -4209,13 +4209,13 @@
               },
               {
                 "bounds": [
-                  92,
-                  102,
-                  283,
+                  83,
+                  90,
+                  290,
                   240
                 ],
                 "groundContact": [
-                  186.0,
+                  184.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -4236,11 +4236,11 @@
         0.5,
         0.0625
       ],
-      "referenceHeightPixels": 198.0,
+      "referenceHeightPixels": 203.5,
       "bodyWorldHeight": 2.76,
       "quadWorldSize": [
-        5.352727272727273,
-        3.5684848484848484
+        5.2080589680589675,
+        3.472039312039312
       ],
       "motions": {
         "idle": {
@@ -4260,13 +4260,13 @@
             [
               {
                 "bounds": [
-                  95,
-                  30,
-                  295,
+                  93,
+                  24,
+                  298,
                   240
                 ],
                 "groundContact": [
-                  236.0,
+                  238.5,
                   240
                 ],
                 "sourceFrame": 1,
@@ -4274,13 +4274,13 @@
               },
               {
                 "bounds": [
-                  93,
-                  30,
-                  279,
+                  91,
+                  24,
+                  282,
                   240
                 ],
                 "groundContact": [
-                  222.0,
+                  224.0,
                   240
                 ],
                 "sourceFrame": 2,
@@ -4288,13 +4288,101 @@
               },
               {
                 "bounds": [
-                  82,
-                  30,
-                  282,
+                  75,
+                  24,
+                  284,
                   240
                 ],
                 "groundContact": [
-                  221.0,
+                  222.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  86,
+                  24,
+                  291,
+                  240
+                ],
+                "groundContact": [
+                  144.5,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  103,
+                  24,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  160.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  100,
+                  24,
+                  309,
+                  240
+                ],
+                "groundContact": [
+                  161.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  88,
+                  45,
+                  295,
+                  240
+                ],
+                "groundContact": [
+                  199.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  94,
+                  49,
+                  305,
+                  240
+                ],
+                "groundContact": [
+                  200.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  98,
+                  49,
+                  309,
+                  240
+                ],
+                "groundContact": [
+                  206.0,
                   240
                 ],
                 "sourceFrame": 3,
@@ -4305,128 +4393,40 @@
               {
                 "bounds": [
                   89,
-                  30,
-                  289,
-                  240
-                ],
-                "groundContact": [
-                  147.0,
-                  240
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  105,
-                  30,
-                  291,
-                  240
-                ],
-                "groundContact": [
-                  161.0,
-                  240
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  102,
-                  30,
-                  302,
-                  240
-                ],
-                "groundContact": [
-                  162.0,
-                  240
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  91,
-                  50,
-                  293,
-                  240
-                ],
-                "groundContact": [
-                  199.0,
-                  240
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  97,
-                  54,
-                  302,
-                  240
-                ],
-                "groundContact": [
-                  199.0,
-                  240
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  100,
-                  54,
-                  302,
-                  240
-                ],
-                "groundContact": [
-                  205.0,
-                  240
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  92,
-                  50,
-                  294,
-                  240
-                ],
-                "groundContact": [
-                  185.0,
-                  240
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  82,
-                  54,
-                  287,
+                  45,
+                  296,
                   240
                 ],
                 "groundContact": [
                   184.0,
                   240
                 ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  78,
+                  49,
+                  289,
+                  240
+                ],
+                "groundContact": [
+                  182.0,
+                  240
+                ],
                 "sourceFrame": 2,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
-                  54,
-                  284,
+                  75,
+                  49,
+                  286,
                   240
                 ],
                 "groundContact": [
-                  178.0,
+                  177.0,
                   240
                 ],
                 "sourceFrame": 3,
@@ -4452,9 +4452,9 @@
             [
               {
                 "bounds": [
-                  82,
-                  31,
-                  287,
+                  75,
+                  25,
+                  289,
                   240
                 ],
                 "groundContact": [
@@ -4466,13 +4466,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  43,
-                  302,
+                  73,
+                  38,
+                  323,
                   240
                 ],
                 "groundContact": [
-                  269.0,
+                  275.0,
                   240
                 ],
                 "sourceFrame": 5,
@@ -4480,13 +4480,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  31,
-                  294,
+                  91,
+                  26,
+                  297,
                   240
                 ],
                 "groundContact": [
-                  247.5,
+                  252.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -4496,13 +4496,13 @@
             [
               {
                 "bounds": [
-                  97,
-                  31,
-                  302,
+                  94,
+                  25,
+                  308,
                   240
                 ],
                 "groundContact": [
-                  176.0,
+                  175.0,
                   240
                 ],
                 "sourceFrame": 4,
@@ -4510,13 +4510,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  43,
-                  302,
+                  61,
+                  38,
+                  311,
                   240
                 ],
                 "groundContact": [
-                  114.0,
+                  108.0,
                   240
                 ],
                 "sourceFrame": 5,
@@ -4524,13 +4524,13 @@
               },
               {
                 "bounds": [
-                  90,
-                  31,
-                  302,
+                  87,
+                  26,
+                  293,
                   240
                 ],
                 "groundContact": [
-                  135.5,
+                  131.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -4540,13 +4540,13 @@
             [
               {
                 "bounds": [
-                  90,
-                  68,
-                  302,
+                  87,
+                  63,
+                  317,
                   240
                 ],
                 "groundContact": [
-                  168.0,
+                  169.0,
                   240
                 ],
                 "sourceFrame": 4,
@@ -4554,27 +4554,27 @@
               },
               {
                 "bounds": [
-                  82,
-                  64,
-                  302,
-                  229
+                  84,
+                  59,
+                  313,
+                  228
                 ],
                 "groundContact": [
-                  147.5,
-                  229
+                  144.0,
+                  228
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
-                  64,
-                  285,
+                  100,
+                  59,
+                  288,
                   240
                 ],
                 "groundContact": [
-                  185.0,
+                  186.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -4584,13 +4584,13 @@
             [
               {
                 "bounds": [
-                  82,
-                  68,
-                  294,
+                  67,
+                  63,
+                  297,
                   240
                 ],
                 "groundContact": [
-                  215.0,
+                  214.0,
                   240
                 ],
                 "sourceFrame": 4,
@@ -4598,27 +4598,27 @@
               },
               {
                 "bounds": [
-                  82,
-                  64,
-                  302,
-                  229
+                  71,
+                  59,
+                  300,
+                  228
                 ],
                 "groundContact": [
-                  235.5,
-                  229
+                  239.0,
+                  228
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  99,
-                  64,
-                  302,
+                  96,
+                  59,
+                  284,
                   240
                 ],
                 "groundContact": [
-                  198.0,
+                  197.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -4644,13 +4644,13 @@
             [
               {
                 "bounds": [
-                  90,
-                  48,
-                  302,
+                  87,
+                  43,
+                  323,
                   240
                 ],
                 "groundContact": [
-                  234.0,
+                  245.0,
                   240
                 ],
                 "sourceFrame": 7,
@@ -4658,13 +4658,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  37,
-                  302,
+                  75,
+                  30,
+                  319,
                   240
                 ],
                 "groundContact": [
-                  278.0,
+                  292.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -4672,13 +4672,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  38,
-                  302,
+                  80,
+                  39,
+                  322,
                   240
                 ],
                 "groundContact": [
-                  225.0,
+                  235.0,
                   240
                 ],
                 "sourceFrame": 9,
@@ -4688,13 +4688,13 @@
             [
               {
                 "bounds": [
-                  82,
-                  48,
-                  294,
+                  61,
+                  43,
+                  297,
                   240
                 ],
                 "groundContact": [
-                  149.0,
+                  138.0,
                   240
                 ],
                 "sourceFrame": 7,
@@ -4702,13 +4702,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  37,
-                  302,
+                  65,
+                  30,
+                  309,
                   240
                 ],
                 "groundContact": [
-                  105.0,
+                  91.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -4716,13 +4716,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  38,
-                  302,
+                  62,
+                  39,
+                  304,
                   240
                 ],
                 "groundContact": [
-                  158.0,
+                  148.0,
                   240
                 ],
                 "sourceFrame": 9,
@@ -4732,9 +4732,9 @@
             [
               {
                 "bounds": [
-                  97,
-                  97,
-                  298,
+                  94,
+                  94,
+                  300,
                   240
                 ],
                 "groundContact": [
@@ -4746,9 +4746,9 @@
               },
               {
                 "bounds": [
-                  97,
-                  55,
-                  302,
+                  94,
+                  50,
+                  324,
                   240
                 ],
                 "groundContact": [
@@ -4760,13 +4760,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  53,
-                  302,
+                  104,
+                  70,
+                  313,
                   240
                 ],
                 "groundContact": [
-                  210.0,
+                  211.5,
                   240
                 ],
                 "sourceFrame": 9,
@@ -4776,9 +4776,9 @@
             [
               {
                 "bounds": [
-                  86,
-                  97,
-                  287,
+                  84,
+                  94,
+                  290,
                   240
                 ],
                 "groundContact": [
@@ -4790,13 +4790,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  55,
-                  287,
+                  59,
+                  50,
+                  289,
                   240
                 ],
                 "groundContact": [
-                  184.0,
+                  183.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -4804,13 +4804,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  53,
-                  302,
+                  71,
+                  70,
+                  280,
                   240
                 ],
                 "groundContact": [
-                  173.0,
+                  171.5,
                   240
                 ],
                 "sourceFrame": 9,
@@ -4836,27 +4836,27 @@
             [
               {
                 "bounds": [
-                  82,
-                  54,
-                  302,
+                  79,
+                  49,
+                  282,
                   240
                 ],
                 "groundContact": [
-                  221.0,
-                  240
+                  224.0,
+                  239
                 ],
                 "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
-                  68,
-                  290,
+                  66,
+                  63,
+                  292,
                   240
                 ],
                 "groundContact": [
-                  224.0,
+                  226.0,
                   240
                 ],
                 "sourceFrame": 11,
@@ -4864,13 +4864,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  77,
-                  292,
+                  72,
+                  73,
+                  295,
                   240
                 ],
                 "groundContact": [
-                  207.0,
+                  208.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -4880,41 +4880,41 @@
             [
               {
                 "bounds": [
-                  82,
-                  54,
-                  302,
-                  240
-                ],
-                "groundContact": [
-                  162.0,
-                  240
-                ],
-                "sourceFrame": 10,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  94,
-                  68,
-                  302,
+                  102,
+                  49,
+                  305,
                   240
                 ],
                 "groundContact": [
                   159.0,
-                  240
+                  239
                 ],
-                "sourceFrame": 11,
+                "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
                   92,
-                  77,
-                  302,
+                  63,
+                  318,
                   240
                 ],
                 "groundContact": [
-                  176.0,
+                  157.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  89,
+                  73,
+                  312,
+                  240
+                ],
+                "groundContact": [
+                  175.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -4924,9 +4924,9 @@
             [
               {
                 "bounds": [
-                  109,
-                  75,
-                  302,
+                  107,
+                  71,
+                  306,
                   240
                 ],
                 "groundContact": [
@@ -4938,9 +4938,9 @@
               },
               {
                 "bounds": [
-                  104,
-                  60,
-                  302,
+                  102,
+                  55,
+                  308,
                   240
                 ],
                 "groundContact": [
@@ -4952,9 +4952,9 @@
               },
               {
                 "bounds": [
-                  105,
-                  78,
-                  273,
+                  103,
+                  74,
+                  276,
                   240
                 ],
                 "groundContact": [
@@ -4968,9 +4968,9 @@
             [
               {
                 "bounds": [
-                  82,
-                  75,
-                  275,
+                  78,
+                  71,
+                  277,
                   240
                 ],
                 "groundContact": [
@@ -4982,9 +4982,9 @@
               },
               {
                 "bounds": [
-                  82,
-                  60,
-                  280,
+                  76,
+                  55,
+                  282,
                   240
                 ],
                 "groundContact": [
@@ -4996,13 +4996,13 @@
               },
               {
                 "bounds": [
-                  111,
-                  78,
-                  279,
+                  109,
+                  74,
+                  282,
                   240
                 ],
                 "groundContact": [
-                  198.0,
+                  199.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -5023,11 +5023,11 @@
         0.5,
         0.0625
       ],
-      "referenceHeightPixels": 201.0,
+      "referenceHeightPixels": 199.0,
       "bodyWorldHeight": 2.76,
       "quadWorldSize": [
-        5.272835820895522,
-        3.5152238805970146
+        5.325829145728643,
+        3.5505527638190952
       ],
       "motions": {
         "idle": {
@@ -5047,14 +5047,14 @@
             [
               {
                 "bounds": [
-                  89,
+                  90,
                   8,
-                  286,
-                  214
+                  285,
+                  212
                 ],
                 "groundContact": [
                   172.0,
-                  214
+                  212
                 ],
                 "sourceFrame": 1,
                 "faceRect": null
@@ -5063,70 +5063,26 @@
                 "bounds": [
                   82,
                   8,
-                  293,
-                  215
+                  292,
+                  213
                 ],
                 "groundContact": [
                   167.0,
-                  215
+                  213
                 ],
                 "sourceFrame": 2,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  96,
+                  97,
                   8,
-                  299,
-                  215
+                  298,
+                  213
                 ],
                 "groundContact": [
                   177.0,
-                  215
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  98,
-                  8,
-                  295,
-                  214
-                ],
-                "groundContact": [
-                  211.0,
-                  214
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  91,
-                  8,
-                  302,
-                  215
-                ],
-                "groundContact": [
-                  216.0,
-                  215
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  85,
-                  8,
-                  288,
-                  215
-                ],
-                "groundContact": [
-                  206.0,
-                  215
+                  213
                 ],
                 "sourceFrame": 3,
                 "faceRect": null
@@ -5137,40 +5093,40 @@
                 "bounds": [
                   99,
                   8,
-                  298,
-                  223
+                  294,
+                  212
                 ],
                 "groundContact": [
-                  207.0,
-                  223
+                  211.0,
+                  212
                 ],
                 "sourceFrame": 1,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  105,
+                  92,
                   8,
-                  282,
-                  203
+                  302,
+                  213
                 ],
                 "groundContact": [
-                  187.0,
-                  203
+                  216.0,
+                  213
                 ],
                 "sourceFrame": 2,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  84,
+                  86,
                   8,
-                  291,
-                  199
+                  287,
+                  213
                 ],
                 "groundContact": [
-                  164.0,
-                  199
+                  206.0,
+                  213
                 ],
                 "sourceFrame": 3,
                 "faceRect": null
@@ -5179,42 +5135,86 @@
             [
               {
                 "bounds": [
-                  86,
+                  100,
                   8,
-                  285,
-                  223
+                  297,
+                  195
                 ],
                 "groundContact": [
-                  176.0,
-                  223
+                  186.0,
+                  195
                 ],
                 "sourceFrame": 1,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  102,
+                  106,
                   8,
-                  279,
-                  203
+                  281,
+                  201
                 ],
                 "groundContact": [
-                  196.0,
-                  203
+                  187.0,
+                  201
                 ],
                 "sourceFrame": 2,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  93,
+                  85,
                   8,
-                  300,
-                  199
+                  290,
+                  197
                 ],
                 "groundContact": [
-                  219.0,
-                  199
+                  165.0,
+                  197
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  87,
+                  8,
+                  284,
+                  195
+                ],
+                "groundContact": [
+                  197.0,
+                  195
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  103,
+                  8,
+                  278,
+                  201
+                ],
+                "groundContact": [
+                  196.0,
+                  201
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  94,
+                  8,
+                  299,
+                  197
+                ],
+                "groundContact": [
+                  218.0,
+                  197
                 ],
                 "sourceFrame": 3,
                 "faceRect": null
@@ -5239,37 +5239,37 @@
             [
               {
                 "bounds": [
-                  99,
+                  100,
                   8,
-                  302,
-                  202
+                  327,
+                  200
                 ],
                 "groundContact": [
                   203.0,
-                  202
+                  200
                 ],
                 "sourceFrame": 4,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  104,
                   8,
-                  302,
-                  197
+                  334,
+                  195
                 ],
                 "groundContact": [
                   211.0,
-                  197
+                  195
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
-                  17,
-                  302,
+                  103,
+                  18,
+                  303,
                   189
                 ],
                 "groundContact": [
@@ -5283,37 +5283,37 @@
             [
               {
                 "bounds": [
-                  82,
+                  57,
                   8,
-                  285,
-                  202
+                  284,
+                  200
                 ],
                 "groundContact": [
                   180.0,
-                  202
+                  200
                 ],
                 "sourceFrame": 4,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  50,
                   8,
-                  302,
-                  197
+                  280,
+                  195
                 ],
                 "groundContact": [
                   172.0,
-                  197
+                  195
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
-                  17,
-                  302,
+                  81,
+                  18,
+                  281,
                   189
                 ],
                 "groundContact": [
@@ -5327,42 +5327,42 @@
             [
               {
                 "bounds": [
-                  102,
+                  103,
                   8,
-                  302,
-                  201
+                  328,
+                  199
                 ],
                 "groundContact": [
                   192.0,
-                  200
+                  198
                 ],
                 "sourceFrame": 4,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  108,
                   8,
-                  302,
-                  195
+                  316,
+                  193
                 ],
                 "groundContact": [
-                  186.0,
-                  194
+                  185.0,
+                  192
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  101,
                   8,
-                  300,
-                  198
+                  299,
+                  196
                 ],
                 "groundContact": [
                   192.0,
-                  198
+                  196
                 ],
                 "sourceFrame": 6,
                 "faceRect": null
@@ -5371,42 +5371,42 @@
             [
               {
                 "bounds": [
-                  82,
+                  56,
                   8,
-                  282,
-                  201
+                  281,
+                  199
                 ],
                 "groundContact": [
                   191.0,
-                  200
+                  198
                 ],
                 "sourceFrame": 4,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  67,
                   8,
-                  302,
-                  195
+                  275,
+                  193
                 ],
                 "groundContact": [
                   197.0,
-                  194
+                  192
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  84,
+                  85,
                   8,
-                  302,
-                  198
+                  283,
+                  196
                 ],
                 "groundContact": [
                   191.0,
-                  198
+                  196
                 ],
                 "sourceFrame": 6,
                 "faceRect": null
@@ -5431,14 +5431,14 @@
             [
               {
                 "bounds": [
-                  89,
+                  90,
                   8,
-                  287,
-                  215
+                  286,
+                  219
                 ],
                 "groundContact": [
                   171.0,
-                  215
+                  219
                 ],
                 "sourceFrame": 7,
                 "faceRect": null
@@ -5447,26 +5447,26 @@
                 "bounds": [
                   82,
                   8,
-                  302,
-                  215
+                  281,
+                  217
                 ],
                 "groundContact": [
-                  152.5,
-                  215
+                  149.0,
+                  217
                 ],
                 "sourceFrame": 8,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  44,
                   8,
-                  302,
-                  216
+                  340,
+                  214
                 ],
                 "groundContact": [
-                  110.0,
-                  216
+                  105.0,
+                  214
                 ],
                 "sourceFrame": 9,
                 "faceRect": null
@@ -5475,42 +5475,42 @@
             [
               {
                 "bounds": [
-                  97,
+                  98,
                   8,
-                  295,
-                  215
+                  294,
+                  219
                 ],
                 "groundContact": [
                   212.0,
-                  215
+                  219
                 ],
                 "sourceFrame": 7,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  103,
                   8,
                   302,
-                  215
+                  217
                 ],
                 "groundContact": [
-                  230.5,
-                  215
+                  234.0,
+                  217
                 ],
                 "sourceFrame": 8,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  44,
                   8,
-                  302,
-                  216
+                  340,
+                  214
                 ],
                 "groundContact": [
-                  273.0,
-                  216
+                  278.0,
+                  214
                 ],
                 "sourceFrame": 9,
                 "faceRect": null
@@ -5519,42 +5519,42 @@
             [
               {
                 "bounds": [
-                  95,
+                  96,
                   8,
-                  297,
-                  210
+                  295,
+                  216
                 ],
                 "groundContact": [
-                  187.0,
-                  210
+                  186.0,
+                  216
                 ],
                 "sourceFrame": 7,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  84,
+                  85,
                   8,
-                  302,
-                  216
+                  355,
+                  219
                 ],
                 "groundContact": [
                   156.0,
-                  216
+                  219
                 ],
                 "sourceFrame": 8,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  101,
                   8,
-                  302,
-                  204
+                  347,
+                  209
                 ],
                 "groundContact": [
-                  152.5,
-                  204
+                  154.0,
+                  209
                 ],
                 "sourceFrame": 9,
                 "faceRect": null
@@ -5563,42 +5563,42 @@
             [
               {
                 "bounds": [
-                  87,
+                  88,
                   8,
-                  289,
-                  210
+                  287,
+                  216
                 ],
                 "groundContact": [
                   196.0,
-                  210
+                  216
                 ],
                 "sourceFrame": 7,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  29,
                   8,
-                  300,
-                  216
+                  299,
+                  219
                 ],
                 "groundContact": [
                   227.0,
-                  216
+                  219
                 ],
                 "sourceFrame": 8,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  38,
                   8,
-                  302,
-                  204
+                  284,
+                  209
                 ],
                 "groundContact": [
-                  230.5,
-                  204
+                  230.0,
+                  209
                 ],
                 "sourceFrame": 9,
                 "faceRect": null
@@ -5623,27 +5623,27 @@
             [
               {
                 "bounds": [
-                  82,
+                  119,
                   8,
-                  302,
-                  217
+                  301,
+                  216
                 ],
                 "groundContact": [
                   189.0,
-                  217
+                  216
                 ],
                 "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  89,
+                  90,
                   8,
-                  290,
+                  289,
                   215
                 ],
                 "groundContact": [
-                  174.0,
+                  175.0,
                   215
                 ],
                 "sourceFrame": 11,
@@ -5651,9 +5651,9 @@
               },
               {
                 "bounds": [
-                  94,
-                  48,
-                  288,
+                  95,
+                  50,
+                  287,
                   240
                 ],
                 "groundContact": [
@@ -5667,27 +5667,27 @@
             [
               {
                 "bounds": [
-                  82,
+                  83,
                   8,
-                  302,
-                  217
+                  265,
+                  216
                 ],
                 "groundContact": [
                   194.0,
-                  217
+                  216
                 ],
                 "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  94,
+                  95,
                   8,
-                  295,
+                  294,
                   215
                 ],
                 "groundContact": [
-                  209.0,
+                  208.0,
                   215
                 ],
                 "sourceFrame": 11,
@@ -5695,9 +5695,9 @@
               },
               {
                 "bounds": [
-                  96,
-                  48,
-                  290,
+                  97,
+                  50,
+                  289,
                   240
                 ],
                 "groundContact": [
@@ -5711,23 +5711,23 @@
             [
               {
                 "bounds": [
-                  82,
+                  107,
                   8,
-                  302,
-                  219
+                  315,
+                  224
                 ],
                 "groundContact": [
                   200.0,
-                  219
+                  224
                 ],
                 "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  117,
                   8,
-                  302,
+                  310,
                   218
                 ],
                 "groundContact": [
@@ -5739,13 +5739,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  53,
+                  108,
+                  55,
                   284,
                   240
                 ],
                 "groundContact": [
-                  179.0,
+                  180.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -5755,23 +5755,23 @@
             [
               {
                 "bounds": [
-                  82,
+                  69,
                   8,
-                  302,
-                  219
+                  277,
+                  224
                 ],
                 "groundContact": [
                   183.0,
-                  219
+                  224
                 ],
                 "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  82,
+                  74,
                   8,
-                  302,
+                  267,
                   218
                 ],
                 "groundContact": [
@@ -5783,9 +5783,9 @@
               },
               {
                 "bounds": [
-                  100,
-                  53,
-                  302,
+                  101,
+                  55,
+                  277,
                   240
                 ],
                 "groundContact": [
@@ -5810,11 +5810,11 @@
         0.5,
         0.0625
       ],
-      "referenceHeightPixels": 203.0,
+      "referenceHeightPixels": 191.0,
       "bodyWorldHeight": 3.312,
       "quadWorldSize": [
-        6.265064039408867,
-        4.176709359605911
+        6.6586806282722515,
+        4.439120418848168
       ],
       "motions": {
         "idle": {
@@ -5834,9 +5834,9 @@
             [
               {
                 "bounds": [
-                  91,
-                  46,
-                  294,
+                  93,
+                  51,
+                  291,
                   240
                 ],
                 "groundContact": [
@@ -5848,97 +5848,9 @@
               },
               {
                 "bounds": [
-                  98,
-                  44,
-                  300,
-                  240
-                ],
-                "groundContact": [
-                  187.0,
-                  240
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  97,
-                  53,
-                  294,
-                  240
-                ],
-                "groundContact": [
-                  177.0,
-                  240
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  90,
-                  46,
-                  293,
-                  240
-                ],
-                "groundContact": [
-                  203.0,
-                  240
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  85,
-                  44,
-                  287,
-                  240
-                ],
-                "groundContact": [
-                  197.0,
-                  240
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  90,
-                  53,
-                  287,
-                  240
-                ],
-                "groundContact": [
-                  206.0,
-                  240
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
                   100,
-                  30,
-                  297,
-                  240
-                ],
-                "groundContact": [
-                  173.0,
-                  240
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  108,
-                  30,
-                  301,
+                  49,
+                  296,
                   240
                 ],
                 "groundContact": [
@@ -5950,9 +5862,97 @@
               },
               {
                 "bounds": [
-                  104,
-                  43,
+                  99,
+                  57,
+                  291,
+                  240
+                ],
+                "groundContact": [
+                  178.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  93,
+                  51,
+                  291,
+                  240
+                ],
+                "groundContact": [
+                  203.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  87,
+                  49,
+                  283,
+                  240
+                ],
+                "groundContact": [
+                  196.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  93,
+                  57,
+                  285,
+                  240
+                ],
+                "groundContact": [
+                  205.0,
+                  240
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  102,
+                  49,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  185.0,
+                  240
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  111,
+                  49,
                   299,
+                  240
+                ],
+                "groundContact": [
+                  197.0,
+                  240
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  106,
+                  48,
+                  296,
                   240
                 ],
                 "groundContact": [
@@ -5966,13 +5966,13 @@
             [
               {
                 "bounds": [
-                  87,
-                  30,
-                  284,
+                  90,
+                  49,
+                  282,
                   240
                 ],
                 "groundContact": [
-                  210.0,
+                  198.0,
                   240
                 ],
                 "sourceFrame": 1,
@@ -5980,13 +5980,13 @@
               },
               {
                 "bounds": [
-                  83,
-                  30,
-                  276,
+                  86,
+                  49,
+                  274,
                   240
                 ],
                 "groundContact": [
-                  197.0,
+                  187.0,
                   240
                 ],
                 "sourceFrame": 2,
@@ -5994,13 +5994,13 @@
               },
               {
                 "bounds": [
-                  85,
-                  43,
-                  280,
+                  87,
+                  48,
+                  277,
                   240
                 ],
                 "groundContact": [
-                  196.0,
+                  195.0,
                   240
                 ],
                 "sourceFrame": 3,
@@ -6026,9 +6026,9 @@
             [
               {
                 "bounds": [
-                  88,
-                  52,
-                  294,
+                  91,
+                  57,
+                  292,
                   240
                 ],
                 "groundContact": [
@@ -6040,13 +6040,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  47,
-                  302,
+                  81,
+                  52,
+                  299,
                   240
                 ],
                 "groundContact": [
-                  199.0,
+                  198.0,
                   240
                 ],
                 "sourceFrame": 5,
@@ -6054,13 +6054,13 @@
               },
               {
                 "bounds": [
-                  99,
-                  53,
-                  297,
+                  101,
+                  58,
+                  294,
                   240
                 ],
                 "groundContact": [
-                  215.0,
+                  214.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -6070,13 +6070,13 @@
             [
               {
                 "bounds": [
-                  90,
-                  52,
-                  296,
+                  93,
+                  57,
+                  294,
                   240
                 ],
                 "groundContact": [
-                  200.0,
+                  201.0,
                   240
                 ],
                 "sourceFrame": 4,
@@ -6084,13 +6084,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  47,
-                  302,
+                  85,
+                  52,
+                  303,
                   240
                 ],
                 "groundContact": [
-                  184.0,
+                  185.0,
                   240
                 ],
                 "sourceFrame": 5,
@@ -6098,13 +6098,13 @@
               },
               {
                 "bounds": [
-                  87,
-                  53,
-                  285,
+                  90,
+                  58,
+                  283,
                   240
                 ],
                 "groundContact": [
-                  168.0,
+                  169.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -6114,9 +6114,9 @@
             [
               {
                 "bounds": [
-                  113,
-                  40,
-                  293,
+                  115,
+                  45,
+                  291,
                   240
                 ],
                 "groundContact": [
@@ -6128,27 +6128,27 @@
               },
               {
                 "bounds": [
-                  97,
-                  33,
-                  300,
-                  229
+                  99,
+                  49,
+                  297,
+                  240
                 ],
                 "groundContact": [
-                  191.0,
-                  229
+                  190.0,
+                  240
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  103,
-                  50,
-                  297,
+                  105,
+                  55,
+                  294,
                   240
                 ],
                 "groundContact": [
-                  215.0,
+                  213.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -6158,9 +6158,9 @@
             [
               {
                 "bounds": [
-                  91,
-                  40,
-                  271,
+                  93,
+                  45,
+                  269,
                   240
                 ],
                 "groundContact": [
@@ -6172,27 +6172,27 @@
               },
               {
                 "bounds": [
-                  84,
-                  33,
-                  287,
-                  229
+                  87,
+                  49,
+                  285,
+                  240
                 ],
                 "groundContact": [
-                  192.0,
-                  229
+                  193.0,
+                  240
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  87,
-                  50,
-                  281,
+                  90,
+                  55,
+                  279,
                   240
                 ],
                 "groundContact": [
-                  168.0,
+                  170.0,
                   240
                 ],
                 "sourceFrame": 6,
@@ -6218,13 +6218,13 @@
             [
               {
                 "bounds": [
-                  90,
-                  34,
-                  302,
+                  93,
+                  35,
+                  298,
                   240
                 ],
                 "groundContact": [
-                  169.0,
+                  168.0,
                   240
                 ],
                 "sourceFrame": 7,
@@ -6232,13 +6232,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  56,
-                  302,
+                  63,
+                  61,
+                  306,
                   240
                 ],
                 "groundContact": [
-                  189.0,
+                  182.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -6246,13 +6246,13 @@
               },
               {
                 "bounds": [
-                  84,
-                  62,
-                  287,
+                  87,
+                  67,
+                  285,
                   240
                 ],
                 "groundContact": [
-                  160.0,
+                  161.0,
                   240
                 ],
                 "sourceFrame": 9,
@@ -6262,13 +6262,13 @@
             [
               {
                 "bounds": [
-                  82,
-                  34,
-                  294,
+                  87,
+                  35,
+                  292,
                   240
                 ],
                 "groundContact": [
-                  214.0,
+                  216.0,
                   240
                 ],
                 "sourceFrame": 7,
@@ -6276,13 +6276,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  56,
-                  302,
+                  79,
+                  61,
+                  322,
                   240
                 ],
                 "groundContact": [
-                  194.0,
+                  202.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -6290,13 +6290,13 @@
               },
               {
                 "bounds": [
-                  97,
-                  62,
-                  300,
+                  99,
+                  67,
+                  297,
                   240
                 ],
                 "groundContact": [
-                  223.0,
+                  222.0,
                   240
                 ],
                 "sourceFrame": 9,
@@ -6306,13 +6306,13 @@
             [
               {
                 "bounds": [
-                  91,
-                  30,
-                  302,
+                  93,
+                  26,
+                  299,
                   240
                 ],
                 "groundContact": [
-                  148.0,
+                  149.0,
                   240
                 ],
                 "sourceFrame": 7,
@@ -6320,9 +6320,9 @@
               },
               {
                 "bounds": [
-                  95,
-                  28,
-                  302,
+                  98,
+                  24,
+                  286,
                   240
                 ],
                 "groundContact": [
@@ -6334,13 +6334,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  77,
-                  302,
+                  63,
+                  81,
+                  306,
                   240
                 ],
                 "groundContact": [
-                  207.0,
+                  205.0,
                   240
                 ],
                 "sourceFrame": 9,
@@ -6350,13 +6350,13 @@
             [
               {
                 "bounds": [
-                  82,
-                  30,
-                  293,
+                  85,
+                  26,
+                  291,
                   240
                 ],
                 "groundContact": [
-                  235.0,
+                  234.0,
                   240
                 ],
                 "sourceFrame": 7,
@@ -6364,13 +6364,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  28,
-                  289,
+                  99,
+                  24,
+                  287,
                   240
                 ],
                 "groundContact": [
-                  226.0,
+                  227.0,
                   240
                 ],
                 "sourceFrame": 8,
@@ -6378,13 +6378,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  77,
-                  302,
+                  79,
+                  81,
+                  322,
                   240
                 ],
                 "groundContact": [
-                  176.0,
+                  179.0,
                   240
                 ],
                 "sourceFrame": 9,
@@ -6410,13 +6410,13 @@
             [
               {
                 "bounds": [
-                  84,
-                  92,
-                  302,
+                  87,
+                  96,
+                  306,
                   240
                 ],
                 "groundContact": [
-                  174.0,
+                  175.0,
                   240
                 ],
                 "sourceFrame": 10,
@@ -6424,9 +6424,9 @@
               },
               {
                 "bounds": [
-                  82,
-                  109,
-                  302,
+                  81,
+                  112,
+                  309,
                   240
                 ],
                 "groundContact": [
@@ -6438,13 +6438,13 @@
               },
               {
                 "bounds": [
-                  82,
-                  113,
-                  302,
+                  91,
+                  117,
+                  299,
                   240
                 ],
                 "groundContact": [
-                  197.0,
+                  196.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -6454,9 +6454,9 @@
             [
               {
                 "bounds": [
-                  82,
-                  92,
-                  300,
+                  79,
+                  96,
+                  298,
                   240
                 ],
                 "groundContact": [
@@ -6468,9 +6468,9 @@
               },
               {
                 "bounds": [
-                  82,
-                  109,
-                  302,
+                  75,
+                  112,
+                  303,
                   240
                 ],
                 "groundContact": [
@@ -6482,101 +6482,101 @@
               },
               {
                 "bounds": [
-                  82,
-                  113,
-                  302,
-                  240
-                ],
-                "groundContact": [
-                  186.0,
-                  240
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  96,
-                  72,
-                  302,
-                  240
-                ],
-                "groundContact": [
-                  229.0,
-                  240
-                ],
-                "sourceFrame": 10,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  84,
-                  127,
-                  300,
-                  240
-                ],
-                "groundContact": [
-                  221.0,
-                  240
-                ],
-                "sourceFrame": 11,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  82,
-                  108,
-                  297,
-                  240
-                ],
-                "groundContact": [
-                  186.0,
-                  240
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  82,
-                  72,
-                  288,
-                  240
-                ],
-                "groundContact": [
-                  154.0,
-                  240
-                ],
-                "sourceFrame": 10,
-                "faceRect": null
-              },
-              {
-                "bounds": [
                   85,
-                  127,
-                  301,
+                  117,
+                  293,
                   240
                 ],
                 "groundContact": [
-                  163.0,
+                  187.0,
                   240
                 ],
-                "sourceFrame": 11,
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  99,
+                  76,
+                  306,
+                  240
+                ],
+                "groundContact": [
+                  227.0,
+                  240
+                ],
+                "sourceFrame": 10,
                 "faceRect": null
               },
               {
                 "bounds": [
                   87,
-                  108,
+                  130,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  219.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  82,
+                  111,
+                  294,
+                  240
+                ],
+                "groundContact": [
+                  185.0,
+                  240
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  79,
+                  76,
+                  286,
+                  240
+                ],
+                "groundContact": [
+                  157.0,
+                  240
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  87,
+                  130,
+                  297,
+                  240
+                ],
+                "groundContact": [
+                  164.0,
+                  240
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  90,
+                  111,
                   302,
                   240
                 ],
                 "groundContact": [
-                  197.0,
+                  198.0,
                   240
                 ],
                 "sourceFrame": 12,
@@ -6597,11 +6597,11 @@
         0.5,
         0.0625
       ],
-      "referenceHeightPixels": 454.5,
+      "referenceHeightPixels": 425.5,
       "bodyWorldHeight": 6.8999999999999995,
       "quadWorldSize": [
-        11.659405940594059,
-        7.772937293729372
+        12.454054054054053,
+        8.302702702702701
       ],
       "motions": {
         "idle": {
@@ -6621,57 +6621,13 @@
             [
               {
                 "bounds": [
-                  210,
-                  11,
-                  558,
-                  480
-                ],
-                "groundContact": [
-                  372.0,
-                  480
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  223,
-                  8,
-                  549,
+                  221,
+                  42,
+                  546,
                   480
                 ],
                 "groundContact": [
                   373.0,
-                  479
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  201,
-                  9,
-                  528,
-                  480
-                ],
-                "groundContact": [
-                  400.0,
-                  480
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  210,
-                  11,
-                  558,
-                  480
-                ],
-                "groundContact": [
-                  395.0,
                   480
                 ],
                 "sourceFrame": 1,
@@ -6679,13 +6635,13 @@
               },
               {
                 "bounds": [
-                  219,
-                  8,
-                  545,
+                  234,
+                  37,
+                  538,
                   480
                 ],
                 "groundContact": [
-                  394.0,
+                  374.0,
                   479
                 ],
                 "sourceFrame": 2,
@@ -6693,13 +6649,13 @@
               },
               {
                 "bounds": [
-                  240,
-                  9,
-                  567,
+                  214,
+                  39,
+                  519,
                   480
                 ],
                 "groundContact": [
-                  367.0,
+                  399.0,
                   480
                 ],
                 "sourceFrame": 3,
@@ -6707,39 +6663,83 @@
               }
             ],
             [
+              {
+                "bounds": [
+                  221,
+                  42,
+                  546,
+                  480
+                ],
+                "groundContact": [
+                  393.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  230,
+                  37,
+                  534,
+                  480
+                ],
+                "groundContact": [
+                  393.0,
+                  479
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  249,
+                  39,
+                  554,
+                  480
+                ],
+                "groundContact": [
+                  368.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  259,
+                  67,
+                  577,
+                  480
+                ],
+                "groundContact": [
+                  405.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  271,
+                  72,
+                  566,
+                  480
+                ],
+                "groundContact": [
+                  412.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
               {
                 "bounds": [
                   250,
-                  38,
-                  591,
-                  480
-                ],
-                "groundContact": [
-                  407.0,
-                  480
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  263,
-                  43,
-                  580,
-                  480
-                ],
-                "groundContact": [
-                  415.0,
-                  480
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  241,
-                  47,
-                  534,
+                  76,
+                  524,
                   480
                 ],
                 "groundContact": [
@@ -6753,13 +6753,13 @@
             [
               {
                 "bounds": [
-                  177,
-                  38,
-                  518,
+                  191,
+                  67,
+                  509,
                   480
                 ],
                 "groundContact": [
-                  360.0,
+                  362.0,
                   480
                 ],
                 "sourceFrame": 1,
@@ -6767,13 +6767,13 @@
               },
               {
                 "bounds": [
-                  188,
-                  43,
-                  505,
+                  201,
+                  72,
+                  496,
                   480
                 ],
                 "groundContact": [
-                  352.0,
+                  354.0,
                   480
                 ],
                 "sourceFrame": 2,
@@ -6781,9 +6781,9 @@
               },
               {
                 "bounds": [
-                  234,
-                  47,
-                  527,
+                  244,
+                  76,
+                  518,
                   480
                 ],
                 "groundContact": [
@@ -6814,41 +6814,41 @@
             [
               {
                 "bounds": [
-                  161,
-                  14,
-                  590,
+                  176,
+                  40,
+                  576,
                   480
                 ],
                 "groundContact": [
-                  431.0,
-                  480
+                  427.0,
+                  479
                 ],
                 "sourceFrame": 4,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  158,
-                  13,
-                  587,
+                  173,
+                  44,
+                  573,
                   480
                 ],
                 "groundContact": [
-                  382.0,
-                  480
+                  370.0,
+                  479
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  199,
-                  8,
-                  579,
+                  211,
+                  37,
+                  566,
                   480
                 ],
                 "groundContact": [
-                  366.0,
+                  368.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -6858,41 +6858,41 @@
             [
               {
                 "bounds": [
-                  178,
-                  14,
-                  607,
+                  192,
+                  40,
+                  592,
                   480
                 ],
                 "groundContact": [
-                  336.0,
-                  480
+                  340.0,
+                  479
                 ],
                 "sourceFrame": 4,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  181,
-                  13,
-                  610,
+                  194,
+                  44,
+                  594,
                   480
                 ],
                 "groundContact": [
-                  385.0,
-                  480
+                  396.0,
+                  479
                 ],
                 "sourceFrame": 5,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  189,
-                  8,
-                  569,
+                  202,
+                  37,
+                  557,
                   480
                 ],
                 "groundContact": [
-                  401.0,
+                  399.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -6902,13 +6902,13 @@
             [
               {
                 "bounds": [
-                  190,
-                  52,
-                  603,
+                  203,
+                  81,
+                  588,
                   480
                 ],
                 "groundContact": [
-                  320.0,
+                  330.0,
                   480
                 ],
                 "sourceFrame": 4,
@@ -6916,13 +6916,13 @@
               },
               {
                 "bounds": [
-                  199,
-                  52,
-                  620,
+                  211,
+                  81,
+                  604,
                   480
                 ],
                 "groundContact": [
-                  345.0,
+                  348.0,
                   480
                 ],
                 "sourceFrame": 5,
@@ -6930,13 +6930,13 @@
               },
               {
                 "bounds": [
-                  225,
-                  41,
-                  606,
+                  235,
+                  70,
+                  591,
                   480
                 ],
                 "groundContact": [
-                  357.0,
+                  358.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -6946,13 +6946,13 @@
             [
               {
                 "bounds": [
-                  165,
-                  52,
-                  578,
+                  179,
+                  81,
+                  564,
                   480
                 ],
                 "groundContact": [
-                  447.0,
+                  436.0,
                   480
                 ],
                 "sourceFrame": 4,
@@ -6960,13 +6960,13 @@
               },
               {
                 "bounds": [
-                  148,
-                  52,
-                  569,
+                  164,
+                  81,
+                  557,
                   480
                 ],
                 "groundContact": [
-                  422.0,
+                  419.0,
                   480
                 ],
                 "sourceFrame": 5,
@@ -6974,13 +6974,13 @@
               },
               {
                 "bounds": [
-                  162,
-                  41,
-                  543,
+                  177,
+                  70,
+                  533,
                   480
                 ],
                 "groundContact": [
-                  410.0,
+                  409.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -7006,13 +7006,13 @@
             [
               {
                 "bounds": [
-                  173,
-                  20,
-                  594,
+                  187,
+                  51,
+                  580,
                   480
                 ],
                 "groundContact": [
-                  362.0,
+                  363.0,
                   480
                 ],
                 "sourceFrame": 7,
@@ -7020,13 +7020,13 @@
               },
               {
                 "bounds": [
-                  175,
-                  64,
-                  598,
+                  189,
+                  92,
+                  584,
                   480
                 ],
                 "groundContact": [
-                  322.0,
+                  338.0,
                   480
                 ],
                 "sourceFrame": 8,
@@ -7036,13 +7036,13 @@
             [
               {
                 "bounds": [
-                  173,
-                  20,
-                  594,
+                  187,
+                  51,
+                  580,
                   480
                 ],
                 "groundContact": [
-                  404.0,
+                  403.0,
                   480
                 ],
                 "sourceFrame": 7,
@@ -7050,13 +7050,13 @@
               },
               {
                 "bounds": [
-                  170,
-                  64,
-                  593,
+                  184,
+                  92,
+                  579,
                   480
                 ],
                 "groundContact": [
-                  445.0,
+                  429.0,
                   480
                 ],
                 "sourceFrame": 8,
@@ -7066,13 +7066,13 @@
             [
               {
                 "bounds": [
-                  178,
-                  77,
-                  610,
+                  192,
+                  104,
+                  595,
                   480
                 ],
                 "groundContact": [
-                  440.0,
+                  437.0,
                   479
                 ],
                 "sourceFrame": 7,
@@ -7080,29 +7080,29 @@
               },
               {
                 "bounds": [
-                  199,
-                  87,
-                  605,
-                  480
-                ],
-                "groundContact": [
-                  419.0,
-                  479
-                ],
-                "sourceFrame": 8,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  158,
-                  77,
+                  211,
+                  113,
                   590,
                   480
                 ],
                 "groundContact": [
-                  327.0,
+                  418.0,
+                  479
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  173,
+                  104,
+                  576,
+                  480
+                ],
+                "groundContact": [
+                  330.0,
                   479
                 ],
                 "sourceFrame": 7,
@@ -7110,13 +7110,13 @@
               },
               {
                 "bounds": [
-                  163,
-                  87,
-                  569,
+                  178,
+                  113,
+                  557,
                   480
                 ],
                 "groundContact": [
-                  348.0,
+                  349.0,
                   479
                 ],
                 "sourceFrame": 8,
@@ -7142,13 +7142,13 @@
             [
               {
                 "bounds": [
-                  195,
-                  29,
-                  584,
+                  207,
+                  59,
+                  570,
                   480
                 ],
                 "groundContact": [
-                  323.0,
+                  328.0,
                   480
                 ],
                 "sourceFrame": 9,
@@ -7156,13 +7156,13 @@
               },
               {
                 "bounds": [
-                  176,
-                  61,
-                  574,
+                  190,
+                  89,
+                  561,
                   480
                 ],
                 "groundContact": [
-                  339.0,
+                  342.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -7172,13 +7172,13 @@
             [
               {
                 "bounds": [
-                  185,
-                  29,
-                  574,
+                  198,
+                  59,
+                  561,
                   480
                 ],
                 "groundContact": [
-                  445.0,
+                  439.0,
                   480
                 ],
                 "sourceFrame": 9,
@@ -7186,13 +7186,13 @@
               },
               {
                 "bounds": [
-                  194,
-                  61,
-                  592,
+                  207,
+                  89,
+                  578,
                   480
                 ],
                 "groundContact": [
-                  428.0,
+                  425.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -7202,57 +7202,57 @@
             [
               {
                 "bounds": [
-                  224,
-                  132,
+                  235,
+                  155,
+                  532,
+                  480
+                ],
+                "groundContact": [
+                  364.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  226,
+                  178,
+                  508,
+                  480
+                ],
+                "groundContact": [
+                  354.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  236,
+                  155,
+                  533,
+                  480
+                ],
+                "groundContact": [
+                  403.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  260,
+                  178,
                   542,
                   480
                 ],
                 "groundContact": [
-                  362.0,
-                  480
-                ],
-                "sourceFrame": 9,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  214,
-                  156,
-                  516,
-                  480
-                ],
-                "groundContact": [
-                  350.0,
-                  480
-                ],
-                "sourceFrame": 10,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  226,
-                  132,
-                  544,
-                  480
-                ],
-                "groundContact": [
-                  405.0,
-                  480
-                ],
-                "sourceFrame": 9,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  251,
-                  156,
-                  553,
-                  480
-                ],
-                "groundContact": [
-                  416.0,
+                  413.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -7278,73 +7278,13 @@
             [
               {
                 "bounds": [
-                  165,
-                  14,
-                  595,
-                  480
-                ],
-                "groundContact": [
-                  337.0,
-                  480
-                ],
-                "sourceFrame": 11,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  161,
-                  14,
-                  607,
-                  480
-                ],
-                "groundContact": [
-                  436.0,
-                  480
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  173,
-                  14,
-                  603,
-                  480
-                ],
-                "groundContact": [
-                  430.0,
-                  480
-                ],
-                "sourceFrame": 11,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  161,
-                  14,
-                  607,
-                  480
-                ],
-                "groundContact": [
-                  331.0,
-                  480
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  159,
+                  179,
                   44,
-                  594,
+                  580,
                   480
                 ],
                 "groundContact": [
-                  379.0,
+                  343.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -7352,13 +7292,13 @@
               },
               {
                 "bounds": [
-                  168,
-                  42,
-                  599,
+                  176,
+                  45,
+                  592,
                   480
                 ],
                 "groundContact": [
-                  394.0,
+                  426.0,
                   480
                 ],
                 "sourceFrame": 12,
@@ -7368,13 +7308,13 @@
             [
               {
                 "bounds": [
-                  173,
+                  187,
                   44,
-                  608,
+                  588,
                   480
                 ],
                 "groundContact": [
-                  387.0,
+                  423.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -7382,13 +7322,73 @@
               },
               {
                 "bounds": [
-                  170,
-                  42,
-                  601,
+                  176,
+                  45,
+                  592,
                   480
                 ],
                 "groundContact": [
-                  374.0,
+                  341.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  174,
+                  73,
+                  580,
+                  480
+                ],
+                "groundContact": [
+                  380.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  182,
+                  71,
+                  584,
+                  480
+                ],
+                "groundContact": [
+                  391.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  187,
+                  73,
+                  593,
+                  480
+                ],
+                "groundContact": [
+                  386.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  184,
+                  71,
+                  586,
+                  480
+                ],
+                "groundContact": [
+                  376.0,
                   480
                 ],
                 "sourceFrame": 12,
@@ -7416,157 +7416,215 @@
             [
               {
                 "bounds": [
-                  172,
+                  186,
+                  82,
+                  549,
+                  480
+                ],
+                "groundContact": [
+                  312.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  165,
+                  37,
+                  531,
+                  480
+                ],
+                "groundContact": [
+                  359.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  102,
+                  180,
+                  606,
+                  480
+                ],
+                "groundContact": [
+                  365.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  177,
+                  108,
+                  587,
+                  480
+                ],
+                "groundContact": [
+                  362.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  219,
+                  82,
+                  582,
+                  480
+                ],
+                "groundContact": [
+                  455.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  237,
+                  37,
+                  603,
+                  480
+                ],
+                "groundContact": [
+                  408.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  162,
+                  180,
+                  666,
+                  480
+                ],
+                "groundContact": [
+                  402.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  181,
+                  108,
+                  591,
+                  480
+                ],
+                "groundContact": [
+                  405.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  211,
+                  97,
+                  591,
+                  480
+                ],
+                "groundContact": [
+                  360.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  207,
+                  67,
+                  558,
+                  480
+                ],
+                "groundContact": [
+                  355.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  144,
+                  159,
+                  601,
+                  480
+                ],
+                "groundContact": [
+                  375.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  185,
+                  178,
+                  603,
+                  480
+                ],
+                "groundContact": [
+                  391.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  177,
+                  97,
+                  557,
+                  480
+                ],
+                "groundContact": [
+                  407.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  210,
                   67,
                   561,
                   480
                 ],
                 "groundContact": [
-                  326.0,
-                  480
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  149,
-                  20,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  367.0,
+                  412.0,
                   480
                 ],
                 "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  177,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  377.0,
-                  480
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  162,
-                  93,
-                  601,
-                  480
-                ],
-                "groundContact": [
-                  366.0,
-                  480
-                ],
-                "sourceFrame": 4,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  207,
-                  67,
-                  596,
-                  480
-                ],
-                "groundContact": [
-                  441.0,
-                  480
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  20,
-                  619,
-                  480
-                ],
-                "groundContact": [
-                  400.0,
-                  480
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  177,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  390.0,
-                  480
-                ],
-                "sourceFrame": 3,
                 "faceRect": null
               },
               {
                 "bounds": [
                   167,
-                  93,
-                  606,
+                  159,
+                  624,
                   480
                 ],
                 "groundContact": [
-                  401.0,
-                  480
-                ],
-                "sourceFrame": 4,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  199,
-                  70,
-                  606,
-                  480
-                ],
-                "groundContact": [
-                  357.0,
-                  480
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  194,
-                  38,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  352.0,
-                  480
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  136,
-                  616,
-                  480
-                ],
-                "groundContact": [
-                  376.0,
+                  392.0,
                   480
                 ],
                 "sourceFrame": 3,
@@ -7574,67 +7632,9 @@
               },
               {
                 "bounds": [
-                  170,
-                  156,
-                  618,
-                  480
-                ],
-                "groundContact": [
-                  391.0,
-                  480
-                ],
-                "sourceFrame": 4,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  162,
-                  70,
-                  569,
-                  480
-                ],
-                "groundContact": [
-                  410.0,
-                  480
-                ],
-                "sourceFrame": 1,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  38,
-                  574,
-                  480
-                ],
-                "groundContact": [
-                  415.0,
-                  480
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  152,
-                  136,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  391.0,
-                  480
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  150,
-                  156,
-                  598,
+                  165,
+                  178,
+                  583,
                   480
                 ],
                 "groundContact": [
@@ -7664,13 +7664,13 @@
             [
               {
                 "bounds": [
-                  168,
-                  71,
-                  621,
+                  182,
+                  79,
+                  554,
                   480
                 ],
                 "groundContact": [
-                  349.0,
+                  337.0,
                   480
                 ],
                 "sourceFrame": 5,
@@ -7678,13 +7678,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  70,
-                  614,
+                  140,
+                  82,
+                  599,
                   480
                 ],
                 "groundContact": [
-                  377.0,
+                  367.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -7694,13 +7694,13 @@
             [
               {
                 "bounds": [
-                  147,
-                  71,
-                  600,
+                  214,
+                  79,
+                  586,
                   480
                 ],
                 "groundContact": [
-                  418.0,
+                  430.0,
                   480
                 ],
                 "sourceFrame": 5,
@@ -7708,13 +7708,13 @@
               },
               {
                 "bounds": [
-                  154,
-                  70,
-                  621,
+                  169,
+                  82,
+                  628,
                   480
                 ],
                 "groundContact": [
-                  390.0,
+                  400.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -7724,27 +7724,27 @@
             [
               {
                 "bounds": [
-                  185,
-                  77,
+                  199,
+                  104,
+                  577,
+                  480
+                ],
+                "groundContact": [
+                  411.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  178,
+                  107,
                   591,
                   480
                 ],
                 "groundContact": [
-                  410.0,
-                  480
-                ],
-                "sourceFrame": 5,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  163,
-                  80,
-                  606,
-                  480
-                ],
-                "groundContact": [
-                  371.0,
+                  377.0,
                   479
                 ],
                 "sourceFrame": 6,
@@ -7754,13 +7754,13 @@
             [
               {
                 "bounds": [
-                  177,
-                  77,
-                  583,
+                  191,
+                  104,
+                  569,
                   480
                 ],
                 "groundContact": [
-                  357.0,
+                  356.0,
                   480
                 ],
                 "sourceFrame": 5,
@@ -7768,13 +7768,13 @@
               },
               {
                 "bounds": [
-                  162,
-                  80,
-                  605,
+                  177,
+                  107,
+                  590,
                   480
                 ],
                 "groundContact": [
-                  396.0,
+                  390.0,
                   479
                 ],
                 "sourceFrame": 6,
@@ -7801,13 +7801,13 @@
             [
               {
                 "bounds": [
-                  182,
-                  32,
-                  608,
+                  195,
+                  101,
+                  593,
                   480
                 ],
                 "groundContact": [
-                  362.0,
+                  366.0,
                   480
                 ],
                 "sourceFrame": 7,
@@ -7815,159 +7815,159 @@
               },
               {
                 "bounds": [
-                  147,
-                  47,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  342.0,
-                  480
-                ],
-                "sourceFrame": 8,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  45,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  342.0,
-                  480
-                ],
-                "sourceFrame": 9,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  160,
-                  32,
-                  586,
-                  480
-                ],
-                "groundContact": [
-                  405.0,
-                  480
-                ],
-                "sourceFrame": 7,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  47,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  425.0,
-                  480
-                ],
-                "sourceFrame": 8,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  45,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  425.0,
-                  480
-                ],
-                "sourceFrame": 9,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  187,
-                  107,
-                  562,
-                  480
-                ],
-                "groundContact": [
-                  339.0,
-                  480
-                ],
-                "sourceFrame": 7,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  156,
-                  127,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  306.0,
-                  480
-                ],
-                "sourceFrame": 8,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  142,
-                  605,
-                  480
-                ],
-                "groundContact": [
-                  309.0,
-                  480
-                ],
-                "sourceFrame": 9,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  206,
-                  107,
-                  581,
-                  480
-                ],
-                "groundContact": [
-                  428.0,
-                  480
-                ],
-                "sourceFrame": 7,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  127,
-                  612,
-                  480
-                ],
-                "groundContact": [
-                  461.0,
-                  480
-                ],
-                "sourceFrame": 8,
-                "faceRect": null
-              },
-              {
-                "bounds": [
+                  158,
                   163,
-                  142,
-                  621,
+                  594,
                   480
                 ],
                 "groundContact": [
-                  458.0,
+                  316.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  104,
+                  164,
+                  623,
+                  480
+                ],
+                "groundContact": [
+                  323.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  175,
+                  101,
+                  573,
+                  480
+                ],
+                "groundContact": [
+                  401.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  174,
+                  163,
+                  610,
+                  480
+                ],
+                "groundContact": [
+                  451.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  145,
+                  164,
+                  664,
+                  480
+                ],
+                "groundContact": [
+                  444.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  200,
+                  132,
+                  550,
+                  480
+                ],
+                "groundContact": [
+                  341.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  172,
+                  150,
+                  599,
+                  480
+                ],
+                "groundContact": [
+                  313.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  145,
+                  164,
+                  590,
+                  480
+                ],
+                "groundContact": [
+                  311.0,
+                  480
+                ],
+                "sourceFrame": 9,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  218,
+                  132,
+                  568,
+                  480
+                ],
+                "groundContact": [
+                  426.0,
+                  480
+                ],
+                "sourceFrame": 7,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  170,
+                  150,
+                  597,
+                  480
+                ],
+                "groundContact": [
+                  455.0,
+                  480
+                ],
+                "sourceFrame": 8,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  178,
+                  164,
+                  623,
+                  480
+                ],
+                "groundContact": [
+                  456.0,
                   480
                 ],
                 "sourceFrame": 9,
@@ -7994,13 +7994,13 @@
             [
               {
                 "bounds": [
-                  147,
-                  34,
-                  621,
+                  195,
+                  102,
+                  578,
                   480
                 ],
                 "groundContact": [
-                  377.0,
+                  379.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -8008,13 +8008,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  32,
-                  621,
+                  156,
+                  116,
+                  690,
                   480
                 ],
                 "groundContact": [
-                  321.0,
+                  327.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -8022,29 +8022,73 @@
               },
               {
                 "bounds": [
-                  147,
-                  29,
+                  202,
+                  96,
+                  553,
+                  480
+                ],
+                "groundContact": [
+                  370.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  190,
+                  102,
+                  573,
+                  480
+                ],
+                "groundContact": [
+                  388.0,
+                  480
+                ],
+                "sourceFrame": 10,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  78,
+                  116,
+                  612,
+                  480
+                ],
+                "groundContact": [
+                  440.0,
+                  480
+                ],
+                "sourceFrame": 11,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  215,
+                  96,
+                  566,
+                  480
+                ],
+                "groundContact": [
+                  397.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  187,
+                  156,
                   565,
                   480
                 ],
                 "groundContact": [
-                  367.0,
-                  480
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  147,
-                  34,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  390.0,
+                  342.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -8052,43 +8096,43 @@
               },
               {
                 "bounds": [
-                  147,
-                  32,
-                  621,
+                  124,
+                  88,
+                  686,
                   480
                 ],
                 "groundContact": [
-                  446.0,
+                  298.0,
                   480
                 ],
                 "sourceFrame": 11,
                 "faceRect": null
               },
+              {
+                "bounds": [
+                  210,
+                  167,
+                  549,
+                  480
+                ],
+                "groundContact": [
+                  356.0,
+                  480
+                ],
+                "sourceFrame": 12,
+                "faceRect": null
+              }
+            ],
+            [
               {
                 "bounds": [
                   203,
-                  29,
-                  621,
+                  156,
+                  581,
                   480
                 ],
                 "groundContact": [
-                  400.0,
-                  480
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  173,
-                  133,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  345.0,
+                  425.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -8096,13 +8140,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  60,
-                  621,
+                  82,
+                  88,
+                  644,
                   480
                 ],
                 "groundContact": [
-                  300.0,
+                  469.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -8110,57 +8154,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  64,
-                  561,
+                  219,
+                  167,
+                  558,
                   480
                 ],
                 "groundContact": [
-                  355.0,
-                  480
-                ],
-                "sourceFrame": 12,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  147,
-                  133,
-                  595,
-                  480
-                ],
-                "groundContact": [
-                  422.0,
-                  480
-                ],
-                "sourceFrame": 10,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  60,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  467.0,
-                  480
-                ],
-                "sourceFrame": 11,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  207,
-                  64,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  412.0,
+                  411.0,
                   480
                 ],
                 "sourceFrame": 12,
@@ -8188,13 +8188,13 @@
             [
               {
                 "bounds": [
-                  192,
-                  21,
-                  575,
+                  205,
+                  41,
+                  562,
                   480
                 ],
                 "groundContact": [
-                  381.0,
+                  379.0,
                   480
                 ],
                 "sourceFrame": 1,
@@ -8202,99 +8202,41 @@
               },
               {
                 "bounds": [
-                  172,
-                  19,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  394.0,
-                  480
-                ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  147,
-                  18,
+                  186,
+                  38,
                   615,
-                  480
-                ],
-                "groundContact": [
-                  375.0,
-                  480
-                ],
-                "sourceFrame": 3,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  168,
-                  16,
-                  573,
-                  480
-                ],
-                "groundContact": [
-                  352.0,
-                  480
-                ],
-                "sourceFrame": 4,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  193,
-                  21,
-                  576,
                   480
                 ],
                 "groundContact": [
                   386.0,
                   480
                 ],
-                "sourceFrame": 1,
+                "sourceFrame": 2,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  147,
-                  19,
-                  596,
+                  202,
+                  42,
+                  600,
                   480
                 ],
                 "groundContact": [
                   373.0,
                   480
                 ],
-                "sourceFrame": 2,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  153,
-                  18,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  392.0,
-                  480
-                ],
                 "sourceFrame": 3,
                 "faceRect": null
               },
               {
                 "bounds": [
-                  196,
-                  16,
-                  601,
+                  182,
+                  34,
+                  560,
                   480
                 ],
                 "groundContact": [
-                  416.0,
+                  354.0,
                   480
                 ],
                 "sourceFrame": 4,
@@ -8304,13 +8246,13 @@
             [
               {
                 "bounds": [
-                  301,
-                  27,
-                  621,
+                  206,
+                  41,
+                  563,
                   480
                 ],
                 "groundContact": [
-                  475.0,
+                  388.0,
                   480
                 ],
                 "sourceFrame": 1,
@@ -8318,13 +8260,13 @@
               },
               {
                 "bounds": [
-                  374,
-                  69,
-                  621,
+                  152,
+                  38,
+                  581,
                   480
                 ],
                 "groundContact": [
-                  534.0,
+                  380.0,
                   480
                 ],
                 "sourceFrame": 2,
@@ -8332,13 +8274,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  27,
-                  344,
+                  168,
+                  42,
+                  566,
                   480
                 ],
                 "groundContact": [
-                  227.0,
+                  394.0,
                   480
                 ],
                 "sourceFrame": 3,
@@ -8346,13 +8288,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  35,
-                  432,
+                  208,
+                  34,
+                  586,
                   480
                 ],
                 "groundContact": [
-                  263.0,
+                  413.0,
                   480
                 ],
                 "sourceFrame": 4,
@@ -8362,13 +8304,13 @@
             [
               {
                 "bounds": [
-                  147,
-                  27,
-                  467,
+                  243,
+                  14,
+                  582,
                   480
                 ],
                 "groundContact": [
-                  292.0,
+                  406.0,
                   480
                 ],
                 "sourceFrame": 1,
@@ -8376,13 +8318,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  69,
-                  394,
+                  193,
+                  14,
+                  613,
                   480
                 ],
                 "groundContact": [
-                  233.0,
+                  440.0,
                   480
                 ],
                 "sourceFrame": 2,
@@ -8390,13 +8332,13 @@
               },
               {
                 "bounds": [
-                  424,
-                  27,
-                  621,
+                  154,
+                  14,
+                  589,
                   480
                 ],
                 "groundContact": [
-                  540.0,
+                  360.0,
                   480
                 ],
                 "sourceFrame": 3,
@@ -8404,13 +8346,71 @@
               },
               {
                 "bounds": [
-                  336,
-                  35,
-                  621,
+                  154,
+                  14,
+                  589,
                   480
                 ],
                 "groundContact": [
-                  504.0,
+                  360.0,
+                  480
+                ],
+                "sourceFrame": 4,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  186,
+                  14,
+                  525,
+                  480
+                ],
+                "groundContact": [
+                  361.0,
+                  480
+                ],
+                "sourceFrame": 1,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  154,
+                  14,
+                  574,
+                  480
+                ],
+                "groundContact": [
+                  326.0,
+                  480
+                ],
+                "sourceFrame": 2,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  179,
+                  14,
+                  614,
+                  480
+                ],
+                "groundContact": [
+                  407.0,
+                  480
+                ],
+                "sourceFrame": 3,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  179,
+                  14,
+                  614,
+                  480
+                ],
+                "groundContact": [
+                  407.0,
                   480
                 ],
                 "sourceFrame": 4,
@@ -8436,39 +8436,9 @@
             [
               {
                 "bounds": [
-                  170,
-                  13,
-                  621,
-                  480
-                ],
-                "groundContact": [
-                  389.0,
-                  480
-                ],
-                "sourceFrame": 5,
-                "faceRect": null
-              },
-              {
-                "bounds": [
-                  206,
-                  9,
-                  598,
-                  480
-                ],
-                "groundContact": [
-                  397.0,
-                  480
-                ],
-                "sourceFrame": 6,
-                "faceRect": null
-              }
-            ],
-            [
-              {
-                "bounds": [
-                  147,
-                  13,
-                  598,
+                  184,
+                  21,
+                  608,
                   480
                 ],
                 "groundContact": [
@@ -8480,13 +8450,13 @@
               },
               {
                 "bounds": [
-                  170,
-                  9,
-                  562,
+                  218,
+                  12,
+                  584,
                   480
                 ],
                 "groundContact": [
-                  370.0,
+                  404.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -8496,13 +8466,13 @@
             [
               {
                 "bounds": [
-                  147,
-                  38,
-                  464,
+                  160,
+                  21,
+                  584,
                   480
                 ],
                 "groundContact": [
-                  289.0,
+                  389.0,
                   480
                 ],
                 "sourceFrame": 5,
@@ -8510,13 +8480,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  28,
-                  539,
+                  184,
+                  12,
+                  550,
                   480
                 ],
                 "groundContact": [
-                  346.0,
+                  363.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -8526,13 +8496,13 @@
             [
               {
                 "bounds": [
-                  304,
-                  38,
-                  621,
+                  211,
+                  25,
+                  555,
                   480
                 ],
                 "groundContact": [
-                  478.0,
+                  388.0,
                   480
                 ],
                 "sourceFrame": 5,
@@ -8540,13 +8510,43 @@
               },
               {
                 "bounds": [
-                  229,
-                  28,
-                  621,
+                  186,
+                  8,
+                  570,
                   480
                 ],
                 "groundContact": [
-                  421.0,
+                  382.0,
+                  480
+                ],
+                "sourceFrame": 6,
+                "faceRect": null
+              }
+            ],
+            [
+              {
+                "bounds": [
+                  214,
+                  25,
+                  558,
+                  480
+                ],
+                "groundContact": [
+                  380.0,
+                  480
+                ],
+                "sourceFrame": 5,
+                "faceRect": null
+              },
+              {
+                "bounds": [
+                  199,
+                  8,
+                  583,
+                  480
+                ],
+                "groundContact": [
+                  386.0,
                   480
                 ],
                 "sourceFrame": 6,
@@ -8576,13 +8576,13 @@
             [
               {
                 "bounds": [
-                  177,
-                  29,
-                  570,
+                  191,
+                  68,
+                  558,
                   480
                 ],
                 "groundContact": [
-                  348.0,
+                  354.0,
                   480
                 ],
                 "sourceFrame": 7,
@@ -8590,9 +8590,9 @@
               },
               {
                 "bounds": [
-                  155,
-                  27,
-                  604,
+                  170,
+                  134,
+                  589,
                   480
                 ],
                 "groundContact": [
@@ -8604,13 +8604,13 @@
               },
               {
                 "bounds": [
-                  151,
-                  172,
-                  609,
+                  166,
+                  192,
+                  593,
                   480
                 ],
                 "groundContact": [
-                  374.0,
+                  373.0,
                   480
                 ],
                 "sourceFrame": 9,
@@ -8618,13 +8618,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  242,
-                  619,
+                  163,
+                  258,
+                  604,
                   480
                 ],
                 "groundContact": [
-                  386.0,
+                  387.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -8632,13 +8632,13 @@
               },
               {
                 "bounds": [
-                  155,
-                  244,
-                  620,
+                  171,
+                  260,
+                  632,
                   480
                 ],
                 "groundContact": [
-                  390.0,
+                  397.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -8646,13 +8646,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  312,
-                  600,
+                  207,
+                  324,
+                  585,
                   480
                 ],
                 "groundContact": [
-                  394.0,
+                  398.0,
                   479
                 ],
                 "sourceFrame": 12,
@@ -8662,13 +8662,13 @@
             [
               {
                 "bounds": [
-                  198,
-                  29,
-                  591,
+                  210,
+                  68,
+                  577,
                   480
                 ],
                 "groundContact": [
-                  419.0,
+                  413.0,
                   480
                 ],
                 "sourceFrame": 7,
@@ -8676,13 +8676,13 @@
               },
               {
                 "bounds": [
-                  165,
-                  27,
-                  614,
+                  179,
+                  134,
+                  598,
                   480
                 ],
                 "groundContact": [
-                  400.0,
+                  399.0,
                   480
                 ],
                 "sourceFrame": 8,
@@ -8690,9 +8690,9 @@
               },
               {
                 "bounds": [
-                  159,
-                  172,
-                  617,
+                  174,
+                  192,
+                  601,
                   480
                 ],
                 "groundContact": [
@@ -8704,9 +8704,9 @@
               },
               {
                 "bounds": [
-                  149,
-                  242,
-                  621,
+                  165,
+                  258,
+                  606,
                   480
                 ],
                 "groundContact": [
@@ -8718,13 +8718,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  244,
-                  612,
+                  137,
+                  260,
+                  598,
                   480
                 ],
                 "groundContact": [
-                  376.0,
+                  371.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -8732,13 +8732,13 @@
               },
               {
                 "bounds": [
-                  168,
-                  312,
-                  621,
+                  182,
+                  324,
+                  560,
                   480
                 ],
                 "groundContact": [
-                  373.0,
+                  368.0,
                   479
                 ],
                 "sourceFrame": 12,
@@ -8748,13 +8748,13 @@
             [
               {
                 "bounds": [
-                  181,
-                  36,
-                  621,
+                  194,
+                  143,
+                  575,
                   480
                 ],
                 "groundContact": [
-                  367.0,
+                  366.0,
                   479
                 ],
                 "sourceFrame": 7,
@@ -8762,9 +8762,9 @@
               },
               {
                 "bounds": [
-                  151,
-                  41,
-                  621,
+                  166,
+                  172,
+                  589,
                   480
                 ],
                 "groundContact": [
@@ -8776,9 +8776,9 @@
               },
               {
                 "bounds": [
-                  147,
-                  169,
-                  621,
+                  163,
+                  190,
+                  585,
                   480
                 ],
                 "groundContact": [
@@ -8790,13 +8790,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  263,
-                  621,
+                  150,
+                  277,
+                  655,
                   480
                 ],
                 "groundContact": [
-                  374.0,
+                  381.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -8804,13 +8804,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  297,
-                  621,
+                  220,
+                  310,
+                  620,
                   480
                 ],
                 "groundContact": [
-                  407.0,
+                  413.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -8818,13 +8818,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  321,
-                  589,
+                  208,
+                  331,
+                  575,
                   480
                 ],
                 "groundContact": [
-                  400.0,
+                  401.0,
                   480
                 ],
                 "sourceFrame": 12,
@@ -8834,13 +8834,13 @@
             [
               {
                 "bounds": [
-                  147,
-                  36,
-                  587,
+                  193,
+                  143,
+                  574,
                   480
                 ],
                 "groundContact": [
-                  400.0,
+                  401.0,
                   479
                 ],
                 "sourceFrame": 7,
@@ -8848,9 +8848,9 @@
               },
               {
                 "bounds": [
-                  147,
-                  41,
-                  617,
+                  179,
+                  172,
+                  602,
                   480
                 ],
                 "groundContact": [
@@ -8862,9 +8862,9 @@
               },
               {
                 "bounds": [
-                  147,
-                  169,
-                  621,
+                  183,
+                  190,
+                  605,
                   480
                 ],
                 "groundContact": [
@@ -8876,13 +8876,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  263,
-                  621,
+                  113,
+                  277,
+                  618,
                   480
                 ],
                 "groundContact": [
-                  393.0,
+                  386.0,
                   480
                 ],
                 "sourceFrame": 10,
@@ -8890,13 +8890,13 @@
               },
               {
                 "bounds": [
-                  147,
-                  297,
-                  621,
+                  148,
+                  310,
+                  548,
                   480
                 ],
                 "groundContact": [
-                  360.0,
+                  354.0,
                   480
                 ],
                 "sourceFrame": 11,
@@ -8904,13 +8904,13 @@
               },
               {
                 "bounds": [
-                  179,
-                  321,
-                  621,
+                  193,
+                  331,
+                  560,
                   480
                 ],
                 "groundContact": [
-                  367.0,
+                  366.0,
                   480
                 ],
                 "sourceFrame": 12,

@@ -1,4 +1,4 @@
-import { DEFAULT_AUTO, AUTO_RANGES, huntList, isSurvivalSkill, loadGameData, normalizeAuto, autoSkillSequence, type AutoSettings, type MapId } from "@thainative/shared";
+import { DEFAULT_AUTO, AUTO_RANGES, skillTierRank, type AutoPotion, huntList, isSurvivalSkill, loadGameData, normalizeAuto, autoSkillSequence, type AutoSettings, type MapId } from "@thainative/shared";
 import skillsData from "../../shared/data/skills.json";
 import "./auto-ui.css";
 
@@ -11,7 +11,7 @@ const RANGE_TEXT: Record<keyof typeof AUTO_RANGES, string> = { near: "ใกล�
  * ตั้งค่า AUTO window (the ⚙ beside the AUTO button). The server owns the settings and runs AUTO with
  * them; this window edits a local copy and sends it back (debounced) as {t:'autoSettings'}.
  */
-export function mountAutoSettings(o: { send: (m: any) => void; player: () => any; map: () => MapId; onOpen: () => void }) {
+export function mountAutoSettings(o: { send: (m: any) => void; player: () => any; map: () => MapId; onOpen: () => void; potion: () => { settings: AutoPotion; set(next: AutoPotion): void } }) {
 	let cfg: AutoSettings = { ...DEFAULT_AUTO },
 		timer = 0,
 		saving = false;
@@ -31,7 +31,7 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 			bar: (string | null)[] = (p?.hotbar ?? []).map((h: any) => h.skill);
 		const usable = (id: string) => !!p?.skills?.[id] && !!spec(id) && !spec(id).passive;
 		// every usable hotbar skill in AUTO order, the switched-off ones included so they can be turned back on
-		return autoSkillSequence({ ...cfg, off: [] }, bar, usable);
+		return autoSkillSequence({ ...cfg, off: [] }, bar, usable, Object.keys(p?.skills ?? {}), (id) => skillTierRank(data, id));
 	};
 	function set(patch: Partial<AutoSettings>) {
 		cfg = normalizeAuto({ ...cfg, ...patch });
@@ -47,8 +47,14 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 	};
 	const sw = (key: "basic" | "attackers" | "elites", label: string, note = "") =>
 		`<label class="auto-row"><span><b>${label}</b>${note ? `<small>${note}</small>` : ""}</span><span class="g-switch"><input type="checkbox" data-key="${key}" ${cfg[key] ? "checked" : ""}><i></i></span></label>`;
-	const stepper = (key: "hpPotion" | "survive" | "mpPotion", label: string, note: string) =>
-		`<div class="auto-row"><span><b>${label}</b><small>${note}</small></span><span class="auto-step"><button type="button" data-step="${key}:-5" aria-label="ลด">−</button><output>${cfg[key] ? `${cfg[key]}%` : "ปิด"}</output><button type="button" data-step="${key}:5" aria-label="เพิ่ม">+</button></span></div>`;
+	// HP / SP use the per-character auto-potion rule (also works outside AUTO); 'ปิด' is that rule switched off.
+	const value = (key: "hp" | "mp" | "survive") => {
+		if (key === "survive") return cfg.survive;
+		const rule = o.potion().settings[key];
+		return rule.on ? rule.at : 0;
+	};
+	const stepper = (key: "hp" | "mp" | "survive", label: string, note: string) =>
+		`<div class="auto-row"><span><b>${label}</b><small>${note}</small></span><span class="auto-step"><button type="button" data-step="${key}:-5" aria-label="ลด">−</button><output>${value(key) ? `${value(key)}%` : "ปิด"}</output><button type="button" data-step="${key}:5" aria-label="เพิ่ม">+</button></span></div>`;
 
 	function draw() {
 		if (!panel.open) return;
@@ -81,10 +87,10 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 					${sw("basic", "ตีปกติระหว่างรอสกิล", "ปิดไว้เพื่อประหยัด SP สำหรับสายเวท")}
 				</section>
 				<section class="auto-card"><h3>ฟื้นฟู</h3>
-					${stepper("hpPotion", "ดื่มยา HP เมื่อต่ำกว่า", "ใช้ยาแดงที่ดีที่สุดในกระเป๋า")}
+					${stepper("hp", "ดื่มยา HP เมื่อต่ำกว่า", "ใช้ยาแดงที่ดีที่สุดในกระเป๋า")}
 					${stepper("survive", "ใช้สกิลเอาตัวรอดเมื่อ HP ต่ำกว่า", survivors || "ยังไม่มีสกิลเอาตัวรอดในแถบ")}
-					${stepper("mpPotion", "ดื่มยา SP เมื่อต่ำกว่า", "ใช้ยาฟ้าในกระเป๋า")}
-					<p class="auto-note">ตั้งเป็น "ปิด" ถ้าไม่อยากให้ AUTO ดื่มยาเอง · ยาหมดและ HP ต่ำกว่า 25% AUTO จะถอยกลับแคมป์</p>
+					${stepper("mp", "ดื่มยา SP เมื่อต่ำกว่า", "ใช้ยาฟ้าในกระเป๋า")}
+					<p class="auto-note">ดื่มยาทำงานทั้งตอน AUTO และเล่นเอง (ค่าเดียวกับในตั้งค่า) · ตั้งเป็น "ปิด" ถ้าไม่อยากดื่มเอง · ยาหมดและ HP ต่ำกว่า 25% AUTO จะถอยกลับแคมป์</p>
 				</section>
 				<section class="auto-card"><h3>เป้าหมาย</h3>
 					<div class="auto-row col"><span><b>มอนสเตอร์ที่จะตี</b><small>${map === "city_plaza" ? "นครที่ถูกลืมเลือน" : map === "forest" ? "ป่าหมอก" : "ทุ่งวุ้นจิ๋ว"} · เลือกได้หลายตัว · จำแยกแต่ละแผนที่</small></span><div class="auto-chips">${mobChips}</div></div>
@@ -119,8 +125,14 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 		}
 		const step = t.closest<HTMLElement>("[data-step]");
 		if (step) {
-			const [k, d] = step.dataset.step!.split(":") as ["hpPotion" | "survive" | "mpPotion", string];
-			return set({ [k]: Math.max(0, Math.min(90, cfg[k] + Number(d))) });
+			const [k, d] = step.dataset.step!.split(":") as ["hp" | "mp" | "survive", string];
+			if (k === "survive") return set({ survive: Math.max(0, Math.min(90, cfg.survive + Number(d))) });
+			// the rule keeps 5–95; stepping below 5 switches it off
+			const rule = o.potion().settings,
+				// switching back on resumes the last threshold instead of starting from 5%
+				next = !rule[k].on && Number(d) > 0 ? rule[k].at : value(k) + Number(d);
+			o.potion().set({ ...rule, [k]: next < 5 ? { ...rule[k], on: false } : { on: true, at: Math.min(95, Math.max(5, next)) } });
+			return draw();
 		}
 		const mode = t.closest<HTMLElement>("[data-mode]");
 		if (mode) return set({ mode: mode.dataset.mode as AutoSettings["mode"] });

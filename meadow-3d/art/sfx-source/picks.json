@@ -1,6 +1,5 @@
 {
   "whirlwind": "raw/whirlwind_v1.mp3",
-  "jelly_hit": "raw/jelly_hit_v1.mp3",
   "levelup": "raw/levelup_v1.mp3",
   "ui_click": "raw/ui_click_v1.mp3",
   "job_change": "raw/job_change_v1.mp3",
@@ -13,7 +12,7 @@
   "provoke": "raw/provoke_v1.mp3",
   "endure": "raw/endure_v1.mp3",
   "punch": "raw/punch_v1.mp3",
-  "crit": "raw/crit_v1.mp3",
+  "crit": "raw/crit_v2.mp3",
   "king_slam": "raw/king_slam_v1.mp3",
   "potion": "raw/potion_v1.mp3",
   "ui_open": "raw/ui_open_v1.mp3",
@@ -24,5 +23,11 @@
   "jelly_hop": "raw/jelly_hop_v1.mp3",
   "jelly_death": "raw/jelly_death_v1.mp3",
   "king_roar": "raw/king_roar_v1.mp3",
-  "pickup": "raw/pickup_v1.mp3"
+  "pickup": "raw/pickup_v1.mp3",
+  "hit_thock": "synth/hit_thock.wav",
+  "mat_jelly": "synth/mat_jelly.wav",
+  "mat_fur": "synth/mat_fur.wav",
+  "mat_wood": "synth/mat_wood.wav",
+  "mat_shroom": "synth/mat_shroom.wav",
+  "mat_wisp": "synth/mat_wisp.wav"
 }

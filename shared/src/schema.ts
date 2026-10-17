@@ -272,7 +272,9 @@ export const SkillSchema = z
 		passive: z.boolean(),
 		values: z.record(z.string(), z.array(nonnegative)).default({}),
 		hits: positive.int().max(10).default(1),
-		effect: z.enum(["dash", "knockup", "taunt", "endure", "heal"]).optional(),
+		effect: z.enum(["dash", "knockup", "taunt", "endure", "heal", "stun", "guard", "rage"]).optional(),
+		/** Job 1 skill whose motion, VFX and sound this skill borrows until it has its own art. */
+		visual: id.optional(),
 		duration: nonnegative.optional(),
 		pvpDurationMul: fraction.optional(),
 		pvpEffect: z

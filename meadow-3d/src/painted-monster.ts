@@ -2,6 +2,7 @@ import {BOSS_METRES} from './world-scale.ts';
 import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Enemy, MonsterMotion, SlimeVariant } from './sim';
 import { makeMonsterFallback } from './actors';
+import { uprightSprite } from './upright-depth.ts';
 import { monsterCell, monsterOpacity, VARIANT_HUE, monsterSpecies, SPECIES_SCALE } from './monster-animation';
 import type { MonsterSpecies } from './monster-animation';
 interface MotionAtlas{file:string;columns:number;rows:number;frames:number;duration:number;directions:{faceRect:[number,number,number,number]|null;bounds:number[]}[][]}
@@ -56,7 +57,7 @@ export const SMALL_JELLY_SCALE=.72;
 export function makePaintedMonster(loader:PaintedLoader,boss=false,options:MonsterOptions={}){
  const species=monsterSpecies(options.dataId,boss),bank=assetBank(loader);const placeholder=options.placeholder;bank.request(species);
  const root=new T.Group();const uniforms={uJellyCell:{value:new T.Vector4(0,0,1,1)},uJellyHue:{value:0},uJellyPhase:{value:0},uJellyFlash:{value:0},uJellyTime:{value:0},uForestPhase:{value:0},uJellyExpression:{value:null as T.Texture|null},uJellyFaceRect:{value:new T.Vector4(0,0,1,1)},uJellyFaceDirection:{value:0},uJellyFaceEnabled:{value:0}};
- const material=new T.SpriteMaterial({transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false,color:options.tint||'#ffffff'});paintShader(material,uniforms);
+ const material=new T.SpriteMaterial({transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false,color:options.tint||'#ffffff'});paintShader(material,uniforms);uprightSprite(material);
  const portrait=new T.Sprite(material);portrait.userData.enemyId=options.id;portrait.visible=false;root.add(portrait);
  const fallback=makeMonsterFallback(boss);fallback.userData.enemyId=options.id;root.add(fallback);
  if(placeholder){(fallback.material as T.MeshBasicMaterial).color.set(placeholder.color);const h=placeholder.height;fallback.scale.set(h*.5,h*.5,h*.4);fallback.position.y=h*.5;}

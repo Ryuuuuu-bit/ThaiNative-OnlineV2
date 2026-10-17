@@ -18,11 +18,11 @@ with sync_playwright() as p:
    page.evaluate('(i)=>__ART__.point(i,true)',i);page.wait_for_timeout(2200)
    row=page.evaluate('__ART__.snapshot()');assert row['map']=='city_plaza' and row['quality']==('HQ' if hq else 'LOW') and row['crowd']==49,'Review reloaded; rerun after builds finish'
    row['view']=stop[0];rows.append(row)
+ report={'viewport':[1600,1000],'crowd':'Aerin + 48 display actors, plus city residents; render-only benchmark','rows':rows,'errors':errors}
+ (OUT/'city-polish-4-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
  assert not errors,errors
  assert all(r['fps']>=(50 if r['quality']=='HQ' else 30) for r in rows),'FPS target missed'
  assert max(r['drawCalls'] for r in rows if r['quality']=='HQ')<=220,'HQ draw budget missed'
- report={'viewport':[1600,1000],'crowd':'Aerin + 48 display actors, plus city residents; render-only benchmark','rows':rows,'errors':errors}
- (OUT/'city-polish-3-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
  print(json.dumps({'rows':[{k:r[k] for k in ['view','quality','drawCalls','triangles','instances','visibleInstances','fps']} for r in rows],'errors':errors},indent=2))
  browser.close()
 

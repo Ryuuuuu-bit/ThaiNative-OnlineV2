@@ -1,4 +1,4 @@
-import {applyInventory,starterInventory,inventoryWeight,redPotion,equipped,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
+import {applyInventory,starterInventory,inventoryWeight,bestPotion,equipped,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
 import {
 	migrateJob,
 	newJob,
@@ -92,6 +92,8 @@ export interface Player extends Vec, JobProgress {
  healerReadyAt: number;
  returnReadyAt?:number; returnRemaining?:number;
  audioSettings?: import('../audio-settings.js').AudioSettings;
+ /** Per-character auto-drink thresholds; the server drinks from the bag when a bar falls below them. */
+ autoPotion?: import('../auto-potion.js').AutoPotion;
 	statuses: TimedEffect[];
 	castRemaining: number;
 	jobsVersion: number;
@@ -110,6 +112,8 @@ export interface Player extends Vec, JobProgress {
 	autoPath: Vec[];
 	autoGoal: Vec | null;
 	autoCharge: number;
+	/** AUTO: enemy id → game time until which it is skipped because no route reached it. */
+	autoUnreachable?: Record<number, number>;
 	auto: boolean;
 	autoState: AutoState;
 	hp: number;
@@ -174,7 +178,7 @@ export function setBossCooldown(p: Pick<Player, "bossReadyAt" | "bossCooldowns">
 }
 export { CD } from "./constants.js";
 import { CD, ACTION_SKILLS } from "./constants.js";
-import { AUTO_RANGES, DEFAULT_AUTO, autoCastOrder, autoSkillSequence, isSurvivalSkill, wantedMonsters, type AutoSettings } from "../auto-settings.js";
+import { AUTO_RANGES, DEFAULT_AUTO, skillTierRank, autoCastOrder, autoSkillSequence, isSurvivalSkill, wantedMonsters, type AutoSettings } from "../auto-settings.js";
 export const KING_PATTERN: KingAttack[] = [
 	"slam",
 	"sweep",
@@ -365,6 +369,8 @@ export function refreshStats(g: Game, p: Player) {
 		p.stats.hardDef *= 1 + endure.value;
 		p.stats.softDef *= 1 + endure.value;
 	}
+	const rage = p.statuses.find((s) => s.id === "rage");
+	if (rage) p.stats.atk *= 1 + rage.value;
 	p.maxHp = p.stats.maxHp;
 	p.maxMp = p.stats.maxSp;
 	p.hp = Math.min(p.hp, p.maxHp);
@@ -544,6 +550,11 @@ export function setBossTimer(g: Game, seconds: number) {
 	boss.hp = boss.maxHp;
 	setMotion(boss, "death");
 }
+/** Value of a learned passive at the player's level (0 when not learned). */
+function learnedValue(g: Game, p: Player, id: string, key: string) {
+	const level = p.skills[id] || 0;
+	return level ? skillValue(resolveSkill(g.data, id, level), key, level) : 0;
+}
 function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number}) {
 	if (e.dead) return false;
 	const defender = monsterStats(
@@ -593,7 +604,10 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 	if (damage > 0) g.p.lastCombat = g.time;
 	e.lastEngagedAt=g.time;
 	e.damageBy[g.p.id] = (e.damageBy[g.p.id] || 0) + Math.min(damage, e.hp);
+	const dealt = Math.min(damage, e.hp);
 	e.hp = Math.max(0, e.hp - damage);
+	const lifesteal = learnedValue(g, g.p, "bloodlust", "lifesteal");
+	if (lifesteal && dealt > 0 && !g.p.dead) g.p.hp = Math.min(g.p.maxHp, g.p.hp + Math.round(dealt * lifesteal));
 	applyEffects(e, skillEffects(skill, g.p.skills[skill.id] || 1, g.p.id));
 	e.hurt = 0.18;
 	e.aggro = e.boss ? 30 : 10;
@@ -604,7 +618,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 		move(e, (dx / d) * 0.23, (dz / d) * 0.23);
 	}
 	emit(g, "hit", {
-        skillId:skill.id,hitIndex:prepared?.impact,
+        skillId:skill.id,visual:skill.visual,hitIndex:prepared?.impact,
 		x: e.x,
 		z: e.z,
 		id: e.id,
@@ -676,8 +690,18 @@ function hurt(
 		amount = result.damage;
 		breakdown = result.breakdown;
 	}
+	const guard = p.statuses.find((s) => s.id === "guard");
+	if (guard) amount = Math.round(amount * (1 - guard.value));
 	p.hp = Math.max(0, p.hp - amount);
 	if (amount > 0) p.lastCombat = g.time;
+	const reflect = learnedValue(g, p, "retribution", "reflect");
+	if (reflect && source && !source.dead && amount > 0) {
+		const back = Math.max(1, Math.round(amount * reflect));
+		source.damageBy[p.id] = (source.damageBy[p.id] || 0) + Math.min(back, source.hp);
+		source.hp = Math.max(0, source.hp - back);
+		emit(g, "hit", { skillId: "retribution", x: source.x, z: source.z, id: source.id, damage: back, crit: false, element: "weapon", boss: source.boss, variant: source.variant, reflect: true });
+		if (source.hp === 0) defeat(g, source);
+	}
 	if (!p.statuses.some((s) => s.id === "endure")) p.hurt = 0.3;
 	p.invulnerable = 0.55;
 	emit(g, "hurt", { amount, breakdown });
@@ -825,22 +849,24 @@ export function action(g: Game, a: Action) {
 		p.mp -= skill.sp;
 		p.cd[skill.id] = skill.cooldown;
 		if (skill.id === "whirlwind") p.cd.spin = skill.cooldown;
+		const look = skill.visual ?? skill.id;
 		p.attack =
-			skill.id === "whirlwind"
+			look === "whirlwind"
 				? 0.6
 				: skill.effect === "dash"
 					? 0.5
 					: skill.cast || 0.5;
 		p.attackKind =
-			skill.id === "whirlwind"
+			look === "whirlwind"
 				? "spin"
-				: skill.id === "slash"
+				: look === "slash"
 					? "slash"
 					: skill.effect === "dash"
 						? "dash_strike"
 						: "meteor";
 		emit(g, "skill", {
 			skillId: skill.id,
+			visual: skill.visual,
 			duration: skill.cast || 0.7,
 			dx: p.fx,
 			dz: p.fz,
@@ -852,6 +878,12 @@ export function action(g: Game, a: Action) {
 			);
 			p.hp += amount;
 			emit(g, "heal", { amount });
+			return true;
+		}
+		if (skill.effect === "guard" || skill.effect === "rage") {
+			if (skill.effect === "rage") p.hp = Math.max(1, p.hp - Math.round(p.maxHp * skillValue(skill, "hpCost", level)));
+			applyEffects(p, skillEffects(skill, level, p.id));
+			refreshStats(g, p);
 			return true;
 		}
 		if (skill.effect === "endure") {
@@ -945,11 +977,7 @@ export function action(g: Game, a: Action) {
 		emit(g, "dash", { dx: p.fx, dz: p.fz });
 		return true;
 	}
-	if (skill.id === "potion" && p.inventory) {
-  const best=redPotion(p.inventory,g.data);if(!best||p.hp>=p.maxHp||p.cd.potion>0)return false;
-  if(g.inventoryCommit){g.inventoryCommit(p,{op:'use',id:best.id},()=>{});return true;}
-  const out=applyInventory({gold:p.gold,inventory:p.inventory},{op:'use',id:best.id},p.profile,g.data,()=>String(g.nextId++));p.inventory=out.state.inventory;p.hp=Math.min(p.maxHp,p.hp+out.effect!.amount);p.cd.potion=skill.cooldown;refreshStats(g,p);return true;
- }
+	if (skill.id === "potion" && p.inventory) return drinkPotion(g, "hp", skill.cooldown);
  if (skill.id === "potion") {
 		if (p.potions <= 0) {
 			emit(g, "notice", { text: "ยาหมดแล้ว กลับไปฟื้นพลังที่แคมป์" });
@@ -967,6 +995,47 @@ export function action(g: Game, a: Action) {
 		return true;
 	}
 	return false;
+}
+/** Drinks the strongest bag potion of this kind, sharing the one potion cooldown. */
+function drinkPotion(g: Game, kind: "hp" | "sp", cooldown: number) {
+	const p = g.p;
+	if (!p.inventory || p.dead || p.cd.potion > 0) return false;
+	if (kind === "hp" ? p.hp >= p.maxHp : p.mp >= p.maxMp) return false;
+	const best = bestPotion(p.inventory, g.data, kind);
+	if (!best) return false;
+	if (g.inventoryCommit) {
+		// The server applies the effect once the bag write commits; hold the cooldown now so nothing queues twice.
+		p.cd.potion = cooldown;
+		g.inventoryCommit(p, { op: "use", id: best.id }, () => {});
+		return true;
+	}
+	const out = applyInventory({ gold: p.gold, inventory: p.inventory }, { op: "use", id: best.id }, p.profile, g.data, () => String(g.nextId++));
+	p.inventory = out.state.inventory;
+	if (kind === "hp") p.hp = Math.min(p.maxHp, p.hp + out.effect!.amount);
+	else p.mp = Math.min(p.maxMp, p.mp + out.effect!.amount);
+	p.cd.potion = cooldown;
+	refreshStats(g, p);
+	return true;
+}
+/** Auto-potion: drink when HP or MP is below the player's threshold. HP goes first; both share the cooldown. */
+export function autoDrink(g: Game): "hp" | "mp" | null {
+	const p = g.p,
+		rule = p.autoPotion;
+	if (!rule || !p.inventory || p.dead || p.cd.potion > 0 || p.castRemaining > 0) return null;
+	if (p.statuses.some((s) => s.id === "stun" || s.id === "knockup")) return null;
+	const cooldown = gameSkill(g, "potion").cooldown;
+	for (const [kind, on, at, now, max] of [
+		["hp", rule.hp.on, rule.hp.at, p.hp, p.maxHp],
+		["mp", rule.mp.on, rule.mp.at, p.mp, p.maxMp],
+	] as const) {
+		if (!on || now >= (max * at) / 100) continue;
+		const best = bestPotion(p.inventory, g.data, kind === "hp" ? "hp" : "sp");
+		if (best && drinkPotion(g, kind === "hp" ? "hp" : "sp", cooldown)) {
+			emit(g, "autoPotion", { kind, template: best.template });
+			return kind;
+		}
+	}
+	return null;
 }
 export function revive(g: Game) {
 	const p = g.p;
@@ -1011,6 +1080,7 @@ export function setAuto(g: Game, enabled: boolean) {
 	g.autoPath = [];
 	g.autoGoal = null;
 	g.autoCharge = -1;
+	g.p.autoUnreachable = undefined;
 	g.destination = null;
 	if (!enabled) g.target = null;
 	emit(g, "notice", {
@@ -1184,8 +1254,7 @@ function autoStep(g: Game, dt: number): Vec {
 	if (g.autoTimer <= 0) {
 		g.autoTimer += 0.2;
 		const cfg = p.autoCfg ?? DEFAULT_AUTO;
-		if (cfg.hpPotion && p.hp < p.maxHp * cfg.hpPotion / 100 && p.potions > 0) action(g, "potion");
-		else if (cfg.mpPotion && p.mp < p.maxMp * cfg.mpPotion / 100) autoDrinkSp(g);
+		if (!p.autoPotion?.hp.on && p.hp < p.maxHp * 0.45 && p.potions > 0) action(g, "potion");
 		if (p.hp < p.maxHp * 0.25 && p.potions === 0) p.autoState = "retreat";
 		const retreat = p.autoState === "retreat" && p.hp < p.maxHp * 0.9;
 		const target = autoPickTarget(g, cfg);
@@ -1222,7 +1291,16 @@ function autoStep(g: Game, dt: number): Vec {
 		}
 		if (!retreat) {
 			p.autoState = "seek";
-			return navigate(g, target, reach);
+			const direction = navigate(g, target, reach);
+			if (g.autoPath.length) return direction;
+			// No route: standing still on this target would freeze AUTO, so hunt something else.
+			p.autoUnreachable = Object.fromEntries(
+				Object.entries(p.autoUnreachable || {}).filter(([, until]) => until > g.time),
+			);
+			p.autoUnreachable[target.id] = g.time + 8;
+			g.target = null;
+			g.autoTimer = 0;
+			return still;
 		}
 	}
 		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId, p));
@@ -1241,7 +1319,8 @@ function autoPickTarget(g: Game, cfg: AutoSettings) {
 		dist = (e: Enemy) => Math.hypot(e.x - p.x, e.z - p.z),
 		fighting = (e: Enemy) => cfg.attackers && e.aggro > 0 && (e.engaged || (e.damageBy[p.id] ?? 0) > 0) && dist(e) < 6,
 		allowed = (e: Enemy) => !wanted || wanted.has(e.dataId) || fighting(e),
-		living = g.enemies.filter((e) => !e.dead && !e.summoned || (!e.dead && fighting(e)));
+		skip = p.autoUnreachable || {},
+		living = g.enemies.filter((e) => !e.dead && !((skip[e.id] ?? 0) > g.time) && (!e.summoned || fighting(e)));
 	const score = (e: Enemy) => (fighting(e) ? -1000 : 0) + (cfg.elites && e.boss ? -500 : 0) + dist(e);
 	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e)));
 	const best = pool.sort((a, b) => score(a) - score(b))[0];
@@ -1253,7 +1332,7 @@ function autoCast(g: Game, cfg: AutoSettings) {
 	const p = g.p,
 		hotbar = (p.hotbar ?? []).map((h) => h.skill),
 		spec = (id: string) => g.data.skills.skills.find((s) => s.id === id),
-		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !spec(id)?.passive && !!spec(id)),
+		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !spec(id)?.passive && !!spec(id) && belongsToJob(p.jobId, spec(id)!.jobId, g.data), Object.keys(p.skills), (id) => skillTierRank(g.data, id)),
 		order = autoCastOrder(seq, cfg, p.hp / p.maxHp, p.autoNext ?? null, (id) => isSurvivalSkill(spec(id)));
 	for (const id of order) {
 		if ((p.cd[id] || 0) > 0 || p.mp < gameSkill(g, id).sp) continue;
@@ -1263,20 +1342,6 @@ function autoCast(g: Game, cfg: AutoSettings) {
 		}
 	}
 	return false;
-}
-/** AUTO's SP potion: the first SP drink in the bag, on the shared potion cooldown. */
-function autoDrinkSp(g: Game) {
-	const p = g.p;
-	if (!p.inventory || (p.cd.potion || 0) > 0 || p.mp >= p.maxMp) return false;
-	const item = p.inventory.items.find((i) => i.location === "bag" && g.data.items.items.find((t) => t.id === i.template)?.effect === "sp");
-	if (!item) return false;
-	if (g.inventoryCommit) { g.inventoryCommit(p, { op: "use", id: item.id }, () => {}); return true; }
-	const out = applyInventory({ gold: p.gold, inventory: p.inventory }, { op: "use", id: item.id }, p.profile, g.data, () => String(g.nextId++));
-	p.inventory = out.state.inventory;
-	if (out.effect?.kind === "sp") p.mp = Math.min(p.maxMp, p.mp + out.effect.amount);
-	p.cd.potion = gameSkill(g, "potion").cooldown;
-	refreshStats(g, p);
-	return true;
 }
 function face(e: Enemy, x: number, z: number) {
 	const d = Math.hypot(x - e.x, z - e.z) || 1;
@@ -1532,10 +1597,10 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 function playerStep(g: Game, dt: number, input: Vec) {
 	const p = g.p;
  if(p.auto)p.autoSeconds+=dt;
-	const hadEndure = p.statuses.some((s) => s.id === "endure");
+	const statBuffs = () => p.statuses.filter((s) => s.id === "endure" || s.id === "rage").length;
+	const hadBuffs = statBuffs();
 	tickEffects(p, dt);
-	if (hadEndure !== p.statuses.some((s) => s.id === "endure"))
-		refreshStats(g, p);
+	if (hadBuffs !== statBuffs()) refreshStats(g, p);
 	p.castRemaining = p.castRemaining - dt < 1e-8 ? 0 : p.castRemaining - dt;
 	for (const a of Object.keys(p.cd) as Action[])
 		p.cd[a] = p.cd[a] - dt < 1e-8 ? 0 : p.cd[a] - dt;
@@ -1558,6 +1623,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
 							: g.data.stats.regen.inCombatHpMultiplier),
 			);
  }
+		autoDrink(g);
 		if (
 			p.castRemaining > 0 ||
 			p.statuses.some((s) => s.id === "stun" || s.id === "knockup")
@@ -1747,6 +1813,7 @@ export function step(
 					x: m.x,
 					z: m.z,
 					skillId: m.skillId || "meteor",
+					visual: resolveSkill(g.data, m.skillId || "meteor", 1).visual,
 				});
 				const skill = resolveSkill(g.data, m.skillId || "meteor", m.level || 1);
 				for (const e of [...g.enemies])

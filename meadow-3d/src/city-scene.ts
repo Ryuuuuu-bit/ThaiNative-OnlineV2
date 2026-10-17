@@ -2,31 +2,38 @@ import {cityPaving,cityCanvas,canopyGeometry} from './city-paving.ts';
 import {chunkInstances,artQuality,artStats,contactShadows} from './world-art.ts';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { CITY, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS, HEALER, GATE_CAPTAIN } from '@thainative/shared/maps';
+import { CITY, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS, CITY_ART_SOLIDS, HEALER, GATE_CAPTAIN } from '@thainative/shared/maps';
 /** Plaza size and wall line (1 m outside the walkable edge). */
 const S=CITY.halfX*2,H=CITY.halfX+1,F=CITY_FOUNTAIN,K=S/60;
 import type { PaintedLoader } from './assets';
+import {uprightCard,uprightSprite,seeThroughSolid} from './upright-depth.ts';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
+
+/** Re-exported for the scene tests; the footprints are solid in shared/maps. */
+export { CITY_ART_SOLIDS };
 
 /** Visual-only dressing. Shared map footprints, navigation and interaction anchors are authoritative. */
 export function buildCity(scene:T.Scene,loader:PaintedLoader){
  const root=new T.Group();root.name='city_plaza';scene.add(root);
- const eastSign=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/env-forest/signpost-v1.png'),transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false}));eastSign.center.set(.5,0);eastSign.scale.set(1.2,1.8,1);eastSign.position.set(H-3,.04,2.2);root.add(eastSign);
+ const eastSign=new T.Sprite(uprightSprite(new T.SpriteMaterial({map:loader.load('/assets/env-forest/signpost-v1.png'),transparent:true,alphaTest:.08,depthWrite:true,toneMapped:false})));eastSign.center.set(.5,0);eastSign.scale.set(1.2,1.8,1);eastSign.position.set(H-3,.04,2.2);root.add(eastSign);
  const atlas=loader.load('/assets/city/city-trim-v1.png');
- const paint=new T.MeshStandardMaterial({map:atlas,roughness:1,side:T.DoubleSide,vertexColors:true});
+ const paint=seeThroughSolid(new T.MeshStandardMaterial({map:atlas,roughness:1,side:T.DoubleSide,vertexColors:true}));
  const glow=new T.MeshBasicMaterial({map:atlas,color:'#ffcf87'});
  const water=new T.MeshStandardMaterial({color:'#739da3',roughness:.3,metalness:.15,transparent:true,opacity:.87});
- const canvasPaint=cityCanvas();
+ const canvasPaint=seeThroughSolid(cityCanvas());
  const buildingBounds:{name:string;x:number;z:number;w:number;d:number;storeys:number;bounds:number[]}[]=[];let buildingParts:T.BufferGeometry[]|null=null;
  const batches=new Map<string,{material:T.Material;geometries:T.BufferGeometry[]}>();
  const scaleSamples:{name:string;root:T.Group}[]=[],sampleOrigin=new T.Vector3();let sample:T.Group|null=null;
  function beginSample(name:string,x=0,z=0){sample=new T.Group();sampleOrigin.set(x,0,z);scaleSamples.push({name,root:sample});}function endSample(){sample=null;}
+ const artBounds:{label:string;bounds:number[]}[]=[];let audit:string|null=null;
+ function record(g:T.BufferGeometry){if(!audit)return;g.computeBoundingBox();const b=g.boundingBox!;artBounds.push({label:audit,bounds:[b.min.x,b.min.y,b.min.z,b.max.x,b.max.y,b.max.z]});}
+ const gateLanterns:{x:number;y:number;z:number}[]=[];
  const matrix=new T.Matrix4(),q=new T.Quaternion(),v=new T.Vector3();
  function uv(g:T.BufferGeometry,cell:number){if(!g.getAttribute('color'))g.setAttribute('color',new T.Float32BufferAttribute(new Float32Array(g.getAttribute('position').count*3).fill(1),3));const a=g.getAttribute('uv');for(let i=0;i<a.count;i++)a.setXY(i,(cell%4+.015+a.getX(i)*.97)/4,(2-Math.floor(cell/4)+.015+a.getY(i)*.97)/3);return g;}
  function add(g:T.BufferGeometry,x:number,y:number,z:number,sx:number,sy:number,sz:number,cell:number,material:T.Material=paint,ry=0,rx=0){
-  if(g.index){const old=g;g=g.toNonIndexed();old.dispose();}if(material!==canvasPaint)uv(g,cell);q.setFromEuler(new T.Euler(rx,ry,0));matrix.compose(v.set(x,y,z),q,new T.Vector3(sx,sy,sz));g.applyMatrix4(matrix);if(buildingParts)buildingParts.push(g);if(sample){const copy=new T.Mesh(g.clone().translate(-sampleOrigin.x,0,-sampleOrigin.z),material);sample.add(copy);}const key=material.uuid+':'+Math.floor(x/32)+','+Math.floor(z/32);if(!batches.has(key))batches.set(key,{material,geometries:[]});batches.get(key)!.geometries.push(g);
+  if(g.index){const old=g;g=g.toNonIndexed();old.dispose();}if(material!==canvasPaint)uv(g,cell);q.setFromEuler(new T.Euler(rx,ry,0));matrix.compose(v.set(x,y,z),q,new T.Vector3(sx,sy,sz));g.applyMatrix4(matrix);record(g);if(buildingParts)buildingParts.push(g);if(sample){const copy=new T.Mesh(g.clone().translate(-sampleOrigin.x,0,-sampleOrigin.z),material);sample.add(copy);}const key=material.uuid+':'+Math.floor(x/32)+','+Math.floor(z/32);if(!batches.has(key))batches.set(key,{material,geometries:[]});batches.get(key)!.geometries.push(g);
  }
- const box=(x:number,y:number,z:number,w:number,h:number,d:number,c=2,m=paint)=>add(new T.BoxGeometry(1,1,1),x,y+h/2,z,w,h,d,c,m);
+ const box=(x:number,y:number,z:number,w:number,h:number,d:number,c=2,m:T.Material=paint)=>add(new T.BoxGeometry(1,1,1),x,y+h/2,z,w,h,d,c,m);
  const cyl=(x:number,y:number,z:number,r:number,h:number,c=2,m:T.Material=paint)=>add(new T.CylinderGeometry(1,1,1,16),x,y+h/2,z,r,h,r,c,m);
  function plane(x:number,y:number,z:number,w:number,h:number,c:number,ry=0,m:T.Material=paint){add(new T.PlaneGeometry(1,1),x,y,z,w,h,1,c,m,ry);}
  function roof(x:number,y:number,z:number,w:number,d:number,c:number,height=2){
@@ -84,27 +91,93 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
  const stalls=CITY_STALLS.map(s=>[s.x,s.z]);
  for(const s of CITY_STALLS)stall(s.x,s.z,s.w,s.d);
  cyl(F.x,0,F.z,F.r,.65);cyl(F.x,.65,F.z,F.r-.4,.08,11,water);cyl(F.x,.73,F.z,.45,1.4);cyl(F.x,2.13,F.z,1,.12);cyl(F.x,2.25,F.z,.75,.04,11,water);
+ // Wall cross section: inner face 48.5, outer face 50.7; usable deck at 4m.
  for(const axis of ['x','z']as const)for(const side of [-1,1]){
-  // Wall runs from each gate tower (4.5 m out) to the corner.
-  const len=H-4.5,mid=4.5+len/2;
-  for(const offset of [-mid,mid]){
-   const x=axis==='x'?side*H:offset,z=axis==='z'?side*H:offset;
-   box(x,0,z,axis==='x'?1:len,4.3,axis==='z'?1:len);box(x-side*(axis==='x'?.5:0),4.1,z-side*(axis==='z'?.5:0),axis==='x'?2:len,.3,axis==='z'?2:len);
-   for(let i=-len/2+1;i<=len/2-1;i+=2)box(x+(axis==='z'?i:0),4.3,z+(axis==='x'?i:0),1,.7,1);
+  const wall=(along:number,y:number,cross:number,length:number,height:number,depth:number,cell=2)=>box(axis==='x'?side*cross:along,y,axis==='z'?side*cross:along,axis==='x'?depth:length,height,axis==='z'?depth:length,cell);
+  audit='walkway';
+  for(const sign of [-1,1]){
+   wall(sign*27.25,0,49.6,43.5,3.8,2.2);wall(sign*27.25,3.8,49.6,43.5,.2,2.2);
+   wall(sign*27.25,4,50.5,43.5,.45,.4);wall(sign*27.25,4,48.6,43.5,.35,.2);
+   for(let d=7;d<49;d+=2)wall(sign*d,4.45,50.5,1,.65,.4);
+   // A short rise beside the gate tower connects the 4m deck to the 5.8m bridge.
+   for(let i=0;i<6;i++)wall(sign*(8.25-i*.5),4,49.6,.5,(i+1)*.3,1.5);
   }
-  // South (meadow) and east (forest) gates are open.
-  const x=axis==='x'?side*H:0,z=axis==='z'?side*H:0,open=side===1;
-  box(x,5,z,axis==='x'?2:7,1.2,axis==='z'?2:7);if(!open)box(x,0,z,axis==='x'?1:6,5,axis==='z'?1:6,6);
-  for(const offset of [-4.5,4.5]){const a=x+(axis==='z'?offset:0),b=z+(axis==='x'?offset:0);box(a,0,b,2,4.8,2);roof(a,4.8,b,2.5,2.5,4,1.7);}
-  if(open)for(const offset of [-3.8,3.8])plane(x+(axis==='z'?offset:-1.06),2.8,z+(axis==='x'?offset:-1.06),.42,.65,7,axis==='z'?Math.PI:-Math.PI/2,glow);
-  if(open)for(let i=-2.5;i<=2.5;i+=.5)box(x+(axis==='z'?i:0),5.25,z+(axis==='x'?i:0),axis==='x'?.12:.08,1.8,axis==='x'?.08:.12,10);
+  audit='gatehouse';wall(0,4.9,49.6,7,.9,2.2);
+  audit='walkway';wall(0,5.8,50.5,7,.8,.4);wall(0,5.8,48.6,7,.35,.2);
+  audit=null;
+  if(side<0)wall(0,0,49,7,4.9,1,6);
+  for(const offset of [-4.5,4.5]){
+   wall(offset,0,49.6,2,5.8,2.2);
+   // Recessed doorway on the wall-walk level and iron guide on the opening face.
+   wall(offset,4,48.48,.8,1.7,.04,6);
+   wall(offset-Math.sign(offset)*.99,0,49.6,.04,4.9,.18,10);
+   wall(offset,5.8,50.5,2,1.1,.4);
+  }
+  if(side===1){
+   audit='portcullis';
+   for(let d=-3.25;d<=3.25;d+=.5){
+    wall(d,4.9,49.6,.09,.65,.12,10);
+    add(new T.ConeGeometry(.11,.45,4).rotateZ(Math.PI),axis==='x'?49.6:d,4.675,axis==='z'?49.6:d,1,1,1,10);
+   }
+   audit=null;
+   for(const offset of [-4.5,4.5]){
+    const x=axis==='x'?47.9:offset,z=axis==='z'?47.9:offset;
+    gateLanterns.push({x,y:5.6,z});
+    wall(offset,6.15,48.2,.12,.12,.7,10);wall(offset,5.4,48.48,.12,.85,.12,10);
+    box(x,5.15,z,.5,.1,.5,10);box(x,5.9,z,.6,.15,.6,10);
+    box(x,5.28,z,.36,.58,.36,7,glow);
+    for(const dx of [-.23,.23])for(const dz of [-.23,.23])box(x+dx,5.25,z+dz,.045,.65,.045,10);
+    box(x,6.05,z,.06,.16,.06,10);
+   }
+  }
  }
- for(const x of [-H,H])for(const z of [-H,H]){box(x,0,z,3.1,5.3,3.1);roof(x,5.3,z,3.1,3.1,4,1.2);}
- for(const [x,z]of [[-6,H-.7],[H-.7,-6]]){box(x,0,z,1.6,2.6,1.6,3);roof(x,2.6,z,1.6,1.6,4,1);}
+ // Four supported stair flights, entirely in the narrow non-walkable boundary strip.
+ for(let corner=0;corner<4;corner++){
+  const orient=(along:number,cross:number)=>corner===0?[along,-cross]:corner===1?[cross,along]:corner===2?[-along,cross]:[-cross,-along];
+  audit='stair-'+corner;
+  for(let i=0;i<20;i++){const [x,z]=orient(-37.175-i*.35,47.9);box(x,0,z,corner%2?1.1:.35,(i+1)*.2,corner%2?.35:1.1);}
+  const [x,z]=orient(-45.7,47.9);box(x,3.8,z,corner%2?1.1:3.4,.2,corner%2?3.4:1.1);
+  audit=null;
+ }
+ for(const x of [-H,H])for(const z of [-H,H]){box(x,0,z,3.1,4,3.1);box(x,4,z,2.6,1.8,2.6,3);roof(x,5.8,z,3.1,3.1,4,1.2);}
+ for(const p of CITY_ART_SOLIDS.filter(p=>p.label.startsWith('guard'))){if(p.kind!=='box')continue;audit=p.label;box(p.x,0,p.z,p.w-.2,2.4,p.d-.2,3);roof(p.x,2.4,p.z,p.w,p.d,4,.7);plane(p.x,1.5,p.z+p.d/2-.095,.75,.65,6);audit=null;}
  // Repeated tiny props are instanced; no additional collision shapes.
  const props=new Map<string,{g:T.BufferGeometry;m:T.Material;transforms:T.Matrix4[]}>();
  function prop(key:string,g:T.BufferGeometry,m:T.Material,x:number,y:number,z:number,sx:number,sy:number,sz:number,c:number){if(!props.has(key))props.set(key,{g:uv(g,c),m,transforms:[]});props.get(key)!.transforms.push(new T.Matrix4().compose(new T.Vector3(x,y,z),new T.Quaternion(),new T.Vector3(sx,sy,sz)));}
  function tint(g:T.BufferGeometry,colour:string){const c=new T.Color(colour),values=new Float32Array(g.getAttribute('position').count*3);for(let i=0;i<values.length;i+=3){values[i]=c.r;values[i+1]=c.g;values[i+2]=c.b;}g.setAttribute('color',new T.BufferAttribute(values,3));return g;}
+ // All ground-level fill is generated from the exported request list.
+ const fillBox=(x:number,y:number,z:number,w:number,h:number,d:number,c=10)=>{
+  const g=new T.BoxGeometry(1,1,1);
+  if(c===5){const uv=g.getAttribute('uv');for(let i=0;i<uv.count;i++)uv.setXY(i,.5,.5);tint(g,'#e8c56a');}
+  prop('fill-box-'+c,g,paint,x,y+h/2,z,w,h,d,c===5?2:c);
+ };
+ for(const p of CITY_ART_SOLIDS){
+  const {x,z,label}=p;
+  if(label.startsWith('well')&&p.kind==='circle'){
+   prop('well-ring',new T.TorusGeometry(.86,.22,6,16).rotateX(Math.PI/2),paint,x,.72,z,1,1,1,2);
+   for(const dx of [-.72,.72])fillBox(x+dx,0,z,.12,2.5,.12);
+   prop('well-roof',new T.ConeGeometry(1, .7,4).rotateY(Math.PI/4),paint,x,2.6,z,1,.7,1,4);
+   fillBox(x,1.95,z,1.6,.12,.12);fillBox(x,1.1,z,.025,.85,.025);
+   prop('well-bucket',new T.CylinderGeometry(.2,.16,.3,8),paint,x,1,z,1,1,1,10);
+  }else if(label.startsWith('cart')&&p.kind==='box'){
+   fillBox(x,.45,z,p.w-.2,.18,p.d-.25);for(const dz of [-.55,.55])fillBox(x,.65,z+dz,2.7,.45,.1);
+   for(const dx of [-1,1])for(const dz of [-.68,.68])prop('cart-wheel',new T.CylinderGeometry(.38,.38,.16,10).rotateX(Math.PI/2),paint,x+dx,.4,z+dz,1,1,1,10);
+   for(const dx of [-.8,0,.8])fillBox(x+dx,.65,z,.7,.65,.8,5);
+  }else if(label.startsWith('hay')&&p.kind==='box'){
+   fillBox(x,0,z,p.w,.75,p.d,5);for(const dx of [-.35,.35])fillBox(x+dx,.75,z,.06,.025,p.d,10);
+  }else if(label.startsWith('crates')&&p.kind==='box'){
+   fillBox(x-.4,0,z-.4,.8,.85,.8);fillBox(x-.4,.85,z-.4,.65,.6,.65);
+   prop('fill-barrel',new T.CylinderGeometry(.43,.43,1,10),paint,x+.4,.5,z+.4,1,1,1,10);
+  }else if(label.startsWith('firewood')&&p.kind==='box'){
+   for(let row=0;row<3;row++)for(let j=0;j<6-row;j++)prop('firewood',new T.CylinderGeometry(.14,.14,1.2,7).rotateZ(Math.PI/2),paint,x,.15+row*.25,z-1.2+j*.4+row*.2,1,1,1,10);
+  }
+ }
+ // Laundry is suspended above head height; slender poles follow the lamp-post convention.
+ for(const h of [CITY_HOUSES[0],CITY_HOUSES[3],CITY_HOUSES[8],CITY_HOUSES[9]]){
+  const z=h.z+h.d/2,x=h.x;
+  fillBox(x,0,z+4.5,.07,3,.07);fillBox(x,2.95,z+2.25,.025,.025,4.5);
+  for(let i=0;i<3;i++)fillBox(x,2.15,z+1+i,.035,.8,.72,i%2?3:9);
+ }
  function planter(x:number,z:number){
   prop('planter',new T.CylinderGeometry(1,1,1,10),paint,x,.35,z,.8,.7,.8,2);prop('trunk',new T.CylinderGeometry(1,1,1,6),paint,x,1.65,z,.16,2.6,.16,10);
   for(const [dx,dy,dz,size]of [[-.65,3.1,0,1.1],[.65,3.3,.1,1.15],[0,4,-.2,1.2]])prop('tree',tint(new T.IcosahedronGeometry(1,1),'#f3ffd9'),paint,x+dx,dy,z+dz,size,size,size,4);
@@ -120,8 +193,7 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
  for(const h of CITY_HOUSES)for(const dx of [-h.w*.28,h.w*.28]){prop('flower-box',new T.BoxGeometry(1,1,1),paint,h.x+dx,1.1,h.z+h.d/2-.16,.9,.22,.25,10);for(let j=0;j<3;j++)prop('flowers',tint(new T.IcosahedronGeometry(1,0),'#d9ae9a'),paint,h.x+dx+(j-1)*.22,1.34,h.z+h.d/2-.16,.16,.18,.14,5);}
  // Wall banners and pigeons are decorative and have no collision or interaction hooks; no banner hangs in an open gateway.
  for(const side of [-1,1])for(let d=-36;d<=36;d+=12){if(side===1&&d===0)continue;plane(d,3,side*(H-.55),.9,1.6,9,side===1?Math.PI:0);plane(side*(H-.55),3,d,.9,1.6,9,side===1?-Math.PI/2:Math.PI/2);}
- const birdMat=new T.MeshStandardMaterial({color:'#777c79',roughness:1});
- for(let i=0;i<38;i++){const a=i*2.4,d=6+(i%7)*.65,x=14+Math.cos(a)*d,z=11+Math.sin(a)*d;if(Math.abs(z)<3.5)continue;prop('pigeon',new T.SphereGeometry(1,6,4),birdMat,x,.09,z,.11,.09,.22,0);prop('pigeon-head',new T.SphereGeometry(1,6,4),birdMat,x,.19,z-.12,.075,.075,.075,0);}
+ // Pigeons removed: sub-pixel silhouettes did not read at the default camera.
  // Lamp posts: around the tower and every ~12 m along both main roads.
  const lamps=[[-4,-5],[4,-5],[-5,5],[5,5]];for(let d=12;d<H-3;d+=12)for(const sgn of [-1,1]){lamps.push([3.6,sgn*d],[-3.6,sgn*d+6],[sgn*d,3.6],[sgn*d+6,-3.6]);}
  const clear=(x:number,z:number)=>![...CITY_BUILDINGS,...CITY_HOUSES].some(b=>Math.abs(x-b.x)<b.w/2+1&&Math.abs(z-b.z)<b.d/2+1)&&Math.hypot(x-F.x,z-F.z)>F.r+1;
@@ -143,7 +215,7 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
   const g=mergeGeometries(geometries);geometries.forEach(g=>g.dispose());const transforms=base.transforms.map(m=>{const p=new T.Vector3().setFromMatrixPosition(m);return new T.Matrix4().makeTranslation(p.x,0,p.z);});
   for(const key of keys){props.get(key)!.g.dispose();props.delete(key);}props.set(name,{g,m:base.m,transforms});
  }
- kit('planter-kit',['planter','trunk','tree']);kit('bench-kit',['bench-seat','bench-leg','bench-back']);kit('lamp-kit',['post','banner']);kit('wares-kit',['crate','barrel']);kit('pigeon-kit',['pigeon','pigeon-head']);
+ kit('planter-kit',['planter','trunk','tree']);kit('bench-kit',['bench-seat','bench-leg','bench-back']);kit('lamp-kit',['post','banner']);kit('wares-kit',['crate','barrel']);
  // Heterogeneous instancing: one material batch per 16m tile, with per-instance culling.
  const propTiles=new Map<string,{material:T.Material;entries:{geometry:T.BufferGeometry;matrix:T.Matrix4}[]}>();
  for(const p of props.values())for(const transform of p.transforms){const v=new T.Vector3().setFromMatrixPosition(transform),key=p.m.uuid+':'+Math.floor(v.x/16)+','+Math.floor(v.z/16);if(!propTiles.has(key))propTiles.set(key,{material:p.m,entries:[]});propTiles.get(key)!.entries.push({geometry:p.g,matrix:transform});}
@@ -155,20 +227,24 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
 
  for(const {material,geometries}of batches.values()){const mesh=new T.Mesh(mergeGeometries(geometries),material);mesh.receiveShadow=true;mesh.castShadow=material===paint||material===canvasPaint;root.add(mesh);geometries.forEach(g=>g.dispose());}
  // Five fixed front-facing, four-frame idle sprites share one atlas and one material.
- const npcMap=loader.load('/assets/city/city-npcs-v1.png');const npcMaterial=new T.MeshBasicMaterial({map:npcMap,transparent:true,alphaTest:.05,side:T.DoubleSide,depthWrite:true,toneMapped:false});
+ const npcMap=loader.load('/assets/city/city-npcs-v1.png');const npcMaterial=uprightCard(new T.MeshBasicMaterial({map:npcMap,transparent:true,alphaTest:.05,side:T.DoubleSide,depthWrite:true,toneMapped:false}));
  const npcs=[...CITY_BUILDINGS.map(b=>b.talk),HEALER,GATE_CAPTAIN].map((p,row)=>{
   const height=row===4?2.1:2.0;const g=new T.PlaneGeometry(2.6*height/3.5,height);g.translate(0,height*(.5-8/320),0);const mesh=new T.Mesh(g,npcMaterial);mesh.position.set(p.x,.035,p.z);mesh.onBeforeRender=(_r,_s,c)=>mesh.quaternion.copy(c.quaternion);root.add(mesh);return{mesh,row};
  });
  const townGeo=new T.PlaneGeometry(1.45,1.95);townGeo.translate(0,.94,0);
  const townMat=new T.MeshBasicMaterial({map:npcMap,transparent:true,alphaTest:.08,side:T.DoubleSide,toneMapped:false});const townFrame={value:0};
- townMat.onBeforeCompile=shader=>{shader.uniforms.cityIdleFrame=townFrame;shader.vertexShader='attribute float cityNpcRow;uniform float cityIdleFrame;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvMapUv=vec2((uv.x+cityIdleFrame)/4.,(uv.y+4.-cityNpcRow)/5.);');};townMat.customProgramCacheKey=()=> 'city-idle-residents-v1';
+ townMat.onBeforeCompile=shader=>{shader.uniforms.cityIdleFrame=townFrame;shader.vertexShader='attribute float cityNpcRow;uniform float cityIdleFrame;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvMapUv=vec2((uv.x+cityIdleFrame)/4.,(uv.y+4.-cityNpcRow)/5.);');};townMat.customProgramCacheKey=()=> 'city-idle-residents-v1';uprightCard(townMat);
  const townsfolk=new T.InstancedMesh(townGeo,townMat,12),dummy=new T.Object3D();townsfolk.name='city-townsfolk';const rows=new Float32Array(12);
  for(let i=0;i<12;i++){const anchor=stalls[i%4];dummy.position.set(anchor[0]-2.5+(i%3)*1.3,.04,anchor[1]+(i%2?2.4:-2.5));dummy.quaternion.setFromRotationMatrix(new T.Matrix4().lookAt(new T.Vector3(9,16,13),new T.Vector3(),new T.Vector3(0,1,0)));dummy.updateMatrix();townsfolk.setMatrixAt(i,dummy.matrix);rows[i]=i%5;}
  townGeo.setAttribute('cityNpcRow',new T.InstancedBufferAttribute(rows,1));root.add(townsfolk);
  // South of the bottom step: the camera-facing upper edge tilts north toward the tower.
- const angel=new T.Sprite(new T.SpriteMaterial({map:loader.load('/assets/skills-painted/angel-v1.png'),transparent:true,alphaTest:.04,depthWrite:false,toneMapped:false}));angel.center.set(.5,.025);angel.scale.set(2.6,3.9,1);angel.position.set(jobs.angel.x,.05,jobs.angel.z);root.add(angel);
+ const angel=new T.Sprite(uprightSprite(new T.SpriteMaterial({map:loader.load('/assets/skills-painted/angel-v1.png'),transparent:true,alphaTest:.04,depthWrite:true,toneMapped:false})));angel.center.set(.5,.025);angel.scale.set(2.6,3.9,1);angel.position.set(jobs.angel.x,.05,jobs.angel.z);root.add(angel);
  function fogTexture(size:number){const c=document.createElement('canvas');c.width=c.height=size;const ctx=c.getContext('2d')!,grad=ctx.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);grad.addColorStop(0,'#bacbd4aa');grad.addColorStop(1,'#bacbd400');ctx.fillStyle=grad;ctx.fillRect(0,0,size,size);return new T.CanvasTexture(c);}
  const fogHQ=fogTexture(128),fogLOW=fogTexture(64);
+ // World-sized billboards keep the daylight halo legible with an orthographic camera.
+ const halos=new T.InstancedMesh(new T.PlaneGeometry(1.5,1.5),new T.MeshBasicMaterial({map:fogHQ,color:'#ffba55',transparent:true,opacity:.55,depthWrite:false,blending:T.AdditiveBlending}),4);
+ const haloTransform=new T.Object3D();halos.userData={artTile:true,fullCount:4};halos.frustumCulled=false;halos.name='gate-lantern-halos';
+ halos.onBeforeRender=(_renderer,_scene,camera)=>{for(const [i,p]of gateLanterns.entries()){haloTransform.position.set(p.x,p.y,p.z);haloTransform.quaternion.copy(camera.quaternion);haloTransform.updateMatrix();halos.setMatrixAt(i,haloTransform.matrix);}halos.instanceMatrix.needsUpdate=true;};root.add(halos);
  // The existing painted mist/castle cell fills both the horizon and the ground outside the walls.
  const backdropMaterial=new T.MeshBasicMaterial({map:atlas,color:'#bacbd7',side:T.DoubleSide,fog:false});
  const outside=new T.Mesh(uv(new T.PlaneGeometry(S*4,S*4).rotateX(-Math.PI/2),11),backdropMaterial);outside.position.y=-.17;root.add(outside);
@@ -206,9 +282,9 @@ export function buildCity(scene:T.Scene,loader:PaintedLoader){
  const mistPositions=new Float32Array(36*3);for(let i=0;i<36;i++){mistPositions[i*3]=Math.sin(i*17.1)*(H-4);mistPositions[i*3+1]=.2+(i%5)*.13;mistPositions[i*3+2]=Math.cos(i*13.7)*(H-4);}
  const mistGeo=new T.BufferGeometry();mistGeo.setAttribute('position',new T.BufferAttribute(mistPositions,3));const mist=new T.Points(mistGeo,new T.PointsMaterial({map:fogHQ,color:'#d4e0e3',size:1.8,transparent:true,opacity:.19,depthWrite:false}));root.add(mist);
  // Four local candidates; the shared camera selector activates only nearby points.
- for(const [x,z]of [[CITY_BUILDINGS[1].x+CITY_BUILDINGS[1].w/2+1,0],[4,5],[-4,45],[45,-4]]){const l=new T.PointLight('#ffc681',2,8,2);l.position.set(x,2.5,z);root.add(l);}
+ for(const [x,z]of [[CITY_BUILDINGS[1].x+CITY_BUILDINGS[1].w/2+1,0],[4,5],[-4.5,47.9],[47.9,-4.5]]){const l=new T.PointLight('#ffc681',2,8,2);l.position.set(x,z===47.9||x===47.9?5.6:2.5,z);root.add(l);}
  contactShadows(root,[...CITY_HOUSES,...CITY_BUILDINGS].map(b=>({x:b.x,z:b.z,w:b.w*1.5,d:b.d*1.5})).concat([{x:0,z:0,w:7,d:7},{x:F.x,z:F.z,w:6,d:6}]));chunkInstances(root);let high=true,frame=-1;
- return{root,buildingBounds,scaleSamples,npcActors:[...npcs.map(n=>n.mesh),angel],setQuality(hq:boolean){high=hq;seam.visible=hq;smoke.visible=hq;mist.visible=hq;fogMaterial.uniforms.softness.value=hq?fogHQ:fogLOW;seam.material.map=hq?fogHQ:fogLOW;curtains.visible=hq;edgeBanks.visible=hq;artQuality(root,hq);root.traverse(o=>{if(o instanceof T.InstancedMesh&&o.name.startsWith('city-contact'))o.visible=!hq;if(o instanceof T.Mesh&&!(o instanceof T.InstancedMesh))o.castShadow=hq&&(o.material===paint||o.material===canvasPaint)&&!o.userData.nonCastingDecor;});},snapshot:()=>({...artStats(root),ready:!!atlas.userData.ready&&!!npcMap.userData.ready,mapId:'city_plaza',size:[S,S],quality:high?'HQ':'LOW',mistParticles:high?36:0,fogResolution:high?128:64,groundTileMetres:.25,canvasStripeMetres:.8,additionalStalls:4,townsfolk:12,buildings:buildingBounds,openGates:['south','east'],compassMedallions:1,paintedBackdrop:true,fogCards:high?curtains.children.length+edgeBanks.children.length:0,npcFrames:4,npcCount:5,realLights:4}),update(time:number){
+ return{root,buildingBounds,artBounds,scaleSamples,npcActors:[...npcs.map(n=>n.mesh),angel],setQuality(hq:boolean){high=hq;seam.visible=hq;smoke.visible=hq;mist.visible=hq;fogMaterial.uniforms.softness.value=hq?fogHQ:fogLOW;seam.material.map=hq?fogHQ:fogLOW;curtains.visible=hq;edgeBanks.visible=hq;artQuality(root,hq);root.traverse(o=>{if(o instanceof T.InstancedMesh&&o.name.startsWith('city-contact'))o.visible=!hq;if(o instanceof T.Mesh&&!(o instanceof T.InstancedMesh))o.castShadow=hq&&(o.material===paint||o.material===canvasPaint)&&!o.userData.nonCastingDecor;});},snapshot:()=>({...artStats(root),ready:!!atlas.userData.ready&&!!npcMap.userData.ready,mapId:'city_plaza',size:[S,S],quality:high?'HQ':'LOW',mistParticles:high?36:0,fogResolution:high?128:64,groundTileMetres:.25,canvasStripeMetres:.8,additionalStalls:4,townsfolk:12,buildings:buildingBounds,openGates:['south','east'],guardPosts:CITY_ART_SOLIDS.filter(p=>p.label.startsWith('guard')),gateLanterns,wallStairs:4,pigeons:'removed',compassMedallions:1,paintedBackdrop:true,fogCards:high?curtains.children.length+edgeBanks.children.length:0,npcFrames:4,npcCount:5,realLights:4}),update(time:number){
   const next=Math.floor(time*4)%4;townFrame.value=next;if(next!==frame){frame=next;for(const {mesh,row}of npcs){const a=mesh.geometry.getAttribute('uv');a.setXY(0,(frame+.02)/4,(5-row-.02)/5);a.setXY(1,(frame+.98)/4,(5-row-.02)/5);a.setXY(2,(frame+.02)/4,(4-row+.02)/5);a.setXY(3,(frame+.98)/4,(4-row+.02)/5);a.needsUpdate=true;}}
   for(let i=0;i<6;i++){smokePositions[i*3]=forge.x-forge.w*.28+Math.sin(time*.5+i)*.25;smokePositions[i*3+1]=5.1+(i*.5+time*.35)%3;smokePositions[i*3+2]=forge.z-forge.d*.22;}smokeGeo.attributes.position.needsUpdate=true;smokeGeo.computeBoundingSphere();mist.position.x=Math.sin(time*.07)*.7;mist.position.z=Math.cos(time*.05)*.6;seam.material.opacity=.32+Math.sin(time*.8)*.08;
  }};

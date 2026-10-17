@@ -12,7 +12,9 @@ MANIFEST=PUBLIC/'texture-manifest.json';manifest=json.loads(MANIFEST.read_text()
 encoder=Path(os.environ.get('TOKTX',ROOT.parent/'.codex-run/ktx-tools/extracted/bin/toktx.exe'))
 if not encoder.is_file():raise RuntimeError('The existing Khronos toktx encoder is required')
 new=[]
-paths=list((SRC/'env-forest').glob('*.png'))
+# --monsters re-encodes only the forest monster atlases (after pack-monsters.py --forest).
+import sys
+paths=[] if '--monsters' in sys.argv else list((SRC/'env-forest').glob('*.png'))
 for sp in ['shroom','wolf','wisp','stump','warden']:
  paths.extend(p for p in (SRC/'monsters-painted').glob(f'{sp}-*-v1.png') if '-glow-' not in p.name)
 bolt=SRC/'monsters-painted/wisp-bolt-v1.png'
@@ -39,5 +41,11 @@ def encode(p):
 with ThreadPoolExecutor(max_workers=3) as pool:
  for logical,entry in pool.map(encode,paths):
   manifest[logical]=entry;new.append({'logical':logical,**entry});print(logical,flush=True)
+# Remove superseded content-hashed shipping files of the re-encoded textures.
+for entry in new:
+ folder=PUBLIC/'assets'/Path(entry['logical'][len('/assets/'):]).parent;stem=Path(entry['logical']).stem
+ keep={Path(entry[k]).name for k in ('webp','ktx2','hitMask') if entry[k]}
+ for stale in folder.glob(stem+'-*'):
+  if stale.name not in keep:stale.unlink()
 MANIFEST.write_text(json.dumps(manifest,indent=2)+'\n')
 (ROOT.parent/'.codex-run/forest-texture-report.json').write_text(json.dumps({'count':len(new),'entries':new},indent=2)+'\n')

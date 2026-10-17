@@ -22,6 +22,7 @@ export class AudioEngine {
   private buffers = new Map<string, AudioBuffer>();
   private voices = new Map<AudioBufferSourceNode, string>();
   private last = new Map<string, number>();
+  private recent = new Map<string, number[]>();
   private playable = false;
   private city = false;
   private music?: MusicPlayer;
@@ -147,13 +148,20 @@ export class AudioEngine {
     if (now - (this.last.get(id) ?? -Infinity) < sprite.cooldown || this.voices.size >= 12 || [...this.voices.values()].filter(v => v === id).length >= sprite.voices) return;
     const dx = position ? position.x - this.listener.x : 0, dz = position ? position.z - this.listener.z : 0;
     const distance = Math.hypot(dx, dz); if (distance >= 24) return;
-    const source = ctx.createBufferSource(), gain = ctx.createGain(), pan = ctx.createStereoPanner();
+    const source = ctx.createBufferSource(), gain = ctx.createGain(), air = ctx.createBiquadFilter(), pan = ctx.createStereoPanner();
     source.buffer = buffer; source.playbackRate.value = 1 + (Math.random() * 2 - 1) * sprite.pitch;
-        // Other players' combat sits well behind your own so a busy map stays calm.
-    gain.gain.value = Math.pow(10, (Math.random() * 2 - 1) / 20) * Math.pow(1 - distance / 24, 2) * (other ? .45 : 1);
+    // Rapid repeats of one sound (Whirlwind, crowds) blend: each extra play inside 250 ms sits a little lower.
+    const recent = (this.recent.get(id) ?? []).filter(t => now - t < .25); recent.push(now); this.recent.set(id, recent);
+    const level = Math.pow(10, (Math.random() * 2 - 1) / 20) * Math.pow(1 - distance / 24, 2) / (1 + .35 * (recent.length - 1))
+      // Other players' combat sits well behind your own so a busy map stays calm.
+      * (other ? .45 : 1);
+    // A 5 ms swell instead of a hard start keeps sprite edges click-free.
+    gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(level, now + .005);
+    // Distance (and other players) sound softer and darker, like air absorption.
+    air.type = 'lowpass'; air.Q.value = .5; air.frequency.value = (2400 + 15600 * Math.pow(1 - distance / 24, 2)) * (other ? .6 : 1);
     pan.pan.value = Math.max(-1, Math.min(1, (dx * .822 - dz * .569) / 10));
-    source.connect(gain); gain.connect(pan); pan.connect(this.buses[bus]);
-    source.onended = () => { this.voices.delete(source); source.disconnect(); gain.disconnect(); pan.disconnect(); };
+    source.connect(gain); gain.connect(air); air.connect(pan); pan.connect(this.buses[bus]);
+    source.onended = () => { this.voices.delete(source); source.disconnect(); gain.disconnect(); air.disconnect(); pan.disconnect(); };
     source.start(now, sprite.start, sprite.duration); this.last.set(id, now); this.voices.set(source, id);
     if (import.meta.env.DEV) {
       const log = ((window as any).__sfxLog ??= []); log.push({ id, time: now, position, bus }); if (log.length > 256) log.shift();

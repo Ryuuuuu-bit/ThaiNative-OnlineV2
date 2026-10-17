@@ -18,6 +18,19 @@ python -X utf8 meadow-3d/tools/pack-icons.py --forest
 python -X utf8 meadow-3d/tools/pack-forest-textures.py
 ```
 
+After re-packing monsters only, `pack-forest-textures.py --monsters` re-encodes just
+the 28 monster atlases and removes their superseded hashed files.
+
+Generated poses often overrun their nominal 6×2 squares, so the packer cuts each
+sheet along the cheapest seams through the transparent gaps between poses rather
+than on the fixed grid (a grid crop sliced the wolf's muzzle and tail and kept
+slivers of neighbouring poses). `seamAlphaCut` in the packing report records how
+much paint each seam crossed; faint full-sheet grid lines are cleared first. The
+rear Warden special sheet has only five top-row poses, so `LAYOUTS` in
+`pack_forest_monsters.py` maps it explicitly and summon holds its sprouted pose.
+Review every species, direction and frame through the shipping textures at
+`/tools/monster-review.html?motion=hop&species=wolf` on the Vite dev server.
+
 The forest-only switches preserve older jelly/King art, timings and manifests.
 PNG encoder inputs stay under `art/texture-sources/`; shipping assets use the
 existing content-versioned UASTC KTX2/WebP loader. Monster alpha masks have exactly

@@ -49,3 +49,30 @@ test('awning UVs retain physical metres at both stall sizes instead of sampling 
   g.computeBoundingBox();assert.ok(g.boundingBox.max.y>0);assert.ok(g.boundingBox.max.x<=w/2+1e-6);assert.ok(g.boundingBox.max.z<=d/2+1e-6);
  }
 });
+
+test('polish 4 gate geometry, boundary walks and requested booth footprints',async()=>{
+ const {CITY_ART_SOLIDS}=await import('../src/city-scene.ts');
+ const previous=globalThis.document;
+ globalThis.document={createElement:()=>({getContext:()=>({createRadialGradient:()=>({addColorStop(){}}),fillRect(){}})})};
+ let city;try{city=buildCity(new T.Scene(),{load:()=>new T.Texture()});}finally{globalThis.document=previous;}
+ const bounds=label=>city.artBounds.filter(p=>p.label===label).map(p=>p.bounds);
+ const lintelTop=Math.max(...bounds('gatehouse').map(b=>b[4]));
+ assert.ok(bounds('portcullis').length>=28);
+ for(const b of bounds('portcullis')){assert.ok(b[4]<=lintelTop+1e-5);assert.ok(b[1]>=4.4-1e-5);}
+ for(const p of CITY_ART_SOLIDS.filter(p=>p.label.startsWith('guard'))){
+  assert.ok(bounds(p.label).length>0);
+  for(const b of bounds(p.label)){
+   assert.ok(b[0]>=p.x-p.w/2-1e-5&&b[3]<=p.x+p.w/2+1e-5);
+   assert.ok(b[2]>=p.z-p.d/2-1e-5&&b[5]<=p.z+p.d/2+1e-5);
+   assert.ok(Math.min(Math.abs(p.x)-p.w/2,Math.abs(p.z)-p.d/2)>=3.4);
+   for(const [x,z]of [[0,47],[47,0]])assert.ok(Math.hypot(Math.max(b[0]-x,0,x-b[3]),Math.max(b[2]-z,0,z-b[5]))>1.5);
+   for(const [x,z]of [[-4.5,49.6],[4.5,49.6],[49.6,-4.5],[49.6,4.5]])assert.ok(b[3]<x-1||b[0]>x+1||b[5]<z-1.1||b[2]>z+1.1);
+  }
+ }
+ for(const label of ['walkway','stair-0','stair-1','stair-2','stair-3']){
+  assert.ok(bounds(label).length>0);
+  for(const b of bounds(label))assert.ok(b[0]>=47.3-1e-5||b[3]<=-47.3+1e-5||b[2]>=47.3-1e-5||b[5]<=-47.3+1e-5,label);
+ }
+ const snap=city.snapshot();assert.equal(snap.gateLanterns.length,4);assert.equal(snap.guardPosts.length,2);assert.equal(snap.wallStairs,4);assert.equal(snap.pigeons,'removed');assert.equal(snap.realLights,4);
+ assert.equal(city.root.getObjectByName('gate-lantern-halos').count,4);
+});

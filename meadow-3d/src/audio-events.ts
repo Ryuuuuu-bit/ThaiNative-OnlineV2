@@ -1,6 +1,8 @@
 import type { AudioEngine } from './audio';
+/** Material layer under the shared weapon thock, by monster species (RO / ToS style). */
+const MATERIAL: Record<string, string> = { slime: 'mat_jelly', king: 'mat_jelly', wolf: 'mat_fur', stump: 'mat_wood', warden: 'mat_wood', shroom: 'mat_shroom', wisp: 'mat_wisp' };
 /** Consume authoritative events only, never predicted key presses. */
-export function playEventAudio(sound: AudioEngine, e: any, you: string, boss?: { x: number; z: number }) {
+export function playEventAudio(sound: AudioEngine, e: any, you: string, boss?: { x: number; z: number }, species?: (id: number) => string) {
   const local = e.playerId === you;
     const play = (id: string) => sound.play(id, e, 'sfx', !!e.playerId && !local);
   if (['hit', 'hurt', 'skillImpact', 'slam'].includes(e.type)) sound.duckMusic(Number.isFinite(e.x) ? e : undefined);
@@ -12,7 +14,7 @@ export function playEventAudio(sound: AudioEngine, e: any, you: string, boss?: {
       if (e.skillId === 'dash_strike') play('dash');
       break;
     case 'skillImpact': if (e.skillId === 'earth_break') play('earth_break'); break;
-    case 'hit': if (!e.boss) play('jelly_hit'); if (e.crit) play('crit'); break;
+    case 'hit': if (!e.boss) { play('hit_thock'); play(MATERIAL[species?.(e.id) ?? 'slime'] ?? 'mat_jelly'); } if (e.crit) play('crit'); break;
     case 'kill': if (!e.boss) play('jelly_death'); break;
     case 'dash': case 'evade': play('dodge'); break;
     case 'miss': if (e.defender === 'player') play('dodge'); break;

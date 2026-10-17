@@ -1,6 +1,7 @@
 import {chunkInstances,artQuality,artStats,groundPatches,meadowHorizon} from './world-art.ts';
 import * as T from 'three';import type{PaintedLoader}from'./assets';
 import{ARENA,OBSTACLES,water}from'./sim';
+import{uprightCard,TALL_PROP}from'./upright-depth.ts';
 import{LAYOUTS,GATES,type Ellipse}from'@thainative/shared/maps';
 const L=LAYOUTS.meadow,W=L.halfX*2,D=L.halfZ*2;
 export function random(seed=7){let n=seed;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};}
@@ -80,7 +81,7 @@ export function buildScene(scene:T.Scene,loader:PaintedLoader){
   const geometries=new Map<string,T.PlaneGeometry>(),meshMaterials=new Map<string,T.MeshBasicMaterial>();
   function asset(name:string){const a=assets.get(name);if(!a)throw new Error('Missing painted asset '+name);return a;}
   function geometry(a:PaintedAsset,anchored=true){const key=a.name+anchored;if(geometries.has(key))return geometries.get(key)!;const g=new T.PlaneGeometry(1,1);if(anchored)g.translate(.5-a.anchor[0],a.anchor[1]-.5,0);const uv=g.getAttribute('uv');for(let i=0;i<uv.count;i++)uv.setXY(i,a.uvRect[0]+uv.getX(i)*a.uvRect[2],a.uvRect[1]+uv.getY(i)*a.uvRect[3]);geometries.set(key,g);return g;}
-  function meshMaterial(a:PaintedAsset){if(!meshMaterials.has(a.name))meshMaterials.set(a.name,new T.MeshBasicMaterial({map:atlases.get(a.atlas),transparent:true,alphaTest:.1,depthWrite:true,toneMapped:false,color:'#f2eadc',side:T.DoubleSide}));return meshMaterials.get(a.name)!;}
+  function meshMaterial(a:PaintedAsset){if(!meshMaterials.has(a.name))meshMaterials.set(a.name,uprightCard(new T.MeshBasicMaterial({map:atlases.get(a.atlas),transparent:true,alphaTest:.1,depthWrite:true,toneMapped:false,color:'#f2eadc',side:T.DoubleSide}),a.worldSize[1]>=TALL_PROP));return meshMaterials.get(a.name)!;}
   function prop(name:string,x:number,z:number,scale=1,cast=false){
    const a=asset(name);
    const key=name+cast;let batch=propBatches.get(key);if(!batch){batch={a,matrices:[],cast};propBatches.set(key,batch);}

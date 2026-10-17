@@ -101,18 +101,22 @@ export const storageStackId = (template: string) => "stack:storage:" + template;
 export function equipped(inv: Inventory) {
 	return inv.items.filter((i) => i.location === "equip").map((i) => i.template);
 }
-export function redPotion(inv: Inventory, data: GameData) {
+/** The strongest bag potion with this effect ("hp" heals, "sp" restores MP). */
+export function bestPotion(inv: Inventory, data: GameData, effect: "hp" | "sp") {
 	return inv.items
 		.filter(
 			(i) =>
 				i.location === "bag" &&
-				data.items.items.find((t) => t.id === i.template)?.effect === "hp",
+				data.items.items.find((t) => t.id === i.template)?.effect === effect,
 		)
 		.sort(
 			(a, b) =>
 				data.items.items.find((t) => t.id === b.template)!.amount! -
 				data.items.items.find((t) => t.id === a.template)!.amount!,
 		)[0];
+}
+export function redPotion(inv: Inventory, data: GameData) {
+	return bestPotion(inv, data, "hp");
 }
 export function starterInventory(
 	potions: number,
