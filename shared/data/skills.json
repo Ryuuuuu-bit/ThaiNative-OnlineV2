@@ -751,7 +751,8 @@
           15.3333,
           16
         ]
-      }
+      },
+      "hitInterval": 0.143
     },
     {
       "element": "weapon",
@@ -839,7 +840,8 @@
           33.1111,
           34
         ]
-      }
+      },
+      "hitInterval": 0.143
     },
     {
       "element": "weapon",
@@ -880,7 +882,11 @@
       },
       "effect": "dash",
       "duration": 0.5,
-      "pvpDurationMul": 0.6
+      "pvpDurationMul": 0.6,
+      "landing": {
+        "delay": 0.4,
+        "radius": 1.6
+      }
     },
     {
       "element": "weapon",

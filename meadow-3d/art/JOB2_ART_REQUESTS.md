@@ -2,13 +2,21 @@
 
 No `shared/game`, server, damage, cooldown, cast, collision, `visual`, or simulation `look` edits were made.
 
-## Claude: reliable multi-hit contact identity
+## Claude: reliable multi-hit contact identity — DONE (Claude)
+
+Resolved in the sim: frenzy_slash and blade_cyclone set `hitInterval` (0.143 s, two frames of the 8-frame 0.5 s motion). All rolls are made at cast; hit 1 lands at once and the rest are queued like `whirlwindHits`. Every `hit` and `miss` now carries `skillId`, `hitIndex` (1-based) and a per-cast `cast` id, and a miss keeps its slot. Hits still queued when the target dies are dropped, so no contact is shown after the authoritative death. `painted-hero.ts` maps `hitIndex` n to `MULTI_CONTACTS[n-1]` (with `contactOffset`).
+
+Original request:
 
 Frenzy Slash and Blade Cyclone resolve their rolls in one tick. Successful `hit` events have `skillId`, but `hitIndex` is undefined. `miss` has neither the skill ID nor hit ordinal. A client counter of successful hits cannot distinguish “first cut missed, second cut hit” from “first cut hit”. Lethal hits also stop subsequent rolls. Delaying those events without reliable ordinals would misrepresent contact timing and can show contact after the target's authoritative death.
 
 Please stage hits like `whirlwindHits`, retaining the exact damage rolls and integer totals, or supply a cast identifier and ordinal on every hit/miss plus an agreed presentation policy for death. Planned zero-based contact frames are `[1,3,5]` and `[1,3,5,7]`; `contactOffset()` records the corresponding client timeline. No live stagger queue was enabled. Per-hit VFX and rising-pitch SFX remain unfinished; existing material/thock layers are retained.
 
-## Claude: Leap Strike event timeline
+## Claude: Leap Strike event timeline — DONE (Claude)
+
+Resolved in the sim: leap_strike has `landing: {delay: 0.4, radius: 1.6}`. On cast the leaper moves along the path to just short of the target (no hits on the way) and is invulnerable and locked for 0.4 s. `dashTrail` now carries `skillId`, `visual`, `duration: 0.4` and `cast`. At landing the sim emits `skillImpact {skillId: 'leap_strike', x, z, cast}`, then strikes and stuns everything within 1.6 m. The client treats the 0.4 s like a cast (`CAST_SECONDS.leap_strike`), and `leapHeight` peaks halfway and is 0 at landing.
+
+Original request:
 
 The dash loop moves the player and hits targets immediately. `dashTrail` has endpoints but no skill ID, duration or end event. The data's `duration: .5` is currently the applied stun duration, not a half-second movement interval. Please confirm an explicit client-only presentation timeline or stage launch/landing events. The supplied leap curve is display-only; the production client retains the borrowed motion. Landing SFX and path/crack VFX are not enabled. The offline review can show the candidate sprite airborne, but this is not evidence of authoritative landing contact.
 

@@ -5,7 +5,7 @@ import { makeHero } from './actors';
 import { uprightSprite } from './upright-depth.ts';
 import { facingFor, motionFor, motionFrame, atlasCell, MOTIONS, MOTION_DURATION } from './sprite-animation';
 import type { Motion } from './sprite-animation';
-import { JOB2_MOTIONS, BORROWED_MOTION, MOTION_READY, CAST_SECONDS, SKILL_MOTIONS, SKILL_FRAMES, SKILL_DURATION, CONTACT_FRAME, isSkillMotion, skillFrame, earthHeight, leapHeight, type SkillMotion } from './skill-motions';
+import { MULTI_CONTACTS, contactOffset, JOB2_MOTIONS, BORROWED_MOTION, MOTION_READY, CAST_SECONDS, SKILL_MOTIONS, SKILL_FRAMES, SKILL_DURATION, CONTACT_FRAME, isSkillMotion, skillFrame, earthHeight, leapHeight, type SkillMotion } from './skill-motions';
 
 // One download/GPU source per loader; each actor owns its UV transform.
 const banks=new WeakMap<PaintedLoader,Map<string,{texture?:T.Texture;subscribers:((t:T.Texture)=>void)[]}>>();
@@ -58,7 +58,7 @@ export function makePaintedHero(loader: PaintedLoader) {
     event(e:any){
       if(e.type==='skill'&&isSkillMotion(e.skillId)){skill=e.skillId;elapsed=0;contact=null;fresh=true;skillFacing={x:e.dx??0,z:e.dz??1};}
       if(e.type==='skillImpact'&&e.skillId===skill){elapsed=CAST_SECONDS[skill!]??0;contact=CONTACT_FRAME[skill!];}
-      if(e.type==='hit'&&skill&&!CAST_SECONDS[skill]){contact=skill==='whirlwind'&&e.hitIndex===2?5:CONTACT_FRAME[skill];if(skill==='whirlwind'&&e.hitIndex===2)elapsed=Math.max(elapsed,.25);}
+      if(e.type==='hit'&&skill&&!CAST_SECONDS[skill]){const multi=(MULTI_CONTACTS as Record<string,readonly number[]>)[skill];if(multi&&e.hitIndex){const n=Math.min(multi.length,e.hitIndex)-1;contact=multi[n];elapsed=Math.max(elapsed,contactOffset(skill as keyof typeof MULTI_CONTACTS,n));}else{contact=skill==='whirlwind'&&e.hitIndex===2?5:CONTACT_FRAME[skill];if(skill==='whirlwind'&&e.hitIndex===2)elapsed=Math.max(elapsed,.25);}}
       if(e.type==='slash'){skill=null;combo=e.combo||0;fresh=true;}
       if(e.type==='dash'||e.type==='death'){skill=null;contact=null;}
     },

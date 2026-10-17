@@ -86,7 +86,9 @@ export interface Player extends Vec, JobProgress {
  /** Field-boss cooldowns other than the King (which keeps bossReadyAt). */
  bossCooldowns?: Record<string, number>;
  quests?: import('../quests.js').QuestState;
- whirlwindHits?:{id:number;due:number;damage:number;crit:boolean;breakdown:any;impact?:number}[];
+ whirlwindHits?:{id:number;due:number;damage:number;crit:boolean;breakdown:any;impact?:number;hit?:boolean;skillId?:string;level?:number;cast?:number}[];
+ /** leap_strike landings: the hit lands at the end of the airborne arc. */
+ landings?:{due:number;x:number;z:number;skillId:string;level:number;cast:number}[];
  inventory?:Inventory; autoSeconds:number;
  mapId: MapId;
  healerReadyAt: number;
@@ -550,12 +552,19 @@ export function setBossTimer(g: Game, seconds: number) {
 	boss.hp = boss.maxHp;
 	setMotion(boss, "death");
 }
+/** A leap lands: one impact event, then every enemy in the landing radius is struck (and stunned by the dash effect). */
+function land(g: Game, l: { x: number; z: number; skillId: string; level: number; cast: number }) {
+	const skill = resolveSkill(g.data, l.skillId, l.level);
+	emit(g, "skillImpact", { x: l.x, z: l.z, skillId: skill.id, visual: skill.visual, cast: l.cast });
+	const r = skill.landing?.radius ?? 1.6;
+	for (const e of [...g.enemies]) if (!e.dead && Math.hypot(e.x - l.x, e.z - l.z) <= r + (e.boss ? 0.6 : 0)) hit(g, e, skill, false);
+}
 /** Value of a learned passive at the player's level (0 when not learned). */
 function learnedValue(g: Game, p: Player, id: string, key: string) {
 	const level = p.skills[id] || 0;
 	return level ? skillValue(resolveSkill(g.data, id, level), key, level) : 0;
 }
-function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number}) {
+function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number;hit?:boolean;cast?:number}) {
 	if (e.dead) return false;
 	const defender = monsterStats(
 		g.data.monsters.monsters.find((m) => m.id === e.dataId)!,
@@ -580,7 +589,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 						rhythm,
 					)),
 		};
-	const result = prepared ? {...prepared,hit:true} : computeDamage(
+	const result = prepared ? {...prepared,hit:prepared.hit ?? true} : computeDamage(
 		g.p.stats,
 		defender,
 		skill,
@@ -594,6 +603,10 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 			id: e.id,
 			boss: e.boss,
 			breakdown: result.breakdown,
+			skillId: skill.id,
+			visual: skill.visual,
+			hitIndex: prepared?.impact,
+			cast: prepared?.cast,
 		});
 		return false;
 	}
@@ -618,7 +631,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 		move(e, (dx / d) * 0.23, (dz / d) * 0.23);
 	}
 	emit(g, "hit", {
-        skillId:skill.id,visual:skill.visual,hitIndex:prepared?.impact,
+        skillId:skill.id,visual:skill.visual,hitIndex:prepared?.impact,cast:prepared?.cast,
 		x: e.x,
 		z: e.z,
 		id: e.id,
@@ -910,6 +923,23 @@ export function action(g: Game, a: Action) {
 			const start = { x: p.x, z: p.z };
 			g.destination = null;
 			g.target = null;
+			if (skill.landing) {
+				// Leap: fly over the path (no hits on the way) and land just short of the target; the strike
+				// resolves on landing after landing.delay, while the leaper is airborne and untouchable.
+				const reach = target ? Math.min(skill.range, Math.max(0, Math.hypot(target.x - p.x, target.z - p.z) - 0.8)) : skill.range;
+				for (let n = 0; n < Math.round(reach / 0.1); n++) {
+					const x = p.x + p.fx * 0.1, z = p.z + p.fz * 0.1;
+					if (!walk(x, z, 0.35)) break;
+					p.x = x;
+					p.z = z;
+				}
+				const cast = g.nextId++;
+				p.invulnerable = Math.max(p.invulnerable, skill.landing.delay);
+				p.castRemaining = Math.max(p.castRemaining, skill.landing.delay);
+				(p.landings ??= []).push({ due: g.time + skill.landing.delay, x: p.x, z: p.z, skillId: skill.id, level, cast });
+				emit(g, "dashTrail", { fromX: start.x, fromZ: start.z, toX: p.x, toZ: p.z, skillId: skill.id, visual: skill.visual, duration: skill.landing.delay, cast });
+				return true;
+			}
 			for (let n = 0; n < Math.round(skill.range / 0.1); n++) {
 				const x = p.x + p.fx * 0.1,
 					z = p.z + p.fz * 0.1;
@@ -964,6 +994,18 @@ export function action(g: Game, a: Action) {
                 const prepared={impact:1,damage:Math.ceil(total/2),crit:rolls.some(r=>r.crit),breakdown:rolls[0].breakdown};
                 hit(g,e,skill,false,prepared);
                 (p.whirlwindHits??=[]).push({id:e.id,due:g.time+.25,...prepared,impact:2,damage:Math.floor(total/2)});
+            } else if(skill.hitInterval && skill.hits>1) {
+                // Staged multi-hit (frenzy_slash, blade_cyclone): every roll is made now, hit 1 lands now and the
+                // rest land hitInterval apart; a miss keeps its slot, and hits queued after the target dies are dropped.
+                const defender=monsterStats(g.data.monsters.monsters.find(m=>m.id===e.dataId)!,g.data,e.bossPhase===2);
+                const defDown=e.statuses.find(s=>s.id==='def_down');if(defDown){defender.hardDef*=1-defDown.value;defender.softDef*=1-defDown.value;}
+                const cast=g.nextId++;
+                for(let i=0;i<skill.hits;i++){
+                    const r=computeDamage(p.stats,defender,skill,{rng:g.random,comboThird:false},g.data);
+                    const staged={impact:i+1,hit:r.hit,damage:Math.round(r.damage*(e.boss&&e.motion==='stun'?1.25:1)),crit:r.crit,breakdown:r.breakdown,cast};
+                    if(i===0)hit(g,e,skill,false,staged);
+                    else (p.whirlwindHits??=[]).push({id:e.id,due:g.time+skill.hitInterval*i,...staged,skillId:skill.id,level});
+                }
             } else for(let i=0;i<skill.hits;i++)hit(g,e,skill);
         }
 		return true;
@@ -1722,7 +1764,10 @@ export function step(
 		g.p = p;
                 if(p.dead||!isField(g.mapId))p.whirlwindHits=[];
         const due=(p.whirlwindHits??[]).filter(h=>h.due<=g.time+1e-9);p.whirlwindHits=(p.whirlwindHits??[]).filter(h=>h.due>g.time+1e-9);
-        for(const h of due){const enemy=g.enemies.find(e=>e.id===h.id&&!e.dead);if(enemy)hit(g,enemy,resolveSkill(g.data,'whirlwind',p.skills.whirlwind||1),false,h);}
+        for(const h of due){const enemy=g.enemies.find(e=>e.id===h.id&&!e.dead);const id=h.skillId??'whirlwind';if(enemy)hit(g,enemy,resolveSkill(g.data,id,h.level??(p.skills[id]||1)),false,h);}
+        if(p.dead||!isField(g.mapId))p.landings=[];
+        const landed=(p.landings??[]).filter(l=>l.due<=g.time+1e-9);p.landings=(p.landings??[]).filter(l=>l.due>g.time+1e-9);
+        for(const l of landed)land(g,l);
 		playerStep(
 			g,
 			dt,
