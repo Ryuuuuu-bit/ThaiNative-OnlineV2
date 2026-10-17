@@ -118,7 +118,7 @@ function checkName(){
  $<HTMLButtonElement>('#create-submit').disabled=!ok||!playable(currentJob);
 }
 nameInput.addEventListener('input',checkName);
-const POOL=['แอริน','ธารา','ภูผา','ลมหนาว','ดาวเหนือ','ไพลิน','อัคนี','สายฟ้า','ตะวัน','Kira','Ren','Mira'];
+const POOL=['ธารา','ภูผา','ลมหนาว','ดาวเหนือ','ไพลิน','อัคนี','สายฟ้า','ตะวัน','Kira','Ren','Mira'];
 $('#name-dice').onclick=()=>{nameInput.value=POOL[Math.floor(Math.random()*POOL.length)]+(Math.random()<.5?'':String(Math.floor(Math.random()*90+10)));checkName();nameInput.focus();};
 function show(screen:'select'|'create'){selectScreen.hidden=screen!=='select';createScreen.hidden=screen!=='create';}
 function openCreate(c?:any){
