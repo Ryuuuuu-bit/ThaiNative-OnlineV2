@@ -7,10 +7,10 @@ export type MusicState = {
   bossBarActive: boolean;
   bossAggro: boolean;
 };
-export const MUSIC_CROSSFADE = 1.5;
+export const MUSIC_CROSSFADE = 3;
 export const MUSIC_RELEASE = 4;
 export function musicDuckGain(dead: boolean, impact: boolean) {
-  return (dead ? .3 : 1) * (impact ? Math.pow(10, -3 / 20) : 1);
+  return (dead ? .3 : 1) * (impact ? Math.pow(10, -1.5 / 20) : 1);
 }
 /** Monotonic wall time keeps the release independent of simulation speed. */
 export class MusicSelection {
