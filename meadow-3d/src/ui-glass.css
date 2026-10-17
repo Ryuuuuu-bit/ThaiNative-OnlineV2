@@ -60,8 +60,6 @@
 #ui #quest-button{font-size:0!important;padding:0;display:grid;place-items:center;pointer-events:auto}
 #ui #quest-button::before{content:'';width:18px;height:18px;background:currentColor;-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat;
 	--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M6 3h11a1 1 0 0 1 1 1v17l-3-2-3 2-3-2-3 2V4a1 1 0 0 1 1-1z'/%3E%3Cpath d='M9 8h6M9 12h6'/%3E%3C/svg%3E")}
-#game-menu-window .menu-tools{display:contents}
-#game-menu-window .menu-tools button{display:block;width:100%;margin:8px 0;padding:12px;text-align:left;font-size:15px}
 /* icon buttons: text stays for screen readers (aria-label), glyph comes from a mask */
 #ui :is(#stats-button,#skills-button,#inventory-button,#game-menu,#audio,#help,#pause){font-size:0!important;padding:0;display:grid;place-items:center}
 #ui :is(#stats-button,#skills-button,#inventory-button,#game-menu,#audio,#help,#pause)::before{content:'';width:18px;height:18px;background:currentColor;-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat}
@@ -184,7 +182,6 @@ dialog .primary:hover{background:#f0d7a4!important;filter:none}
 dialog button:disabled{opacity:.38;cursor:default}
 dialog input:not([type=checkbox]):not([type=range]),dialog select{background:rgba(0,0,0,.28)!important;color:var(--g-text)!important;border:1px solid var(--g-line-strong)!important;border-radius:8px}
 dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
-#game-menu-window a,#game-menu-window>button:not(.close){display:block;width:100%;text-align:left;background:rgba(255,255,255,.05)!important;border:1px solid var(--g-line)!important;border-radius:10px;color:var(--g-text)!important}
 
 /* ---------- Boss HUD ---------- */
 #ui .boss-hud{background:none!important;border:0!important;box-shadow:none;backdrop-filter:none;padding:0!important;text-align:center;text-shadow:var(--g-shadow)}
