@@ -35,6 +35,10 @@ let statsController:any=null,lastStats:any=null;const statsUI={get open(){return
 const skillsUI=mountSkills(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});},id=>doAction(id),id=>sound.play(id));$('#skills-button').onclick=()=>skillsUI.toggle();
 const inventoryUI=mountInventory(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});});
 const autoUI=mountAutoSettings({send:message=>net.send(message),player:()=>game.p,map:()=>activeMap,onOpen:()=>clearInput(),potion:()=>autoPotionUI});
+// Action bar (J ⇧ R F H Z) can fold down to one toggle; the keys keep working while it is folded.
+{const bar=$('.legacy-actions'),fold=document.createElement('button');fold.id='actions-toggle';fold.type='button';bar.prepend(fold);
+ const set=(folded:boolean)=>{document.body.classList.toggle('actions-folded',folded);fold.setAttribute('aria-expanded',String(!folded));fold.title=fold.ariaLabel=folded?'แสดงปุ่มลัด':'ซ่อนปุ่มลัด';try{localStorage.setItem('tn-actions-folded',folded?'1':'0');}catch{}};
+ let saved=false;try{saved=localStorage.getItem('tn-actions-folded')==='1';}catch{}set(saved);fold.onclick=()=>set(!document.body.classList.contains('actions-folded'));}
 const itemData=loadGameData();
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(selected.character.id),keys=new Set<string>();let qualityPreference="high";try{qualityPreference=localStorage.getItem("tn-quality")||"high";}catch{}
 let started=false,paused=false,wonShown=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;

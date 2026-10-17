@@ -299,7 +299,18 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 	#ui #skills-more{align-self:center;width:22px!important;min-width:22px!important;height:52px!important;margin:0 0 0 -4px!important;padding:0!important;border:0!important;background:transparent!important;backdrop-filter:none!important;color:var(--g-faint)!important;font-size:11px!important}
 	#ui #skills-more:hover{color:var(--g-text)!important}
 	#ui #skills-more:focus-visible,#ui .legacy-actions button:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line-strong)}
+	/* fold toggle: a slim chevron tab at the front of the action bar */
+	#ui #actions-toggle{width:22px!important;min-width:22px!important;border:0!important;background:transparent!important;color:var(--g-faint)!important;font-size:0!important}
+	#ui #actions-toggle::before{content:'';width:12px;height:12px;background:currentColor;transition:transform .2s;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
+	#ui #actions-toggle:hover{color:var(--g-text)!important}
+	body.actions-folded #ui #actions-toggle::before{transform:rotate(180deg)}
+	body.actions-folded #ui .legacy-actions>:not(#actions-toggle),body.actions-folded #ui #qol-controls>*{display:none!important}
+	body.actions-folded #ui .legacy-actions{padding:6px 2px!important}
+	/* folded with AUTO running: a gold dot on the toggle says so */
+	body.actions-folded #ui .legacy-actions:has(#auto-hunt[aria-pressed=true]) #actions-toggle::after{content:'';position:absolute;top:8px;right:3px;width:6px;height:6px;border-radius:50%;background:var(--g-gold);box-shadow:0 0 6px var(--g-gold)}
 	/* gold · weight · kills: one muted line above the dock */
 	#ui .rewards{bottom:calc(100% + 8px)!important;left:2px!important;gap:14px!important}
 	#ui .rewards span{font-size:11px!important;color:var(--g-faint)!important}
 }
+
+@media(max-width:650px){#ui #actions-toggle{display:none}}
