@@ -35,10 +35,20 @@ let statsController:any=null,lastStats:any=null;const statsUI={get open(){return
 const skillsUI=mountSkills(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});},id=>doAction(id),id=>sound.play(id));$('#skills-button').onclick=()=>skillsUI.toggle();
 const inventoryUI=mountInventory(message=>net.send(message),()=>{clearInput();net.send({t:'auto',on:false});});
 const autoUI=mountAutoSettings({send:message=>net.send(message),player:()=>game.p,map:()=>activeMap,onOpen:()=>clearInput(),potion:()=>autoPotionUI});
-// Action bar (J ⇧ R F H Z) can fold down to one toggle; the keys keep working while it is folded.
-{const bar=$('.legacy-actions'),fold=document.createElement('button');fold.id='actions-toggle';fold.type='button';bar.prepend(fold);
- const set=(folded:boolean)=>{document.body.classList.toggle('actions-folded',folded);fold.setAttribute('aria-expanded',String(!folded));fold.title=fold.ariaLabel=folded?'แสดงปุ่มลัด':'ซ่อนปุ่มลัด';try{localStorage.setItem('tn-actions-folded',folded?'1':'0');}catch{}};
- let saved=false;try{saved=localStorage.getItem('tn-actions-folded')==='1';}catch{}set(saved);fold.onclick=()=>set(!document.body.classList.contains('actions-folded'));}
+// Action launcher: the action buttons (J ⇧ R F H Z, AUTO settings) sit in a tile popup opened from one button.
+// They are the original buttons moved in, so their listeners and keys are unchanged. On phones the popup is
+// display:contents and the old row layout applies.
+const launcher=(()=>{const bar=$('.legacy-actions'),open=document.createElement('button'),panel=document.createElement('div');
+ open.id='actions-toggle';open.type='button';open.title=open.ariaLabel='ปุ่มลัด';open.setAttribute('aria-expanded','false');panel.id='action-launcher';panel.setAttribute('role','group');panel.setAttribute('aria-label','ปุ่มลัด');
+ panel.append(...[...bar.children].filter(el=>el.tagName==='BUTTON'));
+ const gear=panel.querySelector('#auto-settings-button');if(gear&&!gear.querySelector('span'))gear.insertAdjacentHTML('afterbegin','<span aria-hidden="true"></span>');bar.prepend(open);bar.append(panel);
+ const set=(on:boolean)=>{document.body.classList.toggle('actions-open',on);open.setAttribute('aria-expanded',String(on));};
+ open.onclick=()=>set(!document.body.classList.contains('actions-open'));
+ document.addEventListener('pointerdown',e=>{if(document.body.classList.contains('actions-open')&&!bar.contains(e.target as Node))set(false);});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false);});
+ // any window opening (AUTO settings, menu, bag…) folds the popup away
+ new MutationObserver(()=>{if(document.querySelector('dialog[open]'))set(false);}).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open']});
+ return {adopt:(el:Element)=>panel.append(el)};})();
 const itemData=loadGameData();
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(selected.character.id),keys=new Set<string>();let qualityPreference="high";try{qualityPreference=localStorage.getItem("tn-quality")||"high";}catch{}
 let started=false,paused=false,wonShown=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
@@ -381,7 +391,7 @@ applyQuality();hud();requestAnimationFrame(frame);
 
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice});
-qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});
+qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));
 
 if(pendingUI)qol.receive(pendingUI);
 function measureHeroScreen(actor:T.Object3D=hero.root,threshold=200){

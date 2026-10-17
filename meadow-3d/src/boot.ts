@@ -9,9 +9,10 @@ declare global {
 		};
 	}
 }
-void import("./main").catch(() =>
-	window.tnBoot.fail("เปิดทุ่งหญ้าไม่สำเร็จ กรุณาลองใหม่", "module"),
-);
+void import("./main").catch((error) => {
+	console.error("main module failed", error);
+	window.tnBoot.fail("เปิดทุ่งหญ้าไม่สำเร็จ กรุณาลองใหม่", "module");
+});
 assetJSON<string[]>("/loading-tips.json")
 	.then((tips: string[]) => {
 		let i = 0;

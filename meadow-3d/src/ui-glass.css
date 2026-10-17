@@ -299,18 +299,46 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 	#ui #skills-more{align-self:center;width:22px!important;min-width:22px!important;height:52px!important;margin:0 0 0 -4px!important;padding:0!important;border:0!important;background:transparent!important;backdrop-filter:none!important;color:var(--g-faint)!important;font-size:11px!important}
 	#ui #skills-more:hover{color:var(--g-text)!important}
 	#ui #skills-more:focus-visible,#ui .legacy-actions button:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line-strong)}
-	/* fold toggle: a slim chevron tab at the front of the action bar */
-	#ui #actions-toggle{width:22px!important;min-width:22px!important;border:0!important;background:transparent!important;color:var(--g-faint)!important;font-size:0!important}
-	#ui #actions-toggle::before{content:'';width:12px;height:12px;background:currentColor;transition:transform .2s;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
-	#ui #actions-toggle:hover{color:var(--g-text)!important}
-	body.actions-folded #ui #actions-toggle::before{transform:rotate(180deg)}
-	body.actions-folded #ui .legacy-actions>:not(#actions-toggle),body.actions-folded #ui #qol-controls>*{display:none!important}
-	body.actions-folded #ui .legacy-actions{padding:6px 2px!important}
-	/* folded with AUTO running: a gold dot on the toggle says so */
-	body.actions-folded #ui .legacy-actions:has(#auto-hunt[aria-pressed=true]) #actions-toggle::after{content:'';position:absolute;top:8px;right:3px;width:6px;height:6px;border-radius:50%;background:var(--g-gold);box-shadow:0 0 6px var(--g-gold)}
 	/* gold · weight · kills: one muted line above the dock */
 	#ui .rewards{bottom:calc(100% + 8px)!important;left:2px!important;gap:14px!important}
 	#ui .rewards span{font-size:11px!important;color:var(--g-faint)!important}
 }
 
-@media(max-width:650px){#ui #actions-toggle{display:none}}
+
+/* ---------- Action launcher: one grid button in the dock, tiles pop up above it ---------- */
+#action-launcher{display:contents}
+#ui #actions-toggle{display:none}
+@media(min-width:651px){
+	#ui .legacy-actions{position:relative}
+	#ui #actions-toggle{display:grid!important;place-items:center;font-size:0!important;color:rgba(243,239,230,.85)!important}
+	#ui #actions-toggle::before{content:'';width:22px;height:22px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='13.5' y='4' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='4' y='13.5' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='13.5' y='13.5' width='6.5' height='6.5' rx='1.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='13.5' y='4' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='4' y='13.5' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='13.5' y='13.5' width='6.5' height='6.5' rx='1.5'/%3E%3C/svg%3E") center/contain no-repeat}
+	body.actions-open #ui #actions-toggle{color:var(--g-gold)!important;border-color:rgba(230,201,143,.6)!important;background:rgba(230,201,143,.12)!important}
+	/* AUTO running while the launcher is closed: a gold dot on the grid button */
+	body:not(.actions-open) #ui .legacy-actions:has(#auto-hunt[aria-pressed=true]) #actions-toggle::after{content:'';position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--g-gold);box-shadow:0 0 6px var(--g-gold)}
+	#ui #action-launcher{display:none;position:absolute;right:0;bottom:calc(100% + 10px);z-index:20;grid-template-columns:repeat(4,76px);gap:8px;padding:12px;border-radius:16px;
+		background:var(--g-window);border:1px solid var(--g-line-strong);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 18px 40px rgba(0,0,0,.4);pointer-events:auto}
+	body.actions-open #ui #action-launcher{display:grid}
+	#ui #qol-controls{display:contents!important}
+	/* each action is a tile: tinted circle with the line icon, the button's title as the label */
+	#ui #action-launcher button{position:relative;display:flex!important;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;width:76px!important;height:84px!important;min-width:0!important;min-height:0!important;margin:0!important;padding:10px 2px 0!important;
+		border-radius:12px!important;border:1px solid var(--g-line)!important;background:rgba(255,255,255,.04)!important;color:var(--tint)!important;text-shadow:none}
+	#ui #action-launcher button:hover{background:rgba(255,255,255,.08)!important;border-color:color-mix(in srgb,var(--tint) 55%,transparent)!important}
+	#ui #action-launcher button::before{content:'';position:absolute;top:10px;left:50%;width:42px;height:42px;margin-left:-21px;border-radius:12px;
+		background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--tint) 38%,transparent),color-mix(in srgb,var(--tint) 12%,transparent) 70%);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint) 40%,transparent),0 3px 8px rgba(0,0,0,.3)}
+	#ui #action-launcher button>span[aria-hidden]{position:relative;z-index:1;width:22px;height:22px;margin-top:10px}
+	#ui #action-launcher button::after{content:attr(title);position:absolute;left:2px;right:2px;bottom:8px;font:500 12px/1.2 'Noto Sans Thai',sans-serif;color:var(--g-text);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+	#ui #action-launcher kbd{position:absolute;top:4px!important;right:5px!important;left:auto!important;padding:0 4px!important;border-radius:4px;background:rgba(0,0,0,.35)!important;font:600 9px/14px 'Noto Sans Thai',sans-serif!important;color:var(--g-muted)!important;text-shadow:none}
+	#ui #action-launcher #potions{position:absolute;left:50%!important;right:auto!important;top:40px!important;bottom:auto!important;margin-left:8px;z-index:2;min-width:18px;padding:0 4px;border-radius:8px;background:rgba(12,20,19,.85);font:700 10px/16px 'Noto Sans Thai',sans-serif!important;text-align:center}
+	#ui #action-launcher [data-action=attack]{--tint:#e8a35f}
+	#ui #action-launcher [data-action=dash]{--tint:#9fd5f5}
+	#ui #action-launcher [data-action=potion]{--tint:#e8656a}
+	#ui #action-launcher #auto-hunt{--tint:#e6c98f}
+	#ui #action-launcher #auto-hunt[aria-pressed=true]{border-color:rgba(230,201,143,.7)!important;background:rgba(230,201,143,.12)!important}
+	#ui #action-launcher #auto-hunt[aria-pressed=true]::after{content:'AUTO เปิด';color:var(--g-gold)}
+	#ui #action-launcher #auto-settings-button{--tint:#5fb6e8;align-self:auto;margin:0!important;font-size:0!important}
+	#ui #action-launcher #auto-settings-button::before{width:42px;height:42px;margin-left:-21px;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--tint) 38%,transparent),color-mix(in srgb,var(--tint) 12%,transparent) 70%);-webkit-mask:none;mask:none}
+	#ui #action-launcher #auto-settings-button{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1'/%3E%3C/svg%3E")}
+	#ui #action-launcher #return-city{--tint:#8fd18a}
+	#ui #action-launcher #pickup-all{--tint:#c495f2}
+	#ui #action-launcher [data-action=potion].auto-on::after{content:'ยา · อัตโนมัติ';color:var(--g-ok)}
+}
