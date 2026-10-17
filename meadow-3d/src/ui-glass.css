@@ -248,15 +248,6 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 #ui .legacy-actions button[data-action="potion"].auto-on::after{content:'A';position:absolute;right:-2px;top:-2px;width:14px;height:14px;border-radius:50%;background:var(--g-ok,#8fd18a);color:#10201a;font:800 9px/14px 'Noto Sans Thai',sans-serif;text-align:center;text-shadow:none}
 #skills-window .item-node .item-icon{width:42px;height:42px;margin:0;flex:none}
 #skills-window .item-node{cursor:grab}
-#auto-potion-settings{display:grid;gap:8px;margin-bottom:12px}
-#auto-potion-settings .ap-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
-#auto-potion-settings .ap-toggle{display:flex;align-items:center;gap:6px;min-width:150px}
-#auto-potion-settings .ap-range{display:flex;align-items:center;gap:8px;flex:1;min-width:180px}
-#auto-potion-settings .ap-range input{flex:1}
-#auto-potion-settings .ap-hp input[type=range]{accent-color:var(--g-hp,#e8656a)}
-#auto-potion-settings .ap-mp input[type=range]{accent-color:var(--g-mp,#5fb6e8)}
-#auto-potion-settings output{min-width:3ch;font-variant-numeric:tabular-nums}
-#auto-potion-settings small{opacity:.75}
 /* Settings panel (auto-potion, sound, HUD) in the glass palette instead of the old parchment card. */
 #audio-settings{background:rgba(0,0,0,.24);border:1px solid var(--g-line);color:var(--g-text)}
 #audio-settings h3{color:var(--g-gold);font-size:14px;margin:4px 0 6px}

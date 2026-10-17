@@ -29,7 +29,8 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 	const learnedSkills = () => {
 		const p = o.player(),
 			bar: (string | null)[] = (p?.hotbar ?? []).map((h: any) => h.skill);
-		const usable = (id: string) => !!p?.skills?.[id] && !!spec(id) && !spec(id).passive;
+		// Same filter as the sim's autoCast: job skills only (basic attack, dodge and potion have their own handling).
+		const usable = (id: string) => !!p?.skills?.[id] && !!spec(id) && !spec(id).passive && spec(id).jobId !== "common";
 		// every usable hotbar skill in AUTO order, the switched-off ones included so they can be turned back on
 		return autoSkillSequence({ ...cfg, off: [] }, bar, usable, Object.keys(p?.skills ?? {}), (id) => skillTierRank(data, id));
 	};
@@ -90,7 +91,7 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 					${stepper("hp", "ดื่มยา HP เมื่อต่ำกว่า", "ใช้ยาแดงที่ดีที่สุดในกระเป๋า")}
 					${stepper("survive", "ใช้สกิลเอาตัวรอดเมื่อ HP ต่ำกว่า", survivors || "ยังไม่มีสกิลเอาตัวรอดในแถบ")}
 					${stepper("mp", "ดื่มยา SP เมื่อต่ำกว่า", "ใช้ยาฟ้าในกระเป๋า")}
-					<p class="auto-note">ดื่มยาทำงานทั้งตอน AUTO และเล่นเอง (ค่าเดียวกับในตั้งค่า) · ตั้งเป็น "ปิด" ถ้าไม่อยากดื่มเอง · ยาหมดและ HP ต่ำกว่า 25% AUTO จะถอยกลับแคมป์</p>
+					<p class="auto-note">ดื่มยาทำงานทั้งตอนเปิด AUTO และตอนเล่นเอง (ตั้งค่าที่นี่ที่เดียว) · ตั้งเป็น "ปิด" ถ้าไม่อยากดื่มเอง · ยาหมดและ HP ต่ำกว่า 25% AUTO จะถอยกลับแคมป์</p>
 				</section>
 				<section class="auto-card"><h3>เป้าหมาย</h3>
 					<div class="auto-row col"><span><b>มอนสเตอร์ที่จะตี</b><small>${map === "city_plaza" ? "นครที่ถูกลืมเลือน" : map === "forest" ? "ป่าหมอก" : "ทุ่งวุ้นจิ๋ว"} · เลือกได้หลายตัว · จำแยกแต่ละแผนที่</small></span><div class="auto-chips">${mobChips}</div></div>
