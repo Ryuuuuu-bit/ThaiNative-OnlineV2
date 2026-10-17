@@ -5,7 +5,8 @@ const seq = z.number().int().nonnegative().max(2147483647),
 	point = z.number().finite().min(-10000).max(10000);
 export const IntentSchema = z.discriminatedUnion("t", [
  z.object({t:z.literal('uiSettings'),settings:UISettingsSchema}).strict(),
- z.object({t:z.literal('returnCity')}).strict(),
+  z.object({t:z.literal('returnCity')}).strict(),
+ z.object({t:z.literal('quest'),op:z.enum(['accept','turnIn','abandon']),id:z.string().regex(/^[a-z_]{1,40}$/)}).strict(),
  z.object({t:z.literal('chat'),ch:z.enum(['map','party','whisper']),text:z.string().min(1).max(160),to:z.string().min(1).max(24).optional()}).strict(),
  z.object({t:z.literal('party'),op:z.enum(['invite','accept','decline','leave','kick','lead']),name:z.string().min(1).max(24).optional(),id:z.string().max(60).optional()}).strict(),
  z.object({t:z.literal('pickupAll')}).strict(),

@@ -238,7 +238,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const weight = panel.querySelector<HTMLProgressElement>("progress")!;
 		weight.value =
 			(((p as any)?.carryWeight || 0) / ((p as any)?.weightLimit || 1)) * 100;
-		auto.checked = inv.autoPickup;
+				auto.checked = inv.autoPickup;
+		(auto.parentElement as HTMLElement).hidden = storage || !!shop;
 		tabs.replaceChildren();
 		content.replaceChildren();
 				for (const name of storage

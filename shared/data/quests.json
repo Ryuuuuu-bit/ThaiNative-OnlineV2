@@ -1,0 +1,88 @@
+{
+  "dataVersion": 1,
+  "maxActive": 8,
+  "shareRange": 30,
+  "quests": [
+    {
+      "id": "guard_first_hunt",
+      "nameTh": "ล่าครั้งแรกนอกกำแพง",
+      "giver": "guard",
+      "level": 1,
+      "requires": [],
+      "offer": "หมอกพาวุ้นจิ๋วมาป้วนเปี้ยนแถวประตูใต้ ช่วยไล่พวกมันสักหน่อย แล้วกลับมาเล่าให้ข้าฟัง",
+      "complete": "ฝีมือไม่เลวเลย นี่ค่าเหนื่อย กับยาไว้ติดตัว",
+      "objectives": [{ "kind": "kill", "monsters": ["jelly_pink"], "count": 8, "label": "ปราบวุ้นจิ๋ว" }],
+      "rewards": { "exp": 120, "jobExp": 60, "gold": 80, "items": [{ "template": "red_small", "qty": 5 }] }
+    },
+    {
+      "id": "smith_slime",
+      "nameTh": "เมือกสำหรับเตาหลอม",
+      "giver": "forge",
+      "level": 2,
+      "requires": ["guard_first_hunt"],
+      "offer": "เมือกวุ้นช่วยให้เหล็กไม่แตกตอนชุบ เอามาให้ข้าสักสิบก้อน แล้วข้าจะตีของดีให้",
+      "complete": "เมือกสดดี ข้าตีรองเท้าคู่นี้ไว้ให้เจ้าแล้ว",
+      "objectives": [{ "kind": "collect", "item": "jelly_slime", "count": 10, "label": "เมือกวุ้น" }],
+      "rewards": { "exp": 150, "jobExp": 80, "gold": 60, "items": [{ "template": "trail_boots", "qty": 1 }] }
+    },
+    {
+      "id": "merchant_seeds",
+      "nameTh": "เมล็ดพันธุ์ในหมอก",
+      "giver": "market",
+      "level": 2,
+      "requires": ["guard_first_hunt"],
+      "offer": "เมล็ดที่วุ้นกลืนไว้ยังงอกได้นะ ข้าจะเอาไปปลูกในลานหลังร้าน หามาให้ห้าเมล็ดได้ไหม",
+      "complete": "ขอบใจมาก นี่ยาแดงกลาง ใช้ตอนคับขันนะ",
+      "objectives": [{ "kind": "collect", "item": "leaf_seed", "count": 5, "label": "เมล็ดพันธุ์ใบ" }],
+      "rewards": { "exp": 140, "jobExp": 70, "gold": 100, "items": [{ "template": "red_medium", "qty": 3 }] }
+    },
+    {
+      "id": "healer_colors",
+      "nameTh": "สีของหมอก",
+      "giver": "heal",
+      "level": 3,
+      "requires": ["guard_first_hunt"],
+      "offer": "วุ้นเขียวกับวุ้นฟ้าเพิ่มขึ้นตั้งแต่หมอกหนาขึ้น ข้าอยากรู้ว่ามันมาจากไหน ช่วยปราบให้ข้าดูหน่อย",
+      "complete": "หมอกเปลี่ยนสีพวกมันจริง ๆ… รับยานี่ไว้ เผื่อต้องวิ่งหนี",
+      "objectives": [
+        { "kind": "kill", "monsters": ["jelly_mint"], "count": 5, "label": "ปราบวุ้นเขียว" },
+        { "kind": "kill", "monsters": ["jelly_sky"], "count": 5, "label": "ปราบวุ้นฟ้า" }
+      ],
+      "rewards": { "exp": 300, "jobExp": 150, "gold": 120, "items": [{ "template": "speed_potion", "qty": 2 }, { "template": "blue_potion", "qty": 3 }] }
+    },
+    {
+      "id": "storage_ledger",
+      "nameTh": "สมุดคลังที่หายไป",
+      "giver": "storage",
+      "level": 1,
+      "requires": [],
+      "offer": "คลังนี้เก็บของให้นักผจญภัยมาหลายรุ่น ลองฝากของสักชิ้นดูสิ แล้วข้าจะลงชื่อเจ้าในสมุด",
+      "complete": "ลงชื่อเรียบร้อย ของในคลังปลอดภัยแม้เจ้าจะหมดสติกลางทุ่ง",
+      "objectives": [{ "kind": "store", "count": 1, "label": "ฝากของเข้าคลัง" }],
+      "rewards": { "exp": 40, "jobExp": 20, "gold": 30, "items": [] }
+    },
+    {
+      "id": "guard_king",
+      "nameTh": "ราชาแห่งทุ่งวุ้น",
+      "giver": "guard",
+      "level": 4,
+      "requires": ["healer_colors"],
+      "offer": "ที่ปลายทุ่งมีราชาวุ้นนอนอยู่ในซากโบราณ ถ้าเจ้าล้มมันได้ ประตูทิศอื่นอาจเริ่มเปิด",
+      "complete": "เจ้าล้มราชาวุ้นได้จริง ๆ! ทั้งเมืองจะรู้ชื่อเจ้า",
+      "objectives": [{ "kind": "kill", "monsters": ["king_jelly"], "count": 1, "label": "ปราบราชาวุ้น" }],
+      "rewards": { "exp": 1000, "jobExp": 400, "gold": 500, "items": [{ "template": "weapon_stone", "qty": 1 }] }
+    },
+    {
+      "id": "guard_bounty",
+      "nameTh": "ค่าหัวประจำวัน",
+      "giver": "guard",
+      "level": 2,
+      "requires": ["guard_first_hunt"],
+      "repeatHours": 20,
+      "offer": "ทุกวันวุ้นจะกลับมาใหม่ ปราบให้ได้ยี่สิบตัวแล้วมารับค่าหัว",
+      "complete": "ค่าหัววันนี้ของเจ้า พรุ่งนี้มาใหม่นะ",
+      "objectives": [{ "kind": "kill", "monsters": ["jelly_pink", "jelly_mint", "jelly_sky"], "count": 20, "label": "ปราบวุ้นชนิดใดก็ได้" }],
+      "rewards": { "exp": 220, "jobExp": 110, "gold": 150, "items": [{ "template": "red_small", "qty": 3 }] }
+    }
+  ]
+}

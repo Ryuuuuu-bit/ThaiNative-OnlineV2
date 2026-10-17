@@ -50,6 +50,15 @@ export function validateGameData(raw: Record<string, unknown>): GameData {
 				throw Error("skills.json: prerequisite reference");
 		}
 	}
+	for (const q of data.quests.quests) {
+		for (const r of q.requires) if (!data.quests.quests.some(o => o.id === r)) throw Error("quests.json: unknown prerequisite " + r);
+		for (const o of q.objectives) {
+			if (o.kind === "kill") for (const m of o.monsters) if (!data.monsters.monsters.some(x => x.id === m)) throw Error("quests.json: unknown monster " + m);
+			if (o.kind === "collect" && !data.items.items.some(i => i.id === o.item)) throw Error("quests.json: unknown item " + o.item);
+		}
+		for (const i of q.rewards.items) if (!data.items.items.some(t => t.id === i.template)) throw Error("quests.json: unknown reward " + i.template);
+	}
+	if (new Set(data.quests.quests.map(q => q.id)).size !== data.quests.quests.length) throw Error("quests.json: duplicate id");
 	for(const stock of Object.values(data.economy.shops))for(const id of Object.keys(stock))if(!data.items.items.some(i=>i.id===id))throw Error('economy.json: unknown shop item '+id);
  const build = data.stats.defaultBuild;
 	for (const name of ["races", "status"] as const) {

@@ -7,6 +7,7 @@ import { CITY_BUILDINGS, HEALER, GATES, type MapId } from '@thainative/shared/ma
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import { playEventAudio } from './audio-events';
 import { mountSocial } from './social-ui';
+import { mountQuests } from './quest-ui';
 import { mountAudioSettings } from './audio-settings-ui';
 import{mountSkills}from'./skills-ui';import{mountSkillArt}from'./skill-art';
 import{loadSelected}from'./web/game-session';
@@ -33,13 +34,13 @@ const combatFeel=new CombatFeel(),autoQuality=new AutoQuality();autoQuality.auto
 const audioUI=mountAudioSettings(sound,message=>net.send(message));
 const feelLabel=document.createElement('label');feelLabel.innerHTML='<input type="checkbox" id="combat-feel">ภาพสั่น/หยุดภาพ';document.querySelector('#audio-settings')!.append(feelLabel);const feelInput=feelLabel.querySelector('input')!;feelInput.checked=combatFeel.enabled;feelInput.onchange=()=>combatFeel.setEnabled(feelInput.checked);
 document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.closest('button:not(:disabled)'))sound.play('ui_click');},true);
-let social:ReturnType<typeof mountSocial>|undefined;
+let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
- if(social?.receive(message))return;
+  if(social?.receive(message)||quests?.receive(message))return;
  audioUI.receive(message);inventoryUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
  if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you)audioUI.receive(e);
  if(message.t==='snap'){worldState.receive(message,net.you,performance.now());if(message.mapId!==activeMap)void switchMap(message.mapId);}
- if(message.t==='inv'&&message.inventory){game.p.inventory=message.inventory;game.p.gold=message.gold;}
+  if(message.t==='inv'&&message.inventory){game.p.inventory=message.inventory;game.p.gold=message.gold;quests?.refresh();}
  if(message.t==='welcome')window.tnBoot.stage(3);
  if(message.t==='ev'){for(const e of message.list)if(e.playerId===net.you&&['stats','statsError'].includes(e.type))statsUI.receive(e);for(const e of message.list)if(e.playerId===net.you)skillsUI.receive(e);game.events.push(...message.list.filter((e:any)=>!['death','level','notice','victory'].includes(e.type)||e.playerId===net.you||e.type==='victory'));events();}
 },status(state){
@@ -85,9 +86,9 @@ async function switchMap(id:MapId){
  }finally{switching=false;fade.hidden=failedMap!==id;}
 }
 const npcTalk=document.createElement('button');npcTalk.id='npc-talk';npcTalk.hidden=true;$('#ui').append(npcTalk);
-const npcDialog=document.createElement('dialog');npcDialog.id='npc-dialog';npcDialog.innerHTML='<h2></h2><p></p><button>ปิด</button>';document.body.append(npcDialog);npcDialog.querySelector('button')!.onclick=()=>npcDialog.close();
+const npcDialog=document.createElement('dialog');npcDialog.id='npc-dialog';npcDialog.innerHTML='<h2></h2><p></p><div class="npc-extra"></div><button class="npc-close">ปิด</button>';document.body.append(npcDialog);npcDialog.querySelector<HTMLButtonElement>('.npc-close')!.onclick=()=>npcDialog.close();npcDialog.addEventListener('close',()=>quests?.unmount());
 let nearNpc: {name:string;kind:string;text:string}|null=null;
-npcTalk.onclick=()=>{if(!nearNpc)return;clearInput();if(['market','forge','storage'].includes(nearNpc.kind)){inventoryUI.shop(nearNpc.kind);return;}if(nearNpc.kind==='heal')net.send({t:'heal'});npcDialog.querySelector('h2')!.textContent=nearNpc.name;npcDialog.querySelector('p')!.textContent=nearNpc.text;npcDialog.showModal();};
+npcTalk.onclick=()=>{if(!nearNpc)return;clearInput();const kind=nearNpc.kind,shopKind=['market','forge','storage'].includes(kind);if(shopKind&&!quests?.pending(kind)){inventoryUI.shop(kind);return;}if(kind==='heal')net.send({t:'heal'});npcDialog.querySelector('h2')!.textContent=nearNpc.name;npcDialog.querySelector('p')!.textContent=shopKind?(kind==='storage'?'ฝากของไว้ที่นี่ได้ ของในคลังปลอดภัยเสมอ':'มาดูของก่อนสิ'):nearNpc.text;const extra=npcDialog.querySelector<HTMLElement>('.npc-extra')!;extra.replaceChildren();if(shopKind){const open=document.createElement('button');open.className='npc-shop-open primary';open.textContent=kind==='storage'?'เปิดคลังเก็บของ':'เปิดร้าน';open.onclick=()=>{npcDialog.close();inventoryUI.shop(kind);};extra.append(open);}quests?.mount(kind,extra);if(!npcDialog.open)npcDialog.showModal();};
 const cityFog=new T.Fog('#c8d1cd',35,68),meadowFog=scene.fog;
 function mapInteractions(){
  const mapTitle=document.querySelector('.map-head');if(mapTitle)mapTitle.textContent=areaName(activeMap);
@@ -156,6 +157,7 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'boss':notice('✦ ผู้พิทักษ์ตื่นขึ้นแล้ว — ไปที่ซากโบราณทางใต้');$('#quest-name').textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';$('#quest-note').textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';break;
  case'skillsError':case'statsError':if(!inventoryUI.open)notice(e.text);break;
  case'notice':notice(e.text);break;
+  case'questComplete':if(e.playerId===net.you)quests?.event(e);break;
  case'death':clearInput();deathReveal=1.5;lastXpLost=Number(e.xpLost)||0;break;
  case'victory':notice('✦ ราชาวุ้นถูกปราบแล้ว!');setTimeout(()=>{if(!game.p.dead)showVictory();},2000);break;
  }for(let i=effectStart;i<effects.length;i++)effects[i].owner=e.playerId;} }
@@ -310,7 +312,8 @@ applyQuality();hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
 
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started});
-qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>{if(!skillsUI.open)skillsUI.toggle();$('#key-settings').hidden=false;$('#audio-settings').hidden=false;},talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(['market','forge','storage'].includes(kind)){inventoryUI.shop(kind);return;}if(nearNpc&&nearNpc.kind===kind)npcTalk.click();}});
+quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice});
+qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},settings:()=>{if(!skillsUI.open)skillsUI.toggle();$('#key-settings').hidden=false;$('#audio-settings').hidden=false;},talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});
 
 if(pendingUI)qol.receive(pendingUI);
 function measureHeroScreen(actor:T.Object3D=hero.root,threshold=200){

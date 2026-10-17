@@ -1,5 +1,6 @@
 import {applyInventory,equipped,inventoryWeight,type InventoryOp} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, type MapId } from "@thainative/shared";
+import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
 import type { Server } from "node:http";
 import { performance } from "node:perf_hooks";
@@ -234,14 +235,44 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
    p.inventory=latest.inventory;p.gold=latest.gold;refreshStats(g,p);
    if(result.error){if(op.op==='pickup')room.dropRequests?.delete(op.id!);throw Error(result.error);}
    if(result.effect&&!result.duplicate){const e=result.effect;if(e.kind==='hp'){const amount=Math.min(e.amount,p.maxHp-p.hp);p.hp+=amount;g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount});}if(e.kind==='sp')p.mp=Math.min(p.maxMp,p.mp+e.amount);if(e.kind==='speed')p.statuses.push({id:'speed',sourceId:p.id,remaining:60,value:e.amount});p.cd.potion=data.skills.skills.find(s=>s.id==='potion')!.cooldown;}
-   done();if(op.op==='pickup')void save(room,p.id);sendStats(peer,p);send(peer.ws,{t:'inv',req,inventory:p.inventory,gold:p.gold});
+      done();if(op.op==='store'&&p.quests&&recordStore(p.quests,data).length)sendQuests(peer,p);if(op.op==='pickup')void save(room,p.id);sendStats(peer,p);send(peer.ws,{t:'inv',req,inventory:p.inventory,gold:p.gold});
    if(op.op==='pickup'){room.dropRequests?.delete(op.id!);}
    if(op.op==='pickup')send(peer.ws,{t:'ev',list:[{type:'itemPickup',playerId:p.id,loot:op.loot}]});
   });
+    const settled=operation;
   room.saveQueue=operation.catch(e=>{
    const d=g.drops.find(d=>String(d.id)===op.id);if(op.op==='pickup'&&d){d.pending=false;d.noticeAt=g.time;d.blocked=true;}
    send(peer.ws,{t:'inv',req,error:(e as Error).message});send(peer.ws,{t:'ev',list:[{type:'notice',playerId:p.id,text:(e as Error).message}]});
   }).finally(()=>{peer.busy!--;while(!peer.busy&&peer.deferred?.length&&live.get(peer.id)===peer&&!closing)intent(peer,peer.deferred.shift()!,true);});
+  return settled;
+ }
+ function sendQuests(peer:Peer,p:Player){send(peer.ws,{t:'quests',state:p.quests??{active:{},done:{}}});}
+ const questBusy=new Set<string>();
+ function questIntent(peer:Peer,p:Player,message:{op:'accept'|'turnIn'|'abandon';id:string}){
+  const room=peer.room,g=room.game,q=data.quests.quests.find(q=>q.id===message.id);
+  const fail=(text:string)=>send(peer.ws,{t:'questError',id:message.id,text});
+  if(!q){fail('ไม่พบเควสต์');return;}
+  p.quests??={active:{},done:{}};
+  if(message.op==='abandon'){if(!p.quests.active[q.id]){fail('ยังไม่ได้รับเควสต์นี้');return;}delete p.quests.active[q.id];void save(room,p.id);sendQuests(peer,p);return;}
+  const at=giverPosition(q.giver);
+  if(p.dead||g.mapId!=='city_plaza'||Math.hypot(p.x-at.x,p.z-at.z)>QUEST_TALK_RANGE){fail('ไปคุยกับผู้ให้เควสต์ก่อน');return;}
+  if(message.op==='accept'){
+   try{acceptQuest(p.quests,q.id,p.level,Date.now(),data);}catch(e){fail((e as Error).message);return;}
+   void save(room,p.id);sendQuests(peer,p);send(peer.ws,{t:'ev',list:[{type:'notice',playerId:p.id,text:`รับเควสต์ · ${q.nameTh}`}]});return;
+  }
+  if(questStatus(q,p.quests,p.level,Date.now(),p.inventory)!=='ready'){fail('ยังทำเควสต์ไม่ครบ');return;}
+  if(questBusy.has(p.id)||peer.busy){fail('กำลังบันทึก กรุณารอสักครู่');return;}
+  questBusy.add(p.id);
+  const op={op:'quest' as const,loot:questTurnInItems(q),reward:q.rewards.items,gold:q.rewards.gold};
+  const done=()=>{
+   if(!p.quests?.active[q.id])return;
+   completeQuest(p.quests,q.id,Date.now());
+   grantExp(g,p,q.rewards.exp,q.rewards.jobExp,{quest:q.id});
+   g.events.push({type:'questComplete',playerId:p.id,x:p.x,z:p.z,id:q.id,text:q.complete,rewards:q.rewards});
+   flush(room);void save(room,p.id);sendQuests(peer,p);
+  };
+  const pending=economy(peer,p,op,randomUUID(),done);
+  if(pending)void pending.catch(()=>{}).finally(()=>questBusy.delete(p.id));else questBusy.delete(p.id);
  }
  function getRoom(mapId: MapId, id: string): Room {
   const key=mapId+(options.sharedRooms?'':':'+id);
@@ -286,7 +317,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		if (!p || !accountId) return room.saveQueue;
 		const operation = room.saveQueue.then(async () => {
         const body: Progress = {
-			bossReadyAt:p.bossReadyAt,autoSeconds:p.autoSeconds,
+						bossReadyAt:p.bossReadyAt,autoSeconds:p.autoSeconds,quests:p.quests,
  jobId: p.jobId,
 			jobLevel: p.jobLevel,
 			jobExp: p.jobExp,
@@ -320,9 +351,18 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		const saved=room.saveQueue;saves.set(id,saved);void saved.finally(()=>{if(saves.get(id)===saved)saves.delete(id);});
 		return strict ? operation : room.saveQueue;
 	}
-	function flush(room: Room) {
+		function flush(room: Room) {
 		const list = room.game.events.splice(0);
 		if (!list.length) return;
+		for (const e of list)
+			if (e.type === "kill" && e.dataId && e.ownerId) {
+				const ids = social.partyMembers(String(e.ownerId));
+				for (const id of ids) {
+					const member = room.game.players.get(id);
+					if (!member?.quests || member.dead || (id !== e.ownerId && Math.hypot(member.x - e.x, member.z - e.z) > data.quests.shareRange)) continue;
+					if (recordKill(member.quests, String(e.dataId), data).length) { const peer = room.peers.get(id); if (peer) sendQuests(peer, member); }
+				}
+			}
 		for (const peer of room.peers.values())
 			if (peer.ready) send(peer.ws, { t: "ev", tick: room.tick, list });
 		for (const e of list)
@@ -385,12 +425,14 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			}
 			send(peer.ws, snapshot(room, peer));
 			sendStats(peer, g.players.get(peer.id)!);
-			social.ready(peer);
+						social.ready(peer);
+			{const qp=g.players.get(peer.id);if(qp)sendQuests(peer,qp);}
 			return;
 		}
 		if (!peer.ready) return;
 		if (message.t === "chat") { social.chat(peer, message); return; }
-		if (message.t === "party") { social.party(peer, message); return; }
+				if (message.t === "party") { social.party(peer, message); return; }
+		if (message.t === "quest") { const qp=g.players.get(peer.id);if(qp)questIntent(peer,qp,message); return; }
 		if (!queued && "seq" in message) {
 			if (message.seq <= peer.ack) return;
 			peer.ack = message.seq;
@@ -685,7 +727,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                     p.profile.equipment=equipped(p.inventory);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
- p.bossReadyAt=character.bossReadyAt||0;p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
+ 	 p.quests=normalizeQuests(character.quests,data);p.bossReadyAt=character.bossReadyAt||0;p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
 					p.profile.classId = p.jobId;
 					p.name = character.name;
 					p.xp = character.xp;

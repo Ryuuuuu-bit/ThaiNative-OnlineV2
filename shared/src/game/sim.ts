@@ -77,7 +77,8 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
- bossReadyAt?:number; reviveRemaining?:number;
+  bossReadyAt?:number; reviveRemaining?:number;
+ quests?: import('../quests.js').QuestState;
  whirlwindHits?:{id:number;due:number;damage:number;crit:boolean;breakdown:any;impact?:number}[];
  inventory?:Inventory; autoSeconds:number;
  mapId: MapId;
@@ -472,10 +473,12 @@ function defeat(g: Game, e: Enemy) {
 	const winner = g.players.get(topDamage(g, e));
 	if (winner) winner.kills++;
 	for (const p of g.players.values()) if (p.target === e.id) p.target = null;
-	emit(g, "kill", {
+		emit(g, "kill", {
 		x: e.x,
 		z: e.z,
 		id: e.id,
+		dataId: e.dataId,
+		ownerId: winner?.id,
 		boss: e.boss,
 		variant: e.variant,
 	});
@@ -639,6 +642,27 @@ function hurt(
 		g.destination = null;
 		emit(g, "death", { xpLost: deathPenalty(p, g.data) });
 	}
+}
+/** Adds base and job EXP (EXP bonus applies to base EXP), runs level-ups and emits a pickup event. */
+export function grantExp(g: Game, r: Player, baseXp: number, jobExp: number, extra: Record<string, unknown> = {}) {
+	const before = g.p;
+	g.p = r;
+	const jobLevels = gainJobExp(r, Math.round(jobExp * (g.jobExpMultiplier || 1)), g.data);
+	if (jobLevels) emit(g, "jobLevel", { jobLevel: r.jobLevel, skillPoints: r.skillPoints, granted: jobLevels });
+	const xp = Math.round(baseXp * (1 + r.stats.expBonus));
+	r.xp += xp;
+	emit(g, "pickup", { gold: 0, ...extra, xp });
+	while (r.level < g.data.stats.maxLevel && r.xp >= r.nextXp) {
+		r.xp -= r.nextXp;
+		r.level++;
+		r.statPoints += g.data.stats.pointsPerLevel;
+		Object.assign(r, autoAllocateStats(r, g.data));
+		refreshStats(g, r);
+		r.hp = r.maxHp;
+		r.mp = r.maxMp;
+		emit(g, "level", { level: r.level, skillPoints: r.skillPoints, points: r.statPoints, granted: g.data.stats.pointsPerLevel });
+	}
+	g.p = before;
 }
 export const PARTY_SHARE_RANGE = 30;
 /** Party EXP: living members on this map within range split the kill's EXP evenly, +10% per extra member. */
@@ -1651,25 +1675,8 @@ export function step(
   if(dist<4&&d.time>.25){const speed=Math.min(dist,dt*9);d.x+=dx/(dist||1)*speed;d.z+=dz/(dist||1)*speed;}
   if(dist<.45){
    const done=()=>{const before=g.p;
-				for (const share of expShares(g, p, d.xp, d.jobExp || 0)) {
-					const r = share.player;
-					g.p = r;
-					const jobLevels = gainJobExp(r, Math.round(share.jobExp * (g.jobExpMultiplier || 1)), g.data);
-					if (jobLevels) emit(g, "jobLevel", { jobLevel: r.jobLevel, skillPoints: r.skillPoints, granted: jobLevels });
-					const xp = Math.round(share.xp * (1 + r.stats.expBonus));
-					r.xp += xp;
-					emit(g, "pickup", { gold: r === p ? d.gold : 0, xp, shared: share.shared });
-					while (r.level < g.data.stats.maxLevel && r.xp >= r.nextXp) {
-						r.xp -= r.nextXp;
-						r.level++;
-						r.statPoints += g.data.stats.pointsPerLevel;
-						Object.assign(r, autoAllocateStats(r, g.data));
-						refreshStats(g, r);
-						r.hp = r.maxHp;
-						r.mp = r.maxMp;
-						emit(g, "level", { level: r.level, skillPoints: r.skillPoints, points: r.statPoints, granted: g.data.stats.pointsPerLevel });
-					}
-				}
+								for (const share of expShares(g, p, d.xp, d.jobExp || 0))
+					grantExp(g, share.player, share.xp, share.jobExp, { gold: share.player === p ? d.gold : 0, shared: share.shared });
 				g.p = p;
     if(d.boss)p.bossReadyAt=g.wallTime+600000;g.drops=g.drops.filter(drop=>drop!==d);g.p=before;
    };

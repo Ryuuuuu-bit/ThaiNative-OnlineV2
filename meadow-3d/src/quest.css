@@ -1,0 +1,27 @@
+/* NPC quest cards and journal tracker. */
+#npc-dialog{max-width:min(460px,92vw)}
+#npc-dialog .npc-extra{display:grid;gap:10px;margin:8px 0}
+#npc-dialog .npc-shop-open{justify-self:start}
+.npc-quests{display:grid;gap:10px}
+.npc-quest{padding:10px 12px;border:1px solid #d6bc8855;border-radius:10px 3px 10px 3px;background:#0f221cc0}
+.npc-quest h3{display:flex;align-items:center;gap:8px;margin:0 0 4px;font-size:16px;color:#ecd28e}
+.npc-quest .quest-badge{font-size:12px;font-weight:600;padding:1px 7px;border-radius:9px;background:#17372b;color:#fff4d6;border:1px solid #b49e6966}
+.npc-quest[data-status=available] .quest-badge{background:#5c4a1f;border-color:#ecd28e}
+.npc-quest[data-status=ready] .quest-badge{background:#2f5a3a;border-color:#a9e3c4}
+.npc-quest[data-status=done] .quest-badge,.npc-quest[data-status=cooldown] .quest-badge,.npc-quest[data-status=locked] .quest-badge{opacity:.75}
+.npc-quest p{margin:2px 0 6px;font-size:14px;line-height:1.5}
+.npc-quest ul{margin:0 0 4px;padding-left:18px;font-size:14px}
+.npc-quest .quest-rewards{font-size:13px;opacity:.85}
+.quest-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.quest-actions button{font:inherit;min-height:38px;padding:0 14px;color:#fff4d6;background:#17372b;border:1px solid #b49e69;border-radius:6px;cursor:pointer}
+.quest-actions button.primary{background:#5c4a1f;border-color:#ecd28e}
+.quest-actions button:disabled{opacity:.5;cursor:wait}
+#quest-tracker{list-style:none;margin:8px 0 0;padding:6px 0 0;border-top:1px solid #d6bc8833;display:grid;gap:6px}
+#quest-tracker li{display:grid;gap:1px}
+#quest-tracker b{font-size:13px;color:#ecd28e}
+#quest-tracker small{font-size:12px;opacity:.9}
+#quest-tracker li.ready small{color:#a9e3c4}
+@media(max-width:650px){.quest-actions button{min-height:44px}#quest-tracker b{font-size:12px}}
+#npc-dialog .npc-close,#npc-dialog .npc-shop-open{font:inherit;min-height:38px;padding:0 16px;color:#fff4d6;background:#17372b;border:1px solid #b49e69;border-radius:6px;cursor:pointer}
+#npc-dialog .npc-shop-open{background:#5c4a1f;border-color:#ecd28e}
+.quest-actions button.primary{flex:0 0 auto}

@@ -3,6 +3,7 @@ export const CITY_SPAWN = { x: 0, z: 10 };
 export const CITY_RETURN = { x: 0, z: 25 };
 export const MEADOW_ENTRY = { x: 0, z: -10.5 };
 export const HEALER = { x: -9, z: 6 };
+export const GATE_CAPTAIN = { x: 4, z: 25 };
 export const CITY_BUILDINGS = [
   { id: 'storage', name: 'คลังเก็บของ', npc: 'คนเฝ้าคลัง', x: 0, z: -19, w: 9, d: 6, talk: { x: 0, z: -14 } },
   { id: 'forge', name: 'โรงตีเหล็ก', npc: 'ช่างตีเหล็ก', x: -20, z: 0, w: 7, d: 8, talk: { x: -14, z: 0 } },

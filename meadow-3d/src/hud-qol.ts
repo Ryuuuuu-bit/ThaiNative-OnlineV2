@@ -34,12 +34,12 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
  if(matchMedia('(max-width:650px)').matches)$('.quest').classList.add('collapsed');
  const fpsLabel=document.createElement('label');fpsLabel.innerHTML='<input type="checkbox">แสดง FPS';$('#audio-settings').append(fpsLabel);const fpsInput=fpsLabel.querySelector('input')!;fpsInput.checked=new URLSearchParams(location.search).get('debug')==='1'||localStorage.getItem('tn-fps')==='yes';const showFPS=()=>{$('#fps').hidden=!fpsInput.checked;};fpsInput.onchange=()=>{localStorage.setItem('tn-fps',fpsInput.checked?'yes':'no');showFPS();};showFPS();
  const collapse=document.createElement('button');collapse.id='journal-toggle';collapse.textContent='บันทึกการเดินทาง ▾';collapse.setAttribute('aria-expanded',String(!$('.quest').classList.contains('collapsed')));$('.quest .caption').replaceWith(collapse);collapse.onclick=()=>{const folded=$('.quest').classList.toggle('collapsed');collapse.setAttribute('aria-expanded',String(!folded));};
- const map=$<HTMLCanvasElement>('#map');map.tabIndex=0;map.setAttribute('role','button');map.setAttribute('aria-label','แผนที่ย่อ แตะเพื่อขยายและเลือกจุดหมาย · 🔒 คลังเก็บของ — เปิดเร็ว ๆ นี้');map.title='🔒 คลังเก็บของ — เปิดเร็ว ๆ นี้';
+ const map=$<HTMLCanvasElement>('#map');map.tabIndex=0;map.setAttribute('role','button');map.setAttribute('aria-label','แผนที่ย่อ แตะเพื่อขยายและเลือกจุดหมาย');map.title='คลิกจุดบนแผนที่เพื่อเดินไป';
  const npcs=()=>o.map()==='city_plaza'?[...CITY_BUILDINGS.map(b=>({x:b.talk.x,z:b.talk.z,kind:b.id,icon:b.id==='forge'?'⚒':b.id==='market'?'◈':'▣',name:b.npc})),{...HEALER,kind:'heal',icon:'✚',name:'นักบวชหมอ'},{x:jobs.angel.x,z:jobs.angel.z,kind:'angel',icon:'✧',name:'ทูตสวรรค์'},{x:4,z:25,kind:'guard',icon:'⚑',name:'หัวหน้าทหารประตู'}]:[];
  const points=()=>[...npcs(),...Object.entries(GATES[o.map()]).map(([kind,p])=>({...p,kind:'gate:'+kind,icon:'◇',name:'ประตู'}))];
  const coords=(p:{x:number;z:number})=>o.map()==='city_plaza'?{x:(p.x+30)/60*160,y:(p.z+30)/60*132}:{x:(p.x+17)/34*160,y:(p.z+14)/28*132};
  const cancel=()=>{route=[];arrival=null;};
- const navigate=(p:{x:number;z:number;kind:string})=>{if(p.kind==='storage')return;o.stop();route=gridPath(o.player(),p,o.walkable);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
+ const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();route=gridPath(o.player(),p,o.walkable);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
  const returnCity=()=>{cancel();o.send({t:'returnCity'});};$('#return-city').onclick=returnCity;$('#pickup-all').onclick=()=>o.send({t:'pickupAll'});
  map.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('.map').classList.toggle('expanded');}};
  map.onclick=e=>{const box=map.getBoundingClientRect();if(innerWidth<650&&!$('.map').classList.contains('expanded')){$('.map').classList.add('expanded');return;}
