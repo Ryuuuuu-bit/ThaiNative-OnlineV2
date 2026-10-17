@@ -22,6 +22,8 @@ test('forest adds 28 atlases and 336 unclipped directional frames with exact bot
  assert.equal(atlases,28);assert.equal(frames,336);assert.equal(m.forestPhase2.expressionOverlay,null);assert.equal(m.forestPhase2.fullFrameCopies,0);
  assert.deepEqual(m.projectiles.bolt.cellSize,[128,128]);assert.equal(m.projectiles.bolt.frames,4);const bolt=readFileSync('meadow-3d/art/texture-sources/monsters-painted/wisp-bolt-v1.png');assert.equal(bolt.readUInt32BE(16),512);assert.equal(bolt.readUInt32BE(20),128);
  assert.deepEqual(read('art/painted-forest/monster-packing-report.json').clippingWarnings,[]);
+ // Poses are cut along seams through the gaps between them, never through a body.
+ for(const [sheet,{seamAlphaCut}] of Object.entries(read('art/painted-forest/monster-packing-report.json').sources))for(const cut of [seamAlphaCut.row,...seamAlphaCut.columns])assert.ok(cut<3,`${sheet} seam crosses ${cut} px of paint`);
 });
 test('forest environment atlas rectangles, alpha gutters and tree footprint metadata are valid',()=>{
  const m=read('public/assets/env-forest/manifest.json');assert.equal(m.assets.length,18);assert.equal(m.atlases.length,1);assert.deepEqual(m.atlases[0].size,[2048,2048]);
