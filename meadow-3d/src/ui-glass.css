@@ -23,14 +23,14 @@
 	background:var(--g-glass);border:1px solid var(--g-line);border-radius:10px;color:var(--g-muted);
 	backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);box-shadow:none;transition:color .15s,border-color .15s,background .15s}
 #ui :is(.tools button,#game-menu,#stats-button,#skills-button,#inventory-button,#skills-more,.legacy-actions button,#qol-controls button):hover{color:var(--g-text);border-color:var(--g-line-strong);background:rgba(255,255,255,.1);filter:none}
-#ui kbd{font-family:'Noto Sans Thai',sans-serif;font-weight:600;color:var(--g-muted);background:none}
+#ui kbd{font-family:var(--font-ui);font-weight:600;color:var(--g-muted);background:none}
 
 /* ---------- Player ---------- */
 #ui .player{gap:14px;align-items:center}
 #ui .avatar{width:62px;height:62px;border-radius:50%;border:0;background:#203431;overflow:visible;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 0 0 4px rgba(0,0,0,.25)}
 #ui .avatar>img{border-radius:50%;object-position:50% 18%}
-#ui .avatar b{left:auto;right:-6px;bottom:-4px;min-width:26px;height:20px;padding:0 6px;border-radius:10px;border:1px solid var(--g-line-strong);background:var(--g-glass-strong);color:var(--g-gold);font:700 12px/18px 'Noto Sans Thai',sans-serif;text-shadow:none}
-#ui .player-name{font:600 17px/1.3 'Noto Sans Thai',sans-serif;letter-spacing:.01em}
+#ui .avatar b{left:auto;right:-6px;bottom:-4px;min-width:26px;height:20px;padding:0 6px;border-radius:10px;border:1px solid var(--g-line-strong);background:var(--g-glass-strong);color:var(--g-gold);font:700 12px/18px var(--font-ui);text-shadow:none}
+#ui .player-name{font:600 17px/1.3 var(--font-ui);letter-spacing:.01em}
 #ui .bar{border:0;border-radius:6px;background:rgba(0,0,0,.38);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
 #ui .bar i{border-radius:inherit}
 /* info column as a grid: name + job on one line, HP / MP with numbers inside, EXP and job EXP side by side */
@@ -43,7 +43,7 @@
 #ui .player .mp{grid-area:mp;height:12px;margin-top:4px}
 #ui .player .hp i{background:linear-gradient(90deg,var(--g-hp-deep),var(--g-hp))}
 #ui .player .mp i{background:linear-gradient(90deg,#3a86b8,var(--g-mp))}
-#ui .player .bar small{left:0;right:8px;width:auto;text-align:right;background:none;color:#fff!important;font:600 10.5px/16px 'Noto Sans Thai',sans-serif!important;text-shadow:0 1px 2px #000,0 0 3px #000;font-variant-numeric:tabular-nums}
+#ui .player .bar small{left:0;right:8px;width:auto;text-align:right;background:none;color:#fff!important;font:600 10.5px/16px var(--font-ui)!important;text-shadow:0 1px 2px #000,0 0 3px #000;font-variant-numeric:tabular-nums}
 #ui .player .mp small{line-height:12px!important;font-size:9.5px!important}
 #ui .player .xp,#ui .player .job-xp{height:4px;margin-top:7px;box-shadow:none;background:rgba(0,0,0,.4)}
 #ui .player .xp{grid-area:xp}
@@ -57,7 +57,7 @@
 #ui .map .map-head{color:var(--g-muted);font-weight:600}
 #ui #map{border-radius:50%;border:1px solid var(--g-line-strong);background:var(--g-glass);box-shadow:0 6px 24px rgba(0,0,0,.25)}
 #ui .map{position:absolute}
-#ui .map::before{content:'N';position:absolute;top:4px;left:50%;transform:translateX(-50%);z-index:1;font:700 10px 'Noto Sans Thai',sans-serif;color:var(--g-gold);pointer-events:none}
+#ui .map::before{content:'N';position:absolute;top:4px;left:50%;transform:translateX(-50%);z-index:1;font:700 10px var(--font-ui);color:var(--g-gold);pointer-events:none}
 #ui .map-foot,#ui .map-foot :is(span,#fps,#map-coords){color:var(--g-faint)!important;font-size:10px!important;font-variant-numeric:tabular-nums}
 #ui .map-foot .dot{display:none}
 /* the six icons under the map are plain glyphs, not boxed buttons */
@@ -123,7 +123,7 @@
 #ui .job-slot .job-icon{border-radius:7px}
 #ui .job-slot .job-icon::after{display:none}
 #ui .job-slot kbd{position:absolute;left:4px;top:2px;z-index:3;background:none;padding:0;color:var(--g-text);font-size:10px;text-shadow:0 1px 2px #000}
-#ui .job-slot em{background:rgba(0,0,0,.55);inset:0;border-radius:0;display:grid;place-items:center;font:700 16px 'Noto Sans Thai',sans-serif}
+#ui .job-slot em{background:rgba(0,0,0,.55);inset:0;border-radius:0;display:grid;place-items:center;font:700 16px var(--font-ui)}
 #ui .job-slot em:empty{display:none}
 #ui .job-slot.vacant{border-style:dashed;background:rgba(0,0,0,.12)}
 #ui .legacy-actions button{border-radius:50%!important;color:var(--g-muted)}
@@ -172,8 +172,8 @@ dialog:is(#skills-window,#angel-window,#stats-window,#inventory-window,#npc-dial
 	background:var(--g-window);color:var(--g-text);border:1px solid var(--g-line-strong);border-radius:16px;
 	backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);box-shadow:0 24px 70px rgba(0,0,0,.45);text-shadow:none}
 dialog::backdrop,dialog:is(#skills-window,#angel-window,#inventory-window)::backdrop{background:rgba(6,12,11,.32);backdrop-filter:none}
-dialog h2,#skills-window h2,#angel-window h2,#inventory-window h2{font:600 20px/1.3 'Noto Sans Thai',sans-serif;color:var(--g-text);margin:2px 0 8px}
-dialog .caption,#skills-window .caption,#angel-window .caption{font:600 10px/1.6 'Noto Sans Thai',sans-serif!important;letter-spacing:.16em;color:var(--g-faint)!important}
+dialog h2,#skills-window h2,#angel-window h2,#inventory-window h2{font:600 20px/1.3 var(--font-ui);color:var(--g-text);margin:2px 0 8px}
+dialog .caption,#skills-window .caption,#angel-window .caption{font:600 10px/1.6 var(--font-ui)!important;letter-spacing:.16em;color:var(--g-faint)!important}
 dialog :is(p:not(.caption),dd,label,small),#skills-window :is(small,span:not(.job-icon),p:not(.caption)),#angel-window p:not(.caption),dialog:not(#skills-window):not(#angel-window) p:not(.caption){color:var(--g-muted)}
 dialog dt{color:var(--g-gold)}
 dialog b{color:var(--g-text)}
@@ -190,7 +190,7 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 /* ---------- Boss HUD ---------- */
 #ui .boss-hud{background:none!important;border:0!important;box-shadow:none;backdrop-filter:none;padding:0!important;text-align:center;text-shadow:var(--g-shadow)}
 #ui .boss-hud small{display:block;font-size:11px!important;font-weight:600;letter-spacing:.2em!important;color:var(--g-gold)!important}
-#ui .boss-hud h3{margin:2px 0 8px;font:600 20px/1.2 'Noto Sans Thai',sans-serif;letter-spacing:.06em;color:var(--g-text)}
+#ui .boss-hud h3{margin:2px 0 8px;font:600 20px/1.2 var(--font-ui);letter-spacing:.06em;color:var(--g-text)}
 #ui .boss-hud h3::after{content:'';display:block;width:160px;height:1px;margin:6px auto 0;background:linear-gradient(90deg,transparent,var(--g-gold),transparent);opacity:.6}
 #ui .boss-hud .bar{height:10px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(230,201,143,.35),0 0 18px rgba(232,101,106,.18)}
 #ui .boss-hud .bar i{background:linear-gradient(90deg,#8e2f45,var(--g-hp) 70%,#f2a07f)}
@@ -232,7 +232,7 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 /* ---------- Potions on the hotbar + auto-potion ---------- */
 .job-slot.item-slot .hotbar-potion{display:block;width:44px;height:44px;margin:0 auto;filter:drop-shadow(0 2px 2px #0009)}
 #ui .job-slot.item-slot{background:rgba(0,0,0,.22)}
-.job-slot .slot-count{position:absolute;right:4px;bottom:2px;z-index:3;font:700 11px/1 'Noto Sans Thai',sans-serif;color:var(--g-text,#f3efe6);text-shadow:0 1px 2px #000,0 0 3px #000;font-variant-numeric:tabular-nums}
+.job-slot .slot-count{position:absolute;right:4px;bottom:2px;z-index:3;font:700 11px/1 var(--font-ui);color:var(--g-text,#f3efe6);text-shadow:0 1px 2px #000,0 0 3px #000;font-variant-numeric:tabular-nums}
 .job-slot.item-slot.out .hotbar-potion{filter:grayscale(1) brightness(.55);opacity:.55}
 .job-slot.item-slot.out .slot-count{color:var(--g-hp,#e8656a)}
 /* Cooldown sweep: the dark wedge shrinks clockwise as the shared potion cooldown runs out. */
@@ -241,7 +241,7 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 .job-slot.item-slot.cooling .hotbar-potion{filter:saturate(.5)}
 @keyframes auto-drank{0%{box-shadow:0 0 0 0 rgba(143,209,138,.9),inset 0 0 14px rgba(143,209,138,.8)}100%{box-shadow:0 0 0 10px rgba(143,209,138,0),inset 0 0 0 rgba(143,209,138,0)}}
 #ui .auto-drank{animation:auto-drank .9s ease-out;border-color:var(--g-ok,#8fd18a)!important}
-#ui .legacy-actions button[data-action="potion"].auto-on::after{content:'A';position:absolute;right:-2px;top:-2px;width:14px;height:14px;border-radius:50%;background:var(--g-ok,#8fd18a);color:#10201a;font:800 9px/14px 'Noto Sans Thai',sans-serif;text-align:center;text-shadow:none}
+#ui .legacy-actions button[data-action="potion"].auto-on::after{content:'A';position:absolute;right:-2px;top:-2px;width:14px;height:14px;border-radius:50%;background:var(--g-ok,#8fd18a);color:#10201a;font:800 9px/14px var(--font-ui);text-align:center;text-shadow:none}
 #skills-window .item-node .item-icon{width:42px;height:42px;margin:0;flex:none}
 #skills-window .item-node{cursor:grab}
 /* Settings panel (auto-potion, sound, HUD) in the glass palette instead of the old parchment card. */
@@ -275,7 +275,7 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 	#ui .legacy-actions button:hover{border-color:var(--g-line-strong)!important;color:var(--g-text)!important}
 	/* key in the top-left corner, like the skill slots */
 	#ui .legacy-actions kbd{position:absolute;left:4px!important;top:2px!important;right:auto!important;bottom:auto!important;transform:none!important;font-size:10px!important;line-height:1.2!important;color:var(--g-text)!important;text-shadow:0 1px 2px #000;background:none}
-	#ui #potions{position:absolute;right:4px!important;left:auto!important;bottom:2px!important;top:auto!important;font:700 11px/1 'Noto Sans Thai',sans-serif!important;color:var(--g-text)!important;text-shadow:0 1px 2px #000}
+	#ui #potions{position:absolute;right:4px!important;left:auto!important;bottom:2px!important;top:auto!important;font:700 11px/1 var(--font-ui)!important;color:var(--g-text)!important;text-shadow:0 1px 2px #000}
 	#ui #auto-hunt[aria-pressed=true]{color:var(--g-gold)!important;border-color:rgba(230,201,143,.7)!important;background:rgba(230,201,143,.12)!important;box-shadow:none}
 	#ui .legacy-actions button[data-action=potion].auto-on::after{right:3px;top:3px;width:12px;height:12px;font-size:8px;line-height:12px}
 	/* AUTO settings gear: a small dot inside the AUTO slot's top-right corner */
@@ -312,9 +312,9 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 	#ui #action-launcher button::before{content:'';position:absolute;top:10px;left:50%;width:42px;height:42px;margin-left:-21px;border-radius:12px;
 		background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--tint) 38%,transparent),color-mix(in srgb,var(--tint) 12%,transparent) 70%);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint) 40%,transparent),0 3px 8px rgba(0,0,0,.3)}
 	#ui #action-launcher button>span[aria-hidden]{position:relative;z-index:1;width:22px;height:22px;margin-top:10px}
-	#ui #action-launcher button::after{content:attr(title);position:absolute;left:2px;right:2px;bottom:8px;font:500 12px/1.2 'Noto Sans Thai',sans-serif;color:var(--g-text);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-	#ui #action-launcher kbd{position:absolute;top:4px!important;right:5px!important;left:auto!important;padding:0 4px!important;border-radius:4px;background:rgba(0,0,0,.35)!important;font:600 9px/14px 'Noto Sans Thai',sans-serif!important;color:var(--g-muted)!important;text-shadow:none}
-	#ui #action-launcher #potions{position:absolute;left:50%!important;right:auto!important;top:40px!important;bottom:auto!important;margin-left:8px;z-index:2;min-width:18px;padding:0 4px;border-radius:8px;background:rgba(12,20,19,.85);font:700 10px/16px 'Noto Sans Thai',sans-serif!important;text-align:center}
+	#ui #action-launcher button::after{content:attr(title);position:absolute;left:2px;right:2px;bottom:8px;font:500 12px/1.2 var(--font-ui);color:var(--g-text);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+	#ui #action-launcher kbd{position:absolute;top:4px!important;right:5px!important;left:auto!important;padding:0 4px!important;border-radius:4px;background:rgba(0,0,0,.35)!important;font:600 9px/14px var(--font-ui)!important;color:var(--g-muted)!important;text-shadow:none}
+	#ui #action-launcher #potions{position:absolute;left:50%!important;right:auto!important;top:40px!important;bottom:auto!important;margin-left:8px;z-index:2;min-width:18px;padding:0 4px;border-radius:8px;background:rgba(12,20,19,.85);font:700 10px/16px var(--font-ui)!important;text-align:center}
 	#ui #action-launcher [data-action=attack]{--tint:#e8a35f}
 	#ui #action-launcher [data-action=dash]{--tint:#9fd5f5}
 	#ui #action-launcher [data-action=potion]{--tint:#e8656a}
@@ -353,16 +353,16 @@ dialog input[type=checkbox],dialog input[type=range]{accent-color:var(--g-gold)}
 
 /* ---------- Floating combat text ---------- */
 #numbers .number{position:absolute;left:0;top:0;white-space:nowrap;pointer-events:none;will-change:transform,opacity;transform-origin:50% 50%;
- font:800 23px/1 'Noto Sans Thai',sans-serif;letter-spacing:.01em;font-variant-numeric:tabular-nums;color:#fff;
+ font:800 23px/1 var(--font-ui);letter-spacing:.01em;font-variant-numeric:tabular-nums;color:#fff;
  -webkit-text-stroke:3px rgba(18,14,10,.85);paint-order:stroke fill;text-shadow:0 3px 6px rgba(0,0,0,.45)}
 #numbers .number.crit{font-size:32px;color:#ffe08a;-webkit-text-stroke:3.5px #4a2a06;text-shadow:0 0 14px rgba(255,180,60,.75),0 3px 6px rgba(0,0,0,.5)}
-#numbers .number.crit::before{content:'CRITICAL';display:block;margin-bottom:2px;font:800 10px/1 'Noto Sans Thai',sans-serif;letter-spacing:.24em;color:#ffcf6b;-webkit-text-stroke:2px #3a2206;text-align:center}
-#numbers .number.boss-skill{padding:4px 14px;border-radius:12px;font:800 16px/1.4 'Noto Sans Thai',sans-serif;color:#ffe6d8;-webkit-text-stroke:0;background:rgba(120,24,20,.72);border:1px solid rgba(255,150,120,.6);box-shadow:0 0 16px rgba(255,90,70,.45);white-space:nowrap}
+#numbers .number.crit::before{content:'CRITICAL';display:block;margin-bottom:2px;font:800 10px/1 var(--font-ui);letter-spacing:.24em;color:#ffcf6b;-webkit-text-stroke:2px #3a2206;text-align:center}
+#numbers .number.boss-skill{padding:4px 14px;border-radius:12px;font:800 16px/1.4 var(--font-ui);color:#ffe6d8;-webkit-text-stroke:0;background:rgba(120,24,20,.72);border:1px solid rgba(255,150,120,.6);box-shadow:0 0 16px rgba(255,90,70,.45);white-space:nowrap}
 #numbers .number.hurt{font-size:20px;color:#ff8f8f;-webkit-text-stroke:3px #3a0d10}
 #numbers .number.heal{font-size:21px;color:#a8f0a6;-webkit-text-stroke:3px #0d2b14;text-shadow:0 0 10px rgba(143,209,138,.55)}
-#numbers .number.evade{padding:2px 10px;border-radius:10px;font:700 13px/1.4 'Noto Sans Thai',sans-serif;color:#cfeaff;-webkit-text-stroke:0;letter-spacing:.06em;
+#numbers .number.evade{padding:2px 10px;border-radius:10px;font:700 13px/1.4 var(--font-ui);color:#cfeaff;-webkit-text-stroke:0;letter-spacing:.06em;
  background:rgba(12,24,30,.72);border:1px solid rgba(108,195,242,.45);text-shadow:none}
-#numbers .number.reward{padding:3px 12px;border-radius:12px;font:600 12.5px/1.4 'Noto Sans Thai',sans-serif;color:#f5e3b5;-webkit-text-stroke:0;
+#numbers .number.reward{padding:3px 12px;border-radius:12px;font:600 12.5px/1.4 var(--font-ui);color:#f5e3b5;-webkit-text-stroke:0;
  background:rgba(14,22,21,.78);border:1px solid rgba(232,200,138,.4);text-shadow:none}
 #numbers .number.other{font-size:17px;filter:saturate(.7) brightness(.85);-webkit-text-stroke-width:2.5px}
 #numbers .number.other.crit{font-size:22px}#numbers .number.other.crit::before{display:none}

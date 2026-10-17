@@ -23,7 +23,7 @@ body.glass-portal::after{content:'';position:fixed;inset:0;z-index:-1;background
 /* Material */
 .glass-card,.glass-portal .auth-card,.glass-portal .character-card,.glass-portal dialog{background:var(--g-window);border:1px solid var(--g-line-strong);border-radius:16px;
 	backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);box-shadow:0 24px 70px rgba(0,0,0,.45);color:var(--g-text)}
-.glass-portal .eyebrow{font:600 11px/1.6 'Noto Sans Thai',sans-serif;letter-spacing:.16em;color:var(--g-gold)}
+.glass-portal .eyebrow{font:600 11px/1.6 var(--font-ui);letter-spacing:.16em;color:var(--g-gold)}
 .glass-portal .muted{color:var(--g-muted)}
 .glass-portal .gold-button,.glass-portal .outline-button{border-radius:10px;min-height:46px;font-weight:600;gap:12px}
 .glass-portal .gold-button{color:#1d2a26;background:linear-gradient(125deg,#f2dfb2,#d7b679);border-color:#f2dfb2;box-shadow:0 6px 22px rgba(0,0,0,.3)}
@@ -38,12 +38,12 @@ body.glass-portal::after{content:'';position:fixed;inset:0;z-index:-1;background
 .glass-portal .auth-page{grid-template-columns:1fr 440px;gap:48px}
 .glass-portal .auth-art{border-radius:16px;border-color:var(--g-line-strong);min-height:520px}
 .glass-portal .auth-card{padding:32px}
-.glass-portal .auth-card h1{font:600 26px/1.3 'Noto Sans Thai',sans-serif;margin:6px 0 16px}
+.glass-portal .auth-card h1{font:600 26px/1.3 var(--font-ui);margin:6px 0 16px}
 .auth-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;margin:4px 0 18px;border-radius:12px;background:rgba(0,0,0,.28);border:1px solid var(--g-line)}
 .auth-tabs [role=tab]{border:0;border-radius:9px;background:none;color:var(--g-muted);padding:10px 6px;min-height:42px;font-weight:600;font-size:13px}
 .auth-tabs [role=tab][aria-selected=true]{background:rgba(255,255,255,.12);color:var(--g-text);box-shadow:inset 0 0 0 1px var(--g-line-strong)}
 .auth-tabs [role=tab]:hover{color:var(--g-text);filter:none}
-.auth-panel .panel-title{font:600 16px/1.4 'Noto Sans Thai',sans-serif;margin:0 0 14px;color:var(--g-text)}
+.auth-panel .panel-title{font:600 16px/1.4 var(--font-ui);margin:0 0 14px;color:var(--g-text)}
 .auth-panel>.small{margin:0 0 16px}
 .auth-panel .gold-button{width:100%}
 .auth-form .field{margin:0 0 14px}
@@ -75,13 +75,13 @@ body.glass-portal::after{content:'';position:fixed;inset:0;z-index:-1;background
 .signed-in .actions>*{flex:1;padding:10px 12px}
 .uid-chip{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;padding:4px 4px 4px 10px;border-radius:999px;border:1px solid var(--g-line-strong);background:rgba(0,0,0,.3);font-size:12px;color:var(--g-muted);vertical-align:middle}
 .uid-label{font-weight:700;letter-spacing:.1em;color:var(--g-faint);font-size:10px}
-.uid-code{font:600 14px/1 ui-monospace,Consolas,monospace;letter-spacing:.08em;color:var(--g-gold);user-select:all}
+.uid-code{font:600 14px/1 var(--font-ui);letter-spacing:.08em;color:var(--g-gold);user-select:all}
 .uid-copy{border:0;border-radius:999px;background:rgba(255,255,255,.1);color:var(--g-text);font-size:11px;padding:5px 10px;min-height:28px}
 .uid-copy:hover{background:rgba(255,255,255,.18);filter:none}
 .uid-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 
 /* Character page */
-.glass-portal .intro-row h1{font:600 34px/1.3 'Noto Sans Thai',sans-serif}
+.glass-portal .intro-row h1{font:600 34px/1.3 var(--font-ui)}
 .account-panel{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:6px 0 0;font-size:13px}
 .glass-portal .link-note{border-left-color:var(--g-gold);color:var(--g-gold);font-size:12px}
 .glass-portal .character-card{background:linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.01)),var(--g-window)}

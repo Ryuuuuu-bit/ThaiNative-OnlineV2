@@ -1,4 +1,4 @@
-#titles-window{width:min(740px,94vw);max-height:88dvh;padding:22px 24px;color:var(--g-text);background:var(--g-window);border:1px solid var(--g-line-strong);border-radius:18px;font-family:"Noto Sans Thai",sans-serif}
+#titles-window{width:min(740px,94vw);max-height:88dvh;padding:22px 24px;color:var(--g-text);background:var(--g-window);border:1px solid var(--g-line-strong);border-radius:18px;font-family:var(--font-ui)}
 #titles-window .prestige-tabs,#titles-window .prestige-tools{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
 #titles-window :is(button,select){font:inherit;min-height:40px;border-radius:9px;padding:8px 12px;border:1px solid var(--g-line);color:var(--g-text);background:rgba(16,29,26,.9)}
 #titles-window button[aria-pressed=true]{border-color:var(--g-gold);color:var(--g-gold)}

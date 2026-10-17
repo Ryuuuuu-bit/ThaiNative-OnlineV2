@@ -22,8 +22,7 @@
 	max-height: 90dvh;
 	overflow: auto;
 	font:
-		14px "Noto Sans Thai",
-		sans-serif;
+		14px var(--font-ui);
 }
 #skills-window::backdrop,
 #angel-window::backdrop {
@@ -40,7 +39,7 @@
 	margin: 3px 0 12px;
 	font:
 		32px Georgia,
-		"Noto Sans Thai",
+		var(--font-ui),
 		serif;
 }
 #skills-window .close,
@@ -173,7 +172,7 @@
 	position: absolute;
 	inset: 10px 0 auto;
 	text-align: center;
-	font: bold 19px Georgia;
+	font: bold 19px var(--font-ui);
 	color: white;
 	text-shadow: 0 1px 4px black;
 }
@@ -290,7 +289,7 @@
 	margin-top: 6px;
 }
 .legacy-actions button {
-	font: 10px "Noto Sans Thai";
+	font: 10px var(--font-ui);
 	border: 1px solid #a6ad7b66;
 	background: #213d32c9;
 	color: #e9dfbd;
@@ -355,7 +354,7 @@
 	#skills-more {
 		display: block;
 		margin: 6px auto 0;
-		font: 10px "Noto Sans Thai";
+		font: 10px var(--font-ui);
 		background: #233f32;
 		border: 1px solid #c3ac78;
 		color: #eee0bc;
@@ -438,7 +437,7 @@
 	background: #203e33e8;
 	color: #eadcb6;
 	padding: 7px 13px;
-	font: 11px "Noto Sans Thai";
+	font: 11px var(--font-ui);
 }
 @media (max-width: 650px) {
 	#skills-button {

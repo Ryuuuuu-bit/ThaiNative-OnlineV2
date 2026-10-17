@@ -101,6 +101,9 @@ button:focus-visible,a:focus-visible,[role=button]:focus-visible{outline:2px sol
 #ui #joystick i{border-color:#d7b77788;background:radial-gradient(circle at 35% 25%,#c1ab76aa,#5a704e88)}
 :is(#npc-talk,#angel-talk){border-color:var(--g-line-strong);border-radius:8px 2px;background:var(--ui-inlay);color:#f0d8a1}
 
+/* Stable, aligned numerals in gauges, cooldowns and account/character data. */
+#ui :is(.bar small,.rewards,kbd,#map-coords,#fps),dialog :is(output,td,.stats-group b,.stat-row b,.sk-dlv),.uid-code{font-variant-numeric:tabular-nums lining-nums}
+
 /* All in-game windows share the same inset frame and material. */
 dialog[open]{border:1px solid var(--g-line-strong)!important;border-radius:14px 4px!important;background:var(--ui-grain),linear-gradient(140deg,#304032fa,#1b2b23fc 45%,#18261ffc)!important;box-shadow:var(--ui-frame-shadow),0 24px 80px #07120dbb!important;color:var(--g-text)}
 dialog::backdrop{background:#09140d77!important;backdrop-filter:blur(2px)}
@@ -135,7 +138,10 @@ dialog .prestige-card[data-state=unlocked]{background:linear-gradient(90deg,#d7b
 
 /* Existing layouts remain compact; mouse controls gain a little more hit area. */
 @media(min-width:651px){
- #ui #action-launcher{grid-template-columns:repeat(3,76px)}
+ #ui #action-launcher{grid-template-columns:repeat(3,84px)}
+ :is(#game-menu-window,#action-launcher) .menu-tile>span,#ui #action-launcher button::after{font-size:13px!important;line-height:1.5}
+ #ui .rewards span{font-size:12px!important}
+ #ui .player-name,dialog .caption{letter-spacing:0!important}
  #ui .player{width:350px}
  #ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important}
  #ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu),#ui .tools{top:calc(20px + 198px * var(--ui-scale,1))}

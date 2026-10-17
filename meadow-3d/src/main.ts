@@ -1,4 +1,5 @@
 import {mountTitles} from './titles-ui';
+import {loadUIFonts,UI_FONT_FAMILY} from './fonts';
 import {updatePlayerNameplate} from './player-nameplate';
 import {mapLightRig,followSun,nearestArtLights,CITY_SUN_OFFSET} from './world-art.ts';
 import {monsterSpecies,SPECIES_HIT_COLOUR} from './monster-animation';
@@ -35,7 +36,7 @@ import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{mat}from'./actors';import{makePaintedMonster,makePaintedDroplet,makePaintedWispBolt,makePaintedMistSpore,warmKing,kingReady,warmWarden,wardenReady}from'./painted-monster';import{makePaintedHero}from'./painted-hero';import{buildScene,label}from'./scene';import{AudioEngine}from'./audio';
 const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>(s)!;const $$=(s:string)=>[...document.querySelectorAll<HTMLElement>(s)];
 window.tnBoot.stage(0);
-const [selected,textureManifest]=await Promise.all([loadSelected(),assetJSON<TextureManifest>('/texture-manifest.json?v='+import.meta.env.VITE_BUILD_ID)]);window.tnBoot.stage(2);
+const [selected,textureManifest]=await Promise.all([loadSelected(),assetJSON<TextureManifest>('/texture-manifest.json?v='+import.meta.env.VITE_BUILD_ID),loadUIFonts()]);window.tnBoot.stage(2);
 let statsController:any=null,lastStats:any=null;const statsUI={get open(){return !!statsController?.open;},async toggle(){if(!statsController){const{mountStats}=await import('./stats-window');statsController=mountStats(message=>net.send(message),()=>clearInput());if(lastStats)statsController.receive(lastStats);}if(!statsController.open)sound.play('ui_open');statsController.toggle();},receive(e:any){if(e.type==='stats'){lastStats=e;$('#stats-button').classList.toggle('has-points',e.points>=2);}statsController?.receive(e);}};$('#stats-button').onclick=()=>void statsUI.toggle();
 // Opening a window only releases held movement; AUTO keeps hunting on the server (players manage bag/skills mid-hunt).
 const skillsUI=mountSkills(message=>net.send(message),()=>clearInput(),id=>doAction(id),id=>sound.play(id));$('#skills-button').onclick=()=>skillsUI.toggle();
