@@ -102,11 +102,20 @@ export const CITY_HOUSES: { x: number; z: number; w: number; d: number }[] = [
 	[-32, -35, 6, 5], [-18, -38, 5, 4], [18, -38, 5, 4], [32, -35, 6, 5], [-37, 32, 5, 6], [37, 32, 5, 6],
 	[-36, -18, 6, 5], [36, -18, 6, 5], [-22, 34, 5, 5], [22, 34, 5, 5], [-36, 16, 5, 5], [36, 16, 5, 5],
 ].map(([x, z, w, d]) => ({ x, z, w, d }));
+const ring = (radius: number, every: number) => Array.from({ length: 8 }, (_, i) => (i + 0.5) * Math.PI / 4).filter((_, i) => i % every === 0).map(a => ({ x: Math.cos(a) * radius, z: Math.sin(a) * radius }));
+/** Planter trees (solid pots, r 0.8): eight on the plaza ring between the roads, eight in the quarters. */
+export const CITY_PLANTERS = [...ring(12, 1), ...[[-40, -28], [40, -28], [-42, 25], [42, 25], [-20, -22], [20, -22], [-18, 37], [18, 37]].map(([x, z]) => ({ x, z }))].map(p => ({ ...p, r: 0.8 }));
+/** Benches (solid, seat and back): four on the outer ring, four in the quarters. */
+export const CITY_BENCHES = [...ring(15, 2), ...[[-18, 19], [15, 19], [-13, -15], [13, -15]].map(([x, z]) => ({ x, z }))].map(p => ({ ...p, w: 2.2, d: 0.7 }));
+/** Market stalls around the main market; `x/z/w/d` is the canopy, `solid` also covers the crate and barrel at its west front. */
+export const CITY_STALLS = [[25, -8], [25, 8], [37, -9], [37, 9]].map(([x, z]) => ({ x, z, w: 3, d: 2.1, solid: { x: x - 0.35, z: z + 0.125, w: 3.7, d: 2.35 } }));
+const cityBoxes = [...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid)];
 export function cityWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= CITY.halfX - 1 - r || Math.abs(z) >= CITY.halfZ - 1 - r) return false;
 	if (Math.abs(x) < CITY_TOWER.half + r && Math.abs(z) < CITY_TOWER.half + r) return false;
 	if (Math.hypot(x - CITY_FOUNTAIN.x, z - CITY_FOUNTAIN.z) < CITY_FOUNTAIN.r + r) return false;
-	return ![...CITY_BUILDINGS, ...CITY_HOUSES].some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r);
+	if (CITY_PLANTERS.some(p => Math.hypot(x - p.x, z - p.z) < p.r + r)) return false;
+	return !cityBoxes.some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r);
 }
 
 /* ---------------------------------------------------------------- meadow: ทุ่งวุ้นจิ๋ว, 100 x 84 m, Lv 1-5 */

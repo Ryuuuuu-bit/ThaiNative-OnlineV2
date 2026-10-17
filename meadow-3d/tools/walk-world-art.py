@@ -4,6 +4,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 OUT=Path(__file__).resolve().parents[2]/'.codex-run'
 grids={k:{tuple(p) for p in v} for k,v in json.loads((OUT/'walk-grid.json').read_text()).items()}
+city_only='--city-only' in sys.argv
 forest_only='--forest-only' in sys.argv
 events=json.loads((OUT/'world-art-walk.json').read_text()).get('events',[]) if forest_only and (OUT/'world-art-walk.json').exists() else []
 geometry=json.loads((OUT/'walk-layout.json').read_text())
@@ -82,15 +83,22 @@ with sync_playwright() as p:
   state=snap();events.append({'stop':name,'map':state['mapId'],'x':state['p']['x'],'z':state['p']['z'],'hp':state['p']['hp'],'network':state['network']['connected']});print(name,state['mapId'],flush=True)
   page.wait_for_timeout(300);page.screenshot(path=str(OUT/('walk-'+name+'.jpg')),type='jpeg',quality=88)
  try:
-  if not forest_only:
+  if city_only:
+   for goal,name in [((-8,9),'city-plaza-ring'),((0,-25),'city-storage'),((-26.5,0),'city-forge'),((26.5,0),'city-market'),((-28,-31),'city-houses'),((-14,10),'city-healer'),((5,40),'city-captain')]:goto('city_plaza',goal,name)
    goto('city_plaza',(0,46.5),'city-south-gate','meadow')
-   for goal,name in [((-14,-31),'meadow-camp-north'),((22,-24),'meadow-camp-east'),((20,-3),'meadow-lake-west'),((36,-3),'meadow-lake-east'),((0,28),'meadow-arena'),((-12,26),'meadow-camp-west'),((-25,16),'meadow-west-pond'),((24,30),'meadow-south-pond')]:goto('meadow',goal,name)
-   goto('meadow',(0,-40.5),'meadow-return','city_plaza')
-   goto('city_plaza',(44,0),'city-east-approach');goto('city_plaza',(46.5,0),'city-east-gate','forest')
-  for goal,name in [((-50,7),'forest-camp-west'),((-24,29),'forest-west-pool'),((4,18),'forest-camp-east'),((14,-24),'forest-pool'),((50,-30),'forest-east-trail'),((40,18),'forest-warden'),((50,28),'forest-east-pool')]:goto('forest',goal,name)
+   goto('meadow',(0,-40.5),'city-south-return','city_plaza')
+   goto('city_plaza',(46.5,0),'city-east-gate','forest')
+  else:
+   if not forest_only:
+    goto('city_plaza',(0,46.5),'city-south-gate','meadow')
+    for goal,name in [((-14,-31),'meadow-camp-north'),((22,-24),'meadow-camp-east'),((20,-3),'meadow-lake-west'),((36,-3),'meadow-lake-east'),((0,28),'meadow-arena'),((-12,26),'meadow-camp-west'),((-25,16),'meadow-west-pond'),((24,30),'meadow-south-pond')]:goto('meadow',goal,name)
+    goto('meadow',(0,-40.5),'meadow-return','city_plaza')
+    goto('city_plaza',(44,0),'city-east-approach');goto('city_plaza',(46.5,0),'city-east-gate','forest')
+   for goal,name in [((-50,7),'forest-camp-west'),((-24,29),'forest-west-pool'),((4,18),'forest-camp-east'),((14,-24),'forest-pool'),((50,-30),'forest-east-trail'),((40,18),'forest-warden'),((50,28),'forest-east-pool')]:goto('forest',goal,name)
+
  except Exception as e:
   errors.append(str(e));page.screenshot(path=str(OUT/'walk-failure.jpg'),type='jpeg',quality=90);raise
  finally:
-  (OUT/'world-art-walk.json').write_text(json.dumps({'scope':'actual client, two local MemoryStore level99 survival scenarios (city-to-meadow-to-forest, forest tour); normal keyboard movement, no position writes','events':events,'errors':errors},indent=2));browser.close()
+  (OUT/('city-polish-walk.json' if city_only else 'world-art-walk.json')).write_text(json.dumps({'scope':('actual city client, local MemoryStore level99 survival fixture; keyboard movement, NPC approaches, south gate/return and east gate transfers' if city_only else 'actual client, two local MemoryStore level99 survival scenarios (city-to-meadow-to-forest, forest tour); normal keyboard movement, no position writes'),'events':events,'errors':errors},indent=2));browser.close()
 
 

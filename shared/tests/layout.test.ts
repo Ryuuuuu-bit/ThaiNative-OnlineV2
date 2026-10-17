@@ -89,3 +89,18 @@ test("meadow landmarks are solid and no spawn, camp or path sits inside them", a
 	const all = [...MEADOW_LANDMARKS.circles.map(c => ({ x: c.x, z: c.z, r: c.r })), ...MEADOW_LANDMARKS.boxes.map(b => ({ x: b.x, z: b.z, r: Math.hypot(b.w, b.d) / 2 }))];
 	for (const o of all) assert.equal(onPath(LAYOUTS.meadow.paths, o.x, o.z, o.r), false, `landmark on a path at ${o.x},${o.z}`);
 });
+
+test("city planters, benches and stalls are solid, stay off the main roads and leave every NPC reachable", async () => {
+	const { CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } = await import("../src/game/maps.js");
+	const city = (x: number, z: number) => walkable(x, z, 0.3, "city_plaza");
+	for (const p of CITY_PLANTERS) assert.equal(city(p.x, p.z), false, `planter ${p.x},${p.z}`);
+	for (const b of CITY_BENCHES) assert.equal(city(b.x, b.z), false, `bench ${b.x},${b.z}`);
+	for (const s of CITY_STALLS) {
+		assert.equal(city(s.x, s.z), false, `stall ${s.x},${s.z}`);
+		assert.equal(city(s.x - 1.8, s.z + 0.5), false, "crate beside the stall");
+	}
+	const boxes = [...CITY_PLANTERS.map(p => ({ x: p.x, z: p.z, w: p.r * 2, d: p.r * 2 })), ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid)];
+	// Both 6 m main roads (|x| < 3, |z| < 3) keep a 0.4 m margin from every prop.
+	for (const b of boxes) assert.ok(Math.min(Math.abs(b.x) - b.w / 2, Math.abs(b.z) - b.d / 2) >= 3.4, `prop on a main road at ${b.x},${b.z}`);
+	for (const p of [CITY_SPAWN, CITY_RETURN, CITY_EAST_RETURN, HEALER, GATE_CAPTAIN, ...CITY_BUILDINGS.map(b => b.talk)]) assert.ok(city(p.x, p.z), `${p.x},${p.z}`);
+});
