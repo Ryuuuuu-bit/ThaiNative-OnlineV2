@@ -108,3 +108,4 @@ body.glass-portal::after{content:'';position:fixed;inset:0;z-index:-1;background
 	.glass-portal .intro-row h1{font-size:28px}
 }
 @media(prefers-reduced-transparency:reduce){.glass-card,.glass-portal .auth-card,.glass-portal .character-card,.glass-portal dialog{background:#141f1d;backdrop-filter:none;-webkit-backdrop-filter:none}}
+.brand-subtitle{margin:2px 0 0;font-size:13px;line-height:1.6;color:var(--g-muted)}
