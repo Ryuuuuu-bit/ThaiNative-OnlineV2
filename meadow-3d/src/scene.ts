@@ -1,10 +1,13 @@
 import * as T from 'three';import type{PaintedLoader}from'./assets';
-import{CAMP,ARENA,OBSTACLES,water}from'./sim';
+import{ARENA,OBSTACLES,water}from'./sim';
+import{LAYOUTS,GATES,type Ellipse}from'@thainative/shared/maps';
+const L=LAYOUTS.meadow,W=L.halfX*2,D=L.halfZ*2;
 export function random(seed=7){let n=seed;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};}
 export function label(text:string,color='#fff2d4'){const c=document.createElement('canvas');const measure=c.getContext('2d')!;measure.font='500 22px "Noto Sans Thai",sans-serif';c.width=Math.max(64,Math.ceil(measure.measureText(text).width)+24);c.height=64;const x=c.getContext('2d')!;x.font='500 22px "Noto Sans Thai",sans-serif';x.fillStyle='#132923e6';x.beginPath();x.roundRect(2,8,c.width-4,44,8);x.fill();x.textAlign='center';x.lineWidth=5;x.strokeStyle='#344b39';x.strokeText(text,c.width/2,37);x.fillStyle=color;x.fillText(text,c.width/2,37);const map=new T.CanvasTexture(c);map.colorSpace=T.SRGBColorSpace;const s=new T.Sprite(new T.SpriteMaterial({map,transparent:true,depthWrite:false}));s.scale.set(c.width/384*2.8,.47,1);return s;}
-const pathSegments=[[[0,-14],[0,-7]],[[0,2],[1,10]],[[-1,14],[-1,6]],[[-1,6],[0,2]],[[0,2],[-1,-2]],[[-1,-2],[1,-9]],[[-17,2],[-8,2]],[[-8,2],[0,2]],[[0,2],[5,0]],[[5,0],[17,0]],[[-1,6],[-7,8]]];
+/** Path segments with their half-width, from the shared layout. */
+const pathSegments=L.paths.flatMap(p=>p.points.slice(1).map((b,i)=>({a:p.points[i] as number[],b:b as number[],half:p.width/2})));
 function segmentDistance(x:number,z:number,a:number[],b:number[]){const dx=b[0]-a[0],dz=b[1]-a[1],t=T.MathUtils.clamp(((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz),0,1);return Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz);}
-function onPath(x:number,z:number){return pathSegments.some(([a,b],i)=>segmentDistance(x,z,a,b)<(i<4?1.15:.8));}
+function onPath(x:number,z:number){return pathSegments.some(s=>segmentDistance(x,z,s.a,s.b)<s.half);}
 interface PaintedAsset {name:string;atlas:string;pixelSize:[number,number];worldSize:[number,number];anchor:[number,number];uvRect:[number,number,number,number];flat:boolean}
 interface EnvironmentManifest {assets:PaintedAsset[];atlases:{file:string;size:[number,number]}[]}
 const ENV='/assets/env-painted/';
@@ -16,24 +19,24 @@ export function buildScene(scene:T.Scene,loader:PaintedLoader){
  const ripple={time:{value:0},quality:{value:1}};
  const shadowProxies:T.Mesh[]=[];let highQuality=true,ready=false,propCount=0,coverCount=0,atlasCount=0;
  const texture=(file:string,repeat=1)=>{const t=loader.load(file);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(repeat,repeat);t.anisotropy=4;return t;};
- const grass=texture('/assets/meadow-grass.png',16);
- const ground=new T.Mesh(new T.PlaneGeometry(100,100),new T.MeshStandardMaterial({map:grass,color:'#e0ddc8',roughness:1}));ground.rotation.x=-Math.PI/2;ground.position.y=-.025;ground.receiveShadow=true;root.add(ground);
- const dirt=texture(ENV+'tile-dirt-v1.png',10);
- const pathCanvas=document.createElement('canvas');pathCanvas.width=pathCanvas.height=1024;
- const ctx=pathCanvas.getContext('2d')!;ctx.fillStyle='#000';ctx.fillRect(0,0,1024,1024);
- const coord=(x:number,z:number)=>[(x+17)/34*1024,(z+14)/28*1024];
+ const grass=texture('/assets/meadow-grass.png',42);
+ const ground=new T.Mesh(new T.PlaneGeometry(W+160,D+160),new T.MeshStandardMaterial({map:grass,color:'#e0ddc8',roughness:1}));ground.rotation.x=-Math.PI/2;ground.position.y=-.025;ground.receiveShadow=true;root.add(ground);
+ const dirt=texture(ENV+'tile-dirt-v1.png');dirt.repeat.set(W/3.4,D/3.4);
+ const pathCanvas=document.createElement('canvas');pathCanvas.width=2048;pathCanvas.height=Math.round(2048*D/W);const PX=2048/W;
+ const ctx=pathCanvas.getContext('2d')!;ctx.fillStyle='#000';ctx.fillRect(0,0,pathCanvas.width,pathCanvas.height);
+ const coord=(x:number,z:number)=>[(x+L.halfX)*PX,(z+L.halfZ)*PX];
  const mask=new T.CanvasTexture(pathCanvas);
  const pathMaterial=new T.MeshStandardMaterial({map:dirt,alphaMap:mask,transparent:true,roughness:1,depthWrite:false,color:'#e5dac0'});
- const path=new T.Mesh(new T.PlaneGeometry(34,28),pathMaterial);path.rotation.x=-Math.PI/2;path.position.y=.005;path.receiveShadow=true;root.add(path);
+ const path=new T.Mesh(new T.PlaneGeometry(W,D),pathMaterial);path.rotation.x=-Math.PI/2;path.position.y=.005;path.receiveShadow=true;root.add(path);
  // Stamp the generated alpha brush along every path, then join the worn core.
  const brush=texture(ENV+'tile-transition-v1.png');
  function paintPaths(){
-  ctx.fillStyle='#000';ctx.fillRect(0,0,1024,1024);ctx.globalCompositeOperation='screen';
+  ctx.fillStyle='#000';ctx.fillRect(0,0,pathCanvas.width,pathCanvas.height);ctx.globalCompositeOperation='screen';
   const stamp=document.createElement('canvas');stamp.width=stamp.height=256;const sc=stamp.getContext('2d')!;
   sc.drawImage(brush.image as HTMLImageElement,0,0,256,256);sc.globalCompositeOperation='source-in';sc.fillStyle='#fff';sc.fillRect(0,0,256,256);
-  for(const[a,b]of pathSegments){const length=Math.hypot(b[0]-a[0],b[1]-a[1]);for(let t=0;t<=length;t+=.28){const k=t/length,[x,y]=coord(T.MathUtils.lerp(a[0],b[0],k),T.MathUtils.lerp(a[1],b[1],k));ctx.drawImage(stamp,x-49,y-49,98,98);}}
+  for(const{a,b,half}of pathSegments){const length=Math.hypot(b[0]-a[0],b[1]-a[1]),size=half*2*1.42*PX;for(let t=0;t<=length;t+=.28){const k=t/length,[x,y]=coord(T.MathUtils.lerp(a[0],b[0],k),T.MathUtils.lerp(a[1],b[1],k));ctx.drawImage(stamp,x-size/2,y-size/2,size,size);}}
   ctx.globalCompositeOperation='source-over';ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#fff';
-  pathSegments.forEach(([a,b],i)=>{const p=coord(a[0],a[1]),q=coord(b[0],b[1]);ctx.lineWidth=i<4?48:33;ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();});mask.needsUpdate=true;
+  pathSegments.forEach(({a,b,half})=>{const p=coord(a[0],a[1]),q=coord(b[0],b[1]);ctx.lineWidth=half*2*.7*PX;ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();});mask.needsUpdate=true;
  }
  // Texture loading is async; the loading manager accounts for it.
  const originalBrushUpdate=brush.onUpdate;let pathsPainted=false;
@@ -52,10 +55,15 @@ export function buildScene(scene:T.Scene,loader:PaintedLoader){
  pondShader(waterMaterial,true);pondShader(stillWaterMaterial,false);
  const shoreMaterial=new T.MeshStandardMaterial({map:dirt,color:'#b9ac8f',roughness:1,metalness:0,transparent:true,depthWrite:false});
  shoreMaterial.onBeforeCompile=shader=>{shader.vertexShader='varying vec2 vShoreUv;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvShoreUv=uv;');shader.fragmentShader='varying vec2 vShoreUv;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <alphatest_fragment>','float shoreR=length(vShoreUv-.5)*2.;float shoreWobble=sin(vShoreUv.x*51.)*sin(vShoreUv.y*43.)*.025;diffuseColor.a*=1.-smoothstep(.83,1.,shoreR+shoreWobble);\n#include <alphatest_fragment>');};
- const shore=new T.Mesh(new T.CircleGeometry(1,96),shoreMaterial);shore.rotation.x=-Math.PI/2;shore.position.set(11,.012,-1);shore.scale.set(3.55,4.65,1);shore.receiveShadow=true;root.add(shore);
- const pond=new T.Mesh(new T.CircleGeometry(1,64),waterMaterial);pond.rotation.x=-Math.PI/2;pond.position.set(11,.024,-1);pond.scale.set(3.1,4.2,1);pond.receiveShadow=true;root.add(pond);
+ const ponds:T.Mesh[]=[];const pondGeometry=new T.CircleGeometry(1,64),shoreGeometry=new T.CircleGeometry(1,96);
+ for(const w of L.water){
+  // Shore ring is ~0.45 m wider than the blocked ellipse, like the original pond.
+  const shore=new T.Mesh(shoreGeometry,shoreMaterial);shore.rotation.x=-Math.PI/2;shore.position.set(w.x,.012,w.z);shore.scale.set(w.rx*1.14,w.rz*1.1,1);shore.receiveShadow=true;root.add(shore);
+  const pond=new T.Mesh(pondGeometry,waterMaterial);pond.rotation.x=-Math.PI/2;pond.position.set(w.x,.024,w.z);pond.scale.set(w.rx,w.rz,1);pond.receiveShadow=true;root.add(pond);ponds.push(pond);
+ }
+ const pond=ponds[0];
  const stoneTexture=texture(ENV+'tile-stone-v1.png',2);
- const arena=new T.Mesh(new T.CircleGeometry(3.15,64),new T.MeshStandardMaterial({map:stoneTexture,color:'#cfceb8',roughness:1}));arena.rotation.x=-Math.PI/2;arena.position.set(ARENA.x,.013,ARENA.z);arena.receiveShadow=true;root.add(arena);
+ const arena=new T.Mesh(new T.CircleGeometry(L.arena!.r-.25,64),new T.MeshStandardMaterial({map:stoneTexture,color:'#cfceb8',roughness:1}));arena.rotation.x=-Math.PI/2;arena.position.set(ARENA.x,.013,ARENA.z);arena.receiveShadow=true;root.add(arena);
  // All contact ellipses share one instanced draw and a soft analytic gradient.
  const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=64;const sx=shadowCanvas.getContext('2d')!,gradient=sx.createRadialGradient(32,32,3,32,32,31);gradient.addColorStop(0,'#35443565');gradient.addColorStop(1,'#35443500');sx.fillStyle=gradient;sx.fillRect(0,0,64,64);
  const shadowMap=new T.CanvasTexture(shadowCanvas),contactMatrices:T.Matrix4[]=[];
@@ -83,29 +91,38 @@ export function buildScene(scene:T.Scene,loader:PaintedLoader){
   function decal(name:string,x:number,z:number,width?:number,height?:number){const a=asset(name),o=new T.Mesh(geometry(a,false),new T.MeshStandardMaterial({map:atlases.get(a.atlas),transparent:true,alphaTest:.08,roughness:1,depthWrite:true,side:T.DoubleSide,color:'#ded7bf'}));o.rotation.x=-Math.PI/2;o.position.set(x,name==='bridge'?.09:.03,z);o.scale.set(width||a.worldSize[0],height||a.worldSize[1],1);o.receiveShadow=true;root.add(o);propCount++;}
   let treeIndex=0;const trees=['tree-round','tree-tall','tree-leaning','tree-flowering'];
   function tree(x:number,z:number,scale=1){prop(trees[treeIndex++%4],x,z,scale,true);}
-  for(const o of OBSTACLES.slice(0,6))tree(o.x,o.z,.85+r()*.15);
-  for(const[i,o]of OBSTACLES.slice(6).entries())prop(['boulder-round','boulder-tall'][i],o.x,o.z,.9,true);
-  for(let x=-19;x<=19;x+=4){tree(x,-16-r()*2,.85+r()*.2);if(x<-8||x>9)tree(x,16+r()*2,.9+r()*.1);}
-  for(let z=-11;z<=12;z+=5){tree(-20-r(),z,.85+r()*.2);tree(20+r(),z,.85+r()*.2);}
+  // Collision circles from the shared layout: trees ~1 m trunk radius, boulders ~.75 m.
+  for(const o of OBSTACLES){if(o.kind==='boulder')prop(['boulder-round','boulder-tall'][Math.floor(r()*2)],o.x,o.z,o.r/.75*.9,true);else tree(o.x,o.z,o.r/.95*(.85+r()*.15));}
+  // Treeline just outside the walkable edge, leaving the north gate open.
+  const gate=GATES.meadow.north;
+  for(let x=-L.halfX;x<=L.halfX;x+=4){if(Math.abs(x-gate.x)>4)tree(x,-L.halfZ-1-r()*2,.85+r()*.2);tree(x,L.halfZ+1+r()*2,.9+r()*.1);}
+  for(let z=-L.halfZ+3;z<=L.halfZ-2;z+=5){tree(-L.halfX-1-r(),z,.85+r()*.2);tree(L.halfX+1+r(),z,.85+r()*.2);}
   const cover=new Map<string,{x:number;z:number;scale:number}[]>();
   function coverAt(name:string,x:number,z:number,scale=1){const list=cover.get(name)||[];list.push({x,z,scale});cover.set(name,list);}
-  for(let i=0;i<1600;i++){const x=(r()-.5)*37,z=(r()-.5)*30;if(onPath(x,z)||water(x,z)||Math.hypot(x-ARENA.x,z-ARENA.z)<3.4)continue;coverAt('grass-'+(1+i%3),x,z,.6+r()*.55);}
-  for(const[cx,cz]of[[-7,3],[5,6],[-7,-4],[7,-6],[-4,10],[9,10]])for(let i=0;i<18;i++){const x=cx+(r()-.5)*3,z=cz+(r()-.5)*2;if(!onPath(x,z))coverAt(['flowers-white','flowers-yellow','flowers-lavender','flowers-pink'][i%4],x,z,.75+r()*.5);}
-  for(let i=0;i<45;i++){const x=(r()-.5)*34,z=(r()-.5)*27;if(!onPath(x,z)&&!water(x,z)&&Math.hypot(x-ARENA.x,z-ARENA.z)>3.5)coverAt(['bush-round','bush-flowering','fern-wide','fern-upright'][i%4],x,z,.65+r()*.4);}
+  // Density matches the original meadow (≈1.7 grass tufts and 0.05 bushes per m²).
+  const area=(W+3)*(D+2),onCamp=(x:number,z:number)=>L.camps.some(c=>Math.hypot(x-c.x,z-c.z)<3.2);
+  for(let i=0;i<area*1.45;i++){const x=(r()-.5)*(W+3),z=(r()-.5)*(D+2);if(onPath(x,z)||water(x,z)||onCamp(x,z)||Math.hypot(x-ARENA.x,z-ARENA.z)<L.arena!.r)continue;coverAt('grass-'+(1+i%3),x,z,.6+r()*.55);}
+  for(let c=0;c<Math.round(area/160);c++){const cx=(r()-.5)*(W-6),cz=(r()-.5)*(D-6);for(let i=0;i<18;i++){const x=cx+(r()-.5)*3,z=cz+(r()-.5)*2;if(!onPath(x,z)&&!water(x,z))coverAt(['flowers-white','flowers-yellow','flowers-lavender','flowers-pink'][i%4],x,z,.75+r()*.5);}}
+  for(let i=0;i<area*.047;i++){const x=(r()-.5)*W,z=(r()-.5)*D;if(!onPath(x,z)&&!water(x,z)&&!onCamp(x,z)&&Math.hypot(x-ARENA.x,z-ARENA.z)>L.arena!.r+.1)coverAt(['bush-round','bush-flowering','fern-wide','fern-upright'][i%4],x,z,.65+r()*.4);}
   for(const[name,instances]of cover){const a=asset(name),batch=new T.InstancedMesh(geometry(a),meshMaterial(a),instances.length);instances.forEach((v,i)=>{dummy.position.set(v.x,.04,v.z);dummy.quaternion.copy(cameraRotation);dummy.scale.set(a.worldSize[0]*v.scale,a.worldSize[1]*v.scale,1);dummy.updateMatrix();batch.setMatrixAt(i,dummy.matrix);});batch.computeBoundingSphere();root.add(batch);coverCount+=instances.length;}
-  prop('tent',-8,9.2,1,true);prop('bench',-5.7,9.1);prop('campfire',-5.7,7.3);prop('fallen-log',-9.8,7.5,.65);prop('stump',-9.4,10.4,.8);
-  prop('signpost',-2.8,6,.8);prop('signpost',6,1.6,.8);
-  for(let i=0;i<3;i++)prop('fence-span',-10.5+i*2.3,11.5,.9);prop('fence-post',-12,11.5);
-  prop('arch',0,-13,1,true);prop('pillar-square',-2.3,11.7,.85,true);prop('pillar-fluted',4,11.2,.8,true);decal('stone-circle',ARENA.x,ARENA.z,6.3,6.3);
-  decal('bridge',11,0,6.8,1.75);
-  for(let i=0;i<15;i++){const angle=i/15*Math.PI*2,x=11+Math.cos(angle)*3.3,z=-1+Math.sin(angle)*4.45;if(Math.abs(z)<1.15)continue;prop(['reeds-1','reeds-2','reeds-3'][i%3],x,z,.7+r()*.25);if(i%3===0)prop('rock-cluster',x+.25,z,.55);}
-  prop('reeds-2',8.3,-3.5,.65);prop('reeds-3',12.8,2.7,.6);prop('reeds-1',10.2,-5.2,.7);
+  // Every camp: the original camp kit, offset from its rest point (fire 1.3 m east of it).
+  for(const c of L.camps){prop('tent',c.x-1,c.z+1.2,1,true);prop('bench',c.x+1.3,c.z+1.1);prop('campfire',c.x+1.3,c.z-.7);prop('fallen-log',c.x-2.8,c.z-.5,.65);prop('stump',c.x-2.4,c.z+2.4,.8);
+   for(let i=0;i<3;i++)prop('fence-span',c.x-3.5+i*2.3,c.z+3.5,.9);prop('fence-post',c.x-5,c.z+3.5);}
+  // Signposts where paths meet.
+  for(const p of L.paths.slice(2))prop('signpost',p.points[0][0]+1.8,p.points[0][1]+1.4,.8);
+  prop('arch',gate.x,gate.z-.2,1,true);prop('pillar-square',ARENA.x-3.3,ARENA.z+1.7,.85,true);prop('pillar-fluted',ARENA.x+3,ARENA.z+1.2,.8,true);decal('stone-circle',ARENA.x,ARENA.z,L.arena!.r*1.85,L.arena!.r*1.85);
+  for(const w of L.water){
+   if(w.bridgeZ!==undefined)decal('bridge',w.x,w.bridgeZ,w.rx*2.2,(w.bridgeHalf??1)*1.75);
+   const n=Math.round((w.rx+w.rz)*2);
+   for(let i=0;i<n;i++){const angle=i/n*Math.PI*2,x=w.x+Math.cos(angle)*(w.rx+.2),z=w.z+Math.sin(angle)*(w.rz+.25);if(w.bridgeZ!==undefined&&Math.abs(z-w.bridgeZ)<(w.bridgeHalf??1)+.15)continue;if(onPath(x,z))continue;prop(['reeds-1','reeds-2','reeds-3'][i%3],x,z,.7+r()*.25);if(i%3===0)prop('rock-cluster',x+.25,z,.55);}
+  }
   const contacts=new T.InstancedMesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:shadowMap,transparent:true,depthWrite:false,opacity:.65}),contactMatrices.length);contactMatrices.forEach((m,i)=>contacts.setMatrixAt(i,m));contacts.computeBoundingSphere();root.add(contacts);
   ready=true;
  });
- const flame=new T.Group();flame.position.set(-5.7,.12,7.3);root.add(flame);const flames:T.Mesh[]=[];
- for(let i=0;i<3;i++){const f=new T.Mesh(new T.ConeGeometry(.09,.38,6),new T.MeshBasicMaterial({color:i%2?'#f8dfad':'#db9b65',transparent:true,opacity:.7,depthWrite:false}));f.position.set(Math.sin(i*2)*.08,.2,Math.cos(i*2)*.08);flame.add(f);flames.push(f);}
- const gateName=label('นครที่ถูกลืมเลือน ↑');gateName.position.set(0,4,-13);root.add(gateName);
- const campName=label('แคมป์ · พักฟื้น','#e5efd3');campName.position.set(CAMP.x,2.1,CAMP.z);root.add(campName);
- return{root,setQuality(hq:boolean){highQuality=hq;ripple.quality.value=hq?1:0;pond.material=hq?waterMaterial:stillWaterMaterial;shadowProxies.forEach(o=>{o.castShadow=hq;o.visible=hq;});},snapshot:()=>({ready,propCount,coverCount,atlasCount,shadowCasters:shadowProxies.filter(o=>o.castShadow).length,quality:highQuality?'HQ':'LOW',ripple:pond.material===waterMaterial&&!!ripple.quality.value}),update(time:number){ripple.time.value=time;arena.visible=!!stoneTexture.userData.ready;if(!pathsPainted&&brush.userData.ready){pathsPainted=true;paintPaths();}flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});}};
+ const flames:T.Mesh[]=[];
+ for(const c of L.camps){const flame=new T.Group();flame.position.set(c.x+1.3,.12,c.z-.7);root.add(flame);
+ for(let i=0;i<3;i++){const f=new T.Mesh(new T.ConeGeometry(.09,.38,6),new T.MeshBasicMaterial({color:i%2?'#f8dfad':'#db9b65',transparent:true,opacity:.7,depthWrite:false}));f.position.set(Math.sin(i*2)*.08,.2,Math.cos(i*2)*.08);flame.add(f);flames.push(f);}}
+ const gateName=label('นครที่ถูกลืมเลือน ↑');gateName.position.set(GATES.meadow.north.x,4,GATES.meadow.north.z-.2);root.add(gateName);
+ for(const c of L.camps){const campName=label('แคมป์ · พักฟื้น','#e5efd3');campName.position.set(c.x,2.1,c.z);root.add(campName);}
+ return{root,setQuality(hq:boolean){highQuality=hq;ripple.quality.value=hq?1:0;ponds.forEach(p=>p.material=hq?waterMaterial:stillWaterMaterial);shadowProxies.forEach(o=>{o.castShadow=hq;o.visible=hq;});},snapshot:()=>({ready,propCount,coverCount,atlasCount,shadowCasters:shadowProxies.filter(o=>o.castShadow).length,quality:highQuality?'HQ':'LOW',ripple:pond.material===waterMaterial&&!!ripple.quality.value}),update(time:number){ripple.time.value=time;arena.visible=!!stoneTexture.userData.ready;if(!pathsPainted&&brush.userData.ready){pathsPainted=true;paintPaths();}flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});}};
 }
