@@ -7,7 +7,7 @@ import { createApp } from "../app.js";
 import { MemoryStore } from "../store/memory.js";
 import { mountRealtime } from "../realtime/index.js";
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
-async function fixture(t: any, sharedRooms = false) {
+async function fixture(t: any, sharedRooms = false, extra: Record<string, unknown> = {}) {
 	const store = new MemoryStore(),
 		app = createApp({ store, build: "test" }),
 		server = app.listen(0, "127.0.0.1");
@@ -17,6 +17,7 @@ async function fixture(t: any, sharedRooms = false) {
 		build: "test",
 		sharedRooms,
 		reconnectMs: 250,heartbeatMs:100,pruneMs:100,
+		...extra,
 	});
 	const base = `http://127.0.0.1:${(server.address() as any).port}`;
 	const call = async (path: string, body?: unknown, cookie = "") => {
@@ -362,8 +363,8 @@ test('stability 15: a join waits for an evicted characters save',async t=>{
  const f=await fixture(t),a=await f.make('EvictSave'),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],p=room.game.players.get(a.character.id)!;p.kills=55;let release!:()=>void;const gate=new Promise<void>(r=>release=r),original=f.store.saveProgress.bind(f.store);f.store.saveProgress=async(...args)=>{await gate;return original(...args);};t.after(()=>release());one.ws.close();await one.closed;await wait(350);const two=f.open(a.cookie);await wait(100);assert.equal(two.messages.some(m=>m.t==='welcome'),false);release();await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});const snap=await two.until(m=>m.t==='snap');assert.equal(snap.players[0].kills,55);
 });
 
-test('stability 17: sixth concurrent socket is refused',async t=>{
- const f=await fixture(t),a=await f.make('SocketLimit');let release!:()=>void;const gate=new Promise<void>(r=>release=r),original=f.store.session.bind(f.store);f.store.session=async(...args)=>{await gate;return original(...args);};t.after(()=>release());for(let i=0;i<5;i++){const one=f.open(a.cookie);await once(one.ws,'open');}const extra=f.open(a.cookie);await extra.closed;assert.notEqual(extra.ws.readyState,1);release();
+test('stability 17: concurrent sockets per IP over the limit are refused',async t=>{
+ const f=await fixture(t,false,{ipMaxSockets:5}),a=await f.make('SocketLimit');let release!:()=>void;const gate=new Promise<void>(r=>release=r),original=f.store.session.bind(f.store);f.store.session=async(...args)=>{await gate;return original(...args);};t.after(()=>release());for(let i=0;i<5;i++){const one=f.open(a.cookie);await once(one.ws,'open');}const extra=f.open(a.cookie);await extra.closed;assert.notEqual(extra.ws.readyState,1);release();
 });
 
 test('stability 1: heartbeat DB rejection is caught and room keeps ticking',async t=>{
@@ -374,8 +375,8 @@ test('stability 19: replacing DB lease kicks old peer and fences stale writes',a
  const f=await fixture(t),a=await f.make('LeaseHero'),one=f.open(a.cookie);await one.until(m=>m.t==='welcome');one.send({t:'spawnReady'});await one.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],old=room.peers.get(a.character.id)!.leaseOwner!;await f.store.claimLease(a.character.id,'other-node');await one.until(m=>m.t==='kick'&&m.reason==='เข้าสู่ระบบจากที่อื่น');await assert.rejects(()=>f.store.saveProgress(a.character.accountId,a.character.id,a.character,old),/Lease lost/);
 });
 
-test('stability 17: twenty upgrades per minute includes failed authentication',async t=>{
- const f=await fixture(t);for(let i=0;i<20;i++){const one=f.open();const [code]=await one.closed;assert.equal(code,4401);}const limited=f.open();const[code]=await limited.closed;assert.equal(code,1006);
+test('stability 17: per-IP upgrade limit (configurable) includes failed authentication',async t=>{
+ const f=await fixture(t,false,{ipUpgradesPerMinute:20});for(let i=0;i<20;i++){const one=f.open();const [code]=await one.closed;assert.equal(code,4401);}const limited=f.open();const[code]=await limited.closed;assert.equal(code,1006);
 });
 
 test('stability 4: a successful slow join pins its room until registration',async t=>{

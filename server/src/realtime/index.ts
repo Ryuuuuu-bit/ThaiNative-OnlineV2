@@ -72,7 +72,9 @@ export interface RealtimeOptions {
 	sharedRooms?: boolean;
 	heartbeatMs?:number;pruneMs?:number;reconnectMs?: number;
 	tickMs?: number;
-	adminIds?: string[];
+		adminIds?: string[];
+	/** Internet cafés share one public IP, so keep these generous. */
+	ipMaxSockets?: number; ipUpgradesPerMinute?: number;
 	production?: boolean;
 	devJobExpMultiplier?: number;
 }
@@ -117,75 +119,46 @@ const playerKeys = [
 	"statuses",
 	"castRemaining",
 ] as const;
-export function snapshot(room: Room, peer: Peer) {
-	const g = room.game;
+/** Fields other players need to render someone (keeps shared-room snapshots small). */
+const publicKeys = ["id","name","x","z","fx","fz","hp","maxHp","level","jobId","dead","moving","attack","attackKind","combo","dash","invulnerable","hurt","castRemaining","mapId"] as const;
+const num = (v: unknown) => (typeof v === "number" ? round(v) : v);
+function ownEntry(p: Player) {
 	return {
-		t: "snap", mapId: g.mapId,
-  weight: g.players.get(peer.id)?.inventory?inventoryWeight(g.players.get(peer.id)!.inventory!,g.data):0, weightLimit:g.players.get(peer.id)?.stats.weight,
-		tick: room.tick,
-		ack: peer.ack,
-		time: g.time,
-		kills: g.kills,
-		bossSpawned: g.bossSpawned,
-		won: g.won,
-		players: [...g.players.values()].map((p) => ({
-			...Object.fromEntries(
-				playerKeys.filter(k=>p.id===peer.id||!['gold','xp','nextXp','skills','hotbar','statPoints','skillPoints','jobExp','potions'].includes(k)).map((k) => [
-					k,
-					typeof p[k] === "number" ? round(p[k] as number) : p[k],
-				]),
-			),
-			cd: Object.fromEntries(
-				Object.entries(p.cd).map(([k, v]) => [k, round(v)]),
-			),
-			moveSpeed:
-				p.stats.moveSpeed * (1+Math.max(0,...p.statuses.filter(s=>s.id==='speed').map(s=>s.value))) *
-				(1 -
-					Math.max(
-						0,
-						...p.statuses.filter((s) => s.id === "slow").map((s) => s.value),
-					)),
-		})),
-		enemies: g.enemies.map((e) => ({
-			id: e.id,
-			statuses: e.statuses,
-			dataId: e.dataId,
-			x: round(e.x),
-			z: round(e.z),
-			hp: e.hp,
-			maxHp: e.maxHp,
-			boss: e.boss,
-			dead: e.dead,
-			motion: e.motion,
-			motionTime: round(e.motionTime),
-			motionDuration: e.motionDuration,
-			bossPhase: e.bossPhase,
-			variant: e.variant,
-			deathAge: round(e.deathAge),
-			hurt: round(e.hurt),
-			fx: round(e.fx),
-			fz: round(e.fz),
-			vx: round(e.vx),
-			vz: round(e.vz),
-			moving: e.moving,
-			windup: round(e.windup),
-			aimX: round(e.aimX),
-			aimZ: round(e.aimZ),
-			summoned: e.summoned,
-			history: e.history.slice(-5),
-		})),
-		drops: g.drops.map((d) => ({
-			...d,
-			x: round(d.x),
-			z: round(d.z),
-			time: round(d.time),
-		})),
-		projectiles: g.projectiles.map((p) => ({
-			...p,
-			x: round(p.x),
-			z: round(p.z),
-		})),
+		...Object.fromEntries(playerKeys.map((k) => [k, num(p[k])])),
+		cd: Object.fromEntries(Object.entries(p.cd).map(([k, v]) => [k, round(v)])),
+		moveSpeed: p.stats.moveSpeed * (1 + Math.max(0, ...p.statuses.filter((s) => s.id === "speed").map((s) => s.value))) * (1 - Math.max(0, ...p.statuses.filter((s) => s.id === "slow").map((s) => s.value))),
 	};
+}
+function publicEntry(p: Player) {
+	return { ...Object.fromEntries(publicKeys.map((k) => [k, num(p[k])])), statuses: p.statuses.map((s) => ({ id: s.id, remaining: round(s.remaining) })) };
+}
+/** Everything in a snapshot that is the same for every viewer, serialised once per room per send. */
+export function snapshotParts(room: Room) {
+	const g = room.game;
+	const others = new Map<string, string>();
+	for (const p of g.players.values()) others.set(p.id, JSON.stringify(publicEntry(p)));
+	const world = JSON.stringify({
+		enemies: g.enemies.map((e) => ({ id: e.id, statuses: e.statuses, dataId: e.dataId, x: round(e.x), z: round(e.z), hp: e.hp, maxHp: e.maxHp, boss: e.boss, dead: e.dead, motion: e.motion, motionTime: round(e.motionTime), motionDuration: e.motionDuration, bossPhase: e.bossPhase, variant: e.variant, deathAge: round(e.deathAge), hurt: round(e.hurt), fx: round(e.fx), fz: round(e.fz), vx: round(e.vx), vz: round(e.vz), moving: e.moving, windup: round(e.windup), aimX: round(e.aimX), aimZ: round(e.aimZ), summoned: e.summoned })),
+		drops: g.drops.map((d) => ({ ...d, x: round(d.x), z: round(d.z), time: round(d.time) })),
+		projectiles: g.projectiles.map((p) => ({ ...p, x: round(p.x), z: round(p.z) })),
+	}).slice(1, -1);
+	return { others, world };
+}
+/** One viewer's snapshot as a JSON string: own entry carries private fields, others are public only. */
+/** Interest management: other players beyond this range, or past the nearest cap, are left out of a viewer's snapshot. */
+export const VIEW_RANGE = 32, VIEW_MAX_PLAYERS = 30;
+export function snapshotFrame(room: Room, peer: Peer, parts = snapshotParts(room), always: string[] = []) {
+	const g = room.game, me = g.players.get(peer.id);
+	const head = JSON.stringify({ t: "snap", mapId: g.mapId, weight: me?.inventory ? inventoryWeight(me.inventory, g.data) : 0, weightLimit: me?.stats.weight, tick: room.tick, ack: peer.ack, time: g.time, kills: g.kills, bossSpawned: g.bossSpawned, won: g.won });
+		const players: string[] = me ? [JSON.stringify(ownEntry(me))] : [];
+	let nearby = [...g.players.values()].filter((p) => p.id !== peer.id && (!me || always.includes(p.id) || Math.hypot(p.x - me.x, p.z - me.z) <= VIEW_RANGE));
+	if (me && nearby.length > VIEW_MAX_PLAYERS)
+		nearby = nearby.map((p) => ({ p, d: always.includes(p.id) ? -1 : Math.hypot(p.x - me.x, p.z - me.z) })).sort((a, b) => a.d - b.d).slice(0, VIEW_MAX_PLAYERS).map((x) => x.p);
+	for (const p of nearby) players.push(parts.others.get(p.id) ?? JSON.stringify(publicEntry(p)));
+	return head.slice(0, -1) + ',"players":[' + players.join(",") + "]," + parts.world + "}";
+}
+export function snapshot(room: Room, peer: Peer) {
+	return JSON.parse(snapshotFrame(room, peer));
 }
 export function mountRealtime(server: Server, options: RealtimeOptions) {
 	const { store } = options,
@@ -214,11 +187,11 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 	});
 	function send(ws: WebSocket, body: unknown) {
 		if (ws.readyState !== WebSocket.OPEN) return;
-		if (ws.bufferedAmount > 128 * 1024) {
+				if (ws.bufferedAmount > 512 * 1024) {
 			ws.close(4408, "slow consumer");
 			return;
 		}
-		ws.send(JSON.stringify(body));
+		ws.send(typeof body === "string" ? body : JSON.stringify(body));
 		sent++;
 	}
  const social=createSocial<Peer>({live,send,adminIds:options.adminIds});
@@ -309,7 +282,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   }
   target.saveQueue=Promise.all([source.saveQueue,target.saveQueue]).then(()=>{});
   void save(target,p.id);
-  send(peer.ws,snapshot(target,peer));
+  send(peer.ws,snapshotFrame(target,peer));
  }
 	function save(room: Room, id: string, strict = false) {
 		const p = room.game.players.get(id),
@@ -423,7 +396,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				peer.ready = true;
 				room.disconnected.delete(peer.id);
 			}
-			send(peer.ws, snapshot(room, peer));
+			send(peer.ws, snapshotFrame(room, peer));
 			sendStats(peer, g.players.get(peer.id)!);
 						social.ready(peer);
 			{const qp=g.players.get(peer.id);if(qp)sendQuests(peer,qp);}
@@ -639,7 +612,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
         const ip=(options.production?String(req.headers['x-forwarded-for']||req.socket.remoteAddress||'unknown').split(',').at(-1)!.trim():req.socket.remoteAddress||'unknown'),now=Date.now();
         for(const[k,v]of ipLimits)if(v.until<=now&&!v.active)ipLimits.delete(k);
         let limit=ipLimits.get(ip);if(!limit){limit={active:0,count:0,until:now+60000};ipLimits.set(ip,limit);}if(limit.until<=now){limit.count=0;limit.until=now+60000;}
-        if(++limit.count>20||limit.active>=5){socket.destroy();return;}
+        if(++limit.count>(options.ipUpgradesPerMinute??60)||limit.active>=(options.ipMaxSockets??30)){socket.destroy();return;}
         limit.active++;socket.once('close',()=>{limit!.active--;});
         const url = new URL(req.url || "/", `http://${req.headers.host}`);
 		if (url.pathname !== "/api/ws") {
@@ -896,9 +869,15 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
  if(p.returnRemaining<1e-8){p.returnRemaining=0;p.returnReadyAt=now+60000;transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});}
  }
  flush(room);
+				let parts: ReturnType<typeof snapshotParts> | undefined;
 				if (room.tick % 2 === 0)
 					for (const peer of room.peers.values())
-						if (peer.ready) send(peer.ws, snapshot(room, peer));
+												if (peer.ready) {
+							// A backed-up socket skips this frame (snapshots are superseded) instead of growing the buffer.
+							if (peer.ws.bufferedAmount > 64 * 1024) { dropped++; continue; }
+							parts ??= snapshotParts(room);
+							send(peer.ws, snapshotFrame(room, peer, parts, social.partyMembers(peer.id)));
+						}
 				if (room.tick % 600 === 0)
 					for (const id of room.game.players.keys()) void save(room, id);
                 }catch(error){
