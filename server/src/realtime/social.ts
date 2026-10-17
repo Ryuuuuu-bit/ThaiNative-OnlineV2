@@ -94,7 +94,7 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		if (blocked) { error(peer, blocked); return; }
 		const text = filterChat(raw), at = now();
 		if (message.ch === "map") {
-			const mapId = peer.room.game.mapId, body = { t: "chat", ch: "map", from: me.name, fromId: me.id, text, at };
+			const mapId = peer.room.game.mapId, body = { t: "chat", ch: "map", titleId: me.displayTitleId??null, from: me.name, fromId: me.id, text, at };
 			remember(mapId, body);
 			for (const other of live.values()) if (other.ready && other.room.game.mapId === mapId) send(other.ws, body);
 			return;
@@ -102,7 +102,7 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		if (message.ch === "party") {
 			const party = parties.get(partyOf.get(peer.id) ?? "");
 			if (!party) { error(peer, "ยังไม่ได้อยู่ในปาร์ตี้ · เชิญเพื่อนด้วย /invite ชื่อ"); return; }
-			toParty(party, { t: "chat", ch: "party", from: me.name, fromId: me.id, text, at });
+			toParty(party, { t: "chat", ch: "party", titleId: me.displayTitleId??null, from: me.name, fromId: me.id, text, at });
 			return;
 		}
 		const name = message.to ?? (replyTo.get(peer.id) ? nameOf(replyTo.get(peer.id)!) : "");
@@ -111,8 +111,8 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		if (target.id === peer.id) { error(peer, "กระซิบหาตัวเองไม่ได้"); return; }
 		const targetName = player(target)?.name ?? nameOf(target.id);
 		replyTo.set(target.id, peer.id);
-		send(target.ws, { t: "chat", ch: "whisper", from: me.name, fromId: me.id, to: targetName, text, at });
-		send(peer.ws, { t: "chat", ch: "whisper", from: me.name, fromId: me.id, to: targetName, text, at, self: true });
+		send(target.ws, { t: "chat", ch: "whisper", titleId: me.displayTitleId??null, from: me.name, fromId: me.id, to: targetName, text, at });
+		send(peer.ws, { t: "chat", ch: "whisper", titleId: me.displayTitleId??null, from: me.name, fromId: me.id, to: targetName, text, at, self: true });
 	}
 
 	/** Staff mute: blocks the player's chat for `minutes` (kept while offline). */
@@ -145,7 +145,7 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 			if (!current) { parties.set(party.id, party); partyOf.set(peer.id, party.id); broadcastParty(party); }
 			party.invites.set(target.id, now() + 60000);
 			names.set(target.id, player(target)?.name ?? "");
-			send(target.ws, { t: "partyInvite", from: me.name, fromId: me.id, partyId: party.id });
+			send(target.ws, { t: "partyInvite", titleId: me.displayTitleId??null, from: me.name, fromId: me.id, partyId: party.id });
 			notify(peer, `ส่งคำเชิญให้ ${player(target)?.name} แล้ว`);
 			return;
 		}

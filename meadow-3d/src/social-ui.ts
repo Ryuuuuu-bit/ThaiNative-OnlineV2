@@ -1,7 +1,8 @@
+import {titleDefinition} from '@thainative/shared';
 import './social.css';
 
 type Send = (message: unknown) => void;
-interface ChatLine { t: 'chat'; ch: 'map' | 'party' | 'whisper' | 'system' | 'loot'; from?: string; fromId?: string; to?: string; text: string; at: number; self?: boolean }
+interface ChatLine { titleId?:string|null; t: 'chat'; ch: 'map' | 'party' | 'whisper' | 'system' | 'loot'; from?: string; fromId?: string; to?: string; text: string; at: number; self?: boolean }
 interface Member { id: string; name: string; online: boolean; level?: number; jobId?: string; hp?: number; maxHp?: number; mapId?: string; dead?: boolean }
 interface PartyState { id: string; leader: string; members: Member[] }
 
@@ -78,6 +79,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			mark.textContent = m.ch === 'loot' ? '◆' : '·';
 			li.append(mark);
 		}
+        const title=titleDefinition(m.titleId);if(title){const badge=document.createElement('span');badge.className='chat-title';badge.textContent=title.name;badge.style.color=title.color;li.append(badge);}
 		if (m.from) {
 			const who = document.createElement('button');
 			who.type = 'button';

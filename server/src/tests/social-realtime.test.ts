@@ -135,6 +135,49 @@ test("storage keeper: range-checked deposit counts for the storage quest", async
 	await peer.until((m: any) => m.t === "quests" && m.state.done.storage_ledger);
 });
 
+test('quest turn-in rejects abandonment while pending and commits EXP with rewards', async t => {
+ const f=await fixture(t),{user,peer,room,p}=await join(f,'QuestRace');
+ const at=CITY_BUILDINGS.find(b=>b.id==='storage')!.talk;p.x=at.x;p.z=at.z;
+ peer.send({t:'quest',op:'accept',id:'storage_ledger'});
+ await peer.until((m:any)=>m.t==='quests'&&m.state.active.storage_ledger);
+ p.quests!.active.storage_ledger.progress[0]=1;await f.rt.save(room,p.id,true);
+ const before=p.gold,original=f.store.inventoryOp.bind(f.store);
+ let release!:()=>void,entered!:()=>void;
+ const gate=new Promise<void>(r=>release=r),started=new Promise<void>(r=>entered=r);
+ t.after(()=>release());
+ f.store.inventoryOp=async(...args)=>{entered();await gate;return original(...args);};
+ peer.send({t:'quest',op:'turnIn',id:'storage_ledger'});await started;
+ peer.send({t:'quest',op:'abandon',id:'storage_ledger'});
+ await peer.until((m:any)=>m.t==='questError'&&m.text.includes('กำลังส่ง'));
+ assert.equal(p.gold,before);assert.ok(p.quests!.active.storage_ledger);
+ // A subsequent progress-save outage cannot split EXP/completion from the reward.
+ f.store.saveProgress=async()=>{throw Error('progress save unavailable');};
+ release();await peer.until((m:any)=>m.t==='quests'&&m.state.done.storage_ledger);
+ const saved=(await f.store.character(user.character.accountId,p.id))!;
+ assert.equal(saved.gold,before+30);assert.ok(saved.quests!.done.storage_ledger);
+ assert.equal(saved.xp,p.xp);assert.equal(saved.jobExp,p.jobExp);
+ peer.send({t:'quest',op:'accept',id:'storage_ledger'});
+ await peer.until((m:any)=>m.t==='questError'&&m.text.includes('รับเควสต์นี้แล้ว'));
+ assert.equal(p.gold,before+30);
+});
+
+test('failed quest transaction leaves live rewards and completion unchanged and can retry',async t=>{
+ const f=await fixture(t),{peer,room,p}=await join(f,'QuestRetry');
+ const at=CITY_BUILDINGS.find(b=>b.id==='storage')!.talk;p.x=at.x;p.z=at.z;
+ peer.send({t:'quest',op:'accept',id:'storage_ledger'});
+ await peer.until((m:any)=>m.t==='quests'&&m.state.active.storage_ledger);
+ p.quests!.active.storage_ledger.progress[0]=1;await f.rt.save(room,p.id,true);
+ const gold=p.gold,xp=p.xp,original=f.store.inventoryOp.bind(f.store);
+ f.store.inventoryOp=async()=>{throw Error('injected transaction failure');};
+ peer.send({t:'quest',op:'turnIn',id:'storage_ledger'});
+ await peer.until((m:any)=>m.t==='inv'&&m.error==='injected transaction failure');
+ assert.equal(p.gold,gold);assert.equal(p.xp,xp);assert.equal(p.quests!.done.storage_ledger,undefined);
+ f.store.inventoryOp=original;
+ peer.send({t:'quest',op:'turnIn',id:'storage_ledger'});
+ await peer.until((m:any)=>m.t==='quests'&&m.state.done.storage_ledger);
+ assert.equal(p.gold,gold+30);
+});
+
 test("chat and party over WebSocket: map chat, whisper, invite and party chat", async (t) => {
 	const f = await fixture(t), a = await join(f, "ChatA"), b = await join(f, "ChatB");
 	a.peer.send({ t: "chat", ch: "map", text: "สวัสดี ควย" });

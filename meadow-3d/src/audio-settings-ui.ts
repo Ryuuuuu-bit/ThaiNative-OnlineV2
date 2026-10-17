@@ -3,7 +3,7 @@ import type { AudioEngine } from './audio';
 export function mountAudioSettings(sound: AudioEngine, send: (message: any) => void) {
   const panel = document.createElement('section');
   panel.id = 'audio-settings'; panel.hidden = true;
-  panel.innerHTML = `<h3>เสียง</h3>${[['sfx', 'เอฟเฟกต์'], ['music', 'เพลง'], ['ambience', 'บรรยากาศ']].map(([key, label]) => `<label>${label}<input type="range" min="0" max="1" step="0.01" data-volume="${key}" aria-label="${label}"><output data-output="${key}"></output></label>`).join('')}<label class="audio-mute"><input type="checkbox" id="audio-muted">ปิดเสียงทั้งหมด · M</label><small>ปรับระดับเพื่อฟังตัวอย่าง · เพลงจะเล่นเมื่อมีเพลงประกอบ</small><p id="audio-save-status" role="status"></p>`;
+  panel.innerHTML = `<h3>เสียง</h3>${[['sfx', 'เอฟเฟกต์'], ['music', 'เพลง'], ['ambience', 'บรรยากาศ']].map(([key, label]) => `<label>${label}<input type="range" min="0" max="1" step="0.01" data-volume="${key}" aria-label="${label}"><output data-output="${key}"></output></label>`).join('')}<label class="audio-mute"><input type="checkbox" id="audio-muted">ปิดเสียงทั้งหมด</label><small>ปรับระดับเพื่อฟังตัวอย่าง · เพลงจะเล่นเมื่อมีเพลงประกอบ</small><p id="audio-save-status" role="status"></p>`;
   document.querySelector('#key-settings')!.after(panel);
   const mute = panel.querySelector<HTMLInputElement>('#audio-muted')!;
   const status = panel.querySelector<HTMLElement>('#audio-save-status')!;
@@ -18,7 +18,7 @@ export function mountAudioSettings(sound: AudioEngine, send: (message: any) => v
     const button = document.querySelector<HTMLButtonElement>('#audio')!;
     button.textContent = sound.settings.muted ? '♩' : '♫';
     button.setAttribute('aria-pressed', String(sound.settings.muted));
-    button.setAttribute('aria-label', sound.settings.muted ? 'เปิดเสียง (M)' : 'ปิดเสียงทั้งหมด (M)');
+    button.setAttribute('aria-label', sound.settings.muted ? 'เปิดเสียง' : 'ปิดเสียงทั้งหมด');
   }
   function save() { send({ t: 'audioSettings', settings: { ...sound.settings } }); }
   function changed() {

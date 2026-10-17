@@ -6,6 +6,9 @@ import {AutoPotionSchema} from '../auto-potion.js';
 const seq = z.number().int().nonnegative().max(2147483647),
 	point = z.number().finite().min(-10000).max(10000);
 export const IntentSchema = z.discriminatedUnion("t", [
+ z.object({t:z.literal('titles')}).strict(),
+ z.object({t:z.literal('titleEquip'),id:z.string().regex(/^[a-z0-9_]{1,40}$/).nullable()}).strict(),
+ z.object({t:z.literal('rankings'),board:z.enum(['level','hunt'])}).strict(),
  z.object({t:z.literal('uiSettings'),settings:UISettingsSchema}).strict(),
  z.object({t:z.literal('autoSettings'),settings:AutoSettingsSchema}).strict(),
   z.object({t:z.literal('returnCity')}).strict(),

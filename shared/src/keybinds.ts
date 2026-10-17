@@ -1,6 +1,6 @@
 /**
  * Rebindable action keys (KeyboardEvent.code), shared by the client controller, the settings window
- * and the server's validation. Movement (WASD / arrows) and Escape stay fixed; hotbar slots have their
+ * and the server's validation. Movement (WASD / arrows), Escape and map (M) stay fixed; hotbar slots have their
  * own per-slot keys on the job bar.
  */
 export const KEY_ACTIONS = [
@@ -12,7 +12,6 @@ export const KEY_ACTIONS = [
 	"inventory",
 	"skills",
 	"stats",
-	"mute",
 	"returnCity",
 	"pickupAll",
 ] as const;
@@ -28,13 +27,12 @@ export const DEFAULT_KEYS: KeyBindings = {
 	inventory: "KeyI",
 	skills: "KeyK",
 	stats: "KeyC",
-	mute: "KeyM",
 	returnCity: "KeyH",
 	pickupAll: "KeyZ",
 };
 /** Second keys kept from the old fixed layout; live only while the action still has its default key. */
 export const ALT_KEYS: Partial<KeyBindings> = { attack: "KeyJ", auto: "KeyT", dash: "ShiftRight" };
-export const FIXED_KEYS = ["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Escape"] as const;
+export const FIXED_KEYS = ["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Escape", "KeyM"] as const;
 export const BINDABLE_KEY =
 	/^(Key[A-Z]|Digit[0-9]|F([1-9]|1[0-2])|Space|Tab|ShiftLeft|ShiftRight|Backquote|Minus|Equal|BracketLeft|BracketRight|Semicolon|Quote|Comma|Period|Slash|Backslash|Numpad[0-9])$/;
 
@@ -57,7 +55,7 @@ export function actionKeys(b: KeyBindings): Record<KeyAction, string[]> {
 	}
 	return out;
 }
-/** Codes a hotbar slot may not take: movement, Escape and every live action key. */
+/** Codes a hotbar slot may not take: movement, Escape, map and every live action key. */
 export function reservedKeys(b: KeyBindings): string[] {
 	return [...FIXED_KEYS, ...Object.values(actionKeys(b)).flat()];
 }
@@ -67,7 +65,7 @@ export function bindingProblem(b: KeyBindings, hotbarKeys: readonly string[] = [
 	for (const action of KEY_ACTIONS) {
 		const code = b[action];
 		if (!BINDABLE_KEY.test(code)) return "ใช้ปุ่มนี้ไม่ได้";
-		if ((FIXED_KEYS as readonly string[]).includes(code)) return "ปุ่มเดินและ Esc เปลี่ยนไม่ได้";
+		if ((FIXED_KEYS as readonly string[]).includes(code)) return "ปุ่มเดิน, Esc และ M (แผนที่) เปลี่ยนไม่ได้";
 		if (seen.has(code)) return "ปุ่มนี้ถูกใช้อยู่แล้ว";
 		seen.set(code, action);
 		if (hotbarKeys.includes(code)) return "ปุ่มนี้ใช้กับช่องแถบสกิลอยู่";

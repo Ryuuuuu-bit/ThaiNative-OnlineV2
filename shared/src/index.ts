@@ -23,3 +23,5 @@ export * from './auto-potion.js';
 export * from './chat.js';
 export * from './quests.js';
 export * from './auto-settings.js';
+
+export * from './titles.js';

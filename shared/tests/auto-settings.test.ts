@@ -119,6 +119,16 @@ test("action keys: defaults with old alternates, rebinding frees the old key, co
 	// Fixed or malformed saved keys fall back to the default instead of locking the player out.
 	assert.equal(resolveKeys({ attack: "KeyW", dash: "Nope" }).attack, "Space");
 	assert.equal(resolveKeys({ attack: "KeyW", dash: "Nope" }).dash, "ShiftLeft");
+	// M belongs to the map even for old profiles, and cannot be taken by actions or the hotbar.
+	assert.deepEqual(resolveKeys({ mute: "KeyM" }), DEFAULT_KEYS);
+	assert.deepEqual(resolveKeys({ mute: "KeyN" }), DEFAULT_KEYS);
+	assert.ok(!reservedKeys(d).includes("KeyN"));
+	const migrated = resolveKeys({ mute: "KeyM", attack: "KeyN" });
+	assert.equal(migrated.attack, "KeyN");
+	assert.equal(bindingProblem(migrated), null);
+	assert.ok(reservedKeys(migrated).includes("KeyM"));
+	assert.match(bindingProblem({ ...d, potion: "KeyM" })!, /เปลี่ยนไม่ได้/);
+	assert.throws(() => validateHotbar(job, job.hotbar.map((s, i) => i === 9 ? { ...s, key: "KeyM" } : s), data, reservedKeys(migrated)), /ปุ่ม/);
 	// The stored schema accepts the new optional keys and still accepts old records.
 	assert.ok(UISettingsSchema.safeParse({ scale: 100, windows: {}, keys: { returnCity: "KeyH", pickupAll: "KeyZ" } }).success);
 	assert.ok(UISettingsSchema.safeParse({ scale: 100, windows: {}, keys: { ...DEFAULT_KEYS, attack: "KeyQ" } }).success);

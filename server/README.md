@@ -100,3 +100,29 @@ Fifteen-second measured windows after warmup:1 client tickp95 **0.30ms**, **2.12
 Migrations004/005 add independent Job EXP, levels, points, learned-skill JSON and ten hotbar slots with server-saved keys.005 is the owner follow-up and uses a version marker for one-time grants; old novice characters become swordsmen, existing learned skills stay, custom hotbars stay, and only old default layouts become1–5/6–0. SkillUp, hotbar and jobChange WebSocket intents validate and save immediately. Job changes require the Angel's server-side range and level gate.
 
 For isolated local UAT only, `UAT_JOB_EXP_MULTIPLIER=1000` accelerates earned kill Job EXP. It defaults to1; production or any Railway environment forces1. The flag does not grant skills, points, level or position from the client. Verification uses a local temporary PostgreSQL instance; never run these tests against production.
+
+
+## Titles and rankings
+
+Migration `017_titles.sql` adds per-character cosmetic title selection, permanent earned title IDs,
+and server-recorded boss kills. Existing level/kill milestones unlock on joining; historical boss
+kills are unknown and start counting after this feature is installed. Titles grant no combat stats.
+The in-game menu opens the title book and server rankings; equipped titles appear above player
+names and in chat. Titles save through the same lease-fenced room queue as progress.
+
+WebSocket intents: `titles`, `titleEquip {id: string|null}`, `rankings {board: "level"|"hunt"}`.
+All are strict objects. The server checks ownership/eligibility; clients cannot submit progress or
+unlocks. The PvP catalogue (duel, red-player hunts, sin/merit and legendary titles) is visible with
+its requirements but explicitly unavailable, including when a saved ID claims ownership.
+No duel/PK rules or rewards are enabled by this feature.
+
+Leaderboards expose up to 100 public character rows and the caller's own rank, include active
+saved characters offline, merge live progression, and refresh saved data at most once a minute
+(joining invalidates the saved cache). Level ties use XP then stable character ID; hunt ties use
+level, XP then ID. Characters with no kills have no hunt rank. Temporary Top 1/3/10 titles are
+rechecked on title requests, gameplay progress, and the minute refresh. A failed database read
+retains the previous board. Power/refinement/PvP leaderboards await their gameplay systems.
+
+Tests cover server selection, failed saves, reconnect, public snapshots/chat, rank revocation,
+PvP rejection, and isolated PostgreSQL migration/persistence (`PG_TEST_URL` must point to a
+throwaway local database).

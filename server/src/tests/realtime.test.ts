@@ -6,6 +6,7 @@ import { WebSocket } from "ws";
 import { createApp } from "../app.js";
 import { MemoryStore } from "../store/memory.js";
 import { mountRealtime } from "../realtime/index.js";
+import { connect } from 'node:net';
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 async function fixture(t: any, sharedRooms = false, extra: Record<string, unknown> = {}) {
 	const store = new MemoryStore(),
@@ -75,8 +76,58 @@ async function fixture(t: any, sharedRooms = false, extra: Record<string, unknow
 		server.closeAllConnections();
 		await new Promise<void>((r) => server.close(() => r()));
 	});
-	return { store, rt, call, make, open };
+	return { store, rt, call, make, open, base };
 }
+
+test('malformed upgrade URL rejects the socket and leaves HTTP and WebSockets healthy',async t=>{
+ const f=await fixture(t);
+ for(const [host,path] of [['[','/api/ws'],['localhost','http://[']]){
+  const socket=connect(Number(new URL(f.base).port),'127.0.0.1');
+  socket.on('error',()=>{});const closed=once(socket,'close');
+  await once(socket,'connect');
+  socket.write(`GET ${path} HTTP/1.1\r\nHost: ${host}\r\nConnection: Upgrade\r\nUpgrade: websocket\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\n\r\n`);
+  await closed;
+ }
+ assert.equal((await fetch(f.base+'/healthz')).status,200);
+ const user=await f.make('UpgradeSafe'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');
+});
+
+test('disconnected leases renew through retention and a slow final save before release',async t=>{
+ const f=await fixture(t,false,{heartbeatMs:40,reconnectMs:350});
+ const ttl=180,leases=new Map<string,{owner:string;until:number}>();
+ f.store.claimLease=async(id,owner)=>{leases.set(id,{owner,until:Date.now()+ttl});};
+ let offlineRenewals=0;
+ f.store.renewLease=async(id,owner)=>{
+  const lease=leases.get(id);if(!lease||lease.owner!==owner||lease.until<=Date.now())return false;
+  lease.until=Date.now()+ttl;
+  if([...f.rt.rooms.values()].some(r=>r.disconnected.has(id)))offlineRenewals++;
+  return true;
+ };
+ f.store.releaseLease=async(id,owner)=>{if(leases.get(id)?.owner===owner)leases.delete(id);};
+ const save=f.store.saveProgress.bind(f.store);
+ let delay=false,release!:()=>void,entered!:()=>void;
+ const gate=new Promise<void>(r=>release=r),started=new Promise<void>(r=>entered=r);
+ t.after(()=>release());
+ f.store.saveProgress=async(account,id,body,owner)=>{
+  if(delay){entered();await gate;}
+  const lease=leases.get(id);if(owner&&(!lease||lease.owner!==owner||lease.until<=Date.now()))throw Error('Lease expired');
+  // MemoryStore's private lease is replaced by the expiring adapter above.
+  return save(account,id,body);
+ };
+ const user=await f.make('LeaseRetain'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
+ peer.ws.close();await peer.closed;await room.saveQueue;
+ p.kills=17;delay=true;await started;
+ await wait(ttl*2);
+ assert.ok(room.accounts.has(p.id),'retained while final save is pending');
+ assert.equal(room.game.players.has(p.id),false,'simulation stops at retention expiry');
+ assert.ok(offlineRenewals>0);assert.ok(leases.get(p.id)!.until>Date.now());
+ release();await room.saveQueue;await wait(60);
+ assert.equal((await f.store.character(user.character.accountId,p.id))!.kills,17);
+ assert.equal(room.game.players.has(p.id),false);assert.equal(leases.has(p.id),false);
+});
 test('stat intents validate, persist and reconnect with manual auto-allocation disabled',async t=>{
  const f=await fixture(t),user=await f.make('StatHero'),peer=f.open(user.cookie);await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;p.statPoints=8;
  const index=peer.messages.length;peer.send({t:'stats',add:{str:2},seq:1});const result=await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='stats'&&e.base.str===7));assert.equal(result.list[0].points,4);assert.equal(p.autoAllocate,false);assert.equal((await f.store.character(user.character.accountId,p.id))!.autoAllocate,false);
@@ -434,4 +485,48 @@ test('hotbar potion slots persist, use the bag through the server and survive mi
  const again=f.open(user.cookie);await again.until(m=>m.t==='welcome');again.send({t:'spawnReady'});
  const snap=await again.until(m=>m.t==='snap'&&m.players.some((v:any)=>v.id===p.id&&v.hotbar)),bar=snap.players.find((v:any)=>v.id===p.id).hotbar;
  assert.equal(bar[6].skill,'item:red_small');assert.equal(bar[7].skill,null);assert.equal(bar[0].skill,slots[0].skill);
+});
+
+
+test('titles equip only server-earned cosmetics, survive reconnect, and appear in snapshots/chat',async t=>{
+ const f=await fixture(t),user=await f.make('TitleHero'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});
+ const initial=await peer.until(m=>m.t==='titles');assert.ok(initial.list.find((t:any)=>t.id==='rookie').unlocked);
+ assert.ok(initial.list.filter((t:any)=>t.category==='pvp').every((t:any)=>!t.available&&!t.unlocked));
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!,stats=structuredClone(p.stats);
+ peer.send({t:'titleEquip',id:'duel200'});await peer.until(m=>m.t==='titleError');assert.ok(!p.titleId);
+ peer.send({t:'titleEquip',id:'rookie'});await peer.until(m=>m.t==='titles'&&m.selected==='rookie');
+ assert.equal((await f.store.character(user.character.accountId,p.id))!.titleId,'rookie');assert.deepEqual(p.stats,stats);
+ await peer.until(m=>m.t==='snap'&&m.players[0].titleId==='rookie');
+ peer.send({t:'chat',ch:'map',text:'Hello titles'});assert.equal((await peer.until(m=>m.t==='chat'&&m.text==='Hello titles')).titleId,'rookie');
+ peer.ws.close();await peer.closed;
+ const second=f.open(user.cookie);await second.until(m=>m.t==='welcome');second.send({t:'spawnReady'});
+ await second.until(m=>m.t==='titles'&&m.selected==='rookie');
+ second.send({t:'rankings',board:'level'});const board=await second.until(m=>m.t==='rankings');assert.equal(board.mine.id,p.id);
+ assert.doesNotMatch(JSON.stringify(board),/accountId|titleRecords|baseStats/);
+});
+test('boss titles come from authoritative kills and a failed title save keeps the old selection',async t=>{
+ const f=await fixture(t),user=await f.make('BossTitle'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='titles');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
+ room.game.events.push({type:'kill',x:p.x,z:p.z,ownerId:p.id,playerId:p.id,dataId:'king_jelly',boss:true});
+ await peer.until(m=>m.t==='titles'&&m.list.some((t:any)=>t.id==='boss_king'&&t.unlocked));
+ await room.saveQueue;assert.equal((await f.store.character(user.character.accountId,p.id))!.titleRecords!.bosses.king_jelly,1);
+ const save=f.store.saveProgress.bind(f.store);f.store.saveProgress=async()=>{throw Error('injected title save failure');};
+ peer.send({t:'titleEquip',id:'boss_king'});await peer.until(m=>m.t==='titleError');assert.ok(!p.titleId);
+ f.store.saveProgress=save;
+ peer.send({t:'titleEquip',id:'boss_king'});await peer.until(m=>m.t==='titles'&&m.selected==='boss_king');
+});
+
+
+test('a rank title is removed when another active character takes its place',async t=>{
+ const f=await fixture(t),a=await f.make('RankFirst'),peer=f.open(a.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='titles');
+ peer.send({t:'titleEquip',id:'level_top1'});await peer.until(m=>m.t==='titles'&&m.selected==='level_top1');
+ const b=await f.make('RankSecond');await f.store.saveProgress(b.character.accountId,b.character.id,{...b.character,level:5});
+ const other=f.open(b.cookie);await other.until(m=>m.t==='welcome');
+ peer.messages.length=0;peer.send({t:'titles'});
+ await peer.until(m=>m.t==='titles'&&m.selected===null);
+ const room=[...f.rt.rooms.values()].find(r=>r.game.players.has(a.character.id))!;
+ await room.saveQueue;assert.equal((await f.store.character(a.character.accountId,a.character.id))!.titleId,null);
 });

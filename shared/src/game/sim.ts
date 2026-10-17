@@ -111,6 +111,7 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
+ titleId?:string|null; displayTitleId?:string|null; unlockedTitles?:string[]; titleRecords?:import('../titles.js').TitleRecords;
  /** ตั้งค่า AUTO for this account (server-side; never sent in snapshots). */
  autoCfg?: AutoSettings; autoNext?: string | null;
    bossReadyAt?:number; reviveRemaining?:number;

@@ -1,3 +1,5 @@
+import {mountTitles} from './titles-ui';
+import {updatePlayerNameplate} from './player-nameplate';
 import {mapLightRig,followSun,nearestArtLights,CITY_SUN_OFFSET} from './world-art.ts';
 import {monsterSpecies,SPECIES_HIT_COLOUR} from './monster-animation';
 import {nameplateCandidates,overlaps,type Rect} from './world-labels';
@@ -24,6 +26,7 @@ import {mountHUDQOL} from './hud-qol';
 import './hud-qol.css';
 import './ui-glass.css';
 import './ui-windows.css';
+import './ui-theme.css';
 import {mountTutorialGuide} from './tutorial-guide';
 let guide:ReturnType<typeof mountTutorialGuide>|undefined;
 let qol:ReturnType<typeof mountHUDQOL>|undefined;let settingsUI:ReturnType<typeof mountSettingsWindow>|undefined;let pendingUI:any;
@@ -60,11 +63,12 @@ const combatFeel=new CombatFeel(),autoQuality=new AutoQuality();autoQuality.auto
 const audioUI=mountAudioSettings(sound,message=>net.send(message));const autoPotionUI=mountAutoPotion(message=>net.send(message));
 const feelLabel=document.createElement('label');feelLabel.innerHTML='<input type="checkbox" id="combat-feel">ภาพสั่น/หยุดภาพ';document.querySelector('#audio-settings')!.append(feelLabel);const feelInput=feelLabel.querySelector('input')!;feelInput.checked=combatFeel.enabled;feelInput.onchange=()=>combatFeel.setEnabled(feelInput.checked);
 document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.closest('button:not(:disabled)'))sound.play('ui_click');},true);
+let titles:ReturnType<typeof mountTitles>|undefined;
 let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
  // Job 2 skills borrow a Job 1 skill's motion, VFX and sound until they get their own art; keep the real id as learnedSkill.
  if(message.t==='ev')message.list=message.list.map(preferOwnArt);
-  if(social?.receive(message)||quests?.receive(message))return;
+  if(titles?.receive(message)||social?.receive(message)||quests?.receive(message))return;
  audioUI.receive(message);autoPotionUI.receive(message);inventoryUI.receive(message);autoUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
  if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you){audioUI.receive(e);autoPotionUI.receive(e);}
  if(message.t==='snap'){worldState.receive(message,net.you,performance.now());if(message.mapId!==activeMap)void switchMap(message.mapId);}
@@ -235,16 +239,23 @@ function nextTarget(){
  const index=living.findIndex(e=>e.id===game.target);const target=living.length?living[(index+1)%living.length].id:null;if(target)net.send({t:'target',id:target});game.target=target;game.destination=null;
 }
 window.addEventListener('keydown',e=>{
- const dialogs=[...document.querySelectorAll<HTMLDialogElement>('dialog[open]')];if(e.code==='Escape'&&dialogs.length){e.preventDefault();dialogs.at(-1)!.close();clearInput();return;}if(dialogs.length&&!(e.target instanceof HTMLElement&&e.target.matches('input,textarea,select')))return;
+ const dialogs=[...document.querySelectorAll<HTMLDialogElement>('dialog[open]')];
+ if(e.code==='Escape'){
+  if(e.repeat){e.preventDefault();return;}
+  if(dialogs.length){e.preventDefault();dialogs.at(-1)!.close();clearInput();return;}
+  if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
+  if(!started||game.p.dead||netOverlay||!$('#overlay').hidden)return;
+  e.preventDefault();qol?.cancel();net.send({t:'auto',on:false});clearInput();settingsUI?.open();return;
+ }
+ if(dialogs.length&&!(e.target instanceof HTMLElement&&e.target.matches('input,textarea,select')))return;
  if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
+ if(isKey('map',e.code)&&started&&!netOverlay&&$('#overlay').hidden){e.preventDefault();if(!e.repeat)qol?.toggleMap();return;}
  if(isKey('inventory',e.code)&&started&&!e.repeat){e.preventDefault();inventoryUI.toggle();return;}
  if(inventoryUI.open)return;
- if(isKey('mute',e.code)){e.preventDefault();if(!e.repeat)audioUI.toggleMute();return;}
  if(isKey('skills',e.code)&&started&&!e.repeat){e.preventDefault();if(!statsUI.open)skillsUI.toggle();return;}
  if(skillsUI.open)return;
  if(isKey('stats',e.code)&&started&&!e.repeat){e.preventDefault();statsUI.toggle();return;}
  if(statsUI.open)return;
- if(isKey('pause',e.code)){e.preventDefault();net.send({t:'auto',on:false});stopAuto();if(e.repeat)return;if(($<HTMLDialogElement>('#guide')).open){$<HTMLDialogElement>('#guide').close();return;}return;}
  if(!started||paused||game.p.dead||$<HTMLDialogElement>('#guide').open)return;
  if(Object.values(KEYS).some(codes=>(codes as readonly string[]).includes(e.code)))e.preventDefault();
  if(['up','down','left','right'].some(a=>isKey(a as keyof typeof KEYS,e.code))){qol?.cancel();stopAuto();}
@@ -363,11 +374,11 @@ function spriteRect(tag:T.Sprite):Rect{const q=tag.position.clone().project(came
 function screenUp(){return Math.max(.3,Math.sqrt(1-(cameraOffset.y/cameraOffset.length())**2));}
 function blocked(r:Rect,panels:Rect[]){return r.left<0||r.top<0||r.right>innerWidth||r.bottom>innerHeight||panels.some(p=>overlaps(r,p));}
 function remoteOnScreen(p:{x:number;z:number}){const q=new T.Vector3(p.x,1,p.z).project(camera);return Math.abs(q.x)<1.1&&Math.abs(q.y)<1.1&&q.z>=-1&&q.z<=1;}
-function render(dt:number){sound.setListener(game.p);for(const other of worldState.others){let v=remoteHeroes.get(other.id);if(!v){v={actor:makePaintedHero(loader),label:nameTag(label(other.name,'#f4f5da'))};v.label.center.set(.5,NAME_ANCHOR);scene.add(v.actor.root,v.label);remoteHeroes.set(other.id,v);}v.actor.update(other,time,combatFeel.frozen(other.id,performance.now()),remoteOnScreen(other));v.label.position.set(other.x,HERO_HEAD/screenUp(),other.z);v.label.visible=!other.dead;}for(const [id,v]of remoteHeroes)if(!worldState.others.some(p=>p.id===id)){scene.remove(v.actor.root,v.label);v.actor.dispose?.();v.label.material.map?.dispose();v.label.material.dispose();remoteHeroes.delete(id);}if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;if([p,...worldState.others.filter(remoteOnScreen)].some(o=>o.jobId==='guardian'||o.jobId==='berserker'))skillArt.warmJob2();skillArt.update(dt,[p,...worldState.others],id=>combatFeel.frozen(id,performance.now()),game.enemies);hero.update(p,time,combatFeel.frozen(net.you,performance.now()));for(const c of pendingContacts.splice(0)){motionContacts.push({...c,renderedAt:performance.now(),renderFrame:presentationFrame,hero:hero.snapshot()});if(motionContacts.length>64)motionContacts.shift();}hero.root.visible=worldState.ready;playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,HERO_HEAD/screenUp(),p.z);heroName.visible=worldState.ready&&!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));followSun(sun,focus,activeMap==='city_plaza'?CITY_SUN_OFFSET:SUN_OFFSET,zoomHeight,innerWidth/innerHeight);nearestArtLights(world.root,focus);camera.position.copy(focus).add(cameraOffset);const cameraShake=combatFeel.camera(dt);if(cameraShake>0){camera.position.x+=(Math.random()-.5)*cameraShake;camera.position.y+=(Math.random()-.5)*cameraShake;}shake=0;camera.lookAt(focus);if(overviewOn&&activeMap==='city_plaza'){camera.position.set(0,70,.01);camera.lookAt(0,0,0);}camera.updateMatrixWorld();updateSeeThrough(camera,worldState.ready&&!p.dead&&!overviewOn?p:null);
+function render(dt:number){sound.setListener(game.p);for(const other of worldState.others){let v=remoteHeroes.get(other.id);if(!v){v={actor:makePaintedHero(loader),label:nameTag(label(other.name,'#f4f5da'))};v.label.center.set(.5,NAME_ANCHOR);scene.add(v.actor.root,v.label);remoteHeroes.set(other.id,v);}updatePlayerNameplate(v.label,other.name,other.titleId);v.actor.update(other,time,combatFeel.frozen(other.id,performance.now()),remoteOnScreen(other));v.label.position.set(other.x,HERO_HEAD/screenUp(),other.z);v.label.visible=!other.dead;}for(const [id,v]of remoteHeroes)if(!worldState.others.some(p=>p.id===id)){scene.remove(v.actor.root,v.label);v.actor.dispose?.();v.label.material.map?.dispose();v.label.material.dispose();remoteHeroes.delete(id);}if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(deathReveal===0&&game.p.dead)showDeath();}const p=game.p;updatePlayerNameplate(heroName,p.name||selected.character.name,p.titleId);if([p,...worldState.others.filter(remoteOnScreen)].some(o=>o.jobId==='guardian'||o.jobId==='berserker'))skillArt.warmJob2();skillArt.update(dt,[p,...worldState.others],id=>combatFeel.frozen(id,performance.now()),game.enemies);hero.update(p,time,combatFeel.frozen(net.you,performance.now()));for(const c of pendingContacts.splice(0)){motionContacts.push({...c,renderedAt:performance.now(),renderFrame:presentationFrame,hero:hero.snapshot()});if(motionContacts.length>64)motionContacts.shift();}hero.root.visible=worldState.ready;playerRing.position.set(p.x,.05,p.z);heroName.position.set(p.x,HERO_HEAD/screenUp(),p.z);heroName.visible=worldState.ready&&!p.dead;focus.lerp(new T.Vector3(p.x,0,p.z-1.1),1-Math.exp(-dt*5));followSun(sun,focus,activeMap==='city_plaza'?CITY_SUN_OFFSET:SUN_OFFSET,zoomHeight,innerWidth/innerHeight);nearestArtLights(world.root,focus);camera.position.copy(focus).add(cameraOffset);const cameraShake=combatFeel.camera(dt);if(cameraShake>0){camera.position.x+=(Math.random()-.5)*cameraShake;camera.position.y+=(Math.random()-.5)*cameraShake;}shake=0;camera.lookAt(focus);if(overviewOn&&activeMap==='city_plaza'){camera.position.set(0,70,.01);camera.lookAt(0,0,0);}camera.updateMatrixWorld();updateSeeThrough(camera,worldState.ready&&!p.dead&&!overviewOn?p:null);
  const panels=hudRects();
  for(const n of npcLabels){const distance=Math.hypot(n.x-p.x,n.z-p.z),screen=new T.Vector3(n.x,n.head/screenUp(),n.z).project(camera);n.el.hidden=activeMap!=='city_plaza'||distance>10;const overlapping=distance<2.2;n.el.style.left=((screen.x*.5+.5)*innerWidth)+'px';n.el.style.top=((-screen.y*.5+.5)*innerHeight-(overlapping?56:0))+'px';n.el.classList.toggle('in-range',distance<3);n.el.style.opacity=overlapping?'.65':'1';if(!n.el.hidden&&blocked(n.el.getBoundingClientRect(),panels))n.el.hidden=true;}
  const labelHeight=64/22*12*(Number(getComputedStyle(document.documentElement).getPropertyValue('--ui-scale'))||1)*(camera.top-camera.bottom)/innerHeight;
- for(const tag of [heroName,...[...remoteHeroes.values()].map(v=>v.label),...[...enemies.values()].map(v=>v.name)]){const ratio=tag.scale.x/tag.scale.y;tag.scale.set(labelHeight*ratio,labelHeight,1);}
+ for(const tag of [heroName,...[...remoteHeroes.values()].map(v=>v.label),...[...enemies.values()].map(v=>v.name)]){const ratio=tag.scale.x/tag.scale.y;const height=labelHeight*(tag.userData.hasTitle?1.5:1);tag.scale.set(height*ratio,height,1);}
 
  const labelRects:Rect[]=[];
  for(const tag of [heroName,...[...remoteHeroes.values()].map(v=>v.label)])if(tag.visible){if(blocked(spriteRect(tag),panels))tag.visible=false;else labelRects.push(spriteRect(tag));}
@@ -414,6 +425,7 @@ applyQuality();hud();requestAnimationFrame(frame);
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started,announce:notice});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice:tell});
 qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);
+titles=mountTitles({send:m=>net.send(m),onOpen:()=>clearInput(),notice,you:()=>net.you});
 
 guide=mountTutorialGuide({characterId:selected.character.id,started:()=>started&&!paused,map:()=>activeMap,game:()=>game,autoPotionOn:()=>autoPotionUI.settings.hp.on||autoPotionUI.settings.mp.on,quests:()=>quests?.state,project:(x,z,y)=>{const v=new T.Vector3(x,y,z).project(camera);return{x:(v.x*.5+.5)*innerWidth,y:(-v.y*.5+.5)*innerHeight};}});
 if(pendingUI)qol.receive(pendingUI);

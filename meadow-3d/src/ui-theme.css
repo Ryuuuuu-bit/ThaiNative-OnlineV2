@@ -1,0 +1,164 @@
+/* Forgotten-city UI: oxidised bronze, palm-leaf ink and carved gold.
+   Theme only: existing controls, painted item/skill art and responsive placement remain live. */
+:root{
+ --g-glass:rgba(22,33,29,.84);--g-glass-strong:rgba(19,29,25,.96);--g-window:rgba(23,33,28,.97);
+ --g-line:rgba(182,151,95,.29);--g-line-strong:rgba(206,175,116,.58);
+ --g-text:#f1e8d2;--g-muted:#c8c1a9;--g-faint:#a7a18b;
+ --g-gold:#d7b777;--g-hp:#c66a55;--g-hp-deep:#843e36;--g-mp:#75a6a6;--g-ok:#a1b581;
+ --g-blur:blur(8px);--g-shadow:0 1px 3px #101912,0 0 8px #10191299;
+ --ui-metal:linear-gradient(145deg,#65553b,#b2945c 38%,#524a36 74%,#9a8050);
+ --ui-inlay:linear-gradient(155deg,rgba(215,183,119,.1),transparent 48%),linear-gradient(#28372e,#18241f);
+ --ui-grain:repeating-linear-gradient(110deg,#d7b77703 0 1px,transparent 1px 6px);
+ --ui-frame-shadow:inset 0 0 0 3px #101b1680,inset 0 0 0 4px #b6975f1f,0 12px 32px #09120f66;
+}
+
+/* One engraved icon set is shared by HUD controls, menu tiles and action tiles. */
+#ui #stats-button,[data-icon=character]{--icon:url('./ui-icons/character.svg')!important}
+#ui #skills-button,[data-icon=skills]{--icon:url('./ui-icons/skills.svg')!important}
+#ui #inventory-button,[data-icon=bag]{--icon:url('./ui-icons/bag.svg')!important}
+#ui #quest-button,[data-icon=quest]{--icon:url('./ui-icons/quest.svg')!important}
+#ui #game-menu{--icon:url('./ui-icons/menu.svg')!important}
+#ui #actions-toggle{--icon:url('./ui-icons/actions.svg')!important}
+#ui #audio{--icon:url('./ui-icons/audio.svg')!important}
+#ui #audio[aria-pressed=true]{--icon:url('./ui-icons/muted.svg')!important;color:var(--g-faint)!important}
+#ui #help,[data-icon=help]{--icon:url('./ui-icons/help.svg')!important}
+[data-icon=settings],#ui #auto-settings-button{--icon:url('./ui-icons/settings.svg')!important}
+[data-icon=titles]{--icon:url('./ui-icons/titles.svg')!important}
+[data-icon=rankings]{--icon:url('./ui-icons/rankings.svg')!important}
+[data-icon=exit]{--icon:url('./ui-icons/exit.svg')!important}
+#ui [data-action=attack]{--icon:url('./ui-icons/attack.svg')!important}
+#ui [data-action=dash]{--icon:url('./ui-icons/dash.svg')!important}
+#ui [data-action=potion]{--icon:url('./ui-icons/potion.svg')!important}
+#ui #auto-hunt,[data-icon=auto]{--icon:url('./ui-icons/auto.svg')!important}
+#ui #return-city{--icon:url('./ui-icons/city.svg')!important}
+#ui #pickup-all{--icon:url('./ui-icons/pickup.svg')!important}
+
+/* Bronze seals: consistent stroke, colour, backing and keyboard feedback. */
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){
+ color:var(--g-gold)!important;border:1px solid var(--g-line-strong)!important;border-radius:8px 3px!important;
+ background:var(--ui-inlay)!important;box-shadow:inset 0 0 0 2px #101b1666,0 2px 7px #09120f66;filter:none;
+}
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio):hover{
+ color:#f6dca2!important;border-color:var(--g-gold)!important;background:linear-gradient(#3b4632,#233126)!important;
+}
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,#audio)::before{width:21px;height:21px;filter:drop-shadow(0 1px 1px #0008)}
+#ui :is(#stats-button,#skills-button).has-points::after{background:var(--g-gold);box-shadow:0 0 0 2px #18241f;right:2px;top:2px;width:5px;height:5px}
+button:focus-visible,a:focus-visible,[role=button]:focus-visible{outline:2px solid var(--g-gold)!important;outline-offset:3px}
+#ui #actions-toggle::before{mask:var(--icon) center/contain no-repeat;-webkit-mask:var(--icon) center/contain no-repeat}
+
+/* The portrait and gauges belong to the same bronze instrument as the compass. */
+#ui .player{padding:9px 12px;border:1px solid var(--g-line);border-radius:18px 4px;background:linear-gradient(110deg,#1b2c26ee,#1b2c26b8 72%,#1b2c2670);box-shadow:inset 0 1px #dfc79118,0 4px 16px #0c171333}
+#ui .avatar{background:#263b30;box-shadow:0 0 0 1px #15231b,0 0 0 3px #b49966,0 0 0 5px #28382c}
+#ui .avatar b{border-radius:4px;border-color:#ac8d53;background:#1c2c24;color:#ead29b}
+#ui .player .player-name{color:#f4e6bf;text-shadow:0 2px 3px #101912}
+#ui .player .bar{border:1px solid #baa16c55;border-radius:3px;background:#101c17;box-shadow:inset 0 1px 3px #0008}
+#ui .player .hp i{background:linear-gradient(#cb7962,#b15c4c 55%,#a24c40)}
+#ui .player .mp i{background:linear-gradient(#89b8b5,#578f96 60%,#43747e)}
+#ui .player .xp i{background:linear-gradient(90deg,#8c754c,#d7b777);box-shadow:none}
+#ui .player .job-xp i{background:#91a777}
+#ui .player :is(.xp,.job-xp){border:0;border-radius:1px}
+#ui #map{border:2px solid #ac925b;outline:1px solid #1b2d23;outline-offset:2px;box-shadow:0 0 0 5px #17271fbb,0 6px 20px #09120f66}
+#ui .map::before{top:0;color:#f1d497;text-shadow:0 1px 3px #000;font-size:11px}
+#ui .map-foot{margin-top:8px}
+#ui #area-name{color:#e9d7af;font-weight:500;letter-spacing:.03em}
+#ui #area-name::after{width:90px;background:linear-gradient(90deg,transparent,#cbb07a,transparent)}
+#ui .monster-tag{background:#25362c;border-color:#8d815c;color:#e9dfc6;border-radius:3px}
+#ui .monster-tag-element{background:#253c3e;color:#c6ded9;border-color:#779c96}
+#ui .monster-tag-race{background:#383229;color:#e0d0b1;border-color:#9b8868}
+
+/* Painted skills and items keep their art; bronze slots tie the atlases into the HUD. */
+#ui #job-hotbar,#ui .legacy-actions{border:1px solid var(--g-line-strong)!important;border-radius:10px 3px!important;background:var(--ui-grain),var(--ui-inlay)!important;box-shadow:var(--ui-frame-shadow)}
+#ui .job-slot{border:1px solid #ac915e88;border-radius:6px 2px;background:linear-gradient(#15251f,#304032);box-shadow:inset 0 0 0 2px #111e16}
+#ui .job-slot:hover{border-color:#e3c68a;box-shadow:inset 0 0 0 1px #d7b77766}
+#ui .job-slot .job-icon{border-radius:3px;filter:saturate(.8)}
+#ui .job-slot.unlearned .job-icon{filter:grayscale(.55) brightness(.72)}
+#ui .job-slot.vacant{border-color:#a78e5b55;background:#15251f88}
+#ui .job-slot kbd{color:#f5dfae;padding:1px 3px;background:#16221cbb;border-radius:2px;font-size:10px}
+#ui .rewards span{color:#d4c3a0!important}
+#ui .legacy-actions button{border-radius:7px 2px!important;color:var(--g-gold)!important}
+#ui #auto-hunt[aria-pressed=true]{border-color:var(--g-gold)!important;background:#50613a!important}
+#ui #action-launcher{border-radius:12px 3px;border-color:var(--g-line-strong);background:var(--ui-grain),var(--g-window);box-shadow:var(--ui-frame-shadow)}
+#ui #action-launcher button{--tint:var(--g-gold)!important;border-color:var(--g-line)!important;background:var(--ui-inlay)!important;color:var(--g-gold)!important}
+#ui #action-launcher button::before{border-radius:50%;background:linear-gradient(145deg,#70603b55,#15271f)!important;box-shadow:inset 0 0 0 1px #a78d5799,inset 0 0 0 4px #13231b}
+#ui #action-launcher button>span[aria-hidden]{color:var(--g-gold)}
+#ui #skills-more{font-size:0!important;display:grid;place-items:center;min-height:44px!important;color:var(--g-gold)}
+#ui #skills-more::before{content:'';width:18px;height:18px;background:currentColor;mask:url('./ui-icons/more.svg') center/contain no-repeat}
+#ui #skills-more[aria-expanded=true]::before{rotate:180deg}
+
+/* Quiet quest and chat surfaces keep the centre of the world clear. */
+#ui .quest{padding:8px 10px;background:linear-gradient(90deg,#192c22c9,#192c2233);border-left:1px solid var(--g-line-strong);border-radius:0 6px 6px 0}
+#ui #journal-toggle{color:var(--g-gold);letter-spacing:.05em}
+#ui .quest>:is(h3,#quest-line,.quest-bar,#quest-note){border-left-color:#bca16a}
+#ui :is(.notice,#auto-status),#return-cast,#control-hints,#guide-nav,.party-invite{border-color:var(--g-line-strong);border-radius:10px 3px;background:var(--ui-grain),var(--g-window);box-shadow:var(--ui-frame-shadow)}
+#guide-nav .gn-badge{border-radius:3px;background:#c5ac71;color:#1a2b21}
+#guide-nav .gn-title{color:var(--g-gold)}
+#chat-form :is(input,button),#chat-toggle{border:1px solid var(--g-line-strong)!important;border-radius:9px 3px!important;background:var(--ui-inlay)!important;color:var(--g-text)!important}
+#chat-tabs button{color:var(--g-muted)}
+#chat-toggle,#chat-send{font-size:0!important}
+#chat-toggle::before,#chat-send::before{content:'';display:block;width:22px;height:22px;background:var(--g-gold);mask:url('./ui-icons/chat.svg') center/contain no-repeat}
+#chat-send::before{mask:url('./ui-icons/dash.svg') center/contain no-repeat}
+#chat-log li{color:var(--g-text)}
+#ui #joystick{border-color:#c0a46a66;background:radial-gradient(circle,#d7b77713,#1b302488);box-shadow:inset 0 0 0 4px #d7b7770d}
+#ui #joystick i{border-color:#d7b77788;background:radial-gradient(circle at 35% 25%,#c1ab76aa,#5a704e88)}
+:is(#npc-talk,#angel-talk){border-color:var(--g-line-strong);border-radius:8px 2px;background:var(--ui-inlay);color:#f0d8a1}
+
+/* All in-game windows share the same inset frame and material. */
+dialog[open]{border:1px solid var(--g-line-strong)!important;border-radius:14px 4px!important;background:var(--ui-grain),linear-gradient(140deg,#304032fa,#1b2b23fc 45%,#18261ffc)!important;box-shadow:var(--ui-frame-shadow),0 24px 80px #07120dbb!important;color:var(--g-text)}
+dialog::backdrop{background:#09140d77!important;backdrop-filter:blur(2px)}
+dialog h2{color:#ecd39c!important;letter-spacing:.02em}
+dialog .g-head{border-bottom:1px solid var(--g-line);padding-bottom:14px}
+dialog .g-head h2::before{content:'';display:inline-block;width:7px;height:7px;margin-right:10px;vertical-align:3px;border:1px solid #d7b777;rotate:45deg;background:#6b6943}
+dialog .caption{color:#bca36d!important;letter-spacing:.08em!important}
+dialog .close{border:1px solid var(--g-line)!important;border-radius:6px 2px!important;background:#19291f!important;font-size:0!important;display:grid;place-items:center}
+dialog .close::before{content:'';width:20px;height:20px;background:var(--g-gold);mask:url('./ui-icons/close.svg') center/contain no-repeat}
+dialog :is(button:not(.close):not(.job-slot):not(.inv-cell),select){border-radius:6px 2px}
+dialog .primary{background:linear-gradient(#e0c590,#b8975f)!important;border-color:#e8ce96!important;color:#233023!important;box-shadow:inset 0 0 0 2px #75582d33!important;border-radius:6px 2px!important}
+dialog :is(.auto-card,.sk-detail,.settings-display,#audio-settings,.npc-quest,.inv-detail,.inv-cart){border-color:var(--g-line);border-radius:8px 2px;background:#13231b66}
+dialog :is(.settings-tabs,.prestige-tabs,.sk-tabs,.inv-tabs){border-bottom-color:var(--g-line-strong)}
+dialog :is([aria-selected=true],[aria-pressed=true]){color:var(--g-gold)}
+dialog :is(input,select){accent-color:var(--g-gold)}
+dialog :is(.inv-cell,.job-slot){border-radius:6px 2px}
+dialog .item-icon{filter:saturate(.88)}
+#inventory-window .inv-doll-empty{border-color:var(--g-line-strong);color:#b49b68;background:#16271f}
+dialog .prestige-card[data-state=unlocked]{background:linear-gradient(90deg,#d7b77708,transparent)}
+
+/* Menu seals use the HUD's exact icons instead of unrelated coloured app tiles. */
+:is(#game-menu-window,#action-launcher) .menu-tile{--tint:var(--g-gold)!important;border-color:var(--g-line)!important;border-radius:8px 2px!important;background:var(--ui-inlay)!important}
+:is(#game-menu-window,#action-launcher) .menu-tile:hover{border-color:var(--g-gold)!important;background:linear-gradient(#354530,#203126)!important}
+.menu-tile>i{color:var(--g-gold);border-radius:50%;background:linear-gradient(145deg,#79643e77,#1a3024);box-shadow:inset 0 0 0 1px #ad945f,inset 0 0 0 4px #17291e,0 3px 6px #0004}
+.menu-tile>i::before{width:25px;height:25px}
+#game-menu-window .menu-tile.danger{--tint:#c79277!important}
+#game-menu-window .menu-tile.danger>i{color:#d6a58a}
+#game-menu-window .menu-tile.danger span{color:#d6a58a!important}
+#game-menu-window .menu-account{border-color:var(--g-line);border-radius:8px 2px;background:#101f1866}
+#game-menu-window .uid-chip{border-color:var(--g-line-strong);border-radius:5px}
+#game-menu-window .uid-copy{color:var(--g-gold)!important;border-radius:4px!important}
+
+/* Existing layouts remain compact; mouse controls gain a little more hit area. */
+@media(min-width:651px){
+ #ui .player{width:350px}
+ #ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important}
+ #ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu),#ui .tools{top:calc(20px + 198px * var(--ui-scale,1))}
+ #ui #stats-button{right:222px}#ui #skills-button{right:182px}#ui #inventory-button{right:142px}#ui #quest-button{right:102px}#ui #game-menu{right:22px}
+ #ui .tools{right:62px}
+ #ui .quest{top:calc(20px + 248px * var(--ui-scale,1))}
+ body:has(#job-hotbar.show-extra) #chat{bottom:calc(112px * var(--ui-scale,1))}
+}
+@media(max-width:650px){
+ #ui .player{padding:7px 9px;max-width:calc(100vw - 152px);border-radius:10px 3px;gap:9px}
+ #ui .player .player-name{font-size:14px}
+ #ui .player .bar small{right:4px}
+ #ui .quest{padding:6px 8px}
+ #ui :is(#game-menu,.tools #audio){min-width:44px!important;min-height:44px!important}
+ #ui #job-hotbar{border-radius:8px 2px!important}
+ #ui #action-launcher{background:none;box-shadow:none}
+ #ui #skills-more{border-radius:6px 2px}
+ #guide-nav{border-radius:8px 2px}
+ #chat-toggle{display:grid;place-items:center}
+ dialog .g-head{gap:8px;padding-bottom:10px}
+ dialog .g-head h2::before{margin-right:7px;width:5px;height:5px}
+}
+@media(max-width:380px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+@media(prefers-reduced-motion:reduce){
+ #ui *,dialog *,#guide-arrow *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}

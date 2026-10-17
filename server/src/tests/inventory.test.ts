@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { MemoryStore } from "../store/memory.js";
 import { loadGameData } from "@thainative/shared";
+import { PostgresStore } from '../store/postgres.js';
+import type { EconomyContext, QuestProgress } from '../store/economy.js';
 const data = loadGameData(),
 	context = { profile: data.stats.defaultBuild };
 async function fixture() {
@@ -45,6 +47,43 @@ test("100 different concurrent buys with gold for exactly 3 produce exactly 3", 
 		4,
 	);
 	assert.ok((await store.integrity()).ok);
+});
+
+test('quest completion fences a second reward request and failed inventory leaves the quest active',async()=>{
+ const {store,a,c}=await fixture();
+ const active={active:{storage_ledger:{at:123,progress:[1]}},done:{}};
+ await store.saveProgress(a.id,c.id,{...c,quests:active});
+ const progress:QuestProgress={...c,quests:{active:{},done:{storage_ledger:456}},xp:40};
+ const ctx:EconomyContext={...context,quest:{id:'storage_ledger',acceptedAt:123,progress}};
+ const failed=await store.inventoryOp(a.id,c.id,randomUUID(),{op:'quest',loot:[{template:'jelly_slime',qty:1}],gold:30},ctx);
+ assert.ok(failed.error);assert.deepEqual((await store.character(a.id,c.id))!.quests,active);
+ const first=await store.inventoryOp(a.id,c.id,randomUUID(),{op:'quest',loot:[],gold:30},ctx);
+ assert.equal(first.error,undefined);assert.equal(first.gold,30);
+ const repeated=await store.inventoryOp(a.id,c.id,randomUUID(),{op:'quest',loot:[],gold:30},ctx);
+ assert.match(repeated.error!,/no longer active/);assert.equal(repeated.gold,30);
+ assert.equal((await store.character(a.id,c.id))!.xp,40);assert.ok((await store.integrity()).ok);
+});
+
+test('Postgres quest rewards, completion and EXP roll back together after an inventory write failure',
+ {skip:!process.env.PG_TEST_URL&&'PG_TEST_URL not set'},async t=>{
+ const store=new PostgresStore(process.env.PG_TEST_URL!);t.after(()=>store.close());await store.init();
+ const a=await store.createGuest(randomUUID()),name='Q'+randomUUID().replaceAll('-','').slice(0,10);
+ const c=await store.createCharacter(a.id,name,name.toLowerCase());await store.inventory(a.id,c.id);
+ const quests={active:{storage_ledger:{at:123,progress:[1]}},done:{}};
+ await store.saveProgress(a.id,c.id,{...c,quests});
+ const progress:QuestProgress={...c,quests:{active:{},done:{storage_ledger:456}},xp:40};
+ const ctx:EconomyContext={...context,quest:{id:'storage_ledger',acceptedAt:123,progress}};
+ const write=(store as any).writeInventory.bind(store);
+ (store as any).writeInventory=async(...args:any[])=>{await write(...args);throw Error('injected write failure');};
+ const req=randomUUID(),op={op:'quest' as const,loot:[],gold:30};
+ await assert.rejects(store.inventoryOp(a.id,c.id,req,op,ctx),/injected write failure/);
+ const unchanged=(await store.character(a.id,c.id))!;
+ assert.equal(unchanged.gold,c.gold);assert.equal(unchanged.xp,c.xp);assert.deepEqual(unchanged.quests,quests);
+ (store as any).writeInventory=write;
+ await store.inventoryOp(a.id,c.id,req,op,ctx);
+ const saved=(await store.character(a.id,c.id))!;assert.equal(saved.gold,c.gold+30);assert.equal(saved.xp,40);assert.ok(saved.quests!.done.storage_ledger);
+ const again=await store.inventoryOp(a.id,c.id,randomUUID(),op,ctx);assert.ok(again.error);assert.equal(again.gold,c.gold+30);
+ assert.ok((await store.integrity()).ok);
 });
 test("reject foreign item, wrong class, high level, duplicate ids; persist failed request results", async () => {
 	const { run } = await fixture();

@@ -82,11 +82,11 @@ export function mountTutorialGuide(o:GuideOptions){
  const npc=document.querySelector('#npc-dialog'),watch=(el:Element|null)=>el&&new MutationObserver(()=>{if(el.hasAttribute('open')&&state)state.talked=true;}).observe(el,{attributes:true,attributeFilter:['open']});
  watch(npc);
 
- // Menu entry to bring the guide back after closing it, or to start over.
+ // Settings entry to bring the guide back after closing it, or to start over.
  const restart=document.createElement('button');restart.id='guide-restart';restart.textContent='คู่มือนำทางมือใหม่';
- restart.onclick=()=>{if(off||step>=STEPS.length){step=0;}off=false;min=false;decided=true;state=null;save();(document.querySelector('#game-menu-window') as HTMLDialogElement|null)?.close();};
- restart.className='menu-tile';restart.dataset.icon='help';restart.style.setProperty('--tint','#e6c98f');restart.innerHTML='<i></i><span>นำทางมือใหม่</span>';
- document.querySelector('#game-menu-window .menu-play')?.append(restart);
+ restart.onclick=()=>{if(off||step>=STEPS.length){step=0;}off=false;min=false;decided=true;state=null;save();(document.querySelector('#settings-window') as HTMLDialogElement|null)?.close();};
+ restart.className='settings-action';restart.textContent='เปิดคู่มือนำทางมือใหม่';
+ document.querySelector('#settings-window .settings-help-host')?.append(restart);
 
  function draw(c:Ctx){
   const s=STEPS[step];

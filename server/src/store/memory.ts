@@ -1,5 +1,5 @@
 import {CITY_SPAWN} from '@thainative/shared/maps';
-import {applyInventory,starterInventory,economyData,checkRequest,alertIntegrity,type Inventory,type LedgerEntry,type EconomyContext,type EconomyResult} from './economy.js';
+import {applyInventory,starterInventory,economyData,checkRequest,alertIntegrity,questProgress,type Inventory,type LedgerEntry,type EconomyContext,type EconomyResult} from './economy.js';
 import type {InventoryOp} from '@thainative/shared';
 import {creationJob,needsJob,migrateMap} from './progress.js';
 import {loadGameData,newJob,normalizeJob} from '@thainative/shared';
@@ -7,6 +7,7 @@ import{randomUUID}from'node:crypto';import type{Account,AuditEntry,Character,Goo
 const now=()=>new Date().toISOString();
 export class MemoryStore implements Store {
  private leases=new Map<string,string>();
+ async rankingCharacters():Promise<import('@thainative/shared').RankingCharacter[]>{return [...this.chars.values()].filter(c=>!c.deletedAt).map(c=>({id:c.id,name:c.name,jobId:c.jobId??c.classId,level:c.level,xp:c.xp,kills:c.kills,titleId:c.titleId,unlockedTitles:structuredClone(c.unlockedTitles??[]),titleRecords:structuredClone(c.titleRecords??{bosses:{}})}));}
  async health(){}
  async pruneRequests(){for(const[k,r]of this.requests)if(Date.now()-r.at>86400000)this.requests.delete(k);}
  async claimLease(id:string,owner:string){this.leases.set(id,owner);}
@@ -37,7 +38,7 @@ export class MemoryStore implements Store {
   checkRequest(req);if(context.leaseOwner&&this.leases.get(id)!==context.leaseOwner)throw Error('Lease lost');const c=this.econCharacter(accountId,id),key=id+':'+req,previous=this.requests.get(key);
   if(previous&&Date.now()-previous.at<86400000)return {...structuredClone(previous.result),duplicate:true};
   let result:EconomyResult;
-  try{const out=applyInventory({gold:c.gold,inventory:this.inventories.get(id)!},op,context.profile,economyData,randomUUID);this.inventories.set(id,out.state.inventory);c.gold=out.state.gold;if(context.bossLoot){if(context.bossLoot===true||context.bossLoot==='king_jelly')c.bossReadyAt=Date.now()+600000;else c.bossCooldowns={...c.bossCooldowns,[context.bossLoot]:Date.now()+600000};}this.ledger.push(...out.ledger.map(entry=>({character:id,entry})));result={...out.state,effect:out.effect};}
+  try{const progress=questProgress(c,context);const out=applyInventory({gold:c.gold,inventory:this.inventories.get(id)!},op,context.profile,economyData,randomUUID);if(progress)Object.assign(c,progress);this.inventories.set(id,out.state.inventory);c.gold=out.state.gold;if(context.bossLoot){if(context.bossLoot===true||context.bossLoot==='king_jelly')c.bossReadyAt=Date.now()+600000;else c.bossCooldowns={...c.bossCooldowns,[context.bossLoot]:Date.now()+600000};}this.ledger.push(...out.ledger.map(entry=>({character:id,entry})));result={...out.state,effect:out.effect};}
   catch(e){result={inventory:this.inventories.get(id)!,gold:c.gold,error:(e as Error).message};}
   this.requests.set(key,{at:Date.now(),result:structuredClone(result)});
   for(const[k,r]of this.requests)if(Date.now()-r.at>86400000)this.requests.delete(k);
