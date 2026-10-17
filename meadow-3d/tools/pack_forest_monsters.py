@@ -11,6 +11,61 @@ ART=ROOT/'art/painted-forest'; OUT=ROOT/'public/assets/monsters-painted'
 ARCHIVE=ROOT/'art/texture-sources/monsters-painted'
 DIRS=['SE','SW','NE','NW']
 
+def seam(cost,lo,hi,step=2,turn=.02):
+ """Cheapest top-to-bottom path through cost[:,lo:hi], moving at most `step` columns per row."""
+ c=cost[:,lo:hi];h,w=c.shape;total=c[0].copy();back=np.zeros((h,w),dtype=np.int16)
+ for y in range(1,h):
+  best=np.full(w,np.inf);arg=np.zeros(w,dtype=np.int16)
+  for d in range(-step,step+1):
+   shifted=np.full(w,np.inf)
+   if d<0:shifted[:d]=total[-d:]
+   elif d>0:shifted[d:]=total[:-d]
+   else:shifted=total
+   shifted=shifted+abs(d)*turn;better=shifted<best;best[better]=shifted[better];arg[better]=d
+  total=best+c[y];back[y]=arg
+ path=np.zeros(h,dtype=int);x=int(np.argmin(total));path[-1]=x
+ for y in range(h-1,0,-1):x-=int(back[y,x]);path[y-1]=x
+ return path+lo,float(c[np.arange(h),path].sum())
+
+# Sheets whose generated rows do not hold six evenly spaced poses. The rear Warden
+# special sheet painted five top-row poses (the summon "settle" pose is missing):
+# shiver, roots swell, mushrooms sprouted, two transform glows. Seams are measured
+# gap centres in slot units; summon holds the sprouted pose for its last frame.
+LAYOUTS={'warden-special-NE-back-v2-generated.png':{0:{'seams':[1.28,2.53,3.75,4.82],'poses':[0,1,2,2,3,4]}}}
+
+def slots(im,size,layout=None):
+ """Cut a 6x2 generated sheet into its twelve poses along the emptiest seams between them.
+ Generated poses often overrun their nominal square, so a fixed grid crop slices the
+ figure and keeps slivers of its neighbours. Seams follow transparent gaps and only cross
+ paint where two poses really touch. Each pose comes back on a 2x canvas centred on its
+ nominal slot, plus the alpha its seams had to cut through."""
+ layout=layout or {};rgba=np.array(im)
+ # Some sheets carry faint painted grid lines spanning the whole sheet. Clear their
+ # low-alpha pixels; figure paint crossing a line is far more opaque and stays.
+ alpha=rgba[...,3];lines=np.zeros(alpha.shape,dtype=bool)
+ line_cols=(alpha>2).mean(0)>.97;line_rows=(alpha>2).mean(1)>.97
+ for d in range(-2,3):lines[:,np.roll(line_cols,d)]=True;lines[np.roll(line_rows,d),:]=True
+ alpha[lines&(alpha<=32)]=0;im=Image.fromarray(rgba)
+ a=alpha.astype(float)/255;H,W=a.shape
+ row_path,row_cut=seam(a.T,round(size*.65),round(size*1.35))
+ rows=np.arange(H)[:,None]<row_path[None,:]
+ owner=np.zeros((H,W),dtype=np.int8);cuts=[]
+ for r in range(2):
+  inside=rows if r==0 else ~rows;paths=[];centres=layout.get(r,{}).get('seams',range(1,6));reach=.2 if r in layout else .4
+  for k in centres:path,cut=seam(np.where(inside,a,0),round(size*(k-reach)),round(size*(k+reach)));paths.append(path);cuts.append(cut)
+  col=np.zeros((H,W),dtype=np.int8)
+  for path in paths:col+=np.arange(W)[None,:]>=path[:,None]
+  owner[inside]=(r*6+col)[inside]
+ result=[]
+ for n in range(12):
+  r=n//6;region=layout[r]['poses'][n%6] if r in layout else n%6
+  edges=[0,*layout[r]['seams'],6] if r in layout else range(7);centre=(edges[region]+edges[region+1])/2
+  masked=rgba.copy();masked[...,3]=np.where(owner==r*6+region,rgba[...,3],0)
+  canvas=Image.new('RGBA',(size*2,size*2));x0=round(centre*size)-size;y0=r*size-size//2
+  canvas.alpha_composite(Image.fromarray(masked).crop((x0,y0,x0+size*2,y0+size*2)))
+  result.append(canvas)
+ return result,{'row':round(row_cut,2),'columns':[round(c,2) for c in cuts],'gridLineColumns':int(line_cols.sum()),'gridLineRows':int(line_rows.sum())}
+
 def pack():
  OUT.mkdir(exist_ok=True,parents=True);ARCHIVE.mkdir(exist_ok=True,parents=True)
  preview=ART/'previews';preview.mkdir(exist_ok=True)
@@ -36,12 +91,14 @@ def pack():
     # The generation contract is 6 square columns by 2 rows (3:1).
     if abs(raw.width/raw.height-3)>.12:raise ValueError(f'{path}: expected 3:1 sheet, got {raw.size}')
     im=raw.resize((size*6,size*2),Image.Resampling.LANCZOS);frames=[]
+    cut_slots,seam_cuts=slots(im,size,LAYOUTS.get(path.name))
     for n in range(12):
-     slot=im.crop((n%6*size,n//6*size,n%6*size+size,n//6*size+size))
+     # Pose canvases are 2x the slot, centred on it; bboxes below stay in this
+     # canvas and shift by `off` back to nominal slot coordinates when placed.
+     slot=cut_slots[n]
      if direction in ['SW','NW']:slot=ImageOps.mirror(slot)
-     # Ignore separator/gutter pixels and disconnected single-pixel generation
-     # noise, retaining substantive detached mist, lanterns and spore fragments.
-     alpha=np.array(slot.getchannel('A'));alpha[:3]=0;alpha[-3:]=0;alpha[:,:3]=0;alpha[:,-3:]=0;slot.putalpha(Image.fromarray(alpha))
+     # Drop disconnected single-pixel generation noise, retaining substantive
+     # detached mist, lanterns and spore fragments.
      clean=Image.new('RGBA',slot.size);parts=components(slot,min_pixels=24)
      if not parts:raise ValueError(f'{path}: empty slot {n}')
      main=max(parts,key=lambda p:np.count_nonzero(np.asarray(p['image'].getchannel('A'))>32));mx,my,mr,mb=main['bbox'];margin=size*.18
@@ -54,18 +111,25 @@ def pack():
      bbox=slot.getchannel('A').point(lambda a:255 if a>24 else 0).getbbox()
      if not bbox:raise ValueError(f'{path}: empty slot {n}')
      maxw=max(maxw,bbox[2]-bbox[0]);maxh=max(maxh,bbox[3]-bbox[1]);frames.append((slot,bbox))
-    sources[source,direction]=frames;report['sources'][f'{source}-{direction}']={'file':path.relative_to(ROOT).as_posix(),'mirroredAtPacking':direction in ['SW','NW'],'generatedSize':raw.size,'alphaExtrema':raw.getchannel('A').getextrema()}
+    # A slot holding only a fragment means the sheet layout does not match the grid.
+    areas=[np.count_nonzero(np.asarray(f.getchannel('A'))>32) for f,_ in frames]
+    for n,area in enumerate(areas):
+     if area<.25*np.median(areas):raise ValueError(f'{path}: slot {n} holds only a fragment ({area}px); add a LAYOUTS entry')
+    sources[source,direction]=frames;report['sources'][f'{source}-{direction}']={'file':path.relative_to(ROOT).as_posix(),'mirroredAtPacking':direction in ['SW','NW'],'generatedSize':raw.size,'alphaExtrema':raw.getchannel('A').getextrema(),'seamAlphaCut':seam_cuts}
   # One scale for EVERY motion and direction of a species. Idle bottom determines
   # the source ground plane; airborne offsets remain intact.
-  factor=min((size-36)/maxw,(size-40)/maxh,1)
+  # Poses may be wider than their square source slot (a loping wolf), so width is
+  # bounded by the wide logical cell rather than the square slot.
+  factor=min((cw-36)/maxw,(size-40)/maxh,1);off=size//2
   canonical={}
   for (source,direction),frames in sources.items():
    reference_source=motions['idle']['source'];idle=sources[reference_source,direction]
-   ground=float(np.median([idle[n][1][3] for n in range(3)]))
-   normalized=Image.new('RGBA',(size*6,size*2));normframes=[]
-   for n,(slot,bbox) in enumerate(frames):
-    crop=slot.crop(bbox);crop=crop.resize((max(1,round(crop.width*factor)),max(1,round(crop.height*factor))),Image.Resampling.LANCZOS)
-    x=round(size/2+(bbox[0]-size/2)*factor)
+   ground=float(np.median([idle[n][1][3]-off for n in range(3)]))
+   normalized=Image.new('RGBA',(cw*6,size*2));normframes=[]
+   for n,(slot,canvas_bbox) in enumerate(frames):
+    crop=slot.crop(canvas_bbox);crop=crop.resize((max(1,round(crop.width*factor)),max(1,round(crop.height*factor))),Image.Resampling.LANCZOS)
+    bbox=[v-off for v in canvas_bbox]
+    x=min(max(4,round(cw/2+(bbox[0]-size/2)*factor)),cw-4-crop.width)
     lift=round(size*.2) if sp=='wisp' else 0
     if sp=='wisp' and n>=9:lift=round(size*.2*(11-n)/2)
     if sp!='warden' and n==4:lift+=max(0,round((ground-bbox[3])*factor))
@@ -74,7 +138,7 @@ def pack():
     # without changing its scale. This never modifies the character drawing.
     if y+crop.height>size-8:y=size-8-crop.height
     if y<8:y=8
-    frame=Image.new('RGBA',(size,size));frame.alpha_composite(crop,(x,y));normframes.append(frame);normalized.alpha_composite(frame,(n%6*size,n//6*size))
+    frame=Image.new('RGBA',(cw,size));frame.alpha_composite(crop,(x,y));normframes.append(frame);normalized.alpha_composite(frame,(n%6*cw,n//6*size))
    canonical[source,direction]=normframes;normalized.save(ART/f'{source}-{direction}-v1.png',optimize=True)
   ref=float(np.median([canonical[motions['idle']['source'],d][1].getchannel('A').getbbox()[3]-canonical[motions['idle']['source'],d][1].getchannel('A').getbbox()[1] for d in DIRS]))
   body=2.76*(2.5 if sp=='warden' else 1.2 if sp=='stump' else 1)
@@ -84,7 +148,7 @@ def pack():
    for row,direction in enumerate(DIRS):
     proof=Image.new('RGB',(cw*count,ch+24),'#526761');draw=ImageDraw.Draw(proof);details=[]
     for col,index in enumerate(d['indices']):
-     frame=Image.new('RGBA',(cw,ch));frame.alpha_composite(canonical[d['source'],direction][index],((cw-size)//2,0))
+     frame=canonical[d['source'],direction][index].copy()
      bbox=frame.getchannel('A').point(lambda a:255 if a>12 else 0).getbbox()
      if bbox[0]<3 or bbox[1]<3 or bbox[2]>cw-3 or bbox[3]>ch-3:report['clippingWarnings'].append(f'{sp}-{motion}-{direction}-{col}')
      atlas.alpha_composite(frame,(col*cw,row*ch));proof.paste(frame,(col*cw,24),frame);draw.text((col*cw+8,6),f'{sp} {motion} {direction} {col+1}',fill='#fff0cd')
