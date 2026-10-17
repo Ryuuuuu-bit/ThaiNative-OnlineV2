@@ -265,6 +265,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   source.peers.delete(peer.id);source.game.players.delete(peer.id);source.accounts.delete(peer.id);source.disconnected.delete(peer.id);
   source.game.meteors=source.game.meteors.filter(m=>m.ownerId!==peer.id);
   Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,attack:0,dash:0,castRemaining:0,statuses:[],moving:false});
+  if(destination.mapId==='city_plaza'&&destination.x===CITY_SPAWN.x&&destination.z===CITY_SPAWN.z){p.fx=0;p.fz=1;}
   refreshStats(target.game,p);
   peer.input={x:0,z:0};peer.room=target;
   target.game.players.set(p.id,p);target.peers.set(p.id,peer);target.accounts.set(p.id,peer.accountId);(target.leases??=new Map()).set(p.id,peer.leaseOwner!);

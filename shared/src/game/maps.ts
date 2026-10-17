@@ -1,5 +1,5 @@
 export type MapId = 'city_plaza' | 'meadow';
-export const CITY_SPAWN = { x: 0, z: 6 };
+export const CITY_SPAWN = { x: 0, z: 10 };
 export const CITY_RETURN = { x: 0, z: 25 };
 export const MEADOW_ENTRY = { x: 0, z: -10.5 };
 export const HEALER = { x: -9, z: 6 };

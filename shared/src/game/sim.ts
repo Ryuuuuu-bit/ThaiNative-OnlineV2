@@ -296,7 +296,7 @@ export function createGame(
 	};
 	const positions = [[-4,-7],[3,-5],[-6,-1],[0,1],[5,5],[-4,6],[-1,8],[7,8],[-3,11],[7,12]];
  if(mapId==='meadow') positions.forEach(([x,z],i)=>spawn(g,x,z,false,i<4?'pink':i%2?'sky':'mint'));
- else Object.assign(p,CITY_SPAWN);
+ else Object.assign(p,CITY_SPAWN,{fx:0,fz:1});
 
 	return g;
 }
@@ -883,6 +883,7 @@ export function revive(g: Game) {
 	p.mapId = "city_plaza";
  p.x = CITY_SPAWN.x;
  p.z = CITY_SPAWN.z;
+ p.fx=0;p.fz=1;
  p.statuses=[]; p.castRemaining=0; p.destination=null; p.target=null;
 	p.hp = p.maxHp;
 	p.mp = p.maxMp;

@@ -71,3 +71,10 @@
 @media(max-width:650px){#ui .player{width:220px;padding:5px}#ui .player .xp,#ui .player .job-xp{display:none}#ui .player #job-progress{margin-top:2px;gap:0}#ui .player .hp,#ui .player .mp{margin-top:2px}#ui .tools{top:204px;width:140px;flex-wrap:nowrap}#ui .tools #quality{width:92px;min-width:92px}#ui .target,#ui .boss-hud{top:198px;width:220px;padding:4px}#ui .target>div:first-child{display:flex;flex-wrap:wrap;align-items:center;gap:2px 6px}#ui .target small{font-size:10px;line-height:1.2}#ui .target .bar{height:14px;margin-top:3px}#ui .target b{font-size:13px!important}#skills-more{width:72px;white-space:nowrap}#ui .combat-ui{gap:3px}body.more-skills #job-hotbar>.job-slot:not(.extra-slot){display:none}body.more-skills #ui .map,body.more-skills #ui .tools,body.more-skills #ui .quest{visibility:hidden}body.more-skills #game-menu{bottom:220px}#npc-talk,#angel-talk{bottom:132px}}
 #ui .panel,#ui .quest,#ui .tools{z-index:5}
 @media(max-width:650px){#ui .quest:not(.collapsed){max-height:100px;overflow:auto}#ui:has(.quest:not(.collapsed)) .tools{visibility:hidden}}
+
+/* Follow-up: reserve separate mobile banner and reward rows. */
+@media(max-width:650px){
+ #ui #area-name{top:258px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);white-space:normal}
+ #ui .quest{top:310px}
+ #ui .rewards{left:auto;right:0;justify-content:flex-end;text-align:right}
+}
