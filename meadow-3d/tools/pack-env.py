@@ -85,6 +85,8 @@ for name in ['grass','dirt','transition','water','stone']:
  im.save(OUT/f'tile-{name}-v1.png',optimize=True);tiles[name]={'file':f'tile-{name}-v1.png','size':[1024,1024],'transparent':name=='transition'}
  if name=='grass':im.save(ROOT/'public/assets/meadow-grass.png',optimize=True)
 manifest={'version':1,'sourcePixelsPerWorldUnit':PPU,'runtimeDownsample':DOWNSAMPLE,'atlases':atlases,'assets':assets,'tiles':tiles}
+from world_scale import apply_world_scale
+apply_world_scale(manifest, 'env-painted')
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
 report.update({'assetCount':len(assets),'tileCount':len(tiles),'atlasCount':len(atlases),'atlases':atlases})
 (ART/'packing-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')

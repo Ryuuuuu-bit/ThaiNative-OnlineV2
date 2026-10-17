@@ -1,10 +1,11 @@
+import {BOSS_METRES} from './world-scale.ts';
 import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Enemy, MonsterMotion, SlimeVariant } from './sim';
 import { makeMonsterFallback } from './actors';
 import { monsterCell, monsterOpacity, VARIANT_HUE, monsterSpecies, SPECIES_SCALE } from './monster-animation';
 import type { MonsterSpecies } from './monster-animation';
 interface MotionAtlas{file:string;columns:number;rows:number;frames:number;duration:number;directions:{faceRect:[number,number,number,number]|null;bounds:number[]}[][]}
-interface SpeciesManifest{cellSize:[number,number];anchor:[number,number];quadWorldSize:[number,number];motions:Record<string,MotionAtlas>}
+interface SpeciesManifest{bodyWorldHeight?:number;cellSize:[number,number];anchor:[number,number];quadWorldSize:[number,number];motions:Record<string,MotionAtlas>}
 interface Manifest{species:Record<MonsterSpecies,SpeciesManifest>;phase2:{expressionOverlay:string}}
 interface Bank{manifest:Manifest|null;textures:Record<MonsterSpecies,Record<string,T.Texture>>;expression:T.Texture|null;request:(species:MonsterSpecies)=>void}
 const banks=new WeakMap<PaintedLoader,Bank>();
@@ -90,7 +91,7 @@ export function makePaintedMonster(loader:PaintedLoader,boss=false,options:Monst
   uniforms.uJellyCell.value.set(cell.column/info.columns,1-(cell.row+1)/4,1/info.columns,.25);
   if(material.map!==texture){material.map=texture;material.needsUpdate=true;}
   uniforms.uJellyHue.value=species==='slime'||species==='king'?(options.hueShift??VARIANT_HUE[options.variant||e.variant]):0;uniforms.uJellyPhase.value=species==='king'&&e.bossPhase===2?1:0;uniforms.uForestPhase.value=species==='warden'&&e.bossPhase===2&&!e.dead?1:0;uniforms.uJellyFlash.value=e.dead?0:Math.min(1,e.hurt/.18)*.8;uniforms.uJellyTime.value=time;
-  portrait.center.set(...definition.anchor);const sizeScale=SPECIES_SCALE[species];portrait.scale.set(definition.quadWorldSize[0]*sizeScale,definition.quadWorldSize[1]*sizeScale,1);
+  portrait.center.set(...definition.anchor);const sizeScale=SPECIES_SCALE[species]*((species==='king'||species==='warden')?BOSS_METRES/(definition.bodyWorldHeight||6.9):1);portrait.scale.set(definition.quadWorldSize[0]*sizeScale,definition.quadWorldSize[1]*sizeScale,1);
   shadowMaterial.opacity=.16*opacity*((e.motion==='hop'||e.motion==='move'||e.motion==='slam')&&cell.column===1?.5:1);
   const face=info.directions[cell.row][cell.column].faceRect;
   if(species==='king'&&e.bossPhase===2&&face&&bank.expression&&!['death','stun','transform'].includes(e.motion)){

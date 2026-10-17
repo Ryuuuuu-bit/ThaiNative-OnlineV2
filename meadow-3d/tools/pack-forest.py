@@ -37,6 +37,8 @@ for i,name in enumerate(['moss','path','litter','water']):
 for name,part,size in [('brush-path',utility[0],(512,512)),('mist-card',utility[1],(512,256))]:
  im=part['image'];im.thumbnail((size[0]-32,size[1]-32),Image.Resampling.LANCZOS);padded=Image.new('RGBA',size);padded.alpha_composite(im,((size[0]-im.width)//2,(size[1]-im.height)//2));padded.save(ARCHIVE/f'{name}-v1.png',optimize=True)
 manifest={'version':1,'sourcePixelsPerWorldUnit':113,'runtimeDownsample':.5,'atlases':[{'file':'forest-props-v1.png','size':[2048,2048]}],'assets':assets,'tiles':tiles,'brush':'brush-path-v1.png','mist':'mist-card-v1.png'}
+from world_scale import apply_world_scale
+apply_world_scale(manifest, 'env-forest')
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 proof=Image.new('RGB',(1200,((len(assets)+5)//6)*200),'#526761');d=ImageDraw.Draw(proof)
 for i,a in enumerate(assets):

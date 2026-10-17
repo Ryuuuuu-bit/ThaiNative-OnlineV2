@@ -1,3 +1,4 @@
+import {HERO_PIXEL_METRES} from './world-scale.ts';
 import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Player } from './sim';
 import { makeHero } from './actors';
@@ -25,7 +26,7 @@ export function makePaintedHero(loader: PaintedLoader) {
   const portrait = new T.Sprite(material);
   // Normalized art baseline is y=240/256, independent of weapon extent.
   portrait.center.set(.5, 16/256);
-  portrait.scale.set(6.3,4.2,1);
+  portrait.scale.set(384*HERO_PIXEL_METRES,256*HERO_PIXEL_METRES,1);
   portrait.position.y=.035;
   portrait.visible=false;
   root.add(portrait);
@@ -96,7 +97,7 @@ export function makePaintedHero(loader: PaintedLoader) {
     material.opacity=!p.dead&&p.invulnerable>0&&Math.floor(time*18)%2===0?.65:1;
     material.rotation=0;
     const breath=motion==='idle'?Math.sin(time*2.2)*.006:0;
-    portrait.scale.set(actualMotion==='death'?8.4:6.3,4.2+breath,1);
+    portrait.scale.set(actualMotion==='death'?512*HERO_PIXEL_METRES:384*HERO_PIXEL_METRES,256*HERO_PIXEL_METRES+breath,1);
     const lift=skill==='earth_break'?earthHeight(elapsed):0;
     portrait.position.y=.035+lift;
     shadow.scale.set((p.dash>0?1.4:1)*(1-lift*.35),.7*(1-lift*.35),1);

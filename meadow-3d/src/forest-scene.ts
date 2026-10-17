@@ -1,3 +1,4 @@
+import {chunkInstances,artQuality,artStats} from './world-art.ts';
 import * as T from 'three';
 import type { PaintedLoader } from './assets';
 import { FOREST, FOREST_TREES, FOREST_ARENA, GATES, LAYOUTS } from '@thainative/shared/maps';
@@ -50,9 +51,9 @@ export function buildForest(scene:T.Scene,loader:PaintedLoader){
  loader.json<Manifest>(BASE+'manifest.json',manifest=>{
   const assets=new Map(manifest.assets.map(a=>[a.name,a])),atlases=new Map(manifest.atlases.map(a=>[a.file,loader.load(BASE+a.file)]));
   const instances=new Map<string,{x:number;z:number;sx:number;sy:number;flip:boolean}[]>(),contacts:{x:number;z:number;width:number}[]=[];
-  function prop(name:string,x:number,z:number,sx=1,sy=sx,flip=false,foreground=false){const key=name+(foreground?':foreground':'');const list=instances.get(key)||[];list.push({x,z,sx,sy,flip});instances.set(key,list);props++;const a=assets.get(name)!;contacts.push({x,z,width:Math.min(a.worldSize[0]*sx*.65,3.5)});}
+  function prop(name:string,x:number,z:number,sx=1,sy=sx,flip=false,foreground=false){const key=name+(foreground?':foreground':'')+(['fern','mushrooms','spores'].includes(name)?':cover':'');const list=instances.get(key)||[];list.push({x,z,sx,sy,flip});instances.set(key,list);props++;const a=assets.get(name)!;contacts.push({x,z,width:Math.min(a.worldSize[0]*sx*.65,3.5)});}
   const trees=['pine','oak','silver','hollow'],kindDesign:Record<string,string>={pine:'pine',oak:'oak',dead:'silver',hollow:'hollow'};
-  for(const[i,t]of FOREST_TREES.entries()){const design=kindDesign[t.kind??'']??trees[i%4],a=assets.get(design)!,sx=t.r*2/(a.trunkWidth||1),sy=Math.max(sx*(.88+r()*.18),(3.8+r()*1.2)/a.worldSize[1]);prop(design,t.x,t.z,sx,sy,i%2===1);treePlacements.push({...t,design,trunkWidth:(a.trunkWidth||1)*sx});}
+  for(const[i,t]of FOREST_TREES.entries()){const design=kindDesign[t.kind??'']??trees[i%4],a=assets.get(design)!,sx=(design==='hollow'?4/a.worldSize[0]:design==='pine'?(8+r()*4)/a.worldSize[1]:design==='oak'?(7+r()*3)/a.worldSize[1]:(8+r()*2)/a.worldSize[1]),sy=sx;prop(design,t.x,t.z,sx,sy,i%2===1);treePlacements.push({...t,design,trunkWidth:t.r*2});}
   // Treeline just outside the walkable edge (about one tree per 3.5 m), open at the west gate.
   const perSide=Math.round(W/3.5);
   for(let i=0;i<perSide*4;i++){const side=i%4,k=Math.floor(i/4)/perSide;let x=0,z=0;
@@ -60,8 +61,8 @@ export function buildForest(scene:T.Scene,loader:PaintedLoader){
    const step=Math.floor(i/4),design=step%6===0?'silver':trees[(step+side)%2],a=assets.get(design)!,scale=(5.6+r()*2)/a.worldSize[1];prop(design,x,z,scale,scale,i%3===0,side===1||side===2);
   }
   prop('arch',GATES.forest.west.x,GATES.forest.west.z);
-  for(const c of L.camps){prop('bedroll',c.x,c.z+.7,.9);prop('log-seat',c.x-1.3,c.z-.8,.65);prop('log-seat',c.x+2,c.z+.8,.65);prop('campfire',c.x+1.3,c.z-.7,.75);prop('lantern',c.x-1.7,c.z+.8,.9);}
-  for(let i=0;i<11;i++){const a=i/11*Math.PI*2;prop('rock',FOREST_ARENA.x+Math.cos(a)*3.9,FOREST_ARENA.z+Math.sin(a)*3.9,.48,.7,i%2===0);}
+  for(const c of L.camps){prop('bedroll',c.x,c.z+.7,.9);prop('log-seat',c.x-1.3,c.z-.8,.65);prop('log-seat',c.x+2,c.z+.8,.65);prop('campfire',c.x+1.3,c.z-.7,1);prop('lantern',c.x-1.7,c.z+.8,1);}
+  for(let i=0;i<11;i++){const a=i/11*Math.PI*2;prop('rock',FOREST_ARENA.x+Math.cos(a)*3.9,FOREST_ARENA.z+Math.sin(a)*3.9,.65,.65,i%2===0);}
   for(const w of L.water){const n=Math.round((w.rx+w.rz)*1.8);for(let i=0;i<n;i++){const a=i/n*Math.PI*2;prop('reeds',w.x+Math.cos(a)*(w.rx+.15),w.z+Math.sin(a)*(w.rz+.2),.6);}}
   // Same scatter density as the art pass (~0.19 per m²), kept off paths, camps and the clearing.
   const onPath=(x:number,z:number)=>segments.some(([ax,az,bx,bz,w])=>{const dx=bx-ax,dz=bz-az,t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz)));return Math.hypot(x-ax-dx*t,z-az-dz*t)<w/2+.5;});
@@ -70,9 +71,14 @@ export function buildForest(scene:T.Scene,loader:PaintedLoader){
   // Hanging lanterns on trees beside the paths so the roads glow at night.
   for(const t of FOREST_TREES.filter((t,i)=>i%9===0))prop('lantern',t.x+t.r*.5,t.z,.65);
   const dummy=new T.Object3D();
-  for(const[name,list]of instances){const foreground=name.endsWith(':foreground'),a=assets.get(name.split(':')[0])!,g=new T.PlaneGeometry(1,1);g.translate(.5-a.anchor[0],a.anchor[1]-.5,0);const uv=g.getAttribute('uv');for(let i=0;i<uv.count;i++)uv.setXY(i,a.uvRect[0]+uv.getX(i)*a.uvRect[2],a.uvRect[1]+uv.getY(i)*a.uvRect[3]);
+  // Physical trunk proxies match the authoritative collision circles, below painted roots.
+  const trunks=new T.InstancedMesh(new T.CylinderGeometry(1,1,1,8),new T.MeshBasicMaterial({colorWrite:false,depthWrite:false}),FOREST_TREES.length);trunks.userData.shadowCaster=true;trunks.userData.shadowOnly=true;trunks.castShadow=high;trunks.name='forest-trunk-proxies';
+  FOREST_TREES.forEach((t,i)=>{dummy.position.set(t.x,.85,t.z);dummy.rotation.set(0,0,0);dummy.scale.set(t.r,1.7,t.r);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);});root.add(trunks);
+
+  for(const[name,list]of instances){const foreground=name.includes(':foreground'),a=assets.get(name.split(':')[0])!,g=new T.PlaneGeometry(1,1);g.translate(.5-a.anchor[0],a.anchor[1]-.5,0);const uv=g.getAttribute('uv');for(let i=0;i<uv.count;i++)uv.setXY(i,a.uvRect[0]+uv.getX(i)*a.uvRect[2],a.uvRect[1]+uv.getY(i)*a.uvRect[3]);
    // The camera-side edge stays dense but does not hide the playable clearing.
    const material=new T.MeshBasicMaterial({map:atlases.get(a.atlas),transparent:true,alphaTest:foreground?.01:.08,depthWrite:!foreground,opacity:foreground?.24:1,side:T.DoubleSide,toneMapped:false,color:'#d8e3db'}),batch=new T.InstancedMesh(g,material,list.length);batch.name='forest-'+name;
+   batch.userData.groundCover=name.includes(':cover');batch.userData.shadowCaster=['pine','oak','silver','hollow','arch'].includes(a.name);batch.castShadow=high&&batch.userData.shadowCaster;batch.customDepthMaterial=new T.MeshDepthMaterial({map:atlases.get(a.atlas),alphaTest:.2,depthPacking:T.RGBADepthPacking,side:T.DoubleSide});
    g.setAttribute('forestFlip',new T.InstancedBufferAttribute(new Float32Array(list.map(p=>p.flip?1:0)),1));
    material.onBeforeCompile=shader=>{shader.uniforms.uForestFlipBounds={value:new T.Vector3(a.uvRect[0]*2,a.uvRect[2],a.anchor[0]*2-1)};shader.vertexShader='attribute float forestFlip;uniform vec3 uForestFlipBounds;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvMapUv.x=mix(vMapUv.x,uForestFlipBounds.x+uForestFlipBounds.y-vMapUv.x,forestFlip);').replace('#include <begin_vertex>','#include <begin_vertex>\ntransformed.x+=forestFlip*uForestFlipBounds.z;');};material.customProgramCacheKey=()=> 'forest-prop-flip-v1';
    list.forEach((p,i)=>{dummy.position.set(p.x,.045,p.z);dummy.quaternion.copy(facing);dummy.scale.set(a.worldSize[0]*p.sx,a.worldSize[1]*p.sy,1);dummy.updateMatrix();batch.setMatrixAt(i,dummy.matrix);});batch.computeBoundingSphere();root.add(batch);batches++;
@@ -80,13 +86,15 @@ export function buildForest(scene:T.Scene,loader:PaintedLoader){
   // One instanced draw for all soft contact ellipses.
   const shadowMat=new T.MeshBasicMaterial({color:'#243b3b',transparent:true,opacity:.25,depthWrite:false});
   shadowMat.onBeforeCompile=shader=>{shader.vertexShader='varying vec2 vContactUV;\n'+shader.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvContactUV=uv;');shader.fragmentShader='varying vec2 vContactUV;\n'+shader.fragmentShader.replace('#include <alphatest_fragment>','diffuseColor.a*=1.-smoothstep(.08,.5,length(vContactUV-.5));\n#include <alphatest_fragment>');};shadowMat.customProgramCacheKey=()=> 'forest-contact';
-  const shadows=new T.InstancedMesh(new T.PlaneGeometry(1,1),shadowMat,contacts.length);contacts.forEach((p,i)=>{dummy.position.set(p.x,.031,p.z);dummy.rotation.set(-Math.PI/2,0,0);dummy.scale.set(p.width,p.width*.62,1);dummy.updateMatrix();shadows.setMatrixAt(i,dummy.matrix);});shadows.computeBoundingSphere();root.add(shadows);batches++;ready=true;
+  const shadows=new T.InstancedMesh(new T.PlaneGeometry(1,1),shadowMat,contacts.length);contacts.forEach((p,i)=>{dummy.position.set(p.x,.031,p.z);dummy.rotation.set(-Math.PI/2,0,0);dummy.scale.set(p.width,p.width*.62,1);dummy.updateMatrix();shadows.setMatrixAt(i,dummy.matrix);});shadows.computeBoundingSphere();root.add(shadows);batches++;chunkInstances(root);artQuality(root,high);ready=true;
  });
  const flames:T.Mesh[]=[],fireLights:T.PointLight[]=[];
  for(const c of L.camps){const flame=new T.Group();flame.position.set(c.x+1.3,.12,c.z-.7);root.add(flame);
  for(let i=0;i<3;i++){const f=new T.Mesh(new T.ConeGeometry(.09,.38,6),new T.MeshBasicMaterial({color:i%2?'#f8dfad':'#db9b65',transparent:true,opacity:.7,depthWrite:false}));f.position.set(Math.sin(i*2)*.08,.2,Math.cos(i*2)*.08);flame.add(f);flames.push(f);}
  const fireLight=new T.PointLight('#ffb36b',4,7,2);fireLight.position.set(flame.position.x,1,flame.position.z);root.add(fireLight);fireLights.push(fireLight);}
+ const shafts=new T.Group();root.add(shafts);const shaftMat=new T.MeshBasicMaterial({map:loader.load(BASE+'mist-card-v1.png'),color:'#c4d9c8',transparent:true,opacity:.07,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending});
+ for(const [x,z]of [[-44,0],[-5,1],[12,-23],[34,7],[40,18]]){const shaft=new T.Mesh(new T.PlaneGeometry(2.4,12),shaftMat);shaft.quaternion.copy(facing);shaft.rotateZ(-.35);shaft.position.set(x,5,z);shafts.add(shaft);}
  const gateName=label('← นครที่ถูกลืมเลือน');gateName.position.set(GATES.forest.west.x+1.5,3.2,GATES.forest.west.z);root.add(gateName);
  for(const c of L.camps){const campName=label('แคมป์ · พักฟื้น','#e5efd3');campName.position.set(c.x,2.1,c.z);root.add(campName);}
- return{root,setQuality(hq:boolean){high=hq;mist.visible=hq;ripple.quality.value=hq?1:0;},snapshot:()=>({ready,greybox:false,trees:FOREST_TREES.length,treePlacements,props,propDrawCalls:batches,scatter,atlasCount:1,mistCards:high?mist.children.length:0,ripple:high,quality:high?'HQ':'LOW'}),update(time:number){paintPaths();ripple.time.value=time;flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});fireLights.forEach((l,i)=>l.intensity=3.5+Math.sin(time*9+i)*.5);mist.children.forEach((o,i)=>{o.position.x=mistOrigins[i].x+Math.sin(time*.1+i)*.55;o.position.z=mistOrigins[i].z+Math.cos(time*.07+i)*.18;});}};
+ return{root,setQuality(hq:boolean){high=hq;artQuality(root,hq);shafts.visible=hq;mist.visible=hq;ripple.quality.value=hq?1:0;},snapshot:()=>({...artStats(root),ready,greybox:false,trees:FOREST_TREES.length,treePlacements,props,propDrawCalls:batches,scatter,atlasCount:1,mistCards:high?mist.children.length:0,ripple:high,quality:high?'HQ':'LOW'}),update(time:number){paintPaths();ripple.time.value=time;flames.forEach((f,i)=>{f.scale.y=.85+Math.sin(time*11+i)*.13;f.rotation.y=time*.6;});fireLights.forEach((l,i)=>l.intensity=3.5+Math.sin(time*9+i)*.5);mist.children.forEach((o,i)=>{o.position.x=mistOrigins[i].x+Math.sin(time*.1+i)*.55;o.position.z=mistOrigins[i].z+Math.cos(time*.07+i)*.18;});}};
 }
