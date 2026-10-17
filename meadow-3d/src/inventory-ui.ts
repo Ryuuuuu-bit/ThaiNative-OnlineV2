@@ -288,26 +288,39 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			return;
 		}
 		if (!shop && filter === "สวมใส่") {
-			const doll = document.createElement("div");
+			// Full-body figure between two slot columns: hand/back/feet on the left, body and accessories on the right.
+			const doll = document.createElement("div"),
+				left = document.createElement("div"),
+				figure = document.createElement("div"),
+				right = document.createElement("div");
 			doll.className = "inv-paperdoll";
-			doll.style.backgroundImage = "var(--portrait)";
+			left.className = right.className = "inv-doll-col";
+			figure.className = "inv-doll-figure";
+			doll.append(left, figure, right);
+			const leftSlots = ["weapon", "shield", "garment", "footgear"];
 			for (const [slot, name] of Object.entries(slotNames)) {
 				const row = document.createElement("div"),
 					label = document.createElement("span");
+				row.className = "inv-doll-slot";
+				row.dataset.slot = slot;
 				label.textContent = name;
-				row.append(label);
 				const i = inv.items.find(
 					(i) => i.location === "equip" && i.slot === slot,
 				);
 				if (i) row.append(cell(i));
-				else row.append(document.createElement("span"));
+				else {
+					const empty = document.createElement("span");
+					empty.className = "inv-doll-empty";
+					row.append(empty);
+				}
+				row.append(label);
 				row.ondragover = (e) => e.preventDefault();
 				row.ondrop = (e) => {
 					e.preventDefault();
 					const id = e.dataTransfer?.getData("text/plain");
 					if(id&&inv?.items.some(i=>i.id===id&&template(i).slot===slot))request("equip",{id});
 				};
-				doll.append(row);
+				(leftSlots.includes(slot) ? left : right).append(row);
 			}
 			content.append(doll);
 			return;
