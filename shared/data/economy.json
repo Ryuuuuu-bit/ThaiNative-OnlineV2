@@ -8,6 +8,11 @@
   "dropMultiplier": 1,
   "autoRareAfterSeconds": 7200,
   "autoRareMultiplier": 0.7,
+  "storageSlots": 300,
+  "deathPenalty": {
+    "minLevel": 10,
+    "percent": 0.01
+  },
   "shops": {
     "market": {
       "red_small": 16,

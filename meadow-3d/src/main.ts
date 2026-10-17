@@ -153,7 +153,7 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'boss':notice('✦ ผู้พิทักษ์ตื่นขึ้นแล้ว — ไปที่ซากโบราณทางใต้');$('#quest-name').textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';$('#quest-note').textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';break;
  case'skillsError':case'statsError':if(!inventoryUI.open)notice(e.text);break;
  case'notice':notice(e.text);break;
- case'death':clearInput();deathReveal=1.5;break;
+ case'death':clearInput();deathReveal=1.5;lastXpLost=Number(e.xpLost)||0;break;
  case'victory':notice('✦ ราชาวุ้นถูกปราบแล้ว!');setTimeout(()=>{if(!game.p.dead)showVictory();},2000);break;
  }for(let i=effectStart;i<effects.length;i++)effects[i].owner=e.playerId;} }
 function toggleAuto(){if(activeMap==='city_plaza'){notice('เขตปลอดภัย ต่อสู้ในเมืองไม่ได้');return;}if(!started||paused||game.p.dead)return;net.send({t:'auto',on:!game.p.auto});}
@@ -238,7 +238,8 @@ $('#pause').addEventListener('click',()=>{if(started&&!game.p.dead)togglePause()
 $('#help').addEventListener('click',()=>{clearInput();paused=true;$<HTMLDialogElement>('#guide').showModal();});$('#guide .close').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide .done').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide').addEventListener('close',()=>{if(started&&$('#overlay').hidden)paused=false;});
 function overlay(html:string){clearInput();paused=true;$('#overlay').className='overlay center';$('#overlay').innerHTML=`<section class="welcome">${html}</section>`;$('#overlay').hidden=false;}
 function togglePause(){if(netOverlay||game.p.dead)return;if(!paused){overlay('<p class="caption">พักสักครู่</p><h1>พักการผจญภัย</h1><p>โลกยังดำเนินต่อบนเซิร์ฟเวอร์</p><button id="resume" class="primary">เล่นต่อ →</button>');$('#resume').onclick=()=>{paused=false;$('#overlay').hidden=true;};}else{paused=false;$('#overlay').hidden=true;}}
-function showDeath(){if(netOverlay)return;overlay('<p class="caption">เริ่มต้นใหม่</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>ประสบการณ์และเงินที่เก็บได้ยังอยู่</p><p id="revive-countdown"></p><button id="revive" class="primary">กลับเมือง →</button>');$('#revive').onclick=()=>{if(!net.connected){notice('ยังไม่ได้เชื่อมต่อ');return;}if((game.p.reviveRemaining??0)>0)return;net.send({t:'revive'});};}
+let lastXpLost=0;
+function showDeath(){if(netOverlay)return;overlay('<p class="caption">เริ่มต้นใหม่</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>'+(lastXpLost>0?`เสียประสบการณ์ ${lastXpLost.toLocaleString('th-TH')} (1% ของระดับนี้) · ทองและไอเทมยังอยู่ครบ`:'ประสบการณ์และเงินที่เก็บได้ยังอยู่')+'</p><p id="revive-countdown"></p><button id="revive" class="primary">กลับเมือง →</button>');$('#revive').onclick=()=>{if(!net.connected){notice('ยังไม่ได้เชื่อมต่อ');return;}if((game.p.reviveRemaining??0)>0)return;net.send({t:'revive'});};}
 
 function showVictory(){if(wonShown)return;wonShown=true;overlay(`<div class="ornament">✧ ───────── ✧</div><p class="caption">ปราบผู้พิทักษ์แห่งทุ่งหญ้าแล้ว</p><h1>การผจญภัย<br>บทแรกสำเร็จ!</h1><p>ระดับ ${game.p.level} · ปราบแล้ว ${game.kills} · ${game.p.gold} ทอง</p><button id="continue" class="primary">สำรวจทุ่งหญ้าต่อ →</button>`);$('#continue').onclick=()=>{paused=false;$('#overlay').hidden=true;};}
 const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;

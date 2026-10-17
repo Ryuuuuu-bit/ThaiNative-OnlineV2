@@ -635,8 +635,16 @@ function hurt(
 		setAuto(g, false);
 		g.target = null;
 		g.destination = null;
-		emit(g, "death");
+		emit(g, "death", { xpLost: deathPenalty(p, g.data) });
 	}
+}
+/** Base EXP lost on death: a share of this level's requirement, never below 0 and never a de-level. */
+export function deathPenalty(p: Pick<Player, "level" | "xp" | "nextXp">, data: GameData) {
+	const rule = data.economy.deathPenalty;
+	if (p.level < rule.minLevel || p.level >= data.stats.maxLevel) return 0;
+	const lost = Math.min(Math.floor(p.xp), Math.floor(p.nextXp * rule.percent));
+	p.xp -= lost;
+	return lost;
 }
 export function action(g: Game, a: Action) {
  if(g.p.inventory&&a!=='potion'&&inventoryWeight(g.p.inventory,g.data)>=g.p.stats.weight*g.data.economy.attackWeightRatio){emit(g,'notice',{text:'น้ำหนักเกิน 90% โจมตีไม่ได้'});return false;}

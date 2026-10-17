@@ -503,7 +503,7 @@ export const JobsSchema = z
 			.strict(),
 	})
 	.strict();
-export const EconomySchema = z.object({ dataVersion:z.literal(1), sellMultiplier:fraction, inventorySlots:positive.int(), regenWeightRatio:fraction, attackWeightRatio:fraction, lootOwnershipSeconds:nonnegative, dropMultiplier:nonnegative, autoRareAfterSeconds:nonnegative, autoRareMultiplier:fraction, shops:z.record(z.string(),z.record(z.string(),nonnegative.int())) }).strict();
+export const EconomySchema = z.object({ dataVersion:z.literal(1), sellMultiplier:fraction, inventorySlots:positive.int(), regenWeightRatio:fraction, attackWeightRatio:fraction, lootOwnershipSeconds:nonnegative, dropMultiplier:nonnegative, autoRareAfterSeconds:nonnegative, autoRareMultiplier:fraction, storageSlots:positive.int(), deathPenalty:z.object({minLevel:positive.int(),percent:fraction}).strict(), shops:z.record(z.string(),z.record(z.string(),nonnegative.int())) }).strict();
 export const schemas = { economy: EconomySchema,
 	jobs: JobsSchema,
 	stats: StatsSchema,
