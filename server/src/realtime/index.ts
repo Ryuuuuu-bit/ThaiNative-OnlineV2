@@ -1,3 +1,4 @@
+import { createTrades } from './trade.js';
 import {TITLES,titleDefinition,normalizeTitleRecords,earnTitles,canWearTitle,titleProgress,type RankingCharacter} from '@thainative/shared';
 import {createRankings} from './rankings.js';
 import {monsterKnockbackFor} from './monster-knockback.js';
@@ -225,6 +226,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   if(announce&&earned.length)send(peer.ws,{t:'ev',list:earned.map(t=>({type:'notice',playerId:p.id,text:'ได้รับฉายา · '+t.name}))});
  }
  const social=createSocial<Peer>({live,send,command:(peer,text)=>gm.command(peer,text)});
+ const trades=createTrades<Peer>({live,send,store,data,settled:(peer,p,r)=>{p.inventory=r.inventory;p.gold=r.gold;refreshStats(peer.room.game,p);sendStats(peer,p);send(peer.ws,{t:'inv',req:randomUUID(),inventory:p.inventory,gold:p.gold});}});
  function economy(peer:Peer,p:Player,op:InventoryOp,req:string,done=()=>{},quest?:EconomyContext['quest']) {
   const room=peer.room,g=room.game;
   if(op.op==='pickup'){
@@ -322,7 +324,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,autoUnreachable:undefined,attack:0,dash:0,castRemaining:0,statuses:[],moving:false});
   if(destination.mapId==='city_plaza'&&destination.x===CITY_SPAWN.x&&destination.z===CITY_SPAWN.z){p.fx=0;p.fz=1;}
   refreshStats(target.game,p);
-  peer.input={x:0,z:0};peer.room=target;
+  trades.leave(peer.id,'ย้ายแมพ การแลกถูกยกเลิก');peer.input={x:0,z:0};peer.room=target;
   target.game.players.set(p.id,p);target.peers.set(p.id,peer);target.accounts.set(p.id,peer.accountId);(target.leases??=new Map()).set(p.id,peer.leaseOwner!);
   target.saveQueue=Promise.all([source.saveQueue,target.saveQueue]).then(()=>{});
   void save(target,p.id);
@@ -470,6 +472,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 
 		if (message.t === "chat") { social.chat(peer, message); return; }
 				if (message.t === "party") { social.party(peer, message); return; }
+				if (message.t === "trade") { trades.handle(peer, message); return; }
 		if (message.t === "quest") { const qp=g.players.get(peer.id);if(qp)questIntent(peer,qp,message); return; }
 		if (!queued && "seq" in message) {
 			if (message.seq <= peer.ack) return;
@@ -712,7 +715,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
             ws.on('close',()=>{
              const peer=connectedPeer;if(!peer||live.get(peer.id)!==peer)return;
              live.delete(peer.id);peer.room.peers.delete(peer.id);peer.input={x:0,z:0};
-             peer.room.disconnected.set(peer.id,Date.now());social.offline(peer.id);if(!closing)void save(peer.room,peer.id);
+             peer.room.disconnected.set(peer.id,Date.now());social.offline(peer.id);trades.leave(peer.id);if(!closing)void save(peer.room,peer.id);
             });
 			const task=(async () => {
 				const origin = req.headers.origin,
@@ -982,7 +985,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                 }
 			}
 		}
-		if (catchup && ticks % 20 < catchup) social.tick();
+		if (catchup && ticks % 20 < catchup) { social.tick(); trades.tick(); }
 		samples.push(performance.now() - begin);
 		if (samples.length > 1200) samples.shift();
 		if (now - lastMetric >= 1000) {

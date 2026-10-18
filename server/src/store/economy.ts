@@ -6,6 +6,8 @@ import {
 	type InventoryOp,
 	type CharacterInput,
 	type LedgerEntry,
+	type TradeOffer,
+	applyTrade,
 } from "@thainative/shared";
 import { randomUUID } from "node:crypto";
 import type { Character, Progress } from './types.js';
@@ -38,9 +40,16 @@ export interface EconomyStore {
 		context: EconomyContext,
 	): Promise<EconomyResult>;
 	integrity(): Promise<IntegrityResult>;
+	/**
+	 * Swaps two characters' trade offers in one transaction (both locked in id order, both leases checked).
+	 * On a rule error nothing changes and `error` (Thai) says why; `side` 0/1 names the party it is about.
+	 */
+	trade(a: TradeParty, b: TradeParty, context: { tradeId: string; leaseOwner?: string }): Promise<TradeResult>;
 }
+export interface TradeParty { accountId: string; id: string; offer: TradeOffer; profile: CharacterInput }
+export interface TradeResult { a: EconomyResult; b: EconomyResult; error?: string; side?: number }
 export const economyData = loadGameData();
-export { applyInventory, starterInventory, randomUUID };
+export { applyInventory, starterInventory, randomUUID, applyTrade };
 export type { Inventory, InventoryOp, LedgerEntry };
 export function questProgress(character: Character, context: EconomyContext): QuestProgress | undefined {
 	const quest = context.quest;

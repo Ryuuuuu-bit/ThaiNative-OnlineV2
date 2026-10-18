@@ -12,6 +12,7 @@ import { MAP_INFO, isField, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, HEALER, 
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import { playEventAudio } from './audio-events';
 import { mountSocial } from './social-ui';
+import { mountTrade } from './trade-ui';
 import { mountLevelUp } from './levelup-ui';
 import { mountQuests } from './quest-ui';
 import { mountAudioSettings } from './audio-settings-ui';
@@ -66,11 +67,11 @@ const feelLabel=document.createElement('label');feelLabel.innerHTML='<input type
 document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.closest('button:not(:disabled)'))sound.play('ui_click');},true);
 let titles:ReturnType<typeof mountTitles>|undefined;
 let levelUp:ReturnType<typeof mountLevelUp>|undefined;
-let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
+let trade:ReturnType<typeof mountTrade>|undefined,social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
  // Job 2 skills borrow a Job 1 skill's motion, VFX and sound until they get their own art; keep the real id as learnedSkill.
  if(message.t==='ev')message.list=message.list.map(preferOwnArt);
-  if(titles?.receive(message)||social?.receive(message)||quests?.receive(message))return;
+  if(titles?.receive(message)||trade?.receive(message)||social?.receive(message)||quests?.receive(message))return;
  audioUI.receive(message);autoPotionUI.receive(message);inventoryUI.receive(message);autoUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
  if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you){audioUI.receive(e);autoPotionUI.receive(e);}
  if(message.t==='snap'){worldState.receive(message,net.you,performance.now());if(message.mapId!==activeMap)void switchMap(message.mapId);}
@@ -342,7 +343,8 @@ overview.onclick=()=>{overviewOn=!overviewOn;overview.setAttribute('aria-pressed
 applyQuality();hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
 
-social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started,onOpen:()=>clearInput(),announce:notice});
+trade=mountTrade({send:m=>net.send(m),player:()=>game.p,notice});
+social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started,onOpen:()=>clearInput(),announce:notice,trade:name=>trade?.request(name)});
 levelUp=mountLevelUp({stats:()=>({maxHp:game.p.maxHp,maxMp:game.p.maxMp}),hero:()=>{if(!started||paused||document.hidden)return null;const feet=renderer.screen(game.p.x,game.p.z),head=renderer.screen(game.p.x,game.p.z,2.1);return feet.x>=-50&&feet.x<=innerWidth+50&&feet.y>=-50&&feet.y<=innerHeight+50?{feet,head}:null;}});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice:tell});
 qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.4,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),party:()=>social?.openParty(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);

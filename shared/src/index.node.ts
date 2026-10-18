@@ -25,3 +25,4 @@ export * from './quests.js';
 export * from './auto-settings.js';
 
 export * from './titles.js';
+export * from './trade.js';

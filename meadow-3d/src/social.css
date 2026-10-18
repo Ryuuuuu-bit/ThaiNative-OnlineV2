@@ -41,3 +41,9 @@
  #party-frame header small{display:none}
 }
 #gm-badge{flex:none;margin:0 auto 0 6px;padding:0 5px;border:1px solid #f0cf7a;border-radius:3px;background:#5a2a1fcc;color:#ffe1a0;font:700 10px/16px var(--font-ui);letter-spacing:.08em;pointer-events:auto}
+
+.chat-player-menu{position:absolute;z-index:5;display:grid;gap:2px;min-width:130px;padding:6px;background:#132923f5;border:1px solid #ecd28e;border-radius:8px;box-shadow:0 8px 24px #0008;pointer-events:auto}
+.chat-player-menu[hidden]{display:none}
+.chat-player-menu strong{padding:2px 6px 4px;color:#ecd28e;font-size:13px}
+.chat-player-menu button{font:inherit;text-align:left;padding:5px 8px;color:#fff4d6;background:none;border:0;border-radius:5px;cursor:pointer}
+.chat-player-menu button:hover{background:#ffffff14}

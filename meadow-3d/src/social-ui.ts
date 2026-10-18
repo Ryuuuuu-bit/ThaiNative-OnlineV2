@@ -9,11 +9,11 @@ const CHANNEL_LABEL = { map: 'ทั่วไป', party: 'ปาร์ตี้
 const TABS = [['all', 'ทั้งหมด'], ['chat', 'แชท'], ['party', 'ปาร์ตี้'], ['loot', 'รางวัล'], ['system', 'ระบบ']] as const;
 type Tab = typeof TABS[number][0];
 const MAP_LABEL: Record<string, string> = { city_plaza: 'เมือง', meadow: 'ทุ่งวุ้นจิ๋ว', forest:'ป่าหมอก',ruins:'ซากนครโบราณ',canyon:'หุบเขาหิน' };
-const HELP = 'คำสั่ง: /p ข้อความ (ปาร์ตี้) · /w ชื่อ ข้อความ (กระซิบ) · /r ข้อความ (ตอบกลับ) · /invite ชื่อ · /leave · /kick ชื่อ · /lead ชื่อ';
+const HELP = 'คำสั่ง: /p ข้อความ (ปาร์ตี้) · /w ชื่อ ข้อความ (กระซิบ) · /r ข้อความ (ตอบกลับ) · /invite ชื่อ · /trade ชื่อ (แลกของ) · /leave · /kick ชื่อ · /lead ชื่อ';
 const MAX_LINES = 80;
 
 /** Chat box (Enter to type), party frame and invite prompts. Server is authoritative for filtering and limits. */
-export function mountSocial(options: { send: Send; you: () => string; enabled: () => boolean; onOpen?:()=>void; /** GM announcements also go up on screen. */ announce?: (text: string) => void }) {
+export function mountSocial(options: { send: Send; you: () => string; enabled: () => boolean; onOpen?:()=>void; /** GM announcements also go up on screen. */ announce?: (text: string) => void; /** Ask a player to trade. */ trade?: (name: string) => void }) {
 	const ui = document.querySelector('#ui')!;
 	const box = document.createElement('section');
 	box.id = 'chat';
@@ -59,6 +59,24 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 		channelButton.dataset.ch = next;
 	};
 	setChannel('map');
+	/** Actions on a player named in chat: whisper, party invite, trade. */
+	const menu = document.createElement('div');
+	menu.className = 'chat-player-menu';
+	menu.hidden = true;
+	box.append(menu);
+	document.addEventListener('pointerdown', (e) => { if (!menu.hidden && !menu.contains(e.target as Node)) menu.hidden = true; });
+	function playerMenu(name: string, anchor: HTMLElement) {
+		const item = (text: string, run: () => void) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = text; b.onclick = () => { menu.hidden = true; run(); }; return b; };
+		const title = document.createElement('strong');
+		title.textContent = name;
+		menu.replaceChildren(title,
+			item('กระซิบ', () => { whisperTo = name; setChannel('whisper'); open(); }),
+			item('เชิญปาร์ตี้', () => options.send({ t: 'party', op: 'invite', name })),
+			...(options.trade ? [item('แลกของ', () => options.trade!(name))] : []));
+		menu.style.left = anchor.offsetLeft + 'px';
+		menu.style.top = Math.max(0, anchor.offsetTop - log.scrollTop) + 'px';
+		menu.hidden = false;
+	}
 	const line = (m: ChatLine) => {
 		const li = document.createElement('li');
 		li.dataset.ch = m.ch;
@@ -81,7 +99,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			who.textContent = m.ch === 'whisper' ? (m.self ? `ถึง ${m.to}` : `จาก ${m.from}`) : m.from;
 			const name = m.ch === 'whisper' && m.self ? m.to! : m.from;
 			who.title = `กระซิบหา ${name}`;
-			who.onclick = () => { whisperTo = name; setChannel('whisper'); open(); };
+			who.onclick = (e) => { if (m.self && m.ch !== 'whisper') return; playerMenu(name, e.currentTarget as HTMLElement); };
 			li.append(who, document.createTextNode(': '));
 		}
 		const body = document.createElement('span');
@@ -129,6 +147,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			}
 			case '/r': if (!lastWhisper) { system('ยังไม่มีใครกระซิบหาคุณ'); return; } if (arg) options.send({ t: 'chat', ch: 'whisper', to: lastWhisper, text: arg }); else { whisperTo = lastWhisper; setChannel('whisper'); } return;
 			case '/invite': if (arg) options.send({ t: 'party', op: 'invite', name: arg }); else system('ใช้ /invite ชื่อ'); return;
+			case '/trade': if (arg && options.trade) options.trade(arg); else system('ใช้ /trade ชื่อ'); return;
 			case '/leave': options.send({ t: 'party', op: 'leave' }); return;
 			case '/kick': if (arg) options.send({ t: 'party', op: 'kick', name: arg }); return;
 			case '/lead': if (arg) options.send({ t: 'party', op: 'lead', name: arg }); return;

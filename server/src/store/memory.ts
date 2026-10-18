@@ -1,5 +1,5 @@
 import {CITY_SPAWN} from '@thainative/shared/maps';
-import {applyInventory,starterInventory,economyData,checkRequest,alertIntegrity,questProgress,type Inventory,type LedgerEntry,type EconomyContext,type EconomyResult} from './economy.js';
+import {applyInventory,applyTrade,starterInventory,economyData,checkRequest,alertIntegrity,questProgress,type Inventory,type LedgerEntry,type EconomyContext,type EconomyResult,type TradeParty,type TradeResult} from './economy.js';
 import type {InventoryOp} from '@thainative/shared';
 import {creationJob,needsJob,migrateMap} from './progress.js';
 import {loadGameData,newJob,normalizeJob} from '@thainative/shared';
@@ -43,6 +43,15 @@ export class MemoryStore implements Store {
   this.requests.set(key,{at:Date.now(),result:structuredClone(result)});
   for(const[k,r]of this.requests)if(Date.now()-r.at>86400000)this.requests.delete(k);
   return structuredClone(result);
+ }
+ async trade(a:TradeParty,b:TradeParty,context:{tradeId:string;leaseOwner?:string}):Promise<TradeResult> {
+  for(const p of [a,b])if(context.leaseOwner&&this.leases.get(p.id)!==context.leaseOwner)throw Error('Lease lost');
+  const ca=this.econCharacter(a.accountId,a.id),cb=this.econCharacter(b.accountId,b.id);
+  const state=(c:Character)=>({gold:c.gold,inventory:this.inventories.get(c.id)!});
+  try{const out=applyTrade({state:state(ca),offer:a.offer,profile:a.profile},{state:state(cb),offer:b.offer,profile:b.profile},economyData);
+   for(const [c,side] of [[ca,out.a],[cb,out.b]] as const){this.inventories.set(c.id,side.state.inventory);c.gold=side.state.gold;this.ledger.push(...side.ledger.map(entry=>({character:c.id,entry})));}
+   return structuredClone({a:{inventory:out.a.state.inventory,gold:ca.gold},b:{inventory:out.b.state.inventory,gold:cb.gold}});}
+  catch(e){return structuredClone({a:state(ca),b:state(cb),error:(e as Error).message,side:(e as {side?:number}).side});}
  }
  async integrity(){const issues:string[]=[],seen=new Set<string>();for(const[id,inv]of this.inventories){const c=this.chars.get(id)!;if(c.gold!==this.ledger.filter(l=>l.character===id).reduce((n,l)=>n+l.entry.goldDelta,0))issues.push(id+': gold != ledger');for(const i of inv.items){if(i.qty<=0)issues.push(id+': negative stack');if(!i.id.startsWith('stack:')){if(seen.has(i.id))issues.push('duplicate '+i.id);seen.add(i.id);}}}return alertIntegrity(issues);}
 
