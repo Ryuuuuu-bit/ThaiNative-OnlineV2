@@ -1588,5 +1588,141 @@
     "hitMask": null,
     "ktx2": "/assets/skills-painted/skills-vfx-job2-v1-41a5544e09.ktx2",
     "webp": "/assets/skills-painted/skills-vfx-job2-v1-bfcf4ae82c.webp"
+  },
+  "/assets/hero-skills/hero-skill-shield_bash-v1.png": {
+    "source": "art/hero-skills/hero-skill-shield_bash-v1.png",
+    "size": [
+      1792,
+      796
+    ],
+    "originalSize": [
+      2304,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-shield_bash-v1-07a1c4bb3a.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-shield_bash-v1-810db0506f.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-blood_rage-v1.png": {
+    "source": "art/hero-skills/hero-skill-blood_rage-v1.png",
+    "size": [
+      1792,
+      956
+    ],
+    "originalSize": [
+      1920,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-blood_rage-v1-4eb10866b6.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-blood_rage-v1-8d07695534.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-bulwark-v1.png": {
+    "source": "art/hero-skills/hero-skill-bulwark-v1.png",
+    "size": [
+      1664,
+      888
+    ],
+    "originalSize": [
+      1920,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-bulwark-v1-694a73a76c.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-bulwark-v1-74ea74da0a.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-quake_slam-v1.png": {
+    "source": "art/hero-skills/hero-skill-quake_slam-v1.png",
+    "size": [
+      2048,
+      608
+    ],
+    "originalSize": [
+      3456,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-quake_slam-v1-0f790976dc.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-quake_slam-v1-18f237c19d.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-rally_roar-v1.png": {
+    "source": "art/hero-skills/hero-skill-rally_roar-v1.png",
+    "size": [
+      1664,
+      888
+    ],
+    "originalSize": [
+      1920,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-rally_roar-v1-a926b95d26.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-rally_roar-v1-20a1520c40.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-frenzy_slash-v1.png": {
+    "source": "art/hero-skills/hero-skill-frenzy_slash-v1.png",
+    "size": [
+      2048,
+      684
+    ],
+    "originalSize": [
+      3072,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-frenzy_slash-v1-d88eb8a2e5.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-frenzy_slash-v1-8bd311a6f6.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-leap_strike-v1.png": {
+    "source": "art/hero-skills/hero-skill-leap_strike-v1.png",
+    "size": [
+      1664,
+      740
+    ],
+    "originalSize": [
+      2304,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-leap_strike-v1-5988669b3e.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-leap_strike-v1-3c521cd756.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-blade_cyclone-v1.png": {
+    "source": "art/hero-skills/hero-skill-blade_cyclone-v1.png",
+    "size": [
+      1664,
+      556
+    ],
+    "originalSize": [
+      3072,
+      1024
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-blade_cyclone-v1-6dce993de5.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-blade_cyclone-v1-5cb61df553.ktx2"
   }
 }

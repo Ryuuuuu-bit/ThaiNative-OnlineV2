@@ -29,7 +29,7 @@ export function leapHeight(elapsed:number){const air=CAST_SECONDS.leap_strike!;r
 /** Skills whose own VFX and SFX are live: events keep their real id. Job 2 icons, VFX and SFX shipped before their hero motions. */
 export const OWN_ART: ReadonlySet<string> = new Set(['slash','whirlwind','dash_strike','earth_break','provoke','endure',...JOB2_MOTIONS.guardian,...JOB2_MOTIONS.berserker]);
 /** Job 2 hero motion sheets that passed review. Until a motion is listed here it is never requested and the hero plays BORROWED_MOTION. */
-export const MOTION_READY: ReadonlySet<string> = new Set<string>([]);
+export const MOTION_READY: ReadonlySet<string> = new Set<string>(['shield_bash','bulwark','quake_slam','rally_roar','frenzy_slash','blood_rage','blade_cyclone','leap_strike']);
 export function preferOwnArt<T extends {skillId?:string;visual?:string;learnedSkill?:string}>(event:T):T {
  return event.visual && !OWN_ART.has(event.skillId ?? '')
   ? {...event,learnedSkill:event.skillId,skillId:event.visual} : event;

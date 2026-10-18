@@ -12,7 +12,7 @@ if '--hero-skill' in sys.argv:
     if name not in allowed:raise ValueError('Unknown Job 2 motion')
     stem=f'hero-skill-{name}-v1'
     im=Image.open(ROOT/'art/hero-skills'/f'{stem}.png').convert('RGBA')
-    factor=min(1,(1664 if name in ('bulwark','rally_roar','blade_cyclone','leap_strike') else 2048)/im.width);size=tuple(max(4,round(n*factor/4)*4) for n in im.size)
+    factor=min(1,(1792 if name in ('blood_rage','shield_bash') else 1664 if name in ('bulwark','rally_roar','blade_cyclone','leap_strike') else 2048)/im.width);size=tuple(max(4,round(n*factor/4)*4) for n in im.size)
     im=im.resize(size,Image.Resampling.LANCZOS)
     im.save(ROOT/'art/hero-skills'/f'{stem}-packed.png')
     out=PUBLIC/'assets/hero-skills';out.mkdir(exist_ok=True,parents=True)

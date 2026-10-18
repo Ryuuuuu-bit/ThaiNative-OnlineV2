@@ -115,3 +115,17 @@ Use case: identity-preserve. The supplied existing Aerin sheet is the identity/s
 
 
 Job 2 Shield Bash correction pass: keep Aerin and the four directional rows; repair the NE/NW follow-through into a forearm ward-shield punch, keep the sword low, preserve transparent padding and all six frames. The generated correction still contains an unwanted thrust; rejected for own-art activation.
+# Job 2 motion repair pass — 2026-10-18
+
+Built-in imagegen edits, transparent output; sources retained for review. All prompts preserve the existing brown-haired hero, cream shirt, brown leather, teal cape, painted ink/gouache rendering, upper-left lighting, whole weapons/boots, no shadows and no text. Packing extracts whole connected figures, uniformly scales the sheet, and preserves 384×256 cells, x=192 anchor and baseline 240. No masking or tighter cropping was used to hide rejected trails.
+
+- `shield_bash-source-v4.png`: repair column 6 in all four rows with ward shield held close in recoil, sword low behind the body; keep the shield through follow-through. `v5`: targeted bottom-right recovery repair, complete sword/cape with a clear right margin. Selected v5.
+- `bulwark-source-v3.png`: remove all oversized white haze behind shields; retain compact pale teal/gold ward shields, planted feet, sword low and raised-shield hold in columns 3–5. Selected v3.
+- `quake_slam-source-v3.png`: preserve nine-frame grounded raise/slam/recovery; restore visible shield on the forearm through contact and complete all four final-column recovery figures with clear margins. Selected v3.
+- `rally_roar-source-v3.png`: replace fourth-column thrust with overhead sword, chest-out sustained roar. SW direction/spare weapon errors rejected. `v4-rejected`: repair SW row, but duplicate shields were introduced. `rally-roar-sw-repair-v1-rejected.png`: isolated repair introduced a second sword and was rejected. `v4`: remove shields, leave one raised sword and clenched empty fist; a shield remnant persisted at NE frame 1. `v5`: remove only that remnant, preserving the 5×4 sheet and sustained roar. Selected v5.
+- `frenzy_slash-source-v3.png`: remove connected crimson arcs, retain only short blade-edge smears; preserve all 32 poses with transparent gaps. `v4`: repair NE last-column clipped thrust into a complete low-sword recovery. Selected v4.
+- `blood_rage-source-v2.png`: accepted clenched-fist source retained without regeneration; repacked using whole figures so boots are not cut by equal row boundaries.
+- `blade_cyclone-source-v3.png`: regenerate 32 isolated figures with sword extended, tiny blade highlight only, all eight facings and no connected circular trails. Generated row ordering still failed. The packer assembles complete generated poses into S/SW/W/NW/N/NE/E/SE order using zero-based source indices `[28,8,9,10,11,17,1,0]`; starting phases `[7,1,5,3]` produce SE/SW/NE/NW rows. No mirroring, synthesized limbs or trail trimming. Selected v3 with this explicit assembly.
+- `leap_strike-source-v3.png`: remove oversized arcs/splashes, retain whole crouch/launch/overhead/downcut/landing/recovery poses. `v4`: restore visible swords in rear-view landing frames, row 3 down-right and row 4 down-left. Selected v4. Existing 0.4 s runtime landing remains unchanged.
+
+Final review: `.codex-run/job2-motions-sheet-v2.jpg`, idle/run/attack and all six first-job skill references beside every motion frame. Review measurements and contact replay are in `.codex-run/job2-review-measurements.json`. No gameplay timing or simulation changes.
