@@ -1,0 +1,67 @@
+/* Level-up: gold fireflies spiral up the hero, a compact banner at the top (ui-mockup/levelup.html, "หิ่งห้อย"). */
+#levelup-fx{position:absolute;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+#levelup-fx .fly{position:absolute;left:0;top:0;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#fff1c9;
+	box-shadow:0 0 6px 2px #e6c98f,0 0 16px 4px rgba(230,201,143,.4);will-change:transform,opacity}
+#levelup-fx .orb{position:absolute;left:0;top:0;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;opacity:0;
+	background:radial-gradient(circle,#fff 0,#fff1c9 30%,rgba(230,201,143,.5) 55%,transparent 72%)}
+#levelup-fx .burst{position:absolute;left:0;top:0;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;opacity:0;
+	border:2px solid #fff1c9;box-shadow:0 0 18px #e6c98f}
+
+#levelup{position:absolute;left:50%;top:64px;width:640px;max-width:calc(100vw - 32px);transform:translateX(-50%);text-align:center;
+	pointer-events:none;z-index:6;isolation:isolate;opacity:0;--c:#e6c98f;--c-hi:#fff1c9}
+#levelup[hidden]{display:none}
+#levelup.job{--c:#9bd38c;--c-hi:#e3ffd8}
+#levelup::before{content:'';position:absolute;left:50%;top:50%;width:720px;max-width:120vw;height:230px;transform:translate(-50%,-50%);z-index:-1;border-radius:50%;
+	background:radial-gradient(closest-side,rgba(8,14,13,.8),rgba(8,14,13,.55) 50%,rgba(8,14,13,.18) 80%,transparent)}
+#levelup .lu-eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;font:700 13px/1 'Noto Sans Thai',sans-serif;letter-spacing:.42em;text-indent:.42em;color:var(--c)}
+#levelup .lu-eyebrow::before,#levelup .lu-eyebrow::after{content:'';width:90px;height:1px;background:linear-gradient(90deg,transparent,var(--c))}
+#levelup .lu-eyebrow::after{transform:scaleX(-1)}
+#levelup .lu-num{display:inline-block;margin-top:2px;font:700 64px/1 'Cormorant Garamond',Georgia,serif;
+	background:linear-gradient(180deg,var(--c-hi) 10%,var(--c) 55%,color-mix(in srgb,var(--c) 60%,#5a3a10) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;
+	filter:drop-shadow(0 4px 14px rgba(0,0,0,.55)) drop-shadow(0 0 22px color-mix(in srgb,var(--c) 45%,transparent))}
+#levelup .lu-sub{margin:2px 0 0;font-size:14px;color:rgba(243,239,230,.76);text-shadow:0 1px 2px rgba(0,0,0,.7)}
+#levelup .lu-sub[hidden]{display:none}
+#levelup .lu-gains{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:8px}
+#levelup .lu-gain{display:flex;align-items:center;gap:8px;height:30px;padding:0 14px;border-radius:15px;background:rgba(12,20,19,.66);border:1px solid rgba(255,255,255,.12);
+	backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);font-size:12.5px;color:rgba(243,239,230,.76);opacity:0;transform:translateY(8px)}
+#levelup .lu-gain b{font-weight:700;color:#f3efe6;font-variant-numeric:tabular-nums}
+#levelup .lu-gain i{width:8px;height:8px;border-radius:50%;background:var(--dot)}
+#levelup .lu-gain.key{border-color:color-mix(in srgb,var(--c) 55%,transparent);color:var(--c-hi)}
+#levelup .lu-gain.key b{color:var(--c)}
+#levelup .lu-also{display:flex;width:max-content;max-width:100%;margin:10px auto 0;align-items:center;gap:10px;height:32px;padding:0 16px;border-radius:16px;opacity:0;
+	background:rgba(12,20,19,.66);border:1px solid rgba(155,211,140,.5);font-size:12.5px;color:rgba(243,239,230,.76)}
+#levelup .lu-also[hidden]{display:none}
+#levelup .lu-also b{color:#9bd38c}#levelup .lu-also em{font-style:normal;color:#e3ffd8}
+#levelup .lu-hint{margin:8px 0 0;font-size:12.5px;color:rgba(243,239,230,.76);opacity:0;text-shadow:0 1px 2px rgba(0,0,0,.7)}
+#levelup .lu-hint kbd{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;margin:0 4px;border-radius:6px;border:1px solid rgba(255,255,255,.22);
+	background:rgba(12,20,19,.42);font:600 11.5px 'Noto Sans Thai',sans-serif;color:#f3efe6}
+#levelup.play{animation:lu-banner var(--life,3.9s) cubic-bezier(.2,.8,.2,1) forwards}
+#levelup.play .lu-num{animation:lu-pop .7s cubic-bezier(.2,1.6,.4,1) .05s both}
+#levelup.play .lu-gain{animation:lu-rise .45s ease-out forwards}
+#levelup.play .lu-gain:nth-child(1){animation-delay:.6s}#levelup.play .lu-gain:nth-child(2){animation-delay:.72s}
+#levelup.play .lu-gain:nth-child(3){animation-delay:.84s}#levelup.play .lu-gain:nth-child(4){animation-delay:.96s}
+#levelup.play .lu-also{animation:lu-rise .5s ease-out 1.2s forwards}
+#levelup.play .lu-hint{animation:lu-fade .5s ease-out 1.2s forwards}
+@keyframes lu-banner{0%{opacity:0;transform:translate(-50%,14px)}9%{opacity:1;transform:translate(-50%,0)}82%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-10px)}}
+@keyframes lu-pop{0%{transform:scale(.55);opacity:0}60%{opacity:1}100%{transform:scale(1)}}
+@keyframes lu-rise{to{opacity:1;transform:none}}
+@keyframes lu-fade{to{opacity:1}}
+
+/* Hand-off: the portrait's level badge pings once the banner leaves. */
+#ui .avatar b.lu-ping{animation:lu-badge .6s cubic-bezier(.2,1.6,.4,1)}
+#ui .avatar b.lu-ping::after{content:'';position:absolute;inset:-6px;border-radius:14px;border:2px solid #e6c98f;animation:lu-ping 1.2s ease-out 2;pointer-events:none}
+@keyframes lu-badge{0%{transform:scale(1.5)}100%{transform:none}}
+@keyframes lu-ping{0%{opacity:.9;transform:scale(.7)}100%{opacity:0;transform:scale(1.5)}}
+
+@media(max-width:650px){
+	#levelup{top:84px}
+	#levelup .lu-num{font-size:52px}
+	#levelup .lu-eyebrow::before,#levelup .lu-eyebrow::after{width:44px}
+	#levelup .lu-hint{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+	/* No movement: the banner simply appears, and the hero gets a still glow instead of the spiral. */
+	#levelup.play,#levelup.play *{animation:none!important;opacity:1!important;transform:none!important}
+	#levelup.play{transform:translateX(-50%)!important}
+	#levelup-fx .orb{transition:opacity .4s}
+}

@@ -14,6 +14,7 @@ import { CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, HEALER, GATE_CAPTAIN, GATES
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import { playEventAudio } from './audio-events';
 import { mountSocial } from './social-ui';
+import { mountLevelUp } from './levelup-ui';
 import { mountQuests } from './quest-ui';
 import { mountAudioSettings } from './audio-settings-ui';
 import { mountAutoPotion } from './auto-potion-ui';
@@ -65,6 +66,7 @@ const audioUI=mountAudioSettings(sound,message=>net.send(message));const autoPot
 const feelLabel=document.createElement('label');feelLabel.innerHTML='<input type="checkbox" id="combat-feel">ภาพสั่น/หยุดภาพ';document.querySelector('#audio-settings')!.append(feelLabel);const feelInput=feelLabel.querySelector('input')!;feelInput.checked=combatFeel.enabled;feelInput.onchange=()=>combatFeel.setEnabled(feelInput.checked);
 document.addEventListener('click',e=>{if(e.target instanceof Element&&e.target.closest('button:not(:disabled)'))sound.play('ui_click');},true);
 let titles:ReturnType<typeof mountTitles>|undefined;
+let levelUp:ReturnType<typeof mountLevelUp>|undefined;
 let social:ReturnType<typeof mountSocial>|undefined,quests:ReturnType<typeof mountQuests>|undefined;
 let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message){
  // Job 2 skills borrow a Job 1 skill's motion, VFX and sound until they get their own art; keep the real id as learnedSkill.
@@ -209,8 +211,8 @@ function events(){for(const e of game.events.splice(0)){lighterVfx=!!e.playerId&
  case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);if(e.kind==='hp'){const b=$('[data-action="potion"]');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
  case'itemPickup':if(e.playerId===net.you)social?.items(inventoryUI.names(e.loot));break;
  case'pickup':if(!e.playerId||e.playerId===net.you)social?.loot(e.xp,e.gold);break;
- case'jobLevel':if(e.playerId===net.you){tell(`✦ ระดับอาชีพ ${e.jobLevel} · +${e.granted} แต้มสกิล · K`,'loot');if(e.jobLevel===40)tell('✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา','system');}break;
- case'level':if(e.playerId!==net.you){effectRing(e.x,e.z,'#ffe6a0',2.2,.8);break;}tell(`✦ ระดับ ${e.level} · +${e.granted||3} แต้มสเตตัส · C ดูสเตตัส`,'loot');$('#stats-button').classList.add('level-pulse');setTimeout(()=>$('#stats-button').classList.remove('level-pulse'),4500);effectRing(e.x,e.z,'#ffe6a0',2.2,.8);particles(e.x,e.z,'#ffedb7',45,3);break;
+ case'jobLevel':if(e.playerId===net.you){social?.note('loot',`✦ ระดับอาชีพ ${e.jobLevel} · +${e.granted} แต้มสกิล · K`);if(e.jobLevel===40)social?.note('system','✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา');levelUp?.jobLevel(e as any);}break;
+ case'level':if(e.playerId!==net.you){effectRing(e.x,e.z,'#ffe6a0',2.2,.8);break;}social?.note('loot',`✦ ระดับ ${e.level} · +${e.granted||3} แต้มสเตตัส · C ดูสเตตัส`);$('#stats-button').classList.add('level-pulse');setTimeout(()=>$('#stats-button').classList.remove('level-pulse'),4500);levelUp?.level(e as any);break;
  case'dash':effectRing(e.x,e.z,'#c1e9e6',.6,.25);particles(e.x,e.z,'#d6eee2',16,1.4);break;
  case'warning':{if(document.hidden)break;if(e.shape){telegraph(e);break;}const o=ring(e.x,e.z,e.r,'#e98074',.07,.8),fill=new T.Mesh(effectGeometry(`warning:${e.r}`,()=>new T.CircleGeometry(e.r,48)),new T.MeshBasicMaterial({color:'#df7162',transparent:true,opacity:.16,side:T.DoubleSide,depthWrite:false}));fill.rotation.x=-Math.PI/2;fill.position.set(e.x,.035,e.z);scene.add(fill);effects.push({kind:'warning',mesh:o,life:e.duration,max:e.duration});effects.push({kind:'warningFill',mesh:fill,life:e.duration,max:e.duration});break;}
  case'warningCancel':for(let i=effects.length-1;i>=0;i--)if(effects[i].warnOf===e.id){scene.remove(effects[i].mesh);disposeEffect(effects[i].mesh);effects.splice(i,1);}break;
@@ -424,6 +426,7 @@ applyQuality();hud();requestAnimationFrame(frame);
 // Read-only diagnostics; no test-only mutation or gameplay shortcuts are exposed.
 
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started,announce:notice});
+levelUp=mountLevelUp({stats:()=>({maxHp:game.p.maxHp,maxMp:game.p.maxMp}),hero:()=>{const at=(y:number)=>{const q=new T.Vector3(hero.root.position.x,y,hero.root.position.z).project(camera);return{x:(q.x*.5+.5)*innerWidth,y:(-q.y*.5+.5)*innerHeight,on:Math.abs(q.x)<1.1&&Math.abs(q.y)<1.1};};const feet=at(0),head=at((HERO_HEAD-.25)/screenUp());return feet.on?{feet,head}:null;}});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice:tell});
 qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.3,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);
 titles=mountTitles({send:m=>net.send(m),onOpen:()=>clearInput(),notice,you:()=>net.you});
