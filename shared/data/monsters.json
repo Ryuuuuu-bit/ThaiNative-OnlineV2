@@ -47,7 +47,7 @@
         },
         {
           "item": "red_small",
-          "rate": 0.22,
+          "rate": 0.11,
           "min": 1,
           "max": 1
         },
@@ -108,7 +108,7 @@
         },
         {
           "item": "red_small",
-          "rate": 0.22,
+          "rate": 0.11,
           "min": 1,
           "max": 1
         },
@@ -169,7 +169,7 @@
         },
         {
           "item": "red_small",
-          "rate": 0.22,
+          "rate": 0.11,
           "min": 1,
           "max": 1
         },
@@ -228,7 +228,7 @@
         },
         {
           "item": "red_small",
-          "rate": 0.22,
+          "rate": 0.11,
           "min": 1,
           "max": 1
         },
@@ -333,21 +333,21 @@
           "id": "jelly_wave",
           "nameTh": "คลื่นวุ้นถล่ม",
           "shape": "cone",
-          "windup": 2,
+          "windup": 2.4,
           "radius": 6,
           "angle": 80,
-          "percent": 140,
-          "phase2Percent": 165
+          "percent": 120,
+          "phase2Percent": 140
         },
         {
           "id": "jelly_burst",
           "nameTh": "วุ้นแตกกระจาย",
           "shape": "ring",
-          "windup": 2.2,
+          "windup": 2.6,
           "radius": 5.5,
           "inner": 2.2,
-          "percent": 130,
-          "phase2Percent": 155
+          "percent": 120,
+          "phase2Percent": 140
         }
       ]
     },
@@ -393,7 +393,7 @@
         },
         {
           "item": "red_small",
-          "rate": 0.2,
+          "rate": 0.1,
           "min": 1,
           "max": 1
         }
@@ -452,7 +452,7 @@
         },
         {
           "item": "red_medium",
-          "rate": 0.12,
+          "rate": 0.06,
           "min": 1,
           "max": 1
         }
@@ -512,7 +512,7 @@
         },
         {
           "item": "blue_potion",
-          "rate": 0.15,
+          "rate": 0.075,
           "min": 1,
           "max": 1
         }
@@ -636,13 +636,13 @@
         },
         {
           "item": "weapon_stone",
-          "rate": 0.3,
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
           "item": "armour_stone",
-          "rate": 0.3,
+          "rate": 0.1,
           "min": 1,
           "max": 1
         }
@@ -734,7 +734,7 @@
         },
         {
           "item": "red_small",
-          "rate": 0.2,
+          "rate": 0.1,
           "min": 1,
           "max": 1
         }
@@ -792,7 +792,7 @@
         },
         {
           "item": "red_medium",
-          "rate": 0.12,
+          "rate": 0.06,
           "min": 1,
           "max": 1
         }
@@ -851,7 +851,7 @@
         },
         {
           "item": "blue_potion",
-          "rate": 0.15,
+          "rate": 0.075,
           "min": 1,
           "max": 1
         }
@@ -969,13 +969,13 @@
       "drops": [
         {
           "item": "weapon_stone",
-          "rate": 0.5,
+          "rate": 0.15,
           "min": 1,
           "max": 2
         },
         {
           "item": "armour_stone",
-          "rate": 0.5,
+          "rate": 0.15,
           "min": 1,
           "max": 2
         }
@@ -1067,7 +1067,7 @@
         },
         {
           "item": "red_medium",
-          "rate": 0.15,
+          "rate": 0.075,
           "min": 1,
           "max": 1
         }
@@ -1116,7 +1116,7 @@
         },
         {
           "item": "red_medium",
-          "rate": 0.12,
+          "rate": 0.06,
           "min": 1,
           "max": 1
         }
@@ -1175,7 +1175,7 @@
         },
         {
           "item": "blue_potion",
-          "rate": 0.15,
+          "rate": 0.075,
           "min": 1,
           "max": 1
         }
@@ -1293,13 +1293,13 @@
       "drops": [
         {
           "item": "weapon_stone",
-          "rate": 0.5,
+          "rate": 0.15,
           "min": 1,
           "max": 2
         },
         {
           "item": "armour_stone",
-          "rate": 0.5,
+          "rate": 0.15,
           "min": 1,
           "max": 2
         }
