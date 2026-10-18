@@ -46,14 +46,14 @@
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.11,
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
           "min": 1,
           "max": 1
         },
         {
-          "item": "card_jelly_pink",
-          "rate": 0.0002,
+          "item": "red_small",
+          "rate": 0.11,
           "min": 1,
           "max": 1
         }
@@ -107,14 +107,14 @@
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.11,
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
           "min": 1,
           "max": 1
         },
         {
-          "item": "card_jelly_pink",
-          "rate": 0.0002,
+          "item": "red_small",
+          "rate": 0.11,
           "min": 1,
           "max": 1
         }
@@ -168,14 +168,14 @@
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.11,
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
           "min": 1,
           "max": 1
         },
         {
-          "item": "card_jelly_pink",
-          "rate": 0.0002,
+          "item": "red_small",
+          "rate": 0.11,
           "min": 1,
           "max": 1
         }
@@ -227,14 +227,14 @@
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.11,
+          "item": "card_jelly_pink",
+          "rate": 0.0002,
           "min": 1,
           "max": 1
         },
         {
-          "item": "card_jelly_pink",
-          "rate": 0.0002,
+          "item": "red_small",
+          "rate": 0.11,
           "min": 1,
           "max": 1
         }
@@ -303,6 +303,12 @@
           "rate": 0.005,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "red_small",
+          "rate": 0.4,
+          "min": 2,
+          "max": 3
         }
       ],
       "phase2": {
@@ -392,8 +398,8 @@
           "max": 2
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "red_medium",
+          "rate": 0.08,
           "min": 1,
           "max": 1
         }
@@ -452,7 +458,7 @@
         },
         {
           "item": "red_medium",
-          "rate": 0.06,
+          "rate": 0.08,
           "min": 1,
           "max": 1
         }
@@ -512,7 +518,7 @@
         },
         {
           "item": "blue_potion",
-          "rate": 0.075,
+          "rate": 0.08,
           "min": 1,
           "max": 1
         }
@@ -574,6 +580,12 @@
         {
           "item": "armour_stone",
           "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_medium",
+          "rate": 0.06,
           "min": 1,
           "max": 1
         }
@@ -651,6 +663,18 @@
           "rate": 0.005,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "red_medium",
+          "rate": 0.4,
+          "min": 2,
+          "max": 3
+        },
+        {
+          "item": "blue_potion",
+          "rate": 0.4,
+          "min": 1,
+          "max": 2
         }
       ],
       "jobExp": 1200,
@@ -739,8 +763,8 @@
           "max": 2
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "red_large",
+          "rate": 0.08,
           "min": 1,
           "max": 1
         }
@@ -797,8 +821,8 @@
           "max": 2
         },
         {
-          "item": "red_medium",
-          "rate": 0.06,
+          "item": "red_large",
+          "rate": 0.08,
           "min": 1,
           "max": 1
         }
@@ -856,8 +880,8 @@
           "max": 1
         },
         {
-          "item": "blue_potion",
-          "rate": 0.075,
+          "item": "blue_large",
+          "rate": 0.08,
           "min": 1,
           "max": 1
         }
@@ -919,6 +943,12 @@
         {
           "item": "armour_stone",
           "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_large",
+          "rate": 0.06,
           "min": 1,
           "max": 1
         }
@@ -996,6 +1026,18 @@
           "rate": 0.005,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "red_large",
+          "rate": 0.4,
+          "min": 2,
+          "max": 3
+        },
+        {
+          "item": "blue_large",
+          "rate": 0.4,
+          "min": 1,
+          "max": 2
         }
       ],
       "jobExp": 2520,
@@ -1090,8 +1132,8 @@
           "max": 1
         },
         {
-          "item": "red_medium",
-          "rate": 0.075,
+          "item": "red_greater",
+          "rate": 0.06,
           "min": 1,
           "max": 1
         }
@@ -1139,7 +1181,7 @@
           "max": 2
         },
         {
-          "item": "red_medium",
+          "item": "red_greater",
           "rate": 0.06,
           "min": 1,
           "max": 1
@@ -1198,8 +1240,8 @@
           "max": 1
         },
         {
-          "item": "blue_potion",
-          "rate": 0.075,
+          "item": "blue_greater",
+          "rate": 0.06,
           "min": 1,
           "max": 1
         }
@@ -1261,6 +1303,12 @@
         {
           "item": "armour_stone",
           "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_greater",
+          "rate": 0.045,
           "min": 1,
           "max": 1
         }
@@ -1338,6 +1386,18 @@
           "rate": 0.005,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "red_greater",
+          "rate": 0.4,
+          "min": 2,
+          "max": 3
+        },
+        {
+          "item": "blue_greater",
+          "rate": 0.4,
+          "min": 1,
+          "max": 2
         }
       ],
       "jobExp": 4080,
