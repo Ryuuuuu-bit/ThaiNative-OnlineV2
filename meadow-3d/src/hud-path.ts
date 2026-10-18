@@ -1,3 +1,5 @@
+/** Portals sit on the map border; stand one metre inside their activation radius. */
+export function gateApproach(p:{x:number;z:number}){return{x:p.x-Math.sign(p.x),z:p.z-Math.sign(p.z)};}
 export function gridPath(start:{x:number;z:number},goal:{x:number;z:number},walk:(x:number,z:number)=>boolean){
  const key=(x:number,z:number)=>`${x},${z}`,sx=Math.round(start.x),sz=Math.round(start.z),gx=Math.round(goal.x),gz=Math.round(goal.z);
  const queue=[{x:sx,z:sz}],seen=new Map<string,string|null>([[key(sx,sz),null]]);let end='';

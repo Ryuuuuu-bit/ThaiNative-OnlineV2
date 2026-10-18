@@ -19,7 +19,7 @@ export function artStats(root:T.Group){let tiles=0,instances=0;root.traverse(o=>
 
 export const CITY_SUN_OFFSET=new T.Vector3(-24,22,14);
 const RIGS={city_plaza:{sky:'#c8d1cd',key:'#ffd09b',fill:'#b9cde5',ground:'#737782',keyPower:2.2,fillPower:1.2,exposure:.96},meadow:{sky:'#c8d1bd',key:'#fff0d5',fill:'#e2f1f5',ground:'#889475',keyPower:1.85,fillPower:1.6,exposure:1.02},forest:{sky:'#9fb0a8',key:'#b8d2e4',fill:'#aabecb',ground:'#405951',keyPower:.85,fillPower:1.15,exposure:.94}};
-export function mapLightRig(id:MapId,scene:T.Scene,renderer:T.WebGLRenderer,hemi:T.HemisphereLight,sun:T.DirectionalLight){const r=RIGS[id];hemi.color.set(r.fill);hemi.groundColor.set(r.ground);hemi.intensity=r.fillPower;sun.color.set(r.key);sun.intensity=r.keyPower;renderer.toneMappingExposure=r.exposure;scene.background=new T.Color(r.sky);}
+export function mapLightRig(id:MapId,scene:T.Scene,renderer:T.WebGLRenderer,hemi:T.HemisphereLight,sun:T.DirectionalLight){const r=RIGS[id==='ruins'||id==='canyon'?'forest':id];hemi.color.set(r.fill);hemi.groundColor.set(r.ground);hemi.intensity=r.fillPower;sun.color.set(r.key);sun.intensity=r.keyPower;renderer.toneMappingExposure=r.exposure;scene.background=new T.Color(r.sky);}
 /** Snap in light-space (world-axis rounding still shimmers under a diagonal sun). */
 export function followSun(sun:T.DirectionalLight,focus:T.Vector3,offset:T.Vector3,height:number,aspect:number){
  const extent=Math.ceil(Math.max(18,height*Math.max(1,aspect)*.64+10));const cam=sun.shadow.camera;

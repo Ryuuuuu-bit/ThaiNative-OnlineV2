@@ -2,7 +2,7 @@ import { MONSTER_MOTIONS } from './monster-motion-data.ts';
 import type { Enemy, MonsterMotion, SlimeVariant } from './sim.ts';
 import { DIRECTIONS, facingFor } from './sprite-animation.ts';
 export type MonsterSpecies='slime'|'king'|'shroom'|'wolf'|'wisp'|'stump'|'warden';
-export const FOREST_SPECIES:Record<string,MonsterSpecies>={mist_shroom:'shroom',shade_wolf:'wolf',lantern_wisp:'wisp',stump_guard:'stump',mist_warden:'warden'};
+export const FOREST_SPECIES:Record<string,MonsterSpecies>={ruin_shroom:'shroom',relic_hound:'wolf',relic_wisp:'wisp',ruin_guard:'stump',relic_warden:'warden',crag_slime:'slime',crag_wolf:'wolf',dust_wisp:'wisp',crag_guard:'stump',crag_titan:'warden',mist_shroom:'shroom',shade_wolf:'wolf',lantern_wisp:'wisp',stump_guard:'stump',mist_warden:'warden'};
 export function monsterSpecies(dataId?:string,boss=false):MonsterSpecies{return FOREST_SPECIES[dataId||'']||(boss?'king':'slime');}
 export const SPECIES_SCALE:Record<MonsterSpecies,number>={slime:.72,king:1,shroom:.72,wolf:.85,wisp:.7,stump:1,warden:1};
 export const SPECIES_HIT_COLOUR:Record<MonsterSpecies,string>={slime:'#e1b0c1',king:'#ddb0c2',shroom:'#c6b1dc',wolf:'#8097b9',wisp:'#f5bf69',stump:'#a1b77e',warden:'#bbd2bc'};

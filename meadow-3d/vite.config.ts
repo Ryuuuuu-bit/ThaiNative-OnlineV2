@@ -51,15 +51,6 @@ export default defineConfig(({ command }) => ({
 	build: {
 		target: "es2022",
 		rollupOptions: {
-			output: {
-				manualChunks(id) {
-					if (
-						id.includes("/node_modules/three/src/") ||
-						id.endsWith("/three/build/three.module.js")
-					)
-						return "three-core";
-				},
-			},
 			input: {
 				portal: fileURLToPath(new URL("./index.html", import.meta.url)),
 				login: fileURLToPath(new URL("./login.html", import.meta.url)),
@@ -68,6 +59,9 @@ export default defineConfig(({ command }) => ({
 				),
 				play: fileURLToPath(new URL("./play.html", import.meta.url)),
 				character: fileURLToPath(new URL("./character.html", import.meta.url)),
+				cityReview: fileURLToPath(new URL("./city-2d-review.html", import.meta.url)),
+				cityAssets: fileURLToPath(new URL("./city-assets-review.html", import.meta.url)),
+				cityResidents: fileURLToPath(new URL("./city-residents-review.html", import.meta.url)),
 			},
 		},
 	},

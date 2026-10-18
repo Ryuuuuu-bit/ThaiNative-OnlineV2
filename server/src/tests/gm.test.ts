@@ -375,3 +375,14 @@ test("PostgresStore: admin seed, grant/revoke and audit on a real database", { s
 	const log = await store.auditLog(2);
 	assert.deepEqual(log.map((e) => [e.action, e.targetUid]), [["admin.remove", b.uid], ["admin.add", b.uid]]);
 });
+
+test('new hunting rooms load their populations through the real websocket transfer',async(t)=>{
+ const f=await fixture(t),admin=await f.join('Pathfinder');await f.promote(admin.uid);
+ for(const [map,name] of [['ruins','ซากนครโบราณ'],['canyon','หุบเขาหิน']] as const){
+  assert.match(await admin.gm(`/gm tp ${map}`),new RegExp(name));
+  const room=admin.room();assert.equal(room.game.mapId,map);assert.equal(admin.p.mapId,map);
+  assert.equal(room.game.enemies.filter(e=>!e.boss).length,54);
+  assert.equal(room.game.enemies.find(e=>e.boss)?.dataId,FIELD_BOSS[map].dataId);
+ }
+ assert.match(await admin.gm('/gm tp forest'),/ป่าหมอก/);
+});

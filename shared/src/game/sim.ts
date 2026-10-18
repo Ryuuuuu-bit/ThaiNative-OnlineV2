@@ -200,7 +200,7 @@ export interface Projectile extends Vec {
 }
 export { CAMP, ARENA, OBSTACLES, water, walkable } from "./collision.js";
 import { CAMP, ARENA, walkable, moveSliding as move } from "./collision.js";
-import { MEADOW_SPAWNS, FOREST_SPAWNS, FIELD_BOSS, isField, nearestCamp, FOREST_ENTRY } from "./maps.js";
+import { FIELD_BOSS, isField, nearestCamp, MAP_ENTRY, LAYOUTS } from "./maps.js";
 /** The map of the game currently being stepped (the sim is synchronous, so one at a time). */
 let activeMap: MapId = "meadow";
 const walk = (x: number, z: number, r = 0.3) => walkable(x, z, r, activeMap);
@@ -359,15 +359,12 @@ export function createGame(
 			level?: number;
 		}[],
 	};
-			if (mapId === "meadow") {
-		for (const s of MEADOW_SPAWNS) spawn(g, s.x, s.z, false, s.variant, false, s.dataId);
-	} else if (mapId === "forest") {
-		for (const s of FOREST_SPAWNS) spawn(g, s.x, s.z, false, "pink", false, s.dataId);
-		Object.assign(p, FOREST_ENTRY, { fx: 1, fz: 0 });
-	}
-	else Object.assign(p, CITY_SPAWN, { fx: 0, fz: 1 });
+	if(isField(mapId)){
+  for(const spawnPoint of LAYOUTS[mapId].spawns)spawn(g,spawnPoint.x,spawnPoint.z,false,spawnPoint.variant,false,spawnPoint.dataId);
+  if(mapId!=='meadow')Object.assign(p,MAP_ENTRY[mapId],{fx:1,fz:0});
+ }else Object.assign(p,CITY_SPAWN,{fx:0,fz:1});
 	// Field boss: present from the start, then back `respawnMinutes` after each death (see bossTimer).
-		if (mapId === "meadow" || mapId === "forest")
+		if (isField(mapId))
 		[FIELD_BOSS[mapId]].forEach((rule) => {
 			spawn(g, rule.x, rule.z, true, "pink", false, rule.dataId);
 			g.bossSpawned = true;
@@ -543,7 +540,7 @@ function reward(g: Game, e: Enemy) {
 function defeat(g: Game, e: Enemy) {
 	e.dead = true;
 	e.deathAge = 0;
-		e.respawn = e.boss ? (g.mapId === "meadow" || g.mapId === "forest" ? FIELD_BOSS[g.mapId].respawnMinutes * 60 : 1800) : 12;
+		e.respawn = e.boss ? (isField(g.mapId) ? FIELD_BOSS[g.mapId].respawnMinutes * 60 : 1800) : 12;
 	e.windup = 0;
 	cancelTelegraph(g, e);
 	e.hurt = 0;

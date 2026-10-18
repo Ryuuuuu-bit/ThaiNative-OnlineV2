@@ -333,7 +333,7 @@
           "id": "jelly_wave",
           "nameTh": "คลื่นวุ้นถล่ม",
           "shape": "cone",
-          "windup": 2.0,
+          "windup": 2,
           "radius": 6,
           "angle": 80,
           "percent": 140,
@@ -683,6 +683,663 @@
         {
           "id": "mist_tide",
           "nameTh": "วงหมอกล้อมป่า",
+          "shape": "ring",
+          "windup": 2.4,
+          "radius": 7,
+          "inner": 2.5,
+          "percent": 140,
+          "phase2Percent": 165
+        }
+      ]
+    },
+    {
+      "id": "ruin_shroom",
+      "nameTh": "เห็ดศิลา",
+      "level": 16,
+      "hp": 420,
+      "sp": 0,
+      "atk": 55,
+      "matk": 0,
+      "hardDef": 12,
+      "softDef": 8,
+      "hardMdef": 9,
+      "softMdef": 6,
+      "hit": 238,
+      "flee": 147,
+      "element": "earth",
+      "race": "plant",
+      "size": "small",
+      "realm": "forest_spirit",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 240,
+      "gold": [
+        32,
+        48
+      ],
+      "drops": [
+        {
+          "item": "mist_spore",
+          "rate": 0.7,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "red_small",
+          "rate": 0.2,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 144,
+      "behavior": {
+        "ai": "melee",
+        "speed": 1.6,
+        "aggroRange": 3,
+        "attackRange": 1.35,
+        "lunge": 4,
+        "cooldown": 1.7,
+        "windup": 0.55
+      }
+    },
+    {
+      "id": "relic_hound",
+      "nameTh": "หมาป่าซากนคร",
+      "level": 18,
+      "hp": 510,
+      "sp": 0,
+      "atk": 66,
+      "matk": 0,
+      "hardDef": 15,
+      "softDef": 9,
+      "hardMdef": 10,
+      "softMdef": 6,
+      "hit": 244,
+      "flee": 151,
+      "element": "dark",
+      "race": "brute",
+      "size": "medium",
+      "realm": "mythic_beast",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "holy"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 290,
+      "gold": [
+        36,
+        54
+      ],
+      "drops": [
+        {
+          "item": "wolf_fur",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "red_medium",
+          "rate": 0.12,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 174,
+      "behavior": {
+        "ai": "melee",
+        "speed": 3.3,
+        "aggroRange": 5.5,
+        "attackRange": 1.5,
+        "lunge": 7,
+        "cooldown": 1.3,
+        "windup": 0.4
+      }
+    },
+    {
+      "id": "relic_wisp",
+      "nameTh": "ภูตอักขระ",
+      "level": 20,
+      "hp": 480,
+      "sp": 0,
+      "atk": 0,
+      "matk": 72,
+      "hardDef": 13,
+      "softDef": 10,
+      "hardMdef": 20,
+      "softMdef": 7,
+      "hit": 250,
+      "flee": 155,
+      "element": "ghost",
+      "race": "demon",
+      "size": "small",
+      "realm": "ghost",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "holy",
+        "dark"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 340,
+      "gold": [
+        40,
+        60
+      ],
+      "drops": [
+        {
+          "item": "wisp_tear",
+          "rate": 0.55,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "blue_potion",
+          "rate": 0.15,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 204,
+      "behavior": {
+        "ai": "ranged",
+        "speed": 1.8,
+        "aggroRange": 6.5,
+        "attackRange": 6,
+        "lunge": 0,
+        "cooldown": 2.2,
+        "windup": 0.7,
+        "keepAway": 4,
+        "projectileSpeed": 6
+      }
+    },
+    {
+      "id": "ruin_guard",
+      "nameTh": "ผู้พิทักษ์เถาวัลย์",
+      "level": 21,
+      "hp": 850,
+      "sp": 0,
+      "atk": 70,
+      "matk": 0,
+      "hardDef": 32,
+      "softDef": 11,
+      "hardMdef": 14,
+      "softMdef": 7,
+      "hit": 253,
+      "flee": 157,
+      "element": "earth",
+      "race": "plant",
+      "size": "medium",
+      "realm": "forest_spirit",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "fire",
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 390,
+      "gold": [
+        42,
+        63
+      ],
+      "drops": [
+        {
+          "item": "mist_wood",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.02,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 234,
+      "behavior": {
+        "ai": "melee",
+        "speed": 1.2,
+        "aggroRange": 3,
+        "attackRange": 1.6,
+        "lunge": 3,
+        "cooldown": 2,
+        "windup": 0.75
+      }
+    },
+    {
+      "id": "relic_warden",
+      "nameTh": "ผู้เฝ้าวิหารโบราณ",
+      "level": 22,
+      "hp": 10500,
+      "sp": 0,
+      "atk": 95,
+      "matk": 0,
+      "hardDef": 36,
+      "softDef": 11,
+      "hardMdef": 27,
+      "softMdef": 8,
+      "hit": 256,
+      "flee": 159,
+      "element": "earth",
+      "race": "plant",
+      "size": "large",
+      "realm": "forest_spirit",
+      "tags": [
+        "ruins",
+        "boss"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": true,
+      "skills": [
+        "slam",
+        "sweep",
+        "charge",
+        "spit",
+        "summon"
+      ],
+      "exp": 4200,
+      "gold": [
+        880,
+        1430
+      ],
+      "drops": [
+        {
+          "item": "weapon_stone",
+          "rate": 0.5,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.5,
+          "min": 1,
+          "max": 2
+        }
+      ],
+      "jobExp": 2520,
+      "phase2": {
+        "atk": 109,
+        "element": "dark"
+      },
+      "attacks": {
+        "slam": {
+          "percent": 112,
+          "phase2Percent": 133
+        },
+        "sweep": {
+          "percent": 95,
+          "phase2Percent": 113
+        },
+        "charge": {
+          "percent": 103,
+          "phase2Percent": 125
+        },
+        "spit": {
+          "percent": 61,
+          "phase2Percent": 75
+        }
+      },
+      "telegraphs": [
+        {
+          "id": "relic_warden_seal",
+          "nameTh": "ตราประทับวิหาร",
+          "shape": "circle",
+          "windup": 1.95,
+          "radius": 3,
+          "percent": 150,
+          "phase2Percent": 175
+        },
+        {
+          "id": "relic_warden_ring",
+          "nameTh": "วงอักขระผนึก",
+          "shape": "ring",
+          "windup": 2.4,
+          "radius": 7,
+          "inner": 2.5,
+          "percent": 140,
+          "phase2Percent": 165
+        }
+      ]
+    },
+    {
+      "id": "crag_slime",
+      "nameTh": "วุ้นแร่ผา",
+      "level": 23,
+      "hp": 650,
+      "sp": 0,
+      "atk": 78,
+      "matk": 0,
+      "hardDef": 11,
+      "softDef": 12,
+      "hardMdef": 10,
+      "softMdef": 8,
+      "hit": 259,
+      "flee": 161,
+      "element": "earth",
+      "race": "formless",
+      "size": "small",
+      "realm": "mythic_beast",
+      "tags": [
+        "canyon"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 420,
+      "gold": [
+        46,
+        69
+      ],
+      "drops": [
+        {
+          "item": "armour_stone",
+          "rate": 0.025,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_medium",
+          "rate": 0.15,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 252
+    },
+    {
+      "id": "crag_wolf",
+      "nameTh": "หมาป่าสันผา",
+      "level": 25,
+      "hp": 820,
+      "sp": 0,
+      "atk": 94,
+      "matk": 0,
+      "hardDef": 18,
+      "softDef": 13,
+      "hardMdef": 13,
+      "softMdef": 9,
+      "hit": 265,
+      "flee": 165,
+      "element": "dark",
+      "race": "brute",
+      "size": "medium",
+      "realm": "mythic_beast",
+      "tags": [
+        "canyon"
+      ],
+      "weakness": [
+        "holy"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 480,
+      "gold": [
+        50,
+        75
+      ],
+      "drops": [
+        {
+          "item": "wolf_fur",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "red_medium",
+          "rate": 0.12,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 288,
+      "behavior": {
+        "ai": "melee",
+        "speed": 3.3,
+        "aggroRange": 5.5,
+        "attackRange": 1.5,
+        "lunge": 7,
+        "cooldown": 1.3,
+        "windup": 0.4
+      }
+    },
+    {
+      "id": "dust_wisp",
+      "nameTh": "ภูตฝุ่นอำพัน",
+      "level": 27,
+      "hp": 720,
+      "sp": 0,
+      "atk": 0,
+      "matk": 106,
+      "hardDef": 15,
+      "softDef": 14,
+      "hardMdef": 22,
+      "softMdef": 9,
+      "hit": 271,
+      "flee": 169,
+      "element": "ghost",
+      "race": "demon",
+      "size": "small",
+      "realm": "ghost",
+      "tags": [
+        "canyon"
+      ],
+      "weakness": [
+        "holy",
+        "dark"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 540,
+      "gold": [
+        54,
+        81
+      ],
+      "drops": [
+        {
+          "item": "wisp_tear",
+          "rate": 0.55,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "blue_potion",
+          "rate": 0.15,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 324,
+      "behavior": {
+        "ai": "ranged",
+        "speed": 1.8,
+        "aggroRange": 6.5,
+        "attackRange": 6,
+        "lunge": 0,
+        "cooldown": 2.2,
+        "windup": 0.7,
+        "keepAway": 4,
+        "projectileSpeed": 6
+      }
+    },
+    {
+      "id": "crag_guard",
+      "nameTh": "ผู้พิทักษ์รากผา",
+      "level": 29,
+      "hp": 1400,
+      "sp": 0,
+      "atk": 100,
+      "matk": 0,
+      "hardDef": 35,
+      "softDef": 15,
+      "hardMdef": 17,
+      "softMdef": 10,
+      "hit": 277,
+      "flee": 173,
+      "element": "earth",
+      "race": "plant",
+      "size": "medium",
+      "realm": "forest_spirit",
+      "tags": [
+        "canyon"
+      ],
+      "weakness": [
+        "fire",
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 650,
+      "gold": [
+        58,
+        87
+      ],
+      "drops": [
+        {
+          "item": "mist_wood",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.02,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 390,
+      "behavior": {
+        "ai": "melee",
+        "speed": 1.2,
+        "aggroRange": 3,
+        "attackRange": 1.6,
+        "lunge": 3,
+        "cooldown": 2,
+        "windup": 0.75
+      }
+    },
+    {
+      "id": "crag_titan",
+      "nameTh": "อสูรยอดผา",
+      "level": 30,
+      "hp": 18000,
+      "sp": 0,
+      "atk": 130,
+      "matk": 0,
+      "hardDef": 39,
+      "softDef": 15,
+      "hardMdef": 29,
+      "softMdef": 11,
+      "hit": 280,
+      "flee": 175,
+      "element": "earth",
+      "race": "plant",
+      "size": "large",
+      "realm": "forest_spirit",
+      "tags": [
+        "canyon",
+        "boss"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": true,
+      "skills": [
+        "slam",
+        "sweep",
+        "charge",
+        "spit",
+        "summon"
+      ],
+      "exp": 6800,
+      "gold": [
+        1200,
+        1950
+      ],
+      "drops": [
+        {
+          "item": "weapon_stone",
+          "rate": 0.5,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.5,
+          "min": 1,
+          "max": 2
+        }
+      ],
+      "jobExp": 4080,
+      "phase2": {
+        "atk": 150,
+        "element": "dark"
+      },
+      "attacks": {
+        "slam": {
+          "percent": 112,
+          "phase2Percent": 133
+        },
+        "sweep": {
+          "percent": 95,
+          "phase2Percent": 113
+        },
+        "charge": {
+          "percent": 103,
+          "phase2Percent": 125
+        },
+        "spit": {
+          "percent": 61,
+          "phase2Percent": 75
+        }
+      },
+      "telegraphs": [
+        {
+          "id": "crag_titan_fall",
+          "nameTh": "ศิลาถล่ม",
+          "shape": "circle",
+          "windup": 1.95,
+          "radius": 3,
+          "percent": 150,
+          "phase2Percent": 175
+        },
+        {
+          "id": "crag_titan_ring",
+          "nameTh": "คลื่นหินล้อมร่าง",
           "shape": "ring",
           "windup": 2.4,
           "radius": 7,

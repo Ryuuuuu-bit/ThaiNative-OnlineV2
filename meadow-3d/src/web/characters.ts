@@ -14,7 +14,7 @@ window.tnBoot.stage(0);window.tnBoot.stage(1);window.tnBoot.stage(3);
 let characters:any[]=[],selectedId='',pickId='',deleteId='',currentJob='swordsman';
 const needsJob=(c:any)=>['villager','needs_job'].includes(c.jobId);
 const jobName=(id:string)=>jobsData.jobs.find(j=>j.id===id)?.nameTh||'นักดาบ';
-const MAP_TH:Record<string,string>={city_plaza:'นครที่ถูกลืมเลือน',meadow:'ทุ่งวุ้นจิ๋ว',forest:'ป่าหมอก'};
+const MAP_TH:Record<string,string>={city_plaza:'นครที่ถูกลืมเลือน',meadow:'ทุ่งวุ้นจิ๋ว',forest:'ป่าหมอก',ruins:'ซากนครโบราณ',canyon:'หุบเขาหิน'};
 const fmt=(n:number)=>Math.round(n).toLocaleString('en-US');
 const ago=(date:string)=>{const m=Math.max(0,Math.round((Date.now()-new Date(date).getTime())/60000));return m<1?'เมื่อสักครู่':m<60?`${m} นาทีที่แล้ว`:m<1440?`${Math.round(m/60)} ชั่วโมงที่แล้ว`:new Intl.DateTimeFormat('th-TH',{dateStyle:'medium'}).format(new Date(date));};
 

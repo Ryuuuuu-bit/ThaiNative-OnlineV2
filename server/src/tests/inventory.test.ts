@@ -16,6 +16,19 @@ async function fixture() {
 		store.inventoryOp(a.id, c.id, req, op, ctx);
 	return { store, a, c, run };
 }
+test('ring destination persists and replayed equip requests cannot move or duplicate a ring',async()=>{
+ const {store,a,c,run}=await fixture();await run({op:'admin',loot:[{template:'jade_ring',qty:3},{template:'sky_amulet',qty:1}]});
+ const initial=await store.inventory(a.id,c.id),rings=initial.inventory.items.filter(i=>i.template==='jade_ring'),amulet=initial.inventory.items.find(i=>i.template==='sky_amulet')!;
+ await run({op:'equip',id:rings[0].id});const req=randomUUID();await run({op:'equip',id:rings[1].id,slot:'ring2'},req);
+ const replay=await run({op:'equip',id:rings[1].id,slot:'ring2'},req);assert.equal(replay.duplicate,true);
+ await run({op:'equip',id:amulet.id});await run({op:'equip',id:rings[2].id,slot:'ring2'});
+ const saved=await store.inventory(a.id,c.id);
+ assert.equal(saved.inventory.items.find(i=>i.id===rings[0].id)!.slot,'accessory1');
+ assert.equal(saved.inventory.items.find(i=>i.id===rings[1].id)!.location,'bag');
+ assert.equal(saved.inventory.items.find(i=>i.id===rings[2].id)!.slot,'ring2');
+ assert.equal(saved.inventory.items.find(i=>i.id===amulet.id)!.slot,'accessory2');
+ assert.equal(saved.inventory.items.filter(i=>i.template==='jade_ring').length,3);assert.ok((await store.integrity()).ok);
+});
 test("100 identical concurrent sells commit once; stale progress cannot overwrite gold", async () => {
 	const { store, a, c, run } = await fixture();
 	await run({ op: "admin", loot: [{ template: "jelly_slime", qty: 20 }] });

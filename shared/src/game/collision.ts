@@ -1,4 +1,4 @@
-import { cityWalkable, forestWalkable, meadowWalkable, LAYOUTS, inWater, FIELD_BOSS, type MapId } from "./maps.js";
+import { cityWalkable, forestWalkable, meadowWalkable, ruinsWalkable, canyonWalkable, LAYOUTS, inWater, FIELD_BOSS, type MapId } from "./maps.js";
 export interface Vec {
 	mapId?: MapId;
 	x: number;
@@ -14,6 +14,8 @@ export function water(x: number, z: number) {
 export function walkable(x: number, z: number, r = 0.3, mapId: MapId = "meadow") {
 	if (mapId === "city_plaza") return cityWalkable(x, z, r);
 	if (mapId === "forest") return forestWalkable(x, z, r);
+ if(mapId==="ruins")return ruinsWalkable(x,z,r);
+ if(mapId==="canyon")return canyonWalkable(x,z,r);
 	return meadowWalkable(x, z, r);
 }
 export function moveSliding(e: Vec, x: number, z: number) {

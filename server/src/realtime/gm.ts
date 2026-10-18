@@ -31,8 +31,8 @@ export interface GmContext<P extends GmPeer> {
 
 /** Same reply for players and for unknown commands, so GM commands are not discoverable. */
 export const UNKNOWN_COMMAND = "ไม่รู้จักคำสั่งนี้ · พิมพ์ /help ดูคำสั่ง";
-const MAP_LABEL: Record<MapId, string> = { city_plaza: "เมือง", meadow: "ทุ่งวุ้นจิ๋ว", forest: "ป่าหมอก" };
-const MAP_SPAWN: Record<MapId, { x: number; z: number }> = { city_plaza: CITY_SPAWN, meadow: MEADOW_ENTRY, forest: FOREST_ENTRY };
+const MAP_LABEL: Record<MapId, string> = { city_plaza: "เมือง", meadow: "ทุ่งวุ้นจิ๋ว", forest: "ป่าหมอก",ruins:"ซากนครโบราณ",canyon:"หุบเขาหิน" };
+const MAP_SPAWN: Record<MapId, { x: number; z: number }> = { city_plaza: CITY_SPAWN, meadow: MEADOW_ENTRY, forest: FOREST_ENTRY,ruins:{x:-58,z:0},canyon:{x:-58,z:0} };
 
 const UID = /^\d{9}$/;
 const int = (min: number, max: number) => z.coerce.number().int().min(min).max(max);
@@ -41,13 +41,13 @@ const coord = z.coerce.number().finite().min(-500).max(500);
 const who = z.string().min(1).max(24);
 const uid = z.string().regex(UID, "UID ต้องเป็นตัวเลข 9 หลัก");
 const id = z.string().regex(/^[a-z0-9_]{1,40}$/, "รหัสไม่ถูกต้อง");
-const mapId = z.enum(["city_plaza", "meadow", "forest"]);
+const mapId = z.enum(["city_plaza", "meadow", "forest", "ruins", "canyon"]);
 const onOff = z.enum(["on", "off"]);
 /** One schema per command: a union of the accepted argument lists. */
 const shapes = <T extends [z.ZodTypeAny, ...z.ZodTypeAny[]][]>(...lists: T) => z.union(lists.map(l => z.tuple(l as any)) as any);
 const COMMANDS = {
 	help: { usage: "/gm help", text: "รายการคำสั่ง GM", args: shapes([] as any) },
-	tp: { usage: "/gm tp <x> <z> | /gm tp <city_plaza|meadow|forest>", text: "วาร์ปไปพิกัดในแผนที่นี้ หรือไปแผนที่อื่น", args: shapes([coord, coord], [mapId]) },
+	tp: { usage: "/gm tp <x> <z> | /gm tp <city_plaza|meadow|forest|ruins|canyon>", text: "วาร์ปไปพิกัดในแผนที่นี้ หรือไปแผนที่อื่น", args: shapes([coord, coord], [mapId]) },
 	goto: { usage: "/gm goto <uid|ชื่อ>", text: "วาร์ปไปหาผู้เล่น", args: shapes([who]) },
 	summon: { usage: "/gm summon <uid|ชื่อ>", text: "ดึงผู้เล่นมาหาเรา", args: shapes([who]) },
 	heal: { usage: "/gm heal [uid|ชื่อ]", text: "เติม HP/SP เต็ม (ฟื้นถ้าตาย)", args: shapes([] as any, [who]) },
