@@ -60,8 +60,7 @@
 	#levelup .lu-hint{display:none}
 }
 @media(prefers-reduced-motion:reduce){
-	/* No movement: the banner simply appears, and the hero gets a still glow instead of the spiral. */
+	/* The banner simply appears. The firefly spiral still plays: it is brief, soft and the level-up's main cue. */
 	#levelup.play,#levelup.play *{animation:none!important;opacity:1!important;transform:none!important}
 	#levelup.play{transform:translateX(-50%)!important}
-	#levelup-fx .orb{transition:opacity .4s}
 }

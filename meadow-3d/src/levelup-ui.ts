@@ -19,7 +19,6 @@ export function mountLevelUp(options: { hero: HeroScreen; stats: () => Stats }) 
 	banner.innerHTML = '<div class="lu-eyebrow"></div><div class="lu-num"></div><p class="lu-sub" hidden></p><div class="lu-gains"></div><div class="lu-also" hidden></div><p class="lu-hint"></p>';
 	ui.append(fx, banner);
 	const $ = (s: string) => banner.querySelector<HTMLElement>(s)!;
-	const reduced = matchMedia('(prefers-reduced-motion:reduce)');
 
 	let raf = 0, hideTimer = 0, flushTimer = 0;
 	let pending: { level?: { level: number; granted: number; before: Stats }; job?: { jobLevel: number; granted: number } } = {};
@@ -28,18 +27,6 @@ export function mountLevelUp(options: { hero: HeroScreen; stats: () => Stats }) 
 		cancelAnimationFrame(raf);
 		fx.replaceChildren();
 		if (document.hidden) return;
-		if (reduced.matches) {
-			const at = options.hero();
-			if (!at) return;
-			const orb = document.createElement('i');
-			orb.className = 'orb';
-			orb.style.transform = `translate(${at.feet.x}px,${at.head.y - 26}px)`;
-			fx.append(orb);
-			requestAnimationFrame(() => { orb.style.opacity = '1'; });
-			setTimeout(() => { orb.style.opacity = '0'; }, 1600);
-			setTimeout(() => orb.remove(), 2100);
-			return;
-		}
 		const orb = document.createElement('i'), burst = document.createElement('i');
 		orb.className = 'orb';
 		burst.className = 'burst';
