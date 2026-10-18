@@ -474,6 +474,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 		}
         if(questBusy.has(peer.id)){(peer.deferred??=[]).push(message);return;}
         const player=g.players.get(peer.id)!;
+        // Delayed movement belongs to its source map, even if its coordinates are valid here.
+        if((message.t==='move'||message.t==='steer')&&message.mapId!==undefined&&message.mapId!==g.mapId)return;
         if(message.t==='titleEquip'){
          if(peer.titleSaving){send(peer.ws,{t:'titleError',text:'กำลังบันทึกฉายา กรุณารอสักครู่'});return;}
          const t=titleDefinition(message.id);

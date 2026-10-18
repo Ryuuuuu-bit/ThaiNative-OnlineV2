@@ -16,6 +16,7 @@ export class GameSocket {
 	private moveKey = "";
 	private lastMove = 0;
 	private pending: any;
+	private movementMap: string | undefined;
 	private pings: number[] = [];
 	private reconnectTimer = 0;
 	private generation = 0;
@@ -87,6 +88,10 @@ export class GameSocket {
 					(message.reason === "opened elsewhere"||message.reason === "เข้าสู่ระบบจากที่อื่น") ? "opened elsewhere" : "kicked",
 				);
 			}
+			if (message.t === 'snap' && message.mapId !== this.movementMap) {
+				this.clearMovement();
+				this.movementMap = message.mapId;
+			}
 			this.callbacks.message(message);
 		};
 		this.ws.onclose = (e) => {
@@ -108,9 +113,16 @@ export class GameSocket {
 		this.wantSpawn = true;
 		if (this.connected) this.send({ t: "spawnReady" });
 	}
+	clearMovement() {
+		this.pending = undefined;
+		this.moveKey = '';
+		this.lastMove = -Infinity;
+	}
 	send(message: any) {
 		if (!this.ws || this.ws.readyState !== WebSocket.OPEN) return this.seq;
+		if (message.t === 'travel' || message.t === 'revive' || message.t === 'returnCity') this.clearMovement();
 		if (message.t === "move" || message.t === "steer") {
+			message = { ...message, mapId: message.mapId ?? this.movementMap };
 			const key = JSON.stringify(message);
 			if (key === this.moveKey) return this.seq;
 			if (performance.now() - this.lastMove < 50) {

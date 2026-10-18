@@ -5,6 +5,7 @@ import { AutoSettingsSchema } from '../auto-settings.js';
 import {AutoPotionSchema} from '../auto-potion.js';
 const seq = z.number().int().nonnegative().max(2147483647),
 	point = z.number().finite().min(-10000).max(10000);
+const movementMap = z.enum(['city_plaza','meadow','forest','ruins','canyon']).optional();
 export const IntentSchema = z.discriminatedUnion("t", [
  z.object({t:z.literal('titles')}).strict(),
  z.object({t:z.literal('titleEquip'),id:z.string().regex(/^[a-z0-9_]{1,40}$/).nullable()}).strict(),
@@ -29,8 +30,8 @@ export const IntentSchema = z.discriminatedUnion("t", [
  z.object({t:z.literal('jobChange'),job:z.string().max(40)}).strict(),
  z.object({ t: z.literal("hello") }).strict(),
 	z.object({ t: z.literal("spawnReady") }).strict(),
-	z.object({ t: z.literal("move"), x: point, z: point, seq }).strict(),
-	z.object({ t: z.literal("steer"), dx: point, dz: point, seq }).strict(),
+	z.object({ t: z.literal("move"), x: point, z: point, seq, mapId: movementMap }).strict(),
+	z.object({ t: z.literal("steer"), dx: point, dz: point, seq, mapId: movementMap }).strict(),
 	z
 		.object({
 			t: z.literal("act"),

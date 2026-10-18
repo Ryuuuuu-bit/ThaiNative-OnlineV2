@@ -60,7 +60,7 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
  const npcs=()=>o.map()==='city_plaza'?[...CITY_BUILDINGS.map(b=>({x:b.talk.x,z:b.talk.z,kind:b.id,icon:b.id==='forge'?'⚒':b.id==='market'?'◈':'▣',name:b.npc})),{...HEALER,kind:'heal',icon:'✚',name:'นักบวชหมอ'},{x:jobs.angel.x,z:jobs.angel.z,kind:'angel',icon:'✧',name:'ทูตสวรรค์'},{...GATE_CAPTAIN,kind:'guard',icon:'⚑',name:'หัวหน้าทหารประตู'}]:[];
  const points=()=>[...npcs(),...LAYOUTS[o.map() as MapId].camps.map(c=>({...c,kind:'camp',icon:'△',name:'แคมป์พักฟื้น'})),...Object.entries(GATES[o.map()]).map(([kind,p])=>({...p,kind:'gate:'+kind,icon:'◇',name:'ประตู'}))];
  const coords=(p:{x:number;z:number})=>{const l=LAYOUTS[o.map() as MapId];return{x:(p.x+l.halfX)/(l.halfX*2)*160,y:(p.z+l.halfZ)/(l.halfZ*2)*132};};
- const cancel=()=>{route=[];arrival=null;};
+ const cancel=()=>{route=[];arrival=null;nextWaypoint=0;};
  const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();route=gridPath(o.player(),p.kind.startsWith('gate:')?gateApproach(p):p,o.walkable);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
  const returnCity=()=>{cancel();o.send({t:'returnCity'});};$('#return-city').onclick=returnCity;
  map.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('.map').classList.toggle('expanded');}};
@@ -72,8 +72,8 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
  clickNPC(project:(x:number,z:number,y:number)=>{x:number;y:number},x:number,y:number){const candidates=npcs().map(n=>({...n,screen:project(n.x,n.z,1.5)})).filter(n=>Math.hypot(n.screen.x-x,n.screen.y-y)<32).sort((a,b)=>Math.hypot(a.screen.x-x,a.screen.y-y)-Math.hypot(b.screen.x-x,b.screen.y-y));if(candidates[0]){navigate(candidates[0]);return true;}return false;},
  receive(m:any){if(m.t==='welcome'){saving=false;if(dirty)save();}if(m.t==='uiSettings'){if(saving){saving=false;if(signature(m.settings)!==signature(settings)){save();return;}dirty=false;}if(!dirty){confirmed=structuredClone(m.settings);settings=structuredClone(m.settings);apply();$('#hud-save').textContent='บันทึกแล้ว';}}if(m.t==='uiSettingsError'){saving=false;dirty=false;settings=structuredClone(confirmed);apply();$('#hud-save').textContent=m.text;}},
  update(game:any){const p=game.p;
- if(routeMap!==o.map()||p.dead)cancel();
- if(route.length){const point=route[0];if(Math.hypot(p.x-point.x,p.z-point.z)<.3){route.shift();nextWaypoint=0;}else if(performance.now()>nextWaypoint){o.send({t:'move',x:point.x,z:point.z});nextWaypoint=performance.now()+600;}}
+ if(routeMap!==o.map()||routeMap!==p.mapId||p.dead)cancel();
+ if(route.length){const point=route[0];if(Math.hypot(p.x-point.x,p.z-point.z)<.3){route.shift();nextWaypoint=0;}else if(performance.now()>nextWaypoint){o.send({t:'move',x:point.x,z:point.z,mapId:routeMap});nextWaypoint=performance.now()+600;}}
  else if(arrival){const kind=arrival;arrival=null;if(!kind.startsWith('gate:'))o.talk(kind);}
  $('#wallet').textContent=`${p.gold.toLocaleString('th-TH')} ทอง · ${Math.round(p.carryWeight||0)}/${Math.round(p.weightLimit||0)}`;
  $('#kills').textContent=`ปราบแล้ว ${game.kills}`;$('#level').textContent=`${p.level}`;

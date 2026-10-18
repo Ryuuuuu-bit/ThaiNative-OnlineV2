@@ -101,7 +101,7 @@ const fade=document.createElement('div');fade.id='map-loading';fade.className='o
 let failedMap:MapId|undefined,mapRetryAt=0,switchAttempts=0;
 let switching=false,lastGate=0,closedGate='',overviewOn=false;
 async function switchMap(id:MapId){
- if(switching||(failedMap===id&&performance.now()<mapRetryAt))return;switching=true;fade.textContent='กำลังเดินทาง…';fade.hidden=false;clearInput();
+ if(switching||(failedMap===id&&performance.now()<mapRetryAt))return;switching=true;qol?.cancel();net.clearMovement();fade.textContent='กำลังเดินทาง…';fade.hidden=false;clearInput();
  try{
   await renderer.prepareMap(id);activeMap=id;sound.setMap(id);$('#quest-name').textContent=MAP_INFO[id].name;resize();area.textContent=areaName(id);qol?.banner();
   markerTime=0;
@@ -128,7 +128,7 @@ function mapInteractions(){
  for(const [gate,point]of Object.entries(gates))if(Math.hypot(p.x-point.x,p.z-point.z)<3){
   const open=activeMap!=='city_plaza'||gate==='south'||gate==='east';
   if(!open)closed=gate;
-  else if(!p.dead&&!switching&&performance.now()-lastGate>1500&&Math.hypot(p.x-point.x,p.z-point.z)<1.25){lastGate=performance.now();net.send({t:'travel',gate});}
+  else if(!p.dead&&!switching&&p.mapId===activeMap&&performance.now()-lastGate>1500&&Math.hypot(p.x-point.x,p.z-point.z)<1.25){lastGate=performance.now();qol?.cancel();clearInput();net.send({t:'travel',gate});}
  }
  if(closed&&closed!==closedGate)notice('หมอกหนาเกินไป ยังผ่านไม่ได้');closedGate=closed;
 }
@@ -228,7 +228,7 @@ function loseFocus(){clearInput();}window.addEventListener('blur',loseFocus);doc
 $('#auto-hunt').addEventListener('click',toggleAuto);
 $$('[data-action]').forEach(b=>b.addEventListener('click',()=>doAction(b.dataset.action as Action)));
 function pointerRay(x:number,y:number){point=renderer.ground(x,y);}
-function pointerGround(){if(walkable(point.x,point.z,.3,activeMap)){net.send({t:'move',x:Math.round(point.x*100)/100,z:Math.round(point.z*100)/100});marker.x=point.x;marker.z=point.z;markerTime=.65;}}
+function pointerGround(){if(walkable(point.x,point.z,.3,activeMap)){net.send({t:'move',x:Math.round(point.x*100)/100,z:Math.round(point.z*100)/100,mapId:activeMap});marker.x=point.x;marker.z=point.z;markerTime=.65;}}
 renderer.canvas.addEventListener('contextmenu',e=>e.preventDefault());
 renderer.canvas.addEventListener('pointerdown',e=>{
  if(!started||paused||switching||npcDialog.open||inventoryUI.open||skillsUI.open||statsUI.open||game.p.dead||e.button!==0)return;

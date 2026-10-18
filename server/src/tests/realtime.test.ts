@@ -1,4 +1,4 @@
-import {CITY_SPAWN,CITY_RETURN,GATES,HEALER} from '@thainative/shared/maps';
+import {CITY_SPAWN,CITY_RETURN,GATES,HEALER,travelDestination,type MapId} from '@thainative/shared/maps';
 import test from "node:test";
 import assert from "node:assert/strict";
 import { once } from "node:events";
@@ -314,6 +314,32 @@ test('maps isolate rooms, persist transfers and healer cooldown, reject remote g
  assert.equal(p.dead,false);assert.equal(p.mapId,'city_plaza');assert.equal(p.x,0);assert.equal(p.z,CITY_SPAWN.z);await city.saveQueue;
  peer.ws.close();await peer.closed;const reconnect=f.open(user.cookie);await reconnect.until(m=>m.t==='welcome');reconnect.send({t:'spawnReady'});
  const snap=await reconnect.until(m=>m.t==='snap');assert.equal(snap.mapId,'city_plaza');assert.equal(snap.players.find((v:any)=>v.id===p.id).healerReadyAt,readyAt);
+});
+
+test('all eight gate directions discard source-map movement while accepting fresh destination clicks',async t=>{
+ const f=await fixture(t),user=await f.make('GateRoute'),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ let seq=0;
+ const gates:[MapId,string][]=[['city_plaza','south'],['meadow','north'],['city_plaza','east'],['forest','east'],['ruins','east'],['canyon','west'],['ruins','west'],['forest','west']];
+ for(const [mapId,gate] of gates){
+  const room=[...f.rt.rooms.values()].find(r=>r.game.players.has(user.character.id))!,p=room.game.players.get(user.character.id)!;
+  assert.equal(room.game.mapId,mapId);p.invulnerable=100;
+  const portal=(GATES[mapId] as Record<string,{x:number;z:number}>)[gate];Object.assign(p,portal);
+  const destination=travelDestination(mapId,gate,p)!;assert.ok(destination);
+  const start=peer.messages.length;
+  peer.send({t:'travel',gate});
+  peer.send({t:'move',x:0,z:0,seq:++seq,mapId});
+  peer.send({t:'steer',dx:1,dz:0,seq:++seq,mapId});
+  await peer.until(m=>peer.messages.indexOf(m)>=start&&m.t==='snap'&&m.mapId===destination.mapId&&m.ack===seq);
+  await wait(160);
+  assert.equal(p.destination,null,`${mapId}/${gate}: stale click rejected`);
+  assert.ok(Math.hypot(p.x-destination.x,p.z-destination.z)<.01,`${mapId}/${gate}: spawn must stay still`);
+  const target={x:destination.x-Math.sign(destination.x),z:destination.z-Math.sign(destination.z)};
+  peer.send({t:'move',...target,seq:++seq,mapId:destination.mapId});
+  await wait(180);
+  assert.ok(Math.hypot(p.x-destination.x,p.z-destination.z)>.1,`${mapId}/${gate}: fresh click works`);
+  peer.send({t:'auto',on:false});await wait(60);
+ }
 });
 
 test('inventory precondition failures reply to the request so the bag can recover',async t=>{
