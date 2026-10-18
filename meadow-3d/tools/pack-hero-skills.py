@@ -33,7 +33,9 @@ def anchor(im):
 import sys
 for motion,count in COUNTS.items():
  if len(sys.argv)>1 and motion not in sys.argv[1:]:continue
- source=ART/f'{motion}-source-v3.png'
+ source=ART/f'{motion}-source-v5.png'
+ if not source.exists():source=ART/f'{motion}-source-v4.png'
+ if not source.exists():source=ART/f'{motion}-source-v3.png'
  if not source.exists():source=ART/f'{motion}-source-v2.png'
  if not source.exists():source=ART/f'{motion}-source-v1.png'
  im=Image.open(source).convert('RGBA');cw=im.width/count;ch=im.height/4
@@ -55,7 +57,14 @@ for motion,count in COUNTS.items():
      pieces.append({'image':crop,'bbox':(x0,lo,x1,hi),'center':((x0+x1)/2,(lo+hi)/2)})
   for piece in pieces:
    col=min(count-1,int(piece['center'][0]/cw));row=min(3,int(piece['center'][1]/ch));groups[row*count+col].append(piece)
- if motion in list(COUNTS)[6:]:
+ isolated = motion=='blood_rage' or (motion in list(COUNTS)[6:] and source.name.endswith(('-v3.png','-v4.png','-v5.png')))
+ if isolated:
+  # Reviewed, separated figures must be extracted whole. Equal-height cuts
+  # sliced the accepted Blood Rage boots into the following direction row.
+  # Reject merged/missing figures instead of splitting connected artwork.
+  if len(parts)!=count*4 or any(len(group)!=1 for group in groups):
+   raise ValueError(f'{motion}: isolated source needs exactly {count*4} complete figures')
+ if motion in list(COUNTS)[6:] and not isolated:
   # Equal-cell sources can contain connected glow across cells. Preserve each
   # supplied cell; report boundary alpha instead of guessing a missing figure.
   groups=[]
@@ -81,6 +90,13 @@ for motion,count in COUNTS.items():
   for col,index in enumerate([3,4,22]):
    crop=repairs.crop((round(col*repairs.width/3),0,round((col+1)*repairs.width/3),repairs.height));crop=crop.crop(crop.getbbox())
    oldheight=frames[index].height;crop=crop.resize((round(crop.width*oldheight/crop.height),oldheight),Image.Resampling.LANCZOS);frames[index]=crop
+ if motion=='blade_cyclone' and source.name=='blade_cyclone-source-v3.png':
+  # Whole generated poses, ordered by facing: S, SW, W, NW, N, NE, E, SE.
+  # Each direction is a phase of the same full revolution; no mirrored,
+  # warped or synthesized limbs, and no trail trimming.
+  turn=[28,8,9,10,11,17,1,0]
+  order=[turn[(phase+i)%8] for phase in [7,1,5,3] for i in range(8)]
+  frames=[frames[i] for i in order];bounds=[bounds[i] for i in order]
  if motion=='earth_break':
   crop=Image.open(ART/'earth-break-nw-repair-v1.png').convert('RGBA');crop=crop.crop(crop.getbbox());target=frames[31].height
   crop=crop.resize((round(crop.width*target/crop.height),target),Image.Resampling.LANCZOS);frames[31]=crop
@@ -123,7 +139,7 @@ for motion,count in COUNTS.items():
    crop=oldim.crop((row*384,0,(row+1)*384,256)) if old=='idle' else oldim.crop((3*384,row*256,4*384,(row+1)*256))
    thumb=crop.resize((144,96),Image.Resampling.LANCZOS);sheet.paste(thumb,(col*144,strip*116+20),thumb)
  name=f'hero-skill-{motion}-v1';path=ART/(name+'.png');safe_save(atlas,path,optimize=True)
- factor=min(1,(1664 if motion in ('bulwark','rally_roar','blade_cyclone','leap_strike') else 2048)/atlas.width);size=tuple(max(4,round(n*factor/4)*4) for n in atlas.size)
+ factor=min(1,(1792 if motion in ('blood_rage','shield_bash') else 1664 if motion in ('bulwark','rally_roar','blade_cyclone','leap_strike') else 2048)/atlas.width);size=tuple(max(4,round(n*factor/4)*4) for n in atlas.size)
  gpu=atlas.resize(size,Image.Resampling.LANCZOS);stage=ART/(name+'-packed.png');safe_save(gpu,stage)
  webp=OUT/(name+'.webp');ktx=OUT/(name+'.ktx2')
  if motion in list(COUNTS)[6:]:subprocess.run([sys.executable,str(ROOT/'tools/prepare-textures.py'),'--hero-skill',motion],check=True)
