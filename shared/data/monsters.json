@@ -645,6 +645,12 @@
           "rate": 0.1,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "card_mist_warden",
+          "rate": 0.005,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 1200,
@@ -727,7 +733,7 @@
       ],
       "drops": [
         {
-          "item": "mist_spore",
+          "item": "stone_spore",
           "rate": 0.7,
           "min": 1,
           "max": 2
@@ -785,7 +791,7 @@
       ],
       "drops": [
         {
-          "item": "wolf_fur",
+          "item": "relic_fang",
           "rate": 0.6,
           "min": 1,
           "max": 2
@@ -844,7 +850,7 @@
       ],
       "drops": [
         {
-          "item": "wisp_tear",
+          "item": "rune_shard",
           "rate": 0.55,
           "min": 1,
           "max": 1
@@ -905,7 +911,7 @@
       ],
       "drops": [
         {
-          "item": "mist_wood",
+          "item": "ancient_vine",
           "rate": 0.6,
           "min": 1,
           "max": 2
@@ -968,6 +974,12 @@
       ],
       "drops": [
         {
+          "item": "temple_seal",
+          "rate": 1,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "weapon_stone",
           "rate": 0.15,
           "min": 1,
@@ -978,6 +990,12 @@
           "rate": 0.15,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "card_relic_warden",
+          "rate": 0.005,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 2520,
@@ -1060,6 +1078,12 @@
       ],
       "drops": [
         {
+          "item": "ore_slime",
+          "rate": 0.7,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "armour_stone",
           "rate": 0.025,
           "min": 1,
@@ -1109,7 +1133,7 @@
       ],
       "drops": [
         {
-          "item": "wolf_fur",
+          "item": "crag_fur",
           "rate": 0.6,
           "min": 1,
           "max": 2
@@ -1168,7 +1192,7 @@
       ],
       "drops": [
         {
-          "item": "wisp_tear",
+          "item": "amber_dust",
           "rate": 0.55,
           "min": 1,
           "max": 1
@@ -1229,7 +1253,7 @@
       ],
       "drops": [
         {
-          "item": "mist_wood",
+          "item": "crag_root",
           "rate": 0.6,
           "min": 1,
           "max": 2
@@ -1292,6 +1316,12 @@
       ],
       "drops": [
         {
+          "item": "titan_core",
+          "rate": 1,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "weapon_stone",
           "rate": 0.15,
           "min": 1,
@@ -1302,6 +1332,12 @@
           "rate": 0.15,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "card_crag_titan",
+          "rate": 0.005,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 4080,
