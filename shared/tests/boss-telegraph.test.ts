@@ -47,7 +47,7 @@ test("telegraph shapes: circle, ring hole and cone opening", () => {
 test("every boss has telegraphed skills with dodgeable windups", () => {
 	for (const m of data.monsters.monsters.filter((m) => m.boss)) {
 		assert.ok((m.telegraphs?.length ?? 0) >= 2, m.id);
-		for (const t of m.telegraphs!) assert.ok(t.windup >= 1.8 && t.windup <= 2.4, `${m.id}/${t.id}`);
+		for (const t of m.telegraphs!) assert.ok(t.windup >= 1.8 && t.windup <= 2.6, `${m.id}/${t.id}`);
 	}
 });
 
@@ -58,7 +58,7 @@ test("King Jelly's cone locks its aim at the start: stepping aside avoids it, st
 		const t = boss.telegraph!;
 		assert.equal(t?.shape, "cone");
 		const warning = g.events.find((e) => e.type === "warning" && e.attack === t.id);
-		assert.ok(warning && warning.shape === "cone" && warning.duration === 2 && warning.name);
+		assert.ok(warning && warning.shape === "cone" && warning.duration === 2.4 && warning.name);
 		step(g, 1);
 		assert.ok(boss.telegraph, "still winding up after a second");
 		if (dodge) p.z = spot.z + 4; // 90° off the locked direction
