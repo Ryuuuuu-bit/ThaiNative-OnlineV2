@@ -12,7 +12,7 @@ import {loadField2D} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
 import {project2D,unproject2D} from './game-2d-projection';
 import {MOTIONS,motionFor,motionFrame,atlasCell,facingFor} from './sprite-animation';
-import {SKILL_MOTIONS,BORROWED_MOTION,SKILL_DURATION,SKILL_FRAMES,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
+import {SKILL_MOTIONS,BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
 import {monsterSpecies,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
 import {huntingCell,HUNTING_ASSET_ROOT} from './hunting-monster-animation';
 import {HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
@@ -39,7 +39,7 @@ export class GameCanvas2D{
  resize(){this.width=innerWidth;this.height=innerHeight;const dpr=this.highQuality?Math.min(devicePixelRatio,1.5):1;this.dpr=dpr;this.canvas.width=Math.round(this.width*dpr);this.canvas.height=Math.round(this.height*dpr);this.canvas.style.width='100%';this.canvas.style.height='100%';this.ctx.setTransform(dpr,0,0,dpr,0,0);}
  async init(map:MapId){
   this.monsterManifest=await this.assets.json('/assets/monsters-painted/manifest.json');
-  await Promise.all([...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...SKILL_MOTIONS.filter(m=>!BORROWED_MOTION[m]).map(m=>`/assets/hero-skills/hero-skill-${m}-v1.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
+  await Promise.all([...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-v1.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
   await this.prepareMap(map);
  }
  async prepareMap(id:MapId){
@@ -66,7 +66,7 @@ export class GameCanvas2D{
  ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height*.55-this.shakeOffset.y)/this.scale+this.focus.y);}
  pickEnemy(x:number,y:number){return [...this.hits].reverse().find(p=>x>=p.left&&x<=p.right&&y>=p.top&&y<=p.bottom)?.id??null;}
  event(e:any){
-  if(e.type==='skill'&&isSkillMotion(e.skillId)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=BORROWED_MOTION[e.skillId]??e.skillId;s.elapsed=0;this.heroStates.set(e.playerId,s);}
+  if(e.type==='skill'&&isSkillMotion(e.skillId)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
   if(e.type==='warningCancel'){this.effects=this.effects.filter(v=>v.id!==e.id||v.type!=='warning');return;}
   if(['warning','bossBlast','slash','skill','skillImpact','heal','level','dash','impact','slam','hit','kill','meteor'].includes(e.type))this.effects.push({...e,age:0,life:e.duration??(e.type==='level'?.9:.45)});
   if(this.effects.length>140)this.effects.splice(0,this.effects.length-140);
