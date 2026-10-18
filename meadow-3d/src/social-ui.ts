@@ -9,7 +9,7 @@ interface PartyState { id: string; leader: string; members: Member[] }
 const CHANNEL_LABEL = { map: 'ทั่วไป', party: 'ปาร์ตี้', whisper: 'กระซิบ', system: 'ระบบ', loot: 'รางวัล' } as const;
 const TABS = [['all', 'ทั้งหมด'], ['chat', 'แชท'], ['party', 'ปาร์ตี้'], ['loot', 'รางวัล'], ['system', 'ระบบ']] as const;
 type Tab = typeof TABS[number][0];
-const MAP_LABEL: Record<string, string> = { city_plaza: 'เมือง', meadow: 'ทุ่งวุ้นจิ๋ว', forest: 'ป่าหมอก' };
+const MAP_LABEL: Record<string, string> = { city_plaza: 'เมือง', meadow: 'ทุ่งวุ้นจิ๋ว', forest:'ป่าหมอก',ruins:'ซากนครโบราณ',canyon:'หุบเขาหิน' };
 const HELP = 'คำสั่ง: /p ข้อความ (ปาร์ตี้) · /w ชื่อ ข้อความ (กระซิบ) · /r ข้อความ (ตอบกลับ) · /invite ชื่อ · /leave · /kick ชื่อ · /lead ชื่อ';
 const MAX_LINES = 80;
 

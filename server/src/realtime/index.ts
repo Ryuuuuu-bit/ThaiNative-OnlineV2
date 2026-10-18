@@ -381,7 +381,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          if(e.type==='kill'||e.type==='level')changed.add(id);
         }
         for(const id of changed){const p=room.game.players.get(id)!,peer=room.peers.get(id);if(peer)titleState(peer,p,true);else if(earnTitles(p).length)void save(room,id);}
-		for (const e of list) if (e.type === "kill" && e.boss && (room.game.mapId === "meadow" || room.game.mapId === "forest")) bossDue.set(room.game.mapId, Date.now() + BOSS_RESPAWN_MS(room.game.mapId));
+		for (const e of list) if (e.type === "kill" && e.boss && isField(room.game.mapId)) bossDue.set(room.game.mapId, Date.now() + BOSS_RESPAWN_MS(room.game.mapId));
 		for (const e of list)
 			if (e.type === "kill" && e.dataId && e.ownerId) {
 				const ids = social.partyMembers(String(e.ownerId));

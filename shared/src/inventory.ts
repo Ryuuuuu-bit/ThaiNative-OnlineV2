@@ -45,6 +45,8 @@ export interface InventoryOp {
 		| "admin";
 	template?: string;
 	id?: string;
+	/** Physical destination; item templates keep accessory1 for either ring slot. */
+	slot?: string;
 	qty?: number;
 	ids?: string[];
 	shop?: string;
@@ -100,6 +102,14 @@ export function storageSlots(inv: Inventory, data: GameData) {
 export const storageStackId = (template: string) => "stack:storage:" + template;
 export function equipped(inv: Inventory) {
 	return inv.items.filter((i) => i.location === "equip").map((i) => i.template);
+}
+export function equipmentSlots(templateSlot: string | null): string[] {
+	return templateSlot === 'accessory1' ? ['accessory1', 'ring2'] : templateSlot ? [templateSlot] : [];
+}
+export function equipmentTarget(inv: Inventory, templateSlot: string | null, requested?: string): string {
+	const slots = equipmentSlots(templateSlot);
+	if (!slots.length || (requested !== undefined && !slots.includes(requested))) throw Error('ช่องอุปกรณ์ไม่ตรงชนิดไอเทม');
+	return requested ?? slots.find(slot => !inv.items.some(i => i.location === 'equip' && i.slot === slot)) ?? slots[0];
 }
 /** The strongest bag potion with this effect ("hp" heals, "sp" restores MP). */
 export function bestPotion(inv: Inventory, data: GameData, effect: "hp" | "sp") {
@@ -291,8 +301,9 @@ export function applyInventory(
 			t = template(i.template);
 		if (i.location !== "bag" || !t.slot || t.level > profile.level)
 			throw Error("ระดับไม่พอ หรือใส่ไม่ได้");
+		const targetSlot = equipmentTarget(inv, t.slot, op.slot);
 		const old = inv.items.find(
-			(i) => i.location === "equip" && i.slot === t.slot,
+			(i) => i.location === "equip" && i.slot === targetSlot,
 		);
 		if (old) {
 			old.location = "bag";
@@ -300,7 +311,7 @@ export function applyInventory(
 			log("unequip", old, 1);
 		}
 		i.location = "equip";
-		i.slot = t.slot;
+		i.slot = targetSlot;
 		i.bound ||= t.bind === "equip";
 		deriveStats({ ...profile, equipment: equipped(inv) }, data);
 		log("equip", i, 1);

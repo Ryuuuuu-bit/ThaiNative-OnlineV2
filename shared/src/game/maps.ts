@@ -1,6 +1,16 @@
-export type MapId = 'city_plaza' | 'meadow' | 'forest';
+import {DECOR,GARDEN_TREES,FORTIFICATION_SOLIDS} from './city-details.js';
+export * from './city-details.js';
+export type FieldMapId = 'meadow' | 'forest' | 'ruins' | 'canyon';
+export type MapId = 'city_plaza' | FieldMapId;
 /** Hunting maps (combat, monsters, auto-hunt). */
-export const isField = (m: MapId | undefined) => m === 'meadow' || m === 'forest';
+export const isField = (m: MapId | undefined): m is FieldMapId => m === 'meadow' || m === 'forest' || m === 'ruins' || m === 'canyon';
+export const MAP_INFO:Record<MapId,{name:string;levels:string;hint:string}>={
+ city_plaza:{name:'นครที่ถูกลืมเลือน',levels:'เขตปลอดภัย',hint:'เตรียมเสบียงก่อนออกเดินทาง'},
+ meadow:{name:'ทุ่งวุ้นจิ๋ว',levels:'1–5',hint:'เริ่มจากวุ้นจิ๋วใกล้ทางเข้า แล้วฝึกกับวุ้นสีอื่น'},
+ forest:{name:'ป่าหมอก',levels:'6–15',hint:'ประตูตะวันออกเชื่อมซากนครโบราณ · ระวังภูตยิงจากระยะไกล'},
+ ruins:{name:'ซากนครโบราณ',levels:'16–22',hint:'ทางตะวันตกกลับป่าหมอก · ทางตะวันออกสู่หุบเขาหิน'},
+ canyon:{name:'หุบเขาหิน',levels:'23–30',hint:'ทางตะวันตกกลับซากนคร · เตรียมเสบียงก่อนเข้าลานบอสทางตะวันออก'},
+};
 
 /*
  * World layouts, in metres. The hero is about 1.8 m tall; the camera shows ~27 m vertically.
@@ -89,8 +99,8 @@ export const CITY_SPAWN = { x: 0, z: 14 };
 export const CITY_RETURN = { x: 0, z: 44 };
 export const CITY_EAST_RETURN = { x: 44, z: 0 };
 export const CITY_TOWER = { half: 2 };
-export const CITY_FOUNTAIN = { x: -14, z: 14, r: 2.5 };
-export const HEALER = { x: -14, z: 10 };
+export const CITY_FOUNTAIN = { x: -16, z: 27, r: 2.5 };
+export const HEALER = { x: -16, z: 22.5 };
 export const GATE_CAPTAIN = { x: 5, z: 40 };
 export const CITY_BUILDINGS = [
 	{ id: 'storage', name: 'คลังเก็บของ', npc: 'คนเฝ้าคลัง', x: 0, z: -30, w: 9, d: 6, talk: { x: 0, z: -25 } },
@@ -100,7 +110,7 @@ export const CITY_BUILDINGS = [
 /** Decorative houses (solid): behind the main roads, clear of every NPC and road. */
 export const CITY_HOUSES: { x: number; z: number; w: number; d: number }[] = [
 	[-32, -35, 6, 5], [-18, -38, 5, 4], [18, -38, 5, 4], [32, -35, 6, 5], [-37, 32, 5, 6], [37, 32, 5, 6],
-	[-36, -18, 6, 5], [36, -18, 6, 5], [-22, 34, 5, 5], [22, 34, 5, 5], [-36, 16, 5, 5], [36, 16, 5, 5],
+	[-36, -18, 6, 5], [36, -18, 6, 5], [-28, 40, 5, 5], [22, 34, 5, 5], [-36, 16, 5, 5], [36, 16, 5, 5],
 ].map(([x, z, w, d]) => ({ x, z, w, d }));
 const ring = (radius: number, every: number) => Array.from({ length: 8 }, (_, i) => (i + 0.5) * Math.PI / 4).filter((_, i) => i % every === 0).map(a => ({ x: Math.cos(a) * radius, z: Math.sin(a) * radius }));
 /** Planter trees (solid pots, r 0.8): eight on the plaza ring between the roads, eight in the quarters. */
@@ -115,9 +125,9 @@ export const CITY_ART_SOLIDS: ({ kind: 'box'; x: number; z: number; w: number; d
 	{kind:'box',x:44.5,z:-7,w:1.8,d:1.8,label:'guard-east'},
 	{kind:'circle',x:-24,z:-27,r:1.1,label:'well-north'},
 	{kind:'circle',x:27,z:24,r:1.1,label:'well-south'},
-	{kind:'box',x:-26,z:24,w:3.2,d:1.6,label:'cart-west'},
+	{kind:'box',x:-39,z:9,w:3.2,d:1.6,label:'cart-west'},
 	{kind:'box',x:10,z:-22,w:3.2,d:1.6,label:'cart-north'},
-	{kind:'box',x:-28.5,z:24,w:1.2,d:1.2,label:'hay-west'},
+	{kind:'box',x:-41.5,z:9,w:1.2,d:1.2,label:'hay-west'},
 	{kind:'box',x:12.5,z:-22,w:1.2,d:1.2,label:'hay-north'},
 	{kind:'box',x:-28,z:-35,w:1.8,d:2,label:'crates-north'},
 	{kind:'box',x:28,z:-35,w:1.8,d:2,label:'crates-east'},
@@ -125,12 +135,13 @@ export const CITY_ART_SOLIDS: ({ kind: 'box'; x: number; z: number; w: number; d
 	{kind:'box',x:32,z:16,w:1.8,d:2,label:'crates-south'},
 	{kind:'box',x:-36.3,z:0,w:1.4,d:3,label:'firewood-forge'},
 ];
-const cityBoxes = [...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid), ...CITY_ART_SOLIDS.filter(s => s.kind === 'box')];
+const cityBoxes = [...FORTIFICATION_SOLIDS,...DECOR.filter(p=>p.solid),...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid), ...CITY_ART_SOLIDS.filter(s => s.kind === 'box')];
 export function cityWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= CITY.halfX - 1 - r || Math.abs(z) >= CITY.halfZ - 1 - r) return false;
 	if (Math.abs(x) < CITY_TOWER.half + r && Math.abs(z) < CITY_TOWER.half + r) return false;
 	if (Math.hypot(x - CITY_FOUNTAIN.x, z - CITY_FOUNTAIN.z) < CITY_FOUNTAIN.r + r) return false;
 	if ([...CITY_PLANTERS, ...CITY_ART_SOLIDS.filter(s => s.kind === 'circle')].some(p => Math.hypot(x - p.x, z - p.z) < p.r + r)) return false;
+	if(GARDEN_TREES.some(t=>Math.hypot(x-t.x,z-t.z)<.55+r))return false;
 	return !cityBoxes.some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r);
 }
 
@@ -185,6 +196,7 @@ export const FOREST_CAMP = { x: -50, z: 7 };
 export const FOREST_ARENA = { x: 40, z: 18 };
 const forestBase = {
 	paths: [
+		{ points: [[22, 0], [60, 0]], width: 2.4 },
 		{ points: [[-60, 0], [-40, 1], [-20, -1], [0, 1], [22, 0], [34, 6], [40, 18]], width: 2.4 },
 		{ points: [[-20, -1], [-14, 14], [-22, 30]], width: 1.6 },
 		{ points: [[0, 1], [6, -16], [12, -24]], width: 1.6 },
@@ -222,17 +234,58 @@ export const FOREST_SPAWNS = zoneSpawns(3302, [
 	{ dataId: 'stump_guard', x: 42, z: 0, rx: 14, rz: 26, count: 12 },
 ], (x, z) => forestWalkable(x, z, 0.5) && !forestBase.camps.some(c => Math.hypot(x - c.x, z - c.z) < 6) && Math.hypot(x - FOREST_ARENA.x, z - FOREST_ARENA.z) > 8 && Math.hypot(x - FOREST_ENTRY.x, z - FOREST_ENTRY.z) > 8);
 
+/* New hunting grounds use the same deterministic collision and spawn model as the original fields. */
+export const RUINS={halfX:62,halfZ:50}, CANYON={halfX:62,halfZ:52};
+export const RUINS_ENTRY={x:-58,z:0}, RUINS_EAST_ENTRY={x:57,z:0}, CANYON_ENTRY={x:-58,z:0}, FOREST_EAST_RETURN={x:56,z:0};
+const ruinsBase={paths:[
+ {points:[[-62,0],[-38,0],[-18,8],[8,8],[30,0],[62,0]],width:2.6},
+ {points:[[-38,0],[-32,-24],[-12,-30],[10,-24],[30,0]],width:2},
+ {points:[[-18,8],[-24,29],[0,34],[26,24],[30,0]],width:1.8},
+ {points:[[30,0],[40,-20],[43,-30]],width:2.2},
+ {points:[[-51,0],[-51,7]],width:1.2},{points:[[2,8],[2,14]],width:1.2},{points:[[48,0],[48,7]],width:1.2},
+ ] as Path[],water:[{x:10,z:-7,rx:7,rz:6},{x:-42,z:30,rx:5,rz:4}],camps:[{x:-51,z:7},{x:2,z:14},{x:48,z:7}],arena:{x:43,z:-30,r:5}};
+const canyonBase={paths:[
+ {points:[[-62,0],[-36,0],[-22,-14],[0,-14],[18,0],[40,4],[46,20]],width:2.7},
+ {points:[[-36,0],[-30,25],[-6,30],[18,18],[18,0]],width:2},
+ {points:[[-22,-14],[-16,-35],[12,-34],[34,-22],[40,4]],width:1.8},
+ {points:[[-51,0],[-51,7]],width:1.2},{points:[[-2,-14],[-2,-23]],width:1.2},{points:[[18,9],[24,9]],width:1.2},
+ ] as Path[],water:[{x:-7,z:9,rx:7,rz:5},{x:26,z:35,rx:5,rz:3}],camps:[{x:-51,z:7},{x:-2,z:-23},{x:24,z:9}],arena:{x:46,z:24,r:5.5}};
+const ruinsRing=[0,4,5,6,7].map(i=>({x:43+Math.cos(i*Math.PI/4)*8,z:-30+Math.sin(i*Math.PI/4)*8,r:.8,kind:'pillar'}));
+const canyonRing=[0,1,2,3,4].map(i=>({x:46+Math.cos(i*Math.PI/4)*9,z:24+Math.sin(i*Math.PI/4)*9,r:1.2,kind:'boulder'}));
+const ruinsObstacles=scatter(4401,80,{x:62,z:50},ruinsBase,['pillar','boulder','tree'],.65,1.15,ruinsRing).concat(ruinsRing);
+const canyonObstacles=scatter(4402,100,{x:62,z:52},canyonBase,['boulder','boulder','rock-cluster'],.8,1.6,canyonRing).concat(canyonRing);
+function huntingWalkable(half:{halfX:number;halfZ:number},base:{water:Ellipse[]},obstacles:Circle[],x:number,z:number,r:number){
+ return Math.abs(x)<half.halfX-1-r&&Math.abs(z)<half.halfZ-1-r&&!inWater(base.water,x,z)&&!obstacles.some(o=>Math.hypot(x-o.x,z-o.z)<o.r+r);
+}
+export const ruinsWalkable=(x:number,z:number,r=.3)=>huntingWalkable(RUINS,ruinsBase,ruinsObstacles,x,z,r);
+export const canyonWalkable=(x:number,z:number,r=.3)=>huntingWalkable(CANYON,canyonBase,canyonObstacles,x,z,r);
+function huntingSpawns(seed:number,zones:SpawnZone[],base:typeof ruinsBase,entry:{x:number;z:number},walk:(x:number,z:number,r:number)=>boolean){
+ return zoneSpawns(seed,zones,(x,z)=>walk(x,z,.65)&&base.camps.every(c=>Math.hypot(x-c.x,z-c.z)>7)&&Math.hypot(x-entry.x,z-entry.z)>10&&Math.hypot(x-base.arena.x,z-base.arena.z)>9);
+}
+export const RUINS_SPAWNS=huntingSpawns(5501,[
+ {dataId:'ruin_shroom',x:-36,z:-16,rx:15,rz:16,count:14},{dataId:'relic_hound',x:-22,z:24,rx:16,rz:16,count:14},
+ {dataId:'relic_wisp',x:14,z:-23,rx:17,rz:15,count:14},{dataId:'ruin_guard',x:30,z:21,rx:18,rz:16,count:12},
+],ruinsBase,RUINS_ENTRY,ruinsWalkable);
+export const CANYON_SPAWNS=huntingSpawns(5502,[
+ {dataId:'crag_slime',x:-35,z:-19,rx:16,rz:16,count:14},{dataId:'crag_wolf',x:-23,z:27,rx:17,rz:14,count:14},
+ {dataId:'dust_wisp',x:17,z:-26,rx:18,rz:16,count:14},{dataId:'crag_guard',x:31,z:16,rx:17,rz:20,count:12},
+],canyonBase,CANYON_ENTRY,canyonWalkable);
+export const MAP_ENTRY:Record<MapId,{x:number;z:number}>={city_plaza:CITY_SPAWN,meadow:MEADOW_ENTRY,forest:FOREST_ENTRY,ruins:RUINS_ENTRY,canyon:CANYON_ENTRY};
 /** Per-map field boss: appears when the map's timer is due and comes back `respawnMinutes` after it dies. */
-export const FIELD_BOSS: Record<'meadow' | 'forest', { dataId: string; x: number; z: number; minion: string; respawnMinutes: number }> = {
+export const FIELD_BOSS: Record<FieldMapId, { dataId: string; x: number; z: number; minion: string; respawnMinutes: number }> = {
 	meadow: { dataId: 'king_jelly', x: meadowBase.arena.x, z: meadowBase.arena.z, minion: 'jelly_summon', respawnMinutes: 30 },
 	forest: { dataId: 'mist_warden', x: FOREST_ARENA.x, z: FOREST_ARENA.z, minion: 'mist_shroom', respawnMinutes: 30 },
+ ruins:{dataId:'relic_warden',x:43,z:-30,minion:'ruin_shroom',respawnMinutes:30},
+ canyon:{dataId:'crag_titan',x:46,z:24,minion:'crag_slime',respawnMinutes:30},
 };
-export const BOSS_RESPAWN_MS = (m: 'meadow' | 'forest') => FIELD_BOSS[m].respawnMinutes * 60000;
+export const BOSS_RESPAWN_MS = (m: FieldMapId) => FIELD_BOSS[m].respawnMinutes * 60000;
 
 export const LAYOUTS: Record<MapId, Layout> = {
 	city_plaza: { halfX: CITY.halfX, halfZ: CITY.halfZ, obstacles: [], water: [], paths: [], camps: [], spawns: [] },
 	meadow: { halfX: MEADOW.halfX, halfZ: MEADOW.halfZ, ...meadowBase, obstacles: meadowObstacles, spawns: MEADOW_SPAWNS },
 	forest: { halfX: FOREST.halfX, halfZ: FOREST.halfZ, ...forestBase, obstacles: FOREST_TREES, spawns: FOREST_SPAWNS.map(s => ({ ...s })) },
+ ruins:{...RUINS,...ruinsBase,obstacles:ruinsObstacles,spawns:RUINS_SPAWNS},
+ canyon:{...CANYON,...canyonBase,obstacles:canyonObstacles,spawns:CANYON_SPAWNS},
 };
 export const campsFor = (m: MapId) => LAYOUTS[m].camps;
 export function nearestCamp(m: MapId, x: number, z: number) {
@@ -242,7 +295,9 @@ export function nearestCamp(m: MapId, x: number, z: number) {
 export const GATES = {
 	city_plaza: { south: { x: 0, z: CITY.halfZ - 1 }, north: { x: 0, z: -(CITY.halfZ - 1) }, east: { x: CITY.halfX - 1, z: 0 }, west: { x: -(CITY.halfX - 1), z: 0 } },
 	meadow: { north: { x: 0, z: -(MEADOW.halfZ - 1.2) } },
-	forest: { west: { x: -(FOREST.halfX - 0.6), z: 0 } },
+	forest: { west: { x: -(FOREST.halfX - 0.6), z: 0 },east:{x:FOREST.halfX-1,z:0} },
+ ruins:{west:{x:-61,z:0},east:{x:61,z:0}},
+ canyon:{west:{x:-61,z:0}},
 };
 export function travelDestination(map: MapId, gate: string, p: { x: number; z: number; dead?: boolean }) {
 	const trigger = (GATES[map] as Record<string, { x: number; z: number }>)[gate];
@@ -251,5 +306,9 @@ export function travelDestination(map: MapId, gate: string, p: { x: number; z: n
 	if (map === 'meadow' && gate === 'north') return { mapId: 'city_plaza' as const, ...CITY_RETURN };
 	if (map === 'city_plaza' && gate === 'east') return { mapId: 'forest' as const, ...FOREST_ENTRY };
 	if (map === 'forest' && gate === 'west') return { mapId: 'city_plaza' as const, ...CITY_EAST_RETURN };
+ if(map==='forest'&&gate==='east')return{mapId:'ruins' as const,...RUINS_ENTRY};
+ if(map==='ruins'&&gate==='west')return{mapId:'forest' as const,...FOREST_EAST_RETURN};
+ if(map==='ruins'&&gate==='east')return{mapId:'canyon' as const,...CANYON_ENTRY};
+ if(map==='canyon'&&gate==='west')return{mapId:'ruins' as const,...RUINS_EAST_ENTRY};
 	return null;
 }

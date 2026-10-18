@@ -3,6 +3,8 @@ import {
 	rarityColors,
 		inventorySlots,
 	storageSlots,
+	equipmentSlots,
+	equipmentTarget,
 	type Inventory,
 	type OwnedItem,
 	type Player,
@@ -17,10 +19,12 @@ const slotNames: Record<string, string> = {
 	shield: "โล่",
 	garment: "ผ้าคลุม",
 	footgear: "รองเท้า",
-	accessory1: "แหวน",
+	accessory1: "แหวน 1",
+	ring2: "แหวน 2",
 	accessory2: "เครื่องราง",
 };
 /** Weights are decimals now (materials 0.1, potions 0.2): show at most one decimal, no float noise. */
+const fmtGold = (n: number) => n.toLocaleString("en-US");
 const fmtWeight = (w: number) => String(Math.round(w * 10) / 10);
 export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	const button = document.createElement("button");
@@ -47,7 +51,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		forge: ["ช่างตีเหล็ก", "โรงตีเหล็ก · นครที่ถูกลืมเลือน", "อาวุธดีต้องเหมาะกับมือ เลือกให้ดี แล้วค่อยกลับมาหาข้า"],
 		storage: ["คนเฝ้าคลัง", "คลังเก็บของ · นครที่ถูกลืมเลือน", "ฝากไว้กับข้า ของในคลังปลอดภัยเสมอ"],
 	};
-	const metricNames: Record<string, string> = { atk: "พลังโจมตี", matk: "พลังเวท", flee: "หลบหลีก", hardDef: "เกราะกายภาพ", softDef: "ป้องกันกายภาพ", maxSp: "พลังสกิลสูงสุด", maxHp: "พลังชีวิตสูงสุด", hit: "ความแม่นยำ", crit: "คริติคอล" };
+	const metricNames: Record<string, string> = { atk: "พลังโจมตี", matk: "พลังเวท", flee: "หลบหลีก", hardDef: "เกราะกายภาพ", hardMdef: "เกราะเวท", softDef: "ป้องกันกายภาพ", maxSp: "พลังสกิลสูงสุด", maxHp: "พลังชีวิตสูงสุด", hit: "ความแม่นยำ", crit: "คริติคอล" };
 	const cart = new Map<string, number>();
 	let buyQueue: [string, number][] = [];
 	let lastDraw = "";
@@ -58,6 +62,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		storage = false,
 		storageTab = "ฝากของ",
 		shopTab = "ซื้อ",
+		shopRange = "current",
+		shopCategory = "all",
+		shopOwnClass = true,
 		selected: string | null = null,
 		lastTouch = "",
 		multi = new Set<string>(),
@@ -84,10 +91,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	}
 	const template = (i: OwnedItem) =>
 		templates.find((t) => t.id === i.template)!;
-	function action(i: OwnedItem) {
+	function action(i: OwnedItem, slot?: string) {
 		const t = template(i);
 		if (i.location === "equip") request("unequip", { id: i.id });
-		else if (t.slot) request("equip", { id: i.id });
+		else if (t.slot) request("equip", { id: i.id, ...(slot ? {slot} : {}) });
 		else if (t.type === "consumable") request("use", { id: i.id });
 	}
 	function itemIcon(t: (typeof templates)[number]) {
@@ -147,7 +154,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		b.onpointerup = b.onpointerleave = () => clearTimeout(hold);
 		return b;
 	}
-	function showDetail(i: OwnedItem, actions = true) {
+	function showDetail(i: OwnedItem, actions = true, requestedSlot?: string) {
 		const t = template(i);
 		detail.replaceChildren();
 		const title = document.createElement("h3");
@@ -155,12 +162,19 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		title.style.color = rarityColors[t.rarity];
 		detail.append(title);
 		const text = document.createElement("p");
+		const targetSlot = t.slot && inv ? (i.location === 'equip' ? i.slot : equipmentTarget(inv, t.slot, requestedSlot)) : t.slot;
 		const old = inv?.items.find(
-			(i) => i.location === "equip" && i.slot === t.slot,
+			(i) => i.location === "equip" && i.slot === targetSlot,
 		);
 		const oldT = old && template(old);
-		text.textContent = `${slotNames[t.slot || ""] || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${t.level}\nน้ำหนัก ${fmtWeight(t.weight)} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + data.economy.shops[shop][t.id] : "ขาย " + Math.floor(t.npcPrice * data.economy.sellMultiplier)} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
+		text.textContent = `${(t.slot === "accessory1" ? (i.location === "equip" ? slotNames[i.slot!] : "แหวน") : slotNames[t.slot || ""]) || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${t.level}\nน้ำหนัก ${fmtWeight(t.weight)} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + fmtGold(data.economy.shops[shop][t.id]) : "ขาย " + fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
 		detail.append(text);
+		if (t.slot === 'accessory1' && i.location === 'bag' && !shop && !storage && actions) {
+			const label = document.createElement('label'), select = document.createElement('select');
+			label.textContent = 'ช่องแหวน '; select.setAttribute('aria-label', 'ช่องแหวนที่จะสวม');
+			for (const slot of equipmentSlots(t.slot)) { const option = document.createElement('option'); option.value = slot; option.textContent = slotNames[slot]; select.append(option); }
+			select.value = targetSlot!; select.onchange = () => showDetail(i, actions, select.value); label.append(select); detail.append(label);
+		}
         const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
         if(incompatible){const note=document.createElement('p');note.textContent='อาชีพนี้ใช้ไม่ได้';detail.append(note);}
 		const metrics = [
@@ -188,7 +202,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
             row.textContent = `${metricNames[String(name)]||name} +${value}`;
 			const diff = Number(value) - Number(oldValue),
 				span = document.createElement("span");
-			span.textContent = ` (${diff >= 0 ? "+" : ""}${diff} เทียบที่สวม)`;
+			span.textContent = ` (${diff >= 0 ? "+" : ""}${diff} เทียบ${t.slot === 'accessory1' ? slotNames[targetSlot!] : 'ที่สวม'})`;
 			span.style.color = diff >= 0 ? "#8ac68a" : "#e88d85";
 			row.append(span);
 			detail.append(row);
@@ -225,13 +239,13 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			quantity.value = "1";
 			quantity.setAttribute("aria-label", "จำนวนซื้อ");
 			buttons.append(quantity);
-			add(`ซื้อ · ${data.economy.shops[shop][t.id]} ทอง/ชิ้น`, () =>
+			add(`ซื้อ · ${fmtGold(data.economy.shops[shop][t.id])} ทอง/ชิ้น`, () =>
 				request("buy", { shop, template: t.id, qty: Math.min(999,Math.max(1,Math.trunc(Number(quantity.value)||1))) }),
 			);
 		} else if (!shop) {
 			if ((!t.slot || !incompatible) && (t.slot || t.type === "consumable"))
-				add(i.location === "equip" ? "ถอด" : t.slot ? "ใส่" : "ใช้", () =>
-					action(i),
+				add(i.location === "equip" ? "ถอด" : t.slot === 'accessory1' ? 'ใส่'+slotNames[targetSlot!] : t.slot ? "ใส่" : "ใช้", () =>
+					action(i, targetSlot ?? undefined),
 				);
 			if (i.location === "bag") {
 				const qty = document.createElement("input");
@@ -250,7 +264,19 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		}
 		detail.append(buttons);
 	}
-	const shopItems = () => Object.keys(data.economy.shops[shop!]).filter(id=>!["reed_dagger","wood_staff","bamboo_bow"].includes(id));
+	const levelBand = (level: number) => level >= 99 ? 99 : Math.floor(level / 10) * 10;
+ const playerLevel = () => p?.level ?? 1;
+ const compatible = (t: (typeof templates)[number]) => !t.weaponType || !!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+ const shopItems = () => Object.keys(data.economy.shops[shop!]).filter(id=>{
+  const t=templates.find(t=>t.id===id)!;
+  const band=shopRange==='current'?levelBand(playerLevel()):Number(shopRange);
+  return (shopRange==='all'||levelBand(t.level)===band) && (shopCategory==='all'||(t.slot??t.type)===shopCategory) && (!shopOwnClass||compatible(t));
+ }).sort((a,b)=>templates.find(t=>t.id===a)!.level-templates.find(t=>t.id===b)!.level || priceOf(a)-priceOf(b));
+ const controls=document.createElement('div'); controls.className='shop-filters'; controls.hidden=true;
+ controls.innerHTML=`<label>ช่วงเลเวล<select aria-label="ช่วงเลเวลสินค้า"><option value="current">ช่วงเลเวลของฉัน</option><option value="all">ทั้งหมด · Lv.1–99</option>${[0,10,20,30,40,50,60,70,80,90,99].map(l=>`<option value="${l}">Lv.${l||1}${l===99?'':'–'+(l===90?98:l+9)}</option>`).join('')}</select></label><label>ประเภท<select aria-label="ประเภทสินค้า">${Object.entries({all:'ทุกประเภท',weapon:'อาวุธ',body:'เกราะ',shield:'โล่',garment:'ผ้าคลุม',footgear:'รองเท้า',accessory1:'แหวน',accessory2:'เครื่องราง',consumable:'ยา',refine:'หินตีบวก'}).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label><label class="shop-class"><input type="checkbox" checked>อาวุธตรงอาชีพ</label>`;
+ tabs.after(controls);
+ const rangeSelect=controls.querySelectorAll('select')[0],categorySelect=controls.querySelectorAll('select')[1],classCheck=controls.querySelector('input')!;
+ rangeSelect.onchange=()=>{shopRange=rangeSelect.value;draw();};categorySelect.onchange=()=>{shopCategory=categorySelect.value;draw();};classCheck.onchange=()=>{shopOwnClass=classCheck.checked;draw();};
 	const priceOf = (id: string) => data.economy.shops[shop!][id] as number;
 	const sellPrice = (i: OwnedItem) => Math.floor(template(i).npcPrice * data.economy.sellMultiplier) * i.qty;
 	const owned = (id: string) => inv?.items.filter((i) => i.location === "bag" && i.template === id).reduce((n, i) => n + i.qty, 0) || 0;
@@ -283,6 +309,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			else {
 				const empty = document.createElement("span");
 				empty.className = "inv-doll-empty";
+				empty.setAttribute('role', 'img'); empty.setAttribute('aria-label', `ช่อง${name}ว่าง`);
 				row.append(empty);
 			}
 			row.append(label);
@@ -290,7 +317,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			row.ondrop = (e) => {
 				e.preventDefault();
 				const id = e.dataTransfer?.getData("text/plain");
-				if(id&&inv?.items.some(i=>i.id===id&&template(i).slot===slot))request("equip",{id});
+				if(id&&inv?.items.some(i=>i.id===id&&i.location==='bag'&&equipmentSlots(template(i).slot).includes(slot)))request("equip",{id,slot});
 			};
 			(leftSlots.includes(slot) ? leftCol : rightCol).append(row);
 		}
@@ -329,7 +356,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	}
 	function describe(t: (typeof templates)[number]) {
 		const st = Object.entries(statsOf(t)).map(([k, v]) => `${metricNames[k] || k} ${v}`).join(" · ");
-		return t.slot ? `${slotNames[t.slot]}${st ? " · " + st : ""}` : ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type] || "";
+		return t.slot ? `Lv.${t.level} · ${t.slot==='accessory1'?'แหวน':slotNames[t.slot]}${st ? " · " + st : ""}` : t.effect ? `ฟื้นฟู ${t.effect==='hp'?'HP':t.effect==='sp'?'SP':'ความเร็ว'} ${t.effect==='speed'?Math.round(t.amount!*100)+'%':fmtGold(t.amount!)}` : ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type] || "";
 	}
 	function cartLine(t: (typeof templates)[number], middle: string, sub: string) {
 		const line = document.createElement("div");
@@ -361,7 +388,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			for (const [id, q] of cart) {
 				const t = templates.find((t) => t.id === id)!;
 				total += priceOf(id) * q; weight += t.weight * q; count++;
-				const { line, mid } = cartLine(t, `<b></b><span class="cart-qty"><button data-d="-1" aria-label="ลด">−</button><span>${q}</span><button data-d="1" aria-label="เพิ่ม">+</button></span>`, String(priceOf(id) * q));
+				const { line, mid } = cartLine(t, `<b></b><span class="cart-qty"><button data-d="-1" aria-label="ลด">−</button><span>${q}</span><button data-d="1" aria-label="เพิ่ม">+</button></span>`, fmtGold(priceOf(id) * q));
 				mid.querySelectorAll<HTMLButtonElement>("[data-d]").forEach((b) => (b.onclick = () => {
 					const n = (cart.get(id) || 0) + Number(b.dataset.d);
 					n > 0 ? cart.set(id, Math.min(99, n)) : cart.delete(id);
@@ -371,8 +398,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			}
 			if (!count) lines.innerHTML = `<p class="inv-empty">คลิกสินค้าเพื่อใส่ตะกร้า<br>Shift+คลิก ใส่ทีละ 10</p>`;
 			const after = gold - total;
-			sum.innerHTML = `<dt>รวม</dt><dd class="total">${total}</dd><dt>ทองคงเหลือ</dt><dd class="${after < 0 ? "bad" : ""}">${gold} → ${after}</dd><dt>น้ำหนัก</dt><dd>+${fmtWeight(weight)}</dd>`;
-			go.textContent = !count ? "ซื้อ" : after < 0 ? "ทองไม่พอ" : `ซื้อ · ${total} ทอง`;
+			sum.innerHTML = `<dt>รวม</dt><dd class="total">${fmtGold(total)}</dd><dt>ทองคงเหลือ</dt><dd class="${after < 0 ? "bad" : ""}">${fmtGold(gold)} → ${fmtGold(after)}</dd><dt>น้ำหนัก</dt><dd>+${fmtWeight(weight)}</dd>`;
+			go.textContent = !count ? "ซื้อ" : after < 0 ? "ทองไม่พอ" : `ซื้อ · ${fmtGold(total)} ทอง`;
 			go.disabled = !count || after < 0 || !!pending || buyQueue.length > 0;
 			go.onclick = () => {
 				buyQueue = [...cart];
@@ -386,11 +413,11 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		for (const i of inv!.items.filter((i) => multi.has(i.id))) {
 			const t = template(i);
 			total += sellPrice(i); weight -= t.weight * i.qty; count++;
-			lines.append(cartLine(t, `<b></b><small>×${i.qty}</small>`, "+" + sellPrice(i)).line);
+			lines.append(cartLine(t, `<b></b><small>×${i.qty}</small>`, "+" + fmtGold(sellPrice(i))).line);
 		}
 		if (!count) lines.innerHTML = `<p class="inv-empty">เลือกของที่จะขาย<br>ของที่สวมอยู่จะไม่แสดงที่นี่</p>`;
-		sum.innerHTML = `<dt>ได้รับ</dt><dd class="total">+${total}</dd><dt>ทองคงเหลือ</dt><dd>${gold} → ${gold + total}</dd><dt>น้ำหนัก</dt><dd>${fmtWeight(weight)}</dd>`;
-		go.textContent = count ? `ขาย · ${total} ทอง` : "ขาย";
+		sum.innerHTML = `<dt>ได้รับ</dt><dd class="total">+${fmtGold(total)}</dd><dt>ทองคงเหลือ</dt><dd>${fmtGold(gold)} → ${fmtGold(gold + total)}</dd><dt>น้ำหนัก</dt><dd>${fmtWeight(weight)}</dd>`;
+		go.textContent = count ? `ขาย · ${fmtGold(total)} ทอง` : "ขาย";
 		go.disabled = !count;
 		go.onclick = () => request("sell", { shop, ids: [...multi] });
 		const white = document.createElement("button");
@@ -414,7 +441,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (!inv) return;
 		const mode = storage ? "storage" : shop ? "shop" : "bag";
 		panel.dataset.mode = mode;
-		summary.textContent = `◈ ${p?.gold ?? 0} ทอง · ${inventorySlots(inv, data)} / ${data.economy.inventorySlots} ช่อง${storage ? ` · คลัง ${storageSlots(inv, data)} / ${data.economy.storageSlots}` : ""}`;
+		summary.textContent = `◈ ${fmtGold(p?.gold ?? 0)} ทอง · ${inventorySlots(inv, data)} / ${data.economy.inventorySlots} ช่อง${storage ? ` · คลัง ${storageSlots(inv, data)} / ${data.economy.storageSlots}` : ""}`;
 		const weight = panel.querySelector<HTMLProgressElement>("progress")!;
 		weight.value = (((p as any)?.carryWeight || 0) / ((p as any)?.weightLimit || 1)) * 100;
 		panel.querySelector(".inv-weight-text")!.textContent = `${Math.round((p as any)?.carryWeight || 0)} / ${Math.round((p as any)?.weightLimit || 0)}`;
@@ -449,7 +476,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			};
 			tabs.append(b);
 		}
-		if (mode === "bag") drawDoll();
+		controls.hidden=mode!=='shop'||shopTab!=='ซื้อ';
+  rangeSelect.value=shopRange;categorySelect.value=shopCategory;classCheck.checked=shopOwnClass;
+  if (mode === "bag") drawDoll();
 		if (storage) {
 			const grid = document.createElement("div");
 			grid.className = "inv-grid";
@@ -478,11 +507,11 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				for (const id of shopItems()) {
 					const t = templates.find((t) => t.id === id)!,
 						price = priceOf(id),
-						cur = t.slot && inv.items.find((i) => i.location === "equip" && i.slot === t.slot),
-						better = !!t.slot && Object.entries(statsOf(t)).some(([k, v]) => v > ((cur && statsOf(template(cur))[k]) || 0)),
-						note = (t.level > ((p as any)?.level ?? 1) ? `ต้องการระดับ ${t.level} · ` : "") + (better ? "▲ ดีกว่าที่ใส่อยู่ · " : "") + describe(t),
-						row = ware(t, String(price), note, cart.has(id), `มีอยู่ ${owned(id)}`);
-					row.classList.toggle("cant", price > (p?.gold ?? 0));
+						cur = t.slot && inv.items.find((i) => i.location === "equip" && i.slot === equipmentTarget(inv!, t.slot)),
+						better = !!t.slot && t.level <= playerLevel() && compatible(t) && Object.entries(statsOf(t)).some(([k, v]) => v > ((cur && statsOf(template(cur))[k]) || 0)),
+						note = (t.level > ((p as any)?.level ?? 1) ? `ต้องการระดับ ${t.level} · ` : "") + (compatible(t)?"":"อาชีพนี้ใช้ไม่ได้ · ") + (better ? "▲ ค่าสถานะสูงขึ้น · " : "") + describe(t),
+						row = ware(t, fmtGold(price), note, cart.has(id), `มีอยู่ ${owned(id)}`);
+					row.dataset.item=id; row.classList.toggle("cant", price > (p?.gold ?? 0));
 					row.onclick = (e) => {
 						cart.set(id, Math.min(99, (cart.get(id) || 0) + (e.shiftKey ? 10 : 1)));
 						selected = id;
@@ -494,8 +523,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			} else {
 				for (const i of inv.items.filter((i) => i.location === "bag")) {
 					const t = template(i);
-					if (["reed_dagger","wood_staff","bamboo_bow"].includes(t.id)) continue;
-					const row = ware(t, "+" + sellPrice(i), (i.qty > 1 ? `×${i.qty} · ` : "") + describe(t), multi.has(i.id), i.qty > 1 ? `${Math.floor(t.npcPrice * data.economy.sellMultiplier)} / ชิ้น` : "");
+					if (i.bound) continue;
+					const row = ware(t, "+" + fmtGold(sellPrice(i)), (i.qty > 1 ? `×${i.qty} · ` : "") + describe(t), multi.has(i.id), i.qty > 1 ? `${fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} / ชิ้น` : "");
 					row.classList.toggle("sell", multi.has(i.id));
 					row.onclick = () => {
 						multi.has(i.id) ? multi.delete(i.id) : multi.add(i.id);
@@ -506,7 +535,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				}
 				if (!list.children.length) list.innerHTML = `<p class="inv-empty">ไม่มีของที่ขายได้ในกระเป๋า</p>`;
 			}
-			countBox.textContent = "";
+			countBox.textContent = shopTab === "ซื้อ" ? `${list.children.length} รายการ · ราคาต่อชิ้นเป็นทอง` : "ขายคืนเฉพาะของที่ไม่ผูกมัด";
+			if (!list.children.length) list.innerHTML = `<p class="inv-empty">ไม่มีสินค้าในตัวกรองนี้ · ลองเลือกช่วงเลเวลหรือประเภทอื่น</p>`;
 			drawCart();
 			return;
 		}
@@ -536,6 +566,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		storage = nextShop === "storage";
 		if (storage) storageTab = "ฝากของ";
 		shop = storage ? null : nextShop;
+		shopRange = shop === "forge" ? "current" : "all"; shopCategory = "all"; shopOwnClass = true;
 		selected = null;
 		multi.clear();
 		cart.clear();
@@ -594,6 +625,11 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				else if (!pending && buyQueue.length) { nextBuy(); return; }
 				if(!pending)status.textContent = m.error || "บันทึกแล้ว";
 				draw();
+				if (!shop && !storage && selected) {
+					const current = inv?.items.find(i => i.id === selected);
+					if (current) showDetail(current);
+					else { selected = null; detail.textContent = 'เลือกไอเทมเพื่อดูข้อมูล'; }
+				}
 			}
 		},
 		/** Display names for a pickup, for the chat log. */

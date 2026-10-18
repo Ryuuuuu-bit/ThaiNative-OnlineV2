@@ -5,7 +5,7 @@ const ACTION_NAMES:Record<KeyAction,string>={attack:'โจมตี',dash:'ห�
 import {CITY_BUILDINGS,HEALER,GATES,GATE_CAPTAIN,LAYOUTS,type MapId} from '@thainative/shared/maps';
 import jobs from '../../shared/data/jobs.json';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
-import {gridPath} from './hud-path';
+import {gridPath,gateApproach} from './hud-path';
 import {updateMonsterTags} from './monster-tags';
 export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>boolean;map:()=>MapId;player:()=>any;talk:(kind:string)=>void;settings:()=>void;stop:()=>void;/** release held movement without touching AUTO */release:()=>void}){
  const signature=(s:UISettings)=>JSON.stringify([s.scale,resolveKeys(s.keys),...(['bag','stats','skills'] as const).map(k=>s.windows[k]?[s.windows[k]!.x,s.windows[k]!.y]:null)]);
@@ -61,7 +61,7 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
  const points=()=>[...npcs(),...LAYOUTS[o.map() as MapId].camps.map(c=>({...c,kind:'camp',icon:'△',name:'แคมป์พักฟื้น'})),...Object.entries(GATES[o.map()]).map(([kind,p])=>({...p,kind:'gate:'+kind,icon:'◇',name:'ประตู'}))];
  const coords=(p:{x:number;z:number})=>{const l=LAYOUTS[o.map() as MapId];return{x:(p.x+l.halfX)/(l.halfX*2)*160,y:(p.z+l.halfZ)/(l.halfZ*2)*132};};
  const cancel=()=>{route=[];arrival=null;};
- const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();route=gridPath(o.player(),p,o.walkable);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
+ const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();route=gridPath(o.player(),p.kind.startsWith('gate:')?gateApproach(p):p,o.walkable);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
  const returnCity=()=>{cancel();o.send({t:'returnCity'});};$('#return-city').onclick=returnCity;
  map.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('.map').classList.toggle('expanded');}};
  map.onclick=e=>{const box=map.getBoundingClientRect();if(innerWidth<650&&!$('.map').classList.contains('expanded')){$('.map').classList.add('expanded');return;}

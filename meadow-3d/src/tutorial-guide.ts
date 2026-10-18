@@ -19,6 +19,7 @@ const learnedTotal=(p:any)=>Object.values(p.skills||{}).reduce((a:number,b:any)=
 function gateToward(map:MapId,dest:MapId):Point|null{
  if(map===dest)return null;
  if(map==='city_plaza')return {...GATES.city_plaza[dest==='forest'?'east':'south'],label:dest==='forest'?'ประตูตะวันออก':'ประตูใต้'};
+ if(map==='ruins'||map==='canyon')return {...GATES[map].west,label:'ประตูตะวันตก · ย้อนกลับ'};
  return map==='meadow'?{...GATES.meadow.north,label:'ประตูเหนือ · กลับเมือง'}:{...GATES.forest.west,label:'ประตูตะวันตก · กลับเมือง'};
 }
 const nearestMonster=(c:Ctx):Point|null=>{let best:any=null,d=Infinity;for(const e of c.game.enemies)if(!e.dead&&!e.boss){const n=Math.hypot(e.x-c.p.x,e.z-c.p.z);if(n<d){d=n;best=e;}}return best&&d>4?{x:best.x,z:best.z,label:'มอนสเตอร์'}:null;};

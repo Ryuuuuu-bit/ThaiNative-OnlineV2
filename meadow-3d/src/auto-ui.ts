@@ -1,3 +1,4 @@
+import {MAP_INFO} from '@thainative/shared/maps';
 import { DEFAULT_AUTO, AUTO_RANGES, skillTierRank, type AutoPotion, huntList, isSurvivalSkill, loadGameData, normalizeAuto, autoSkillSequence, type AutoSettings, type MapId } from "@thainative/shared";
 import skillsData from "../../shared/data/skills.json";
 import "./auto-ui.css";
@@ -94,7 +95,7 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 					<p class="auto-note">ดื่มยาทำงานทั้งตอนเปิด AUTO และตอนเล่นเอง (ตั้งค่าที่นี่ที่เดียว) · ตั้งเป็น "ปิด" ถ้าไม่อยากดื่มเอง · ยาหมดและ HP ต่ำกว่า 25% AUTO จะถอยกลับแคมป์</p>
 				</section>
 				<section class="auto-card"><h3>เป้าหมาย</h3>
-					<div class="auto-row col"><span><b>มอนสเตอร์ที่จะตี</b><small>${map === "city_plaza" ? "นครที่ถูกลืมเลือน" : map === "forest" ? "ป่าหมอก" : "ทุ่งวุ้นจิ๋ว"} · เลือกได้หลายตัว · จำแยกแต่ละแผนที่</small></span><div class="auto-chips">${mobChips}</div></div>
+					<div class="auto-row col"><span><b>มอนสเตอร์ที่จะตี</b><small>${MAP_INFO[map].name} · เลือกได้หลายตัว · จำแยกแต่ละแผนที่</small></span><div class="auto-chips">${mobChips}</div></div>
 					${sw("attackers", "ตัวที่กำลังตีเราก่อน", "สู้กลับตัวที่ตีเราอยู่ แม้ไม่ได้เลือกไว้")}
 					${sw("elites", "หัวหน้า / บอส ก่อน")}
 					<div class="auto-row col"><span><b>รัศมีรอบตัว</b><small>เดินหามอนรอบตัวในระยะนี้</small></span>
