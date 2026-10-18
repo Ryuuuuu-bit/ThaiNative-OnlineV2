@@ -91,7 +91,7 @@ export function mountLevelUp(options: { hero: HeroScreen; stats: () => Stats }) 
 		const gains = $('.lu-gains');
 		gains.replaceChildren();
 		if (level) {
-			const now = options.stats(), hp = now.maxHp - level.before.maxHp, mp = now.maxMp - level.before.maxMp;
+			const now = options.stats(), hp = Math.round(now.maxHp - level.before.maxHp), mp = Math.round(now.maxMp - level.before.maxMp);
 			if (hp > 0) gains.append(chip('HP สูงสุด', `+${hp}`, { dot: '#e8656a' }));
 			if (mp > 0) gains.append(chip('MP สูงสุด', `+${mp}`, { dot: '#5fb6e8' }));
 			gains.append(chip('แต้มสเตตัส', `+${level.granted}`, { key: true }));
@@ -103,6 +103,15 @@ export function mountLevelUp(options: { hero: HeroScreen; stats: () => Stats }) 
 		const life = milestone ? 5.2 : level && job ? 4.6 : 3.9;
 		banner.style.setProperty('--life', `${life}s`);
 		banner.hidden = false;
+		// Sit below the target / boss frame when one occupies the top centre.
+		banner.style.top = '';
+		let top = parseFloat(getComputedStyle(banner).top) || 64;
+		for (const el of document.querySelectorAll<HTMLElement>('#target,#boss-hud')) {
+			if (el.hidden) continue;
+			const r = el.getBoundingClientRect();
+			if (r.height && r.top < 220 && r.left < innerWidth / 2 + 320 && r.right > innerWidth / 2 - 320) top = Math.max(top, r.bottom + 12);
+		}
+		banner.style.top = `${Math.round(top)}px`;
 		banner.classList.remove('play');
 		void banner.offsetWidth;
 		banner.classList.add('play');
