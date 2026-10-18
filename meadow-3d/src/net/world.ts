@@ -92,9 +92,11 @@ export class NetworkWorld {
 			this.prediction = { ...result.position };
 			this.correction = { x: 0, z: 0 };
 		} else {
+			const leavingAuto = this.latest?.players.find((v: any) => v.id === you)?.auto && !own.auto;
+			const displayed = leavingAuto ? this.game.p : this.prediction;
 			this.correction = {
-				x: this.prediction.x - result.position.x,
-				z: this.prediction.z - result.position.z,
+				x: displayed.x - result.position.x,
+				z: displayed.z - result.position.z,
 			};
 			this.prediction = { ...result.position };
 		}
@@ -186,6 +188,17 @@ export class NetworkWorld {
 		const fade = Math.max(0, 1 - this.correctionAge / 0.15);
 		this.game.p.x = this.prediction.x + this.correction.x * fade;
 		this.game.p.z = this.prediction.z + this.correction.z * fade;
+		if (p.auto) {
+			// AUTO is server-driven: interpolate the same snapshot interval as monsters.
+			// Prediction correction restarted every snapshot used to cause slow/fast pulses.
+			const before = a.players.find((v: any) => v.id === p.id);
+			const continuous = before && !before.dead && !p.dead &&
+				Math.hypot(p.x - before.x, p.z - before.z) <= 3;
+			this.game.p.x = continuous ? lerp(before.x, p.x, t) : p.x;
+			this.game.p.z = continuous ? lerp(before.z, p.z, t) : p.z;
+			this.pending = [];
+			this.correction = { x: 0, z: 0 };
+		}
 		if (this.flash && now < this.flash.until && !p.dead) {
 			if (this.flash.kind === "dash")
 				this.game.p.dash = Math.max(0, (this.flash.until - now) / 1000);
