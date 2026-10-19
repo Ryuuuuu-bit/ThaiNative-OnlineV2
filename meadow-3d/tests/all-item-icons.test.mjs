@@ -1,0 +1,28 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {loadGameData} from '@thainative/shared';
+import {itemIconCell} from '../src/item-icon.ts';
+
+test('every item template resolves to its declared atlas frame',()=>{
+ const pages=['v1','v2'].map(v=>JSON.parse(readFileSync(new URL(`../public/assets/items/items-${v}.json`,import.meta.url))));
+ for(const item of loadGameData().items.items){
+  const page=pages.findIndex(p=>Object.hasOwn(p.frames,item.icon));
+  assert.notEqual(page,-1,`${item.id}: missing frame ${item.icon}`);
+  const frame=pages[page].frames[item.icon];
+  assert.deepEqual(itemIconCell(item.id),{v2:page===1,position:`${frame.x/64*25}% ${frame.y/64*25}%`},item.id);
+ }
+});
+
+test('ruins, canyon and boss icons occupy slots 5 through 17 in order',()=>{
+ const names=['stone_spore','relic_fang','rune_shard','ancient_vine','temple_seal','ore_slime','crag_fur','amber_dust','crag_root','titan_core','card_mist_warden','card_relic_warden','card_crag_titan'];
+ const atlas=JSON.parse(readFileSync(new URL('../public/assets/items/items-v2.json',import.meta.url)));
+ const items=loadGameData().items.items;
+ names.forEach((id,i)=>{
+  assert.equal(items.find(t=>t.id===id)?.icon,id);
+  const slot=i+5;
+  assert.deepEqual(atlas.frames[id],{index:25+slot,slot,x:slot%5*64,y:Math.floor(slot/5)*64,w:64,h:64});
+ });
+ assert.equal(atlas.reservedTransparentSlots,7);
+ assert.equal(Object.keys(atlas.frames).length,18);
+});

@@ -5,6 +5,9 @@ import json
 ROOT=Path(__file__).resolve().parents[1];ART=ROOT/'art/painted-forest';OUT=ROOT/'public/assets/items'
 NAMES=['mist_spore','wolf_fur','wisp_tear','mist_wood','warden_heart']
 def pack():
+ if (ROOT/'art/painted-items-v3/forest-original.png').exists():
+  from pack_items_v3 import pack as pack_v3
+  return pack_v3()
  source=Image.open(ART/'items-generated.png').convert('RGBA');atlas=Image.new('RGBA',(320,320));frames={}
  for i,name in enumerate(NAMES):
   x=i%3*source.width/3;y=i//3*source.height/2

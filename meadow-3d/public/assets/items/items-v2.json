@@ -9,7 +9,7 @@
   ],
   "columns": 5,
   "rows": 5,
-  "reservedTransparentSlots": 20,
+  "reservedTransparentSlots": 7,
   "frames": {
     "mist_spore": {
       "index": 25,
@@ -48,6 +48,110 @@
       "slot": 4,
       "x": 256,
       "y": 0,
+      "w": 64,
+      "h": 64
+    },
+    "stone_spore": {
+      "index": 30,
+      "slot": 5,
+      "x": 0,
+      "y": 64,
+      "w": 64,
+      "h": 64
+    },
+    "relic_fang": {
+      "index": 31,
+      "slot": 6,
+      "x": 64,
+      "y": 64,
+      "w": 64,
+      "h": 64
+    },
+    "rune_shard": {
+      "index": 32,
+      "slot": 7,
+      "x": 128,
+      "y": 64,
+      "w": 64,
+      "h": 64
+    },
+    "ancient_vine": {
+      "index": 33,
+      "slot": 8,
+      "x": 192,
+      "y": 64,
+      "w": 64,
+      "h": 64
+    },
+    "temple_seal": {
+      "index": 34,
+      "slot": 9,
+      "x": 256,
+      "y": 64,
+      "w": 64,
+      "h": 64
+    },
+    "ore_slime": {
+      "index": 35,
+      "slot": 10,
+      "x": 0,
+      "y": 128,
+      "w": 64,
+      "h": 64
+    },
+    "crag_fur": {
+      "index": 36,
+      "slot": 11,
+      "x": 64,
+      "y": 128,
+      "w": 64,
+      "h": 64
+    },
+    "amber_dust": {
+      "index": 37,
+      "slot": 12,
+      "x": 128,
+      "y": 128,
+      "w": 64,
+      "h": 64
+    },
+    "crag_root": {
+      "index": 38,
+      "slot": 13,
+      "x": 192,
+      "y": 128,
+      "w": 64,
+      "h": 64
+    },
+    "titan_core": {
+      "index": 39,
+      "slot": 14,
+      "x": 256,
+      "y": 128,
+      "w": 64,
+      "h": 64
+    },
+    "card_mist_warden": {
+      "index": 40,
+      "slot": 15,
+      "x": 0,
+      "y": 192,
+      "w": 64,
+      "h": 64
+    },
+    "card_relic_warden": {
+      "index": 41,
+      "slot": 16,
+      "x": 64,
+      "y": 192,
+      "w": 64,
+      "h": 64
+    },
+    "card_crag_titan": {
+      "index": 42,
+      "slot": 17,
+      "x": 128,
+      "y": 192,
       "w": 64,
       "h": 64
     }

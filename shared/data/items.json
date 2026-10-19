@@ -571,7 +571,7 @@
       "weight": 0.1,
       "npcPrice": 34,
       "rarity": "common",
-      "icon": "mist_spore"
+      "icon": "stone_spore"
     },
     {
       "id": "relic_fang",
@@ -587,7 +587,7 @@
       "weight": 0.1,
       "npcPrice": 40,
       "rarity": "common",
-      "icon": "wolf_fur"
+      "icon": "relic_fang"
     },
     {
       "id": "rune_shard",
@@ -603,7 +603,7 @@
       "weight": 0.1,
       "npcPrice": 46,
       "rarity": "common",
-      "icon": "wisp_tear"
+      "icon": "rune_shard"
     },
     {
       "id": "ancient_vine",
@@ -619,7 +619,7 @@
       "weight": 0.1,
       "npcPrice": 52,
       "rarity": "common",
-      "icon": "mist_wood"
+      "icon": "ancient_vine"
     },
     {
       "id": "temple_seal",
@@ -635,7 +635,7 @@
       "weight": 0.1,
       "npcPrice": 1200,
       "rarity": "rare",
-      "icon": "king_crystal"
+      "icon": "temple_seal"
     },
     {
       "id": "ore_slime",
@@ -651,7 +651,7 @@
       "weight": 0.1,
       "npcPrice": 58,
       "rarity": "common",
-      "icon": "jelly_slime"
+      "icon": "ore_slime"
     },
     {
       "id": "crag_fur",
@@ -667,7 +667,7 @@
       "weight": 0.1,
       "npcPrice": 64,
       "rarity": "common",
-      "icon": "wolf_fur"
+      "icon": "crag_fur"
     },
     {
       "id": "amber_dust",
@@ -683,7 +683,7 @@
       "weight": 0.1,
       "npcPrice": 72,
       "rarity": "common",
-      "icon": "wisp_tear"
+      "icon": "amber_dust"
     },
     {
       "id": "crag_root",
@@ -699,7 +699,7 @@
       "weight": 0.1,
       "npcPrice": 80,
       "rarity": "common",
-      "icon": "mist_wood"
+      "icon": "crag_root"
     },
     {
       "id": "titan_core",
@@ -715,7 +715,7 @@
       "weight": 0.1,
       "npcPrice": 2000,
       "rarity": "rare",
-      "icon": "warden_heart"
+      "icon": "titan_core"
     },
     {
       "id": "card_mist_warden",
@@ -731,7 +731,7 @@
       "modifiers": [],
       "slots": 0,
       "bind": "none",
-      "icon": "card_king_jelly"
+      "icon": "card_mist_warden"
     },
     {
       "id": "card_relic_warden",
@@ -747,7 +747,7 @@
       "modifiers": [],
       "slots": 0,
       "bind": "none",
-      "icon": "card_king_jelly"
+      "icon": "card_relic_warden"
     },
     {
       "id": "card_crag_titan",
@@ -763,7 +763,7 @@
       "modifiers": [],
       "slots": 0,
       "bind": "none",
-      "icon": "card_king_jelly"
+      "icon": "card_crag_titan"
     },
     {
       "id": "iron_sword",

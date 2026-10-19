@@ -31,8 +31,8 @@ test('forest environment atlas rectangles, alpha gutters and tree footprint meta
  for(let i=0;i<m.assets.length;i++)for(let j=i+1;j<m.assets.length;j++){const[a,b,c,d]=m.assets[i].rect,[e,f,g,h]=m.assets[j].rect;assert.ok(a+c+8<=e||e+g+8<=a||b+d+8<=f||f+h+8<=b);}
  assert.equal(Object.keys(m.tiles).length,4);assert.deepEqual(read('art/painted-forest/environment-packing-report.json').clippingWarnings,[]);
 });
-test('item atlas v2 maps indices 25–29 to the first row and reserves twenty transparent cells',()=>{
- const m=read('public/assets/items/items-v2.json');assert.equal(m.width,320);assert.equal(m.height,320);assert.equal(m.reservedTransparentSlots,20);assert.deepEqual(m.cellSize,[64,64]);
- assert.deepEqual(Object.keys(m.frames),['mist_spore','wolf_fur','wisp_tear','mist_wood','warden_heart']);Object.values(m.frames).forEach((v,i)=>{assert.equal(v.index,i+25);assert.equal(v.x,i*64);assert.equal(v.y,0);});assert.ok(existsSync('meadow-3d/public/assets/items/items-v2.webp'));
+test('item atlas v2 preserves forest indices 25–29 and reserves seven transparent cells',()=>{
+ const m=read('public/assets/items/items-v2.json');assert.equal(m.width,320);assert.equal(m.height,320);assert.equal(m.reservedTransparentSlots,7);assert.deepEqual(m.cellSize,[64,64]);
+ assert.deepEqual(Object.keys(m.frames).slice(0,5),['mist_spore','wolf_fur','wisp_tear','mist_wood','warden_heart']);Object.values(m.frames).slice(0,5).forEach((v,i)=>{assert.equal(v.index,i+25);assert.equal(v.x,i*64);assert.equal(v.y,0);});assert.ok(existsSync('meadow-3d/public/assets/items/items-v2.webp'));
  assert.deepEqual(read('art/painted-forest/icon-packing-report.json').clippingWarnings,[]);
 });
