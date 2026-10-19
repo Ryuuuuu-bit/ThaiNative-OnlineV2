@@ -118,8 +118,13 @@ test('disconnected leases renew through retention and a slow final save before r
  const user=await f.make('LeaseRetain'),peer=f.open(user.cookie);
  await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
  const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
- peer.ws.close();await peer.closed;await room.saveQueue;
- p.kills=17;delay=true;await started;
+ peer.ws.close();await peer.closed;
+ // The client can see its close before the server's close handler queues the disconnect save.
+ for(let i=0;i<200&&!room.disconnected.has(p.id);i++)await wait(5);
+ assert.ok(room.disconnected.has(p.id),'server recorded the disconnect');
+ await room.saveQueue;
+ p.kills=17;delay=true;
+ await Promise.race([started,wait(2000).then(()=>{throw Error('final save never started after retention expiry');})]);
  await wait(ttl*2);
  assert.ok(room.accounts.has(p.id),'retained while final save is pending');
  assert.equal(room.game.players.has(p.id),false,'simulation stops at retention expiry');
