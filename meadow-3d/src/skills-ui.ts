@@ -13,6 +13,9 @@ const slotSpec=(id:string|null)=>id?.startsWith('item:')?itemTemplates.find(t=>t
 /** Consumables that can sit on the bar (HP, MP and speed potions). */
 const barItems=itemTemplates.filter(t=>t.type==='consumable'&&t.effect);
 const POTION_CD=skills.find(s=>s.id==='potion')?.cooldown||1;
+const gameData=loadGameData();
+const ELEMENT_TH=gameData.elements.names as Record<string,string>;
+const BASIC=skills.find(s=>s.id==='basic');
 const itemIconHTML=(template:string,extra='')=>{const c=itemIconCell(template);return `<span class="item-icon${c.v2?' item-icon-v2':''} ${extra}" style="background-position:${c.position}" aria-hidden="true"></span>`;};
 /** How many of this template the bag holds (equipped or stored copies do not count). */
 export function bagCount(inventory:{items:{template:string;qty:number;location:string}[]}|undefined,template:string){return (inventory?.items||[]).filter(i=>i.template===template&&i.location==='bag').reduce((n,i)=>n+i.qty,0);}
@@ -34,7 +37,8 @@ export function mountSkills(
 		viewJob: string | null = null,
 		last = "",
 		more = false,
-		inventory: any;
+		inventory: any,
+		derived: { atk: number; matk: number; weaponElement?: string } | null = null;
 	const panel = $<HTMLDialogElement>("#skills-window"),
 		angel = $<HTMLDialogElement>("#angel-window");
 	const bar = $("#job-hotbar");
@@ -76,7 +80,50 @@ export function mountSkills(
 				: s.id === "sword_rhythm"
 					? `คอมโบสาม +${at("comboBonus", 0) * 100}% · ลดคูลดาวน์อื่น ${at("cooldownReduction", 0).toFixed(1)} วิ`
 						: `พลังชีวิต +${at("hpPercent", 0) * 100}% · ฟื้นพลังชีวิต +${at("hpRegenPercent", 0) * 100}%`;
-		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}พลังสกิล ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${s.effect === "taunt" ? ` · ป้องกัน −${Math.round(at("defDown", 0.05) * 100)}% ${s.duration ?? 5} วิ` : s.effect === "endure" ? ` · ป้องกัน +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? ` · ${s.range} ม. สตั้น ${s.duration} วิ` : s.effect === "knockup" ? ` · ยก ${s.duration} วิ ร่าย ${s.cast} วิ` : s.effect === "stun" ? ` · สตั้น ${s.duration} วิ` : s.effect === "guard" ? ` · ลดความเสียหายที่ได้รับ ${pct(at("guard", 0.1))}% ${s.duration} วิ` : s.effect === "rage" ? ` · พลังโจมตี +${pct(at("atkUp", 0.1))}% เร็วขึ้น 10% ${s.duration} วิ · เสียพลังชีวิต ${pct(at("hpCost", 0.08))}%` : ""}`;
+		return `${s.percent ? `${s.hits || 1}×${at("percent", s.percent).toFixed(0)}% · ` : ""}พลังสกิล ${at("sp", s.sp).toFixed(1).replace(".0", "")} · ${s.cooldown} วิ${effectText(s, lv)}`;
+	}
+	function effectText(s: any, lv: number) {
+		const at = (key: string, fallback: number) => s.values?.[key]?.[Math.max(0, lv - 1)] ?? fallback;
+		const pct = (v: number) => Math.round(v * 100);
+		return `${s.effect === "taunt" ? ` · ป้องกัน −${Math.round(at("defDown", 0.05) * 100)}% ${s.duration ?? 5} วิ` : s.effect === "endure" ? ` · ป้องกัน +${Math.round(at("defUp", 0.06) * 100)}% 8 วิ` : s.effect === "dash" ? ` · ${s.range} ม. สตั้น ${s.duration} วิ` : s.effect === "knockup" ? ` · ยก ${s.duration} วิ ร่าย ${s.cast} วิ` : s.effect === "stun" ? ` · สตั้น ${s.duration} วิ` : s.effect === "guard" ? ` · ลดความเสียหายที่ได้รับ ${pct(at("guard", 0.1))}% ${s.duration} วิ` : s.effect === "rage" ? ` · พลังโจมตี +${pct(at("atkUp", 0.1))}% เร็วขึ้น 10% ${s.duration} วิ · เสียพลังชีวิต ${pct(at("hpCost", 0.08))}%` : ""}`;
+	}
+	/** Damage breakdown for attack skills: kind, reach and element up top, then this level against the next,
+	 *  estimated from the player's current ATK/MATK before the target's armour and element. */
+	function damageHTML(s: any, lv: number, nextLv: number) {
+		const magic = s.type === "magic", power = derived ? (magic ? derived.matk : derived.atk) : 0;
+		const hits = s.hits || 1;
+		const at = (key: string, fallback: number, l: number) => s.values?.[key]?.[Math.max(0, l - 1)] ?? fallback;
+		const per = (l: number) => at("percent", s.percent, l), sp = (l: number) => at("sp", s.sp, l);
+		const est = (pct: number) => Math.round(power * pct / 100);
+		const n = (v: number) => v.toLocaleString("th-TH");
+		const element = s.element === "weapon"
+			? `ตามอาวุธ${derived?.weaponElement ? ` (${ELEMENT_TH[derived.weaponElement] ?? derived.weaponElement})` : ""}`
+			: ELEMENT_TH[s.element] ?? s.element;
+		const reach = s.kind === "area" ? `วงกว้าง · รัศมี ${s.radius || s.range} ม.` : `เป้าเดียว · ระยะ ${s.range} ม.`;
+		const chips = [magic ? "เวท" : "กายภาพ", `ธาตุ ${element}`, reach, hits > 1 ? `ตี ${hits} ครั้ง` : "", `คูลดาวน์ ${s.cooldown} วิ`, s.cast ? `ร่าย ${s.cast} วิ` : "ใช้ทันที"]
+			.filter(Boolean).map((c) => `<span>${c}</span>`).join("");
+		const col = (l: number) => {
+			if (!l) return { hit: "—", total: "—", dps: "—", sp: "—" };
+			const p = per(l), total = p * hits;
+			return {
+				hit: `${Math.round(p)}%${power ? `<small>≈ ${n(est(p))}</small>` : ""}`,
+				total: power ? `≈ ${n(est(total))}` : `${Math.round(total)}%`,
+				dps: power ? `≈ ${n(Math.round(est(total) / Math.max(0.1, s.cooldown + (s.cast || 0))))}` : "—",
+				sp: sp(l).toFixed(1).replace(".0", ""),
+			};
+		};
+		const now = col(lv), next = lv < s.maxLevel ? col(nextLv) : null;
+		const row = (label: string, k: keyof ReturnType<typeof col>) =>
+			`<tr><th>${label}</th><td>${now[k]}</td>${next ? `<td class="nx">${next[k]}</td>` : ""}</tr>`;
+		const basic = BASIC?.percent || 100;
+		const ratio = (per(Math.max(1, lv)) * hits) / basic;
+		const effect = effectText(s, Math.max(1, lv)).replace(/^ · /, "");
+		return `<section class="sk-dmg"><h4>ความเสียหาย</h4><div class="sk-chips">${chips}</div>
+			<table><thead><tr><th></th><th>${lv ? `ตอนนี้ · Lv ${lv}` : "ยังไม่ได้เรียน"}</th>${next ? `<th class="nx">Lv ${nextLv}</th>` : ""}</tr></thead><tbody>
+			${row(hits > 1 ? "ต่อครั้ง" : "ความเสียหาย", "hit")}${hits > 1 ? row(`รวม ${hits} ครั้ง`, "total") : ""}${row("เฉลี่ยต่อวินาที", "dps")}${row("ใช้พลังสกิล", "sp")}
+			</tbody></table>
+			${effect ? `<p class="sk-eff">ผลพิเศษ · ${effect}</p>` : ""}
+			<p class="sk-note">แรงกว่าโจมตีปกติ ×${ratio.toFixed(1)}${power ? ` · ≈ คิดจาก${magic ? "พลังเวท" : "พลังโจมตี"} ${n(Math.round(power))} ตอนนี้ ก่อนหักเกราะและธาตุของศัตรู` : ""}</p></section>`;
 	}
 	function slotsHTML(mirror = false) {
 		return (job?.hotbar || [])
@@ -241,7 +288,7 @@ export function mountSkills(
 					reqs = d.requires.map((r: any) => `<span class="${level(r.id) >= r.level ? "ok" : "no"}">${level(r.id) >= r.level ? "✓" : "✗"} ${skills.find((s) => s.id === r.id)?.nameTh} Lv ${r.level}</span>`).join(""),
 					left = job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0);
 				tree.querySelector(".sk-detail")!.innerHTML = `<div class="sk-dhead"><span class="sk-big job-icon" style="--ix:${d.icon % 4};--iy:${Math.floor(d.icon / 4)}" aria-hidden="true"></span><div><h3>${d.nameTh}</h3><small>${d.passive ? "ติดตัว · ไม่ต้องกดใช้" : `กดใช้ · ${d.kind === "area" ? "วงกว้าง" : d.kind === "single" ? "เป้าเดียว" : "สนับสนุน"}`}</small><div class="sk-pips">${pips}</div></div><span class="sk-dlv">Lv ${lv}/${d.maxLevel}<small>${learned ? "เรียนแล้ว" : lock && lock !== "แต้มสกิลไม่พอ" ? "ยังไม่ปลด" : "เรียนได้"}</small></span></div>
-					<dl><dt>ตอนนี้</dt><dd>${lv ? values(d, lv) : "ยังไม่ได้เรียน"}</dd>${lv < d.maxLevel ? `<dt>ระดับถัดไป · Lv ${nextLv}</dt><dd class="skill-next">${values(d, nextLv)}</dd>` : ""}</dl>
+					${!d.passive && d.percent > 0 ? damageHTML(d, lv, nextLv) : `<dl><dt>ตอนนี้</dt><dd>${lv ? values(d, lv) : "ยังไม่ได้เรียน"}</dd>${lv < d.maxLevel ? `<dt>ระดับถัดไป · Lv ${nextLv}</dt><dd class="skill-next">${values(d, nextLv)}</dd>` : ""}</dl>`}
 					<div class="sk-reqs">${reqs}<span class="${left > 0 ? "ok" : "no"}">${left > 0 ? "✓" : "✗"} แต้มสกิลเหลือ ${left}</span></div>
 					<button type="button" class="sk-learn primary" data-learn="${d.id}" ${lock ? "disabled" : ""}>${lock ? lock : lv ? "อัปเลเวล · ใช้ 1 แต้ม" : "เรียนสกิล · ใช้ 1 แต้ม"}</button>
 					${nextJobHTML()}`;
@@ -400,6 +447,11 @@ export function mountSkills(
 				$("#skills-status").textContent = e.text;
 				$("#angel-note").textContent = e.text;
 				return;
+			}
+			if (e.type === "stats" && e.derived) {
+				const changed = !derived || derived.atk !== e.derived.atk || derived.matk !== e.derived.matk;
+				derived = { atk: e.derived.atk, matk: e.derived.matk, weaponElement: e.derived.weaponElement };
+				if (changed && !e.job && panel.open) draw();
 			}
 			if (e.type !== "stats" || !e.job) return;
 			if (confirmedJob && confirmedJob !== e.job.jobId) play("job_change");

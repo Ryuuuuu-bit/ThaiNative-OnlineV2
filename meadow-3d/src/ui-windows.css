@@ -397,3 +397,17 @@ dialog .close:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line
 /* potions tab */
 .sk-grid.sk-items{display:flex;flex-direction:column;gap:4px}
 @media(max-width:860px){.sk-main{grid-template-columns:1fr;grid-template-rows:minmax(300px,1fr) minmax(150px,38%)}.sk-grid{grid-template-columns:44px repeat(var(--cols),minmax(92px,1fr))}#skills-window[open]{height:92dvh}}
+/* Skill damage breakdown (skill book detail) */
+#skills-window .sk-dmg{margin-top:10px}
+#skills-window .sk-dmg h4{margin:0 0 6px;font-size:11px!important;font-weight:600;letter-spacing:.16em;color:var(--g-faint)}
+#skills-window .sk-chips{display:flex;flex-wrap:wrap;gap:4px}
+#skills-window .sk-chips span{padding:2px 8px;border-radius:9px;border:1px solid var(--g-line);background:rgba(255,255,255,.04);font-size:11px!important;color:var(--g-muted)}
+#skills-window .sk-dmg table{width:100%;margin-top:8px;border-collapse:collapse;font-size:12px!important}
+#skills-window .sk-dmg th,#skills-window .sk-dmg td{padding:4px 6px;text-align:right;font-variant-numeric:tabular-nums;border-top:1px solid rgba(255,255,255,.06)}
+#skills-window .sk-dmg thead th{border-top:0;font-size:10.5px!important;font-weight:500;color:var(--g-faint)}
+#skills-window .sk-dmg tbody th{text-align:left;font-weight:400;color:var(--g-muted)}
+#skills-window .sk-dmg td{color:var(--g-text);font-weight:600}
+#skills-window .sk-dmg td small{display:block;font-size:10.5px!important;font-weight:400;color:var(--g-muted)}
+#skills-window .sk-dmg .nx,#skills-window .sk-dmg td.nx small{color:var(--g-ok)!important}
+#skills-window .sk-eff{margin:8px 0 0;font-size:12px!important;color:#f0c987}
+#skills-window .sk-note{margin:6px 0 0;font-size:11px!important;line-height:1.5;color:var(--g-faint)}
