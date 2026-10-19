@@ -1,0 +1,11 @@
+{
+  "review": "ตัวละครใกล้ต้นฉบับขึ้นมาก (อัปโหลด idle 2 เท่า และล็อกเฟรมแรกกับเฟรมสุดท้ายไว้ที่ภาพต้นฉบับ): ได้ลายเพนต์ ตัวเพรียว ดาบเรียวยาว ผ้าคลุมอยู่ขวา หน้าและผมใกล้ของเดิม แต่ท่าเดินยังไม่ถูกต้อง: (1) เท้าซ้ายของตัวละคร (ฝั่งขวาจอ) เป็นเท้าที่ต่ำและอยู่หน้าในทุกจังหวะลงเท้า (เฟรม 1, 7–9, 13, 18–19) ส่วนขาฝั่งดาบถูกเตะงอไปด้านหลังซ้ำ ๆ (เฟรม 4–5, 10–11, 15–16, 21) จึงเป็นท่ากระโดดควบ ไม่ใช่การเดินสลับเท้า (2) ตัวเด้งขึ้นลงมาก ระดับเท้าต่ำสุดเปลี่ยนไป 52 px ที่ 512 px หรือราว 23 px เมื่อสเกลตัวสูง 168 px (3) เฟรม 23–25 แทบเหมือนเฟรม 1 (diff ~6) จึงหยุดนิ่ง 4 เฟรมตรงรอยต่อลูป และจากเฟรม 22 กระโดดไปเฟรม 23 (diff 44) เป็นผลจากการล็อกเฟรมสุดท้าย (4) ดาบยังชี้ลงซ้าย แต่แกว่งระหว่าง 44.8–51.2° (idle 51.1°) ปรับความสูงกึ่งกลางชุดให้เท่ากับต้นฉบับ 168 px ด้วยสเกลเดียว ไม่ได้แก้ท่ารายเฟรม",
+  "quality": {
+    "model": "Much closer than v2: painted rendering, slim build, slim long blade, cape on the right side, similar face and hair. Proportions not pixel-verified.",
+    "alternation": "Fail: the character's left foot (screen right) is the lowest, leading foot at every landing (frames 1, 7–9, 13, 18–19). The sword-side leg repeatedly kicks up behind (4–5, 10–11, 15–16, 21), which reads as a skip/gallop with ~6-frame beats, not alternating steps.",
+    "facing": "Mostly SE; the torso stays three-quarter SE. Blade angle 44.8–51.2° (idle 51.1°), so it swings about 6° with the gait.",
+    "loop": "Fail: frames 23–25 are near-copies of frame 1 (mean abs diff ~6), giving a 4-frame hold at the seam, preceded by a 22→23 snap (diff 44.2). Vertical bounce is about 52 px at 512 (≈23 px at game reference scale).",
+    "proportions": "Uniform scale. The source was the 2x idle (335 px tall), so there was less invented detail than in v2.",
+    "shipReady": false
+  }
+}

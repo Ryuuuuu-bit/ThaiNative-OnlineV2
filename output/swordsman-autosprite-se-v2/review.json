@@ -1,0 +1,11 @@
+{
+  "review": "ไม่ผ่าน (ผู้ใช้ตรวจแล้ว): ท่าเดินไม่ถูกต้อง และโมเดลตัวละครไม่เหมือนต้นฉบับ ส่วนที่เพี้ยนจากต้นฉบับ: ตัวล่ำและไหล่กว้างขึ้น ขาสั้นลง รองเท้าบูทใหญ่ขึ้น ผมฟูขึ้น ใบดาบกว้างและสั้นกว่าดาบเรียวยาวของต้นฉบับ ลายเส้นตัดขอบหนาแบบเซลชาเดอร์ ไม่ใช่ภาพเพนต์แบบต้นฉบับ ท่าเดิน: เป็นการย่ำอยู่กับที่ ช่วงก้าวสั้นมาก เท้าแทบไม่ยกพ้นพื้นและเบียดเข้ากลางตัวแทนที่จะก้าวไปตามแนว SE ลำตัวไม่ขึ้นลงตามจังหวะก้าว รอบก้าวยาว 14 เฟรม ทั้งชุด 25 เฟรมเป็นราว 1.8 รอบ และรอยต่อจากเฟรม 25 ไปเฟรม 1 กระตุก ที่ยังใช้ได้มีเพียงทิศลำตัว SE ที่คงที่ กับมุมดาบที่นิ่ง (51–53°) สาเหตุที่น่าจะเป็น: turbo reference mode ใช้ภาพต้นฉบับเป็นแค่ตัวอ้างอิงแล้ววาดตัวละครใหม่ทุกเฟรม และภาพที่อัปโหลดมีความละเอียดต่ำ (ตัวสูง 168 px) จึงถูกขยายขึ้นไปที่ 512 px",
+  "quality": {
+    "alternation": "Fail as a walk (user-reviewed). Feet technically trade the lead (L at frames 1 and 15, R at 9 and 23), but the steps are tiny in-place shuffles that converge to centre rather than strides along SE, with no body bob.",
+    "facing": "Pass: the torso, head and hips keep the reference SE three-quarter facing in all 25 frames, with only a small shoulder sway. Blade angle 51.4–53.1° below horizontal in every frame (idle reference 51.6°), tip position within ±5 px.",
+    "loop": "Fail: the stride period is 14 frames (mean abs diff for frames 1↔15 is 9.2, 2↔16 is 9.6, 9↔23 is 12.5). The 25 frames cover about 1.8 cycles, and the wrap from frame 25 to frame 1 skips the passing pose (diff 37.2, the largest jump in the sheet), so the seam hitches. The prompt asked for exactly one cycle.",
+    "proportions": "Uniform scale preserves the generated aspect ratio. Costume, cape side and sword match the uploaded idle. Original bone lengths are not guaranteed.",
+    "shipReady": false,
+    "model": "Fail (user-reviewed): the character redraw does not match the original. It is stockier, has shorter legs and larger boots, the blade is wider and shorter, and the rendering style is outline/cel instead of painted."
+  }
+}

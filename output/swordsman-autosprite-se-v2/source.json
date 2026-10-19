@@ -1,0 +1,16 @@
+{
+  "characterId": "cmvfow5jl0009x9lpg949u09h",
+  "kind": "custom",
+  "animationName": "Walk SE steady",
+  "videoId": "cmvfowet80004bpmv43mgvj7o",
+  "spritesheetId": "cmvfoybcf001snigw76e0bktz",
+  "videoTier": "turbo",
+  "turboMode": "reference",
+  "prompt": "Isometric RPG game sprite animation. Fixed camera, same high three-quarter isometric angle as the reference image for the whole clip. The swordsman walks in place toward the bottom-right of the picture (south-east). His head, chest, hips and feet keep facing the bottom-right in every frame, exactly the same facing as the reference image; the body stays upright and steady. He holds the sword low and still in his right hand, which is on the LEFT side of the picture; the blade stays angled downward toward the lower-LEFT of the picture in every frame, the same angle as in the reference image. His green cape stays on the RIGHT side of the picture. Clear alternating steps: left foot steps forward, then right foot steps forward. Exactly one complete walk cycle (two steps) that loops seamlessly back to the first frame. Plain background.",
+  "sourceCell": 512,
+  "sourceExport": "AutoSprite generate_spritesheet (custom, raw_prompt, loop=true): 25 frames at 512x512 in a 5x5 atlas, all 25 cells populated. Atlas JSON saved as autosprite-atlas.json.",
+  "duration": 2,
+  "durationNote": "Playback over the 2-second AutoSprite turbo clip length the 25 frames were sampled from; no frames were retimed, duplicated or mirrored.",
+  "creditsUsed": 5,
+  "creditsRemaining": 500
+}
