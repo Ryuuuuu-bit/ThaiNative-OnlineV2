@@ -5,6 +5,8 @@ export type Direction = typeof DIRECTIONS[number];
 // Walk has its own 8-direction atlas: the four diagonal rows first (same order as DIRECTIONS), then the cardinals.
 export const WALK_DIRECTIONS = ['SE', 'SW', 'NE', 'NW', 'S', 'E', 'N', 'W'] as const;
 export type Facing = typeof WALK_DIRECTIONS[number];
+/** Walk atlas column after the 8 stride frames: the standing pose each walk render starts from. */
+export const WALK_STAND = 8;
 export const MOTIONS = ['idle', 'walk', 'run', 'attack', 'spin', 'cast', 'hit', 'dodge', 'death'] as const;
 export type Motion = typeof MOTIONS[number];
 export const MOTION_DURATION: Record<Motion, number> = {idle:1,walk:.8,run:.6,attack:.34,spin:.6,cast:.8,hit:.3,dodge:.22,death:.9};
@@ -44,7 +46,7 @@ export function attackFrame(remaining: number, kind: string): number {
 }
 
 export function atlasCell(motion: Motion, direction: Direction | Facing, frame: number) {
-  if (motion === 'walk') return {column: Math.max(0, Math.min(7, frame)), row: WALK_DIRECTIONS.indexOf(direction), columns: 8, rows: WALK_DIRECTIONS.length};
+  if (motion === 'walk') return {column: Math.max(0, Math.min(WALK_STAND, frame)), row: WALK_DIRECTIONS.indexOf(direction), columns: WALK_STAND + 1, rows: WALK_DIRECTIONS.length};
   const row = DIRECTIONS.indexOf(direction as Direction);
   return motion === 'idle' ? {column: row, row: 0, columns: 4, rows: 1}
     : {column: Math.max(0, Math.min(frameCount(motion)-1, frame)), row, columns: frameCount(motion), rows: 4};
@@ -52,12 +54,12 @@ export function atlasCell(motion: Motion, direction: Direction | Facing, frame: 
 
 /**
  * Which hero sheet and cell to draw. Walk uses all eight facings. Idle facing a cardinal
- * borrows the walk sheet's first frame, which is that direction's standing pose. Every
+ * borrows the walk sheet's standing-pose column (there is no painted cardinal idle). Every
  * other motion only has the four diagonal rows, so it keeps the old quadrant facing.
  */
 export function heroSprite(motion: Motion, x: number, z: number, frame: number): {sheet: Motion; cell: ReturnType<typeof atlasCell>} {
   const facing = facing8For(x, z);
   if (motion === 'walk') return {sheet: 'walk', cell: atlasCell('walk', facing, frame)};
-  if (motion === 'idle' && !(DIRECTIONS as readonly string[]).includes(facing)) return {sheet: 'walk', cell: atlasCell('walk', facing, 0)};
+  if (motion === 'idle' && !(DIRECTIONS as readonly string[]).includes(facing)) return {sheet: 'walk', cell: atlasCell('walk', facing, WALK_STAND)};
   return {sheet: motion, cell: atlasCell(motion, facingFor(x, z), frame)};
 }

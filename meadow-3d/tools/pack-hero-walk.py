@@ -7,9 +7,12 @@ output/swordsman-autosprite-walk-4dir-v1/<SE|SW|NE|NW>/ and output/swordsman-aut
 user-approved AutoSprite standing poses.
 
 Each render starts and ends on its standing pose, with a short stand at both ends. The
-walking span is [first, last) in 1-based render frames: `first` is the last standing frame
-before the feet move, and `last` is the first standing frame after (it matches `first`). Eight
-evenly spaced frames from that span loop back onto `first`. The transform is each direction's
+walking span is [first, last) in 1-based render frames, where frame `last` matches frame
+`first`. Eight evenly spaced frames from that span loop back onto `first`. For most facings
+the span runs stand-to-stand. S and N use a seamless loop found inside the walk instead
+(frame diff 12.2 and 15.6), because their stand pose differs from the stride enough to pop
+once per loop. Column 8 holds each render's first frame (the standing pose); the game uses
+it for idle on cardinal facings, which have no painted idle. The transform is each direction's
 shared scale/anchor from metadata.json, so the median height equals the 168 px idle, and feet
 sit on (192,240) in 384x256 cells (2x: 768x512 for the atelier preview).
 
@@ -26,8 +29,9 @@ RENDERS = {**{d: REPO / 'output/swordsman-autosprite-walk-4dir-v1' / d for d in 
 SRC = ROOT / 'art/texture-sources/hero-painted'
 PUBLIC = ROOT / 'public'
 DIRECTIONS = ['SE', 'SW', 'NE', 'NW', 'S', 'E', 'N', 'W']  # atlas row order = WALK_DIRECTIONS in src/sprite-animation.ts
-SPAN = {'SE': (3, 23), 'SW': (2, 20), 'NE': (2, 21), 'NW': (2, 23), 'S': (2, 23), 'E': (3, 23), 'N': (4, 21), 'W': (4, 22)}
+SPAN = {'SE': (3, 23), 'SW': (2, 20), 'NE': (2, 21), 'NW': (2, 23), 'S': (8, 19), 'E': (3, 23), 'N': (9, 18), 'W': (4, 22)}
 FRAMES = 8
+COLUMNS = FRAMES + 1  # + standing pose
 
 def frames_for(direction):
     first, last = SPAN[direction]
@@ -35,13 +39,13 @@ def frames_for(direction):
 
 def build(factor):
     cw, ch = 384 * factor, 256 * factor
-    sheet = Image.new('RGBA', (cw * FRAMES, ch * len(DIRECTIONS)))
+    sheet = Image.new('RGBA', (cw * COLUMNS, ch * len(DIRECTIONS)))
     for row, direction in enumerate(DIRECTIONS):
         meta = json.loads((RENDERS[direction] / 'metadata.json').read_text(encoding='utf-8'))
         raw = Image.open(RENDERS[direction] / 'autosprite-raw.png').convert('RGBA')
         cell, scale, (ax, ay) = meta['sourceCell'][0], meta['sharedScale'] * factor, meta['sourceAnchor']
         cols = raw.width // cell
-        for column, number in enumerate(frames_for(direction)):
+        for column, number in enumerate(frames_for(direction) + [1]):
             i = number - 1
             frame = raw.crop(((i % cols) * cell, (i // cols) * cell, (i % cols + 1) * cell, (i // cols + 1) * cell))
             size = round(cell * scale)

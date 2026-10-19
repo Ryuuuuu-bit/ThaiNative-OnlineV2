@@ -1726,15 +1726,15 @@
     "ktx2": "/assets/hero-skills/hero-skill-blade_cyclone-v1-5cb61df553.ktx2"
   },
   "/assets/hero-painted/hero-walk-v1.png": {
-    "webp": "/assets/hero-painted/hero-walk-v1-2a051fecde.webp",
-    "ktx2": "/assets/hero-painted/hero-walk-v1-ee3ecf4703.ktx2",
+    "webp": "/assets/hero-painted/hero-walk-v1-673d6c074b.webp",
+    "ktx2": "/assets/hero-painted/hero-walk-v1-d22d472539.ktx2",
     "source": "art/texture-sources/hero-painted/hero-walk-v1.png",
     "size": [
       2048,
-      1364
+      1212
     ],
     "originalSize": [
-      3072,
+      3456,
       2048
     ],
     "mode": "uastc",
@@ -1743,15 +1743,15 @@
     "cpu": false
   },
   "/assets/hero-painted/preview/hero-walk-v1.png": {
-    "webp": "/assets/hero-painted/preview/hero-walk-v1-ba659bb7d4.webp",
+    "webp": "/assets/hero-painted/preview/hero-walk-v1-3f104d8d16.webp",
     "ktx2": null,
     "source": "art/texture-sources/hero-painted/preview/hero-walk-v1.png",
     "size": [
-      6144,
+      6912,
       4096
     ],
     "originalSize": [
-      6144,
+      6912,
       4096
     ],
     "mode": "uastc",
