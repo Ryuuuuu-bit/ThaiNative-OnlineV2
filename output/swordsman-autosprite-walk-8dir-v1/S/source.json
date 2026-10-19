@@ -1,0 +1,17 @@
+{
+  "characterId": "cmvfp83sy009y12kzd7l1pjtn",
+  "kind": "custom",
+  "animationName": "Walk S calm",
+  "videoId": "cmvfqdwx8002q6be5uuco1t0y",
+  "spritesheetId": "cmvfqfuou005x6be5rs7qiu1k",
+  "videoTier": "turbo",
+  "turboMode": "first_frame",
+  "firstLastFramePoseId": "first frame only: cmvfqas7s000rvh2a2126n8ci (generated S standing pose, user-approved; last frame not pinned)",
+  "prompt": "Calm walk in place, front view, heading to the bottom of the picture; both legs take turns, one foot always planted, head level, slim sword held low in the right hand. See the session notes for the full prompt text.",
+  "sourceCell": 512,
+  "sourceExport": "AutoSprite generate_spritesheet (custom, raw_prompt, loop=true, turbo first_frame): 25 frames at 512x512 in a 5x5 atlas, all populated. Atlas JSON saved as autosprite-atlas.json.",
+  "duration": 2,
+  "durationNote": "Playback over the 2-second AutoSprite turbo clip length; no frames were retimed, duplicated or mirrored.",
+  "creditsUsed": 5,
+  "creditsRemaining": 458
+}

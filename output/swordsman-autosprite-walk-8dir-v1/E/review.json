@@ -1,0 +1,11 @@
+{
+  "review": "ทิศ E: ตัวละครตรงกับภาพยืนที่ผู้ใช้อนุมัติ ขาสองข้างก้าวสลับกันชัด ลำตัวหันทิศ E ตลอด ช่วงเดินคือเฟรม 3–23 (ช่วงต้นและท้ายคลิปยืนนิ่งท่ายืน)",
+  "quality": {
+    "model": "Pass (visual) against the user-approved generated pose.",
+    "alternation": "Pass (visual): both legs step in turn.",
+    "facing": "Pass: E throughout.",
+    "loop": "Walking span is frames 3–23; outside it the figure stands in the starting pose.",
+    "shipReady": true,
+    "shipReadyNote": "User asked for 8 directions to ship; reviewed visually before packing."
+  }
+}

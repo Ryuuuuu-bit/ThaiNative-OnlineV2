@@ -1,0 +1,17 @@
+{
+  "characterId": "cmvfpp5n60011lt8yx50gr0bg",
+  "kind": "custom",
+  "animationName": "Walk W calm",
+  "videoId": "cmvfqe59g001ovh2a7031v35q",
+  "spritesheetId": "cmvfqghg0007x6be577tmt583",
+  "videoTier": "turbo",
+  "turboMode": "first_frame",
+  "firstLastFramePoseId": "first frame only: cmvfqawf8000vvh2aa0dplsc3 (generated W standing pose, user-approved; last frame not pinned)",
+  "prompt": "Calm walk in place, profile facing left; both legs take turns, one foot always planted, head level, slim sword held low in the right hand. See the session notes for the full prompt text.",
+  "sourceCell": 512,
+  "sourceExport": "AutoSprite generate_spritesheet (custom, raw_prompt, loop=true, turbo first_frame): 25 frames at 512x512 in a 5x5 atlas, all populated. Atlas JSON saved as autosprite-atlas.json.",
+  "duration": 2,
+  "durationNote": "Playback over the 2-second AutoSprite turbo clip length; no frames were retimed, duplicated or mirrored.",
+  "creditsUsed": 5,
+  "creditsRemaining": 443
+}
