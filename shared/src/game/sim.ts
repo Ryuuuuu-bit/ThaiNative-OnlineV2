@@ -1374,6 +1374,8 @@ function autoStep(g: Game, dt: number): Vec {
 	}
 		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId, p));
 	p.autoState = target ? "seek" : "idle";
+	const scout = autoScoutGoal(g, p.autoCfg ?? DEFAULT_AUTO);
+	if (scout) { p.autoState = "seek"; return navigate(g, scout, 1); }
 	return Math.hypot(p.x, p.z) < 0.4 ? still : navigate(g, { x: 0, z: 0 });
 }
 /**
@@ -1400,6 +1402,12 @@ function autoPickTarget(g: Game, cfg: AutoSettings) {
 	const boss = cfg.elites ? pool.filter((e) => e.boss).sort((a, b) => dist(a) - dist(b))[0] : undefined;
 	if (boss && !current?.boss) return boss;
 	return current ?? best;
+}
+/** Where AUTO walks with nothing in its hunt range: towards the nearest wanted monster (bosses last unless `elites`), not the map centre. */
+function autoScoutGoal(g: Game, cfg: AutoSettings): Vec | undefined {
+	const p = g.p, wanted = wantedMonsters(cfg, g.mapId), skip = p.autoUnreachable || {};
+	const away = (e: Enemy) => (e.boss && !cfg.elites ? 1e6 : 0) + Math.hypot(e.x - p.x, e.z - p.z);
+	return g.enemies.filter((e) => !e.dead && !e.summoned && !((skip[e.id] ?? 0) > g.time) && (!wanted || wanted.has(e.dataId))).sort((a, b) => away(a) - away(b))[0];
 }
 /** Cast the first ready skill in the player's AUTO order (cycle / priority, survival first when low). */
 function autoCast(g: Game, cfg: AutoSettings) {

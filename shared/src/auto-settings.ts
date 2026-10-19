@@ -42,7 +42,8 @@ export const DEFAULT_AUTO: AutoSettings = {
 	basic: true,
 	survive: 45,
 	attackers: true,
-	elites: true,
+	// Off by default: untouched AUTO hunts the nearest monster instead of crossing the map for the boss.
+	elites: false,
 	range: "mid",
 };
 /** Anything malformed falls back field by field to the defaults. */
