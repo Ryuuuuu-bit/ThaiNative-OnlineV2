@@ -27,6 +27,54 @@
           "value": 0.2
         }
       ]
+    },
+    {
+      "id": "card_mist_warden",
+      "slot": "garment",
+      "modifiers": [
+        {
+          "kind": "elementResist",
+          "target": "earth",
+          "value": 0.2
+        },
+        {
+          "kind": "percent",
+          "stat": "maxHp",
+          "value": 0.05
+        }
+      ]
+    },
+    {
+      "id": "card_relic_warden",
+      "slot": "accessory",
+      "modifiers": [
+        {
+          "kind": "stat",
+          "stat": "str",
+          "value": 2
+        },
+        {
+          "kind": "stat",
+          "stat": "dex",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "card_crag_titan",
+      "slot": "shield",
+      "modifiers": [
+        {
+          "kind": "percent",
+          "stat": "hardDef",
+          "value": 0.1
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 200
+        }
+      ]
     }
   ]
 }

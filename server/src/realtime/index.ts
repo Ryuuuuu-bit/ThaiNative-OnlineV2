@@ -2,7 +2,7 @@ import { createTrades } from './trade.js';
 import {TITLES,titleDefinition,normalizeTitleRecords,earnTitles,canWearTitle,titleProgress,type RankingCharacter} from '@thainative/shared';
 import {createRankings} from './rankings.js';
 import {monsterKnockbackFor} from './monster-knockback.js';
-import {applyInventory,equipped,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI,resolveKeys,reservedKeys,bindingProblem} from '@thainative/shared';
+import {applyInventory,equipped,equippedCards,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI,resolveKeys,reservedKeys,bindingProblem} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, isField, BOSS_RESPAWN_MS, bossTimer, setBossTimer, type MapId } from "@thainative/shared";
 import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@thainative/shared";
 import {needsJob} from '../store/progress.js';
@@ -497,6 +497,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          if(player.dead){reject('รอฟื้นตัวก่อน');return;}
          if(message.op==='pickup'){const d=g.drops.find(d=>d.id===message.drop);if(d)d.blocked=false;if(d&&!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(player.x-d.x,player.z-d.z)<4){moveTo(g,d.x,d.z);}return;}
          if(message.op==='buy'||message.op==='sell'){const npc=CITY_BUILDINGS.find(b=>b.id===message.shop);if(g.mapId!=='city_plaza'||!npc||Math.hypot(player.x-npc.talk.x,player.z-npc.talk.z)>=3){reject('ไปพบพ่อค้าก่อน');return;}}
+         if(message.op==='socket'){const smith=CITY_BUILDINGS.find(b=>b.id==='forge')!;if(g.mapId!=='city_plaza'||Math.hypot(player.x-smith.talk.x,player.z-smith.talk.z)>=3){reject('ไปพบช่างตีเหล็กในเมืองก่อน');return;}}
          if(message.op==='store'||message.op==='retrieve'){const keeper=CITY_BUILDINGS.find(b=>b.id==='storage')!;if(g.mapId!=='city_plaza'||Math.hypot(player.x-keeper.talk.x,player.z-keeper.talk.z)>=3){reject('ไปพบคนเฝ้าคลังก่อน');return;}}
          if(message.op==='use'&&(player.cd.potion>0||peer.busy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
          economy(peer,player,message,message.req);return;
@@ -788,7 +789,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					await room.saveQueue;const economyState=await store.inventory(session.accountId,character.id);
                     if(ws.readyState!==WebSocket.OPEN||closing){return;}
                     created=true;const p = addPlayer(room.game, character.id, profile);p.inventory=economyState.inventory;p.gold=economyState.gold;
-                    p.profile.equipment=equipped(p.inventory);
+                    p.profile.equipment=equipped(p.inventory);p.profile.cards=equippedCards(p.inventory);
 					Object.assign(p, normalizeJob(character));
                     p.audioSettings = character.audioSettings;
                     p.autoPotion = normalizeAutoPotion(character.autoPotion);

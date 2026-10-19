@@ -9,6 +9,32 @@
   "autoRareAfterSeconds": 7200,
   "autoRareMultiplier": 0.7,
   "storageSlots": 300,
+  "socketing": [
+    {
+      "maxLevel": 9,
+      "gold": 500,
+      "material": "jelly_slime",
+      "qty": 10
+    },
+    {
+      "maxLevel": 19,
+      "gold": 2000,
+      "material": "mist_wood",
+      "qty": 10
+    },
+    {
+      "maxLevel": 29,
+      "gold": 6000,
+      "material": "ancient_vine",
+      "qty": 10
+    },
+    {
+      "maxLevel": 99,
+      "gold": 15000,
+      "material": "crag_root",
+      "qty": 10
+    }
+  ],
   "deathPenalty": {
     "minLevel": 10,
     "percent": 0.01

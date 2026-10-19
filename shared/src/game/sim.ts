@@ -1,4 +1,4 @@
-import {applyInventory,starterInventory,inventoryWeight,bestPotion,equipped,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
+import {applyInventory,starterInventory,inventoryWeight,bestPotion,equipped,equippedCards,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
 import {
 	migrateJob,
 	newJob,
@@ -397,7 +397,7 @@ export function addPlayer(
 	return p;
 }
 export function refreshStats(g: Game, p: Player) {
-	if(p.inventory){p.profile.equipment=equipped(p.inventory);p.potions=p.inventory.items.filter(i=>i.location==='bag'&&g.data.items.items.find(t=>t.id===i.template)?.effect==='hp').reduce((n,i)=>n+i.qty,0);}
+	if(p.inventory){p.profile.equipment=equipped(p.inventory);p.profile.cards=equippedCards(p.inventory);p.potions=p.inventory.items.filter(i=>i.location==='bag'&&g.data.items.items.find(t=>t.id===i.template)?.effect==='hp').reduce((n,i)=>n+i.qty,0);}
  p.profile.level = p.level;
 	p.profile.skills = { ...p.skills };
 	p.stats = deriveStats(p.profile, g.data);

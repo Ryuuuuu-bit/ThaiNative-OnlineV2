@@ -350,3 +350,8 @@ body #inventory-window .inv-count em.new{color:#e6c98f}
 	body #inventory-window[data-mode=bag] .inv-detail.inv-strip{grid-template-columns:48px minmax(0,1fr)}
 	body #inventory-window[data-mode=bag] .inv-detail.inv-strip .strip-actions{grid-column:1/-1;flex-wrap:wrap}
 }
+
+body #inventory-window .strip-actions.card-targets{flex-wrap:wrap;justify-content:flex-end;max-width:520px}
+body #inventory-window .strip-actions.card-targets button{display:inline-flex;align-items:center;gap:6px}
+body #inventory-window .strip-actions.card-targets .item-icon{width:24px;height:24px}
+.tip-cards{margin:6px 0 0;white-space:pre-line;color:#e8cf8a;font-size:12px}

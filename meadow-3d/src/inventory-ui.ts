@@ -5,12 +5,17 @@ import {
 	storageSlots,
 	equipmentSlots,
 	equipmentTarget,
+	cardProblem,
+	cardSlots,
+	socketPrice,
+	CARD_SLOT_NAMES,
 	type Inventory,
 	type OwnedItem,
 	type Player,
 } from "@thainative/shared";
 import "./inventory.css";
 import { itemIconCell } from "./item-icon";
+import { cardEffects } from "./card-text";
 const data = loadGameData(),
 	templates = data.items.items;
 const slotNames: Record<string, string> = {
@@ -183,6 +188,29 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		b.onpointerup = b.onpointerleave = () => clearTimeout(hold);
 		return b;
 	}
+	/** Choose the equipment a card goes into; inserting is permanent, so it asks first. */
+	function pickCardTarget(card: OwnedItem, targets: OwnedItem[]) {
+		const btns = detail.querySelector<HTMLElement>(".strip-actions");
+		if (!btns) return;
+		btns.replaceChildren();
+		btns.classList.add("card-targets");
+		for (const x of targets) {
+			const t = template(x), b = document.createElement("button");
+			b.type = "button";
+			b.append(itemIcon(t), document.createTextNode(`${x.refine ? `+${x.refine} ` : ""}${t.nameTh}${x.location === "equip" ? " (สวมอยู่)" : ""} · ${x.cards.length}/${cardSlots(x, data)}`));
+			b.onclick = () => {
+				if (confirm(`ใส่ ${template(card).nameTh} ลงใน ${t.nameTh}?
+ใส่แล้วถอดออกไม่ได้`)) request("card", { card: card.id, id: x.id });
+			};
+			btns.append(b);
+		}
+		const back = document.createElement("button");
+		back.type = "button";
+		back.className = "ghost";
+		back.textContent = "ยกเลิก";
+		back.onclick = () => showStrip(card);
+		btns.append(back);
+	}
 	/** Bag selection: icon, one-line summary and short, explicit actions (e.g. "ใส่แหวน 2", "ใส่แทนแหวน 1"). */
 	function showStrip(i: OwnedItem) {
 		const t = template(i);
@@ -220,7 +248,29 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				where = empty.length ? `ว่างอยู่ที่ ${empty.map((sl) => slotNames[sl]).join(", ")}` : slots.length > 1 ? "ช่องแหวนเต็ม" : "";
 			}
 		} else if (t.type === "consumable") add("ใช้", () => action(i), "gold");
-		sub.textContent = [kind, stats, where].filter(Boolean).join(" · ");
+		else if (t.type === "card") {
+			const spec = data.cards.cards.find((c) => c.id === t.id);
+			if (spec) {
+				where = `ใส่ได้กับ${CARD_SLOT_NAMES[spec.slot]} · ${cardEffects(data, t.id)}`;
+				const targets = inv!.items.filter((x) => x.id !== i.id && !cardProblem(i, x, data));
+				const b = add(targets.length ? "ใส่การ์ด" : `ไม่มี${CARD_SLOT_NAMES[spec.slot]}ที่มีช่องว่าง`, () => pickCardTarget(i, targets), "gold");
+				b.disabled = !targets.length;
+			}
+		}
+		if (t.slot && i.location !== "storage") {
+			const price = socketPrice(i, data);
+			if (typeof price !== "string") {
+				const mat = templates.find((x) => x.id === price.material)?.nameTh ?? price.material;
+				add(`เจาะช่องการ์ด`, () => {
+					if (confirm(`ให้ช่างตีเหล็กเจาะช่องการ์ด 1 ช่องใน ${t.nameTh}?
+ค่าเจาะ ${price.gold.toLocaleString()} ทอง + ${mat} ×${price.qty}
+(ต้องยืนคุยกับช่างตีเหล็กในเมือง)`)) request("socket", { id: i.id });
+				}).title = `${price.gold.toLocaleString()} ทอง + ${mat} ×${price.qty} · ที่ช่างตีเหล็ก`;
+			}
+		}
+		const slotCount = t.slot ? cardSlots(i, data) : 0;
+		const cardInfo = slotCount ? `การ์ด ${i.cards.length}/${slotCount}${i.cards.length ? ": " + i.cards.map((c) => templates.find((x) => x.id === c)?.nameTh ?? c).join(", ") : ""}` : "";
+		sub.textContent = [kind, stats, cardInfo, where].filter(Boolean).join(" · ");
 		text.append(name, sub);
 		if (i.location === "bag") {
 			let qty: HTMLInputElement | null = null;
@@ -453,10 +503,20 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			e.textContent = describe(t);
 			card.append(e);
 		}
+		if (t.type === "card") {
+			const spec = data.cards.cards.find((c) => c.id === t.id);
+			if (spec) { const e = document.createElement("p"); e.className = "tip-effect"; e.textContent = `ใส่ได้กับ${CARD_SLOT_NAMES[spec.slot]} · ${cardEffects(data, t.id)}`; card.append(e); }
+		}
+		if (i?.cards.length) {
+			const e = document.createElement("p");
+			e.className = "tip-cards";
+			e.textContent = i.cards.map((c) => `${templates.find((x) => x.id === c)?.nameTh ?? c}: ${cardEffects(data, c)}`).join("\n");
+			card.append(e);
+		}
 		const foot = document.createElement("div");
 		foot.className = "tip-foot";
 		const bind = i?.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวม" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้";
-		foot.textContent = [`น้ำหนัก ${fmtWeight(t.weight)}`, `ขาย ${fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง`, t.slot ? `ช่องการ์ด ${t.slots}` : "", t.slot ? bind : ""].filter(Boolean).join(" · ");
+		foot.textContent = [`น้ำหนัก ${fmtWeight(t.weight)}`, `ขาย ${fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง`, t.slot ? `ช่องการ์ด ${i?.cards.length ?? 0}/${i ? cardSlots(i, data) : t.slots}` : "", t.slot ? bind : ""].filter(Boolean).join(" · ");
 		card.append(foot);
 		return card;
 	}

@@ -516,7 +516,8 @@ export const CardsSchema = z
 				z
 					.object({
 						id,
-						slot: z.enum(["weapon", "armour"]),
+						/** Equipment type the card fits (item `type`). */
+						slot: z.enum(["weapon", "armour", "shield", "garment", "footgear", "accessory"]),
 						modifiers: z.array(ModifierSchema),
 					})
 					.strict(),
@@ -548,7 +549,7 @@ export const JobsSchema = z
 			.strict(),
 	})
 	.strict();
-export const EconomySchema = z.object({ dataVersion:z.literal(1), sellMultiplier:fraction, inventorySlots:positive.int(), regenWeightRatio:fraction, attackWeightRatio:fraction, lootOwnershipSeconds:nonnegative, dropMultiplier:nonnegative, autoRareAfterSeconds:nonnegative, autoRareMultiplier:fraction, storageSlots:positive.int(), deathPenalty:z.object({minLevel:positive.int(),percent:fraction}).strict(), shops:z.record(z.string(),z.record(z.string(),nonnegative.int())) }).strict();
+export const EconomySchema = z.object({ dataVersion:z.literal(1), sellMultiplier:fraction, inventorySlots:positive.int(), regenWeightRatio:fraction, attackWeightRatio:fraction, lootOwnershipSeconds:nonnegative, dropMultiplier:nonnegative, autoRareAfterSeconds:nonnegative, autoRareMultiplier:fraction, storageSlots:positive.int(), /** Forge socketing: price of one card slot by equipment level (highest maxLevel last). */ socketing:z.array(z.object({maxLevel:positive.int(),gold:positive.int(),material:z.string(),qty:positive.int()}).strict()).min(1), deathPenalty:z.object({minLevel:positive.int(),percent:fraction}).strict(), shops:z.record(z.string(),z.record(z.string(),nonnegative.int())) }).strict();
 const QuestObjectiveSchema = z.discriminatedUnion("kind", [
 	z.object({ kind: z.literal("kill"), monsters: z.array(z.string()).min(1), count: positive.int(), label: z.string() }).strict(),
 	z.object({ kind: z.literal("collect"), item: z.string(), count: positive.int(), label: z.string() }).strict(),

@@ -19,6 +19,8 @@ export interface OwnedItem {
 	cards: string[];
 	bound: boolean;
 	source: string;
+	/** Card slots the forge added on top of the template's own (0 when absent). */
+	sockets?: number;
 }
 export interface Inventory {
 	version: 1;
@@ -42,7 +44,9 @@ export interface InventoryOp {
 		| "store"
 		| "retrieve"
 		| "quest"
-		| "admin";
+		| "admin"
+		| "card"
+		| "socket";
 	template?: string;
 	id?: string;
 	/** Physical destination; item templates keep accessory1 for either ring slot. */
@@ -55,6 +59,8 @@ export interface InventoryOp {
 	/** Quest turn-in: items granted after `loot` (items required) are taken. */
 	reward?: { template: string; qty: number }[];
 	on?: boolean;
+	/** Card insertion: the card item placed into equipment `id`. */
+	card?: string;
 }
 export interface LedgerEntry {
 	kind: string;
@@ -103,6 +109,33 @@ export const storageStackId = (template: string) => "stack:storage:" + template;
 export function equipped(inv: Inventory) {
 	return inv.items.filter((i) => i.location === "equip").map((i) => i.template);
 }
+/** Cards inserted in worn equipment; their modifiers count towards the stats. */
+export function equippedCards(inv: Inventory) {
+	return inv.items.filter((i) => i.location === "equip").flatMap((i) => i.cards);
+}
+/** Why `card` cannot go into `target`, or null. Cards stay in the item for good (no removal yet). */
+export function cardProblem(card: OwnedItem, target: OwnedItem, data: GameData): string | null {
+	const spec = data.cards.cards.find((c) => c.id === card.template), t = knownTemplate(data, target.template);
+	if (!spec || card.location !== "bag") return "เลือกการ์ดจากกระเป๋า";
+	if (!t?.slot || !["bag", "equip"].includes(target.location)) return "เลือกอุปกรณ์ของคุณ";
+	if (t.type !== spec.slot) return `การ์ดนี้ใส่ได้เฉพาะ${CARD_SLOT_NAMES[spec.slot]}`;
+	const slots = cardSlots(target, data);
+	if (target.cards.length >= slots) return slots ? "ช่องการ์ดเต็มแล้ว" : "อุปกรณ์นี้ไม่มีช่องการ์ด · ให้ช่างตีเหล็กเจาะช่องก่อน";
+	return null;
+}
+/** Card slots of one owned item: the template's plus any the forge added. */
+export function cardSlots(item: OwnedItem, data: GameData) {
+	return (knownTemplate(data, item.template)?.slots ?? 0) + (item.sockets ?? 0);
+}
+/** The forge's price for one card slot in this item, or a Thai reason it cannot be socketed. */
+export function socketPrice(item: OwnedItem, data: GameData): { gold: number; material: string; qty: number } | string {
+	const t = knownTemplate(data, item.template);
+	if (!t?.slot) return "เจาะช่องได้เฉพาะอุปกรณ์";
+	if (cardSlots(item, data) > 0) return "อุปกรณ์นี้มีช่องการ์ดแล้ว";
+	const tier = data.economy.socketing.find((s) => t.level <= s.maxLevel) ?? data.economy.socketing.at(-1)!;
+	return { gold: tier.gold, material: tier.material, qty: tier.qty };
+}
+export const CARD_SLOT_NAMES: Record<string, string> = { weapon: "อาวุธ", armour: "ชุดเกราะ", shield: "โล่", garment: "ผ้าคลุม", footgear: "รองเท้า", accessory: "เครื่องประดับ" };
 export function equipmentSlots(templateSlot: string | null): string[] {
 	return templateSlot === 'accessory1' ? ['accessory1', 'ring2'] : templateSlot ? [templateSlot] : [];
 }
@@ -313,7 +346,7 @@ export function applyInventory(
 		i.location = "equip";
 		i.slot = targetSlot;
 		i.bound ||= t.bind === "equip";
-		deriveStats({ ...profile, equipment: equipped(inv) }, data);
+		deriveStats({ ...profile, equipment: equipped(inv), cards: equippedCards(inv) }, data);
 		log("equip", i, 1);
 	}
 	if (op.op === "unequip") {
@@ -324,6 +357,28 @@ export function applyInventory(
 		log("unequip", i, 1);
 	}
 	let effect: { kind: string; amount: number } | undefined;
+	if (op.op === "socket") {
+		const target = owned(op.id), price = socketPrice(target, data);
+		if (typeof price === "string") throw Error(price);
+		if (next.gold < price.gold) throw Error("ทองไม่พอ");
+		const stack = inv.items.find((i) => i.template === price.material && i.location === "bag");
+		if (!stack || stack.qty < price.qty) throw Error(`ต้องใช้ ${template(price.material).nameTh} ×${price.qty}`);
+		remove(stack, price.qty);
+		log("use", stack, price.qty);
+		next.gold -= price.gold;
+		log("npc_buy", target, 0, -price.gold);
+		target.sockets = (target.sockets ?? 0) + 1;
+	}
+	if (op.op === "card") {
+		const card = owned(op.card), target = owned(op.id);
+		const problem = cardProblem(card, target, data);
+		if (problem) throw Error(problem);
+		remove(card, 1);
+		target.cards = [...target.cards, card.template];
+		log("use", card, 1);
+		// Worn equipment changes stats right away; make sure they still derive.
+		if (target.location === "equip") deriveStats({ ...profile, equipment: equipped(inv), cards: equippedCards(inv) }, data);
+	}
 	if (op.op === "use") {
 		const i = owned(op.id),
 			t = template(i.template);
@@ -401,7 +456,7 @@ export function applyInventory(
 		if (inventorySlots(inv, data) > data.economy.inventorySlots)
 			throw Error("กระเป๋าเต็ม");
 		const max = deriveStats(
-			{ ...profile, equipment: equipped(inv) },
+			{ ...profile, equipment: equipped(inv), cards: equippedCards(inv) },
 			data,
 		).weight;
 		if (inventoryWeight(inv, data) > max) throw Error("น้ำหนักเกิน");
