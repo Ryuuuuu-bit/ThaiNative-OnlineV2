@@ -1,3 +1,4 @@
+import {circleIndex,circleGrid,GRID_MAX_R} from './obstacle-index.js';
 import {DECOR,GARDEN_TREES,FORTIFICATION_SOLIDS} from './city-details.js';
 export * from './city-details.js';
 export type FieldMapId = 'meadow' | 'forest' | 'ruins' | 'canyon';
@@ -32,26 +33,6 @@ export interface Layout {
 	spawns: { dataId: string; variant: 'pink' | 'mint' | 'sky'; x: number; z: number }[];
 }
 
-/** Spatial hash over circles: a walkable test only looks at the few obstacles near the point. */
-const GRID_CELL = 4, GRID_MAX_R = 2.5;
-function circleGrid(circles: Circle[]) {
-	const cells = new Map<number, Circle[]>(), key = (cx: number, cz: number) => cx * 4096 + cz;
-	for (const c of circles) {
-		const reach = c.r + GRID_MAX_R;
-		for (let cx = Math.floor((c.x - reach) / GRID_CELL); cx <= Math.floor((c.x + reach) / GRID_CELL); cx++)
-			for (let cz = Math.floor((c.z - reach) / GRID_CELL); cz <= Math.floor((c.z + reach) / GRID_CELL); cz++) {
-				const k = key(cx, cz), list = cells.get(k);
-				if (list) list.push(c); else cells.set(k, [c]);
-			}
-	}
-	/** True when a disc of radius r (≤ GRID_MAX_R) at x,z overlaps any circle. */
-	return (x: number, z: number, r: number) => {
-		const list = cells.get(key(Math.floor(x / GRID_CELL), Math.floor(z / GRID_CELL)));
-		if (!list) return false;
-		for (const o of list) { const dx = x - o.x, dz = z - o.z, rr = o.r + r; if (dx * dx + dz * dz < rr * rr) return true; }
-		return false;
-	};
-}
 function seeded(seed: number) { let n = seed >>> 0; return () => { n = (Math.imul(n, 1664525) + 1013904223) >>> 0; return n / 4294967296; }; }
 export function segmentDistance(x: number, z: number, a: readonly [number, number], b: readonly [number, number]) {
 	const dx = b[0] - a[0], dz = b[1] - a[1], l = dx * dx + dz * dz || 1, t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / l));
@@ -136,12 +117,12 @@ export const CITY_ART_SOLIDS: ({ kind: 'box'; x: number; z: number; w: number; d
 	{kind:'box',x:-36.3,z:0,w:1.4,d:3,label:'firewood-forge'},
 ];
 const cityBoxes = [...FORTIFICATION_SOLIDS,...DECOR.filter(p=>p.solid),...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid), ...CITY_ART_SOLIDS.filter(s => s.kind === 'box')];
+const cityCircleHits = circleIndex([...CITY_PLANTERS, ...CITY_ART_SOLIDS.filter(s => s.kind === 'circle'), ...GARDEN_TREES.map(t=>({...t,r:.55}))]);
 export function cityWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= CITY.halfX - 1 - r || Math.abs(z) >= CITY.halfZ - 1 - r) return false;
 	if (Math.abs(x) < CITY_TOWER.half + r && Math.abs(z) < CITY_TOWER.half + r) return false;
 	if (Math.hypot(x - CITY_FOUNTAIN.x, z - CITY_FOUNTAIN.z) < CITY_FOUNTAIN.r + r) return false;
-	if ([...CITY_PLANTERS, ...CITY_ART_SOLIDS.filter(s => s.kind === 'circle')].some(p => Math.hypot(x - p.x, z - p.z) < p.r + r)) return false;
-	if(GARDEN_TREES.some(t=>Math.hypot(x-t.x,z-t.z)<.55+r))return false;
+	if (cityCircleHits(x,z,r)) return false;
 	return !cityBoxes.some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r);
 }
 
@@ -181,12 +162,13 @@ export const MEADOW_LANDMARKS = {
 	] as Circle[],
 	boxes: [{ x: -38, z: 32, w: 6, d: 6, kind: 'watchtower' }],
 };
-const meadowHits = circleGrid([...meadowObstacles, ...MEADOW_LANDMARKS.circles]);
+const meadowCircles = [...meadowObstacles, ...MEADOW_LANDMARKS.circles];
+const meadowHits = circleGrid(meadowCircles), meadowWideHits = circleIndex(meadowCircles);
 export function meadowWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= MEADOW.halfX - 1 - r || Math.abs(z) >= MEADOW.halfZ - 1 - r) return false;
 	if (inWater(meadowBase.water, x, z)) return false;
 	if (MEADOW_LANDMARKS.boxes.some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r)) return false;
-	return r <= GRID_MAX_R ? !meadowHits(x, z, r) : ![...meadowObstacles, ...MEADOW_LANDMARKS.circles].some(o => Math.hypot(x - o.x, z - o.z) < o.r + r);
+	return r <= GRID_MAX_R ? !meadowHits(x,z,r) : !meadowWideHits(x,z,r);
 }
 
 /* ---------------------------------------------------------------- forest: ป่าหมอก, 120 x 96 m, Lv 6-15 */
@@ -213,11 +195,11 @@ const forestBase = {
 };
 export const FOREST_TREES: Circle[] = scatter(2203, 120, { x: FOREST.halfX, z: FOREST.halfZ }, forestBase, ['pine', 'oak', 'dead', 'hollow'], 0.8, 1.3);
 export const forestPool = (x: number, z: number) => inWater(forestBase.water, x, z);
-const forestHits = circleGrid(FOREST_TREES);
+const forestHits = circleGrid(FOREST_TREES), forestWideHits = circleIndex(FOREST_TREES);
 export function forestWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= FOREST.halfX - 1 - r || Math.abs(z) >= FOREST.halfZ - 1 - r) return false;
 		if (forestPool(x, z)) return false;
-	return r <= GRID_MAX_R ? !forestHits(x, z, r) : !FOREST_TREES.some(t => Math.hypot(x - t.x, z - t.z) < t.r + r);
+	return r <= GRID_MAX_R ? !forestHits(x,z,r) : !forestWideHits(x,z,r);
 }
 
 /* ---------------------------------------------------------------- spawns, bosses, gates */
@@ -250,15 +232,54 @@ const canyonBase={paths:[
  {points:[[-22,-14],[-16,-35],[12,-34],[34,-22],[40,4]],width:1.8},
  {points:[[-51,0],[-51,7]],width:1.2},{points:[[-2,-14],[-2,-23]],width:1.2},{points:[[18,9],[24,9]],width:1.2},
  ] as Path[],water:[{x:-7,z:9,rx:7,rz:5},{x:26,z:35,rx:5,rz:3}],camps:[{x:-51,z:7},{x:-2,z:-23},{x:24,z:9}],arena:{x:46,z:24,r:5.5}};
-const ruinsRing=[0,4,5,6,7].map(i=>({x:43+Math.cos(i*Math.PI/4)*8,z:-30+Math.sin(i*Math.PI/4)*8,r:.8,kind:'pillar'}));
-const canyonRing=[0,1,2,3,4].map(i=>({x:46+Math.cos(i*Math.PI/4)*9,z:24+Math.sin(i*Math.PI/4)*9,r:1.2,kind:'boulder'}));
-const ruinsObstacles=scatter(4401,80,{x:62,z:50},ruinsBase,['pillar','boulder','tree'],.65,1.15,ruinsRing).concat(ruinsRing);
-const canyonObstacles=scatter(4402,100,{x:62,z:52},canyonBase,['boulder','boulder','rock-cluster'],.8,1.6,canyonRing).concat(canyonRing);
-function huntingWalkable(half:{halfX:number;halfZ:number},base:{water:Ellipse[]},obstacles:Circle[],x:number,z:number,r:number){
- return Math.abs(x)<half.halfX-1-r&&Math.abs(z)<half.halfZ-1-r&&!inWater(base.water,x,z)&&!obstacles.some(o=>Math.hypot(x-o.x,z-o.z)<o.r+r);
+// Authored quarters retain the main roads, camp pockets and water corridors.
+// Ruin walls use several small collision feet, shared by server and client.
+export const RUINS_STRUCTURES=[
+ {x:-48,z:-16,r:1,kind:'ruins-wall-x'}, {x:-47,z:-32,r:1,kind:'ruins-wall-z'},
+ {x:-38,z:-38,r:3.2,kind:'ruins-house'}, {x:-50,z:18,r:3,kind:'ruins-house'},
+ {x:-34,z:-16,r:.85,kind:'ruins-arch'},
+ {x:-30,z:17,r:1,kind:'ruins-wall-x'}, {x:-35,z:36,r:3,kind:'ruins-house'},
+ {x:-14,z:21,r:3,kind:'ruins-foundation'}, {x:-14,z:42,r:1,kind:'ruins-wall-x'},
+ {x:8,z:40,r:3.2,kind:'ruins-house'}, {x:34,z:34,r:3,kind:'ruins-foundation'},
+ {x:44,z:18,r:1,kind:'ruins-wall-z'}, {x:52,z:34,r:1,kind:'ruins-wall-x'},
+ {x:5,z:-38,r:3.2,kind:'ruins-house'}, {x:23,z:-40,r:1,kind:'ruins-wall-x'},
+ {x:29,z:-17,r:1,kind:'ruins-wall-z'}, {x:48,z:-43,r:3.3,kind:'ruins-temple'},
+ {x:34,z:-38,r:.9,kind:'ruins-column'}, {x:53,z:-28,r:.9,kind:'ruins-pier'},
+ {x:34,z:-28,r:1.25,kind:'ruins-statue'}, {x:52,z:-16,r:1.1,kind:'ruins-fallen'},
+];
+const ruinsObstacles:Circle[]=[];
+for(const s of RUINS_STRUCTURES){
+ const axis=s.kind==='ruins-wall-z'?'z':'x';
+ const offsets=s.kind==='ruins-arch'?[-3.5,3.5]:s.kind.startsWith('ruins-wall')?[-2.8,-1.4,0,1.4,2.8]:[0];
+ offsets.forEach((offset,i)=>ruinsObstacles.push({x:s.x+(axis==='x'?offset:0),z:s.z+(axis==='z'?offset:0),r:s.r,kind:'ruins-foot'}));
 }
-export const ruinsWalkable=(x:number,z:number,r=.3)=>huntingWalkable(RUINS,ruinsBase,ruinsObstacles,x,z,r);
-export const canyonWalkable=(x:number,z:number,r=.3)=>huntingWalkable(CANYON,canyonBase,canyonObstacles,x,z,r);
+// Relics in open hunting pockets, with several metres of breathing room.
+const relics=[[-55,-36],[-25,-39],[-13,-16],[-5,-43],[17,-31],[54,-39],[-57,40],[-22,38],[-4,24],[18,29],[39,12],[55,43],[-37,14],[-4,-2],[30,-7],[48,42]];
+for(const [i,[x,z]]of relics.entries()){
+ const r=i%4===0?1.6:1.05;
+ if(onPath(ruinsBase.paths,x,z,r+1.5)||inWater(ruinsBase.water,x,z,r+1)||ruinsBase.camps.some(c=>Math.hypot(x-c.x,z-c.z)<r+6)||ruinsObstacles.some(o=>Math.hypot(x-o.x,z-o.z)<r+o.r+3))continue;
+ ruinsObstacles.push({x,z,r,kind:['ruins-boulder','ruins-rubble','ruins-fallen','ruins-pier'][i%4]});
+}
+// A few surviving trees frame the edge; the city interior is masonry, not forest.
+for(const [x,z]of [[-57,-44],[-57,45],[-5,46],[58,42],[58,-46],[17,46]])
+ ruinsObstacles.push({x,z,r:1.2,kind:'tree'});
+// Composed outcrops frame open hunting pockets; avoid a uniform field of pebbles.
+// These same footprints drive client drawing, server collision and spawn rejection.
+const canyonRidges=[[-55,-12],[-55,20],[-48,-35],[-43,40],[-31,-27],[-18,44],[-4,-44],[5,-3],[9,44],[27,-44],[48,-31],[54,-8],[37,44],[57,29],[47,40]];
+const canyonObstacles:Circle[]=[];
+for(const [i,[x,z]]of canyonRidges.entries())for(const [j,[dx,dz,r]]of [[0,0,2.6],[-4,2,1.9],[3.7,3,1.5]].entries()){
+ const angle=i*2.39996;
+ const o={x:x+dx*Math.cos(angle)-dz*Math.sin(angle),z:z+dx*Math.sin(angle)+dz*Math.cos(angle),r,kind:j===0?'canyon-crag':j===1?'canyon-outcrop':'canyon-scree'};
+ if(Math.abs(o.x)+r>CANYON.halfX-1||Math.abs(o.z)+r>CANYON.halfZ-1||onPath(canyonBase.paths,o.x,o.z,r+2.4)||inWater(canyonBase.water,o.x,o.z,r+1))continue;
+ if(canyonBase.camps.some(c=>Math.hypot(o.x-c.x,o.z-c.z)<r+7)||Math.hypot(o.x-canyonBase.arena.x,o.z-canyonBase.arena.z)<r+canyonBase.arena.r+2.5)continue;
+ canyonObstacles.push(o);
+}
+const ruinsHits=circleIndex(ruinsObstacles),canyonHits=circleIndex(canyonObstacles);
+function huntingWalkable(half:{halfX:number;halfZ:number},base:{water:Ellipse[]},hits:ReturnType<typeof circleIndex>,x:number,z:number,r:number){
+ return Math.abs(x)<half.halfX-1-r&&Math.abs(z)<half.halfZ-1-r&&!inWater(base.water,x,z)&&!hits(x,z,r);
+}
+export const ruinsWalkable=(x:number,z:number,r=.3)=>huntingWalkable(RUINS,ruinsBase,ruinsHits,x,z,r);
+export const canyonWalkable=(x:number,z:number,r=.3)=>huntingWalkable(CANYON,canyonBase,canyonHits,x,z,r);
 function huntingSpawns(seed:number,zones:SpawnZone[],base:typeof ruinsBase,entry:{x:number;z:number},walk:(x:number,z:number,r:number)=>boolean){
  return zoneSpawns(seed,zones,(x,z)=>walk(x,z,.65)&&base.camps.every(c=>Math.hypot(x-c.x,z-c.z)>7)&&Math.hypot(x-entry.x,z-entry.z)>10&&Math.hypot(x-base.arena.x,z-base.arena.z)>9);
 }

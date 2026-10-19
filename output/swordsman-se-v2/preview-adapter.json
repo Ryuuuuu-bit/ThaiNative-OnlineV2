@@ -1,0 +1,20 @@
+{
+  "idle": {
+    "anchor": [
+      192,
+      212
+    ]
+  },
+  "walk": {
+    "anchor": [
+      192,
+      212
+    ]
+  },
+  "worldScale": {
+    "metres": 1.8,
+    "bodyPixels": 168,
+    "pixelsPerMetre": 28
+  },
+  "note": "Read sprite-gen frame_layout rows directly. Anchor is cell bottom minus declared44px safe margin. Original game pivot192,240."
+}

@@ -53,6 +53,7 @@ export default defineConfig(({ command }) => ({
 		rollupOptions: {
 			input: {
 				portal: fileURLToPath(new URL("./index.html", import.meta.url)),
+                bestiary: fileURLToPath(new URL("./monsters.html", import.meta.url)),
 				login: fileURLToPath(new URL("./login.html", import.meta.url)),
 				characters: fileURLToPath(
 					new URL("./characters.html", import.meta.url),

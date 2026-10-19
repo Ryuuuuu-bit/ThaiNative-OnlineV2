@@ -7,12 +7,12 @@ import {makePaintedGround,isCityPlantingGround} from './city-2d-ground';
 import {CITY_GATES} from './city-2d-gates';
 import {npcSprite,type NpcSprite} from './city-npc-sprite';
 export async function loadCity2DScene(){
- type Prop={x:number;z:number;image:Sprite;label?:string;fade?:boolean;water?:boolean};
+ type Prop={x:number;z:number;image:Sprite;label?:string;fade?:boolean;water?:boolean;tree?:boolean;foliage?:boolean};
  type PaintedAsset={id:string;rect:[number,number,number,number]};type PaintedGroup={image:string;assets:PaintedAsset[]};
  let manifest:Record<string,{webp:string}>,ground:HTMLCanvasElement,idle:HTMLImageElement,run:HTMLImageElement,paintedSceneAssets=0;
  const props:Prop[]=[],npcSprites=new Map<string,NpcSprite>();
  const image=async(key:string)=>{const img=new Image();img.src=manifest[key]?.webp??key;await img.decode();return img;};
- function add(x:number,z:number,draw:(c:CanvasRenderingContext2D)=>void,label?:string,fade=false){props.push({x,z,image:bake(draw),label,fade});}
+ function add(x:number,z:number,draw:(c:CanvasRenderingContext2D)=>void,label?:string,fade=false,tree=false){props.push({x,z,image:bake(draw),label,fade,tree});}
   manifest=await fetch('/texture-manifest.json').then(r=>{if(!r.ok)throw Error('โหลดรายการภาพไม่สำเร็จ');return r.json();});
   const env=await fetch('/assets/env-painted/manifest.json').then(r=>r.json());
   const tree=env.assets.find((a: {name:string})=>a.name==='tree-round');
@@ -43,13 +43,13 @@ export async function loadCity2DScene(){
     const sprite=bake(c=>c.drawImage(atlas,...asset.rect as [number,number,number,number],-drawW*asset.anchor[0],-drawH*asset.anchor[1],drawW,drawH));paintedCache.set(key,sprite);return sprite;
   }
   const blossom=await painted('tree-flowering',5.4,5.4),tall=await painted('tree-tall',4.7,6.2);
-  GARDEN_TREES.forEach(p=>props.push({...p,image:p.flowering?blossom:tall,fade:true}));
+  GARDEN_TREES.forEach(p=>props.push({...p,image:p.flowering?blossom:tall,fade:true,tree:true,foliage:true}));
   const shrub=await painted('bush-flowering',1.25,1),flowers=await painted('flowers-lavender',.6,.7),white=await painted('flowers-white',.6,.6),grass=await painted('grass-2',.5,.5);
   for(let i=0;i<180;i++){
     const a=i*2.39996,r=4+Math.sqrt(i)*1.45,x=-19+Math.cos(a)*r,z=26+Math.sin(a)*r*.65;
     if(x<-44||x>0||z>44||z<17||!city2dWalkable(x,z,.15)||!isCityPlantingGround(x,z))continue;
     if(Math.hypot(x-CITY_FOUNTAIN.x,z-CITY_FOUNTAIN.z)<6.8)continue;
-    props.push({x,z,image:i%4===0?shrub:i%3===0?white:i%2?flowers:grass});
+    props.push({x,z,foliage:true,image:i%4===0?shrub:i%3===0?white:i%2?flowers:grass});
   }
   for(const b of CITY_HOUSES)for(const dx of [-b.w/2-1,b.w/2+1])props.push({x:b.x+dx,z:b.z+1,image:shrub});
   for(const p of DECOR){
@@ -65,7 +65,7 @@ export async function loadCity2DScene(){
   props.push({x:CITY_FOUNTAIN.x,z:CITY_FOUNTAIN.z,image:theme.sprite('fountain',6,1.6),label:'น้ำพุธาราจันทร์',water:true});
   for(const p of CITY_PLANTERS){
     themed(p.x,p.z,theme.footprint('flowerbed',1.3,1.3),undefined,false);
-    add(p.x,p.z,c=>{const [sx,sy,sw,sh]=tree.rect;const w=5.1,h=w*sh/sw;c.drawImage(loaded[3],sx,sy,sw,sh,-w*tree.anchor[0],-h,w,h);},undefined,true);
+    add(p.x,p.z,c=>{const [sx,sy,sw,sh]=tree.rect;const w=5.1,h=w*sh/sw;c.drawImage(loaded[3],sx,sy,sw,sh,-w*tree.anchor[0],-h,w,h);},undefined,true,true);
   }
   for(const b of CITY_BENCHES)themed(b.x,b.z,theme.footprint('bench',b.w,b.d));
   for(const p of CITY_STALLS)themed(p.x,p.z,theme.footprint('stall',p.w,p.d));

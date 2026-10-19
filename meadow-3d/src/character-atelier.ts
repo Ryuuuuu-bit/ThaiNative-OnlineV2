@@ -1,3 +1,4 @@
+import './web-modern.css';
 import{mountPreview}from'./character-preview';import{frameCount}from'./sprite-animation';import type{Motion,Direction}from'./sprite-animation';
 const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>(s)!;
 const preview=mountPreview($<HTMLCanvasElement>('#portrait'),{motion:'idle',direction:'SE',hd:true});

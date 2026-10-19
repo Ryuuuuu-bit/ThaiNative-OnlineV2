@@ -1,5 +1,6 @@
 import {TITLES,titleDefinition,normalizeTitleRecords,earnTitles,canWearTitle,titleProgress,type RankingCharacter} from '@thainative/shared';
 import {createRankings} from './rankings.js';
+import {monsterKnockbackFor} from './monster-knockback.js';
 import {applyInventory,equipped,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI,resolveKeys,reservedKeys,bindingProblem} from '@thainative/shared';
 import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, isField, BOSS_RESPAWN_MS, bossTimer, setBossTimer, type MapId } from "@thainative/shared";
 import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@thainative/shared";
@@ -294,8 +295,10 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   let room=rooms.get(key);
   if(!room){
    const game=createGame(randomInt(1,0x7fffffff),data.stats.defaultBuild,'local',data,mapId);
+   if(isField(mapId))game.resolveMonsterKnockback=monsterKnockbackFor(mapId);
    game.jobExpMultiplier=options.production?1:Math.max(1,Math.min(1000,options.devJobExpMultiplier||1));
-   game.partyMembers=id=>social.partyMembers(id);
+   // A room is the authoritative map/channel boundary; disconnected avatars remain in game.players briefly.
+   game.partyMembers=id=>social.partyMembers(id).filter(memberId=>{const peer=live.get(memberId);return !!peer?.ready&&peer.room.game===game;});
    game.players.clear();
    room={key,game,peers:new Map(),accounts:new Map(),disconnected:new Map(),tick:0,saveQueue:Promise.resolve()};
    rooms.set(key,room);

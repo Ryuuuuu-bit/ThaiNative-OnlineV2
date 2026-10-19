@@ -33,6 +33,10 @@
     "./maps": {
       "types": "./dist/src/game/maps.d.ts",
       "default": "./dist/src/game/maps.js"
+    },
+    "./pathfinding": {
+      "types": "./dist/src/game/pathfinding.d.ts",
+      "default": "./dist/src/game/pathfinding.js"
     }
   },
   "scripts": {
@@ -41,10 +45,13 @@
     "sim:balance": "npm run build && node dist/sim/balance.js"
   },
   "dependencies": {
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "easystarjs": "0.4.4",
+    "rbush": "4.0.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "@types/rbush": "4.0.0"
   }
 }

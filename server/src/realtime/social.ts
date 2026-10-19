@@ -39,6 +39,17 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 	};
 	const notify = (peer: P, text: string) => send(peer.ws, { t: "chat", ch: "system", text, at: now() });
 	const error = (peer: P, text: string) => send(peer.ws, { t: "chatError", text });
+	const partyError = (peer: P, text: string) => send(peer.ws, { t: "chatError", scope: "party", text });
+	const online = (id: string) => { const p=live.get(id); return !!(p?.ready && player(p)); };
+	function closeInvite(party: Party, id: string, reason: string) {
+		party.invites.delete(id);
+		const peer=live.get(id);if(peer?.ready)send(peer.ws,{t:'partyInviteClosed',partyId:party.id,reason});
+	}
+	function disband(party: Party) {
+		for(const id of party.invites.keys())closeInvite(party,id,'disbanded');
+		for(const id of party.members){partyOf.delete(id);const p=live.get(id);if(p?.ready){send(p.ws,{t:'partyState',party:null});notify(p,'ปาร์ตี้ถูกยุบ');}}
+		parties.delete(party.id);
+	}
 	const remember = (key: string, body: unknown) => { const list = history.get(key) ?? []; list.push(body); if (list.length > HISTORY) list.shift(); history.set(key, list); };
 
 	function partyState(party: Party) {
@@ -48,9 +59,9 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 				id: party.id,
 				leader: party.leader,
 				members: party.members.map(id => {
-					const peer = live.get(id), p = peer && player(peer);
+					const peer = live.get(id), p = peer?.ready && player(peer);
 					return p
-						? { id, name: p.name, online: true, level: p.level, jobId: p.jobId, hp: Math.ceil(p.hp), maxHp: Math.ceil(p.maxHp), mapId: peer!.room.game.mapId, dead: p.dead }
+						? { id, name: p.name, online: true, level: p.level, jobId: p.jobId, hp: Math.ceil(p.hp), maxHp: Math.ceil(p.maxHp), mp:Math.ceil(p.mp),maxMp:Math.ceil(p.maxMp), mapId: peer!.room.game.mapId, dead: p.dead }
 						: { id, name: nameOf(id), online: false };
 				}),
 			},
@@ -71,12 +82,11 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		const peer = live.get(id);
 		if (peer) send(peer.ws, { t: "partyState", party: null });
 		const text = `${nameOf(id)} ${reason === "kicked" ? "ถูกเชิญออกจากปาร์ตี้" : reason === "offline" ? "ออฟไลน์นานเกินไป ออกจากปาร์ตี้" : "ออกจากปาร์ตี้"}`;
-		if (party.members.length <= 1) {
-			for (const m of party.members) { partyOf.delete(m); const p = live.get(m); if (p) { send(p.ws, { t: "partyState", party: null }); notify(p, "ปาร์ตี้ถูกยุบ"); } }
-			parties.delete(party.id);
+		if (party.members.length === 0) {
+			disband(party);
 			return;
 		}
-		if (party.leader === id) party.leader = party.members.find(m => live.has(m)) ?? party.members[0];
+		if (party.leader === id) party.leader = party.members.find(online) ?? party.members[0];
 		toParty(party, { t: "chat", ch: "system", text, at: now() });
 		broadcastParty(party);
 	}
@@ -130,10 +140,30 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 	}
 
 	function party(peer: P, message: { op: string; name?: string; id?: string }) {
+		const error=partyError;
 		const me = player(peer);
 		if (!me) return;
 		names.set(peer.id, me.name);
 		const current = parties.get(partyOf.get(peer.id) ?? "");
+		if(message.op==='status'){send(peer.ws,current?partyState(current):{t:'partyState',party:null});return;}
+		if(message.op==='online'){
+			const list=[...live.values()].filter(other=>other.id!==peer.id&&other.ready&&other.room.game===peer.room.game).flatMap(other=>{
+				const p=player(other);if(!p||current?.members.includes(other.id))return [];
+				return [{id:other.id,name:p.name,level:p.level,jobId:p.jobId,status:partyOf.has(other.id)?'party':(current?.invites.get(other.id)??0)>now()?'invited':'available'}];
+			}).sort((a,b)=>a.name.localeCompare(b.name,'th'));
+			send(peer.ws,{t:'partyOnline',mapId:peer.room.game.mapId,list});return;
+		}
+		if(message.op==='inviteNearby'){
+			const target=message.id?live.get(message.id):undefined;
+			if(!target?.ready||target.id===peer.id||target.room.game!==peer.room.game||!player(target)){error(peer,'ผู้เล่นนี้ไม่อยู่ในแมพและ CH เดียวกันแล้ว กรุณารีเฟรชรายชื่อ');return;}
+			message={op:'invite',name:player(target)!.name};
+		}
+
+		if(message.op==='create'){
+			if(current){error(peer,'คุณอยู่ในปาร์ตี้แล้ว');return;}
+			const created:Party={id:'p'+ ++partySeq,leader:peer.id,members:[peer.id],invites:new Map()};
+			parties.set(created.id,created);partyOf.set(peer.id,created.id);broadcastParty(created);return;
+		}
 		if (message.op === "invite") {
 			const target = message.name ? byName(message.name) : undefined;
 			if (!target || !target.ready) { error(peer, `ไม่พบผู้เล่น "${message.name ?? ""}" ที่ออนไลน์อยู่`); return; }
@@ -142,22 +172,24 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 			if (current && current.leader !== peer.id) { error(peer, "หัวหน้าปาร์ตี้เท่านั้นที่เชิญได้"); return; }
 			if (current && current.members.length >= PARTY_MAX) { error(peer, `ปาร์ตี้เต็มแล้ว (${PARTY_MAX} คน)`); return; }
 			const party = current ?? { id: "p" + ++partySeq, leader: peer.id, members: [peer.id], invites: new Map() };
+			if((party.invites.get(target.id)??0)>now()){error(peer,'ส่งคำเชิญให้ผู้เล่นนี้แล้ว รอตอบรับภายใน 60 วินาที');return;}
 			if (!current) { parties.set(party.id, party); partyOf.set(peer.id, party.id); broadcastParty(party); }
 			party.invites.set(target.id, now() + 60000);
 			names.set(target.id, player(target)?.name ?? "");
-			send(target.ws, { t: "partyInvite", titleId: me.displayTitleId??null, from: me.name, fromId: me.id, partyId: party.id });
+			send(target.ws, { t: "partyInvite", titleId: me.displayTitleId??null, from: me.name, fromId: me.id, partyId: party.id, expiresAt:party.invites.get(target.id) });
 			notify(peer, `ส่งคำเชิญให้ ${player(target)?.name} แล้ว`);
 			return;
 		}
 		if (message.op === "accept" || message.op === "decline") {
 			const party = [...parties.values()].find(p => (p.invites.get(peer.id) ?? 0) > now() && (!message.id || p.id === message.id));
 			if (!party) { error(peer, "คำเชิญหมดอายุแล้ว"); return; }
-			party.invites.delete(peer.id);
+			closeInvite(party,peer.id,message.op==='decline'?'declined':'accepted');
 			if (message.op === "decline") { const leader = live.get(party.leader); if (leader) notify(leader, `${me.name} ปฏิเสธคำเชิญ`); return; }
 			if (current) { error(peer, "ออกจากปาร์ตี้เดิมก่อน"); return; }
 			if (party.members.length >= PARTY_MAX) { error(peer, "ปาร์ตี้เต็มแล้ว"); return; }
 			party.members.push(peer.id);
 			partyOf.set(peer.id, party.id);
+			for(const other of parties.values())if(other!==party&&other.invites.has(peer.id))closeInvite(other,peer.id,'joined');
 			toParty(party, { t: "chat", ch: "system", text: `${me.name} เข้าร่วมปาร์ตี้`, at: now() });
 			broadcastParty(party);
 			return;
@@ -165,10 +197,12 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		if (!current) { error(peer, "ยังไม่ได้อยู่ในปาร์ตี้"); return; }
 		if (message.op === "leave") { leave(peer.id, "left"); return; }
 		if (current.leader !== peer.id) { error(peer, "หัวหน้าปาร์ตี้เท่านั้นที่ทำได้"); return; }
+		if(message.op==='disband'){disband(current);return;}
 		const target = message.id ?? [...current.members].find(m => nameOf(m) === message.name);
 		if (!target || !current.members.includes(target) || target === peer.id) { error(peer, "ไม่พบสมาชิกคนนี้"); return; }
 		if (message.op === "kick") leave(target, "kicked");
 		if (message.op === "lead") {
+			if(!online(target)){error(peer,'ส่งหัวหน้าให้สมาชิกที่ออนไลน์เท่านั้น');return;}
 			current.leader = target;
 			toParty(current, { t: "chat", ch: "system", text: `${nameOf(target)} เป็นหัวหน้าปาร์ตี้`, at: now() });
 			broadcastParty(current);
@@ -189,7 +223,7 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 			const list = history.get(peer.room.game.mapId) ?? [];
 			if (list.length) send(peer.ws, { t: "chatHistory", list });
 			const party = parties.get(partyOf.get(peer.id) ?? "");
-			if (party) broadcastParty(party);
+			if (party) broadcastParty(party);else send(peer.ws,{t:'partyState',party:null});
 		},
 		/** A player's peer was replaced/closed; party membership survives short disconnects. */
 		offline(id: string) { lastSeen.set(id, now()); const party = parties.get(partyOf.get(id) ?? ""); if (party) broadcastParty(party); },
@@ -201,10 +235,10 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		/** Once a second: refresh party HP bars and drop members offline for too long. */
 		tick() {
 			const t = now();
-			for (const id of live.keys()) lastSeen.set(id, t);
+			for (const id of live.keys()) if(online(id))lastSeen.set(id, t);
 			for (const party of [...parties.values()]) {
-				for (const [id, until] of party.invites) if (until <= t) party.invites.delete(id);
-				for (const id of [...party.members]) if (!live.has(id) && t - (lastSeen.get(id) ?? t) > (options.offlineMs ?? 300000)) leave(id, "offline");
+				for (const [id, until] of party.invites) if (until <= t) closeInvite(party,id,'expired');
+				for (const id of [...party.members]) if (!online(id) && t - (lastSeen.get(id) ?? t) > (options.offlineMs ?? 300000)) leave(id, "offline");
 				if (parties.has(party.id)) broadcastParty(party);
 			}
 			for (const id of [...limiters.keys()]) if (!live.has(id) && !(limiters.get(id)!.mutedUntil! > t)) limiters.delete(id);

@@ -1,4 +1,5 @@
-import'../web.css';import'../web-glass.css';import{api,post,showError,ApiError}from'./api';import{getMe,guestKey,startGuest,safeNext,forgetGuest,mountAccountChip,loginPassword,register,logout,type Me}from'./session';import{kindLabel,uidChip,mountBuild}from'./account-ui';
+import './navigation';
+import'../web.css';import'../web-glass.css';import'../web-modern.css';import'../web-fantasy.css';import{api,post,showError,ApiError}from'./api';import{getMe,guestKey,startGuest,safeNext,forgetGuest,mountAccountChip,loginPassword,register,logout,type Me}from'./session';import{kindLabel,uidChip,mountBuild}from'./account-ui';
 declare global{interface Window{google?:any}}
 import { usernamePolicyError } from '@thainative/shared';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;

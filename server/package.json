@@ -13,6 +13,7 @@
     "test": "tsx --test src/**/*.test.ts"
   },
   "dependencies": {
+    "@dimforge/rapier2d-compat": "0.21.0",
     "compression": "^1.8.2",
     "cookie": "^1.0.2",
     "express": "^5.2.1",

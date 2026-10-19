@@ -79,7 +79,7 @@ test("layouts are deterministic across processes", () => {
 
 test("meadow landmarks are solid and no spawn, camp or path sits inside them", async () => {
 	const { MEADOW_LANDMARKS, onPath } = await import("../src/game/maps.js");
-	for (const c of MEADOW_LANDMARKS.circles) assert.equal(walkable(c.x, c.z, 0.3, "meadow"), false, c.kind);
+	for (const c of MEADOW_LANDMARKS.circles) assert.equal(walkable(c.x, c.z, 0.3, "meadow"), false, c.kind ?? 'landmark');
 	for (const b of MEADOW_LANDMARKS.boxes) {
 		assert.equal(walkable(b.x, b.z, 0.3, "meadow"), false, b.kind);
 		assert.equal(walkable(b.x + b.w / 2 + 0.6, b.z, 0.3, "meadow") || walkable(b.x - b.w / 2 - 0.6, b.z, 0.3, "meadow"), true, "walk around the tower");

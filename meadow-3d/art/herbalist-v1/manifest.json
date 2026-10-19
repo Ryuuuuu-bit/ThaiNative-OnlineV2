@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "character": "herbalist-concept-02",
+  "direction": "approved-front-three-quarter",
+  "previewOnly": true,
+  "frameDirectory": "frames-v2",
+  "frameWidth": 384,
+  "frameHeight": 256,
+  "anchor": {
+    "x": 192,
+    "y": 240
+  },
+  "bodyPixels": 168,
+  "bodyMetres": 1.8,
+  "columns": 6,
+  "atlas": "herbalist-atlas-v2.png",
+  "motions": [
+    {
+      "id": "idle",
+      "row": 0,
+      "frames": 6,
+      "duration": 1.2,
+      "loop": true,
+      "sheet": "sheets/herbalist-idle-v2.png"
+    },
+    {
+      "id": "walk",
+      "row": 1,
+      "frames": 6,
+      "duration": 0.72,
+      "loop": true,
+      "sheet": "sheets/herbalist-walk-v2.png"
+    },
+    {
+      "id": "attack",
+      "row": 2,
+      "frames": 6,
+      "duration": 0.7,
+      "loop": false,
+      "sheet": "sheets/herbalist-attack-v2.png"
+    },
+    {
+      "id": "cast",
+      "row": 3,
+      "frames": 6,
+      "duration": 1,
+      "loop": false,
+      "sheet": "sheets/herbalist-cast-v2.png"
+    },
+    {
+      "id": "hurt",
+      "row": 4,
+      "frames": 6,
+      "duration": 0.48,
+      "loop": false,
+      "sheet": "sheets/herbalist-hurt-v2.png"
+    },
+    {
+      "id": "death",
+      "row": 5,
+      "frames": 6,
+      "duration": 1.05,
+      "loop": false,
+      "sheet": "sheets/herbalist-death-v2.png"
+    }
+  ]
+}

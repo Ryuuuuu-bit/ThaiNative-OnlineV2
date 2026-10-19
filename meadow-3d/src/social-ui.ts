@@ -1,10 +1,9 @@
+import {mountParty,type PartyState} from './party-ui';
 import {titleDefinition} from '@thainative/shared';
 import './social.css';
 
 type Send = (message: unknown) => void;
 interface ChatLine { titleId?:string|null; t: 'chat'; ch: 'map' | 'party' | 'whisper' | 'system' | 'loot'; from?: string; fromId?: string; to?: string; text: string; at: number; self?: boolean }
-interface Member { id: string; name: string; online: boolean; level?: number; jobId?: string; hp?: number; maxHp?: number; mapId?: string; dead?: boolean }
-interface PartyState { id: string; leader: string; members: Member[] }
 
 const CHANNEL_LABEL = { map: 'ทั่วไป', party: 'ปาร์ตี้', whisper: 'กระซิบ', system: 'ระบบ', loot: 'รางวัล' } as const;
 const TABS = [['all', 'ทั้งหมด'], ['chat', 'แชท'], ['party', 'ปาร์ตี้'], ['loot', 'รางวัล'], ['system', 'ระบบ']] as const;
@@ -14,7 +13,7 @@ const HELP = 'คำสั่ง: /p ข้อความ (ปาร์ตี�
 const MAX_LINES = 80;
 
 /** Chat box (Enter to type), party frame and invite prompts. Server is authoritative for filtering and limits. */
-export function mountSocial(options: { send: Send; you: () => string; enabled: () => boolean; /** GM announcements also go up on screen. */ announce?: (text: string) => void }) {
+export function mountSocial(options: { send: Send; you: () => string; enabled: () => boolean; onOpen?:()=>void; /** GM announcements also go up on screen. */ announce?: (text: string) => void }) {
 	const ui = document.querySelector('#ui')!;
 	const box = document.createElement('section');
 	box.id = 'chat';
@@ -25,13 +24,8 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	toggle.type = 'button';
 	toggle.setAttribute('aria-label', 'แชท');
 	toggle.textContent = '💬';
-	const partyBox = document.createElement('section');
-	partyBox.id = 'party-frame';
-	partyBox.hidden = true;
-	partyBox.setAttribute('aria-label', 'ปาร์ตี้');
-	const invites = document.createElement('div');
-	invites.id = 'party-invites';
-	ui.append(box, toggle, partyBox, invites);
+	ui.append(box,toggle);
+	const partyUI=mountParty({...options,chat:()=>{setChannel('party');open();}});
 	const log = box.querySelector<HTMLOListElement>('#chat-log')!, form = box.querySelector<HTMLFormElement>('#chat-form')!;
 	const input = box.querySelector<HTMLInputElement>('#chat-input')!, channelButton = box.querySelector<HTMLButtonElement>('#chat-channel')!;
 	const tabs = box.querySelector<HTMLElement>('#chat-tabs')!;
@@ -178,76 +172,17 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 		if (badge) badge.hidden = !on;
 	}
 
-	function renderParty() {
-		partyBox.hidden = !party;
-		if (!party) { partyBox.replaceChildren(); return; }
-		const me = options.you(), leader = party.leader === me;
-		const head = document.createElement('header');
-		head.innerHTML = '<b>ปาร์ตี้</b>';
-		const count = document.createElement('small');
-		count.textContent = `${party.members.length}/6 คน`;
-		head.title = 'สมาชิกในแผนที่เดียวกันและอยู่ห่างกันไม่เกิน 30 ม. แบ่ง EXP กัน (+10% ต่อคนที่เพิ่ม)';
-		const leave = document.createElement('button');
-		leave.type = 'button';
-		leave.textContent = 'ออก';
-		leave.title = 'ออกจากปาร์ตี้';
-		leave.onclick = () => options.send({ t: 'party', op: 'leave' });
-		head.append(count, leave);
-		const list = document.createElement('ul');
-		for (const m of party.members) {
-			const li = document.createElement('li');
-			li.classList.toggle('offline', !m.online);
-			li.classList.toggle('dead', !!m.dead);
-			li.classList.toggle('me', m.id === me);
-			const name = document.createElement('span');
-			name.className = 'party-name';
-			name.textContent = (m.id === party.leader ? '♛ ' : '') + m.name;
-			const meta = document.createElement('small');
-			meta.textContent = m.online ? `ระดับ ${m.level ?? '?'} · ${MAP_LABEL[m.mapId ?? ''] ?? ''}${m.dead ? ' · หมดสติ' : ''}` : 'ออฟไลน์';
-			const bar = document.createElement('i');
-			bar.className = 'party-hp';
-			bar.style.setProperty('--hp', m.online && m.maxHp ? String(Math.max(0, Math.min(1, (m.hp ?? 0) / m.maxHp))) : '0');
-			li.append(name, meta, bar);
-			if (leader && m.id !== me) {
-				const kick = document.createElement('button');
-				kick.type = 'button';
-				kick.className = 'party-kick';
-				kick.textContent = '×';
-				kick.title = `เชิญ ${m.name} ออก`;
-				kick.onclick = () => options.send({ t: 'party', op: 'kick', id: m.id });
-				li.append(kick);
-			}
-			list.append(li);
-		}
-		partyBox.replaceChildren(head, list);
-	}
-	function invite(m: { from: string; partyId: string }) {
-		const card = document.createElement('div');
-		card.className = 'party-invite';
-		card.setAttribute('role', 'alertdialog');
-		const text = document.createElement('p');
-		text.textContent = `${m.from} ชวนเข้าปาร์ตี้`;
-		const yes = document.createElement('button'), no = document.createElement('button');
-		yes.type = no.type = 'button';
-		yes.textContent = 'เข้าร่วม';
-		no.textContent = 'ไม่ล่ะ';
-		const done = () => card.remove();
-		yes.onclick = () => { options.send({ t: 'party', op: 'accept', id: m.partyId }); done(); };
-		no.onclick = () => { options.send({ t: 'party', op: 'decline', id: m.partyId }); done(); };
-		card.append(text, yes, no);
-		invites.append(card);
-		setTimeout(done, 60000);
-	}
 
 	return {
 		/** Feed every server message; returns true when it was a social message. */
 		receive(m: any) {
+			const handled=partyUI.receive(m);
+			if(m.t==='partyState'){party=m.party;if(!party&&channel==='party')setChannel('map');return true;}
+			if(handled)return true;
 			if (m.t === 'chat') { if (m.ch === 'whisper' && !m.self) lastWhisper = m.from; line(m); if (m.ch === 'system' && !m.from && m.text.startsWith('📢')) options.announce?.(m.text); return true; }
 			if (m.t === 'chatHistory') { for (const h of m.list) line(h); return true; }
 			if (m.t === 'chatError') { system(m.text); return true; }
 			if (m.t === 'gmRole') { gmBadge(!!m.admin); return true; }
-			if (m.t === 'partyState') { party = m.party; if (!party && channel === 'party') setChannel('map'); renderParty(); return true; }
-			if (m.t === 'partyInvite') { invite(m); return true; }
 			return false;
 		},
 		/** EXP/gold from a kill; bursts within a few seconds merge into one line. */
@@ -287,7 +222,8 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 			line({ t: 'chat', ch, text, at: now });
 		},
 		/** Invite from elsewhere in the UI (e.g. clicking another player). */
-		invite(name: string) { options.send({ t: 'party', op: 'invite', name }); },
+		invite(name: string) { partyUI.invite(name); },
+		openParty:partyUI.open,
 		get typing() { return document.activeElement === input; },
 	};
 }

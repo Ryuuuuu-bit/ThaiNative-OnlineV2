@@ -6,7 +6,7 @@ import { randomUUID } from "node:crypto";
 import { createApp } from "../app.js";
 import { MemoryStore } from "../store/memory.js";
 import { mountRealtime } from "../realtime/index.js";
-import { GATE_CAPTAIN, CITY_BUILDINGS } from "@thainative/shared";
+import { GATE_CAPTAIN, CITY_BUILDINGS, expShares } from "@thainative/shared";
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 async function fixture(t: any, sharedRooms = false) {
 	const store = new MemoryStore(),
@@ -178,6 +178,21 @@ test('failed quest transaction leaves live rewards and completion unchanged and 
  assert.equal(p.gold,gold+30);
 });
 
+test('party manager protocol supports creation, authoritative status and disband over WebSocket',async t=>{
+ const f=await fixture(t),a=await join(f,'PartyMaker'),b=await join(f,'PartyFriend');
+ a.peer.send({t:'party',op:'create'});
+ const created=await a.peer.until((m:any)=>m.t==='partyState'&&m.party?.members.length===1);
+ a.peer.send({t:'party',op:'invite',name:'PartyFriend'});
+ const invitation=await b.peer.until((m:any)=>m.t==='partyInvite');assert.ok(invitation.expiresAt>Date.now());
+ b.peer.send({t:'party',op:'accept',id:created.party.id});
+ const joined=await a.peer.until((m:any)=>m.t==='partyState'&&m.party?.members.length===2);
+ assert.ok(joined.party.members.every((m:any)=>Number.isFinite(m.mp)&&m.maxMp>0));
+ b.peer.send({t:'party',op:'disband'});await b.peer.until((m:any)=>m.t==='chatError'&&m.scope==='party');
+ a.peer.messages.length=0;b.peer.messages.length=0;a.peer.send({t:'party',op:'disband'});
+ await a.peer.until((m:any)=>m.t==='partyState'&&m.party===null);await b.peer.until((m:any)=>m.t==='partyState'&&m.party===null);
+ a.peer.send({t:'party',op:'status'});assert.equal(latest(a.peer,'partyState').party,null);
+});
+
 test("chat and party over WebSocket: map chat, whisper, invite and party chat", async (t) => {
 	const f = await fixture(t), a = await join(f, "ChatA"), b = await join(f, "ChatB");
 	a.peer.send({ t: "chat", ch: "map", text: "สวัสดี ควย" });
@@ -192,4 +207,45 @@ test("chat and party over WebSocket: map chat, whisper, invite and party chat", 
 	b.peer.send({ t: "chat", ch: "party", text: "ไปกัน" });
 	await a.peer.until((m: any) => m.t === "chat" && m.ch === "party" && m.text === "ไปกัน");
 	assert.ok(latest(b.peer, "partyState").party.members.some((m: any) => m.name === "ChatA" && m.online));
+});
+
+
+test('party EXP spans the whole map, excludes other maps, loading peers and disconnected avatars',async t=>{
+ const f=await fixture(t,true),a=await join(f,'PartyFarA'),b=await join(f,'PartyFarB');
+ const other=await f.make('PartyOther',true),c=f.open(other.cookie);
+ await c.until((m:any)=>m.t==='welcome');c.send({t:'spawnReady'});await c.until((m:any)=>m.t==='snap');
+ for(const member of [b,{user:other,peer:c}]){
+  a.peer.send({t:'party',op:'invite',name:member.user.character.name});
+  const invite=await member.peer.until((m:any)=>m.t==='partyInvite');
+  member.peer.send({t:'party',op:'accept',id:invite.partyId});
+  await member.peer.until((m:any)=>m.t==='partyState'&&m.party?.members.some((p:any)=>p.id===member.user.character.id));
+ }
+ a.p.x=-40;a.p.z=-40;b.p.x=40;b.p.z=40;
+ const ids=()=>expShares(a.room.game,a.p,100,50).map(s=>[s.player.id,s.xp,s.jobExp]);
+ assert.deepEqual(ids(),[[a.p.id,55,27],[b.p.id,55,27]],'distance and other-map party member do not affect this room bonus');
+ const bPeer=b.room.peers.get(b.p.id)!;bPeer.ready=false;
+ assert.deepEqual(ids(),[[a.p.id,100,50]],'loading peer earns no bonus');bPeer.ready=true;
+ b.peer.ws.close();await b.peer.closed;await wait(20);
+ assert.ok(a.room.game.players.has(b.p.id),'avatar remains for reconnect grace');
+ assert.deepEqual(ids(),[[a.p.id,100,50]],'offline grace avatar earns no bonus');
+});
+
+test('party EXP does not cross isolated rooms even with the same map id',async t=>{
+ const f=await fixture(t,false),a=await join(f,'ChannelOne'),b=await join(f,'ChannelTwo');
+ assert.equal(a.room.game.mapId,b.room.game.mapId);assert.notEqual(a.room,b.room);
+ a.peer.send({t:'party',op:'invite',name:b.user.character.name});
+ const invite=await b.peer.until((m:any)=>m.t==='partyInvite');b.peer.send({t:'party',op:'accept',id:invite.partyId});
+ await b.peer.until((m:any)=>m.t==='partyState'&&m.party?.members.length===2);
+ assert.deepEqual(a.room.game.partyMembers!(a.p.id),[a.p.id]);
+ assert.deepEqual(expShares(a.room.game,a.p,100,50).map(s=>[s.player.id,s.xp]),[[a.p.id,100]]);
+});
+
+
+test('online directory and one-click invites work through the validated websocket protocol',async t=>{
+ const f=await fixture(t,true),a=await join(f,'OnlineHost'),b=await join(f,'OnlineGuest');
+ a.peer.send({t:'party',op:'online'});const directory=await a.peer.until((m:any)=>m.t==='partyOnline');
+ assert.equal(directory.list.find((p:any)=>p.id===b.p.id).name,'OnlineGuest');
+ a.peer.send({t:'party',op:'inviteNearby',id:b.p.id});
+ const invite=await b.peer.until((m:any)=>m.t==='partyInvite');b.peer.send({t:'party',op:'accept',id:invite.partyId});
+ await a.peer.until((m:any)=>m.t==='partyState'&&m.party?.members.length===2);
 });

@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {sampleRig,worldFoot,GAIT} from './rig.mjs';
+const len=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+test('both knees preserve authored bone lengths across 1000 poses',()=>{for(let i=0;i<1000;i++)for(const l of sampleRig(i/1000).legs){assert.ok(Math.abs(len(l.hip,l.knee)-GAIT.upper)<1e-7);assert.ok(Math.abs(len(l.knee,l.ankle)-GAIT.lower)<1e-7);}});
+test('left and right contacts alternate exactly half a cycle',()=>{for(let i=0;i<100;i++){const a=sampleRig(i/100),b=sampleRig(i/100+.5);assert.ok(Math.abs(a.legs[0].u-b.legs[1].u)<1e-7);assert.ok(Math.abs(a.legs[0].lift-b.legs[1].lift)<1e-7);}const a=sampleRig(0),b=sampleRig(.5);assert.ok(a.legs[0].u>a.legs[1].u);assert.ok(b.legs[1].u>b.legs[0].u);});
+test('walk has no airborne frame and source foot anchor remains stationary during stance in moving world',()=>{for(let i=0;i<1000;i++)assert.ok(sampleRig(i/1000).legs.some(l=>l.planted));for(const [id,start]of [['L',.02],['R',.52]]){const first=worldFoot(start,id);for(let j=0;j<50;j++){const f=worldFoot(start+j*.01,id);assert.ok(len(first,f)<1e-7);}}});
+test('loop closes without mirrored body or phase jump',()=>{const a=sampleRig(0),b=sampleRig(1);assert.deepEqual(a,b);const end=sampleRig(1-1e-8);for(let i=0;i<2;i++)assert.ok(len(a.legs[i].foot,end.legs[i].foot)<1e-4);});

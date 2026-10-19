@@ -1,4 +1,4 @@
-/* Forgotten-city UI: oxidised bronze, palm-leaf ink and carved gold.
+/* Forgotten-city UI: shared icons and responsive game instruments.
    Theme only: existing controls, painted item/skill art and responsive placement remain live. */
 :root{
  --g-glass:rgba(22,33,29,.84);--g-glass-strong:rgba(19,29,25,.96);--g-window:rgba(23,33,28,.97);
@@ -170,3 +170,39 @@ dialog .prestige-card[data-state=unlocked]{background:linear-gradient(90deg,#d7b
 @media(prefers-reduced-motion:reduce){
  #ui *,dialog *,#guide-arrow *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* Midnight / jade materials shared with the 2026 web portal. Geometry and
+   HUD placement stay unchanged so the game field remains readable. */
+:root{
+ --g-glass:rgba(10,23,31,.86);--g-glass-strong:rgba(10,20,29,.97);--g-window:rgba(13,25,35,.98);
+ --g-line:rgba(167,219,221,.2);--g-line-strong:rgba(132,228,206,.46);
+ --g-text:#edf5f5;--g-muted:#b2c6ce;--g-faint:#95afb9;--g-gold:#9cead4;
+ --ui-inlay:linear-gradient(145deg,#172f3b,#101e2c);--ui-grain:linear-gradient(125deg,#84e4ce06,transparent 70%);
+ --ui-frame-shadow:inset 0 1px 0 #dcfffa0c,0 14px 44px #03091066;
+}
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio){border-radius:9px!important;box-shadow:inset 0 1px #dcfffa14,0 3px 10px #0003}
+#ui :is(#stats-button,#skills-button,#inventory-button,#quest-button,#game-menu,.tools #audio):hover{color:#c2ffed!important;background:#23434c!important}
+#ui .player{background:linear-gradient(110deg,#0d202de8,#0d202db8);border-radius:14px;box-shadow:inset 0 1px #dcfffa0c,0 6px 20px #0003}
+#ui .avatar{background:#142b35;box-shadow:0 0 0 1px #11242e,0 0 0 3px #84e4ce88,0 0 0 5px #10212c}
+#ui .avatar b{background:#10212c;border-color:#84e4ce88;color:#d7fff1}
+#ui .player .player-name{color:#edf5f5}
+#ui .player .bar{border-color:#b2dedd33;background:#07131b;border-radius:4px}
+#ui .player .xp i{background:linear-gradient(90deg,#3d9f92,#a5f0d7)}
+#ui #map{border-color:#84e4ce88;outline-color:#10212c;box-shadow:0 0 0 5px #10212cbb,0 6px 20px #0004}
+#ui :is(.notice,#auto-status),#return-cast,#control-hints,#guide-nav,.party-invite{border-radius:9px}
+dialog[open]{border-color:var(--g-line-strong)!important;background:var(--ui-grain),var(--g-window)!important;border-radius:14px!important;box-shadow:var(--ui-frame-shadow)!important}
+dialog :is(.auto-card,.sk-detail,.settings-display,#audio-settings,.npc-quest,.inv-detail,.inv-cart){border-radius:8px;background:#08172266}
+:is(#game-menu-window,#action-launcher) .menu-tile{border-radius:9px!important}
+:is(#game-menu-window,#action-launcher) .menu-tile:hover{background:#203d46!important}
+#game-menu-window .menu-account{background:#08172266;border-radius:9px}
+#overlay{background:linear-gradient(90deg,#08131bf0,#08131ba8 40%,#08131b08 85%)}
+#overlay.center{background:#08131be8}
+#overlay .welcome{width:min(460px,90vw);text-align:left}
+#overlay h1{font-size:clamp(44px,5.4vw,76px);line-height:1.18;letter-spacing:-.035em;color:#edf5f5;margin:22px 0}
+#overlay .caption{color:#9cead4;letter-spacing:.16em;font-size:10px}
+#overlay .ornament{color:#9cead4}#overlay .tagline{color:#c3d8df;line-height:1.8}
+#overlay .intro{font-size:12px;color:#b2c6ce}#overlay .welcome-line{margin-left:0;background:linear-gradient(90deg,#84e4ce,transparent)}
+#overlay .primary,dialog .primary{border-radius:8px;background:linear-gradient(120deg,#b0f4dc,#76d9c5);border-color:#b0f4dc;color:#092824;min-height:48px}
+#overlay :is(.footnote,#load-state){font-size:10px;color:#a8c1cb;line-height:1.8}
+#painted-loading .loading-track{background:#84e4ce22}#painted-loading .loading-track i{background:#84e4ce}
+@media(max-width:650px){#overlay .welcome{width:min(390px,90vw)}#overlay h1{font-size:44px}#overlay .intro{font-size:11px}}

@@ -1,14 +1,18 @@
+import type {FieldProp} from './game-2d-fields';
 import type {MapId} from '@thainative/shared/maps';
 import {CanvasAssets} from './game-2d-assets';
 import {boundaryPlants,boundaryRoads} from './game-2d-boundaries';
 import {unproject2D} from './game-2d-projection';
+import {canyonRockProps} from './canyon-rock-art';
+import {ruinsProps} from './ruins-art';
 
 export async function loadMapBackdrop(id:MapId,assets:CanvasAssets){
  const base=id==='forest'?'/assets/env-forest/':'/assets/env-painted/';
  const [grass,road,manifest]=await Promise.all([assets.image(id==='canyon'?'/assets/env-forest/tile-path-v1.png':id==='ruins'?'/assets/env-forest/tile-moss-v1.png':id==='forest'?base+'tile-moss-v1.png':'/assets/city-painted-v1/ground-grass-v1.png'),assets.image(id==='forest'?base+'tile-path-v1.png':'/assets/city-painted-v1/ground-'+(id==='city_plaza'?'road':'garden')+'-v1.png'),assets.json<any>(base+'manifest.json')]);
  const names=id==='canyon'?['boulder-tall','rock-cluster','boulder-round','boulder-flat','grass-2','boulder-tall']:id==='ruins'?['tree-round','tree-tall','tree-leaning','boulder-round','fern-wide','tree-tall']:id==='forest'?['pine','oak','silver','rock','fern','hollow']:['tree-round','tree-tall','tree-flowering','boulder-round','bush-flowering','tree-tall'];
- const sprites=await Promise.all(names.map(async name=>{const a=manifest.assets.find((a:any)=>a.name===name);return {...a,image:await assets.image(base+a.atlas)};}));
- const props=boundaryPlants(id).map(p=>{const a=sprites[p.variant],h=p.variant===3?2.2:p.variant===4?1.6:p.h;return {...p,image:a.image as HTMLImageElement,rect:a.rect as number[],w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor as number[]};});
+ const sprites=id==='canyon'||id==='ruins'?[]:await Promise.all(names.map(async name=>{const a=manifest.assets.find((a:any)=>a.name===name);return {...a,image:await assets.image(base+a.atlas)};}));
+ const plants=boundaryPlants(id);
+ const props:FieldProp[]=id==='ruins'?await ruinsProps(plants.filter((p,i)=>i%6===0),assets,false):id==='canyon'?await canyonRockProps(plants.filter((p,i)=>i%4===0).map(p=>({...p,r:2.2+(p.h-5)*.25})),assets):plants.map(p=>{const a=sprites[p.variant],h=p.variant===3?2.2:p.variant===4?1.6:p.h;return {...p,image:a.image as HTMLImageElement,rect:a.rect as number[],w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor as number[],tree:/tree|pine|oak|silver|hollow/.test(names[p.variant])};});
  // Match texture resolution to the backing-store scale once, rather than
  // resampling a full source atlas for every repeated tile on a ground rebuild.
  const tiles=new Map<string,HTMLCanvasElement>();

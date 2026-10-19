@@ -1,0 +1,276 @@
+/* Party surfaces only. Palette stays independent of the other HUD panels. */
+#party-window{--p-ink:#0c191f;--p-panel:#14282d;--p-line:#739d9450;--p-text:#e2eee8;--p-muted:#8fa9a6;--p-jade:#7bdfbb;--p-gold:#dbc591;width:min(690px,94vw);max-height:90dvh;padding:0!important;border:1px solid var(--p-line)!important;border-radius:20px!important;background:linear-gradient(150deg,#1b3438f5,#0b171ffb 65%)!important;color:var(--p-text);box-shadow:0 24px 100px #0009,inset 0 1px #c4f5de14;overflow:auto;scrollbar-width:thin}
+#party-window[open]{display:flex!important;flex-direction:column}
+#party-window::backdrop{background:#030d1470;backdrop-filter:blur(4px)}
+#party-window [hidden],#ui #party-frame[hidden]{display:none!important}
+#party-window .party-head{position:relative;display:flex;align-items:center;gap:16px;padding:28px 30px 22px;border-bottom:1px solid var(--p-line);background:radial-gradient(ellipse at 0 0,#5d9c7130,transparent 70%)}
+#party-window .party-emblem{display:grid;place-items:center;width:48px;height:54px;flex:none;color:var(--p-gold);font-size:36px;border:1px solid #d1c48a55;border-radius:13px;background:linear-gradient(140deg,#9ab56d1a,#122c2d);box-shadow:inset 0 1px #fff1}
+#party-window .party-head small{display:block;color:var(--p-jade);font-size:9px;letter-spacing:2.2px;margin-bottom:6px}
+#party-window h2{margin:0!important;font-size:24px!important;line-height:1.35!important;color:var(--p-text)!important;letter-spacing:.3px}
+#party-window .party-summary{font-size:11px;color:var(--p-muted);margin:5px 0 0}
+#party-window .party-capacity{margin-left:auto;align-self:flex-end;font-size:12px;white-space:nowrap;letter-spacing:2px;color:var(--p-gold);background:#d7c58d0c;border:1px solid #d7c58d33;border-radius:7px;padding:7px 12px}
+#party-window button{font:inherit;font-size:12px;cursor:pointer;color:var(--p-text);border:1px solid var(--p-line);border-radius:9px;background:#24434688;padding:9px 14px;transition:background .15s,border-color .15s}
+#party-window button:hover{background:#315b58;border-color:#8bcbb4aa;filter:none}
+#party-window button:focus-visible,#party-window input:focus-visible,#party-window summary:focus-visible{outline:2px solid var(--p-jade);outline-offset:3px}
+#party-window button:disabled{opacity:.4;cursor:default}
+#party-window .close{position:absolute;right:13px;top:12px;z-index:1;display:grid;place-items:center;width:30px;height:30px;min-height:30px;padding:0!important;font-size:22px!important;line-height:1;background:#07171b55;border:0;border-radius:50%}
+#party-window .close::before,#party-window .close::after{content:none!important}
+#party-window .party-empty{text-align:center;padding:24px 16px 10px;margin:0 26px}
+#party-window .party-empty>div{font-size:40px;color:var(--p-jade);opacity:.8}
+#party-window h3{font-size:17px;font-weight:500;margin:6px 0 8px;color:var(--p-text)}
+#party-window .party-empty p{font-size:12px;color:var(--p-muted);margin:0 0 16px}
+#party-window #party-create{background:#335c4c;border-color:#77bc9866;color:#e3f7e7;padding:11px 20px}
+#party-window .party-invite-form{padding:19px 28px 15px;margin:0}
+#party-window .party-invite-form>label{display:block;color:#a9bebb;font-size:11px;font-weight:500;margin:0 0 8px}
+#party-window .party-invite-form>div{display:flex;gap:8px}
+#party-window .party-invite-form input{flex:1;min-width:0;background:#06151a99;border:1px solid #7eaaa13b;border-radius:9px;padding:11px 13px;font:inherit;font-size:12px;color:var(--p-text)}
+#party-window .party-invite-form input::placeholder{color:#718d8d}
+#party-window .party-invite-form button{background:linear-gradient(135deg,#4c8067,#315b4b);border-color:#97d4ad55;white-space:nowrap;color:#e9f7e9}
+#party-window .party-invite-hint{display:block;color:#748f8e;font-size:10px;margin-top:8px;line-height:1.5}
+#party-window .party-feedback{margin:0 28px 12px;padding:9px 12px;border-radius:7px;background:#c6b7800d;color:#dbc591;font-size:12px;border-left:2px solid #bba36a80}
+#party-window .party-feedback:empty{display:none}
+#party-window .party-list-heading{display:flex;align-items:center;justify-content:space-between;margin:4px 28px 11px;font-size:12px;color:#b8cbc4}
+#party-window .party-list-heading small{display:flex;align-items:center;gap:6px;font-size:10px;color:#729e91}
+#party-window .party-list-heading i{width:5px;height:5px;border-radius:50%;background:var(--p-jade)}
+#party-window .party-roster{display:grid;gap:7px;max-height:min(340px,43dvh);overflow-y:auto;margin:0 23px 0 28px;padding-right:5px;scrollbar-width:thin;scrollbar-color:#6b8c7866 transparent}
+#party-window .party-member{display:grid!important;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:10px 14px;padding:13px 12px;border:1px solid #80a39830;border-radius:11px;background:linear-gradient(100deg,#243e3e66,#12262c88);position:relative}
+#party-window .party-member.me{border-color:#91c7ab77;background:linear-gradient(105deg,#3b68533b,#172e3288)}
+#party-window .party-job{width:42px;height:48px;display:grid;place-items:center;border:1px solid #b6cc9a44;border-radius:11px;color:#d2dfab;background:linear-gradient(145deg,#517a592d,#162d2e);box-shadow:inset 0 1px #c2efd30f}
+#party-window .party-job svg{width:25px;height:25px}
+#party-window .party-member-info{min-width:0}
+#party-window .party-member-heading{display:flex;align-items:center;gap:7px;min-width:0;line-height:1.4}
+#party-window .party-name{font-size:13px;font-weight:600;color:#e2efe7;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+#party-window .party-leader{font-size:8px;color:var(--p-gold);border:1px solid #c4af663b;border-radius:4px;background:#a9954312;padding:2px 5px;white-space:nowrap}
+#party-window .party-you{font-size:9px;color:var(--p-jade)}
+#party-window .party-presence{font-size:9px;color:#89bdab;margin-left:auto;white-space:nowrap}
+#party-window .party-presence::before{content:'';display:inline-block;width:4px;height:4px;margin:0 5px 2px 0;border-radius:50%;background:currentColor}
+#party-window .party-meta{display:block;font-size:10px;color:var(--p-muted);margin:3px 0 6px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#party-window .party-vital{display:grid;grid-template-columns:18px minmax(25px,1fr) 73px;align-items:center;gap:7px;height:12px;margin-top:3px;background:none}
+#party-window .party-vital>small{font:8px/1 Tahoma,sans-serif;letter-spacing:.7px;color:#78bcab}
+#party-window .party-track{display:block;position:relative;height:5px;border-radius:4px;background:#051116b3;box-shadow:inset 0 1px 2px #0006;overflow:hidden}
+#party-window .party-track>i{display:block;height:100%;width:calc(var(--fill,0)*100%);background:linear-gradient(90deg,#3b917b,#9bd7a9);border-radius:4px;box-shadow:0 0 7px #80d8ae33;transition:width .25s}
+#party-window .party-mp .party-track>i{background:linear-gradient(90deg,#426e9d,#87bdd1)}
+#party-window .party-mp>small{color:#7d9ebd}
+#party-window .party-value{font:9px/1.2 Tahoma,sans-serif;font-variant-numeric:tabular-nums;text-align:right;color:#bad0c8;white-space:nowrap}
+#party-window .party-more{align-self:start;border:0!important;background:transparent!important;width:28px;height:28px;min-height:28px;padding:0!important;font:22px/1 sans-serif!important;color:#9ab6ac}
+#party-window .party-more:hover,#party-window .party-more[aria-expanded=true]{background:#6b9c8a22!important;color:#e5f8e9}
+#party-window .party-member-actions{grid-column:2/-1;display:flex;justify-content:flex-end;gap:7px;padding-top:4px}
+#party-window .party-member-actions button{min-height:30px!important;font-size:10px;padding:6px 10px}
+#party-window .party-member-actions button:last-child{color:#d7a7a1;border-color:#b6807344;background:#9f5f5220}
+#party-window .party-member.offline .party-job,#party-window .party-member.offline .party-member-info{opacity:.5}
+#party-window .party-member.offline .party-presence{color:#9d9e9e}
+#party-window .party-member.dead .party-presence{color:#e3a284}
+#party-window .party-member.dead .party-hp .party-track>i{filter:grayscale(1)}
+#party-window .party-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:18px 28px 0;padding-top:16px;border-top:1px solid #6e96912c}
+#party-window #party-chat{background:#83b9a01a;color:#b5e7cd;border-color:#7bab9155}
+#party-window #party-leave{background:none;color:#9fb6b0;border-color:transparent}
+#party-window #party-disband{margin-left:auto;background:#86534812;color:#b88e88;border-color:#a4695b30;font-size:10px}
+#party-window .party-rules{margin:14px 28px 21px;padding:0;border:0;color:#77948c;font-size:10px;line-height:1.7}
+#party-window .party-rules summary{cursor:pointer;list-style-position:inside;color:#8aa69e}
+#party-window .party-rules p{margin:9px 0 0;color:#8da89e}
+#party-window .party-confirm{margin:12px 28px 0;padding:12px;border:1px solid #ba9c6655;border-radius:9px;background:#8c75321a}
+#party-window .party-confirm p{font-size:12px;color:#dccca7;margin:0 0 10px}
+#party-window .party-confirm button{margin-right:8px}
+/* Compact party strip: one quiet cluster beneath the player vitals. */
+#ui #party-frame{position:absolute;left:20px;top:145px;width:222px;max-height:none;padding:7px!important;border:1px solid #7caba459!important;border-radius:13px!important;background:linear-gradient(150deg,#163633ec,#0d2026ec)!important;box-shadow:0 7px 28px #0003,inset 0 1px #d3ffe111;pointer-events:auto;z-index:5;color:#d8e7df}
+#ui #party-frame header{display:flex;align-items:center;gap:5px;padding:0 2px 5px}
+#ui #party-frame .party-manage{flex:1;display:flex;align-items:center;gap:7px;min-width:0;padding:5px 2px;background:none;border:0;cursor:pointer;font-size:11px;color:#bad5ca;text-align:left}
+#ui #party-frame .party-manage>i{font-size:15px;font-style:normal;color:#c8bd8b}
+#ui #party-frame .party-manage>span{font:9px Tahoma,sans-serif;padding:2px 5px;background:#90bd9c10;border-radius:4px;color:#8bad9e}
+#ui #party-frame .party-manage>small{font-size:9px;flex:none;margin-left:auto;color:#83a197}
+#ui #party-frame .party-collapse{flex:none;width:25px;height:25px;min-height:25px;padding:0;border:0;border-radius:6px;background:#5276661a;color:#9ec1ad;cursor:pointer;font:14px Tahoma}
+#ui #party-frame ul{display:grid;gap:4px;margin:0;padding:0;list-style:none;max-height:min(245px,40dvh);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#74958c66 transparent}
+body:has(#guide-nav:not([hidden])) #ui #party-frame ul{max-height:120px}
+#ui #party-frame.is-collapsed ul{display:none}
+#ui #party-frame.is-collapsed header{padding-bottom:0}
+#ui #party-frame .party-member{display:grid;grid-template-columns:25px minmax(0,1fr);grid-template-rows:none;grid-template-areas:none;gap:0 7px;align-items:center;padding:2px 6px;border:1px solid transparent;border-radius:7px;background:#04181c44}
+#ui #party-frame .party-member.me{border-color:#a4c9a326;background:#78b4910c}
+#ui #party-frame .party-job{display:grid;place-items:center;width:24px;height:30px;border-radius:6px;background:#678f5d1c;border:1px solid #a6c49126;color:#b6cba3}
+#ui #party-frame .party-job svg{width:17px;height:17px}
+#ui #party-frame .party-member-info{min-width:0}
+#ui #party-frame .party-member-heading{display:flex;align-items:center;gap:4px;line-height:1.3}
+#ui #party-frame .party-name{font-size:10px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#d3e8da}
+#ui #party-frame .party-leader{font-size:10px;color:#d5c18a}
+#ui #party-frame .party-you{font-size:8px;color:#6eab92}
+#ui #party-frame .party-presence{margin-left:auto;font-size:0;color:#7bc3a1;flex:none}
+#ui #party-frame .party-presence::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:currentColor}
+#ui #party-frame .party-meta{display:none}
+#ui #party-frame .party-vital{display:grid;grid-template-columns:minmax(15px,1fr) 26px;align-items:center;gap:5px;grid-area:auto;height:5px;margin:2px 0 0;background:none;filter:none}
+#ui #party-frame .party-vital>small{display:none}
+#ui #party-frame .party-track{height:3px;overflow:hidden;background:#021419aa;border-radius:3px}
+#ui #party-frame .party-track i{display:block;height:100%;width:calc(var(--fill,0)*100%);background:linear-gradient(90deg,#489079,#a2c997);transition:width .25s;border-radius:3px}
+#ui #party-frame .party-mp .party-track i{background:linear-gradient(90deg,#446f97,#7ba7b9)}
+#ui #party-frame .party-value{position:static;display:block;font:7px Tahoma,sans-serif;text-align:right;color:#88a89a}
+#ui #party-frame .party-mp .party-value{color:#738e9e}
+#ui #party-frame .party-member.offline{opacity:.5}
+#ui #party-frame .party-member.offline .party-presence{color:#9e9e9e}
+#ui #party-frame .party-member.dead .party-presence{color:#d59a7b}
+/* Existing invitation and menu icon retain their party-specific styling. */
+#party-invites .party-invite{max-width:min(490px,94vw);flex-wrap:wrap;pointer-events:auto;border-radius:10px}#party-invites .party-invite p{font-size:13px;flex:1 1 180px}#party-invites .party-invite-timer{font-size:10px;color:#b9c897}
+[data-icon=party]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'%3E%3Ccircle cx='12' cy='7' r='3'/%3E%3Cpath d='M6 21v-3a6 6 0 0 1 12 0v3M4 6a3 3 0 0 0 0 6M20 6a3 3 0 0 1 0 6M2 20v-2a5 5 0 0 1 3-4M22 20v-2a5 5 0 0 0-3-4'/%3E%3C/svg%3E")}
+@media(max-width:650px){
+ #party-window{width:min(460px,95vw);max-height:91dvh;border-radius:15px!important}
+ #party-window .party-head{padding:23px 18px 18px;gap:12px}
+ #party-window .party-emblem{width:35px;height:43px;font-size:27px}
+ #party-window h2{font-size:21px!important}
+ #party-window .party-head small{font-size:7px;letter-spacing:1.5px}
+ #party-window .party-capacity{font-size:10px;padding:5px 7px;letter-spacing:1px}
+ #party-window .party-summary{font-size:9px;max-width:185px}
+ #party-window .party-invite-form{padding:16px 17px 13px}
+ #party-window .party-invite-form input{padding:10px;font-size:11px;width:80px}
+ #party-window .party-invite-form button{padding:8px 10px;font-size:11px}
+ #party-window .party-list-heading{margin-left:18px;margin-right:18px}
+ #party-window .party-roster{margin-left:15px;margin-right:12px;max-height:39dvh;gap:6px}
+ #party-window .party-member{grid-template-columns:32px minmax(0,1fr) auto;gap:9px;padding:10px 8px}
+ #party-window .party-job{width:31px;height:39px;border-radius:8px}
+ #party-window .party-job svg{width:20px;height:20px}
+ #party-window .party-name{font-size:12px}
+ #party-window .party-leader{font-size:7px;padding:1px 3px}
+ #party-window .party-presence{font-size:0}
+ #party-window .party-presence::before{width:5px;height:5px;margin:0}
+ #party-window .party-vital{grid-template-columns:15px minmax(20px,1fr) 61px;gap:5px}
+ #party-window .party-value{font-size:8px}
+ #party-window .party-meta{font-size:8px}
+ #party-window .party-footer{margin:14px 17px 0;gap:4px;padding-top:12px}
+ #party-window .party-footer button{padding:9px 10px;font-size:11px}
+ #party-window .party-rules{margin:12px 18px 17px;font-size:9px}
+ #party-window .party-confirm,#party-window .party-feedback{margin-left:17px;margin-right:17px}
+ #ui #party-frame{left:auto;right:8px;top:155px;width:150px;padding:5px!important}
+ #ui #party-frame ul{display:grid}
+ #ui #party-frame.is-collapsed ul{display:none}
+ #ui #party-frame .party-member{padding:5px}
+ #ui #party-frame .party-manage>small{display:none}
+}
+@media(prefers-reduced-motion:reduce){#party-window button,#party-window .party-track>i,#ui #party-frame .party-track>i{transition:none}}
+/* Wayfarers' camp management dialog; the in-game compact strip stays unchanged. */
+#party-window{width:min(1180px,96vw);max-width:1180px;max-height:94dvh;--p-gold:#d7bd84;border-color:#b89c5e70!important;border-radius:17px!important;background:linear-gradient(125deg,#18342f,#0c1e24 67%)!important;font-family:var(--font-ui,"Noto Sans Thai",sans-serif)}
+#party-window .party-head{padding:22px 28px 19px;gap:13px;flex-shrink:0;border-bottom-color:#c7aa6340;background:linear-gradient(110deg,#486a4828,transparent)}
+#party-window h2{font-size:25px!important;font-weight:500}
+#party-window .party-emblem{width:40px;height:45px;border-radius:50% 50% 9px 9px;font-size:29px}
+#party-window .party-head small{font-size:8px;color:var(--p-gold);letter-spacing:2.7px}
+#party-window .party-capacity{align-self:center;margin-right:25px;letter-spacing:2px;font-size:15px;padding:9px 13px}
+#party-window .party-camp-layout{display:grid;grid-template-columns:minmax(0,1fr) 266px;gap:22px;padding:20px 24px}
+#party-window .party-camp-main{min-width:0}
+#party-window .party-camp-scene{position:relative;aspect-ratio:1100/350;min-height:230px;overflow:hidden;border-radius:11px;border:1px solid #a3b58b42;background:radial-gradient(ellipse at 50% 80%,#776244,#183834 70%);isolation:isolate}
+#party-window .party-camp-scene canvas{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+#party-window .camp-caption{position:absolute;z-index:2;left:18px;top:16px;pointer-events:none;display:grid;gap:5px}
+#party-window .camp-caption>span{font-size:15px;color:#f0d9a4;text-shadow:0 2px 5px #000;font-weight:500}
+#party-window .camp-caption small{font-size:9px;color:#b9c9b4;text-shadow:0 1px 3px #000}
+#party-window .camp-art-note{position:absolute;z-index:2;bottom:10px;right:13px;font-size:8px;color:#aec1a8}
+#party-window .camp-nameplates{position:absolute;inset:0}
+#party-window .camp-name{position:absolute;transform:translate(-50%,-100%);max-width:130px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:10px;color:#e1ebd7;text-shadow:0 1px 4px #000;background:#071c22b3;border:1px solid #a7be982b;border-radius:5px;padding:3px 7px;pointer-events:none}
+#party-window .camp-name.is-you{color:#edcf83;border-color:#d4b67d66}
+#party-window .camp-name.is-offline{opacity:.5}
+#party-window .camp-vacancy{position:absolute;transform:translate(-50%,-50%);padding:0;width:25px;height:25px;min-height:25px;display:grid;place-items:center;font-size:17px;background:#5f85671c;color:#adc1986b;border:1px dashed #c2c99a44;border-radius:50%}
+#party-window .party-list-heading{margin:17px 0 10px;font-size:12px;color:#d7e2d5}
+#party-window .party-list-heading>span{display:flex;gap:9px;align-items:center}
+#party-window .party-list-heading>span>small{font-size:9px;color:#819a90;font-weight:400}
+#party-window .party-roster{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:0;padding:0;overflow:visible;max-height:none}
+#party-window .party-member{display:flex!important;flex-direction:column;align-items:stretch;gap:0;padding:0 9px 11px;border:1px solid #7e9e803f;border-radius:10px;background:linear-gradient(160deg,#2e4a3a40,#0c2027 75%);min-width:0;min-height:210px}
+#party-window .party-member.me{border-color:#d0b9768c;box-shadow:inset 0 0 0 1px #cfb36c14;background:linear-gradient(155deg,#68613a2a,#122a2b 65%)}
+#party-window .party-portrait{height:110px;position:relative;margin:0 -9px 8px;border-radius:9px 9px 0 0;background:radial-gradient(ellipse at 50% 75%,#64815643,transparent 70%);overflow:hidden;border-bottom:1px solid #91a76f19}
+#party-window .party-portrait:after{content:'';position:absolute;bottom:7px;left:20%;width:60%;height:9px;background:#a4b68518;border:1px solid #b7bb7730;border-radius:50%;z-index:0}
+#party-window .party-portrait canvas{position:relative;width:100%;height:100%;object-fit:contain;z-index:1}
+#party-window .party-member>.party-job{position:absolute;left:7px;top:7px;width:24px;height:25px;border-radius:6px;z-index:2;background:#0b2028a6;color:#b9cba4;border-color:#9cb18c33}
+#party-window .party-job svg{width:15px;height:15px}
+#party-window .party-member-info{width:100%}
+#party-window .party-member-heading{gap:3px;flex-wrap:wrap;min-height:18px}
+#party-window .party-name{font-size:11px;font-weight:500;max-width:100%}
+#party-window .party-leader{position:absolute;right:7px;top:9px;font-size:0;padding:0;background:none;border:0;color:#e4c17c}
+#party-window .party-leader:after{content:'♛';font-size:18px;text-shadow:0 1px 3px #000}
+#party-window .party-you{font-size:8px;margin-left:auto}
+#party-window .party-presence{position:absolute;top:94px;left:7px;background:#0b2322bf;border-radius:4px;font-size:7px;padding:1px 4px}
+#party-window .party-presence:before{width:3px;height:3px;margin-right:3px}
+#party-window .party-meta{white-space:normal;display:block;font-size:8px;min-height:30px;line-height:1.65;margin:3px 0 6px;color:#8da99b}
+#party-window .party-vital{grid-template-columns:12px minmax(10px,1fr);gap:3px;height:12px;margin-top:2px}
+#party-window .party-vital>small{font-size:7px;letter-spacing:0}
+#party-window .party-track{height:4px}
+#party-window .party-value{display:none}
+#party-window .party-more{position:absolute;bottom:3px;right:4px;width:20px;height:19px;min-height:19px;font-size:19px!important}
+#party-window .party-member:has(.party-more){padding-bottom:25px}
+#party-window .party-member-actions{position:absolute;z-index:5;bottom:26px;left:3px;right:3px;flex-direction:column;gap:4px;padding:6px;background:#0a1e24fa;border:1px solid #b8c28a66;border-radius:7px;box-shadow:0 8px 25px #0006}
+#party-window .party-member-actions button{font-size:9px;padding:7px 3px;min-height:28px!important}
+#party-window .party-empty-slot{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:210px;padding:8px 4px;border:1px dashed #a7b48c3b;border-radius:10px;background:linear-gradient(150deg,#7488580b,#10272a11);color:#839787}
+#party-window .party-empty-slot>span{font-size:25px;color:#a2b58480;font-weight:300;line-height:1;border:1px solid #a7b48c28;border-radius:50%;width:36px;height:36px;display:grid;place-items:center;margin-bottom:6px}
+#party-window .party-empty-slot strong{font-size:10px;font-weight:400}
+#party-window .party-empty-slot small{font-size:8px;color:#627c70;line-height:1.7}
+#party-window .party-empty-slot:hover{background:#497e5c12;border-color:#b9d29d80}
+#party-window .party-empty-slot:disabled{opacity:.7}
+#party-window .party-empty{display:flex;align-items:center;gap:12px;text-align:left;margin:13px 0 0;padding:13px;border:1px solid #8fa47b27;border-radius:9px;background:#85984b08;flex-wrap:wrap}
+#party-window .party-empty>div{font-size:25px}
+#party-window .party-empty h3{font-size:13px;margin:0}
+#party-window .party-empty p{display:none}
+#party-window #party-create{margin-left:auto;font-size:10px;padding:8px 12px}
+#party-window .party-camp-sidebar{border-left:1px solid #91a67c25;padding-left:21px;min-width:0;display:flex;flex-direction:column}
+#party-window .camp-side-title small{color:#9fb79d;font-size:7px;letter-spacing:1.5px}
+#party-window .camp-side-title h3{font-size:17px;color:#e5dfc4;margin:6px 0 7px}
+#party-window .camp-side-title p{font-size:10px;color:#819d91;margin:0 0 20px;line-height:1.6}
+#party-window .party-invite-form{padding:0;margin:0 0 19px}
+#party-window .party-invite-form>div{flex-direction:column;gap:8px}
+#party-window .party-invite-form input{width:100%;font-size:11px;padding:10px}
+#party-window .party-invite-form button{padding:9px;font-size:11px}
+#party-window .party-invite-form>label{font-size:10px;color:#acbcaa}
+#party-window .party-invite-hint{font-size:9px;color:#80988a}
+#party-window .party-feedback{margin:0 0 12px;font-size:10px}
+#party-window .camp-policy{padding:15px;border:1px solid #c9b07238;border-radius:10px;background:linear-gradient(135deg,#b8a4600d,#213c2c14);margin-bottom:15px}
+#party-window .camp-policy-heading{display:flex;align-items:center;gap:7px}
+#party-window .camp-policy-heading>span{color:#d2bd7d}
+#party-window .camp-policy h3{font-size:11px;color:#c9d3b4;margin:0;font-weight:500}
+#party-window .camp-bonus{display:flex;gap:10px;align-items:center;margin:15px 0 12px}
+#party-window .camp-bonus strong{font-size:31px;font-weight:400;letter-spacing:-1px;color:#dbc58a}
+#party-window .camp-bonus>span{font-size:10px;color:#dce4c6;line-height:1.6}
+#party-window .camp-bonus small{font-size:8px;color:#8ca68f}
+#party-window .camp-policy p{font-size:10px;color:#9fb29e;line-height:1.9;margin:0 0 10px}
+#party-window .camp-distance{display:inline-block;font-size:9px;border:1px solid #90b79b33;border-radius:5px;color:#abd1af;background:#87b8810b;padding:4px 7px}
+#party-window .camp-policy>small{display:block;font-size:8px;color:#7c9786;line-height:1.8;margin-top:12px}
+#party-window .party-footer{margin:auto 0 0;padding-top:12px;gap:6px;display:grid;grid-template-columns:1fr}
+#party-window .party-footer button{font-size:11px;padding:8px}
+#party-window #party-disband{margin:0;border:0;background:none;font-size:9px;color:#9d8178}
+#party-window #party-leave{font-size:9px;padding:7px}
+#party-window .party-rules{margin:11px 0 0;font-size:9px;line-height:1.8}
+#party-window .party-confirm{margin:0 0 12px;padding:10px}
+#party-window .party-confirm p{font-size:10px}
+#party-window .party-confirm button{font-size:9px;padding:7px 8px;margin:3px 4px 0 0}
+#party-window .camp-bottom-note{border-top:1px solid #b5a26d25;padding:11px 24px;font-size:9px;color:#809a88;flex-shrink:0;background:#061a201f}
+#party-window .camp-bottom-note span{color:#c5b97c;margin-right:7px}
+#party-window .offline .party-portrait,#party-window .dead .party-portrait{filter:grayscale(.8);opacity:.5}
+@media(max-width:1000px){#party-window{width:96vw}#party-window .party-camp-layout{grid-template-columns:minmax(0,1fr) 235px;gap:15px;padding:16px}#party-window .party-camp-sidebar{padding-left:15px}#party-window .party-roster{grid-template-columns:repeat(3,minmax(0,1fr))}#party-window .party-member,#party-window .party-empty-slot{min-height:190px}#party-window .party-camp-scene{min-height:220px}#party-window .party-portrait{height:105px}#party-window .party-meta{min-height:20px}}
+@media(max-width:650px){#party-window{width:96vw;max-height:94dvh}#party-window .party-head{padding:20px 16px 15px;gap:10px}#party-window h2{font-size:18px!important}#party-window .party-head small{font-size:6px;letter-spacing:1.5px}#party-window .party-emblem{width:28px;height:36px;font-size:22px}#party-window .party-capacity{font-size:10px;padding:5px 7px;margin-right:10px}#party-window .party-summary{font-size:9px;max-width:none}#party-window .party-camp-layout{grid-template-columns:minmax(0,1fr);padding:12px;gap:18px}#party-window .party-camp-scene{min-height:0;aspect-ratio:1100/420}#party-window .camp-caption{left:10px;top:10px}#party-window .camp-caption>span{font-size:11px}#party-window .camp-caption small{font-size:7px}#party-window .camp-art-note{display:none}#party-window .camp-name{font-size:6px;padding:2px 4px}#party-window .camp-vacancy{width:18px;height:18px;min-height:18px;font-size:12px}#party-window .party-member,#party-window .party-empty-slot{min-height:188px}#party-window .party-camp-sidebar{border-left:0;border-top:1px solid #829d7828;padding:16px 0 0}#party-window .camp-side-title p{margin-bottom:10px}#party-window .party-invite-form>div{flex-direction:row}#party-window .party-invite-form input{width:100px}#party-window .party-footer{grid-template-columns:1fr 1fr}#party-window .party-footer #party-disband{grid-column:1/-1}#party-window .party-rules{margin-top:8px}#party-window .camp-policy{margin-bottom:5px}#party-window .camp-bonus{margin:10px 0}#party-window .camp-bottom-note{padding:10px 13px;font-size:8px}#party-window .party-empty{gap:7px}#party-window .party-empty h3{font-size:10px}#party-window #party-create{font-size:9px;padding:7px 9px}}
+#party-window .party-name{font-size:12px}#party-window .party-meta{font-size:9px}#party-window .party-vital{grid-template-columns:12px minmax(10px,1fr) 46px;gap:4px}#party-window .party-value{display:block;font-size:7px;color:#9cb8a7}#party-window .party-camp-sidebar .camp-policy{padding:12px}#party-window .camp-policy>small{margin-top:9px}#party-window .camp-policy p{font-size:10px;line-height:1.8}#party-window .camp-side-title p{margin-bottom:14px}
+#party-window .party-confirm{position:fixed;z-index:20;left:50%;top:50%;transform:translate(-50%,-50%);width:min(360px,86vw);margin:0;padding:22px;background:#102a2dfc;border:1px solid #c3aa6e99;box-shadow:0 0 0 150vmax #041218a8,0 20px 70px #0009;border-radius:12px}#party-window .party-confirm p{font-size:13px;line-height:1.8;margin-bottom:15px}#party-window .party-confirm button{font-size:12px;min-height:36px;padding:8px 13px}#party-window .party-camp-scene{min-height:0;aspect-ratio:1100/350}#party-window .camp-unavailable:after{content:'เตรียมฉากค่ายไม่สำเร็จ · ปิดและเปิดหน้าปาร์ตี้เพื่อลองอีกครั้ง';position:absolute;bottom:10px;left:12px;font-size:10px;color:#e0c789}
+@media(max-width:650px){#party-window .party-more{width:30px;height:28px;min-height:28px}#party-window .party-member:has(.party-more){padding-bottom:32px}}
+/* Party crest: companions gathering around a warm campfire. */
+#party-window .party-emblem{width:48px;height:52px;border:1px solid #bda76a66;border-radius:14px;background:radial-gradient(ellipse at 50% 30%,#89a66324,transparent 75%),linear-gradient(145deg,#284a3d,#0d2429);box-shadow:inset 0 1px #e1d8a61f,0 4px 14px #03141640}
+#party-window .party-emblem svg{display:block;width:41px;height:43px;filter:drop-shadow(0 1px 2px #0004)}
+@media(max-width:650px){#party-window .party-emblem{width:36px;height:41px;border-radius:11px}#party-window .party-emblem svg{width:31px;height:34px}}
+/* Clear, solid party silhouettes inside a gilded jade shield. */
+#party-window .party-emblem{width:52px;height:60px;border:0;border-radius:0;background:none;box-shadow:none}
+#party-window .party-emblem svg{width:52px;height:60px;filter:drop-shadow(0 3px 4px #020e1680)}
+@media(max-width:650px){#party-window .party-emblem{width:37px;height:44px}#party-window .party-emblem svg{width:37px;height:44px}}
+/* Server-filtered online players: always scoped to this map/channel room. */
+#party-window .party-online{border:1px solid #8cab8140;border-radius:10px;background:#071c2040;margin:0 0 15px;overflow:hidden}
+#party-window .party-online header{display:flex;align-items:center;justify-content:space-between;padding:10px 11px 0}
+#party-window .party-online h3{font-size:12px;margin:0;color:#dce6cf;display:flex;gap:7px;align-items:center}
+#party-window .online-count{display:inline-block;border-radius:4px;padding:2px 5px;background:#84be9820;font:9px var(--font-ui);color:#a3d6b3}
+#party-window .online-refresh{width:28px;min-width:28px;height:28px;min-height:28px;padding:0;border:0;background:#88b89612;font-size:19px;color:#a1c6ac;line-height:1}
+#party-window .online-location{font-size:9px;margin:3px 11px 8px;line-height:1.6;color:#7e9d8a}
+#party-window .party-online-list{display:grid;gap:0;max-height:194px;overflow-y:auto;list-style:none;margin:0;padding:0 8px;scrollbar-width:thin;scrollbar-color:#739c7e55 transparent}
+#party-window .party-online-list li{display:flex;align-items:center;gap:7px;padding:9px 2px;border-top:1px solid #88ae8119;min-width:0}
+#party-window .online-job{display:grid;place-items:center;flex:none;width:25px;height:31px;border-radius:6px;border:1px solid #a8b98229;background:#55795318;color:#bdcea1}
+#party-window .online-job svg{width:16px;height:16px}
+#party-window .party-online-list li>div{flex:1;min-width:0}
+#party-window .party-online-list strong{font-size:11px;font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#dce8d8}
+#party-window .party-online-list small{display:block;font-size:8px;color:#7d9a87;margin-top:3px}
+#party-window .party-online-list button{font-size:10px;min-height:29px;min-width:39px;padding:5px 7px;background:#3a77512a;border-color:#86c49355;color:#b9dfbf;flex:none}
+#party-window .party-online-list button:disabled{font-size:8px;color:#8da28d;background:none;border-color:#829b7a25;opacity:.7}
+#party-window .online-note{margin:8px 11px 10px;font-size:8px;color:#829c85;line-height:1.7}
+#party-window .party-camp-sidebar>.party-invite-form{margin-bottom:14px;padding-bottom:13px;border-bottom:1px solid #799a7822}
+#party-window .party-camp-sidebar>.party-invite-form>label{font-size:9px;color:#7d9586}
+#party-window .party-camp-sidebar>.party-invite-form>div{flex-direction:row;gap:5px}
+#party-window .party-camp-sidebar>.party-invite-form input{width:90px;font-size:9px;padding:8px}
+#party-window .party-camp-sidebar>.party-invite-form button{font-size:9px;padding:7px 8px;min-height:34px;min-width:0}
+#party-window .party-invite-hint{font-size:8px}
+#party-window .camp-side-title p{margin-bottom:12px}
+#party-window .camp-policy{padding:11px}
+#party-window .camp-policy>small{margin-top:7px}
+@media(max-width:650px){#party-window .party-online-list{max-height:230px}#party-window .party-online-list button{min-height:38px;min-width:48px;font-size:11px}#party-window .party-online-list strong{font-size:12px}#party-window .party-online-list small{font-size:10px}}

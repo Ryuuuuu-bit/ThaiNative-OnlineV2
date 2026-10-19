@@ -7,7 +7,8 @@ if(result.status!==0)process.exit(result.status||1);
 const assets='meadow-3d/dist/assets',js=readdirSync(assets).filter(f=>f.endsWith('.js'));
 const gameMain=js.find(f=>/^main-[\w-]+\.js$/.test(f));
 if(!gameMain||!readFileSync(assets+'/'+gameMain,'utf8').includes("renderer:\"Canvas2D\""))throw Error('Release requires the Canvas2D game entry');
-if(js.some(f=>readFileSync(assets+'/'+f,'utf8').includes('WebGLRenderer')))throw Error('Retired WebGL renderer detected in release');
+// PixiJS sword effects use a small WebGL overlay; the world must remain Canvas2D.
+if(js.some(f=>readFileSync(assets+'/'+f,'utf8').includes('THREE.WebGLRenderer')))throw Error('Retired Three.js renderer detected in release');
 writeFileSync('meadow-3d/dist/build.json',JSON.stringify({build})+'\n');
 // Social crawlers require absolute artwork URLs; Railway supplies its public domain.
 const origin=process.env.PUBLIC_SITE_URL||(process.env.RAILWAY_PUBLIC_DOMAIN?'https://'+process.env.RAILWAY_PUBLIC_DOMAIN:'');

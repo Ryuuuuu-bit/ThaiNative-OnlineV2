@@ -1,0 +1,217 @@
+{
+  "kind": "sprite-gen-motion-report",
+  "version": 1,
+  "status": "needs-review",
+  "frame_count": 4,
+  "duration_seconds": 0.668,
+  "size": [
+    384,
+    256
+  ],
+  "anchor_px": [
+    192.0,
+    212.0
+  ],
+  "facing": null,
+  "contacts": [],
+  "foot_box": null,
+  "duplicate_frames": {
+    "exact": 0,
+    "adjacent_exact": 0,
+    "exact_silhouette": 0,
+    "near_silhouette": 0
+  },
+  "motion": {
+    "present": true,
+    "changed_transitions": 3,
+    "silhouette_changed_transitions": 3,
+    "silhouette_change_per_second": 1.4872397624047258
+  },
+  "frames": [
+    {
+      "frame": 0,
+      "time_seconds": 0.0,
+      "duration_seconds": 0.167,
+      "bbox": [
+        115,
+        44,
+        245,
+        212
+      ],
+      "anchor_px": [
+        192.0,
+        212.0
+      ],
+      "bbox_from_anchor": [
+        -77.0,
+        -168.0,
+        53.0,
+        0.0
+      ],
+      "centroid_px": [
+        191.38424648535016,
+        119.97273682827486
+      ],
+      "opaque_pixels": 7611,
+      "edge_sides": []
+    },
+    {
+      "frame": 1,
+      "time_seconds": 0.167,
+      "duration_seconds": 0.167,
+      "bbox": [
+        123,
+        54,
+        243,
+        212
+      ],
+      "anchor_px": [
+        192.0,
+        212.0
+      ],
+      "bbox_from_anchor": [
+        -69.0,
+        -158.0,
+        51.0,
+        0.0
+      ],
+      "centroid_px": [
+        191.64933333333335,
+        126.4379649122807
+      ],
+      "opaque_pixels": 7125,
+      "edge_sides": []
+    },
+    {
+      "frame": 2,
+      "time_seconds": 0.334,
+      "duration_seconds": 0.167,
+      "bbox": [
+        122,
+        48,
+        241,
+        212
+      ],
+      "anchor_px": [
+        192.0,
+        212.0
+      ],
+      "bbox_from_anchor": [
+        -70.0,
+        -164.0,
+        49.0,
+        0.0
+      ],
+      "centroid_px": [
+        191.71862940785095,
+        124.77664670658683
+      ],
+      "opaque_pixels": 7515,
+      "edge_sides": []
+    },
+    {
+      "frame": 3,
+      "time_seconds": 0.501,
+      "duration_seconds": 0.167,
+      "bbox": [
+        123,
+        47,
+        240,
+        212
+      ],
+      "anchor_px": [
+        192.0,
+        212.0
+      ],
+      "bbox_from_anchor": [
+        -69.0,
+        -165.0,
+        48.0,
+        0.0
+      ],
+      "centroid_px": [
+        191.5084871345817,
+        122.54930621042705
+      ],
+      "opaque_pixels": 7423,
+      "edge_sides": []
+    }
+  ],
+  "bbox_stats": {
+    "union": [
+      115,
+      44,
+      245,
+      212
+    ],
+    "width_range": [
+      117,
+      130
+    ],
+    "height_range": [
+      158,
+      168
+    ],
+    "bottom_range": [
+      212,
+      212
+    ]
+  },
+  "edge_contact": {
+    "frames": [],
+    "sides": {
+      "left": [],
+      "top": [],
+      "right": [],
+      "bottom": []
+    }
+  },
+  "contact_candidates": [],
+  "confidence": 0.0,
+  "sequence": {
+    "source": "D:\\Project\\ThaiNative-OnlineV2\\output\\swordsman-se-v2\\run\\manifest.json",
+    "state": "walk",
+    "fps_override": null,
+    "frame_count": 4,
+    "size": [
+      384,
+      256
+    ],
+    "anchor_px": [
+      192.0,
+      212.0
+    ],
+    "durations_seconds": [
+      0.167,
+      0.167,
+      0.167,
+      0.167
+    ]
+  },
+  "source_fingerprints": {
+    "D:\\Project\\ThaiNative-OnlineV2\\output\\swordsman-se-v2\\run\\manifest.json": "fbda3a717a27c20986318f87e5471d14326bc9e2417f1d8d7736a0d3c94a020d",
+    "D:\\Project\\ThaiNative-OnlineV2\\output\\swordsman-se-v2\\run\\sprite-sheet-alpha.png": "1114086c264631b554cfebe76f3cae156bc055fed3ca09ec7358e42321e7efc1"
+  },
+  "stride_verified": false,
+  "foot_velocity_px_per_second": null,
+  "stride_px_per_second": null,
+  "warnings": [
+    "Ground contact is unknown: provide both manual contacts and a single-foot ROI; silhouette bottoms do not identify a planted foot."
+  ],
+  "method": {
+    "silhouette": "alpha > 0 in source canvas coordinates; bbox right/bottom are exclusive",
+    "near_silhouette_iou": 0.98,
+    "duplicates": "Counts frames matching an earlier frame; near excludes exact silhouette matches. No time or frames are removed.",
+    "motion": "Adjacent visible pixel changes; silhouette XOR/union summed over full duration. No loop-seam assumption.",
+    "contact": "User-declared same-foot stance spans plus isolated ROI alpha centroid; no automatic contact or facing inference.",
+    "timing": "Cumulative frame-start seconds; repeated tracked poses use their first onset with all intervening durations retained. Final hold is included in duration but has no displacement endpoint.",
+    "velocity": "Endpoint horizontal displacement / pose-onset elapsed seconds; positive = image right. Stride is absolute velocity under manual ground-contact assumptions.",
+    "confidence": "0.9 = at least 3 distinct poses, stable baseline/shape, monotonic near-linear motion and consistent spans. Heuristic conditional confidence, not a calibrated contact probability.",
+    "sequence": "Identity of the analysed sequence: source, atlas state, fps override, frame count, size, anchor and effective per-frame durations. A consumer applying the stride must match all of it and source_fingerprints; another state or frame rate of the same files is a different sequence."
+  },
+  "source_files": [
+    "D:\\Project\\ThaiNative-OnlineV2\\output\\swordsman-se-v2\\run\\manifest.json",
+    "D:\\Project\\ThaiNative-OnlineV2\\output\\swordsman-se-v2\\run\\sprite-sheet-alpha.png"
+  ],
+  "source": "D:\\Project\\ThaiNative-OnlineV2\\output\\swordsman-se-v2\\run\\manifest.json"
+}

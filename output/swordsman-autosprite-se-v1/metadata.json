@@ -1,0 +1,85 @@
+{
+  "provider": "AutoSprite",
+  "characterId": "cmvfi8grt000bfsz61slaivr1",
+  "kind": "iso_walk_southeast",
+  "frames": 23,
+  "columns": 5,
+  "cell": [
+    384,
+    256
+  ],
+  "anchor": [
+    192,
+    240
+  ],
+  "duration": 2,
+  "durationNote": "Playback retimed to a 2-second comparison loop, not a measured video duration.",
+  "sourceFile": "autosprite-raw.png",
+  "sourceCell": [
+    256,
+    256
+  ],
+  "sourceExport": "AutoSprite perfect-loop trimmed PNG: 23 populated cells in a 5x5 atlas (UI reports 25 before trim).",
+  "sourceSha256": "429fef35647aeba7141ff51e401d4ccf76bf5e05c44acb111f7f8b1d84f94525",
+  "reference": "original-idle-SE.png",
+  "referenceHeight": 168,
+  "sharedScale": 1.4482758620689655,
+  "sourceMedianHeight": 116,
+  "sourceAnchor": [
+    128,
+    189
+  ],
+  "normalizedHeights": [
+    166,
+    168,
+    171,
+    169,
+    167,
+    173,
+    175,
+    175,
+    179,
+    176,
+    173,
+    169,
+    166,
+    172,
+    170,
+    166,
+    175,
+    175,
+    175,
+    179,
+    177,
+    174,
+    168
+  ],
+  "contactFrames": [
+    0,
+    1,
+    3,
+    4,
+    6,
+    7,
+    9,
+    10,
+    12,
+    13,
+    15,
+    16,
+    18,
+    19,
+    21,
+    22
+  ],
+  "creditsUsed": 5,
+  "creditsRemainingAfterGeneration": 20,
+  "review": "ผลทดลองจาก AutoSprite: เห็นเท้าสองข้างสลับก้าว แต่ลำตัวและแนวดาบบิดเปลี่ยนมุมมากระหว่างรอบ จึงยังไม่ถือว่าผ่านสำหรับใช้จริง ปรับความสูงกึ่งกลางชุดให้เท่าต้นฉบับ 168 px ด้วยสเกลเดียว โดยไม่ยืดแขนขาหรือแก้ท่าแต่ละเฟรม",
+  "quality": {
+    "alternation": "Visually apparent alternating forward foot; not a verified skeletal contact test.",
+    "facing": "Needs revision: torso/sword yaw changes noticeably within cycle.",
+    "proportions": "Uniform scale preserves generated aspect ratio; original bone lengths are not guaranteed.",
+    "shipReady": false
+  },
+  "gameFilesChanged": false
+}

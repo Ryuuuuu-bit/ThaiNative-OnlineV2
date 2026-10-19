@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "atlas": "rocks-412b9572e9.webp",
+  "size": [
+    1254,
+    1254
+  ],
+  "assets": [
+    {
+      "name": "split-crag",
+      "rect": [
+        28,
+        32,
+        388,
+        465
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "layered-outcrop",
+      "rect": [
+        436,
+        164,
+        422,
+        319
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "round-boulder",
+      "rect": [
+        883,
+        171,
+        339,
+        312
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "fractured-cluster",
+      "rect": [
+        33,
+        518,
+        394,
+        329
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "leaning-fin",
+      "rect": [
+        472,
+        500,
+        281,
+        362
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "flat-slab",
+      "rect": [
+        787,
+        580,
+        449,
+        272
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "scree-pile",
+      "rect": [
+        31,
+        940,
+        393,
+        269
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "twin-columns",
+      "rect": [
+        463,
+        875,
+        333,
+        339
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "mineral-boulder",
+      "rect": [
+        853,
+        909,
+        368,
+        301
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ]
+    }
+  ]
+}

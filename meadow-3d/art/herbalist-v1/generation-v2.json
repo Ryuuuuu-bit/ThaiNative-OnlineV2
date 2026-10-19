@@ -1,0 +1,17 @@
+{
+  "tool": "built-in image_gen",
+  "approvedDesign": "herbalist concept 02",
+  "status": "local review, unapproved animation anatomy revision",
+  "sharedPrompt": "Create an animation sprite sheet using the referenced SINGLE herbalist as the EXACT character model. Preserve its slender ADULT body proportions absolutely: small head, 6.5 heads tall, long arms and legs, same waist/knees/wrists levels, same body and face, same camera and facing slightly viewer-right. Do NOT turn it into a chibi or enlarge head to make readable. Exact same ivory roll-sleeve shirt, jade sleeveless vest, sash and short herb apron, dark jade cropped pants, low shoes and ankle wraps, woven satchel with herbs, bamboo case, three vials, little topknot, wood staff right hand viewer-left and gourd left hand. Handpainted game sprite style exactly like reference. Transparent alpha background. No scenery, no text, no grid lines. Exactly SIX full body frames in THREE COLUMNS by TWO ROWS, read left-to-right then next row. Every cell same size with wide transparent gutters. Fixed scale throughout, standing body occupies70% slot height, baseline at85% slot height, all limbs/weapons remain inside their own cell. Same viewing direction throughout, no turnarounds. Never independently scale a crouching character. ",
+  "anatomyCorrection": "Reduce entire head to 75%, lengthen arms 15%, lengthen legs 25%; retain exact costume and pose. Use resulting anatomy-seed-v2.png as common reference.",
+  "motions": {
+    "idle": "Six frames, subtle inhale/exhale, feet planted; corrected using repeated seed layout.",
+    "walk": "Six in-place successive walking phases alternating left and right foot.",
+    "attack": "Ready, draw back, windup, diagonal strike, followthrough, recover.",
+    "cast": "Ready, lift gourd, extend hand, tiny medicinal leaf motes, withdraw, lower.",
+    "hurt": "Ready, recoil, maximum recoil, regain balance, rise, ready.",
+    "death": "Stand weakened, knees buckle, kneel, tip sideways, lie on side, still. Background extraction repeated."
+  },
+  "normalization": "Connected silhouette extraction; one scale per sequence calibrated to 168px standing body. No independent pose scaling. 384x256 frame, anchor 192,240.",
+  "runtime": "Preview only. No live gameplay files modified."
+}

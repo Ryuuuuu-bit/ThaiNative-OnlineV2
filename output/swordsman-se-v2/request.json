@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "sprite-gen-request",
+  "engine": "component-row",
+  "character": {
+    "id": "swordsman_se_v2",
+    "description": "Aerin swordsman, painted fantasy, SE front three-quarter. Chestnut hair, ivory sleeves, dark teal gold cloak, sword in right hand.",
+    "base_image": "base-source.png"
+  },
+  "cell": {
+    "shape": "rect",
+    "width": 384,
+    "height": 256,
+    "safe_margin_x": 16,
+    "safe_margin_y": 44
+  },
+  "chroma_key": {
+    "name": "cyan",
+    "hex": "#00FFFF",
+    "rgb": [
+      0,
+      255,
+      255
+    ],
+    "selection": "auto",
+    "score": 236.28,
+    "min_subject_distance": 231.25,
+    "background": {
+      "mode": "transparent",
+      "opaque_border_fraction": 0.0,
+      "subject_pixels": 1643
+    },
+    "candidates": [
+      {
+        "name": "magenta",
+        "hex": "#FF00FF",
+        "score": 209.73,
+        "min_subject_distance": 207.59,
+        "clears_erase_radius": true
+      },
+      {
+        "name": "green",
+        "hex": "#00FF00",
+        "score": 202.9,
+        "min_subject_distance": 199.92,
+        "clears_erase_radius": true
+      },
+      {
+        "name": "cyan",
+        "hex": "#00FFFF",
+        "score": 236.28,
+        "min_subject_distance": 231.25,
+        "clears_erase_radius": true
+      },
+      {
+        "name": "blue",
+        "hex": "#004DFF",
+        "score": 194.81,
+        "min_subject_distance": 188.21,
+        "clears_erase_radius": true
+      }
+    ],
+    "selection_reason": "highest 1st-percentile subject distance among the 4 candidate(s) clearing the 96 erase radius"
+  },
+  "states": {
+    "idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "Subtle relaxed breathing, feet stay planted, stable sword grip, one gentle blink. Same SE orientation."
+    },
+    "walk": {
+      "frames": 6,
+      "fps": 8,
+      "loop": true,
+      "action": "One complete six-phase walking cycle in place SE, alternate left and right foot contacts, low heel lifts, no running or jumping. Stable right hand sword and gently trailing cape."
+    }
+  },
+  "style": "Hand-painted ink and gouache fantasy game sprite. Match base proportions, face, costume and viewpoint exactly. Not pixel art.",
+  "layout": "taxonomy/v1",
+  "fit": {
+    "resample": "lanczos",
+    "pixel_unfake": false,
+    "align_x": "centroid",
+    "align_y": "bottom",
+    "ground_frames": true
+  }
+}

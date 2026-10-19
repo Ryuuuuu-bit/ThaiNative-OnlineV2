@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "atlases": [
+    {
+      "file": "architecture-55ce78e33e.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1324090
+    },
+    {
+      "file": "details-eb12d2b7e5.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1490482
+    }
+  ],
+  "assets": [
+    {
+      "name": "wall-x",
+      "atlas": "architecture-55ce78e33e.webp",
+      "rect": [
+        14,
+        58,
+        422,
+        456
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "wall-z",
+      "atlas": "architecture-55ce78e33e.webp",
+      "rect": [
+        448,
+        84,
+        399,
+        456
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "house",
+      "atlas": "architecture-55ce78e33e.webp",
+      "rect": [
+        847,
+        135,
+        405,
+        411
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "arch",
+      "atlas": "architecture-55ce78e33e.webp",
+      "rect": [
+        9,
+        629,
+        406,
+        551
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "temple",
+      "atlas": "architecture-55ce78e33e.webp",
+      "rect": [
+        415,
+        630,
+        468,
+        559
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "foundation",
+      "atlas": "architecture-55ce78e33e.webp",
+      "rect": [
+        889,
+        851,
+        360,
+        329
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "column",
+      "atlas": "details-eb12d2b7e5.webp",
+      "rect": [
+        29,
+        48,
+        353,
+        640
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "pier",
+      "atlas": "details-eb12d2b7e5.webp",
+      "rect": [
+        443,
+        153,
+        352,
+        542
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "statue",
+      "atlas": "details-eb12d2b7e5.webp",
+      "rect": [
+        831,
+        238,
+        404,
+        459
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "fallen",
+      "atlas": "details-eb12d2b7e5.webp",
+      "rect": [
+        11,
+        778,
+        406,
+        412
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "boulder",
+      "atlas": "details-eb12d2b7e5.webp",
+      "rect": [
+        439,
+        754,
+        383,
+        438
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    },
+    {
+      "name": "rubble",
+      "atlas": "details-eb12d2b7e5.webp",
+      "rect": [
+        832,
+        848,
+        408,
+        347
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ]
+    }
+  ]
+}

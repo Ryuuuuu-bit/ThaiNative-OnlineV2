@@ -19,6 +19,7 @@ import { deriveStats, monsterStats, type Combatant } from "../derive.js";
 import { computeDamage } from "../damage.js";
 import { autoAllocateStats } from "../allocation.js";
 import type { GameData, CharacterInput, Skill } from "../schema.js";
+import { createPathfinder } from "./pathfinding.js";
 import { CITY_SPAWN, HEALER, type MapId } from "./maps.js";
 const DEFAULT_DATA = loadGameData();
 import { MONSTER_MOTIONS } from "./monster-motion-data.js";
@@ -293,6 +294,8 @@ export function createGame(
 	p.nextXp = data.stats.expToNext[p.level - 1];
 	const g = {
 		data, mapId,
+  /** Authoritative server hook; browser prediction does not load the physics engine. */
+  resolveMonsterKnockback: undefined as undefined | ((from:Vec,delta:Vec)=>Vec),
   inventoryCommit: undefined as undefined | ((p:Player,op:InventoryOp,done:()=>void)=>void),
  /** Party lookup for EXP sharing; returns the player's party member ids (including the player). */
  partyMembers: undefined as undefined | ((id:string)=>string[]),
@@ -661,7 +664,9 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 		const dx = e.x - g.p.x,
 			dz = e.z - g.p.z,
 			d = Math.hypot(dx, dz) || 1;
-		move(e, (dx / d) * 0.23, (dz / d) * 0.23);
+		const delta={x:(dx/d)*.23,z:(dz/d)*.23};
+		if(g.resolveMonsterKnockback){const next=g.resolveMonsterKnockback(e,delta);e.x=next.x;e.z=next.z;}
+		else move(e,delta.x,delta.z);
 	}
 	emit(g, "hit", {
         skillId:skill.id,visual:skill.visual,hitIndex:prepared?.impact,cast:prepared?.cast,
@@ -781,13 +786,12 @@ export function grantExp(g: Game, r: Player, baseXp: number, jobExp: number, ext
 	}
 	g.p = before;
 }
-export const PARTY_SHARE_RANGE = 30;
-/** Party EXP: living members on this map within range split the kill's EXP evenly, +10% per extra member. */
+/** Party EXP: living members in this map/channel simulation split EXP, +10% per extra member. Server lookup excludes offline/loading peers. */
 export function expShares(g: Game, p: Player, xp: number, jobExp: number) {
 	const ids = g.partyMembers?.(p.id) ?? [p.id];
 	const members = ids
 		.map(id => g.players.get(id))
-		.filter((m): m is Player => !!m && (m === p || (!m.dead && Math.hypot(m.x - p.x, m.z - p.z) <= PARTY_SHARE_RANGE)));
+		.filter((m): m is Player => !!m && (m === p || !m.dead));
 	if (members.length <= 1) return [{ player: p, xp, jobExp, shared: false }];
 	const bonus = 1 + 0.1 * (members.length - 1);
 	return members.map(m => ({ player: m, xp: Math.floor((xp * bonus) / members.length), jobExp: Math.floor((jobExp * bonus) / members.length), shared: true }));
@@ -1186,48 +1190,15 @@ function clearSegment(a: Vec, b: Vec) {
 			return false;
 	return true;
 }
-/** Bounded 8-neighbour grid search, only when a straight path is obstructed. */
-function route(from: Vec, to: Vec): Vec[] {
-	if (clearSegment(from, to)) return [{ ...to }];
-	const key = (v: Vec) => `${v.x},${v.z}`,
-		start = { x: Math.round(from.x), z: Math.round(from.z) },
-		queue = [start];
-	const parents = new Map<string, Vec | null>([[key(start), null]]);
-	let end: Vec | undefined;
-	// Bounded so a far or unreachable goal on a large map cannot stall the room tick.
-	for (let i = 0; i < queue.length && i < 6000; i++) {
-		const v = queue[i];
-		if (Math.hypot(v.x - to.x, v.z - to.z) < 1.5 && clearSegment(v, to)) {
-			end = v;
-			break;
-		}
-		for (const [dx, dz] of [
-			[1, 0],
-			[-1, 0],
-			[0, 1],
-			[0, -1],
-			[1, 1],
-			[1, -1],
-			[-1, 1],
-			[-1, -1],
-		]) {
-			const n = { x: v.x + dx, z: v.z + dz };
-			if (
-				parents.has(key(n)) ||
-				!walk(n.x, n.z, 0.4) ||
-				!clearSegment(i === 0 ? from : v, n)
-			)
-				continue;
-			parents.set(key(n), v);
-			queue.push(n);
-		}
-	}
-	if (!end) return [];
-	const path: Vec[] = [{ ...to }];
-	for (let v: Vec | null = end; v; v = parents.get(key(v)) || null)
-		path.unshift(v);
-	while (path.length > 1 && clearSegment(from, path[1])) path.shift();
-	return path;
+/** Static collision grids are reused per map, with explicit map IDs for multiplayer rooms. */
+const autoNavigators = new Map<MapId, ReturnType<typeof createPathfinder>>();
+function route(mapId: MapId, from: Vec, to: Vec): Vec[] {
+ let navigator = autoNavigators.get(mapId);
+ if (!navigator) {
+  navigator = createPathfinder((x,z) => walkable(x,z,.4,mapId), LAYOUTS[mapId]);
+  autoNavigators.set(mapId,navigator);
+ }
+ return navigator.findPath(from,to);
 }
 function navigate(g: Game, goal: Vec, reach = 0): Vec {
 	const p = g.p;
@@ -1247,7 +1218,7 @@ function navigate(g: Game, goal: Vec, reach = 0): Vec {
 		!g.autoPath.length
 	) {
 		g.autoGoal = { ...goal };
-		g.autoPath = route(p, goal);
+		g.autoPath = route(g.mapId, p, goal);
 	}
 	while (
 		g.autoPath.length &&

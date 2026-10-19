@@ -1,6 +1,8 @@
 import {LAYOUTS,MEADOW_LANDMARKS,type MapId} from '@thainative/shared/maps';
 import {CanvasAssets} from './game-2d-assets';
-export type FieldProp={x:number;z:number;image:HTMLImageElement;rect:number[];w:number;h:number;anchor:number[]};
+import {canyonRockProps} from './canyon-rock-art';
+import {ruinsProps} from './ruins-art';
+export type FieldProp={x:number;z:number;image:HTMLImageElement;rect:number[];w:number;h:number;anchor:number[];tree?:boolean;foliage?:boolean};
 export async function loadField2D(id:MapId,assets:CanvasAssets){
  const layout=LAYOUTS[id],forest=id==='forest';
  const env=await assets.json<any>('/assets/env-painted/manifest.json');
@@ -11,6 +13,14 @@ export async function loadField2D(id:MapId,assets:CanvasAssets){
  const c=plane.getContext('2d')!,scale=plane.width/(layout.halfX*2);
  c.translate(plane.width/2,plane.height/2);c.scale(scale,scale);
  const pattern=(image:HTMLImageElement,size:number)=>{const p=c.createPattern(image,'repeat')!;p.setTransform(new DOMMatrix().scale(size/image.width));return p;};
+ if(id==='ruins'){
+  // Broken city paving forms readable blocks, rather than another forest floor.
+  for(const [cx,cz,w,h]of [[-43,-24,24,25],[-22,28,29,20],[12,-30,26,20],[41,-29,25,27],[40,25,26,20]]){
+   c.fillStyle=pattern(road,7);c.globalAlpha=.65;c.fillRect(cx-w/2,cz-h/2,w,h);c.globalAlpha=1;
+   c.strokeStyle='#6d71615c';c.lineWidth=.08;
+   for(let x=cx-w/2+2;x<cx+w/2;x+=2.5)for(let z=cz-h/2;z<cz+h/2;z+=2.2){if(Math.sin(x*7+z*11)>.72)continue;c.strokeRect(x,z,2.3,2);}
+  }
+ }
  // Grass is one continuous world-space layer in MapBackdrop; this canvas holds
  // only roads and water so the playable rectangle cannot leave a texture seam.
  c.lineCap=c.lineJoin='round';c.strokeStyle=pattern(road,5);
@@ -22,12 +32,17 @@ export async function loadField2D(id:MapId,assets:CanvasAssets){
   if(water.bridgeZ!==undefined){c.fillStyle='#9b8058';c.fillRect(water.x-water.rx-.7,water.bridgeZ-(water.bridgeHalf??1.3),(water.rx+.7)*2,(water.bridgeHalf??1.3)*2);}
  }
  const props:FieldProp[]=[];
- function prop(name:string,x:number,z:number,h:number){const a=env.assets.find((a:any)=>a.name===name);if(!a)throw Error('Missing environment art '+name);props.push({x,z,image:sources.get(a.atlas)!,rect:a.rect,w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor});}
- if(forest){
+ function prop(name:string,x:number,z:number,h:number){const a=env.assets.find((a:any)=>a.name===name);if(!a)throw Error('Missing environment art '+name);props.push({x,z,image:sources.get(a.atlas)!,rect:a.rect,w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor,tree:name.startsWith('tree'),foliage:/tree|reeds|grass|fern/.test(name)});}
+ if(id==='ruins'){
+  props.push(...await ruinsProps(layout.obstacles,assets));
+  for(const o of layout.obstacles.filter(o=>o.kind==='tree'))prop('tree-tall',o.x,o.z,7);
+ }else if(id==='canyon'){
+  props.push(...await canyonRockProps(layout.obstacles,assets));
+ }else if(forest){
   const fm=await assets.json<any>('/assets/env-forest/manifest.json');
   const atlas=await assets.image('/assets/env-forest/'+fm.atlases[0].file);
-  for(const o of layout.obstacles){const a=fm.assets.find((a:any)=>a.name===(o.kind==='dead'?'silver':o.kind))??fm.assets.find((a:any)=>a.name==='pine'),h=6+o.r*1.5;props.push({x:o.x,z:o.z,image:atlas,rect:a.rect,w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor});}
- }else layout.obstacles.forEach((o,i)=>prop(o.kind==='pillar'?(i%2?'pillar-fluted':'pillar-square'):o.kind==='rock-cluster'?'rock-cluster':o.kind==='boulder'?(id==='canyon'?'boulder-tall':'boulder-round'):i%3?'tree-round':'tree-tall',o.x,o.z,o.kind==='pillar'?4.2:o.kind==='rock-cluster'?o.r*3:o.kind==='boulder'?o.r*(id==='canyon'?4:2.6):5.3+o.r*1.7));
+  for(const o of layout.obstacles){const a=fm.assets.find((a:any)=>a.name===(o.kind==='dead'?'silver':o.kind))??fm.assets.find((a:any)=>a.name==='pine'),h=6+o.r*1.5;props.push({x:o.x,z:o.z,image:atlas,rect:a.rect,w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor,tree:/pine|oak|silver|hollow/.test(a.name),foliage:/pine|oak|silver|hollow|fern/.test(a.name)});}
+ }else layout.obstacles.forEach((o,i)=>prop(o.kind==='pillar'?(i%2?'pillar-fluted':'pillar-square'):o.kind==='rock-cluster'?'rock-cluster':o.kind==='boulder'?'boulder-round':i%3?'tree-round':'tree-tall',o.x,o.z,o.kind==='pillar'?4.2:o.kind==='rock-cluster'?o.r*3:o.kind==='boulder'?o.r*2.6:5.3+o.r*1.7));
  // Landmark footprints remain authoritative even where old meshes have been replaced by painted props.
  if(id==='meadow')for(const b of MEADOW_LANDMARKS.boxes)prop('boulder-round',b.x,b.z,Math.max(b.w,b.d)*1.25);
  if(id==='meadow')for(const p of MEADOW_LANDMARKS.circles)prop(p.kind==='giant-tree'?'tree-round':'boulder-tall',p.x,p.z,p.kind==='giant-tree'?10:2.4);

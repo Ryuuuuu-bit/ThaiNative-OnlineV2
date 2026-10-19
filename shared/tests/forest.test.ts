@@ -180,7 +180,7 @@ test("warden summons forest minions, not jellies", () => {
 	assert.ok(minions.every((m) => m.dataId === "mist_shroom"));
 });
 
-test("AUTO from the forest entry hunts nearby monsters instead of freezing on the far-away warden", () => {
+test("AUTO from the forest entry reaches a reachable target instead of freezing on the far-away warden", () => {
 	const g = createGame(1, { ...data.stats.defaultBuild, classId: "swordsman", level: 8 }, "local", data, "forest");
 	const warden = g.enemies.find((e) => e.boss)!;
 	assert.ok(Math.hypot(warden.x - g.p.x, warden.z - g.p.z) > 60, "warden is across the map");
@@ -193,6 +193,5 @@ test("AUTO from the forest entry hunts nearby monsters instead of freezing on th
 		g.events.length = 0;
 	}
 	assert.ok(Math.hypot(g.p.x - start.x, g.p.z - start.z) > 2, "hero left the entry");
-	assert.notEqual(g.target, warden.id);
-	assert.ok(g.enemies.some((e) => !e.boss && e.hp < e.maxHp) || kills > 0, "hero hit a forest monster");
+	assert.ok(g.enemies.some((e) => e.hp < e.maxHp) || kills > 0, "hero reached and hit a forest monster, including the reachable warden");
 });

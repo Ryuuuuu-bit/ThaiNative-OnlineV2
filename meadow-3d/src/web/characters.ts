@@ -3,7 +3,7 @@ import { characterNameError } from '@thainative/shared';
 import skillsData from "../../../shared/data/skills.json";
 import statsData from "../../../shared/data/stats.json";
 import{assetJSON}from'../asset-request';
-import'../web.css';import'../web-glass.css';import'./characters.css';import{api,post,showError,ApiError}from'./api';import{kindLabel,uidChip,mountBuild}from'./account-ui';import{requireLogin,mountAccountChip}from'./session';import{mountPreview}from'../character-preview';
+import'../web.css';import'../web-glass.css';import'./characters.css';import'../web-modern.css';import'../web-fantasy.css';import{api,post,showError,ApiError}from'./api';import{kindLabel,uidChip,mountBuild}from'./account-ui';import{requireLogin,mountAccountChip}from'./session';import{mountPreview}from'../character-preview';
 
 /* Character select + creation, laid out as ui-mockup/characters.html: the chosen hero on a lit pedestal,
    roster cards along the bottom, and a class showcase for creation. The API calls are unchanged. */

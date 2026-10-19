@@ -11,7 +11,7 @@ function world() {
 	const rooms = { city: { game: { mapId: 'city_plaza', players: new Map<string, any>() } }, meadow: { game: { mapId: 'meadow', players: new Map<string, any>() } } };
 	const add = (id: string, name: string, map: 'city' | 'meadow' = 'city', accountId = 'acc-' + id) => {
 		const ws = { id } as any;
-		rooms[map].game.players.set(id, { id, name, level: 5, jobId: 'swordsman', hp: 50, maxHp: 100, dead: false });
+		rooms[map].game.players.set(id, { id, name, level: 5, jobId: 'swordsman', hp: 50, maxHp: 100, mp:30,maxMp:80, dead: false });
 		const peer = { ws, id, accountId, ready: true, room: rooms[map] } as SocialPeer;
 		live.set(id, peer);
 		sent.set(id, []);
@@ -120,7 +120,7 @@ test('slash commands go to the command handler and are never broadcast; staff mu
 	assert.match(w.of('p', 'chatError').at(-1).text, /ไม่รู้จักคำสั่ง/);
 });
 
-test('party EXP: members in range split EXP with +10% per extra member; others get nothing', () => {
+test('party EXP: distant members share map-wide EXP; dead and other-room members do not', () => {
 	const g = createGame(5, undefined, 'local', undefined, 'meadow');
 	g.players.clear();
 	const a = addPlayer(g, 'a', g.data.stats.defaultBuild), b = addPlayer(g, 'b', g.data.stats.defaultBuild), c = addPlayer(g, 'c', g.data.stats.defaultBuild);
@@ -128,5 +128,73 @@ test('party EXP: members in range split EXP with +10% per extra member; others g
 	assert.deepEqual(expShares(g, a, 100, 50).map(s => [s.player.id, s.xp]), [['a', 100]]);
 	g.partyMembers = () => ['a', 'b', 'c'];
 	const shares = expShares(g, a, 100, 50);
-	assert.deepEqual(shares.map(s => [s.player.id, s.xp, s.jobExp]), [['a', 55, 27], ['b', 55, 27]]);
+	assert.deepEqual(shares.map(s => [s.player.id, s.xp, s.jobExp]), [['a', 40, 20], ['b', 40, 20], ['c', 40, 20]]);
+ c.dead=true;g.partyMembers=()=>['a','b','c','other-map-or-channel'];
+ assert.deepEqual(expShares(g,a,100,50).map(s=>[s.player.id,s.xp,s.jobExp]),[['a',55,27],['b',55,27]]);
+ b.dead=true;assert.deepEqual(expShares(g,a,100,50).map(s=>[s.player.id,s.xp,s.shared]),[['a',100,false]]);
+});
+
+test('party manager: explicit creation, status, singleton survival and leader-only disband revoke invitations',()=>{
+ const w=world(),a=w.add('a','Aerin'),b=w.add('b','Bora'),c=w.add('c','Chai');
+ w.social.party(a,{op:'status'});assert.equal(w.of('a','partyState').at(-1).party,null);
+ w.social.party(a,{op:'create'});const id=w.of('a','partyState').at(-1).party.id;
+ w.social.party(a,{op:'create'});assert.match(w.of('a','chatError').at(-1).text,/อยู่ในปาร์ตี้แล้ว/);
+ w.social.party(a,{op:'invite',name:'Bora'});w.social.party(b,{op:'accept',id});
+ w.social.party(b,{op:'disband'});assert.match(w.of('b','chatError').at(-1).text,/หัวหน้า/);
+ w.social.party(b,{op:'leave'});assert.deepEqual(w.social.partyMembers('a'),['a']);
+ w.social.party(a,{op:'status'});assert.equal(w.of('a','partyState').at(-1).party.id,id);
+ w.social.party(a,{op:'invite',name:'Chai'});w.social.party(a,{op:'disband'});
+ assert.equal(w.social.parties.size,0);assert.equal(w.of('c','partyInviteClosed').at(-1).reason,'disbanded');
+ w.social.party(c,{op:'accept',id});assert.match(w.of('c','chatError').at(-1).text,/หมดอายุ/);
+});
+
+test('party invites deduplicate, expire, and joining revokes invitations from other parties',()=>{
+ const w=world(),a=w.add('a','Aerin'),b=w.add('b','Bora'),c=w.add('c','Chai');
+ w.social.party(a,{op:'invite',name:'Bora'});const first=w.of('b','partyInvite').at(-1);
+ assert.equal(first.expiresAt,1060000);
+ w.social.party(a,{op:'invite',name:'Bora'});assert.equal(w.of('b','partyInvite').length,1);
+ w.tick(60001);w.social.tick();assert.equal(w.of('b','partyInviteClosed').at(-1).reason,'expired');
+ w.social.party(b,{op:'accept',id:first.partyId});assert.match(w.of('b','chatError').at(-1).text,/หมดอายุ/);
+ w.social.party(a,{op:'invite',name:'Bora'});w.social.party(c,{op:'invite',name:'Bora'});
+ const second=w.of('b','partyInvite').at(-1);w.social.party(b,{op:'accept',id:second.partyId});
+ assert.deepEqual(w.social.partyMembers('b'),['c','b']);
+ assert.ok(w.of('b','partyInviteClosed').some(m=>m.partyId===first.partyId&&m.reason==='joined'));
+ w.social.party(b,{op:'accept',id:first.partyId});assert.match(w.of('b','chatError').at(-1).text,/หมดอายุ/);
+});
+
+test('party vitals expose HP/MP, reconnect retains membership, and a non-ready peer stays offline',()=>{
+ const w=world(),a=w.add('a','Aerin'),b=w.add('b','Bora');
+ w.social.party(a,{op:'invite',name:'Bora'});w.social.party(b,{op:'accept'});
+ const member=w.of('a','partyState').at(-1).party.members.find((m:any)=>m.id==='b');
+ assert.deepEqual([member.hp,member.maxHp,member.mp,member.maxMp],[50,100,30,80]);
+ b.ready=false;w.social.offline('b');assert.equal(w.of('a','partyState').at(-1).party.members[1].online,false);
+ w.social.party(a,{op:'lead',id:'b'});assert.match(w.of('a','chatError').at(-1).text,/ออนไลน์/);
+ w.tick(20000);b.ready=true;w.social.ready(b);assert.equal(w.of('a','partyState').at(-1).party.members[1].online,true);
+ w.social.party(a,{op:'lead',id:'b'});assert.equal(w.of('a','partyState').at(-1).party.leader,'b');
+ b.ready=false;w.social.offline('b');w.tick(301000);w.social.tick();
+ assert.equal(w.of('a','partyState').at(-1).party.leader,'a');assert.deepEqual(w.social.partyMembers('a'),['a']);
+});
+
+
+test('online party directory lists only ready peers in the same map/channel without account data',()=>{
+ const w=world(),a=w.add('a','Aerin'),b=w.add('b','Bora'),c=w.add('c','Chai'),d=w.add('d','Distant','meadow'),e=w.add('e','OtherCH'),f=w.add('f','Loading');
+ const ep=e.room.game.players.get(e.id)!;e.room={game:{mapId:'city_plaza',players:new Map([[e.id,ep]])}};f.ready=false;
+ w.social.party(c,{op:'create'});w.social.party(a,{op:'online'});
+ const directory=w.of('a','partyOnline').at(-1);
+ assert.equal(directory.mapId,'city_plaza');assert.deepEqual(directory.list.map((p:any)=>[p.id,p.status]),[['b','available'],['c','party']]);
+ assert.deepEqual(Object.keys(directory.list[0]).sort(),['id','jobId','level','name','status']);
+ w.social.party(a,{op:'inviteNearby',id:'b'});w.social.party(a,{op:'online'});
+ assert.equal(w.of('a','partyOnline').at(-1).list[0].status,'invited');
+ w.social.party(b,{op:'accept'});w.social.party(a,{op:'online'});
+ assert.deepEqual(w.of('a','partyOnline').at(-1).list.map((p:any)=>p.id),['c'],'own party members disappear from invite list');
+ w.social.party(b,{op:'inviteNearby',id:'c'});assert.match(w.of('b','chatError').at(-1).text,/ปาร์ตี้อื่น|หัวหน้า/);
+});
+
+test('one-click invitations recheck room membership and reject stale, offline and forged targets',()=>{
+ const w=world(),a=w.add('a','Aerin'),b=w.add('b','Bora'),other=w.add('c','Elsewhere','meadow');
+ w.social.party(a,{op:'online'});const directory=w.of('a','partyOnline').at(-1);assert.equal(directory.list[0].id,b.id);
+ const bp=b.room.game.players.get(b.id)!;b.room={game:{mapId:'city_plaza',players:new Map([[b.id,bp]])}};
+ for(const id of ['b','c','missing','a']){w.social.party(a,{op:'inviteNearby',id});assert.match(w.of('a','chatError').at(-1).text,/แมพและ CH/);}
+ assert.equal(w.of('b','partyInvite').length,0);assert.equal(w.of('c','partyInvite').length,0);
+ assert.equal(w.social.parties.size,0);
 });
