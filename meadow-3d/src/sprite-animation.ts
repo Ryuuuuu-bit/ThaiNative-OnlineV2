@@ -2,13 +2,14 @@ import type { Player } from './sim';
 
 export const DIRECTIONS = ['SE', 'SW', 'NE', 'NW'] as const;
 export type Direction = typeof DIRECTIONS[number];
-export const MOTIONS = ['idle', 'run', 'attack', 'spin', 'cast', 'hit', 'dodge', 'death'] as const;
+export const MOTIONS = ['idle', 'walk', 'run', 'attack', 'spin', 'cast', 'hit', 'dodge', 'death'] as const;
 export type Motion = typeof MOTIONS[number];
-export const MOTION_DURATION: Record<Motion, number> = {idle:1,run:.6,attack:.34,spin:.6,cast:.8,hit:.3,dodge:.22,death:.9};
-export function frameCount(motion: Motion) { return motion === 'idle' ? 1 : motion === 'hit' || motion === 'dodge' ? 3 : 6; }
+export const MOTION_DURATION: Record<Motion, number> = {idle:1,walk:.8,run:.6,attack:.34,spin:.6,cast:.8,hit:.3,dodge:.22,death:.9};
+export function frameCount(motion: Motion) { return motion === 'idle' ? 1 : motion === 'walk' ? 8 : motion === 'hit' || motion === 'dodge' ? 3 : 6; }
+export function isLoop(motion: Motion) { return motion === 'walk' || motion === 'run'; }
 export function motionFrame(motion: Motion, elapsed: number): number {
   const count=frameCount(motion), progress=Math.max(0,elapsed)/MOTION_DURATION[motion];
-  return motion==='idle'?0:motion==='run'?Math.floor(progress*count)%count:Math.min(count-1,Math.floor(progress*count));
+  return motion==='idle'?0:isLoop(motion)?Math.floor(progress*count)%count:Math.min(count-1,Math.floor(progress*count));
 }
 
 // Screen-space directions for the fixed camera at (9,16,13).
@@ -24,7 +25,8 @@ export function motionFor(p: Pick<Player, 'attack' | 'attackKind' | 'dash' | 'mo
   if (p.dash > 0) return 'dodge';
   if(p.attack>0&&p.attackKind==='dash_strike')return 'dodge';
   if (p.attack > 0) return p.attackKind==='spin'?'spin':p.attackKind==='meteor'?'cast':'attack';
-  return p.moving ? 'run' : 'idle';
+  // AutoSprite walk (4 directions, 8 frames); the painted run atlas stays for scenes that ask for it.
+  return p.moving ? 'walk' : 'idle';
 }
 
 export function attackFrame(remaining: number, kind: string): number {

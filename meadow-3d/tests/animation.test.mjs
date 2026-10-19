@@ -19,7 +19,7 @@ test('attack beats override movement and cover every frame without wrapping',()=
 });
 test('dedicated motion priorities include death, hurt, dodge and skill kinds',()=>{
   const p={dead:false,hurt:0,dash:0,attack:0,attackKind:'',moving:true};
-  assert.equal(motionFor(p),'run');
+  assert.equal(motionFor(p),'walk');
   p.attack=.5;p.attackKind='spin';assert.equal(motionFor(p),'spin');
   p.attackKind='meteor';assert.equal(motionFor(p),'cast');
   p.dash=.1;assert.equal(motionFor(p),'dodge');
@@ -27,7 +27,7 @@ test('dedicated motion priorities include death, hurt, dodge and skill kinds',()
   p.dead=true;assert.equal(motionFor(p),'death');
 });
 test('all dedicated one-shots cover their frames and hold rather than wrap',()=>{
-  for(const motion of MOTIONS.filter(m=>m!=='idle'&&m!=='run')){
+  for(const motion of MOTIONS.filter(m=>m!=='idle'&&m!=='run'&&m!=='walk')){
     const n=frameCount(motion),duration=MOTION_DURATION[motion];
     assert.deepEqual(Array.from({length:n},(_,i)=>motionFrame(motion,duration*(i+.1)/n)),Array.from({length:n},(_,i)=>i));
     assert.equal(motionFrame(motion,-1),0);
@@ -37,6 +37,8 @@ test('all dedicated one-shots cover their frames and hold rather than wrap',()=>
     assert.equal(atlasCell(motion,'NW',0).columns,n);
   }
   assert.equal(motionFrame('run',.6),0);
+  assert.equal(motionFrame('walk',MOTION_DURATION.walk),0);
+  assert.deepEqual(Array.from({length:8},(_,i)=>motionFrame('walk',MOTION_DURATION.walk*(i+.1)/8)),[0,1,2,3,4,5,6,7]);
   assert.equal(motionFrame('idle',100),0);
 });
 test('each direction maps to its own complete atlas row, idle to own cell',()=>{
@@ -50,4 +52,7 @@ test('each direction maps to its own complete atlas row, idle to own cell',()=>{
     }
   }
   assert.equal(cells.size,24);
+});
+test('walk uses its own 8-column row per direction',()=>{
+  for(const [row,direction] of DIRECTIONS.entries())for(let f=0;f<8;f++)assert.deepEqual(atlasCell('walk',direction,f),{column:f,row,columns:8,rows:4});
 });
