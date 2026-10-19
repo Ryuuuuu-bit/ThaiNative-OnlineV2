@@ -3,7 +3,7 @@ import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Player } from './sim';
 import { makeHero } from './actors';
 import { uprightSprite } from './upright-depth.ts';
-import { facingFor, motionFor, motionFrame, atlasCell, MOTIONS, MOTION_DURATION } from './sprite-animation';
+import { facingFor, motionFor, motionFrame, atlasCell, heroSprite, MOTIONS, MOTION_DURATION } from './sprite-animation';
 import type { Motion } from './sprite-animation';
 import { MULTI_CONTACTS, contactOffset, JOB2_MOTIONS, BORROWED_MOTION, MOTION_READY, CAST_SECONDS, SKILL_MOTIONS, SKILL_FRAMES, SKILL_DURATION, CONTACT_FRAME, isSkillMotion, skillFrame, earthHeight, leapHeight, type SkillMotion } from './skill-motions';
 
@@ -76,7 +76,7 @@ export function makePaintedHero(loader: PaintedLoader) {
     else motionClock+=dt;
     lastMotion=motion;
     const shownSkill=skill&&(skills[skill]&&(!BORROWED_MOTION[skill]||MOTION_READY.has(skill))?skill:BORROWED_MOTION[skill])||null;
-    const texture=shownSkill&&skills[shownSkill]||textures[motion]||textures.idle;
+    let texture=shownSkill&&skills[shownSkill]||textures[motion]||textures.idle;
     if(!texture) {fallback.root.visible=true;portrait.visible=false;root.position.set(0,0,0);fallback.update(p,time);return;}
     fallback.root.visible=false;portrait.visible=true;
     const actualMotion=textures[motion]?motion:'idle';
@@ -88,6 +88,7 @@ export function makePaintedHero(loader: PaintedLoader) {
     let cell=atlasCell(actualMotion,direction,frame);
     if(skill&&shownSkill&&skills[shownSkill]){frame=shownSkill===skill?(contact??skillFrame(skill,elapsed)):skillFrame(shownSkill,elapsed);cell={column:frame,row:['SE','SW','NE','NW'].indexOf(direction),columns:SKILL_FRAMES[shownSkill],rows:4};}
     else if(motion==='attack'&&p.attackKind==='slash'){frame=[2,3,4][combo];cell=atlasCell(actualMotion,direction,frame);}
+    else if(!skill){const sprite=heroSprite(actualMotion,p.fx,p.fz,frame),sheet=textures[sprite.sheet];if(sheet){cell=sprite.cell;texture=sheet;}}
     diagnostic={motion:(skill||motion) as Motion,actualMotion:(shownSkill&&skills[shownSkill]?shownSkill:actualMotion) as Motion,frame,direction,loaded:[]};
     texture.repeat.set(1/cell.columns,1/cell.rows);
     texture.offset.set(cell.column/cell.columns,1-(cell.row+1)/cell.rows);

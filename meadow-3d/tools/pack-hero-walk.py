@@ -1,10 +1,12 @@
-"""Build the 4-direction hero walk atlas from the AutoSprite walk renders and pack it.
+"""Build the 8-direction hero walk atlas from the AutoSprite walk renders and pack it.
 
 Bounded like `prepare-textures.py --hero-skill`: only hero-walk-v1 is written, and only its
 entries in public/texture-manifest.json change. Sources are the committed AutoSprite renders in
-output/swordsman-autosprite-walk-4dir-v1/<DIR>/autosprite-raw.png (25 cells of 512 px each).
+output/swordsman-autosprite-walk-4dir-v1/<SE|SW|NE|NW>/ and output/swordsman-autosprite-walk-8dir-v1/<S|E|N|W>/
+(autosprite-raw.png, 25 cells of 512 px each). Diagonals start from the game idle; cardinals start from
+user-approved AutoSprite standing poses.
 
-Each render starts and ends on the game's idle pose, with a short stand at both ends. The
+Each render starts and ends on its standing pose, with a short stand at both ends. The
 walking span is [first, last) in 1-based render frames: `first` is the last standing frame
 before the feet move, and `last` is the first standing frame after (it matches `first`). Eight
 evenly spaced frames from that span loop back onto `first`. The transform is each direction's
@@ -19,11 +21,12 @@ import json, hashlib, os, subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
-RENDERS = REPO / 'output/swordsman-autosprite-walk-4dir-v1'
+RENDERS = {**{d: REPO / 'output/swordsman-autosprite-walk-4dir-v1' / d for d in ['SE', 'SW', 'NE', 'NW']},
+           **{d: REPO / 'output/swordsman-autosprite-walk-8dir-v1' / d for d in ['S', 'E', 'N', 'W']}}
 SRC = ROOT / 'art/texture-sources/hero-painted'
 PUBLIC = ROOT / 'public'
-DIRECTIONS = ['SE', 'SW', 'NE', 'NW']  # atlas row order, see src/sprite-animation.ts
-SPAN = {'SE': (3, 23), 'SW': (2, 20), 'NE': (2, 21), 'NW': (2, 23)}
+DIRECTIONS = ['SE', 'SW', 'NE', 'NW', 'S', 'E', 'N', 'W']  # atlas row order = WALK_DIRECTIONS in src/sprite-animation.ts
+SPAN = {'SE': (3, 23), 'SW': (2, 20), 'NE': (2, 21), 'NW': (2, 23), 'S': (2, 23), 'E': (3, 23), 'N': (4, 21), 'W': (4, 22)}
 FRAMES = 8
 
 def frames_for(direction):
@@ -34,8 +37,8 @@ def build(factor):
     cw, ch = 384 * factor, 256 * factor
     sheet = Image.new('RGBA', (cw * FRAMES, ch * len(DIRECTIONS)))
     for row, direction in enumerate(DIRECTIONS):
-        meta = json.loads((RENDERS / direction / 'metadata.json').read_text(encoding='utf-8'))
-        raw = Image.open(RENDERS / direction / 'autosprite-raw.png').convert('RGBA')
+        meta = json.loads((RENDERS[direction] / 'metadata.json').read_text(encoding='utf-8'))
+        raw = Image.open(RENDERS[direction] / 'autosprite-raw.png').convert('RGBA')
         cell, scale, (ax, ay) = meta['sourceCell'][0], meta['sharedScale'] * factor, meta['sourceAnchor']
         cols = raw.width // cell
         for column, number in enumerate(frames_for(direction)):

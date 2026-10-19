@@ -12,7 +12,7 @@ import {drawFountainWater} from './city-2d-fountain';
 import {loadField2D} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
 import {project2D,unproject2D} from './game-2d-projection';
-import {MOTIONS,motionFor,motionFrame,atlasCell,facingFor} from './sprite-animation';
+import {MOTIONS,motionFor,motionFrame,facingFor,heroSprite} from './sprite-animation';
 import {SKILL_MOTIONS,BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
 import {monsterSpecies,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
 import {huntingCell,HUNTING_ASSET_ROOT} from './hunting-monster-animation';
@@ -107,7 +107,7 @@ export class GameCanvas2D{
  private hero(p:any,dt:number,time:number,own:boolean){
   const state=this.heroStates.get(p.id)??{motion:'idle',clock:0,elapsed:0};this.heroStates.set(p.id,state);const motion=motionFor(p);state.clock=motion===state.motion?state.clock+dt:0;state.motion=motion;state.elapsed+=dt;
   if(state.skill&&(state.elapsed>SKILL_DURATION[state.skill]||p.dead||p.hurt>0))state.skill=undefined;
-  let cell=atlasCell(motion,facingFor(p.fx,p.fz),motionFrame(motion,state.clock)),key=`/assets/hero-painted/hero-${motion}-v1.png`;
+  const sprite=heroSprite(motion,p.fx,p.fz,motionFrame(motion,state.clock));let cell=sprite.cell,key=`/assets/hero-painted/hero-${sprite.sheet}-v1.png`;
   if(state.skill){key=`/assets/hero-skills/hero-skill-${state.skill}-v1.png`;cell={column:skillFrame(state.skill,state.elapsed),row:['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[state.skill],rows:4};}
   const image=this.assets.get(key)!;const q=this.screen(p.x,p.z),w=384*HERO_PIXEL_METRES*this.scale,h=256*HERO_PIXEL_METRES*this.scale;
   this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,q.x-w/2,q.y-h*.9375,w,h);this.drawCalls++;
