@@ -70,6 +70,15 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		multi = new Set<string>(),
 		pending: { req: string; message: any } | undefined;
 	const auto = panel.querySelector<HTMLInputElement>("input")!;
+	const tip = document.createElement("div");
+	tip.className = "inv-tip";
+	tip.hidden = true;
+	tip.setAttribute("role", "tooltip");
+	// Top layer (popover) so it floats above the modal bag window without being clipped by it.
+	tip.setAttribute("popover", "manual");
+	document.body.append(tip);
+	let tipTimer = 0, tipAnchor: HTMLElement | null = null;
+	panel.addEventListener("close", () => hideTip());
 	function request(op: string, args: any = {}) {
 		if (pending) {
 			status.textContent = "กำลังบันทึก กรุณารอสักครู่";
@@ -112,15 +121,15 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		b.style.setProperty("--rarity", rarityColors[t.rarity]);
 		b.dataset.item = i.template;
 		b.dataset.id = i.id;
-		b.title = t.nameTh;
 		b.setAttribute("aria-label", `${t.nameTh} ×${i.qty}`);
+		hoverTip(b, () => ({ t, i, mode }));
 		b.append(itemIcon(t));
 		const count = document.createElement("b");
 		count.textContent = i.qty > 1 ? String(i.qty) : i.bound ? "◆" : "";
 		b.append(count);
         const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
         if(mode==='buy'||mode==='sell'){b.classList.add('shop-cell');const caption=document.createElement('span');caption.className='shop-caption';caption.textContent=t.nameTh;const price=document.createElement('small');price.textContent=`${mode==='buy'?data.economy.shops[shop!][t.id]:Math.floor(t.npcPrice*data.economy.sellMultiplier)} ทอง`;b.append(caption,price);}
-        if(incompatible){const note=document.createElement('small');note.textContent='อาชีพนี้ใช้ไม่ได้';b.append(note);b.title+=' · อาชีพนี้ใช้ไม่ได้';}
+        if(incompatible){const note=document.createElement('small');note.textContent='อาชีพนี้ใช้ไม่ได้';b.append(note);}
 		if (multi.has(i.id)) b.classList.add("inv-selected");
 		b.draggable = mode === "bag";
 		b.ondragstart = (e) => e.dataTransfer?.setData("text/plain", t.type==='consumable'?'item:'+t.id:i.id);
@@ -287,6 +296,120 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		for (const m of t.modifiers) if ("stat" in m && "value" in m && (m.kind === "flat" || m.kind === "stat")) out[m.stat] = (out[m.stat] || 0) + m.value;
 		return out;
 	}
+	const TYPE_NAMES: Record<string, string> = { consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" };
+	const WEAPON_NAMES: Record<string, string> = { sword1h: "ดาบมือเดียว", dagger: "มีดสั้น", staff: "คทา", bow: "ธนู" };
+	const RARITY_NAMES: Record<string, string> = { common: "ธรรมดา", fine: "ดี", rare: "หายาก", epic: "มหากาพย์", legendary: "ตำนาน" };
+	type TipSource = { t: (typeof templates)[number]; i?: OwnedItem; mode?: string };
+	/** One item card. With `against`, every stat shows its change from that equipped item (missing stats count as 0). */
+	function tipCard(t: (typeof templates)[number], i: OwnedItem | undefined, opts: { worn?: boolean; against?: (typeof templates)[number] | null; slot?: string } = {}) {
+		const card = document.createElement("div");
+		card.className = "tip-card" + (opts.worn ? " worn" : "");
+		card.style.setProperty("--rarity", rarityColors[t.rarity]);
+		const head = document.createElement("div");
+		head.className = "tip-head";
+		const ico = document.createElement("span");
+		ico.className = "tip-ico";
+		ico.append(itemIcon(t));
+		const name = document.createElement("div");
+		const kind = t.slot
+			? `${t.slot === "accessory1" ? (opts.slot ? slotNames[opts.slot] : "แหวน") : slotNames[t.slot]}${t.weaponType ? " · " + (WEAPON_NAMES[t.weaponType] || t.weaponType) : ""}`
+			: TYPE_NAMES[t.type] || t.type;
+		name.innerHTML = "<b></b><small></small>";
+		name.querySelector("b")!.textContent = t.nameTh;
+		name.querySelector("small")!.textContent = `${kind} · ${RARITY_NAMES[t.rarity] || t.rarity}`;
+		head.append(ico, name);
+		if (opts.worn) { const tag = document.createElement("em"); tag.textContent = "สวมอยู่"; head.append(tag); }
+		card.append(head);
+		const notes: [string, boolean][] = [];
+		if (t.slot || t.level > 1) notes.push([`ต้องการระดับ ${t.level}`, (p?.level ?? 1) < t.level]);
+		if (t.weaponType && !compatible(t)) notes.push(["อาชีพนี้ใช้ไม่ได้", true]);
+		if (notes.length) {
+			const req = document.createElement("div");
+			req.className = "tip-req";
+			for (const [text, bad] of notes) { const s = document.createElement("span"); s.textContent = text; s.classList.toggle("bad", bad); req.append(s); }
+			card.append(req);
+		}
+		if (t.slot) {
+			const mine = statsOf(t), theirs = opts.against ? statsOf(opts.against) : null;
+			const keys = [...new Set([...Object.keys(mine), ...(theirs ? Object.keys(theirs) : [])])];
+			const list = document.createElement("div");
+			list.className = "tip-stats";
+			for (const k of keys) {
+				const row = document.createElement("div"), v = mine[k] || 0;
+				row.innerHTML = "<span></span><b></b>";
+				row.querySelector("span")!.textContent = metricNames[k] || k;
+				row.querySelector("b")!.textContent = v ? `+${v}` : "—";
+				if (theirs || opts.against === null) {
+					const d = v - (theirs?.[k] || 0), diff = document.createElement("i");
+					diff.textContent = d > 0 ? `▲ ${d}` : d < 0 ? `▼ ${-d}` : "=";
+					diff.className = d > 0 ? "up" : d < 0 ? "down" : "same";
+					row.append(diff);
+				}
+				list.append(row);
+			}
+			if (!keys.length) list.innerHTML = '<div class="tip-none">ไม่มีค่าพลังเพิ่ม</div>';
+			card.append(list);
+			if (opts.against === null) { const n = document.createElement("p"); n.className = "tip-note"; n.textContent = "ช่องนี้ยังว่าง"; card.append(n); }
+		} else if (t.type === "consumable") {
+			const e = document.createElement("p");
+			e.className = "tip-effect";
+			e.textContent = describe(t);
+			card.append(e);
+		}
+		const foot = document.createElement("div");
+		foot.className = "tip-foot";
+		const bind = i?.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวม" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้";
+		foot.textContent = [`น้ำหนัก ${fmtWeight(t.weight)}`, `ขาย ${fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง`, t.slot ? `ช่องการ์ด ${t.slots}` : "", t.slot ? bind : ""].filter(Boolean).join(" · ");
+		card.append(foot);
+		return card;
+	}
+	function renderTip({ t, i, mode }: TipSource) {
+		tip.replaceChildren();
+		const wrap = document.createElement("div");
+		wrap.className = "tip-wrap";
+		const equipped = i?.location === "equip";
+		let slot: string | undefined, old: OwnedItem | undefined;
+		if (t.slot && inv && !equipped) {
+			slot = equipmentTarget(inv, t.slot);
+			old = inv.items.find((x) => x.location === "equip" && x.slot === slot);
+		}
+		const oldT = old ? template(old) : null;
+		const main = tipCard(t, i, { worn: equipped, against: t.slot && !equipped ? oldT : undefined, slot: equipped ? i!.slot : slot });
+		wrap.append(main);
+		if (oldT && old) {
+			const side = tipCard(oldT, old, { worn: true, slot });
+			side.classList.add("side");
+			wrap.append(side);
+		}
+		tip.append(wrap);
+		const hint = mode === "buy" ? "ดับเบิลคลิก: ซื้อ 1 ชิ้น" : mode === "sell" ? "คลิก: เลือกขาย"
+			: mode === "store" ? "ดับเบิลคลิก: ฝากทั้งหมด" : mode === "withdraw" ? "ดับเบิลคลิก: ถอนทั้งหมด"
+			: equipped ? "ดับเบิลคลิก: ถอด" : t.slot ? (compatible(t) ? "ดับเบิลคลิก: สวม · ลากไปที่ช่องได้" : "")
+			: t.type === "consumable" ? "ดับเบิลคลิก: ใช้ · ลากไปแถบลัดได้" : "";
+		if (hint) { const h = document.createElement("p"); h.className = "tip-hint"; h.textContent = hint; tip.append(h); }
+	}
+	function placeTip(x: number, y: number) {
+		const r = tip.getBoundingClientRect(), pad = 12;
+		let left = x + 18, top = y + 18;
+		if (left + r.width > innerWidth - pad) left = x - r.width - 14;
+		if (top + r.height > innerHeight - pad) top = Math.max(pad, innerHeight - r.height - pad);
+		tip.style.transform = `translate(${Math.max(pad, Math.round(left))}px,${Math.round(top)}px)`;
+	}
+	function hideTip() { clearTimeout(tipTimer); tip.hidden = true; tipAnchor = null; try { tip.hidePopover(); } catch { /* not open */ } }
+	/** Mouse hover shows the full card right away; touch keeps tap-to-select and long-press. */
+	function hoverTip(el: HTMLElement, source: () => TipSource) {
+		let last = { x: 0, y: 0 };
+		el.addEventListener("pointerenter", (e) => {
+			if (e.pointerType !== "mouse") return;
+			last = { x: e.clientX, y: e.clientY };
+			clearTimeout(tipTimer);
+			tipTimer = window.setTimeout(() => { renderTip(source()); tipAnchor = el; tip.hidden = false; try { tip.showPopover(); } catch { /* already open */ } placeTip(last.x, last.y); }, tip.hidden ? 120 : 0);
+		});
+		el.addEventListener("pointermove", (e) => { last = { x: e.clientX, y: e.clientY }; if (tipAnchor === el) placeTip(e.clientX, e.clientY); });
+		el.addEventListener("pointerleave", () => { clearTimeout(tipTimer); if (tipAnchor === el) hideTip(); });
+		el.addEventListener("dragstart", hideTip);
+		el.addEventListener("pointerdown", (e) => { if (e.button === 2) hideTip(); });
+	}
 	/** Full-body figure between two slot columns: hand/back/feet on the left, body and accessories on the right. */
 	function drawDoll() {
 		const doll = document.createElement("div"),
@@ -348,6 +471,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const cost = document.createElement("span");
 		cost.className = "ware-price";
 		cost.innerHTML = `<b>${price}</b><small>${after}</small>`;
+		hoverTip(row, () => ({ t, mode: shop && shopTab === "ซื้อ" ? "buy" : "sell" }));
 		const mark = document.createElement("span");
 		mark.className = "ware-mark";
 		mark.textContent = on ? "✓" : "+";
@@ -436,7 +560,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		draw();
 	}
 	function draw() {
-		if (!panel.open) return;
+		if (!panel.open) { hideTip(); return; }
+		queueMicrotask(() => { if (tipAnchor && !tipAnchor.isConnected) hideTip(); });
 		inv = p?.inventory || inv;
 		if (!inv) return;
 		const mode = storage ? "storage" : shop ? "shop" : "bag";
