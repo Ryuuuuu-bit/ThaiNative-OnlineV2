@@ -1,0 +1,13 @@
+{
+  "review": "ใช้ได้ (รอผู้ใช้ตรวจ): ตัวละครด้านหลังเหมือนต้นฉบับ NE ผ้าคลุมอยู่ซ้าย ดาบอยู่ขวา เท้าสลับจริง ขาฝั่งซ้ายจอก้าวในเฟรม 3–8 และขาฝั่งขวาจอก้าวในเฟรม 9–19 ตัวเด้งน้อย (หัวขยับ 8 px ที่ 512 หรือราว 3.5 px ที่สเกลเกม) ข้อสังเกต: ใบดาบแกว่ง 38.7–46.1° (idle 46.1°) และยืนนิ่งท่า idle 7 เฟรม (เฟรม 21–25 และ 1–2) ลูปจึงเป็นเดิน–หยุด–เดิน เหมือน SE v4",
+  "quality": {
+    "model": "Pass (visual).",
+    "alternation": "Pass: screen-left foot steps in frames 3–8, screen-right foot in frames 9–19.",
+    "facing": "Pass: back three-quarter NE throughout. Blade swings 38.7–46.1° (idle 46.1°).",
+    "bounce": "Head top 60–68 px at 512 (≈3.5 px at game scale).",
+    "loop": "Walk–stop–walk: frames 21–25 and 1–2 are idle stance (diff ≤ 10), 7 of 25 frames. The seam itself is smooth.",
+    "proportions": "Uniform scale from the 2x idle.",
+    "shipReady": false,
+    "shipReadyNote": "Pending the user's review; quality comparable to the approved SE v4."
+  }
+}

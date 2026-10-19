@@ -1,0 +1,12 @@
+{
+  "review": "ยังไม่ผ่าน: ตัวละครเหมือนต้นฉบับ SW ดาบนิ่งมากที่ 47.4–48.2° ตัวเด้งน้อย (หัวขยับ 10 px ที่ 512 หรือราว 4 px ที่สเกลเกม) แต่ก้าวจริงมีแค่ขาเดียว ขาฝั่งขวาจอยกงอไปด้านหลังในเฟรม 6–13 แล้ววางคืน ส่วนเท้าฝั่งซ้ายจอแทบไม่ขยับ จึงไม่ใช่การเดินสลับเท้า และยืนนิ่งท่า idle นานถึง 8 เฟรม (เฟรม 20–25 และ 1–2, diff ≤ 10)",
+  "quality": {
+    "model": "Pass (visual): painted, slim, slim blade, cape on the right.",
+    "alternation": "Fail: only the screen-right leg lifts and swings (frames 3–16); the screen-left foot stays planted the whole clip.",
+    "facing": "Pass: SW three-quarter throughout. Blade 47.4–48.2° (idle 48.1°).",
+    "bounce": "Head top 58–68 px at 512 (≈4 px at game scale).",
+    "loop": "Walk–stop–walk: frames 20–25 and 1–2 are idle stance (diff ≤ 10), 8 of 25 frames. The seam itself is smooth.",
+    "proportions": "Uniform scale from the 2x idle.",
+    "shipReady": false
+  }
+}

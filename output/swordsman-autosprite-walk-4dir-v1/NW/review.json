@@ -1,0 +1,13 @@
+{
+  "review": "ใช้ได้ (รอผู้ใช้ตรวจ): ตัวละครด้านหลังเหมือนต้นฉบับ NW ผ้าคลุมอยู่ขวา ดาบอยู่ขวา ดาบนิ่งมากที่ 45.8–46.6° เท้าสลับจริง ขาฝั่งขวาจอก้าวในเฟรม 4–9 และขาฝั่งซ้ายจอก้าวในเฟรม 9–19 ตัวเด้งน้อย (หัวขยับ 9 px ที่ 512 หรือราว 4 px ที่สเกลเกม) ข้อสังเกต: ยืนนิ่งท่า idle 5 เฟรม (เฟรม 23–25 และ 1–2) และเท้าลงต่ำสุดที่ 468 ในเฟรม 12–13 (ก้าวถอยเข้าหากล้อง) ลูปจึงเป็นเดิน–หยุด–เดิน แต่สั้นกว่า SE",
+  "quality": {
+    "model": "Pass (visual).",
+    "alternation": "Pass: screen-right foot steps in frames 4–9, screen-left foot in frames 9–19.",
+    "facing": "Pass: back three-quarter NW throughout. Blade 45.8–46.6° (idle 46.4°).",
+    "bounce": "Head top 57–66 px at 512 (≈4 px at game scale).",
+    "loop": "Walk–stop–walk: frames 23–25 and 1–2 are idle stance (diff ≤ 5), 5 of 25 frames. The seam itself is smooth.",
+    "proportions": "Uniform scale from the 2x idle.",
+    "shipReady": false,
+    "shipReadyNote": "Pending the user's review; quality comparable to the approved SE v4."
+  }
+}

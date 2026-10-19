@@ -1,0 +1,14 @@
+{
+  "review": "ผู้ใช้อนุมัติแล้ว (2026-10-20): ใช้ v4 ได้ ดีที่สุดในบรรดาสามรอบ แต่ยังไม่พร้อมใช้: ตัวละครยังเหมือนต้นฉบับ ลายเพนต์ ตัวเพรียว ดาบเรียว ดาบนิ่งมากที่ 51.0–52.8° (idle 51.4°) ลำตัวหัน SE ทุกเฟรม ตัวเด้งน้อยลงมาก หัวขยับขึ้นลงแค่ 14 px ที่ 512 หรือราว 6 px ที่สเกล 168 px เท้าสลับจริง: เท้าซ้าย (ฝั่งขวาจอ) นำช่วงเฟรม 11–15 เท้าขวา (ฝั่งดาบ) นำช่วงเฟรม 17–20 ปัญหาที่ยังเหลือ: (1) ทั้งคลิปเดินแค่ 2 ก้าว (เฟรม 4–22) ช่วงเฟรม 23–25 และ 1–3 ยืนนิ่งท่า idle (diff ≤ 5) พอวนลูปจะเห็นเดิน–หยุด–เดิน ราว 6 ใน 25 เฟรม (2) ก้าวสั้นและแคบ เท้าเบียดเข้าเส้นกลางตัวเหมือนเดินบนเชือก ไม่ได้ก้าวยาวตามแนว SE (3) เข่ายกค่อนข้างสูงช่วงเฟรม 8–10 และ 18–19 รอยต่อลูปเนียน (เฟรม 25→1 diff 4.9) เพราะเริ่มและจบที่ท่ายืน ปรับความสูงกึ่งกลางชุดให้เท่ากับต้นฉบับ 168 px ด้วยสเกลเดียว ไม่ได้แก้ท่ารายเฟรม",
+  "quality": {
+    "model": "Pass (visual): painted style, slim build, slim long blade, and cape on the right all match the 2x idle. Not pixel-verified.",
+    "alternation": "Pass, but with only one step per foot per clip. The character's left foot (screen right, low_x 306–322) leads in frames 11–15; the right/sword-side foot (low_x 250–282) leads in frames 17–20. Steps are short and narrow.",
+    "facing": "Pass: torso SE in all frames. Blade angle 51.0–52.8° (idle 51.4°).",
+    "bounce": "Head top varies 52–66 px at 512 (≈6 px at game scale), versus ≈23 px of foot bounce in v3.",
+    "loop": "Fail as a walk loop: frames 23–25 and 1–3 are near-identical idle stance (diff ≤ 5), so 6 of 25 frames stand still and the loop reads walk–stop–walk. The seam itself is smooth (25→1 diff 4.9).",
+    "proportions": "Uniform scale from the 2x idle source.",
+    "shipReady": true,
+    "shipReadyNote": "Approved by the user after viewing the live preview on 2026-10-20. The measured caveats above (2 steps per clip, a 6-frame standing hold at the seam, short narrow steps) still stand and are kept on record.",
+    "userVerdict": "approved"
+  }
+}

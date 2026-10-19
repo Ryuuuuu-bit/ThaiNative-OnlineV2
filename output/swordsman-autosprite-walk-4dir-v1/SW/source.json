@@ -1,0 +1,17 @@
+{
+  "characterId": "cmvfpp5n60011lt8yx50gr0bg",
+  "kind": "custom",
+  "animationName": "Walk SW calm",
+  "videoId": "cmvfppjzk004ll3kaqxtrno29",
+  "spritesheetId": "cmvfpsmub001we0u6ci9tz9um",
+  "videoTier": "turbo",
+  "turboMode": "first_frame",
+  "firstLastFramePoseId": "first frame only: cmvfpp5o10013lt8yebetyplk (last frame not pinned)",
+  "prompt": "Painted isometric RPG sprite; keep the exact character design, slim proportions, painted style and slim long sword of the first frame. Fixed camera at the same isometric angle. The swordsman does a slow, calm walk in place, heading toward the bottom-left of the picture (south-west). Clear alternating steps: first one foot steps forward toward the bottom-left, then the other foot steps forward toward the bottom-left, then the first again. At every moment at least one foot is planted flat on the ground; the feet slide smoothly and stay low, close to the ground. The head and shoulders stay at the same height, level and smooth. Head, chest and hips face the bottom-left in every frame. Slim sword held low and still in his hand on the LEFT side of the picture, blade angled down to the lower-LEFT. Green cape on the RIGHT side, swaying gently. One relaxed walk cycle that loops seamlessly. Plain background.",
+  "sourceCell": 512,
+  "sourceExport": "AutoSprite generate_spritesheet (custom, raw_prompt, loop=true, turbo first_frame with only the first frame pinned to the uploaded SW idle): 25 frames at 512x512 in a 5x5 atlas, all populated. Atlas JSON saved as autosprite-atlas.json.",
+  "duration": 2,
+  "durationNote": "Playback over the 2-second AutoSprite turbo clip length the 25 frames were sampled from; no frames were retimed, duplicated or mirrored.",
+  "creditsUsed": 5,
+  "creditsRemaining": 485
+}
