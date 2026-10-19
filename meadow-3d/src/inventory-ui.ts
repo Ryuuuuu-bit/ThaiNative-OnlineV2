@@ -81,7 +81,19 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	tip.setAttribute("popover", "manual");
 	document.body.append(tip);
 	let tipTimer = 0, tipAnchor: HTMLElement | null = null;
-	panel.addEventListener("close", () => hideTip());
+	panel.addEventListener("close", () => { hideTip(); markSeen(); });
+	/** Item ids this character has already seen in the bag; anything else is "new" until the bag closes. */
+	let seen: Set<string> | null = null, seenKey = "";
+	function loadSeen() {
+		const key = "tn-bag-seen:" + ((p as any)?.id || "");
+		if (seen && seenKey === key) return;
+		seenKey = key;
+		try { const raw = localStorage.getItem(key); seen = raw ? new Set(JSON.parse(raw)) : null; } catch { seen = null; }
+		if (!seen && inv) { seen = new Set(inv.items.map((i) => i.id)); saveSeen(); }
+	}
+	function saveSeen() { try { if (seen) localStorage.setItem(seenKey, JSON.stringify([...seen].slice(-400))); } catch { /* storage blocked */ } }
+	function markSeen() { if (!inv || !seen) return; for (const i of inv.items) seen.add(i.id); saveSeen(); }
+	const isNew = (i: OwnedItem) => !!seen && i.location === "bag" && !seen.has(i.id);
 	function request(op: string, args: any = {}) {
 		if (pending) {
 			status.textContent = "กำลังบันทึก กรุณารอสักครู่";
@@ -132,6 +144,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		b.append(count);
         const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
         if(mode==='buy'||mode==='sell'){b.classList.add('shop-cell');const caption=document.createElement('span');caption.className='shop-caption';caption.textContent=t.nameTh;const price=document.createElement('small');price.textContent=`${mode==='buy'?data.economy.shops[shop!][t.id]:Math.floor(t.npcPrice*data.economy.sellMultiplier)} ทอง`;b.append(caption,price);}
+        if(mode==='bag'&&isNew(i)){const dot=document.createElement('span');dot.className='inv-new';dot.title='ของใหม่';b.append(dot);}
         if(mode==='bag'&&i.location==='bag'&&t.slot){
             if(!wearable(t)){const no=document.createElement('span');no.className='inv-no';no.setAttribute('aria-hidden','true');b.append(no);b.setAttribute('aria-label',`${t.nameTh} · ใส่ไม่ได้ตอนนี้`);}
             else if(betterThanWorn(t)){const up=document.createElement('span');up.className='inv-up';up.textContent='▲';b.append(up);b.setAttribute('aria-label',`${t.nameTh} · ดีกว่าที่ใส่`);}
@@ -170,7 +183,63 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		b.onpointerup = b.onpointerleave = () => clearTimeout(hold);
 		return b;
 	}
+	/** Bag selection: icon, one-line summary and short, explicit actions (e.g. "ใส่แหวน 2", "ใส่แทนแหวน 1"). */
+	function showStrip(i: OwnedItem) {
+		const t = template(i);
+		detail.replaceChildren();
+		detail.classList.add("inv-strip");
+		detail.style.setProperty("--rarity", rarityColors[t.rarity]);
+		const ico = document.createElement("span");
+		ico.className = "strip-ico";
+		ico.append(itemIcon(t));
+		const text = document.createElement("div");
+		text.className = "strip-text";
+		const name = document.createElement("b");
+		name.textContent = i.qty > 1 ? `${t.nameTh} ×${i.qty}` : t.nameTh;
+		const sub = document.createElement("small");
+		const btns = document.createElement("div");
+		btns.className = "strip-actions";
+		const add = (label: string, fn: () => void, cls = "") => { const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.className = cls; b.onclick = fn; btns.append(b); return b; };
+		const kind = t.slot ? (t.slot === "accessory1" ? "แหวน" : slotNames[t.slot]) : describe(t);
+		const stats = t.slot ? Object.entries(statsOf(t)).map(([k, v]) => `${metricNames[k] || k} +${v}`).join(" · ") : "";
+		let where = "";
+		if (i.location === "equip") {
+			where = `สวมอยู่ที่ ${slotNames[i.slot!]}`;
+			add("ถอด", () => action(i), "gold");
+		} else if (t.slot) {
+			if (!wearable(t)) where = t.level > playerLevel() ? `ต้องการระดับ ${t.level}` : "อาชีพนี้ใช้ไม่ได้";
+			else {
+				const slots = equipmentSlots(t.slot), wornIn = (sl: string) => inv!.items.find((x) => x.location === "equip" && x.slot === sl);
+				const target = equipmentTarget(inv!, t.slot);
+				for (const sl of slots) {
+					const worn = wornIn(sl);
+					const label = slots.length > 1 ? (worn ? `ใส่แทน${slotNames[sl]}` : `ใส่${slotNames[sl]}`) : worn ? `ใส่แทน ${template(worn).nameTh}` : "ใส่";
+					add(label, () => action(i, sl), sl === target ? "gold" : "");
+				}
+				const empty = slots.filter((sl) => !wornIn(sl));
+				where = empty.length ? `ว่างอยู่ที่ ${empty.map((sl) => slotNames[sl]).join(", ")}` : slots.length > 1 ? "ช่องแหวนเต็ม" : "";
+			}
+		} else if (t.type === "consumable") add("ใช้", () => action(i), "gold");
+		sub.textContent = [kind, stats, where].filter(Boolean).join(" · ");
+		text.append(name, sub);
+		if (i.location === "bag") {
+			let qty: HTMLInputElement | null = null;
+			if (i.qty > 1) {
+				qty = document.createElement("input");
+				qty.type = "number"; qty.min = "1"; qty.max = String(i.qty); qty.value = "1";
+				qty.setAttribute("aria-label", "จำนวนทิ้ง");
+				btns.append(qty);
+			}
+			add("ทิ้ง", () => {
+				const n = Math.min(i.qty, Math.max(1, Math.trunc(Number(qty?.value) || 1)));
+				if (confirm(`ยืนยันทิ้ง ${t.nameTh} ×${n}?`)) request("discard", { id: i.id, qty: n });
+			}, "ghost");
+		}
+		detail.append(ico, text, btns);
+	}
 	function showDetail(i: OwnedItem, actions = true, requestedSlot?: string) {
+		if (!shop && !storage) { showStrip(i); return; }
+		detail.classList.remove("inv-strip");
 		const t = template(i);
 		detail.replaceChildren();
 		const title = document.createElement("h3");
@@ -318,7 +387,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	const bagTools = document.createElement("div");
 	bagTools.className = "inv-bagtools";
 	bagTools.hidden = true;
-	bagTools.innerHTML = `<label class="inv-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="ค้นหาไอเทม" aria-label="ค้นหาไอเทม"></label><label class="inv-sort"><span>เรียง</span><select aria-label="เรียงไอเทม"><option value="type">ประเภท</option><option value="rarity">ความหายาก</option><option value="level">เลเวล</option><option value="name">ชื่อ</option></select></label><div class="inv-quick" role="group" aria-label="ตัวกรองด่วน"><button type="button" data-q="wear">ใส่ได้ตอนนี้</button><button type="button" data-q="better">ดีกว่าที่ใส่</button><button type="button" data-q="sell">ขายได้</button></div>`;
+	bagTools.innerHTML = `<label class="inv-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="ค้นหาไอเทม" aria-label="ค้นหาไอเทม"></label><label class="inv-sort"><span>เรียง</span><select aria-label="เรียงไอเทม"><option value="type">ประเภท</option><option value="rarity">ความหายาก</option><option value="level">เลเวล</option><option value="name">ชื่อ</option></select></label><div class="inv-quick" role="group" aria-label="ตัวกรองด่วน"><button type="button" data-q="wear">ใส่ได้ตอนนี้</button><button type="button" data-q="better">ดีกว่าที่ใส่</button><button type="button" data-q="new">ของใหม่</button><button type="button" data-q="sell">ขายได้</button></div>`;
 	tabs.after(bagTools);
 	const searchBox = bagTools.querySelector<HTMLInputElement>("input")!, sortBox = bagTools.querySelector<HTMLSelectElement>("select")!;
 	searchBox.oninput = () => { search = searchBox.value.trim().toLowerCase(); draw(); };
@@ -617,12 +686,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (filter === "สวมใส่") filter = "ทั้งหมด";
 		tabs.replaceChildren();
 		content.replaceChildren();
-		for (const name of storage ? ["ฝากของ", "ในคลัง"] : shop ? ["ซื้อ", "ขาย"] : ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ"]) {
+		for (const name of storage ? ["ฝากของ", "ในคลัง"] : shop ? ["ซื้อ", "ขาย"] : ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ", "การ์ด"]) {
 			const b = document.createElement("button");
 			b.textContent = name;
 			if (mode === "bag") {
 				const bag = inv.items.filter((i) => i.location === "bag").map(template);
-				const n = name === "อุปกรณ์" ? bag.filter((t) => t.slot).length : name === "ของใช้" ? bag.filter((t) => t.type === "consumable").length : name === "วัตถุดิบ" ? bag.filter((t) => ["material", "refine", "card"].includes(t.type)).length : bag.length;
+				const n = name === "อุปกรณ์" ? bag.filter((t) => t.slot).length : name === "ของใช้" ? bag.filter((t) => t.type === "consumable").length : name === "วัตถุดิบ" ? bag.filter((t) => ["material", "refine"].includes(t.type)).length : name === "การ์ด" ? bag.filter((t) => t.type === "card").length : bag.length;
 				const c = document.createElement("i"); c.textContent = String(n); b.append(c);
 			}
 			b.classList.toggle("active", name === (storage ? storageTab : shop ? shopTab : filter));
@@ -641,7 +710,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		bagTools.hidden = mode !== "bag";
 		if (mode === "bag") { if (document.activeElement !== searchBox) searchBox.value = search; sortBox.value = sortBy; bagTools.querySelectorAll<HTMLButtonElement>("[data-q]").forEach((b) => b.setAttribute("aria-pressed", String(quick === b.dataset.q))); }
   rangeSelect.value=shopRange;categorySelect.value=shopCategory;classCheck.checked=shopOwnClass;
-  if (mode === "bag") drawDoll();
+  if (mode === "bag") { loadSeen(); drawDoll(); }
 		if (storage) {
 			const grid = document.createElement("div");
 			grid.className = "inv-grid";
@@ -718,7 +787,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			const t = template(i);
 			if (filter === "อุปกรณ์" && !t.slot) continue;
 			if (filter === "ของใช้" && t.type !== "consumable") continue;
-			if (filter === "วัตถุดิบ" && !["material", "refine", "card"].includes(t.type)) continue;
+			if (filter === "วัตถุดิบ" && !["material", "refine"].includes(t.type)) continue;
+			if (filter === "การ์ด" && t.type !== "card") continue;
+			if (quick === "new" && !isNew(i)) continue;
 			if (search && !t.nameTh.toLowerCase().includes(search)) continue;
 			if (quick === "wear" && !(t.slot && wearable(t))) continue;
 			if (quick === "better" && !betterThanWorn(t)) continue;
@@ -734,7 +805,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			empty.className = "inv-cell-empty";
 			grid.append(empty);
 		}
-		countBox.innerHTML = `<span><em class="up">▲</em> ดีกว่าที่ใส่</span><span><em class="no">✕</em> ใส่ไม่ได้ตอนนี้</span><span>ดับเบิลคลิก ใส่/ใช้ · คลิกขวา เมนู</span>`;
+		countBox.innerHTML = `<span><em class="up">▲</em> ดีกว่าที่ใส่</span><span><em class="no">✕</em> ใส่ไม่ได้ตอนนี้</span><span><em class="new">●</em> ของใหม่</span><span>ดับเบิลคลิก ใส่/ใช้ · คลิกขวา เมนู</span>`;
 	}
 		function open(nextShop: string | null = null) {
 		onOpen();

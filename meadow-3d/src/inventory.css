@@ -327,3 +327,26 @@ body #inventory-window .inv-count em.no{color:#ef8f86}
 	body #inventory-window[data-mode=bag] .inv-detail{grid-template-columns:1fr}
 	body #inventory-window[data-mode=bag] .inv-detail .inv-actions{grid-column:1;grid-row:auto;flex-wrap:wrap}
 }
+
+/* Bag selection strip: icon · name and one-line summary · explicit actions */
+body #inventory-window[data-mode=bag] .inv-detail.inv-strip{grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:center}
+body #inventory-window[data-mode=bag] .inv-detail.inv-strip>*{grid-column:auto;grid-row:auto}
+body #inventory-window .strip-ico{width:48px;height:48px;display:grid;place-items:center;border-radius:10px;background:rgba(255,255,255,.04);
+	border:1px solid color-mix(in srgb,var(--rarity) 50%,transparent)}
+body #inventory-window .strip-ico .item-icon{width:40px;height:40px;transform:none}
+body #inventory-window .strip-text{min-width:0}
+body #inventory-window .strip-text b{display:block;font-size:14px;color:var(--rarity)}
+body #inventory-window .strip-text small{display:block;font-size:12px;color:var(--g-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #inventory-window .strip-actions{display:flex;align-items:center;gap:6px}
+body #inventory-window .strip-actions button{height:34px!important;min-height:0!important;padding:0 14px!important;border-radius:10px;border:1px solid var(--g-line-strong);
+	background:rgba(255,255,255,.05);color:var(--g-muted);font-size:13px;white-space:nowrap;cursor:pointer}
+body #inventory-window .strip-actions button:hover{color:var(--g-text);background:rgba(255,255,255,.09)}
+body #inventory-window .strip-actions button.gold{border-color:transparent;background:linear-gradient(135deg,#f2dfb2,#d7b679);color:#1d2a26;font-weight:700}
+body #inventory-window .strip-actions button.ghost{color:#ef8f86;border-color:rgba(239,143,134,.32)}
+body #inventory-window .strip-actions input{width:56px;height:34px!important;min-height:0!important;padding:0 8px!important;border-radius:10px}
+body #inventory-window .inv-cell .inv-new{position:absolute;right:5px;top:5px;width:7px;height:7px;border-radius:50%;background:#e6c98f;box-shadow:0 0 6px #e6c98f;pointer-events:none}
+body #inventory-window .inv-count em.new{color:#e6c98f}
+@media(max-width:900px){
+	body #inventory-window[data-mode=bag] .inv-detail.inv-strip{grid-template-columns:48px minmax(0,1fr)}
+	body #inventory-window[data-mode=bag] .inv-detail.inv-strip .strip-actions{grid-column:1/-1;flex-wrap:wrap}
+}
