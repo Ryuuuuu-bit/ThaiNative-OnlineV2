@@ -12,9 +12,9 @@ test('visual holds use wall time, affect only attacker and target, and respect o
  global.matchMedia=()=>({matches:true});global.localStorage={getItem:()=>null,setItem(){}};
  const feel=new CombatFeel(),p={x:0,z:0};
  feel.event({type:'hit',playerId:'own',id:7,x:1,z:0},'own',p,100);
- assert.equal(feel.frozen('own',139),true);assert.equal(feel.frozen('own',140),false);assert.equal(feel.frozen('monster:8',110),false);
+ assert.equal(feel.frozen('own',154),true);assert.equal(feel.frozen('own',155),false);assert.equal(feel.frozen('monster:8',110),false);
  feel.event({type:'hit',playerId:'own',id:7,x:1,z:0,crit:true},'own',p,200);
- assert.equal(feel.frozen('own',279),true);assert.equal(feel.frozen('own',280),false);
+ assert.equal(feel.frozen('own',294),true);assert.equal(feel.frozen('own',295),false);
  assert.equal(feel.flash(7,259),1);assert.equal(feel.flash(7,260),0);assert.equal(feel.camera(.01),0);
  feel.event({type:'skillImpact',skillId:'earth_break',playerId:'own'},'own',p,300);
  assert.equal(feel.frozen('own',419),true);assert.equal(feel.frozen('own',420),false);

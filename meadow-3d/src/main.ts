@@ -352,5 +352,7 @@ titles=mountTitles({send:m=>net.send(m),onOpen:()=>clearInput(),notice,you:()=>n
 
 guide=mountTutorialGuide({characterId:selected.character.id,started:()=>started&&!paused,map:()=>activeMap,game:()=>game,autoPotionOn:()=>autoPotionUI.settings.hp.on||autoPotionUI.settings.mp.on,quests:()=>quests?.state,project:(x,z,y)=>renderer.screen(x,z,y)});
 if(pendingUI)qol.receive(pendingUI);
-(window as any).__FIELDS__={snapshot:()=>({renderer:'Canvas2D',mapId:activeMap,transitioning:switching,network:{connected:net.connected,tick:worldState.lastTick,you:net.you},started,paused,p:{...game.p},enemies:game.enemies.map(e=>({...e})),target:game.target,kills:game.kills,others:worldState.others,environment:renderer.snapshot()}),project:(x:number,z:number,y=0)=>renderer.screen(x,z,y)};
+(window as any).__FIELDS__={snapshot:()=>({renderer:'Canvas2D',mapId:activeMap,transitioning:switching,network:{connected:net.connected,tick:worldState.lastTick,you:net.you},started,paused,p:{...game.p},enemies:game.enemies.map(e=>({...e})),target:game.target,kills:game.kills,others:worldState.others,environment:renderer.snapshot()}),project:(x:number,z:number,y=0)=>renderer.screen(x,z,y),
+ // Dev only: replay a skill event at the local player to preview its VFX without the server.
+ ...(import.meta.env.DEV?{vfx:(e:any)=>renderer.event({x:game.p.x,z:game.p.z,dx:game.p.fx,dz:game.p.fz,playerId:net.you,...e})}:{})};
 

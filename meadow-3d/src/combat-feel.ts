@@ -22,7 +22,11 @@ export class CombatFeel {
   if(e.type!=='hit')return;
   this.flashes.set(e.id,now+60);
   if(!e.boss){const d=Math.hypot(e.x-player.x,e.z-player.z)||1;this.nudges.set(e.id,{until:now+140,dx:(e.x-player.x)/d*.075,dz:(e.z-player.z)/d*.075});}
-  if(e.playerId===you){const ms=now<this.earthContactUntil?120:e.crit?80:40;this.hold(you,ms,now);this.hold('monster:'+e.id,ms,now);}
+  if(e.playerId===you){
+   const ms=now<this.earthContactUntil?120:e.crit?95:e.skillId==='slash'?75:55;this.hold(you,ms,now);this.hold('monster:'+e.id,ms,now);
+   // Every own sword contact gets a small kick; crits and the Slash skill hit harder.
+   this.shake=Math.max(this.shake,e.crit?.16:e.skillId==='slash'?.11:.07);
+  }
   if(e.crit)this.shake=Math.max(this.shake,.075);
  }
  flash(id:number,now:number){if(!this.enabled)return 0;if(now<(this.flashes.get(id)||0))return 1;this.flashes.delete(id);return 0;}
