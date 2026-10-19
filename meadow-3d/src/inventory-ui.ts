@@ -33,7 +33,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	document.querySelector("#ui")!.append(button);
 	const panel = document.createElement("dialog");
 	panel.id = "inventory-window";
-	panel.innerHTML = `<button class="close" aria-label="ปิด">×</button><header class="g-head"><h2>กระเป๋า</h2><span class="g-sub inv-summary"></span></header><div class="inv-body"><aside class="inv-npc" hidden><div class="inv-npc-figure"></div><small class="inv-npc-place"></small><b class="inv-npc-name"></b><p class="inv-npc-say"></p></aside><div class="inv-left"><div class="inv-doll"></div><div class="inv-bonus"></div><div class="inv-weight-row"><span>น้ำหนัก</span><progress class="inv-weight" max="100"></progress><span class="inv-weight-text"></span></div></div><div class="inv-main"><nav class="inv-tabs"></nav><div class="inv-content"></div><div class="inv-foot"><label class="inv-auto g-switch"><input type="checkbox"><i></i>เก็บของอัตโนมัติ</label><span class="inv-count"></span></div><section class="inv-detail" aria-live="polite">เลือกไอเทมเพื่อดูข้อมูล</section></div><aside class="inv-cart" hidden></aside></div><p class="inv-status" role="status"></p>`;
+	panel.innerHTML = `<button class="close" aria-label="ปิด">×</button><header class="g-head"><h2>กระเป๋า</h2><span class="g-sub inv-summary"></span></header><div class="inv-body"><aside class="inv-npc" hidden><div class="inv-npc-figure"></div><small class="inv-npc-place"></small><b class="inv-npc-name"></b><p class="inv-npc-say"></p></aside><div class="inv-left"><div class="inv-doll"></div><div class="inv-bonus"></div><div class="inv-weight-row"><span>น้ำหนัก</span><progress class="inv-weight" max="100"></progress><span class="inv-weight-text"></span></div></div><div class="inv-main"><nav class="inv-tabs"></nav><div class="inv-content"></div><div class="inv-foot"><label class="inv-auto g-switch"><input type="checkbox"><i></i>เก็บของอัตโนมัติ</label><span class="inv-count"></span></div><section class="inv-detail" aria-live="polite">คลิกไอเทมเพื่อดูปุ่มคำสั่ง · ชี้เมาส์เพื่อดูรายละเอียด</section></div><aside class="inv-cart" hidden></aside></div><p class="inv-status" role="status"></p>`;
 	document.body.append(panel);
 	const summary = panel.querySelector<HTMLElement>(".inv-summary")!,
 		tabs = panel.querySelector("nav")!,
@@ -58,6 +58,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	let p: Player | undefined,
 		inv: Inventory | undefined,
 		filter = "ทั้งหมด",
+		search = "",
+		sortBy = "type",
+		quick = "",
 				shop: string | null = null,
 		storage = false,
 		storageTab = "ฝากของ",
@@ -129,7 +132,11 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		b.append(count);
         const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
         if(mode==='buy'||mode==='sell'){b.classList.add('shop-cell');const caption=document.createElement('span');caption.className='shop-caption';caption.textContent=t.nameTh;const price=document.createElement('small');price.textContent=`${mode==='buy'?data.economy.shops[shop!][t.id]:Math.floor(t.npcPrice*data.economy.sellMultiplier)} ทอง`;b.append(caption,price);}
-        if(incompatible){const note=document.createElement('small');note.textContent='อาชีพนี้ใช้ไม่ได้';b.append(note);}
+        if(mode==='bag'&&i.location==='bag'&&t.slot){
+            if(!wearable(t)){const no=document.createElement('span');no.className='inv-no';no.setAttribute('aria-hidden','true');b.append(no);b.setAttribute('aria-label',`${t.nameTh} · ใส่ไม่ได้ตอนนี้`);}
+            else if(betterThanWorn(t)){const up=document.createElement('span');up.className='inv-up';up.textContent='▲';b.append(up);b.setAttribute('aria-label',`${t.nameTh} · ดีกว่าที่ใส่`);}
+        }
+        else if(incompatible){const note=document.createElement('small');note.textContent='อาชีพนี้ใช้ไม่ได้';b.append(note);}
 		if (multi.has(i.id)) b.classList.add("inv-selected");
 		b.draggable = mode === "bag";
 		b.ondragstart = (e) => e.dataTransfer?.setData("text/plain", t.type==='consumable'?'item:'+t.id:i.id);
@@ -296,6 +303,27 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		for (const m of t.modifiers) if ("stat" in m && "value" in m && (m.kind === "flat" || m.kind === "stat")) out[m.stat] = (out[m.stat] || 0) + m.value;
 		return out;
 	}
+	const wearable = (t: (typeof templates)[number]) => !t.slot || (t.level <= playerLevel() && compatible(t));
+	const statSum = (t: (typeof templates)[number]) => Object.values(statsOf(t)).reduce((a, b) => a + b, 0);
+	/** Gear that would raise at least one stat over what sits in its slot now (and lose less than it gains). */
+	function betterThanWorn(t: (typeof templates)[number]) {
+		if (!t.slot || !inv || !wearable(t)) return false;
+		const worn = inv.items.find((x) => x.location === "equip" && x.slot === equipmentTarget(inv!, t.slot!));
+		if (!worn) return statSum(t) > 0;
+		const a = statsOf(t), b = statsOf(template(worn));
+		return Object.entries(a).some(([k, v]) => v > (b[k] || 0)) && statSum(t) >= statSum(template(worn));
+	}
+	const RARITY_RANK: Record<string, number> = { legendary: 0, epic: 1, rare: 2, fine: 3, common: 4 };
+	const TYPE_RANK: Record<string, number> = { weapon: 0, armour: 1, shield: 2, garment: 3, footgear: 4, accessory: 5, consumable: 6, refine: 7, card: 8, material: 9 };
+	const bagTools = document.createElement("div");
+	bagTools.className = "inv-bagtools";
+	bagTools.hidden = true;
+	bagTools.innerHTML = `<label class="inv-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="ค้นหาไอเทม" aria-label="ค้นหาไอเทม"></label><label class="inv-sort"><span>เรียง</span><select aria-label="เรียงไอเทม"><option value="type">ประเภท</option><option value="rarity">ความหายาก</option><option value="level">เลเวล</option><option value="name">ชื่อ</option></select></label><div class="inv-quick" role="group" aria-label="ตัวกรองด่วน"><button type="button" data-q="wear">ใส่ได้ตอนนี้</button><button type="button" data-q="better">ดีกว่าที่ใส่</button><button type="button" data-q="sell">ขายได้</button></div>`;
+	tabs.after(bagTools);
+	const searchBox = bagTools.querySelector<HTMLInputElement>("input")!, sortBox = bagTools.querySelector<HTMLSelectElement>("select")!;
+	searchBox.oninput = () => { search = searchBox.value.trim().toLowerCase(); draw(); };
+	sortBox.onchange = () => { sortBy = sortBox.value; draw(); };
+	bagTools.querySelectorAll<HTMLButtonElement>("[data-q]").forEach((b) => (b.onclick = () => { quick = quick === b.dataset.q ? "" : b.dataset.q!; draw(); }));
 	const TYPE_NAMES: Record<string, string> = { consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" };
 	const WEAPON_NAMES: Record<string, string> = { sword1h: "ดาบมือเดียว", dagger: "มีดสั้น", staff: "คทา", bow: "ธนู" };
 	const RARITY_NAMES: Record<string, string> = { common: "ธรรมดา", fine: "ดี", rare: "หายาก", epic: "มหากาพย์", legendary: "ตำนาน" };
@@ -454,7 +482,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const total: Record<string, number> = {};
 		for (const i of inv!.items.filter((i) => i.location === "equip"))
 			for (const [k, v] of Object.entries(statsOf(template(i)))) total[k] = (total[k] || 0) + v;
-		bonusBox.innerHTML = Object.entries(total).map(([k, v]) => `<span>${metricNames[k] || k}<b>+${v}</b></span>`).join("") || `<span>ยังไม่มีโบนัสจากอุปกรณ์</span>`;
+		bonusBox.innerHTML = Object.entries(total).map(([k, v]) => `<span>${metricNames[k] || k}<b>+${v}</b></span>`).join("") || `<span class="inv-bonus-none">ยังไม่มีโบนัสจากอุปกรณ์</span>`;
 	}
 	function ware(t: (typeof templates)[number], price: string, note: string, on: boolean, after: string) {
 		const row = document.createElement("button");
@@ -566,7 +594,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (!inv) return;
 		const mode = storage ? "storage" : shop ? "shop" : "bag";
 		panel.dataset.mode = mode;
-		summary.textContent = `◈ ${fmtGold(p?.gold ?? 0)} ทอง · ${inventorySlots(inv, data)} / ${data.economy.inventorySlots} ช่อง${storage ? ` · คลัง ${storageSlots(inv, data)} / ${data.economy.storageSlots}` : ""}`;
+		if (mode === "bag") {
+			const cw = (p as any)?.carryWeight || 0, wl = (p as any)?.weightLimit || 1, pct = Math.min(100, (cw / wl) * 100);
+			summary.innerHTML = `<span class="inv-pill gold">◈ <b>${fmtGold(p?.gold ?? 0)}</b> ทอง</span><span class="inv-pill">ช่อง <b>${inventorySlots(inv, data)} / ${data.economy.inventorySlots}</b></span><span class="inv-pill${pct >= 90 ? " heavy" : ""}">น้ำหนัก <i class="inv-wbar"><i style="width:${pct.toFixed(1)}%"></i></i><b>${Math.round(cw)} / ${Math.round(wl)}</b></span>`;
+		} else summary.textContent = `◈ ${fmtGold(p?.gold ?? 0)} ทอง · ${inventorySlots(inv, data)} / ${data.economy.inventorySlots} ช่อง${storage ? ` · คลัง ${storageSlots(inv, data)} / ${data.economy.storageSlots}` : ""}`;
 		const weight = panel.querySelector<HTMLProgressElement>("progress")!;
 		weight.value = (((p as any)?.carryWeight || 0) / ((p as any)?.weightLimit || 1)) * 100;
 		panel.querySelector(".inv-weight-text")!.textContent = `${Math.round((p as any)?.carryWeight || 0)} / ${Math.round((p as any)?.weightLimit || 0)}`;
@@ -589,6 +620,11 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		for (const name of storage ? ["ฝากของ", "ในคลัง"] : shop ? ["ซื้อ", "ขาย"] : ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ"]) {
 			const b = document.createElement("button");
 			b.textContent = name;
+			if (mode === "bag") {
+				const bag = inv.items.filter((i) => i.location === "bag").map(template);
+				const n = name === "อุปกรณ์" ? bag.filter((t) => t.slot).length : name === "ของใช้" ? bag.filter((t) => t.type === "consumable").length : name === "วัตถุดิบ" ? bag.filter((t) => ["material", "refine", "card"].includes(t.type)).length : bag.length;
+				const c = document.createElement("i"); c.textContent = String(n); b.append(c);
+			}
 			b.classList.toggle("active", name === (storage ? storageTab : shop ? shopTab : filter));
 			b.onclick = () => {
 				if (storage) storageTab = name;
@@ -596,12 +632,14 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				else filter = name;
 				selected = null;
 				multi.clear();
-				detail.textContent = "เลือกไอเทมเพื่อดูข้อมูล";
+				detail.textContent = "คลิกไอเทมเพื่อดูปุ่มคำสั่ง · ชี้เมาส์เพื่อดูรายละเอียด";
 				draw();
 			};
 			tabs.append(b);
 		}
 		controls.hidden=mode!=='shop'||shopTab!=='ซื้อ';
+		bagTools.hidden = mode !== "bag";
+		if (mode === "bag") { if (document.activeElement !== searchBox) searchBox.value = search; sortBox.value = sortBy; bagTools.querySelectorAll<HTMLButtonElement>("[data-q]").forEach((b) => b.setAttribute("aria-pressed", String(quick === b.dataset.q))); }
   rangeSelect.value=shopRange;categorySelect.value=shopCategory;classCheck.checked=shopOwnClass;
   if (mode === "bag") drawDoll();
 		if (storage) {
@@ -669,22 +707,34 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		grid.className = "inv-grid";
 		content.append(grid);
 		let shown = 0;
-		for (const i of inv.items.filter((i) => i.location === "bag")) {
+		const ordered = inv.items.filter((i) => i.location === "bag").sort((a, b) => {
+			const ta = template(a), tb = template(b);
+			if (sortBy === "rarity") return (RARITY_RANK[ta.rarity] ?? 9) - (RARITY_RANK[tb.rarity] ?? 9) || ta.nameTh.localeCompare(tb.nameTh, "th");
+			if (sortBy === "level") return tb.level - ta.level || ta.nameTh.localeCompare(tb.nameTh, "th");
+			if (sortBy === "name") return ta.nameTh.localeCompare(tb.nameTh, "th");
+			return (TYPE_RANK[ta.type] ?? 9) - (TYPE_RANK[tb.type] ?? 9) || (RARITY_RANK[ta.rarity] ?? 9) - (RARITY_RANK[tb.rarity] ?? 9);
+		});
+		for (const i of ordered) {
 			const t = template(i);
 			if (filter === "อุปกรณ์" && !t.slot) continue;
 			if (filter === "ของใช้" && t.type !== "consumable") continue;
 			if (filter === "วัตถุดิบ" && !["material", "refine", "card"].includes(t.type)) continue;
+			if (search && !t.nameTh.toLowerCase().includes(search)) continue;
+			if (quick === "wear" && !(t.slot && wearable(t))) continue;
+			if (quick === "better" && !betterThanWorn(t)) continue;
+			if (quick === "sell" && i.bound) continue;
 			for (let left = i.qty; left > 0; left -= t.maxStack) {
 				grid.append(cell({ ...i, qty: Math.min(left, t.maxStack) }, "bag"));
 				shown++;
 			}
 		}
-		for (let k = shown; k < Math.max(32, Math.ceil(shown / 8) * 8); k++) {
+		if (!shown && (search || quick)) { const none = document.createElement("p"); none.className = "inv-empty inv-nomatch"; none.textContent = "ไม่มีไอเทมที่ตรงกับตัวกรอง"; grid.append(none); }
+		for (let k = shown; k < Math.max(40, Math.ceil(shown / 10) * 10); k++) {
 			const empty = document.createElement("span");
 			empty.className = "inv-cell-empty";
 			grid.append(empty);
 		}
-		countBox.textContent = `ช่อง ${inventorySlots(inv, data)} / ${data.economy.inventorySlots}`;
+		countBox.innerHTML = `<span><em class="up">▲</em> ดีกว่าที่ใส่</span><span><em class="no">✕</em> ใส่ไม่ได้ตอนนี้</span><span>ดับเบิลคลิก ใส่/ใช้ · คลิกขวา เมนู</span>`;
 	}
 		function open(nextShop: string | null = null) {
 		onOpen();
@@ -753,7 +803,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				if (!shop && !storage && selected) {
 					const current = inv?.items.find(i => i.id === selected);
 					if (current) showDetail(current);
-					else { selected = null; detail.textContent = 'เลือกไอเทมเพื่อดูข้อมูล'; }
+					else { selected = null; detail.textContent = 'คลิกไอเทมเพื่อดูปุ่มคำสั่ง · ชี้เมาส์เพื่อดูรายละเอียด'; }
 				}
 			}
 		},

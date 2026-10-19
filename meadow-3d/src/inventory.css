@@ -248,3 +248,82 @@
 .inv-tip .tip-foot{margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(243,239,230,.55)}
 .inv-tip .tip-hint{display:inline-block;margin:6px 0 0;padding:4px 10px;border-radius:8px;background:rgba(12,18,18,.92);border:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(243,239,230,.7)}
 @media(hover:none){.inv-tip{display:none}}
+
+/* ---------- Bag layout (ui-mockup/bag.html). Scoped to bag mode so shops and storage keep their layout. ---------- */
+body #inventory-window[data-mode=bag]{width:min(1120px,96vw)}
+body #inventory-window[data-mode=bag] .g-head{display:flex;align-items:center;gap:8px;padding-right:44px}
+body #inventory-window[data-mode=bag] .inv-summary{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+body #inventory-window .inv-pill{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 13px;border-radius:16px;border:1px solid var(--g-line);
+	background:rgba(255,255,255,.035);font-size:12.5px!important;color:var(--g-muted)}
+body #inventory-window .inv-pill b{color:var(--g-text);font-variant-numeric:tabular-nums}
+body #inventory-window .inv-pill.gold b{color:#fff1c9}
+body #inventory-window .inv-wbar{display:block;width:86px;height:5px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+body #inventory-window .inv-wbar i{display:block;height:100%;background:linear-gradient(90deg,#7fb07a,#8fd18a)}
+body #inventory-window .inv-pill.heavy .inv-wbar i{background:linear-gradient(90deg,#c9655b,#ef8f86)}
+body #inventory-window[data-mode=bag] .inv-weight-row{display:none}
+body #inventory-window[data-mode=bag] .inv-body{grid-template-columns:380px minmax(0,1fr);gap:20px}
+
+/* Equipment: compact icon slots in two columns, a large hero between them */
+body #inventory-window[data-mode=bag] .inv-paperdoll{position:relative;display:grid;grid-template-columns:64px minmax(0,1fr) 64px;gap:0 8px;height:auto;min-height:0;
+	padding:14px 12px 54px;border-radius:14px;border:1px solid var(--g-line);
+	background:radial-gradient(40% 46% at 50% 56%,rgba(230,201,143,.15),transparent 72%),linear-gradient(#152220,#0e1716)}
+body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-col{display:flex;flex-direction:column;gap:10px}
+body #inventory-window[data-mode=bag] .inv-doll-slot{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0;border:0;background:none;min-height:0}
+body #inventory-window[data-mode=bag] .inv-doll-slot .inv-cell,body #inventory-window[data-mode=bag] .inv-doll-slot .inv-doll-empty{width:56px;height:56px;border-radius:12px}
+body #inventory-window[data-mode=bag] .inv-doll-slot .inv-cell .item-icon{width:46px;height:46px}
+body #inventory-window[data-mode=bag] .inv-doll-slot>span:last-child{margin:0;font-size:11px!important;white-space:nowrap}
+body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-figure{margin:0;min-height:300px;background-size:760% auto;background-position:3.2% 60%;position:relative}
+body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-figure::after{content:"";position:absolute;left:50%;bottom:34px;width:130px;height:24px;margin-left:-65px;border-radius:50%;z-index:-1;
+	border:1px solid rgba(230,201,143,.4);box-shadow:0 0 18px rgba(230,201,143,.3),inset 0 0 12px rgba(230,201,143,.2)}
+body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-who{bottom:12px}
+body #inventory-window[data-mode=bag] .inv-bonus{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin-top:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--g-line);background:rgba(255,255,255,.025)}
+body #inventory-window[data-mode=bag] .inv-bonus span{display:flex;justify-content:space-between;gap:8px;padding:0;border:0;border-radius:0;background:none;font-size:12.5px!important}
+body #inventory-window[data-mode=bag] .inv-bonus span b{color:var(--g-text);font-variant-numeric:tabular-nums}
+body #inventory-window[data-mode=bag] .inv-bonus .inv-bonus-none{grid-column:1/-1;justify-content:center}
+
+/* Items: tabs with counts, search / sort / quick filters, 10-column grid */
+body #inventory-window[data-mode=bag] .inv-main{display:flex;flex-direction:column;min-width:0}
+body #inventory-window[data-mode=bag] .inv-tabs button i{font-style:normal;margin-left:6px;font-size:11px;opacity:.6;font-variant-numeric:tabular-nums}
+body #inventory-window .inv-bagtools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0 0}
+body #inventory-window .inv-bagtools[hidden]{display:none}
+body #inventory-window .inv-search{display:flex;align-items:center;gap:6px;flex:1 1 160px;max-width:220px;height:34px;padding:0 10px;border-radius:10px;border:1px solid var(--g-line);background:rgba(0,0,0,.22);color:var(--g-faint)}
+body #inventory-window .inv-search input{flex:1;min-width:0;height:100%!important;min-height:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--g-text);font:inherit;font-size:12.5px;outline:none}
+body #inventory-window .inv-search:focus-within{border-color:rgba(230,201,143,.55)}
+body #inventory-window .inv-sort{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--g-faint)}
+body #inventory-window .inv-sort select{height:34px!important;min-height:0!important;padding:0 8px;border-radius:10px;border:1px solid var(--g-line);background:rgba(0,0,0,.22);color:var(--g-text);font:inherit;font-size:12.5px}
+body #inventory-window .inv-quick{display:flex;gap:6px;margin-left:auto}
+body #inventory-window .inv-quick button{height:28px!important;min-height:0!important;padding:0 11px!important;line-height:1;border-radius:14px;border:1px solid var(--g-line);background:none;color:var(--g-faint);font-size:11.5px;cursor:pointer}
+body #inventory-window .inv-quick button[aria-pressed=true]{border-color:rgba(143,209,138,.55);background:rgba(143,209,138,.1);color:#8fd18a}
+body #inventory-window[data-mode=bag] .inv-content{flex:1;min-height:0;margin-top:10px}
+body #inventory-window[data-mode=bag] .inv-grid{grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+body #inventory-window[data-mode=bag] .inv-grid .inv-cell,body #inventory-window[data-mode=bag] .inv-grid .inv-cell-empty{min-width:0;aspect-ratio:1;border-radius:10px}
+body #inventory-window[data-mode=bag] .inv-nomatch{grid-column:1/-1;text-align:center}
+body #inventory-window .inv-cell{position:relative}
+body #inventory-window .inv-cell .inv-up{position:absolute;left:4px;top:2px;font-size:10px;font-weight:800;color:#8fd18a;text-shadow:0 1px 2px #000}
+body #inventory-window .inv-cell .inv-no{position:absolute;inset:0;border-radius:inherit;background:rgba(120,20,20,.3);pointer-events:none}
+body #inventory-window .inv-cell .inv-no::after{content:"\2715";position:absolute;left:5px;top:2px;font-size:10px;font-weight:800;color:#ef8f86}
+
+/* Selected item: a compact strip with its actions, above the footer */
+body #inventory-window[data-mode=bag] .inv-detail{order:2;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 14px;margin-top:10px;padding:10px 14px;
+	border-radius:12px;border:1px solid rgba(230,201,143,.28);background:rgba(230,201,143,.05);font-size:12px;min-height:56px}
+body #inventory-window[data-mode=bag] .inv-detail>*{grid-column:1}
+body #inventory-window[data-mode=bag] .inv-detail h3{margin:0}
+body #inventory-window[data-mode=bag] .inv-detail p{margin:0;white-space:normal}
+body #inventory-window[data-mode=bag] .inv-detail .inv-actions{grid-column:2;grid-row:1/span 6;margin:0;flex-wrap:nowrap}
+body #inventory-window[data-mode=bag] .inv-foot{order:3;margin-top:10px;padding-top:10px;border-top:1px solid var(--g-line)}
+body #inventory-window[data-mode=bag] .inv-count{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px!important;color:var(--g-faint)}
+body #inventory-window .inv-count em{font-style:normal;font-weight:800}
+body #inventory-window .inv-count em.up{color:#8fd18a}
+body #inventory-window .inv-count em.no{color:#ef8f86}
+@media(max-width:900px){
+	body #inventory-window[data-mode=bag] .inv-body{grid-template-columns:1fr}
+	body #inventory-window[data-mode=bag] .inv-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+	body #inventory-window[data-mode=bag] .g-head{flex-wrap:wrap}
+	body #inventory-window[data-mode=bag] .inv-summary{order:3;width:100%;margin-left:0;gap:6px}
+	body #inventory-window .inv-pill{height:28px;padding:0 10px;font-size:11.5px!important}
+	body #inventory-window .inv-wbar{width:48px}
+	body #inventory-window[data-mode=bag] .inv-count{display:none}
+	body #inventory-window .inv-quick{margin-left:0}
+	body #inventory-window[data-mode=bag] .inv-detail{grid-template-columns:1fr}
+	body #inventory-window[data-mode=bag] .inv-detail .inv-actions{grid-column:1;grid-row:auto;flex-wrap:wrap}
+}
