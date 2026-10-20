@@ -1,11 +1,11 @@
-import {resolveSkill,loadGameData} from '@thainative/shared';
+import {resolveSkill,loadGameData} from '@the-beginning-online/shared';
 import skillsData from "../../shared/data/skills.json";
 import jobsData from "../../shared/data/jobs.json";
-import type { HotbarSlot, JobProgress } from "@thainative/shared";
+import type { HotbarSlot, JobProgress } from "@the-beginning-online/shared";
 import "./skills.css";
 import "./skill-art.css";
 import { itemIconCell } from "./item-icon";
-import { BINDABLE_KEY } from "@thainative/shared";
+import { BINDABLE_KEY } from "@the-beginning-online/shared";
 import { takenByActions } from "./keys";
 const skills = skillsData.skills as any[];
 const itemTemplates=loadGameData().items.items;

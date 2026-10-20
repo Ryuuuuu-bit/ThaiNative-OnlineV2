@@ -1,4 +1,4 @@
-import type { GameData, Modifier } from "@thainative/shared";
+import type { GameData, Modifier } from "@the-beginning-online/shared";
 
 const STAT: Record<string, string> = { str: "STR", agi: "AGI", vit: "VIT", int: "INT", dex: "DEX", luk: "LUK" };
 const DERIVED: Record<string, string> = { maxHp: "HP สูงสุด", maxSp: "SP สูงสุด", atk: "พลังโจมตี", matk: "พลังเวท", hardDef: "เกราะ", hardMdef: "เกราะเวท", hit: "ความแม่น", flee: "หลบหลีก", crit: "คริติคอล" };

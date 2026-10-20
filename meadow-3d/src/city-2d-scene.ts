@@ -1,4 +1,4 @@
-import { CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@thainative/shared/maps';
+import { CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@the-beginning-online/shared/maps';
 import {bake,type Sprite} from './city-2d-art';
 import {CITY_HOUSES,CITY_ART_SOLIDS,DECOR,DISTRICTS,TOUR_STOPS,CITY2D_FOUNTAIN as CITY_FOUNTAIN,GARDEN_TREES,districtAt,city2dWalkable,NEW_BUILDINGS} from './city-2d-layout';
 import {TOWN_NPCS,WAYPOINTS,CITY_EXITS,nearbyWaypoint,nearbyExit,waypointArrival} from './city-2d-locations';

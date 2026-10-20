@@ -6,7 +6,7 @@ export async function loadUIFonts() {
  // Canvas textures keep their first paint; load both scripts before measuring names.
  // A failed font download falls back to the browser instead of preventing play.
  await Promise.allSettled([
-  document.fonts.load('600 22px Inter', 'ThaiNative 0123456789'),
+  document.fonts.load('600 22px Inter', 'The Beginning Online 0123456789'),
   document.fonts.load('600 22px "Noto Sans Thai"', 'ผู้กล้าแห่งนคร'),
  ]);
 }

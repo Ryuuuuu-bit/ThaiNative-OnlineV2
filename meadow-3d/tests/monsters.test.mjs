@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {createGame,spawn,step,action,revive,KING_PATTERN} from '@thainative/shared';
+import {createGame,spawn,step,action,revive,KING_PATTERN} from '@the-beginning-online/shared';
 import {monsterFrame,monsterCell,monsterOpacity,VARIANT_HUE} from '../src/monster-animation.ts';
 const tick=(g,seconds)=>{for(let t=0;t<seconds;t+=1/120)step(g,1/120);};
 function encounter(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=0;g.p.invulnerable=100;const e=spawn(g,0,2,true);return{g,e};}

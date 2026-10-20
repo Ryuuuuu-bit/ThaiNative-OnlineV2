@@ -1,5 +1,5 @@
-import { huntList, loadGameData } from "@thainative/shared";
-import { FIELD_BOSS, GATE_LINKS, MAP_INFO, type MapId } from "@thainative/shared/maps";
+import { huntList, loadGameData } from "@the-beginning-online/shared";
+import { FIELD_BOSS, GATE_LINKS, MAP_INFO, type MapId } from "@the-beginning-online/shared/maps";
 import "./world-map.css";
 
 const data = loadGameData();

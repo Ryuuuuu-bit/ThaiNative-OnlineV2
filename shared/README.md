@@ -17,10 +17,10 @@ The rule for future balancing is **change JSON → run sim:balance → commit bo
 
 ## Import and build contract
 
-The root npm workspace links `@thainative/shared`. `npm run build` builds it before the existing server/web builds. TypeScript emits JS, declarations and copies of static JSON into `shared/dist/`; dist remains ignored. No alias, bundler plugin or runtime TypeScript loader is needed.
+The root npm workspace links `@the-beginning-online/shared`. `npm run build` builds it before the existing server/web builds. TypeScript emits JS, declarations and copies of static JSON into `shared/dist/`; dist remains ignored. No alias, bundler plugin or runtime TypeScript loader is needed.
 
 ```ts
-import {loadGameData, deriveStats, computeDamage, seededRng} from '@thainative/shared';
+import {loadGameData, deriveStats, computeDamage, seededRng} from '@the-beginning-online/shared';
 const data=loadGameData();
 const aerin=deriveStats(data.stats.defaultBuild,data);
 ```

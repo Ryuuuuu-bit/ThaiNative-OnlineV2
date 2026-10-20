@@ -1,5 +1,5 @@
-import {createGame,loadGameData} from '@thainative/shared';
-import type {MapId} from '@thainative/shared/maps';
+import {createGame,loadGameData} from '@the-beginning-online/shared';
+import type {MapId} from '@the-beginning-online/shared/maps';
 import {GameCanvas2D} from './game-2d-renderer';
 import {unproject2D} from './game-2d-projection';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;

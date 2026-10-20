@@ -4,7 +4,7 @@ import {once} from 'node:events';
 import {PostgresStore} from '../store/postgres.js';
 import {MemoryStore} from '../store/memory.js';
 import {createApp} from '../app.js';
-import {createGame,spawn,step,revive,loadGameData,inventoryWeight,inventorySlots,deriveStats,rollDrops} from '@thainative/shared';
+import {createGame,spawn,step,revive,loadGameData,inventoryWeight,inventorySlots,deriveStats,rollDrops} from '@the-beginning-online/shared';
 
 test('stability 2: pool errors are handled with bounded connect and idle timeouts',async()=>{
  const store=new PostgresStore('postgresql://localhost:1/test');assert.equal(store.pool.options.connectionTimeoutMillis,5000);assert.equal(store.pool.options.idleTimeoutMillis,30000);assert.doesNotThrow(()=>store.pool.emit('error',Error('idle disconnect')));await store.close();

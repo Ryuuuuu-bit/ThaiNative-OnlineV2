@@ -1,4 +1,4 @@
-import { CITY_SPAWN } from '@thainative/shared/maps';
+import { CITY_SPAWN } from '@the-beginning-online/shared/maps';
 import {city2dWalkable as cityWalkable} from './city-2d-layout.ts';
 
 // A local exploration simulation. No network, inventory, or save mutations.

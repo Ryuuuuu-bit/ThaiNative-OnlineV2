@@ -1,5 +1,5 @@
 import {DEFAULT_ATMOSPHERE,atmosphereSettings,sunPosition,breeze,pondOutline,leafPose,type AtmosphereSettings} from './atmosphere-model';
-import {LAYOUTS,type MapId,type Ellipse} from '@thainative/shared/maps';
+import {LAYOUTS,type MapId,type Ellipse} from '@the-beginning-online/shared/maps';
 export type AtmosphereTree={x:number;z:number;h:number;w:number};
 type Project=(x:number,z:number,h?:number)=>{x:number;y:number};
 /** Decorative Canvas2D layers. No server state, collision footprints or extra textures downloaded. */

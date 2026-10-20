@@ -1,7 +1,7 @@
 import {chunkInstances,artQuality,artStats} from './world-art.ts';
 import * as T from 'three';
 import type { PaintedLoader } from './assets';
-import { FOREST, FOREST_TREES, FOREST_ARENA, GATES, LAYOUTS } from '@thainative/shared/maps';
+import { FOREST, FOREST_TREES, FOREST_ARENA, GATES, LAYOUTS } from '@the-beginning-online/shared/maps';
 const L=LAYOUTS.forest,W=FOREST.halfX*2,D=FOREST.halfZ*2,K=W/40;
 import { walkable } from './sim';
 import { uprightCard, TALL_PROP } from './upright-depth.ts';

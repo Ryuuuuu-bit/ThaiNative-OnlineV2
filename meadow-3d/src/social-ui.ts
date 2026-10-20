@@ -1,5 +1,5 @@
 import {mountParty,type PartyState} from './party-ui';
-import {titleDefinition} from '@thainative/shared';
+import {titleDefinition} from '@the-beginning-online/shared';
 import './social.css';
 
 type Send = (message: unknown) => void;

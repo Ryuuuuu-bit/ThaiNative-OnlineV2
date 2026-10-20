@@ -6,7 +6,7 @@ import { randomUUID } from "node:crypto";
 import { createApp } from "../app.js";
 import { MemoryStore } from "../store/memory.js";
 import { mountRealtime } from "../realtime/index.js";
-import { GATE_CAPTAIN, CITY_BUILDINGS, expShares } from "@thainative/shared";
+import { GATE_CAPTAIN, CITY_BUILDINGS, expShares } from "@the-beginning-online/shared";
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 async function fixture(t: any, sharedRooms = false) {
 	const store = new MemoryStore(),

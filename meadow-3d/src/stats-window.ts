@@ -6,7 +6,7 @@ import {
 	type CharacterInput,
 	type Stat,
 	type Combatant,
-} from "@thainative/shared";
+} from "@the-beginning-online/shared";
 const data = loadGameData(),
 	names: Record<Stat, string> = {
 		str: "พละกำลัง",

@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import type { WebSocket } from "ws";
-import { emptyOffer, offerProblem, TRADE_KEEP_RANGE, TRADE_START_RANGE, type GameData, type Player, type TradeOffer } from "@thainative/shared";
+import { emptyOffer, offerProblem, TRADE_KEEP_RANGE, TRADE_START_RANGE, type GameData, type Player, type TradeOffer } from "@the-beginning-online/shared";
 import type { Store } from "../store/types.js";
 
 /** The parts of a realtime peer and room that trading needs. */

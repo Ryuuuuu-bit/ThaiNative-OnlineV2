@@ -1,6 +1,6 @@
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
-import {titleDefinition} from '@thainative/shared';
-import {LAYOUTS,FIELD_BOSS,GATES,MAP_INFO,travelDestination,type MapId} from '@thainative/shared/maps';
+import {titleDefinition} from '@the-beginning-online/shared';
+import {LAYOUTS,FIELD_BOSS,GATES,MAP_INFO,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import {CanvasAssets} from './game-2d-assets';
 import {loadCity2DScene} from './city-2d-scene';

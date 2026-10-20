@@ -1,4 +1,4 @@
-import { loadGameData, questStatus, objectiveProgress, questsFor, emptyQuests, type QuestState, type QuestGiver, type Inventory } from '@thainative/shared';
+import { loadGameData, questStatus, objectiveProgress, questsFor, emptyQuests, type QuestState, type QuestGiver, type Inventory } from '@the-beginning-online/shared';
 import './quest.css';
 
 const data = loadGameData();

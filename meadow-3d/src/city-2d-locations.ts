@@ -1,4 +1,4 @@
-import {CITY_BUILDINGS,GATE_CAPTAIN} from '@thainative/shared/maps';
+import {CITY_BUILDINGS,GATE_CAPTAIN} from '@the-beginning-online/shared/maps';
 import {CITY2D_HEALER} from './city-2d-layout.ts';
 
 export const TOWN_NPCS = [

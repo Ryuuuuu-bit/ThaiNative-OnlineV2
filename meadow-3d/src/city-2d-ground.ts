@@ -1,4 +1,4 @@
-import {CITY_BUILDINGS,CITY_PLANTERS} from '@thainative/shared/maps';
+import {CITY_BUILDINGS,CITY_PLANTERS} from '@the-beginning-online/shared/maps';
 import {CITY_HOUSES,CITY2D_FOUNTAIN as FOUNTAIN,NEW_BUILDINGS,GARDEN_TREES} from './city-2d-layout';
 
 const EXTENT=106,HALF=53,SIZE=2048,MASK_SIZE=768;

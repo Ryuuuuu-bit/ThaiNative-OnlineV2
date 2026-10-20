@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {CITY_BUILDINGS,CITY_HOUSES as ORIGINAL_HOUSES,CITY_BENCHES,CITY_STALLS,CITY_PLANTERS} from '@thainative/shared/maps';
+import {CITY_BUILDINGS,CITY_HOUSES as ORIGINAL_HOUSES,CITY_BENCHES,CITY_STALLS,CITY_PLANTERS} from '@the-beginning-online/shared/maps';
 import {CITY_HOUSES,CITY_ART_SOLIDS,DECOR,GARDEN_TREES,CITY2D_FOUNTAIN,city2dWalkable,route} from '../src/city-2d-layout.ts';
 
 const boxes=[

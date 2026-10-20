@@ -1,4 +1,4 @@
-import { DEFAULT_AUTO_POTION, type AutoPotion } from '@thainative/shared';
+import { DEFAULT_AUTO_POTION, type AutoPotion } from '@the-beginning-online/shared';
 
 /** Auto-potion rule (drink HP/MP potions below a threshold): state and server sync. Edited in ตั้งค่า AUTO. */
 export function mountAutoPotion(send: (message: any) => void) {

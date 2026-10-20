@@ -12,7 +12,7 @@ import {
 	type Inventory,
 	type OwnedItem,
 	type Player,
-} from "@thainative/shared";
+} from "@the-beginning-online/shared";
 import "./inventory.css";
 import { itemIconCell } from "./item-icon";
 import { cardEffects } from "./card-text";

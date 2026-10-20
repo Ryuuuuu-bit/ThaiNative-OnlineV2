@@ -8,7 +8,7 @@ import {
 	type LedgerEntry,
 	type TradeOffer,
 	applyTrade,
-} from "@thainative/shared";
+} from "@the-beginning-online/shared";
 import { randomUUID } from "node:crypto";
 import type { Character, Progress } from './types.js';
 export type QuestProgress = Pick<Progress, 'level' | 'xp' | 'jobLevel' | 'jobExp' | 'skillPoints' | 'statPoints' | 'baseStats' | 'autoAllocCursor' | 'quests'>;

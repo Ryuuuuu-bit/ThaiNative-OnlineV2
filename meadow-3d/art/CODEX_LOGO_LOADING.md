@@ -6,24 +6,24 @@ Art direction (unchanged): ink-and-gouache storybook, thin ink lines, soft water
 
 ## 1. Logo (built-in imagegen)
 
-Game name: **ThaiNative Online**, Thai line **ไทยเนทีฟ ออนไลน์**.
+Game name: **The Beginning Online**, Thai line **ไทยเนทีฟ ออนไลน์**.
 
 Generate **three** logo directions as transparent PNGs (2048×1024 canvas, logo centred with margin), then pick the best for the site and keep the other two for review:
 
-- **A · Painted crest** — the word "ThaiNative" in an elegant hand-inked serif with a gilded edge, a small kranok (กนก) flame flourish curling from the T, a thin ivory banner underneath with "ONLINE" in spaced small caps, a tiny leaf-sprout jelly peeking over the banner end (our original วุ้นจิ๋ว, not any existing mascot).
+- **A · Painted crest** — the word "The Beginning Online" in an elegant hand-inked serif with a gilded edge, a small kranok (กนก) flame flourish curling from the T, a thin ivory banner underneath with "ONLINE" in spaced small caps, a tiny leaf-sprout jelly peeking over the banner end (our original วุ้นจิ๋ว, not any existing mascot).
 - **B · Temple-gate emblem** — a pointed Thai arch (ซุ้มประตู) silhouette in antique gold line-work framing a crossed sword and lotus, the wordmark below it.
-- **C · Calligraphic** — brush-calligraphy "ThaiNative" with gold leaf flecks, a fine lotus-petal underline, "ONLINE" small.
+- **C · Calligraphic** — brush-calligraphy "The Beginning Online" with gold leaf flecks, a fine lotus-petal underline, "ONLINE" small.
 
 Rules: original art only (no real temple logos, no other game's logo style copied), legible at 160 px wide, no photo textures, no drop shadows baked in, true transparent background. The Thai line ไทยเนทีฟ ออนไลน์ is set as **live text** in HTML (Noto Sans Thai) under the logo, not baked into the image, because image generators misspell Thai.
 
 Pack (`tools/pack-logo.py` or a Node script):
 - `public/assets/brand/logo-v1.png` (1200 px wide, trimmed) + `logo-v1@2x.png` (2400) + `logo-v1-512.webp`
 - `logo-mark-v1.png` — the emblem part alone, square 512, for favicon/app icon
-- `favicon.ico` (16/32/48), `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, a minimal `site.webmanifest` (name, short_name "ThaiNative", theme `#182b28`, background `#182b28`)
-- `og-image-v1.jpg` 1200×630: key visual + logo, for link previews; add `og:` / `twitter:` meta tags to all pages
+- `favicon.ico` (16/32/48), `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, a minimal `site.webmanifest` (name, short_name "The Beginning Online", theme `#182b28`, background `#182b28`)
+- `og-image-v2.jpg` 1200×630: key visual + logo, for link previews; add `og:` / `twitter:` meta tags to all pages
 - sources and exact prompts under `art/painted-brand/` (+ `PROMPTS.md`), the two unused directions saved as `logo-option-b.png` / `logo-option-c.png` for the owner to compare.
 
-Placement: replace the text "THAINATIVE" header brand on portal/login/characters with the logo (height 40 px desktop / 32 px mobile, links to `/`); the portal hero uses the large logo instead of the "JELLY MEADOW" text title (keep JELLY MEADOW as the map name line below it). In-game HUD brand corner uses the mark + small "ThaiNative" text.
+Placement: replace the text "THE BEGINNING ONLINE" header brand on portal/login/characters with the logo (height 40 px desktop / 32 px mobile, links to `/`); the portal hero uses the large logo instead of the "JELLY MEADOW" text title (keep JELLY MEADOW as the map name line below it). In-game HUD brand corner uses the mark + small "The Beginning Online" text.
 
 ## 2. Loading screen (`play.html`)
 

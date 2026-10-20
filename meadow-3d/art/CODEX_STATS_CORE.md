@@ -6,7 +6,7 @@ Goal: one shared, pure, data-driven combat-stats core that both the client and (
 
 ## 1. Package layout
 
-New workspace package `shared/` (`"name": "@thainative/shared"`, `"type": "module"`, TypeScript, built to `shared/dist` with `tsc`, consumed via relative import or npm workspaces — pick the simpler one that works for both Vite and the server build, and document it).
+New workspace package `shared/` (`"name": "@the-beginning-online/shared"`, `"type": "module"`, TypeScript, built to `shared/dist` with `tsc`, consumed via relative import or npm workspaces — pick the simpler one that works for both Vite and the server build, and document it).
 
 ```
 shared/

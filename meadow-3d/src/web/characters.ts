@@ -1,5 +1,5 @@
 import jobsData from "../../../shared/data/jobs.json";
-import { characterNameError } from '@thainative/shared';
+import { characterNameError } from '@the-beginning-online/shared';
 import skillsData from "../../../shared/data/skills.json";
 import statsData from "../../../shared/data/stats.json";
 import{assetJSON}from'../asset-request';

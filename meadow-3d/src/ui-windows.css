@@ -342,7 +342,7 @@ dialog .close:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line
 [data-icon=auto]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1'/%3E%3C/svg%3E")}
 [data-icon=art]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='m21 15-5-5L5 21'/%3E%3C/svg%3E")}
 
-/* ---------- Skill book as a tree (ThaiNativeOnline layout): job tabs · tree · card · bar ---------- */
+/* ---------- Skill book as a tree (The Beginning Online layout): job tabs · tree · card · bar ---------- */
 #skills-window[open]{width:min(1080px,96vw);height:min(720px,92dvh)}
 #skills-window #skills-tree{display:flex!important;flex-direction:column;gap:10px;flex:1;min-height:0}
 .sk-tabs{flex:none;display:flex;gap:6px}

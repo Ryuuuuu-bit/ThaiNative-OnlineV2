@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createCityExplorer,project,unproject} from '../src/city-2d-sim.ts';
-import {cityWalkable,CITY_SPAWN} from '@thainative/shared/maps';
+import {cityWalkable,CITY_SPAWN} from '@the-beginning-online/shared/maps';
 
 test('screen controls project back in the intended direction',()=>{
   for(const [x,z] of [[20,-10],[-32,5],[0,44]]){const p=project(x,z),q=unproject(p.x,p.y);assert.ok(Math.hypot(q.x-x,q.z-z)<1e-8);}

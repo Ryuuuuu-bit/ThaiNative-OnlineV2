@@ -1,5 +1,5 @@
-import {createGame,loadGameData,setAuto,step,moveTo,DEFAULT_AUTO} from '@thainative/shared';
-import {LAYOUTS,canyonWalkable} from '@thainative/shared/maps';
+import {createGame,loadGameData,setAuto,step,moveTo,DEFAULT_AUTO} from '@the-beginning-online/shared';
+import {LAYOUTS,canyonWalkable} from '@the-beginning-online/shared/maps';
 import {gridPath} from '../src/hud-path.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';

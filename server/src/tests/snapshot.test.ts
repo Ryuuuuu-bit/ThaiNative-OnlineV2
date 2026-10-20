@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createGame, addPlayer, loadGameData } from '@thainative/shared';
+import { createGame, addPlayer, loadGameData } from '@the-beginning-online/shared';
 import { snapshotFrame, snapshotParts, VIEW_RANGE, VIEW_MAX_PLAYERS } from '../realtime/index.js';
 const data = loadGameData();
 function room(n: number, spread: (i: number) => [number, number]) {

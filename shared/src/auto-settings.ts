@@ -4,7 +4,7 @@ import { FIELD_BOSS, LAYOUTS, type MapId } from "./game/maps.js";
 
 /**
  * AUTO (auto-hunt) settings, chosen in the ตั้งค่า AUTO window and run by the server sim (autoStep).
- * Ported from ThaiNativeOnline src/ui/autoSettings.js; skills are kept by skill id instead of bar slot,
+ * Ported from The Beginning OnlineOnline src/ui/autoSettings.js; skills are kept by skill id instead of bar slot,
  * because the server, not the browser, casts them. Potion thresholds are the per-character AutoPotion
  * rule (auto-potion.ts), which also works outside AUTO.
  */

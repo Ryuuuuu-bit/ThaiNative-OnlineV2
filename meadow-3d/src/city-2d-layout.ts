@@ -1,6 +1,6 @@
-import {cityWalkable,DECOR,NEW_BUILDINGS,GARDEN_TREES,FORTIFICATION_SOLIDS,CITY_HOUSES,CITY_ART_SOLIDS,CITY2D_FOUNTAIN,CITY2D_HEALER} from '@thainative/shared/maps';
+import {cityWalkable,DECOR,NEW_BUILDINGS,GARDEN_TREES,FORTIFICATION_SOLIDS,CITY_HOUSES,CITY_ART_SOLIDS,CITY2D_FOUNTAIN,CITY2D_HEALER} from '@the-beginning-online/shared/maps';
 export {DECOR,NEW_BUILDINGS,GARDEN_TREES,FORTIFICATION_SOLIDS,CITY_HOUSES,CITY_ART_SOLIDS,CITY2D_FOUNTAIN,CITY2D_HEALER};
-export type {Decoration} from '@thainative/shared/maps';
+export type {Decoration} from '@the-beginning-online/shared/maps';
 export const city2dWalkable=(x:number,z:number,r=.38)=>cityWalkable(x,z,r);
 export const DISTRICTS = [
   {id:'plaza',name:'ลานดารารุ่ง',subtitle:'หอนาฬิกา · จุดนัดพบของนักผจญภัย',x:0,z:9,color:'#d1b77a'},

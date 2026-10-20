@@ -1,5 +1,5 @@
 import type {FieldProp} from './game-2d-fields';
-import type {MapId} from '@thainative/shared/maps';
+import type {MapId} from '@the-beginning-online/shared/maps';
 import {CanvasAssets} from './game-2d-assets';
 import {boundaryPlants,boundaryRoads} from './game-2d-boundaries';
 import {unproject2D} from './game-2d-projection';

@@ -1,21 +1,21 @@
-import {CITY_SPAWN} from '@thainative/shared/maps';
+import {CITY_SPAWN} from '@the-beginning-online/shared/maps';
 import {applyInventory,applyTrade,starterInventory,economyData,checkRequest,alertIntegrity,questProgress,type Inventory,type LedgerEntry,type EconomyContext,type EconomyResult,type TradeParty,type TradeResult} from './economy.js';
-import type {InventoryOp} from '@thainative/shared';
+import type {InventoryOp} from '@the-beginning-online/shared';
 import {creationJob,needsJob,migrateMap} from './progress.js';
-import {loadGameData,newJob,normalizeJob} from '@thainative/shared';
+import {loadGameData,newJob,normalizeJob} from '@the-beginning-online/shared';
 import{randomUUID}from'node:crypto';import type{Account,AuditEntry,Character,GoogleIdentity,PasswordIdentity,Session,Store}from'./types.js';import{newUid,ADMIN_SEED_UIDS}from'./types.js';import{AppError,missing}from'../errors.js';
 const now=()=>new Date().toISOString();
 export class MemoryStore implements Store {
  private leases=new Map<string,string>();
- async rankingCharacters():Promise<import('@thainative/shared').RankingCharacter[]>{return [...this.chars.values()].filter(c=>!c.deletedAt).map(c=>({id:c.id,name:c.name,jobId:c.jobId??c.classId,level:c.level,xp:c.xp,kills:c.kills,titleId:c.titleId,unlockedTitles:structuredClone(c.unlockedTitles??[]),titleRecords:structuredClone(c.titleRecords??{bosses:{}})}));}
+ async rankingCharacters():Promise<import('@the-beginning-online/shared').RankingCharacter[]>{return [...this.chars.values()].filter(c=>!c.deletedAt).map(c=>({id:c.id,name:c.name,jobId:c.jobId??c.classId,level:c.level,xp:c.xp,kills:c.kills,titleId:c.titleId,unlockedTitles:structuredClone(c.unlockedTitles??[]),titleRecords:structuredClone(c.titleRecords??{bosses:{}})}));}
  async health(){}
  async pruneRequests(){for(const[k,r]of this.requests)if(Date.now()-r.at>86400000)this.requests.delete(k);}
  async claimLease(id:string,owner:string){this.leases.set(id,owner);}
  async renewLease(id:string,owner:string){return this.leases.get(id)===owner;}
  async releaseLease(id:string,owner:string){if(this.leases.get(id)===owner)this.leases.delete(id);}
- private ui=new Map<string,import('@thainative/shared').UISettings>();
- async uiSettings(id:string):Promise<import('@thainative/shared').UISettings>{return structuredClone(this.ui.get(id)??{scale:100,windows:{},keys:{returnCity:'KeyH'}});}
- async saveUISettings(id:string,settings:import('@thainative/shared').UISettings){this.ui.set(id,structuredClone(settings));}
+ private ui=new Map<string,import('@the-beginning-online/shared').UISettings>();
+ async uiSettings(id:string):Promise<import('@the-beginning-online/shared').UISettings>{return structuredClone(this.ui.get(id)??{scale:100,windows:{},keys:{returnCity:'KeyH'}});}
+ async saveUISettings(id:string,settings:import('@the-beginning-online/shared').UISettings){this.ui.set(id,structuredClone(settings));}
 
  private accounts=new Map<string,Account>();private sessions=new Map<string,Session>();private chars=new Map<string,Character>();
  private inventories=new Map<string,Inventory>();

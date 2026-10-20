@@ -1,5 +1,5 @@
 {
-  "name": "thainative-online-v2",
+  "name": "the-beginning-online",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -18,9 +18,9 @@
     "dev:server": "npm run build:shared && npm --prefix server run dev",
     "test:server": "npm --prefix server test",
     "test:web": "node --test meadow-3d/web-tests/*.test.mjs",
-    "build:shared": "npm --workspace @thainative/shared run build",
-    "test:shared": "npm --workspace @thainative/shared test",
-    "sim:balance": "npm --workspace @thainative/shared run sim:balance --",
+    "build:shared": "npm --workspace @the-beginning-online/shared run build",
+    "test:shared": "npm --workspace @the-beginning-online/shared test",
+    "sim:balance": "npm --workspace @the-beginning-online/shared run sim:balance --",
     "tools:ktx2": "node meadow-3d/tools/install-ktx2.mjs",
     "pack:textures": "node meadow-3d/tools/pack-ktx2.mjs",
     "pack:audio": "node meadow-3d/tools/pack-audio.mjs"

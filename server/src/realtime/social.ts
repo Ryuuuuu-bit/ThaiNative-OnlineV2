@@ -1,4 +1,4 @@
-import { filterChat, cleanChat, chatAllowed, type ChatLimiter, type Player } from "@thainative/shared";
+import { filterChat, cleanChat, chatAllowed, type ChatLimiter, type Player } from "@the-beginning-online/shared";
 import type { WebSocket } from "ws";
 
 /** The parts of a realtime peer the social layer needs. */

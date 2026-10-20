@@ -5,7 +5,7 @@ import { WebSocket } from "ws";
 import { createApp } from "../app.js";
 import { MemoryStore } from "../store/memory.js";
 import { mountRealtime } from "../realtime/index.js";
-import { migrateJob, newJob } from "@thainative/shared";
+import { migrateJob, newJob } from "@the-beginning-online/shared";
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 async function setup(t: any, production = false) {
 	const store = new MemoryStore(),

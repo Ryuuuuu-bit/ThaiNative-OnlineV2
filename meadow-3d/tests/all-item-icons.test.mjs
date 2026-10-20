@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {loadGameData} from '@thainative/shared';
+import {loadGameData} from '@the-beginning-online/shared';
 import {itemIconCell} from '../src/item-icon.ts';
 
 test('every item template resolves to its declared atlas frame',()=>{

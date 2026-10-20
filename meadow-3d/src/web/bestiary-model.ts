@@ -1,7 +1,7 @@
 import monsters from '../../../shared/data/monsters.json' with {type:'json'};
 import items from '../../../shared/data/items.json' with {type:'json'};
 import elements from '../../../shared/data/elements.json' with {type:'json'};
-import {LAYOUTS,FIELD_BOSS,MAP_INFO,type FieldMapId} from '@thainative/shared/maps';
+import {LAYOUTS,FIELD_BOSS,MAP_INFO,type FieldMapId} from '@the-beginning-online/shared/maps';
 export type MonsterRecord=typeof monsters.monsters[number];
 export const FIELDS:FieldMapId[]=['meadow','forest','ruins','canyon'];
 export const MONSTERS=[...monsters.monsters].sort((a,b)=>a.level-b.level||a.id.localeCompare(b.id));

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {huntingCell} from '../src/hunting-monster-animation.ts';
-import {LAYOUTS,FIELD_BOSS} from '@thainative/shared/maps';
+import {LAYOUTS,FIELD_BOSS} from '@the-beginning-online/shared/maps';
 const state={motion:'attack',motionTime:0,motionDuration:.85,fx:1,fz:0};
 test('attack contact aligns with authoritative damage thresholds',()=>{
  for(const windup of [.4,.5,.55,.7,.75]){
