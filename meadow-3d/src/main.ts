@@ -1,3 +1,4 @@
+import { mountWorldMap } from './world-map-ui';
 import {mountTitles} from './titles-ui';
 import {loadUIFonts,UI_FONT_FAMILY} from './fonts';
 import {monsterSpecies,SPECIES_HIT_COLOUR} from './monster-animation';
@@ -32,7 +33,7 @@ import './ui-windows.css';
 import './ui-theme.css';
 import {mountTutorialGuide} from './tutorial-guide';
 let guide:ReturnType<typeof mountTutorialGuide>|undefined;
-let qol:ReturnType<typeof mountHUDQOL>|undefined;let settingsUI:ReturnType<typeof mountSettingsWindow>|undefined;let pendingUI:any;
+let qol:ReturnType<typeof mountHUDQOL>|undefined;let worldMap:ReturnType<typeof mountWorldMap>|undefined;let settingsUI:ReturnType<typeof mountSettingsWindow>|undefined;let pendingUI:any;
 import{walkable,CD,CAMP,ARENA}from'./sim';import type{Action,Event}from'./sim';
 import{AudioEngine}from'./audio';
 const $=<E extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<E>(s)!;const $$=(s:string)=>[...document.querySelectorAll<HTMLElement>(s)];
@@ -102,7 +103,7 @@ const fade=document.createElement('div');fade.id='map-loading';fade.className='o
 let failedMap:MapId|undefined,mapRetryAt=0,switchAttempts=0;
 let switching=false,lastGate=0,closedGate='',overviewOn=false;
 async function switchMap(id:MapId){
- if(switching||(failedMap===id&&performance.now()<mapRetryAt))return;switching=true;qol?.cancel();net.clearMovement();fade.textContent='กำลังเดินทาง…';fade.hidden=false;clearInput();
+ if(switching||(failedMap===id&&performance.now()<mapRetryAt))return;switching=true;qol?.cancel(true);net.clearMovement();fade.textContent='กำลังเดินทาง…';fade.hidden=false;clearInput();
  try{
   await renderer.prepareMap(id);activeMap=id;sound.setMap(id);$('#quest-name').textContent=MAP_INFO[id].name;resize();area.textContent=areaName(id);qol?.banner();
   markerTime=0;
@@ -129,7 +130,7 @@ function mapInteractions(){
  for(const [gate,point]of Object.entries(gates))if(Math.hypot(p.x-point.x,p.z-point.z)<3){
   const open=activeMap!=='city_plaza'||gate==='south'||gate==='east';
   if(!open)closed=gate;
-  else if(!p.dead&&!switching&&p.mapId===activeMap&&performance.now()-lastGate>1500&&Math.hypot(p.x-point.x,p.z-point.z)<1.25){lastGate=performance.now();qol?.cancel();clearInput();net.send({t:'travel',gate});}
+  else if(!p.dead&&!switching&&p.mapId===activeMap&&performance.now()-lastGate>1500&&Math.hypot(p.x-point.x,p.z-point.z)<1.25){lastGate=performance.now();qol?.cancel(true);clearInput();net.send({t:'travel',gate});}
  }
  if(closed&&closed!==closedGate)notice('หมอกหนาเกินไป ยังผ่านไม่ได้');closedGate=closed;
 }
@@ -209,7 +210,7 @@ window.addEventListener('keydown',e=>{
  }
  if(dialogs.length&&!(e.target instanceof HTMLElement&&e.target.matches('input,textarea,select')))return;
  if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
- if(isKey('map',e.code)&&started&&!netOverlay&&$('#overlay').hidden){e.preventDefault();if(!e.repeat)qol?.toggleMap();return;}
+ if(isKey('map',e.code)&&started&&!netOverlay&&$('#overlay').hidden){e.preventDefault();if(!e.repeat)worldMap?.toggle();return;}
  if(isKey('inventory',e.code)&&started&&!e.repeat){e.preventDefault();inventoryUI.toggle();return;}
  if(inventoryUI.open)return;
  if(isKey('skills',e.code)&&started&&!e.repeat){e.preventDefault();if(!statsUI.open)skillsUI.toggle();return;}
@@ -347,7 +348,8 @@ trade=mountTrade({send:m=>net.send(m),player:()=>game.p,notice});
 social=mountSocial({send:m=>net.send(m),you:()=>net.you,enabled:()=>started,onOpen:()=>clearInput(),announce:notice,trade:name=>trade?.request(name)});
 levelUp=mountLevelUp({stats:()=>({maxHp:game.p.maxHp,maxMp:game.p.maxMp}),hero:()=>{if(!started||paused||document.hidden)return null;const feet=renderer.screen(game.p.x,game.p.z),head=renderer.screen(game.p.x,game.p.z,2.1);return feet.x>=-50&&feet.x<=innerWidth+50&&feet.y>=-50&&feet.y<=innerHeight+50?{feet,head}:null;}});
 quests=mountQuests({send:m=>net.send(m),player:()=>game.p,notice:tell});
-qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.4,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),settings:()=>settingsUI?.open(),party:()=>social?.openParty(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);
+qol=mountHUDQOL({send:m=>net.send(m),walkable:(x,z)=>walkable(x,z,.4,activeMap),map:()=>activeMap,player:()=>game.p,stop:()=>{clearInput();stopAuto();},release:()=>clearInput(),arrived:name=>notice(`✦ ถึง${name}แล้ว`),settings:()=>settingsUI?.open(),party:()=>social?.openParty(),talk:kind=>{if(kind==='angel'){$('#angel-talk').click();return;}if(nearNpc&&nearNpc.kind===kind){npcTalk.click();return;}if(['market','forge','storage'].includes(kind))inventoryUI.shop(kind);}});settingsUI=mountSettingsWindow({onOpen:()=>clearInput(),keysChanged:()=>skillsUI.drawKeys()});launcher.adopt($('#qol-controls'));mountMenuAccount(selected.account);
+worldMap=mountWorldMap({map:()=>activeMap,level:()=>game.p.level,points:()=>qol!.points(),goTo:p=>qol!.goTo(p),travelTo:m=>qol!.travelTo(m),goal:()=>qol?.goal??null,notice,onOpen:()=>clearInput(),toggleMinimap:()=>qol?.toggleMap()});
 titles=mountTitles({send:m=>net.send(m),onOpen:()=>clearInput(),notice,you:()=>net.you,profile:()=>({name:selected.character.name,level:game.p.level??1,kills:(game.p as any).kills??0})});
 
 guide=mountTutorialGuide({characterId:selected.character.id,started:()=>started&&!paused,map:()=>activeMap,game:()=>game,autoPotionOn:()=>autoPotionUI.settings.hp.on||autoPotionUI.settings.mp.on,quests:()=>quests?.state,project:(x,z,y)=>renderer.screen(x,z,y)});

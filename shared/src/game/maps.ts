@@ -333,3 +333,25 @@ export function travelDestination(map: MapId, gate: string, p: { x: number; z: n
  if(map==='canyon'&&gate==='west')return{mapId:'ruins' as const,...RUINS_EAST_ENTRY};
 	return null;
 }
+/** Where each gate leads (mirrors travelDestination). */
+export const GATE_LINKS: Record<MapId, Record<string, MapId>> = {
+	city_plaza: { south: 'meadow', east: 'forest' },
+	meadow: { north: 'city_plaza' },
+	forest: { west: 'city_plaza', east: 'ruins' },
+	ruins: { west: 'forest', east: 'canyon' },
+	canyon: { west: 'ruins' },
+};
+/** Gates to walk through, in order, to get from one map to another (empty when already there or unreachable). */
+export function gateRoute(from: MapId, to: MapId): { map: MapId; gate: string }[] {
+	const back = new Map<MapId, { map: MapId; gate: string } | null>([[from, null]]);
+	const queue: MapId[] = [from];
+	while (queue.length) {
+		const map = queue.shift()!;
+		if (map === to) break;
+		for (const [gate, next] of Object.entries(GATE_LINKS[map])) if (!back.has(next)) { back.set(next, { map, gate }); queue.push(next); }
+	}
+	if (!back.has(to)) return [];
+	const steps: { map: MapId; gate: string }[] = [];
+	for (let at = to, step = back.get(at); step; at = step.map, step = back.get(at)) steps.unshift(step);
+	return steps;
+}
