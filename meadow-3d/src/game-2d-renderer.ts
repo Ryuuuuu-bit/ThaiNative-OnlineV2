@@ -12,7 +12,7 @@ import {drawFountainWater} from './city-2d-fountain';
 import {loadField2D} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
 import {project2D,unproject2D} from './game-2d-projection';
-import {MOTIONS,MOTION_DURATION,motionFor,motionFrame,facingFor,facing8For,heroSprite,WALK_DIRECTIONS} from './sprite-animation';
+import {MOTIONS,MOTION_DURATION,MOTION_V2,motionFor,motionFrame,facingFor,facing8For,heroSprite,v2Cell,WALK_DIRECTIONS} from './sprite-animation';
 import {SKILL_MOTIONS,BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,SKILL_V2,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
 import {monsterSpecies,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
 import {huntingCell,HUNTING_ASSET_ROOT} from './hunting-monster-animation';
@@ -50,7 +50,7 @@ export class GameCanvas2D{
  }
  async init(map:MapId){
   this.monsterManifest=await this.assets.json('/assets/monsters-painted/manifest.json');
-  await Promise.all([...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
+  await Promise.all([...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...Object.keys(MOTION_V2).map(m=>`/assets/hero-painted/hero-${m}-v2.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
   await this.prepareMap(map);
  }
  async prepareMap(id:MapId){
@@ -120,9 +120,9 @@ export class GameCanvas2D{
   if(state.skill&&(state.elapsed>SKILL_DURATION[state.skill]||p.dead||p.hurt>0))state.skill=undefined;
   if(state.swing!==undefined){state.swing+=dt;if(state.swing>=MOTION_DURATION.attack||p.dead||p.hurt>0)state.swing=undefined;}
   const swinging=state.swing!==undefined&&(motion==='idle'||motion==='walk'||motion==='run'),shown=swinging?'attack':motion;
-  const sprite=heroSprite(shown,p.fx,p.fz,motionFrame(shown,swinging?state.swing!:state.clock),state.clock);let cell=sprite.cell,key=`/assets/hero-painted/hero-${sprite.sheet}-v1.png`;
+  const sprite=heroSprite(shown,p.fx,p.fz,motionFrame(shown,swinging?state.swing!:state.clock),state.clock);const base=MOTION_V2[sprite.sheet];let cell=base?v2Cell(sprite.sheet,facingFor(p.fx,p.fz),sprite.cell.column,state.clock):sprite.cell,key=`/assets/hero-painted/hero-${sprite.sheet}-${base?'v2':'v1'}.png`;
   // v2 skills: 8 facings and their own cell size, with the feet at `feet` px from the cell top.
-  const v2=state.skill?SKILL_V2[state.skill]:undefined,px=v2??{w:384,h:256,feet:240};
+  const v2=state.skill?SKILL_V2[state.skill]:undefined,px=v2??(state.skill?undefined:base)??{w:384,h:256,feet:240};
   if(state.skill){key=`/assets/hero-skills/hero-skill-${state.skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(state.skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[state.skill],rows:v2?8:4};}
   const image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale,h=px.h*HERO_PIXEL_METRES*this.scale,foot=px.feet/px.h;
   for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w/2,gq.y-h*foot,w,h,p.ghostTint,g.alpha);}

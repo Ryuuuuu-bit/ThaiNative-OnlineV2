@@ -16,6 +16,15 @@ export function walkFrame(facing: Facing, elapsed: number) { const n=WALK_FRAMES
 export const MOTIONS = ['idle', 'walk', 'run', 'attack', 'spin', 'cast', 'hit', 'dodge', 'death'] as const;
 export type Motion = typeof MOTIONS[number];
 export const MOTION_DURATION: Record<Motion, number> = {idle:1,walk:.8,run:.6,attack:.34,spin:.6,cast:.8,hit:.3,dodge:.22,death:.9};
+/** Base motions redrawn with the approved AutoSprite model (hero-<motion>-v2.png, rows SE SW NE NW, same frame
+ * counts as v1; idle becomes an 8-frame breathing loop). Cell size and feet height in game px. Matches tools/pack-hero-motions-v2.py. */
+export const MOTION_V2: Partial<Record<Motion, {w: number; h: number; feet: number}>> = {attack:{w:384,h:274,feet:240},dodge:{w:384,h:285,feet:240},hit:{w:384,h:256,feet:240},death:{w:384,h:267,feet:240},spin:{w:384,h:260,feet:240},idle:{w:384,h:256,feet:240}};
+export const IDLE_V2_FRAMES = 8, IDLE_V2_SECONDS = 2;
+/** v2 sheet cell for a 4-facing motion; idle loops its breathing frames over IDLE_V2_SECONDS. */
+export function v2Cell(motion: Motion, direction: Direction, frame: number, elapsed: number) {
+  if (motion === 'idle') return {column: Math.floor(Math.max(0, elapsed) / IDLE_V2_SECONDS * IDLE_V2_FRAMES) % IDLE_V2_FRAMES, row: DIRECTIONS.indexOf(direction), columns: IDLE_V2_FRAMES, rows: 4};
+  return atlasCell(motion, direction, frame);
+}
 export function frameCount(motion: Motion) { return motion === 'idle' ? 1 : motion === 'walk' ? 8 : motion === 'hit' || motion === 'dodge' ? 3 : 6; }
 export function isLoop(motion: Motion) { return motion === 'walk' || motion === 'run'; }
 export function motionFrame(motion: Motion, elapsed: number): number {

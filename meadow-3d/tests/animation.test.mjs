@@ -86,3 +86,19 @@ test('hero sprite: walk on 8 rows, cardinal idle uses the walk standing column, 
   assert.deepEqual(heroSprite('attack',s.x,s.z,2),{sheet:'attack',cell:atlasCell('attack',facingFor(s.x,s.z),2)});
   assert.deepEqual(heroSprite('idle',22,4,0),{sheet:'idle',cell:atlasCell('idle','SE',0)});
 });
+test('v2 base motion sheets match their packed sources: 4 rows, v1 frame counts, cell size, idle breathing loop',async()=>{
+  const {MOTION_V2,v2Cell,IDLE_V2_FRAMES,IDLE_V2_SECONDS}=await import('../src/sprite-animation.ts');
+  const {readFileSync}=await import('node:fs');
+  const meta=JSON.parse(readFileSync(new URL('../art/texture-sources/hero-motions-v2/motions-v2.json',import.meta.url),'utf8'));
+  const manifest=JSON.parse(readFileSync(new URL('../public/texture-manifest.json',import.meta.url),'utf8'));
+  assert.deepEqual(Object.keys(MOTION_V2).sort(),Object.keys(meta).sort());
+  for(const [motion,cell] of Object.entries(MOTION_V2)){
+    const frames=motion==='idle'?IDLE_V2_FRAMES:frameCount(motion);
+    assert.equal(meta[motion].frames,frames);assert.deepEqual(meta[motion].cell,[cell.w,cell.h]);assert.equal(meta[motion].anchor[1],cell.feet);
+    assert.deepEqual(manifest[`/assets/hero-painted/hero-${motion}-v2.png`].originalSize,[cell.w*frames,cell.h*4]);
+  }
+  for(const [row,d] of DIRECTIONS.entries()){
+    assert.deepEqual(Array.from({length:8},(_,i)=>v2Cell('idle',d,0,IDLE_V2_SECONDS*(i+.5)/8).column),[0,1,2,3,4,5,6,7]);
+    assert.equal(v2Cell('idle',d,0,0).row,row);assert.deepEqual(v2Cell('attack',d,3,0),atlasCell('attack',d,3));
+  }
+});
