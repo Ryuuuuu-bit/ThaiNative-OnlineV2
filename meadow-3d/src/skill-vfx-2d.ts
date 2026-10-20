@@ -9,7 +9,8 @@ export interface VfxFrame{ctx:CanvasRenderingContext2D;width:number;height:numbe
 interface Pal{edge:string;hi:string;mid:string;low:string;deep:string|null;fleck:string;spark:string}
 type Pt={x:number;y:number};type W={x:number;z:number;h?:number};
 interface Fx{kind:string;t0:number;life:number;x:number;z:number;dx:number;dz:number;playerId?:string;follow:boolean;seed:number;crit?:boolean;index?:number;toX?:number;toZ?:number;dur?:number;other:boolean}
-interface V{fx:CanvasRenderingContext2D;glow:CanvasRenderingContext2D;P:Project;S:number;time:number;heroY:number}
+interface ShieldArt{image:HTMLImageElement;rect:readonly[number,number,number,number]}
+interface V{fx:CanvasRenderingContext2D;glow:CanvasRenderingContext2D;P:Project;S:number;time:number;heroY:number;shield?:ShieldArt}
 
 export const PALS:Record<string,Pal>={
  steel:{edge:'#ffffff',hi:'#f6f2e6',mid:'#dcd5c2',low:'#a49c86',deep:null,fleck:'#fff6dc',spark:'#fff1c4'},
@@ -169,6 +170,7 @@ function bolt(v:V,from:Pt,to:Pt,seed:number,P:Pal,a:number,w=2){
 }
 function shieldCrest(v:V,p:Pt,s:number,P:Pal,alpha:number){
  if(alpha<=0||s<=0)return;const f=v.fx;f.save();f.translate(p.x,p.y);f.globalAlpha=Math.min(1,alpha);
+ if(v.shield){const{image,rect}=v.shield,h=s*1.35,w=h*rect[2]/rect[3];f.globalAlpha*=.5;f.globalCompositeOperation='screen';f.drawImage(image,...rect,-w/2,-h/2+s*.04,w,h);f.restore();return;}
  const path=()=>{f.beginPath();f.moveTo(-s*.5,-s*.55);f.quadraticCurveTo(0,-s*.68,s*.5,-s*.55);f.lineTo(s*.48,0);f.quadraticCurveTo(s*.4,s*.45,0,s*.7);f.quadraticCurveTo(-s*.4,s*.45,-s*.48,0);f.closePath();};
  const g=f.createLinearGradient(0,-s*.6,0,s*.7);g.addColorStop(0,P.mid);g.addColorStop(1,P.deep??P.low);path();f.fillStyle=g;f.fill();
  f.lineWidth=s*.08;f.strokeStyle='#f0c75e';path();f.stroke();
@@ -215,6 +217,9 @@ export const PALETTE_OF:Record<string,string>={basic:'steel',basicHit:'steel',sl
 
 export class SkillVfx2D {
  effects:Fx[]=[];time=0;readonly max=96;
+ private shieldArt?:ShieldArt;
+ /** Approved Guardian shield art; passing null retains the procedural review fallback. */
+ setShieldArt(image:HTMLImageElement|null,rect:readonly[number,number,number,number]){this.shieldArt=image?{image,rect}:undefined;}
  private facing=new Map<string,{dx:number;dz:number}>();
  /** Visual-only travel for dashes and leaps: the server moves the hero in one tick, the sprite follows the trail instead. */
  private travel=new Map<string,{fromX:number;fromZ:number;toX:number;toZ:number;t0:number;dur:number;leap:boolean}>();
@@ -258,7 +263,7 @@ export class SkillVfx2D {
   fx.setTransform(1,0,0,1,0,0);fx.clearRect(0,0,W,H);fx.setTransform(f.dpr,0,0,f.dpr,0,0);
   gl.setTransform(1,0,0,1,0,0);gl.clearRect(0,0,gw,gh);gl.setTransform(f.dpr*g,0,0,f.dpr*g,0,0);
   for(const e of this.effects){
-   const at=e.follow&&e.playerId?f.locate(e.playerId)??e:e,v:V={fx,glow:gl,P:f.screen,S:f.scale,time:this.time,heroY:f.screen(at.x,at.z,0).y};
+   const at=e.follow&&e.playerId?f.locate(e.playerId)??e:e,v:V={fx,glow:gl,P:f.screen,S:f.scale,time:this.time,heroY:f.screen(at.x,at.z,0).y,shield:e.kind==='shieldFly'||e.kind==='shieldHit'||e.kind==='bulwark'?this.shieldArt:undefined};
    fx.globalAlpha=gl.globalAlpha=1;fx.globalCompositeOperation=gl.globalCompositeOperation='source-over';
    try{DRAW[e.kind]?.(v,e,{x:at.x,z:at.z},this.time-e.t0,PALS[PALETTE_OF[e.kind]],phase);}catch(err){console.warn('skill vfx',e.kind,err);}
   }

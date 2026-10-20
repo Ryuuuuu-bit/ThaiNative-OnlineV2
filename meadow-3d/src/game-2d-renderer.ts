@@ -20,6 +20,7 @@ import {HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
 import type {CombatFeel} from './combat-feel';
 import type {SwordVfxPixi} from './sword-vfx-pixi';
 import {SkillVfx2D} from './skill-vfx-2d';
+import {SHIELD_BASH_ART} from './shield-bash-art';
 
 const tint:Record<string,string>={ruin_shroom:'hue-rotate(40deg) saturate(.65)',relic_hound:'sepia(.45)',relic_wisp:'hue-rotate(125deg)',ruin_guard:'saturate(.65)',relic_warden:'sepia(.3)',crag_slime:'sepia(.8) saturate(.7)',crag_wolf:'sepia(.75)',dust_wisp:'saturate(.7)',crag_guard:'sepia(.8)',crag_titan:'sepia(.8) saturate(1.2)'};
 
@@ -50,7 +51,9 @@ export class GameCanvas2D{
  }
  async init(map:MapId){
   this.monsterManifest=await this.assets.json('/assets/monsters-painted/manifest.json');
-  await Promise.all([...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...Object.keys(MOTION_V2).map(m=>`/assets/hero-painted/hero-${m}-v2.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
+  await Promise.all([SHIELD_BASH_ART.url,...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...Object.keys(MOTION_V2).map(m=>`/assets/hero-painted/hero-${m}-v2.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
+  const shield=this.assets.get(SHIELD_BASH_ART.url)!;
+  this.skillVfx.setShieldArt(shield,SHIELD_BASH_ART.rect);
   await this.prepareMap(map);
  }
  async prepareMap(id:MapId){
