@@ -7,6 +7,9 @@ from pathlib import Path
 import hashlib
 import json
 from PIL import Image, ImageDraw, ImageChops
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from unparchment import clean_row
 
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'art/painted-items-v3'
@@ -53,10 +56,13 @@ def pack():
     EVIDENCE.mkdir(exist_ok=True)
     original = Image.open(ART / 'forest-original.png').convert('RGBA')
     assert original.size == (320, 64)
+    # The forest five were painted on a parchment tile; cut it away so they sit on the bag like every other icon.
+    original = clean_row(original)
     atlas = Image.new('RGBA', (320, 320))
     atlas.paste(original, (0, 0))
     approved = Image.open(ART / 'approved-slots-0-14.png').convert('RGBA')
     assert approved.size == (320,192)
+    approved.paste(original, (0, 0))
     atlas.paste(approved, (0,0))
     frames, records = {}, []
     for slot, name in enumerate(OLD + NEW):
