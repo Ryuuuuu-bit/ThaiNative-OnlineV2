@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SKILL_MOTIONS,SKILL_FRAMES,CONTACT_FRAME,skillFrame,earthHeight,leapHeight,CAST_SECONDS,OWN_ART,preferOwnArt,MULTI_CONTACTS,contactOffset} from '../src/skill-motions.ts';
+import {SKILL_V2,SKILL_MOTIONS,SKILL_FRAMES,CONTACT_FRAME,skillFrame,earthHeight,leapHeight,CAST_SECONDS,OWN_ART,preferOwnArt,MULTI_CONTACTS,contactOffset} from '../src/skill-motions.ts';
 import {CombatFeel,AutoQuality} from '../src/combat-feel.ts';
 test('zero-cast contacts are immediate; Earth Break lands on frame seven at the existing cast time',()=>{
  for(const id of SKILL_MOTIONS.filter(id=>!CAST_SECONDS[id]))assert.equal(skillFrame(id,0),CONTACT_FRAME[id]);
@@ -48,5 +48,18 @@ test('Job 2 effects and sounds keep the real id while hero motions stay borrowed
  for(const id of [...JOB2_MOTIONS.guardian,...JOB2_MOTIONS.berserker]){
   assert.ok(OWN_ART.has(id),id+' keeps its own VFX and SFX');
   assert.ok(MOTION_READY.has(id)||BORROWED_MOTION[id],id+' has a motion to show');
+ }
+});
+
+test('8-facing swordsman sheets match their packed sources: frame counts, 8 rows, cell size',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const meta=JSON.parse(readFileSync(new URL('../art/texture-sources/hero-skills-v2/skills-v2.json',import.meta.url),'utf8'));
+ const manifest=JSON.parse(readFileSync(new URL('../public/texture-manifest.json',import.meta.url),'utf8'));
+ assert.deepEqual(Object.keys(SKILL_V2).sort(),Object.keys(meta).sort());
+ for(const [id,cell] of Object.entries(SKILL_V2)){
+  assert.deepEqual(meta[id].cell,[cell.w,cell.h]);assert.equal(meta[id].anchor[1],cell.feet);
+  for(const frames of Object.values(meta[id].frames))assert.equal(frames.length,SKILL_FRAMES[id]);
+  assert.equal(Object.keys(meta[id].frames).length,8);
+  assert.deepEqual(manifest[`/assets/hero-skills/hero-skill-${id}-v2.png`].originalSize,[cell.w*SKILL_FRAMES[id],cell.h*8]);
  }
 });

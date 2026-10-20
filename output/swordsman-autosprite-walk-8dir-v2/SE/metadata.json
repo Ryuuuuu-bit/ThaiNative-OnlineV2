@@ -1,0 +1,19 @@
+{
+  "provider": "AutoSprite",
+  "motion": "walk",
+  "direction": "SE",
+  "spritesheetId": "cmvg3v9fg000zd66fbnhl7vh7",
+  "characterId": "cmvfp83sy009y12kzd7l1pjtn",
+  "note": "Regenerated 2026-10-20 (the v1 render marched in place). User picked it in the walk demo. Transform matches v1: frame-1 height and feet aligned to the v1 frame 1.",
+  "sourceCell": [
+    512,
+    512
+  ],
+  "sharedScale": 0.4375,
+  "sourceAnchor": [
+    256.0,
+    446
+  ],
+  "frames": 25,
+  "duration": 2
+}

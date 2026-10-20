@@ -16,6 +16,14 @@ it for idle on cardinal facings, which have no painted idle. The transform is ea
 shared scale/anchor from metadata.json, so the median height equals the 168 px idle, and feet
 sit on (192,240) in 384x256 cells (2x: 768x512 for the atelier preview).
 
+2026-10-20 (user review in the web demo): the v1 diagonal renders packed two strides into 8
+frames and looked choppy. SE and SW are new renders (output/swordsman-autosprite-walk-8dir-v2);
+SE, SW, NE, NW and N now play every render frame of ONE stride cycle (9-11 frames), still once
+per 0.8 s. S, E and W keep their approved 8 samples. Each facing has WALK_SLOTS = 12 slots
+(frames, then the standing pose in the last slot), wrapped 8 per atlas row so the sheet stays
+near square (3072 x 3072 before the 2048 cap). Must match WALK_FRAMES / atlasCell in
+src/sprite-animation.ts.
+
 Usage: python -X utf8 meadow-3d/tools/pack-hero-walk.py   (TOKTX = path to toktx 4.4.2)
 """
 from pathlib import Path
@@ -24,33 +32,43 @@ import json, hashlib, os, subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
-RENDERS = {**{d: REPO / 'output/swordsman-autosprite-walk-4dir-v1' / d for d in ['SE', 'SW', 'NE', 'NW']},
+RENDERS = {**{d: REPO / 'output/swordsman-autosprite-walk-4dir-v1' / d for d in ['NE', 'NW']},
+           **{d: REPO / 'output/swordsman-autosprite-walk-8dir-v2' / d for d in ['SE', 'SW']},
            **{d: REPO / 'output/swordsman-autosprite-walk-8dir-v1' / d for d in ['S', 'E', 'N', 'W']}}
 SRC = ROOT / 'art/texture-sources/hero-painted'
 PUBLIC = ROOT / 'public'
 DIRECTIONS = ['SE', 'SW', 'NE', 'NW', 'S', 'E', 'N', 'W']  # atlas row order = WALK_DIRECTIONS in src/sprite-animation.ts
-SPAN = {'SE': (3, 23), 'SW': (2, 20), 'NE': (2, 21), 'NW': (2, 23), 'S': (8, 19), 'E': (3, 23), 'N': (9, 18), 'W': (4, 22)}
-FRAMES = 8
-COLUMNS = FRAMES + 1  # + standing pose
+# One stride cycle [first, last) in 1-based render frames; frame `last` matches `first`.
+CYCLE = {'SE': (8, 19), 'SW': (10, 21), 'NE': (6, 16), 'NW': (6, 16), 'N': (9, 18)}
+# Approved 8-sample loops (stand-to-stand span for E/W, inner cycle for S).
+SPAN = {'S': (8, 19), 'E': (3, 23), 'W': (4, 22)}
+SLOTS = 12      # per facing: up to 11 frames + the standing pose in slot 11
+COLUMNS = 8     # atlas columns; slots wrap, so the atlas is 8 x 12 cells
 
 def frames_for(direction):
+    if direction in CYCLE:
+        first, last = CYCLE[direction]
+        return list(range(first, last))
     first, last = SPAN[direction]
-    return [round(first + k * (last - first) / FRAMES) for k in range(FRAMES)]
+    return [round(first + k * (last - first) / 8) for k in range(8)]
 
 def build(factor):
     cw, ch = 384 * factor, 256 * factor
-    sheet = Image.new('RGBA', (cw * COLUMNS, ch * len(DIRECTIONS)))
+    sheet = Image.new('RGBA', (cw * COLUMNS, ch * len(DIRECTIONS) * SLOTS // COLUMNS))
     for row, direction in enumerate(DIRECTIONS):
         meta = json.loads((RENDERS[direction] / 'metadata.json').read_text(encoding='utf-8'))
         raw = Image.open(RENDERS[direction] / 'autosprite-raw.png').convert('RGBA')
         cell, scale, (ax, ay) = meta['sourceCell'][0], meta['sharedScale'] * factor, meta['sourceAnchor']
         cols = raw.width // cell
-        for column, number in enumerate(frames_for(direction) + [1]):
+        numbers = frames_for(direction)
+        for slot, number in [*enumerate(numbers), (SLOTS - 1, 1)]:
+            index = row * SLOTS + slot
+            column, cell_row = index % COLUMNS, index // COLUMNS
             i = number - 1
             frame = raw.crop(((i % cols) * cell, (i // cols) * cell, (i % cols + 1) * cell, (i // cols + 1) * cell))
             size = round(cell * scale)
             frame = frame.resize((size, size), Image.Resampling.LANCZOS)
-            sheet.alpha_composite(frame, (column * cw + round(cw / 2 - ax * scale), row * ch + round(240 * factor - ay * scale)))
+            sheet.alpha_composite(frame, (column * cw + round(cw / 2 - ax * scale), cell_row * ch + round(240 * factor - ay * scale)))
     return sheet
 
 def versioned(path):

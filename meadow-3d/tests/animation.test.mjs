@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {facingFor,facing8For,heroSprite,motionFor,motionFrame,frameCount,MOTION_DURATION,MOTIONS,attackFrame,atlasCell,DIRECTIONS,WALK_DIRECTIONS} from '../src/sprite-animation.ts';
+import {facingFor,facing8For,heroSprite,motionFor,motionFrame,frameCount,MOTION_DURATION,MOTIONS,attackFrame,atlasCell,DIRECTIONS,WALK_DIRECTIONS,WALK_FRAMES,WALK_STAND,walkFrame} from '../src/sprite-animation.ts';
 
 test('screen-space facing matches camera axes in all four quadrants',()=>{
   assert.equal(facingFor(22,4),'SE');
@@ -53,9 +53,22 @@ test('each direction maps to its own complete atlas row, idle to own cell',()=>{
   }
   assert.equal(cells.size,24);
 });
-test('walk uses its own 8-column row for each of the eight facings, diagonals first',()=>{
+test('walk: each facing owns 12 slots wrapped 8 per row, frames then the standing pose, no overlap',()=>{
   assert.deepEqual(WALK_DIRECTIONS.slice(0,4),[...DIRECTIONS]);
-  for(const [row,direction] of WALK_DIRECTIONS.entries())for(let f=0;f<8;f++)assert.deepEqual(atlasCell('walk',direction,f),{column:f,row,columns:9,rows:8});
+  const seen=new Set();
+  for(const [row,direction] of WALK_DIRECTIONS.entries())for(let f=0;f<=WALK_FRAMES[direction];f++){
+    const slot=f===WALK_FRAMES[direction]?WALK_STAND:f,c=atlasCell('walk',direction,slot),index=row*12+slot;
+    assert.deepEqual(c,{column:index%8,row:Math.floor(index/8),columns:8,rows:12});
+    const key=`${c.column},${c.row}`;assert.ok(!seen.has(key));seen.add(key);
+  }
+  assert.deepEqual(atlasCell('walk','S',99),atlasCell('walk','S',WALK_STAND));
+});
+test('walk plays one whole stride cycle per walk duration in every facing',()=>{
+  for(const facing of WALK_DIRECTIONS){
+    const n=WALK_FRAMES[facing];
+    assert.deepEqual(Array.from({length:n},(_,i)=>walkFrame(facing,MOTION_DURATION.walk*(i+.5)/n)),Array.from({length:n},(_,i)=>i));
+    assert.equal(walkFrame(facing,MOTION_DURATION.walk),0);
+  }
 });
 test('eight-way facing follows the screen axes and agrees with the quadrant facing on diagonals',()=>{
   // Screen right/up in world terms come from facingFor: horizontal=13x-9z, upward=-9x-13z.
@@ -67,8 +80,9 @@ test('eight-way facing follows the screen axes and agrees with the quadrant faci
 test('hero sprite: walk on 8 rows, cardinal idle uses the walk standing column, other motions stay on 4 rows',()=>{
   const s={x:9/250,z:13/250}; // screen straight down
   assert.equal(facing8For(s.x,s.z),'S');
-  assert.deepEqual(heroSprite('walk',s.x,s.z,3),{sheet:'walk',cell:{column:3,row:4,columns:9,rows:8}});
-  assert.deepEqual(heroSprite('idle',s.x,s.z,0),{sheet:'walk',cell:{column:8,row:4,columns:9,rows:8}});
+  assert.deepEqual(heroSprite('walk',s.x,s.z,3),{sheet:'walk',cell:atlasCell('walk','S',3)});
+  assert.deepEqual(heroSprite('walk',s.x,s.z,0,MOTION_DURATION.walk*.99),{sheet:'walk',cell:atlasCell('walk','S',WALK_FRAMES.S-1)});
+  assert.deepEqual(heroSprite('idle',s.x,s.z,0),{sheet:'walk',cell:atlasCell('walk','S',WALK_STAND)});
   assert.deepEqual(heroSprite('attack',s.x,s.z,2),{sheet:'attack',cell:atlasCell('attack',facingFor(s.x,s.z),2)});
   assert.deepEqual(heroSprite('idle',22,4,0),{sheet:'idle',cell:atlasCell('idle','SE',0)});
 });

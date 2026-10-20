@@ -1726,16 +1726,16 @@
     "ktx2": "/assets/hero-skills/hero-skill-blade_cyclone-v1-5cb61df553.ktx2"
   },
   "/assets/hero-painted/hero-walk-v1.png": {
-    "webp": "/assets/hero-painted/hero-walk-v1-673d6c074b.webp",
-    "ktx2": "/assets/hero-painted/hero-walk-v1-d22d472539.ktx2",
+    "webp": "/assets/hero-painted/hero-walk-v1-8bb880e6e2.webp",
+    "ktx2": "/assets/hero-painted/hero-walk-v1-916c68facc.ktx2",
     "source": "art/texture-sources/hero-painted/hero-walk-v1.png",
     "size": [
       2048,
-      1212
+      2048
     ],
     "originalSize": [
-      3456,
-      2048
+      3072,
+      3072
     ],
     "mode": "uastc",
     "mips": false,
@@ -1743,20 +1743,122 @@
     "cpu": false
   },
   "/assets/hero-painted/preview/hero-walk-v1.png": {
-    "webp": "/assets/hero-painted/preview/hero-walk-v1-3f104d8d16.webp",
+    "webp": "/assets/hero-painted/preview/hero-walk-v1-09f93d673b.webp",
     "ktx2": null,
     "source": "art/texture-sources/hero-painted/preview/hero-walk-v1.png",
     "size": [
-      6912,
-      4096
+      6144,
+      6144
     ],
     "originalSize": [
-      6912,
-      4096
+      6144,
+      6144
     ],
     "mode": "uastc",
     "mips": false,
     "hitMask": null,
     "cpu": true
+  },
+  "/assets/hero-skills/hero-skill-slash-v2.png": {
+    "source": "art/texture-sources/hero-skills-v2/hero-skill-slash-v2.png",
+    "size": [
+      2048,
+      1940
+    ],
+    "originalSize": [
+      2304,
+      2184
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-slash-v2-c9ef5d6fbe.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-slash-v2-fa97818e00.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-whirlwind-v2.png": {
+    "source": "art/texture-sources/hero-skills-v2/hero-skill-whirlwind-v2.png",
+    "size": [
+      2048,
+      1420
+    ],
+    "originalSize": [
+      3072,
+      2128
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-whirlwind-v2-649519be79.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-whirlwind-v2-ce9d68c6a2.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-dash_strike-v2.png": {
+    "source": "art/texture-sources/hero-skills-v2/hero-skill-dash_strike-v2.png",
+    "size": [
+      1672,
+      2048
+    ],
+    "originalSize": [
+      1920,
+      2352
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-dash_strike-v2-bafa801e35.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-dash_strike-v2-152be177d6.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-earth_break-v2.png": {
+    "source": "art/texture-sources/hero-skills-v2/hero-skill-earth_break-v2.png",
+    "size": [
+      2048,
+      1640
+    ],
+    "originalSize": [
+      3456,
+      2768
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-earth_break-v2-a6f6da094d.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-earth_break-v2-cb1e703b02.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-provoke-v2.png": {
+    "source": "art/texture-sources/hero-skills-v2/hero-skill-provoke-v2.png",
+    "size": [
+      1868,
+      2048
+    ],
+    "originalSize": [
+      1920,
+      2104
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-provoke-v2-5790443147.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-provoke-v2-bb2fc3316f.ktx2"
+  },
+  "/assets/hero-skills/hero-skill-endure-v2.png": {
+    "source": "art/texture-sources/hero-skills-v2/hero-skill-endure-v2.png",
+    "size": [
+      1856,
+      2048
+    ],
+    "originalSize": [
+      1920,
+      2120
+    ],
+    "mode": "uastc",
+    "mips": false,
+    "cpu": false,
+    "hitMask": null,
+    "webp": "/assets/hero-skills/hero-skill-endure-v2-1f9578a38d.webp",
+    "ktx2": "/assets/hero-skills/hero-skill-endure-v2-04fae2b52c.ktx2"
   }
 }

@@ -5,8 +5,14 @@ export type Direction = typeof DIRECTIONS[number];
 // Walk has its own 8-direction atlas: the four diagonal rows first (same order as DIRECTIONS), then the cardinals.
 export const WALK_DIRECTIONS = ['SE', 'SW', 'NE', 'NW', 'S', 'E', 'N', 'W'] as const;
 export type Facing = typeof WALK_DIRECTIONS[number];
-/** Walk atlas column after the 8 stride frames: the standing pose each walk render starts from. */
-export const WALK_STAND = 8;
+/** Walk frames per facing: one stride cycle each (S, E, W keep their approved 8 samples). Matches tools/pack-hero-walk.py. */
+export const WALK_FRAMES: Record<Facing, number> = {SE:11,SW:11,NE:10,NW:10,S:8,E:8,N:9,W:8};
+/** Each facing owns 12 slots (frames, then the standing pose), wrapped 8 per atlas row: an 8 x 12 sheet. */
+export const WALK_SLOTS = 12, WALK_COLUMNS = 8;
+/** Walk slot holding the standing pose each walk render starts from. */
+export const WALK_STAND = WALK_SLOTS - 1;
+/** Walk frame for a facing: one stride cycle per MOTION_DURATION.walk, whatever its frame count. */
+export function walkFrame(facing: Facing, elapsed: number) { const n=WALK_FRAMES[facing]; return Math.floor(Math.max(0,elapsed)/MOTION_DURATION.walk*n)%n; }
 export const MOTIONS = ['idle', 'walk', 'run', 'attack', 'spin', 'cast', 'hit', 'dodge', 'death'] as const;
 export type Motion = typeof MOTIONS[number];
 export const MOTION_DURATION: Record<Motion, number> = {idle:1,walk:.8,run:.6,attack:.34,spin:.6,cast:.8,hit:.3,dodge:.22,death:.9};
@@ -46,7 +52,11 @@ export function attackFrame(remaining: number, kind: string): number {
 }
 
 export function atlasCell(motion: Motion, direction: Direction | Facing, frame: number) {
-  if (motion === 'walk') return {column: Math.max(0, Math.min(WALK_STAND, frame)), row: WALK_DIRECTIONS.indexOf(direction), columns: WALK_STAND + 1, rows: WALK_DIRECTIONS.length};
+  if (motion === 'walk') {
+    const facing = direction as Facing, slot = frame >= WALK_STAND ? WALK_STAND : Math.max(0, Math.min(WALK_FRAMES[facing] - 1, frame));
+    const index = WALK_DIRECTIONS.indexOf(facing) * WALK_SLOTS + slot;
+    return {column: index % WALK_COLUMNS, row: Math.floor(index / WALK_COLUMNS), columns: WALK_COLUMNS, rows: WALK_SLOTS * WALK_DIRECTIONS.length / WALK_COLUMNS};
+  }
   const row = DIRECTIONS.indexOf(direction as Direction);
   return motion === 'idle' ? {column: row, row: 0, columns: 4, rows: 1}
     : {column: Math.max(0, Math.min(frameCount(motion)-1, frame)), row, columns: frameCount(motion), rows: 4};
@@ -57,9 +67,10 @@ export function atlasCell(motion: Motion, direction: Direction | Facing, frame: 
  * borrows the walk sheet's standing-pose column (there is no painted cardinal idle). Every
  * other motion only has the four diagonal rows, so it keeps the old quadrant facing.
  */
-export function heroSprite(motion: Motion, x: number, z: number, frame: number): {sheet: Motion; cell: ReturnType<typeof atlasCell>} {
+export function heroSprite(motion: Motion, x: number, z: number, frame: number, elapsed?: number): {sheet: Motion; cell: ReturnType<typeof atlasCell>} {
   const facing = facing8For(x, z);
-  if (motion === 'walk') return {sheet: 'walk', cell: atlasCell('walk', facing, frame)};
+  // Walk facings have their own frame counts, so walk takes the elapsed time when it has it.
+  if (motion === 'walk') return {sheet: 'walk', cell: atlasCell('walk', facing, elapsed === undefined ? frame : walkFrame(facing, elapsed))};
   if (motion === 'idle' && !(DIRECTIONS as readonly string[]).includes(facing)) return {sheet: 'walk', cell: atlasCell('walk', facing, WALK_STAND)};
   return {sheet: motion, cell: atlasCell(motion, facingFor(x, z), frame)};
 }

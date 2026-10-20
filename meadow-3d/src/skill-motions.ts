@@ -7,6 +7,9 @@ export const SKILL_MOTIONS = ['slash','whirlwind','dash_strike','earth_break','p
 export type SkillMotion = typeof SKILL_MOTIONS[number];
 export const SKILL_FRAMES:Record<SkillMotion,number>={slash:6,whirlwind:8,dash_strike:5,earth_break:9,provoke:5,endure:5,shield_bash:6,bulwark:5,quake_slam:9,rally_roar:5,frenzy_slash:8,blood_rage:5,blade_cyclone:8,leap_strike:6};
 export const SKILL_DURATION:Record<SkillMotion,number>={slash:.5,whirlwind:.6,dash_strike:.5,earth_break:.64,provoke:.5,endure:.5,shield_bash:.5,bulwark:.5,quake_slam:.74,rally_roar:.5,frenzy_slash:.5,blood_rage:.5,blade_cyclone:.6,leap_strike:.6};
+/** Swordsman skills redrawn in 8 facings (hero-skill-<id>-v2.png, rows SE SW NE NW S E N W). Cell size and
+ * feet height in game px; same frame counts and contact frames as v1. Matches tools/pack-hero-skills-v2.py. */
+export const SKILL_V2:Partial<Record<SkillMotion,{w:number;h:number;feet:number}>>={slash:{w:384,h:273,feet:240},whirlwind:{w:384,h:266,feet:240},dash_strike:{w:384,h:294,feet:240},earth_break:{w:384,h:346,feet:257},provoke:{w:384,h:263,feet:240},endure:{w:384,h:265,feet:243}};
 export const CONTACT_FRAME:Record<SkillMotion,number>={slash:2,whirlwind:2,dash_strike:1,earth_break:6,provoke:2,endure:3,shield_bash:2,bulwark:3,quake_slam:6,rally_roar:2,frenzy_slash:1,blood_rage:3,blade_cyclone:1,leap_strike:4};
 // Seconds from the skill event to its impact: a cast (earth_break, quake_slam) or a leap's airborne time (leap_strike, sim landing.delay).
 export const CAST_SECONDS:Partial<Record<SkillMotion,number>>={earth_break:.4,quake_slam:.5,leap_strike:.4};
