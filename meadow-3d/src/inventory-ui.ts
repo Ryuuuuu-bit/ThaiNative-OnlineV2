@@ -58,6 +58,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	};
 	const metricNames: Record<string, string> = { atk: "พลังโจมตี", matk: "พลังเวท", flee: "หลบหลีก", hardDef: "เกราะกายภาพ", hardMdef: "เกราะเวท", softDef: "ป้องกันกายภาพ", maxSp: "พลังสกิลสูงสุด", maxHp: "พลังชีวิตสูงสุด", hit: "ความแม่นยำ", crit: "คริติคอล" };
 	const cart = new Map<string, number>();
+	/** Quantity typed on a shop card before it goes into the cart. */
+	const draftQty = new Map<string, number>();
+	let shopSearch = "", sellCategory = "all";
 	let buyQueue: [string, number][] = [];
 	let lastDraw = "";
 	let p: Player | undefined,
@@ -405,13 +408,61 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
  const shopItems = () => Object.keys(data.economy.shops[shop!]).filter(id=>{
   const t=templates.find(t=>t.id===id)!;
   const band=shopRange==='current'?levelBand(playerLevel()):Number(shopRange);
-  return (shopRange==='all'||levelBand(t.level)===band) && (shopCategory==='all'||(t.slot??t.type)===shopCategory) && (!shopOwnClass||compatible(t));
+  return (shopRange==='all'||levelBand(t.level)===band) && (shopCategory==='all'||groupOf(t)===shopCategory) && (!shopOwnClass||compatible(t)) && (!shopSearch||t.nameTh.toLowerCase().includes(shopSearch));
  }).sort((a,b)=>templates.find(t=>t.id===a)!.level-templates.find(t=>t.id===b)!.level || priceOf(a)-priceOf(b));
  const controls=document.createElement('div'); controls.className='shop-filters'; controls.hidden=true;
- controls.innerHTML=`<label>ช่วงเลเวล<select aria-label="ช่วงเลเวลสินค้า"><option value="current">ช่วงเลเวลของฉัน</option><option value="all">ทั้งหมด · Lv.1–99</option>${[0,10,20,30,40,50,60,70,80,90,99].map(l=>`<option value="${l}">Lv.${l||1}${l===99?'':'–'+(l===90?98:l+9)}</option>`).join('')}</select></label><label>ประเภท<select aria-label="ประเภทสินค้า">${Object.entries({all:'ทุกประเภท',weapon:'อาวุธ',body:'เกราะ',shield:'โล่',garment:'ผ้าคลุม',footgear:'รองเท้า',accessory1:'แหวน',accessory2:'เครื่องราง',consumable:'ยา',refine:'หินตีบวก'}).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label><label class="shop-class"><input type="checkbox" checked>อาวุธตรงอาชีพ</label>`;
  tabs.after(controls);
- const rangeSelect=controls.querySelectorAll('select')[0],categorySelect=controls.querySelectorAll('select')[1],classCheck=controls.querySelector('input')!;
- rangeSelect.onchange=()=>{shopRange=rangeSelect.value;draw();};categorySelect.onchange=()=>{shopCategory=categorySelect.value;draw();};classCheck.onchange=()=>{shopOwnClass=classCheck.checked;draw();};
+ /** Shop categories group equipment slots the way players think of them. */
+ const SHOP_GROUPS: [string, string, (t: (typeof templates)[number]) => boolean][] = [
+  ['weapon','อาวุธ',t=>t.slot==='weapon'],
+  ['armour','เกราะ · โล่ · ผ้าคลุม · รองเท้า',t=>['body','shield','garment','footgear'].includes(t.slot||'')],
+  ['accessory','เครื่องประดับ',t=>t.slot==='accessory1'||t.slot==='accessory2'],
+  ['consumable','ยา',t=>t.type==='consumable'],
+  ['refine','หินตีบวก',t=>t.type==='refine'],
+  ['other','อื่น ๆ',()=>true],
+ ];
+ const groupOf=(t:(typeof templates)[number])=>SHOP_GROUPS.find(([, ,f])=>f(t))![0];
+ const SELL_GROUPS: [string, string, (t: (typeof templates)[number]) => boolean][] = [
+  ['equip','อุปกรณ์',t=>!!t.slot],['material','วัตถุดิบ',t=>t.type==='material'],['consumable','ยา',t=>t.type==='consumable'],
+  ['refine','หินตีบวก',t=>t.type==='refine'],['card','การ์ด',t=>t.type==='card'],['other','อื่น ๆ',()=>true],
+ ];
+ const sellGroupOf=(t:(typeof templates)[number])=>SELL_GROUPS.find(([, ,f])=>f(t))![0];
+ const shopInRange=(t:(typeof templates)[number])=>{const band=shopRange==='current'?levelBand(playerLevel()):Number(shopRange);return shopRange==='all'||levelBand(t.level)===band;};
+ const bandLabel=(b:number)=>b>=99?'Lv.99':`Lv.${b||1}–${b===90?98:b+9}`;
+ function chip(label:string,count:string,on:boolean,fn:()=>void){const b=document.createElement('button');b.type='button';b.className='shop-chip';b.setAttribute('aria-pressed',String(on));b.innerHTML='<span></span><i></i>';b.querySelector('span')!.textContent=label;b.querySelector('i')!.textContent=count;b.onclick=fn;return b;}
+ function drawShopTools(){
+  controls.replaceChildren();
+  const row=document.createElement('div');row.className='shop-row';
+  const search=document.createElement('label');search.className='shop-search';search.innerHTML='<span aria-hidden="true">⌕</span><input type="search" placeholder="ค้นหาสินค้า" aria-label="ค้นหาสินค้า">';
+  const input=search.querySelector('input')!;input.value=shopSearch;input.oninput=()=>{shopSearch=input.value.trim().toLowerCase();draw();const again=controls.querySelector<HTMLInputElement>('.shop-search input');if(again){again.focus();again.setSelectionRange(again.value.length,again.value.length);}};
+  const row2=document.createElement('div');row2.className='shop-row sub';
+  if(shopTab==='ซื้อ'){
+   const pool=Object.keys(data.economy.shops[shop!]).map(id=>templates.find(t=>t.id===id)!).filter(t=>shopInRange(t)&&(!shopOwnClass||compatible(t)));
+   row.append(chip('ทั้งหมด',String(pool.length),shopCategory==='all',()=>{shopCategory='all';draw();}));
+   for(const [key,label] of SHOP_GROUPS){const n=pool.filter(t=>groupOf(t)===key).length;if(n)row.append(chip(label.split(' · ')[0],String(n),shopCategory===key,()=>{shopCategory=key;draw();}));}
+   row.append(search);
+   const lv=document.createElement('div');lv.className='shop-lv';const mine=levelBand(playerLevel());
+   const bands:[string,string][]=[['current','ของฉัน · '+bandLabel(mine)],...(mine>0?[[String(mine-10),bandLabel(mine-10)] as [string,string]]:[]),...(mine<90?[[String(mine+10),bandLabel(mine+10)] as [string,string]]:[]),['all','ทั้งหมด']];
+   for(const [v,label] of bands){const b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-pressed',String(shopRange===v));b.onclick=()=>{shopRange=v;draw();};lv.append(b);}
+   const own=document.createElement('label');own.className='shop-own g-switch';own.innerHTML='<input type="checkbox"><i></i>เฉพาะที่อาชีพฉันใช้ได้';const box=own.querySelector('input')!;box.checked=shopOwnClass;box.onchange=()=>{shopOwnClass=box.checked;draw();};
+   const cap=document.createElement('span');cap.className='shop-cap';cap.textContent='ช่วงเลเวล';
+   row2.append(cap,lv,own);
+  }else{
+   const pool=inv!.items.filter(i=>i.location==='bag'&&!i.bound).map(template);
+   row.append(chip('ทั้งหมด',String(pool.length),sellCategory==='all',()=>{sellCategory='all';draw();}));
+   for(const [key,label] of SELL_GROUPS){const n=pool.filter(t=>sellGroupOf(t)===key).length;if(n)row.append(chip(label,String(n),sellCategory===key,()=>{sellCategory=key;draw();}));}
+   row.append(search);
+   const cap=document.createElement('span');cap.className='shop-cap';cap.textContent='เลือกเร็ว';
+   const quick=document.createElement('div');quick.className='shop-lv';
+   const pick=(label:string,f:(i:OwnedItem)=>boolean)=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=()=>{for(const i of inv!.items)if(i.location==='bag'&&!i.bound&&f(i))multi.add(i.id);draw();};quick.append(b);};
+   pick('ของขาวทั้งหมด',i=>template(i).rarity==='common'&&!template(i).slot);
+   pick('วัตถุดิบทั้งหมด',i=>template(i).type==='material');
+   const clear=document.createElement('button');clear.type='button';clear.textContent='ล้างที่เลือก';clear.onclick=()=>{multi.clear();draw();};quick.append(clear);
+   const note=document.createElement('span');note.className='shop-note';note.textContent='ของที่สวมอยู่และของผูกมัดจะไม่แสดง';
+   row2.append(cap,quick,note);
+  }
+  controls.append(row,row2);
+ }
 	const priceOf = (id: string) => data.economy.shops[shop!][id] as number;
 	const sellPrice = (i: OwnedItem) => Math.floor(template(i).npcPrice * data.economy.sellMultiplier) * i.qty;
 	const owned = (id: string) => inv?.items.filter((i) => i.location === "bag" && i.template === id).reduce((n, i) => n + i.qty, 0) || 0;
@@ -613,27 +664,63 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			for (const [k, v] of Object.entries(statsOf(template(i)))) total[k] = (total[k] || 0) + v;
 		bonusBox.innerHTML = Object.entries(total).map(([k, v]) => `<span>${metricNames[k] || k}<b>+${v}</b></span>`).join("") || `<span class="inv-bonus-none">ยังไม่มีโบนัสจากอุปกรณ์</span>`;
 	}
-	function ware(t: (typeof templates)[number], price: string, note: string, on: boolean, after: string) {
-		const row = document.createElement("button");
-		row.className = "ware" + (on ? " in" : "");
-		row.style.setProperty("--rarity", rarityColors[t.rarity]);
-		const ico = document.createElement("span");
-		ico.className = "ware-ico";
-		ico.append(itemIcon(t));
-		const text = document.createElement("span");
-		text.className = "ware-text";
-		text.innerHTML = `<b></b><small></small>`;
-		text.querySelector("b")!.textContent = t.nameTh;
-		text.querySelector("small")!.textContent = note;
-		const cost = document.createElement("span");
-		cost.className = "ware-price";
-		cost.innerHTML = `<b>${price}</b><small>${after}</small>`;
-		hoverTip(row, () => ({ t, mode: shop && shopTab === "ซื้อ" ? "buy" : "sell" }));
-		const mark = document.createElement("span");
-		mark.className = "ware-mark";
-		mark.textContent = on ? "✓" : "+";
-		row.append(ico, text, cost, mark);
-		return row;
+	function shopCard(t: (typeof templates)[number], id: string) {
+		const card = document.createElement("div"), price = priceOf(id), inCart = cart.get(id) || 0;
+		const levelLock = t.level > playerLevel(), classLock = !compatible(t);
+		const cur = t.slot && inv!.items.find((i) => i.location === "equip" && i.slot === equipmentTarget(inv!, t.slot!));
+		const better = !!t.slot && !levelLock && !classLock && Object.entries(statsOf(t)).some(([k, v]) => v > ((cur && statsOf(template(cur))[k]) || 0));
+		card.className = "shop-card" + (levelLock || classLock ? " lock" : "") + (inCart ? " incart" : "");
+		card.dataset.item = id;
+		card.style.setProperty("--rarity", rarityColors[t.rarity]);
+		const box = document.createElement("span"); box.className = "shop-ico"; box.append(itemIcon(t));
+		const name = document.createElement("div"); name.className = "shop-name";
+		const nm = document.createElement("span"); nm.textContent = t.nameTh; name.append(nm);
+		if (better) { const up = document.createElement("em"); up.className = "up"; up.textContent = "▲ ดีกว่าที่ใส่"; name.append(up); }
+		if (inCart) { const tag = document.createElement("em"); tag.className = "tag"; tag.textContent = `ในตะกร้า ${inCart}`; name.append(tag); }
+		const desc = document.createElement("div"); desc.className = "shop-desc";
+		const why = levelLock ? `ต้องการระดับ ${t.level}` : classLock ? "อาชีพนี้ใช้ไม่ได้" : "";
+		if (why) { const w = document.createElement("b"); w.textContent = why + " · "; desc.append(w); }
+		desc.append(describe(t));
+		const foot = document.createElement("div"); foot.className = "shop-foot";
+		const cost = document.createElement("span"); cost.className = "shop-price" + (price > (p?.gold ?? 0) ? " cant" : ""); cost.textContent = fmtGold(price);
+		const have = document.createElement("span"); have.className = "shop-have"; have.textContent = `มีอยู่ ${owned(id)}`;
+		foot.append(cost, have);
+		if (levelLock || classLock) { const no = document.createElement("button"); no.type = "button"; no.className = "shop-add"; no.disabled = true; no.textContent = "ซื้อไม่ได้"; foot.append(no); }
+		else {
+			const q = draftQty.get(id) || 1, step = document.createElement("span"); step.className = "shop-qty";
+			const n = document.createElement("b"); n.textContent = String(q);
+			const set = (v: number) => { draftQty.set(id, Math.max(1, Math.min(99, v))); n.textContent = String(draftQty.get(id)); };
+			const minus = document.createElement("button"); minus.type = "button"; minus.textContent = "−"; minus.setAttribute("aria-label", "ลดจำนวน"); minus.onclick = (e) => { e.stopPropagation(); set((draftQty.get(id) || 1) - 1); };
+			const plus = document.createElement("button"); plus.type = "button"; plus.textContent = "+"; plus.setAttribute("aria-label", "เพิ่มจำนวน"); plus.onclick = (e) => { e.stopPropagation(); set((draftQty.get(id) || 1) + (e.shiftKey ? 10 : 1)); };
+			step.append(minus, n, plus);
+			const add = document.createElement("button"); add.type = "button"; add.className = "shop-add"; add.textContent = "ใส่ตะกร้า";
+			add.onclick = () => { cart.set(id, Math.min(99, (cart.get(id) || 0) + (draftQty.get(id) || 1))); draftQty.delete(id); selected = id; draw(); };
+			foot.append(step, add);
+		}
+		card.append(box, name, desc, foot);
+		hoverTip(card, () => ({ t, mode: "buy" }));
+		return card;
+	}
+	function sellCard(i: OwnedItem) {
+		const t = template(i), on = multi.has(i.id), card = document.createElement("button");
+		card.type = "button";
+		card.className = "shop-card sell" + (on ? " picked" : "");
+		card.style.setProperty("--rarity", rarityColors[t.rarity]);
+		card.setAttribute("aria-pressed", String(on));
+		const box = document.createElement("span"); box.className = "shop-ico"; box.append(itemIcon(t));
+		const name = document.createElement("div"); name.className = "shop-name";
+		const nm = document.createElement("span"); nm.textContent = t.nameTh;
+		const check = document.createElement("i"); check.className = "shop-check"; check.textContent = on ? "✓" : "";
+		name.append(nm, check);
+		const desc = document.createElement("div"); desc.className = "shop-desc"; desc.textContent = (i.qty > 1 ? `×${i.qty} · ` : "") + describe(t);
+		const foot = document.createElement("div"); foot.className = "shop-foot";
+		const cost = document.createElement("span"); cost.className = "shop-price"; cost.textContent = fmtGold(sellPrice(i));
+		foot.append(cost);
+		if (i.qty > 1) { const per = document.createElement("span"); per.className = "shop-have"; per.textContent = `${fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} / ชิ้น`; foot.append(per); }
+		card.append(box, name, desc, foot);
+		card.onclick = () => { on ? multi.delete(i.id) : multi.add(i.id); draw(); };
+		hoverTip(card, () => ({ t, i, mode: "sell" }));
+		return card;
 	}
 	function describe(t: (typeof templates)[number]) {
 		const st = Object.entries(statsOf(t)).map(([k, v]) => `${metricNames[k] || k} ${v}`).join(" · ");
@@ -677,7 +764,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				}));
 				lines.append(line);
 			}
-			if (!count) lines.innerHTML = `<p class="inv-empty">คลิกสินค้าเพื่อใส่ตะกร้า<br>Shift+คลิก ใส่ทีละ 10</p>`;
+			if (!count) lines.innerHTML = `<p class="inv-empty">ตะกร้ายังว่าง<br>เลือกจำนวนที่การ์ดสินค้าแล้วกด "ใส่ตะกร้า"</p>`;
 			const after = gold - total;
 			sum.innerHTML = `<dt>รวม</dt><dd class="total">${fmtGold(total)}</dd><dt>ทองคงเหลือ</dt><dd class="${after < 0 ? "bad" : ""}">${fmtGold(gold)} → ${fmtGold(after)}</dd><dt>น้ำหนัก</dt><dd>+${fmtWeight(weight)}</dd>`;
 			go.textContent = !count ? "ซื้อ" : after < 0 ? "ทองไม่พอ" : `ซื้อ · ${fmtGold(total)} ทอง`;
@@ -687,28 +774,32 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 				cart.clear();
 				nextBuy();
 			};
-			cartBox.append(head, lines, sum, go);
+			const clearCart = document.createElement("button");
+			clearCart.className = "cart-white";
+			clearCart.textContent = "ล้างตะกร้า";
+			clearCart.disabled = !count;
+			clearCart.onclick = () => { cart.clear(); draw(); };
+			const n = document.createElement("small"); n.className = "cart-count"; n.textContent = `${count} รายการ`; head.append(n);
+			cartBox.append(head, lines, sum, go, clearCart);
 			return;
 		}
 		head.textContent = "ของที่จะขาย";
 		for (const i of inv!.items.filter((i) => multi.has(i.id))) {
 			const t = template(i);
 			total += sellPrice(i); weight -= t.weight * i.qty; count++;
-			lines.append(cartLine(t, `<b></b><small>×${i.qty}</small>`, "+" + fmtGold(sellPrice(i))).line);
+			const { line } = cartLine(t, `<b></b><small>×${i.qty}</small>`, "+" + fmtGold(sellPrice(i)));
+			const x = document.createElement("button"); x.className = "cart-del"; x.textContent = "×"; x.setAttribute("aria-label", "เอาออก"); x.onclick = () => { multi.delete(i.id); draw(); };
+			line.append(x);
+			lines.append(line);
 		}
 		if (!count) lines.innerHTML = `<p class="inv-empty">เลือกของที่จะขาย<br>ของที่สวมอยู่จะไม่แสดงที่นี่</p>`;
 		sum.innerHTML = `<dt>ได้รับ</dt><dd class="total">+${fmtGold(total)}</dd><dt>ทองคงเหลือ</dt><dd>${fmtGold(gold)} → ${fmtGold(gold + total)}</dd><dt>น้ำหนัก</dt><dd>${fmtWeight(weight)}</dd>`;
 		go.textContent = count ? `ขาย · ${fmtGold(total)} ทอง` : "ขาย";
 		go.disabled = !count;
 		go.onclick = () => request("sell", { shop, ids: [...multi] });
-		const white = document.createElement("button");
-		white.className = "cart-white";
-		white.textContent = "ขายของขาวทั้งหมด";
-		white.onclick = () => {
-			const ids = inv!.items.filter((i) => i.location === "bag" && !i.bound && template(i).rarity === "common").map((i) => i.id);
-			if (ids.length && confirm("ยืนยันขายของขาวทั้งหมดในกระเป๋า?")) request("sell", { shop, ids });
-		};
-		cartBox.append(head, lines, sum, go, white);
+		go.classList.add("sell");
+		const n = document.createElement("small"); n.className = "cart-count"; n.textContent = `${count} รายการ`; head.append(n);
+		cartBox.append(head, lines, sum, go);
 	}
 	/** The server takes one inventory request at a time, so a cart is bought line by line. */
 	function nextBuy() {
@@ -726,6 +817,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (mode === "bag") {
 			const cw = (p as any)?.carryWeight || 0, wl = (p as any)?.weightLimit || 1, pct = Math.min(100, (cw / wl) * 100);
 			summary.innerHTML = `<span class="inv-pill gold">◈ <b>${fmtGold(p?.gold ?? 0)}</b> ทอง</span><span class="inv-pill">ช่อง <b>${inventorySlots(inv, data)} / ${data.economy.inventorySlots}</b></span><span class="inv-pill${pct >= 90 ? " heavy" : ""}">น้ำหนัก <i class="inv-wbar"><i style="width:${pct.toFixed(1)}%"></i></i><b>${Math.round(cw)} / ${Math.round(wl)}</b></span>`;
+		} else if (mode === "shop") {
+			const cw = (p as any)?.carryWeight || 0, wl = (p as any)?.weightLimit || 1, npc = NPCS[shop!];
+			summary.innerHTML = `<span class="shop-say"></span><span class="inv-pill gold">◈ <b>${fmtGold(p?.gold ?? 0)}</b> ทอง</span><span class="inv-pill">ช่อง <b>${inventorySlots(inv, data)} / ${data.economy.inventorySlots}</b></span><span class="inv-pill">น้ำหนัก <b>${fmtGold(Math.round(cw))} / ${fmtGold(Math.round(wl))}</b></span>`;
+			summary.querySelector(".shop-say")!.textContent = npc?.[2] ?? "";
+			panel.querySelector(".g-head")!.setAttribute("data-npc", shop!);
+			panel.querySelector(".g-head h2")!.setAttribute("data-place", npc?.[1] ?? "");
 		} else summary.textContent = `◈ ${fmtGold(p?.gold ?? 0)} ทอง · ${inventorySlots(inv, data)} / ${data.economy.inventorySlots} ช่อง${storage ? ` · คลัง ${storageSlots(inv, data)} / ${data.economy.storageSlots}` : ""}`;
 		const weight = panel.querySelector<HTMLProgressElement>("progress")!;
 		weight.value = (((p as any)?.carryWeight || 0) / ((p as any)?.weightLimit || 1)) * 100;
@@ -766,10 +863,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			};
 			tabs.append(b);
 		}
-		controls.hidden=mode!=='shop'||shopTab!=='ซื้อ';
+		controls.hidden=mode!=='shop';
+		if (mode === "shop") drawShopTools();
 		bagTools.hidden = mode !== "bag";
 		if (mode === "bag") { if (document.activeElement !== searchBox) searchBox.value = search; sortBox.value = sortBy; bagTools.querySelectorAll<HTMLButtonElement>("[data-q]").forEach((b) => b.setAttribute("aria-pressed", String(quick === b.dataset.q))); }
-  rangeSelect.value=shopRange;categorySelect.value=shopCategory;classCheck.checked=shopOwnClass;
   if (mode === "bag") { loadSeen(); drawDoll(); }
 		if (storage) {
 			const grid = document.createElement("div");
@@ -795,40 +892,27 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			const list = document.createElement("div");
 			list.className = "ware-list";
 			content.append(list);
+			list.classList.toggle("sell", shopTab !== "ซื้อ");
+			let shown = 0;
 			if (shopTab === "ซื้อ") {
-				for (const id of shopItems()) {
-					const t = templates.find((t) => t.id === id)!,
-						price = priceOf(id),
-						cur = t.slot && inv.items.find((i) => i.location === "equip" && i.slot === equipmentTarget(inv!, t.slot)),
-						better = !!t.slot && t.level <= playerLevel() && compatible(t) && Object.entries(statsOf(t)).some(([k, v]) => v > ((cur && statsOf(template(cur))[k]) || 0)),
-						note = (t.level > ((p as any)?.level ?? 1) ? `ต้องการระดับ ${t.level} · ` : "") + (compatible(t)?"":"อาชีพนี้ใช้ไม่ได้ · ") + (better ? "▲ ค่าสถานะสูงขึ้น · " : "") + describe(t),
-						row = ware(t, fmtGold(price), note, cart.has(id), `มีอยู่ ${owned(id)}`);
-					row.dataset.item=id; row.classList.toggle("cant", price > (p?.gold ?? 0));
-					row.onclick = (e) => {
-						cart.set(id, Math.min(99, (cart.get(id) || 0) + (e.shiftKey ? 10 : 1)));
-						selected = id;
-						draw();
-						showDetail({ id: "shop:" + id, template: id, qty: 1, location: "bag", slot: null, refine: 0, cards: [], bound: false, source: "npc" } as OwnedItem, false);
-					};
-					list.append(row);
+				const ids = shopItems();
+				for (const [key, label] of SHOP_GROUPS) {
+					const group = ids.filter((id) => groupOf(templates.find((t) => t.id === id)!) === key);
+					if (!group.length) continue;
+					const head = document.createElement("div"); head.className = "shop-group"; head.textContent = label; list.append(head);
+					for (const id of group) { list.append(shopCard(templates.find((t) => t.id === id)!, id)); shown++; }
 				}
 			} else {
-				for (const i of inv.items.filter((i) => i.location === "bag")) {
-					const t = template(i);
-					if (i.bound) continue;
-					const row = ware(t, "+" + fmtGold(sellPrice(i)), (i.qty > 1 ? `×${i.qty} · ` : "") + describe(t), multi.has(i.id), i.qty > 1 ? `${fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} / ชิ้น` : "");
-					row.classList.toggle("sell", multi.has(i.id));
-					row.onclick = () => {
-						multi.has(i.id) ? multi.delete(i.id) : multi.add(i.id);
-						draw();
-						showDetail(i, false);
-					};
-					list.append(row);
+				const items = inv.items.filter((i) => i.location === "bag" && !i.bound && (sellCategory === "all" || sellGroupOf(template(i)) === sellCategory) && (!shopSearch || template(i).nameTh.toLowerCase().includes(shopSearch)));
+				for (const [key, label] of SELL_GROUPS) {
+					const group = items.filter((i) => sellGroupOf(template(i)) === key);
+					if (!group.length) continue;
+					const head = document.createElement("div"); head.className = "shop-group"; head.textContent = label; list.append(head);
+					for (const i of group) { list.append(sellCard(i)); shown++; }
 				}
-				if (!list.children.length) list.innerHTML = `<p class="inv-empty">ไม่มีของที่ขายได้ในกระเป๋า</p>`;
 			}
-			countBox.textContent = shopTab === "ซื้อ" ? `${list.children.length} รายการ · ราคาต่อชิ้นเป็นทอง` : "ขายคืนเฉพาะของที่ไม่ผูกมัด";
-			if (!list.children.length) list.innerHTML = `<p class="inv-empty">ไม่มีสินค้าในตัวกรองนี้ · ลองเลือกช่วงเลเวลหรือประเภทอื่น</p>`;
+			countBox.textContent = shopTab === "ซื้อ" ? `${shown} รายการ · ใส่จำนวนที่การ์ดแล้วกด "ใส่ตะกร้า" · Shift+กด + เพิ่มทีละ 10` : "คลิกการ์ดเพื่อเลือก/ยกเลิก · ขายคืนเฉพาะของที่ไม่ผูกมัด";
+			if (!shown) list.innerHTML = shopTab === "ซื้อ" ? `<p class="inv-empty">ไม่มีสินค้าในตัวกรองนี้ · ลองเลือกช่วงเลเวลหรือประเภทอื่น</p>` : `<p class="inv-empty">ไม่มีของที่ขายได้ในตัวกรองนี้</p>`;
 			drawCart();
 			return;
 		}
@@ -872,7 +956,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		storage = nextShop === "storage";
 		if (storage) storageTab = "ฝากของ";
 		shop = storage ? null : nextShop;
-		shopRange = shop === "forge" ? "current" : "all"; shopCategory = "all"; shopOwnClass = true;
+		shopRange = shop === "forge" ? "current" : "all"; shopCategory = "all"; shopOwnClass = true; shopSearch = ""; sellCategory = "all"; draftQty.clear(); shopTab = "ซื้อ";
 		selected = null;
 		multi.clear();
 		cart.clear();

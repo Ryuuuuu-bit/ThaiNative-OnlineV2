@@ -355,3 +355,108 @@ body #inventory-window .strip-actions.card-targets{flex-wrap:wrap;justify-conten
 body #inventory-window .strip-actions.card-targets button{display:inline-flex;align-items:center;gap:6px}
 body #inventory-window .strip-actions.card-targets .item-icon{width:24px;height:24px}
 .tip-cards{margin:6px 0 0;white-space:pre-line;color:#e8cf8a;font-size:12px}
+
+/* ---------- Shop layout (ui-mockup/shop.html). Scoped to shop mode. ---------- */
+body #inventory-window[data-mode=shop]{width:min(1140px,96vw)}
+body #inventory-window[data-mode=shop] .inv-npc{display:none!important}
+body #inventory-window[data-mode=shop] .inv-body{grid-template-columns:minmax(0,1fr) 320px;gap:0}
+body #inventory-window[data-mode=shop] .g-head{display:flex;align-items:center;gap:12px;padding-right:44px}
+body #inventory-window[data-mode=shop] .g-head::before{content:"";width:52px;height:52px;flex:none;border-radius:50%;border:1px solid rgba(230,201,143,.5);
+	background:#1a2725 url('/assets/city/city-npcs-v1.png') no-repeat;background-size:208px auto;background-position:0 calc(var(--row,0) * -65px - 2px)}
+body #inventory-window[data-mode=shop] .g-head[data-npc=forge]{--row:1}
+body #inventory-window[data-mode=shop] .g-head[data-npc=market]{--row:2}
+body #inventory-window[data-mode=shop] .g-head h2{display:flex;flex-direction:column;line-height:1.2;white-space:nowrap}
+body #inventory-window[data-mode=shop] .g-head h2::after{content:attr(data-place);font-size:12px;font-weight:400;color:var(--g-faint)}
+body #inventory-window[data-mode=shop] .inv-summary{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-left:auto;justify-content:flex-end}
+body #inventory-window .shop-say{max-width:320px;margin-right:auto;padding:7px 12px;border-radius:12px 12px 12px 3px;background:rgba(255,255,255,.05);border:1px solid var(--g-line);font-size:12px!important;color:var(--g-muted)}
+body #inventory-window[data-mode=shop] .inv-main{display:flex;flex-direction:column;min-width:0;padding-right:16px}
+body #inventory-window[data-mode=shop] .inv-tabs{display:inline-flex;align-self:flex-start;gap:2px;padding:3px;border-radius:11px;background:rgba(0,0,0,.25);border:1px solid var(--g-line)}
+body #inventory-window[data-mode=shop] .inv-tabs button{height:32px!important;min-height:0!important;padding:0 18px!important;border:0!important;border-radius:8px;background:none;color:var(--g-muted)}
+body #inventory-window[data-mode=shop] .inv-tabs button.active{background:rgba(230,201,143,.16)!important;color:#fff1c9!important;box-shadow:inset 0 0 0 1px rgba(230,201,143,.4)}
+body #inventory-window[data-mode=shop] .inv-tabs button.active::after{display:none}
+body #inventory-window .shop-filters{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+body #inventory-window .shop-filters[hidden]{display:none}
+body #inventory-window .shop-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+body #inventory-window .shop-row.sub{font-size:12px;color:var(--g-faint)}
+body #inventory-window .shop-chip{display:flex;align-items:center;gap:6px;height:32px!important;min-height:0!important;padding:0 12px!important;border-radius:16px;border:1px solid var(--g-line);background:rgba(255,255,255,.03);font-size:12.5px;color:var(--g-muted);cursor:pointer}
+body #inventory-window .shop-chip i{font-style:normal;font-size:11px;color:var(--g-faint)}
+body #inventory-window .shop-chip[aria-pressed=true]{border-color:rgba(230,201,143,.5);background:rgba(230,201,143,.12);color:#fff1c9}
+body #inventory-window .shop-chip[aria-pressed=true] i{color:var(--g-gold)}
+body #inventory-window .shop-search{display:flex;align-items:center;gap:6px;margin-left:auto;width:190px;height:34px;padding:0 10px;border-radius:10px;border:1px solid var(--g-line);background:rgba(0,0,0,.22);color:var(--g-faint)}
+body #inventory-window .shop-search input{flex:1;min-width:0;height:100%!important;min-height:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--g-text);font:inherit;font-size:12.5px;outline:none}
+body #inventory-window .shop-search:focus-within{border-color:rgba(230,201,143,.55)}
+body #inventory-window .shop-cap{margin-right:2px}
+body #inventory-window .shop-lv{display:flex;flex-wrap:wrap;gap:4px}
+body #inventory-window .shop-lv button{height:28px!important;min-height:0!important;padding:0 10px!important;border-radius:14px;border:1px solid var(--g-line);background:none;font-size:11.5px;color:var(--g-faint);cursor:pointer}
+body #inventory-window .shop-lv button[aria-pressed=true]{border-color:rgba(143,209,138,.55);background:rgba(143,209,138,.08);color:#8fd18a}
+body #inventory-window .shop-own{margin-left:auto;font-size:12px;color:var(--g-muted)}
+body #inventory-window .shop-note{margin-left:auto}
+body #inventory-window[data-mode=shop] .inv-content{flex:1;min-height:0;margin-top:10px;overflow:auto;overscroll-behavior:contain;padding-right:4px}
+body #inventory-window .ware-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start}
+body #inventory-window .ware-list.sell{grid-template-columns:repeat(3,minmax(0,1fr))}
+body #inventory-window .ware-list .inv-empty{grid-column:1/-1}
+body #inventory-window .shop-group{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-top:4px;font-size:11px;letter-spacing:.16em;color:var(--g-faint)}
+body #inventory-window .shop-group::after{content:"";flex:1;height:1px;background:var(--g-line)}
+body #inventory-window .shop-card{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 10px;padding:10px 12px;border-radius:12px;text-align:left;border:1px solid var(--g-line);
+	background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));color:var(--g-text);transition:border-color .15s;font:inherit}
+body #inventory-window .shop-card:hover{border-color:var(--g-line-strong)}
+body #inventory-window .shop-ico{grid-row:1/3;width:52px;height:52px;border-radius:10px;display:grid;place-items:center;
+	background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--rarity) 18%,transparent),rgba(255,255,255,.03) 70%);border:1px solid color-mix(in srgb,var(--rarity) 45%,transparent)}
+body #inventory-window .shop-ico .item-icon{width:44px;height:44px;transform:none}
+body #inventory-window .shop-name{display:flex;align-items:center;gap:6px;min-width:0;font-size:13.5px;font-weight:700;color:var(--rarity)}
+body #inventory-window .shop-name>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #inventory-window .shop-name em{font-style:normal;font-size:10.5px;font-weight:800;white-space:nowrap}
+body #inventory-window .shop-name em.up{color:#8fd18a}
+body #inventory-window .shop-name em.tag{margin-left:auto;padding:1px 7px;border-radius:9px;background:var(--g-gold);color:#1d2a26}
+body #inventory-window .shop-desc{min-width:0;font-size:11.5px!important;color:var(--g-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #inventory-window .shop-desc b{color:#ef8f86;font-weight:600}
+body #inventory-window .shop-foot{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin-top:4px}
+body #inventory-window .shop-price{display:flex;align-items:center;gap:5px;font-weight:700;color:#fff1c9;font-variant-numeric:tabular-nums}
+body #inventory-window .shop-price::before{content:"";width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3c8,#d7b679 60%,#8a6b2c)}
+body #inventory-window .shop-price.cant{color:#ef8f86}
+body #inventory-window .shop-have{font-size:11px;color:var(--g-faint);white-space:nowrap}
+body #inventory-window .shop-qty{display:flex;align-items:center;margin-left:auto;border:1px solid var(--g-line);border-radius:9px;overflow:hidden}
+body #inventory-window .shop-qty button{width:26px;height:28px!important;min-height:0!important;padding:0!important;border:0!important;background:none;color:var(--g-muted);font-size:14px;cursor:pointer}
+body #inventory-window .shop-qty b{min-width:26px;text-align:center;font-size:12.5px;font-variant-numeric:tabular-nums}
+body #inventory-window .shop-add{height:28px!important;min-height:0!important;padding:0 12px!important;border-radius:9px;border:1px solid rgba(230,201,143,.45);background:none;color:#fff1c9;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer}
+body #inventory-window .shop-add:hover:not(:disabled){background:rgba(230,201,143,.12)}
+body #inventory-window .shop-card.lock{opacity:.55}
+body #inventory-window .shop-card.lock .shop-add{margin-left:auto;border-color:var(--g-line);color:var(--g-faint);cursor:default}
+body #inventory-window .shop-card.incart{border-color:rgba(230,201,143,.55);background:linear-gradient(160deg,rgba(230,201,143,.12),rgba(230,201,143,.02))}
+body #inventory-window .shop-card.sell{cursor:pointer}
+body #inventory-window .shop-check{width:18px;height:18px;margin-left:auto;flex:none;border-radius:5px;border:1.5px solid var(--g-line-strong);display:grid;place-items:center;font-style:normal;font-size:11px;color:#1d1212}
+body #inventory-window .shop-card.picked{border-color:rgba(239,143,134,.55);background:linear-gradient(160deg,rgba(239,143,134,.1),rgba(239,143,134,.02))}
+body #inventory-window .shop-card.picked .shop-check{background:#ef8f86;border-color:#ef8f86}
+
+/* Cart */
+body #inventory-window[data-mode=shop] .inv-cart{display:flex;flex-direction:column;min-height:0;padding:14px 16px;border-left:1px solid var(--g-line);background:rgba(0,0,0,.12)}
+body #inventory-window[data-mode=shop] .inv-cart h3{display:flex;justify-content:space-between;align-items:baseline;margin:0;font-size:14px!important}
+body #inventory-window .cart-count{font-size:11.5px;font-weight:400;color:var(--g-faint)}
+body #inventory-window[data-mode=shop] .cart-lines{flex:1;min-height:0;overflow:auto;margin-top:10px;display:flex;flex-direction:column;gap:6px}
+body #inventory-window[data-mode=shop] .cart-line{display:grid;grid-template-columns:38px minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,.035);border:1px solid var(--g-line)}
+body #inventory-window[data-mode=shop] .cart-line .ware-ico{width:38px;height:38px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,.04)}
+body #inventory-window[data-mode=shop] .cart-line .ware-ico .item-icon{width:32px;height:32px;transform:none}
+body #inventory-window[data-mode=shop] .cart-line b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #inventory-window[data-mode=shop] .cart-sub{font-size:11.5px;color:var(--g-muted);font-variant-numeric:tabular-nums}
+body #inventory-window .cart-del{width:22px;height:22px!important;min-height:0!important;padding:0!important;border:0!important;background:none;color:var(--g-faint);font-size:14px;cursor:pointer}
+body #inventory-window[data-mode=shop] .inv-cart dl{margin:10px 0 0;padding-top:10px;border-top:1px solid var(--g-line)}
+body #inventory-window[data-mode=shop] .cart-go{margin-top:12px;height:44px;border:0;border-radius:12px;background:linear-gradient(135deg,#f2dfb2,#d7b679);color:#1d2a26;font-size:15px;font-weight:800}
+body #inventory-window[data-mode=shop] .cart-go.sell{background:linear-gradient(135deg,#f4b7ae,#d9877c)}
+body #inventory-window[data-mode=shop] .cart-go:disabled{opacity:.5}
+body #inventory-window[data-mode=shop] .cart-white{margin-top:8px}
+@media(max-width:900px){
+	body #inventory-window[data-mode=shop] .inv-body{grid-template-columns:1fr}
+	body #inventory-window[data-mode=shop] .inv-main{padding-right:0}
+	body #inventory-window .shop-say{display:none}
+	body #inventory-window .ware-list,body #inventory-window .ware-list.sell{grid-template-columns:1fr}
+	body #inventory-window .shop-search{margin-left:0;width:100%}
+	body #inventory-window[data-mode=shop] .inv-cart{border-left:0;border-top:1px solid var(--g-line);padding:12px 0 0}
+}
+/* Shop: win over the older .shop-filters label/input rules */
+body #inventory-window .shop-filters label.shop-search{display:flex;flex-direction:row;font-size:12.5px}
+body #inventory-window .shop-filters .shop-search input{width:auto;height:100%}
+body #inventory-window .shop-filters label.shop-own{flex-direction:row;align-items:center;gap:8px;font-size:12px}
+body #inventory-window[data-mode=shop] .g-head h2::before{display:none}
+body #inventory-window[data-mode=shop] .inv-detail{display:none}
+body #inventory-window[data-mode=shop] .inv-cart .cart-go{background:linear-gradient(135deg,#f2dfb2,#d7b679)!important;color:#1d2a26!important;border:0!important}
+body #inventory-window[data-mode=shop] .inv-cart .cart-go.sell{background:linear-gradient(135deg,#f4b7ae,#d9877c)!important}
