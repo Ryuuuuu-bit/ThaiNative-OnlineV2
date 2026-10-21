@@ -1,10 +1,10 @@
-import {CITY_SPAWN} from '@thainative/shared/maps';
-import { predictMovement } from "@thainative/shared/movement";
+import {CITY_SPAWN} from '@the-beginning-online/shared/maps';
+import { predictMovement } from "@the-beginning-online/shared/movement";
 import {
 	reconcileMovement,
 	type PendingMovement,
-} from "@thainative/shared/prediction";
-import type { Action, Game, Player } from "@thainative/shared";
+} from "@the-beginning-online/shared/prediction";
+import type { Action, Game, Player } from "@the-beginning-online/shared";
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 export class NetworkWorld {
 	game = {

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { MemoryStore } from "../store/memory.js";
-import { loadGameData } from "@thainative/shared";
+import { loadGameData } from "@the-beginning-online/shared";
 import { PostgresStore } from '../store/postgres.js';
 import type { EconomyContext, QuestProgress } from '../store/economy.js';
 const data = loadGameData(),

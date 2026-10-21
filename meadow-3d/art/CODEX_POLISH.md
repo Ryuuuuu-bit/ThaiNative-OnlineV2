@@ -1,6 +1,6 @@
 # Codex task: UX + art polish (Director review, 2026-10-17)
 
-Run after CODEX_STABILITY_FIX and BGM are committed. Keep the painted ink-and-gouache look. All player-facing text is Thai live HTML (brand wordmark "THAINATIVE" may stay). Screenshots referenced are in `.codex-run/`.
+Run after CODEX_STABILITY_FIX and BGM are committed. Keep the painted ink-and-gouache look. All player-facing text is Thai live HTML (brand wordmark "THE BEGINNING ONLINE" may stay). Screenshots referenced are in `.codex-run/`.
 
 ## 1. HUD clean-up (hud-city.jpg, hud-meadow-target.jpg, hud-mobile.jpg)
 1. Hide the "N FPS · ms" readout under the minimap for players; show it only with `?debug=1` or a settings toggle "แสดง FPS".
@@ -17,7 +17,7 @@ Run after CODEX_STABILITY_FIX and BGM are committed. Keep the painted ink-and-go
 3. Storage keeper: label "คลังเก็บของ — เปิดเร็ว ๆ นี้" with a lock icon on the minimap instead of a working-looking NPC prompt.
 
 ## 3. Portal / character select (web-portal.jpg, web-characters.jpg)
-1. The game now starts in the city. Portal hero: title "นครที่ถูกลืมเลือน" + subtitle "ThaiNative Online", Thai tagline about the city in the mist; remove "JELLY MEADOW" / "A NEW CHAPTER IN THE MEADOW" / English tagline. New key art (built-in imagegen, same style as the current meadow key art): Aerin from behind on the south road looking at the misty clock-tower city, warm lanterns, cool fog; 1920×1080 WebP ≤ 350 KB + mobile crop. Keep the meadow art as the second feature card.
+1. The game now starts in the city. Portal hero: title "นครที่ถูกลืมเลือน" + subtitle "The Beginning Online", Thai tagline about the city in the mist; remove "JELLY MEADOW" / "A NEW CHAPTER IN THE MEADOW" / English tagline. New key art (built-in imagegen, same style as the current meadow key art): Aerin from behind on the south road looking at the misty clock-tower city, warm lanterns, cool fog; 1920×1080 WebP ≤ 350 KB + mobile crop. Keep the meadow art as the second feature card.
 2. Feature cards and update-notes link: Thai, reflect current features (เมือง, นักดาบ 6 สกิล, ราชาวุ้น, กระเป๋า/ร้านค้า).
 
 ## 4. Art fixes

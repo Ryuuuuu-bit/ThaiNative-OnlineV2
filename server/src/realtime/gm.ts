@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import {
 	CITY_SPAWN, MEADOW_ENTRY, FOREST_ENTRY, isField, walkable, spawn, refreshStats, autoAllocateStats, resetStats,
 	type Game, type MapId, type Player, type InventoryOp, type SlimeVariant,
-} from "@thainative/shared";
+} from "@the-beginning-online/shared";
 import type { Store, Account } from "../store/types.js";
 import type { AdminAccess } from "../admin.js";
 import { AppError } from "../errors.js";

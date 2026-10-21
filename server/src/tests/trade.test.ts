@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { once } from "node:events";
 import { randomUUID } from "node:crypto";
 import { WebSocket } from "ws";
-import { loadGameData, applyTrade, type Inventory } from "@thainative/shared";
+import { loadGameData, applyTrade, type Inventory } from "@the-beginning-online/shared";
 import { createApp } from "../app.js";
 import { MemoryStore } from "../store/memory.js";
 import { mountRealtime } from "../realtime/index.js";

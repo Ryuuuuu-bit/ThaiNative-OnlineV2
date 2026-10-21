@@ -1,10 +1,10 @@
 import { createTrades } from './trade.js';
-import {TITLES,titleDefinition,normalizeTitleRecords,earnTitles,canWearTitle,titleProgress,type RankingCharacter} from '@thainative/shared';
+import {TITLES,titleDefinition,normalizeTitleRecords,earnTitles,canWearTitle,titleProgress,type RankingCharacter} from '@the-beginning-online/shared';
 import {createRankings} from './rankings.js';
 import {monsterKnockbackFor} from './monster-knockback.js';
-import {applyInventory,equipped,equippedCards,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI,resolveKeys,reservedKeys,bindingProblem} from '@thainative/shared';
-import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, isField, BOSS_RESPAWN_MS, bossTimer, setBossTimer, type MapId } from "@thainative/shared";
-import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@thainative/shared";
+import {applyInventory,equipped,equippedCards,inventoryWeight,type InventoryOp,normalizeAuto,DEFAULT_UI,resolveKeys,reservedKeys,bindingProblem} from '@the-beginning-online/shared';
+import { CITY_BUILDINGS, CITY_SPAWN, travelDestination, healerHeal, isField, BOSS_RESPAWN_MS, bossTimer, setBossTimer, type MapId } from "@the-beginning-online/shared";
+import { normalizeQuests, acceptQuest, questStatus, questTurnInItems, completeQuest, recordKill, recordStore, giverPosition, QUEST_TALK_RANGE, grantExp } from "@the-beginning-online/shared";
 import {needsJob} from '../store/progress.js';
 import type { Server } from "node:http";
 import { performance } from "node:perf_hooks";
@@ -38,8 +38,8 @@ import {
 	type Game,
 	type Player,
 	type Vec,
-} from "@thainative/shared";
-import { IntentSchema, normalizeAutoPotion, type Intent } from "@thainative/shared";
+} from "@the-beginning-online/shared";
+import { IntentSchema, normalizeAutoPotion, type Intent } from "@the-beginning-online/shared";
 import type { Store, Character, Progress } from "../store/types.js";
 import { hashToken } from "../session.js";
 import { createSocial } from "./social.js";
@@ -49,7 +49,7 @@ import type { EconomyContext, QuestProgress } from '../store/economy.js';
 interface Peer {
  titleSaving?:boolean;
  leaseOwner?:string; busy?:number; deferred?:Intent[]; uiLoading?:boolean;
- ui?:import('@thainative/shared').UISettings;
+ ui?:import('@the-beginning-online/shared').UISettings;
 	ws: WebSocket;
 	id: string;
 	accountId: string;

@@ -1,8 +1,8 @@
-import {DEFAULT_UI,type UISettings,loadGameData,KEY_ACTIONS,DEFAULT_KEYS,resolveKeys,bindingProblem,keyLabel,BINDABLE_KEY,type KeyAction} from '@thainative/shared';
+import {DEFAULT_UI,type UISettings,loadGameData,KEY_ACTIONS,DEFAULT_KEYS,resolveKeys,bindingProblem,keyLabel,BINDABLE_KEY,type KeyAction} from '@the-beginning-online/shared';
 import {setKeyBindings} from './keys';
 /** Thai names for the rebindable actions, in settings order. */
 const ACTION_NAMES:Record<KeyAction,string>={attack:'โจมตี',dash:'หลบ',potion:'ดื่มยา',auto:'เปิด/ปิด AUTO',nextTarget:'เปลี่ยนเป้าหมาย',inventory:'กระเป๋า',skills:'สมุดสกิล',stats:'สเตตัส',returnCity:'กลับเมือง'};
-import {CITY_BUILDINGS,HEALER,GATES,GATE_CAPTAIN,LAYOUTS,MAP_INFO,gateRoute,type MapId} from '@thainative/shared/maps';
+import {CITY_BUILDINGS,HEALER,GATES,GATE_CAPTAIN,LAYOUTS,MAP_INFO,gateRoute,type MapId} from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
 import {createPathfinder,gateApproach} from './hud-path';

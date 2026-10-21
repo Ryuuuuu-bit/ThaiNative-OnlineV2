@@ -3,7 +3,7 @@ import {UI_FONT_FAMILY} from './fonts';
 import * as T from 'three';import type{PaintedLoader}from'./assets';
 import{ARENA,OBSTACLES,water}from'./sim';
 import{uprightCard,TALL_PROP}from'./upright-depth.ts';
-import{LAYOUTS,GATES,type Ellipse}from'@thainative/shared/maps';
+import{LAYOUTS,GATES,type Ellipse}from'@the-beginning-online/shared/maps';
 const L=LAYOUTS.meadow,W=L.halfX*2,D=L.halfZ*2;
 export function random(seed=7){let n=seed;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};}
 export function label(text:string,color='#fff2d4'){const c=document.createElement('canvas');const measure=c.getContext('2d')!;measure.font=`600 22px ${UI_FONT_FAMILY}`;c.width=Math.max(64,Math.ceil(measure.measureText(text).width)+24);c.height=64;const x=c.getContext('2d')!;x.font=`600 22px ${UI_FONT_FAMILY}`;x.textAlign='center';x.lineJoin='round';x.shadowColor='#000b';x.shadowBlur=7;x.lineWidth=5;x.strokeStyle='#0b1514d9';x.strokeText(text,c.width/2,37);x.shadowBlur=0;x.fillStyle=color;x.fillText(text,c.width/2,37);const map=new T.CanvasTexture(c);map.colorSpace=T.SRGBColorSpace;const s=new T.Sprite(new T.SpriteMaterial({map,transparent:true,depthWrite:false}));s.scale.set(c.width/384*2.8,.47,1);return s;}

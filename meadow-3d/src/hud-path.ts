@@ -1,5 +1,5 @@
-import type { PathPoint } from '@thainative/shared/pathfinding';
-export { createPathfinder, gridPath, pathSegmentWalkable, type PathPoint } from '@thainative/shared/pathfinding';
+import type { PathPoint } from '@the-beginning-online/shared/pathfinding';
+export { createPathfinder, gridPath, pathSegmentWalkable, type PathPoint } from '@the-beginning-online/shared/pathfinding';
 
 /** Portals sit on the map border; stand one metre inside their activation radius. */
 export function gateApproach(p: PathPoint) {

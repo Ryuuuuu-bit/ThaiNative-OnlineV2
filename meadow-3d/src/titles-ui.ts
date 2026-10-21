@@ -1,4 +1,4 @@
-import { titleDefinition, type TitleDefinition, type RankingBoard } from '@thainative/shared';
+import { titleDefinition, type TitleDefinition, type RankingBoard } from '@the-beginning-online/shared';
 import jobsData from '../../shared/data/jobs.json';
 import './titles.css';
 type TitleEntry=TitleDefinition&{unlocked:boolean;progress:number;rank:number|null};

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {LAYOUTS} from '@thainative/shared/maps';
+import {LAYOUTS} from '@the-beginning-online/shared/maps';
 import {canyonRockVariants,canyonRockProps} from '../src/canyon-rock-art.ts';
 const manifest=JSON.parse(readFileSync(new URL('../public/assets/canyon-painted-v1/manifest.json',import.meta.url)));
 test('canyon art preserves obstacle positions and fits high-resolution source rectangles',async()=>{

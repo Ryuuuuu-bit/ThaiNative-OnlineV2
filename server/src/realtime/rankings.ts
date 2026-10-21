@@ -1,4 +1,4 @@
-import { canWearTitle, compareRankings, titleDefinition, type RankingBoard, type RankingCharacter } from '@thainative/shared';
+import { canWearTitle, compareRankings, titleDefinition, type RankingBoard, type RankingCharacter } from '@the-beginning-online/shared';
 import type { Store } from '../store/types.js';
 
 /** One shared, bounded-frequency read. Only public character fields leave this service. */

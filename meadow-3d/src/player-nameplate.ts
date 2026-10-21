@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {UI_FONT_FAMILY} from './fonts';
-import { titleDefinition } from '@thainative/shared';
+import { titleDefinition } from '@the-beginning-online/shared';
 /** Draw only when identity/title changes; the render loop retains its pixel-size budget. */
 export function updatePlayerNameplate(tag:T.Sprite,name:string,titleId?:string|null){
  const title=titleDefinition(titleId),key=name+'\0'+(title?.id??'');if(tag.userData.identity===key)return;

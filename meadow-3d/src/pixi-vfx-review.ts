@@ -1,4 +1,4 @@
-import {createGame,spawn,loadGameData} from '@thainative/shared';
+import {createGame,spawn,loadGameData} from '@the-beginning-online/shared';
 import {GameCanvas2D} from './game-2d-renderer';
 
 const $=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T;

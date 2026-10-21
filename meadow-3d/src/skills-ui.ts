@@ -1,11 +1,11 @@
-import {resolveSkill,loadGameData} from '@thainative/shared';
+import {resolveSkill,loadGameData} from '@the-beginning-online/shared';
 import skillsData from "../../shared/data/skills.json";
 import jobsData from "../../shared/data/jobs.json";
-import type { HotbarSlot, JobProgress } from "@thainative/shared";
+import type { HotbarSlot, JobProgress } from "@the-beginning-online/shared";
 import "./skills.css";
 import "./skill-art.css";
 import { itemIconCell } from "./item-icon";
-import { BINDABLE_KEY } from "@thainative/shared";
+import { BINDABLE_KEY } from "@the-beginning-online/shared";
 import { takenByActions } from "./keys";
 const skills = skillsData.skills as any[];
 const itemTemplates=loadGameData().items.items;
@@ -130,7 +130,11 @@ export function mountSkills(
 			.map((slot, i) => {
 				const s = slotSpec(slot.skill),
 					learned = !!s && (!!slot.skill?.startsWith('item:') || !!job?.skills[s.id]);
-				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${slot.skill?.startsWith("item:") ? "item-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}" title="${s?.nameTh || "ว่าง"} · ${keyLabel(slot.key)}" data-slot="${i}" ${slot.skill?.startsWith("item:") ? `data-item="${slot.skill.slice(5)}"` : ""} ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? slot.skill?.startsWith("item:") ? `${itemIconHTML(slot.skill.slice(5),'hotbar-potion')}<b class="slot-count"></b>` : icon(s) : '<span class="empty-mark">·</span>'}<small>${s?.nameTh || "ว่าง"}</small><em></em></button>`;
+				const isItem = !!slot.skill?.startsWith("item:");
+				const extra = mirror && s ? (isItem ? `<b class="slot-count">${bagCount(inventory, slot.skill!.slice(5))}</b>` : `<i class="slot-sp">${Math.round(s.values?.sp?.[Math.max(0, level(s.id) - 1)] ?? s.sp ?? 0) || ""}</i>`) : isItem && s ? '<b class="slot-count"></b>' : "";
+				const target = mirror && selected ? " slot-target" : "";
+				const label = mirror && selected && !s ? "แตะเพื่อวาง" : s?.nameTh || "ว่าง";
+				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${isItem ? "item-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}${target}" title="${s?.nameTh || "ว่าง"} · ${keyLabel(slot.key)}" data-slot="${i}" ${isItem ? `data-item="${slot.skill!.slice(5)}"` : ""} ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? isItem ? itemIconHTML(slot.skill!.slice(5), 'hotbar-potion') : icon(s) : '<span class="empty-mark">+</span>'}${extra}<small>${label}</small><em></em>${mirror && s ? '<span class="slot-clear" role="button" aria-label="ล้างช่อง">×</span>' : ""}</button>`;
 			})
 			.join("");
 	}
@@ -146,8 +150,9 @@ export function mountSkills(
 	}
 	function bindSlots(root: HTMLElement) {
 		root.querySelectorAll<HTMLElement>("[data-slot]").forEach((el) => {
-			el.onclick = () => {
+			el.onclick = (e) => {
 				const i = Number(el.dataset.slot);
+				if ((e.target as HTMLElement).closest(".slot-clear")) { assign(i, null); return; }
 				if (selected) assign(i, selected);
 				else if (!el.dataset.mirror) {
 					const id = job?.hotbar[i].skill;
@@ -196,24 +201,64 @@ export function mountSkills(
 		const grid = tree.querySelector<HTMLElement>(".sk-grid")!;
 
 		if (viewJob === "items") {
-			grid.classList.add("sk-items");
-			for (const t of barItems) {
-				const card = document.createElement("article"),
-					id = "item:" + t.id;
-				card.className = "skill-node item-node" + (selected === id ? " sk-selected" : "");
-				card.dataset.skill = id;
-				card.draggable = true;
-				card.innerHTML = `${itemIconHTML(t.id, "job-icon-item")}<div class="sk-text"><b>${t.nameTh}<small>มี ${bagCount(inventory, t.id)}</small></b><span class="sk-meta">${t.effect === "hp" ? `ฟื้นพลังชีวิต ${t.amount}` : t.effect === "sp" ? `ฟื้นพลังสกิล ${t.amount}` : "เร่งความเร็ว 60 วิ"} · คูลดาวน์ยา ${POTION_CD} วิ</span></div>`;
-				card.ondragstart = (e) => {document.body.classList.add('dragging-hotbar');e.dataTransfer?.setData('text/plain', id);};
-				card.ondragend = () => document.body.classList.remove('dragging-hotbar');
-				card.onclick = () => {
-					selected = id;
-					$("#skills-status").textContent = `เลือกช่องด้านล่างเพื่อวาง ${t.nameTh}`;
-					draw();
-				};
-				grid.append(card);
+			grid.classList.add("sk-items", "pot-list");
+			const slotOf = (id: string) => (job?.hotbar || []).findIndex((h) => h.skill === id);
+			const potEffect = (t: (typeof barItems)[number]) => t.effect === "hp" ? `+${t.amount!.toLocaleString("en-US")} HP` : t.effect === "sp" ? `+${t.amount!.toLocaleString("en-US")} SP` : `เร็ว +${Math.round(t.amount! * 100)}% · 60 วิ`;
+			const cdNote = document.createElement("p");
+			cdNote.className = "pot-cd";
+			cdNote.innerHTML = `<i aria-hidden="true"></i>ยาทุกชนิดใช้ <b>คูลดาวน์ร่วม ${POTION_CD} วิ</b> · กดปุ่มลัดหรือดับเบิลคลิกการ์ดเพื่อดื่มทันที`;
+			grid.append(cdNote);
+			for (const [effect, label] of [["hp", "ฟื้นพลังชีวิต (HP)"], ["sp", "ฟื้นพลังสกิล (SP)"], ["speed", "เสริมพลัง"]] as const) {
+				const group = barItems.filter((t) => t.effect === effect);
+				if (!group.length) continue;
+				const head = document.createElement("div");
+				head.className = `pot-group pot-${effect}`;
+				head.textContent = label;
+				const cards = document.createElement("div");
+				cards.className = "pot-cards";
+				for (const t of group) {
+					const id = "item:" + t.id, own = bagCount(inventory, t.id), at = slotOf(id);
+					const card = document.createElement("article");
+					card.className = `pot-card pot-${effect}` + (own ? "" : " zero") + (selected === id ? " sk-selected" : "");
+					card.dataset.skill = id;
+					card.draggable = true;
+					card.tabIndex = 0;
+					card.innerHTML = `${at >= 0 ? `<span class="pot-slot">ช่อง ${keyLabel(job!.hotbar[at].key)}</span>` : ""}<span class="pot-own">${own ? "×" + own : "0"}</span>${itemIconHTML(t.id, "job-icon-item")}<b></b><span class="pot-amt">${potEffect(t)}</span>`;
+					card.querySelector("b")!.textContent = t.nameTh;
+					card.ondragstart = (e) => { document.body.classList.add("dragging-hotbar"); e.dataTransfer?.setData("text/plain", id); };
+					card.ondragend = () => document.body.classList.remove("dragging-hotbar");
+					card.onclick = () => { selected = selected === id ? null : id; $("#skills-status").textContent = selected ? `เลือกช่องด้านล่างเพื่อวาง ${t.nameTh}` : ""; draw(); };
+					card.ondblclick = () => { if (own) act(id); };
+					card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); card.click(); } };
+					cards.append(card);
+				}
+				grid.append(head, cards);
 			}
-			tree.querySelector(".sk-detail")!.innerHTML = `<p class="sk-empty">เลือกยาแล้วแตะช่องด้านล่าง หรือลากลงแถบ · ยาใช้คูลดาวน์ร่วมกัน ${POTION_CD} วิ</p>`;
+			const chosen = barItems.find((t) => "item:" + t.id === selected);
+			const detail = tree.querySelector<HTMLElement>(".sk-detail")!;
+			if (!chosen) detail.innerHTML = `<p class="sk-empty">เลือกยาเพื่อดูรายละเอียดและวางลงแถบลัด หรือลากการ์ดลงช่องด้านล่างได้เลย · ยาใช้คูลดาวน์ร่วมกัน ${POTION_CD} วิ</p>`;
+			else {
+				const id = "item:" + chosen.id, at = slotOf(id), own = bagCount(inventory, chosen.id), bar = job!.hotbar;
+				const firstEmpty = bar.findIndex((h) => !h.skill);
+				detail.innerHTML = `<div class="pot-head pot-${chosen.effect}"><span class="pot-big">${itemIconHTML(chosen.id, "job-icon-item")}</span><div><h3></h3><small>${chosen.effect === "speed" ? "เร่งความเร็วชั่วคราว" : "ฟื้นฟูทันทีเมื่อดื่ม"}</small></div></div>
+					<dl class="pot-kv"><dt>ผล</dt><dd class="pot-amt">${potEffect(chosen)}</dd><dt>มีในกระเป๋า</dt><dd>${own.toLocaleString("en-US")} ขวด</dd><dt>คูลดาวน์</dt><dd>${POTION_CD} วิ (ร่วมกับยาอื่น)</dd><dt>อยู่ในแถบ</dt><dd class="${at >= 0 ? "on" : ""}">${at >= 0 ? "ช่อง " + keyLabel(bar[at].key) : "ยังไม่ได้วาง"}</dd></dl>
+					<h4>ใส่ลงแถบ</h4><div class="pot-put"></div>
+					<p class="pot-auto">ดื่มอัตโนมัติเมื่อ HP/SP ต่ำ ตั้งได้ใน <button type="button" class="pot-auto-link">ตั้งค่า AUTO</button></p>`;
+				detail.querySelector("h3")!.textContent = chosen.nameTh;
+				const put = detail.querySelector<HTMLElement>(".pot-put")!;
+				bar.forEach((h, i) => {
+					const b = document.createElement("button");
+					b.type = "button";
+					const other = slotSpec(h.skill);
+					b.textContent = `${keyLabel(h.key)}${i === at ? " ✓" : !h.skill ? " ·ว่าง" : ""}`;
+						b.setAttribute("aria-label", `ใส่ช่อง ${keyLabel(h.key)}${h.skill ? " แทน " + (other?.nameTh ?? "") : " (ว่าง)"}`);
+					b.title = h.skill ? `แทนที่ ${other?.nameTh ?? ""}` : "ช่องว่าง";
+					b.className = i === at ? "on" : i === firstEmpty ? "rec" : "";
+					b.onclick = () => assign(i, id);
+					put.append(b);
+				});
+				detail.querySelector<HTMLButtonElement>(".pot-auto-link")!.onclick = () => { panel.close(); document.querySelector<HTMLElement>("#auto-settings-button")?.click(); };
+			}
 		} else {
 			// Columns: each skill with no prerequisite in this job starts one; a skill sits one row below
 			// the first prerequisite it has in the same job, in that prerequisite's column.

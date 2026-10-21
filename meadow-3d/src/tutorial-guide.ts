@@ -1,4 +1,4 @@
-import {GATES,GATE_CAPTAIN,LAYOUTS,type MapId} from '@thainative/shared/maps';
+import {GATES,GATE_CAPTAIN,LAYOUTS,type MapId} from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json';
 import './tutorial-guide.css';
 

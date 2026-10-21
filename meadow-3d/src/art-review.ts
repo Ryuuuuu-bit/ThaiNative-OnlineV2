@@ -9,7 +9,7 @@ import {buildCity} from './city-scene';
 import {buildForest} from './forest-scene';
 import {makePaintedMonster} from './painted-monster';
 import {uprightSprite,updateSeeThrough} from './upright-depth.ts';
-import {LAYOUTS,cityWalkable,meadowWalkable,forestWalkable,travelDestination,type MapId as AllMapId} from '@thainative/shared/maps';
+import {LAYOUTS,cityWalkable,meadowWalkable,forestWalkable,travelDestination,type MapId as AllMapId} from '@the-beginning-online/shared/maps';
 const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(1);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;document.body.append(renderer.domElement);
 const scene=new T.Scene();scene.background=new T.Color('#c8d1bd');
 const hemi=new T.HemisphereLight('#fff0db','#888775',1.6),sun=new T.DirectionalLight('#ffefd5',1.8);sun.position.set(-14,24,9);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-27,right:27,top:27,bottom:-27,near:1,far:100});sun.shadow.normalBias=.025;scene.add(hemi,sun,sun.target);

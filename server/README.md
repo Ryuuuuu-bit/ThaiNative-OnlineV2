@@ -1,4 +1,4 @@
-# ThaiNative web server
+# The Beginning Online web server
 
 Express 5 + TypeScript, Node 22 or newer. One Node process serves the built portal, game and REST API. The same HTTP server hosts authenticated WebSockets and the shared authoritative sim; default rooms are private per character.
 

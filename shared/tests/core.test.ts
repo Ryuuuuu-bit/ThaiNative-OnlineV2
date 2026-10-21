@@ -55,7 +55,7 @@ test("broken data names the JSON file and exact path", () => {
 	assert.throws(() => validateGameData(broken), /skills.json: skills.1.sp/);
 });
 test("Node loader reads edited files afresh and gives JSON parse errors with filenames", () => {
-	const dir = mkdtempSync(join(tmpdir(), "thainative-stats-"));
+	const dir = mkdtempSync(join(tmpdir(), "beginning-stats-"));
 	try {
 		cpSync(new URL("../data/", import.meta.url), dir, { recursive: true });
 		const file = join(dir, "items.json");

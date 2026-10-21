@@ -1,4 +1,4 @@
-# Working on ThaiNative Online V2
+# Working on The Beginning Online
 
 Rules for everyone pushing to this repository: people, Codex and Claude.
 
@@ -63,4 +63,4 @@ Deploy only by pushing commits to `main`. Do not run `railway up` from a working
 - หากยอมรับข้อจำกัดชั่วคราว ให้บันทึกเหตุผล ข้อจำกัด และเงื่อนไขที่ต้องกลับมาแก้ใกล้โค้ดนั้น โดยไม่ใช้ข้อจำกัดเป็นเหตุให้ละงานที่ผู้ใช้ขอ
 - เมื่อรายงานผล ให้บอกสิ่งที่เปลี่ยน การตรวจสอบที่ทำจริง และสิ่งที่ยังไม่ได้ตรวจหรือความเสี่ยงที่เกี่ยวข้อง ห้ามอ้างว่าเทสต์ผ่านหากไม่ได้รัน
 
-ที่มาแนวคิด: [Ponytail](https://github.com/DietrichGebert/ponytail) — ปรับให้เหมาะกับ ThaiNative Online V2
+ที่มาแนวคิด: [Ponytail](https://github.com/DietrichGebert/ponytail) — ปรับให้เหมาะกับ The Beginning Online

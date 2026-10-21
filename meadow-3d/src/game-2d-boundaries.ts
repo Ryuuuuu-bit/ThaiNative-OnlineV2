@@ -1,4 +1,4 @@
-import {LAYOUTS,type MapId} from '@thainative/shared/maps';
+import {LAYOUTS,type MapId} from '@the-beginning-online/shared/maps';
 
 export type BoundaryRoad={x:number;z:number;dx:number;dz:number;width:number};
 export function boundaryRoads(id:MapId):BoundaryRoad[]{

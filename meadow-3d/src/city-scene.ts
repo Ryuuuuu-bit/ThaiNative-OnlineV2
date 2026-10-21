@@ -3,7 +3,7 @@ import {cityPaving,cityCanvas,canopyGeometry} from './city-paving.ts';
 import {chunkInstances,artQuality,artStats,contactShadows} from './world-art.ts';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { CITY, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS, CITY_ART_SOLIDS, HEALER, GATE_CAPTAIN } from '@thainative/shared/maps';
+import { CITY, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS, CITY_ART_SOLIDS, HEALER, GATE_CAPTAIN } from '@the-beginning-online/shared/maps';
 /** Plaza size and wall line (1 m outside the walkable edge). */
 const S=CITY.halfX*2,H=CITY.halfX+1,F=CITY_FOUNTAIN,K=S/60;
 import type { PaintedLoader } from './assets';

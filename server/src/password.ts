@@ -1,5 +1,5 @@
 import{randomBytes,scrypt,timingSafeEqual,type ScryptOptions}from'node:crypto';import{AppError}from'./errors.js';
-import { usernamePolicyError } from '@thainative/shared';
+import { usernamePolicyError } from '@the-beginning-online/shared';
 // scrypt N=2^15 r=8 p=1 (≈32 MiB, tens of ms): slow for attackers, affordable per login. Encoded so parameters can be raised later.
 const N=32768,R=8,P=1,KEYLEN=32,MAXMEM=96*1024*1024;
 const derive=(password:string,salt:Buffer,o:{N:number;r:number;p:number},keylen=KEYLEN)=>new Promise<Buffer>((resolve,reject)=>scrypt(password.normalize('NFKC'),salt,keylen,{...o,maxmem:MAXMEM} satisfies ScryptOptions,(e,key)=>e?reject(e):resolve(key)));

@@ -19,6 +19,13 @@ test('reserved names reject team impersonation, leetspeak, accents and repeated-
 	assert.match(namePolicyError('G\u200bM_hero')!, /สงวน/);
 });
 
+test('new game brand and its spelling variants remain reserved alongside the legacy brand', async () => {
+ const {usernamePolicyError}=await import('../src/usernames.js');
+ for(const name of ['TheBeginning','The Beginning Online','The_Beginning','Th3Beginning','BeginningOnline','ThaiNative'])assert.match(namePolicyError(name)!,/สงวน/,name);
+ for(const name of ['TheBeginning','The_Beginning','Th3Beginning','BeginningOnline','ThaiNative'])assert.equal(usernamePolicyError(name)?.code,'USERNAME_RESERVED',name);
+ assert.equal(usernamePolicyError('NewTraveler'),null);
+});
+
 test('inappropriate character names reject Thai/English words and spelling evasions', () => {
 	for (const name of ['ควยดำ', 'เหี้ยดำ', 'เหี๊ยดำ', 'เย้ด', 'หำใหญ่', 'แตด', 'FuckYou', 'Fuuuck', 'Fück', 'Sh1t', 'B1tch', 'Asshole', 'N1gger'])
 		assert.match(characterNameError(name)!, /ไม่เหมาะสม/, name);

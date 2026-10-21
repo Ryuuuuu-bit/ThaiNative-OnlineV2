@@ -1,5 +1,5 @@
 // Offline UAT fixture only. No server connection, persisted characters, or production flag.
-import {createGame,spawn,action,step,changeJob,loadGameData} from '@thainative/shared';
+import {createGame,spawn,action,step,changeJob,loadGameData} from '@the-beginning-online/shared';
 import {writeFileSync} from 'node:fs';
 if(!process.argv.includes('--dev-fast-job'))throw Error('Explicit offline --dev-fast-job required');
 const data=loadGameData(),runs=[];

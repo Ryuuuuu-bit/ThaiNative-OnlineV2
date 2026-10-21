@@ -9,7 +9,7 @@ const BLOCKED = [
 ];
 // Innocent words that contain a blocked spelling.
 const ALLOWED = ["หีบ", "สัดส่วน", "แม่งาน", "แม่งู", "เหี้ยม", "scunthorpe", "dickens", "shitake", "shiitake", "cockpit"];
-const RESERVED_NAMES = ["admin", "administrator", "gamemaster", "moderator", "system", "staff", "support", "official", "ระบบ", "ทีมงาน", "ผู้ดูแล", "แอดมิน", "แอดมิ่น", "จีเอ็ม", "thainative", "ไทยเนทีฟ"];
+const RESERVED_NAMES = ["admin", "administrator", "gamemaster", "moderator", "system", "staff", "support", "official", "ระบบ", "ทีมงาน", "ผู้ดูแล", "แอดมิน", "แอดมิ่น", "จีเอ็ม", "thebeginning", "beginningonline", "เดอะบีกินนิง", "thainative", "ไทยเนทีฟ"];
 const SEP = "[\\s._\\-*~+|'\"`]*";
 const escape = (c: string) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const pattern = (word: string) => new RegExp([...word].map(escape).join(SEP), "giu");

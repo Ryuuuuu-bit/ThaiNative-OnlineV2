@@ -1,4 +1,4 @@
-import {CITY_SPAWN,CITY_RETURN,GATES,HEALER,travelDestination,type MapId} from '@thainative/shared/maps';
+import {CITY_SPAWN,CITY_RETURN,GATES,HEALER,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
 import test from "node:test";
 import assert from "node:assert/strict";
 import { once } from "node:events";
@@ -391,7 +391,7 @@ test('HUD settings are account scoped; return cast cancels and cooldown survives
  peer.send({t:'steer',dx:1,dz:0,seq:1});await wait(100);assert.equal(p.returnRemaining,0);
  peer.send({t:'steer',dx:0,dz:0,seq:2});peer.send({t:'returnCity'});await wait(100);assert.ok(p.returnRemaining!>0);
  room.game.events.push({type:'hurt',playerId:p.id,x:p.x,z:p.z,amount:1});await wait(100);assert.equal(p.returnRemaining,0);
- const {spawn}=await import('@thainative/shared');const boss=spawn(room.game,0,10,true);boss.engaged=true;
+ const {spawn}=await import('@the-beginning-online/shared');const boss=spawn(room.game,0,10,true);boss.engaged=true;
  peer.send({t:'returnCity'});await wait(100);assert.equal(p.returnRemaining,0);boss.dead=true;boss.respawn=600;
  peer.send({t:'returnCity'});await wait(100);assert.ok(p.returnRemaining!>0);p.returnRemaining=.05;
  await peer.until(m=>m.t==='snap'&&m.mapId==='city_plaza');assert.ok(p.returnReadyAt!>Date.now());

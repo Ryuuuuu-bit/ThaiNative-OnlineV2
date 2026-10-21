@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,loadGameData,moveTo,step} from '@thainative/shared';
-import {LAYOUTS,ruinsWalkable,onPath} from '@thainative/shared/maps';
+import {createGame,loadGameData,moveTo,step} from '@the-beginning-online/shared';
+import {LAYOUTS,ruinsWalkable,onPath} from '@the-beginning-online/shared/maps';
 import {gridPath} from '../src/hud-path.ts';
 import {readFileSync} from 'node:fs';
 const previous=JSON.parse(readFileSync(new URL('../art/ruins-painted-v1/previous-layout.json',import.meta.url)));

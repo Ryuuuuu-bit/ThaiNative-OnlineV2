@@ -1,5 +1,5 @@
 import * as T from 'three';
-import type {MapId} from '@thainative/shared/maps';
+import type {MapId} from '@the-beginning-online/shared/maps';
 
 export const ART_TILE=16;
 /** Split matrices and per-instance attributes together; each tile owns a tight culling sphere. */

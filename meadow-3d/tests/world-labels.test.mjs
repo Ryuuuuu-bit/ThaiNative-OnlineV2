@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {nameplateCandidates,overlaps} from '../src/world-labels.ts';
-import {createGame,revive} from '@thainative/shared';
-import {CITY_SPAWN} from '@thainative/shared/maps';
+import {createGame,revive} from '@the-beginning-online/shared';
+import {CITY_SPAWN} from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 test('nameplate budget reserves target and hover, then nearest living monsters within five metres',()=>{
  const es=[1,2,3,4,5,6,7,8].map(id=>({id,x:id,z:0}));

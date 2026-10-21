@@ -7,7 +7,7 @@ import { MemoryStore } from "../store/memory.js";
 import { ADMIN_SEED_UIDS } from "../store/types.js";
 import { mountRealtime } from "../realtime/index.js";
 import { adminAccess } from "../admin.js";
-import { MEADOW_ENTRY, FIELD_BOSS } from "@thainative/shared";
+import { MEADOW_ENTRY, FIELD_BOSS } from "@the-beginning-online/shared";
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function fixture(t: any, options: { gmCommandsPer10s?: number; adminIds?: string[] } = {}) {

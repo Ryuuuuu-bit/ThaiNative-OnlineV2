@@ -1,4 +1,4 @@
-import { loadGameData, offerProblem, TRADE_MAX_ITEMS, type OwnedItem, type Player, type TradeOffer } from "@thainative/shared";
+import { loadGameData, offerProblem, TRADE_MAX_ITEMS, type OwnedItem, type Player, type TradeOffer } from "@the-beginning-online/shared";
 import { itemIconCell } from "./item-icon";
 import "./trade.css";
 

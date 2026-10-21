@@ -1,7 +1,7 @@
 import RAPIER from '@dimforge/rapier2d-compat';
 import {performance} from 'node:perf_hooks';
-import {walkable} from '@thainative/shared/collision';
-import {LAYOUTS,MEADOW_LANDMARKS,CITY_PLANTERS,GARDEN_TREES,CITY_ART_SOLIDS,CITY_FOUNTAIN,CITY_BUILDINGS,CITY_HOUSES,CITY_BENCHES,CITY_STALLS,FORTIFICATION_SOLIDS,DECOR,CITY_TOWER,type MapId} from '@thainative/shared/maps';
+import {walkable} from '@the-beginning-online/shared/collision';
+import {LAYOUTS,MEADOW_LANDMARKS,CITY_PLANTERS,GARDEN_TREES,CITY_ART_SOLIDS,CITY_FOUNTAIN,CITY_BUILDINGS,CITY_HOUSES,CITY_BENCHES,CITY_STALLS,FORTIFICATION_SOLIDS,DECOR,CITY_TOWER,type MapId} from '@the-beginning-online/shared/maps';
 
 const initStart=performance.now();
 await RAPIER.init();

@@ -4,7 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { MemoryStore } from '../store/memory.js';
 import { PostgresStore } from '../store/postgres.js';
 import { createRankings } from '../realtime/rankings.js';
-import type { RankingCharacter } from '@thainative/shared';
+import type { RankingCharacter } from '@the-beginning-online/shared';
 
 test('rankings include offline characters, merge live progress, omit private data and keep stable ties',async()=>{
  const store=new MemoryStore(),a=await store.createGuest(randomUUID());

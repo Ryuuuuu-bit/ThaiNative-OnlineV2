@@ -342,7 +342,7 @@ dialog .close:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line
 [data-icon=auto]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1'/%3E%3C/svg%3E")}
 [data-icon=art]{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='m21 15-5-5L5 21'/%3E%3C/svg%3E")}
 
-/* ---------- Skill book as a tree (ThaiNativeOnline layout): job tabs · tree · card · bar ---------- */
+/* ---------- Skill book as a tree (The Beginning Online layout): job tabs · tree · card · bar ---------- */
 #skills-window[open]{width:min(1080px,96vw);height:min(720px,92dvh)}
 #skills-window #skills-tree{display:flex!important;flex-direction:column;gap:10px;flex:1;min-height:0}
 .sk-tabs{flex:none;display:flex;gap:6px}
@@ -411,3 +411,75 @@ dialog .close:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--g-line
 #skills-window .sk-dmg .nx,#skills-window .sk-dmg td.nx small{color:var(--g-ok)!important}
 #skills-window .sk-eff{margin:8px 0 0;font-size:12px!important;color:#f0c987}
 #skills-window .sk-note{margin:6px 0 0;font-size:11px!important;line-height:1.5;color:var(--g-faint)}
+
+/* ---------- Skill book: potions tab (ui-mockup/skillbook.html) ---------- */
+body #skills-window .sk-grid.pot-list{display:flex!important;flex-direction:column;gap:10px;grid-template-columns:none!important}
+body #skills-window .pot-cd{display:flex;align-items:center;gap:10px;margin:0;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid var(--g-line);font-size:12px!important;color:var(--g-muted)}
+body #skills-window .pot-cd b{color:var(--g-text)}
+body #skills-window .pot-cd i{width:20px;height:20px;flex:none;border-radius:50%;background:conic-gradient(var(--g-gold) 0 70%,rgba(255,255,255,.1) 0);-webkit-mask:radial-gradient(circle,transparent 5px,#000 6px);mask:radial-gradient(circle,transparent 5px,#000 6px)}
+body #skills-window .pot-group{display:flex;align-items:center;gap:8px;font-size:11px!important;letter-spacing:.16em;color:var(--g-faint)}
+body #skills-window .pot-group::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pc)}
+body #skills-window .pot-group::after{content:"";flex:1;height:1px;background:var(--g-line)}
+body #skills-window .pot-hp{--pc:#e8656a}
+body #skills-window .pot-sp{--pc:#5fb6e8}
+body #skills-window .pot-speed{--pc:var(--g-gold)}
+body #skills-window .pot-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+body #skills-window .pot-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:0;padding:8px 6px;border-radius:12px;border:1px solid var(--g-line);
+	background:linear-gradient(170deg,rgba(255,255,255,.05),rgba(255,255,255,.015));text-align:center;cursor:grab;min-width:0}
+body #skills-window .pot-card:hover{border-color:var(--g-line-strong)}
+body #skills-window .pot-card:focus-visible{outline:2px solid var(--g-gold);outline-offset:2px}
+body #skills-window .pot-card .item-icon{width:40px;height:40px;margin:4px 0 2px;transform:none}
+body #skills-window .pot-card b{display:block;max-width:100%;font-size:12.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #skills-window .pot-amt{font-size:11.5px!important;font-weight:700;color:var(--pc)}
+body #skills-window .pot-own{position:absolute;right:6px;top:6px;min-width:24px;height:18px;padding:0 5px;border-radius:9px;background:rgba(0,0,0,.45);border:1px solid var(--g-line);font-size:10.5px!important;font-weight:700;line-height:16px;font-variant-numeric:tabular-nums}
+body #skills-window .pot-slot{position:absolute;left:6px;top:6px;height:18px;padding:0 6px;border-radius:6px;background:var(--g-gold);color:#1d2a26;font-size:10px!important;font-weight:800;line-height:18px}
+body #skills-window .pot-card.zero{opacity:.45}
+body #skills-window .pot-card.sk-selected{border-color:rgba(230,201,143,.65);background:linear-gradient(170deg,rgba(230,201,143,.16),rgba(230,201,143,.03));box-shadow:0 0 0 1px rgba(230,201,143,.25)}
+body #skills-window .pot-head{display:flex;align-items:center;gap:12px}
+body #skills-window .pot-big{width:60px;height:60px;flex:none;display:grid;place-items:center;border-radius:12px;background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--pc) 22%,transparent),rgba(255,255,255,.03) 70%);border:1px solid color-mix(in srgb,var(--pc) 45%,transparent)}
+body #skills-window .pot-big .item-icon{width:50px;height:50px;margin:0;transform:none}
+body #skills-window .pot-head>div{text-align:left}
+body #skills-window .pot-head h3{margin:0;font-size:16px!important}
+body #skills-window .pot-head small{font-size:12px!important;color:var(--g-faint)}
+body #skills-window .pot-kv{display:grid;grid-template-columns:1fr auto;gap:5px 10px;margin:12px 0 0;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.03);font-size:12.5px!important}
+body #skills-window .pot-kv dt{margin:0;color:var(--g-muted)}
+body #skills-window .pot-kv dd{margin:0;text-align:right;color:var(--g-text)}
+body #skills-window .pot-kv dd.on{color:#fff1c9}
+body #skills-window .sk-detail .pot-kv .pot-amt{--pc:inherit}
+body #skills-window .sk-detail h4{margin:12px 0 6px;font-size:11px!important;letter-spacing:.16em;color:var(--g-faint);font-weight:600}
+body #skills-window .pot-put{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+body #skills-window .pot-put button{height:32px!important;min-height:0!important;padding:0 6px!important;border-radius:9px;border:1px solid var(--g-line-strong);background:none;font-size:12px!important;color:var(--g-muted);white-space:nowrap;cursor:pointer}
+body #skills-window .pot-put button.rec{border-color:rgba(230,201,143,.6);color:#fff1c9;background:rgba(230,201,143,.1)}
+body #skills-window .pot-put button.on{border-color:rgba(143,209,138,.55);color:#8fd18a}
+body #skills-window .pot-auto{margin:12px 0 0;padding:9px 12px;border-radius:10px;border:1px dashed rgba(143,209,138,.4);font-size:12px!important;color:var(--g-muted)}
+body #skills-window .pot-auto-link{padding:0!important;min-height:0!important;border:0!important;background:none!important;color:var(--g-gold)!important;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* ---------- Skill book: hotbar editor ---------- */
+body #skills-window .skill-bar-row{display:block!important}
+body #skills-window .skill-bar-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+body #skills-window .skill-bar-head b{font-size:13px}
+body #skills-window .sk-hints{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+body #skills-window .sk-hints span{height:24px;padding:0 10px;border-radius:12px;border:1px solid var(--g-line);font-size:11px;line-height:22px;color:var(--g-faint)}
+body #skills-window #skill-slots{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;padding-bottom:18px}
+body #skills-window #skill-slots .job-slot{position:relative;height:64px;min-height:0;padding:0;border-radius:12px;border:1px solid var(--g-line-strong);background:rgba(10,16,16,.7);display:grid;place-items:center;overflow:visible}
+body #skills-window #skill-slots .job-slot .job-icon{width:44px;height:44px}
+body #skills-window #skill-slots .job-slot .item-icon{width:44px;height:44px;transform:none}
+body #skills-window #skill-slots .job-slot kbd{top:3px;left:5px;min-width:18px;height:18px;padding:0 4px!important;border-radius:5px;background:rgba(0,0,0,.55)!important;border:1px solid var(--g-line);font-size:10.5px!important;line-height:16px;text-align:center}
+body #skills-window #skill-slots .job-slot small{display:block;position:absolute;left:0;right:0;bottom:-17px;font-size:10.5px!important;color:var(--g-muted);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #skills-window #skill-slots .job-slot .slot-count{position:absolute;right:5px;bottom:3px;font-size:11.5px;font-weight:800;text-shadow:0 1px 2px #000}
+body #skills-window #skill-slots .job-slot .slot-sp{position:absolute;right:5px;top:4px;font-style:normal;font-size:10px;font-weight:700;color:#5fb6e8;text-shadow:0 1px 2px #000}
+body #skills-window #skill-slots .job-slot .empty-mark{display:block;font-size:20px;color:var(--g-faint)}
+body #skills-window #skill-slots .job-slot.vacant{border-style:dashed;border-color:var(--g-line)}
+body #skills-window #skill-slots .job-slot .slot-clear{position:absolute;right:-7px;top:-7px;width:20px;height:20px;border-radius:50%;display:none;place-items:center;
+	background:#3a2222;border:1px solid rgba(239,143,134,.5);color:#ef8f86;font-size:12px;line-height:1;cursor:pointer}
+body #skills-window #skill-slots .job-slot:hover .slot-clear,body #skills-window #skill-slots .job-slot:focus-visible .slot-clear{display:grid}
+body #skills-window #skill-slots .job-slot.slot-target{border-color:rgba(230,201,143,.8);box-shadow:0 0 0 3px rgba(230,201,143,.16),inset 0 0 14px rgba(230,201,143,.14);animation:sk-target 1.4s ease-in-out infinite}
+body #skills-window #skill-slots .job-slot.slot-target small{color:#fff1c9;font-weight:700}
+body.dragging-hotbar #skills-window #skill-slots .job-slot{border-color:rgba(230,201,143,.6)}
+@keyframes sk-target{50%{box-shadow:0 0 0 5px rgba(230,201,143,.07),inset 0 0 14px rgba(230,201,143,.24)}}
+@media(prefers-reduced-motion:reduce){body #skills-window #skill-slots .job-slot.slot-target{animation:none}}
+@media(max-width:760px){
+	body #skills-window .pot-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+	body #skills-window #skill-slots{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:22px}
+	body #skills-window .sk-hints{display:none}
+}

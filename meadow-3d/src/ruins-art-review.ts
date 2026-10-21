@@ -1,6 +1,6 @@
 import {GameCanvas2D} from './game-2d-renderer';
-import {createGame,loadGameData,buildForLevel,setAuto,moveTo,step,DEFAULT_AUTO,type Game} from '@thainative/shared';
-import {LAYOUTS,ruinsWalkable} from '@thainative/shared/maps';
+import {createGame,loadGameData,buildForLevel,setAuto,moveTo,step,DEFAULT_AUTO,type Game} from '@the-beginning-online/shared';
+import {LAYOUTS,ruinsWalkable} from '@the-beginning-online/shared/maps';
 import {gridPath} from './hud-path';
 import beforeImage from '../art/ruins-painted-v1/uat-before.png';
 const $=(id:string)=>document.getElementById(id)!;

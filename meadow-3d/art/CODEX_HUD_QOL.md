@@ -9,7 +9,7 @@ Read first: `meadow-3d/play.html`, `src/{main,style,skills-ui,skills,inventory-u
 2. Control-hint strip across the middle of the screen: show only the first time (first 2 sessions, dismiss button "เข้าใจแล้ว"), afterwards available from the ? button.
 3. Thai everywhere: ZENY → "ทอง", "0 defeated" → "ปราบแล้ว 0", minimap title → Thai area name, "EXPLORER'S JOURNAL" → "บันทึกการเดินทาง", hide "SINGLE PLAYER", HQ → "ภาพ" (keep auto-quality label "อัตโนมัติ").
 4. Readability: min font 13 px desktop / 12 px mobile, translucent dark backing behind HUD text, contrast ≥ 4.5:1 on both the bright city and the meadow.
-5. Remove the ThaiNative logo + "Painted hero · Combat preview" + "คู่ตัวละคร" block from the bottom-left in game (keep a small menu button that opens ตัวละคร/ตั้งค่า/ออกจากเกม).
+5. Remove the The Beginning Online logo + "Painted hero · Combat preview" + "คู่ตัวละคร" block from the bottom-left in game (keep a small menu button that opens ตัวละคร/ตั้งค่า/ออกจากเกม).
 
 ## 2. New HUD layout
 - **Top-left** character frame: portrait, name, Lv / Job Lv, HP/SP bars with numbers, EXP and Job EXP thin bars; buff/debuff icons row underneath with remaining-time ring (endure, potion effects, overweight, etc.).

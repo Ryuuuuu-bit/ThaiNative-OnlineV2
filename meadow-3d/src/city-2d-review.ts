@@ -1,5 +1,5 @@
 import './city-2d-review.css';
-import { CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@thainative/shared/maps';
+import { CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@the-beginning-online/shared/maps';
 import { atlasCell, facingFor, motionFrame } from './sprite-animation';
 import { HERO_PIXEL_METRES } from './world-scale';
 import { createCityExplorer, project } from './city-2d-sim';

@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {KnockbackScene,monsterKnockbackFor,knockbackGeometry} from '../realtime/monster-knockback.js';
-import {createGame,spawn,action,walkable,LAYOUTS,loadGameData} from '@thainative/shared';
-import type {MapId} from '@thainative/shared/maps';
+import {createGame,spawn,action,walkable,LAYOUTS,loadGameData} from '@the-beginning-online/shared';
+import type {MapId} from '@the-beginning-online/shared/maps';
 
 test('swept monster disc stops at a rock instead of tunnelling through it',()=>{
  const scene=new KnockbackScene({circles:[{x:0,z:0,r:1}],boxes:[]},()=>true);

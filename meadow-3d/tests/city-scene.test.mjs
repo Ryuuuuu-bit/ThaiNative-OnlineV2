@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as T from 'three';
 import {buildCity} from '../src/city-scene.ts';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
-import {CITY_BUILDINGS,CITY_HOUSES} from '@thainative/shared/maps';
+import {CITY_BUILDINGS,CITY_HOUSES} from '@the-beginning-online/shared/maps';
 import {canopyGeometry} from '../src/city-paving.ts';
 
 test('Angel billboard clears the tower and both steps at desktop and mobile default cameras',()=>{

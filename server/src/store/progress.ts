@@ -1,5 +1,5 @@
-import {CITY_SPAWN} from '@thainative/shared/maps';
-import {loadGameData,characterNameError} from '@thainative/shared';
+import {CITY_SPAWN} from '@the-beginning-online/shared/maps';
+import {loadGameData,characterNameError} from '@the-beginning-online/shared';
 import type{Character,Progress}from'./types.js';import{AppError}from'../errors.js';
 export function characterName(input:unknown){
  const policy=characterNameError(input);if(policy)throw new AppError(400,'INVALID_NAME',policy);

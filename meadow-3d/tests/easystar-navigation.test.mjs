@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createPathfinder,gridPath} from '../src/hud-path.ts';
-import {createGame,loadGameData,moveTo,step} from '@thainative/shared';
-import {LAYOUTS,MAP_ENTRY,cityWalkable,meadowWalkable,forestWalkable,ruinsWalkable,canyonWalkable} from '@thainative/shared/maps';
+import {createGame,loadGameData,moveTo,step} from '@the-beginning-online/shared';
+import {LAYOUTS,MAP_ENTRY,cityWalkable,meadowWalkable,forestWalkable,ruinsWalkable,canyonWalkable} from '@the-beginning-online/shared/maps';
 const walkers={city_plaza:cityWalkable,meadow:meadowWalkable,forest:forestWalkable,ruins:ruinsWalkable,canyon:canyonWalkable};
 
 function validate(start,path,walk){

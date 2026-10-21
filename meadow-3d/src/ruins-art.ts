@@ -1,4 +1,4 @@
-import {RUINS_STRUCTURES} from '@thainative/shared/maps';
+import {RUINS_STRUCTURES} from '@the-beginning-online/shared/maps';
 import type {CanvasAssets} from './game-2d-assets';
 type Point={x:number;z:number;r?:number;kind?:string};
 const root='/assets/ruins-painted-v1/';

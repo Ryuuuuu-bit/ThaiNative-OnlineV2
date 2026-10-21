@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {LAYOUTS,GATES,CITY_SPAWN,MEADOW_ENTRY,FOREST_ENTRY,cityWalkable,meadowWalkable,forestWalkable} from '@thainative/shared/maps';
+import {LAYOUTS,GATES,CITY_SPAWN,MEADOW_ENTRY,FOREST_ENTRY,cityWalkable,meadowWalkable,forestWalkable} from '@the-beginning-online/shared/maps';
 import {gridPath,gateApproach} from '../src/hud-path.ts';
 import {boundaryRoads,boundaryPlants,outsideRoadClearance} from '../src/game-2d-boundaries.ts';
 import {project2D,unproject2D} from '../src/game-2d-projection.ts';

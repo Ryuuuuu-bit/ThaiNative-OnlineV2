@@ -3,7 +3,7 @@ import {loadField2D,type FieldProp} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
 import {boundaryPlants} from './game-2d-boundaries';
 import {project2D} from './game-2d-projection';
-import {LAYOUTS} from '@thainative/shared/maps';
+import {LAYOUTS} from '@the-beginning-online/shared/maps';
 import previousObstacles from '../art/canyon-painted-v1/previous-obstacles.json';
 import {HERO_PIXEL_METRES} from './world-scale';
 const canvas=document.querySelector<HTMLCanvasElement>('#scene')!,c=canvas.getContext('2d')!;

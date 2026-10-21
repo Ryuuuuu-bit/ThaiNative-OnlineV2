@@ -1,5 +1,5 @@
-import {MAP_INFO} from '@thainative/shared/maps';
-import { DEFAULT_AUTO, AUTO_RANGES, skillTierRank, type AutoPotion, huntList, isSurvivalSkill, loadGameData, normalizeAuto, autoSkillSequence, type AutoSettings, type MapId } from "@thainative/shared";
+import {MAP_INFO} from '@the-beginning-online/shared/maps';
+import { DEFAULT_AUTO, AUTO_RANGES, skillTierRank, type AutoPotion, huntList, isSurvivalSkill, loadGameData, normalizeAuto, autoSkillSequence, type AutoSettings, type MapId } from "@the-beginning-online/shared";
 import skillsData from "../../shared/data/skills.json";
 import "./auto-ui.css";
 

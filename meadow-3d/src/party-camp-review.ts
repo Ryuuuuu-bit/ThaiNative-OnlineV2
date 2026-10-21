@@ -2,7 +2,7 @@ import './fonts.css';
 import './social.css';
 import {mountParty,type PartyState,type PartyMember} from './party-ui';
 import {GameCanvas2D} from './game-2d-renderer';
-import {createGame,loadGameData} from '@thainative/shared';
+import {createGame,loadGameData} from '@the-beginning-online/shared';
 import './style.css';
 import './hud-qol.css';
 import './ui-glass.css';

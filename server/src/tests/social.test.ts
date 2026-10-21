@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filterChat, namePolicyError, chatAllowed, expShares, createGame, addPlayer } from '@thainative/shared';
+import { filterChat, namePolicyError, chatAllowed, expShares, createGame, addPlayer } from '@the-beginning-online/shared';
 import { createSocial, type SocialPeer } from '../realtime/social.js';
 import { characterName } from '../store/progress.js';
 

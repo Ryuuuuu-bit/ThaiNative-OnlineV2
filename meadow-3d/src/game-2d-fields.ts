@@ -1,4 +1,4 @@
-import {LAYOUTS,MEADOW_LANDMARKS,type MapId} from '@thainative/shared/maps';
+import {LAYOUTS,MEADOW_LANDMARKS,type MapId} from '@the-beginning-online/shared/maps';
 import {CanvasAssets} from './game-2d-assets';
 import {canyonRockProps} from './canyon-rock-art';
 import {ruinsProps} from './ruins-art';
