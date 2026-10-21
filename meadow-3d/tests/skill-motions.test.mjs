@@ -56,10 +56,17 @@ test('8-facing swordsman sheets match their packed sources: frame counts, 8 rows
  const meta=JSON.parse(readFileSync(new URL('../art/texture-sources/hero-skills-v2/skills-v2.json',import.meta.url),'utf8'));
  const manifest=JSON.parse(readFileSync(new URL('../public/texture-manifest.json',import.meta.url),'utf8'));
  assert.deepEqual(Object.keys(SKILL_V2).sort(),Object.keys(meta).sort());
+ assert.deepEqual(Object.keys(SKILL_V2).sort(),[...SKILL_MOTIONS].sort());
  for(const [id,cell] of Object.entries(SKILL_V2)){
   assert.deepEqual(meta[id].cell,[cell.w,cell.h]);assert.equal(meta[id].anchor[1],cell.feet);
   for(const frames of Object.values(meta[id].frames))assert.equal(frames.length,SKILL_FRAMES[id]);
   assert.equal(Object.keys(meta[id].frames).length,8);
   assert.deepEqual(manifest[`/assets/hero-skills/hero-skill-${id}-v2.png`].originalSize,[cell.w*SKILL_FRAMES[id],cell.h*8]);
+  const entry=manifest[`/assets/hero-skills/hero-skill-${id}-v2.png`];
+  const source=readFileSync(new URL('../'+entry.source,import.meta.url));
+  assert.deepEqual([source.readUInt32BE(16),source.readUInt32BE(20)],entry.originalSize);
+  const packed=readFileSync(new URL('../public'+entry.ktx2,import.meta.url));
+  assert.deepEqual([packed.readUInt32LE(20),packed.readUInt32LE(24)],entry.size);
+  assert.ok(readFileSync(new URL('../public'+entry.webp,import.meta.url)).length>0);
  }
 });

@@ -43,7 +43,7 @@ def active_span(frames):
 
 def select(normalized):
     SRC.mkdir(parents=True, exist_ok=True)
-    meta = {}
+    meta = json.loads((SRC / 'skills-v2.json').read_text(encoding='utf-8')) if (SRC / 'skills-v2.json').exists() else {}
     for skill, fractions in PICKS.items():
         w, h, ay = CELLS[skill]
         atlas = Image.open(normalized / f'skill-{skill}-8dir.png').convert('RGBA')
@@ -73,7 +73,7 @@ def pack():
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     dest = PUBLIC / 'assets/hero-skills'
     stage = REPO / '.codex-run/texture-inputs/hero-skills'; stage.mkdir(parents=True, exist_ok=True)
-    for skill in PICKS:
+    for skill in json.loads((SRC / 'skills-v2.json').read_text(encoding='utf-8')):
         name = f'hero-skill-{skill}-v2'
         atlas = Image.open(SRC / f'{name}.png').convert('RGBA')
         # Same rules as prepare-textures.py pack(): longest side <= 2048, multiples of 4.

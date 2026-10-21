@@ -1,0 +1,593 @@
+{
+  "provider": "AutoSprite",
+  "characterId": "cmvfp83sy009y12kzd7l1pjtn",
+  "date": "2026-10-22",
+  "credits": 120,
+  "directions": [
+    "SE",
+    "SW",
+    "NE",
+    "NW",
+    "S",
+    "E",
+    "N",
+    "W"
+  ],
+  "frameIndices": "1-based; repeated Frenzy contact frames are intentional",
+  "reference": "Original uploaded swordsman pose, same character as the current walk",
+  "normalization": "One fixed transform per direction; first-frame height 168 px, fixed feet baseline; grow cell to preserve content",
+  "jobs": {
+    "blade_cyclone": {
+      "jobId": "rose_94505cef0f4e3b4c6213f2bfb928fb984e48da1ad59ddbf3",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation. Begin and end in the original relaxed sword-low standing stance. One clean nonlooping action, fixed orthographic isometric camera, planted local origin, entire body and sword visible throughout, plain background. Render the character and his existing sword only; all magical light, trails, ground cracks and shields are supplied separately by the game. Sword whirlwind: extend the existing sword outward, rotate the whole body through one complete horizontal 360-degree spin with a wide athletic stance, showing back during the middle of the spin, then end facing the original direction and recover. Strong readable rotational movement centered over the same spot.",
+      "sourceSha256": "3500d27bd2e6c7f8bf849a4164a4c9032106927058c332fa420abebff35f99da",
+      "transforms": {
+        "SE": {
+          "scale": 0.40481927710843374,
+          "sourceAnchor": [
+            289.0,
+            468
+          ]
+        },
+        "SW": {
+          "scale": 0.40384615384615385,
+          "sourceAnchor": [
+            205.5,
+            470
+          ]
+        },
+        "NE": {
+          "scale": 0.41277641277641275,
+          "sourceAnchor": [
+            322.5,
+            457
+          ]
+        },
+        "NW": {
+          "scale": 0.4117647058823529,
+          "sourceAnchor": [
+            231.0,
+            458
+          ]
+        },
+        "S": {
+          "scale": 0.4318766066838046,
+          "sourceAnchor": [
+            269.5,
+            445
+          ]
+        },
+        "E": {
+          "scale": 0.4028776978417266,
+          "sourceAnchor": [
+            325.5,
+            468
+          ]
+        },
+        "N": {
+          "scale": 0.4375,
+          "sourceAnchor": [
+            259.5,
+            447
+          ]
+        },
+        "W": {
+          "scale": 0.4019138755980861,
+          "sourceAnchor": [
+            192.0,
+            468
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        1,
+        5,
+        6,
+        8,
+        9,
+        11,
+        12,
+        14
+      ]
+    },
+    "blood_rage": {
+      "jobId": "rose_f5a59d100504429b648d39e112f0078e733eb996a54ca64d",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation. Begin and end in the original relaxed sword-low standing stance. One clean nonlooping action, fixed orthographic isometric camera, planted local origin, entire body and sword visible throughout, plain background. Render the character and his existing sword only; all magical light, trails, ground cracks and shields are supplied separately by the game. Intense battle focus: firm planted stance, tighten left fist near chest, shoulders and chest tense, slight forward lean and fierce determined expression, hold empowered posture, then relax. Right hand holds existing sword low at the side.",
+      "sourceSha256": "16412d3c04ab27293140cbd8fbf03c1708e80070a24cb975058dfde1827caae1",
+      "transforms": {
+        "SE": {
+          "scale": 0.3792325056433409,
+          "sourceAnchor": [
+            235.0,
+            475
+          ]
+        },
+        "SW": {
+          "scale": 0.37668161434977576,
+          "sourceAnchor": [
+            222.5,
+            479
+          ]
+        },
+        "NE": {
+          "scale": 0.38799076212471134,
+          "sourceAnchor": [
+            298.0,
+            468
+          ]
+        },
+        "NW": {
+          "scale": 0.3888888888888889,
+          "sourceAnchor": [
+            274.5,
+            466
+          ]
+        },
+        "S": {
+          "scale": 0.3952941176470588,
+          "sourceAnchor": [
+            244.5,
+            460
+          ]
+        },
+        "E": {
+          "scale": 0.38095238095238093,
+          "sourceAnchor": [
+            295.5,
+            474
+          ]
+        },
+        "N": {
+          "scale": 0.40481927710843374,
+          "sourceAnchor": [
+            268.0,
+            460
+          ]
+        },
+        "W": {
+          "scale": 0.375,
+          "sourceAnchor": [
+            239.0,
+            481
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        1,
+        3,
+        5,
+        9,
+        13
+      ]
+    },
+    "bulwark": {
+      "jobId": "rose_e39e37a72d864a9616d778d1b4b8eff87c49c47d30dc7040",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation. Begin and end in the original relaxed sword-low standing stance. One clean nonlooping action, fixed orthographic isometric camera, planted local origin, entire body and sword visible throughout, plain background. Render the character and his existing sword only; all magical light, trails, ground cracks and shields are supplied separately by the game. Firm defensive brace: lower center of gravity slightly, present left forearm in front of chest in a guarding stance, right hand keeps sword close and angled low, hold the strong protected posture, then relax. Confident composed expression.",
+      "sourceSha256": "8c07640f767ab5039667ca683eddd4aca05ba665d1e060a7febdd743ecc161bb",
+      "transforms": {
+        "SE": {
+          "scale": 0.38009049773755654,
+          "sourceAnchor": [
+            274.0,
+            475
+          ]
+        },
+        "SW": {
+          "scale": 0.3775280898876405,
+          "sourceAnchor": [
+            221.5,
+            481
+          ]
+        },
+        "NE": {
+          "scale": 0.3981042654028436,
+          "sourceAnchor": [
+            300.0,
+            468
+          ]
+        },
+        "NW": {
+          "scale": 0.4077669902912621,
+          "sourceAnchor": [
+            264.0,
+            464
+          ]
+        },
+        "S": {
+          "scale": 0.3981042654028436,
+          "sourceAnchor": [
+            261.0,
+            460
+          ]
+        },
+        "E": {
+          "scale": 0.3835616438356164,
+          "sourceAnchor": [
+            300.5,
+            479
+          ]
+        },
+        "N": {
+          "scale": 0.4077669902912621,
+          "sourceAnchor": [
+            265.5,
+            465
+          ]
+        },
+        "W": {
+          "scale": 0.3775280898876405,
+          "sourceAnchor": [
+            222.5,
+            487
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        1,
+        3,
+        5,
+        7,
+        9
+      ]
+    },
+    "frenzy_slash": {
+      "jobId": "rose_68b0aec907ea486120c1d91ac3d756f4bd93f3ab549b3999",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation. Begin and end in the original relaxed sword-low standing stance. One clean nonlooping action, fixed orthographic isometric camera, planted local origin, entire body and sword visible throughout, plain background. Render the character and his existing sword only; all magical light, trails, ground cracks and shields are supplied separately by the game. Three fast distinct alternating sword cuts in front of him: first diagonal downslash, reverse diagonal slash, final horizontal slash. Clear separated contact poses for all three strikes, athletic compact footwork with minimal displacement, then recover. Remain facing the same target direction throughout.",
+      "sourceSha256": "b578d345b04d55d3eb8cd71e8a575e61f20ee9007629dd7c27818f6a70c4e8af",
+      "transforms": {
+        "SE": {
+          "scale": 0.40875912408759124,
+          "sourceAnchor": [
+            282.5,
+            466
+          ]
+        },
+        "SW": {
+          "scale": 0.40875912408759124,
+          "sourceAnchor": [
+            219.0,
+            469
+          ]
+        },
+        "NE": {
+          "scale": 0.42,
+          "sourceAnchor": [
+            292.5,
+            458
+          ]
+        },
+        "NW": {
+          "scale": 0.42105263157894735,
+          "sourceAnchor": [
+            252.5,
+            456
+          ]
+        },
+        "S": {
+          "scale": 0.4421052631578947,
+          "sourceAnchor": [
+            265.5,
+            441
+          ]
+        },
+        "E": {
+          "scale": 0.4117647058823529,
+          "sourceAnchor": [
+            301.0,
+            463
+          ]
+        },
+        "N": {
+          "scale": 0.4397905759162304,
+          "sourceAnchor": [
+            254.0,
+            447
+          ]
+        },
+        "W": {
+          "scale": 0.4097560975609756,
+          "sourceAnchor": [
+            219.5,
+            465
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        5,
+        7,
+        11,
+        7,
+        11,
+        7,
+        14,
+        25
+      ]
+    },
+    "leap_strike": {
+      "jobId": "rose_6a4f5435af77dbbf68910a0b5865831f0ff144f85cc097b8",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation. Begin and end in the original relaxed sword-low standing stance. One clean nonlooping action, fixed orthographic isometric camera, planted local origin, entire body and sword visible throughout, plain background. Render the character and his existing sword only; all magical light, trails, ground cracks and shields are supplied separately by the game. Leaping sword strike: crouch and raise the sword, jump straight upward with knees bent and cape lifted, bring sword down in a decisive downward cut as he lands with bent knees, then stand and recover. The camera and ground origin remain fixed, jump is animated vertically in place.",
+      "sourceSha256": "beed4b9cec971de47add575501b44c6841e06da53272585e38610d8e567b626a",
+      "transforms": {
+        "SE": {
+          "scale": 0.39622641509433965,
+          "sourceAnchor": [
+            279.0,
+            476
+          ]
+        },
+        "SW": {
+          "scale": 0.40384615384615385,
+          "sourceAnchor": [
+            214.5,
+            473
+          ]
+        },
+        "NE": {
+          "scale": 0.40875912408759124,
+          "sourceAnchor": [
+            298.5,
+            464
+          ]
+        },
+        "NW": {
+          "scale": 0.41075794621026895,
+          "sourceAnchor": [
+            262.0,
+            463
+          ]
+        },
+        "S": {
+          "scale": 0.4375,
+          "sourceAnchor": [
+            255.0,
+            446
+          ]
+        },
+        "E": {
+          "scale": 0.3971631205673759,
+          "sourceAnchor": [
+            306.5,
+            472
+          ]
+        },
+        "N": {
+          "scale": 0.4421052631578947,
+          "sourceAnchor": [
+            254.0,
+            448
+          ]
+        },
+        "W": {
+          "scale": 0.3990498812351544,
+          "sourceAnchor": [
+            279.0,
+            473
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        1,
+        4,
+        6,
+        9,
+        13,
+        25
+      ]
+    },
+    "quake_slam": {
+      "jobId": "rose_d20a7d8cb623b271be32525f59e2157a270fa57bd76bd7ff",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation. Begin and end in the original relaxed sword-low standing stance. One clean nonlooping action, fixed orthographic isometric camera, planted local origin, entire body and sword visible throughout, plain background. Render the character and his existing sword only; all magical light, trails, ground cracks and shields are supplied separately by the game. Powerful ground slam with his existing slender sword: slowly lift the sword overhead with a braced stance, then drive the sword tip down into the ground directly in front of the feet with a deep knee bend, one clear ground-contact pose, then recover to standing. Feet stay grounded. The impact must visibly touch the ground.",
+      "sourceSha256": "ada767cebe90b294a6ae8c79dc577dc5492e69df306731830f2622b6c4981f5a",
+      "transforms": {
+        "SE": {
+          "scale": 0.39069767441860465,
+          "sourceAnchor": [
+            255.0,
+            472
+          ]
+        },
+        "SW": {
+          "scale": 0.38799076212471134,
+          "sourceAnchor": [
+            229.5,
+            475
+          ]
+        },
+        "NE": {
+          "scale": 0.40481927710843374,
+          "sourceAnchor": [
+            301.5,
+            461
+          ]
+        },
+        "NW": {
+          "scale": 0.40384615384615385,
+          "sourceAnchor": [
+            259.0,
+            461
+          ]
+        },
+        "S": {
+          "scale": 0.42,
+          "sourceAnchor": [
+            268.0,
+            443
+          ]
+        },
+        "E": {
+          "scale": 0.3916083916083916,
+          "sourceAnchor": [
+            296.5,
+            473
+          ]
+        },
+        "N": {
+          "scale": 0.42424242424242425,
+          "sourceAnchor": [
+            266.5,
+            452
+          ]
+        },
+        "W": {
+          "scale": 0.38620689655172413,
+          "sourceAnchor": [
+            224.0,
+            476
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9,
+        13,
+        25
+      ]
+    },
+    "rally_roar": {
+      "jobId": "rose_4577851387edaa9def8f534a99b56433e2c80f398227cff5",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation. Begin and end in the original relaxed sword-low standing stance. One clean nonlooping action, fixed orthographic isometric camera, planted local origin, entire body and sword visible throughout, plain background. Render the character and his existing sword only; all magical light, trails, ground cracks and shields are supplied separately by the game. Rallying battle shout: plant feet, raise the sword diagonally upward in his right hand, clench his free left fist near chest, lift chin with a determined open-mouth shout and proud chest, then lower sword and settle. Readable commanding silhouette.",
+      "sourceSha256": "1be5ff3acf891c2edc91a9b14d5f875531ab2ce6d0585981602ee1d6edbec2b3",
+      "transforms": {
+        "SE": {
+          "scale": 0.41277641277641275,
+          "sourceAnchor": [
+            269.5,
+            461
+          ]
+        },
+        "SW": {
+          "scale": 0.4117647058823529,
+          "sourceAnchor": [
+            209.5,
+            465
+          ]
+        },
+        "NE": {
+          "scale": 0.42105263157894735,
+          "sourceAnchor": [
+            309.0,
+            455
+          ]
+        },
+        "NW": {
+          "scale": 0.42105263157894735,
+          "sourceAnchor": [
+            249.0,
+            454
+          ]
+        },
+        "S": {
+          "scale": 0.4444444444444444,
+          "sourceAnchor": [
+            265.5,
+            439
+          ]
+        },
+        "E": {
+          "scale": 0.4158415841584158,
+          "sourceAnchor": [
+            315.5,
+            460
+          ]
+        },
+        "N": {
+          "scale": 0.43636363636363634,
+          "sourceAnchor": [
+            264.0,
+            444
+          ]
+        },
+        "W": {
+          "scale": 0.41075794621026895,
+          "sourceAnchor": [
+            213.0,
+            463
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        1,
+        5,
+        9,
+        17,
+        25
+      ]
+    },
+    "shield_bash": {
+      "jobId": "rose_65412a5e2aa9fa2cebca0828162fc2fd30672792ad3c7f7f",
+      "prompt": "Painted isometric fantasy RPG swordsman, exactly the supplied character: slim young adult, small natural head, brown hair, dark teal green embroidered tunic and cape, ivory loose sleeves, leather gloves and boots, slender long sword in right hand. Preserve original body proportions, outfit, face, painterly edges and camera elevation in every direction. Shield Bash animation: relaxed sword-low stance, short braced left forearm thrust forward at chest height as if projecting a magical barrier, strong readable forward contact pose, then settle back into the original relaxed stance. The character remains planted in place with a small weight shift; the sword stays low in his right hand. Render the character and his existing sword only; barrier light is supplied separately by the game. One clean nonlooping action, fixed orthographic isometric camera, entire body and sword visible throughout, plain background.",
+      "sourceSha256": "c49092aa1f0f21b326eb78268f4d4427eebb8c9c55aefc252526b71d9362965a",
+      "transforms": {
+        "SE": {
+          "scale": 0.3783783783783784,
+          "sourceAnchor": [
+            208.5,
+            464
+          ]
+        },
+        "SW": {
+          "scale": 0.3708609271523179,
+          "sourceAnchor": [
+            263.5,
+            475
+          ]
+        },
+        "NE": {
+          "scale": 0.4,
+          "sourceAnchor": [
+            264.5,
+            470
+          ]
+        },
+        "NW": {
+          "scale": 0.3971631205673759,
+          "sourceAnchor": [
+            296.5,
+            471
+          ]
+        },
+        "S": {
+          "scale": 0.4028776978417266,
+          "sourceAnchor": [
+            260.5,
+            443
+          ]
+        },
+        "E": {
+          "scale": 0.38095238095238093,
+          "sourceAnchor": [
+            275.0,
+            472
+          ]
+        },
+        "N": {
+          "scale": 0.40875912408759124,
+          "sourceAnchor": [
+            263.5,
+            464
+          ]
+        },
+        "W": {
+          "scale": 0.37250554323725055,
+          "sourceAnchor": [
+            264.0,
+            480
+          ]
+        }
+      },
+      "selectedSourceFrames": [
+        1,
+        5,
+        9,
+        15,
+        20,
+        25
+      ]
+    }
+  }
+}
