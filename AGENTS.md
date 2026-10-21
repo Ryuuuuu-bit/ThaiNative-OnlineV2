@@ -64,3 +64,28 @@ Deploy only by pushing commits to `main`. Do not run `railway up` from a working
 - เมื่อรายงานผล ให้บอกสิ่งที่เปลี่ยน การตรวจสอบที่ทำจริง และสิ่งที่ยังไม่ได้ตรวจหรือความเสี่ยงที่เกี่ยวข้อง ห้ามอ้างว่าเทสต์ผ่านหากไม่ได้รัน
 
 ที่มาแนวคิด: [Ponytail](https://github.com/DietrichGebert/ponytail) — ปรับให้เหมาะกับ The Beginning Online
+
+## Game-development skills
+
+Selected skills from [awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills) live in `.agents/skills/`; see [the local catalog](.agents/skills/README.md) for the pinned source and license. Read only the relevant `SKILL.md` and any references needed for the task before making changes.
+
+Choose the renderer from the code being edited: this project uses both Three.js and PixiJS. Check `package.json`, the lockfile and existing imports for the actual API version; upstream examples target different releases. Do not upgrade dependencies or switch engines just to follow an example.
+
+| Task | Local skill under `.agents/skills/` |
+| --- | --- |
+| Three.js scene, render loop, resize, resource disposal | `threejs-scene-setup` |
+| Three.js materials, lighting, shadows, transparency | `threejs-materials-lighting` |
+| PixiJS scene graph, sprites, textures, events | `pixijs-rendering` |
+| Cohesive painted art, sprite families, asset validation | `create-game-assets` |
+| FPS, draw calls, memory, asset budgets | `performance-optimization` |
+| Combat feedback, hit effects, animation feel | `game-feel` |
+| HUD, menus, mobile layout, accessibility | `game-ui-ux` |
+| Camera follow, framing, shake | `camera-systems` |
+| Enemy decisions, targeting, pathfinding | `game-ai` |
+| Persistence, save compatibility, migrations | `save-systems` |
+| NPC dialogue and branching conditions | `dialogue-systems` |
+| Stats, leveling, inventory, equipment, quests, combat | `rpg` |
+
+These skills supplement the existing architecture and all rules above. Reuse the current `shared` schemas/game data, server stores, renderer helpers, asset manifests and packing tools. Generic RPG formulas and save-slot examples are illustrative, not replacements for our balance data or persistence. Combat, HP, rewards, inventory, trading, quest mutations and persistence remain server-authoritative; client feedback and camera effects must not pause or decide server simulation. Profile performance changes before and after, and verify visual changes in the actual game. Keep Thai text and the established painted art direction.
+
+Use available specialist image/sprite/Blender skills for their tools; the imported asset guide does not authorize paid generation, publishing or deployment. Cross-references to skills outside this selected subset are optional reading, not instructions to install other engines. The generic upstream router is omitted because this table covers our two-renderer project.
