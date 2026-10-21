@@ -1,12 +1,11 @@
+import {heroBodyCalibration} from './city-character-calibration';
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
 import {titleDefinition} from '@the-beginning-online/shared';
 import {LAYOUTS,FIELD_BOSS,GATES,MAP_INFO,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import {CanvasAssets} from './game-2d-assets';
 import {loadCity2DScene} from './city-2d-scene';
-import {loadCitizenArt} from './city-2d-citizen-art';
 import {drawNpcSprite} from './city-npc-sprite';
-import {createCityLife} from './city-2d-life';
 import {TOWN_NPCS,CITY_EXITS,WAYPOINTS} from './city-2d-locations';
 import {drawFountainWater} from './city-2d-fountain';
 import {loadField2D} from './game-2d-fields';
@@ -16,7 +15,7 @@ import {MOTIONS,MOTION_DURATION,MOTION_V2,motionFor,motionFrame,facingFor,facing
 import {SKILL_MOTIONS,BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,SKILL_V2,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
 import {monsterSpecies,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
 import {huntingCell,HUNTING_ASSET_ROOT} from './hunting-monster-animation';
-import {HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
+import {HERO_METRES,HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
 import type {CombatFeel} from './combat-feel';
 import type {SwordVfxPixi} from './sword-vfx-pixi';
 import {SkillVfx2D} from './skill-vfx-2d';
@@ -27,8 +26,8 @@ const tint:Record<string,string>={ruin_shroom:'hue-rotate(40deg) saturate(.65)',
 export class GameCanvas2D{
  readonly atmosphere=new Atmosphere2D();
  readonly canvas=document.createElement('canvas');readonly ctx:CanvasRenderingContext2D;readonly assets:CanvasAssets;
- private city?:Awaited<ReturnType<typeof loadCity2DScene>>;private citizenArt?:Awaited<ReturnType<typeof loadCitizenArt>>;
- private life=createCityLife();private fields=new Map<MapId,Awaited<ReturnType<typeof loadField2D>>>();private monsterManifest:any;
+ private city?:Awaited<ReturnType<typeof loadCity2DScene>>;
+ private fields=new Map<MapId,Awaited<ReturnType<typeof loadField2D>>>();private monsterManifest:any;
  private huntingManifest:any;private monsterImages=new Set<string>();
  private backdrops=new Map<MapId,Awaited<ReturnType<typeof loadMapBackdrop>>>();
  combatFeel?:CombatFeel;private shakeOffset={x:0,y:0};private monsterFrames=new Map<number,{motion:string;time:number}>();
@@ -59,7 +58,7 @@ export class GameCanvas2D{
  async prepareMap(id:MapId){
   const neededMonsters=new Set<string>();
   if(!this.backdrops.has(id))this.backdrops.set(id,await loadMapBackdrop(id,this.assets));
-  if(id==='city_plaza'){if(!this.city){const [city,people]=await Promise.all([loadCity2DScene(),loadCitizenArt()]);this.city=city;this.citizenArt=people;}}
+  if(id==='city_plaza'&&!this.city)this.city=await loadCity2DScene();
   else{if(!this.fields.has(id))this.fields.set(id,await loadField2D(id,this.assets));
    await this.prepareSwordVfx();
    const ids=[...new Set([...LAYOUTS[id].spawns.map(m=>m.dataId),FIELD_BOSS[id].dataId])];
@@ -127,10 +126,11 @@ export class GameCanvas2D{
   // v2 skills: 8 facings and their own cell size, with the feet at `feet` px from the cell top.
   const v2=state.skill?SKILL_V2[state.skill]:undefined,px=v2??(state.skill?undefined:base)??{w:384,h:256,feet:240};
   if(state.skill){key=`/assets/hero-skills/hero-skill-${state.skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(state.skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[state.skill],rows:v2?8:4};}
-  const image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale,h=px.h*HERO_PIXEL_METRES*this.scale,foot=px.feet/px.h;
+  const calibration=!state.skill?heroBodyCalibration(sprite.sheet,facing8For(p.fx,p.fz),cell.column,cell.row):undefined;
+  const image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*(calibration?.scale??1),h=px.h*HERO_PIXEL_METRES*this.scale*(calibration?.scale??1),foot=(calibration?.feet??px.feet)/px.h;
   for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w/2,gq.y-h*foot,w,h,p.ghostTint,g.alpha);}
   this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w/2,qs.y-h*foot,w,h);this.drawCalls++;
-  if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-2.5*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-2.1*this.scale);}
+  if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-(HERO_METRES+.7)*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-(HERO_METRES+.3)*this.scale);}
   for(const [i,status]of (p.statuses??[]).entries()){if(i>4)break;this.circle(p.x,p.z,.55+i*.08,'transparent',status.id==='guard'?'#b9d9ed88':'#d6d28c66');}
  }
  private monster(e:any,selected:boolean){
@@ -160,13 +160,10 @@ export class GameCanvas2D{
   const sceneryTrees:AtmosphereTree[]=[];this.atmosphere.water(c,this.map,(x,z,h)=>this.screen(x,z,h),s,time,this.width,this.height,this.highQuality);
   for(const p of backdrop?.props??[]){const q=this.screen(p.x,p.z);if(!visible(q,p.h*s))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const hp=this.screen(game.p.x,game.p.z),x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=q.y>hp.y&&hp.x>x&&hp.x<x+p.w*s&&hp.y>y&&hp.y<q.y?.35:1;c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();this.drawCalls++;});}
   if(this.map==='city_plaza'&&this.city){
-   this.life.step(dt);
    for(const p of this.city.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push({x:p.x,z:p.z,h:p.image.height/28,w:p.image.width/28});add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x+p.image.left*s,y=q.y+p.image.top*s,w=p.image.width/28*s,h=p.image.height/28*s,hp=this.screen(game.p.x,game.p.z);c.globalAlpha=p.fade&&q.y>hp.y&&hp.x>x&&hp.x<x+w&&hp.y>y&&hp.y<q.y?.45:1;c.drawImage(p.image,x,y,w,h);c.restore();if(p.water)drawFountainWater(c,q.x,q.y,s,time,this.atmosphere.reducedMotion);});}
-   for(const n of TOWN_NPCS){const q=this.screen(n.x,n.z);if(!visible(q))continue;add(n.x,n.z,()=>drawNpcSprite(c,this.city!.npcSprites.get(n.art)!,q.x,q.y,s));}
-   for(const n of this.life.citizens){const q=this.screen(n.x,n.z);if(visible(q,100))add(n.x,n.z,()=>this.citizenArt!.draw(c,n,q,s));}
+   for(const [i,n] of TOWN_NPCS.entries()){const q=this.screen(n.x,n.z);if(!visible(q))continue;add(n.x,n.z,()=>drawNpcSprite(c,this.city!.npcSprites.get(n.art)!,q.x,q.y,s,time+i*.173));}
    for(const p of [...CITY_EXITS,...WAYPOINTS]){this.circle(p.x,p.z,1.35,'transparent',p.color);}
    // The job-change NPC remains at the authoritative service position.
-   add(jobs.angel.x,jobs.angel.z,()=>{const q=this.screen(jobs.angel.x,jobs.angel.z),sprite=this.assets.get('/assets/skills-painted/angel-v1.png')!;c.drawImage(sprite,q.x-1.3*s,q.y-3.9*.975*s,2.6*s,3.9*s);this.circle(jobs.angel.x,jobs.angel.z,.8,'transparent','#e9d594');});
   }else{const field=this.fields.get(this.map);if(field){
    for(const p of field.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const hp=this.screen(game.p.x,game.p.z),x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=q.y>hp.y&&hp.x>x&&hp.x<x+p.w*s&&hp.y>y&&hp.y<q.y?.4:1;c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();});}
   }}
@@ -194,5 +191,5 @@ export class GameCanvas2D{
   for(const p of game.projectiles){const q=this.screen(p.x,p.z,.6);c.fillStyle=p.attack==='bolt'?'#f4dfa5':'#add6d5';c.shadowColor=c.fillStyle;c.shadowBlur=8;c.beginPath();c.arc(q.x,q.y,Math.max(3,s*.13),0,Math.PI*2);c.fill();c.shadowBlur=0;}
   this.swordVfx?.render(dt,(x,z,h)=>this.screen(x,z,h),s);
  }
- snapshot(){return{renderer:'Canvas2D',map:this.map,citizens:this.map==='city_plaza'?40:0,drawCalls:this.drawCalls,atmosphere:this.atmosphere.snapshot(),assets:this.assets.snapshot(),swordVfx:this.swordVfx?.snapshot()??{engine:'canvas'},skillVfx:this.skillVfx.snapshot()};}
+ snapshot(){return{renderer:'Canvas2D',map:this.map,citizens:0,npcs:this.map==='city_plaza'?TOWN_NPCS.length:0,drawCalls:this.drawCalls,atmosphere:this.atmosphere.snapshot(),assets:this.assets.snapshot(),swordVfx:this.swordVfx?.snapshot()??{engine:'canvas'},skillVfx:this.skillVfx.snapshot()};}
 }

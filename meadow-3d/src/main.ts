@@ -1,3 +1,5 @@
+import {TOWN_NPCS,nearbyTownNpc} from './city-2d-locations';
+import {cityNpcWorldHeight} from './city-npc-sprite';
 import { mountWorldMap } from './world-map-ui';
 import {mountTitles} from './titles-ui';
 import {loadUIFonts,UI_FONT_FAMILY} from './fonts';
@@ -121,9 +123,8 @@ function mapInteractions(){
  const mapTitle=document.querySelector('.map-head');if(mapTitle)mapTitle.textContent=areaName(activeMap);
  overview.hidden=activeMap!=='city_plaza';const p=game.p;nearNpc=null;
  if(activeMap==='city_plaza'&&!p.dead){
-  for(const b of CITY_BUILDINGS)if(Math.hypot(p.x-b.talk.x,p.z-b.talk.z)<3)nearNpc={name:b.npc,kind:b.id,text:'เร็ว ๆ นี้'};
-  if(Math.hypot(p.x-HEALER.x,p.z-HEALER.z)<3)nearNpc={name:'นักบวชหมอ',kind:'heal',text:'ขอให้พลังกลับคืนมา · ฟื้นพลังชีวิตและพลังสกิล เต็มได้ทุก 60 วินาที'};
-  if(Math.hypot(p.x-GATE_CAPTAIN.x,p.z-GATE_CAPTAIN.z)<3)nearNpc={name:'หัวหน้าทหารประตู',kind:'guard',text:'ผ่านประตูใต้สู่ทุ่งวุ้นจิ๋ว เริ่มฝึกกับวุ้นใกล้ทางเข้า หากบาดเจ็บให้กลับมาพบนักบวชหมอข้างน้ำพุ'};
+  const n=nearbyTownNpc(p.x,p.z);
+  if(n&&n.kind!=='angel')nearNpc={name:n.name,kind:n.kind,text:n.line};
  }
  npcTalk.hidden=!nearNpc;npcTalk.textContent=nearNpc?'คุย · '+nearNpc.name:'';
  const gates=GATES[activeMap];let closed='';
@@ -135,7 +136,7 @@ function mapInteractions(){
  if(closed&&closed!==closedGate)notice('หมอกหนาเกินไป ยังผ่านไม่ได้');closedGate=closed;
 }
 // head: on-screen height of each NPC sprite's head top (city NPCs ~2 m, gate captain 2.1 m, angel sprite 3.9 tall).
-const npcLabels=[...CITY_BUILDINGS.map(b=>({...b.talk,name:b.npc,role:b.name,head:2.0})),{...HEALER,name:'นักบวชหมอ',role:'ฟื้นพลังชีวิตและพลังสกิล',head:2.0},{...jobs.angel,name:'ทูตสวรรค์',role:'เส้นทางอาชีพ',head:3.75},{...GATE_CAPTAIN,name:'หัวหน้าทหารประตู',role:'ประตูสู่ทุ่งหญ้า',head:2.1}].map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.name;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
+const npcLabels=TOWN_NPCS.map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.icon+' '+n.name;el.querySelector('span')!.style.color=n.color;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,head:n.art==='angel'?3.75:(cityNpcWorldHeight(n.art)+.1)/.82-.3,el};});
 const statusLabels=new Map<number,HTMLElement>();
 const numbers:any[]=[];let markerTime=0;const marker={x:0,z:0};const encounterLog:any[]=[];
 const JELLY_IDS=new Set(['jelly_pink','jelly_mint','jelly_sky','jelly_summon','king_jelly']);

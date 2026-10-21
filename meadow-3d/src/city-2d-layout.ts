@@ -3,15 +3,15 @@ export {DECOR,NEW_BUILDINGS,GARDEN_TREES,FORTIFICATION_SOLIDS,CITY_HOUSES,CITY_A
 export type {Decoration} from '@the-beginning-online/shared/maps';
 export const city2dWalkable=(x:number,z:number,r=.38)=>cityWalkable(x,z,r);
 export const DISTRICTS = [
-  {id:'plaza',name:'ลานดารารุ่ง',subtitle:'หอนาฬิกา · จุดนัดพบของนักผจญภัย',x:0,z:9,color:'#d1b77a'},
-  {id:'market',name:'ตลาดผ้าใบสีคราม',subtitle:'แผงผลไม้ · ผ้าและเครื่องเทศ · คาราวาน',x:27,z:5,color:'#6aafad'},
-  {id:'craft',name:'ตรอกเตาหลอม',subtitle:'โรงตีเหล็ก · งานไม้ · ลานฝึก',x:-27,z:0,color:'#c99364'},
-  {id:'civic',name:'เขตสมาคมแสงอรุณ',subtitle:'สมาคมนักผจญภัย · วิหาร · คลังเมือง',x:0,z:-24,color:'#9b9dc1'},
-  {id:'garden',name:'สวนธาราจันทร์',subtitle:'ลานน้ำพุ · ทางเดินวงแหวน · สวนดอกไม้',x:-16,z:27,color:'#9fbb85'},
-  {id:'inn',name:'ย่านเตาผิงอุ่น',subtitle:'โรงเตี๊ยม · โต๊ะอาหาร · บ้านชาวเมือง',x:15,z:28,color:'#cd9e85'},
+  {id:'plaza',name:'ลานดารารุ่ง',subtitle:'หอนาฬิกา · ทูตสวรรค์ · จุดรวมปาร์ตี้',x:0,z:8,color:'#d1b77a'},
+  {id:'market',name:'ตลาดคาราวานสีคราม',subtitle:'ซื้อขายอุปกรณ์ · ร้านเสบียง · ลานพ่อค้า',x:28,z:13,color:'#6aafad'},
+  {id:'craft',name:'ย่านค้อนเพลิง',subtitle:'ช่างตีเหล็ก · โรงงานไม้ · ลานฝึกนักผจญภัย',x:-27,z:-10,color:'#c99364'},
+  {id:'civic',name:'เขตสมาคมแสงอรุณ',subtitle:'สมาคมนักผจญภัย · วิหาร · คลังเก็บของ',x:0,z:-27,color:'#9b9dc1'},
+  {id:'garden',name:'สวนธาราจันทร์',subtitle:'พักฟื้นพลัง · สมุนไพร · ศาลาพักผ่อน',x:-24,z:25,color:'#9fbb85'},
+  {id:'inn',name:'ย่านเตาผิงอุ่น',subtitle:'โรงเตี๊ยม · นักดนตรี · จุดพักคาราวาน',x:18,z:30,color:'#cd9e85'},
 ] as const;
 export const districtAt=(x:number,z:number)=>DISTRICTS.reduce((a,b)=>Math.hypot(x-a.x,z-a.z)<Math.hypot(x-b.x,z-b.z)?a:b);
-export const TOUR_STOPS=DISTRICTS.map(d=>({...d, x:d.id==='civic'?0:d.x,z:d.id==='market'?4:d.id==='garden'?33:d.id==='inn'?21:d.z}));
+export const TOUR_STOPS=DISTRICTS.map(d=>({...d,x:d.id==='market'?18:d.id==='civic'?-12:d.id==='craft'?-25:d.id==='garden'?-21:d.x,z:d.id==='civic'?-19:d.id==='craft'?5:d.id==='garden'?18:d.id==='inn'?23:d.z}));
 
 // Grid navigation is generated from the same collision used by the player.
 const SIZE=93,OFFSET=46;

@@ -1,3 +1,4 @@
+import {TOWN_NPCS} from './city-2d-locations';
 import {DEFAULT_UI,type UISettings,loadGameData,KEY_ACTIONS,DEFAULT_KEYS,resolveKeys,bindingProblem,keyLabel,BINDABLE_KEY,type KeyAction} from '@the-beginning-online/shared';
 import {setKeyBindings} from './keys';
 /** Thai names for the rebindable actions, in settings order. */
@@ -59,7 +60,7 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
  const collapse=document.createElement('button');collapse.id='journal-toggle';collapse.textContent='บันทึกการเดินทาง ▾';collapse.setAttribute('aria-expanded',String(!$('.quest').classList.contains('collapsed')));$('.quest .caption').replaceWith(collapse);collapse.onclick=()=>{const folded=$('.quest').classList.toggle('collapsed');collapse.setAttribute('aria-expanded',String(!folded));};
  const mapPanel=$('.map');const toggleMap=()=>{mapPanel.hidden=!mapPanel.hidden;if(mapPanel.hidden)mapPanel.classList.remove('expanded');};
  const map=$<HTMLCanvasElement>('#map');map.tabIndex=0;map.setAttribute('role','button');map.setAttribute('aria-label','แผนที่ย่อ แตะเพื่อขยายและเลือกจุดหมาย');map.title='M แผนที่โลก · คลิกจุดบนแผนที่เพื่อเดินไป';map.setAttribute('aria-keyshortcuts','M');
- const npcs=()=>o.map()==='city_plaza'?[...CITY_BUILDINGS.map(b=>({x:b.talk.x,z:b.talk.z,kind:b.id,icon:b.id==='forge'?'⚒':b.id==='market'?'◈':'▣',name:b.npc})),{...HEALER,kind:'heal',icon:'✚',name:'นักบวชหมอ'},{x:jobs.angel.x,z:jobs.angel.z,kind:'angel',icon:'✧',name:'ทูตสวรรค์'},{...GATE_CAPTAIN,kind:'guard',icon:'⚑',name:'หัวหน้าทหารประตู'}]:[];
+ const npcs=()=>o.map()==='city_plaza'?TOWN_NPCS:[];
  const points=()=>[...npcs(),...LAYOUTS[o.map() as MapId].camps.map(c=>({...c,kind:'camp',icon:'△',name:'แคมป์พักฟื้น'})),...Object.entries(GATES[o.map()]).map(([kind,p])=>({...p,kind:'gate:'+kind,icon:'◇',name:'ประตู'}))];
  const coords=(p:{x:number;z:number})=>{const l=LAYOUTS[o.map() as MapId];return{x:(p.x+l.halfX)/(l.halfX*2)*160,y:(p.z+l.halfZ)/(l.halfZ*2)*132};};
  /** Stops walking; `keepGoal` keeps world-map travel going (gates and map changes), a player's own input ends it. */

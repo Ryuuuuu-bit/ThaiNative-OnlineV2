@@ -1,4 +1,4 @@
-import {CITY_BUILDINGS,CITY_PLANTERS} from '@the-beginning-online/shared/maps';
+import {CITY,CITY_BUILDINGS,CITY_PLANTERS} from '@the-beginning-online/shared/maps';
 import {CITY_HOUSES,CITY2D_FOUNTAIN as FOUNTAIN,NEW_BUILDINGS,GARDEN_TREES} from './city-2d-layout';
 
 const EXTENT=106,HALF=53,SIZE=2048,MASK_SIZE=768;
@@ -9,17 +9,22 @@ function rectangle(x:number,z:number,cx:number,cz:number,hw:number,hd:number){
   return Math.hypot(Math.max(dx,0),Math.max(dz,0))+Math.min(Math.max(dx,dz),0);
 }
 function roadDistance(x:number,z:number){
-  let d=Math.min(Math.hypot(x,z)-17,Math.abs(x)-4,Math.abs(z)-4,
-    rectangle(x,z,0,-28,20,9),rectangle(x,z,29.5,0,12.5,21),
-    rectangle(x,z,-28.5,0,10.5,18),rectangle(x,z,15.5,29,10.5,10));
+  let d=Math.min(Math.hypot(x,z)-12.5,Math.abs(x)-3.3,Math.abs(z)-3.3,
+    Math.abs(rectangle(x,z,0,0,36,36))-1.7,
+    rectangle(x,z,-13,-25,9,10),rectangle(x,z,13,-27,8,14),
+    rectangle(x,z,28,14,14,11),rectangle(x,z,-28,-13,13,11),
+    rectangle(x,z,-28,9,9,8),rectangle(x,z,18,29,12,9),
+    rectangle(x,z,-15,-14,1.8,10),rectangle(x,z,15,15,1.8,11),
+    rectangle(x,z,26,-27,1.6,12),rectangle(x,z,32,-18,8,1.6));
   for(const b of aprons)d=Math.min(d,rectangle(x,z,b.x,b.z,b.w/2+1.6,b.d/2+2));
   return d;
 }
 function gardenDistance(x:number,z:number){
   return Math.min(Math.abs(Math.hypot(x-FOUNTAIN.x,z-FOUNTAIN.z)-4.8)-1.4,
     Math.hypot(x-FOUNTAIN.x,z-FOUNTAIN.z)-3.4,
-    rectangle(x,z,11,18.5,1.4,6.5),rectangle(x,z,-12,-17.5,1.5,7.5),
-    rectangle(x,z,-18,20,14,1.4),rectangle(x,z,-16,18.5,1.5,4.5));
+    rectangle(x,z,-23,16,12,1.3),rectangle(x,z,-23,31,10,1.3),
+    rectangle(x,z,-16,24,1.3,9),rectangle(x,z,-31,24,1.3,8),
+    rectangle(x,z,-10,15,7,1.2));
 }
 // Small vegetation stays on planting ground, clear of paved routes and their shoulders.
 export function isCityPlantingGround(x:number,z:number){return roadDistance(x,z)>.8&&gardenDistance(x,z)>.8;}
@@ -41,6 +46,7 @@ function makeMasks(){
 }
 
 export async function makePaintedGround(){
+
   const images=await Promise.all(['road','grass','garden'].map(async id=>{
     const img=new Image();img.src='/assets/city-painted-v1/ground-'+id+'-v1.png';await img.decode();return img;
   }));
@@ -72,9 +78,16 @@ export async function makePaintedGround(){
     c.beginPath();c.arc(x,z,r,0,Math.PI*2);c.strokeStyle='#79736666';c.lineWidth=width+.07;c.stroke();
     c.setLineDash([.42,.055]);c.beginPath();c.arc(x,z,r,0,Math.PI*2);c.strokeStyle='#cfbd9899';c.lineWidth=width;c.stroke();c.setLineDash([]);
   }
-  for(const r of [5.2,5.6,15.7,16.1])stoneRing(0,0,r,.13);
+  for(const r of [4.2,4.5,11.7,12.1])stoneRing(0,0,r,.13);
   for(const r of [3.5,6.3])stoneRing(FOUNTAIN.x,FOUNTAIN.z,r,.17);
   stoneRing(0,23,3,.22);
+  // Brass rays make the central plaza a recognisable gathering landmark.
+  c.strokeStyle='#b4a16d88';c.lineWidth=.09;
+  for(let i=0;i<16;i++){const a=i*Math.PI/8;c.beginPath();c.moveTo(Math.cos(a)*4.7,Math.sin(a)*4.7);c.lineTo(Math.cos(a)*11.5,Math.sin(a)*11.5);c.stroke();}
+  // Curbs define the market and guild forecourts without adding obstacles.
+  c.strokeStyle='#dfd2b077';c.lineWidth=.14;c.setLineDash([.7,.15]);
+  for(const [x,z,w,d]of [[15.5,5,26,19],[-22,-20,18,4],[6,-26,15,11],[-37,4,17,14]])c.strokeRect(x,z,w,d);
+  c.setLineDash([]);
   // Inlaid compass uses the stone surface beneath it, preserving the painted grain.
   c.globalAlpha=.32;
   for(let i=0;i<8;i++){const a=i*Math.PI/4;c.beginPath();c.moveTo(Math.cos(a)*2.75,23+Math.sin(a)*2.75);c.lineTo(Math.cos(a+.6)*.65,23+Math.sin(a+.6)*.65);c.lineTo(0,23);c.closePath();c.fillStyle=i%2?'#dfcba3':'#607c74';c.fill();}c.globalAlpha=1;

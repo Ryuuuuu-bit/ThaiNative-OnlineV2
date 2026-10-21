@@ -33,11 +33,11 @@ test('environment footprints do not intersect buildings or other solid props',()
   assert.ok(Math.abs(t.x-b.x)>=b.w/2+.55||Math.abs(t.z-b.z)>=b.d/2+.55,`tree at ${t.x},${t.z} overlaps ${b.label}`);
  }
 });
-test('shared live layout includes the relocated garden cottage and open fountain approach',()=>{
- assert.ok(ORIGINAL_HOUSES.some(b=>b.x===-28&&b.z===40));
- assert.ok(CITY_HOUSES.some(b=>b.x===-28&&b.z===40));
+test('shared live layout includes the garden cottage and open fountain approach',()=>{
+ assert.ok(ORIGINAL_HOUSES.some(b=>b.x===-30&&b.z===40));
+ assert.ok(CITY_HOUSES.some(b=>b.x===-30&&b.z===40));
  assert.equal(CITY_HOUSES.length,ORIGINAL_HOUSES.length);
- assert.equal(city2dWalkable(-28,40),false);
+ assert.equal(city2dWalkable(-30,40),false);
  assert.equal(city2dWalkable(-22,34),true);
  assert.ok(route({x:-15,z:32},{x:-22,z:34}).length);
 });

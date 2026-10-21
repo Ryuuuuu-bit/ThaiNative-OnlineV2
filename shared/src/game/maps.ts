@@ -1,5 +1,5 @@
 import {circleIndex,circleGrid,GRID_MAX_R} from './obstacle-index.js';
-import {DECOR,GARDEN_TREES,FORTIFICATION_SOLIDS} from './city-details.js';
+import {DECOR,GARDEN_TREES,FORTIFICATION_SOLIDS,CITY2D_FOUNTAIN,CITY2D_HEALER} from './city-details.js';
 export * from './city-details.js';
 export type FieldMapId = 'meadow' | 'forest' | 'ruins' | 'canyon';
 export type MapId = 'city_plaza' | FieldMapId;
@@ -80,26 +80,28 @@ export const CITY_SPAWN = { x: 0, z: 14 };
 export const CITY_RETURN = { x: 0, z: 44 };
 export const CITY_EAST_RETURN = { x: 44, z: 0 };
 export const CITY_TOWER = { half: 2 };
-export const CITY_FOUNTAIN = { x: -16, z: 27, r: 2.5 };
-export const HEALER = { x: -16, z: 22.5 };
+export const CITY_FOUNTAIN = CITY2D_FOUNTAIN;
+export const HEALER = CITY2D_HEALER;
 export const GATE_CAPTAIN = { x: 5, z: 40 };
 export const CITY_BUILDINGS = [
-	{ id: 'storage', name: 'คลังเก็บของ', npc: 'คนเฝ้าคลัง', x: 0, z: -30, w: 9, d: 6, talk: { x: 0, z: -25 } },
-	{ id: 'forge', name: 'โรงตีเหล็ก', npc: 'ช่างตีเหล็ก', x: -32, z: 0, w: 7, d: 8, talk: { x: -26.5, z: 0 } },
-	{ id: 'market', name: 'ตลาด', npc: 'พ่อค้าเบ็ดเตล็ด', x: 32, z: 0, w: 7, d: 8, talk: { x: 26.5, z: 0 } },
+	{ id: 'storage', name: 'คลังเก็บของ', npc: 'คนเฝ้าคลัง', x: 13, z: -20, w: 8, d: 6, talk: { x: 12, z: -15 } },
+	{ id: 'forge', name: 'โรงตีเหล็ก', npc: 'ช่างตีเหล็ก', x: -25, z: -15, w: 9, d: 8, talk: { x: -19, z: -12 } },
+	{ id: 'market', name: 'ตลาด', npc: 'พ่อค้าเบ็ดเตล็ด', x: 25, z: 13, w: 8, d: 7, talk: { x: 18, z: 13 } },
 ] as const;
 /** Decorative houses (solid): behind the main roads, clear of every NPC and road. */
 export const CITY_HOUSES: { x: number; z: number; w: number; d: number }[] = [
-	[-32, -35, 6, 5], [-18, -38, 5, 4], [18, -38, 5, 4], [32, -35, 6, 5], [-37, 32, 5, 6], [37, 32, 5, 6],
-	[-36, -18, 6, 5], [36, -18, 6, 5], [-28, 40, 5, 5], [22, 34, 5, 5], [-36, 16, 5, 5], [36, 16, 5, 5],
+	[-38,-36,6,6],[-30,-27,6,5],[-12,-40,6,4],[-23,-40,5,4],
+	[29,-36,7,6],[38,-28,6,6],[29,-23,6,5],[38,-15,6,5],[26,-12,6,5],
+	[-39,31,5,6],[-30,40,6,5],[-11,39,6,5],[30,39,6,5],[38,36,6,5],
+	[-38,-7,6,5],
 ].map(([x, z, w, d]) => ({ x, z, w, d }));
 const ring = (radius: number, every: number) => Array.from({ length: 8 }, (_, i) => (i + 0.5) * Math.PI / 4).filter((_, i) => i % every === 0).map(a => ({ x: Math.cos(a) * radius, z: Math.sin(a) * radius }));
 /** Planter trees (solid pots, r 0.8): eight on the plaza ring between the roads, eight in the quarters. */
-export const CITY_PLANTERS = [...ring(12, 1), ...[[-40, -28], [40, -28], [-42, 25], [42, 25], [-20, -22], [20, -22], [-18, 37], [18, 37]].map(([x, z]) => ({ x, z }))].map(p => ({ ...p, r: 0.8 }));
+export const CITY_PLANTERS = [...ring(13, 2), ...[[-42,-21],[42,-35],[-41,22],[42,27],[-23,-24],[21,-27],[-7,36],[30,30]].map(([x,z])=>({x,z}))].map(p=>({...p,r:.8}));
 /** Benches (solid, seat and back): four on the outer ring, four in the quarters. */
-export const CITY_BENCHES = [...ring(15, 2), ...[[-18, 19], [15, 19], [-13, -15], [13, -15]].map(([x, z]) => ({ x, z }))].map(p => ({ ...p, w: 2.2, d: 0.7 }));
+export const CITY_BENCHES = [[-11,-9],[11,9],[-11,9],[11,-9],[-19,19],[-27,27],[34,-20],[24,-28]].map(([x,z])=>({x,z,w:2.2,d:.7}));
 /** Market stalls around the main market; `x/z/w/d` is the canopy, `solid` also covers the crate and barrel at its west front. */
-export const CITY_STALLS = [[25, -8], [25, 8], [37, -9], [37, 9]].map(([x, z]) => ({ x, z, w: 3, d: 2.1, solid: { x: x - 0.35, z: z + 0.125, w: 3.7, d: 2.35 } }));
+export const CITY_STALLS = [[33,13],[39,14],[19,20],[33,27]].map(([x,z])=>({x,z,w:3,d:2.1,solid:{x:x-.35,z:z+.125,w:3.7,d:2.35}}));
 /** City polish 4 art (guard booths, wells, carts, hay, crate clusters, forge firewood); the scene draws them from this list. */
 export const CITY_ART_SOLIDS: ({ kind: 'box'; x: number; z: number; w: number; d: number; label: string } | { kind: 'circle'; x: number; z: number; r: number; label: string })[] = [
 	{kind:'box',x:-7,z:44.5,w:1.8,d:1.8,label:'guard-south'},
@@ -107,14 +109,14 @@ export const CITY_ART_SOLIDS: ({ kind: 'box'; x: number; z: number; w: number; d
 	{kind:'circle',x:-24,z:-27,r:1.1,label:'well-north'},
 	{kind:'circle',x:27,z:24,r:1.1,label:'well-south'},
 	{kind:'box',x:-39,z:9,w:3.2,d:1.6,label:'cart-west'},
-	{kind:'box',x:10,z:-22,w:3.2,d:1.6,label:'cart-north'},
+	{kind:'box',x:21,z:-30,w:3.2,d:1.6,label:'cart-north'},
 	{kind:'box',x:-41.5,z:9,w:1.2,d:1.2,label:'hay-west'},
-	{kind:'box',x:12.5,z:-22,w:1.2,d:1.2,label:'hay-north'},
+	{kind:'box',x:23.5,z:-30,w:1.2,d:1.2,label:'hay-north'},
 	{kind:'box',x:-28,z:-35,w:1.8,d:2,label:'crates-north'},
-	{kind:'box',x:28,z:-35,w:1.8,d:2,label:'crates-east'},
-	{kind:'box',x:-32,z:16,w:1.8,d:2,label:'crates-west'},
+	{kind:'box',x:34,z:-35,w:1.8,d:2,label:'crates-east'},
+	{kind:'box',x:-36,z:18,w:1.8,d:2,label:'crates-west'},
 	{kind:'box',x:32,z:16,w:1.8,d:2,label:'crates-south'},
-	{kind:'box',x:-36.3,z:0,w:1.4,d:3,label:'firewood-forge'},
+	{kind:'box',x:-31,z:-15,w:1.4,d:3,label:'firewood-forge'},
 ];
 const cityBoxes = [...FORTIFICATION_SOLIDS,...DECOR.filter(p=>p.solid),...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid), ...CITY_ART_SOLIDS.filter(s => s.kind === 'box')];
 const cityCircleHits = circleIndex([...CITY_PLANTERS, ...CITY_ART_SOLIDS.filter(s => s.kind === 'circle'), ...GARDEN_TREES.map(t=>({...t,r:.55}))]);

@@ -1,11 +1,11 @@
-import { CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@the-beginning-online/shared/maps';
+import { CITY, CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@the-beginning-online/shared/maps';
 import {bake,type Sprite} from './city-2d-art';
-import {CITY_HOUSES,CITY_ART_SOLIDS,DECOR,DISTRICTS,TOUR_STOPS,CITY2D_FOUNTAIN as CITY_FOUNTAIN,GARDEN_TREES,districtAt,city2dWalkable,NEW_BUILDINGS} from './city-2d-layout';
-import {TOWN_NPCS,WAYPOINTS,CITY_EXITS,nearbyWaypoint,nearbyExit,waypointArrival} from './city-2d-locations';
+import {CITY_HOUSES,CITY_ART_SOLIDS,DECOR,CITY2D_FOUNTAIN as CITY_FOUNTAIN,GARDEN_TREES,city2dWalkable} from './city-2d-layout';
+import {TOWN_NPCS,WAYPOINTS} from './city-2d-locations';
 import {loadPaintedCityScene} from './city-2d-painted-scene';
 import {makePaintedGround,isCityPlantingGround} from './city-2d-ground';
 import {CITY_GATES} from './city-2d-gates';
-import {npcSprite,type NpcSprite} from './city-npc-sprite';
+import {loadCityNpcSprites,type NpcSprite} from './city-npc-sprite';
 export async function loadCity2DScene(){
  type Prop={x:number;z:number;image:Sprite;label?:string;fade?:boolean;water?:boolean;tree?:boolean;foliage?:boolean};
  type PaintedAsset={id:string;rect:[number,number,number,number]};type PaintedGroup={image:string;assets:PaintedAsset[]};
@@ -16,7 +16,7 @@ export async function loadCity2DScene(){
   manifest=await fetch('/texture-manifest.json').then(r=>{if(!r.ok)throw Error('โหลดรายการภาพไม่สำเร็จ');return r.json();});
   const env=await fetch('/assets/env-painted/manifest.json').then(r=>r.json());
   const tree=env.assets.find((a: {name:string})=>a.name==='tree-round');
-  const loaded=await Promise.all([image('/assets/hero-painted/hero-idle-v1.png'),image('/assets/hero-painted/hero-run-v1.png'),image('/assets/city-painted-v1/npcs-idle-se-atlas-v1.png'),image('/assets/env-painted/'+tree.atlas)]);
+  const loaded=await Promise.all([image('/assets/hero-painted/hero-idle-v1.png'),image('/assets/hero-painted/hero-run-v1.png'),image('/assets/env-painted/'+tree.atlas)]);
   [idle,run]=loaded;ground=await makePaintedGround();
   const cityArt=await fetch('/assets/city-painted-v1/manifest.json').then(r=>r.json()) as {houses:PaintedGroup;npcs:PaintedGroup;residents:PaintedGroup};
   const houses=await image(cityArt.houses.image);
@@ -28,16 +28,11 @@ export async function loadCity2DScene(){
     const foot=(.39223*b.w+.58835*b.d)/2;
     add(b.x,b.z,c=>c.drawImage(houses,...asset.rect,-w/2,foot-h,w,h),label,true);
   }
-  for(const group of [cityArt.npcs,cityArt.residents]){
-    const atlas=await image(group.image);
-    for(const a of group.assets){const h=a.id==='child'?1.3:a.id==='guard'?2.65:2.05;
-      npcSprites.set(a.id,npcSprite(atlas,a.rect,h));
-    }
-  }
+  for(const [id,sprite] of await loadCityNpcSprites(image,TOWN_NPCS.map(n=>n.art)))npcSprites.set(id,sprite);
   const paintedCache=new Map<string,Sprite>();
   async function painted(name:string,w:number,h:number){
     const key=`${name}:${w}:${h}`;if(paintedCache.has(key))return paintedCache.get(key)!;
-    const asset=env.assets.find((a:{name:string})=>a.name===name);const atlas=asset.atlas===tree.atlas?loaded[3]:await image('/assets/env-painted/'+asset.atlas);
+    const asset=env.assets.find((a:{name:string})=>a.name===name);const atlas=asset.atlas===tree.atlas?loaded[2]:await image('/assets/env-painted/'+asset.atlas);
     // Fit inside the requested size without stretching the painted silhouette.
     const unit=Math.min(w/asset.rect[2],h/asset.rect[3]),drawW=asset.rect[2]*unit,drawH=asset.rect[3]*unit;
     const sprite=bake(c=>c.drawImage(atlas,...asset.rect as [number,number,number,number],-drawW*asset.anchor[0],-drawH*asset.anchor[1],drawW,drawH));paintedCache.set(key,sprite);return sprite;
@@ -65,7 +60,7 @@ export async function loadCity2DScene(){
   props.push({x:CITY_FOUNTAIN.x,z:CITY_FOUNTAIN.z,image:theme.sprite('fountain',6,1.6),label:'น้ำพุธาราจันทร์',water:true});
   for(const p of CITY_PLANTERS){
     themed(p.x,p.z,theme.footprint('flowerbed',1.3,1.3),undefined,false);
-    add(p.x,p.z,c=>{const [sx,sy,sw,sh]=tree.rect;const w=5.1,h=w*sh/sw;c.drawImage(loaded[3],sx,sy,sw,sh,-w*tree.anchor[0],-h,w,h);},undefined,true,true);
+    add(p.x,p.z,c=>{const [sx,sy,sw,sh]=tree.rect;const w=5.1,h=w*sh/sw;c.drawImage(loaded[2],sx,sy,sw,sh,-w*tree.anchor[0],-h,w,h);},undefined,true,true);
   }
   for(const b of CITY_BENCHES)themed(b.x,b.z,theme.footprint('bench',b.w,b.d));
   for(const p of CITY_STALLS)themed(p.x,p.z,theme.footprint('stall',p.w,p.d));
