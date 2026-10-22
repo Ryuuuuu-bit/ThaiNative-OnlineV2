@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "Create a production item icon sheet for an original Thai fantasy MMORPG, The Beginning Online. Exactly 16 different isolated objects in a precisely aligned 4-column by 4-row square grid, reading order left to right then top to bottom. Output a square 1536x1536 or 1024x1024 transparent RGBA image. Each object centered fully inside its own equally sized cell with at least 15 percent clear transparent margin on every side. No grid lines, no frames, no backgrounds, no labels, no letters, no numbers, no watermarks, no characters, no cast ground shadows. Never connect adjacent objects. Every item is roughly 70 percent of cell height, except broad items that fit width. Painterly hand-painted inventory illustration, clear chunky silhouette readable at 40 pixels, rich material texture, controlled highlights, warm light from upper left, subtle deep brown edge contour, carved details concentrated at focal points. Polished whimsical adventure art consistent across all 16 objects. These are newly invented original assets. Do not imitate or reference any existing game, franchise or artist. Each CELL contains only its assigned object:\nCell row 1 column 1: one-handed sword diagonal blade upward right, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 1 column 2: mage staff with large orb head, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 1 column 3: recurved longbow with visible taut string, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 1 column 4: empty chest armour torso, no body or mannequin, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 2 column 1: large heraldic shield, broad readable silhouette, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 2 column 2: flowing hooded cloak, empty garment no wearer, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 2 column 3: one matched pair of boots, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 2 column 4: single thick signet ring, angled showing gemstone, rainforest naga: turquoise jade scales, dark bronze, curved river motifs, emerald silk.\nCell row 3 column 1: one-handed sword diagonal blade upward right, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.\nCell row 3 column 2: mage staff with large orb head, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.\nCell row 3 column 3: recurved longbow with visible taut string, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.\nCell row 3 column 4: empty chest armour torso, no body or mannequin, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.\nCell row 4 column 1: large heraldic shield, broad readable silhouette, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.\nCell row 4 column 2: flowing hooded cloak, empty garment no wearer, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.\nCell row 4 column 3: one matched pair of boots, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.\nCell row 4 column 4: single thick signet ring, angled showing gemstone, celestial dragon: pearl white, pale gold, azure cloud curls, elegant upward sweeping ornaments.",
+  "out": "D:\\Project\\The-Beginning-Online-lv100-release\\meadow-3d\\art\\item-art-v2\\sheet-2.png",
+  "raw": "D:\\Project\\The-Beginning-Online-lv100-release\\meadow-3d\\art\\item-art-v2\\sheet-2.png.raw.png",
+  "raw_bytes": 2349651,
+  "elapsed_seconds": 62.109,
+  "model": null,
+  "session_id": "01a161c8-b649-7532-b1b3-c6a67795dffd",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "explicit",
+    "out": "D:\\Project\\The-Beginning-Online-lv100-release\\meadow-3d\\art\\item-art-v2\\sheet-2.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1254x1254",
+    "alpha_zero_pct": 47.39,
+    "partial_alpha_pct": 52.59,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 2091,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

@@ -3,12 +3,20 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {loadGameData} from '@the-beginning-online/shared';
 import {itemIconCell} from '../src/item-icon.ts';
+import {createHash} from 'node:crypto';
 
 test('every item template resolves to its declared atlas frame or original SVG',()=>{
  const pages=['v1','v2'].map(v=>JSON.parse(readFileSync(new URL(`../public/assets/items/items-${v}.json`,import.meta.url))));
  for(const item of loadGameData().items.items){
   const resolved=itemIconCell(item.id);
   if(resolved.image){
+   if(resolved.image.startsWith('/assets/item-art-v2/')){
+    const manifest=JSON.parse(readFileSync(new URL('../public/assets/item-art-v2/manifest.json',import.meta.url),'utf8'));
+    const file=manifest.files.find(f=>f.id===item.id)??manifest.files.find(f=>f.id===item.icon);assert.ok(file,item.id);
+    const bytes=readFileSync(new URL('../public'+resolved.image,import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),file.sha256,item.id);
+    continue;
+   }
    const source=readFileSync(new URL('../public'+resolved.image,import.meta.url),'utf8');
    assert.match(source,/<svg[^>]+viewBox="0 0 96 96"/);
    const geometry=source.replace(/<image\b[^>]*\bhref="data:image\/png;base64,([A-Za-z0-9+/=]+)"[^>]*\/?>/g,(_tag,base64)=>{const png=Buffer.from(base64,'base64');assert.ok(png.length>8&&png.length<1024*1024);assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.ok(item.id.startsWith('card_'));return '';});

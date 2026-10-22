@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "Create a production item icon sheet for an original Thai fantasy MMORPG, The Beginning Online. Exactly 16 different isolated objects in a precisely aligned 4-column by 4-row square grid, reading order left to right then top to bottom. Output a square 1536x1536 or 1024x1024 transparent RGBA image. Each object centered fully inside its own equally sized cell with at least 15 percent clear transparent margin on every side. No grid lines, no frames, no backgrounds, no labels, no letters, no numbers, no watermarks, no characters, no cast ground shadows. Never connect adjacent objects. Every item is roughly 70 percent of cell height, except broad items that fit width. Painterly hand-painted inventory illustration, clear chunky silhouette readable at 40 pixels, rich material texture, controlled highlights, warm light from upper left, subtle deep brown edge contour, carved details concentrated at focal points. Polished whimsical adventure art consistent across all 16 objects. These are newly invented original assets. Do not imitate or reference any existing game, franchise or artist. Each CELL contains only its assigned object:\nCell row 1 column 1: one-handed sword diagonal blade upward right, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 1 column 2: mage staff with large orb head, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 1 column 3: recurved longbow with visible taut string, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 1 column 4: empty chest armour torso, no body or mannequin, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 2 column 1: large heraldic shield, broad readable silhouette, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 2 column 2: flowing hooded cloak, empty garment no wearer, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 2 column 3: one matched pair of boots, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 2 column 4: single thick signet ring, angled showing gemstone, royal fae: deep violet enamel, silver thorn filigree, luminous rose crystal, midnight blue silk.\nCell row 3 column 1: one-handed sword diagonal blade upward right, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.\nCell row 3 column 2: mage staff with large orb head, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.\nCell row 3 column 3: recurved longbow with visible taut string, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.\nCell row 3 column 4: empty chest armour torso, no body or mannequin, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.\nCell row 4 column 1: large heraldic shield, broad readable silhouette, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.\nCell row 4 column 2: flowing hooded cloak, empty garment no wearer, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.\nCell row 4 column 3: one matched pair of boots, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.\nCell row 4 column 4: single thick signet ring, angled showing gemstone, mythic starforge: midnight blue alloy, constellations of violet crystal, silver crescent geometry.",
+  "out": "D:\\Project\\The-Beginning-Online-lv100-release\\meadow-3d\\art\\item-art-v2\\sheet-3.png",
+  "raw": "D:\\Project\\The-Beginning-Online-lv100-release\\meadow-3d\\art\\item-art-v2\\sheet-3.png.raw.png",
+  "raw_bytes": 2151842,
+  "elapsed_seconds": 81.141,
+  "model": null,
+  "session_id": "01a161c8-dde0-74c0-9136-f99d82ba1f8f",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "explicit",
+    "out": "D:\\Project\\The-Beginning-Online-lv100-release\\meadow-3d\\art\\item-art-v2\\sheet-3.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1254x1254",
+    "alpha_zero_pct": 54.18,
+    "partial_alpha_pct": 45.79,
+    "opaque_pct": 0.03,
+    "cleaned_transparent_rgb_pixels": 3257,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}
