@@ -1,0 +1,7 @@
+# Direction and contact corrections — 2026-10-22
+
+Spin/death front rows keep their approved AutoSprite frames unchanged. The NE row now uses the existing `hero-painted/hero-<motion>-v1.png` back strip, centred on the same feet anchor; NW mirrors NE. These are the same original painted swordsman, not a new character or a generated reinterpretation. `pack-hero-motions-v2.py --select` preserves this choice when regenerating sources. A spin naturally shows the face midway through a full rotation; its starting and ending facing is the back.
+
+Earth Break keeps 9 frames, 8 directions and contact index 6 at 0.40 seconds. `EARTH_RETIME` in `pack-hero-skills-v2.py` retimes the selected source poses: hold anticipation where a direction struck early, and advance the planted contact pose where a direction struck late. The NE/NW overhead arc is omitted at contact in favour of the grounded pose. Existing game VFX supplies the common ground impact; no damage, cast, sound or knock-up timing changed.
+
+For boss moves sharing an attack strip, `bossAnticipation` gives slam a tall/narrow wind-up, charge a low/wide lean and spit an inflated silhouette. It uses the server's remaining windup and changes only the drawn body around its ground anchor. Existing distinct attack clips, dead bodies and non-bosses are untouched. These cues reuse the current sprite; they are not newly authored anatomical animations. Server collision, hit areas, warning rings and simulation remain unchanged.

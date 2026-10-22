@@ -1,5 +1,5 @@
-import {heroBodyCalibration} from './city-character-calibration';
 import {bossAnticipation} from './boss-anticipation';
+import {heroPresentation} from './hero-presentation';
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
 import {titleDefinition} from '@the-beginning-online/shared';
 import {CITY,LAYOUTS,FIELD_BOSS,FIELD_PLACES,GATES,MAP_INFO,isField,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
@@ -11,7 +11,7 @@ import {drawFountainWater} from './city-2d-fountain';
 import {loadField2D} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
 import {project2D,unproject2D} from './game-2d-projection';
-import {MOTIONS,MOTION_DURATION,MOTION_V2,motionFor,motionFrame,facingFor,facing8For,heroSprite,v2Cell,WALK_DIRECTIONS} from './sprite-animation';
+import {MOTIONS,MOTION_DURATION,MOTION_V2,motionFor,facingFor,facing8For,WALK_DIRECTIONS} from './sprite-animation';
 import {SKILL_MOTIONS,BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,SKILL_V2,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
 import {monsterSpecies,monsterVisual,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
 import {huntingCell,HUNTING_ASSET_ROOT,EXPANSION_ASSET_ROOT} from './hunting-monster-animation';
@@ -129,12 +129,10 @@ export class GameCanvas2D{
   if(state.skill&&(state.elapsed>SKILL_DURATION[state.skill]||p.dead||p.hurt>0))state.skill=undefined;
   if(state.swing!==undefined){state.swing+=dt;if(state.swing>=MOTION_DURATION.attack||p.dead||p.hurt>0)state.swing=undefined;}
   const swinging=state.swing!==undefined&&(motion==='idle'||motion==='walk'||motion==='run'),shown=swinging?'attack':motion;
-  const sprite=heroSprite(shown,p.fx,p.fz,motionFrame(shown,swinging?state.swing!:state.clock),state.clock);const base=MOTION_V2[sprite.sheet];let cell=base?v2Cell(sprite.sheet,facingFor(p.fx,p.fz),sprite.cell.column,state.clock):sprite.cell,key=`/assets/hero-painted/hero-${sprite.sheet}-${base?'v2':'v1'}.png`;
-  // v2 skills: 8 facings and their own cell size, with the feet at `feet` px from the cell top.
-  const v2=state.skill?SKILL_V2[state.skill]:undefined,px=v2??(state.skill?undefined:base)??{w:384,h:256,feet:240};
+  const pose=heroPresentation(shown,p.fx,p.fz,swinging?state.swing!:state.clock);let {cell,key}=pose;
+  const v2=state.skill?SKILL_V2[state.skill]:undefined,px=state.skill?(v2??{w:384,h:256,feet:240}):pose;
   if(state.skill){key=`/assets/hero-skills/hero-skill-${state.skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(state.skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[state.skill],rows:v2?8:4};}
-  const calibration=!state.skill?heroBodyCalibration(sprite.sheet,facing8For(p.fx,p.fz),cell.column,cell.row):undefined;
-  const image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*(calibration?.scale??1),h=px.h*HERO_PIXEL_METRES*this.scale*(calibration?.scale??1),foot=(calibration?.feet??px.feet)/px.h;
+  const scale=state.skill?1:pose.scale,image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*scale,h=px.h*HERO_PIXEL_METRES*this.scale*scale,foot=px.feet/px.h;
   for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w/2,gq.y-h*foot,w,h,p.ghostTint,g.alpha);}
   this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w/2,qs.y-h*foot,w,h);this.drawCalls++;
   if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-(HERO_METRES+.7)*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-(HERO_METRES+.3)*this.scale);}
@@ -204,7 +202,7 @@ export class GameCanvas2D{
     for(const lamp of LAYOUTS[this.map].obstacles.filter(o=>o.kind==='yokai-lantern'))add(lamp.x,lamp.z,()=>{const q=this.screen(lamp.x,lamp.z,1.2),r=s*.48;c.save();const glow=c.createRadialGradient(q.x,q.y,0,q.x,q.y,r);glow.addColorStop(0,color+'ee');glow.addColorStop(.4,color+'aa');glow.addColorStop(1,color+'00');c.fillStyle=glow;c.beginPath();c.arc(q.x,q.y,r,0,Math.PI*2);c.fill();c.restore();});
    }
    if(e.type==='yokai_echo'){const source=game.enemies.find((v:any)=>v.id===e.id);if(source?.dataId==='yokai_bamboo_kodama')add(e.x,e.z,()=>{const hits=this.hits.length;this.monster({...source,x:e.x,z:e.z,illusion:true},false);this.hits.length=hits;});else this.circle(e.x,e.z,e.r??2,'#adb8de33','#d6c2dd');}
-   if(e.type==='yokai_decoy'){const owner=[game.p,...others].find(p=>p.id===e.playerId);if(owner){const sprite=heroSprite('idle',owner.fx,owner.fz,0,0),base=MOTION_V2[sprite.sheet],cell=base?v2Cell(sprite.sheet,facingFor(owner.fx,owner.fz),sprite.cell.column,0):sprite.cell,px=base??{w:384,h:256,feet:240},calibration=heroBodyCalibration(sprite.sheet,facing8For(owner.fx,owner.fz),cell.column,cell.row),pose={cell,w:px.w,h:px.h,feet:calibration?.feet??px.feet,scale:calibration?.scale??1},image=this.assets.get(`/assets/hero-painted/hero-${sprite.sheet}-${base?'v2':'v1'}.png`);if(image)add(e.x,e.z,()=>{const q=this.screen(e.x,e.z),w=pose.w*HERO_PIXEL_METRES*s*pose.scale,h=pose.h*HERO_PIXEL_METRES*s*pose.scale;this.ghostSprite(image,pose.cell,q.x-w/2,q.y-h*pose.feet/pose.h,w,h,'#b5cbea',.7);this.paperShadowsDrawn++;});}}
+   if(e.type==='yokai_decoy'){const owner=[game.p,...others].find(p=>p.id===e.playerId);if(owner){const pose=heroPresentation('idle',owner.fx,owner.fz,0),image=this.assets.get(pose.key);if(image)add(e.x,e.z,()=>{const q=this.screen(e.x,e.z),w=pose.w*HERO_PIXEL_METRES*s*pose.scale,h=pose.h*HERO_PIXEL_METRES*s*pose.scale;this.ghostSprite(image,pose.cell,q.x-w/2,q.y-h*pose.feet/pose.h,w,h,'#b5cbea',.7);this.paperShadowsDrawn++;});}}
   }
   for(const drop of game.drops){const q=this.screen(drop.x,drop.z);add(drop.x,drop.z,()=>{c.fillStyle='#e6ce79';c.beginPath();c.moveTo(q.x,q.y-11);c.lineTo(q.x+5,q.y-5);c.lineTo(q.x,q.y+1);c.lineTo(q.x-5,q.y-5);c.closePath();c.fill();});}
   for(const p of [game.p,...others]){const pose=this.skillVfx.heroPose(p.id,p.x,p.z),drawn=pose?{...p,x:pose.x,z:pose.z,lift:pose.lift,ghosts:pose.ghosts,ghostTint:pose.tint}:p;if(visible(this.screen(drawn.x,drawn.z),100))add(drawn.x,drawn.z,()=>this.hero(drawn,this.combatFeel?.frozen(p.id,now)?0:dt,time,p===game.p));}
