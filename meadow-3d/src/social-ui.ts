@@ -25,7 +25,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 	toggle.setAttribute('aria-label', 'แชท');
 	toggle.textContent = '💬';
 	ui.append(box,toggle);
-	const partyUI=mountParty({...options,chat:()=>{setChannel('party');open();}});
+	const partyUI=mountParty({...options,chat:()=>{setChannel('party');open();},whisper:name=>{whisperTo=name;setChannel('whisper');open();}});
 	const log = box.querySelector<HTMLOListElement>('#chat-log')!, form = box.querySelector<HTMLFormElement>('#chat-form')!;
 	const input = box.querySelector<HTMLInputElement>('#chat-input')!, channelButton = box.querySelector<HTMLButtonElement>('#chat-channel')!;
 	const tabs = box.querySelector<HTMLElement>('#chat-tabs')!;
