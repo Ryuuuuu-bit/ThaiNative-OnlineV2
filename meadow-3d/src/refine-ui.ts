@@ -142,10 +142,10 @@ export function mountRefine(o: {
 		o.request(item.id);
 		render();
 		const anv = root.querySelector<HTMLElement>(".rf-anvil")!, slot = anv.querySelector<HTMLElement>(".rf-slot")!, win = root.closest<HTMLElement>("dialog") ?? root;
-		const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+		// Always plays (the player can click to skip), like the level-up fireflies: it is the reward moment.
 		const fx = el("div", "rf-fx"); anv.append(fx);
 		root.classList.add("forging");
-		let skipped = reduced;
+		let skipped = false;
 		const skip = el("button", "rf-skip", "คลิกเพื่อข้าม") as HTMLButtonElement; skip.type = "button"; anv.append(skip);
 		anv.addEventListener("click", () => { skipped = true; }, { once: true });
 		const box = anv.getBoundingClientRect(), scale = box.width / anv.offsetWidth || 1;
@@ -196,13 +196,13 @@ export function mountRefine(o: {
 		if ("error" in result) { revealShown = false; render(); return; }
 		log.unshift({ ok: result.ok, text: `${t.nameTh} +${from} → +${result.to}`, at: Date.now() });
 		revealShown = true; render();
-		reveal(item.id, result, t, reduced);
+		reveal(item.id, result, t);
 	}
 
-	function reveal(id: string, r: { ok: boolean; from: number; to: number }, t: Template, reduced: boolean) {
+	function reveal(id: string, r: { ok: boolean; from: number; to: number }, t: Template) {
 		const anv = root.querySelector<HTMLElement>(".rf-anvil"); if (!anv) return;
 		const { stat, base } = refineBase(t), value = (lv: number) => base + refineBonusValue(t, lv);
-		const box = el("div", "rf-result" + (r.ok ? "" : " fail") + (reduced ? "" : " anim"));
+		const box = el("div", "rf-result anim" + (r.ok ? "" : " fail"));
 		const slot = el("div", "rf-slot"); slot.style.setProperty("--r", rarityColors[t.rarity as keyof typeof rarityColors] ?? rarityColors.common);
 		slot.append(o.itemIcon(t), el("span", "rf-plus", `+${r.to}`)); if (!r.ok) slot.append(el("span", "rf-crack"));
 		const p = el("p"); p.append(el("b", "", t.nameTh), ` ${statName(stat)} ${value(r.from)} → `, el("b", r.ok ? "up" : "down", String(value(r.to))));
@@ -215,7 +215,6 @@ export function mountRefine(o: {
 		box.append(slot, el("h3", "", r.ok ? `สำเร็จ! +${r.to}` : "ล้มเหลว…"), p, row);
 		anv.append(box);
 		o.say(r.ok ? SAY.ok : SAY.fail);
-		if (reduced) return;
 		const rb = box.getBoundingClientRect(), sb = slot.getBoundingClientRect(), scale = rb.width / box.offsetWidth || 1;
 		const x = (sb.left + sb.width / 2 - rb.left) / scale, y = (sb.top + sb.height / 2 - rb.top) / scale, win = root.closest<HTMLElement>("dialog") ?? root;
 		const add = (cls: string, text = "") => { const e = el("div", cls, text); e.style.left = x + "px"; e.style.top = y + "px"; box.prepend(e); return e; };
