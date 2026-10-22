@@ -85,6 +85,10 @@ Choose the renderer from the code being edited: this project uses both Three.js 
 | Persistence, save compatibility, migrations | `save-systems` |
 | NPC dialogue and branching conditions | `dialogue-systems` |
 | Stats, leveling, inventory, equipment, quests, combat | `rpg` |
+| Map routes, encounter spacing, progression gates, pacing | `level-design` |
+| Audio mixing, SFX variation, ducking, adaptive music | `audio-design` |
+
+For level design, reuse the existing map data, import/validation tools and server-owned progression rules; adapt generic platformer examples to our movement and collision model. For audio, reuse `AudioEngine`, the existing buses, ducking, music-state logic and saved audio settings. Validate mixes on real headphones/speakers; beat synchronization applies to cosmetic audio and must never delay server combat or input handling.
 
 These skills supplement the existing architecture and all rules above. Reuse the current `shared` schemas/game data, server stores, renderer helpers, asset manifests and packing tools. Generic RPG formulas and save-slot examples are illustrative, not replacements for our balance data or persistence. Combat, HP, rewards, inventory, trading, quest mutations and persistence remain server-authoritative; client feedback and camera effects must not pause or decide server simulation. Profile performance changes before and after, and verify visual changes in the actual game. Keep Thai text and the established painted art direction.
 

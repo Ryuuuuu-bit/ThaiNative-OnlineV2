@@ -2,9 +2,9 @@
 
 Project-local skills selected from [gamedev-skills/awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills).
 
-- Source commit: [`0a70cfc64672d512c5b5b6006b5dcb5cf90dbdbd`](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/tree/0a70cfc64672d512c5b5b6006b5dcb5cf90dbdbd).
-- Installed on 2026-10-21 with Codex's `skill-installer`, scoped to this repository.
-- The 12 skill folders retain their upstream contents, including bundled references and asset tools.
+- Original 12 skills: source commit [`0a70cfc64672d512c5b5b6006b5dcb5cf90dbdbd`](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/tree/0a70cfc64672d512c5b5b6006b5dcb5cf90dbdbd), installed on 2026-10-21.
+- `level-design` and `audio-design`: source commit [`38a4c2500eeb5ff9ac084336b8f66108069d2f8d`](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/tree/38a4c2500eeb5ff9ac084336b8f66108069d2f8d), installed on 2026-10-22.
+- Installed with Codex's `skill-installer`, scoped to this repository. All 14 skill folders retain their upstream contents, including bundled references and asset tools.
 - License: [Apache-2.0](LICENSE); attribution and trademarks: [NOTICE](NOTICE).
 - Routing and project constraints: [AGENTS.md](../../AGENTS.md#game-development-skills).
 
@@ -22,6 +22,8 @@ Project-local skills selected from [gamedev-skills/awesome-gamedev-agent-skills]
 | `save-systems` | `skills/disciplines/save-systems` | Server persistence, compatibility and migrations |
 | `dialogue-systems` | `skills/disciplines/dialogue-systems` | NPC conversation flow and conditions |
 | `rpg` | `skills/genres/rpg` | Existing stats, equipment, combat and quest systems |
+| `level-design` | `skills/disciplines/level-design` | Existing map routes, encounter spacing, progression gates and pacing |
+| `audio-design` | `skills/disciplines/audio-design` | Existing Web Audio mix, SFX overlap, ducking and music transitions |
 
 Read only the skill needed for the current task, then its references as needed. Repository rules and explicit user instructions take precedence. Other-engine examples are concepts to adapt to our existing TypeScript code, not dependencies to add. Cross-links naming other skills do not mean those skills are installed.
 

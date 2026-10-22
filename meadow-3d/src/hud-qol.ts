@@ -7,9 +7,9 @@ import {GATES,LAYOUTS,MAP_INFO,FIELD_PLACES,FIELD_HABITATS,FIELD_BOSS,THORN_NEST
 import {paintMinimapLayer} from './minimap-view';
 import jobs from '../../shared/data/jobs.json';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
-import {createPathfinder,gateApproach} from './hud-path';
+import {createPlayerPathfinder,gateApproach} from './hud-path';
 import {updateMonsterTags} from './monster-tags';
-export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>boolean;map:()=>MapId;player:()=>any;talk:(kind:string)=>void;settings:()=>void;party:()=>void;stop:()=>void;/** release held movement without touching AUTO */release:()=>void;/** world-map travel reached its map */arrived?:(name:string)=>void}){
+export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;talk:(kind:string)=>void;settings:()=>void;party:()=>void;stop:()=>void;/** release held movement without touching AUTO */release:()=>void;/** world-map travel reached its map */arrived?:(name:string)=>void}){
  const signature=(s:UISettings)=>JSON.stringify([s.scale,resolveKeys(s.keys),...(['bag','stats','skills'] as const).map(k=>s.windows[k]?[s.windows[k]!.x,s.windows[k]!.y]:null)]);
  let confirmed=structuredClone(DEFAULT_UI);
  let settings:UISettings=structuredClone(DEFAULT_UI),dirty=false,saving=false,lastTarget:any=null,targetUntil=0;
@@ -70,8 +70,8 @@ export function mountHUDQOL(o:{send:(m:any)=>void;walkable:(x:number,z:number)=>
  const cancel=(keepGoal=false)=>{route=[];arrival=null;nextWaypoint=0;if(!keepGoal)goalMap=null;};
  // Explicitly clear the server's last waypoint even when AUTO is already off.
  travel.querySelector('button')!.onclick=()=>{cancel();o.stop();o.send({t:'auto',on:false});};
- let pathfinder:ReturnType<typeof createPathfinder>|undefined,pathfinderMap:MapId|undefined;
- const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();if(!pathfinder||pathfinderMap!==o.map()){pathfinder=createPathfinder(o.walkable,LAYOUTS[o.map()]);pathfinderMap=o.map();}route=pathfinder.findPath(o.player(),p.kind.startsWith('gate:')?gateApproach(p):p);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
+ let pathfinder:ReturnType<typeof createPlayerPathfinder>|undefined,pathfinderMap:MapId|undefined;
+ const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();if(!pathfinder||pathfinderMap!==o.map()){pathfinder=createPlayerPathfinder(o.map());pathfinderMap=o.map();}route=pathfinder.findPath(o.player(),p.kind.startsWith('gate:')?gateApproach(p):p);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
  const returnCity=()=>{cancel();o.send({t:'returnCity'});};$('#return-city').onclick=returnCity;
  map.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('.map').classList.toggle('expanded');}};
  map.onclick=e=>{const box=map.getBoundingClientRect();if(innerWidth<650&&!$('.map').classList.contains('expanded')){$('.map').classList.add('expanded');return;}

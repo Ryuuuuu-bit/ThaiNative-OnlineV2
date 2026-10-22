@@ -63,3 +63,12 @@ test('with nothing in range AUTO walks towards the nearest regular monster, not 
  assert.equal(g.target,nearer.id,'walked to the nearest regular monster and picked it up');
  assert.ok(boss);
 });
+
+test('AUTO resumes pursuit from a body-valid position inside the route margin',()=>{
+ const g=createGame(7);g.enemies=[];g.p.x=-35.896;g.p.z=-13.529;
+ assert.ok(walkable(g.p.x,g.p.z,.3,'meadow'));assert.equal(walkable(g.p.x,g.p.z,.4,'meadow'),false);
+ const goal=LAYOUTS.meadow.camps[0],enemy=spawn(g,goal.x,goal.z);enemy.hp=enemy.maxHp=1e6;
+ g.p.autoCfg={...DEFAULT_AUTO,range:'far'};setAuto(g,true);
+ for(let i=0;i<1800&&enemy.hp===enemy.maxHp;i++)tickFixed(g,enemy,goal);
+ assert.ok(enemy.hp<enemy.maxHp,'AUTO leaves the obstacle edge and attacks its target');
+});

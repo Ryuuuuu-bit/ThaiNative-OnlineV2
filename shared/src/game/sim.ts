@@ -31,7 +31,7 @@ import { deriveStats, monsterStats, type Combatant } from "../derive.js";
 import { computeDamage } from "../damage.js";
 import { autoAllocateStats } from "../allocation.js";
 import type { GameData, CharacterInput, Skill } from "../schema.js";
-import { createPathfinder,pathSegmentWalkable } from "./pathfinding.js";
+import { createPlayerPathfinder,pathSegmentWalkable } from "./pathfinding.js";
 import { CITY_SPAWN, HEALER, type MapId } from "./maps.js";
 const DEFAULT_DATA = loadGameData();
 import { MONSTER_MOTIONS } from "./monster-motion-data.js";
@@ -1289,11 +1289,11 @@ function clearSegment(a: Vec, b: Vec) {
 	return true;
 }
 /** Static collision grids are reused per map, with explicit map IDs for multiplayer rooms. */
-const autoNavigators = new Map<MapId, ReturnType<typeof createPathfinder>>();
+const autoNavigators = new Map<MapId, ReturnType<typeof createPlayerPathfinder>>();
 function route(mapId: MapId, from: Vec, to: Vec): Vec[] {
  let navigator = autoNavigators.get(mapId);
  if (!navigator) {
-  navigator = createPathfinder((x,z) => walkable(x,z,.4,mapId), LAYOUTS[mapId]);
+  navigator = createPlayerPathfinder(mapId);
   autoNavigators.set(mapId,navigator);
  }
  return navigator.findPath(from,to);
