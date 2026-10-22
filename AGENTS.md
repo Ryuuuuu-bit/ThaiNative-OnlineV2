@@ -17,7 +17,7 @@ Every push to `main` builds and deploys UAT on Railway. Several people and agent
 1. `git fetch origin` and put your commits on top of the latest `origin/main`.
 2. `npm test` and `npm run build` pass.
 3. Push with a plain `git push origin <branch>:main`.
-4. After the deploy, check `https://thainative-uat.up.railway.app/build.json` shows your commit.
+4. After the deploy, check `https://the-beginning-online.up.railway.app/build.json` shows your commit. The retired `thainative-uat.up.railway.app` domain returns 404.
 
 ## Deploying
 
