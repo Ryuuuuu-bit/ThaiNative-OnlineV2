@@ -17,6 +17,7 @@ export * from './audio-settings.js';
 
 export * from "./inventory.js";
 export * from './item-rolls.js';
+export * from './refine.js';
 export * from './game/loot-effects.js';
 
 export * from './ui-settings.js';

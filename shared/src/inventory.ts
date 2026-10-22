@@ -1,5 +1,6 @@
 import { deriveStats } from "./derive.js";
 import type { CharacterInput, GameData, Monster } from "./schema.js";
+import { refineModifiers, refineQuote } from './refine.js';
 import { requiredEquipmentLevel, rolledModifiers, rollEquipment, validateItemRoll, starterUnique, isRolledTemplate, STARTER_CARD_TEXT, type ItemRoll, type LootItem } from './item-rolls.js';
 
 export type ItemLocation =
@@ -48,7 +49,8 @@ export interface InventoryOp {
 		| "quest"
 		| "admin"
 		| "card"
-		| "socket";
+		| "socket"
+		| "refine";
 	template?: string;
 	id?: string;
 	/** Physical destination; item templates keep accessory1 for either ring slot. */
@@ -63,6 +65,8 @@ export interface InventoryOp {
 	on?: boolean;
 	/** Card insertion: the card item placed into equipment `id`. */
 	card?: string;
+	/** Refine: the server's random draw in [0, 1); never taken from the client. */
+	roll?: number;
 }
 export interface LedgerEntry {
 	kind: string;
@@ -121,7 +125,7 @@ export function inventoryProfile(profile:CharacterInput,inv:Inventory,data:GameD
  const modifiers=inv.items.filter(i=>i.location==='equip').flatMap(i=>{
   const t=knownTemplate(data,i.template);if(!t)return [];
   if(i.cards.length>cardSlots(i,data))throw Error('ช่องการ์ดเกินขีดจำกัด');
-  return [...rolledModifiers(i),...i.cards.flatMap(id=>{
+  return [...rolledModifiers(i),...refineModifiers(i,t),...i.cards.flatMap(id=>{
    const card=data.cards.cards.find(c=>c.id===id);if(!card||card.slot!==t.type)throw Error('การ์ดไม่ตรงชนิดอุปกรณ์');
    if(STARTER_CARD_TEXT[id]&&seen.has(id))return [];seen.add(id);return card.modifiers;
   })];
@@ -385,6 +389,20 @@ export function applyInventory(
 		next.gold -= price.gold;
 		log("npc_buy", target, 0, -price.gold);
 		target.sockets = (target.sockets ?? 0) + 1;
+	}
+	if (op.op === "refine") {
+		const target = owned(op.id), quote = refineQuote(target, data);
+		if (typeof quote === "string") throw Error(quote);
+		if (typeof op.roll !== "number" || !(op.roll >= 0 && op.roll < 1)) throw Error("การตีบวกต้องสุ่มจากเซิร์ฟเวอร์");
+		if (next.gold < quote.gold) throw Error("ทองไม่พอ");
+		const stack = inv.items.find((i) => i.template === quote.stone && i.location === "bag");
+		if (!stack) throw Error(`ต้องใช้ ${template(quote.stone).nameTh} ×1`);
+		remove(stack, 1);
+		log("use", stack, 1);
+		next.gold -= quote.gold;
+		log("npc_buy", target, 0, -quote.gold);
+		target.refine = op.roll < quote.chance ? quote.next : quote.failTo;
+		if (target.location === "equip") deriveStats(inventoryProfile(profile,inv,data), data);
 	}
 	if (op.op === "card") {
 		const card = owned(op.card), target = owned(op.id);

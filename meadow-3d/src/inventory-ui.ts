@@ -17,6 +17,7 @@ import {
 import "./inventory.css";
 import { itemIconCell } from "./item-icon";
 import { cardEffects } from "./card-text";
+import { mountRefine } from "./refine-ui";
 const data = loadGameData(),
 	templates = data.items.items;
 const slotNames: Record<string, string> = {
@@ -124,6 +125,13 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	}
 	const template = (i: OwnedItem) =>
 		templates.find((t) => t.id === i.template)!;
+	let refineReq = "";
+	const refine = mountRefine({
+		data,
+		itemIcon: (t) => itemIcon(t),
+		request: (id) => { request("refine", { id }); refineReq = pending?.req ?? ""; if (!refineReq) refine.failed("กำลังบันทึก กรุณารอสักครู่"); },
+		say: (text) => { const say = summary.querySelector(".shop-say"); if (say) say.textContent = text; },
+	});
 	function action(i: OwnedItem, slot?: string) {
 		const t = template(i);
 		if (i.location === "equip") request("unequip", { id: i.id });
@@ -847,7 +855,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (filter === "สวมใส่") filter = "ทั้งหมด";
 		tabs.replaceChildren();
 		content.replaceChildren();
-		for (const name of storage ? ["ฝากของ", "ในคลัง"] : shop ? ["ซื้อ", "ขาย"] : ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ", "การ์ด"]) {
+		for (const name of storage ? ["ฝากของ", "ในคลัง"] : shop === "forge" ? ["ซื้อ", "ขาย", "ตีบวก"] : shop ? ["ซื้อ", "ขาย"] : ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ", "การ์ด"]) {
 			const b = document.createElement("button");
 			b.textContent = name;
 			if (mode === "bag") {
@@ -867,8 +875,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			};
 			tabs.append(b);
 		}
-		controls.hidden=mode!=='shop';
-		if (mode === "shop") drawShopTools();
+		const refining = shop === "forge" && shopTab === "ตีบวก";
+		panel.dataset.tab = refining ? "refine" : "";
+		controls.hidden=mode!=='shop'||refining;
+		if (mode === "shop" && !refining) drawShopTools();
 		bagTools.hidden = mode !== "bag";
 		if (mode === "bag") { if (document.activeElement !== searchBox) searchBox.value = search; sortBox.value = sortBy; bagTools.querySelectorAll<HTMLButtonElement>("[data-q]").forEach((b) => b.setAttribute("aria-pressed", String(quick === b.dataset.q))); }
   if (mode === "bag") { loadSeen(); drawDoll(); }
@@ -890,6 +900,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			}
 			content.append(grid);
 			countBox.textContent = "ดับเบิลคลิกเพื่อฝาก/ถอนทั้งกอง · คลังแยกตามตัวละคร";
+			return;
+		}
+		if (refining) {
+			content.append(refine.root);
+			refine.update(inv, p?.gold ?? 0);
+			countBox.textContent = "หินตีบวก 1 ก้อน + ทอง ต่อครั้ง · +1 ถึง +4 ไม่มีทางล้มเหลว · ต้องยืนคุยกับช่างตีเหล็ก";
 			return;
 		}
 		if (shop) {
@@ -960,7 +976,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		storage = nextShop === "storage";
 		if (storage) storageTab = "ฝากของ";
 		shop = storage ? null : nextShop;
-		shopRange = shop === "forge" ? "current" : "all"; shopCategory = "all"; shopOwnClass = true; shopSearch = ""; sellCategory = "all"; draftQty.clear(); shopTab = "ซื้อ";
+		shopRange = shop === "forge" ? "current" : "all"; shopCategory = "all"; shopOwnClass = true; shopSearch = ""; sellCategory = "all"; draftQty.clear(); shopTab = "ซื้อ"; refine.reset();
 		selected = null;
 		multi.clear();
 		cart.clear();
@@ -1014,6 +1030,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 					}
 				}
 				if (pending?.req === m.req) pending = undefined;
+				if (refineReq && refineReq === m.req) { refineReq = ""; if (m.error) refine.failed(m.error); }
 				multi.clear();
 				if (m.error) buyQueue = [];
 				else if (!pending && buyQueue.length) { nextBuy(); return; }

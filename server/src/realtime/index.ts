@@ -505,11 +505,12 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          if(player.dead){reject('รอฟื้นตัวก่อน');return;}
          if(message.op==='pickup'){const d=g.drops.find(d=>d.id===message.drop);if(d)d.blocked=false;if(d&&!d.pending&&(d.ownerId===player.id||d.time>=data.economy.lootOwnershipSeconds)&&Math.hypot(player.x-d.x,player.z-d.z)<4){moveTo(g,d.x,d.z);}return;}
          if(message.op==='buy'||message.op==='sell'){const npc=CITY_BUILDINGS.find(b=>b.id===message.shop);if(g.mapId!=='city_plaza'||!npc||Math.hypot(player.x-npc.talk.x,player.z-npc.talk.z)>=3){reject('ไปพบพ่อค้าก่อน');return;}}
-         if(message.op==='socket'){const smith=CITY_BUILDINGS.find(b=>b.id==='forge')!;if(g.mapId!=='city_plaza'||Math.hypot(player.x-smith.talk.x,player.z-smith.talk.z)>=3){reject('ไปพบช่างตีเหล็กในเมืองก่อน');return;}}
+         if(message.op==='socket'||message.op==='refine'){const smith=CITY_BUILDINGS.find(b=>b.id==='forge')!;if(g.mapId!=='city_plaza'||Math.hypot(player.x-smith.talk.x,player.z-smith.talk.z)>=3){reject('ไปพบช่างตีเหล็กในเมืองก่อน');return;}}
          if(message.op==='store'||message.op==='retrieve'){const keeper=CITY_BUILDINGS.find(b=>b.id==='storage')!;if(g.mapId!=='city_plaza'||Math.hypot(player.x-keeper.talk.x,player.z-keeper.talk.z)>=3){reject('ไปพบคนเฝ้าคลังก่อน');return;}}
          if(message.op==='use'&&(player.cd.potion>0||peer.busy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
          if(message.op==='use'){const item=player.inventory?.items.find(i=>i.id===message.id),kind=data.items.items.find(t=>t.id===item?.template)?.effect;if(kind==='arcane'&&(!sunScrollTarget(g,player)||player.level<(data.items.items.find(t=>t.id===item?.template)?.level??50))){reject('ม้วนธาตุต้องถึงระดับไอเทม และเลือกศัตรูที่มองเห็นในระยะ 6 เมตร');return;}if((kind==='party_hp'||kind==='party_cleanse')&&!partyAidTarget(g,player,kind)){reject(kind==='party_hp'?'ไม่มีสมาชิกปาร์ตี้ที่บาดเจ็บในระยะ 6 เมตร':'ไม่มีสมาชิกปาร์ตี้ติดสถานะลบในระยะ 6 เมตร');return;}}
-         economy(peer,player,message,message.req);return;
+         // The refine outcome is drawn here, never by the client (protocol.ts rejects a client-sent roll).
+         economy(peer,player,message.op==='refine'?{...message,roll:Math.random()}:message,message.req);return;
         }
         if(message.t==='autoSettings'){
  const auto=normalizeAuto(message.settings);player.autoCfg=auto;const merged={...(peer.ui??DEFAULT_UI),auto};peer.ui=merged;

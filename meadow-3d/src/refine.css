@@ -1,0 +1,160 @@
+/* Forge refine tab (ui-mockup/refine.html). Scoped under the panel id so it beats the dialog-wide 13px rule in hud-qol.css. */
+body #inventory-window[data-tab=refine] .inv-cart{display:none!important}
+body #inventory-window[data-tab=refine] .inv-body{grid-template-columns:minmax(0,1fr)!important}
+body #inventory-window[data-tab=refine] .inv-main{padding-right:0}
+body #inventory-window[data-tab=refine] .inv-content{overflow:hidden}
+body #inventory-window #refine-panel{--rf-ok:#8fd18a;--rf-warn:#e8b46a;--rf-bad:#ef8f86;display:grid;grid-template-columns:270px minmax(0,1fr) 250px;height:100%;min-height:560px;border:1px solid var(--g-line);border-radius:14px;overflow:hidden}
+body #inventory-window #refine-panel.rf :is(p,small,span,b,i,em){font-size:inherit!important}
+body #inventory-window #refine-panel button{min-height:0;min-width:0;font:inherit;cursor:pointer}
+body #inventory-window #refine-panel .item-icon{transform:none}
+
+/* Picker */
+body #inventory-window #refine-panel .rf-pick{display:flex;flex-direction:column;gap:8px;padding:12px;border-right:1px solid var(--g-line);overflow:auto;min-height:0;transition:filter .4s}
+body #inventory-window #refine-panel .rf-pick>*{flex:none}
+body #inventory-window #refine-panel .rf-chips{display:flex;gap:6px}
+body #inventory-window #refine-panel .rf-chip{height:30px;padding:0 12px!important;border-radius:15px!important;border:1px solid var(--g-line)!important;background:none!important;font-size:12.5px;color:var(--g-muted)}
+body #inventory-window #refine-panel .rf-chip.on{border-color:rgba(230,201,143,.5)!important;background:rgba(230,201,143,.12)!important;color:#fff1c9}
+body #inventory-window #refine-panel .rf-grp{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.16em;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-grp::after{content:'';flex:1;height:1px;background:var(--g-line)}
+body #inventory-window #refine-panel .rf-it{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:10px;padding:6px 10px 6px 6px!important;border-radius:12px!important;border:1px solid var(--g-line)!important;background:linear-gradient(170deg,rgba(255,255,255,.05),rgba(255,255,255,.015))!important;text-align:left}
+body #inventory-window #refine-panel .rf-it:hover{border-color:var(--g-line-strong)!important}
+body #inventory-window #refine-panel .rf-it.on{border-color:rgba(230,201,143,.65)!important;background:linear-gradient(170deg,rgba(230,201,143,.16),rgba(230,201,143,.03))!important}
+body #inventory-window #refine-panel .rf-it.max{opacity:.55}
+body #inventory-window #refine-panel .rf-box{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:rgba(0,0,0,.25);border:1px solid var(--g-line)}
+body #inventory-window #refine-panel .rf-box .item-icon{width:34px;height:34px}
+body #inventory-window #refine-panel .rf-it b{display:block;font-size:13px;color:var(--r)}
+body #inventory-window #refine-panel .rf-it small{display:block;font-size:11.5px;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-lv{min-width:34px;height:22px;padding:0 7px;border-radius:7px;background:rgba(0,0,0,.35);border:1px solid var(--g-line);font-size:12px;font-weight:800;line-height:20px;text-align:center;color:#fff1c9}
+body #inventory-window #refine-panel .rf-lv.zero{color:var(--g-faint);font-weight:600}
+body #inventory-window #refine-panel .rf-empty{margin:8px 0;font-size:12.5px;color:var(--g-faint)}
+
+/* Anvil */
+body #inventory-window #refine-panel .rf-anvil{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 22px;min-height:0;overflow:hidden;isolation:isolate}
+body #inventory-window #refine-panel .rf-anvil::before{content:'';position:absolute;left:50%;top:120px;width:520px;height:340px;margin-left:-260px;background:radial-gradient(ellipse at 50% 45%,rgba(236,171,70,.14),transparent 62%);pointer-events:none;z-index:-1}
+body #inventory-window #refine-panel .rf-hint{align-self:center;margin:auto 0;font-size:12px;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-nm{text-align:center}
+body #inventory-window #refine-panel .rf-nm b{font-size:18px}
+body #inventory-window #refine-panel .rf-nm small{display:block;font-size:12px;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-target{display:flex;align-items:center;gap:24px}
+body #inventory-window #refine-panel .rf-slot{position:relative;width:118px;height:118px;flex:none;border-radius:24px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--r) 20%,transparent),rgba(0,0,0,.35) 70%);border:1px solid color-mix(in srgb,var(--r) 55%,transparent);box-shadow:0 0 0 6px rgba(255,255,255,.02),0 14px 34px rgba(0,0,0,.35)}
+body #inventory-window #refine-panel .rf-slot .item-icon{width:84px;height:84px}
+body #inventory-window #refine-panel .rf-plus{position:absolute;right:-10px;top:-10px;height:30px;padding:0 10px;border-radius:15px;background:#e6c98f;color:#1d2a26;font-size:15px!important;font-weight:800;line-height:30px;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+body #inventory-window #refine-panel .rf-slot.charging{box-shadow:0 0 0 6px rgba(255,255,255,.02),0 0 34px rgba(239,143,134,.55),inset 0 0 26px rgba(239,143,134,.35)}
+body #inventory-window #refine-panel .rf-slot.hot{box-shadow:0 0 0 6px rgba(255,255,255,.02),0 0 50px rgba(255,214,140,.75),inset 0 0 30px rgba(255,214,140,.5)}
+body #inventory-window #refine-panel .rf-slot.molten{box-shadow:0 0 0 6px rgba(255,255,255,.03),0 0 70px rgba(255,150,60,.9),inset 0 0 40px rgba(255,170,80,.7)}
+body #inventory-window #refine-panel .rf-slot.molten .item-icon{filter:drop-shadow(0 0 12px rgba(255,170,80,.95)) brightness(1.4) sepia(.35)}
+body #inventory-window #refine-panel .rf-lvl{display:flex;align-items:center;gap:10px;font-size:32px;font-weight:800;line-height:1}
+body #inventory-window #refine-panel .rf-lvl .from{color:var(--g-muted)}
+body #inventory-window #refine-panel .rf-lvl .arr{font-size:22px!important;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-lvl .to{color:#fff1c9;text-shadow:0 0 18px rgba(230,201,143,.45)}
+body #inventory-window #refine-panel .rf-stats{width:100%;max-width:460px;display:grid;grid-template-columns:1fr auto auto auto;gap:6px 12px;align-items:center;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--g-line);font-size:13px}
+body #inventory-window #refine-panel .rf-stats span{color:var(--g-muted)}
+body #inventory-window #refine-panel .rf-stats b{text-align:right;font-variant-numeric:tabular-nums}
+body #inventory-window #refine-panel .rf-stats i{font-style:normal;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-stats em{font-style:normal;font-weight:800;color:var(--rf-ok);text-align:right}
+body #inventory-window #refine-panel .rf-stats em.dim{color:var(--g-faint);font-weight:600}
+body #inventory-window #refine-panel .rf-odds{width:100%;max-width:460px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+body #inventory-window #refine-panel .rf-ring{position:relative;width:92px;height:92px;border-radius:50%;background:conic-gradient(var(--c) calc(var(--p)*1%),rgba(255,255,255,.08) 0);display:grid;place-items:center}
+body #inventory-window #refine-panel .rf-ring.ok{--c:var(--rf-ok)}body #inventory-window #refine-panel .rf-ring.warn{--c:var(--rf-warn)}body #inventory-window #refine-panel .rf-ring.bad{--c:var(--rf-bad)}
+body #inventory-window #refine-panel .rf-ring::before{content:'';position:absolute;inset:8px;border-radius:50%;background:#152120}
+body #inventory-window #refine-panel .rf-ring div{position:relative;text-align:center;line-height:1.1}
+body #inventory-window #refine-panel .rf-ring b{display:block;font-size:23px!important;font-weight:800;color:var(--c)}
+body #inventory-window #refine-panel .rf-ring small{font-size:11px!important;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-out{display:grid;gap:6px}
+body #inventory-window #refine-panel .rf-out p{display:flex;align-items:center;gap:8px;margin:0;padding:8px 12px;border-radius:10px;font-size:12.5px!important;color:var(--g-muted)}
+body #inventory-window #refine-panel .rf-out p.yes{background:rgba(143,209,138,.08);border:1px solid rgba(143,209,138,.3)}
+body #inventory-window #refine-panel .rf-out p.lose{background:rgba(239,143,134,.07);border:1px solid rgba(239,143,134,.3)}
+body #inventory-window #refine-panel .rf-out p.safe{background:rgba(143,209,138,.05);border:1px dashed rgba(143,209,138,.35)}
+body #inventory-window #refine-panel .rf-out p b{color:var(--g-text)}
+body #inventory-window #refine-panel .rf-out p i{font-style:normal;font-weight:800}
+body #inventory-window #refine-panel .rf-out p.yes i{color:var(--rf-ok)}body #inventory-window #refine-panel .rf-out p.lose i{color:var(--rf-bad)}
+body #inventory-window #refine-panel .rf-cost{width:100%;max-width:460px;display:flex;gap:8px}
+body #inventory-window #refine-panel .rf-cost>div{flex:1;display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;border:1px solid var(--g-line);background:rgba(255,255,255,.03)}
+body #inventory-window #refine-panel .rf-cost .item-icon{width:32px;height:32px}
+body #inventory-window #refine-panel .rf-cost b{display:block;font-size:13px}
+body #inventory-window #refine-panel .rf-cost small{display:block;font-size:11.5px!important;color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-cost small.short{color:var(--rf-bad)}
+body #inventory-window #refine-panel .rf-coin{width:32px;text-align:center;font-size:22px!important;color:#e6c98f}
+body #inventory-window #refine-panel .rf-go{width:100%;max-width:460px;height:48px;border-radius:12px!important;border:0!important;background:linear-gradient(180deg,#f0d7a4,#e6c98f)!important;color:#1d2a26!important;font-size:16px!important;font-weight:800;box-shadow:0 8px 24px rgba(230,201,143,.25)}
+body #inventory-window #refine-panel .rf-go:disabled{opacity:.45;box-shadow:none;cursor:default}
+body #inventory-window #refine-panel .rf-go.again{background:rgba(230,201,143,.14)!important;color:#fff1c9!important;border:1px solid rgba(230,201,143,.6)!important;box-shadow:none}
+body #inventory-window #refine-panel .rf-sub{margin:-4px 0 0;font-size:11.5px!important;color:var(--g-faint)}
+
+/* Rates + log */
+body #inventory-window #refine-panel .rf-side{display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-left:1px solid var(--g-line);background:rgba(255,255,255,.015);overflow:auto;min-height:0;transition:filter .4s}
+body #inventory-window #refine-panel .rf-side>*{flex:none}
+body #inventory-window #refine-panel .rf-side h3{margin:4px 0 0;font-size:14px!important}
+body #inventory-window #refine-panel .rf-side .rf-hint{margin:-6px 0 0;font-size:11.5px!important}
+body #inventory-window #refine-panel .rf-tbl{display:grid;grid-template-columns:40px 1fr 42px;border-radius:12px;border:1px solid var(--g-line);overflow:hidden;font-size:12px}
+body #inventory-window #refine-panel .rf-tbl>*{padding:3px 10px;border-top:1px solid rgba(255,255,255,.05);font-size:12px!important}
+body #inventory-window #refine-panel .rf-tbl .h{border-top:0;font-size:11px!important;color:var(--g-faint);background:rgba(255,255,255,.03)}
+body #inventory-window #refine-panel .rf-tbl b{font-weight:800}
+body #inventory-window #refine-panel .rf-tbl .bar{display:flex;align-items:center}
+body #inventory-window #refine-panel .rf-tbl .bar i{display:block;height:6px;border-radius:3px;width:calc(var(--p)*1%);background:var(--rf-ok)}
+body #inventory-window #refine-panel .rf-tbl .bar[data-tone=warn] i{background:var(--rf-warn)}body #inventory-window #refine-panel .rf-tbl .bar[data-tone=bad] i{background:var(--rf-bad)}
+body #inventory-window #refine-panel .rf-tbl .pct{text-align:right;color:var(--g-muted);font-variant-numeric:tabular-nums}
+body #inventory-window #refine-panel .rf-tbl .cur{background:rgba(230,201,143,.12)}
+body #inventory-window #refine-panel .rf-tbl .done{color:var(--g-faint)}
+body #inventory-window #refine-panel .rf-legend{display:grid;gap:3px;font-size:11.5px;color:var(--g-muted)}
+body #inventory-window #refine-panel .rf-legend span{display:flex;align-items:center;gap:7px;font-size:11.5px!important}
+body #inventory-window #refine-panel .rf-legend span::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--rf-ok)}
+body #inventory-window #refine-panel .rf-legend .warn::before{background:var(--rf-warn)}body #inventory-window #refine-panel .rf-legend .bad::before{background:var(--rf-bad)}
+body #inventory-window #refine-panel .rf-log{display:flex;flex-direction:column;gap:4px;margin:0;padding:0;list-style:none}
+body #inventory-window #refine-panel .rf-log li{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:9px;background:rgba(255,255,255,.03);font-size:12px;color:var(--g-muted)}
+body #inventory-window #refine-panel .rf-log li.s b{color:var(--rf-ok)}body #inventory-window #refine-panel .rf-log li.f b{color:var(--rf-bad)}
+body #inventory-window #refine-panel .rf-log li.none{color:var(--g-faint)}
+
+/* Animation layer */
+body #inventory-window #refine-panel.forging :is(.rf-pick,.rf-side){filter:brightness(.35) saturate(.6)}
+body #inventory-window #refine-panel .rf-fx{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+body #inventory-window #refine-panel .rf-fx>div{position:absolute}
+body #inventory-window #refine-panel .rf-veil{inset:0;left:0!important;top:0!important;background:radial-gradient(ellipse at var(--vx) var(--vy),transparent 90px,rgba(4,8,8,.78) 330px)}
+body #inventory-window #refine-panel .rf-rune{width:300px;height:300px;margin:-150px 0 0 -150px}
+body #inventory-window #refine-panel .rf-rune svg,body #inventory-window #refine-panel .rf-hammer svg{width:100%;height:100%;overflow:visible}
+body #inventory-window #refine-panel .rf-stone{width:40px;height:40px;margin:-20px 0 0 -20px}
+body #inventory-window #refine-panel .rf-stone .item-icon{width:40px;height:40px;filter:drop-shadow(0 0 10px rgba(239,143,134,.9))}
+body #inventory-window #refine-panel .rf-trail{width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#ffb4a8;box-shadow:0 0 8px #ff8f80}
+body #inventory-window #refine-panel .rf-mote{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#ffd7a0;box-shadow:0 0 10px #ff9f4a,0 0 3px #fff}
+body #inventory-window #refine-panel .rf-hammer{width:110px;height:110px;margin:-96px 0 0 -14px;transform-origin:16px 96px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
+body #inventory-window #refine-panel .rf-flash{width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;background:radial-gradient(circle,rgba(255,246,214,.95),rgba(255,214,140,.45) 30%,transparent 65%)}
+body #inventory-window #refine-panel .rf-wave{width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:3px solid rgba(255,236,190,.95);box-shadow:0 0 30px rgba(255,200,120,.7),inset 0 0 30px rgba(255,200,120,.5)}
+body #inventory-window #refine-panel .rf-spark{width:4px;height:12px;margin:-6px 0 0 -2px;border-radius:2px;background:linear-gradient(#fff6d6,#f0b65a);box-shadow:0 0 6px #f0b65a}
+body #inventory-window #refine-panel .rf-white{inset:0;left:0!important;top:0!important;background:#fff8e6}
+body #inventory-window #refine-panel .rf-skip{position:absolute;right:14px;bottom:10px;z-index:4;border:0!important;background:none!important;font-size:11.5px!important;color:var(--g-faint)}
+
+/* Result */
+body #inventory-window #refine-panel .rf-anvil:has(.rf-result)>:not(.rf-result){visibility:hidden}
+body #inventory-window #refine-panel .rf-result{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,rgba(230,201,143,.22),rgba(10,16,16,.94) 62%)}
+body #inventory-window #refine-panel .rf-result.fail{background:radial-gradient(ellipse at 50% 42%,rgba(239,143,134,.16),rgba(10,16,16,.94) 62%)}
+body #inventory-window #refine-panel .rf-result>div:not(.rf-slot):not(.rf-row){position:absolute}
+body #inventory-window #refine-panel .rf-result .rf-slot{width:146px;height:146px;z-index:1}
+body #inventory-window #refine-panel .rf-result .rf-slot .item-icon{width:104px;height:104px}
+body #inventory-window #refine-panel .rf-result:not(.fail) .rf-slot{box-shadow:0 0 0 6px rgba(255,255,255,.03),0 0 60px rgba(255,214,140,.7)}
+body #inventory-window #refine-panel .rf-result h3{margin:0;font-size:30px!important;font-weight:800;color:#fff1c9;text-shadow:0 0 22px rgba(230,201,143,.5);z-index:1}
+body #inventory-window #refine-panel .rf-result.fail h3{color:var(--rf-bad);text-shadow:0 0 22px rgba(239,143,134,.4)}
+body #inventory-window #refine-panel .rf-result p{margin:0;font-size:14px!important;color:var(--g-muted);z-index:1}
+body #inventory-window #refine-panel .rf-result p b{color:var(--g-text)}
+body #inventory-window #refine-panel .rf-result p b.up{color:var(--rf-ok)}body #inventory-window #refine-panel .rf-result p b.down{color:var(--rf-bad)}
+body #inventory-window #refine-panel .rf-row{display:flex;gap:8px;z-index:1}
+body #inventory-window #refine-panel .rf-row .rf-go{width:220px}
+body #inventory-window #refine-panel .rf-row .rf-go:last-child{width:130px}
+body #inventory-window #refine-panel .rf-crack{position:absolute;inset:0;border-radius:24px;background:linear-gradient(115deg,transparent 46%,rgba(239,143,134,.7) 47%,transparent 49%),linear-gradient(60deg,transparent 52%,rgba(239,143,134,.45) 53%,transparent 55%)}
+body #inventory-window #refine-panel .rf-stamp{left:50%;z-index:2;font-size:120px!important;font-weight:900;line-height:1;color:#fff1c9;text-shadow:0 0 30px rgba(255,200,110,.9),0 6px 0 #a87a2a,0 10px 30px rgba(0,0,0,.6);white-space:nowrap;pointer-events:none}
+body #inventory-window #refine-panel .rf-stamp.bad{color:#ffb0a6;text-shadow:0 0 26px rgba(239,90,80,.8),0 6px 0 #6e2620,0 10px 30px rgba(0,0,0,.6)}
+body #inventory-window #refine-panel .rf-rays{width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,230,170,.32) 0 5deg,transparent 5deg 22deg);-webkit-mask:radial-gradient(circle,#000 20%,transparent 68%);mask:radial-gradient(circle,#000 20%,transparent 68%)}
+body #inventory-window #refine-panel .rf-pillar{width:180px;margin-left:-90px;bottom:-40px;background:linear-gradient(90deg,transparent,rgba(255,226,160,.25) 30%,rgba(255,250,230,.85) 50%,rgba(255,226,160,.25) 70%,transparent);filter:blur(2px)}
+body #inventory-window #refine-panel .rf-ember{width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:#fff1c9;box-shadow:0 0 8px #f0c060}
+body #inventory-window #refine-panel .rf-red{inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(200,40,30,.4))}
+body #inventory-window #refine-panel .rf-shard{width:8px;height:8px;margin:-4px 0 0 -4px;background:#9fb0b8;clip-path:polygon(50% 0,100% 60%,30% 100%,0 40%)}
+body #inventory-window #refine-panel .rf-smoke{width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:50%;background:radial-gradient(circle,rgba(120,120,120,.55),transparent 70%)}
+body #inventory-window #refine-panel .rf-result.anim h3{animation:rf-slam .5s cubic-bezier(.2,1.4,.4,1) both}
+body #inventory-window #refine-panel .rf-result.anim :is(p,.rf-row){animation:rf-rise .4s ease-out .3s both}
+body #inventory-window #refine-panel .rf-result.anim .rf-slot{animation:rf-pop .55s cubic-bezier(.2,1.5,.4,1) both}
+body #inventory-window #refine-panel .rf-result.anim.fail .rf-slot{animation:rf-shake .5s ease-in-out both}
+body #inventory-window #refine-panel .rf-result.anim .rf-crack{animation:rf-crack .35s ease-out .1s both}
+@keyframes rf-slam{0%{opacity:0;transform:scale(2.6);filter:blur(6px)}60%{opacity:1;filter:none}100%{transform:scale(1)}}
+@keyframes rf-rise{from{opacity:0;transform:translateY(10px)}}
+@keyframes rf-pop{0%{transform:scale(1.3)}100%{transform:scale(1)}}
+@keyframes rf-shake{0%,100%{transform:none}20%{transform:translateX(-9px) rotate(-3deg)}40%{transform:translateX(8px) rotate(2deg)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+@keyframes rf-crack{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media(prefers-reduced-motion:reduce){body #inventory-window #refine-panel .rf-result *{animation:none!important}}
