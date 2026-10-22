@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE original hand-painted isometric fantasy MMORPG creature. Fine sepia ink, gouache and watercolor, matte natural texture, restrained highlights, upper-left light. Front three-quarter view facing image-left, entire body centered with generous transparent padding. A majestic giant queen spider with exactly eight thick jointed legs, a broad moss-green garden abdomen supporting a crownlike ring of curved woody thorns and three enclosed pearl egg sacs. Deep plum head, four small amber eyes. Strong low wide silhouette. No human anatomy, no skulls, no external symbols. Original text-only design, no reference to any franchise or artist. Transparent background, no floor, shadow, labels, frame or scenery.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\thorn_nest_mother\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\thorn_nest_mother\\base.png.raw.png",
+  "raw_bytes": 2533401,
+  "elapsed_seconds": 50.172,
+  "model": null,
+  "session_id": "01a15f5a-ecf4-7922-9389-226ebb0ad7a9",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\thorn_nest_mother\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 58.05,
+    "partial_alpha_pct": 41.95,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 826325,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

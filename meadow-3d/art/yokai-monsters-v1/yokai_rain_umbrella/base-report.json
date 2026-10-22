@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original living old paper parasol yokai, ONE open slightly tilted dusty indigo and cream bamboo-ribbed umbrella forms its ENTIRE round body, ONE small amber eye and ONE small smiling mouth on the front paper surface. ONE single wooden handle extends downward into exactly ONE sturdy leg wearing ONE plain brown straw sandal, no arms or other legs, ONE short attached curved tongue. Whole umbrella crown and single sandal visible, no detached prop, no human body underneath. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Restrained bamboo-forest jade, indigo and weathered vermilion palette. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Japanese folk mythology; no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_rain_umbrella\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_rain_umbrella\\base.png.raw.png",
+  "raw_bytes": 1846366,
+  "elapsed_seconds": 56.828,
+  "model": null,
+  "session_id": "01a1607b-0139-7ea2-a116-945b9804c1d9",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_rain_umbrella\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1290x1219",
+    "alpha_zero_pct": 55.76,
+    "partial_alpha_pct": 44.19,
+    "opaque_pct": 0.05,
+    "cleaned_transparent_rgb_pixels": 683,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

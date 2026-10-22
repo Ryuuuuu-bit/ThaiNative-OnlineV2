@@ -1,0 +1,341 @@
+{
+  "ok": true,
+  "engine": "component-row",
+  "kind": "sprite-gen-inspect-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_03\\run",
+  "states": [
+    "down45_idle",
+    "down45_hop",
+    "down45_attack",
+    "down45_hit",
+    "down45_death",
+    "up45_idle",
+    "up45_hop",
+    "up45_attack",
+    "up45_hit",
+    "up45_death"
+  ],
+  "thresholds": {
+    "histogram_min": 0.0,
+    "dhash_min": 0.55,
+    "motion_min": 0.01
+  },
+  "rows": [
+    {
+      "state": "down45_idle",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/down45/idle/frame-0.png",
+        "frames/down45/idle/frame-1.png",
+        "frames/down45/idle/frame-2.png",
+        "frames/down45/idle/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9767549482267076,
+          "mean": 0.9834365498160068
+        },
+        "dhash_similarity": {
+          "min": 1.0,
+          "mean": 1.0
+        },
+        "motion_presence": 0.003441265829248366,
+        "centroid_sigma": {
+          "x": 0.14580361528462465,
+          "y": 0.10266215525270629
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "down45_idle: motion presence is too low (0.0034 < 0.0100)"
+      ]
+    },
+    {
+      "state": "down45_hop",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/down45/hop/frame-0.png",
+        "frames/down45/hop/frame-1.png",
+        "frames/down45/hop/frame-2.png",
+        "frames/down45/hop/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9477940444019285,
+          "mean": 0.9630854414706316
+        },
+        "dhash_similarity": {
+          "min": 0.921875,
+          "mean": 0.9583333333333334
+        },
+        "motion_presence": 0.03576596328635621,
+        "centroid_sigma": {
+          "x": 0.6274640078453962,
+          "y": 3.4443757893289635
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "down45_attack",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/down45/attack/frame-0.png",
+        "frames/down45/attack/frame-1.png",
+        "frames/down45/attack/frame-2.png",
+        "frames/down45/attack/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.933950523903751,
+          "mean": 0.9505955130642869
+        },
+        "dhash_similarity": {
+          "min": 0.765625,
+          "mean": 0.8333333333333334
+        },
+        "motion_presence": 0.06763525071486928,
+        "centroid_sigma": {
+          "x": 1.1168471808265357,
+          "y": 3.564789307820291
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "down45_hit",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/down45/hit/frame-0.png",
+        "frames/down45/hit/frame-1.png",
+        "frames/down45/hit/frame-2.png",
+        "frames/down45/hit/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9493318557999871,
+          "mean": 0.9671487843251735
+        },
+        "dhash_similarity": {
+          "min": 0.796875,
+          "mean": 0.875
+        },
+        "motion_presence": 0.04512037888071896,
+        "centroid_sigma": {
+          "x": 3.0226539636905825,
+          "y": 7.5719703065593755
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "down45_death",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/down45/death/frame-0.png",
+        "frames/down45/death/frame-1.png",
+        "frames/down45/death/frame-2.png",
+        "frames/down45/death/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9228013750735158,
+          "mean": 0.9462632668163181
+        },
+        "dhash_similarity": {
+          "min": 0.703125,
+          "mean": 0.7552083333333334
+        },
+        "motion_presence": 0.07320732166564542,
+        "centroid_sigma": {
+          "x": 2.645256322872682,
+          "y": 35.654221861227704
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "up45_idle",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/up45/idle/frame-0.png",
+        "frames/up45/idle/frame-1.png",
+        "frames/up45/idle/frame-2.png",
+        "frames/up45/idle/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9691566550293941,
+          "mean": 0.9743291473426421
+        },
+        "dhash_similarity": {
+          "min": 0.953125,
+          "mean": 0.9765625
+        },
+        "motion_presence": 0.01806082133374183,
+        "centroid_sigma": {
+          "x": 0.5090400621886153,
+          "y": 0.6728272591117981
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "up45_hop",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/up45/hop/frame-0.png",
+        "frames/up45/hop/frame-1.png",
+        "frames/up45/hop/frame-2.png",
+        "frames/up45/hop/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9528659168345314,
+          "mean": 0.968686366578956
+        },
+        "dhash_similarity": {
+          "min": 0.890625,
+          "mean": 0.9114583333333334
+        },
+        "motion_presence": 0.03680435878778595,
+        "centroid_sigma": {
+          "x": 0.552445057428918,
+          "y": 3.3440853465400426
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "up45_attack",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/up45/attack/frame-0.png",
+        "frames/up45/attack/frame-1.png",
+        "frames/up45/attack/frame-2.png",
+        "frames/up45/attack/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9239050315605808,
+          "mean": 0.9504077952978591
+        },
+        "dhash_similarity": {
+          "min": 0.671875,
+          "mean": 0.8046875
+        },
+        "motion_presence": 0.07343734043096406,
+        "centroid_sigma": {
+          "x": 16.490787043125184,
+          "y": 3.158805491211471
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "up45_hit",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/up45/hit/frame-0.png",
+        "frames/up45/hit/frame-1.png",
+        "frames/up45/hit/frame-2.png",
+        "frames/up45/hit/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9497965218404004,
+          "mean": 0.9652226687494042
+        },
+        "dhash_similarity": {
+          "min": 0.875,
+          "mean": 0.9088541666666666
+        },
+        "motion_presence": 0.05591913360396242,
+        "centroid_sigma": {
+          "x": 3.2736438820672373,
+          "y": 5.0112517468739775
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "state": "up45_death",
+      "source": "frames",
+      "expected_frames": 4,
+      "found_frames": 4,
+      "natural_pose_count": 4,
+      "frame_files": [
+        "frames/up45/death/frame-0.png",
+        "frames/up45/death/frame-1.png",
+        "frames/up45/death/frame-2.png",
+        "frames/up45/death/frame-3.png"
+      ],
+      "metrics": {
+        "histogram_intersection": {
+          "min": 0.9341780848443232,
+          "mean": 0.9554807954556549
+        },
+        "dhash_similarity": {
+          "min": 0.765625,
+          "mean": 0.8125
+        },
+        "motion_presence": 0.05733323440053104,
+        "centroid_sigma": {
+          "x": 4.162877021962399,
+          "y": 26.80824927139238
+        }
+      },
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "down45_idle: motion presence is too low (0.0034 < 0.0100)"
+  ]
+}

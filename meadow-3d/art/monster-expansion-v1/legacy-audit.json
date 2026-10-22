@@ -1,0 +1,162 @@
+{
+  "date": "2026-10-21",
+  "scope": "new production and initial review of legacy monster families",
+  "newAssets": [
+    {
+      "id": "bud_shroom",
+      "name": "เห็ดตูมใบชา",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/bud_shroom/base.png",
+      "baseSha256": "1f1ab3212fc766d9acb886c65158601633575344ad85fba0288a09f9d5a752e4",
+      "prompt": "output/monster-expansion-20261021/prompts/bud_shroom.txt",
+      "promptSha256": "958fcee26958840de6f7c7f97708ad20cdf05a56b054826383295e61d8bbe90a",
+      "report": "output/monster-expansion-20261021/bud_shroom/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "clay_puff",
+      "name": "วุ้นดินปั้น",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/clay_puff/base.png",
+      "baseSha256": "5896bcb4d6269f7ef320e9dbe4c500d1b2f9561afc1759214b5da63ffc583f41",
+      "prompt": "output/monster-expansion-20261021/prompts/clay_puff.txt",
+      "promptSha256": "616100a0d923a415a14b8ec9974191621e5972e8060c520c08209d8a1cf3992d",
+      "report": "output/monster-expansion-20261021/clay_puff/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "pebble_puff",
+      "name": "วุ้นกรวดผลึก",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/pebble_puff/base.png",
+      "baseSha256": "9a67098a65ae2a3a1b152e527e57b6e992e06ef9008bf75b33ada221f055245d",
+      "prompt": "output/monster-expansion-20261021/prompts/pebble_puff.txt",
+      "promptSha256": "8b1181964bc9596412b4ca32246885d9d66720fcf2c47b7a3431c3895d27740c",
+      "report": "output/monster-expansion-20261021/pebble_puff/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "amber_mantis",
+      "name": "ตั๊กแตนอำพัน",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/amber_mantis/base.png",
+      "baseSha256": "e8841c709b20a981ec08dec11af11099fd3afdf8e9cddc8ef2439abe67810580",
+      "prompt": "output/monster-expansion-20261021/prompts/amber_mantis.txt",
+      "promptSha256": "70a863adb1a6b5eec4eb719c04e334fab19cb766ed1a68d2db39a717e67a3996",
+      "report": "output/monster-expansion-20261021/amber_mantis/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "dawn_owl",
+      "name": "นกฮูกอรุณ",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/dawn_owl/base.png",
+      "baseSha256": "0d360c06e9f0e7436524200b67802f4afc01759908bd2c27cf4d5c13ea7912b5",
+      "prompt": "output/monster-expansion-20261021/prompts/dawn_owl.txt",
+      "promptSha256": "c8290c99bcd859727d6a40e58ada83678b883c16a9e1c346e6d7b90b8ff5d9d0",
+      "report": "output/monster-expansion-20261021/dawn_owl/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "grove_crown",
+      "name": "ราชันพฤกษาอำพัน",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/grove_crown/base.png",
+      "baseSha256": "4453a312af0821dd10e358a125ae58e3dea9ae5a25f6836eda607ed34f8b5f2b",
+      "prompt": "output/monster-expansion-20261021/prompts/grove_crown.txt",
+      "promptSha256": "3b6d2308afc814991dc3c6e45112ba28514da1699d9781eeda537d1d18a2ddd1",
+      "report": "output/monster-expansion-20261021/grove_crown/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "moon_crab",
+      "name": "ปูผลึกจันทรา",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/moon_crab/base.png",
+      "baseSha256": "c1b3839909aa1af60e6dc0f802466fc4bf3cbc197380f870c44b8e247550f75e",
+      "prompt": "output/monster-expansion-20261021/prompts/moon_crab.txt",
+      "promptSha256": "aced450619a054ad824d79e876a90778c27e5587b113d7d049c3a48bf5332a1e",
+      "report": "output/monster-expansion-20261021/moon_crab/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "frost_lynx",
+      "name": "แมวป่าหิมะ",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/frost_lynx/base.png",
+      "baseSha256": "add32dd7c4222471677fa5420fa2c8461e1a3f10da44151e2f16a23a653b739b",
+      "prompt": "output/monster-expansion-20261021/prompts/frost_lynx.txt",
+      "promptSha256": "e06297a9e81b405ae109634357f6d206a901a61fff9ad90fd829ca8fdfa52940",
+      "report": "output/monster-expansion-20261021/frost_lynx/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    },
+    {
+      "id": "moon_titan",
+      "name": "ไททันจันทรา",
+      "status": "generation-provenance-recorded",
+      "base": "output/monster-expansion-20261021/moon_titan/base.png",
+      "baseSha256": "0bac417fa2b313a1a036c07ceae151cbec4b153fd445ee0ca0610014add92781",
+      "prompt": "output/monster-expansion-20261021/prompts/moon_titan.txt",
+      "promptSha256": "7d668ffbb1fb345c8af7638f6e600c472a56eeb1babf85162546a965cd0bc10a",
+      "report": "output/monster-expansion-20261021/moon_titan/base-report.json",
+      "provider": "codex",
+      "externalImageReferences": [],
+      "visualReview": "Original generic creature design inspected; no named franchise, artist or character requested. This is a provenance review, not a legal clearance opinion."
+    }
+  ],
+  "legacy": [
+    {
+      "family": "painted-forest",
+      "evidence": [
+        "meadow-3d/art/painted-forest/PROMPTS.json",
+        "meadow-3d/art/painted-forest/README.md",
+        "meadow-3d/art/painted-forest/monster-packing-report.json"
+      ],
+      "status": "replaced-in-current-runtime",
+      "review": "Original-design prompts and packing sources retained. The historic provider generation receipts still need reconciliation before claiming a complete chain of origin.",
+      "historicalStatus": "local-generation-records-found",
+      "replacementEvidence": "meadow-3d/art/monster-origin-rebuild-v1/admission.json",
+      "retiredFileInventory": "meadow-3d/art/monster-origin-rebuild-v1/retired-inventory.json"
+    },
+    {
+      "family": "painted-monsters (jellies and King)",
+      "evidence": [
+        "meadow-3d/art/painted-monsters/PROMPTS.md",
+        "meadow-3d/art/painted-monsters/source-canvas-report.json"
+      ],
+      "status": "replaced-in-current-runtime",
+      "review": "Prompt history refers to a supplied identity image. The original reference-image provenance has not been established by this audit. Do not claim copyright clearance from a prompt or packing report alone; do not reuse these references for the new creatures.",
+      "historicalStatus": "reference-origin-needs-review",
+      "replacementEvidence": "meadow-3d/art/monster-origin-rebuild-v1/admission.json",
+      "retiredFileInventory": "meadow-3d/art/monster-origin-rebuild-v1/retired-inventory.json"
+    },
+    {
+      "family": "monsters-hunting",
+      "evidence": [
+        "meadow-3d/public/assets/monsters-hunting/manifest.json"
+      ],
+      "status": "replaced-in-current-runtime",
+      "review": "A runtime atlas proves packaging, not permission. Reconcile original source and generation records before making a license claim. New expansion assets do not use these images as generation references.",
+      "historicalStatus": "generation-receipts-not-yet-located",
+      "replacementEvidence": "meadow-3d/art/monster-origin-rebuild-v1/admission.json",
+      "retiredFileInventory": "meadow-3d/art/monster-origin-rebuild-v1/retired-inventory.json"
+    }
+  ],
+  "releaseDecision": "All current monster sprite paths now resolve to documented original-generation sources. Historic monster atlases are archived outside public and absent from the build. No legal clearance opinion or deployment is asserted. Non-monster assets are outside this audit."
+}

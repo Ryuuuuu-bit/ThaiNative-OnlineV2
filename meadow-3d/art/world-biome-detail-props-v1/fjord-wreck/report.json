@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE original small grounded wreck of a weathered Nordic clinker-built wooden boat, broken low curved hull with visible overlapping gray-brown planks and a short fractured mast, pale snow resting on the upper broken timbers, no sail, dragon head, symbols, writing, people, ocean or surrounding scene, complete standalone damaged wooden boat prop. Orthographic three-quarter top down isometric view, upper left light, hand-painted gouache and watercolor fantasy MMO art matching The Beginning Online, true transparent background with padding, no ground plane, no cast shadow outside foot, no grid, no text, no reference artist or franchise.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\fjord-wreck\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\fjord-wreck\\base.png.raw.png",
+  "raw_bytes": 2296134,
+  "elapsed_seconds": 48.25,
+  "model": null,
+  "session_id": "01a1606f-3746-7d10-97f5-af4602821b9b",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\fjord-wreck\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 59.11,
+    "partial_alpha_pct": 40.89,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 726926,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

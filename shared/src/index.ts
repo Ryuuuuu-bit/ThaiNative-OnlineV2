@@ -16,6 +16,8 @@ export * from './jobs.js';
 export * from './audio-settings.js';
 
 export * from "./inventory.js";
+export * from './item-rolls.js';
+export * from './game/loot-effects.js';
 
 export * from './ui-settings.js';
 export * from './keybinds.js';
@@ -28,3 +30,9 @@ export * from './auto-settings.js';
 
 export * from './titles.js';
 export * from './trade.js';
+
+export {isFrostEnemy} from './game/frost-combat.js';
+
+export {isYokaiEnemy} from './game/yokai-combat.js';
+
+export * from './game/progression.js';

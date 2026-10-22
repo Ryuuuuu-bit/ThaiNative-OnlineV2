@@ -1,4 +1,5 @@
 import type { GameData, Modifier } from "@the-beginning-online/shared";
+import {STARTER_CARD_TEXT} from '@the-beginning-online/shared';
 
 const STAT: Record<string, string> = { str: "STR", agi: "AGI", vit: "VIT", int: "INT", dex: "DEX", luk: "LUK" };
 const DERIVED: Record<string, string> = { maxHp: "HP สูงสุด", maxSp: "SP สูงสุด", atk: "พลังโจมตี", matk: "พลังเวท", hardDef: "เกราะ", hardMdef: "เกราะเวท", hit: "ความแม่น", flee: "หลบหลีก", crit: "คริติคอล" };
@@ -22,5 +23,5 @@ export function modifierText(m: Modifier): string {
 	}
 }
 export function cardEffects(data: GameData, cardId: string) {
-	return (data.cards.cards.find((c) => c.id === cardId)?.modifiers ?? []).map(modifierText).filter(Boolean).join(" · ");
+	return [...(data.cards.cards.find((c) => c.id === cardId)?.modifiers ?? []).map(modifierText).filter(Boolean),...(STARTER_CARD_TEXT[cardId]??[])].join(" · ");
 }

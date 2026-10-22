@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A meteor-ring serpent, one slender continuous charcoal-scaled snake body, one narrow reptilian head, pale copper segmented bands along the body and one tapered tail, no limbs or detached rings. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_meteor_ring_serpent\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_meteor_ring_serpent\\base.png.raw.png",
+  "raw_bytes": 1744552,
+  "elapsed_seconds": 45.219,
+  "model": null,
+  "session_id": "01a16123-0eef-7f51-8088-a7c37b36ccc1",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_meteor_ring_serpent\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 78.73,
+    "partial_alpha_pct": 21.27,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 887148,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

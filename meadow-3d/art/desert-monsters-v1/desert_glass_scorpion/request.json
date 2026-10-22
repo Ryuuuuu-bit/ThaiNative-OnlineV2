@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted gouache and watercolor isometric MMORPG creature. Original character and natural texture, no lettering, grid, glow, detached props or scenery. Match the approved base.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. a clear low scuttling cycle using exactly EIGHT walking legs in alternating contacts, tail and pincers stay attached, no translation. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready low arachnid stance, raise the same single segmented tail high while opening the same two pincers, snap the stinger forward toward the facing direction, recover ready; all eight walking legs stay attached. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. a clear low scuttling cycle using exactly EIGHT walking legs in alternating contacts, tail and pincers stay attached, no translation. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready low arachnid stance, raise the same single segmented tail high while opening the same two pincers, snap the stinger forward toward the facing direction, recover ready; all eight walking legs stay attached. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original large amber-glass scorpion, exactly EIGHT short articulated walking legs, TWO distinct front pincers and ONE segmented tail curving over the back to ONE pointed stinger. Low broad natural arachnid body, smoky translucent amber plates with dull teal edges and sand grains at joints. No arms, human hands, head crown, wings or extra tails. Clear attached anatomy and grounded stance, pincers slightly spread."
+    }
+  },
+  "body_plan": [
+    "quadruped"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

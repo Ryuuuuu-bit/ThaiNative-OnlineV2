@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A sunken coral knight, one enclosed barnacle-covered helmet, two armored arms and two armored legs, dark corroded bronze armor with pale red attached coral branches, one chipped coral sword held down and one small round shell shield. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_sunken_coral_knight\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_sunken_coral_knight\\base.png.raw.png",
+  "raw_bytes": 1614288,
+  "elapsed_seconds": 59.047,
+  "model": null,
+  "session_id": "01a16121-4c88-7ec1-b82f-4fddc5602070",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_sunken_coral_knight\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1201x1310",
+    "alpha_zero_pct": 66.59,
+    "partial_alpha_pct": 33.39,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 984,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

@@ -4,7 +4,7 @@ import { FIELD_BOSS, LAYOUTS, type MapId } from "./game/maps.js";
 
 /**
  * AUTO (auto-hunt) settings, chosen in the ตั้งค่า AUTO window and run by the server sim (autoStep).
- * Ported from The Beginning OnlineOnline src/ui/autoSettings.js; skills are kept by skill id instead of bar slot,
+ * Ported from The Beginning Online src/ui/autoSettings.js; skills are kept by skill id instead of bar slot,
  * because the server, not the browser, casts them. Potion thresholds are the per-character AutoPotion
  * rule (auto-potion.ts), which also works outside AUTO.
  */
@@ -66,6 +66,7 @@ export function huntList(mapId: MapId, data: GameData) {
 	const ids = new Set(LAYOUTS[mapId]?.spawns.map((s) => s.dataId) ?? []);
 	const boss = (FIELD_BOSS as Record<string, { dataId: string; minion: string }>)[mapId];
 	if (boss) ids.add(boss.dataId);
+	if(mapId==='forest')ids.add('thorn_nest_mother');
 	return [...ids]
 		.map((id) => data.monsters.monsters.find((m) => m.id === id))
 		.filter((m): m is NonNullable<typeof m> => !!m)

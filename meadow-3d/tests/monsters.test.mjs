@@ -6,7 +6,7 @@ import {monsterFrame,monsterCell,monsterOpacity,VARIANT_HUE} from '../src/monste
 const tick=(g,seconds)=>{for(let t=0;t<seconds;t+=1/120)step(g,1/120);};
 function encounter(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=0;g.p.invulnerable=100;const e=spawn(g,0,2,true);return{g,e};}
 test('small jelly warns before one lunge and holds its final death puddle before loot',()=>{
- const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=g.p.z=0;const e=spawn(g,0,.9);e.cooldown=0;step(g,1/120);assert.equal(e.motion,'attack');assert.ok(g.events.some(e=>e.type==='warning'));tick(g,.45);assert.equal(g.p.hp,126);tick(g,.23);assert.equal(g.events.filter(e=>e.type==='hurt').at(-1).amount,8);assert.ok(g.p.hp>=118&&g.p.hp<118.2);tick(g,.15);assert.equal(g.events.filter(e=>e.type==='hurt').at(-1).amount,8);assert.ok(g.p.hp>=118&&g.p.hp<118.2);
+ const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=g.p.z=0;const e=spawn(g,0,.9);e.cooldown=0;e.aggro=5;step(g,1/120);assert.equal(e.motion,'attack');assert.ok(g.events.some(e=>e.type==='warning'));tick(g,.45);assert.equal(g.p.hp,126);tick(g,.23);assert.equal(g.events.filter(e=>e.type==='hurt').at(-1).amount,8);assert.ok(g.p.hp>=118&&g.p.hp<118.2);tick(g,.15);assert.equal(g.events.filter(e=>e.type==='hurt').at(-1).amount,8);assert.ok(g.p.hp>=118&&g.p.hp<118.2);
  e.hp=1;g.p.cd.earth_break=0;action(g,'earth_break');tick(g,.45);assert.equal(e.motion,'death');assert.equal(g.drops.length,0);tick(g,.7);assert.equal(e.rewarded,false);tick(g,.1);assert.equal(e.rewarded,true);assert.equal(monsterFrame('slime','death',9),2);assert.equal(monsterOpacity(e),1);tick(g,1.4);assert.equal(monsterOpacity(e),0);
 });
 test('king cycles all five attacks, stuns after slam, spits three projectiles and summons three',()=>{
@@ -28,11 +28,18 @@ test('monster cells use independent timing, four facings and distinct material v
  assert.equal(monsterFrame('king','slam',.54),0);assert.equal(monsterFrame('king','slam',.56),1);assert.equal(monsterFrame('king','slam',.86),2);assert.equal(monsterFrame('king','slam',1.1),3);assert.equal(monsterFrame('slime','idle',1.66),0);
  assert.equal(new Set([[1,0],[-1,0],[0,1],[0,-1]].map(([x,z])=>monsterCell('slime','hop',x,z,0).row)).size,4);assert.equal(new Set(Object.values(VARIANT_HUE)).size,3);
 });
-test('packed monster manifest has sixteen complete motion atlases and 192 unclipped frames',()=>{
- const root=new URL('../public/assets/monsters-painted/',import.meta.url),manifest=JSON.parse(readFileSync(new URL('manifest.json',root)));let atlases=0,frames=0;
- for(const[species,s]of Object.entries(manifest.species).filter(([sp])=>sp==='slime'||sp==='king')){assert.deepEqual(s.cellSize,species==='slime'?[384,256]:[768,512]);assert.deepEqual(s.anchor,[.5,.0625]);for(const m of Object.values(s.motions)){
-  atlases++;frames+=m.frames*4;assert.equal(m.frameDurations.length,m.frames);assert.ok(Math.abs(m.frameDurations.reduce((a,b)=>a+b)-m.duration)<1e-8);assert.equal(m.holdLast,!m.loop);const png=readFileSync(new URL('../art/texture-sources/monsters-painted/'+m.file,import.meta.url));assert.equal(png.readUInt32BE(16),s.cellSize[0]*m.frames);assert.equal(png.readUInt32BE(20),s.cellSize[1]*4);
-  for(const[rowIndex,row]of m.directions.entries()){assert.equal(row.length,m.frames);for(const f of row){const[x,y,right,bottom]=f.bounds;assert.ok(x>=3&&y>=3&&right<=s.cellSize[0]-3&&bottom<=s.cellSize[1]-3);if(rowIndex>=2)assert.equal(f.faceRect,null);}}
-  if(species==='king'){const glow=readFileSync(new URL('../art/texture-sources/monsters-painted/'+m.glowMask,import.meta.url));assert.equal(glow.readUInt32BE(16),s.cellSize[0]*m.frames);assert.equal(glow.readUInt32BE(20),s.cellSize[1]*4);}
- }}assert.equal(atlases,16);assert.equal(frames,192);assert.equal(manifest.phase2.hueShift,-.045);assert.ok(manifest.species.king.motions.idle.directions.slice(0,2).every(row=>row.every(f=>f.faceRect&&f.faceRect[2]>100)));const report=JSON.parse(readFileSync(new URL('../art/painted-monsters/packing-report.json',import.meta.url)));assert.deepEqual(report.clippingWarnings,[]);assert.equal(report.phase2FullFrameCopies,0);
+test('replacement jelly atlases use original sources with complete four-frame facings',()=>{
+ const root=new URL('../public/assets/monsters-painted/',import.meta.url),manifest=JSON.parse(readFileSync(new URL('manifest.json',root)));
+ assert.equal(manifest.originRevision,'original-rebuild-v1');
+ for(const species of ['slime','king']){
+  const s=manifest.species[species];assert.equal(s.sourceId,species==='slime'?'ripple_jelly':'ripple_regent');
+  assert.equal(new Set(Object.values(s.motions).map(m=>m.file)).size,5);
+  for(const m of Object.values(s.motions)){
+   const bytes=readFileSync(new URL(m.file,root));assert.equal(bytes.toString('ascii',0,4),'RIFF');
+   assert.equal(m.columns,4);assert.equal(m.rows,4);assert.equal(m.directions.length,4);
+   assert.equal(m.frameDurations.length,4);assert.ok(Math.abs(m.frameDurations.reduce((a,b)=>a+b)-m.duration)<1e-8);
+   for(const row of m.directions){assert.equal(row.length,4);for(const f of row){const[x,y,right,bottom]=f.bounds;assert.ok(x>=3&&y>=3&&right<=s.cellSize[0]-3&&bottom<=s.cellSize[1]-3);assert.equal(f.faceRect,null);}}
+  }
+ }
+ assert.equal(manifest.phase2.hueShift,-.045);assert.equal(manifest.phase2.expressionOverlay,'phase2-empty.png');
 });

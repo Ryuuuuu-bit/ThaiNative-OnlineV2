@@ -36,6 +36,7 @@ test("two players share enemies: nearest player gets the telegraph; top damage e
 	b.x = 0;
 	b.z = 0;
 	const e = spawn(g, 0, 0.8);
+	e.aggro = 5; // Already provoked: level-one jellies are now passive on approach.
 	e.cooldown = 0;
 	step(g, 0.05);
 	assert.equal(e.aimX, 0);
@@ -209,6 +210,7 @@ test("a missed incoming hit causes no hurt animation or free invulnerability", (
 	g.p.x = 0;
 	g.p.z = 0;
 	const e = spawn(g, 0, 0.9);
+	e.aggro = 5;
 	e.cooldown = 0;
 	for (let i = 0; i < 15; i++) step(g, 0.05);
 	assert.equal(g.p.hp, g.p.maxHp);

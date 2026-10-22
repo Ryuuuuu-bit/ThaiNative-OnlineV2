@@ -135,7 +135,7 @@ export const CharacterSchema = z
 	.object({
 		race: id,
 		classId: id,
-		level: z.number().int().min(1).max(99),
+		level: z.number().int().min(1).max(100),
 		baseStats: BaseStatsSchema,
 		equipment: z.array(id),
 		cards: z.array(id).default([]),
@@ -151,7 +151,7 @@ export const StatsSchema = z
 		start: z.literal(1),
 		pointsPerLevel: z.literal(3),
 		maxStat: z.literal(99),
-		maxLevel: z.literal(99),
+		maxLevel: z.literal(100),
 		statResetFree: z.boolean(),
 		regen: z
 			.object({
@@ -177,7 +177,7 @@ export const StatsSchema = z
 					.strict(),
 			)
 			.length(10),
-		expToNext: z.array(positive.int()).length(99),
+		expToNext: z.array(positive.int()).length(100),
 		caps: z
 			.object({
 				maxDefReduction: fraction,
@@ -316,7 +316,9 @@ export const MonsterSchema = z
 	.object({
 		id,
 		nameTh: id,
-		level: positive.int().max(99),
+		artId: id.optional(),
+		visualScale: positive.max(1).optional(),
+		level: positive.int().max(100),
 		hp: positive,
 		sp: nonnegative,
 		atk: nonnegative,
@@ -494,7 +496,7 @@ export const ItemsSchema = z
                         slot: z.enum(["weapon","body","shield","garment","footgear","accessory1","accessory2"]).nullable(),
                         weight: nonnegative, npcPrice: nonnegative.int(), rarity: z.enum(["common","fine","rare","epic","legendary"]),
                         stackable: z.boolean(), maxStack: positive.int(), bind: z.enum(["none","equip","account"]), icon: id,
-                        effect: z.enum(["hp","sp","speed"]).optional(), amount: nonnegative.optional(),
+                        effect: z.enum(["hp","sp","speed","party_hp","party_cleanse","arcane"]).optional(), amount: nonnegative.optional(), arcaneElement:ElementSchema.optional(),
 						weaponType: WeaponSchema.optional(),
 						level: positive.int(),
 						atk: nonnegative.optional(),

@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-22",
+  "tool": "built-in image_gen",
+  "source": "meadow-3d\\art\\himmapan-v1\\spirit-tree-source.png",
+  "runtime": "meadow-3d\\src\\assets\\himmapan-spirit-tree-v1.webp",
+  "sourceSha256": "304ff3d174c48c54b84d43f9bdbefe4066979e306d022465eed8d40ad661e39c",
+  "runtimeSha256": "233adb1a44a22553dc842c5768f864f9ea0c369318ad1c7af443138a7abf8d39",
+  "externalReferences": [],
+  "normalization": "Pillow WebP quality90, original dimensions and alpha preserved; no crop or retouch",
+  "otherArt": "Root bridge, lotus pads, shrine floor and waterfall are original Canvas2D geometry in himmapan-art.ts. Existing painted environment assets reused from project."
+}

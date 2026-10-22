@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original compact snow raven, exactly TWO black bird wings, TWO clawed bird feet and ONE straight raven beak, black and slate feathers with soft white snow-dusted neck tufts and a few subtle pale blue feather tips. Alert grounded stance, small amber eyes and a short wedge tail. No human arms, no clothes, no crown, no writing, no floating runes. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Consistent cool frost palette with muted warm accent. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Norse mythology, no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_rune_raven\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_rune_raven\\base.png.raw.png",
+  "raw_bytes": 1943159,
+  "elapsed_seconds": 45.609,
+  "model": null,
+  "session_id": "01a16057-f60a-7f00-aa7a-45601d3cfb71",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_rune_raven\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 70.79,
+    "partial_alpha_pct": 29.21,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 721097,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

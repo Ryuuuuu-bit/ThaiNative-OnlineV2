@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original rain-cloud nue myth beast with exactly FOUR sturdy tigerlike legs and broad striped paws, ONE wary gray-brown simian main head with a long feline snout and a short rough charcoal mane, a stocky deep indigo tiger-striped body, and ONE attached long dark teal serpentine tail ending in ONE small closed-mouthed snake head. This is one continuous hybrid creature, a single main head plus the small snake tail tip. Irregular ivory shoulder stripes, subdued ochre eyes, low quadruped stance, no wings, armor, lightning or floating cloud. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Restrained bamboo-forest jade, indigo and weathered vermilion palette. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Japanese folk mythology; no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_rain_nue\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_rain_nue\\base.png.raw.png",
+  "raw_bytes": 2204324,
+  "elapsed_seconds": 49.641,
+  "model": null,
+  "session_id": "01a1607b-dbdd-7d12-9400-c653107a9271",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_rain_nue\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 63.04,
+    "partial_alpha_pct": 36.96,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 756506,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

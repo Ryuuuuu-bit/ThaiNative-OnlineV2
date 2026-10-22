@@ -3,6 +3,10 @@ Preserves airborne source offsets and uses one coordinate scale per species.
 """
 from pathlib import Path
 import sys
+import json
+shipping=Path(__file__).resolve().parents[1]/'public/assets/monsters-painted/manifest.json'
+if shipping.exists() and json.loads(shipping.read_text()).get('originRevision'):
+ raise SystemExit('Legacy monster sources are retired. Use pack-original-monsters.py and the reviewed source receipts.')
 if '--forest' in sys.argv:
  import pack_forest_monsters
  pack_forest_monsters.pack()

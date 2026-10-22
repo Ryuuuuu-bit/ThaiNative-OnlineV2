@@ -1,0 +1,123 @@
+{
+  "method": "Original authored SVG geometry and normalized original generated creature images; no external assets",
+  "sources": [
+    {
+      "id": "card_dragon_cloud_carp",
+      "base": "output/dragon-monsters-20261022/dragon_cloud_carp/base.png",
+      "baseSha256": "2e1e3ae7357732e0361194611b9100551563d2b81beb5f40a0c64c07189b9f22",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_dragon_jade_crane",
+      "base": "output/dragon-monsters-20261022/dragon_jade_crane/base.png",
+      "baseSha256": "beb5bfe3449590b40732b83342bfdfae9bd7a8ae99246690a9ab8ed79ebf3b69",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_dragon_stone_liondog",
+      "base": "output/dragon-monsters-20261022/dragon_stone_liondog/base.png",
+      "baseSha256": "5643965152c2923d2c5e43861e03d2dc8f72050ee5bfbed41af323548da3c11c",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_dragon_sky_qilin",
+      "base": "output/dragon-monsters-20261022/dragon_sky_qilin/base.png",
+      "baseSha256": "65701278ce7195ca81bc0c2fca56c33a9ec284863d5d52ba1b23f3474c468588",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_dragon_bell_drake",
+      "base": "output/dragon-monsters-20261022/dragon_bell_drake/base.png",
+      "baseSha256": "fe9380ccec68105b7a55458d808eac633eeb378549ea5c79235c25e863d42138",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_dragon_white_cloud_tiger",
+      "base": "output/dragon-monsters-20261022/dragon_white_cloud_tiger/base.png",
+      "baseSha256": "ffaad28500e42d4d1ad0002ec2a95ceb33bb6793562ce99eafcbabf53dd745e5",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_dragon_jade_gatekeeper",
+      "base": "output/dragon-monsters-20261022/dragon_jade_gatekeeper/base.png",
+      "baseSha256": "a07212706185d8bae05e44474ea7e55df13993b9218d50068cad88f02e997c44",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_dragon_cloud_dragon_lord",
+      "base": "output/dragon-monsters-20261022/dragon_cloud_dragon_lord/base.png",
+      "baseSha256": "152b170bb36838185ec17b5a26a57bf21dfc18c5839fb627aeecd46de512cb48",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    }
+  ],
+  "files": [
+    {
+      "file": "card_dragon_cloud_carp.svg",
+      "sha256": "4bac3f8cadd710e11a360e390d9789246a6d2d931f5e96791fbd8ab59c323e55"
+    },
+    {
+      "file": "dragon_cloud_carp_material.svg",
+      "sha256": "a114bbee70bbe0fd5d8b433a57be222d26053755bea9342e71e201d305ea8fdf"
+    },
+    {
+      "file": "card_dragon_jade_crane.svg",
+      "sha256": "902056154d72d47447c18fbd20ded4d54e7b08e3d6cb38617dc48cb6baee7f59"
+    },
+    {
+      "file": "dragon_jade_crane_material.svg",
+      "sha256": "e8b546282c4b029163e6204379d93b34838833aa5ec33b80a0d89d7db986c2a1"
+    },
+    {
+      "file": "card_dragon_stone_liondog.svg",
+      "sha256": "5ec3ae9ac56561e92ca7e077e8b1bf5b24f97370c052ba9dabcc4ae3b68ab2b1"
+    },
+    {
+      "file": "dragon_stone_liondog_material.svg",
+      "sha256": "846240f539901722e942aaa198cfff7a78aaa413d7a2748b2c9aeff4bd1aa483"
+    },
+    {
+      "file": "card_dragon_sky_qilin.svg",
+      "sha256": "a6454940d094ba216cb1f12e7c76b7e34260b2da330c2100d4730259425cba66"
+    },
+    {
+      "file": "dragon_sky_qilin_material.svg",
+      "sha256": "604ed27319cb6cf07502ebe04fd6281a0fc0cde439b97860d033d11d4464d34e"
+    },
+    {
+      "file": "card_dragon_bell_drake.svg",
+      "sha256": "9ac4e4b80592ac60c3a419268b397fed512bd1d95b5226a86ec7cc93eed302e4"
+    },
+    {
+      "file": "dragon_bell_drake_material.svg",
+      "sha256": "b8f0b45667720314876af893819339e4ff1ff5088ced8bf47d97598e5e37b148"
+    },
+    {
+      "file": "card_dragon_white_cloud_tiger.svg",
+      "sha256": "870fdc1f575aa24172a3407670cd637b9d4b4ae43f331d11f9eeffde32f445dd"
+    },
+    {
+      "file": "dragon_white_cloud_tiger_material.svg",
+      "sha256": "cf4a91330e7f2f7c7f02f395b9ad41bdfcabc646886168fa7e4b909ad2c3e668"
+    },
+    {
+      "file": "card_dragon_jade_gatekeeper.svg",
+      "sha256": "5631806dab8babeb83589b7245d9439a962eed6d69a9b88a1e1f5ca22c3a4624"
+    },
+    {
+      "file": "dragon_jade_gatekeeper_material.svg",
+      "sha256": "bfef414e62ed047abc124f89355e4b9bdb2cf164e82dbc11f9e3585dfb7d98fc"
+    },
+    {
+      "file": "card_dragon_cloud_dragon_lord.svg",
+      "sha256": "0ce91bc7cc60bc04bdae668dc63f0f52f27a29b9c302c867e072c38a330de143"
+    },
+    {
+      "file": "dragon_cloud_dragon_lord_material.svg",
+      "sha256": "56221550cd4e261b3ec82fa71a18c791a6a7d92f21e935b477f34390b620a826"
+    },
+    {
+      "file": "unique_dragon_relic.svg",
+      "sha256": "d3a003b60779201eaf4f41947b45045abc5e5404c348b86ead9f36226c60a991"
+    }
+  ]
+}

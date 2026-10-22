@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE original tall northern evergreen spruce tree, irregular tiered dark blue-green needles with heavy soft white snow caps resting on upper branches, a narrow visible rough brown trunk and a few tiny roots, complete tree with ample padding, slender conical silhouette, no decorations, baubles, lights, pot, large ground patch, or second tree. Orthographic three-quarter top down isometric view, upper left light, hand-painted gouache and watercolor fantasy MMO art matching The Beginning Online, true transparent background with padding, no ground plane, no cast shadow outside foot, no grid, no text, no reference artist or franchise.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\frost-pine\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\frost-pine\\base.png.raw.png",
+  "raw_bytes": 1992372,
+  "elapsed_seconds": 43.391,
+  "model": null,
+  "session_id": "01a1606f-3746-72a1-8754-f4a6d602dc89",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\frost-pine\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1024x1536",
+    "alpha_zero_pct": 69.48,
+    "partial_alpha_pct": 30.52,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 815071,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

@@ -163,6 +163,7 @@ export class NetworkWorld {
 		this.game.time = b.time;
 		this.game.bossSpawned = b.bossSpawned;
 		(this.game as any).bossIn = b.bossIn ?? 0;
+        (this.game as any).bossTimers=b.bossTimers??{};
 		this.game.won = b.won;
 		if (!p.dead && !p.auto && p.dash <= 0 && p.castRemaining <= 0 && !p.statuses?.some((s:any)=>s.id==='stun'||s.id==='knockup')) {
 			let direction = input;

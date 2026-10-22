@@ -460,3 +460,6 @@ body #inventory-window[data-mode=shop] .g-head h2::before{display:none}
 body #inventory-window[data-mode=shop] .inv-detail{display:none}
 body #inventory-window[data-mode=shop] .inv-cart .cart-go{background:linear-gradient(135deg,#f2dfb2,#d7b679)!important;color:#1d2a26!important;border:0!important}
 body #inventory-window[data-mode=shop] .inv-cart .cart-go.sell{background:linear-gradient(135deg,#f4b7ae,#d9877c)!important}
+.item-roll-line{margin:5px 0;padding:5px 8px;border-left:2px solid #8bbda8;background:#ffffff06;color:#d9e9dc;font-size:12px;line-height:1.5;white-space:normal}
+.tip-wrap{max-height:calc(100vh - 90px);overflow:auto}
+@media(max-width:560px){.inv-tip .tip-card.side{display:none}.inv-tip .tip-card{width:min(320px,calc(100vw - 28px))}}

@@ -1,0 +1,221 @@
+{
+  "accepted": true,
+  "stage": "candidate for actual runtime verification",
+  "frontFacing": "right",
+  "backFacing": "right",
+  "method": "All80 canonical contact sequences reviewed as motion; canonical animated GIFs produced; numeric ground/seam/collapse checks supplement visual review. Runtime playback/pick checks remain separate.",
+  "review": "Exactly one attached sandal leg across all poses. Canopy tilts/sweeps without growing limbs, single-leg bend/extend cadence and folded low death hold. Rear canopy hides eye and mouth.",
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        254,
+        256
+      ],
+      "adjacentPixelDifferences": [
+        10.988395182291667,
+        7.500302734375,
+        6.32564453125,
+        5.5287890625000005
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "down45_hop": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        244,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        19.137604166666666,
+        15.961868489583333,
+        22.21839192708333,
+        16.37970703125
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "down45_attack": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        231,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        23.751451822916668,
+        31.50564127604167,
+        30.054026692708334,
+        6.915292968749999
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "down45_hit": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        255,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        22.285683593749997,
+        24.34689778645833,
+        20.088902994791667,
+        4.20328125
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "down45_death": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        99,
+        248
+      ],
+      "adjacentPixelDifferences": [
+        29.553756510416665,
+        22.825227864583336,
+        14.717962239583334,
+        32.03254557291667
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "up45_idle": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        250,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        7.197500000000001,
+        15.988177083333333,
+        15.395556640625001,
+        6.126715494791667
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "up45_hop": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        250,
+        257
+      ],
+      "adjacentPixelDifferences": [
+        20.556067708333334,
+        19.906975911458332,
+        15.6880859375,
+        7.595133463541667
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "up45_attack": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        221,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        23.707184244791666,
+        25.6984375,
+        27.045501302083334,
+        9.716708984375002
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "up45_hit": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        231,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        24.62232421875,
+        24.13120768229167,
+        14.180979817708334,
+        5.726223958333333
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    },
+    "up45_death": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        124,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        27.963323567708333,
+        24.739749348958338,
+        13.983981119791666,
+        29.456155598958333
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence, anatomy and ground/seam checks"
+    }
+  },
+  "regeneratedRows": []
+}

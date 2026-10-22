@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "yokai_01",
+      "baseSha256": "aadd7eeb9c8623fdb06df4daf843d48fe76ed1b75fec848d134f72682c98c253",
+      "run": "output/yokai-monsters-20261022/yokai_01/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_01/motion-qa.json"
+    },
+    {
+      "id": "yokai_rain_umbrella",
+      "baseSha256": "d1d45d28eebf0566f73ff022eda5ac1528bb2136522af0436ccdedb5a14d67bf",
+      "run": "output/yokai-monsters-20261022/yokai_rain_umbrella/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_rain_umbrella/motion-qa.json"
+    },
+    {
+      "id": "yokai_03",
+      "baseSha256": "ee2051d4a6b38d3944908b3dd6a0b2fdd04dd0e2187d0ab88b3ab40a08f41313",
+      "run": "output/yokai-monsters-20261022/yokai_03/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_03/motion-qa.json"
+    },
+    {
+      "id": "yokai_bamboo_kodama",
+      "baseSha256": "a939ae82286fdab0c1b6de7de9c682a8d6b7c40063028ffa339a71a7a45a4c98",
+      "run": "output/yokai-monsters-20261022/yokai_bamboo_kodama/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_bamboo_kodama/motion-qa.json"
+    },
+    {
+      "id": "yokai_rain_nue",
+      "baseSha256": "c4e7bd3069186539d6b30e6af145f3d4eb580e831015a3d4a65dfa9be71eb95d",
+      "run": "output/yokai-monsters-20261022/yokai_rain_nue/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_rain_nue/motion-qa.json"
+    },
+    {
+      "id": "yokai_06",
+      "baseSha256": "c4046ccb4aef0a45091781c1ab54fa4a4b5920921dcb52fd27aa3127a8deade9",
+      "run": "output/yokai-monsters-20261022/yokai_06/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_06/motion-qa.json"
+    },
+    {
+      "id": "yokai_lantern_rokurokubi",
+      "baseSha256": "15aadce2cadadb1eba8af4a880613684b08aa4888067a8e871baf13aad0d21d0",
+      "run": "output/yokai-monsters-20261022/yokai_lantern_rokurokubi/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_lantern_rokurokubi/motion-qa.json"
+    },
+    {
+      "id": "yokai_08",
+      "baseSha256": "8d9aea4677475ede7bec403ccd6892174e35432da1fbba594e0df451f78a87bd",
+      "run": "output/yokai-monsters-20261022/yokai_08/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/yokai-monsters-v1/yokai_08/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "yokai_01-idle.webp",
+      "sha256": "7589827a0ef5776a627d6aed2f76257f0ea5ff0d6e045378de39a267253141a4"
+    },
+    {
+      "file": "yokai_01-move.webp",
+      "sha256": "7a9e0e5754ff93605d1dcc3ef323b36c1a069473271a3e2bcffdb3d310318c48"
+    },
+    {
+      "file": "yokai_01-attack.webp",
+      "sha256": "9f2555016d8d2a94e5be1aab36d4d4d2be3b4ecf12b70ac7c370950820363ce1"
+    },
+    {
+      "file": "yokai_01-hit.webp",
+      "sha256": "c32afdc998ba1bdba2ef4d3e035555cbe1e1d79dc27b9fa90bf9e11e74a842b9"
+    },
+    {
+      "file": "yokai_01-death.webp",
+      "sha256": "e002db5abd5398fb272346de85027503859f34efbacc40729589bb0a1b7f7089"
+    },
+    {
+      "file": "yokai_rain_umbrella-idle.webp",
+      "sha256": "a994276fc85d2a542565e948d260dfd207ba9ce53ea644d663183da3c7c739c5"
+    },
+    {
+      "file": "yokai_rain_umbrella-move.webp",
+      "sha256": "ef6fc345e002ad535be3596a3b7cb7d098188a0c53dec5a80a4c695d1ff02178"
+    },
+    {
+      "file": "yokai_rain_umbrella-attack.webp",
+      "sha256": "6247360f576a53f50af6caafbbb7938893152d999a85e8ad615f6a0b8d0e4e9e"
+    },
+    {
+      "file": "yokai_rain_umbrella-hit.webp",
+      "sha256": "3bbc566c23885454380aee430ae89564653b8aceebfc3ce6d4e57740d269413b"
+    },
+    {
+      "file": "yokai_rain_umbrella-death.webp",
+      "sha256": "31dad91ef42ab44425fcc062da918519d322f760ffd08658243764bbfac21ddc"
+    },
+    {
+      "file": "yokai_03-idle.webp",
+      "sha256": "c533c69413b579e3e93a7f57a960b35e68fc45d6b2d4845b45dd6e2c460650b2"
+    },
+    {
+      "file": "yokai_03-move.webp",
+      "sha256": "a5e9a6b5312be4ea48c40d07a8986c38e6a3488fa0b5a301223d564627c78fb2"
+    },
+    {
+      "file": "yokai_03-attack.webp",
+      "sha256": "cacb51887da0676e8c102699a4c8bf8356cb617123a712a0067180767f9afd85"
+    },
+    {
+      "file": "yokai_03-hit.webp",
+      "sha256": "b6fed3ab1f84ddaab4f0d0f51c0efd96096f0b671de914cffd78bc475d8a3a8a"
+    },
+    {
+      "file": "yokai_03-death.webp",
+      "sha256": "260eac3b249d10d9b523351eb26db3a5176c51e7d2ad2c8af7b8f2bf56f99f7c"
+    },
+    {
+      "file": "yokai_bamboo_kodama-idle.webp",
+      "sha256": "3fc6b5e85411cf8a0b2ac9dfbf228deb26c1c8a7ff5c716a7a2b9ebbfeacfa57"
+    },
+    {
+      "file": "yokai_bamboo_kodama-move.webp",
+      "sha256": "742810399ddca20812bc14f39982017a27494da0de676fb38f659cd3983a4714"
+    },
+    {
+      "file": "yokai_bamboo_kodama-attack.webp",
+      "sha256": "806a2844f0abd46b4297138b4a6b4329ee59b7ab4d866f282ccef19c1071810d"
+    },
+    {
+      "file": "yokai_bamboo_kodama-hit.webp",
+      "sha256": "73c208d9420099e94ebb347ec197b69262c1da1f254df436b138188da43042ec"
+    },
+    {
+      "file": "yokai_bamboo_kodama-death.webp",
+      "sha256": "43a76f8a273ae9697e5daee71723f653905351614b3e91c6dc8b333d0c62e2bb"
+    },
+    {
+      "file": "yokai_rain_nue-idle.webp",
+      "sha256": "5c5f049eb8d7dcd68949357425cde980bc8f9eb1e95252a7e18d78e95af957fd"
+    },
+    {
+      "file": "yokai_rain_nue-move.webp",
+      "sha256": "24174254cef881588e9e77f336b8b9218614be233b987f387bf1f38c54ef074d"
+    },
+    {
+      "file": "yokai_rain_nue-attack.webp",
+      "sha256": "ac322f387ffef5d9d9ee899c09659b11491e6965c3f4098b6e0769864f47f650"
+    },
+    {
+      "file": "yokai_rain_nue-hit.webp",
+      "sha256": "649f1bd143a3143db2cdebcf656f59d00e254244ed277b15db9ed32d36b26c02"
+    },
+    {
+      "file": "yokai_rain_nue-death.webp",
+      "sha256": "02a4010d51b6c31a71ada81a3132482aa0693426b67c3ac5925465ddd6e5f789"
+    },
+    {
+      "file": "yokai_06-idle.webp",
+      "sha256": "1ff5825fa6120b7fc5a1f24f0b22012d784ee8adcb203d8a3c8891f3647c2cfc"
+    },
+    {
+      "file": "yokai_06-move.webp",
+      "sha256": "e463afd781b47f6376b44db5c99fcc8f2b223ddca8044de3468fa868129b2fbf"
+    },
+    {
+      "file": "yokai_06-attack.webp",
+      "sha256": "454bac9c423db4ac8a420396231c84f907f9449d51807ee5046f76e54d1961d8"
+    },
+    {
+      "file": "yokai_06-hit.webp",
+      "sha256": "6fac9c4e32a82044826e5dce56792e227062ec47c8fe1d7e2ce53b7583112ccc"
+    },
+    {
+      "file": "yokai_06-death.webp",
+      "sha256": "9bf96fbd20798394d884eee61295818fdc23214e6d4977c86e0ca329f7f0f815"
+    },
+    {
+      "file": "yokai_lantern_rokurokubi-idle.webp",
+      "sha256": "4d00bc0337f33f7932dcd62b6d1645516f927f95a39d5a5769ccf75b3c61c7e2"
+    },
+    {
+      "file": "yokai_lantern_rokurokubi-move.webp",
+      "sha256": "f6bbe0ce6fc41f203d55e8bd37ef10070371172b34ae1b4e2945681912382a6a"
+    },
+    {
+      "file": "yokai_lantern_rokurokubi-attack.webp",
+      "sha256": "db59f975e7a3d60f042b3f7e9184a4dedf8ec69ffd491695c10ada81a611555b"
+    },
+    {
+      "file": "yokai_lantern_rokurokubi-hit.webp",
+      "sha256": "7bf81bffaa65916ad9c983876e0ffd0a86fac25b15aac3c5d8b22f9a961f287f"
+    },
+    {
+      "file": "yokai_lantern_rokurokubi-death.webp",
+      "sha256": "72438dda6a1f720bbbb8a0f15214a324c89449b098d973a0c0e20c9482e37e50"
+    },
+    {
+      "file": "yokai_08-idle.webp",
+      "sha256": "4253652c966f7341128e7ac30c2ea5a8ed48f9297eec7c1138135108cf231975"
+    },
+    {
+      "file": "yokai_08-move.webp",
+      "sha256": "892911192f2f71a200f8dc4cbda3dbf03bd10ed653937373b657f073bd6574c3"
+    },
+    {
+      "file": "yokai_08-attack.webp",
+      "sha256": "58c25e948d7698974dc72c118616debdfed1ffde82d9517692a30c5c943611f6"
+    },
+    {
+      "file": "yokai_08-hit.webp",
+      "sha256": "374c7fdd6c2653fe3c935b4fe16d837af31a6501b9606c33847149ccac00dec7"
+    },
+    {
+      "file": "yokai_08-death.webp",
+      "sha256": "6869edcb60945cd652e0f5e598c323d502d465f6cb9336133485fb5386f865df"
+    }
+  ]
+}

@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {"node": ">=22.18.0"},
   "scripts": {
+    "maps:import": "node scripts/import-maps.mjs",
+    "maps:check": "node scripts/import-maps.mjs --check",
     "dev": "vite",
     "build": "npm run build:shared && npm run build:server && npm run build:web",
     "preview": "vite preview",

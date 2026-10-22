@@ -1,5 +1,6 @@
 import { deriveStats } from "./derive.js";
 import type { CharacterInput, GameData, Monster } from "./schema.js";
+import { requiredEquipmentLevel, rolledModifiers, rollEquipment, validateItemRoll, starterUnique, isRolledTemplate, STARTER_CARD_TEXT, type ItemRoll, type LootItem } from './item-rolls.js';
 
 export type ItemLocation =
 	| "bag"
@@ -21,6 +22,7 @@ export interface OwnedItem {
 	source: string;
 	/** Card slots the forge added on top of the template's own (0 when absent). */
 	sockets?: number;
+	roll?: ItemRoll;
 }
 export interface Inventory {
 	version: 1;
@@ -55,7 +57,7 @@ export interface InventoryOp {
 	ids?: string[];
 	shop?: string;
 	gold?: number;
-		loot?: { template: string; qty: number }[];
+		loot?: LootItem[];
 	/** Quest turn-in: items granted after `loot` (items required) are taken. */
 	reward?: { template: string; qty: number }[];
 	on?: boolean;
@@ -113,6 +115,19 @@ export function equipped(inv: Inventory) {
 export function equippedCards(inv: Inventory) {
 	return inv.items.filter((i) => i.location === "equip").flatMap((i) => i.cards);
 }
+/** Physical sockets are checked here, including forge-added slots. Keep base profile modifiers separate. */
+export function inventoryProfile(profile:CharacterInput,inv:Inventory,data:GameData):CharacterInput {
+ const seen=new Set<string>();
+ const modifiers=inv.items.filter(i=>i.location==='equip').flatMap(i=>{
+  const t=knownTemplate(data,i.template);if(!t)return [];
+  if(i.cards.length>cardSlots(i,data))throw Error('ช่องการ์ดเกินขีดจำกัด');
+  return [...rolledModifiers(i),...i.cards.flatMap(id=>{
+   const card=data.cards.cards.find(c=>c.id===id);if(!card||card.slot!==t.type)throw Error('การ์ดไม่ตรงชนิดอุปกรณ์');
+   if(STARTER_CARD_TEXT[id]&&seen.has(id))return [];seen.add(id);return card.modifiers;
+  })];
+ });
+ return {...profile,equipment:equipped(inv),cards:[],modifiers:[...(profile.modifiers??[]),...modifiers]};
+}
 /** Why `card` cannot go into `target`, or null. Cards stay in the item for good (no removal yet). */
 export function cardProblem(card: OwnedItem, target: OwnedItem, data: GameData): string | null {
 	const spec = data.cards.cards.find((c) => c.id === card.template), t = knownTemplate(data, target.template);
@@ -131,8 +146,9 @@ export function cardSlots(item: OwnedItem, data: GameData) {
 export function socketPrice(item: OwnedItem, data: GameData): { gold: number; material: string; qty: number } | string {
 	const t = knownTemplate(data, item.template);
 	if (!t?.slot) return "เจาะช่องได้เฉพาะอุปกรณ์";
+	if (starterUnique(t.id)) return "Unique ชุดนี้ไม่มีช่องการ์ด";
 	if (cardSlots(item, data) > 0) return "อุปกรณ์นี้มีช่องการ์ดแล้ว";
-	const tier = data.economy.socketing.find((s) => t.level <= s.maxLevel) ?? data.economy.socketing.at(-1)!;
+	const tier = data.economy.socketing.find((s) => requiredEquipmentLevel(t.level,item) <= s.maxLevel) ?? data.economy.socketing.at(-1)!;
 	return { gold: tier.gold, material: tier.material, qty: tier.qty };
 }
 export const CARD_SLOT_NAMES: Record<string, string> = { weapon: "อาวุธ", armour: "ชุดเกราะ", shield: "โล่", garment: "ผ้าคลุม", footgear: "รองเท้า", accessory: "เครื่องประดับ" };
@@ -215,8 +231,10 @@ export function rollDrops(
 	data: GameData,
 	autoSeconds = 0,
 	bonus = 0,
+	equipmentRandom = random,
 ) {
-	return monster.drops.flatMap((d) => {
+	return monster.drops.flatMap((d):LootItem[] => {
+		const rng=isRolledTemplate(d.item)||['card_bud_shroom','card_clay_puff','card_pebble_puff','card_shade_wolf'].includes(d.item)?equipmentRandom:random;
 		const t = knownTemplate(data,d.item);if(!t)return [];
 		const rare = ["rare", "epic", "legendary"].includes(t.rarity);
 		const multiplier =
@@ -225,14 +243,10 @@ export function rollDrops(
 			(rare && autoSeconds > data.economy.autoRareAfterSeconds
 				? data.economy.autoRareMultiplier
 				: 1);
-		return random() < Math.min(1, d.rate * multiplier)
-			? [
-					{
-						template: d.item,
-						qty: d.min + Math.floor(random() * (d.max - d.min + 1)),
-					},
-				]
-			: [];
+		if(rng() >= Math.min(1,d.rate*multiplier))return [];
+		const qty=d.min+Math.floor(rng()*(d.max-d.min+1));
+		const roll=rollEquipment(d.item,monster.level,data,equipmentRandom);
+		return roll?Array.from({length:qty},(_,n)=>({template:d.item,qty:1,roll:n?rollEquipment(d.item,monster.level,data,equipmentRandom)!:roll})):[{template:d.item,qty}];
 	});
 }
 /** Pure copy-on-write reducer. Stores publish this result and ledger together, or neither. */
@@ -260,8 +274,10 @@ export function applyInventory(
 			throw Error("ไอเทมนี้ไม่ใช่ของคุณ");
 		return i;
 	};
-	const add = (id: string, qty: number, source: string) => {
+	const add = (id: string, qty: number, source: string, roll?:ItemRoll) => {
 		const t = template(id);
+		if(isRolledTemplate(id)&&!roll)throw Error('อุปกรณ์ชุดนี้ต้องมีค่าสุ่มจากแหล่งดรอป');
+		if(roll){validateItemRoll(id,roll,data);if(qty!==1||t.stackable)throw Error('อุปกรณ์สุ่มออฟต้องเป็นรายชิ้น');}
 		if (!Number.isSafeInteger(qty) || qty < 1 || qty > 9999)
 			throw Error("จำนวนไม่ถูกต้อง");
 		let i = t.stackable
@@ -280,6 +296,7 @@ export function applyInventory(
 					cards: [],
 					bound: t.bind === "account",
 					source,
+					...(roll?{roll:structuredClone(roll)}:{}),
 				});
 	};
 	const remove = (i: OwnedItem, qty: number) => {
@@ -332,7 +349,7 @@ export function applyInventory(
 	if (op.op === "equip") {
 		const i = owned(op.id),
 			t = template(i.template);
-		if (i.location !== "bag" || !t.slot || t.level > profile.level)
+		if (i.location !== "bag" || !t.slot || requiredEquipmentLevel(t.level,i) > profile.level)
 			throw Error("ระดับไม่พอ หรือใส่ไม่ได้");
 		const targetSlot = equipmentTarget(inv, t.slot, op.slot);
 		const old = inv.items.find(
@@ -346,7 +363,7 @@ export function applyInventory(
 		i.location = "equip";
 		i.slot = targetSlot;
 		i.bound ||= t.bind === "equip";
-		deriveStats({ ...profile, equipment: equipped(inv), cards: equippedCards(inv) }, data);
+		deriveStats(inventoryProfile(profile,inv,data), data);
 		log("equip", i, 1);
 	}
 	if (op.op === "unequip") {
@@ -377,19 +394,20 @@ export function applyInventory(
 		target.cards = [...target.cards, card.template];
 		log("use", card, 1);
 		// Worn equipment changes stats right away; make sure they still derive.
-		if (target.location === "equip") deriveStats({ ...profile, equipment: equipped(inv), cards: equippedCards(inv) }, data);
+		if (target.location === "equip") deriveStats(inventoryProfile(profile,inv,data), data);
 	}
 	if (op.op === "use") {
 		const i = owned(op.id),
 			t = template(i.template);
 		if (t.type !== "consumable" || !t.effect) throw Error("ใช้ไม่ได้");
+  if(t.effect==='arcane'&&profile.level<t.level)throw Error('ระดับไม่ถึงระดับไอเทม');
 		remove(i, 1);
 		log("use", i, 1);
 		effect = { kind: t.effect, amount: t.amount! };
 	}
 	if (op.op === "pickup" || op.op === "admin") {
 		for (const drop of op.loot ?? []) {
-			add(drop.template, drop.qty, op.op === "pickup" ? "drop" : "admin");
+			add(drop.template, drop.qty, op.op === "pickup" ? "drop" : "admin",drop.roll);
 			ledger.push({
 				kind: op.op,
 				template: drop.template,
@@ -456,7 +474,7 @@ export function applyInventory(
 		if (inventorySlots(inv, data) > data.economy.inventorySlots)
 			throw Error("กระเป๋าเต็ม");
 		const max = deriveStats(
-			{ ...profile, equipment: equipped(inv), cards: equippedCards(inv) },
+			inventoryProfile(profile,inv,data),
 			data,
 		).weight;
 		if (inventoryWeight(inv, data) > max) throw Error("น้ำหนักเกิน");

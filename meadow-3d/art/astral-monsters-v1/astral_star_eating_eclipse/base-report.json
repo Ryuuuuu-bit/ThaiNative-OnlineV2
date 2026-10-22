@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original star-eating eclipse beast, one enormous deep indigo feline-reptile head with a closed broad jaw, four heavy silver clawed paws, one armored elongated torso with attached curved bronze shoulder crests and one thick tapered tail, matte pale gold dorsal plates, no recognizable franchise anatomy. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_star_eating_eclipse\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_star_eating_eclipse\\base.png.raw.png",
+  "raw_bytes": 2548663,
+  "elapsed_seconds": 41.5,
+  "model": null,
+  "session_id": "01a16124-2bee-7e33-a0f3-46e2ec592b4a",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_star_eating_eclipse\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 52.41,
+    "partial_alpha_pct": 47.59,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 763442,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

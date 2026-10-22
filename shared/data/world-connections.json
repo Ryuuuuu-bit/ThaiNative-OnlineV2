@@ -1,0 +1,90 @@
+{
+  "city_plaza": {
+    "south": "meadow",
+    "east": "forest",
+    "north": "ruins",
+    "west": "canyon"
+  },
+  "meadow": {
+    "north": "city_plaza"
+  },
+  "forest": {
+    "west": "city_plaza",
+    "east": "himmapan"
+  },
+  "ruins": {
+    "south": "city_plaza",
+    "north": "yokai"
+  },
+  "canyon": {
+    "east": "city_plaza",
+    "west": "grove"
+  },
+  "grove": {
+    "east": "canyon",
+    "west": "summit"
+  },
+  "summit": {
+    "east": "grove",
+    "west": "temple",
+    "north": "frost"
+  },
+  "temple": {
+    "east": "summit",
+    "south": "desert"
+  },
+  "himmapan": {
+    "west": "forest",
+    "east": "dragon"
+  },
+  "desert": {
+    "north": "temple",
+    "east": "dragon",
+    "south": "volcano"
+  },
+  "frost": {
+    "south": "summit",
+    "east": "volcano",
+    "west": "fae"
+  },
+  "yokai": {
+    "south": "ruins",
+    "east": "ocean"
+  },
+  "dragon": {
+    "west": "himmapan",
+    "south": "desert",
+    "east": "ocean",
+    "north": "astral"
+  },
+  "volcano": {
+    "north": "desert",
+    "west": "frost",
+    "east": "fae"
+  },
+  "fae": {
+    "east": "frost",
+    "west": "volcano",
+    "south": "abyss"
+  },
+  "ocean": {
+    "west": "yokai",
+    "south": "dragon",
+    "north": "astral",
+    "east": "abyss"
+  },
+  "astral": {
+    "south": "dragon",
+    "west": "ocean",
+    "north": "confluence"
+  },
+  "abyss": {
+    "north": "fae",
+    "west": "ocean",
+    "east": "confluence"
+  },
+  "confluence": {
+    "south": "astral",
+    "west": "abyss"
+  }
+}

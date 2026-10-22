@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A vacuum bell construct, one enclosed tall bronze bell-shaped head and torso with dark interior eye slit, two articulated silver arms and two compact stone legs, one short attached bell clapper visible inside, no symbols. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_vacuum_bell_construct\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_vacuum_bell_construct\\base.png.raw.png",
+  "raw_bytes": 1511599,
+  "elapsed_seconds": 56.11,
+  "model": null,
+  "session_id": "01a16123-4d3b-7d73-be3d-076a3431b385",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\astral-monsters-20261022\\astral_vacuum_bell_construct\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1225x1284",
+    "alpha_zero_pct": 64.91,
+    "partial_alpha_pct": 35.05,
+    "opaque_pct": 0.04,
+    "cleaned_transparent_rgb_pixels": 710,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

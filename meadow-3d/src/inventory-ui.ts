@@ -1,6 +1,7 @@
 import {
 	loadGameData,
 	rarityColors,
+	ownedRarity, itemRollLines, rolledModifiers, requiredEquipmentLevel,
 		inventorySlots,
 	storageSlots,
 	equipmentSlots,
@@ -135,13 +136,14 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const cell = itemIconCell(t.id);
 		if (cell.v2) icon.classList.add("item-icon-v2");
 		icon.style.backgroundPosition = cell.position;
+		if(cell.image){icon.style.backgroundImage=`url(${cell.image})`;icon.style.backgroundSize='contain';}
 		return icon;
 	}
 	function cell(i: OwnedItem, mode = "bag") {
 		const t = template(i),
 			b = document.createElement("button");
 		b.className = "inv-cell";
-		b.style.setProperty("--rarity", rarityColors[t.rarity]);
+		b.style.setProperty("--rarity", rarityColors[ownedRarity(i,t.rarity)]);
 		b.dataset.item = i.template;
 		b.dataset.id = i.id;
 		b.setAttribute("aria-label", `${t.nameTh} ×${i.qty}`);
@@ -154,8 +156,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
         if(mode==='buy'||mode==='sell'){b.classList.add('shop-cell');const caption=document.createElement('span');caption.className='shop-caption';caption.textContent=t.nameTh;const price=document.createElement('small');price.textContent=`${mode==='buy'?data.economy.shops[shop!][t.id]:Math.floor(t.npcPrice*data.economy.sellMultiplier)} ทอง`;b.append(caption,price);}
         if(mode==='bag'&&isNew(i)){const dot=document.createElement('span');dot.className='inv-new';dot.title='ของใหม่';b.append(dot);}
         if(mode==='bag'&&i.location==='bag'&&t.slot){
-            if(!wearable(t)){const no=document.createElement('span');no.className='inv-no';no.setAttribute('aria-hidden','true');b.append(no);b.setAttribute('aria-label',`${t.nameTh} · ใส่ไม่ได้ตอนนี้`);}
-            else if(betterThanWorn(t)){const up=document.createElement('span');up.className='inv-up';up.textContent='▲';b.append(up);b.setAttribute('aria-label',`${t.nameTh} · ดีกว่าที่ใส่`);}
+            if(!wearable(t,i)){const no=document.createElement('span');no.className='inv-no';no.setAttribute('aria-hidden','true');b.append(no);b.setAttribute('aria-label',`${t.nameTh} · ใส่ไม่ได้ตอนนี้`);}
+            else if(betterThanWorn(t,i)){const up=document.createElement('span');up.className='inv-up';up.textContent='▲';b.append(up);b.setAttribute('aria-label',`${t.nameTh} · ดีกว่าที่ใส่`);}
         }
         else if(incompatible){const note=document.createElement('small');note.textContent='อาชีพนี้ใช้ไม่ได้';b.append(note);}
 		if (multi.has(i.id)) b.classList.add("inv-selected");
@@ -219,7 +221,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const t = template(i);
 		detail.replaceChildren();
 		detail.classList.add("inv-strip");
-		detail.style.setProperty("--rarity", rarityColors[t.rarity]);
+		detail.style.setProperty("--rarity", rarityColors[ownedRarity(i,t.rarity)]);
 		const ico = document.createElement("span");
 		ico.className = "strip-ico";
 		ico.append(itemIcon(t));
@@ -232,13 +234,13 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		btns.className = "strip-actions";
 		const add = (label: string, fn: () => void, cls = "") => { const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.className = cls; b.onclick = fn; btns.append(b); return b; };
 		const kind = t.slot ? (t.slot === "accessory1" ? "แหวน" : slotNames[t.slot]) : describe(t);
-		const stats = t.slot ? Object.entries(statsOf(t)).map(([k, v]) => `${metricNames[k] || k} +${v}`).join(" · ") : "";
+		const stats = t.slot ? [...Object.entries(statsOf(t,i)).map(([k, v]) => `${metricNames[k] || k} +${v}`),...itemRollLines(i)].join(" · ") : "";
 		let where = "";
 		if (i.location === "equip") {
 			where = `สวมอยู่ที่ ${slotNames[i.slot!]}`;
 			add("ถอด", () => action(i), "gold");
 		} else if (t.slot) {
-			if (!wearable(t)) where = t.level > playerLevel() ? `ต้องการระดับ ${t.level}` : "อาชีพนี้ใช้ไม่ได้";
+			if (!wearable(t,i)) where = requiredEquipmentLevel(t.level,i) > playerLevel() ? `ต้องการระดับ ${requiredEquipmentLevel(t.level,i)}` : "อาชีพนี้ใช้ไม่ได้";
 			else {
 				const slots = equipmentSlots(t.slot), wornIn = (sl: string) => inv!.items.find((x) => x.location === "equip" && x.slot === sl);
 				const target = equipmentTarget(inv!, t.slot);
@@ -297,7 +299,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		detail.replaceChildren();
 		const title = document.createElement("h3");
 		title.textContent = t.nameTh;
-		title.style.color = rarityColors[t.rarity];
+		title.style.color = rarityColors[ownedRarity(i,t.rarity)];
 		detail.append(title);
 		const text = document.createElement("p");
 		const targetSlot = t.slot && inv ? (i.location === 'equip' ? i.slot : equipmentTarget(inv, t.slot, requestedSlot)) : t.slot;
@@ -305,8 +307,9 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			(i) => i.location === "equip" && i.slot === targetSlot,
 		);
 		const oldT = old && template(old);
-		text.textContent = `${(t.slot === "accessory1" ? (i.location === "equip" ? slotNames[i.slot!] : "แหวน") : slotNames[t.slot || ""]) || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${t.level}\nน้ำหนัก ${fmtWeight(t.weight)} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + fmtGold(data.economy.shops[shop][t.id]) : "ขาย " + fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
+		text.textContent = `${(t.slot === "accessory1" ? (i.location === "equip" ? slotNames[i.slot!] : "แหวน") : slotNames[t.slot || ""]) || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${requiredEquipmentLevel(t.level,i)}\nน้ำหนัก ${fmtWeight(t.weight)} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + fmtGold(data.economy.shops[shop][t.id]) : "ขาย " + fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
 		detail.append(text);
+		for(const line of itemRollLines(i)){const row=document.createElement('p');row.className='item-roll-line';row.textContent=line;detail.append(row);}
 		if (t.slot === 'accessory1' && i.location === 'bag' && !shop && !storage && actions) {
 			const label = document.createElement('label'), select = document.createElement('select');
 			label.textContent = 'ช่องแหวน '; select.setAttribute('aria-label', 'ช่องแหวนที่จะสวม');
@@ -466,22 +469,22 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	const priceOf = (id: string) => data.economy.shops[shop!][id] as number;
 	const sellPrice = (i: OwnedItem) => Math.floor(template(i).npcPrice * data.economy.sellMultiplier) * i.qty;
 	const owned = (id: string) => inv?.items.filter((i) => i.location === "bag" && i.template === id).reduce((n, i) => n + i.qty, 0) || 0;
-	function statsOf(t: (typeof templates)[number]) {
+	function statsOf(t: (typeof templates)[number], i?:OwnedItem) {
 		const out: Record<string, number> = {};
 		if (t.atk) out.atk = t.atk;
 		if (t.matk) out.matk = t.matk;
-		for (const m of t.modifiers) if ("stat" in m && "value" in m && (m.kind === "flat" || m.kind === "stat")) out[m.stat] = (out[m.stat] || 0) + m.value;
+		for (const m of [...t.modifiers,...(i?rolledModifiers(i):[]),...(i?.cards.flatMap(id=>data.cards.cards.find(c=>c.id===id)?.modifiers??[])??[])]) if ("stat" in m && "value" in m && (m.kind === "flat" || m.kind === "stat")) out[m.stat] = (out[m.stat] || 0) + m.value;
 		return out;
 	}
-	const wearable = (t: (typeof templates)[number]) => !t.slot || (t.level <= playerLevel() && compatible(t));
-	const statSum = (t: (typeof templates)[number]) => Object.values(statsOf(t)).reduce((a, b) => a + b, 0);
+	const wearable = (t: (typeof templates)[number],i?:OwnedItem) => !t.slot || (requiredEquipmentLevel(t.level,i) <= playerLevel() && compatible(t));
+	const statSum = (t: (typeof templates)[number], i?:OwnedItem) => Object.values(statsOf(t,i)).reduce((a, b) => a + b, 0);
 	/** Gear that would raise at least one stat over what sits in its slot now (and lose less than it gains). */
-	function betterThanWorn(t: (typeof templates)[number]) {
-		if (!t.slot || !inv || !wearable(t)) return false;
+	function betterThanWorn(t: (typeof templates)[number], i?:OwnedItem) {
+		if (!t.slot || !inv || !wearable(t,i)) return false;
 		const worn = inv.items.find((x) => x.location === "equip" && x.slot === equipmentTarget(inv!, t.slot!));
-		if (!worn) return statSum(t) > 0;
-		const a = statsOf(t), b = statsOf(template(worn));
-		return Object.entries(a).some(([k, v]) => v > (b[k] || 0)) && statSum(t) >= statSum(template(worn));
+		if (!worn) return statSum(t,i) > 0;
+		const a = statsOf(t,i), b = statsOf(template(worn),worn);
+		return Object.entries(a).some(([k, v]) => v > (b[k] || 0)) && statSum(t,i) >= statSum(template(worn),worn);
 	}
 	const RARITY_RANK: Record<string, number> = { legendary: 0, epic: 1, rare: 2, fine: 3, common: 4 };
 	const TYPE_RANK: Record<string, number> = { weapon: 0, armour: 1, shield: 2, garment: 3, footgear: 4, accessory: 5, consumable: 6, refine: 7, card: 8, material: 9 };
@@ -499,10 +502,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	const RARITY_NAMES: Record<string, string> = { common: "ธรรมดา", fine: "ดี", rare: "หายาก", epic: "มหากาพย์", legendary: "ตำนาน" };
 	type TipSource = { t: (typeof templates)[number]; i?: OwnedItem; mode?: string };
 	/** One item card. With `against`, every stat shows its change from that equipped item (missing stats count as 0). */
-	function tipCard(t: (typeof templates)[number], i: OwnedItem | undefined, opts: { worn?: boolean; against?: (typeof templates)[number] | null; slot?: string } = {}) {
+	function tipCard(t: (typeof templates)[number], i: OwnedItem | undefined, opts: { worn?: boolean; against?: (typeof templates)[number] | null; againstItem?:OwnedItem; slot?: string } = {}) {
 		const card = document.createElement("div");
 		card.className = "tip-card" + (opts.worn ? " worn" : "");
-		card.style.setProperty("--rarity", rarityColors[t.rarity]);
+		card.style.setProperty("--rarity", rarityColors[ownedRarity(i,t.rarity)]);
 		const head = document.createElement("div");
 		head.className = "tip-head";
 		const ico = document.createElement("span");
@@ -514,7 +517,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			: TYPE_NAMES[t.type] || t.type;
 		name.innerHTML = "<b></b><small></small>";
 		name.querySelector("b")!.textContent = t.nameTh;
-		name.querySelector("small")!.textContent = `${kind} · ${RARITY_NAMES[t.rarity] || t.rarity}`;
+		name.querySelector("small")!.textContent = `${kind} · ${i?.roll?.quality??RARITY_NAMES[t.rarity]??t.rarity}`;
 		head.append(ico, name);
 		if (opts.worn) { const tag = document.createElement("em"); tag.textContent = "สวมอยู่"; head.append(tag); }
 		card.append(head);
@@ -528,7 +531,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			card.append(req);
 		}
 		if (t.slot) {
-			const mine = statsOf(t), theirs = opts.against ? statsOf(opts.against) : null;
+			const mine = statsOf(t,i), theirs = opts.against ? statsOf(opts.against,opts.againstItem) : null;
 			const keys = [...new Set([...Object.keys(mine), ...(theirs ? Object.keys(theirs) : [])])];
 			const list = document.createElement("div");
 			list.className = "tip-stats";
@@ -554,6 +557,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			e.textContent = describe(t);
 			card.append(e);
 		}
+		if(i)for(const line of itemRollLines(i)){const row=document.createElement('p');row.className='item-roll-line';row.textContent=line;card.append(row);}
 		if (t.type === "card") {
 			const spec = data.cards.cards.find((c) => c.id === t.id);
 			if (spec) { const e = document.createElement("p"); e.className = "tip-effect"; e.textContent = `ใส่ได้กับ${CARD_SLOT_NAMES[spec.slot]} · ${cardEffects(data, t.id)}`; card.append(e); }
@@ -582,7 +586,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			old = inv.items.find((x) => x.location === "equip" && x.slot === slot);
 		}
 		const oldT = old ? template(old) : null;
-		const main = tipCard(t, i, { worn: equipped, against: t.slot && !equipped ? oldT : undefined, slot: equipped ? i!.slot : slot });
+		const main = tipCard(t, i, { worn: equipped, against: t.slot && !equipped ? oldT : undefined, againstItem:old, slot: equipped ? i!.slot : slot });
 		wrap.append(main);
 		if (oldT && old) {
 			const side = tipCard(oldT, old, { worn: true, slot });
@@ -661,7 +665,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		dollBox.replaceChildren(doll);
 		const total: Record<string, number> = {};
 		for (const i of inv!.items.filter((i) => i.location === "equip"))
-			for (const [k, v] of Object.entries(statsOf(template(i)))) total[k] = (total[k] || 0) + v;
+			for (const [k, v] of Object.entries(statsOf(template(i),i))) total[k] = (total[k] || 0) + v;
 		bonusBox.innerHTML = Object.entries(total).map(([k, v]) => `<span>${metricNames[k] || k}<b>+${v}</b></span>`).join("") || `<span class="inv-bonus-none">ยังไม่มีโบนัสจากอุปกรณ์</span>`;
 	}
 	function shopCard(t: (typeof templates)[number], id: string) {
@@ -724,7 +728,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	}
 	function describe(t: (typeof templates)[number]) {
 		const st = Object.entries(statsOf(t)).map(([k, v]) => `${metricNames[k] || k} ${v}`).join(" · ");
-		return t.slot ? `Lv.${t.level} · ${t.slot==='accessory1'?'แหวน':slotNames[t.slot]}${st ? " · " + st : ""}` : t.effect ? `ฟื้นฟู ${t.effect==='hp'?'HP':t.effect==='sp'?'SP':'ความเร็ว'} ${t.effect==='speed'?Math.round(t.amount!*100)+'%':fmtGold(t.amount!)}` : ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type] || "";
+		return t.slot ? `Lv.${t.level} · ${t.slot==='accessory1'?'แหวน':slotNames[t.slot]}${st ? " · " + st : ""}` : t.effect==='party_hp'?`ฮีลสมาชิกปาร์ตี้ใกล้สุดใน 6 เมตร ${fmtGold(t.amount!)} HP · ใช้คูลดาวน์ร่วมกับยา`:t.effect==='party_cleanse'?'ล้างสถานะลบให้สมาชิกปาร์ตี้ใกล้สุดใน 6 เมตร · ใช้คูลดาวน์ร่วมกับยา':t.effect ? `ฟื้นฟู ${t.effect==='hp'?'HP':t.effect==='sp'?'SP':'ความเร็ว'} ${t.effect==='speed'?Math.round(t.amount!*100)+'%':fmtGold(t.amount!)}` : ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type] || "";
 	}
 	function cartLine(t: (typeof templates)[number], middle: string, sub: string) {
 		const line = document.createElement("div");
@@ -935,8 +939,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			if (filter === "การ์ด" && t.type !== "card") continue;
 			if (quick === "new" && !isNew(i)) continue;
 			if (search && !t.nameTh.toLowerCase().includes(search)) continue;
-			if (quick === "wear" && !(t.slot && wearable(t))) continue;
-			if (quick === "better" && !betterThanWorn(t)) continue;
+			if (quick === "wear" && !(t.slot && wearable(t,i))) continue;
+			if (quick === "better" && !betterThanWorn(t,i)) continue;
 			if (quick === "sell" && i.bound) continue;
 			for (let left = i.qty; left > 0; left -= t.maxStack) {
 				grid.append(cell({ ...i, qty: Math.min(left, t.maxStack) }, "bag"));

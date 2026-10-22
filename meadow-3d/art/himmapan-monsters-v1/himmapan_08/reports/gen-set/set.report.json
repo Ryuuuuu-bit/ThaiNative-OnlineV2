@@ -1,0 +1,41 @@
+{
+  "kind": "sprite-gen-gen-set-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run",
+  "states": [
+    "down45_hop",
+    "up45_hop"
+  ],
+  "ok": 2,
+  "failed": [],
+  "not_started": [],
+  "items": [
+    {
+      "state": "down45_hop",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\raw\\down45\\hop.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\reports\\gen-set\\down45_hop.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\references\\layout-guides\\down45\\hop.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 51.6,
+      "ok": true
+    },
+    {
+      "state": "up45_hop",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\raw\\up45\\hop.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\reports\\gen-set\\up45_hop.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\references\\anchors\\up45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_08\\run\\references\\layout-guides\\up45\\hop.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 49.9,
+      "ok": true
+    }
+  ]
+}

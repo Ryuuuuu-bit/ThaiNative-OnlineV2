@@ -1,0 +1,2100 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "width": 100,
+  "height": 224,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "nextlayerid": 9,
+  "nextobjectid": 102,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "ruins"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads — city approach and deep loops",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 3968
+            },
+            {
+              "x": 1600,
+              "y": 3200
+            },
+            {
+              "x": 1856,
+              "y": 2560
+            },
+            {
+              "x": 1856,
+              "y": 1728
+            },
+            {
+              "x": 1600,
+              "y": 1024
+            },
+            {
+              "x": 1600,
+              "y": 448
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 3200
+            },
+            {
+              "x": 832,
+              "y": 3008
+            },
+            {
+              "x": 640,
+              "y": 2368
+            },
+            {
+              "x": 832,
+              "y": 1664
+            },
+            {
+              "x": 1600,
+              "y": 1024
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.8
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1856,
+              "y": 2560
+            },
+            {
+              "x": 2528,
+              "y": 2752
+            },
+            {
+              "x": 2688,
+              "y": 1984
+            },
+            {
+              "x": 2368,
+              "y": 1152
+            },
+            {
+              "x": 1600,
+              "y": 1024
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "type": "path",
+          "name": "ทางเดิน 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 1024
+            },
+            {
+              "x": 960,
+              "y": 704
+            },
+            {
+              "x": 640,
+              "y": 608
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "type": "path",
+          "name": "ทางเดิน 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 3616
+            },
+            {
+              "x": 1824,
+              "y": 3616
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "type": "path",
+          "name": "ทางเดิน 6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1856,
+              "y": 1920
+            },
+            {
+              "x": 2048,
+              "y": 1920
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "type": "path",
+          "name": "ทางเดิน 7",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 448
+            },
+            {
+              "x": 1824,
+              "y": 448
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "type": "path",
+          "name": "ทางเดิน 8",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 7168
+            },
+            {
+              "x": 1600,
+              "y": 3968
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "type": "path",
+          "name": "ทางเดิน 9",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 6656
+            },
+            {
+              "x": 1120,
+              "y": 6656
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "type": "path",
+          "name": "ทางเดิน 10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 5984
+            },
+            {
+              "x": 2112,
+              "y": 5984
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "type": "path",
+          "name": "ทางเดิน 11",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 5312
+            },
+            {
+              "x": 1120,
+              "y": 5312
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "type": "path",
+          "name": "ทางเดิน 12",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 4640
+            },
+            {
+              "x": 2112,
+              "y": 4640
+            }
+          ]
+        },
+        {
+          "id": 101,
+          "type": "path",
+          "name": "ทางเชื่อมภูมิภาค yokai",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 1600,
+              "y": 448
+            },
+            {
+              "x": 1600,
+              "y": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 13,
+          "type": "water",
+          "name": "แอ่งน้ำ 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 1184,
+          "y": 1440,
+          "width": 384,
+          "height": 448
+        },
+        {
+          "id": 14,
+          "type": "water",
+          "name": "แอ่งน้ำ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 2432,
+          "y": 3168,
+          "width": 256,
+          "height": 320
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 City arrival and return gate",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 15,
+          "type": "entry",
+          "name": "จุดเข้าจากเมือง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1600,
+          "y": 7040,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 16,
+          "type": "gate",
+          "name": "south",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "city_plaza"
+            }
+          ],
+          "point": true,
+          "x": 1600,
+          "y": 7136,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 100,
+          "type": "gate",
+          "name": "north",
+          "point": true,
+          "x": 1600,
+          "y": 32,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "yokai"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and boss",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 17,
+          "type": "camp",
+          "name": "แคมป์ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1824,
+          "y": 6944,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 18,
+          "type": "camp",
+          "name": "แคมป์ 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1824,
+          "y": 3616,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 19,
+          "type": "camp",
+          "name": "แคมป์ 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 2048,
+          "y": 1920,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 20,
+          "type": "camp",
+          "name": "แคมป์ 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1824,
+          "y": 448,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 21,
+          "type": "arena",
+          "name": "ลานบอส",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 480,
+          "y": 448,
+          "width": 320,
+          "height": 320
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Progression habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 22,
+          "type": "spawn",
+          "name": "ลานวุ้นดินจิ๋ว",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "ruins_young_1"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 800,
+          "y": 6400,
+          "width": 640,
+          "height": 512
+        },
+        {
+          "id": 23,
+          "type": "spawn",
+          "name": "ลานนกกระจอกกระเบื้อง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "tile_sparrow"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 1792,
+          "y": 5728,
+          "width": 640,
+          "height": 512
+        },
+        {
+          "id": 26,
+          "type": "spawn",
+          "name": "ย่านบ้านร้าง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "ruin_shroom"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            }
+          ],
+          "ellipse": true,
+          "x": 576,
+          "y": 2688,
+          "width": 960,
+          "height": 896
+        },
+        {
+          "id": 27,
+          "type": "spawn",
+          "name": "จัตุรัสหมาป่า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "relic_hound"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            }
+          ],
+          "ellipse": true,
+          "x": 2048,
+          "y": 2176,
+          "width": 832,
+          "height": 960
+        },
+        {
+          "id": 28,
+          "type": "spawn",
+          "name": "หออักขระ",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "relic_wisp"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            }
+          ],
+          "ellipse": true,
+          "x": 448,
+          "y": 1088,
+          "width": 832,
+          "height": 960
+        },
+        {
+          "id": 29,
+          "type": "spawn",
+          "name": "ลานผู้พิทักษ์",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "ruin_guard"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 12
+            }
+          ],
+          "ellipse": true,
+          "x": 1920,
+          "y": 416,
+          "width": 832,
+          "height": 1088
+        },
+        {
+          "id": 96,
+          "type": "spawn",
+          "name": "ลานตุ๊กตาหม้อดิน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "clay_pot_doll"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 4
+            }
+          ],
+          "ellipse": true,
+          "x": 864,
+          "y": 5600,
+          "width": 384,
+          "height": 384
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Solid scenery",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "ruins-boulder 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-boulder"
+            }
+          ],
+          "ellipse": true,
+          "x": 396.8,
+          "y": 3692.8,
+          "width": 102.4,
+          "height": 102.4
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "ruins-rubble 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ],
+          "ellipse": true,
+          "x": 318.4,
+          "y": 2750.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "ruins-fallen 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-fallen"
+            }
+          ],
+          "ellipse": true,
+          "x": 1054.4,
+          "y": 2366.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "ruins-pier 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-pier"
+            }
+          ],
+          "ellipse": true,
+          "x": 190.4,
+          "y": 2110.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "ruins-boulder 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-boulder"
+            }
+          ],
+          "ellipse": true,
+          "x": 556.8,
+          "y": 1388.8,
+          "width": 102.4,
+          "height": 102.4
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "ruins-fallen 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-fallen"
+            }
+          ],
+          "ellipse": true,
+          "x": 2846.4,
+          "y": 3774.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "ruins-pier 6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-pier"
+            }
+          ],
+          "ellipse": true,
+          "x": 2782.4,
+          "y": 2654.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "ruins-boulder 7",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-boulder"
+            }
+          ],
+          "ellipse": true,
+          "x": 2316.8,
+          "y": 2060.8,
+          "width": 102.4,
+          "height": 102.4
+        },
+        {
+          "id": 38,
+          "type": "obstacle",
+          "name": "ruins-fallen 8",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-fallen"
+            }
+          ],
+          "ellipse": true,
+          "x": 1950.4,
+          "y": 702.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 39,
+          "type": "obstacle",
+          "name": "ruins-pier 9",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-pier"
+            }
+          ],
+          "ellipse": true,
+          "x": 2942.4,
+          "y": 190.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 40,
+          "type": "obstacle",
+          "name": "ruins-rubble 10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ],
+          "ellipse": true,
+          "x": 1502.4,
+          "y": 2078.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "ruins-pier 11",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-pier"
+            }
+          ],
+          "ellipse": true,
+          "x": 2910.4,
+          "y": 414.4,
+          "width": 67.2,
+          "height": 67.2
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "tree 12",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree"
+            }
+          ],
+          "ellipse": true,
+          "x": 153.6,
+          "y": 3769.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "tree 13",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree"
+            }
+          ],
+          "ellipse": true,
+          "x": 3001.6,
+          "y": 3769.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "tree 14",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree"
+            }
+          ],
+          "ellipse": true,
+          "x": 3033.6,
+          "y": 2105.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "tree 15",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree"
+            }
+          ],
+          "ellipse": true,
+          "x": 2905.6,
+          "y": 89.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "tree 16",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree"
+            }
+          ],
+          "ellipse": true,
+          "x": 89.6,
+          "y": 89.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "tree 17",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree"
+            }
+          ],
+          "ellipse": true,
+          "x": 3033.6,
+          "y": 1401.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 82,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 448,
+          "y": 6752,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 83,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 2688,
+          "y": 6752,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 84,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 448,
+          "y": 6368,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 2688,
+          "y": 6368,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 86,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 448,
+          "y": 5984,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 87,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 2688,
+          "y": 5984,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 448,
+          "y": 5600,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 89,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 2688,
+          "y": 5600,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 448,
+          "y": 5216,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 2688,
+          "y": 5216,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 92,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 448,
+          "y": 4832,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 2688,
+          "y": 4832,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 448,
+          "y": 4448,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 2688,
+          "y": 4448,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-rubble"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "07 Masonry",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 48,
+          "type": "structure",
+          "name": "ruins-wall-x",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-x"
+            }
+          ],
+          "ellipse": true,
+          "x": 1056,
+          "y": 3488,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 49,
+          "type": "structure",
+          "name": "ruins-wall-z",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-z"
+            }
+          ],
+          "ellipse": true,
+          "x": 544,
+          "y": 3456,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 50,
+          "type": "structure",
+          "name": "ruins-house",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-house"
+            }
+          ],
+          "ellipse": true,
+          "x": 281.6,
+          "y": 3097.6,
+          "width": 204.8,
+          "height": 204.8
+        },
+        {
+          "id": 51,
+          "type": "structure",
+          "name": "ruins-house",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-house"
+            }
+          ],
+          "ellipse": true,
+          "x": 2080,
+          "y": 3488,
+          "width": 192,
+          "height": 192
+        },
+        {
+          "id": 52,
+          "type": "structure",
+          "name": "ruins-arch",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-arch"
+            }
+          ],
+          "ellipse": true,
+          "x": 1060.8,
+          "y": 3268.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 53,
+          "type": "structure",
+          "name": "ruins-wall-x",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-x"
+            }
+          ],
+          "ellipse": true,
+          "x": 2112,
+          "y": 2912,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 54,
+          "type": "structure",
+          "name": "ruins-house",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-house"
+            }
+          ],
+          "ellipse": true,
+          "x": 2656,
+          "y": 3008,
+          "width": 192,
+          "height": 192
+        },
+        {
+          "id": 55,
+          "type": "structure",
+          "name": "ruins-foundation",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-foundation"
+            }
+          ],
+          "ellipse": true,
+          "x": 2176,
+          "y": 2336,
+          "width": 192,
+          "height": 192
+        },
+        {
+          "id": 56,
+          "type": "structure",
+          "name": "ruins-wall-x",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-x"
+            }
+          ],
+          "ellipse": true,
+          "x": 2912,
+          "y": 2400,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 57,
+          "type": "structure",
+          "name": "ruins-house",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-house"
+            }
+          ],
+          "ellipse": true,
+          "x": 2777.6,
+          "y": 1625.6,
+          "width": 204.8,
+          "height": 204.8
+        },
+        {
+          "id": 58,
+          "type": "structure",
+          "name": "ruins-foundation",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-foundation"
+            }
+          ],
+          "ellipse": true,
+          "x": 2592,
+          "y": 800,
+          "width": 192,
+          "height": 192
+        },
+        {
+          "id": 59,
+          "type": "structure",
+          "name": "ruins-wall-z",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-z"
+            }
+          ],
+          "ellipse": true,
+          "x": 2144,
+          "y": 544,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 60,
+          "type": "structure",
+          "name": "ruins-wall-x",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-x"
+            }
+          ],
+          "ellipse": true,
+          "x": 2656,
+          "y": 288,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 61,
+          "type": "structure",
+          "name": "ruins-house",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-house"
+            }
+          ],
+          "ellipse": true,
+          "x": 281.6,
+          "y": 1721.6,
+          "width": 204.8,
+          "height": 204.8
+        },
+        {
+          "id": 62,
+          "type": "structure",
+          "name": "ruins-wall-x",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-x"
+            }
+          ],
+          "ellipse": true,
+          "x": 288,
+          "y": 1216,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 63,
+          "type": "structure",
+          "name": "ruins-wall-z",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-wall-z"
+            }
+          ],
+          "ellipse": true,
+          "x": 1024,
+          "y": 1024,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "id": 64,
+          "type": "structure",
+          "name": "ruins-temple",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-temple"
+            }
+          ],
+          "ellipse": true,
+          "x": 118.4,
+          "y": 342.4,
+          "width": 211.2,
+          "height": 211.2
+        },
+        {
+          "id": 65,
+          "type": "structure",
+          "name": "ruins-column",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-column"
+            }
+          ],
+          "ellipse": true,
+          "x": 355.2,
+          "y": 867.2,
+          "width": 57.6,
+          "height": 57.6
+        },
+        {
+          "id": 66,
+          "type": "structure",
+          "name": "ruins-pier",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-pier"
+            }
+          ],
+          "ellipse": true,
+          "x": 675.2,
+          "y": 259.2,
+          "width": 57.6,
+          "height": 57.6
+        },
+        {
+          "id": 67,
+          "type": "structure",
+          "name": "ruins-statue",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-statue"
+            }
+          ],
+          "ellipse": true,
+          "x": 664,
+          "y": 856,
+          "width": 80,
+          "height": 80
+        },
+        {
+          "id": 68,
+          "type": "structure",
+          "name": "ruins-fallen",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ruins-fallen"
+            }
+          ],
+          "ellipse": true,
+          "x": 1052.8,
+          "y": 284.8,
+          "width": 70.4,
+          "height": 70.4
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "objectgroup",
+      "name": "08 Places and level signs",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 69,
+          "type": "poi",
+          "name": "ซุ้มประตูเมืองเก่า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "arch"
+            }
+          ],
+          "point": true,
+          "x": 1088,
+          "y": 3296,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 70,
+          "type": "poi",
+          "name": "จัตุรัสที่ถูกลืม",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "plaza"
+            }
+          ],
+          "point": true,
+          "x": 2464,
+          "y": 2656,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 71,
+          "type": "poi",
+          "name": "ลานอักขระ",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "runes"
+            }
+          ],
+          "point": true,
+          "x": 864,
+          "y": 1568,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 72,
+          "type": "poi",
+          "name": "ลานผู้พิทักษ์เถาวัลย์",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "guardian"
+            }
+          ],
+          "point": true,
+          "x": 2336,
+          "y": 960,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 73,
+          "type": "poi",
+          "name": "ลานวุ้นดินจิ๋ว",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "garden"
+            }
+          ],
+          "point": true,
+          "x": 1120,
+          "y": 6656,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 74,
+          "type": "poi",
+          "name": "สวนวุ้นดิน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "garden"
+            }
+          ],
+          "point": true,
+          "x": 2112,
+          "y": 5984,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 75,
+          "type": "poi",
+          "name": "ถนนหินเก่า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "garden"
+            }
+          ],
+          "point": true,
+          "x": 1120,
+          "y": 5312,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 76,
+          "type": "poi",
+          "name": "ด่านลาดตระเวน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "garden"
+            }
+          ],
+          "point": true,
+          "x": 2112,
+          "y": 4640,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 77,
+          "type": "poi",
+          "name": "ลานวุ้นดินจิ๋ว · Lv.1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 1600,
+          "y": 6656,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 78,
+          "type": "poi",
+          "name": "สวนวุ้นดิน · Lv.3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 1600,
+          "y": 5984,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 79,
+          "type": "poi",
+          "name": "ถนนหินเก่า · Lv.6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 1600,
+          "y": 5312,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 80,
+          "type": "poi",
+          "name": "ด่านลาดตระเวน · Lv.10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 1600,
+          "y": 4640,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 81,
+          "type": "poi",
+          "name": "เขตลึก · มอน Lv.16+",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 1600,
+          "y": 3712,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

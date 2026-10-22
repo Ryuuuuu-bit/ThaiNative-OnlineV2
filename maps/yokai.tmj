@@ -1,0 +1,4290 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "width": 156,
+  "height": 172,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "nextobjectid": 218,
+  "nextlayerid": 8,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "yokai"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "value": "ป่าไผ่และศาลจันทร์"
+    },
+    {
+      "name": "exploration",
+      "type": "bool",
+      "value": false
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads and gate approaches",
+      "objects": [
+        {
+          "id": 191,
+          "type": "path",
+          "name": "ทางเดิน 0",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.6
+            }
+          ],
+          "polyline": [
+            {
+              "x": 960,
+              "y": 4288
+            },
+            {
+              "x": 1792,
+              "y": 3520
+            },
+            {
+              "x": 2816,
+              "y": 2752
+            },
+            {
+              "x": 2240,
+              "y": 1920
+            },
+            {
+              "x": 3264,
+              "y": 896
+            }
+          ]
+        },
+        {
+          "id": 192,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "polyline": [
+            {
+              "x": 1792,
+              "y": 3520
+            },
+            {
+              "x": 896,
+              "y": 2496
+            },
+            {
+              "x": 1280,
+              "y": 1344
+            },
+            {
+              "x": 2240,
+              "y": 1920
+            },
+            {
+              "x": 3712,
+              "y": 2240
+            },
+            {
+              "x": 3840,
+              "y": 3520
+            },
+            {
+              "x": 1792,
+              "y": 3520
+            }
+          ]
+        },
+        {
+          "id": 193,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 960,
+              "y": 4288
+            },
+            {
+              "x": 2496,
+              "y": 5472
+            }
+          ]
+        },
+        {
+          "id": 194,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 3712,
+              "y": 2240
+            },
+            {
+              "x": 4960,
+              "y": 2752
+            }
+          ]
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water and impassable terrain",
+      "objects": [
+        {
+          "id": 195,
+          "type": "water",
+          "name": "ขอบเขตเดินไม่ได้",
+          "rotation": 0,
+          "visible": true,
+          "x": 1760,
+          "y": 3968,
+          "width": 1088,
+          "height": 576,
+          "properties": [],
+          "ellipse": true
+        },
+        {
+          "id": 196,
+          "type": "water",
+          "name": "ขอบเขตเดินไม่ได้",
+          "rotation": 0,
+          "visible": true,
+          "x": 3712,
+          "y": 736,
+          "width": 640,
+          "height": 960,
+          "properties": [],
+          "ellipse": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 World gates",
+      "objects": [
+        {
+          "id": 197,
+          "type": "entry",
+          "name": "จุดเข้า",
+          "rotation": 0,
+          "visible": true,
+          "x": 2496,
+          "y": 5344,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 1,
+          "type": "gate",
+          "name": "south",
+          "rotation": 0,
+          "visible": true,
+          "x": 2496,
+          "y": 5472,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "ruins"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 2,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "x": 4960,
+          "y": 2752,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "ocean"
+            }
+          ],
+          "point": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and future arena",
+      "objects": [
+        {
+          "id": 198,
+          "type": "camp",
+          "name": "ค่ายพัก 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 960,
+          "y": 4288,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 199,
+          "type": "camp",
+          "name": "ค่ายพัก 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 2816,
+          "y": 2752,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 200,
+          "type": "camp",
+          "name": "ค่ายพัก 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 2240,
+          "y": 1920,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 201,
+          "type": "arena",
+          "name": "ลานโอนิประตูแดง",
+          "rotation": 0,
+          "visible": true,
+          "x": 2912,
+          "y": 672,
+          "width": 704,
+          "height": 704,
+          "properties": [],
+          "ellipse": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Named landmarks",
+      "objects": [
+        {
+          "id": 202,
+          "type": "poi",
+          "name": "ทางโคมเข้าสวน",
+          "rotation": 0,
+          "visible": true,
+          "x": 960,
+          "y": 4288,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 203,
+          "type": "poi",
+          "name": "บึงเงาจันทร์",
+          "rotation": 0,
+          "visible": true,
+          "x": 2304,
+          "y": 3776,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 204,
+          "type": "poi",
+          "name": "ป่าสนศาลเก่า",
+          "rotation": 0,
+          "visible": true,
+          "x": 1280,
+          "y": 1344,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 205,
+          "type": "poi",
+          "name": "ลานโอนิประตูแดง",
+          "rotation": 0,
+          "visible": true,
+          "x": 3264,
+          "y": 1024,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boss"
+            }
+          ],
+          "point": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Landscape solids",
+      "objects": [
+        {
+          "id": 4,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 162.83971188281703,
+          "y": 165.3249820001406,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 5,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 276.9620464064742,
+          "y": 546.1924957802321,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 6,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 212.33522482859235,
+          "y": 784.1361490543306,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 7,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 4",
+          "rotation": 0,
+          "visible": true,
+          "x": 174.6495764324627,
+          "y": 1070.4843398769603,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 8,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 5",
+          "rotation": 0,
+          "visible": true,
+          "x": 283.84869798793125,
+          "y": 1411.5507132595835,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 9,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 6",
+          "rotation": 0,
+          "visible": true,
+          "x": 192.38024633787018,
+          "y": 1604.5017650821949,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 10,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 7",
+          "rotation": 0,
+          "visible": true,
+          "x": 191.3644635053356,
+          "y": 2012.639337789026,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 11,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 8",
+          "rotation": 0,
+          "visible": true,
+          "x": 284.0343215010671,
+          "y": 2176.766329801286,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 12,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 9",
+          "rotation": 0,
+          "visible": true,
+          "x": 175.4458150283317,
+          "y": 2570.35764951108,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 13,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 10",
+          "rotation": 0,
+          "visible": true,
+          "x": 211.20785858157114,
+          "y": 2789.8157639389533,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 14,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 11",
+          "rotation": 0,
+          "visible": true,
+          "x": 277.49918825343684,
+          "y": 3097.1256165319614,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 15,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 12",
+          "rotation": 0,
+          "visible": true,
+          "x": 163.33177932108038,
+          "y": 3418.4799200040443,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 16,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 13",
+          "rotation": 0,
+          "visible": true,
+          "x": 232.07073876902223,
+          "y": 3626.3898368960367,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 17,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 14",
+          "rotation": 0,
+          "visible": true,
+          "x": 264.937874227101,
+          "y": 4026.9805302170826,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 18,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 15",
+          "rotation": 0,
+          "visible": true,
+          "x": 157.32565975001353,
+          "y": 4189.901037542326,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 19,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 16",
+          "rotation": 0,
+          "visible": true,
+          "x": 251.73572686270745,
+          "y": 4593.237766055587,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 20,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 17",
+          "rotation": 0,
+          "visible": true,
+          "x": 247.6854382028382,
+          "y": 4796.143691419925,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 21,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 18",
+          "rotation": 0,
+          "visible": true,
+          "x": 158.0658069411047,
+          "y": 5123.870535921915,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 22,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 19",
+          "rotation": 0,
+          "visible": true,
+          "x": 572.7944610377144,
+          "y": 238.9580798241309,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 23,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 20",
+          "rotation": 0,
+          "visible": true,
+          "x": 470.27663009520006,
+          "y": 517.5473597134733,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 24,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 21",
+          "rotation": 0,
+          "visible": true,
+          "x": 490.3686451478386,
+          "y": 762.7019518827967,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 25,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 22",
+          "rotation": 0,
+          "visible": true,
+          "x": 569.1228588993492,
+          "y": 1138.1881673080943,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 26,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 23",
+          "rotation": 0,
+          "visible": true,
+          "x": 455.8851348241799,
+          "y": 1309.6108983952693,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 27,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 24",
+          "rotation": 0,
+          "visible": true,
+          "x": 511.06163531177936,
+          "y": 1722.5588380786571,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 28,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 25",
+          "rotation": 0,
+          "visible": true,
+          "x": 559.039940055867,
+          "y": 1899.4484089801304,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 29,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 26",
+          "rotation": 0,
+          "visible": true,
+          "x": 447.11760972368484,
+          "y": 2264.9726180220614,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 27",
+          "rotation": 0,
+          "visible": true,
+          "x": 531.5142512540758,
+          "y": 2522.813741347034,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 28",
+          "rotation": 0,
+          "visible": true,
+          "x": 543.6173510969197,
+          "y": 2788.246862711234,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 29",
+          "rotation": 0,
+          "visible": true,
+          "x": 444.9058969040693,
+          "y": 3147.5284714689737,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 30",
+          "rotation": 0,
+          "visible": true,
+          "x": 549.5527200361312,
+          "y": 3328.2016883947726,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 31",
+          "rotation": 0,
+          "visible": true,
+          "x": 524.4942567443525,
+          "y": 3740.4974395763065,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 32",
+          "rotation": 0,
+          "visible": true,
+          "x": 449.48506465629316,
+          "y": 3909.32498200014,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 33",
+          "rotation": 0,
+          "visible": true,
+          "x": 563.2598524141451,
+          "y": 4290.192495780232,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 34",
+          "rotation": 0,
+          "visible": true,
+          "x": 503.7031239023074,
+          "y": 4528.13614905433,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 38,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 35",
+          "rotation": 0,
+          "visible": true,
+          "x": 460.36842360188507,
+          "y": 4814.484339876961,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 39,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 36",
+          "rotation": 0,
+          "visible": true,
+          "x": 571.1788081720224,
+          "y": 5155.550713259583,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 40,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 37",
+          "rotation": 0,
+          "visible": true,
+          "x": 738.1457080282601,
+          "y": 249.97858860362658,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 38",
+          "rotation": 0,
+          "visible": true,
+          "x": 810.8375698136069,
+          "y": 458.7396269256551,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 39",
+          "rotation": 0,
+          "visible": true,
+          "x": 838.8515055180865,
+          "y": 858.8444530549189,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 40",
+          "rotation": 0,
+          "visible": true,
+          "x": 733.0264591143446,
+          "y": 1021.7992155535053,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 41",
+          "rotation": 0,
+          "visible": true,
+          "x": 830.1759719425438,
+          "y": 1425.5593894084302,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 42",
+          "rotation": 0,
+          "visible": true,
+          "x": 821.0984649143113,
+          "y": 1627.659431869337,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 43",
+          "rotation": 0,
+          "visible": true,
+          "x": 734.6852770143196,
+          "y": 1956.4313596313655,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 44",
+          "rotation": 0,
+          "visible": true,
+          "x": 742.9458569722947,
+          "y": 2871.341951823041,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 48,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 45",
+          "rotation": 0,
+          "visible": true,
+          "x": 856.5325135199271,
+          "y": 3036.8024730744746,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 49,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 46",
+          "rotation": 0,
+          "visible": true,
+          "x": 780.0061477208535,
+          "y": 3446.87821511221,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 50,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 47",
+          "rotation": 0,
+          "visible": true,
+          "x": 756.9302367158434,
+          "y": 3634.9638882355603,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 48",
+          "rotation": 0,
+          "visible": true,
+          "x": 775.152109244661,
+          "y": 4506.7019518827965,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 49",
+          "rotation": 0,
+          "visible": true,
+          "x": 858.1695115713665,
+          "y": 4882.188167308095,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 53,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 50",
+          "rotation": 0,
+          "visible": true,
+          "x": 745.8637534072379,
+          "y": 5053.610898395269,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 51",
+          "rotation": 0,
+          "visible": true,
+          "x": 1127.688939772029,
+          "y": 160.3856517527447,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 52",
+          "rotation": 0,
+          "visible": true,
+          "x": 1097.7432605838076,
+          "y": 572.5497919043537,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 53",
+          "rotation": 0,
+          "visible": true,
+          "x": 1026.602556381483,
+          "y": 741.0456190614414,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 54",
+          "rotation": 0,
+          "visible": true,
+          "x": 1039.8459017230482,
+          "y": 3146.752388216098,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 55",
+          "rotation": 0,
+          "visible": true,
+          "x": 1074.6500540141712,
+          "y": 3365.289766100991,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 56",
+          "rotation": 0,
+          "visible": true,
+          "x": 1141.7588389803946,
+          "y": 3673.68938292265,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 57",
+          "rotation": 0,
+          "visible": true,
+          "x": 1021.4003380986071,
+          "y": 4765.799215553506,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 58",
+          "rotation": 0,
+          "visible": true,
+          "x": 1115.240303222949,
+          "y": 5169.55938940843,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 62,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 59",
+          "rotation": 0,
+          "visible": true,
+          "x": 1353.29947011885,
+          "y": 279.1131318090215,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 63,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 60",
+          "rotation": 0,
+          "visible": true,
+          "x": 1335.1764373756605,
+          "y": 466.53828185798375,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 64,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 61",
+          "rotation": 0,
+          "visible": true,
+          "x": 1436.7993985722294,
+          "y": 815.4987288278423,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 65,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 62",
+          "rotation": 0,
+          "visible": true,
+          "x": 1433.3091183973347,
+          "y": 1713.8747512417165,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 66,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 63",
+          "rotation": 0,
+          "visible": true,
+          "x": 1320.2047576638697,
+          "y": 1885.702941676464,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 67,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 64",
+          "rotation": 0,
+          "visible": true,
+          "x": 1374.4973452982883,
+          "y": 2298.704527307236,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 68,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 65",
+          "rotation": 0,
+          "visible": true,
+          "x": 1423.3877252302648,
+          "y": 2475.0908819689585,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 69,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 66",
+          "rotation": 0,
+          "visible": true,
+          "x": 1389.0409630728789,
+          "y": 4316.549791904354,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 70,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 67",
+          "rotation": 0,
+          "visible": true,
+          "x": 1368.2660836980128,
+          "y": 5103.583249664185,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 71,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 68",
+          "rotation": 0,
+          "visible": true,
+          "x": 1653.446106022975,
+          "y": 196.76559769978076,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 72,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 69",
+          "rotation": 0,
+          "visible": true,
+          "x": 1716.4166723500903,
+          "y": 506.25339136440607,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 73,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 70",
+          "rotation": 0,
+          "visible": true,
+          "x": 1602.3738660553622,
+          "y": 825.4749866863526,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 74,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 71",
+          "rotation": 0,
+          "visible": true,
+          "x": 1674.2862164031385,
+          "y": 1035.0933123774416,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 75,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 72",
+          "rotation": 0,
+          "visible": true,
+          "x": 1693.6929662614052,
+          "y": 2001.8769073165377,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 76,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 73",
+          "rotation": 0,
+          "visible": true,
+          "x": 1685.6198029330708,
+          "y": 2203.1777511350033,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 77,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 74",
+          "rotation": 0,
+          "visible": true,
+          "x": 1598.5516756964857,
+          "y": 2532.9915895104946,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 78,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 75",
+          "rotation": 0,
+          "visible": true,
+          "x": 1709.6037408306945,
+          "y": 2831.4950386730993,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 79,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 76",
+          "rotation": 0,
+          "visible": true,
+          "x": 1665.3262187032954,
+          "y": 3058.5411795251753,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 80,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 77",
+          "rotation": 0,
+          "visible": true,
+          "x": 1644.5515726983833,
+          "y": 4023.113131809021,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 81,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 78",
+          "rotation": 0,
+          "visible": true,
+          "x": 1724.7244557720605,
+          "y": 4559.498728827843,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 82,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 79",
+          "rotation": 0,
+          "visible": true,
+          "x": 1638.6216734722366,
+          "y": 5083.181034326878,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 83,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 80",
+          "rotation": 0,
+          "visible": true,
+          "x": 1981.7012405714675,
+          "y": 197.2933548508995,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 84,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 81",
+          "rotation": 0,
+          "visible": true,
+          "x": 1885.0754961373555,
+          "y": 554.7497024902705,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 85,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 82",
+          "rotation": 0,
+          "visible": true,
+          "x": 1991.2682388715443,
+          "y": 736.5743162221347,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 86,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 83",
+          "rotation": 0,
+          "visible": true,
+          "x": 1962.2956458473827,
+          "y": 1148.59718357515,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 87,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 84",
+          "rotation": 0,
+          "visible": true,
+          "x": 1890.369929484275,
+          "y": 1316.770594621203,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 88,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 85",
+          "rotation": 0,
+          "visible": true,
+          "x": 1901.874507609042,
+          "y": 2223.587024992584,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 89,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 86",
+          "rotation": 0,
+          "visible": true,
+          "x": 2011.6449388188214,
+          "y": 2562.6461040289014,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 87",
+          "rotation": 0,
+          "visible": true,
+          "x": 1921.3963091522464,
+          "y": 2757.047513657081,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 88",
+          "rotation": 0,
+          "visible": true,
+          "x": 1904.2494864977884,
+          "y": 3723.1435511596756,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 92,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 89",
+          "rotation": 0,
+          "visible": true,
+          "x": 1891.8376425338274,
+          "y": 4569.474986686353,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 90",
+          "rotation": 0,
+          "visible": true,
+          "x": 1958.9575652011638,
+          "y": 4779.093312377441,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 91",
+          "rotation": 0,
+          "visible": true,
+          "x": 2184.199262100601,
+          "y": 278.8765940128128,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 92",
+          "rotation": 0,
+          "visible": true,
+          "x": 2297.3059754355945,
+          "y": 444.8025071107436,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 96,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 93",
+          "rotation": 0,
+          "visible": true,
+          "x": 2217.837938735015,
+          "y": 855.34351089949,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 97,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 94",
+          "rotation": 0,
+          "visible": true,
+          "x": 2198.721200926404,
+          "y": 1042.1159640542553,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 98,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 95",
+          "rotation": 0,
+          "visible": true,
+          "x": 2300.79935602648,
+          "y": 1392.0379227995927,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 99,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 96",
+          "rotation": 0,
+          "visible": true,
+          "x": 2184.528473175276,
+          "y": 2461.7998948227814,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 100,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 97",
+          "rotation": 0,
+          "visible": true,
+          "x": 2253.5864056192218,
+          "y": 4892.59718357515,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 101,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 98",
+          "rotation": 0,
+          "visible": true,
+          "x": 2587.751007623746,
+          "y": 160.20044731192274,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 102,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 99",
+          "rotation": 0,
+          "visible": true,
+          "x": 2478.266853374202,
+          "y": 555.5311079036687,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 103,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 100",
+          "rotation": 0,
+          "visible": true,
+          "x": 2516.8855768209332,
+          "y": 772.2432995232164,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 104,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 101",
+          "rotation": 0,
+          "visible": true,
+          "x": 2580.693846496976,
+          "y": 1082.817597969202,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 105,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 102",
+          "rotation": 0,
+          "visible": true,
+          "x": 2484.0532305029487,
+          "y": 4786.1159640542555,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 106,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 103",
+          "rotation": 0,
+          "visible": true,
+          "x": 2750.6876017751433,
+          "y": 250.4833384326671,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 107,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 104",
+          "rotation": 0,
+          "visible": true,
+          "x": 2837.0895407073676,
+          "y": 505.12176442574946,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 108,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 105",
+          "rotation": 0,
+          "visible": true,
+          "x": 2846.184202192603,
+          "y": 773.8193650514143,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 109,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 106",
+          "rotation": 0,
+          "visible": true,
+          "x": 2826.846980954221,
+          "y": 1724.6396109009377,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 110,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 107",
+          "rotation": 0,
+          "visible": true,
+          "x": 2868.130323158033,
+          "y": 2275.5537839991675,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 111,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 108",
+          "rotation": 0,
+          "visible": true,
+          "x": 2875.5357198052625,
+          "y": 3138.1893642949944,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 112,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 109",
+          "rotation": 0,
+          "visible": true,
+          "x": 2781.871028905639,
+          "y": 3740.497064717896,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 113,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 110",
+          "rotation": 0,
+          "visible": true,
+          "x": 2876.2733527600217,
+          "y": 3904.2004473119223,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 114,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 111",
+          "rotation": 0,
+          "visible": true,
+          "x": 2801.5368576616593,
+          "y": 4516.243299523217,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 115,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 112",
+          "rotation": 0,
+          "visible": true,
+          "x": 2870.264823906384,
+          "y": 4826.817597969202,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 116,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 113",
+          "rotation": 0,
+          "visible": true,
+          "x": 2756.0972328124853,
+          "y": 5144.969153439746,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 117,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 114",
+          "rotation": 0,
+          "visible": true,
+          "x": 3151.033963698052,
+          "y": 238.4123083924669,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 118,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 115",
+          "rotation": 0,
+          "visible": true,
+          "x": 3082.3778828742197,
+          "y": 1431.5693344567856,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 119,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 116",
+          "rotation": 0,
+          "visible": true,
+          "x": 3062.2689275593016,
+          "y": 1617.696967686818,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 120,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 117",
+          "rotation": 0,
+          "visible": true,
+          "x": 3080.7533579242827,
+          "y": 2492.1470098594586,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 121,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 118",
+          "rotation": 0,
+          "visible": true,
+          "x": 3161.66749780828,
+          "y": 2865.2355538652787,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 122,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 119",
+          "rotation": 0,
+          "visible": true,
+          "x": 3048.8562561686417,
+          "y": 3037.901750289862,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 123,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 120",
+          "rotation": 0,
+          "visible": true,
+          "x": 3039.590813482408,
+          "y": 3994.4833384326666,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 124,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 121",
+          "rotation": 0,
+          "visible": true,
+          "x": 3121.923055146045,
+          "y": 4249.1217644257495,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 125,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 122",
+          "rotation": 0,
+          "visible": true,
+          "x": 3137.026117617832,
+          "y": 4517.819365051414,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 126,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 123",
+          "rotation": 0,
+          "visible": true,
+          "x": 3036.83088938709,
+          "y": 4874.354939452212,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 127,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 124",
+          "rotation": 0,
+          "visible": true,
+          "x": 3140.232667858468,
+          "y": 5056.767667122115,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 128,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 125",
+          "rotation": 0,
+          "visible": true,
+          "x": 3359.373029225433,
+          "y": 165.6106152985144,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 130,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 127",
+          "rotation": 0,
+          "visible": true,
+          "x": 3444.9666712929607,
+          "y": 1659.381958833592,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 131,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 128",
+          "rotation": 0,
+          "visible": true,
+          "x": 3432.113405240788,
+          "y": 2586.407298057986,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 132,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 129",
+          "rotation": 0,
+          "visible": true,
+          "x": 3325.191126148904,
+          "y": 2749.523193613703,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 133,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 130",
+          "rotation": 0,
+          "visible": true,
+          "x": 3420.71931403541,
+          "y": 3154.49952828996,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 134,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 131",
+          "rotation": 0,
+          "visible": true,
+          "x": 3326.2990145439817,
+          "y": 3686.110093451387,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 135,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 132",
+          "rotation": 0,
+          "visible": true,
+          "x": 3436.865731523021,
+          "y": 3982.412308392467,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 136,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 133",
+          "rotation": 0,
+          "visible": true,
+          "x": 3394.4517525181486,
+          "y": 4211.395692232569,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 137,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 134",
+          "rotation": 0,
+          "visible": true,
+          "x": 3334.04971827394,
+          "y": 4598.637127166119,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 138,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 135",
+          "rotation": 0,
+          "visible": true,
+          "x": 3447.9035611041572,
+          "y": 4764.809994124384,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 139,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 136",
+          "rotation": 0,
+          "visible": true,
+          "x": 3373.6461732021194,
+          "y": 5175.569334456786,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 140,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 137",
+          "rotation": 0,
+          "visible": true,
+          "x": 3680.189643478555,
+          "y": 283.11264910747286,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 141,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 138",
+          "rotation": 0,
+          "visible": true,
+          "x": 3726.3326688887596,
+          "y": 458.0416192480857,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 142,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 139",
+          "rotation": 0,
+          "visible": true,
+          "x": 3614.8261190103026,
+          "y": 826.9823443871951,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 143,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 140",
+          "rotation": 0,
+          "visible": true,
+          "x": 3612.9807645920064,
+          "y": 1705.9566315799855,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 144,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 141",
+          "rotation": 0,
+          "visible": true,
+          "x": 3718.4169561318895,
+          "y": 1888.9656894071848,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 145,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 142",
+          "rotation": 0,
+          "visible": true,
+          "x": 3739.421619043951,
+          "y": 3713.7297151269463,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 146,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 143",
+          "rotation": 0,
+          "visible": true,
+          "x": 3650.420901417094,
+          "y": 3909.6106152985144,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 147,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 144",
+          "rotation": 0,
+          "visible": true,
+          "x": 3645.377979350019,
+          "y": 4316.439721945691,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 148,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 145",
+          "rotation": 0,
+          "visible": true,
+          "x": 3740.3431594368176,
+          "y": 4480.021231656194,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 149,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 146",
+          "rotation": 0,
+          "visible": true,
+          "x": 3633.0670243986146,
+          "y": 4875.915028290548,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 150,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 147",
+          "rotation": 0,
+          "visible": true,
+          "x": 3664.981552499348,
+          "y": 5091.722912213663,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 151,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 148",
+          "rotation": 0,
+          "visible": true,
+          "x": 3988.050157273943,
+          "y": 185.7485556260831,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 152,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 149",
+          "rotation": 0,
+          "visible": true,
+          "x": 3902.96696915337,
+          "y": 518.6682804773418,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 153,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 150",
+          "rotation": 0,
+          "visible": true,
+          "x": 3946.9192605209873,
+          "y": 2007.7905849085641,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 154,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 151",
+          "rotation": 0,
+          "visible": true,
+          "x": 3928.103560192613,
+          "y": 2819.3053235412885,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 155,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 152",
+          "rotation": 0,
+          "visible": true,
+          "x": 4025.8395898341305,
+          "y": 3440.9098222940343,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 156,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 153",
+          "rotation": 0,
+          "visible": true,
+          "x": 3964.8038584772285,
+          "y": 4027.112649107473,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 157,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 154",
+          "rotation": 0,
+          "visible": true,
+          "x": 4016.407355289378,
+          "y": 4202.041619248085,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 158,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 155",
+          "rotation": 0,
+          "visible": true,
+          "x": 3903.7580907287647,
+          "y": 4570.982344387196,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 159,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 156",
+          "rotation": 0,
+          "visible": true,
+          "x": 3985.3893139212155,
+          "y": 4824.558286060317,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 160,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 157",
+          "rotation": 0,
+          "visible": true,
+          "x": 4001.4901171305596,
+          "y": 5094.347163478211,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 161,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 158",
+          "rotation": 0,
+          "visible": true,
+          "x": 4207.042512749709,
+          "y": 209.2486561154392,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 162,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 159",
+          "rotation": 0,
+          "visible": true,
+          "x": 4315.943222288067,
+          "y": 545.26719229212,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 163,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 160",
+          "rotation": 0,
+          "visible": true,
+          "x": 4243.766409556519,
+          "y": 1923.2044762647902,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 164,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 161",
+          "rotation": 0,
+          "visible": true,
+          "x": 4309.235125508323,
+          "y": 2235.946430042126,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 165,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 162",
+          "rotation": 0,
+          "visible": true,
+          "x": 4264.626031651883,
+          "y": 2764.1774645445726,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 166,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 163",
+          "rotation": 0,
+          "visible": true,
+          "x": 4296.527341044214,
+          "y": 3162.251976352282,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 167,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 164",
+          "rotation": 0,
+          "visible": true,
+          "x": 4189.2559206245405,
+          "y": 3325.4410248410563,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 168,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 165",
+          "rotation": 0,
+          "visible": true,
+          "x": 4284.2287432548,
+          "y": 3730.8045829063444,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 169,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 166",
+          "rotation": 0,
+          "visible": true,
+          "x": 4279.172067432171,
+          "y": 3929.748555626083,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 170,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 167",
+          "rotation": 0,
+          "visible": true,
+          "x": 4190.1799743700085,
+          "y": 4262.668280477342,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 171,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 168",
+          "rotation": 0,
+          "visible": true,
+          "x": 4300.491102123664,
+          "y": 4557.868866422573,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 172,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 169",
+          "rotation": 0,
+          "visible": true,
+          "x": 4259.013881631259,
+          "y": 4787.827798055311,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 173,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 170",
+          "rotation": 0,
+          "visible": true,
+          "x": 4197.75949544116,
+          "y": 5174.39315975314,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 174,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 171",
+          "rotation": 0,
+          "visible": true,
+          "x": 4600.931905409142,
+          "y": 272.5800358237848,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 175,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 172",
+          "rotation": 0,
+          "visible": true,
+          "x": 4487.569629527493,
+          "y": 446.1201361021358,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 176,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 173",
+          "rotation": 0,
+          "visible": true,
+          "x": 4543.625749337282,
+          "y": 859.2390057925293,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 177,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 174",
+          "rotation": 0,
+          "visible": true,
+          "x": 4590.688245486388,
+          "y": 1033.699728498732,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 178,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 175",
+          "rotation": 0,
+          "visible": true,
+          "x": 4478.969458711118,
+          "y": 1403.4790017181276,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 179,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 176",
+          "rotation": 0,
+          "visible": true,
+          "x": 4564.04116985857,
+          "y": 1655.995137761672,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 180,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 177",
+          "rotation": 0,
+          "visible": true,
+          "x": 4575.142294732068,
+          "y": 1926.8767090609276,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 181,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 178",
+          "rotation": 0,
+          "visible": true,
+          "x": 4476.940846164442,
+          "y": 2281.55480986771,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 182,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 179",
+          "rotation": 0,
+          "visible": true,
+          "x": 4555.9463291753145,
+          "y": 2876.7095596982,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 183,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 180",
+          "rotation": 0,
+          "visible": true,
+          "x": 4481.699399664449,
+          "y": 3043.971764602148,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 184,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 181",
+          "rotation": 0,
+          "visible": true,
+          "x": 4595.554277531035,
+          "y": 3428.446290302778,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 185,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 182",
+          "rotation": 0,
+          "visible": true,
+          "x": 4535.140560717393,
+          "y": 3661.3823656652003,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 186,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 183",
+          "rotation": 0,
+          "visible": true,
+          "x": 4492.739364110943,
+          "y": 3953.248656115439,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 187,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 184",
+          "rotation": 0,
+          "visible": true,
+          "x": 4603.302645413582,
+          "y": 4289.26719229212,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 188,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 185",
+          "rotation": 0,
+          "visible": true,
+          "x": 4514.936296536229,
+          "y": 4485.898618957925,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 189,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 186",
+          "rotation": 0,
+          "visible": true,
+          "x": 4508.887374882765,
+          "y": 4892.377427081274,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 190,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 187",
+          "rotation": 0,
+          "visible": true,
+          "x": 4604.408021535362,
+          "y": 5055.846745469047,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "tree-flowering"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 213,
+          "type": "obstacle",
+          "name": "ฐานศาลประตูแดงด้านหลังลาน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3190.4,
+          "y": 438.4,
+          "width": 147.2,
+          "height": 147.2,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "biome-landmark"
+            }
+          ]
+        },
+        {
+          "id": 214,
+          "type": "obstacle",
+          "name": "โคมพิธีประตูแดง 1",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2916.8,
+          "y": 612.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "yokai-lantern"
+            }
+          ]
+        },
+        {
+          "id": 215,
+          "type": "obstacle",
+          "name": "โคมพิธีประตูแดง 2",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3556.8,
+          "y": 612.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "yokai-lantern"
+            }
+          ]
+        },
+        {
+          "id": 216,
+          "type": "obstacle",
+          "name": "โคมพิธีประตูแดง 3",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2916.8,
+          "y": 1380.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "yokai-lantern"
+            }
+          ]
+        },
+        {
+          "id": 217,
+          "type": "obstacle",
+          "name": "โคมพิธีประตูแดง 4",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3556.8,
+          "y": 1380.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "yokai-lantern"
+            }
+          ]
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "08 Yokai live habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 206,
+          "type": "spawn",
+          "name": "คัปปะลำธาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1888,
+          "y": 3680,
+          "width": 704,
+          "height": 320,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "yokai_01"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 8
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 207,
+          "type": "spawn",
+          "name": "คาซะโอบาเกะหยดฝน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 896,
+          "y": 3136,
+          "width": 640,
+          "height": 512,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "yokai_rain_umbrella"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 208,
+          "type": "spawn",
+          "name": "คาราสึเท็งงู",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 928,
+          "y": 1216,
+          "width": 576,
+          "height": 512,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "yokai_03"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 209,
+          "type": "spawn",
+          "name": "โคดามะโคนไผ่",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2688,
+          "y": 3104,
+          "width": 640,
+          "height": 576,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "yokai_bamboo_kodama"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 210,
+          "type": "spawn",
+          "name": "นูเอเมฆฝน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3552,
+          "y": 2816,
+          "width": 576,
+          "height": 640,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "yokai_rain_nue"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 211,
+          "type": "spawn",
+          "name": "คิทสึเนะโคมคราม",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1536,
+          "y": 1920,
+          "width": 640,
+          "height": 512,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "yokai_06"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 4
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 212,
+          "type": "spawn",
+          "name": "โรคุโรคุบิโคมชาด",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2400,
+          "y": 1152,
+          "width": 512,
+          "height": 448,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "yokai_lantern_rokurokubi"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 4
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

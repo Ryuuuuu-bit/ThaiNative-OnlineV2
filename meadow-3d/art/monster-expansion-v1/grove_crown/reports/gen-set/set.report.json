@@ -1,0 +1,41 @@
+{
+  "kind": "sprite-gen-gen-set-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run",
+  "states": [
+    "down45_hit",
+    "up45_hit"
+  ],
+  "ok": 2,
+  "failed": [],
+  "not_started": [],
+  "items": [
+    {
+      "state": "down45_hit",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\raw\\down45\\hit.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\reports\\gen-set\\down45_hit.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\references\\layout-guides\\down45\\hit.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 58.4,
+      "ok": true
+    },
+    {
+      "state": "up45_hit",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\raw\\up45\\hit.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\reports\\gen-set\\up45_hit.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\references\\anchors\\up45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\monster-expansion-20261021\\grove_crown\\run\\references\\layout-guides\\up45\\hit.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 56.1,
+      "ok": true
+    }
+  ]
+}

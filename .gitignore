@@ -3,3 +3,6 @@ dist/
 .DS_Store
 *.log
 .codex-run/
+
+# Derived contact sheets and GIFs rebuild from retained curated poses and QA reports.
+meadow-3d/art/**/qa/

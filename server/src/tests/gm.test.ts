@@ -145,7 +145,7 @@ test("admin commands: help, validation, teleport, heal, levels, god, speed, who,
 	await f.promote(admin.uid);
 	assert.match(await admin.gm("/gm help", /คำสั่ง GM/), /คำสั่ง GM/);
 	assert.match(await admin.gm("/gm nope"), /ไม่มีคำสั่ง/);
-	for (const bad of ["/gm tp 1", "/gm tp abc 2", "/gm tp nowhere", "/gm level 0", "/gm level 100", "/gm speed 9", "/gm give BAD!", "/gm gold -5", "/gm admin add 12", "/gm mute Hero", "/gm kill 999", "/gm god maybe"])
+	for (const bad of ["/gm tp 1", "/gm tp abc 2", "/gm tp nowhere", "/gm level 0", "/gm level 101", "/gm speed 9", "/gm give BAD!", "/gm gold -5", "/gm admin add 12", "/gm mute Hero", "/gm kill 999", "/gm god maybe"])
 		assert.match(await admin.gm(bad), /รูปแบบไม่ถูกต้อง/, bad);
 
 	assert.match(await admin.gm("/gm tp 3 18"), /วาร์ปไป \(3, 18\)/);
@@ -212,6 +212,9 @@ test("give and gold go through the ledgered economy path", async (t) => {
 	assert.match(await admin.gm("/gm give red_small 7"), /×7/);
 	assert.equal(admin.p.inventory!.items.find((i) => i.template === "red_small" && i.location === "bag")!.qty >= 7, true);
 	assert.match(await admin.gm("/gm give not_an_item"), /ไม่พบไอเทม/);
+	assert.match(await admin.gm('/gm give field_sword 2'), /×2/);
+	const rolled=admin.p.inventory!.items.filter(i=>i.template==='field_sword');assert.equal(rolled.length,2);assert.ok(rolled.every(i=>i.roll?.affixes.length));assert.notEqual(rolled[0].id,rolled[1].id);
+	assert.match(await admin.gm('/gm give unique_mist_weaver'), /×1/);assert.equal(admin.p.inventory!.items.find(i=>i.template==='unique_mist_weaver')?.roll?.quality,'unique');
 	const ledger = (f.store as any).ledger.filter((l: any) => l.entry.kind === "admin" && (l.entry.goldDelta === 500 || l.entry.template === "red_small" && l.entry.qty === 7));
 	assert.equal(ledger.length, 2);
 	assert.equal((await f.store.integrity()).ok, true);
@@ -381,7 +384,7 @@ test('new hunting rooms load their populations through the real websocket transf
  for(const [map,name] of [['ruins','ซากนครโบราณ'],['canyon','หุบเขาหิน']] as const){
   assert.match(await admin.gm(`/gm tp ${map}`),new RegExp(name));
   const room=admin.room();assert.equal(room.game.mapId,map);assert.equal(admin.p.mapId,map);
-  assert.equal(room.game.enemies.filter(e=>!e.boss).length,54);
+  assert.equal(room.game.enemies.filter(e=>!e.boss).length,map==='ruins'?74:90);
   assert.equal(room.game.enemies.find(e=>e.boss)?.dataId,FIELD_BOSS[map].dataId);
  }
  assert.match(await admin.gm('/gm tp forest'),/ป่าหมอก/);

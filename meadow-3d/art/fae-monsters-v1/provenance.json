@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "fae_puca_shadowhorse",
+      "baseSha256": "99655b0f86519ea7fd3b7a1febb4792e5882f0691ce11492d34e3ef66ff00a47",
+      "run": "output/fae-monsters-20261022/fae_puca_shadowhorse/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_puca_shadowhorse/motion-qa.json"
+    },
+    {
+      "id": "fae_wandering_light_moth",
+      "baseSha256": "5976dd299fd9b95810d813a89d80bc8e169e29cb2967ba06e375ad365f9d25e7",
+      "run": "output/fae-monsters-20261022/fae_wandering_light_moth/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_wandering_light_moth/motion-qa.json"
+    },
+    {
+      "id": "fae_false_garden_root",
+      "baseSha256": "316274ee6da158fa405cbb343394dba6711def2826e5efac3334017eca440221",
+      "run": "output/fae-monsters-20261022/fae_false_garden_root/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_false_garden_root/motion-qa.json"
+    },
+    {
+      "id": "fae_moondrop_mirrorfae",
+      "baseSha256": "b2f7596e1202a959e6ae14464a871c05757dd1a98d47e447c119629febb38866",
+      "run": "output/fae-monsters-20261022/fae_moondrop_mirrorfae/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_moondrop_mirrorfae/motion-qa.json"
+    },
+    {
+      "id": "fae_moonlichen_stag",
+      "baseSha256": "fa811bac534e0e153fd0d0f1a18d1682383a52392972b579dc1eefd5526ec6d5",
+      "run": "output/fae-monsters-20261022/fae_moonlichen_stag/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_moonlichen_stag/motion-qa.json"
+    },
+    {
+      "id": "fae_violet_banshee",
+      "baseSha256": "17d1e6958270b1315c82e2b0c5a5b6d466e4e81174f8693e9dc373d64dea4ac2",
+      "run": "output/fae-monsters-20261022/fae_violet_banshee/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_violet_banshee/motion-qa.json"
+    },
+    {
+      "id": "fae_silverchain_dullahan",
+      "baseSha256": "29b80cbb2b78d16af6cae37897370b03021d6901794ae4bb08c07a60d9dc3da3",
+      "run": "output/fae-monsters-20261022/fae_silverchain_dullahan/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_silverchain_dullahan/motion-qa.json"
+    },
+    {
+      "id": "fae_twilight_antler_king",
+      "baseSha256": "be84495489500e460bddad6e86ace1ff7732bfc5efb91acb46cfcc238c3cd46d",
+      "run": "output/fae-monsters-20261022/fae_twilight_antler_king/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/fae-monsters-v1/fae_twilight_antler_king/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "fae_puca_shadowhorse-idle.webp",
+      "sha256": "c3cbef6c4543271f87552320f600567b3d92d97217a27df7ee7d2bb2a5a6872e"
+    },
+    {
+      "file": "fae_puca_shadowhorse-move.webp",
+      "sha256": "d6a12b0d21e2f6c7da2f6314803464c1e1cfca395cac0252a00c953b657f7e84"
+    },
+    {
+      "file": "fae_puca_shadowhorse-attack.webp",
+      "sha256": "3ae5fa3392e1a0afcdb032672d3bd39a8193b7336ec5443714553eeecaadb3ef"
+    },
+    {
+      "file": "fae_puca_shadowhorse-hit.webp",
+      "sha256": "1703606cc56173a00ce3cf82b740b1f11dd4bc2846d7092c819cff1bdfb03b2a"
+    },
+    {
+      "file": "fae_puca_shadowhorse-death.webp",
+      "sha256": "2c198e00f04a65873dad40e6e69f5b485799b94af1fdbff7185f6381f58336c7"
+    },
+    {
+      "file": "fae_wandering_light_moth-idle.webp",
+      "sha256": "98c00269cd8a73e314f2b66aa0aae06fa25b78f8e4938ca32cef798a04f408a4"
+    },
+    {
+      "file": "fae_wandering_light_moth-move.webp",
+      "sha256": "1f23ee348f6671f3999675c5a433e4e1085cb0f540d12384f6c8e3b3b91fbf18"
+    },
+    {
+      "file": "fae_wandering_light_moth-attack.webp",
+      "sha256": "d53a4b4849bc9b1035eeb29dc02932109c22345de153dd61b3a61d7ed71de5b6"
+    },
+    {
+      "file": "fae_wandering_light_moth-hit.webp",
+      "sha256": "6a1c95cad4968552042c43c7dfebfeda5db3f9e02237aee6c7f02899a9b8249b"
+    },
+    {
+      "file": "fae_wandering_light_moth-death.webp",
+      "sha256": "fa339679947f05092df1a8abadee54920b8cb2e34075c2a125c89394a8901a8e"
+    },
+    {
+      "file": "fae_false_garden_root-idle.webp",
+      "sha256": "e55eeef97d6c4b996d52a191f6702c25f6b5d8711a414d6f30e84049226e95a7"
+    },
+    {
+      "file": "fae_false_garden_root-move.webp",
+      "sha256": "373003e101e0f95873a82779736f3008e7b77eef8e4bcca21ae4dd5f6e68485f"
+    },
+    {
+      "file": "fae_false_garden_root-attack.webp",
+      "sha256": "8b68dace86c82f1e58a00d77da12d743b979e974eb46d22ada2de6b4317017d8"
+    },
+    {
+      "file": "fae_false_garden_root-hit.webp",
+      "sha256": "0de29155cb7a4137a4ddc6e809f4060a1eb02edff5c6d037b3fa8b313c74843b"
+    },
+    {
+      "file": "fae_false_garden_root-death.webp",
+      "sha256": "596e9020c64e2febb652df8c089fe8fa4a02707c728989ed1153a9a652ab2432"
+    },
+    {
+      "file": "fae_moondrop_mirrorfae-idle.webp",
+      "sha256": "1dc42b6e2a4b6cf8dcc1527fa279202533c017bdf086e1a4790bb30db003bc9e"
+    },
+    {
+      "file": "fae_moondrop_mirrorfae-move.webp",
+      "sha256": "7386140afa75f6bf055738e01210c9b2d5005e649d24acaf674fac2cad6f8424"
+    },
+    {
+      "file": "fae_moondrop_mirrorfae-attack.webp",
+      "sha256": "a78d9491c695a0cafa8880860ddd1613d97957b875ef31b406908c03e9d3e661"
+    },
+    {
+      "file": "fae_moondrop_mirrorfae-hit.webp",
+      "sha256": "3acf1bdfc0a8a14a7a96287427f44dce155f74cfed4bbdc50e8d9f2d9739c480"
+    },
+    {
+      "file": "fae_moondrop_mirrorfae-death.webp",
+      "sha256": "fb54b105033f6b5720def8431eff5d421493a28dd07e08db9969ffb693f2614f"
+    },
+    {
+      "file": "fae_moonlichen_stag-idle.webp",
+      "sha256": "8887a89d3ab2700335729a8d02a97a4447fb3ab76200e9afa5fd9bee79525b7a"
+    },
+    {
+      "file": "fae_moonlichen_stag-move.webp",
+      "sha256": "6bcc2e1250263a7a7bbcd7aa5fe46b9cfcd96e3bdabbfa694726a71b2709f424"
+    },
+    {
+      "file": "fae_moonlichen_stag-attack.webp",
+      "sha256": "d9fb3bf7d7a69f60142de2f940585c74053307edeb56f968cc58744f32e3b429"
+    },
+    {
+      "file": "fae_moonlichen_stag-hit.webp",
+      "sha256": "1ca7bdd11a60c4587379915e9d767609ccfb3f132408953ac26fb079d0b19b5a"
+    },
+    {
+      "file": "fae_moonlichen_stag-death.webp",
+      "sha256": "52037e7efb832e5ef9c82570175df8a1cdd9b670490c5cdca14695fcb495573a"
+    },
+    {
+      "file": "fae_violet_banshee-idle.webp",
+      "sha256": "06b37de919b3167c641884d7fb8b50ac3f106b3090c417e5675a0a28bd716f76"
+    },
+    {
+      "file": "fae_violet_banshee-move.webp",
+      "sha256": "4e8f2f641f636e797bcf0c8e77b6b4a3142d616698f0f8b27cf79f90e5621d32"
+    },
+    {
+      "file": "fae_violet_banshee-attack.webp",
+      "sha256": "518bbbbe4876452ff8a2a9b5d55f0afa3ddf87343fd5a26d06d8fc1ce146d94d"
+    },
+    {
+      "file": "fae_violet_banshee-hit.webp",
+      "sha256": "ed5e3db639683b7a32b50f2832fa5640d3040245f57faa7c1b579802df1f7389"
+    },
+    {
+      "file": "fae_violet_banshee-death.webp",
+      "sha256": "0ef3cb4da14d5f85b804aa2496711c8716b9d95fe5622b80f41f1fd4082f94eb"
+    },
+    {
+      "file": "fae_silverchain_dullahan-idle.webp",
+      "sha256": "e1d136a4ab5ba3baf1d11e928cb3fb7bc9d4be4b7c2185d9f8aa8ee247f8e925"
+    },
+    {
+      "file": "fae_silverchain_dullahan-move.webp",
+      "sha256": "df000a380451245b6c10805386c7c91bbb1e118bf8dd48ef557a82221a6cb2d3"
+    },
+    {
+      "file": "fae_silverchain_dullahan-attack.webp",
+      "sha256": "257513ea1a60b7d9608805c91338fd848453b05bb3ac24c19261bd0ca82d8294"
+    },
+    {
+      "file": "fae_silverchain_dullahan-hit.webp",
+      "sha256": "20af83e5b4b95d2e51b48fba9e5081839702b0e728c49e5387e881ea3e5b774b"
+    },
+    {
+      "file": "fae_silverchain_dullahan-death.webp",
+      "sha256": "4da7b3dfbac836f31647f419251bc0a086630cbd6509e71577e8d0605668c877"
+    },
+    {
+      "file": "fae_twilight_antler_king-idle.webp",
+      "sha256": "2697305bb672af44bea160479acff3e929dd80d0e815a3adc1d5e5422d5de641"
+    },
+    {
+      "file": "fae_twilight_antler_king-move.webp",
+      "sha256": "c706cf89ebcde2807b42b933cccb219ec1ff4af4c4766f9300f959bad69bb0fc"
+    },
+    {
+      "file": "fae_twilight_antler_king-attack.webp",
+      "sha256": "342fd544bae3988590b4ef3a4c3cf3ce9d865a94b94e605e452665805bcbaac7"
+    },
+    {
+      "file": "fae_twilight_antler_king-hit.webp",
+      "sha256": "4c3fdaf32c8ac9b43214d407a6546861a9dd9ea546b6164922afd8df8490cb33"
+    },
+    {
+      "file": "fae_twilight_antler_king-death.webp",
+      "sha256": "26749c78c5fdfcfee461977aab855040f5cb1276e7f9df5ee3abc090c746c295"
+    }
+  ]
+}

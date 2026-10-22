@@ -30,5 +30,5 @@ export const hudIcon=(name:string)=>`<svg class="be-icon be-icon-${name}" viewBo
 export function lootIcon(id:string){
  if(!items.items.some(t=>t.id===id))return `<span class="be-loot-icon is-etched">${hudIcon(id.startsWith('card_')?'card':'loot')}</span>`;
  const c=itemIconCell(id);
- return `<span class="be-loot-icon be-atlas-item${c.v2?' be-atlas-v2':''}" style="background-position:${c.position}" aria-hidden="true"></span>`;
+ return `<span class="be-loot-icon be-atlas-item${c.v2?' be-atlas-v2':''}" style="background-position:${c.position}${c.image?`;background-image:url(${c.image});background-size:contain`:''}" aria-hidden="true"></span>`;
 }

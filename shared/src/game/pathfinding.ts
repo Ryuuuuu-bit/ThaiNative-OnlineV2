@@ -100,6 +100,6 @@ export function createPathfinder(walk: Walkable, bounds: Bounds = { halfX: 64, h
 }
 
 /** Stateless helper for map tools and regression tests. */
-export function gridPath(start: PathPoint,goal: PathPoint,walk: Walkable) {
- return createPathfinder(walk).findPath(start,goal);
+export function gridPath(start: PathPoint,goal: PathPoint,walk: Walkable,bounds?:Bounds) {
+ return createPathfinder(walk,bounds).findPath(start,goal);
 }

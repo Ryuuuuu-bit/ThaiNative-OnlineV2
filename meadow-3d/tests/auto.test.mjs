@@ -10,7 +10,9 @@ test('AUTO selects nearest, preserves clicked preference, then prioritises livin
  g.p.autoCfg={...DEFAULT_AUTO,elites:true};tick(g,.2);assert.equal(g.target,boss.id);
 });
 test('untouched AUTO hunts the nearest monster, not the boss across the map',()=>{
- const g=createGame();setAuto(g,true);tick(g,.1);const t=g.enemies.find(e=>e.id===g.target);assert.ok(t&&!t.boss);
+ const g=createGame();const first=g.enemies.filter(e=>!e.boss).sort((a,b)=>Math.hypot(a.x-g.p.x,a.z-g.p.z)-Math.hypot(b.x-g.p.x,b.z-g.p.z))[0];
+ // Start inside a hunting area; the Tiled meadow deliberately leaves its arrival road clear.
+ g.p.x=first.x;g.p.z=first.z;setAuto(g,true);tick(g,.1);const t=g.enemies.find(e=>e.id===g.target);assert.ok(t&&!t.boss);
  const nearest=g.enemies.filter(e=>!e.dead&&!e.boss).sort((a,b)=>Math.hypot(a.x-g.p.x,a.z-g.p.z)-Math.hypot(b.x-g.p.x,b.z-g.p.z))[0];assert.equal(t.id,nearest.id);
 });
 test('AUTO seeks then fights inside the combo reach',()=>{

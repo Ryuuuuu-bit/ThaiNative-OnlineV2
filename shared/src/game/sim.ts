@@ -1,4 +1,16 @@
-import {applyInventory,starterInventory,inventoryWeight,bestPotion,equipped,equippedCards,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
+import {telegraphContains as inTelegraph} from './telegraph-area.js';
+export {inTelegraph};
+import {applyInventory,starterInventory,inventoryWeight,bestPotion,equipped,equippedCards,inventoryProfile,rollDrops,type Inventory,type InventoryOp} from "../inventory.js";
+import {himmapanStep,himmapanHitMultiplier,type HimmapanCombat} from './himmapan-combat.js';
+import {desertStep,desertDestroyed,desertBurrowed,desertHitMultiplier,desertStruck,type DesertCombat} from './desert-combat.js';
+import {frostStep,frostHitMultiplier,isFrostEnemy,type FrostCombat} from './frost-combat.js';
+import {endgameIncoming,endgameSkillCost,endgameSkillSpent,endgameCast,endgameAttackInterval,endgameStatus} from './endgame-loot.js';
+import {endgameStep,endgameHitMultiplier,endgameDestroyed,endgameBossLocked,CONFLUENCE_GUARDS,isEndgameEnemy,type EndgameCombat} from './endgame-combat.js';
+import {yokaiStep,yokaiHitMultiplier,isYokaiEnemy,type YokaiCombat} from './yokai-combat.js';
+import {monsterExpMultiplier,type MonsterRewardSource} from './progression.js';
+import type { LootItem } from '../item-rolls.js';
+import {applyPotionEffect,lootHitDamage,lootAbsorb,lootAfterHurt,tickPlayerLoot,tickEnemyLoot,type LootEffectState,type ItemPoison} from './loot-effects.js';
+import {hasLootCard,lootGuard,lootReflect,lootStillReduction,lootInterrupted,lootOnKill,lootEvadedWarning,lootArmourPen,lootAccuracy,lootEvadedRanged,lootSkillCost,lootSkillSpent,lootMovementMultiplier,lootCrit,lootDecoyAbsorb} from './loot-effects.js';
 import {
 	migrateJob,
 	newJob,
@@ -19,7 +31,7 @@ import { deriveStats, monsterStats, type Combatant } from "../derive.js";
 import { computeDamage } from "../damage.js";
 import { autoAllocateStats } from "../allocation.js";
 import type { GameData, CharacterInput, Skill } from "../schema.js";
-import { createPathfinder } from "./pathfinding.js";
+import { createPathfinder,pathSegmentWalkable } from "./pathfinding.js";
 import { CITY_SPAWN, HEALER, type MapId } from "./maps.js";
 const DEFAULT_DATA = loadGameData();
 import { MONSTER_MOTIONS } from "./monster-motion-data.js";
@@ -30,6 +42,7 @@ export type MonsterMotion =
 	| keyof typeof MONSTER_MOTIONS.slime
 	| keyof typeof MONSTER_MOTIONS.king;
 export interface BossTelegraph {
+ targets?:string[];
 	id: string;
 	nameTh: string;
 	shape: "circle" | "ring" | "cone";
@@ -43,25 +56,25 @@ export interface BossTelegraph {
 	angle: number;
 	left: number;
 }
-/** Whether a point is inside a telegraphed area. */
-export function inTelegraph(t: Pick<BossTelegraph, "shape" | "x" | "z" | "fx" | "fz" | "radius" | "inner" | "angle">, x: number, z: number) {
-	const dx = x - t.x,
-		dz = z - t.z,
-		d = Math.hypot(dx, dz);
-	if (d > t.radius) return false;
-	if (t.shape === "ring") return d >= t.inner;
-	if (t.shape === "cone") return d < 0.6 || (dx * t.fx + dz * t.fz) / d >= Math.cos(((t.angle / 2) * Math.PI) / 180);
-	return true;
-}
 export interface Vec {
 	x: number;
 	z: number;
 }
 export interface Enemy extends Vec {
+ himmapan?:HimmapanCombat;
+ desert?:DesertCombat;
+ frost?:FrostCombat;yokai?:YokaiCombat;
+ rewardSource?:MonsterRewardSource;
+ controlImmuneUntil?:number;
+ endgame?:EndgameCombat;
+ summonedBy?:number;
+ nestEgg?:{hatch:number};
+ itemPoisons?:ItemPoison[];
 	mapId?: MapId;
 	statuses: TimedEffect[];
 	dataId: string;
 	damageBy: Record<string, number>;
+ damageLevels?:Record<string,number>;
  lastEngagedAt?:number;
 	id: number;
 	hp: number;
@@ -112,6 +125,7 @@ export interface Enemy extends Vec {
 }
 export type AutoState = "seek" | "fight" | "retreat" | "idle";
 export interface Player extends Vec, JobProgress {
+ lootEffects?:LootEffectState;
  titleId?:string|null; displayTitleId?:string|null; unlockedTitles?:string[]; titleRecords?:import('../titles.js').TitleRecords;
  /** ตั้งค่า AUTO for this account (server-side; never sent in snapshots). */
  autoCfg?: AutoSettings; autoNext?: string | null;
@@ -181,7 +195,8 @@ export interface Event extends Vec {
 	[key: string]: any;
 }
 export interface Drop extends Vec {
- loot?:{template:string;qty:number}[]; pending?:boolean; noticeAt?:number; blocked?:boolean; boss?:boolean; bossId?:string;
+ source?:MonsterRewardSource;
+ loot?:LootItem[]; pending?:boolean; noticeAt?:number; blocked?:boolean; boss?:boolean; bossId?:string;
 	ownerId: string;
 	id: number;
 	gold: number;
@@ -201,7 +216,7 @@ export interface Projectile extends Vec {
 }
 export { CAMP, ARENA, OBSTACLES, water, walkable } from "./collision.js";
 import { CAMP, ARENA, walkable, moveSliding as move } from "./collision.js";
-import { FIELD_BOSS, isField, nearestCamp, MAP_ENTRY, LAYOUTS } from "./maps.js";
+import { FIELD_BOSS, THORN_NEST, isField, nearestCamp, MAP_ENTRY, LAYOUTS } from "./maps.js";
 /** The map of the game currently being stepped (the sim is synchronous, so one at a time). */
 let activeMap: MapId = "meadow";
 const walk = (x: number, z: number, r = 0.3) => walkable(x, z, r, activeMap);
@@ -236,6 +251,8 @@ export function createGame(
 		n = (Math.imul(n, 1664525) + 1013904223) >>> 0;
 		return n / 4294967296;
 	};
+	let lootSeed=seed^0x51a7e;
+	const equipmentRandom=()=>{lootSeed=(Math.imul(lootSeed,1664525)+1013904223)>>>0;return lootSeed/4294967296;};
 	const stats = deriveStats(profile, data);
 	const job =
 		profile.classId === "swordsman" ? newJob() : migrateJob(profile.level);
@@ -293,7 +310,7 @@ export function createGame(
 	p.level = profile.level;
 	p.nextXp = data.stats.expToNext[p.level - 1];
 	const g = {
-		data, mapId,
+		data, mapId, equipmentRandom,
   /** Authoritative server hook; browser prediction does not load the physics engine. */
   resolveMonsterKnockback: undefined as undefined | ((from:Vec,delta:Vec)=>Vec),
   inventoryCommit: undefined as undefined | ((p:Player,op:InventoryOp,done:()=>void)=>void),
@@ -368,7 +385,8 @@ export function createGame(
  }else Object.assign(p,CITY_SPAWN,{fx:0,fz:1});
 	// Field boss: present from the start, then back `respawnMinutes` after each death (see bossTimer).
 		if (isField(mapId))
-		[FIELD_BOSS[mapId]].forEach((rule) => {
+		[FIELD_BOSS[mapId],...(mapId==='forest'?[THORN_NEST]:[])].forEach((rule) => {
+			if(!rule)return;
 			spawn(g, rule.x, rule.z, true, "pink", false, rule.dataId);
 			g.bossSpawned = true;
 		});
@@ -400,7 +418,7 @@ export function refreshStats(g: Game, p: Player) {
 	if(p.inventory){p.profile.equipment=equipped(p.inventory);p.profile.cards=equippedCards(p.inventory);p.potions=p.inventory.items.filter(i=>i.location==='bag'&&g.data.items.items.find(t=>t.id===i.template)?.effect==='hp').reduce((n,i)=>n+i.qty,0);}
  p.profile.level = p.level;
 	p.profile.skills = { ...p.skills };
-	p.stats = deriveStats(p.profile, g.data);
+	p.stats = deriveStats(p.inventory?inventoryProfile(p.profile,p.inventory,g.data):p.profile, g.data);
 	const endure = p.statuses.find((s) => s.id === "endure");
 	if (endure) {
 		p.stats.hardDef *= 1 + endure.value;
@@ -426,6 +444,7 @@ export function gameSkill(g: Game, a: Action) {
 	return resolveSkill(g.data, skillId(a), g.p.skills[skillId(a)] || 1);
 }
 function duration(e: Enemy, motion: MonsterMotion) {
+	if(motion==='attack'&&e.behavior)return Math.max(.85,e.behavior.windup+((e.dataId.startsWith('himmapan_')||e.dataId.startsWith('desert_')||(isFrostEnemy(e.dataId)||isYokaiEnemy(e.dataId)))?.7:.35));
 	return (
 		(MONSTER_MOTIONS[e.boss ? "king" : "slime"] as any)[motion]?.duration || 1
 	);
@@ -524,8 +543,9 @@ function reward(g: Game, e: Enemy) {
 		ownerId = topDamage(g, e);
 	g.drops.push({
 		ownerId,
+  source:e.rewardSource,
   boss:e.boss, bossId:e.boss?e.dataId:undefined,
- loot:rollDrops(spec,g.random,g.data,g.players.get(ownerId)?.autoSeconds||0,g.players.get(ownerId)?.stats.dropBonus||0),
+ loot:rollDrops(spec,g.random,g.data,g.players.get(ownerId)?.autoSeconds||0,g.players.get(ownerId)?.stats.dropBonus||0,g.equipmentRandom),
 		id: g.nextId++,
 		x: e.x,
 		z: e.z,
@@ -537,22 +557,28 @@ function reward(g: Game, e: Enemy) {
 	});
 	if (e.boss) {
 		g.won = true;
-		emit(g, "victory");
+		emit(g, "victory",{dataId:e.dataId,playerId:ownerId,x:e.x,z:e.z});
 	}
 }
 function defeat(g: Game, e: Enemy) {
+ const noKillCredit=!!e.yokai?.clone||!!e.desert?.hazard||!!e.endgame?.focus;
+ endgameDestroyed(g,e);
+ const ownerId=topDamage(g,e),spec=g.data.monsters.monsters.find(m=>m.id===e.dataId)!;
+ if(!noKillCredit)e.rewardSource={level:spec.level,ownerLevel:Math.max(e.damageLevels?.[ownerId]??spec.level,g.players.get(ownerId)?.level??1),recipients:(g.partyMembers?.(ownerId)??[ownerId]).map(id=>g.players.get(id)).filter((p):p is Player=>!!p&&!p.dead&&Math.hypot(p.x-e.x,p.z-e.z)<=24).map(p=>({id:p.id,level:p.level}))};
+ desertDestroyed(g,e);
 	e.dead = true;
 	e.deathAge = 0;
-		e.respawn = e.boss ? (isField(g.mapId) ? FIELD_BOSS[g.mapId].respawnMinutes * 60 : 1800) : 12;
+		e.respawn = CONFLUENCE_GUARDS.includes(e.dataId)?1800:e.boss ? (isField(g.mapId) ? (FIELD_BOSS[g.mapId]?.respawnMinutes??30) * 60 : 1800) : 12;
 	e.windup = 0;
 	cancelTelegraph(g, e);
 	e.hurt = 0;
 	setMotion(e, "death");
-	g.kills++;
+	if(!noKillCredit)g.kills++;
 	const winner = g.players.get(topDamage(g, e));
-	if (winner) winner.kills++;
+	if(winner)lootOnKill(g,e,winner);
+	if (winner&&!noKillCredit) winner.kills++;
 	for (const p of g.players.values()) if (p.target === e.id) p.target = null;
-		emit(g, "kill", {
+		emit(g, e.yokai?.clone?"illusionDestroyed":e.endgame?.focus?"hazardDestroyed":e.desert?.hazard?"hazardDestroyed":"kill", {
 		x: e.x,
 		z: e.z,
 		id: e.id,
@@ -564,7 +590,7 @@ function defeat(g: Game, e: Enemy) {
 	if (e.boss) {
 		g.projectiles = g.projectiles.filter((p) => p.owner !== e.id);
 		for (const minion of g.enemies)
-			if (minion.summoned && !minion.dead) {
+			if (minion.summoned && !minion.dead && (minion.summonedBy===e.id||(!minion.summonedBy&&e.dataId!=='thorn_nest_mother'))) {
 				minion.dead = true;
 				minion.deathAge = 0;
 				minion.rewarded = true;
@@ -573,13 +599,13 @@ function defeat(g: Game, e: Enemy) {
 	}
 		}
 /** Seconds until the field boss is back (0 while it is alive or on maps without one). */
-export function bossTimer(g: Game) {
-	const boss = g.enemies.find((e) => e.boss && !e.summoned);
+export function bossTimer(g: Game, dataId?:string) {
+	const boss = g.enemies.find((e) => e.boss && !e.summoned&&(!dataId||e.dataId===dataId));
 	return boss && boss.dead ? Math.max(0, boss.respawn) : 0;
 }
 /** Restores a map-wide schedule (e.g. a room created while the boss is still on its timer). */
-export function setBossTimer(g: Game, seconds: number) {
-	const boss = g.enemies.find((e) => e.boss && !e.summoned);
+export function setBossTimer(g: Game, seconds: number, dataId?:string) {
+	const boss = g.enemies.find((e) => e.boss && !e.summoned&&(!dataId||e.dataId===dataId));
 	if (!boss || seconds <= 0) return;
 	boss.dead = true;
 	boss.rewarded = true;
@@ -600,18 +626,49 @@ function learnedValue(g: Game, p: Player, id: string, key: string) {
 	const level = p.skills[id] || 0;
 	return level ? skillValue(resolveSkill(g.data, id, level), key, level) : 0;
 }
+function attackingStats(p: Player, e: Enemy) {
+ const hit=lootAccuracy(p,e)+(hasLootCard(p,'card_tile_sparrow')&&e.hp===e.maxHp?15:0),crit=lootCrit(p);return hit||crit?{...p.stats,hit:p.stats.hit+hit,crit:p.stats.crit+crit/100}:p.stats;
+}
+/** Consumable spell: available to the current swordsman without unlocking an unfinished job. */
+export function sunScrollTarget(g:Game,p:Player,id:number|null=p.target){
+ if(p.dead||p.level<50||p.mapId!==g.mapId||!isField(g.mapId)||p.statuses.some(v=>v.id==='stun'||v.id==='knockup'))return null;
+ const e=g.enemies.find(e=>e.id===id&&!e.dead);return e&&Math.hypot(p.x-e.x,p.z-e.z)<=6&&pathSegmentWalkable(p,e,(x,z)=>walkable(x,z,.15,g.mapId))?e:null;
+}
+function defendingStats(g:Game,e:Enemy){
+ const stats=monsterStats(g.data.monsters.monsters.find(m=>m.id===e.dataId)!,g.data,e.bossPhase===2);
+ const physical=e.statuses.find(s=>s.id==='def_down'),magic=e.statuses.find(s=>s.id==='mdef_down');
+ if(physical){stats.hardDef*=1-physical.value;stats.softDef*=1-physical.value;}
+ if(magic){stats.hardMdef*=1-magic.value;stats.softMdef*=1-magic.value;}
+ return stats;
+}
+/** Bosses allow a short interrupt, then resist hard control long enough to execute a mechanic. */
+function applyMonsterEffects(g:Game,e:Enemy,effects:TimedEffect[]){
+ const controls=effects.filter(s=>s.id==='stun'||s.id==='knockup');
+ if(!e.boss||!controls.length){applyEffects(e,effects);return controls.length>0;}
+ if((e.controlImmuneUntil??0)>g.time){
+  applyEffects(e,effects.filter(s=>s.id!=='stun'&&s.id!=='knockup'));
+  if(!g.p.cd.controlNotice){emit(g,'notice',{text:`บอสต้านการตัดท่าอีก ${Math.ceil(e.controlImmuneUntil!-g.time)} วินาที`});g.p.cd.controlNotice=3;}
+  return false;
+ }
+ e.controlImmuneUntil=g.time+15;
+ applyEffects(e,effects.map(s=>s.id==='stun'||s.id==='knockup'?{...s,remaining:Math.min(.7,s.remaining)}:s));
+ return true;
+}
+/** Called by the server only after the item transaction commits; never by a public skill intent. */
+export function castSunScroll(g:Game,p:Player,amount:number,targetId:number|null=p.target,element:import('../schema.js').Element='holy'){
+ const e=sunScrollTarget(g,p,targetId);if(!e)return false;
+ return withPlayer(g,p.id,()=>{const source=g.data.skills.skills.find(s=>s.id==='fire_bolt')!;
+  const skill={...source,element,percent:100,cast:0,sp:0},defender=defendingStats(g,e);
+  const result=computeDamage({...attackingStats(p,e),matk:p.stats.matk+amount},defender,skill,{rng:g.random},g.data);
+  emit(g,'sun_scroll',{x:e.x,z:e.z,r:1,duration:.65});return hit(g,e,skill,false,{...result});
+ });
+}
 function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:number;crit:boolean;breakdown:any;impact?:number;hit?:boolean;cast?:number}) {
 	if (e.dead) return false;
-	const defender = monsterStats(
-		g.data.monsters.monsters.find((m) => m.id === e.dataId)!,
-		g.data,
-		e.bossPhase === 2,
-	);
-	const defDown = e.statuses.find((s) => s.id === "def_down");
-	if (defDown) {
-		defender.hardDef *= 1 - defDown.value;
-		defender.softDef *= 1 - defDown.value;
-	}
+ if(endgameBossLocked(g,e)){if(!g.p.cd.raidNotice){emit(g,'notice',{text:'ปิดหลักชีวิต ศิลา และดาราทั้งสามก่อนเปิดแกนโลก'});g.p.cd.raidNotice=3;}return false;}
+ if(desertBurrowed(e)){emit(g,'miss',{id:e.id,boss:e.boss,skillId:skill.id,reason:'burrow'});return false;}
+	const defender=defendingStats(g,e);
+ const penetration=lootArmourPen(g.p,skill.id);if(penetration){defender.hardDef*=1-penetration;defender.softDef*=1-penetration;}
 	const rhythm = g.p.skills.sword_rhythm || 0;
 	if (third && rhythm)
 		skill = {
@@ -626,7 +683,7 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 					)),
 		};
 	const result = prepared ? {...prepared,hit:prepared.hit ?? true} : computeDamage(
-		g.p.stats,
+		attackingStats(g.p,e),
 		defender,
 		skill,
 		{ rng: g.random, comboThird: third },
@@ -650,14 +707,24 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 		result.damage * (e.boss && e.motion === "stun" ? 1.25 : 1),
 	);
 	const crit = result.crit;
+	damage=lootHitDamage(g,g.p,e,skill.id,damage,crit,skill);
+ damage=Math.round(damage*himmapanHitMultiplier(g,e,g.p));
+ damage=Math.round(damage*desertHitMultiplier(g,e));if(damage>0)desertStruck(e);
+ damage=Math.round(damage*frostHitMultiplier(g,e,g.p)*yokaiHitMultiplier(g,e,g.p)*endgameHitMultiplier(g,e,g.p));
+	const frontal=((g.p.x-e.x)*e.fx+(g.p.z-e.z)*e.fz)>0;
+	if(e.dataId==='dew_beetle'&&frontal&&e.motion!=='attack')damage=Math.round(damage*.5);
+	if(e.dataId==='clay_pot_doll'&&frontal&&e.motion==='attack'&&e.motionTime<(e.behavior?.windup??.8))damage=Math.round(damage*.6);
+	if(e.dataId==='pine_hedgehog'&&e.cooldown>1&&skill.id==='basic')hurt(g,4);
 	if (damage > 0) g.p.lastCombat = g.time;
 	e.lastEngagedAt=g.time;
 	e.damageBy[g.p.id] = (e.damageBy[g.p.id] || 0) + Math.min(damage, e.hp);
+ (e.damageLevels??={})[g.p.id]=g.p.level;
 	const dealt = Math.min(damage, e.hp);
 	e.hp = Math.max(0, e.hp - damage);
 	const lifesteal = learnedValue(g, g.p, "bloodlust", "lifesteal");
 	if (lifesteal && dealt > 0 && !g.p.dead) g.p.hp = Math.min(g.p.maxHp, g.p.hp + Math.round(dealt * lifesteal));
-	applyEffects(e, skillEffects(skill, g.p.skills[skill.id] || 1, g.p.id));
+	const controlled=applyMonsterEffects(g,e,skillEffects(skill,g.p.skills[skill.id]||1,g.p.id));endgameStatus(g,g.p,e);
+	if(controlled&&(e.motion==='attack'||e.telegraph)){lootInterrupted(g.p,g,e);cancelTelegraph(g,e);setMotion(e,'idle');}
 	e.hurt = 0.18;
 	e.aggro = e.boss ? 30 : 10;
 	if (!e.boss) {
@@ -688,26 +755,34 @@ function hit(g: Game, e: Enemy, skill: Skill, third = false, prepared?:{damage:n
 		defeat(g, e);
 		return true;
 	}
-	if (e.boss && e.bossPhase === 1 && e.hp <= e.maxHp * 0.5) {
+	if (!enterSecondPhase(g,e) && e.boss && (e.motion === "idle" || e.motion === "move"))setMotion(e, "hit");
+	return true;
+}
+function enterSecondPhase(g:Game,e:Enemy){
+	if (!e.dead && e.boss && e.bossPhase === 1 && e.hp <= e.maxHp * 0.5) {
 		e.bossPhase = 2;
 		e.windup = 0;
 		cancelTelegraph(g, e);
 		setMotion(e, "transform");
 		g.projectiles = g.projectiles.filter((p) => p.owner !== e.id);
 		emit(g, "phase2", { x: e.x, z: e.z, id: e.id });
-	} else if (e.boss && (e.motion === "idle" || e.motion === "move"))
-		setMotion(e, "hit");
-	return true;
+		return true;
+	}
+	return false;
 }
 function hurt(
 	g: Game,
 	amount: number,
 	source?: Enemy,
 	attack = source?.motion,
+ incomingElement?:string,
+ incomingRanged=false,
+ periodic=false,
 ) {
 	const p = g.p;
 	if (p.dead || p.god) return;
-	if (p.invulnerable > 0) {
+	if (p.invulnerable > 0 && !periodic) {
+		if(incomingRanged||source?.behavior?.ai==='ranged')lootEvadedRanged(p);
 		emit(g, "evade");
 		return;
 	}
@@ -717,6 +792,7 @@ function hurt(
 			attacker = monsterStats(spec, g.data, source.bossPhase === 2);
 		const basic = gameSkill(g, "attack"),
 			pattern = spec.attacks?.[attack as "slam"] ?? spec.telegraphs?.find((t) => t.id === attack);
+  const rage=source.statuses.find(s=>s.id==='rage');if(rage){attacker.atk*=1+rage.value;attacker.matk*=1+rage.value;}
 		const skill = source.boss
 			? {
 					...basic,
@@ -736,26 +812,37 @@ function hurt(
 			g.data,
 		);
 		if (!result.hit) {
+			if(source.behavior?.ai==='ranged')lootEvadedRanged(p);
 			emit(g, "miss", { defender: "player", breakdown: result.breakdown });
 			return;
 		}
 		amount = result.damage;
 		breakdown = result.breakdown;
 	}
-	const guard = p.statuses.find((s) => s.id === "guard");
+ if(!periodic)amount=lootDecoyAbsorb(g,p,amount,source,attack);
+	const guard = periodic?undefined:p.statuses.find((s) => s.id === "guard");
 	if (guard) amount = Math.round(amount * (1 - guard.value));
+	const damageElement=incomingElement??(source?g.data.monsters.monsters.find(m=>m.id===source.dataId)?.element:undefined);
+ amount=Math.round(amount*lootStillReduction(p,damageElement,!incomingRanged));
+	amount=endgameIncoming(p,amount,damageElement,incomingRanged||source?.behavior?.ai==='ranged',!!source&&g.data.monsters.monsters.find(m=>m.id===source.dataId)!.matk>g.data.monsters.monsters.find(m=>m.id===source.dataId)!.atk);
+	const beforeBarrier=amount;
+	amount=lootAbsorb(p,amount);
 	p.hp = Math.max(0, p.hp - amount);
-	if (amount > 0) p.lastCombat = g.time;
+	if(!periodic)lootAfterHurt(g,p,amount,damageElement);
+	if(guard&&beforeBarrier>0&&p.hp>0)lootGuard(g,p,source,!!source?.boss&&attack!=="attack"&&attack!=="idle"&&attack!=="hop");
+	if (beforeBarrier > 0) p.lastCombat = g.time;
 	const reflect = learnedValue(g, p, "retribution", "reflect");
-	if (reflect && source && !source.dead && amount > 0) {
-		const back = Math.max(1, Math.round(amount * reflect));
+	const fixedReflect=source&&Math.hypot(source.x-p.x,source.z-p.z)<=2.5&&amount>0?lootReflect(p):0;
+	if ((reflect||fixedReflect) && source && !source.dead && amount > 0) {
+		const back = fixedReflect+Math.round(amount * reflect);
 		source.damageBy[p.id] = (source.damageBy[p.id] || 0) + Math.min(back, source.hp);
+		(source.damageLevels??={})[p.id]=p.level;
 		source.hp = Math.max(0, source.hp - back);
 		emit(g, "hit", { skillId: "retribution", x: source.x, z: source.z, id: source.id, damage: back, crit: false, element: "weapon", boss: source.boss, variant: source.variant, reflect: true });
 		if (source.hp === 0) defeat(g, source);
 	}
-	if (!p.statuses.some((s) => s.id === "endure")) p.hurt = 0.3;
-	p.invulnerable = 0.55;
+	if (!periodic&&!p.statuses.some((s) => s.id === "endure")) p.hurt = 0.3;
+	if(!periodic)p.invulnerable = 0.55;
 	emit(g, "hurt", { amount, breakdown });
 	if (p.hp === 0) {
 		p.dead = true;p.reviveRemaining=5;
@@ -764,6 +851,7 @@ function hurt(
 		g.destination = null;
 		emit(g, "death", { xpLost: deathPenalty(p, g.data) });
 	}
+ return true;
 }
 /** Adds base and job EXP (EXP bonus applies to base EXP), runs level-ups and emits a pickup event. */
 export function grantExp(g: Game, r: Player, baseXp: number, jobExp: number, extra: Record<string, unknown> = {}) {
@@ -784,10 +872,21 @@ export function grantExp(g: Game, r: Player, baseXp: number, jobExp: number, ext
 		r.mp = r.maxMp;
 		emit(g, "level", { level: r.level, skillPoints: r.skillPoints, points: r.statPoints, granted: g.data.stats.pointsPerLevel });
 	}
+	if(r.level>=g.data.stats.maxLevel)r.xp=0;
 	g.p = before;
 }
 /** Party EXP: living members in this map/channel simulation split EXP, +10% per extra member. Server lookup excludes offline/loading peers. */
-export function expShares(g: Game, p: Player, xp: number, jobExp: number) {
+export function expShares(g: Game, p: Player, xp: number, jobExp: number, source?:MonsterRewardSource) {
+ if(source){
+  // Membership and level are captured at defeat, before async inventory commit.
+  // Late joins, corpse theft and out-of-range party peers cannot inherit EXP.
+  const eligible=source.recipients.filter(r=>monsterExpMultiplier(r.level,source.level)>0);
+  const bonus=1+.1*Math.max(0,eligible.length-1);
+  return eligible.flatMap(r=>{const player=g.players.get(r.id);if(!player||player.dead)return [];
+   const factor=Math.min(monsterExpMultiplier(r.level,source.level),monsterExpMultiplier(source.ownerLevel,source.level));
+   return [{player,xp:Math.floor(xp*factor*bonus/eligible.length),jobExp:Math.floor(jobExp*factor*bonus/eligible.length),shared:eligible.length>1}];
+  });
+ }
 	const ids = g.partyMembers?.(p.id) ?? [p.id];
 	const members = ids
 		.map(id => g.players.get(id))
@@ -831,7 +930,7 @@ export function action(g: Game, a: Action) {
 		p.comboWindow = 1.1;
 		p.attack = 0.34;
 		p.attackKind = "slash";
-		p.cd.attack = p.combo === 2 ? 0.55 : skill.cooldown;
+		p.cd.attack = endgameAttackInterval(p,(p.combo === 2 ? 1.45 : 1)/Math.max(.1,p.stats.aspd));
 		const preferred = p.auto
 			? g.enemies.find(
 					(e) =>
@@ -888,7 +987,8 @@ export function action(g: Game, a: Action) {
 					skill.range + (target.boss ? 0.5 : 0))
 		)
 			return false;
-		if (p.mp < skill.sp) {
+		const spCost=endgameSkillCost(p,lootSkillCost(p,skill.sp,skill.percent>0),skill.id);
+		if (p.mp < spCost) {
 			emit(g, "notice", { text: "SP ไม่พอ รอพลังฟื้นสักครู่" });
 			return false;
 		}
@@ -897,7 +997,8 @@ export function action(g: Game, a: Action) {
 			p.fx = (target.x - p.x) / d;
 			p.fz = (target.z - p.z) / d;
 		}
-		p.mp -= skill.sp;
+		p.mp -= spCost;
+		lootSkillSpent(g,p,skill.sp,skill.effect,skill.percent>0);endgameSkillSpent(g,p,skill);
 		p.cd[skill.id] = skill.cooldown;
 		if (skill.id === "whirlwind") p.cd.spin = skill.cooldown;
 		const look = skill.visual ?? skill.id;
@@ -946,7 +1047,7 @@ export function action(g: Game, a: Action) {
 		if (skill.effect === "taunt") {
 			for (const e of g.enemies)
 				if (!e.dead && Math.hypot(e.x - p.x, e.z - p.z) <= skill.radius) {
-					applyEffects(e, skillEffects(skill, level, p.id));
+					applyMonsterEffects(g,e,skillEffects(skill,level,p.id));endgameStatus(g,p,e);
 					e.aggro = 5;
 				}
 			return true;
@@ -1003,12 +1104,12 @@ export function action(g: Game, a: Action) {
 			return true;
 		}
 		if (skill.cast > 0) {
-			p.castRemaining = skill.cast;
+			p.castRemaining = endgameCast(p,skill.cast);
 			g.meteors.push({
 				ownerId: p.id,
 				x: skill.range && target ? target.x : p.x,
 				z: skill.range && target ? target.z : p.z,
-				time: skill.cast,
+				time: p.castRemaining,
 				skillId: skill.id,
 				level,
 			});
@@ -1025,9 +1126,8 @@ export function action(g: Game, a: Action) {
         for (const e of [...targets]) {
             if(skill.id==='whirlwind') {
                 // Reserve both original rolls now, then divide their exact integer total.
-                const defender=monsterStats(g.data.monsters.monsters.find(m=>m.id===e.dataId)!,g.data,e.bossPhase===2);
-                const defDown=e.statuses.find(s=>s.id==='def_down');if(defDown){defender.hardDef*=1-defDown.value;defender.softDef*=1-defDown.value;}
-                const rolls=Array.from({length:skill.hits},()=>computeDamage(p.stats,defender,skill,{rng:g.random,comboThird:false},g.data));
+                const defender=defendingStats(g,e);
+                const rolls=Array.from({length:skill.hits},()=>computeDamage(attackingStats(p,e),defender,skill,{rng:g.random,comboThird:false},g.data));
                 const total=rolls.reduce((n,r)=>n+Math.round(r.damage*(e.boss&&e.motion==='stun'?1.25:1)),0);
                 const prepared={impact:1,damage:Math.ceil(total/2),crit:rolls.some(r=>r.crit),breakdown:rolls[0].breakdown};
                 hit(g,e,skill,false,prepared);
@@ -1035,11 +1135,10 @@ export function action(g: Game, a: Action) {
             } else if(skill.hitInterval && skill.hits>1) {
                 // Staged multi-hit (frenzy_slash, blade_cyclone): every roll is made now, hit 1 lands now and the
                 // rest land hitInterval apart; a miss keeps its slot, and hits queued after the target dies are dropped.
-                const defender=monsterStats(g.data.monsters.monsters.find(m=>m.id===e.dataId)!,g.data,e.bossPhase===2);
-                const defDown=e.statuses.find(s=>s.id==='def_down');if(defDown){defender.hardDef*=1-defDown.value;defender.softDef*=1-defDown.value;}
+                const defender=defendingStats(g,e);
                 const cast=g.nextId++;
                 for(let i=0;i<skill.hits;i++){
-                    const r=computeDamage(p.stats,defender,skill,{rng:g.random,comboThird:false},g.data);
+                    const r=computeDamage(attackingStats(p,e),defender,skill,{rng:g.random,comboThird:false},g.data);
                     const staged={impact:i+1,hit:r.hit,damage:Math.round(r.damage*(e.boss&&e.motion==='stun'?1.25:1)),crit:r.crit,breakdown:r.breakdown,cast};
                     if(i===0)hit(g,e,skill,false,staged);
                     else (p.whirlwindHits??=[]).push({id:e.id,due:g.time+skill.hitInterval*i,...staged,skillId:skill.id,level});
@@ -1091,9 +1190,7 @@ function drinkPotion(g: Game, kind: "hp" | "sp", cooldown: number) {
 	}
 	const out = applyInventory({ gold: p.gold, inventory: p.inventory }, { op: "use", id: best.id }, p.profile, g.data, () => String(g.nextId++));
 	p.inventory = out.state.inventory;
-	if (kind === "hp") p.hp = Math.min(p.maxHp, p.hp + out.effect!.amount);
-	else p.mp = Math.min(p.maxMp, p.mp + out.effect!.amount);
-	p.cd.potion = cooldown;
+	applyPotionEffect(g,p,kind,out.effect!.amount);
 	refreshStats(g, p);
 	return true;
 }
@@ -1121,9 +1218,10 @@ export function revive(g: Game) {
 	const p = g.p;
  if((p.reviveRemaining??0)>0)return;
 	setAuto(g, false);
-	p.mapId = "city_plaza";
- p.x = CITY_SPAWN.x;
- p.z = CITY_SPAWN.z;
+	const checkpoint=g.mapId==='confluence'?campFor(g.mapId,p):CITY_SPAWN;
+ p.mapId=g.mapId==='confluence'?'confluence':'city_plaza';
+ p.x=checkpoint.x;
+ p.z=checkpoint.z;
  p.fx=0;p.fz=1;
  p.statuses=[]; p.castRemaining=0; p.destination=null; p.target=null;
 	p.hp = p.maxHp;
@@ -1492,7 +1590,7 @@ function startKingAttack(g: Game, e: Enemy) {
 }
 function summon(g: Game, e: Enemy) {
 	// Cap lingering summons, while each summon cast still creates exactly three.
-	const living = g.enemies.filter((m) => m.summoned && !m.dead);
+	const living = g.enemies.filter((m) => m.summoned && !m.dead&&m.summonedBy===e.id);
 	for (const old of living.slice(0, Math.max(0, living.length - 6))) {
 		old.dead = true;
 		old.rewarded = true;
@@ -1524,6 +1622,7 @@ function summon(g: Game, e: Enemy) {
 			minion,
 		);
 		if (minion) m.summoned = true;
+		m.summonedBy=e.id;
 		m.aggro = 30;
 		ids.push(m.id);
 	}
@@ -1632,7 +1731,48 @@ function kingStep(g: Game, e: Enemy, dt: number) {
 		if (e.cooldown <= 0 && !startTelegraph(g, e)) startKingAttack(g, e);
 	}
 }
+/** The nest alternates locked web warnings and destructible egg sacs; summons never award loot. */
+function thornMotherStep(g:Game,e:Enemy,dt:number){
+ const p=g.p,d=Math.hypot(p.x-e.x,p.z-e.z);
+ if(d<7)e.aggro=10;
+ if(e.telegraph){
+  const t=e.telegraph;t.left-=dt;e.windup=Math.max(0,t.left);if(t.left>0)return;
+  if(t.id==='thorn_web'){
+   for(const victim of g.players.values())if(!victim.dead&&inTelegraph(t,victim.x,victim.z)){
+    victim.statuses=victim.statuses.filter(s=>s.sourceId!=='thorn_web');
+    victim.statuses.push({id:'slow',sourceId:'thorn_web',remaining:3,value:1});
+    withPlayer(g,victim.id,()=>hurt(g,0,e,t.id as MonsterMotion));
+   }
+  }else{
+   const alive=g.enemies.filter(v=>v.summonedBy===e.id&&!v.dead).length;
+   for(let i=0;i<Math.min(3,6-alive);i++){
+    const a=i*Math.PI*2/3,x=e.x+Math.cos(a)*3,z=e.z+Math.sin(a)*3;if(!walk(x,z,.5))continue;
+    const egg=spawn(g,x,z,false,'pink',true,'mist_weaver');egg.summonedBy=e.id;egg.nestEgg={hatch:5};egg.hp=egg.maxHp=45;egg.rewarded=true;egg.cooldown=5;
+    emit(g,'warning',{id:egg.id,x,z,r:1,duration:5,name:'ทำลายถุงไข่ก่อนฟัก'});
+   }
+  }
+  emit(g,'bossBlast',{id:e.id,x:t.x,z:t.z,r:t.radius,shape:t.shape,inner:t.inner,attack:t.id});
+  e.telegraph=undefined;e.cooldown=3;return;
+ }
+ if(e.aggro<=0){setMotion(e,'idle');return;}
+ if(e.motion==='attack'&&e.motionTime>=e.motionDuration)setMotion(e,'idle');
+ if(e.cooldown<=0){e.sinceTelegraph=3;startTelegraph(g,e);const warning=e.telegraph as BossTelegraph|undefined;if(warning){setMotion(e,'attack');e.motionDuration=warning.left+.35;}}
+}
 /** Every few ordinary attacks (more often once enraged) the boss winds up one of its telegraphed skills. */
+/** Temple guardian uses locked axe areas; impact and recovery share the authored attack clip. */
+function greekMinotaurStep(g:Game,e:Enemy,dt:number){
+ const p=g.p,d=Math.hypot(p.x-e.x,p.z-e.z);
+ if(e.hp<=e.maxHp*.5&&e.bossPhase===1){e.bossPhase=2;emit(g,'phase2',{id:e.id,x:e.x,z:e.z});}
+ if(e.telegraph){const t=e.telegraph;t.left-=dt;e.windup=Math.max(0,t.left);if(t.left<=0){
+  e.telegraph=undefined;for(const victim of g.players.values())if(!victim.dead&&inTelegraph(t,victim.x,victim.z))withPlayer(g,victim.id,()=>hurt(g,0,e,t.id as MonsterMotion));
+  emit(g,'bossBlast',{x:t.x,z:t.z,id:e.id,attack:t.id,shape:t.shape,r:t.radius,inner:t.inner,angle:t.angle,fx:t.fx,fz:t.fz});e.cooldown=e.bossPhase===2?1.8:2.6;
+ }return;}
+ if(e.motion==='attack'){if(e.motionTime>=e.motionDuration)setMotion(e,'idle');return;}
+ if(d<10)e.aggro=Math.max(e.aggro,6);
+ if(e.aggro<=0){setMotion(e,'idle');return;}
+ if(d>4){setMotion(e,'hop');face(e,p.x,p.z);move(e,e.fx*1.8*dt,e.fz*1.8*dt);return;}
+ if(e.cooldown<=0){e.sinceTelegraph=3;startTelegraph(g,e);const t=e.telegraph as BossTelegraph|undefined;if(t){setMotion(e,'attack');e.motionDuration=t.left+.35;}}
+}
 function startTelegraph(g: Game, e: Enemy) {
 	const list = g.data.monsters.monsters.find((m) => m.id === e.dataId)?.telegraphs;
 	if (!list?.length) return false;
@@ -1662,6 +1802,7 @@ function startTelegraph(g: Game, e: Enemy) {
 	e.windup = spec.windup;
 	setMotion(e, "roar");
 	const t = e.telegraph;
+ t.targets=[...g.players.values()].filter(p=>!p.dead&&inTelegraph(t,p.x,p.z)).map(p=>p.id);
 	emit(g, "warning", { x: t.x, z: t.z, r: t.radius, duration: spec.windup, id: e.id, attack: t.id, shape: t.shape, inner: t.inner, angle: t.angle, fx: t.fx, fz: t.fz, name: t.nameTh });
 	return true;
 }
@@ -1671,8 +1812,11 @@ function telegraphStep(g: Game, e: Enemy, dt: number) {
 	e.windup = Math.max(0, t.left);
 	if (t.left > 0) return;
 	e.telegraph = undefined;
-	for (const victim of g.players.values())
-		if (!victim.dead && inTelegraph(t, victim.x, victim.z)) withPlayer(g, victim.id, () => hurt(g, 0, e, t.id as MonsterMotion));
+	for (const victim of g.players.values())if(!victim.dead){
+  const inside=inTelegraph(t,victim.x,victim.z);
+  if(t.targets?.includes(victim.id)&&(!inside||(victim.invulnerable>0&&victim.cd.dash>0)))lootEvadedWarning(victim,g);
+  if(inside)withPlayer(g,victim.id,()=>hurt(g,0,e,t.id as MonsterMotion));
+ }
 	emit(g, "bossBlast", { x: t.x, z: t.z, id: e.id, attack: t.id, shape: t.shape, r: t.radius, inner: t.inner, angle: t.angle, fx: t.fx, fz: t.fz });
 	setMotion(e, "idle");
 	e.cooldown = e.bossPhase === 2 ? 0.9 : 1.4;
@@ -1690,9 +1834,21 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 		dx = p.x - e.x,
 		dz = p.z - e.z,
 		d = Math.hypot(dx, dz) || 1;
-	if (d < b.aggroRange) e.aggro = Math.max(e.aggro, 6);
+	if (d < b.aggroRange&&!['jelly_pink','forest_young_1','ruins_young_1','canyon_young_1'].includes(e.dataId)) e.aggro = Math.max(e.aggro, 6);
+	if(e.aggro>0&&!e.engaged&&['tile_sparrow','shade_wolf'].includes(e.dataId)){
+	 e.engaged=true;const partner=g.enemies.find(v=>v.id!==e.id&&v.dataId===e.dataId&&!v.dead&&Math.hypot(v.x-e.x,v.z-e.z)<4);if(partner){partner.aggro=6;partner.engaged=true;}
+	}
 	if (e.motion === "attack") {
 		e.windup = Math.max(0, b.windup - e.motionTime);
+		if(e.dataId==='greek_gorgon'&&e.telegraph){
+		 const t=e.telegraph;t.left=Math.max(0,b.windup-e.motionTime);
+		 if(e.motionTime>=b.windup&&!e.attackApplied){e.attackApplied=true;for(const victim of g.players.values())if(!victim.dead&&!victim.god&&victim.invulnerable<=0&&inTelegraph(t,victim.x,victim.z)){withPlayer(g,victim.id,()=>hurt(g,0,e,t.id as MonsterMotion));if(!victim.dead){victim.statuses=victim.statuses.filter(s=>s.sourceId!=='greek_gaze');victim.statuses.push({id:'slow',sourceId:'greek_gaze',remaining:3,value:.5});}}cancelTelegraph(g,e);}
+		}
+		if(e.dataId==='lotus_rabbit'&&e.motionTime<b.windup*.5)move(e,-e.fx*dt*2,-e.fz*dt*2);
+		if(e.dataId==='iron_pincer_crab'&&e.motionTime<b.windup&&d<2.6)move(p,-dx/d*dt,-dz/d*dt);
+		if(['oretail_lizard','forest_young_1'].includes(e.dataId)&&e.motionTime>=b.windup&&!e.attackApplied){
+		 e.attackApplied=true;for(const victim of g.players.values())if(!victim.dead&&inTelegraph({shape:e.dataId==='oretail_lizard'?'cone':'circle',x:e.x,z:e.z,fx:e.fx,fz:e.fz,radius:1.9,inner:0,angle:180},victim.x,victim.z))withPlayer(g,victim.id,()=>hurt(g,0,e));
+		}
 		if (b.ai === "ranged") {
 			if (e.motionTime >= b.windup && !e.attackApplied) {
 				e.attackApplied = true;
@@ -1706,6 +1862,7 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 			if (!e.attackApplied && Math.hypot(p.x - e.x, p.z - e.z) < b.attackRange + 0.35) {
 				e.attackApplied = true;
 				hurt(g, 0, e);
+				if(e.dataId==='mist_shroom'&&!p.dead){p.lootEffects??={cooldowns:{},shield:0,shieldFor:0};p.lootEffects.venom={remaining:4,tick:0};}
 			}
 		}
 		if (e.motionTime >= e.motionDuration) {
@@ -1715,12 +1872,19 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 		return;
 	}
 	if (e.aggro > 0) {
+		if(e.cooldown>0&&d<5&&['tile_sparrow','dewdrop_moth','shade_wolf','greek_harpy'].includes(e.dataId)){
+		 setMotion(e,'hop');const side=e.id%2?1:-1;
+		 if(e.dataId==='tile_sparrow')move(e,-dx/d*b.speed*dt,-dz/d*b.speed*dt);
+		 else move(e,-dz/d*b.speed*dt*side,dx/d*b.speed*dt*side);
+		 return;
+		}
 		const ranged = b.ai === "ranged";
 		if (e.cooldown <= 0 && d < b.attackRange && (!ranged || d >= (b.keepAway ?? 0) * 0.6)) {
 			face(e, p.x, p.z);
 			setMotion(e, "attack");
 			e.windup = b.windup;
-			if (!ranged) warn(g, e, p.x, p.z, 0.9, b.windup);
+			if(e.dataId==='greek_gorgon'){e.telegraph={id:'greek_gaze',nameTh:'สายตาหินหยก',shape:'cone',x:e.x,z:e.z,fx:e.fx,fz:e.fz,radius:3.5,inner:0,angle:80,left:b.windup};emit(g,'warning',{x:e.x,z:e.z,r:3.5,duration:b.windup,id:e.id,attack:'greek_gaze',shape:'cone',angle:80,fx:e.fx,fz:e.fz,name:'สายตาหินหยก'});}
+			else if (!ranged) warn(g, e, p.x, p.z, 0.9, b.windup);
 		} else if (ranged && d < (b.keepAway ?? 0)) {
 			setMotion(e, "hop");
 			move(e, (-dx / d) * b.speed * dt, (-dz / d) * b.speed * dt);
@@ -1746,6 +1910,11 @@ function slimeStep(g: Game, e: Enemy, dt: number) {
 }
 function playerStep(g: Game, dt: number, input: Vec) {
 	const p = g.p;
+	const venom=p.lootEffects?.venom;
+	if(venom){if(p.dead)delete p.lootEffects!.venom;else{venom.remaining-=dt*(hasLootCard(p,'card_mist_shroom')?4/3:1);venom.tick+=dt;if(venom.tick>=1){venom.tick-=1;hurt(g,3);}if(venom.remaining<=0)delete p.lootEffects!.venom;}}
+	tickPlayerLoot(g,p,dt);
+ const bleed=p.lootEffects?.bleed;
+ if(bleed){if(p.dead||bleed.map!==g.mapId)delete p.lootEffects!.bleed;else{bleed.tick+=Math.min(dt,bleed.remaining);bleed.remaining-=dt;while(bleed.tick>=1-1e-8&&!p.dead){bleed.tick-=1;hurt(g,Math.round(bleed.damage*(hasLootCard(p,'card_frost_ice_lindworm')?.9:1)),undefined,undefined,undefined,false,true);}if(bleed.remaining<=0||p.dead)delete p.lootEffects!.bleed;}}
  if(p.auto)p.autoSeconds+=dt;
 	const statBuffs = () => p.statuses.filter((s) => s.id === "endure" || s.id === "rage").length;
 	const hadBuffs = statBuffs();
@@ -1829,7 +1998,7 @@ function playerStep(g: Game, dt: number, input: Vec) {
 				p.fz = iz;
 				const speed =
 					(p.auto && p.autoState === "idle" ? 1.8 : p.attack > 0 ? 1.6 : 4.5) *
-					p.stats.moveSpeed * (p.gmSpeed ?? 1) * (1+Math.max(0,...p.statuses.filter(s=>s.id==='speed').map(s=>s.value))) *
+					p.stats.moveSpeed * lootMovementMultiplier(p) * (p.gmSpeed ?? 1) * (1+Math.max(0,...p.statuses.filter(s=>s.id==='speed').map(s=>s.value))) *
 					(1 -
 						Math.max(
 							0,
@@ -1865,6 +2034,12 @@ export function step(
 	}
 	if(g.mapId === "city_plaza"){g.p=previous;return;}
 	for (const e of [...g.enemies]) {
+		tickEnemyLoot(g,e,dt,(owner,damage,element)=>{
+		 const previousPlayer=g.p;g.p=owner;
+		 e.damageBy[owner.id]=(e.damageBy[owner.id]??0)+Math.min(e.hp,damage);(e.damageLevels??={})[owner.id]=owner.level;e.hp=Math.max(0,e.hp-damage);e.lastEngagedAt=g.time;owner.lastCombat=g.time;
+		 emit(g,'hit',{id:e.id,x:e.x,z:e.z,damage,crit:false,skillId:element==='fire'?'item_burn':element==='wind'?'item_chain':'item_poison',element,boss:e.boss,variant:e.variant});
+		 if(e.hp===0)defeat(g,e);else enterSecondPhase(g,e);g.p=previousPlayer;
+		});
 		tickEffects(e, dt);
 		const forced = e.statuses.find((s) => s.id === "taunt");
 		const taunter = forced ? g.players.get(forced.sourceId) : undefined;
@@ -1899,13 +2074,13 @@ export function step(
 				e.windup = 0;
 				e.rewarded = false;
 				e.deathAge = 0;
-								e.damageBy = {};e.bossPhase=1;e.engaged=false;
+								e.damageBy = {};e.damageLevels={};e.bossPhase=1;e.engaged=false;e.himmapan=undefined;e.desert=undefined;e.frost=undefined;e.yokai=undefined;e.endgame=undefined;e.rewardSource=undefined;e.controlImmuneUntil=undefined;
 				setMotion(e, "idle");
 				if (e.boss) emit(g, "boss");
 			}
 			continue;
 		}
-        if(e.boss&&Object.keys(e.damageBy).length&&(g.time-(e.lastEngagedAt??g.time)>=30||!Object.keys(e.damageBy).some(id=>{const p=g.players.get(id);return p&&!p.dead;}))){e.hp=e.maxHp;e.damageBy={};e.engaged=false;e.bossPhase=1;e.statuses=[];cancelTelegraph(g,e);e.x=e.homeX;e.z=e.homeZ;setMotion(e,'idle');}
+        if(e.boss&&Object.keys(e.damageBy).length&&(g.time-(e.lastEngagedAt??g.time)>=30||!Object.keys(e.damageBy).some(id=>{const p=g.players.get(id);return p&&!p.dead;}))){for(const child of g.enemies)if(child.summonedBy===e.id&&!child.dead){child.dead=true;child.rewarded=true;child.deathAge=0;setMotion(child,'death');}e.hp=e.maxHp;e.damageBy={};e.damageLevels={};e.engaged=false;e.bossPhase=1;e.himmapan=undefined;e.desert=undefined;e.frost=undefined;e.yokai=undefined;e.endgame=undefined;e.rewardSource=undefined;e.controlImmuneUntil=undefined;e.patternIndex=0;e.statuses=[];cancelTelegraph(g,e);e.x=e.homeX;e.z=e.homeZ;setMotion(e,'idle');}
 		if (!nearest) {
 			e.windup = 0;
 			cancelTelegraph(g, e);
@@ -1915,10 +2090,17 @@ export function step(
 		const x = e.x,
 			z = e.z;
 		e.motionTime +=
-			dt * (e.boss && e.bossPhase === 2 && e.motion !== "transform" ? 1.3 : 1);
+			dt * (e.boss && !isEndgameEnemy(e.dataId) && !['thorn_nest_mother','greek_minotaur','himmapan_08','desert_08','frost_08','yokai_08'].includes(e.dataId) && e.bossPhase === 2 && e.motion !== "transform" ? 1.3 : 1);
 		if (e.statuses.some((s) => s.id === "stun" || s.id === "knockup")) continue;
-		if (e.boss) kingStep(g, e, dt);
+		const hooks={motion:setMotion,move,hurt:(p:Player,enemy:Enemy,attack?:string)=>withPlayer(g,p.id,()=>hurt(g,0,enemy,attack as MonsterMotion))};
+        const handledRegion=himmapanStep(g,e,dt,hooks)||desertStep(g,e,dt,{...hooks,spawn:(x,z,id,parent)=>{const child=spawn(g,x,z,false,'pink',true,id);child.summonedBy=parent;return child;}})||frostStep(g,e,dt,hooks)||yokaiStep(g,e,dt,{...hooks,movePlayer:move,spawn:(x,z,id,parent)=>{const child=spawn(g,x,z,false,'pink',true,id);child.summonedBy=parent;return child;}})||endgameStep(g,e,dt,{...hooks,movePlayer:move,spawn:(x,z,id,parent)=>{const child=spawn(g,x,z,false,'pink',true,id);child.summonedBy=parent;return child;}});
+        if(!handledRegion){
+        if(e.dataId==='thorn_nest_mother')thornMotherStep(g,e,dt);
+		else if(e.dataId==='greek_minotaur')greekMinotaurStep(g,e,dt);
+		else if(e.nestEgg){e.nestEgg.hatch-=dt;if(e.nestEgg.hatch<=0){delete e.nestEgg;e.aggro=10;}}
+		else if (e.boss) kingStep(g, e, dt);
 		else slimeStep(g, e, dt);
+        }
 		e.vx = (e.x - x) / dt;
 		e.vz = (e.z - z) / dt;
 		e.moving = Math.hypot(e.vx, e.vz) > 0.01;
@@ -1939,7 +2121,11 @@ export function step(
 				Math.hypot(p.x - projectile.x, p.z - projectile.z) < 0.55
 			) {
 				g.p = p;
-				if (projectile.attack === "bolt") hurt(g, Math.max(1, Math.round(projectile.damage * (1 - Math.min(0.5, (p.stats.softMdef ?? 0) / 200)))));
+				if (projectile.attack === "bolt") {
+				 const owner=g.enemies.find(e=>e.id===projectile.owner);
+                 hurt(g, Math.max(1, Math.round(projectile.damage * (1 - Math.min(0.5, (p.stats.softMdef ?? 0) / 200)))),undefined,undefined,owner?g.data.monsters.monsters.find(m=>m.id===owner.dataId)?.element:undefined,true);
+                 if(owner?.dataId==='mist_weaver'&&!p.dead){p.statuses=p.statuses.filter(s=>s.sourceId!=='thorn_web');p.statuses.push({id:'slow',sourceId:'thorn_web',remaining:1.5,value:1});}
+				}
 				else hurt(
 					g,
 					projectile.damage,
@@ -1985,7 +2171,7 @@ export function step(
   if(dist<4&&d.time>.25){const speed=Math.min(dist,dt*9);d.x+=dx/(dist||1)*speed;d.z+=dz/(dist||1)*speed;}
   if(dist<.45){
    const done=()=>{const before=g.p;
-								for (const share of expShares(g, p, d.xp, d.jobExp || 0))
+								for (const share of expShares(g, p, d.xp, d.jobExp || 0, d.source))
 					grantExp(g, share.player, share.xp, share.jobExp, { gold: share.player === p ? d.gold : 0, shared: share.shared });
 				g.p = p;
         if(d.boss)setBossCooldown(p,d.bossId??'king_jelly',g.wallTime+600000);g.drops=g.drops.filter(drop=>drop!==d);g.p=before;

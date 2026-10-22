@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Consistent cool frost palette with muted warm accent. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Norse mythology, no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_ice_lindworm\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_ice_lindworm\\base.png.raw.png",
+  "raw_bytes": 1874299,
+  "elapsed_seconds": 37.187,
+  "model": null,
+  "session_id": "01a16058-ab0b-7dd3-94dd-b3e6894f46b0",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_ice_lindworm\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 74.44,
+    "partial_alpha_pct": 25.56,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 875217,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

@@ -1,0 +1,13 @@
+{
+  "accepted": true,
+  "frontFacing": "right",
+  "views": [
+    "front-right",
+    "back-right"
+  ],
+  "review": "Reviewed anchors.png: distinct front/back surfaces, attached anatomy, same identity and props, no crop or chroma fringe. Occluded rear limbs remain behind the body; no invented hands for bird/arthropods.",
+  "sha256": [
+    "a61a2618f33dff9bcc8761c227f50b50dd83d1adcf3012668f9d44a60e212aa3",
+    "3b171b85c7c02d50edd51ab94878f2f9d70491a8ec95466bdf44ec0418f17b24"
+  ]
+}

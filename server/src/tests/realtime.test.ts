@@ -1,4 +1,4 @@
-import {CITY_SPAWN,CITY_RETURN,GATES,HEALER,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
+import {CITY_SPAWN,CITY_RETURN,GATES,GATE_LINKS,HEALER,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
 import test from "node:test";
 import assert from "node:assert/strict";
 import { once } from "node:events";
@@ -303,7 +303,7 @@ test('maps isolate rooms, persist transfers and healer cooldown, reject remote g
  assert.equal(initial.mapId,'city_plaza');assert.equal(initial.enemies.length,0);
  const city=[...f.rt.rooms.values()][0],p=city.game.players.get(user.character.id)!;
  peer.send({t:'travel',gate:'south'});await wait(80);assert.equal(city.game.players.has(p.id),true);
- p.x=GATES.city_plaza.north.x;p.z=GATES.city_plaza.north.z;peer.send({t:'travel',gate:'north'});await wait(80);assert.equal(f.rt.rooms.size,1);
+ p.x=GATES.city_plaza.north.x;p.z=GATES.city_plaza.north.z;peer.send({t:'travel',gate:'missing'});await wait(80);assert.equal(f.rt.rooms.size,1);
  p.x=HEALER.x;p.z=HEALER.z+.5;p.hp=1;p.mp=0;peer.send({t:'heal'});await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.type==='heal'));
  assert.equal(p.hp,p.maxHp);assert.equal(p.mp,p.maxMp);const readyAt=p.healerReadyAt;await city.saveQueue;
  assert.equal((await f.store.character(user.character.accountId,p.id))!.healerReadyAt,readyAt);
@@ -325,7 +325,7 @@ test('all eight gate directions discard source-map movement while accepting fres
  const f=await fixture(t),user=await f.make('GateRoute'),peer=f.open(user.cookie);
  await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
  let seq=0;
- const gates:[MapId,string][]=[['city_plaza','south'],['meadow','north'],['city_plaza','east'],['forest','east'],['ruins','east'],['canyon','west'],['ruins','west'],['forest','west']];
+ const gates:[MapId,string][]=[['city_plaza','south'],['meadow','north'],['city_plaza','east'],['forest','west'],['city_plaza','north'],['ruins','south'],['city_plaza','west'],['canyon','east']];
  for(const [mapId,gate] of gates){
   const room=[...f.rt.rooms.values()].find(r=>r.game.players.has(user.character.id))!,p=room.game.players.get(user.character.id)!;
   assert.equal(room.game.mapId,mapId);p.invulnerable=100;
@@ -560,4 +560,23 @@ test('a rank title is removed when another active character takes its place',asy
  await peer.until(m=>m.t==='titles'&&m.selected===null);
  const room=[...f.rt.rooms.values()].find(r=>r.game.players.has(a.character.id))!;
  await room.saveQueue;assert.equal((await f.store.character(a.character.accountId,a.character.id))!.titleId,null);
+});
+
+test('Worldcore isolates party encounters, checks invitation, retains empty checkpoints and revokes party leavers',async t=>{
+ const f=await fixture(t,true),users=await Promise.all(['RaidLead','RaidAlly','RaidOther'].map(name=>f.make(name)));
+ for(const [i,u]of users.entries())await f.store.saveProgress(u.character.accountId,u.character.id,{...u.character,level:100,mapId:'astral',quests:{active:{},done:i===2?{}:{worldcore_invitation:0}}});
+ const peers=users.map(u=>f.open(u.cookie));for(const peer of peers){await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');}
+ const locate=(id:string)=>[...f.rt.rooms.values()].find(r=>r.game.players.has(id))!;
+ peers[0].send({t:'party',op:'invite',name:users[1].character.name});await peers[1].until(m=>m.t==='partyInvite');peers[1].send({t:'party',op:'accept'});await wait(100);
+ assert.equal(locate(users[0].character.id).game.partyMembers!(users[0].character.id).length,2);
+ const gate=Object.keys(GATE_LINKS.astral).find(k=>GATE_LINKS.astral[k]==='confluence')!,at=GATES.astral[gate];
+ const enter=async(i:number)=>{const room=locate(users[i].character.id),p=room.game.players.get(users[i].character.id)!;Object.assign(p,at,{god:true});peers[i].send({t:'travel',gate});};
+ await enter(2);await peers[2].until(m=>m.t==='ev'&&m.list.some((e:any)=>String(e.text).includes('รอยต่อพิภพต้อง')));assert.equal(locate(users[2].character.id).game.mapId,'astral');
+ locate(users[2].character.id).game.players.get(users[2].character.id)!.quests!.done.worldcore_invitation=0;
+ for(let i=0;i<3;i++){await enter(i);await peers[i].until(m=>m.t==='snap'&&m.mapId==='confluence');}
+ const party=locate(users[0].character.id);assert.equal(locate(users[1].character.id),party);assert.notEqual(locate(users[2].character.id),party);
+ const guard=party.game.enemies.find(e=>e.dataId==='confluence_life_pillar_guard')!;Object.assign(guard,{hp:0,dead:true,rewarded:true,respawn:1800});
+ for(const peer of peers.slice(0,2)){peer.ws.close();await peer.closed;}await wait(650);assert.equal(party.game.players.size,0);assert.equal(f.rt.rooms.get(party.key),party);
+ const resumed=f.open(users[0].cookie);await resumed.until(m=>m.t==='welcome');resumed.send({t:'spawnReady'});await resumed.until(m=>m.t==='snap'&&m.mapId==='confluence');assert.equal(locate(users[0].character.id),party);assert.ok(guard.dead);
+ resumed.send({t:'party',op:'leave'});await resumed.until(m=>m.t==='snap'&&m.mapId==='city_plaza');assert.equal(party.game.players.has(users[0].character.id),false);
 });

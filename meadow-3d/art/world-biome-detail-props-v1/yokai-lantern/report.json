@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE original weathered Japanese stone garden lantern, a short broad granite pedestal with an irregular square foot, one small enclosed warm amber chamber and a wide low pagoda-like stone cap, restrained green moss at seams and old chipped stone edges, complete standalone lantern prop, no visible flame, hanging objects, text, carved characters, logos, surrounding scene or large ground patch. Orthographic three-quarter top down isometric view, upper left light, hand-painted gouache and watercolor fantasy MMO art matching The Beginning Online, true transparent background with padding, no ground plane, no cast shadow outside foot, no grid, no text, no reference artist or franchise.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\yokai-lantern\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\yokai-lantern\\base.png.raw.png",
+  "raw_bytes": 1541294,
+  "elapsed_seconds": 40.641,
+  "model": null,
+  "session_id": "01a160a5-8f7c-7f73-8dd4-0fa90f0826f1",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\yokai-lantern\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1312x1199",
+    "alpha_zero_pct": 63.84,
+    "partial_alpha_pct": 36.15,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 198,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

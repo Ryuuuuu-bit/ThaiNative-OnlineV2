@@ -1,0 +1,11 @@
+{
+  "accepted": true,
+  "reviewMethod": "Inspected all ten sequential contact strips (four native poses each), transparent extraction inspection passed; in-game playback check remains pending.",
+  "frontFacing": "right",
+  "backFacing": "right",
+  "limitations": [
+    "Four authored poses per motion; short bounding cycle rather than full walking strides.",
+    "Crab and queen front view is more frontal than other diagonal views."
+  ],
+  "regeneratedRows": []
+}

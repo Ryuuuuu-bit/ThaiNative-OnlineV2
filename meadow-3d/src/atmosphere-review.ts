@@ -7,7 +7,7 @@ const manifest=await(await fetch('/texture-manifest.json')).json(),renderer=new 
 $('#world').append(renderer.canvas);
 $<HTMLInputElement>('#motion').checked=!renderer.atmosphere.reducedMotion;
 $('#motion').onchange=e=>renderer.atmosphere.setMotionPreview((e.target as HTMLInputElement).checked);
-const starts:Record<MapId,{x:number;z:number}>={meadow:{x:19,z:-3},city_plaza:{x:-13,z:27},forest:{x:3,z:-30},ruins:{x:0,z:-7},canyon:{x:-16,z:9}};
+const starts:Partial<Record<MapId,{x:number;z:number}>>={himmapan:{x:-10,z:10},meadow:{x:19,z:-3},city_plaza:{x:-13,z:27},forest:{x:3,z:-30},ruins:{x:0,z:-7},canyon:{x:-16,z:9},grove:{x:30,z:-23},summit:{x:30,z:-23},temple:{x:42,z:-18}};
 let map:MapId='meadow',game=createGame(47,undefined,'scenery-review',loadGameData(),map),loading=true,version=0,time=12,last=performance.now(),lastStats=last,frames=0,renderMs=0;
 function place(){game.enemies=[];game.drops=[];Object.assign(game.p,starts[map],{name:'นักเดินทาง',fx:1,fz:0});}
 place();

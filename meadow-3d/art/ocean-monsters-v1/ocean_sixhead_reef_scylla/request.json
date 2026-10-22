@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted gouache and watercolor isometric MMORPG, fine ink edges, natural matte texture. Original anatomy and palette match approved base. No lettering, glow, scenery or detached props.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter with face visible. subtle breathing or shell settling and small blink, same ready stance, no whole-body translation. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter with face visible. a visible swimming, slithering or tentacle propulsion cycle appropriate to this exact anatomy: compact, extend attached fins or tentacles and bend body, reverse bend and contact, return compact; head stays on the RIGHT end in all frames, no invented legs or rigid bobbing. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter with face visible. ready, draw the SAME attached weapon or natural attack anatomy back in a clear anticipation, one readable forward strike or bite using that anatomy, recover to ready; no detached projectile or effects. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter with face visible. ready, brief readable recoil with stable attached anatomy, recover, ready. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter with face visible. ready, weaken, collapse into a low defeated pose, remain collapsed on ground; never stand up again. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. subtle breathing or shell settling and small blink, same ready stance, no whole-body translation. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. a visible swimming, slithering or tentacle propulsion cycle appropriate to this exact anatomy: compact, extend attached fins or tentacles and bend body, reverse bend and contact, return compact; head stays on the RIGHT end in all frames, no invented legs or rigid bobbing. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. ready, draw the SAME attached weapon or natural attack anatomy back in a clear anticipation, one readable forward strike or bite using that anatomy, recover to ready; no detached projectile or effects. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. ready, brief readable recoil with stable attached anatomy, recover, ready. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. ready, weaken, collapse into a low defeated pose, remain collapsed on ground; never stand up again. Preserve this exact original identity and anatomy: An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body."
+    }
+  },
+  "body_plan": [
+    "legless"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

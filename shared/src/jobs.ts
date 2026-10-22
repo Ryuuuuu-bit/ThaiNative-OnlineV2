@@ -262,7 +262,7 @@ export function validateHotbar(
 	return slots.map((s) => ({ ...s }));
 }
 export interface TimedEffect {
-	id: "stun" | "knockup" | "taunt" | "def_down" | "slow" | "endure" | "speed" | "guard" | "rage";
+	id: "root" | "mdef_down" | "stun" | "knockup" | "taunt" | "def_down" | "slow" | "endure" | "speed" | "guard" | "rage";
 	remaining: number;
 	value: number;
 	sourceId: string;

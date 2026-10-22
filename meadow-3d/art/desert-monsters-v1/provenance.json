@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "desert_01",
+      "baseSha256": "8f7fe801c323b413ad26ccefab6ca7076f91e246d0c58561acb19b94637dbced",
+      "run": "output/desert-monsters-20261022/desert_01/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_01/motion-qa.json"
+    },
+    {
+      "id": "desert_oasis_hawk",
+      "baseSha256": "6b203c879fd7a9d22321555052be734210d473ce927fcdda09441dd5fa0cc83c",
+      "run": "output/desert-monsters-20261022/desert_oasis_hawk/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_oasis_hawk/motion-qa.json"
+    },
+    {
+      "id": "desert_03",
+      "baseSha256": "20ba255845a77bdac19d501c0b120a8b112f0403cdf5a61681386a5e7e2e41d1",
+      "run": "output/desert-monsters-20261022/desert_03/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_03/motion-qa.json"
+    },
+    {
+      "id": "desert_sand_ushabti",
+      "baseSha256": "97e05071c20cd056d611e54a45c44c305dd12026bc15f2084d6d17ded6ba9799",
+      "run": "output/desert-monsters-20261022/desert_sand_ushabti/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_sand_ushabti/motion-qa.json"
+    },
+    {
+      "id": "desert_seal_mummy",
+      "baseSha256": "b3ef8acf6fff2fce3534169c613bbb32bf5c54cd937a1a12830fbb8f5ef17110",
+      "run": "output/desert-monsters-20261022/desert_seal_mummy/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_seal_mummy/motion-qa.json"
+    },
+    {
+      "id": "desert_06",
+      "baseSha256": "681b9978ff2e2c9eddc5368470537c11897a67e79395f84a088f8542eaa73c33",
+      "run": "output/desert-monsters-20261022/desert_06/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_06/motion-qa.json"
+    },
+    {
+      "id": "desert_glass_scorpion",
+      "baseSha256": "00d7376476ac055822e66c3632088508a4ae52730384878444003b552f00f648",
+      "run": "output/desert-monsters-20261022/desert_glass_scorpion/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_glass_scorpion/motion-qa.json"
+    },
+    {
+      "id": "desert_08",
+      "baseSha256": "8f12e0c904f800544f3618857b25797eace027d97548b3509a0d398d10948ffe",
+      "run": "output/desert-monsters-20261022/desert_08/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/desert-monsters-v1/desert_08/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "desert_01-idle.webp",
+      "sha256": "c3e60e32795a550301d5a437dd6d7cbc84ec04dc6af65b4b4d6e6ecfce14d939"
+    },
+    {
+      "file": "desert_01-move.webp",
+      "sha256": "87f5621275a699d79d341bfedf7a34fcf0b7c6087bfb3f2b450430b6dc8ccaf6"
+    },
+    {
+      "file": "desert_01-attack.webp",
+      "sha256": "8fb56e33f01369ef61565a441acd34c34b88ef29ce93a3027b4b2e48e26a48ec"
+    },
+    {
+      "file": "desert_01-hit.webp",
+      "sha256": "23bf7f96c336bb5df9f7585801565f31ed245f9fffdd6fd75598faba688bb4f1"
+    },
+    {
+      "file": "desert_01-death.webp",
+      "sha256": "b695aea1fff24229ce002741c882ad7d6aaede8c55abf9e099a1e56ecd00381c"
+    },
+    {
+      "file": "desert_oasis_hawk-idle.webp",
+      "sha256": "08ba64f8c790545bdf4d4c32dc074c3c3942d4b97f6881dcdb32284151ee8b37"
+    },
+    {
+      "file": "desert_oasis_hawk-move.webp",
+      "sha256": "3a43e7d4d44272fa761ac3d391abc9630623fda84e1359f67229ff42874f7055"
+    },
+    {
+      "file": "desert_oasis_hawk-attack.webp",
+      "sha256": "cb071f81af0bf8be4e2ff7b44753aac661ddf9496673e54cba70db300e440ea9"
+    },
+    {
+      "file": "desert_oasis_hawk-hit.webp",
+      "sha256": "88a9d42d27dc8baba3fc656b7aa9fe4a22a1d2263dbb864479299247aaeaf414"
+    },
+    {
+      "file": "desert_oasis_hawk-death.webp",
+      "sha256": "42dffcc5c40e4d69c89a5d4f6be025c650a356726da757206e3057f06ce8580e"
+    },
+    {
+      "file": "desert_03-idle.webp",
+      "sha256": "d78e1e18d5265c3cfd6e97cc51c16360ee0a5997fa96b331c702840af2fc1bda"
+    },
+    {
+      "file": "desert_03-move.webp",
+      "sha256": "09340467a9edc861a4df567538af1e45ef5bc954cddf3e37c126cbbead768af4"
+    },
+    {
+      "file": "desert_03-attack.webp",
+      "sha256": "1459ef2674f4411fa2a6e57e3fa19f97bace8bc36836547e00f7653dff783742"
+    },
+    {
+      "file": "desert_03-hit.webp",
+      "sha256": "804ea2a9a4e9b9a9dcec6382e85e694021c5d6e4b126e510bdf67e935983898e"
+    },
+    {
+      "file": "desert_03-death.webp",
+      "sha256": "498fb12a1dfde56ddd47e18b0bc72732a9167a1a12eb8812aa235c725e91ae13"
+    },
+    {
+      "file": "desert_sand_ushabti-idle.webp",
+      "sha256": "960fd666bfa090876a6497ec8c6abd83e7d9327d03ec99349072660c4fd57a93"
+    },
+    {
+      "file": "desert_sand_ushabti-move.webp",
+      "sha256": "5d951cd95d0deab295d1d6542d0910b5a57d625a0d0b08088a11fc77bcefee15"
+    },
+    {
+      "file": "desert_sand_ushabti-attack.webp",
+      "sha256": "3e4d656223b619cfba971a1cc49cc916f011b7472c3d7bc3078ff22a32372ba8"
+    },
+    {
+      "file": "desert_sand_ushabti-hit.webp",
+      "sha256": "524f4e7b687743a8356bce4024dd6952b142a3c441364c5b388cc9dbee3780aa"
+    },
+    {
+      "file": "desert_sand_ushabti-death.webp",
+      "sha256": "3a0bd4dfc7e5b0b78625095f9c7cdd7bf83f6b3228dabaa05e49fa2b608c0d5b"
+    },
+    {
+      "file": "desert_seal_mummy-idle.webp",
+      "sha256": "2d9db273e36f9ac7ae94fb735c6b07ec679263c53b42be19bf440a63aa6fa9cb"
+    },
+    {
+      "file": "desert_seal_mummy-move.webp",
+      "sha256": "844a49044a6a5fb7bee3b6161a1a0fd380eed0cf81d6a8fe25df244c09dff400"
+    },
+    {
+      "file": "desert_seal_mummy-attack.webp",
+      "sha256": "53ff28f8ffae47a420f5dc83aa8df617fb542162f8b7a2cf26b07b6276c218cd"
+    },
+    {
+      "file": "desert_seal_mummy-hit.webp",
+      "sha256": "b635f64f7cdd64992e6f03dff4eeafb0d122bb97ff37c26c2563cc3a3edc0d8a"
+    },
+    {
+      "file": "desert_seal_mummy-death.webp",
+      "sha256": "455a11ade0067a21ee59d8c59d5593ca12809f11f58b2f0b02cc6f2ffcd3ffa0"
+    },
+    {
+      "file": "desert_06-idle.webp",
+      "sha256": "d3a9eef05e655d63a3b5eb56dcd833b31d5f701debd857954deb4d7f61fbff75"
+    },
+    {
+      "file": "desert_06-move.webp",
+      "sha256": "75592c87e0ac94d96a4931a0f4a5e8ed8bfb74f79d4aefe892f870cef34880b1"
+    },
+    {
+      "file": "desert_06-attack.webp",
+      "sha256": "96e2588ad7294547d94b40553b1d6e315dfed814bdb40596767d008dc72a9fa1"
+    },
+    {
+      "file": "desert_06-hit.webp",
+      "sha256": "b8f6dfb40a9361c0580d46b8bf54579a0687c33c2599cfa5a17663520acaf259"
+    },
+    {
+      "file": "desert_06-death.webp",
+      "sha256": "3afc92194598b2fd428a999fee371a0b5d2633d0970ec6ae5394eda9e976871a"
+    },
+    {
+      "file": "desert_glass_scorpion-idle.webp",
+      "sha256": "9e5f0ca19189c7a973415faf4ebd347be777740721747286c0758765cc40c50c"
+    },
+    {
+      "file": "desert_glass_scorpion-move.webp",
+      "sha256": "b450db2abc195bb3614a77ca6d87a4e876a18a37c6cc2d0d7168615c8ed0554e"
+    },
+    {
+      "file": "desert_glass_scorpion-attack.webp",
+      "sha256": "6da116eb678c934c52d64f993f700d315a8778454032a7a390766df606b653c3"
+    },
+    {
+      "file": "desert_glass_scorpion-hit.webp",
+      "sha256": "95c0e170e669e2b3a34a28e8b87fb1dd49f7d2bf0710c8ad8df8bd361783ea8e"
+    },
+    {
+      "file": "desert_glass_scorpion-death.webp",
+      "sha256": "caf5ef1f11d98c3462b29f4985960470c43b629efab0b91f96b9cc569ac796fc"
+    },
+    {
+      "file": "desert_08-idle.webp",
+      "sha256": "570a22c7f709b327f9ebf187255851fd220828ba28660e13f9cac3a622c597a7"
+    },
+    {
+      "file": "desert_08-move.webp",
+      "sha256": "f43d33b49cd6e017408cb3d467581c60ff1935ca412d93963d7ee5e6f0aa25ce"
+    },
+    {
+      "file": "desert_08-attack.webp",
+      "sha256": "78ce35b87e2cb2d212b233c9a40b6542661d87b69c9aef964b04ebaf5849145e"
+    },
+    {
+      "file": "desert_08-hit.webp",
+      "sha256": "d376c2b24228d1e71a894c417cd9760edf3aaa126d75fd7377399bd86be4d499"
+    },
+    {
+      "file": "desert_08-death.webp",
+      "sha256": "bfb217e66623d24e9aa2c5734fd712272eeb541df6283a903211f68b5aa9064d"
+    }
+  ]
+}

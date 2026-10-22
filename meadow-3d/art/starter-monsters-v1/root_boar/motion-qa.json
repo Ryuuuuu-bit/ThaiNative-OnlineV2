@@ -1,0 +1,12 @@
+{
+  "accepted": true,
+  "reviewMethod": "All ten four-pose sequential contact strips inspected; extraction inspection passed; corrected boar attack direction inspected again.",
+  "frontFacing": "left",
+  "backFacing": "right",
+  "regeneratedRows": [
+    "down45_attack"
+  ],
+  "limitations": [
+    "Four native poses per action, mirrored side directions."
+  ]
+}

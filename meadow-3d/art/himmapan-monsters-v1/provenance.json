@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "himmapan_01",
+      "baseSha256": "31aa9727846a8abef67873e8ed173fc2729e9cf8e441220ed5f6022ad93fb83e",
+      "run": "output/himmapan-monsters-20261022/himmapan_01/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_01/motion-qa.json"
+    },
+    {
+      "id": "himmapan_jade_turtle",
+      "baseSha256": "d8a5cc3f641ff8792aec0ab68f73349ff70251fb9b7a3c9ac1fc94b16e14be00",
+      "run": "output/himmapan-monsters-20261022/himmapan_jade_turtle/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_jade_turtle/motion-qa.json"
+    },
+    {
+      "id": "himmapan_03",
+      "baseSha256": "2b88fa193863e689b5899631f47af58c88b038537358d78bf6daa94eadb5e683",
+      "run": "output/himmapan-monsters-20261022/himmapan_03/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_03/motion-qa.json"
+    },
+    {
+      "id": "himmapan_blossom_deer",
+      "baseSha256": "13e2964b4accaac52c9f04049d1d268d98383b1d5198e20306bd6fc570a1db48",
+      "run": "output/himmapan-monsters-20261022/himmapan_blossom_deer/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_blossom_deer/motion-qa.json"
+    },
+    {
+      "id": "himmapan_golden_macaque",
+      "baseSha256": "b8ea87c04ce826ce44b59b9600e3425d987b206783e56cccf057f99d45e273b2",
+      "run": "output/himmapan-monsters-20261022/himmapan_golden_macaque/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_golden_macaque/motion-qa.json"
+    },
+    {
+      "id": "himmapan_06",
+      "baseSha256": "f090cc27749a8c357360a78acd868bc97217e4cf272b95c6f6f06f6e9002a339",
+      "run": "output/himmapan-monsters-20261022/himmapan_06/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_06/motion-qa.json"
+    },
+    {
+      "id": "himmapan_azure_garuda",
+      "baseSha256": "919cb91d28b9bbe144d42cb03ee015ce315017bb209e9baf1e3828a3491f5b23",
+      "run": "output/himmapan-monsters-20261022/himmapan_azure_garuda/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_azure_garuda/motion-qa.json"
+    },
+    {
+      "id": "himmapan_08",
+      "baseSha256": "7f6f2efcd33513682c6bcb2363d80c2cd2949186e4c520d0927059139a82b8f5",
+      "run": "output/himmapan-monsters-20261022/himmapan_08/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/himmapan-monsters-v1/himmapan_08/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "himmapan_01-idle.webp",
+      "sha256": "3b4d40acf8af1d10647e73f7b54b3e45ee3146a656d3c82a4b50cce14998295e"
+    },
+    {
+      "file": "himmapan_01-move.webp",
+      "sha256": "c346588da93bad5a841614915b7b7fea6a78e9774dd324962c34aef737a2729f"
+    },
+    {
+      "file": "himmapan_01-attack.webp",
+      "sha256": "ec0108730f3ad39613d2ff8428482544db20b7cb38fecd4af4a5f55dd57658d0"
+    },
+    {
+      "file": "himmapan_01-hit.webp",
+      "sha256": "3173fa104740158c74e3b0306507109adaff1db992a88ff385cdc119e0880918"
+    },
+    {
+      "file": "himmapan_01-death.webp",
+      "sha256": "c0cd7792723ffe6f52c474384d3198c8aebc905f54910a8d89ce0f7a2996aa93"
+    },
+    {
+      "file": "himmapan_jade_turtle-idle.webp",
+      "sha256": "99366dc521ef8e40a4d499f845a9fde6aff578f2e904ddacbe7b0b81843d41f5"
+    },
+    {
+      "file": "himmapan_jade_turtle-move.webp",
+      "sha256": "5238a8c8ef8960a880745f377e1fcbc87b3c6c30f959387957d2b091371b4bac"
+    },
+    {
+      "file": "himmapan_jade_turtle-attack.webp",
+      "sha256": "6da6fe2e0300715abb4f2f661704ab7b3c5c8cb24158428a6c39085c1ace3572"
+    },
+    {
+      "file": "himmapan_jade_turtle-hit.webp",
+      "sha256": "e8a1608b16f40499825df82166197a1e8651f64cfd8110125437f93a16e7e3c9"
+    },
+    {
+      "file": "himmapan_jade_turtle-death.webp",
+      "sha256": "5aeed0667d057da2fec44fa7b60eb0c5884bdb3bfb4efc9ac1b0499364f428b2"
+    },
+    {
+      "file": "himmapan_03-idle.webp",
+      "sha256": "5b79c9ee5e88bacaebe03d2944a54ba06315ae1733bf75bd7000bfdaedde3a6e"
+    },
+    {
+      "file": "himmapan_03-move.webp",
+      "sha256": "6e72e00fd665447825bc153972e120ff991307cc76ace280e12115c3f7d3c4f0"
+    },
+    {
+      "file": "himmapan_03-attack.webp",
+      "sha256": "b92cac86b72a2e109b4df85acbb016f15d8d57301cc80d01a9e6015f48db9879"
+    },
+    {
+      "file": "himmapan_03-hit.webp",
+      "sha256": "4a1b27e59f334529b7ecabb0bbbb01a81fb8087131e6df29e6748bbc2e36f5d3"
+    },
+    {
+      "file": "himmapan_03-death.webp",
+      "sha256": "8df5b6d3d3d9e5a43ecd506aa44f5889e60941ca4ec482b769bbac92c0aceab2"
+    },
+    {
+      "file": "himmapan_blossom_deer-idle.webp",
+      "sha256": "6cb849850ec485f72aeedee9da37699ee06ce07981f9d77b6fa126a7c4b0c7b3"
+    },
+    {
+      "file": "himmapan_blossom_deer-move.webp",
+      "sha256": "851c725ab835f267f19eb19277206be4c92c23e223a49528ff354d005bbde602"
+    },
+    {
+      "file": "himmapan_blossom_deer-attack.webp",
+      "sha256": "ec1d8eec74c8df15a5cf6f7f46c79e905a2b1fd8abc34196ff0ef8570772beed"
+    },
+    {
+      "file": "himmapan_blossom_deer-hit.webp",
+      "sha256": "d216232143874b73db6bde7935567f262c2366319db89135cbcffda71d716517"
+    },
+    {
+      "file": "himmapan_blossom_deer-death.webp",
+      "sha256": "8ccd3c8428f68696dc2a0c244155b3480b5e2276fc447a6b66b34c5ef16318ee"
+    },
+    {
+      "file": "himmapan_golden_macaque-idle.webp",
+      "sha256": "7d9c7c8b8e4cda4db3c7b89b9b95d6133d75096124f75878e6f0820c93fde9b9"
+    },
+    {
+      "file": "himmapan_golden_macaque-move.webp",
+      "sha256": "75981aac2595aea36b9039e86c7b0b5e1337b636176d27b87c97801298c3898f"
+    },
+    {
+      "file": "himmapan_golden_macaque-attack.webp",
+      "sha256": "06c5a0145320134c5911a063798bb68fc96d088de261330468b358b5353c42e9"
+    },
+    {
+      "file": "himmapan_golden_macaque-hit.webp",
+      "sha256": "879f07f718fd32f631b390e8c1e7fdfed0feaf8b284ddee2b7c6727b5d04026f"
+    },
+    {
+      "file": "himmapan_golden_macaque-death.webp",
+      "sha256": "943f0cd5738dcb3b3e354b4abbfc3b3dc71e74a4187d68ed368119b28270bfdb"
+    },
+    {
+      "file": "himmapan_06-idle.webp",
+      "sha256": "00ac42d13c4d51c3a76ab7db3cff596d1a956195797cf7e9520f492b128954cd"
+    },
+    {
+      "file": "himmapan_06-move.webp",
+      "sha256": "44e59f0f5a5b80791da1100b05c1bf96bace458f8f4feaf1a0f898d290ef3b37"
+    },
+    {
+      "file": "himmapan_06-attack.webp",
+      "sha256": "5e02bd25d2cc82c90a18518888d04a602e95a8235293244a5e17f4976684dec6"
+    },
+    {
+      "file": "himmapan_06-hit.webp",
+      "sha256": "43af856dd87cdb8a9cc1973e338ec85b1e22aa37793c8d268b709191f36762a2"
+    },
+    {
+      "file": "himmapan_06-death.webp",
+      "sha256": "9abfb34d34d70a4a3a68c5aacd29653bc419f96e0c99ec736731b3cd9e7afd25"
+    },
+    {
+      "file": "himmapan_azure_garuda-idle.webp",
+      "sha256": "d93ac3b35911805b341535661953de5946f54e6429f3e94328c8d421d05046d8"
+    },
+    {
+      "file": "himmapan_azure_garuda-move.webp",
+      "sha256": "4170caf8f58b381984674cdc9f2ccdd8fa7fcf56f022a8f289bbb867e021c7d4"
+    },
+    {
+      "file": "himmapan_azure_garuda-attack.webp",
+      "sha256": "465a3a8daad0d730bf1e5c4a384f6f2295ec6e01b501783d45f6b6e556fb5902"
+    },
+    {
+      "file": "himmapan_azure_garuda-hit.webp",
+      "sha256": "f2e316ef77eee83aa672f84975db17401b9650bace731aaa64136d5dc6bf83c8"
+    },
+    {
+      "file": "himmapan_azure_garuda-death.webp",
+      "sha256": "eee394d15ff9cdb90e3625be7b4e8e34f01af239668c00f346669477f9b82f28"
+    },
+    {
+      "file": "himmapan_08-idle.webp",
+      "sha256": "9fc87de8774ee44aa70888cfc174d5c0ec07c753033bba1c390dfa30291dfcaa"
+    },
+    {
+      "file": "himmapan_08-move.webp",
+      "sha256": "2a2a81552000e0594b47f88313fd39213bfc4597f683fbb782a1f9fd3ec362ac"
+    },
+    {
+      "file": "himmapan_08-attack.webp",
+      "sha256": "0856ff48ea117f5969e7e6247a431ec42a55b140748138628a38b0034bd9baba"
+    },
+    {
+      "file": "himmapan_08-hit.webp",
+      "sha256": "1412d5ff668575b877f2ae83733e9fffedaa67add95a546582243c366a817702"
+    },
+    {
+      "file": "himmapan_08-death.webp",
+      "sha256": "dcb8244d7d6c83d8ff4976006f5cf9267cb94b12fd17841cb5bb9561496136d2"
+    }
+  ]
+}

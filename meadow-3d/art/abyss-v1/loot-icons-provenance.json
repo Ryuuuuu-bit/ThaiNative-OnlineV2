@@ -1,0 +1,123 @@
+{
+  "method": "Original authored SVG geometry and normalized original generated creature images; no external assets",
+  "sources": [
+    {
+      "id": "card_abyss_black_salt_crab",
+      "base": "output/abyss-monsters-20261022/abyss_black_salt_crab/base.png",
+      "baseSha256": "85255aa2bfa8cd0e52111213a2333d0eba2b333cb8e89f5aa5cdc946a6551693",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_abyss_silt_mudskipper",
+      "base": "output/abyss-monsters-20261022/abyss_silt_mudskipper/base.png",
+      "baseSha256": "401ff116e4d51f16cf7a8d57c56bfcea9c9a562c5976c3c6ed026d8206fb7afa",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_abyss_ziggurat_clay_guard",
+      "base": "output/abyss-monsters-20261022/abyss_ziggurat_clay_guard/base.png",
+      "baseSha256": "4e4ceb29a619b7652a0096c73438f66e5af5b9e74a5d308764b892d31c920dad",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_abyss_anzu_lionbird",
+      "base": "output/abyss-monsters-20261022/abyss_anzu_lionbird/base.png",
+      "baseSha256": "49db97c04673651b8426136638aa7d7e8996e8e7e2af063d601a84be722410a6",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_abyss_mushhushshu_serpent",
+      "base": "output/abyss-monsters-20261022/abyss_mushhushshu_serpent/base.png",
+      "baseSha256": "78354c52e62ba0e790d470739e6c964fb1cc7c6ebd1336b86435b1e00191c443",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_abyss_night_border_scorpion",
+      "base": "output/abyss-monsters-20261022/abyss_night_border_scorpion/base.png",
+      "baseSha256": "68f869f727997c8d69fd01127ee3b23848f29f6cf88c078b2a35c5a0428f1c46",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_abyss_blackstone_lamassu",
+      "base": "output/abyss-monsters-20261022/abyss_blackstone_lamassu/base.png",
+      "baseSha256": "cea1b46cfa5193513536f75db87d079c58418416b7e0c1924b4814794d91d143",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_abyss_primordial_sea_dragon",
+      "base": "output/abyss-monsters-20261022/abyss_primordial_sea_dragon/base.png",
+      "baseSha256": "112ec2a91259f1fb5423b511e3c3df1fdf9adfb5d2c5f4ca5d1fe7509592318f",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    }
+  ],
+  "files": [
+    {
+      "file": "card_abyss_black_salt_crab.svg",
+      "sha256": "949519988cbcf680ffb937487b7f791c41083a795f8a2c166767a1d557c7484a"
+    },
+    {
+      "file": "abyss_black_salt_crab_material.svg",
+      "sha256": "85ab2efb04b3b8565ee963580d5b7c7a8d8dae78111b72821d3c268b5a262e47"
+    },
+    {
+      "file": "card_abyss_silt_mudskipper.svg",
+      "sha256": "a5321e3ed46eb21833f879579bb2a820b216737895cd8eb2aa6b7bdcdf339200"
+    },
+    {
+      "file": "abyss_silt_mudskipper_material.svg",
+      "sha256": "e9b3158aa5a61380bcbbdd322ab50c17c04e8bca751d920fbb721703c460bd2d"
+    },
+    {
+      "file": "card_abyss_ziggurat_clay_guard.svg",
+      "sha256": "83b2fab1ceaba19095232c5cfc9bbe47d7d04d67a91b546b725e00dc20d4c191"
+    },
+    {
+      "file": "abyss_ziggurat_clay_guard_material.svg",
+      "sha256": "74a7cb2ea08afb697356866a7bb4e9a6218fa1df36c55764560287fb1f0e34b0"
+    },
+    {
+      "file": "card_abyss_anzu_lionbird.svg",
+      "sha256": "8afd99fa6c9fc569a9720fbe947f242851cea99abd9a9545c19e724693991ac3"
+    },
+    {
+      "file": "abyss_anzu_lionbird_material.svg",
+      "sha256": "274dba3727191dd53d775844f10f585013747ca083892661c4d908c70458bc6c"
+    },
+    {
+      "file": "card_abyss_mushhushshu_serpent.svg",
+      "sha256": "edbe41927564813a4f521f26d58adfd3ed985928040a27e5dc0babbcacf006e7"
+    },
+    {
+      "file": "abyss_mushhushshu_serpent_material.svg",
+      "sha256": "fc5939f9dc154ba761f042d973368435a2b9eeba1f1eb8a8efd471632130356c"
+    },
+    {
+      "file": "card_abyss_night_border_scorpion.svg",
+      "sha256": "138d57048b4cf0965ab818acab035ff3bb358e6f3e5e2dbe32369c3920daa05f"
+    },
+    {
+      "file": "abyss_night_border_scorpion_material.svg",
+      "sha256": "4cbb5161de4f4643d2bf14632a6fa2f2ec69c2061a589b80a3f341ae215a6277"
+    },
+    {
+      "file": "card_abyss_blackstone_lamassu.svg",
+      "sha256": "416b1679e6294950992d93660d14dadeeff29189ee4969bfdbf1ffe1a5235a19"
+    },
+    {
+      "file": "abyss_blackstone_lamassu_material.svg",
+      "sha256": "da2d27c9e3cad146bb2e41c42bfe6954b90d8697eec29784dc22ee387bfc1f3d"
+    },
+    {
+      "file": "card_abyss_primordial_sea_dragon.svg",
+      "sha256": "fe391d613afa2523e147e18eb458719b20ac8088721a8a85c392311bef2eb1b0"
+    },
+    {
+      "file": "abyss_primordial_sea_dragon_material.svg",
+      "sha256": "e7f12be0c8a5f2341e3e6770ae3dc00078142305f833aa3234f464f9ba3a6997"
+    },
+    {
+      "file": "unique_abyss_relic.svg",
+      "sha256": "57eaac183da3ff5cf8eb45bd13417f6d2bcf81ef558854dc61281701e4639b82"
+    }
+  ]
+}

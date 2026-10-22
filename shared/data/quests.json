@@ -11,44 +11,131 @@
       "requires": [],
       "offer": "หมอกพาวุ้นจิ๋วมาป้วนเปี้ยนแถวประตูใต้ ช่วยไล่พวกมันสักหน่อย แล้วกลับมาเล่าให้ข้าฟัง",
       "complete": "ฝีมือไม่เลวเลย นี่ค่าเหนื่อย กับยาไว้ติดตัว",
-      "objectives": [{ "kind": "kill", "monsters": ["jelly_pink"], "count": 8, "label": "ปราบวุ้นจิ๋ว" }],
-      "rewards": { "exp": 120, "jobExp": 60, "gold": 80, "items": [{ "template": "red_small", "qty": 5 }] }
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "jelly_pink"
+          ],
+          "count": 8,
+          "label": "ปราบวุ้นจิ๋ว"
+        }
+      ],
+      "rewards": {
+        "exp": 120,
+        "jobExp": 60,
+        "gold": 80,
+        "items": [
+          {
+            "template": "red_small",
+            "qty": 5
+          }
+        ]
+      }
     },
     {
       "id": "smith_slime",
       "nameTh": "เมือกสำหรับเตาหลอม",
       "giver": "forge",
       "level": 2,
-      "requires": ["guard_first_hunt"],
+      "requires": [
+        "guard_first_hunt"
+      ],
       "offer": "เมือกวุ้นช่วยให้เหล็กไม่แตกตอนชุบ เอามาให้ข้าสักสิบก้อน แล้วข้าจะตีของดีให้",
       "complete": "เมือกสดดี ข้าตีรองเท้าคู่นี้ไว้ให้เจ้าแล้ว",
-      "objectives": [{ "kind": "collect", "item": "jelly_slime", "count": 10, "label": "เมือกวุ้น" }],
-      "rewards": { "exp": 150, "jobExp": 80, "gold": 60, "items": [{ "template": "trail_boots", "qty": 1 }] }
+      "objectives": [
+        {
+          "kind": "collect",
+          "item": "jelly_slime",
+          "count": 10,
+          "label": "เมือกวุ้น"
+        }
+      ],
+      "rewards": {
+        "exp": 150,
+        "jobExp": 80,
+        "gold": 60,
+        "items": [
+          {
+            "template": "trail_boots",
+            "qty": 1
+          }
+        ]
+      }
     },
     {
       "id": "merchant_seeds",
       "nameTh": "เมล็ดพันธุ์ในหมอก",
       "giver": "market",
       "level": 2,
-      "requires": ["guard_first_hunt"],
+      "requires": [
+        "guard_first_hunt"
+      ],
       "offer": "เมล็ดที่วุ้นกลืนไว้ยังงอกได้นะ ข้าจะเอาไปปลูกในลานหลังร้าน หามาให้ห้าเมล็ดได้ไหม",
       "complete": "ขอบใจมาก นี่ยาแดงกลาง ใช้ตอนคับขันนะ",
-      "objectives": [{ "kind": "collect", "item": "leaf_seed", "count": 5, "label": "เมล็ดพันธุ์ใบ" }],
-      "rewards": { "exp": 140, "jobExp": 70, "gold": 100, "items": [{ "template": "red_medium", "qty": 3 }] }
+      "objectives": [
+        {
+          "kind": "collect",
+          "item": "leaf_seed",
+          "count": 5,
+          "label": "เมล็ดพันธุ์ใบ"
+        }
+      ],
+      "rewards": {
+        "exp": 140,
+        "jobExp": 70,
+        "gold": 100,
+        "items": [
+          {
+            "template": "red_medium",
+            "qty": 3
+          }
+        ]
+      }
     },
     {
       "id": "healer_colors",
       "nameTh": "สีของหมอก",
       "giver": "heal",
       "level": 3,
-      "requires": ["guard_first_hunt"],
+      "requires": [
+        "guard_first_hunt"
+      ],
       "offer": "วุ้นเขียวกับวุ้นฟ้าเพิ่มขึ้นตั้งแต่หมอกหนาขึ้น ข้าอยากรู้ว่ามันมาจากไหน ช่วยปราบให้ข้าดูหน่อย",
       "complete": "หมอกเปลี่ยนสีพวกมันจริง ๆ… รับยานี่ไว้ เผื่อต้องวิ่งหนี",
       "objectives": [
-        { "kind": "kill", "monsters": ["jelly_mint"], "count": 5, "label": "ปราบวุ้นเขียว" },
-        { "kind": "kill", "monsters": ["jelly_sky"], "count": 5, "label": "ปราบวุ้นฟ้า" }
+        {
+          "kind": "kill",
+          "monsters": [
+            "jelly_mint"
+          ],
+          "count": 5,
+          "label": "ปราบวุ้นเขียว"
+        },
+        {
+          "kind": "kill",
+          "monsters": [
+            "jelly_sky"
+          ],
+          "count": 5,
+          "label": "ปราบวุ้นฟ้า"
+        }
       ],
-      "rewards": { "exp": 300, "jobExp": 150, "gold": 120, "items": [{ "template": "speed_potion", "qty": 2 }, { "template": "blue_potion", "qty": 3 }] }
+      "rewards": {
+        "exp": 300,
+        "jobExp": 150,
+        "gold": 120,
+        "items": [
+          {
+            "template": "speed_potion",
+            "qty": 2
+          },
+          {
+            "template": "blue_potion",
+            "qty": 3
+          }
+        ]
+      }
     },
     {
       "id": "storage_ledger",
@@ -58,66 +145,508 @@
       "requires": [],
       "offer": "คลังนี้เก็บของให้นักผจญภัยมาหลายรุ่น ลองฝากของสักชิ้นดูสิ แล้วข้าจะลงชื่อเจ้าในสมุด",
       "complete": "ลงชื่อเรียบร้อย ของในคลังปลอดภัยแม้เจ้าจะหมดสติกลางทุ่ง",
-      "objectives": [{ "kind": "store", "count": 1, "label": "ฝากของเข้าคลัง" }],
-      "rewards": { "exp": 40, "jobExp": 20, "gold": 30, "items": [] }
+      "objectives": [
+        {
+          "kind": "store",
+          "count": 1,
+          "label": "ฝากของเข้าคลัง"
+        }
+      ],
+      "rewards": {
+        "exp": 40,
+        "jobExp": 20,
+        "gold": 30,
+        "items": []
+      }
     },
     {
       "id": "guard_king",
       "nameTh": "ราชาแห่งทุ่งวุ้น",
       "giver": "guard",
       "level": 4,
-      "requires": ["healer_colors"],
+      "requires": [
+        "healer_colors"
+      ],
       "offer": "ที่ปลายทุ่งมีราชาวุ้นนอนอยู่ในซากโบราณ ถ้าเจ้าล้มมันได้ ประตูทิศอื่นอาจเริ่มเปิด",
       "complete": "เจ้าล้มราชาวุ้นได้จริง ๆ! ทั้งเมืองจะรู้ชื่อเจ้า",
-      "objectives": [{ "kind": "kill", "monsters": ["king_jelly"], "count": 1, "label": "ปราบราชาวุ้น" }],
-      "rewards": { "exp": 1000, "jobExp": 400, "gold": 500, "items": [{ "template": "weapon_stone", "qty": 1 }] }
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "king_jelly"
+          ],
+          "count": 1,
+          "label": "ปราบราชาวุ้น"
+        }
+      ],
+      "rewards": {
+        "exp": 1000,
+        "jobExp": 400,
+        "gold": 500,
+        "items": [
+          {
+            "template": "weapon_stone",
+            "qty": 1
+          }
+        ]
+      }
     },
     {
       "id": "guard_bounty",
       "nameTh": "ค่าหัวประจำวัน",
       "giver": "guard",
       "level": 2,
-      "requires": ["guard_first_hunt"],
+      "requires": [
+        "guard_first_hunt"
+      ],
       "repeatHours": 20,
       "offer": "ทุกวันวุ้นจะกลับมาใหม่ ปราบให้ได้ยี่สิบตัวแล้วมารับค่าหัว",
       "complete": "ค่าหัววันนี้ของเจ้า พรุ่งนี้มาใหม่นะ",
-      "objectives": [{ "kind": "kill", "monsters": ["jelly_pink", "jelly_mint", "jelly_sky"], "count": 20, "label": "ปราบวุ้นชนิดใดก็ได้" }],
-      "rewards": { "exp": 220, "jobExp": 110, "gold": 150, "items": [{ "template": "red_small", "qty": 3 }] }
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "jelly_pink",
+            "jelly_mint",
+            "jelly_sky"
+          ],
+          "count": 20,
+          "label": "ปราบวุ้นชนิดใดก็ได้"
+        }
+      ],
+      "rewards": {
+        "exp": 220,
+        "jobExp": 110,
+        "gold": 150,
+        "items": [
+          {
+            "template": "red_small",
+            "qty": 3
+          }
+        ]
+      }
     },
     {
       "id": "guard_king_bounty",
       "nameTh": "เงินรางวัลราชาวุ้น",
       "giver": "guard",
       "level": 4,
-      "requires": ["guard_king"],
+      "requires": [
+        "guard_king"
+      ],
       "repeatHours": 6,
       "offer": "ราชาวุ้นฟื้นตัวทุกครึ่งชั่วโมง ทุกครั้งที่มันตื่น ทุ่งหญ้าก็วุ่นวาย ปราบมันอีกรอบแล้วกลับมารับเงินรางวัล",
       "complete": "ทุ่งหญ้าสงบไปอีกพัก นี่เงินรางวัลของเจ้า",
-      "objectives": [{ "kind": "kill", "monsters": ["king_jelly"], "count": 1, "label": "ปราบราชาวุ้น" }],
-      "rewards": { "exp": 400, "jobExp": 200, "gold": 250, "items": [{ "template": "red_medium", "qty": 2 }] }
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "king_jelly"
+          ],
+          "count": 1,
+          "label": "ปราบราชาวุ้น"
+        }
+      ],
+      "rewards": {
+        "exp": 400,
+        "jobExp": 200,
+        "gold": 250,
+        "items": [
+          {
+            "template": "red_medium",
+            "qty": 2
+          }
+        ]
+      }
     },
     {
       "id": "guard_warden",
       "nameTh": "ผู้เฝ้าป่าหมอก",
       "giver": "guard",
       "level": 6,
-      "requires": ["guard_first_hunt"],
+      "requires": [
+        "guard_first_hunt"
+      ],
       "offer": "หมอกทางตะวันออกหนาขึ้นทุกวัน มีบางอย่างใหญ่โตเฝ้าป่าอยู่ ออกประตูตะวันออก ปราบผู้เฝ้าป่าหมอก แล้วกลับมาเล่าให้ข้าฟัง",
       "complete": "เจ้าทำให้ป่าหมอกสงบลงได้จริง ๆ รับนี่ไว้ ของคู่ควรกับวีรกรรม",
-      "objectives": [{ "kind": "kill", "monsters": ["mist_warden"], "count": 1, "label": "ปราบผู้เฝ้าป่าหมอก" }],
-      "rewards": { "exp": 4000, "jobExp": 1800, "gold": 1200, "items": [{ "template": "red_medium", "qty": 5 }] }
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "mist_warden"
+          ],
+          "count": 1,
+          "label": "ปราบผู้เฝ้าป่าหมอก"
+        }
+      ],
+      "rewards": {
+        "exp": 4000,
+        "jobExp": 1800,
+        "gold": 1200,
+        "items": [
+          {
+            "template": "red_medium",
+            "qty": 5
+          }
+        ]
+      }
     },
     {
       "id": "guard_warden_bounty",
       "nameTh": "เงินรางวัลป่าหมอก",
       "giver": "guard",
       "level": 6,
-      "requires": ["guard_warden"],
+      "requires": [
+        "guard_warden"
+      ],
       "repeatHours": 6,
       "offer": "ผู้เฝ้าป่าหมอกกลับมาอีกแล้ว ไปสยบมันอีกครั้ง ทหารจะได้เดินผ่านป่าได้",
       "complete": "ความสงบกลับคืนสู่ป่าหมอก นี่เงินรางวัลของเจ้า",
-      "objectives": [{ "kind": "kill", "monsters": ["mist_warden"], "count": 1, "label": "ปราบผู้เฝ้าป่าหมอก" }],
-      "rewards": { "exp": 1500, "jobExp": 700, "gold": 600, "items": [{ "template": "red_medium", "qty": 3 }] }
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "mist_warden"
+          ],
+          "count": 1,
+          "label": "ปราบผู้เฝ้าป่าหมอก"
+        }
+      ],
+      "rewards": {
+        "exp": 1500,
+        "jobExp": 700,
+        "gold": 600,
+        "items": [
+          {
+            "template": "red_medium",
+            "qty": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "journey_dragon",
+      "nameTh": "สำรวจนครมังกรเหนือทะเลเมฆ",
+      "giver": "guard",
+      "level": 70,
+      "requires": [],
+      "offer": "เส้นทางใหม่เปิดแล้ว ลองอ่านท่าโจมตีและหาวัตถุดิบประจำถิ่นจากปลามังกรเมฆา แล้วกลับมารายงาน",
+      "complete": "เจ้ารู้ทางและเริ่มรับมือศัตรูที่นี่ได้แล้ว รับเสบียงไว้เดินทางต่อ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "dragon_cloud_carp"
+          ],
+          "count": 12,
+          "label": "ปราบปลามังกรเมฆา"
+        },
+        {
+          "kind": "collect",
+          "item": "dragon_cloud_carp_material",
+          "count": 6,
+          "label": "เกล็ดเมฆอ่อน"
+        }
+      ],
+      "rewards": {
+        "exp": 118000,
+        "jobExp": 59000,
+        "gold": 14000,
+        "items": [
+          {
+            "template": "red_greater",
+            "qty": 10
+          },
+          {
+            "template": "blue_greater",
+            "qty": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "journey_volcano",
+      "nameTh": "สำรวจภูเขาไฟและสวนเถ้าเพลิง",
+      "giver": "guard",
+      "level": 70,
+      "requires": [],
+      "offer": "เส้นทางใหม่เปิดแล้ว ลองอ่านท่าโจมตีและหาวัตถุดิบประจำถิ่นจากจิ้งจกแก้วลาวา แล้วกลับมารายงาน",
+      "complete": "เจ้ารู้ทางและเริ่มรับมือศัตรูที่นี่ได้แล้ว รับเสบียงไว้เดินทางต่อ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "volcano_lava_glass_lizard"
+          ],
+          "count": 12,
+          "label": "ปราบจิ้งจกแก้วลาวา"
+        },
+        {
+          "kind": "collect",
+          "item": "volcano_lava_glass_lizard_material",
+          "count": 6,
+          "label": "เกล็ดแก้วร้อน"
+        }
+      ],
+      "rewards": {
+        "exp": 118000,
+        "jobExp": 59000,
+        "gold": 14000,
+        "items": [
+          {
+            "template": "red_greater",
+            "qty": 10
+          },
+          {
+            "template": "blue_greater",
+            "qty": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "journey_fae",
+      "nameTh": "สำรวจป่าสนธยาและวงแหวนภูต",
+      "giver": "guard",
+      "level": 80,
+      "requires": [],
+      "offer": "เส้นทางใหม่เปิดแล้ว ลองอ่านท่าโจมตีและหาวัตถุดิบประจำถิ่นจากพูกาม้าเงา แล้วกลับมารายงาน",
+      "complete": "เจ้ารู้ทางและเริ่มรับมือศัตรูที่นี่ได้แล้ว รับเสบียงไว้เดินทางต่อ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "fae_puca_shadowhorse"
+          ],
+          "count": 12,
+          "label": "ปราบพูกาม้าเงา"
+        },
+        {
+          "kind": "collect",
+          "item": "fae_puca_shadowhorse_material",
+          "count": 6,
+          "label": "ขนพูกา"
+        }
+      ],
+      "rewards": {
+        "exp": 154000,
+        "jobExp": 77000,
+        "gold": 16000,
+        "items": [
+          {
+            "template": "red_greater",
+            "qty": 10
+          },
+          {
+            "template": "blue_greater",
+            "qty": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "journey_ocean",
+      "nameTh": "สำรวจหมู่เกาะพายุและนครจมน้ำ",
+      "giver": "guard",
+      "level": 80,
+      "requires": [],
+      "offer": "เส้นทางใหม่เปิดแล้ว ลองอ่านท่าโจมตีและหาวัตถุดิบประจำถิ่นจากหอยสังข์เกราะพายุ แล้วกลับมารายงาน",
+      "complete": "เจ้ารู้ทางและเริ่มรับมือศัตรูที่นี่ได้แล้ว รับเสบียงไว้เดินทางต่อ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "ocean_storm_conch"
+          ],
+          "count": 12,
+          "label": "ปราบหอยสังข์เกราะพายุ"
+        },
+        {
+          "kind": "collect",
+          "item": "ocean_storm_conch_material",
+          "count": 6,
+          "label": "เปลือกสังข์พายุ"
+        }
+      ],
+      "rewards": {
+        "exp": 154000,
+        "jobExp": 77000,
+        "gold": 16000,
+        "items": [
+          {
+            "template": "red_greater",
+            "qty": 10
+          },
+          {
+            "template": "blue_greater",
+            "qty": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "journey_astral",
+      "nameTh": "สำรวจทะเลดาวและวิหารจักรราศี",
+      "giver": "guard",
+      "level": 90,
+      "requires": [],
+      "offer": "เส้นทางใหม่เปิดแล้ว ลองอ่านท่าโจมตีและหาวัตถุดิบประจำถิ่นจากแมงกะพรุนละอองดาว แล้วกลับมารายงาน",
+      "complete": "เจ้ารู้ทางและเริ่มรับมือศัตรูที่นี่ได้แล้ว รับเสบียงไว้เดินทางต่อ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "astral_stardust_jellyfish"
+          ],
+          "count": 12,
+          "label": "ปราบแมงกะพรุนละอองดาว"
+        },
+        {
+          "kind": "collect",
+          "item": "astral_stardust_jellyfish_material",
+          "count": 6,
+          "label": "ละอองดาวมีชีพ"
+        }
+      ],
+      "rewards": {
+        "exp": 194800,
+        "jobExp": 97400,
+        "gold": 18000,
+        "items": [
+          {
+            "template": "red_greater",
+            "qty": 10
+          },
+          {
+            "template": "blue_greater",
+            "qty": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "journey_abyss",
+      "nameTh": "สำรวจมหาสมุทรบรรพกาลและนครดินดำ",
+      "giver": "guard",
+      "level": 90,
+      "requires": [],
+      "offer": "เส้นทางใหม่เปิดแล้ว ลองอ่านท่าโจมตีและหาวัตถุดิบประจำถิ่นจากปูเกลือดำ แล้วกลับมารายงาน",
+      "complete": "เจ้ารู้ทางและเริ่มรับมือศัตรูที่นี่ได้แล้ว รับเสบียงไว้เดินทางต่อ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "abyss_black_salt_crab"
+          ],
+          "count": 12,
+          "label": "ปราบปูเกลือดำ"
+        },
+        {
+          "kind": "collect",
+          "item": "abyss_black_salt_crab_material",
+          "count": 6,
+          "label": "กระดองเกลือดำ"
+        }
+      ],
+      "rewards": {
+        "exp": 194800,
+        "jobExp": 97400,
+        "gold": 18000,
+        "items": [
+          {
+            "template": "red_greater",
+            "qty": 10
+          },
+          {
+            "template": "blue_greater",
+            "qty": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "journey_confluence",
+      "nameTh": "สำรวจมหาวิหารรอยต่อพิภพ",
+      "giver": "guard",
+      "level": 100,
+      "requires": [],
+      "offer": "ปิดหลักชีวิต ศิลา และดาราให้ครบ ก่อนเปิดแกนโลก ผู้พิทักษ์ที่ปราบแล้วพัก30นาที จุดพักกลางลานช่วยให้กลับมาตั้งตัวหลังล้มได้",
+      "complete": "เจ้ารู้ทางและเริ่มรับมือศัตรูที่นี่ได้แล้ว รับเสบียงไว้เดินทางต่อ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "confluence_life_pillar_guard"
+          ],
+          "count": 1,
+          "label": "ปราบผู้พิทักษ์หลักธารชีวิต"
+        },
+        {
+          "kind": "kill",
+          "monsters": [
+            "confluence_thunder_pillar_guard"
+          ],
+          "count": 1,
+          "label": "ปราบผู้พิทักษ์หลักอสนีศิลา"
+        },
+        {
+          "kind": "kill",
+          "monsters": [
+            "confluence_starshadow_pillar_guard"
+          ],
+          "count": 1,
+          "label": "ปราบผู้พิทักษ์หลักเงาดารา"
+        },
+        {
+          "kind": "kill",
+          "monsters": [
+            "confluence_worldcore_sovereign"
+          ],
+          "count": 1,
+          "label": "ปราบอสูรแกนโลกผู้คืนสมดุล"
+        }
+      ],
+      "rewards": {
+        "exp": 240400,
+        "jobExp": 120200,
+        "gold": 20000,
+        "items": [
+          {
+            "template": "red_greater",
+            "qty": 10
+          },
+          {
+            "template": "blue_greater",
+            "qty": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "worldcore_invitation",
+      "nameTh": "คำเชิญสู่รอยต่อพิภพ",
+      "giver": "guard",
+      "level": 95,
+      "requires": [],
+      "offer": "เลือกพิชิตอสูรสุริยคราสหรือมังกรทะเลบรรพกาลสักตน ไม่ต้องฟาร์มทุกตำนาน เมื่อถึง Lv.100 เจ้าจะเข้าสู่มหาวิหารรอยต่อได้",
+      "complete": "ข้ารับรองฝีมือของเจ้าแล้ว เมื่อถึง Lv.100 จงรวบรวมปาร์ตี้ไปปิดหลักทั้งสามในวิหารรอยต่อพิภพ",
+      "objectives": [
+        {
+          "kind": "kill",
+          "monsters": [
+            "astral_star_eating_eclipse",
+            "abyss_primordial_sea_dragon"
+          ],
+          "count": 1,
+          "label": "พิชิตบอสปลายทาง Lv.99 สายใดสายหนึ่ง"
+        }
+      ],
+      "rewards": {
+        "exp": 448157,
+        "jobExp": 120000,
+        "gold": 25000,
+        "items": []
+      }
     }
   ]
 }

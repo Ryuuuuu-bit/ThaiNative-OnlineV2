@@ -215,6 +215,7 @@ export function createSocial<P extends SocialPeer>(options: Options<P>) {
 		mute,
 		unmute,
 		/** Members of the same party (including the player), for EXP sharing. */
+		partyId(id:string){return partyOf.get(id);},
 		partyMembers(id: string) { return parties.get(partyOf.get(id) ?? "")?.members ?? [id]; },
 		ready(peer: P) {
 			const me = player(peer);

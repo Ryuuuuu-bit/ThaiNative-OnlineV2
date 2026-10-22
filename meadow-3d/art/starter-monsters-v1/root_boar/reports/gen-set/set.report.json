@@ -1,0 +1,26 @@
+{
+  "kind": "sprite-gen-gen-set-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\root_boar\\run",
+  "states": [
+    "down45_attack"
+  ],
+  "ok": 1,
+  "failed": [],
+  "not_started": [],
+  "items": [
+    {
+      "state": "down45_attack",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\root_boar\\run\\raw\\down45\\attack.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\root_boar\\run\\reports\\gen-set\\down45_attack.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\root_boar\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\root_boar\\run\\references\\layout-guides\\down45\\attack.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 53.1,
+      "ok": true
+    }
+  ]
+}

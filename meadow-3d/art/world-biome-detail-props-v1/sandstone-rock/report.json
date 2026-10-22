@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "One low original cluster of two softly eroded warm cream and ochre sandstone boulders, horizontal sediment lines, small chipped corners, a little dry golden grit at the base, NO green moss, NO plants, NO crystal, full complete standalone desert environment prop. Orthographic three-quarter top down isometric view, upper left light, hand-painted gouache and watercolor fantasy MMO art matching The Beginning Online, true transparent background with padding, no ground plane, no cast shadow outside foot, no grid, no text, no reference artist or franchise.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\sandstone-rock\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\sandstone-rock\\base.png.raw.png",
+  "raw_bytes": 2424611,
+  "elapsed_seconds": 46.031,
+  "model": null,
+  "session_id": "01a16051-db3a-7a23-9ea0-d249d8c924a4",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\sandstone-rock\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 53.27,
+    "partial_alpha_pct": 46.73,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 708289,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

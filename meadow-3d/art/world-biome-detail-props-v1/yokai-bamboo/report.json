@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE original natural Japanese rain-forest bamboo grove of FOUR dark jade and muted olive slender stalks of different heights, asymmetric sprays of long narrow leaves, small fibrous root base with a little dark moss attached, believable bamboo proportions and natural watercolor ink texture, full complete standalone tree cluster, NO cloud or mist shapes, NO decorative swirls, NO lanterns, flowers, pot, written symbols or large ground patch. Orthographic three-quarter top down isometric view, upper left light, hand-painted gouache and watercolor fantasy MMO art matching The Beginning Online, true transparent background with padding, no ground plane, no cast shadow outside foot, no grid, no text, no reference artist or franchise.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\yokai-bamboo\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\yokai-bamboo\\base.png.raw.png",
+  "raw_bytes": 1408938,
+  "elapsed_seconds": 52.032,
+  "model": null,
+  "session_id": "01a160a5-8f5e-7440-a3ba-35649f568e01",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-detail-props-20261022\\yokai-bamboo\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1312x1199",
+    "alpha_zero_pct": 66.63,
+    "partial_alpha_pct": 33.36,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 491,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

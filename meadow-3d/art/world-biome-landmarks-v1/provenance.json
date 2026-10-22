@@ -1,0 +1,126 @@
+{
+  "kind": "original-generated-biome-landmarks",
+  "copyrightApproach": "Original text-only designs based on broad mythological traditions; no franchise imagery, artist names, logos, characters or reference images. No claim of exclusive copyright or legal clearance.",
+  "assets": [
+    {
+      "id": "abyss",
+      "source": "abyss/base.png",
+      "sourceSha256": "6a9f0fa6560fcbc04beca69db5e7655ee900c776122ed04fd7ca34f2b8c67a8e",
+      "runtime": "../../src/assets/biome-abyss-v1.webp",
+      "runtimeSha256": "cf9bb8964390e9cc6f5555e279fea88e43ffe0bf62b06ab7f974ee46f000474e",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "astral",
+      "source": "astral/base.png",
+      "sourceSha256": "1f643cfb4de4087313c51e9c2cafbff8a3ca807246d253135e20cc8658e2a721",
+      "runtime": "../../src/assets/biome-astral-v1.webp",
+      "runtimeSha256": "d3f546288e87f0e076aff78b79dae51eee2d0ec4d1d5d03095c35871af61f81d",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "confluence",
+      "source": "confluence/base.png",
+      "sourceSha256": "23541da5c84a23d22dbe7ce7909a1d9e57d4ad66ca678055c66c97308a682624",
+      "runtime": "../../src/assets/biome-confluence-v1.webp",
+      "runtimeSha256": "4ce8a611ca61bef549be5b42032a7bf6b2df149819dca562e37fab1cd77bf29c",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "desert",
+      "source": "desert/base.png",
+      "sourceSha256": "e3f504fcbac776e518c922e613cb1d2a127de7dfff8f7909cc833107bdf02c49",
+      "runtime": "../../src/assets/biome-desert-v1.webp",
+      "runtimeSha256": "40976e9279a2a89dd61bfd2a98360813d8e51c4343145bf890819a3841b10a67",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "dragon",
+      "source": "dragon/base.png",
+      "sourceSha256": "e1faed4a7f2099fdf86f11bf773fb30640c728cd1c6eacec5c0f8dbb1eed7cc8",
+      "runtime": "../../src/assets/biome-dragon-v1.webp",
+      "runtimeSha256": "f25a7e3d31a25063321a461e423a92b8f2fb1327a25072a978cb721284c6857c",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "fae",
+      "source": "fae/base.png",
+      "sourceSha256": "780f3c3f990950cae6858290160807661527e7a9fc89029750ca3ef719c24e08",
+      "runtime": "../../src/assets/biome-fae-v1.webp",
+      "runtimeSha256": "38ae25a74753cfa500f266f143966bc7b5ddee191f18b4d0717e26d1d0b1fcdf",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "frost",
+      "source": "frost/base.png",
+      "sourceSha256": "8731aae667c4afb0550af0f09fa83a7e834e0dd844eaa6e2d7312398e37daf28",
+      "runtime": "../../src/assets/biome-frost-v1.webp",
+      "runtimeSha256": "bd45a43ebb4a018513452681349f0dc4c664471cbc3e14aebc310a980fa83459",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "ocean",
+      "source": "ocean/base.png",
+      "sourceSha256": "66c9d06019cb721d77d86918675dafb03a233c84172082b17371927629115f1c",
+      "runtime": "../../src/assets/biome-ocean-v1.webp",
+      "runtimeSha256": "32efded5992a8960039062042552e95643366049948b1fc5f3436f2ce6c5d9ae",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "volcano",
+      "source": "volcano/base.png",
+      "sourceSha256": "c3a48ff36d993356029ea1d1a39d834e92f6cc397a2e69e0063549018da443ab",
+      "runtime": "../../src/assets/biome-volcano-v1.webp",
+      "runtimeSha256": "070d436e2e59449f0460fc8ee5424b97f6741a7beef638322d2757b88aecbf84",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    },
+    {
+      "id": "yokai",
+      "source": "yokai/base.png",
+      "sourceSha256": "8739e18fd34a7481698ac101657dc221e3ff58a17680a9b44e2e1a226520cfcf",
+      "runtime": "../../src/assets/biome-yokai-v1.webp",
+      "runtimeSha256": "205ba667ca47ede128ff3188aefbee337cf5d31168e24c134373fa42a6b7c234",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "alpha": "native transparent",
+      "processing": "WebP encoding only; no repainting",
+      "visualReview": "Complete unique landmark; no text or external reference; reviewed contact sheet 2026-10-22"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A charcoal wild boar with four cloven hooves, one broad snout, two blunt tusks, a ridge of irregular obsidian spines and one curled tail, coarse ash-gray fur. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\volcano-monsters-20261022\\volcano_ash_spine_boar\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\volcano-monsters-20261022\\volcano_ash_spine_boar\\base.png.raw.png",
+  "raw_bytes": 2141290,
+  "elapsed_seconds": 46.11,
+  "model": null,
+  "session_id": "01a1611c-6eb7-75c2-b380-579ac91c0471",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\volcano-monsters-20261022\\volcano_ash_spine_boar\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 67.1,
+    "partial_alpha_pct": 32.9,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 720066,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

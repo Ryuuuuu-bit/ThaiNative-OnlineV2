@@ -1,5 +1,5 @@
-import {TOWN_NPCS,nearbyTownNpc} from './city-2d-locations';
-import {cityNpcWorldHeight} from './city-npc-sprite';
+import {isBiomeMap,BIOME_SCENES} from './biome-scenes';
+import {THORN_NEST} from '@the-beginning-online/shared/maps';
 import { mountWorldMap } from './world-map-ui';
 import {mountTitles} from './titles-ui';
 import {loadUIFonts,UI_FONT_FAMILY} from './fonts';
@@ -11,7 +11,7 @@ import {mountInventory} from './inventory-ui';
 import {mountAutoSettings} from './auto-ui';
 import {mountSettingsWindow} from './settings-ui';
 import {loadGameData,rarityColors} from '@the-beginning-online/shared';
-import { MAP_INFO, isField, CITY_BUILDINGS, CITY_HOUSES, CITY_FOUNTAIN, HEALER, GATE_CAPTAIN, GATES, LAYOUTS, FIELD_BOSS, type MapId } from '@the-beginning-online/shared/maps';
+import { CITY, MAP_INFO, isField, CITY_BUILDINGS, CITY_HOUSES, NEW_BUILDINGS, CITY_FOUNTAIN, HEALER, GATE_CAPTAIN, GATES, GATE_LINKS, LAYOUTS, FIELD_BOSS, type MapId } from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 import { playEventAudio } from './audio-events';
 import { mountSocial } from './social-ui';
@@ -24,6 +24,10 @@ import{mountSkills}from'./skills-ui';
 import{loadSelected,mountMenuAccount}from'./web/game-session';
 import{assetJSON}from'./asset-request';
 import{GameCanvas2D}from'./game-2d-renderer';
+import {TOWN_NPCS,nearbyTownNpc} from './city-2d-locations';
+import {cityNpcWorldHeight} from './city-npc-sprite';
+import {paintMinimapLayer} from './minimap-view';
+import {MEADOW_LANDMARKS,FIELD_HABITATS} from '@the-beginning-online/shared/maps';
 type TextureManifest=Record<string,{webp:string}>;
 import{GameSocket}from'./net/socket';import{NetworkWorld}from'./net/world';
 import{KEYS,isKey}from'./keys';
@@ -129,7 +133,7 @@ function mapInteractions(){
  npcTalk.hidden=!nearNpc;npcTalk.textContent=nearNpc?'คุย · '+nearNpc.name:'';
  const gates=GATES[activeMap];let closed='';
  for(const [gate,point]of Object.entries(gates))if(Math.hypot(p.x-point.x,p.z-point.z)<3){
-  const open=activeMap!=='city_plaza'||gate==='south'||gate==='east';
+  const open=!!GATE_LINKS[activeMap][gate];
   if(!open)closed=gate;
   else if(!p.dead&&!switching&&p.mapId===activeMap&&performance.now()-lastGate>1500&&Math.hypot(p.x-point.x,p.z-point.z)<1.25){lastGate=performance.now();qol?.cancel(true);clearInput();net.send({t:'travel',gate});}
  }
@@ -168,6 +172,7 @@ function events(){for(const e of game.events.splice(0)){
  case'hurt':number(`−${e.amount}`,e,'hurt',2.4);break;
  case'evade':number('หลบ',e,'evade',2.4);break;
  case'heal':number(`+${e.amount}`,e,'heal',2.4);break;
+ case'item_proc':if(e.playerId===net.you)notice(e.text);break;
  case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);if(e.kind==='hp'){const b=$('[data-action="potion"]');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
  case'itemPickup':if(e.playerId===net.you)social?.items(inventoryUI.names(e.loot));break;
  case'pickup':if(!e.playerId||e.playerId===net.you)social?.loot(e.xp,e.gold);break;
@@ -209,9 +214,9 @@ window.addEventListener('keydown',e=>{
   if(!started||game.p.dead||netOverlay||!$('#overlay').hidden)return;
   e.preventDefault();qol?.cancel();net.send({t:'auto',on:false});clearInput();settingsUI?.open();return;
  }
- if(dialogs.length&&!(e.target instanceof HTMLElement&&e.target.matches('input,textarea,select')))return;
  if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
- if(isKey('map',e.code)&&started&&!netOverlay&&$('#overlay').hidden){e.preventDefault();if(!e.repeat)worldMap?.toggle();return;}
+ if(isKey('map',e.code)&&(!dialogs.length||worldMap?.open)&&started&&!netOverlay&&$('#overlay').hidden){e.preventDefault();if(!e.repeat)worldMap?.toggle();return;}
+ if(dialogs.length)return;
  if(isKey('inventory',e.code)&&started&&!e.repeat){e.preventDefault();inventoryUI.toggle();return;}
  if(inventoryUI.open)return;
  if(isKey('skills',e.code)&&started&&!e.repeat){e.preventDefault();if(!statsUI.open)skillsUI.toggle();return;}
@@ -274,7 +279,7 @@ $('#quest-button').addEventListener('click',()=>$('#journal-toggle').click());
 $('#help').addEventListener('click',()=>{clearInput();paused=true;$<HTMLDialogElement>('#guide').showModal();});$('#guide .close').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide .done').addEventListener('click',()=>$<HTMLDialogElement>('#guide').close());$('#guide').addEventListener('close',()=>{if(started&&$('#overlay').hidden)paused=false;});
 function overlay(html:string){clearInput();paused=true;$('#overlay').className='overlay center';$('#overlay').innerHTML=`<section class="welcome">${html}</section>`;$('#overlay').hidden=false;}
 let lastXpLost=0;
-function showDeath(){if(netOverlay)return;overlay('<p class="caption">เริ่มต้นใหม่</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>'+(lastXpLost>0?`เสียประสบการณ์ ${lastXpLost.toLocaleString('th-TH')} (1% ของระดับนี้) · ทองและไอเทมยังอยู่ครบ`:'ประสบการณ์และเงินที่เก็บได้ยังอยู่')+'</p><p id="revive-countdown"></p><button id="revive" class="primary">กลับเมือง →</button>');$('#revive').onclick=()=>{if(!net.connected){notice('ยังไม่ได้เชื่อมต่อ');return;}if((game.p.reviveRemaining??0)>0)return;net.send({t:'revive'});};}
+function showDeath(){if(netOverlay)return;overlay('<p class="caption">เริ่มต้นใหม่</p><h1>พักสักหน่อย<br>แล้วเริ่มใหม่</h1><p>'+(lastXpLost>0?`เสียประสบการณ์ ${lastXpLost.toLocaleString('th-TH')} (1% ของระดับนี้) · ทองและไอเทมยังอยู่ครบ`:'ประสบการณ์และเงินที่เก็บได้ยังอยู่')+'</p><p id="revive-countdown"></p><button id="revive" class="primary">กลับเมือง →</button>');$('#revive').textContent=activeMap==='confluence'?'ฟื้นที่จุดพักในเรด →':'กลับเมือง →';$('#revive').onclick=()=>{if(!net.connected){notice('ยังไม่ได้เชื่อมต่อ');return;}if((game.p.reviveRemaining??0)>0)return;net.send({t:'revive'});};}
 
 const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;
 // Round, player-centred minimap. Terrain and markers are drawn in the 160×132 map space; hud-qol draws its
@@ -282,23 +287,29 @@ const map=$<HTMLCanvasElement>('#map'),mx=map.getContext('2d')!;
 // Zoom is set in screen pixels per world metre so the circle shows ~60 m around the player on every map size.
 const MAP_SIZE=168,MAP_PX_PER_METRE=2.8;
 function minimap(){const m=mapScale(activeMap),cx=m.x(game.p.x),cy=m.z(game.p.z),zoom=MAP_PX_PER_METRE/m.k,view={k:zoom,ox:MAP_SIZE/2-zoom*cx,oy:MAP_SIZE/2-zoom*cy};(map as any).view=view;
- mx.setTransform(1,0,0,1,0,0);mx.clearRect(0,0,MAP_SIZE,MAP_SIZE);mx.beginPath();mx.arc(MAP_SIZE/2,MAP_SIZE/2,MAP_SIZE/2,0,Math.PI*2);mx.clip();mx.fillStyle='rgba(12,20,19,.5)';mx.fillRect(0,0,MAP_SIZE,MAP_SIZE);
- mx.setTransform(view.k,0,0,view.k,view.ox,view.oy);drawMinimap();
+ mx.setTransform(1,0,0,1,0,0);mx.clearRect(0,0,MAP_SIZE,MAP_SIZE);
+ paintMinimapLayer(mx,MAP_SIZE,view,drawMinimap,'#10231f');
  $('#map-coords').textContent=`${Math.round(game.p.x)}, ${Math.round(game.p.z)}`;}
 /** Minimap: the terrain is drawn once per map from the shared layout; only markers redraw each frame. */
 const minimapBase=new Map<MapId,HTMLCanvasElement>();
 const mapScale=(id:MapId)=>{const l=LAYOUTS[id];return{x:(x:number)=>(x+l.halfX)/(l.halfX*2)*160,z:(z:number)=>(z+l.halfZ)/(l.halfZ*2)*132,k:160/(l.halfX*2)};};
 function minimapTerrain(id:MapId){
  let c=minimapBase.get(id);if(c)return c;c=document.createElement('canvas');c.width=160;c.height=132;const g=c.getContext('2d')!,m=mapScale(id),l=LAYOUTS[id];
- if(id==='city_plaza'){
-  g.fillStyle='rgba(40,58,54,.55)';g.fillRect(0,0,160,132);g.lineCap='round';g.strokeStyle='rgba(230,201,143,.45)';g.lineWidth=5*m.k*1.6;g.beginPath();g.moveTo(80,2);g.lineTo(80,130);g.moveTo(2,66);g.lineTo(158,66);g.stroke();
-  for(const b of [...CITY_BUILDINGS,...CITY_HOUSES]){g.fillStyle='rgba(255,255,255,.14)';g.fillRect(m.x(b.x-b.w/2),m.z(b.z-b.d/2),b.w*m.k,b.d*m.k*1.1);}
+ if(id==='city_plaza'&&!CITY.empty){
+  g.fillStyle='#283a36';g.fillRect(0,0,160,132);g.lineCap='round';g.strokeStyle='#b7a17c';g.lineWidth=5*m.k*1.6;g.beginPath();g.moveTo(80,2);g.lineTo(80,130);g.moveTo(2,66);g.lineTo(158,66);g.stroke();
+  g.strokeStyle='#887f66';g.lineWidth=2*m.k;g.strokeRect(m.x(-36),m.z(-36),72*m.k,72*132/96);
+  for(const b of [...CITY_BUILDINGS,...CITY_HOUSES,...NEW_BUILDINGS]){g.fillStyle='rgba(255,255,255,.14)';g.fillRect(m.x(b.x-b.w/2),m.z(b.z-b.d/2),b.w*m.k,b.d*132/96);}
   g.fillStyle='#e3dcc3';g.beginPath();g.arc(80,66,4,0,6.28);g.fill();g.fillStyle='#8bc3d0';g.beginPath();g.arc(m.x(CITY_FOUNTAIN.x),m.z(CITY_FOUNTAIN.z),3.5,0,6.28);g.fill();
  }else{
-  const forest=id==='forest';g.fillStyle=forest?'rgba(47,75,61,.55)':'rgba(84,108,68,.5)';g.fillRect(0,0,160,132);g.lineCap='round';g.lineJoin='round';g.strokeStyle=forest?'#a99f7c':'#d2c397';
+  const forest=id==='forest'||id==='grove';g.fillStyle=isBiomeMap(id)?BIOME_SCENES[id].ground.slice(0,7):id==='temple'?'#80765e':id==='grove'?'#70532e':id==='summit'?'#3d526f':id==='forest'?'#263e33':id==='ruins'?'#3e4540':id==='canyon'?'#5b4934':'#405739';g.fillRect(0,0,160,132);g.lineCap='round';g.lineJoin='round';g.strokeStyle=forest?'#a99f7c':'#d2c397';
+  for(const [i,h]of FIELD_HABITATS[id].entries()){g.fillStyle=id==='meadow'?(h.variant==='pink'?'#df99ad33':h.variant==='mint'?'#80d7af33':'#9bcae833'):['#b0cf8b33','#c4ad8033','#93bfdb33','#c3a5d333'][i];g.beginPath();g.ellipse(m.x(h.x),m.z(h.z),h.rx*m.k,h.rz*132/(l.halfZ*2),0,0,6.28);g.fill();}
   for(const p of l.paths){g.lineWidth=Math.max(2,p.width*m.k*1.4);g.beginPath();p.points.forEach(([x,z],i)=>i?g.lineTo(m.x(x),m.z(z)):g.moveTo(m.x(x),m.z(z)));g.stroke();}
-  for(const w of l.water){g.fillStyle=forest?'#7fa3a8':'#7fa9a1';g.beginPath();g.ellipse(m.x(w.x),m.z(w.z),w.rx*m.k,w.rz*m.k*1.1,0,0,6.28);g.fill();if(w.bridgeZ!==undefined){g.fillStyle='#bba16c';g.fillRect(m.x(w.x-w.rx-.5),m.z(w.bridgeZ)-1.5,(w.rx*2+1)*m.k,3);}}
-  for(const o of l.obstacles){g.fillStyle=o.kind==='boulder'?'#8c8f7e':forest?'#2f4b3d':'#4f7654';g.beginPath();g.arc(m.x(o.x),m.z(o.z),Math.max(1.6,o.r*m.k*1.3),0,6.28);g.fill();}
+  for(const w of l.water){g.fillStyle=isBiomeMap(id)?BIOME_SCENES[id].water.slice(0,7):forest?'#7fa3a8':'#7fa9a1';g.beginPath();g.ellipse(m.x(w.x),m.z(w.z),w.rx*m.k,w.rz*132/(l.halfZ*2),0,0,6.28);g.fill();if(w.bridgeZ!==undefined){g.fillStyle='#bba16c';g.fillRect(m.x(w.x-w.rx-.5),m.z(w.bridgeZ)-1.5,(w.rx*2+1)*m.k,3);}}
+  for(const o of l.obstacles){g.fillStyle=isBiomeMap(id)?BIOME_SCENES[id].accent:o.kind==='boulder'?'#8c8f7e':forest?'#2f4b3d':'#4f7654';g.beginPath();g.arc(m.x(o.x),m.z(o.z),Math.max(1.6,o.r*m.k*1.3),0,6.28);g.fill();}
+  if(id==='meadow'){
+   g.fillStyle='#9a9c80';for(const b of MEADOW_LANDMARKS.boxes)g.fillRect(m.x(b.x-b.w/2),m.z(b.z-b.d/2),b.w*m.k,b.d*132/(l.halfZ*2));
+   for(const p of MEADOW_LANDMARKS.circles){g.beginPath();g.arc(m.x(p.x),m.z(p.z),Math.max(1.6,p.r*m.k),0,6.28);g.fill();}
+  }
   if(l.arena){g.strokeStyle='#e5dcb2';g.lineWidth=2;g.beginPath();g.arc(m.x(l.arena.x),m.z(l.arena.z),l.arena.r*m.k+1,0,6.28);g.stroke();}
   for(const cp of l.camps){g.fillStyle='#e5dcb2';g.fillRect(m.x(cp.x)-2.5,m.z(cp.z)-2.5,5,5);}
  }
@@ -307,7 +318,7 @@ function minimapTerrain(id:MapId){
 function drawMinimap(){
  const m=mapScale(activeMap);mx.drawImage(minimapTerrain(activeMap),0,0);
  const k=((map as any).view?.k)||1,dot=(x:number,z:number,r:number,color:string,stroke?:string)=>{mx.fillStyle=color;mx.beginPath();mx.arc(m.x(x),m.z(z),r*1.3/k,0,6.28);mx.fill();if(stroke){mx.strokeStyle=stroke;mx.lineWidth=1.5/k;mx.stroke();}};
- for(const e of game.enemies){if(e.dead)continue;dot(e.x,e.z,e.boss?3.5:1.5,e.boss?'#ffdb87':activeMap==='forest'?'#e7c3a0':'#f4b3c5');}
+ for(const e of game.enemies){if(e.dead)continue;dot(e.x,e.z,e.boss?3.5:1.5,e.boss?'#ffdb87':activeMap==='forest'?'#e7c3a0':e.variant==='mint'?'#80d7af':e.variant==='sky'?'#9bcae8':'#f4b3c5');}
  for(const o of worldState.others)dot(o.x,o.z,2,'#9fd3ff');
  dot(game.p.x,game.p.z,3,'#fff7d5','#314d39');
 }
@@ -315,17 +326,18 @@ const clock=(s:number)=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart
 /** Field maps: the boss runs on a 30-minute map timer (server sends seconds left in bossIn). */
 function fieldQuest(boss:any){
  if(!isField(activeMap))return;
- const forest=activeMap!=='meadow',name=itemData.monsters.monsters.find(m=>m.id===FIELD_BOSS[activeMap].dataId)!.nameTh,left=(game as any).bossIn??0;
+ if(LAYOUTS[activeMap].exploration){$('#quest-name').textContent=MAP_INFO[activeMap].name;$('#quest-line').textContent='สำรวจจุดสำคัญ ค่ายพัก และเส้นทางเชื่อมภูมิภาค';$('#quest-note').textContent=`พื้นที่ตามแผน Lv.${MAP_INFO[activeMap].levels} · มอน การ์ด และ Unique ยังไม่เปิด`;$('#quest-progress').style.width='0';return;}
+ const id=boss?.dataId??(activeMap==='forest'&&Math.hypot(game.p.x-THORN_NEST.x,game.p.z-THORN_NEST.z)<12?'thorn_nest_mother':FIELD_BOSS[activeMap]!.dataId),name=itemData.monsters.monsters.find(m=>m.id===id)!.nameTh,left=(game as any).bossTimers?.[id]??(game as any).bossIn??0;
  $('#quest-name').textContent=MAP_INFO[activeMap].name;
  if(left>0){$('#quest-line').innerHTML=`${name}จะกลับมาใน <b>${clock(left)}</b>`;$('#quest-progress').style.width=`${(1-left/1800)*100}%`;}
  else if(boss&&!boss.dead){$('#quest-line').innerHTML=`ปราบ${name} <b>${Math.round(boss.hp/boss.maxHp*100)}%</b>`;$('#quest-progress').style.width=`${(1-boss.hp/boss.maxHp)*100}%`;}
- else{$('#quest-line').innerHTML=`${name}ปรากฏตัวแล้วที่ลานหิน${forest?'ตะวันออก':'ทางใต้'}`;$('#quest-progress').style.width='0';}
+ else{$('#quest-line').innerHTML=`${name}ปรากฏตัวแล้วที่ลานบอสส่วนลึก`;$('#quest-progress').style.width='0';}
  $('#quest-note').textContent=MAP_INFO[activeMap].hint+' · บอสเกิดทุก 30 นาที';
 }
-function hud(){if(game.p.dead&&$('#overlay').hidden)showDeath();const revive=$<HTMLButtonElement>('#revive');if(revive){revive.disabled=!net.connected||(game.p.reviveRemaining??0)>0;const count=$('#revive-countdown');if(count)count.textContent=`ฟื้นที่หอนาฬิกาใน ${Math.ceil(game.p.reviveRemaining??0)}…`;if(!game.p.dead&&!netOverlay){paused=false;$('#overlay').hidden=true;}}const count=$('#net-countdown');if(count)count.textContent=`ลองเชื่อมต่อใหม่ใน ${Math.max(0,Math.ceil((net.nextRetryAt-Date.now())/1000))} วินาที`;mapInteractions();const p=game.p;inventoryUI.update(p);skillsUI.update(p);const auto=$('#auto-hunt');auto.classList.toggle('auto-active',p.auto);auto.setAttribute('aria-pressed',String(p.auto));$('#auto-label').textContent=p.auto?'ออโต้ เปิด':'ออโต้';const status=$('#auto-status');status.hidden=!p.auto;status.textContent='ออโต้: '+(p.autoState==='retreat'?'กลับแคมป์':p.autoState==='fight'?'กำลังสู้':'กำลังหาเป้าหมาย');$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${Math.ceil(p.maxHp)}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${Math.floor(p.maxMp)}`;$('#xp').style.width=`${p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`ปราบแล้ว ${game.kills}`;$('#potions').textContent=String(p.potions);
+function hud(){if(game.p.dead&&$('#overlay').hidden)showDeath();const revive=$<HTMLButtonElement>('#revive');if(revive){revive.disabled=!net.connected||(game.p.reviveRemaining??0)>0;const count=$('#revive-countdown');if(count)count.textContent=`ฟื้นที่${activeMap==='confluence'?'จุดพักในเรด':'หอนาฬิกา'}ใน ${Math.ceil(game.p.reviveRemaining??0)}…`;if(!game.p.dead&&!netOverlay){paused=false;$('#overlay').hidden=true;}}const count=$('#net-countdown');if(count)count.textContent=`ลองเชื่อมต่อใหม่ใน ${Math.max(0,Math.ceil((net.nextRetryAt-Date.now())/1000))} วินาที`;mapInteractions();const p=game.p;inventoryUI.update(p);skillsUI.update(p);const auto=$('#auto-hunt');auto.classList.toggle('auto-active',p.auto);auto.setAttribute('aria-pressed',String(p.auto));$('#auto-label').textContent=p.auto?'ออโต้ เปิด':'ออโต้';const status=$('#auto-status');status.hidden=!p.auto;status.textContent='ออโต้: '+(p.autoState==='retreat'?'กลับแคมป์':p.autoState==='fight'?'กำลังสู้':'กำลังหาเป้าหมาย');$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${Math.ceil(p.maxHp)}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${Math.floor(p.maxMp)}`;$('#xp').style.width=`${p.level>=itemData.stats.maxLevel?100:p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`ปราบแล้ว ${game.kills}`;$('#potions').textContent=String(p.potions);
  const boss=game.enemies.find(e=>e.boss&&(!e.dead||e.deathAge<3.8)&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<28);$('#boss-hud').hidden=!boss;document.body.classList.toggle('boss-active',!!boss);if(boss){$('#boss-hp').style.width=`${boss.hp/boss.maxHp*100}%`;$('#boss-hud h3').textContent=enemyLabel(boss);$('#boss-hud small').textContent=boss.dead?'ปราบแล้ว':`ระยะ ${boss.bossPhase}`;}
  sound.updateMusic({mapId:activeMap,dead:game.p.dead,bossAlive:!!boss&&!boss.dead,bossTargeted:!!boss&&game.target===boss.id,bossBarActive:!!boss&&!$('#boss-hud').hidden,bossAggro:!!boss?.engaged});
- if(activeMap==='city_plaza'){$('#quest-name').textContent='นครที่ถูกลืมเลือน';$('#quest-line').textContent='ประตูใต้: ทุ่งวุ้นจิ๋ว · ประตูตะวันออก: ป่าหมอก (ระดับ 6+)';$('#quest-progress').style.width='0';$('#quest-note').textContent='คุยกับทูตสวรรค์ หรือพักฟื้นข้างน้ำพุ';}else if(isField(activeMap)){fieldQuest(boss);}
+ if(activeMap==='city_plaza'){$('#quest-name').textContent='นครที่ถูกลืมเลือน';$('#quest-line').textContent='ใต้: ทุ่ง · ออก: ป่า · เหนือ: ซากนคร · ตก: หุบเขา · ใกล้เมือง Lv.1–3';$('#quest-progress').style.width='0';$('#quest-note').textContent=CITY.empty?'พื้นที่เมืองว่าง · ไม่มี NPC หรือสิ่งปลูกสร้าง':'คุยกับทูตสวรรค์ หรือพักฟื้นข้างน้ำพุ';}else if(isField(activeMap)){fieldQuest(boss);}
  const target=game.enemies.find(e=>e.id===game.target&&!e.dead);$('#target').hidden=!target||target.boss;if(target){$('#target-name').textContent=enemyLabel(target);$('#target-lv').textContent=`ระดับ ${monsterSpec(target)?.level??1}`;$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;}
  for(const b of $$('[data-action]')){const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);guide?.update();}
 function render(dt:number){sound.setListener(game.p);renderer.overview=overviewOn&&activeMap==='city_plaza';renderer.zoomHeight=zoomHeight;renderer.render(game,worldState.others,dt,time);
@@ -358,4 +370,3 @@ if(pendingUI)qol.receive(pendingUI);
 (window as any).__FIELDS__={snapshot:()=>({renderer:'Canvas2D',mapId:activeMap,transitioning:switching,network:{connected:net.connected,tick:worldState.lastTick,you:net.you},started,paused,p:{...game.p},enemies:game.enemies.map(e=>({...e})),target:game.target,kills:game.kills,others:worldState.others,environment:renderer.snapshot()}),project:(x:number,z:number,y=0)=>renderer.screen(x,z,y),
  // Dev only: replay a skill event at the local player to preview its VFX without the server.
  ...(import.meta.env.DEV?{vfx:(e:any)=>renderer.event({x:game.p.x,z:game.p.z,dx:game.p.fx,dz:game.p.fz,playerId:net.you,...e})}:{})};
-

@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "greek_satyr",
+      "baseSha256": "e96adeb14cb0946a0bcdfdc6b9d5c1be3fcd2c0b1c214bff86068b7d9c7ee430",
+      "run": "output/greek-monsters-20261022/greek_satyr/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/greek-monsters-v1/greek_satyr/motion-qa.json"
+    },
+    {
+      "id": "greek_harpy",
+      "baseSha256": "f9f207187d55f180fa8ff2746277a4fa6a464e3dcef472f504e6b71f17d15ec0",
+      "run": "output/greek-monsters-20261022/greek_harpy/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/greek-monsters-v1/greek_harpy/motion-qa.json"
+    },
+    {
+      "id": "greek_gorgon",
+      "baseSha256": "c7a1a88733c08643dd2e1bb3e8592fff19116c803435ba9c389eddf805f045c3",
+      "run": "output/greek-monsters-20261022/greek_gorgon/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/greek-monsters-v1/greek_gorgon/motion-qa.json"
+    },
+    {
+      "id": "greek_minotaur",
+      "baseSha256": "2709f724052f91ec0dae836265d32ba4ae1dd858098cb9eba15cc3ae1c6f312e",
+      "run": "output/greek-monsters-20261022/greek_minotaur/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/greek-monsters-v1/greek_minotaur/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "greek_satyr-idle.webp",
+      "sha256": "c7f8fc0a315c05c111f1ff62e96099332481e78f3f0bbe1e0139d225d7aaad06"
+    },
+    {
+      "file": "greek_satyr-move.webp",
+      "sha256": "c7a6850b0b787afcb97a8f5bb4d5b21c81597d6a0ef72026fde12a48b644d36d"
+    },
+    {
+      "file": "greek_satyr-attack.webp",
+      "sha256": "1dec116dd5be4d0be36fbc24a24ac4e1060e842b7f1f5666a2d57f6f7eb60f8b"
+    },
+    {
+      "file": "greek_satyr-hit.webp",
+      "sha256": "644ca8732a6aea888c0a42f8f84c3a96672bc013816ae1660e8918b4cc16e774"
+    },
+    {
+      "file": "greek_satyr-death.webp",
+      "sha256": "9252248c3dfbc5b3278cd12de14462dd49e4d6019e9fafa09975957dd92dca90"
+    },
+    {
+      "file": "greek_harpy-idle.webp",
+      "sha256": "57a1bbfb4f5ec0d9e7a41d739b0fb1e550e6bddc29bed4881e26e4e3b14d6c9b"
+    },
+    {
+      "file": "greek_harpy-move.webp",
+      "sha256": "c5e2ebc9b4d99b6385d84f2e97f8f534e175046f8924c2adc23ae4fe77e5e843"
+    },
+    {
+      "file": "greek_harpy-attack.webp",
+      "sha256": "7bef9be8766d53d311fc958daa60fcdb554d99e68a1973c77db2551e3301245a"
+    },
+    {
+      "file": "greek_harpy-hit.webp",
+      "sha256": "e7a601a982d64d61baf03d806333ad72e24aa046b8b2bc15c646446e436c9a17"
+    },
+    {
+      "file": "greek_harpy-death.webp",
+      "sha256": "7b868dd1e7a089189fefc5053ac59bd01dc072bb1f3553d05aa81e4072e83659"
+    },
+    {
+      "file": "greek_gorgon-idle.webp",
+      "sha256": "23740bf4590c1ddbca99a2e43d532ebc2d734d86b48f51fb03b99f6b5195a0e1"
+    },
+    {
+      "file": "greek_gorgon-move.webp",
+      "sha256": "0717d1c169a419329dc5886f00e1690ca6ca29cb3e4da2c877a1c9be9d84cdce"
+    },
+    {
+      "file": "greek_gorgon-attack.webp",
+      "sha256": "7935a0a86390fe2706ccda6489037f8d73dfd6602f5278a2bc8291877ab85e5f"
+    },
+    {
+      "file": "greek_gorgon-hit.webp",
+      "sha256": "4b37ecaf3a3a675fa1454d2d1349b6e322e8164fe4159a5f774bf3463c132fe1"
+    },
+    {
+      "file": "greek_gorgon-death.webp",
+      "sha256": "4c561c7eb12a1a496e3ced86f8f77969250fc46886efec393df13f79951dded1"
+    },
+    {
+      "file": "greek_minotaur-idle.webp",
+      "sha256": "58f19f98f3dfead2f5ecdfb03e7969bb8b5bb0660651d5420ec62723037b728b"
+    },
+    {
+      "file": "greek_minotaur-move.webp",
+      "sha256": "69b7a1e741dcce04a0740a62fcc81b559a3179089161e470d0f4d586ec5b4135"
+    },
+    {
+      "file": "greek_minotaur-attack.webp",
+      "sha256": "3822022f8f054d895d57626ea061524c06613989bef17bf83c51b74e48c20258"
+    },
+    {
+      "file": "greek_minotaur-hit.webp",
+      "sha256": "6ba208c9e542935877603478c15d1b644489dcae4b56c2e1d93504e1478c0fa8"
+    },
+    {
+      "file": "greek_minotaur-death.webp",
+      "sha256": "0ebf045a2b173960b31e88999bc199113d8818ff7fae934a9615aef44a790cad"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {BIOME_IDS} from '@the-beginning-online/shared/maps';
 export type MusicTrack = 'city' | 'meadow' | 'forest' | 'king';
 export type MusicState = {
   mapId: string;
@@ -17,7 +18,7 @@ export class MusicSelection {
   private wasFighting = false;
   private releaseAt = -Infinity;
   select(state: MusicState, seconds: number): MusicTrack | null {
-    if (!['meadow','forest','ruins','canyon'].includes(state.mapId)) {
+    if (!['meadow','forest','ruins','canyon','grove','summit','temple','himmapan',...BIOME_IDS].includes(state.mapId)) {
       this.wasFighting = false; this.releaseAt = -Infinity;
       return state.mapId === 'city_plaza' ? 'city' : null;
     }
@@ -26,6 +27,6 @@ export class MusicSelection {
     if (fighting) this.releaseAt = Infinity;
     else if (this.wasFighting) this.releaseAt = seconds + MUSIC_RELEASE;
     this.wasFighting = fighting;
-    return fighting || seconds < this.releaseAt ? 'king' : ['forest','ruins','canyon'].includes(state.mapId) ? 'forest' : 'meadow';
+    return fighting || seconds < this.releaseAt ? 'king' : state.mapId==='meadow' ? 'meadow' : 'forest';
   }
 }

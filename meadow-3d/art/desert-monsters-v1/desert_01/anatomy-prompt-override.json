@@ -1,0 +1,5 @@
+{
+  "scaffold": "quadruped",
+  "actualBodyPlan": "hexapod",
+  "reason": "Sprite-Gen supports only three coarse body plans; authored all row prompts with the exact six/eight-legged count, retaining canonical guide/extractor/anchor pipeline."
+}

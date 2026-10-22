@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A headless silverchain dullahan, one empty enclosed dark armor collar with no exposed wound, two armored arms and two armored legs, carrying one closed original silver helmet in one hand and one coiled chain in the other, no horse or gore. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\fae-monsters-20261022\\fae_silverchain_dullahan\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\fae-monsters-20261022\\fae_silverchain_dullahan\\base.png.raw.png",
+  "raw_bytes": 1618075,
+  "elapsed_seconds": 55.735,
+  "model": null,
+  "session_id": "01a1611f-afa0-74b0-82d8-e98a5bdba294",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\fae-monsters-20261022\\fae_silverchain_dullahan\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1226x1283",
+    "alpha_zero_pct": 66.08,
+    "partial_alpha_pct": 33.9,
+    "opaque_pct": 0.02,
+    "cleaned_transparent_rgb_pixels": 1057,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

@@ -1,5 +1,12 @@
 # Mist Forest painted art
 
+Historical source archive. These monster sheets are retired from shipping because
+the retained records do not establish the complete source/provider chain. This is
+not a finding of infringement. Current monster replacements and their receipts live
+in `../monster-origin-rebuild-v1/`; regenerate their staging output with
+`python meadow-3d/tools/pack-original-monsters.py` from the repository root.
+The environment and item artwork described below are outside that monster audit.
+
 Original built-in imagegen sources and exact requests are retained in `PROMPTS.json`
 and `REAR_PROMPTS.json`.
 Five turnaround seeds precede the 28 directional motion sheets. Rear-only v2

@@ -40,7 +40,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "node ../scripts/import-maps.mjs && tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/tests/*.test.js",
     "sim:balance": "npm run build && node dist/sim/balance.js"
   },

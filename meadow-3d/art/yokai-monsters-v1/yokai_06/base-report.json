@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original slender mystical forest fox, exactly FOUR fox legs, ONE long narrow fox face with dark nose and two tall pointed ears, and exactly THREE long distinct tapered fox tails attached behind its hips. Natural slate-blue and pale silver fur, muted amber lower legs, subtle teal brush-like markings on shoulders, dark attentive eyes. The three tails fan in different low curves without covering the paws, no clothes, mask, collar, writing, glowing orb, detached flame or extra face. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Restrained bamboo-forest jade, indigo and weathered vermilion palette. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Japanese folk mythology; no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_06\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_06\\base.png.raw.png",
+  "raw_bytes": 2273737,
+  "elapsed_seconds": 45.547,
+  "model": null,
+  "session_id": "01a1607b-e215-79c3-9221-0b148a114045",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_06\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 63.88,
+    "partial_alpha_pct": 36.12,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 867834,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

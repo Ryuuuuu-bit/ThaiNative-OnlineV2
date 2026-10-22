@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster character sprite for The Beginning Online painted isometric MMORPG. An original squat ancient sandstone worker automaton, TWO short stone legs and TWO stone arms, one softly eroded mask-like carved face with simple eyes. Pale sandstone with muted turquoise mineral insets, chipped broad shoulders, short linen-like carved apron. Holds ONE broad plain wooden sand rake with both hands. Heavy grounded practical figure, no writing, no hieroglyphs, no deity symbols, no magic cloud. Full-body entire subject in an orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural light, hand-painted gouache and watercolor with fine ink edges, textured grounded shapes readable at small game scale, warm desert palette, consistent identity. NOT pixel art or glossy plastic 3D. True TRANSPARENT background, no floor tile, no cast shadow beyond feet/base, no scenery, no UI, no letters, no labels, no frame. Ample padding around every extremity; no clipping. Original text-only design inspired broadly by ancient Egyptian mythology, no external image reference, named artist or franchise character.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\desert-monsters-20261022\\desert_sand_ushabti\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\desert-monsters-20261022\\desert_sand_ushabti\\base.png.raw.png",
+  "raw_bytes": 1568676,
+  "elapsed_seconds": 51.422,
+  "model": null,
+  "session_id": "01a16024-d530-7982-a241-e5a9b91c4336",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\desert-monsters-20261022\\desert_sand_ushabti\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1358x1159",
+    "alpha_zero_pct": 63.46,
+    "partial_alpha_pct": 36.52,
+    "opaque_pct": 0.02,
+    "cleaned_transparent_rgb_pixels": 1219,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

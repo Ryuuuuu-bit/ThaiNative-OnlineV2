@@ -1,0 +1,4599 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "width": 168,
+  "height": 160,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "nextobjectid": 235,
+  "nextlayerid": 8,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "frost"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "value": "ฟยอร์ดรูนเหมันต์"
+    },
+    {
+      "name": "exploration",
+      "type": "bool",
+      "value": false
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads and gate approaches",
+      "objects": [
+        {
+          "id": 211,
+          "type": "path",
+          "name": "ทางเดิน 0",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.6
+            }
+          ],
+          "polyline": [
+            {
+              "x": 576,
+              "y": 3200
+            },
+            {
+              "x": 1536,
+              "y": 2688
+            },
+            {
+              "x": 2304,
+              "y": 1856
+            },
+            {
+              "x": 3328,
+              "y": 1280
+            },
+            {
+              "x": 4480,
+              "y": 1984
+            }
+          ]
+        },
+        {
+          "id": 212,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "polyline": [
+            {
+              "x": 1536,
+              "y": 2688
+            },
+            {
+              "x": 1792,
+              "y": 3904
+            },
+            {
+              "x": 3264,
+              "y": 4160
+            },
+            {
+              "x": 4352,
+              "y": 3264
+            },
+            {
+              "x": 4480,
+              "y": 1984
+            },
+            {
+              "x": 3328,
+              "y": 1280
+            }
+          ]
+        },
+        {
+          "id": 213,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 3264,
+              "y": 4160
+            },
+            {
+              "x": 2688,
+              "y": 5088
+            }
+          ]
+        },
+        {
+          "id": 214,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 4480,
+              "y": 1984
+            },
+            {
+              "x": 5344,
+              "y": 2560
+            }
+          ]
+        },
+        {
+          "id": 215,
+          "type": "path",
+          "name": "ทางเดิน 4",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 576,
+              "y": 3200
+            },
+            {
+              "x": 32,
+              "y": 2560
+            }
+          ]
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water and impassable terrain",
+      "objects": [
+        {
+          "id": 216,
+          "type": "water",
+          "name": "ขอบเขตเดินไม่ได้",
+          "rotation": 0,
+          "visible": true,
+          "x": 576,
+          "y": 704,
+          "width": 960,
+          "height": 1344,
+          "properties": [],
+          "ellipse": true
+        },
+        {
+          "id": 217,
+          "type": "water",
+          "name": "ขอบเขตเดินไม่ได้",
+          "rotation": 0,
+          "visible": true,
+          "x": 3040,
+          "y": 2464,
+          "width": 896,
+          "height": 1088,
+          "properties": [],
+          "ellipse": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 World gates",
+      "objects": [
+        {
+          "id": 218,
+          "type": "entry",
+          "name": "จุดเข้า",
+          "rotation": 0,
+          "visible": true,
+          "x": 2688,
+          "y": 4960,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 1,
+          "type": "gate",
+          "name": "south",
+          "rotation": 0,
+          "visible": true,
+          "x": 2688,
+          "y": 5088,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "summit"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 2,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "x": 5344,
+          "y": 2560,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "volcano"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 3,
+          "type": "gate",
+          "name": "west",
+          "rotation": 0,
+          "visible": true,
+          "x": 32,
+          "y": 2560,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "fae"
+            }
+          ],
+          "point": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and future arena",
+      "objects": [
+        {
+          "id": 219,
+          "type": "camp",
+          "name": "ค่ายพัก 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 576,
+          "y": 3200,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 220,
+          "type": "camp",
+          "name": "ค่ายพัก 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 2304,
+          "y": 1856,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 221,
+          "type": "camp",
+          "name": "ค่ายพัก 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 4352,
+          "y": 3264,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 222,
+          "type": "arena",
+          "name": "ลานโยตุนผู้เฝ้าฟยอร์ด",
+          "rotation": 0,
+          "visible": true,
+          "x": 4128,
+          "y": 1632,
+          "width": 704,
+          "height": 704,
+          "properties": [],
+          "ellipse": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Named landmarks",
+      "objects": [
+        {
+          "id": 223,
+          "type": "poi",
+          "name": "ท่าเรือฟยอร์ด",
+          "rotation": 0,
+          "visible": true,
+          "x": 576,
+          "y": 3200,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 224,
+          "type": "poi",
+          "name": "ทางสนหิมะ",
+          "rotation": 0,
+          "visible": true,
+          "x": 1792,
+          "y": 3904,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 225,
+          "type": "poi",
+          "name": "เสาศิลารูน",
+          "rotation": 0,
+          "visible": true,
+          "x": 3328,
+          "y": 1344,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 226,
+          "type": "poi",
+          "name": "ลานโยตุนผู้เฝ้าฟยอร์ด",
+          "rotation": 0,
+          "visible": true,
+          "x": 4480,
+          "y": 1984,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boss"
+            }
+          ],
+          "point": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Landscape solids",
+      "objects": [
+        {
+          "id": 4,
+          "type": "obstacle",
+          "name": "ฐานจุดเด่นภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "x": 3206.4,
+          "y": 870.4000000000001,
+          "width": 243.2,
+          "height": 243.2,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "biome-landmark"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 5,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 257.9528325220044,
+          "y": 235.1250617395417,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 6,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 240.8521384583987,
+          "y": 521.4543953359032,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 7,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 159.9307139048733,
+          "y": 759.415333187671,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 8,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 4",
+          "rotation": 0,
+          "visible": true,
+          "x": 272.74036252593305,
+          "y": 1140.270207190474,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 9,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 5",
+          "rotation": 0,
+          "visible": true,
+          "x": 220.2373745325217,
+          "y": 1309.1034980038212,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 10,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 6",
+          "rotation": 0,
+          "visible": true,
+          "x": 169.52507676405594,
+          "y": 1721.4014138993584,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 11,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 7",
+          "rotation": 0,
+          "visible": true,
+          "x": 282.0074957846082,
+          "y": 1902.0649377627703,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 12,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 8",
+          "rotation": 0,
+          "visible": true,
+          "x": 199.68240833712662,
+          "y": 2261.362045091449,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 13,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 9",
+          "rotation": 0,
+          "visible": true,
+          "x": 181.37189094058476,
+          "y": 3150.1454488100135,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 14,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 10",
+          "rotation": 0,
+          "visible": true,
+          "x": 203.46388665258246,
+          "y": 3327.043692980133,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 15,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 11",
+          "rotation": 0,
+          "visible": true,
+          "x": 280.7322128085211,
+          "y": 3739.99063156607,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 16,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 12",
+          "rotation": 0,
+          "visible": true,
+          "x": 167.25192583012722,
+          "y": 3911.4065136449635,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 17,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 13",
+          "rotation": 0,
+          "visible": true,
+          "x": 224.2012026082284,
+          "y": 4286.906210845131,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 18,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 14",
+          "rotation": 0,
+          "visible": true,
+          "x": 270.3253379455955,
+          "y": 4532.043084716601,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 19,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 15",
+          "rotation": 0,
+          "visible": true,
+          "x": 158.82323047571663,
+          "y": 4810.6511701858,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 20,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 16",
+          "rotation": 0,
+          "visible": true,
+          "x": 496.42527414617234,
+          "y": 253.4480122587106,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 21,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 17",
+          "rotation": 0,
+          "visible": true,
+          "x": 465.48233406206873,
+          "y": 456.3677647775353,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 22,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 18",
+          "rotation": 0,
+          "visible": true,
+          "x": 460.73809013694154,
+          "y": 1952.4840137084966,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 23,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 19",
+          "rotation": 0,
+          "visible": true,
+          "x": 503.14248240079814,
+          "y": 2259.775233123283,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 24,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 20",
+          "rotation": 0,
+          "visible": true,
+          "x": 563.5532786544209,
+          "y": 2479.249125946547,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 25,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 21",
+          "rotation": 0,
+          "visible": true,
+          "x": 444.9407182717041,
+          "y": 3638.041610155572,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 26,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 22",
+          "rotation": 0,
+          "visible": true,
+          "x": 543.143922680902,
+          "y": 3979.1250617395413,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 27,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 23",
+          "rotation": 0,
+          "visible": true,
+          "x": 532.039372312132,
+          "y": 4265.454395335903,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 28,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 24",
+          "rotation": 0,
+          "visible": true,
+          "x": 446.96995679122256,
+          "y": 4503.415333187671,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 29,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 25",
+          "rotation": 0,
+          "visible": true,
+          "x": 558.6894539338778,
+          "y": 4884.270207190474,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 26",
+          "rotation": 0,
+          "visible": true,
+          "x": 782.1971418938945,
+          "y": 159.19426995170897,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 27",
+          "rotation": 0,
+          "visible": true,
+          "x": 828.2270626464297,
+          "y": 2178.965351112333,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 28",
+          "rotation": 0,
+          "visible": true,
+          "x": 733.2561505225897,
+          "y": 2588.7899033346844,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 29",
+          "rotation": 0,
+          "visible": true,
+          "x": 840.5287497431118,
+          "y": 2754.028374121055,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 30",
+          "rotation": 0,
+          "visible": true,
+          "x": 853.2360353612187,
+          "y": 3669.739051303879,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 31",
+          "rotation": 0,
+          "visible": true,
+          "x": 787.764499637078,
+          "y": 3997.44801225871,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 32",
+          "rotation": 0,
+          "visible": true,
+          "x": 751.0506066301953,
+          "y": 4200.367764777535,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 33",
+          "rotation": 0,
+          "visible": true,
+          "x": 859.9451089767135,
+          "y": 4603.697180160176,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 38,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 34",
+          "rotation": 0,
+          "visible": true,
+          "x": 767.8651870681683,
+          "y": 4766.617186760167,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 39,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 35",
+          "rotation": 0,
+          "visible": true,
+          "x": 1123.7849377147893,
+          "y": 277.3690605985971,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 40,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 36",
+          "rotation": 0,
+          "visible": true,
+          "x": 1020.8157972300623,
+          "y": 469.5938628749673,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 37",
+          "rotation": 0,
+          "visible": true,
+          "x": 1033.1892219605868,
+          "y": 2297.5805811401488,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 38",
+          "rotation": 0,
+          "visible": true,
+          "x": 1145.8401697766062,
+          "y": 2477.6810548098947,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 39",
+          "rotation": 0,
+          "visible": true,
+          "x": 1148.7842883780884,
+          "y": 3361.1440911074455,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 40",
+          "rotation": 0,
+          "visible": true,
+          "x": 1045.8181223714957,
+          "y": 3725.7840161582426,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 41",
+          "rotation": 0,
+          "visible": true,
+          "x": 1066.921112942954,
+          "y": 3903.1942699517085,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 42",
+          "rotation": 0,
+          "visible": true,
+          "x": 1144.9279412120586,
+          "y": 4316.0776737467495,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 43",
+          "rotation": 0,
+          "visible": true,
+          "x": 1031.5632038513984,
+          "y": 4487.097323143633,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 48,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 44",
+          "rotation": 0,
+          "visible": true,
+          "x": 1087.6373134344499,
+          "y": 4863.382594309351,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 49,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 45",
+          "rotation": 0,
+          "visible": true,
+          "x": 1316.362145086838,
+          "y": 200.48273364944453,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 50,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 46",
+          "rotation": 0,
+          "visible": true,
+          "x": 1430.5119526903889,
+          "y": 502.3004342246313,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 47",
+          "rotation": 0,
+          "visible": true,
+          "x": 1435.4212207758153,
+          "y": 2206.612552052852,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 48",
+          "rotation": 0,
+          "visible": true,
+          "x": 1313.9175775960573,
+          "y": 3448.632256392013,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 53,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 49",
+          "rotation": 0,
+          "visible": true,
+          "x": 1387.399101383612,
+          "y": 3612.922571129493,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 50",
+          "rotation": 0,
+          "visible": true,
+          "x": 1414.4154904559073,
+          "y": 4021.369060598597,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 51",
+          "rotation": 0,
+          "visible": true,
+          "x": 1308.9806197235457,
+          "y": 4213.593862874967,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 52",
+          "rotation": 0,
+          "visible": true,
+          "x": 1406.6662030568393,
+          "y": 4555.674735373838,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 53",
+          "rotation": 0,
+          "visible": true,
+          "x": 1396.564488666673,
+          "y": 4840.900494051772,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 54",
+          "rotation": 0,
+          "visible": true,
+          "x": 1724.659537339688,
+          "y": 193.65429061951136,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 55",
+          "rotation": 0,
+          "visible": true,
+          "x": 1619.6179896325973,
+          "y": 557.4187718404623,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 56",
+          "rotation": 0,
+          "visible": true,
+          "x": 1645.6480475871103,
+          "y": 735.349640741465,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 57",
+          "rotation": 0,
+          "visible": true,
+          "x": 1719.9028209925636,
+          "y": 1148.1597920078104,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 62,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 58",
+          "rotation": 0,
+          "visible": true,
+          "x": 1666.453674216971,
+          "y": 1695.8562867467917,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 63,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 59",
+          "rotation": 0,
+          "visible": true,
+          "x": 1708.8644576800418,
+          "y": 1938.9260010629177,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 64,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 60",
+          "rotation": 0,
+          "visible": true,
+          "x": 1598.2985994693997,
+          "y": 2219.7367117279937,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 65,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 61",
+          "rotation": 0,
+          "visible": true,
+          "x": 1716.9675961171486,
+          "y": 4246.300434224631,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 66,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 62",
+          "rotation": 0,
+          "visible": true,
+          "x": 1652.3237512281662,
+          "y": 4572.961168484652,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 67,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 63",
+          "rotation": 0,
+          "visible": true,
+          "x": 1614.6575970007077,
+          "y": 4776.6935380474915,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 68,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 64",
+          "rotation": 0,
+          "visible": true,
+          "x": 1888.8691409528733,
+          "y": 280.42953048027084,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 69,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 65",
+          "rotation": 0,
+          "visible": true,
+          "x": 1966.1323990915891,
+          "y": 444.8901329819714,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 70,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 66",
+          "rotation": 0,
+          "visible": true,
+          "x": 1988.2311482946138,
+          "y": 853.630897266032,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 71,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 67",
+          "rotation": 0,
+          "visible": true,
+          "x": 1884.8308294835433,
+          "y": 1045.149166399747,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 72,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 68",
+          "rotation": 0,
+          "visible": true,
+          "x": 1985.0277080319693,
+          "y": 1388.2232515382566,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 73,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 69",
+          "rotation": 0,
+          "visible": true,
+          "x": 1969.92123400418,
+          "y": 1672.3456511739232,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 74,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 70",
+          "rotation": 0,
+          "visible": true,
+          "x": 1887.5913770044504,
+          "y": 1912.3375641062921,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 75,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 71",
+          "rotation": 0,
+          "visible": true,
+          "x": 1896.857383223251,
+          "y": 2873.7550187712964,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 76,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 72",
+          "rotation": 0,
+          "visible": true,
+          "x": 2009.6680939592054,
+          "y": 3053.300838393491,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 77,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 73",
+          "rotation": 0,
+          "visible": true,
+          "x": 1928.751525778504,
+          "y": 3414.4008283363855,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 78,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 74",
+          "rotation": 0,
+          "visible": true,
+          "x": 1910.2673871571537,
+          "y": 4301.418771840463,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 79,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 75",
+          "rotation": 0,
+          "visible": true,
+          "x": 1930.3797304697218,
+          "y": 4479.349640741465,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 80,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 76",
+          "rotation": 0,
+          "visible": true,
+          "x": 2009.118990790794,
+          "y": 4892.159792007811,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 81,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 77",
+          "rotation": 0,
+          "visible": true,
+          "x": 2282.1501012574763,
+          "y": 161.59055765782978,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 82,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 78",
+          "rotation": 0,
+          "visible": true,
+          "x": 2246.3978637205837,
+          "y": 552.735139258047,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 83,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 79",
+          "rotation": 0,
+          "visible": true,
+          "x": 2180.0981274687197,
+          "y": 775.9481724659222,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 84,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 80",
+          "rotation": 0,
+          "visible": true,
+          "x": 2294.265673177846,
+          "y": 1078.8623229057496,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 85,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 81",
+          "rotation": 0,
+          "visible": true,
+          "x": 2225.5349585386325,
+          "y": 1404.4718221058195,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 86,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 82",
+          "rotation": 0,
+          "visible": true,
+          "x": 2209.909309643095,
+          "y": 2575.9037559144035,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 87,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 83",
+          "rotation": 0,
+          "visible": true,
+          "x": 2299.53533820418,
+          "y": 2782.115918999733,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 88,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 84",
+          "rotation": 0,
+          "visible": true,
+          "x": 2189.4911360799183,
+          "y": 3105.610633600524,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 89,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 85",
+          "rotation": 0,
+          "visible": true,
+          "x": 2230.018717623111,
+          "y": 3410.717853295713,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 86",
+          "rotation": 0,
+          "visible": true,
+          "x": 2292.12935355471,
+          "y": 3632.0493275729295,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 87",
+          "rotation": 0,
+          "visible": true,
+          "x": 2250.848863144058,
+          "y": 4188.890132981971,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 92,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 88",
+          "rotation": 0,
+          "visible": true,
+          "x": 2278.842778774051,
+          "y": 4597.630897266032,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 89",
+          "rotation": 0,
+          "visible": true,
+          "x": 2173.025487247621,
+          "y": 4789.149166399748,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 90",
+          "rotation": 0,
+          "visible": true,
+          "x": 2502.0911597766844,
+          "y": 246.91725195605704,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 91",
+          "rotation": 0,
+          "visible": true,
+          "x": 2489.9777927378727,
+          "y": 509.0832446712352,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 96,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 92",
+          "rotation": 0,
+          "visible": true,
+          "x": 2588.69443564294,
+          "y": 770.1666024609829,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 97,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 93",
+          "rotation": 0,
+          "visible": true,
+          "x": 2484.0517428126363,
+          "y": 1133.0497442779715,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 98,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 94",
+          "rotation": 0,
+          "visible": true,
+          "x": 2509.1001323217056,
+          "y": 1311.5097932593033,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 99,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 95",
+          "rotation": 0,
+          "visible": true,
+          "x": 2529.891106743982,
+          "y": 2272.32725129732,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 100,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 96",
+          "rotation": 0,
+          "visible": true,
+          "x": 2573.2353596997073,
+          "y": 2514.3685900290748,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 101,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 97",
+          "rotation": 0,
+          "visible": true,
+          "x": 2462.422486521952,
+          "y": 2796.281495299951,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 102,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 98",
+          "rotation": 0,
+          "visible": true,
+          "x": 2550.140981186735,
+          "y": 3141.332428997523,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 103,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 99",
+          "rotation": 0,
+          "visible": true,
+          "x": 2557.2057373974335,
+          "y": 3331.4578594053783,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 104,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 100",
+          "rotation": 0,
+          "visible": true,
+          "x": 2461.131477434896,
+          "y": 3740.759890156488,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 105,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 101",
+          "rotation": 0,
+          "visible": true,
+          "x": 2537.731924131591,
+          "y": 4296.735139258047,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 106,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 102",
+          "rotation": 0,
+          "visible": true,
+          "x": 2466.6073734607567,
+          "y": 4519.948172465922,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 107,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 103",
+          "rotation": 0,
+          "visible": true,
+          "x": 2808.831321822057,
+          "y": 242.18658448836868,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 108,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 104",
+          "rotation": 0,
+          "visible": true,
+          "x": 2866.657269923705,
+          "y": 464.45466739710946,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 109,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 105",
+          "rotation": 0,
+          "visible": true,
+          "x": 2753.069564770629,
+          "y": 856.222164527301,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 110,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 106",
+          "rotation": 0,
+          "visible": true,
+          "x": 2829.5882673070873,
+          "y": 1020.8626679478625,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 111,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 107",
+          "rotation": 0,
+          "visible": true,
+          "x": 2848.5608991737017,
+          "y": 1964.7705675502934,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 112,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 108",
+          "rotation": 0,
+          "visible": true,
+          "x": 2834.4533372367537,
+          "y": 2247.7899098771695,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 113,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 109",
+          "rotation": 0,
+          "visible": true,
+          "x": 2751.4288464215592,
+          "y": 2488.802953520757,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 114,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 110",
+          "rotation": 0,
+          "visible": true,
+          "x": 2863.7327421777572,
+          "y": 2867.406086894245,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 115,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 111",
+          "rotation": 0,
+          "visible": true,
+          "x": 2813.930994269912,
+          "y": 3037.2905299743406,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 116,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 112",
+          "rotation": 0,
+          "visible": true,
+          "x": 2760.5295863739093,
+          "y": 3449.9247132190267,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 117,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 113",
+          "rotation": 0,
+          "visible": true,
+          "x": 2873.491281722397,
+          "y": 3628.9243180999038,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 118,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 114",
+          "rotation": 0,
+          "visible": true,
+          "x": 2775.1858020145637,
+          "y": 4253.083244671236,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 119,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 115",
+          "rotation": 0,
+          "visible": true,
+          "x": 3130.7408057985263,
+          "y": 163.7108162938921,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 120,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 116",
+          "rotation": 0,
+          "visible": true,
+          "x": 3037.480230362169,
+          "y": 572.737417377771,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 121,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 117",
+          "rotation": 0,
+          "visible": true,
+          "x": 3158.0149220035178,
+          "y": 1655.4246736241555,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 122,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 118",
+          "rotation": 0,
+          "visible": true,
+          "x": 3090.0911372152423,
+          "y": 1979.9800112004482,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 123,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 119",
+          "rotation": 0,
+          "visible": true,
+          "x": 3056.2508716016164,
+          "y": 2185.357222834581,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 124,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 120",
+          "rotation": 0,
+          "visible": true,
+          "x": 3053.873195745415,
+          "y": 3682.1734039514786,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 125,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 121",
+          "rotation": 0,
+          "visible": true,
+          "x": 3114.297531699449,
+          "y": 4764.862667947862,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 126,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 122",
+          "rotation": 0,
+          "visible": true,
+          "x": 3338.2087297214443,
+          "y": 282.0896512786544,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 127,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 123",
+          "rotation": 0,
+          "visible": true,
+          "x": 3450.327846661484,
+          "y": 460.55152322786626,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 128,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 124",
+          "rotation": 0,
+          "visible": true,
+          "x": 3348.4886667973387,
+          "y": 1708.6769621864596,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 129,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 125",
+          "rotation": 0,
+          "visible": true,
+          "x": 3372.553438733425,
+          "y": 1887.6747150430383,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 130,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 126",
+          "rotation": 0,
+          "visible": true,
+          "x": 3448.3267808119526,
+          "y": 2300.3092315947642,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 131,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 127",
+          "rotation": 0,
+          "visible": true,
+          "x": 3413.6215811773845,
+          "y": 3716.8939484240864,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 132,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 128",
+          "rotation": 0,
+          "visible": true,
+          "x": 3431.276897960369,
+          "y": 4481.378552026831,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 133,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 129",
+          "rotation": 0,
+          "visible": true,
+          "x": 3402.284330477519,
+          "y": 4873.143941528949,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 134,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 130",
+          "rotation": 0,
+          "visible": true,
+          "x": 3739.049668877431,
+          "y": 189.1298543508624,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 135,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 131",
+          "rotation": 0,
+          "visible": true,
+          "x": 3628.000003554075,
+          "y": 514.735756173769,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 136,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 132",
+          "rotation": 0,
+          "visible": true,
+          "x": 3672.26800809151,
+          "y": 817.6536514949582,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 137,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 133",
+          "rotation": 0,
+          "visible": true,
+          "x": 3730.960161692861,
+          "y": 1040.8634579305246,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 138,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 134",
+          "rotation": 0,
+          "visible": true,
+          "x": 3717.1143300278372,
+          "y": 2006.1412837692587,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 139,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 135",
+          "rotation": 0,
+          "visible": true,
+          "x": 3612.8758256176907,
+          "y": 2196.269064040679,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 140,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 136",
+          "rotation": 0,
+          "visible": true,
+          "x": 3737.3097468247342,
+          "y": 4204.551523227866,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 141,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 137",
+          "rotation": 0,
+          "visible": true,
+          "x": 3657.826883345303,
+          "y": 4567.4316432752075,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 142,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 138",
+          "rotation": 0,
+          "visible": true,
+          "x": 3638.730505181909,
+          "y": 4828.518684548615,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 143,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 139",
+          "rotation": 0,
+          "visible": true,
+          "x": 3901.9561560654984,
+          "y": 205.37487608861875,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 144,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 140",
+          "rotation": 0,
+          "visible": true,
+          "x": 3992.1984604220097,
+          "y": 548.4523479606864,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 145,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 141",
+          "rotation": 0,
+          "visible": true,
+          "x": 3995.2386061628918,
+          "y": 739.9682155478561,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 146,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 142",
+          "rotation": 0,
+          "visible": true,
+          "x": 3901.4006017533043,
+          "y": 1148.7099693418243,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 147,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 143",
+          "rotation": 0,
+          "visible": true,
+          "x": 4009.346358069285,
+          "y": 1313.1711702452278,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 148,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 144",
+          "rotation": 0,
+          "visible": true,
+          "x": 3907.583349114637,
+          "y": 1926.8839592919082,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 149,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 145",
+          "rotation": 0,
+          "visible": true,
+          "x": 4021.7597186794774,
+          "y": 2231.987442620817,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 150,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 146",
+          "rotation": 0,
+          "visible": true,
+          "x": 3954.6481491964987,
+          "y": 2555.4857740385514,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 151,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 147",
+          "rotation": 0,
+          "visible": true,
+          "x": 4028.1192084594118,
+          "y": 3163.2406993142076,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 152,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 148",
+          "rotation": 0,
+          "visible": true,
+          "x": 4027.7489194066156,
+          "y": 3933.129854350862,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 153,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 149",
+          "rotation": 0,
+          "visible": true,
+          "x": 3918.258906996036,
+          "y": 4258.735756173769,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 154,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 150",
+          "rotation": 0,
+          "visible": true,
+          "x": 3956.8970635323562,
+          "y": 4561.6536514949585,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 155,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 151",
+          "rotation": 0,
+          "visible": true,
+          "x": 4020.6882070893307,
+          "y": 4784.863457930525,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 156,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 152",
+          "rotation": 0,
+          "visible": true,
+          "x": 4305.068187086333,
+          "y": 274.80872361511547,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 157,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 153",
+          "rotation": 0,
+          "visible": true,
+          "x": 4251.672863606839,
+          "y": 445.43993582438134,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 158,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 154",
+          "rotation": 0,
+          "visible": true,
+          "x": 4201.864921499289,
+          "y": 858.2498201156077,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 159,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 155",
+          "rotation": 0,
+          "visible": true,
+          "x": 4314.1700589628235,
+          "y": 1036.1824827862188,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 160,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 156",
+          "rotation": 0,
+          "visible": true,
+          "x": 4231.1502937311825,
+          "y": 1399.9439622667428,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 162,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 158",
+          "rotation": 0,
+          "visible": true,
+          "x": 4301.965828253002,
+          "y": 3665.2562464172743,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 163,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 159",
+          "rotation": 0,
+          "visible": true,
+          "x": 4190.6848122314805,
+          "y": 3949.3748760886183,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 164,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 160",
+          "rotation": 0,
+          "visible": true,
+          "x": 4277.100249689468,
+          "y": 4292.452347960687,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 165,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 161",
+          "rotation": 0,
+          "visible": true,
+          "x": 4286.174325801541,
+          "y": 4483.968215547856,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 166,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 162",
+          "rotation": 0,
+          "visible": true,
+          "x": 4189.026621294957,
+          "y": 4892.709969341824,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 167,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 163",
+          "rotation": 0,
+          "visible": true,
+          "x": 4508.3975899580855,
+          "y": 158.00999317723063,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 168,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 164",
+          "rotation": 0,
+          "visible": true,
+          "x": 4515.455475732151,
+          "y": 560.9053417439686,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 169,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 165",
+          "rotation": 0,
+          "visible": true,
+          "x": 4603.178376664046,
+          "y": 764.6404994852239,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 170,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 166",
+          "rotation": 0,
+          "visible": true,
+          "x": 4492.3671624573435,
+          "y": 1091.2976465082477,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 171,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 167",
+          "rotation": 0,
+          "visible": true,
+          "x": 4535.705047015582,
+          "y": 1393.1190957853885,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 173,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 169",
+          "rotation": 0,
+          "visible": true,
+          "x": 4581.5512324569045,
+          "y": 2582.389793889588,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 174,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 170",
+          "rotation": 0,
+          "visible": true,
+          "x": 4563.512447597794,
+          "y": 3398.6759050723867,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 175,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 171",
+          "rotation": 0,
+          "visible": true,
+          "x": 4479.118124225601,
+          "y": 3641.7420991926247,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 176,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 172",
+          "rotation": 0,
+          "visible": true,
+          "x": 4591.041135190478,
+          "y": 4018.808723615115,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 177,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 173",
+          "rotation": 0,
+          "visible": true,
+          "x": 4543.059707277109,
+          "y": 4189.439935824381,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 178,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 174",
+          "rotation": 0,
+          "visible": true,
+          "x": 4487.886220052078,
+          "y": 4602.249820115608,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 179,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 175",
+          "rotation": 0,
+          "visible": true,
+          "x": 4601.123503392262,
+          "y": 4780.182482786218,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 180,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 176",
+          "rotation": 0,
+          "visible": true,
+          "x": 4835.577445608034,
+          "y": 257.7234122272275,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 181,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 177",
+          "rotation": 0,
+          "visible": true,
+          "x": 4876.111462460177,
+          "y": 496.7014003957629,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 182,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 178",
+          "rotation": 0,
+          "visible": true,
+          "x": 4766.065425169004,
+          "y": 781.9233882244657,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 183,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 179",
+          "rotation": 0,
+          "visible": true,
+          "x": 4855.687188945292,
+          "y": 1124.0076619702356,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 184,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 180",
+          "rotation": 0,
+          "visible": true,
+          "x": 4859.734037962784,
+          "y": 1316.2300371378808,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 186,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 182",
+          "rotation": 0,
+          "visible": true,
+          "x": 4872.939271243537,
+          "y": 1888.9684284503255,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 187,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 183",
+          "rotation": 0,
+          "visible": true,
+          "x": 4771.332628435885,
+          "y": 2502.354390112617,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 188,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 184",
+          "rotation": 0,
+          "visible": true,
+          "x": 4885.50008306424,
+          "y": 2808.5505861041547,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 189,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 185",
+          "rotation": 0,
+          "visible": true,
+          "x": 4819.2059511388015,
+          "y": 3130.989149078939,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 190,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 186",
+          "rotation": 0,
+          "visible": true,
+          "x": 4783.447176225185,
+          "y": 3338.0369192831067,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 191,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 187",
+          "rotation": 0,
+          "visible": true,
+          "x": 4892.03461900273,
+          "y": 3739.114408976373,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 192,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 188",
+          "rotation": 0,
+          "visible": true,
+          "x": 4799.362750441553,
+          "y": 3902.00999317723,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 193,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 189",
+          "rotation": 0,
+          "visible": true,
+          "x": 4800.381974944183,
+          "y": 4304.905341743968,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 194,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 190",
+          "rotation": 0,
+          "visible": true,
+          "x": 4891.8483665609765,
+          "y": 4508.640499485224,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 195,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 191",
+          "rotation": 0,
+          "visible": true,
+          "x": 4782.648239817858,
+          "y": 4835.297646508248,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 196,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 192",
+          "rotation": 0,
+          "visible": true,
+          "x": 5136.852138458398,
+          "y": 230.11772825006756,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 197,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 193",
+          "rotation": 0,
+          "visible": true,
+          "x": 5055.930713904873,
+          "y": 474.2157823708908,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 198,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 194",
+          "rotation": 0,
+          "visible": true,
+          "x": 5168.740362525933,
+          "y": 850.5037262809071,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 199,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 195",
+          "rotation": 0,
+          "visible": true,
+          "x": 5116.237374532522,
+          "y": 1021.5220372480974,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 200,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 196",
+          "rotation": 0,
+          "visible": true,
+          "x": 5065.5250767640555,
+          "y": 1434.4052072664322,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 201,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 197",
+          "rotation": 0,
+          "visible": true,
+          "x": 5178.007495784608,
+          "y": 1611.817225491654,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 202,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 198",
+          "rotation": 0,
+          "visible": true,
+          "x": 5095.682408337127,
+          "y": 1976.4541690648225,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 203,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 199",
+          "rotation": 0,
+          "visible": true,
+          "x": 5077.371890940585,
+          "y": 2859.92025073766,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 204,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 200",
+          "rotation": 0,
+          "visible": true,
+          "x": 5099.463886652582,
+          "y": 3040.0188147048634,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 205,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 201",
+          "rotation": 0,
+          "visible": true,
+          "x": 5176.732212808522,
+          "y": 3452.4389038135782,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 206,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 202",
+          "rotation": 0,
+          "visible": true,
+          "x": 5063.251925830127,
+          "y": 3621.614523099698,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 207,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 203",
+          "rotation": 0,
+          "visible": true,
+          "x": 5120.201202608228,
+          "y": 4001.723412227227,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 208,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 204",
+          "rotation": 0,
+          "visible": true,
+          "x": 5166.3253379455955,
+          "y": 4240.701400395763,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "frost-pine"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 209,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 205",
+          "rotation": 0,
+          "visible": true,
+          "x": 5054.823230475717,
+          "y": 4525.923388224466,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 210,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 206",
+          "rotation": 0,
+          "visible": true,
+          "x": 5140.577027290127,
+          "y": 4868.007661970236,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boulder"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 227,
+          "type": "obstacle",
+          "name": "ซากเรือฟยอร์ด",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 761.6,
+          "y": 3449.6,
+          "width": 140.8,
+          "height": 140.8,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fjord-wreck"
+            }
+          ]
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "08 Frost live habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 228,
+          "type": "spawn",
+          "name": "ดรอเกิร์เกราะเยือก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 480,
+          "y": 3456,
+          "width": 576,
+          "height": 512,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_01"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 8
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 229,
+          "type": "spawn",
+          "name": "อีกาหิมะรูน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 864,
+          "y": 2336,
+          "width": 576,
+          "height": 576,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_rune_raven"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 230,
+          "type": "spawn",
+          "name": "หมาป่ารูนหิมะ",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1824,
+          "y": 3680,
+          "width": 576,
+          "height": 448,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_03"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 8
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 231,
+          "type": "spawn",
+          "name": "ลินด์เวิร์มธารแข็ง",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1600,
+          "y": 1504,
+          "width": 640,
+          "height": 512,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_ice_lindworm"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 232,
+          "type": "spawn",
+          "name": "ม้าคลื่นเหมันต์",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3008,
+          "y": 3936,
+          "width": 640,
+          "height": 448,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_winter_wavehorse"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 233,
+          "type": "spawn",
+          "name": "โทรลล์หินน้ำแข็ง",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3072,
+          "y": 1152,
+          "width": 512,
+          "height": 448,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_06"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 4
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        },
+        {
+          "id": 234,
+          "type": "spawn",
+          "name": "วาลคีรีเกราะร้าว",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3808,
+          "y": 1952,
+          "width": 576,
+          "height": 448,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_fractured_valkyrie"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 4
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

@@ -1,0 +1,219 @@
+{
+  "accepted": true,
+  "stage": "candidate for in-game verification",
+  "frontFacing": "right",
+  "backFacing": "right",
+  "method": "All80 strips visually reviewed as pose sequences; generated GIFs and numeric cyclic seam/ground-baseline checks. Final runtime playback/hit bounds checked separately before making the region playable.",
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        215,
+        215
+      ],
+      "adjacentPixelDifferences": [
+        5.61313232421875,
+        2.673466796875,
+        10.85714599609375,
+        9.0259228515625
+      ],
+      "loop": true,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "down45_hop": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        221,
+        230
+      ],
+      "adjacentPixelDifferences": [
+        20.98291748046875,
+        16.79796630859375,
+        17.212995605468752,
+        16.59586669921875
+      ],
+      "loop": true,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "down45_attack": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        194,
+        210
+      ],
+      "adjacentPixelDifferences": [
+        21.563203125,
+        23.01193359375,
+        23.8680078125,
+        15.4895166015625
+      ],
+      "loop": false,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "down45_hit": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        228,
+        235
+      ],
+      "adjacentPixelDifferences": [
+        21.24065673828125,
+        18.70677490234375,
+        24.194040527343752,
+        27.116472167968748
+      ],
+      "loop": false,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "down45_death": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        122,
+        235
+      ],
+      "adjacentPixelDifferences": [
+        28.5218310546875,
+        25.88127197265625,
+        18.881887207031248,
+        40.256435546875004
+      ],
+      "loop": false,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "up45_idle": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        220,
+        234
+      ],
+      "adjacentPixelDifferences": [
+        10.848203125,
+        11.01359130859375,
+        11.86888916015625,
+        5.9190625
+      ],
+      "loop": true,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "up45_hop": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        218,
+        225
+      ],
+      "adjacentPixelDifferences": [
+        12.55394775390625,
+        13.68507568359375,
+        18.0306640625,
+        9.596611328125
+      ],
+      "loop": true,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "up45_attack": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        187,
+        235
+      ],
+      "adjacentPixelDifferences": [
+        30.866445312499998,
+        40.593505859375,
+        28.9088720703125,
+        3.2178955078125
+      ],
+      "loop": false,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "up45_hit": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        216,
+        242
+      ],
+      "adjacentPixelDifferences": [
+        24.36421630859375,
+        23.7902587890625,
+        10.9691796875,
+        7.108552246093749
+      ],
+      "loop": false,
+      "verdict": "pass pose-sequence and seam review"
+    },
+    "up45_death": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        127,
+        205
+      ],
+      "adjacentPixelDifferences": [
+        19.530270996093748,
+        22.08676513671875,
+        17.90476806640625,
+        27.71832275390625
+      ],
+      "loop": false,
+      "verdict": "pass pose-sequence and seam review"
+    }
+  }
+}

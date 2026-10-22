@@ -1,3 +1,5 @@
+import {canEnterConfluence} from '@the-beginning-online/shared';
+import {applyPotionEffect,partyAidTarget,sunScrollTarget,castSunScroll} from '@the-beginning-online/shared';
 import { createTrades } from './trade.js';
 import {TITLES,titleDefinition,normalizeTitleRecords,earnTitles,canWearTitle,titleProgress,type RankingCharacter} from '@the-beginning-online/shared';
 import {createRankings} from './rankings.js';
@@ -73,7 +75,7 @@ export interface Room {
 	disconnected: Map<string, number>;
 	tick: number;
 	saveQueue: Promise<void>;
- joining?:number; leases?:Map<string,string>; quarantined?:boolean; expiring?:Set<string>; dropRequests?:Map<string,string>;
+ raidExpiresAt?:number; joining?:number; leases?:Map<string,string>; quarantined?:boolean; expiring?:Set<string>; dropRequests?:Map<string,string>;
 }
 export interface RealtimeOptions {
 	store: Store;
@@ -152,7 +154,7 @@ export function snapshotParts(room: Room) {
 	for (const p of g.players.values()) others.set(p.id, JSON.stringify(publicEntry(p)));
 	// Entities are serialised once per room; each viewer then joins only those within ENTITY_RANGE (bosses always).
 	const entity = <T extends { x: number; z: number }>(list: T[], map: (v: T) => unknown, always = (_v: T) => false) => list.map((v) => ({ x: v.x, z: v.z, always: always(v), json: JSON.stringify(map(v)) }));
-	const enemies = entity(g.enemies, (e) => ({ id: e.id, statuses: e.statuses, dataId: e.dataId, x: round(e.x), z: round(e.z), hp: e.hp, maxHp: e.maxHp, boss: e.boss, dead: e.dead, motion: e.motion, motionTime: round(e.motionTime), motionDuration: e.motionDuration, bossPhase: e.bossPhase, variant: e.variant, deathAge: round(e.deathAge), hurt: round(e.hurt), fx: round(e.fx), fz: round(e.fz), vx: round(e.vx), vz: round(e.vz), moving: e.moving, windup: round(e.windup), aimX: round(e.aimX), aimZ: round(e.aimZ), summoned: e.summoned }), (e) => e.boss);
+	const enemies = entity(g.enemies, (e) => ({ id: e.id, statuses: e.statuses, dataId: e.dataId, x: round(e.x), z: round(e.z), hp: e.hp, maxHp: e.maxHp, boss: e.boss, dead: e.dead, motion: e.motion, motionTime: round(e.motionTime), motionDuration: e.motionDuration, bossPhase: e.bossPhase, variant: e.variant, deathAge: round(e.deathAge), hurt: round(e.hurt), fx: round(e.fx), fz: round(e.fz), vx: round(e.vx), vz: round(e.vz), moving: e.moving, windup: round(e.windup), aimX: round(e.aimX), aimZ: round(e.aimZ), summoned: e.summoned, nestEgg:e.nestEgg }), (e) => e.boss);
 	const drops = entity(g.drops, (d) => ({ ...d, x: round(d.x), z: round(d.z), time: round(d.time) }));
 	const projectiles = entity(g.projectiles, (p) => ({ ...p, x: round(p.x), z: round(p.z) }));
 	const world = (me?: { x: number; z: number }) => {
@@ -166,7 +168,7 @@ export function snapshotParts(room: Room) {
 export const VIEW_RANGE = 32, VIEW_MAX_PLAYERS = 30, ENTITY_RANGE = 40;
 export function snapshotFrame(room: Room, peer: Peer, parts = snapshotParts(room), always: string[] = []) {
 	const g = room.game, me = g.players.get(peer.id);
-	const head = JSON.stringify({ t: "snap", mapId: g.mapId, bossIn: Math.ceil(bossTimer(g)), weight: me?.inventory ? inventoryWeight(me.inventory, g.data) : 0, weightLimit: me?.stats.weight, tick: room.tick, ack: peer.ack, time: g.time, kills: g.kills, bossSpawned: g.bossSpawned, won: g.won });
+	const head = JSON.stringify({ t: "snap", mapId: g.mapId, bossIn: Math.ceil(bossTimer(g)), bossTimers:Object.fromEntries(g.enemies.filter(e=>e.boss&&!e.summoned).map(e=>[e.dataId,Math.ceil(bossTimer(g,e.dataId))])), weight: me?.inventory ? inventoryWeight(me.inventory, g.data) : 0, weightLimit: me?.stats.weight, tick: room.tick, ack: peer.ack, time: g.time, kills: g.kills, bossSpawned: g.bossSpawned, won: g.won });
 		const players: string[] = me ? [JSON.stringify(ownEntry(me))] : [];
 	let nearby = [...g.players.values()].filter((p) => p.id !== peer.id && (!me || always.includes(p.id) || Math.hypot(p.x - me.x, p.z - me.z) <= VIEW_RANGE));
 	if (me && nearby.length > VIEW_MAX_PLAYERS)
@@ -229,6 +231,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
  const trades=createTrades<Peer>({live,send,store,data,settled:(peer,p,r)=>{p.inventory=r.inventory;p.gold=r.gold;refreshStats(peer.room.game,p);sendStats(peer,p);send(peer.ws,{t:'inv',req:randomUUID(),inventory:p.inventory,gold:p.gold});}});
  function economy(peer:Peer,p:Player,op:InventoryOp,req:string,done=()=>{},quest?:EconomyContext['quest']) {
   const room=peer.room,g=room.game;
+  const usedTemplate=op.op==='use'?data.items.items.find(t=>t.id===p.inventory?.items.find(i=>i.id===op.id)?.template):undefined;
+  const sunTarget=usedTemplate?.effect==='arcane'&&p.level>=usedTemplate.level?sunScrollTarget(g,p)?.id:undefined;
   if(op.op==='pickup'){
    if(peer.busy){const d=g.drops.find(d=>String(d.id)===op.id);if(d)d.pending=false;return;}
    try{applyInventory({inventory:p.inventory!,gold:p.gold},op,p.profile,data,randomUUID);}catch(error){const d=g.drops.find(d=>String(d.id)===op.id);if(d){d.pending=false;d.blocked=true;}send(peer.ws,{t:'ev',list:[{type:'notice',playerId:p.id,text:(error as Error).message}]});return;}
@@ -239,7 +243,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
    const latest=result.duplicate?await store.inventory(peer.accountId,p.id):result;
    p.inventory=latest.inventory;p.gold=latest.gold;refreshStats(g,p);
    if(result.error){if(op.op==='pickup')room.dropRequests?.delete(op.id!);throw Error(result.error);}
-   if(result.effect&&!result.duplicate){const e=result.effect;if(e.kind==='hp'){const amount=Math.min(e.amount,p.maxHp-p.hp);p.hp+=amount;g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount:Math.round(amount)});}if(e.kind==='sp')p.mp=Math.min(p.maxMp,p.mp+e.amount);if(e.kind==='speed')p.statuses.push({id:'speed',sourceId:p.id,remaining:60,value:e.amount});p.cd.potion=data.skills.skills.find(s=>s.id==='potion')!.cooldown;}
+   if(result.effect&&!result.duplicate){if(result.effect.kind==='arcane'&&sunTarget!==undefined)castSunScroll(g,p,result.effect.amount,sunTarget,usedTemplate?.arcaneElement);applyPotionEffect(g,p,result.effect.kind,result.effect.amount);}
       done();if(op.op==='store'&&p.quests&&recordStore(p.quests,data).length)sendQuests(peer,p);if(op.op==='pickup')void save(room,p.id);sendStats(peer,p);send(peer.ws,{t:'inv',req,inventory:p.inventory,gold:p.gold});
    if(op.op==='pickup'){room.dropRequests?.delete(op.id!);}
    if(op.op==='pickup')send(peer.ws,{t:'ev',list:[{type:'itemPickup',playerId:p.id,loot:op.loot}]});
@@ -291,9 +295,12 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
   void pending?.catch(()=>{});
  }
  const bossDue=new Map<MapId,number>();
+ const nestDue=new Map<MapId,number>();
  const gm=createGm<Peer>({store,admins:adminAccess(store,options.adminIds),live,send,social,transfer:(peer,d)=>transfer(peer,d),economy:(peer,p,op,req)=>economy(peer,p,op,req),save:(room,id)=>save(room as Room,id),flush:room=>flush(room as Room),sendStats:(peer,p)=>sendStats(peer,p),bossDue,limit:options.gmCommandsPer10s});
+ const RAID_RETENTION_MS=30*60*1000;
+ const roomKey=(map:MapId,id:string)=>map==='confluence'?'confluence:'+ (social.partyId(id)??'solo:'+id):map+(options.sharedRooms?'':':'+id);
  function getRoom(mapId: MapId, id: string): Room {
-  const key=mapId+(options.sharedRooms?'':':'+id);
+  const key=roomKey(mapId,id);
   let room=rooms.get(key);
   if(!room){
    const game=createGame(randomInt(1,0x7fffffff),data.stats.defaultBuild,'local',data,mapId);
@@ -302,11 +309,12 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
    // A room is the authoritative map/channel boundary; disconnected avatars remain in game.players briefly.
    game.partyMembers=id=>social.partyMembers(id).filter(memberId=>{const peer=live.get(memberId);return !!peer?.ready&&peer.room.game===game;});
    game.players.clear();
-   room={key,game,peers:new Map(),accounts:new Map(),disconnected:new Map(),tick:0,saveQueue:Promise.resolve()};
+   room={key,game,peers:new Map(),accounts:new Map(),disconnected:new Map(),tick:0,saveQueue:Promise.resolve(),...(mapId==='confluence'?{raidExpiresAt:Date.now()+RAID_RETENTION_MS}:{})};
    rooms.set(key,room);
    // Field bosses run on one schedule per map, surviving empty rooms being recycled.
-   const due=isField(mapId)?bossDue.get(mapId):undefined;
+   const due=isField(mapId)&&mapId!=='confluence'?bossDue.get(mapId):undefined;
    if(due&&due>Date.now())setBossTimer(game,(due-Date.now())/1000);
+   const nest=nestDue.get(mapId);if(nest&&nest>Date.now())setBossTimer(game,(nest-Date.now())/1000,'thorn_nest_mother');
    const current=room;
    game.inventoryCommit=(p,op,done)=>{
     const peer=current.peers.get(p.id);if(!peer){const d=current.game.drops.find(d=>String(d.id)===op.id);if(d)d.pending=false;return;}
@@ -386,7 +394,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          if(e.type==='kill'||e.type==='level')changed.add(id);
         }
         for(const id of changed){const p=room.game.players.get(id)!,peer=room.peers.get(id);if(peer)titleState(peer,p,true);else if(earnTitles(p).length)void save(room,id);}
-		for (const e of list) if (e.type === "kill" && e.boss && isField(room.game.mapId)) bossDue.set(room.game.mapId, Date.now() + BOSS_RESPAWN_MS(room.game.mapId));
+		for (const e of list) if (e.type === "kill" && e.boss && isField(room.game.mapId)&&room.game.mapId!=='confluence') (e.dataId==='thorn_nest_mother'?nestDue:bossDue).set(room.game.mapId, Date.now() + BOSS_RESPAWN_MS(room.game.mapId));
 		for (const e of list)
 			if (e.type === "kill" && e.dataId && e.ownerId) {
 				const ids = social.partyMembers(String(e.ownerId));
@@ -408,7 +416,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			if (["level", "jobLevel", "death", "victory"].includes(e.type)) {
 				if (e.type === "victory"){
 					for (const id of room.game.players.keys()) void save(room, id);
-					const winner=room.game.players.get(String(e.playerId));if(winner)social.system(`✦ ${winner.name} ปราบราชาวุ้นสำเร็จ!`);
+					const winner=room.game.players.get(String(e.playerId));if(winner)social.system(`✦ ${winner.name} ปราบ${data.monsters.monsters.find(m=>m.id===e.dataId)?.nameTh??'บอส'}สำเร็จ!`);
 				}
 				else void save(room, String(e.playerId));
 			}
@@ -500,6 +508,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
          if(message.op==='socket'){const smith=CITY_BUILDINGS.find(b=>b.id==='forge')!;if(g.mapId!=='city_plaza'||Math.hypot(player.x-smith.talk.x,player.z-smith.talk.z)>=3){reject('ไปพบช่างตีเหล็กในเมืองก่อน');return;}}
          if(message.op==='store'||message.op==='retrieve'){const keeper=CITY_BUILDINGS.find(b=>b.id==='storage')!;if(g.mapId!=='city_plaza'||Math.hypot(player.x-keeper.talk.x,player.z-keeper.talk.z)>=3){reject('ไปพบคนเฝ้าคลังก่อน');return;}}
          if(message.op==='use'&&(player.cd.potion>0||peer.busy)){reject('รอคูลดาวน์ยาหรือการบันทึกก่อน');return;}
+         if(message.op==='use'){const item=player.inventory?.items.find(i=>i.id===message.id),kind=data.items.items.find(t=>t.id===item?.template)?.effect;if(kind==='arcane'&&(!sunScrollTarget(g,player)||player.level<(data.items.items.find(t=>t.id===item?.template)?.level??50))){reject('ม้วนธาตุต้องถึงระดับไอเทม และเลือกศัตรูที่มองเห็นในระยะ 6 เมตร');return;}if((kind==='party_hp'||kind==='party_cleanse')&&!partyAidTarget(g,player,kind)){reject(kind==='party_hp'?'ไม่มีสมาชิกปาร์ตี้ที่บาดเจ็บในระยะ 6 เมตร':'ไม่มีสมาชิกปาร์ตี้ติดสถานะลบในระยะ 6 เมตร');return;}}
          economy(peer,player,message,message.req);return;
         }
         if(message.t==='autoSettings'){
@@ -525,13 +534,14 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 
         if(message.t==='travel'){
          const destination=travelDestination(g.mapId,message.gate,player);
+         if(destination?.mapId==='confluence'&&!canEnterConfluence(player)){send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'รอยต่อพิภพต้อง Lv.100 และผ่านเควสต์คำเชิญจากหัวหน้าทหารก่อน'}]});return;}
          if(destination)transfer(peer,destination);
          else send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'หมอกหนาเกินไป ยังผ่านไม่ได้'}]});
          return;
         }
         if(message.t==='revive' && player.dead){
          if((player.reviveRemaining??0)>0)return;
-         withPlayer(g,peer.id,()=>revive(g));flush(room);transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});return;
+         withPlayer(g,peer.id,()=>revive(g));flush(room);if(g.mapId==='confluence'){void save(room,peer.id,true);sendStats(peer,player);return;}transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});return;
         }
 		withPlayer(g, peer.id, () => {
 			const p = g.p;
@@ -775,7 +785,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                 claimed=randomUUID();await store.claimLease(character.id,claimed);
                 const refreshed=await store.character(session.accountId,character.id);if(!refreshed)throw Error('Character disappeared');character=refreshed;
                 if(ws.readyState!==WebSocket.OPEN||closing)return;
-                const characterId=character.id;let room=[...rooms.values()].find(r=>r.accounts.has(characterId)&&(r.game.players.has(characterId)||pending.has(characterId)))||getRoom(character.mapId||'city_plaza',character.id);
+                if(character.mapId==='confluence'&&!canEnterConfluence(character))character={...character,mapId:'city_plaza',posX:CITY_SPAWN.x,posZ:CITY_SPAWN.z};
+                const characterId=character.id,desiredMap=character.mapId||'city_plaza';let room=[...rooms.values()].find(r=>r.key===roomKey(desiredMap,characterId)&&r.accounts.has(characterId)&&(r.game.players.has(characterId)||pending.has(characterId)))||getRoom(character.mapId||'city_plaza',character.id);
                 joiningRoom=room;room.joining=(room.joining??0)+1;const mapId=room.game.mapId;
 
 				if (!room.game.players.has(character.id)&&!pending.has(character.id)) {
@@ -928,6 +939,15 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			for (const room of rooms.values()) {
                 if(room.quarantined)continue;
                 try {
+                if(room.game.mapId==='confluence'){
+                 if(room.peers.size)room.raidExpiresAt=now+RAID_RETENTION_MS;
+                 // Leaving or changing party revokes this private encounter immediately.
+                 for(const peer of [...room.peers.values()])if(room.key!==roomKey('confluence',peer.id)){
+                  if(peer.busy){const player=room.game.players.get(peer.id);if(player){player.auto=false;player.target=null;}continue;}
+                  send(peer.ws,{t:'ev',list:[{type:'notice',playerId:peer.id,text:'ปาร์ตี้เปลี่ยนแล้ว กลับเมืองเพื่อรวมกลุ่มและเข้ารอยต่อพิภพใหม่'}]});
+                  transfer(peer,{mapId:'city_plaza',...CITY_SPAWN});
+                 }
+                }
 				for (const [id, at] of room.disconnected)
                     if (now - at >= (options.reconnectMs ?? 60000) && !room.expiring?.has(id) && !joins.has(id)) {
                      (room.expiring??=new Set()).add(id);
@@ -940,7 +960,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                       if(live.has(id)||joins.has(id)||room.disconnected.get(id)!==at)return;
                       room.game.players.delete(id);pending.delete(id);room.accounts.delete(id);room.disconnected.delete(id);
                       const owner=room.leases?.get(id);room.leases?.delete(id);
-                      if(!room.joining&&!room.peers.size&&!room.game.players.size&&!room.disconnected.size&&rooms.get(room.key)===room)rooms.delete(room.key);
+                      if(!room.joining&&!room.peers.size&&!room.game.players.size&&!room.disconnected.size&&rooms.get(room.key)===room&&!(room.raidExpiresAt&&room.raidExpiresAt>now))rooms.delete(room.key);
                       if(owner)await store.releaseLease(id,owner);
                      }).catch(error=>{
                       if(retained&&!live.has(id)&&!joins.has(id)&&room.disconnected.get(id)===at){pending.delete(id);room.game.players.set(id,retained);}
@@ -953,6 +973,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					!room.disconnected.size &&
                     !live.has(room.key.slice(room.key.indexOf(':')+1))
 				) {
+					if(room.raidExpiresAt&&room.raidExpiresAt>now)continue;
 					rooms.delete(room.key);
 					continue;
 				}

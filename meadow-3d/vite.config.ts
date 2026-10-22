@@ -52,6 +52,7 @@ export default defineConfig(({ command }) => ({
 		target: "es2022",
 		rollupOptions: {
 			input: {
+				worldDesign: fileURLToPath(new URL('./world-design.html',import.meta.url)),
 				portal: fileURLToPath(new URL("./index.html", import.meta.url)),
                 bestiary: fileURLToPath(new URL("./monsters.html", import.meta.url)),
 				login: fileURLToPath(new URL("./login.html", import.meta.url)),

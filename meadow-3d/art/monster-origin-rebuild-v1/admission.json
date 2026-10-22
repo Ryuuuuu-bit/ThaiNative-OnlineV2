@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-21",
+  "revision": "original-rebuild-v1",
+  "retiredRuntimeFiles": 190,
+  "legacyFilesShipped": false,
+  "externalBaseImageReferences": [],
+  "sourceIds": [
+    "ripple_jelly",
+    "ripple_regent",
+    "bud_shroom",
+    "bramble_wolf",
+    "seed_lantern",
+    "grove_crown",
+    "pebble_puff",
+    "moon_titan"
+  ],
+  "deployed": false,
+  "scope": "Monster atlases, projectile and portrait derivatives. Other game assets are outside this audit.",
+  "limitations": [
+    "No legal clearance opinion is asserted.",
+    "Equipment icons, hero, environment and audio are outside this monster-atlas audit.",
+    "Some boss abilities share the replacement attack strip; authoritative warnings and damage timing are unchanged."
+  ]
+}

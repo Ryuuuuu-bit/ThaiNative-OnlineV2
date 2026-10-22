@@ -4,6 +4,7 @@ import {MONSTERS,FIELDS,filterMonsters,monsterMaps,mapLabel,elementName,itemName
 import {hudIcon,lootIcon} from './bestiary-icons';
 import {paintMonster} from './bestiary-art';
 void mountAccountChip();
+const fieldTotal=document.querySelector('#field-total');if(fieldTotal)fieldTotal.textContent=String(FIELDS.length);
 document.querySelectorAll<HTMLElement>('[data-be-icon]').forEach(el=>el.innerHTML=hudIcon(el.dataset.beIcon!));
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
 const esc=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));

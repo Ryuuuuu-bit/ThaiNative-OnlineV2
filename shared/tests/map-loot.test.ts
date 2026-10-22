@@ -38,7 +38,7 @@ test("potion drops match each map's tier: deeper maps drop stronger potions, bos
 	const strongest = (id: string) => Math.max(...potions(id).map((d) => item(d.item).amount ?? 0));
 	const order = ["jelly_pink", "mist_shroom", "ruin_shroom", "crag_wolf"];
 	for (let i = 1; i < order.length; i++) assert.ok(strongest(order[i]) > strongest(order[i - 1]), `${order[i]} drops stronger potions than ${order[i - 1]}`);
-	for (const m of data.monsters.monsters) assert.ok(potions(m.id).length >= 1, `${m.id} drops a potion`);
+	for (const m of data.monsters.monsters) {if(m.tags.includes('hazard')){assert.deepEqual(m.drops,[]);assert.equal(m.exp,0);assert.equal(m.jobExp,0);assert.deepEqual(m.gold,[0,0]);continue;}assert.ok(potions(m.id).length >= 1, `${m.id} drops a potion`);}
 	for (const { dataId } of Object.values(FIELD_BOSS)) assert.ok(potions(dataId).some((d) => d.max >= 2), `${dataId} drops several potions`);
 	// Top-tier potions stay shop-only.
 	assert.ok(!data.monsters.monsters.some((m) => m.drops.some((d) => /_supreme$/.test(d.item))));

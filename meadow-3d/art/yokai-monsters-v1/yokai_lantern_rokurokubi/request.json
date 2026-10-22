@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted gouache and watercolor isometric MMORPG creature. Original character and natural texture, no lettering, grid, glow, detached props or scenery. Match the approved base.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. a clear natural walking cycle with anatomically correct alternating footfalls, all limbs stay attached, return to starting stance, no whole-body translation. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready adult woman with ONE continuous elongated S-shaped neck and ONE head, bend knees and draw that same continuous neck back, extend the neck and head forward in a smooth connected arc, return same ready posture; never detach head or grow extra head, no new arm or neck. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. a clear natural walking cycle with anatomically correct alternating footfalls, all limbs stay attached, return to starting stance, no whole-body translation. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready adult woman with ONE continuous elongated S-shaped neck and ONE head, bend knees and draw that same continuous neck back, extend the neck and head forward in a smooth connected arc, return same ready posture; never detach head or grow extra head, no new arm or neck. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original adult female long-neck yokai, exactly TWO human arms and TWO feet, ONE human head connected by ONE clearly continuous long flexible pale tan neck that bends in a gentle elongated S from her shoulders. Quiet stern face, dark hair gathered in a plain low bun, modest layered faded scarlet and charcoal travel robe with cream inner collar and plain tied sash, simple straw sandals, empty hands. Entire head, continuous neck and grounded feet visible, no detached head, gore, revealing clothes, floating lantern, fan, symbols or writing."
+    }
+  },
+  "body_plan": [
+    "biped"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

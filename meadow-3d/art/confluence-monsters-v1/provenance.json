@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "confluence_life_pillar_guard",
+      "baseSha256": "f4c58bfa9e679e45a6e31c21ae7ee4d6078c04c7194cffd7148b4f3fcd26828f",
+      "run": "output/confluence-monsters-20261022/confluence_life_pillar_guard/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/confluence-monsters-v1/confluence_life_pillar_guard/motion-qa.json"
+    },
+    {
+      "id": "confluence_thunder_pillar_guard",
+      "baseSha256": "594a986d1893663aac9a5512be252a46168c00203aa2e7b9d186ea9c0f6fccfa",
+      "run": "output/confluence-monsters-20261022/confluence_thunder_pillar_guard/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/confluence-monsters-v1/confluence_thunder_pillar_guard/motion-qa.json"
+    },
+    {
+      "id": "confluence_starshadow_pillar_guard",
+      "baseSha256": "05d6c7505818ec811a4a8ed3763fbb5ec7714d051a72415f853ebab8ca234c0d",
+      "run": "output/confluence-monsters-20261022/confluence_starshadow_pillar_guard/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/confluence-monsters-v1/confluence_starshadow_pillar_guard/motion-qa.json"
+    },
+    {
+      "id": "confluence_worldcore_sovereign",
+      "baseSha256": "d77b6c0cdef5e8e640156dde3fc05f7da1f0d204ac7ac15233d02e275bf6b347",
+      "run": "output/confluence-monsters-20261022/confluence_worldcore_sovereign/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/confluence-monsters-v1/confluence_worldcore_sovereign/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "confluence_life_pillar_guard-idle.webp",
+      "sha256": "f6a76130485e13adde4efcfb2c08d37a57af761ca162416c087419d5290d1052"
+    },
+    {
+      "file": "confluence_life_pillar_guard-move.webp",
+      "sha256": "9a58d16c3843e8d885c8a582700edd793e3e73c9504797374720e1f702da5402"
+    },
+    {
+      "file": "confluence_life_pillar_guard-attack.webp",
+      "sha256": "bc225b3bcca01a8549b6738b10a2df52b9d7b09bb50257ca64829669f964d0d9"
+    },
+    {
+      "file": "confluence_life_pillar_guard-hit.webp",
+      "sha256": "246be616a56972392789505286f793db67c2bfe76a181dde3f23ed7ebbe60d88"
+    },
+    {
+      "file": "confluence_life_pillar_guard-death.webp",
+      "sha256": "a40c04fe6ce545ec570151a62c716027add748cbf35729117a8e924f6145357c"
+    },
+    {
+      "file": "confluence_thunder_pillar_guard-idle.webp",
+      "sha256": "a018fbb3cfb813474941fe027712e5d175c24e49d8ef656ccae4166498387805"
+    },
+    {
+      "file": "confluence_thunder_pillar_guard-move.webp",
+      "sha256": "07d278b3fce3685aed90d6f7d86ed306835a1c1ac9074a694e59fe1ecda11762"
+    },
+    {
+      "file": "confluence_thunder_pillar_guard-attack.webp",
+      "sha256": "d0629e154608f5e6e5835d0dd7021e752d860ba6c99d3257d8c3ca9040a96d08"
+    },
+    {
+      "file": "confluence_thunder_pillar_guard-hit.webp",
+      "sha256": "cdf783e7dd8d83400b670cf9aa7a8caf571aa10340a4f6037d1da1362f5d0108"
+    },
+    {
+      "file": "confluence_thunder_pillar_guard-death.webp",
+      "sha256": "5559805443de3aea4079a6f6d5b338ba62eacb83a177611ab355caade7229c4c"
+    },
+    {
+      "file": "confluence_starshadow_pillar_guard-idle.webp",
+      "sha256": "a86270740d190c003eb2e316445e032df25381cafcca0cd5814889a045bd5139"
+    },
+    {
+      "file": "confluence_starshadow_pillar_guard-move.webp",
+      "sha256": "94cffd49d0e9b0ef1d0ea10dab1cc3b7c6eda6653c9bac40ab914176ea3c90bb"
+    },
+    {
+      "file": "confluence_starshadow_pillar_guard-attack.webp",
+      "sha256": "e984e5c6a6095a9e213c0e4383d8706ca29ef0100dcc01c2155cbe3046f773b6"
+    },
+    {
+      "file": "confluence_starshadow_pillar_guard-hit.webp",
+      "sha256": "df81b2ba4db2f361497dd53f58e5d29e9e04634fd45ffb57c98599ddcdbdd6f5"
+    },
+    {
+      "file": "confluence_starshadow_pillar_guard-death.webp",
+      "sha256": "718d137a96f88926edd87eab01095ff7d5b88084466f6800b8c9c7867151e2e4"
+    },
+    {
+      "file": "confluence_worldcore_sovereign-idle.webp",
+      "sha256": "4ea8eb93c896cee11aa4015b1f6d26ec4b2f6b759e3f4bd8906b17af5edf178d"
+    },
+    {
+      "file": "confluence_worldcore_sovereign-move.webp",
+      "sha256": "5b5c16ce0f38f0ac4a572d714f373802fb60ce2681d9de34ba66b8c023d7e40c"
+    },
+    {
+      "file": "confluence_worldcore_sovereign-attack.webp",
+      "sha256": "81d1ae8d56fe75c0da751d72f1cd73f73589ffbb0810cd067647096677b3e953"
+    },
+    {
+      "file": "confluence_worldcore_sovereign-hit.webp",
+      "sha256": "a22118e31f4bc57a56df9222105d674ed5f59121127a857465d117ba5f919efb"
+    },
+    {
+      "file": "confluence_worldcore_sovereign-death.webp",
+      "sha256": "fd5ad9deb96a5348534586844742caeb19954d9651e0375b4cb13179bf563fe4"
+    }
+  ]
+}

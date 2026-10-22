@@ -1,0 +1,85 @@
+{
+  "kind": "original-generated-biome-detail-props",
+  "assets": [
+    {
+      "id": "fjord-wreck",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "24480f146996dbc4752c917a2a1dc6011db74a43fb9a45ee62129e3ffc973091",
+      "runtime": "../../src/assets/biome-fjord-wreck-detail-v1.webp",
+      "runtimeSha256": "34822b001871b545a055b2b0cc25778c1258f08fe71790567bd0eea10d6db196",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "frost-pine",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "c0887fd6df20700e7e248ebd3ec5b7f56de3f6b6e271d4a479088ddb77f37a74",
+      "runtime": "../../src/assets/biome-frost-pine-detail-v1.webp",
+      "runtimeSha256": "a6d95721f5a6fa0bf2000629ced6f773bd7a9d15e2e4e63cf2dec9f609c814bc",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "jade-bamboo",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "4d1f21d0e1ccb49e66373d94a62418ffcd51b75893bd757dacf0faf8ba2bc0d5",
+      "runtime": "../../src/assets/biome-jade-bamboo-detail-v1.webp",
+      "runtimeSha256": "2a9f0f1fb4999b1d2f87426281e045afc0c8daeeb359cdd3c5bd735937299868",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "oasis-palm",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "e7933317d0234989fa7ba9a1bcee6da5b97db94cee041737716d4743cb7848d6",
+      "runtime": "../../src/assets/biome-oasis-palm-detail-v1.webp",
+      "runtimeSha256": "29370cce9a61932be64b747d4344a3f9da42946ef40f591aceeed4b26f030e87",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "sandstone-rock",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "c7b03a483e15aabdc24e34a4d1a37dcaaf93a6b43722e880b8d802949fd6d5b1",
+      "runtime": "../../src/assets/biome-sandstone-rock-detail-v1.webp",
+      "runtimeSha256": "01fbf931c2cb67700b1f2a79b61837dd584ac47bc1a9ed1ffa2b83da2f77d2b0",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "star-crystal",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "66226a6f70c53ffdfab5ff7846fcfef0a6fe5a143f01ed4a2c5968a6437d4789",
+      "runtime": "../../src/assets/biome-star-crystal-detail-v1.webp",
+      "runtimeSha256": "c97ba731f5cf6db43ee9f55b0075b5f229527dfe3c71b493fd562af0000d9531",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "yokai-bamboo",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "11914181edc703f840b9756805d37ea404df3a56befca83b7e538b5e55d1ca97",
+      "runtime": "../../src/assets/biome-yokai-bamboo-detail-v1.webp",
+      "runtimeSha256": "950269e4b7ce9584afe0e175e823845f5398a12d9196f6b0d622cb7a3b70b632",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "yokai-lantern",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "9772b298c843e5a1ef859b27e9e6e21c74131b844ea874ad7ccd1080ab86dfba",
+      "runtime": "../../src/assets/biome-yokai-lantern-detail-v1.webp",
+      "runtimeSha256": "c311f78815cc018a9924708d6b97e1011f017427dc8bf68776368c517a398930",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    }
+  ]
+}

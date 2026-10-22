@@ -1,0 +1,63 @@
+{
+  "compressionlevel": -1,
+  "height": 96,
+  "width": 96,
+  "infinite": false,
+  "layers": [
+    {
+      "id": 1,
+      "name": "Existing city — design reference",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "color": "#d8b779",
+      "objects": [
+        {
+          "id": 1,
+          "name": "นครที่ถูกลืมเลือน",
+          "type": "poi",
+          "x": 1536,
+          "y": 1536,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "city"
+            }
+          ],
+          "point": true
+        }
+      ]
+    }
+  ],
+  "nextlayerid": 2,
+  "nextobjectid": 2,
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "tiledversion": "1.11.2",
+  "tilewidth": 32,
+  "tileheight": 32,
+  "tilesets": [],
+  "type": "map",
+  "version": "1.10",
+  "backgroundcolor": "#233d32",
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "city_plaza"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "int",
+      "value": 32
+    }
+  ]
+}

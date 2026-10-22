@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "abyss_black_salt_crab",
+      "baseSha256": "85255aa2bfa8cd0e52111213a2333d0eba2b333cb8e89f5aa5cdc946a6551693",
+      "run": "output/abyss-monsters-20261022/abyss_black_salt_crab/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_black_salt_crab/motion-qa.json"
+    },
+    {
+      "id": "abyss_silt_mudskipper",
+      "baseSha256": "401ff116e4d51f16cf7a8d57c56bfcea9c9a562c5976c3c6ed026d8206fb7afa",
+      "run": "output/abyss-monsters-20261022/abyss_silt_mudskipper/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_silt_mudskipper/motion-qa.json"
+    },
+    {
+      "id": "abyss_ziggurat_clay_guard",
+      "baseSha256": "4e4ceb29a619b7652a0096c73438f66e5af5b9e74a5d308764b892d31c920dad",
+      "run": "output/abyss-monsters-20261022/abyss_ziggurat_clay_guard/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_ziggurat_clay_guard/motion-qa.json"
+    },
+    {
+      "id": "abyss_anzu_lionbird",
+      "baseSha256": "49db97c04673651b8426136638aa7d7e8996e8e7e2af063d601a84be722410a6",
+      "run": "output/abyss-monsters-20261022/abyss_anzu_lionbird/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_anzu_lionbird/motion-qa.json"
+    },
+    {
+      "id": "abyss_mushhushshu_serpent",
+      "baseSha256": "78354c52e62ba0e790d470739e6c964fb1cc7c6ebd1336b86435b1e00191c443",
+      "run": "output/abyss-monsters-20261022/abyss_mushhushshu_serpent/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_mushhushshu_serpent/motion-qa.json"
+    },
+    {
+      "id": "abyss_night_border_scorpion",
+      "baseSha256": "68f869f727997c8d69fd01127ee3b23848f29f6cf88c078b2a35c5a0428f1c46",
+      "run": "output/abyss-monsters-20261022/abyss_night_border_scorpion/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_night_border_scorpion/motion-qa.json"
+    },
+    {
+      "id": "abyss_blackstone_lamassu",
+      "baseSha256": "cea1b46cfa5193513536f75db87d079c58418416b7e0c1924b4814794d91d143",
+      "run": "output/abyss-monsters-20261022/abyss_blackstone_lamassu/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_blackstone_lamassu/motion-qa.json"
+    },
+    {
+      "id": "abyss_primordial_sea_dragon",
+      "baseSha256": "112ec2a91259f1fb5423b511e3c3df1fdf9adfb5d2c5f4ca5d1fe7509592318f",
+      "run": "output/abyss-monsters-20261022/abyss_primordial_sea_dragon/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/abyss-monsters-v1/abyss_primordial_sea_dragon/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "abyss_black_salt_crab-idle.webp",
+      "sha256": "730329353667cdadf2d6af5883fae85d407afdc7c028a94e97ffb02168aaa2d3"
+    },
+    {
+      "file": "abyss_black_salt_crab-move.webp",
+      "sha256": "80763118e99eef9a79ea26db0841a2989cde994d15f1ea756785e9658bd3864d"
+    },
+    {
+      "file": "abyss_black_salt_crab-attack.webp",
+      "sha256": "efe74ffb0310e7cf23010e4604b2d50a22e6f471800bb15ff8e34507f15ca138"
+    },
+    {
+      "file": "abyss_black_salt_crab-hit.webp",
+      "sha256": "9edfd305600dfc3523509dffeec35aad57dffce803790cc4957c1c78b444c0f6"
+    },
+    {
+      "file": "abyss_black_salt_crab-death.webp",
+      "sha256": "ccf5c91541bd885be80e5b8a82cf9567a7d331437dacafb376705f26279cb599"
+    },
+    {
+      "file": "abyss_silt_mudskipper-idle.webp",
+      "sha256": "3dabebba8a3018902d739cc82eba0be675dd6d9f81a29398dd63888ff429c9e0"
+    },
+    {
+      "file": "abyss_silt_mudskipper-move.webp",
+      "sha256": "8a60a068c7ab8713a06a59a25cd478cd7ca7a75508bb2f0be5d3792d484606a7"
+    },
+    {
+      "file": "abyss_silt_mudskipper-attack.webp",
+      "sha256": "6095c632c14056a4193ce4b9bfcc0871d22a5276095dc80570f29274f0e57a95"
+    },
+    {
+      "file": "abyss_silt_mudskipper-hit.webp",
+      "sha256": "400b9d6b1f39fe5d4883cd9451f86fc525ebbf478ad7d590e667fd8c49d804fe"
+    },
+    {
+      "file": "abyss_silt_mudskipper-death.webp",
+      "sha256": "de24526d0aae33ab55aea8602eba642dbd054f02c68f4650bd6943be92100153"
+    },
+    {
+      "file": "abyss_ziggurat_clay_guard-idle.webp",
+      "sha256": "0643b6cd24706d649ab683af34cf65ca7bb7c9a3a6460566ded7c1bb15099248"
+    },
+    {
+      "file": "abyss_ziggurat_clay_guard-move.webp",
+      "sha256": "a26e6cae69cf70be6aa024bf6068c80b77ced7c0af34dd5f83a84edc5b1c8742"
+    },
+    {
+      "file": "abyss_ziggurat_clay_guard-attack.webp",
+      "sha256": "85fe91cacd4820bedf2743f1257b782b9eddf4df0a667e0731a8dbcbabffeba1"
+    },
+    {
+      "file": "abyss_ziggurat_clay_guard-hit.webp",
+      "sha256": "cc7d50d71da39ec12e44569d56a25616368849274e8cf3978740285d25e53655"
+    },
+    {
+      "file": "abyss_ziggurat_clay_guard-death.webp",
+      "sha256": "6ee15e5ed9e14e17938d61e16e39b4a17acfdb4475f40bfa9084bc554833854b"
+    },
+    {
+      "file": "abyss_anzu_lionbird-idle.webp",
+      "sha256": "1bc4150a181b82d77ff40e36e0523f38975fb7abcf94867f0271b01220d082cd"
+    },
+    {
+      "file": "abyss_anzu_lionbird-move.webp",
+      "sha256": "16e4c283f62a8385276e57ff75f5182399815389352df269355da8021d0691dd"
+    },
+    {
+      "file": "abyss_anzu_lionbird-attack.webp",
+      "sha256": "69cb9c0c591fd198d97c6fba470334a949973822597eab69858309c2c82472c9"
+    },
+    {
+      "file": "abyss_anzu_lionbird-hit.webp",
+      "sha256": "a91f3f11cb1619196022c0349cd62d0d8d63160d0b649fb2b8e8757000f8477d"
+    },
+    {
+      "file": "abyss_anzu_lionbird-death.webp",
+      "sha256": "2400ae547af792281740e8d3c874a9d013fdcbfd5aed35f563bc57b6317bedcd"
+    },
+    {
+      "file": "abyss_mushhushshu_serpent-idle.webp",
+      "sha256": "90f6d437c898ce474996a5f3f4b4a8cabe0550d2c529127a22ef40ce642834f8"
+    },
+    {
+      "file": "abyss_mushhushshu_serpent-move.webp",
+      "sha256": "cb95a9146606d2dfe6ea9429e415e056eb18b3831b7d79c10cd3e4cf83e80807"
+    },
+    {
+      "file": "abyss_mushhushshu_serpent-attack.webp",
+      "sha256": "531a2dde6ce09cb873d7b144b0cd8c04ba1b83b5d25501440c4f99258cbcf103"
+    },
+    {
+      "file": "abyss_mushhushshu_serpent-hit.webp",
+      "sha256": "84549a25306ca1edbf7b3ac7c010c86b47f08b3f7dcfab5679a9fea51cfa51fb"
+    },
+    {
+      "file": "abyss_mushhushshu_serpent-death.webp",
+      "sha256": "2508544a6f36b611b237c54345e696f8f771ac6642680ee0f0ffd907df32fbe5"
+    },
+    {
+      "file": "abyss_night_border_scorpion-idle.webp",
+      "sha256": "3cf3b7f8dd5d5ab27f2b21b4ea6cdae9a7aa0b323391e8ced3f1c4dfcb788172"
+    },
+    {
+      "file": "abyss_night_border_scorpion-move.webp",
+      "sha256": "1b35288a0036752a771b5d9df705e221f4e33d2f1c58b64a76abdec125f22082"
+    },
+    {
+      "file": "abyss_night_border_scorpion-attack.webp",
+      "sha256": "6cb0e4d82b6c2b66747792ea6594fbe89ff1641f2997b52c08a9dd0063884e17"
+    },
+    {
+      "file": "abyss_night_border_scorpion-hit.webp",
+      "sha256": "47fd2ef3b6edfe356c5c238508271d5c595ad246ec11193584a67c3cc376d800"
+    },
+    {
+      "file": "abyss_night_border_scorpion-death.webp",
+      "sha256": "c97bd5adc5b8176abea0c56089305744dac62f2d43dd9bd6f5baa5ee9d1f6cca"
+    },
+    {
+      "file": "abyss_blackstone_lamassu-idle.webp",
+      "sha256": "d91dd14813279f6d275e2e2b50969ce551ea9eb0106f691a14051ea4139d4bdc"
+    },
+    {
+      "file": "abyss_blackstone_lamassu-move.webp",
+      "sha256": "837dd351955e93f9701e58d09ca01ddc898227110b1c0eb95dd0c8b90a8591a1"
+    },
+    {
+      "file": "abyss_blackstone_lamassu-attack.webp",
+      "sha256": "09b31b534a1b9e437abff84131c6b1966b34d133ffe999bdd845da1fba77b200"
+    },
+    {
+      "file": "abyss_blackstone_lamassu-hit.webp",
+      "sha256": "1fd78ba3c5e59e97fde3eb07b969ca15c1961585b93607a48dfd166853d29be2"
+    },
+    {
+      "file": "abyss_blackstone_lamassu-death.webp",
+      "sha256": "13293903b60ca5052c1446234645b87a930515116ffbbb2d177a8398d5e9aebe"
+    },
+    {
+      "file": "abyss_primordial_sea_dragon-idle.webp",
+      "sha256": "148ac5c57b5ebb10e7ed02e074107d2a8e7dceabcc4b6e7d5155811e431b17e6"
+    },
+    {
+      "file": "abyss_primordial_sea_dragon-move.webp",
+      "sha256": "70c4dd9a6e6025acf10e1d4d7cf761dad0922191bef950f7db528ef87c3d16af"
+    },
+    {
+      "file": "abyss_primordial_sea_dragon-attack.webp",
+      "sha256": "22f1d5fc23bfbf0989da4533712c8f5f39c24dc0e63e1cbaf21371aabbd024c6"
+    },
+    {
+      "file": "abyss_primordial_sea_dragon-hit.webp",
+      "sha256": "37d594ad6c1284239852a0541fdb5c676d6d0ba415198a7f3b94e01f1dc0aa12"
+    },
+    {
+      "file": "abyss_primordial_sea_dragon-death.webp",
+      "sha256": "7429c8f1ff6e03a1b4bcf11cf2b19bdd01338950e13302d1152a92b199f822cf"
+    }
+  ]
+}

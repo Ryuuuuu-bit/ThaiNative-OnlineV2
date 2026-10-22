@@ -50,16 +50,16 @@ test("forest populates its own species on walkable ground, plus the warden", () 
 	assert.ok(regular.length >= 50, "big map holds 50+ monsters");
 	for (const e of regular) {
 		assert.ok(walkable(e.x, e.z, 0.3, "forest"), `${e.dataId} spawns inside a tree or pool`);
-		assert.ok(["mist_shroom", "shade_wolf", "lantern_wisp", "stump_guard"].includes(e.dataId));
+		assert.ok(["forest_young_1","dewdrop_moth","pine_hedgehog","root_boar","mist_weaver","mist_shroom", "shade_wolf", "lantern_wisp", "stump_guard"].includes(e.dataId));
 		assert.ok(e.behavior, `${e.dataId} has data-driven AI`);
 		assert.equal(e.maxHp, data.monsters.monsters.find((m) => m.id === e.dataId)!.hp);
 	}
 	const boss = g.enemies.filter((e) => e.boss);
-	assert.equal(boss.length, 1);
+	assert.equal(boss.length, 2);
 	assert.equal(boss[0].dataId, "mist_warden");
 	assert.ok(walkable(FOREST_ENTRY.x, FOREST_ENTRY.z, 0.3, "forest"));
 	assert.ok(walkable(FIELD_BOSS.forest.x, FIELD_BOSS.forest.z, 0.3, "forest"));
-	assert.equal(walkable(70, 0, 0.3, "forest"), false, "outside the forest");
+	assert.equal(walkable(100, 0, 0.3, "forest"), false, "outside the expanded forest");
 });
 
 test("city east gate leads to the forest and its west gate returns", () => {
@@ -118,7 +118,7 @@ test("field bosses come back 30 minutes after they die, not after a kill count",
 			g.p.cd.attack = 0;
 			action(g, "attack");
 		}
-		assert.equal(g.enemies.filter((e) => e.boss && !e.summoned).length, 1);
+		assert.equal(g.enemies.filter((e) => e.boss && !e.summoned).length, map === "forest" ? 2 : 1);
 		// Defeat the boss: timer starts at 30 minutes and it respawns when it runs out.
 		g.p.x = boss.x;
 		g.p.z = boss.z - 1.5;

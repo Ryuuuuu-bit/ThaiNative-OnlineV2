@@ -1,0 +1,289 @@
+{
+  "date": "2026-10-21",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "bud_shroom",
+      "baseSha256": "1f1ab3212fc766d9acb886c65158601633575344ad85fba0288a09f9d5a752e4",
+      "run": "output/monster-expansion-20261021/bud_shroom/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/bud_shroom/motion-qa.json"
+    },
+    {
+      "id": "clay_puff",
+      "baseSha256": "5896bcb4d6269f7ef320e9dbe4c500d1b2f9561afc1759214b5da63ffc583f41",
+      "run": "output/monster-expansion-20261021/clay_puff/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/clay_puff/motion-qa.json"
+    },
+    {
+      "id": "pebble_puff",
+      "baseSha256": "9a67098a65ae2a3a1b152e527e57b6e992e06ef9008bf75b33ada221f055245d",
+      "run": "output/monster-expansion-20261021/pebble_puff/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/pebble_puff/motion-qa.json"
+    },
+    {
+      "id": "amber_mantis",
+      "baseSha256": "e8841c709b20a981ec08dec11af11099fd3afdf8e9cddc8ef2439abe67810580",
+      "run": "output/monster-expansion-20261021/amber_mantis/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/amber_mantis/motion-qa.json"
+    },
+    {
+      "id": "dawn_owl",
+      "baseSha256": "0d360c06e9f0e7436524200b67802f4afc01759908bd2c27cf4d5c13ea7912b5",
+      "run": "output/monster-expansion-20261021/dawn_owl/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/dawn_owl/motion-qa.json"
+    },
+    {
+      "id": "grove_crown",
+      "baseSha256": "4453a312af0821dd10e358a125ae58e3dea9ae5a25f6836eda607ed34f8b5f2b",
+      "run": "output/monster-expansion-20261021/grove_crown/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/grove_crown/motion-qa.json"
+    },
+    {
+      "id": "moon_crab",
+      "baseSha256": "c1b3839909aa1af60e6dc0f802466fc4bf3cbc197380f870c44b8e247550f75e",
+      "run": "output/monster-expansion-20261021/moon_crab/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/moon_crab/motion-qa.json"
+    },
+    {
+      "id": "frost_lynx",
+      "baseSha256": "add32dd7c4222471677fa5420fa2c8461e1a3f10da44151e2f16a23a653b739b",
+      "run": "output/monster-expansion-20261021/frost_lynx/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/frost_lynx/motion-qa.json"
+    },
+    {
+      "id": "moon_titan",
+      "baseSha256": "0bac417fa2b313a1a036c07ceae151cbec4b153fd445ee0ca0610014add92781",
+      "run": "output/monster-expansion-20261021/moon_titan/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/monster-expansion-v1/moon_titan/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "bud_shroom-idle.webp",
+      "sha256": "8de8fd3436ea52a8c8854fe466e83b12ae2100e7413786fd15e8faf750e53293"
+    },
+    {
+      "file": "bud_shroom-move.webp",
+      "sha256": "685f51fc0ba03d7ae5cb5376c7d752a170511eda0369f123cdc00353994d7859"
+    },
+    {
+      "file": "bud_shroom-attack.webp",
+      "sha256": "bf93c3a6caf8b1fc57c439681cbb2893588907bc538427cc0900c4f14519850c"
+    },
+    {
+      "file": "bud_shroom-hit.webp",
+      "sha256": "1866ae85f9b39e31765337ab38bb72bd0cd7f91dcb80aea8aa143eb2f86fa694"
+    },
+    {
+      "file": "bud_shroom-death.webp",
+      "sha256": "483ee86867b8b6fe5977d6b395b907c95d88796a32b4413061509573e28cd14f"
+    },
+    {
+      "file": "clay_puff-idle.webp",
+      "sha256": "e1fc519e4cf419e310a36ee129afecda1910363bb68b856c706e0375e0e1686e"
+    },
+    {
+      "file": "clay_puff-move.webp",
+      "sha256": "30ba0480bd85dceb7938a2b3b2ceaa92b6a3a0aeb5adb4198411dd0fa975d8bc"
+    },
+    {
+      "file": "clay_puff-attack.webp",
+      "sha256": "a2b44402d9b7387c02c6d67678cccd6910110a8bcae841f1c878fdb25eb0e007"
+    },
+    {
+      "file": "clay_puff-hit.webp",
+      "sha256": "dc8f88263a01242f80582f1deff5499cb613071c631a0922c0b0ad6b2068e17b"
+    },
+    {
+      "file": "clay_puff-death.webp",
+      "sha256": "82b7c44cd5d3e538ea532982980224f55e4cf83e85e22c9918ff401c9abfbf93"
+    },
+    {
+      "file": "pebble_puff-idle.webp",
+      "sha256": "f492a5902f08c06131e43c4a54f4a2f35725322f739049ef7950b8e1c24135df"
+    },
+    {
+      "file": "pebble_puff-move.webp",
+      "sha256": "8388538b9f91937de696a540ab25cacba561faf2dc542444016301a273f8cf7c"
+    },
+    {
+      "file": "pebble_puff-attack.webp",
+      "sha256": "eb736148790a058a8d3f0208995007e685599f7564fb22ba1c90ae0280d5d4c9"
+    },
+    {
+      "file": "pebble_puff-hit.webp",
+      "sha256": "93bd24bac02d1ab9ad8a01449d4354868aad811d1debcab63545d421a7310225"
+    },
+    {
+      "file": "pebble_puff-death.webp",
+      "sha256": "4e48ef8a83440f09e456ab9432d715422215e61101723c9811f2c0fa0b61f7cc"
+    },
+    {
+      "file": "amber_mantis-idle.webp",
+      "sha256": "77575310f738c9cf840e38bcadf08edf7d86086177f4dded5b2407522f0ec122"
+    },
+    {
+      "file": "amber_mantis-move.webp",
+      "sha256": "138dfb1f1bc76047372efb2b96e749e8488b21ccb1f02c6737077951c6ae25c8"
+    },
+    {
+      "file": "amber_mantis-attack.webp",
+      "sha256": "ffa99bcac190acb7c3325567daf337352b9291525a240e1a6f841c60a9f87b24"
+    },
+    {
+      "file": "amber_mantis-hit.webp",
+      "sha256": "66f8f3a251dc2ecfb46a41c3c2248a3ba56405081901fbee37b0badff1eca674"
+    },
+    {
+      "file": "amber_mantis-death.webp",
+      "sha256": "d72fe2bb13920740277cae492fbebfad98556d5ebc92c80ef349cbde1e0830bb"
+    },
+    {
+      "file": "dawn_owl-idle.webp",
+      "sha256": "03b990a093bb754a5b45de38c62773c67d748b15dbe0ec8fbbcdf2241dcb2c82"
+    },
+    {
+      "file": "dawn_owl-move.webp",
+      "sha256": "fff8eb5fbb0514c10888ef1d2201d5f19072b15a49430e4c77655ce3d3923aa5"
+    },
+    {
+      "file": "dawn_owl-attack.webp",
+      "sha256": "5dce99244f067bf021cd7bc7ba64f84aecf097812c18eaf0275681ffdb9c346c"
+    },
+    {
+      "file": "dawn_owl-hit.webp",
+      "sha256": "c92189eaf283266731b59a64230eb70c8e0a729f1db4496721a337569e57f053"
+    },
+    {
+      "file": "dawn_owl-death.webp",
+      "sha256": "823a70d3d2b362fac19ed7a9abf4a0fbc731dcacb9bcb06fee0c9f184f9573c7"
+    },
+    {
+      "file": "grove_crown-idle.webp",
+      "sha256": "bcafa63bec57960844d8bb78d4d8294b3dc3dc383b34207012174644f5c9419b"
+    },
+    {
+      "file": "grove_crown-move.webp",
+      "sha256": "8cd00cb4266acd17dec34eac251f37559bada11c120bdb9d59e2c321fb28ea81"
+    },
+    {
+      "file": "grove_crown-attack.webp",
+      "sha256": "73b3b5b37216e961d3654c05745acdaeeb89510152f6ca3c64973037c5063212"
+    },
+    {
+      "file": "grove_crown-hit.webp",
+      "sha256": "8a639eb5e4b52335e17f16e751fe60b6d80b2d42a792f33e0fa43fd474073e8a"
+    },
+    {
+      "file": "grove_crown-death.webp",
+      "sha256": "67ce660d2583055083cfbeb276e20c48123321aad01549b19ceaea71c77a8607"
+    },
+    {
+      "file": "moon_crab-idle.webp",
+      "sha256": "4803a41e4cc28bdcadfb4d064277e7e74684878132d8fdf07a6da52530626b9e"
+    },
+    {
+      "file": "moon_crab-move.webp",
+      "sha256": "99f4a78d8b256c680ba946b2ba71cea8fd7c7536d4d9d071056bb8fab95d6327"
+    },
+    {
+      "file": "moon_crab-attack.webp",
+      "sha256": "0b6ee90b7d1af32243647dc4b7806c5cbbffb5099dacb65858ff4b66120de216"
+    },
+    {
+      "file": "moon_crab-hit.webp",
+      "sha256": "0236b12884c087354e5ffada28fd4398d69d26cca47ba8cb58968853be31a98d"
+    },
+    {
+      "file": "moon_crab-death.webp",
+      "sha256": "b1402387f3033ca22e3757ac74a6647d15f0ade7f998cac35f4517c71a301347"
+    },
+    {
+      "file": "frost_lynx-idle.webp",
+      "sha256": "c3311d85ded63d82c3293733ec9425a93ed97ebfe28126b9a5a70f271f92eabe"
+    },
+    {
+      "file": "frost_lynx-move.webp",
+      "sha256": "afaf82472a0ab011ee3c8bd10b1350f8b8a429242b3968cd2e4ad16a1ca9f8e6"
+    },
+    {
+      "file": "frost_lynx-attack.webp",
+      "sha256": "c9cb05f0c3ea207ea60f3933786226306867fc09951de2f326ef2c3b625e4dc0"
+    },
+    {
+      "file": "frost_lynx-hit.webp",
+      "sha256": "deaab7a996e7a03901049fcf88c844622707c617b554fd8211ea35714d3fc57d"
+    },
+    {
+      "file": "frost_lynx-death.webp",
+      "sha256": "89867be3606477acc99a41cc59beecfdbb9db29e99cc07de770c468707aa4b4f"
+    },
+    {
+      "file": "moon_titan-idle.webp",
+      "sha256": "27d1a817c60cfd02cdafc36bcac74625578751182d71eaf37650771f97f7b7b6"
+    },
+    {
+      "file": "moon_titan-move.webp",
+      "sha256": "e15338083292c4755f3e50a66146f882cd59ae14ad5c28a9bea2e7f1b5bf0deb"
+    },
+    {
+      "file": "moon_titan-attack.webp",
+      "sha256": "82482de6284713fcf3dc2ce9ab9a6333c7336ee3a536deabe09a9fd601bcdbc7"
+    },
+    {
+      "file": "moon_titan-hit.webp",
+      "sha256": "c2d4674f0aad71771136109af6958f984feb15b9399d70bed223da6d0eddf54f"
+    },
+    {
+      "file": "moon_titan-death.webp",
+      "sha256": "bd3a53141879b6b1ea97fc80cbc1d02b82a88abbc5c10b9f657855b58f9863a9"
+    }
+  ]
+}

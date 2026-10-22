@@ -1,0 +1,123 @@
+{
+  "method": "Original authored SVG geometry and normalized original generated creature images; no external assets",
+  "sources": [
+    {
+      "id": "card_fae_puca_shadowhorse",
+      "base": "output/fae-monsters-20261022/fae_puca_shadowhorse/base.png",
+      "baseSha256": "99655b0f86519ea7fd3b7a1febb4792e5882f0691ce11492d34e3ef66ff00a47",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_fae_wandering_light_moth",
+      "base": "output/fae-monsters-20261022/fae_wandering_light_moth/base.png",
+      "baseSha256": "5976dd299fd9b95810d813a89d80bc8e169e29cb2967ba06e375ad365f9d25e7",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_fae_false_garden_root",
+      "base": "output/fae-monsters-20261022/fae_false_garden_root/base.png",
+      "baseSha256": "316274ee6da158fa405cbb343394dba6711def2826e5efac3334017eca440221",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_fae_moondrop_mirrorfae",
+      "base": "output/fae-monsters-20261022/fae_moondrop_mirrorfae/base.png",
+      "baseSha256": "b2f7596e1202a959e6ae14464a871c05757dd1a98d47e447c119629febb38866",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_fae_moonlichen_stag",
+      "base": "output/fae-monsters-20261022/fae_moonlichen_stag/base.png",
+      "baseSha256": "fa811bac534e0e153fd0d0f1a18d1682383a52392972b579dc1eefd5526ec6d5",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_fae_violet_banshee",
+      "base": "output/fae-monsters-20261022/fae_violet_banshee/base.png",
+      "baseSha256": "17d1e6958270b1315c82e2b0c5a5b6d466e4e81174f8693e9dc373d64dea4ac2",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_fae_silverchain_dullahan",
+      "base": "output/fae-monsters-20261022/fae_silverchain_dullahan/base.png",
+      "baseSha256": "29b80cbb2b78d16af6cae37897370b03021d6901794ae4bb08c07a60d9dc3da3",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_fae_twilight_antler_king",
+      "base": "output/fae-monsters-20261022/fae_twilight_antler_king/base.png",
+      "baseSha256": "be84495489500e460bddad6e86ace1ff7732bfc5efb91acb46cfcc238c3cd46d",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    }
+  ],
+  "files": [
+    {
+      "file": "card_fae_puca_shadowhorse.svg",
+      "sha256": "9ced44e8886a1a16580935a43d4b600faaa08df7754e84cc70d0bf9c23e22c2a"
+    },
+    {
+      "file": "fae_puca_shadowhorse_material.svg",
+      "sha256": "cba8aad2369a3070809c967179bbb73fdbd68ec2278f3b9e93a584590c0df89d"
+    },
+    {
+      "file": "card_fae_wandering_light_moth.svg",
+      "sha256": "04b69d9a2573f6b7c9f13e8a17f391d02aa0396ccba5da3c2d6663a2b5c6c585"
+    },
+    {
+      "file": "fae_wandering_light_moth_material.svg",
+      "sha256": "2120429c2c3dd81d0825599c034a1de30866e5a0c9ad569b3c7487b527c1e464"
+    },
+    {
+      "file": "card_fae_false_garden_root.svg",
+      "sha256": "0afa8ed94f4d94728381269368dfdd780d638618822540a2348a911b52577ecc"
+    },
+    {
+      "file": "fae_false_garden_root_material.svg",
+      "sha256": "fd11933a5ee178b77c1b7999551fd393836fa747a303afc80f25d3ce4ab31697"
+    },
+    {
+      "file": "card_fae_moondrop_mirrorfae.svg",
+      "sha256": "8e66288672a9638353300d948783ab41a89770742dec269af6304db527c1c3ec"
+    },
+    {
+      "file": "fae_moondrop_mirrorfae_material.svg",
+      "sha256": "2523051972d70af4b6b7fe4ef38fac3e4d5e3da81a6c5bf2e7931e6d36228edc"
+    },
+    {
+      "file": "card_fae_moonlichen_stag.svg",
+      "sha256": "c32f4f342b2b0b5e0dae910716e977fb0c420c37cfbbe22bfbecde513c0cb041"
+    },
+    {
+      "file": "fae_moonlichen_stag_material.svg",
+      "sha256": "b265c081ec904bea988d295cb7bd11d0f5bd20ece73047d9a29e0fa500aff3aa"
+    },
+    {
+      "file": "card_fae_violet_banshee.svg",
+      "sha256": "d55afb583ef2014f7f2ff2ffd0097fcd1a364557611a26458069c8f280480b40"
+    },
+    {
+      "file": "fae_violet_banshee_material.svg",
+      "sha256": "7b959c8f522b455d6540df51361620b63d6378f16f02ba29e441dfe2a50fad7a"
+    },
+    {
+      "file": "card_fae_silverchain_dullahan.svg",
+      "sha256": "8a0e8f1d2d98e9b6843be1916ba6546b7c74f44dd09104d22ae3d84ac46d0533"
+    },
+    {
+      "file": "fae_silverchain_dullahan_material.svg",
+      "sha256": "9edf7c16531240a6960b5a4f56166ea18f90ed66dea3d149c42d9c2f1672e15b"
+    },
+    {
+      "file": "card_fae_twilight_antler_king.svg",
+      "sha256": "c3613f091a9639aa04bd47fdd21254120a34eee5eba1420a2081e4a914d9e672"
+    },
+    {
+      "file": "fae_twilight_antler_king_material.svg",
+      "sha256": "7dcfd0d66911c2979b06320ac3f81c7d58e01dc5479b503bf196e0d6cbe52ba6"
+    },
+    {
+      "file": "unique_fae_relic.svg",
+      "sha256": "aecc61da0bc66fae75442c2709aca5132e1c786364455ae69aac22bfde2b6166"
+    }
+  ]
+}

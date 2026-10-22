@@ -17,6 +17,7 @@ const basis=resolve(root,'public/basis/three-r185');mkdirSync(basis,{recursive:t
 writeFileSync(resolve(root,'public/texture-manifest.json'),JSON.stringify(entries,null,2)+'\n');
 // Remove only archived PNG atlases and unversioned pack outputs from the shipping asset folders.
 for(const folder of ['hero-painted','hero-skills','monsters-painted','env-painted','ui-painted']){
+ if(folder==='monsters-painted'&&JSON.parse(readFileSync(resolve(root,'public/assets/monsters-painted/manifest.json'),'utf8')).originRevision)continue;
  const visit=dir=>{for(const item of readdirSync(dir,{withFileTypes:true})){const path=resolve(dir,item.name);if(item.isDirectory())visit(path);else if(item.name.endsWith('.png')||(/\.(webp|ktx2)$/.test(item.name)&&!/-[a-f0-9]{10}\.(webp|ktx2)$/.test(item.name)))unlinkSync(path);}};visit(resolve(root,'public/assets',folder));
 }
 for(const file of readdirSync(resolve(root,'public/assets')).filter(n=>n.endsWith('.png')))unlinkSync(resolve(root,'public/assets',file));

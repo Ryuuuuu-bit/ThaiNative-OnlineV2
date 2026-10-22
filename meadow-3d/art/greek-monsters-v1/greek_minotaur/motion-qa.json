@@ -1,0 +1,25 @@
+{
+  "accepted": true,
+  "reviewedAt": "2026-10-22",
+  "frontFacing": "left",
+  "backFacing": "right",
+  "motions": [
+    "idle",
+    "hop",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "nativeFramesPerDirection": 4,
+  "directionsAuthored": [
+    "down45",
+    "up45"
+  ],
+  "runtimeDirections": "four directions by mirroring",
+  "visualReview": "All ten contact strips reviewed; recovery and death retained. Front attack corrected to observed facing where needed; satyr flute casting corrected.",
+  "limitations": [
+    "Four native poses per motion, not continuous motion capture.",
+    "Directional mirroring also mirrors held objects."
+  ],
+  "runtimeQA": "Viewed in the actual Canvas2D game at Lv.45; target bounds and all facings/motions checked by greek-render-check.mjs."
+}

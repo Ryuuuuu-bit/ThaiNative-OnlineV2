@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "Original production full-body creature sprite for The Beginning Online Thai fantasy MMORPG. An original Himmapan makara river beast with FOUR short strong crocodile legs, long squat crocodilian body with turquoise overlapping scales, ONE head with a short curling elephant-like snout and two small curved ivory tusks, a long tapering fish-fin tail. Original mythic animal anatomy, no humanoid torso, no wings, no arms. Wet bronze-green scales, pale aqua fin edges, grounded low hunting stance. Hand-painted gouache, ink and watercolor, soft organic texture, clean readable silhouette, subdued highlights, rich but natural colors. Orthographic isometric front-right three-quarter camera, matching painted game environment, full subject centered with ample transparent padding, no crop. Neutral idle pose. Upper-left lighting. True transparent background. No ground plane, no cast shadow outside body, no UI, no text, no letters, no labels, no frame, no duplicate creatures. Original folklore design only, no modern franchise, no artist references. NOT pixel art, NOT photoreal, NOT plastic3D.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_03\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_03\\base.png.raw.png",
+  "raw_bytes": 2501162,
+  "elapsed_seconds": 50.453,
+  "model": null,
+  "session_id": "01a15fd4-359a-7a72-87fd-25c099544837",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\himmapan-monsters-20261022\\himmapan_03\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 59.38,
+    "partial_alpha_pct": 40.62,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 828741,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

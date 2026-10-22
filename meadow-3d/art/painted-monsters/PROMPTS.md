@@ -1,5 +1,9 @@
 # Painted jelly monsters — built-in imagegen prompts
 
+Historical prompts retained for evidence only. The supplied identity reference's
+origin was not established, so these monster images are retired from shipping.
+Replacement sources and receipts: `../monster-origin-rebuild-v1/`.
+
 ## King base SE
 
 Use case: identity-preserve. Supplied image is the EXACT King Jelly boss identity/costume. Create ONE transparent animation sheet EXACT2rows x6equal512x512slots,3072x1024canvas. Exactly12 complete figure groups, no overlaps between cells. Same translucent dusty-pink teardrop jelly, tarnished GOLD crown with RED gem, tiny ragged plain PLUM cape on BACK, no limbs, confident face in front views, lighter watercolor internal blotches. Fine sepia ink/gouache fantasy illustration, upper-left lighting, slightly elevated orthographic20degrees. Constant anatomical mass across ALL frames, standing king+crown about340px tall with bottom480, keep all art inside own slot with40px empty side margins. No enlarging crouched/death poses. Airborne poses bottom380, otherwise ground480. No ground, shadows, labels, grid, scenery or opaque background; genuine transparent alpha. Direction SE: FRONT3/4 down-right with face on image-right. TOP ROW:1 idle gentle slight down-breath;2 neutral guard;3 gentle up-breath, first3heights within5percent;4 move heavy hop deep crouch;5 airborne stretch with bottom lifted;6 big landing splat wide-low. BOTTOM:1 hit jiggle flinch side-left;2 hit flinch opposite side;3 stun sag with spiral eyes;4 deeper stun sag with spiral eyes and tilted crown;5 roar/cast rearing tall mouth opening;6 roar fully open mouth and crown tilting, cape lifted. Back views express hit/stun/roar by body/crown/cape, no face.

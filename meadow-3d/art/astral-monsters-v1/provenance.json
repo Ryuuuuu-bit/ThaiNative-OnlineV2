@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "astral_stardust_jellyfish",
+      "baseSha256": "c52844cf47e20487e7e39d55bd9ce5db04c0efb22c3bc9d9a34776bdcce18824",
+      "run": "output/astral-monsters-20261022/astral_stardust_jellyfish/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_stardust_jellyfish/motion-qa.json"
+    },
+    {
+      "id": "astral_orbital_ray",
+      "baseSha256": "e28432734d76439dc27e5f4c693e00147038db5fc03f2edf0da110f3114b67da",
+      "run": "output/astral-monsters-20261022/astral_orbital_ray/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_orbital_ray/motion-qa.json"
+    },
+    {
+      "id": "astral_meteor_ring_serpent",
+      "baseSha256": "131fa38603cb49008dbb64aeb1e791bca977d614c7c6fa76ce78737b3f50fb90",
+      "run": "output/astral-monsters-20261022/astral_meteor_ring_serpent/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_meteor_ring_serpent/motion-qa.json"
+    },
+    {
+      "id": "astral_constellation_crane",
+      "baseSha256": "e88655300d864fffed671197bde2406cf39cd8c7c0b6001096e4ddb25714cfad",
+      "run": "output/astral-monsters-20261022/astral_constellation_crane/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_constellation_crane/motion-qa.json"
+    },
+    {
+      "id": "astral_vacuum_bell_construct",
+      "baseSha256": "39725ee28afe812559c43ef5a288044b853c305062042440de344b163114771d",
+      "run": "output/astral-monsters-20261022/astral_vacuum_bell_construct/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_vacuum_bell_construct/motion-qa.json"
+    },
+    {
+      "id": "astral_solarshadow_lion",
+      "baseSha256": "e9fe2318fa82ede0d3a50b3ffb4ff552eeb7067371fbfe2c47849c5c66480246",
+      "run": "output/astral-monsters-20261022/astral_solarshadow_lion/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_solarshadow_lion/motion-qa.json"
+    },
+    {
+      "id": "astral_twelve_star_knight",
+      "baseSha256": "f65efea0e82fb78701e0c7b1fbacc5dfe2a9c7997398285da174e8021f303310",
+      "run": "output/astral-monsters-20261022/astral_twelve_star_knight/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_twelve_star_knight/motion-qa.json"
+    },
+    {
+      "id": "astral_star_eating_eclipse",
+      "baseSha256": "fa5752fe44f76bfa3e9d39b58d5700101473709e5e42ee45257720f000c92fbf",
+      "run": "output/astral-monsters-20261022/astral_star_eating_eclipse/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/astral-monsters-v1/astral_star_eating_eclipse/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "astral_stardust_jellyfish-idle.webp",
+      "sha256": "24f891122b9740b792d1cc4d149c36a7f960e2a0bc5924ff5e425b88ce7efd00"
+    },
+    {
+      "file": "astral_stardust_jellyfish-move.webp",
+      "sha256": "374107857b70076b679120ce5b33b193b360590ee2678d611942221f4fc02bcc"
+    },
+    {
+      "file": "astral_stardust_jellyfish-attack.webp",
+      "sha256": "871dd2ed69f9b8045556e4430cab97ff62e33d456bc27ec3c57d860c15325225"
+    },
+    {
+      "file": "astral_stardust_jellyfish-hit.webp",
+      "sha256": "54ac3047d6b7778eb0cb0c27230edbb59f894d62b2689574c805c1d966f41680"
+    },
+    {
+      "file": "astral_stardust_jellyfish-death.webp",
+      "sha256": "d612f9bd9b306a7685220efd915406119892bf07b7e312384d7d23159e240298"
+    },
+    {
+      "file": "astral_orbital_ray-idle.webp",
+      "sha256": "0bcaedb7e155344ef54861eb33a46a65cc2847e8e655541e94fff6a6f9f511f0"
+    },
+    {
+      "file": "astral_orbital_ray-move.webp",
+      "sha256": "16cf0edb5b2cedc8cee926f23a579c7accb7bcca786dcaaea260dbb5756afeac"
+    },
+    {
+      "file": "astral_orbital_ray-attack.webp",
+      "sha256": "529e2dd3768cd9840768e28971dba5d476feb8a2cbcb20de5c0c50714c8f5ff9"
+    },
+    {
+      "file": "astral_orbital_ray-hit.webp",
+      "sha256": "c65f88fd39d9d375c2aa6b1d1f21e9250f0d7fc3f796d2ce2bd03c172d38fbb9"
+    },
+    {
+      "file": "astral_orbital_ray-death.webp",
+      "sha256": "24e84a9780fc3a47ad3e5a9d0a235dba96d632ffdb61f1489b453865718935a3"
+    },
+    {
+      "file": "astral_meteor_ring_serpent-idle.webp",
+      "sha256": "94b9b7169ab4be5eaaa183bc0e999ee93737c56505b4d6cdbd3a754a29744f29"
+    },
+    {
+      "file": "astral_meteor_ring_serpent-move.webp",
+      "sha256": "4b324e22cb86c6028e41de028bd87ae4a7316cbe03ffcc6797469e59ff37474e"
+    },
+    {
+      "file": "astral_meteor_ring_serpent-attack.webp",
+      "sha256": "0641c7c7f08757b880d379add77a3bb2af3f28acfeedb12eb8c0eb610f6fd5bf"
+    },
+    {
+      "file": "astral_meteor_ring_serpent-hit.webp",
+      "sha256": "ff17bcf67c4b876c262d8a6fb42b127a5e637c75f4d4bb8a5bec5c8c4ab70d38"
+    },
+    {
+      "file": "astral_meteor_ring_serpent-death.webp",
+      "sha256": "a5fe1340a8f221b23edbbfee095a81118412e3d1aa66f442e31af239ba54030e"
+    },
+    {
+      "file": "astral_constellation_crane-idle.webp",
+      "sha256": "55a53d8c555a5582dba6f43ba64ae5dd37a87fd2be0e4f48996ce7a4cfa65bdd"
+    },
+    {
+      "file": "astral_constellation_crane-move.webp",
+      "sha256": "866ca57bc425c3c1bc61e6d998a9b53b747c04b59f08797183e81b9abb412803"
+    },
+    {
+      "file": "astral_constellation_crane-attack.webp",
+      "sha256": "70b5d5d4b8ead23571ac0cedc74c3498b2bd8d5134a48dc14be3f1b452fc9769"
+    },
+    {
+      "file": "astral_constellation_crane-hit.webp",
+      "sha256": "bf6cc705d233007ceee5403229fe780581b4d8984a7ce0b8634c0c7d5b9c371f"
+    },
+    {
+      "file": "astral_constellation_crane-death.webp",
+      "sha256": "3cff6b41bbefd471f7209a4f34d0093ab169a5776eb754cd8d555508a6054db8"
+    },
+    {
+      "file": "astral_vacuum_bell_construct-idle.webp",
+      "sha256": "a9cdc91757c2a169a0aca260b98caa13fdf03e5522fe4c9a75872a76db0030ad"
+    },
+    {
+      "file": "astral_vacuum_bell_construct-move.webp",
+      "sha256": "324e26295d8f94769558f803d24ba48b07fe12ba77ba03a2e91205b8350946d6"
+    },
+    {
+      "file": "astral_vacuum_bell_construct-attack.webp",
+      "sha256": "9c73d37665206e46c63297e86572437eb0f34035bb48da6d80850aab1d4bd6c5"
+    },
+    {
+      "file": "astral_vacuum_bell_construct-hit.webp",
+      "sha256": "330fd9a7461a4442871b03a96722eb6cf3bb3cd86ae3c6ee0fc7bfbf8c10e0ec"
+    },
+    {
+      "file": "astral_vacuum_bell_construct-death.webp",
+      "sha256": "30b823f2977f0d6bdd31641ad946844238b89d5c0f4c76a5f07f15ad33c8725c"
+    },
+    {
+      "file": "astral_solarshadow_lion-idle.webp",
+      "sha256": "92e151e86231c83ecacaba7c9cb5f21d612501df85622671b52f9b426d6032d3"
+    },
+    {
+      "file": "astral_solarshadow_lion-move.webp",
+      "sha256": "1e41ea8b8c0d6de20480c6cc1a86461d7be736f355c593d58906d4742e8cb034"
+    },
+    {
+      "file": "astral_solarshadow_lion-attack.webp",
+      "sha256": "d5746d56dc8fa7389ce4e8d8d133975d536afac2fa9ddd066b2311059027ea51"
+    },
+    {
+      "file": "astral_solarshadow_lion-hit.webp",
+      "sha256": "7958266394aafb2e0994a3c891847ff53ca2fedcd1665225191f58d6906eb4a9"
+    },
+    {
+      "file": "astral_solarshadow_lion-death.webp",
+      "sha256": "e72a1b54b9a658faa59ef89c1dc5acff93dc1d46976d52c5a276c7d3f4b11418"
+    },
+    {
+      "file": "astral_twelve_star_knight-idle.webp",
+      "sha256": "09407c50f82144f30cc082fd8b17753b0720f680eac2b877ad2910f84f457b2b"
+    },
+    {
+      "file": "astral_twelve_star_knight-move.webp",
+      "sha256": "ca77a183bb863cfe4d1e1e1bc2158fcb493c2adcae485c950252f45ce44f2dec"
+    },
+    {
+      "file": "astral_twelve_star_knight-attack.webp",
+      "sha256": "cbdaa3803a5fd889b0b8e8503fffd75c1feae609a8d3a2977d1a97b12a0c35c0"
+    },
+    {
+      "file": "astral_twelve_star_knight-hit.webp",
+      "sha256": "cad770b6ca0d426f262ea4f66824c7955941b788763d7c37da78f34ca07dbf2a"
+    },
+    {
+      "file": "astral_twelve_star_knight-death.webp",
+      "sha256": "602cdd7f2043a75b9320be94ae22a21021a23a942f256e035effc0ad380fcf94"
+    },
+    {
+      "file": "astral_star_eating_eclipse-idle.webp",
+      "sha256": "8656f1869eb138e6f0307130a66ac2c62a1d17e91a05158bad15859be96f68a4"
+    },
+    {
+      "file": "astral_star_eating_eclipse-move.webp",
+      "sha256": "a219758f2ff62b5e340fff27c82ab016d9077b02ab5571a1edeea78b24c0fbe3"
+    },
+    {
+      "file": "astral_star_eating_eclipse-attack.webp",
+      "sha256": "5c557b157f703f2bb6602f5ebefeda6cebb05d3403dafdc6e550a9179a1d75fa"
+    },
+    {
+      "file": "astral_star_eating_eclipse-hit.webp",
+      "sha256": "34dcbe1fbd2ab9fbd4d695521b80457c6fdd84e2fce58290c05cb4dadf11a0b9"
+    },
+    {
+      "file": "astral_star_eating_eclipse-death.webp",
+      "sha256": "46d9b069d5ff184879a28bde8cd1c1f949461fef056eaf12a1efa228a5b298ae"
+    }
+  ]
+}
