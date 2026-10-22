@@ -1,11 +1,14 @@
 import {loadGameData,STARTER_CARD_TEXT} from '@the-beginning-online/shared';
 import {PAINTED_ITEM_ART} from './item-art-data.ts';
+import {MATERIAL_ITEM_ART} from './material-art-data.ts';
 const starterMaterials=["desert_sun_scroll","himmapan_01_material","himmapan_jade_turtle_material","himmapan_03_material","himmapan_blossom_deer_material","himmapan_golden_macaque_material","himmapan_06_material","himmapan_azure_garuda_material","himmapan_08_material","lotus_party_dew","naga_cleansing_incense","greek_reed","greek_windfeather","greek_jadescale","greek_labyrinth_bronze","jelly_slime", "lotus_fibre", "dew_shell", "tide_core", "tea_spore_leaf", "dewdrop_dust", "pine_spine", "living_clay", "glaze_shard", "charmed_lid", "clear_gravel", "ore_scale", "magnet_claw", "mist_spore", "root_tusk", "shadow_fang", "mist_silk", "thorn_nest_heart"];
 const templates=new Map(loadGameData().items.items.map(t=>[t.id,t]));
 /** Stable atlas order. New templates reuse their declared icon, never their catalog index. */
 const atlasIcons=["training_sword", "leaf_sword", "crystal_sword", "reed_dagger", "wood_staff", "bamboo_bow", "traveler_clothes", "leaf_armour", "royal_armour", "wood_shield", "leaf_cloak", "trail_boots", "jade_ring", "sky_amulet", "red_small", "red_medium", "blue_potion", "speed_potion", "jelly_slime", "leaf_seed", "king_crystal", "weapon_stone", "armour_stone", "card_jelly_pink", "card_king_jelly", "mist_spore", "wolf_fur", "wisp_tear", "mist_wood", "warden_heart", "stone_spore", "relic_fang", "rune_shard", "ancient_vine", "temple_seal", "ore_slime", "crag_fur", "amber_dust", "crag_root", "titan_core", "card_mist_warden", "card_relic_warden", "card_crag_titan"];
 export function itemIconCell(template:string){
  const icon=templates.get(template)?.icon??template;
+ const material=MATERIAL_ITEM_ART[template]??MATERIAL_ITEM_ART[icon];
+ if(material)return {v2:false,position:'center',image:`/assets/item-art-v3/${material}`};
  const painted=PAINTED_ITEM_ART[template]??PAINTED_ITEM_ART[icon];
  if(painted)return {v2:false,position:'center',image:`/assets/item-art-v2/${painted}`};
  if(icon.startsWith('astral_')&&icon.endsWith('_scroll'))return {v2:false,position:'center',image:`/assets/starter-loot/${icon}.svg`};
