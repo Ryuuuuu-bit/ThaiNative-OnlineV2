@@ -53,7 +53,7 @@ test('cast reduction caps hold with DEX, refine and the ray card stacked',()=>{
 });
 test('every current cast-time skill uses derived casting speed and the same impact delay',()=>{
  for(const skill of data.skills.skills.filter(s=>!s.passive&&s.cast>0)){
-  const g=createGame(8,{...profile,classId:skill.jobId},'caster',data);g.enemies=[];Object.assign(g.p,{jobId:skill.jobId,skills:{[skill.id]:1},x:0,z:4,mp:10000,maxMp:10000});g.p.stats.castMul=.8;
+  const g=createGame(8,{...profile,classId:skill.jobId,equipment:data.mastery.skills.some(s=>s.id===skill.id&&s.school==='Swordsman')?['training_sword']:[]},'caster',data);g.enemies=[];Object.assign(g.p,{jobId:skill.jobId,skills:{[skill.id]:1},x:0,z:4,mp:10000,maxMp:10000});g.p.masteries.Swordsman=100;g.p.stats.castMul=.8;
   const e=spawn(g,0,5);e.cooldown=e.wander=999;g.target=e.id;
   assert.ok(action(g,skill.id),skill.id);const actual=resolveSkill(data,skill.id,1);
   close(g.p.castRemaining,actual.cast*.8);close(g.meteors[0].time,actual.cast*.8);

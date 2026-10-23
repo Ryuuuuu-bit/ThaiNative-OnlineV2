@@ -6,6 +6,7 @@ import elements from "../data/elements.json" with { type: "json" };
 import races from "../data/races.json" with { type: "json" };
 import classes from "../data/classes.json" with { type: "json" };
 import skills from "../data/skills.json" with { type: "json" };
+import mastery from "../data/mastery.json" with { type: "json" };
 import monsters from "../data/monsters.json" with { type: "json" };
 import status from "../data/status.json" with { type: "json" };
 import pvp from "../data/pvp.json" with { type: "json" };
@@ -22,6 +23,7 @@ export function loadGameData(): GameData {
 		races,
 		classes,
 		skills,
+		mastery,
 		monsters,
 		status,
 		pvp,

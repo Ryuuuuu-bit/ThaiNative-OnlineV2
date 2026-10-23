@@ -1,15 +1,17 @@
+import {applySlow,slowMovementMultiplier} from '../jobs.js';
+import {combatTargets,enemyTarget,isSummonTarget,summonDot,type CombatTarget} from './summons.js';
 import type {Game,Enemy,Player,MonsterMotion,BossTelegraph} from './sim.js';
 import {telegraphContains} from './telegraph-area.js';import {pathSegmentWalkable} from './pathfinding.js';import {walkable} from './collision.js';import {LAYOUTS} from './maps.js';import {lootEvadedWarning} from './loot-effects.js';
 export interface YokaiCombat {next:number;recovery?:number;openUntil?:number;stage?:number;pairFacing?:{x:number;z:number};clone?:boolean;expires?:number;action?:{kind:string;left:number;target:{x:number;z:number};areas:BossTelegraph[];targets:string[]};}
-interface Hooks {motion:(e:Enemy,m:MonsterMotion)=>void;move:(e:Enemy,x:number,z:number)=>void;movePlayer:(p:Player,x:number,z:number)=>void;hurt:(p:Player,e:Enemy,attack?:string)=>boolean|void;spawn:(x:number,z:number,id:string,parent:number)=>Enemy;}
+interface Hooks {motion:(e:Enemy,m:MonsterMotion)=>void;move:(e:Enemy,x:number,z:number)=>void;movePlayer:(p:CombatTarget,x:number,z:number)=>void;hurt:(p:CombatTarget,e:Enemy,attack?:string)=>boolean|void;spawn:(x:number,z:number,id:string,parent:number)=>Enemy;}
 const ids=new Set(['yokai_01','yokai_rain_umbrella','yokai_03','yokai_bamboo_kodama','yokai_rain_nue','yokai_06','yokai_lantern_rokurokubi','yokai_08']);export const isYokaiEnemy=(id:string)=>ids.has(id);
 const near=(a:{x:number;z:number},b:{x:number;z:number})=>Math.hypot(a.x-b.x,a.z-b.z),contains=(a:BossTelegraph,p:{x:number;z:number})=>telegraphContains(a,p.x,p.z);
 export function kappaNearWater(g:Game,e:Enemy){return LAYOUTS[g.mapId].water.some(w=>((e.x-w.x)/w.rx)**2+((e.z-w.z)/w.rz)**2<1.6);}
-export function yokaiHitMultiplier(g:Game,e:Enemy,p:Player){const front=(p.x-e.x)*e.fx+(p.z-e.z)*e.fz>0;if(e.dataId==='yokai_01')return kappaNearWater(g,e)?.7:1.2;if(e.dataId==='yokai_rain_umbrella'&&front&&e.yokai?.action)return .6;return 1;}
+export function yokaiHitMultiplier(g:Game,e:Enemy,p:Pick<Player,"x"|"z">){const front=(p.x-e.x)*e.fx+(p.z-e.z)*e.fz>0;if(e.dataId==='yokai_01')return kappaNearWater(g,e)?.7:1.2;if(e.dataId==='yokai_rain_umbrella'&&front&&e.yokai?.action)return .6;return 1;}
 /** Folklore encounters use readable signals and bounded, reward-free fox illusions. */
 export function yokaiStep(g:Game,e:Enemy,dt:number,h:Hooks){
- if(!isYokaiEnemy(e.dataId))return false;const s=e.yokai??={next:0},p=g.p,d=near(e,p),boss=e.dataId==='yokai_08',clear=(x:number,z:number)=>walkable(x,z,.4,g.mapId);
- if(s.clone){if(g.time>=(s.expires??0)||!g.enemies.some(v=>v.id===e.summonedBy&&!v.dead)){e.dead=true;e.rewarded=true;e.deathAge=0;h.motion(e,'death');return true;}if(d>1.8){h.motion(e,'hop');h.move(e,(p.x-e.x)/(d||1)*2.8*dt,(p.z-e.z)/(d||1)*2.8*dt);}else{h.motion(e,'attack');e.motionDuration=1.5;}return true;}
+ if(!isYokaiEnemy(e.dataId))return false;const s=e.yokai??={next:0},p=enemyTarget(g,e),d=near(e,p),boss=e.dataId==='yokai_08',clear=(x:number,z:number)=>walkable(x,z,.4,g.mapId);
+ if(s.clone){if(g.time>=(s.expires??0)||!g.enemies.some(v=>v.id===e.summonedBy&&!v.dead)){e.dead=true;e.rewarded=true;e.deathAge=0;h.motion(e,'death');return true;}if(d>1.8){h.motion(e,'hop');h.move(e,(p.x-e.x)/(d||1)*2.8*dt*slowMovementMultiplier(e),(p.z-e.z)/(d||1)*2.8*dt*slowMovementMultiplier(e));}else{h.motion(e,'attack');e.motionDuration=1.5;}return true;}
  if(e.motion==='transform'){s.action=undefined;s.stage=0;if(e.motionTime<1.5)return true;h.motion(e,'idle');}
  if(e.motion==='hit'){if(e.motionTime<e.motionDuration)return true;h.motion(e,'idle');}
  if(s.recovery){if(s.recovery>g.time)return true;s.recovery=undefined;h.motion(e,'idle');}
@@ -22,7 +24,7 @@ export function yokaiStep(g:Game,e:Enemy,dt:number,h:Hooks){
   }
   let reached=true;if(a.kind==='hop'){const dx=a.target.x-e.x,dz=a.target.z-e.z,steps=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.35));for(let i=0;i<steps;i++)h.move(e,dx/steps,dz/steps);reached=near(e,a.target)<.8;g.events.push({type:'yokai_puddle',id:e.id,x:e.x,z:e.z,r:1.5,duration:3});}
   if(a.kind==='dive'){reached=clear(a.target.x,a.target.z);if(reached){e.x=a.target.x;e.z=a.target.z;}}
-  for(const victim of g.players.values())if(!victim.dead){const hit=reached&&a.areas.some(t=>contains(t,victim));if(a.targets.includes(victim.id)&&(!hit||victim.invulnerable>0&&victim.cd.dash>0))lootEvadedWarning(victim,g);if(hit){const connected=h.hurt(victim,e,a.areas[0].id);if(connected&&a.kind==='tug'&&!victim.dead){const distance=near(e,victim)||1;for(let i=0;i<5;i++)h.movePlayer(victim,(e.x-victim.x)/distance*.22,(e.z-victim.z)/distance*.22);}if(connected&&a.kind==='tail'&&!victim.dead)victim.statuses.push({id:'slow',sourceId:'nue_tail:'+e.id,remaining:2,value:.25});}}
+  for(const victim of combatTargets(g))if(!victim.dead){const hit=reached&&a.areas.some(t=>contains(t,victim));if(!isSummonTarget(victim)&&a.targets.includes(victim.id)&&(!hit||victim.invulnerable>0&&victim.cd.dash>0))lootEvadedWarning(victim,g);if(hit){const connected=h.hurt(victim,e,a.areas[0].id);if(connected&&a.kind==='tug'&&!victim.dead){const distance=near(e,victim)||1;for(let i=0;i<5;i++)h.movePlayer(victim,(e.x-victim.x)/distance*.22,(e.z-victim.z)/distance*.22);}if(connected&&a.kind==='tail'&&!victim.dead)applySlow(victim,'nue_tail:'+e.id,2,.25);}}
   if(a.kind==='wind'){s.stage=1;s.next=g.time+.6;s.recovery=g.time+.4;}
   else if(a.kind==='tail'){s.stage=1;s.next=g.time+.45;s.recovery=g.time+.3;}
   else{s.stage=0;s.recovery=g.time+(a.kind==='club'?1.8:a.kind==='neck'?1.6:1.1);}

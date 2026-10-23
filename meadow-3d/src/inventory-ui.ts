@@ -1,3 +1,4 @@
+import {canEquipWeapon} from '@the-beginning-online/shared';
 import {
 	loadGameData,
 	rarityColors,
@@ -164,7 +165,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const count = document.createElement("b");
 		count.textContent = i.qty > 1 ? String(i.qty) : i.bound ? "◆" : "";
 		b.append(count);
-        const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+        const incompatible=!canEquipWeapon({classId:p?.profile?.classId||p?.jobId||'',masteries:p?.masteries},t.weaponType,data);
         if(mode==='buy'||mode==='sell'){b.classList.add('shop-cell');const caption=document.createElement('span');caption.className='shop-caption';caption.textContent=t.nameTh;const price=document.createElement('small');price.textContent=`${mode==='buy'?data.economy.shops[shop!][t.id]:Math.floor(t.npcPrice*data.economy.sellMultiplier)} ทอง`;b.append(caption,price);}
         if(mode==='bag'&&isNew(i)){const dot=document.createElement('span');dot.className='inv-new';dot.title='ของใหม่';b.append(dot);}
         if(mode==='bag'&&i.location==='bag'&&t.slot){
@@ -329,7 +330,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			for (const slot of equipmentSlots(t.slot)) { const option = document.createElement('option'); option.value = slot; option.textContent = slotNames[slot]; select.append(option); }
 			select.value = targetSlot!; select.onchange = () => showDetail(i, actions, select.value); label.append(select); detail.append(label);
 		}
-        const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+        const incompatible=!canEquipWeapon({classId:p?.profile?.classId||p?.jobId||'',masteries:p?.masteries},t.weaponType,data);
         if(incompatible){const note=document.createElement('p');note.textContent='อาชีพนี้ใช้ไม่ได้';detail.append(note);}
 		appendStatComparison(detail,statsOf(t,i),oldT?statsOf(oldT,old):[],true);
 				if (!actions) return;
@@ -391,7 +392,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	}
 	const levelBand = (level: number) => level >= 99 ? 99 : Math.floor(level / 10) * 10;
  const playerLevel = () => p?.level ?? 1;
- const compatible = (t: (typeof templates)[number]) => !t.weaponType || !!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+ const compatible = (t: (typeof templates)[number]) => canEquipWeapon({classId:p?.profile?.classId||p?.jobId||'',masteries:p?.masteries},t.weaponType,data);
  const shopItems = () => Object.keys(data.economy.shops[shop!]).filter(id=>{
   const t=templates.find(t=>t.id===id)!;
   const band=shopRange==='current'?levelBand(playerLevel()):Number(shopRange);

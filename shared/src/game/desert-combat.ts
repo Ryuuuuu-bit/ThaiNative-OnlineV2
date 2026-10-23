@@ -1,3 +1,5 @@
+import {combatTargets,enemyTarget,isSummonTarget,summonDot,type CombatTarget} from './summons.js';
+import {applySlow,slowMovementMultiplier} from '../jobs.js';
 import {telegraphContains} from './telegraph-area.js';
 import type {Game,Enemy,Player,MonsterMotion,BossTelegraph} from './sim.js';
 import {walkable} from './collision.js';
@@ -9,13 +11,13 @@ export interface DesertCombat {
  hazard?:{kind:'ball'|'knot';life:number;dx:number;dz:number};
  sand?:{areas:BossTelegraph[];until:number};
 }
-interface Hooks {motion:(e:Enemy,m:MonsterMotion)=>void;move:(e:Enemy,x:number,z:number)=>void;hurt:(p:Player,e:Enemy,attack?:string)=>void;spawn:(x:number,z:number,id:string,parent:number)=>Enemy;}
+interface Hooks {motion:(e:Enemy,m:MonsterMotion)=>void;move:(e:Enemy,x:number,z:number)=>void;hurt:(p:CombatTarget,e:Enemy,attack?:string)=>void;spawn:(x:number,z:number,id:string,parent:number)=>Enemy;}
 const near=(a:{x:number;z:number},b:{x:number;z:number})=>Math.hypot(a.x-b.x,a.z-b.z);
 const contains=(a:BossTelegraph,p:{x:number;z:number})=>telegraphContains(a,p.x,p.z);
 const retire=(e:Enemy)=>{e.dead=true;e.rewarded=true;e.deathAge=0;e.respawn=999;};
-function slow(p:Player,source:string,value:number,seconds:number){p.statuses=p.statuses.filter(s=>s.sourceId!==source);p.statuses.push({id:'slow',sourceId:source,value,remaining:seconds});}
+function slow(p:CombatTarget,source:string,value:number,seconds:number){p.statuses=p.statuses.filter(s=>s.sourceId!==source);applySlow(p,source,seconds,value);}
 /** Destroying a binding is the escape condition, regardless of who lands the last hit. */
-export function desertDestroyed(g:Game,e:Enemy){if(!e.dataId.startsWith('desert_'))return;if(e.dataId==='desert_binding_knot')for(const p of g.players.values())p.statuses=p.statuses.filter(s=>s.sourceId!=='desert_bind:'+e.id);for(const child of g.enemies)if(child.summonedBy===e.id&&!child.dead){desertDestroyed(g,child);retire(child);}}
+export function desertDestroyed(g:Game,e:Enemy){if(!e.dataId.startsWith('desert_'))return;if(e.dataId==='desert_binding_knot')for(const p of [...g.players.values(),...combatTargets(g).filter(isSummonTarget)])p.statuses=p.statuses.filter(s=>s.sourceId!=='desert_bind:'+e.id);for(const child of g.enemies)if(child.summonedBy===e.id&&!child.dead){desertDestroyed(g,child);retire(child);}}
 export const desertBurrowed=(e:Enemy)=>e.dataId==='desert_03'&&e.motion==='attack'&&!!e.telegraph&&e.desert?.action?.kind==='burrow'&&e.motionTime>.3;
 export function desertHitMultiplier(g:Game,e:Enemy){return e.dataId==='desert_glass_scorpion'&&(e.desert?.recovery??0)>g.time?1.2:1;}
 export function desertStruck(e:Enemy){if(e.dataId==='desert_glass_scorpion'){const s=e.desert??={next:0};s.cracks=Math.min(3,(s.cracks??0)+1);if(s.cracks>=3&&!e.statuses.some(v=>v.sourceId==='scorpion_shell'))e.statuses.push({id:'def_down',sourceId:'scorpion_shell',remaining:6,value:.08});}}
@@ -23,7 +25,7 @@ export function desertStruck(e:Enemy){if(e.dataId==='desert_glass_scorpion'){con
 /** Region-specific encounters run on the server; generated sprites only present these decisions. */
 export function desertStep(g:Game,e:Enemy,dt:number,h:Hooks){
  if(!e.dataId.startsWith('desert_'))return false;
- const s=e.desert??={next:0},p=g.p,d=near(e,p);
+ const s=e.desert??={next:0},p=enemyTarget(g,e),d=near(e,p);
  if(s.hazard){
   const a=s.hazard;a.life-=dt;const parent=g.enemies.find(v=>v.id===e.summonedBy&&!v.dead);
   if(a.life<=0||!parent){desertDestroyed(g,e);retire(e);return true;}
@@ -31,15 +33,15 @@ export function desertStep(g:Game,e:Enemy,dt:number,h:Hooks){
    const x=e.x+a.dx*4.5*dt,z=e.z+a.dz*4.5*dt;
    if(!walkable(x,z,.4,g.mapId)){retire(e);return true;}
    h.motion(e,'hop');h.move(e,a.dx*4.5*dt,a.dz*4.5*dt);
-   for(const victim of g.players.values())if(!victim.dead&&near(e,victim)<.85){h.hurt(victim,e,'desert_sand_roll');retire(e);break;}
+   for(const victim of combatTargets(g))if(!victim.dead&&near(e,victim)<.85){h.hurt(victim,e,'desert_sand_roll');retire(e);break;}
   }
   return true;
  }
- if(s.sand){if(s.sand.until<=g.time)s.sand=undefined;else for(const victim of g.players.values())if(!victim.dead&&!victim.god&&victim.invulnerable<=0&&s.sand.areas.some(a=>contains(a,victim)))slow(victim,'desert_sand:'+e.id,.35,.3);}
+ if(s.sand){if(s.sand.until<=g.time)s.sand=undefined;else for(const victim of combatTargets(g))if(!victim.dead&&!victim.god&&victim.invulnerable<=0&&s.sand.areas.some(a=>contains(a,victim)))slow(victim,'desert_sand:'+e.id,.35,.3);}
  if(e.motion==='transform'){s.action=undefined;if(e.motionTime<1.5)return true;h.motion(e,'idle');}
  if(e.motion==='hit'){if(e.motionTime<e.motionDuration)return true;h.motion(e,'idle');}
  if(s.recovery){if(s.recovery>g.time)return true;s.recovery=undefined;h.motion(e,'idle');}
- if(s.returnUntil){const len=Math.hypot(e.homeX-e.x,e.homeZ-e.z);if(len>1&&g.time<s.returnUntil){h.motion(e,'hop');h.move(e,(e.homeX-e.x)/len*4*dt,(e.homeZ-e.z)/len*4*dt);return true;}s.returnUntil=undefined;s.recovery=g.time+.6;return true;}
+ if(s.returnUntil){const len=Math.hypot(e.homeX-e.x,e.homeZ-e.z);if(len>1&&g.time<s.returnUntil){h.motion(e,'hop');h.move(e,(e.homeX-e.x)/len*4*dt*slowMovementMultiplier(e),(e.homeZ-e.z)/len*4*dt*slowMovementMultiplier(e));return true;}s.returnUntil=undefined;s.recovery=g.time+.6;return true;}
  if(s.action){
   const a=s.action;
   if(e.motion!=='attack'||!e.telegraph){s.action=undefined;s.recovery=g.time+1.2;g.events.push({type:'warningCancel',id:e.id,x:e.x,z:e.z});return true;}
@@ -51,7 +53,7 @@ export function desertStep(g:Game,e:Enemy,dt:number,h:Hooks){
   }else{
    if(a.kind==='burrow'&&walkable(a.target.x,a.target.z,.65,g.mapId)){e.x=a.target.x;e.z=a.target.z;}
    let landed=true;if(a.kind==='swoop'){landed=walkable(a.target.x,a.target.z,.35,g.mapId);if(landed){e.x=a.target.x;e.z=a.target.z;}s.returnUntil=g.time+2.5;}
-   for(const victim of g.players.values())if(!victim.dead){const hit=landed&&a.areas.some(area=>contains(area,victim));if(a.targets.includes(victim.id)&&(!hit||victim.invulnerable>0&&victim.cd.dash>0))lootEvadedWarning(victim,g);if(hit){const canBind=!victim.god&&victim.invulnerable<=0;h.hurt(victim,e,a.areas[0].id);
+   for(const victim of combatTargets(g))if(!victim.dead){const hit=landed&&a.areas.some(area=>contains(area,victim));if(!isSummonTarget(victim)&&a.targets.includes(victim.id)&&(!hit||victim.invulnerable>0&&victim.cd.dash>0))lootEvadedWarning(victim,g);if(hit){const canBind=!victim.god&&victim.invulnerable<=0;h.hurt(victim,e,a.areas[0].id);
      if(a.kind==='rake'&&canBind&&!victim.dead)slow(victim,'desert_sand:'+e.id,.35,.3);
      if(a.kind==='bind'&&canBind&&!victim.dead){const x=victim.x+1,z=victim.z;if(walkable(x,z,.35,g.mapId)){const knot=h.spawn(x,z,'desert_binding_knot',e.id);knot.desert={next:0,hazard:{kind:'knot',life:3,dx:0,dz:0}};slow(victim,'desert_bind:'+knot.id,1,3);}}
    }}

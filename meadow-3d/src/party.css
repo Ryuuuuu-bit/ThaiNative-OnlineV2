@@ -232,3 +232,5 @@ body:has(#guide-nav:not([hidden])) #ui #party-frame .pf-actions{display:none}
  #ui #party-frame{left:auto;right:8px;top:155px;width:190px}
 }
 @media(prefers-reduced-motion:reduce){#party-window .party-track>i,#ui #party-frame .party-track i{transition:none}#party-window .party-vital.low .party-track>i,#ui #party-frame li.low{animation:none}}
+
+#ui #party-frame [data-heal-target]{grid-column:2;justify-self:end;min-height:32px;padding:3px 8px;font-size:11px;color:#bfd9bd;border:1px solid #779a7755;border-radius:5px;background:#102e2b}#ui #party-frame [data-heal-target][aria-pressed=true]{color:#fff2bd;background:#426849;border-color:#c0cda1}

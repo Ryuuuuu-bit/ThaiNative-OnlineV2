@@ -1,3 +1,6 @@
+import {passiveEnemyHeal} from './mastery-passives.js';
+import {applySlow} from '../jobs.js';
+import {combatTargets,enemyTarget,isSummonTarget,summonDot,type CombatTarget} from './summons.js';
 import type {Game,Enemy,Player,MonsterMotion,BossTelegraph} from './sim.js';
 import {telegraphContains} from './telegraph-area.js';
 import {walkable} from './collision.js';
@@ -65,9 +68,9 @@ export const isEndgameEnemy=(id:string)=>Object.hasOwn(patterns,id);
 export const CONFLUENCE_GUARDS=['confluence_life_pillar_guard','confluence_thunder_pillar_guard','confluence_starshadow_pillar_guard'];
 export function endgameBossLocked(g:Game,e:Enemy){return e.dataId==='confluence_worldcore_sovereign'&&!CONFLUENCE_GUARDS.every(id=>g.enemies.some(v=>v.dataId===id&&!v.summoned&&v.dead));}
 export interface EndgameCombat {next:number;coreStage?:number;recovery?:number;openUntil?:number;focus?:boolean;expires?:number;broken?:number;stage?:number;fields?:{area:BossTelegraph;until:number;tick:number}[];action?:{pattern:Pattern;areas:BossTelegraph[];targets:string[];left:number;target:{x:number;z:number}}}
-interface Hooks {motion:(e:Enemy,m:MonsterMotion)=>void;move:(e:Enemy,x:number,z:number)=>void;movePlayer:(p:Player,x:number,z:number)=>void;hurt:(p:Player,e:Enemy,attack?:string)=>boolean|void;spawn:(x:number,z:number,id:string,parent:number)=>Enemy;}
+interface Hooks {motion:(e:Enemy,m:MonsterMotion)=>void;move:(e:Enemy,x:number,z:number)=>void;movePlayer:(p:CombatTarget,x:number,z:number)=>void;hurt:(p:CombatTarget,e:Enemy,attack?:string)=>boolean|void;spawn:(x:number,z:number,id:string,parent:number)=>Enemy;}
 export function endgameDestroyed(g:Game,e:Enemy){if(!e.endgame?.focus)return;const parent=g.enemies.find(v=>v.id===e.summonedBy);if(parent?.endgame)parent.endgame.broken=(parent.endgame.broken??0)+1;e.rewarded=true;}
-export function endgameHitMultiplier(g:Game,e:Enemy,p:Player){
+export function endgameHitMultiplier(g:Game,e:Enemy,p:Pick<Player,"x"|"z">){
  const s=e.endgame;if(!isEndgameEnemy(e.dataId))return 1;
  if(s?.openUntil&&s.openUntil>g.time)return 1.15;
  const rule=patterns[e.dataId][0];
@@ -81,7 +84,7 @@ export function endgameStep(g:Game,e:Enemy,dt:number,h:Hooks){
  const s=e.endgame??(isEndgameEnemy(e.dataId)?e.endgame={next:0}:undefined);if(!s)return false;
  if(s.focus){if(g.time>=(s.expires??0)||!g.enemies.some(v=>v.id===e.summonedBy&&!v.dead)){e.dead=true;e.rewarded=true;e.deathAge=0;h.motion(e,'death');}return true;}
  if(endgameBossLocked(g,e)){e.hp=e.maxHp;e.telegraph=undefined;s.action=undefined;h.motion(e,'idle');return true;}
- const list=patterns[e.dataId],p=g.p,d=Math.hypot(p.x-e.x,p.z-e.z);
+ const list=patterns[e.dataId],p=enemyTarget(g,e),d=Math.hypot(p.x-e.x,p.z-e.z);
  const clear=(x:number,z:number)=>walkable(x,z,.4,g.mapId);
  if(e.dataId==='confluence_worldcore_sovereign'){
   const stage=e.hp>e.maxHp*.66?0:e.hp>e.maxHp*.33?1:2;
@@ -90,7 +93,7 @@ export function endgameStep(g:Game,e:Enemy,dt:number,h:Hooks){
  }
  if(e.motion==='transform'){s.action=undefined;s.stage=0;if(e.motionTime<1.5)return true;h.motion(e,'idle');}
  if(e.motion==='hit'){if(e.motionTime<e.motionDuration)return true;h.motion(e,'idle');}
- if(s.fields){for(const field of s.fields){field.tick-=dt;if(field.until>g.time&&field.tick<=0){field.tick+=1;for(const v of g.players.values())if(!v.dead&&telegraphContains(field.area,v.x,v.z))h.hurt(v,e,field.area.id);}}s.fields=s.fields.filter(v=>v.until>g.time);}
+ if(s.fields){for(const field of s.fields){field.tick-=dt;if(field.until>g.time&&field.tick<=0){field.tick+=1;for(const v of combatTargets(g))if(!v.dead&&telegraphContains(field.area,v.x,v.z))h.hurt(v,e,field.area.id);}}s.fields=s.fields.filter(v=>v.until>g.time);}
  if(s.recovery){if(s.recovery>g.time)return true;s.recovery=undefined;h.motion(e,'idle');}
  if(s.action){const a=s.action;
   if(e.motion!=='attack'||!e.telegraph){s.action=undefined;s.stage=0;s.openUntil=g.time+2;s.recovery=g.time+.8;g.events.push({type:'warningCancel',id:e.id,x:e.x,z:e.z});for(const f of g.enemies)if(f.summonedBy===e.id&&f.endgame?.focus){f.dead=true;f.rewarded=true;f.deathAge=0;}return true;}
@@ -101,10 +104,10 @@ export function endgameStep(g:Game,e:Enemy,dt:number,h:Hooks){
    for(let i=0;i<steps;i++)h.move(e,dx/steps,dz/steps);reached=Math.hypot(e.x-a.target.x,e.z-a.target.z)<.8;
   }
   const areas=a.areas.slice(r.kind==='focus'?s.broken??0:0);
-  for(const v of g.players.values())if(!v.dead){const hit=reached&&areas.some(t=>telegraphContains(t,v.x,v.z));if(a.targets.includes(v.id)&&(!hit||v.invulnerable>0&&v.cd.dash>0))lootEvadedWarning(v,g);
-   if(hit){const connected=h.hurt(v,e,areas[0]?.id);if(connected&&!v.dead){if(r.slow)v.statuses.push({id:'slow',sourceId:'endgame:'+e.id,remaining:2.5,value:r.slow});if(r.bleed){v.lootEffects??={cooldowns:{},shield:0,shieldFor:0};v.lootEffects.bleed={remaining:3,tick:0,damage:Math.round(g.data.monsters.monsters.find(m=>m.id===e.dataId)!.atk*.09),map:g.mapId};}if(r.kind==='pull'){const distance=Math.hypot(e.x-v.x,e.z-v.z)||1;for(let i=0;i<5;i++)h.movePlayer(v,(e.x-v.x)/distance*.25,(e.z-v.z)/distance*.25);}}}
+  for(const v of combatTargets(g))if(!v.dead){const hit=reached&&areas.some(t=>telegraphContains(t,v.x,v.z));if(!isSummonTarget(v)&&a.targets.includes(v.id)&&(!hit||v.invulnerable>0&&v.cd.dash>0))lootEvadedWarning(v,g);
+   if(hit){const connected=h.hurt(v,e,areas[0]?.id);if(connected&&!v.dead){if(r.slow)applySlow(v,'endgame:'+e.id,2.5,r.slow);if(r.bleed){if(isSummonTarget(v))summonDot(v,'bleed',Math.round(g.data.monsters.monsters.find(m=>m.id===e.dataId)!.atk*.09),3);else{v.lootEffects??={cooldowns:{},shield:0,shieldFor:0};v.lootEffects.bleed={remaining:3,tick:0,damage:Math.round(g.data.monsters.monsters.find(m=>m.id===e.dataId)!.atk*.09),map:g.mapId};}}if(r.kind==='pull'){const distance=Math.hypot(e.x-v.x,e.z-v.z)||1;for(let i=0;i<5;i++)h.movePlayer(v,(e.x-v.x)/distance*.25,(e.z-v.z)/distance*.25);}}}
   }
-  if(r.heal&&(!s.broken||r.kind!=='focus'))e.hp=Math.min(e.maxHp,e.hp+Math.round(e.maxHp*r.heal));
+  if(r.heal&&(!s.broken||r.kind!=='focus'))e.hp=Math.min(e.maxHp,e.hp+Math.round(passiveEnemyHeal(g,e,e.maxHp*r.heal)));
   if(r.kind==='trail'){s.fields=areas.map(area=>({area,until:g.time+3,tick:1}));for(const t of areas)g.events.push({type:'warning',id:e.id,attack:t.id,x:t.x,z:t.z,r:t.radius,shape:t.shape,duration:3,name:'พื้นที่อันตราย · '+r.name});}
   if(r.kind==='pair'&&(s.stage??0)+1<(r.count??2)){s.stage=(s.stage??0)+1;s.next=g.time+.55;s.recovery=g.time+.35;}
   else{s.stage=0;s.next=g.time+r.cooldown;s.recovery=g.time+(e.boss?2:1.3);s.openUntil=g.time+(r.kind==='pair'||r.kind==='guard'?2:1.3);}

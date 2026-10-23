@@ -44,8 +44,8 @@ const midpoint = (a = player(), d = pink(), id = "basic", third = false) =>
 		{ rng: () => 0.5, comboThird: third },
 		data,
 	);
-test("all thirteen files validate and browser/Node loaders agree", () => {
-	assert.equal(Object.keys(data).length, 13);
+test("all fourteen files validate and browser/Node loaders agree", () => {
+	assert.equal(Object.keys(data).length, 14);
 	assert.deepEqual(data, browserData());
 	for (const file of Object.values(data)) assert.equal(file.dataVersion, 1);
 });

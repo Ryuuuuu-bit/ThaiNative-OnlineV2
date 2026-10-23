@@ -1,0 +1,2020 @@
+{
+  "version": 1,
+  "icons": {
+    "mage_01": {
+      "file": "mage_01-icon-v1-d4af73e081fa.webp",
+      "width": 128,
+      "height": 128,
+      "source": "mage_01-icon-v1.png",
+      "sourceSha256": "0074442626bfa7f16ff2e7c4c65ff2449ae512fd3abdbbe7d5b99b1dea532838",
+      "sha256": "d4af73e081fa4810c774a9e549cf3f19d04d052b328042d01c9c57073887f138",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "generation": "exec-f5c83d3f-a780-4a8b-b6c5-65dedae4d189",
+        "purpose": "painted fire bolt ability icon",
+        "externalPaidProvider": false
+      },
+      "status": "Icon reviewed in actual game: skill star, detail and hotbar. Cast animation and VFX remain pending."
+    },
+    "healer_01": {
+      "file": "healer_01-icon-v1-fce723d1307d.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_01-icon-v1.png",
+      "sourceSha256": "a3cbdca24479ee54a8dc60d1bb4d034c2ef448a1840b6a40db9c280c4342fe22",
+      "sha256": "fce723d1307d8d65598c5e185732c49d101470a9f62e897f7b0b6ab6adc0f635",
+      "prompt": "Create one production RPG skill icon: FIRST AID. Warm ivory linen bandage wrapped around a small hand, healing jade-green glow and golden motes. Match mage_01 reference hand-painted style, dark forest jade background and antique gold rounded-square rim. Single subject readable at44px. No text/numbers/grid.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-33572bed-ebee-4c84-b653-20a35670ca5f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_01": {
+      "file": "archer_01-icon-v1-e0763a577fea.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_01-icon-v1.png",
+      "sourceSha256": "196268b0212e1c678bfb5708884c47e41989b9b646db397fb3737413314e502d",
+      "sha256": "e0763a577fea9947d410501bb639074af1bb381446cce64afc166c34cbfea5f3",
+      "prompt": "One production RPG skill icon matching the reference hand-painted fantasy oil/gouache style, dark forest-jade textured background and thin antique-gold rounded-square rim. Single dominant subject readable at 44px. No text, letters, numbers, watermark, multiple icons or grid. Replace the fireball entirely. Reference is for style, border and lighting only. Subject: TWIN SHOT. Exactly two elegant wooden arrows with pale feather fletchings and sharp silver arrowheads flying parallel diagonally toward the upper right, bright pale-jade speed trails, unmistakably arrows rather than swords.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-b820ec84-bf12-44ea-a4ea-7eabcba7af7a.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_01": {
+      "file": "rogue_01-icon-v1-8150915bc965.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_01-icon-v1.png",
+      "sourceSha256": "fb58d0e8bf0d56e6b4f8e40788b0c94bf950456a6c1c724105b8e901a60d585a",
+      "sha256": "8150915bc9657a74688990c3f1bfc39a224faa43a6379536a72ef60f4c7f8841",
+      "prompt": "One production RPG skill icon matching the reference hand-painted fantasy oil/gouache style, dark forest-jade textured background and thin antique-gold rounded-square rim. Single dominant subject readable at 44px. No text, letters, numbers, watermark, multiple icons or grid. Replace the fireball entirely. Reference is for style, border and lighting only. Subject: WEAK POINT STAB. One short curved steel dagger with a dark leather grip, its gleaming tip striking a tiny exposed red-gold weak-point spark on a dark shadow silhouette. Tight focused diagonal thrust, no blood.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-91f70181-b670-447a-a9ae-1b8ff1a4dfd6.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_01": {
+      "file": "boxer_01-icon-v1-849f823d09de.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_01-icon-v1.png",
+      "sourceSha256": "a4825eade8967cd8d793d3ccccdb04ac0e1b3ac260c2a90dc53692bf6e3ee3b0",
+      "sha256": "849f823d09dec1bf596a810d22d9fc56eea3886d3c1c64b6e3e0ef25afc7760b",
+      "prompt": "One production RPG skill icon matching the reference hand-painted fantasy oil/gouache style, dark forest-jade textured background and thin antique-gold rounded-square rim. Single dominant subject readable at 44px. No text, letters, numbers, watermark, multiple icons or grid. Replace the fireball entirely. Reference is for style, border and lighting only. Subject: STRAIGHT PUNCH. A large clenched fighter fist tightly wrapped in ivory linen and dark brown leather bands, driving forward with short warm amber impact rays, strong knuckle silhouette. No weapon.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-d9013036-74d4-4cd6-a4da-9b12087ab2fa.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_02": {
+      "file": "archer_02-icon-v1-c876a6ead1fb.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_02-icon-v1.png",
+      "sourceSha256": "6089c6784a8283df8890578e72856ecd6ec6ba643b6db6372fa0101cb15b4936",
+      "sha256": "c876a6ead1fb89aa7ff496af3142c8de92f3520048cda4a372d3aca8c1433892",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: An elegant gold archery target reticle around a dark quarry silhouette. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: หมายหัว — หมายหัวเพิ่ม HIT ของผู้ใช้ต่อเป้าหมายที่เลือก ผ่านเพดานโอกาสโดนเดิม",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-8c88bc91-6d8c-4709-924e-5592a3f122b5.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_03": {
+      "file": "archer_03-icon-v1-badb6430eb05.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_03-icon-v1.png",
+      "sourceSha256": "862298e7e635f8cba3d16061f9906fb8f7b572e246e988ff727bc3dcf1b10f22",
+      "sha256": "badb6430eb050927e22e6ed01145ea0cc5d6890b017c5abe1c364308727cd6af",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: Five wooden arrows fanning outward. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ศรแผ่ — ศรรูปพัดด้านหน้า ต้องหันถูกทิศ",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-d370e36c-a35d-44af-a9a7-743af5d37577.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_04": {
+      "file": "archer_04-icon-v1-c3c1dd782166.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_04-icon-v1.png",
+      "sourceSha256": "8df5ba5d1679bb53a1653cc7985367a5908f131f77f82519291318aa04b5578d",
+      "sha256": "c3c1dd7821669617d89fc470a566bebb398b4d9719d0b4da2780e2e0e0bcc72e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A light leather boot carried by pale green wind ribbons. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ย่างเท้าเบา — เพิ่มความเร็วตนเอง ไม่ล้าง Root หรือ Slow",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-9742fae5-ac83-41ec-99ea-d4911b30bef5.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_05": {
+      "file": "archer_05-icon-v1-ba6ed0dbd317.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_05-icon-v1.png",
+      "sourceSha256": "f2a389d187af78813bdc25d9b5ec682bc5a04f02fb3d772fa36d2840fed1df9d",
+      "sha256": "ba6ed0dbd3177a871049a2ecc1682a0d1fe333a9ec21d9a60778576a87f53985",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ถอยยิง — ถอย 3 เมตรพร้อมยิง ห้ามทะลุกำแพง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ถอยยิง — ถอย 3 เมตรพร้อมยิง ห้ามทะลุกำแพง",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-d1711ee5-be1f-4efc-871f-3b47a55d62fa.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_01": {
+      "file": "shaman_01-icon-v1-81a4bfd2a8a8.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_01-icon-v1.png",
+      "sourceSha256": "1d9200b9ff81cb75c4ca2df404dffa4411d673590bcbd1c3ed90d58915e7aff7",
+      "sha256": "81a4bfd2a8a8d96bdcc36955d2666120ed9ab36efab77851f418b1c51c3771d4",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A friendly silver-white spirit wolf head inside a jade summoning rune. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: พันธสัญญาผู้พิทักษ์ — สัตว์หลักหนึ่งตัว ATK อิง MATK ผู้ฝึกศาสตร์ HP อิง Max HP เรียกใหม่แทนตัวเดิม ไม่โจมตีได้ทันทีขณะเรียก",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-d6a78958-241d-49a1-b6a0-a76584012837.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_02": {
+      "file": "mage_02-icon-v1-40d126e2dfb6.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_02-icon-v1.png",
+      "sourceSha256": "63dfd1d8734df5200752d9c07ca598135902655c90c625228118e631dfb1115b",
+      "sha256": "40d126e2dfb6af20b085be844aa7d4c1cb269fa2979cf36b063410a68b3b75b9",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A pale blue translucent magic-only ward dome around one small arcane star. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ม่านเวท — โล่ตนเองรับดาเมจเวทเท่านั้น โล่หมดตามปริมาณหรือเวลา",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-8a48dc6c-c20e-4231-af92-2cd16de204ba.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_03": {
+      "file": "mage_03-icon-v1-4a9c4090fb02.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_03-icon-v1.png",
+      "sourceSha256": "2e882aa2a69cee74407559a93973850103d2fbece299ad90c8457a629bf5b6c2",
+      "sha256": "4a9c4090fb027e66f59d6316eb0bd6928e18df8cf53c43dea1363312c34172f5",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A bright orange fire explosion expanding as a flower of flame. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ระเบิดเพลิง — เวทไฟระเบิดพื้นที่ทันทีเมื่อร่ายจบ รัศมี 2.5 เมตร",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-ba71d0a4-5f3d-4db2-ba56-9b29eb9a0db3.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_04": {
+      "file": "mage_04-icon-v1-186ce781b3c0.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_04-icon-v1.png",
+      "sourceSha256": "c4ab63110542a4c1b4fbdf53a75d107e8631c0ea13e3c5798285036b908fa419",
+      "sha256": "186ce781b3c0e1307b7bdc7e2efd473a1ea27af05bf72e3522ad544102b63f0e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A flowing pale cyan frost-and-water sigil, no frozen creature. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ตราเยือกแข็ง — เวทน้ำลดความเร็วเป้าเดียว ไม่ Freeze",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-499f6afb-ed22-4e74-b88b-cf03231c77fc.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_02": {
+      "file": "healer_02-icon-v1-8d2f4b69c4d2.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_02-icon-v1.png",
+      "sourceSha256": "7afcd0e3539e877b6357e61f58ceab99b0e2a2e0081507ffa5d487fd017224e3",
+      "sha256": "8d2f4b69c4d2185715c064b18d586db32a6f7c11fca796b6dea7281719a902de",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: An ivory linen herbal compress pouch with jade healing steam. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ประคบฟื้นแรง — บัฟให้ Slow ครั้งถัดไปสั้นลง ไม่ล้างสถานะที่ติดแล้ว",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-f0f90b47-6478-4ef6-bd15-86aeae65fe0a.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_03": {
+      "file": "healer_03-icon-v1-60c12d3e339b.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_03-icon-v1.png",
+      "sourceSha256": "2814161407ef81b6416beaa1093ecb7c0b4e5d04ea8ef12f791f7458c76599ce",
+      "sha256": "60c12d3e339beb25e9ce80e5fd6a50566aa206aef1e6dee28e78f755f9bb738b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A glass medicine flask with a gentle green healing spiral and leaves. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ยาประคอง — ฮีลต่อเนื่องห้าวินาที รีเฟรชชุดเดิม ไม่ซ้อนจากผู้ฝึกศาสตร์เดียวกัน",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-fc4c9caa-fddc-440c-a161-b01ba9971d26.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_04": {
+      "file": "healer_04-icon-v1-b43aa1cff404.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_04-icon-v1.png",
+      "sourceSha256": "c26e4e4a12640fb2f5fd95cfd4d10e92c4fe093d30610eeb692739739ae07997",
+      "sha256": "b43aa1cff404816dc136b2f6254680af742c52ed506357ec9997cd61957f2f85",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A luminous jade healing drop dissolving a small violet poison droplet. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ชำระพิษ — ล้าง Poison หรือ Burn หนึ่งสถานะ Auto Spellใช้ตนเองเท่านั้น",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-f2787202-ab8f-40e6-a377-7fd4633d698b.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_02": {
+      "file": "shaman_02-icon-v1-69bbf690f54f.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_02-icon-v1.png",
+      "sourceSha256": "b435f07be5e7fa4cbee014046eabb4439c05afd262f581ff8ea5e37b8ae6cd49",
+      "sha256": "69bbf690f54f19e051809ff7fce77f9f3b693a5fb8c6a17479bed542f0141300",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: Three tiny pale teal spirit fireflies orbiting a warm white pearl. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: หิ่งห้อยวิญญาณ — วิญญาณชั่วคราวหนึ่งชุด โจมตีทุกสองวินาที ไม่เป็นสัตว์หลัก",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-e1c49703-3959-48de-99a1-f2d08b9fde83.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_03": {
+      "file": "shaman_03-icon-v1-3a5866dfe94c.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_03-icon-v1.png",
+      "sourceSha256": "c4178a55283a66c20845ab35f165ddb8750e5f06478caf5c9c6a28296c67bfe9",
+      "sha256": "3a5866dfe94cbb0c78a52b06219284dabf3d74f1c0c9b989cf9c1e53fe5a4a8e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: An abstract gold pointing talisman directing a friendly silver wolf paw. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ชี้เป้าพันธสัญญา — สั่งสัตว์หลักเปลี่ยนเป้าแล้วโจมตีประสานทันที100–180%ATKสัตว์ เสริมการโจมตีปกติครั้งถัดไป20–45%; ต้องมีสัตว์ที่เข้าถึงเป้าหมาย ไม่เรียกตัวใหม่ ไม่สร้างTriggerซ้ำ",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-f35aaaa7-2ad4-4be3-bdbf-55f934305d09.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_04": {
+      "file": "shaman_04-icon-v1-dae8db00fc80.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_04-icon-v1.png",
+      "sourceSha256": "4efec79b2e1bc5834a575190d1aedf949409f70f543237e940b6df250b09ef97",
+      "sha256": "dae8db00fc80e415f19dae0fcafffd23b705bc475a979edc44db169b63c3b6a5",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: One little pale teal guardian spirit circling a warm heart, no physical shield. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: วิญญาณเฝ้ารักษา — วิญญาณลดดาเมจศัตรูหนึ่งครั้งแล้วหาย ไม่ใช่โล่สะสม",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-8759a514-2e08-48bd-b1d6-8f8524ac3fd2.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_02": {
+      "file": "rogue_02-icon-v1-80f47cc72e37.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_02-icon-v1.png",
+      "sourceSha256": "a90e58b48e5c1f2a8e6c9a431a7cc8f5a0a2c81cd242354ebb8fb865014d76e8",
+      "sha256": "80f47cc72e37ece9249566ab1ebdd13ae3513a4b5d6c5915a8a9885434fc9a08",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A short silver dagger with one vivid green poison drop on its edge. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เคลือบพิษ — เคลือบการโจมตีกายภาพโดยตรงครั้งถัดไปหนึ่งครั้ง ภายในห้าวินาที ท่าหลายฮิตใช้พิษครั้งเดียว",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-4bba2beb-35d5-423e-befa-2c101b4bbb9b.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_03": {
+      "file": "rogue_03-icon-v1-a0ef57d485a0.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_03-icon-v1.png",
+      "sourceSha256": "de1e87524fd7c80037156d9d84b36ae97407bdb006f5e13bfd7cc54adfd53817",
+      "sha256": "a0ef57d485a01228d5ce2fa9ad520b697544130d1cfe6d2f210ec4406c8804e6",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: Three slim throwing daggers fanning outward through violet trails. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: มีดสาด — มีดรูปพัดสามเป้าหมาย การเคลือบพิษลงเฉพาะเป้าหมายหลักหนึ่งตัว",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-c5e4da5a-9c1f-4315-97e4-876cad2d0788.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_04": {
+      "file": "rogue_04-icon-v1-d05515cc2ae4.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_04-icon-v1.png",
+      "sourceSha256": "e3b4d72542d4660dc2417bbbe01a51169318682e5397520c07c0f96c73802b8b",
+      "sha256": "d05515cc2ae44a09d367a18dfefff4db835855f3eb527d0966b0306b381421fa",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: Soft violet smoke swirling around a dark ground circle. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ม่านควัน — ควันลด HIT ศัตรูในพื้นที่ ไม่ล่องหนและไม่ล้างเป้าหมายบอส",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-395adda3-8e24-47f5-8ed3-4ab81d6461c9.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_02": {
+      "file": "boxer_02-icon-v1-92e1524b0838.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_02-icon-v1.png",
+      "sourceSha256": "47f82f61bb0a614ce0e84ccf728698f3f6221d7c12b15a858cf41bfd4afc7dc9",
+      "sha256": "92e1524b083830e039a60077259193cdd23241be6fd575e7c405fb2f2539e848",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A calm open palm surrounded by warm amber breathing energy. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เดินลมปราณ — เดินลมปราณล้าง Slow ตนเองหนึ่งสถานะและลดระยะถูกผลัก3วินาที ไม่เพิ่ม DEF ไม่ล้าง Root/Stun แยกหน้าที่จากใจเหล็ก",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-a2fd6d4a-0041-4c1b-b4da-80e40df426fa.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_03": {
+      "file": "boxer_03-icon-v1-a06040026015.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_03-icon-v1.png",
+      "sourceSha256": "91d991aee62fbd81da9b5f70340b24f6a039aa5a68e2b45b09231d8702b7706e",
+      "sha256": "a06040026015eee9e64b2b76c8ac9dc4a461b55d4810ad7ea3b7a82e932acf8d",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: Three amber combo beads flowing toward one wrapped-fist finishing spark. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เปลี่ยนจังหวะ — จบคอมโบปัจจุบันก่อนกำหนด เสริมท่าปิดชุดถัดไปหนึ่งครั้ง ต้องมีอย่างน้อยหนึ่งจังหวะ",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-c1fee74a-eefa-4450-897a-bfe47f4240ac.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_04": {
+      "file": "boxer_04-icon-v1-ada85416e549.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_04-icon-v1.png",
+      "sourceSha256": "b7914afa610f86797e3548273c09367b060fae219c378fdd3cbeb90c4114bdae",
+      "sha256": "ada85416e549123da7bac43e985b42369bc78dcc0d658f5cb8ed8a9a1367bd7c",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: An open palm releasing a circular amber force wave. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ระบายลมปราณ — ผลัก 2 เมตร บอสต้านผลักได้รับ Slow ได้เฉพาะเมื่อไม่ได้ภูมิคุ้มกัน Slow",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-3703173a-a73e-4e52-b7ca-c6f1036ab096.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_10": {
+      "file": "boxer_10-icon-v1-01b03094b033.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_10-icon-v1.png",
+      "sourceSha256": "7dbcfe1b79f71888146a11fad679fb978ca2dbdeaac08715e351246baa2c7312",
+      "sha256": "01b03094b03351f348887ee591dd1fceeadb988411901b364a412b6ffda86ee6",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: An ivory wrapped bent elbow snapping backward with a short gold impact arc. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ศอกกลับ — ศอกเป้าเดียว Stun คงที่ ไม่ยืดตามแรงค์",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-d0057367-5f58-43a0-9635-d7f912e7527d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_11": {
+      "file": "boxer_11-icon-v1-8e76c84f7142.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_11-icon-v1.png",
+      "sourceSha256": "fa4c33c903ccdb47d5426018d7b1c327fe516ff01656a424dfd55203b3f16faf",
+      "sha256": "8e76c84f7142474a3f19a78d67f761cc35e672bc714b205ef6e8a176f393fa8d",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: One heavy linen-wrapped fist breaking a small dark stone with three amber beads. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: หมัดทลาย — ท่าปิดชุด ได้โบนัสเมื่อใช้พร้อมสามจังหวะและใช้จังหวะหมด",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-5a61867d-df35-437b-ac88-5138fecb1b53.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_07": {
+      "file": "mage_07-icon-v1-ae9007a220f1.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_07-icon-v1.png",
+      "sourceSha256": "be1d6ab96257a76ac25a1821262b5ab31393f58b5372aac75b9ca0d508fa1e8b",
+      "sha256": "ae9007a220f1505cf01e157c573172f81d73f02e97afa9f577303172dc0c5260",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: One serene closed eye inside a subtle blue arcane halo. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: สมาธิเวท — ลดเวลาร่าย ผ่านเพดาน 50% เดิม",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-00389124-1cb6-4bc0-b85e-d3855326e4f9.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_08": {
+      "file": "mage_08-icon-v1-efe2fb3d4f63.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_08-icon-v1.png",
+      "sourceSha256": "313e68a93bb92f8dd9d9c09ae451cffc051f42de88d57b49251da66952175234",
+      "sha256": "efe2fb3d4f63e023b72368f43510c932f643d3fa54f4e4f53d77fa9ffee5ba8c",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: One deep blue faceted mana crystal reservoir. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: สำรองอาคม — เพิ่ม Max MP คำนวณจากฐาน ไม่เพิ่ม MP ปัจจุบันทันทีเมื่อใส่",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-ce834866-c4a5-494e-bbb7-ecc4c91df88d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_07": {
+      "file": "archer_07-icon-v1-6115f036090e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_07-icon-v1.png",
+      "sourceSha256": "051c2a7363962cbbe0c4c226add48bba68642d4e429efdbd14eb1873e17944fb",
+      "sha256": "6115f036090ec329a58b7b1f37a9e7ecabbaee09cd50e65afc9159086e7835b2",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: One keen golden hawk eye. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: สายตาพราน — เพิ่ม HIT เมื่อถือธนู",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-cec6518e-07f9-4dd9-841e-bfcfeeaca3a2.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_07": {
+      "file": "rogue_07-icon-v1-7085985b9af4.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_07-icon-v1.png",
+      "sourceSha256": "6df69b16d7affcbb3daee32852a5b9dc94bcb9a8d2f09ed55296ed461744dc52",
+      "sha256": "7085985b9af425039b0ef829e77a10c29cd70090463cf637ba331454c29b098b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: A light leather boot leaving a subtle violet shadow footprint. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: ฝีเท้าเงา — เพิ่ม FLEE ขณะถือมีด",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-5bcaee8d-5ed8-428a-a1cc-efb4559ed598.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_06": {
+      "file": "archer_06-icon-v1-d64236c1c860.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_06-icon-v1.png",
+      "sourceSha256": "9039dc7141e2f69fd97d9a94a0a1dff9f29f707906765a4aca151e046a5c90a5",
+      "sha256": "d64236c1c860a88241eed3b833738236ff7c2ee85a5e17183fb85f8717304095",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ศรเปิดทาง — ผลักหนึ่งเป้าหมาย บอสต้านการผลักและไม่เกิดผลหยุดแทน. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ศรเปิดทาง — ผลักหนึ่งเป้าหมาย บอสต้านการผลักและไม่เกิดผลหยุดแทน",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-7b273689-4fd1-4002-876e-035ada5bfda5.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_08": {
+      "file": "archer_08-icon-v1-ae07fd8fe76a.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_08-icon-v1.png",
+      "sourceSha256": "6e3ae344655ae7657919eabeae19a5294890d1f14627ee48d6bafaf6a8494ea8",
+      "sha256": "ae07fd8fe76a1a7a6f0b58bb82acc71e7fbf44f55efa94f3c8fc8764440c2fc1",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: อ่านทางหนี — ศัตรูเข้าใกล้กว่า 3 เมตร ให้ความเร็วชั่วคราว หนึ่งครั้งต่อ ICD. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: อ่านทางหนี — ศัตรูเข้าใกล้กว่า 3 เมตร ให้ความเร็วชั่วคราว หนึ่งครั้งต่อ ICD",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-38bc6dbb-8e3e-4257-9f99-e513be19e252.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_09": {
+      "file": "archer_09-icon-v1-c68e38fc76c0.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_09-icon-v1.png",
+      "sourceSha256": "bf2f24c23a457c078e3f3bb6085b95a3deba6f8ec2aab701fae539c34163098a",
+      "sha256": "c68e38fc76c06650ba363a12a370deaa0d0d9fc6766f4b34a38184e7c6490769",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เก็บแรงสาย — เดินจริงสะสม 6 เมตร เสริมเวลาร่ายเล็งประณีตครั้งถัดไป ไม่สะสมจากการวาร์ป. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: เก็บแรงสาย — เดินจริงสะสม 6 เมตร เสริมเวลาร่ายเล็งประณีตครั้งถัดไป ไม่สะสมจากการวาร์ป",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-0afa72a5-80b8-490c-bb0d-08a431fb622b.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_10": {
+      "file": "archer_10-icon-v1-945387f10187.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_10-icon-v1.png",
+      "sourceSha256": "3272eae0e863fba16f30a7dd581cac093e30683fd81598cb8776f726d18a25fc",
+      "sha256": "945387f10187f9281d4baab087c184e2bbec81d8ecc1fe4a4fa0edf8fb1a5c1b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เล็งประณีต — ยืนเล็งเป้าเดียว เคลื่อนที่ยกเลิกการร่าย. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เล็งประณีต — ยืนเล็งเป้าเดียว เคลื่อนที่ยกเลิกการร่าย",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-c169f3da-057a-4527-94d5-95554cda930e.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_11": {
+      "file": "archer_11-icon-v1-7528624a1c34.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_11-icon-v1.png",
+      "sourceSha256": "4017f82323c9afa600e0b660536b29c38d37f887f1bb267629b0b78d7c234de5",
+      "sha256": "7528624a1c34fd004c0d206bdc4cce164118b6146cefcab5be73e91336617073",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ตรึงแนวเล็ง — เพิ่มคริติคอลขณะหยุดนิ่ง เคลื่อนที่แล้วบัฟจบ. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ตรึงแนวเล็ง — เพิ่มคริติคอลขณะหยุดนิ่ง เคลื่อนที่แล้วบัฟจบ",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-01aa4eb7-b98a-4605-b2bd-5a4c97ac8c21.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_12": {
+      "file": "archer_12-icon-v1-a08b232e22f8.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_12-icon-v1.png",
+      "sourceSha256": "d768fe4b824b2a77a59347e03a4efe75af85245c361c4c65d2ebdb205ce9406d",
+      "sha256": "a08b232e22f8ab10304bfa7daf705fb85161ca6bd48733bff0f3fe294df260e0",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ศรทะลวง — ศรแนวตรง ทะลุได้สามเป้าหมายตามแนวยิง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ศรทะลวง — ศรแนวตรง ทะลุได้สามเป้าหมายตามแนวยิง",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-b2a1fe04-ec4f-48e4-87de-58d0baf2f550.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_13": {
+      "file": "archer_13-icon-v1-eee34c0d674a.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_13-icon-v1.png",
+      "sourceSha256": "d55893ca729a4e3c2534de4006546bce7a80ff9a7a5632d0ebde6b6b556cb06a",
+      "sha256": "eee34c0d674af7ed4d8cc4a19443ea162fd2b61c674c26e1421d1039bc79af81",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ยิงสวนท่า — โบนัสเฉพาะยิงระหว่างเป้าหมายเตรียมโจมตี ไม่ทำให้ Stun. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ยิงสวนท่า — โบนัสเฉพาะยิงระหว่างเป้าหมายเตรียมโจมตี ไม่ทำให้ Stun",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-3f026338-82ca-449c-b12c-1abddcfaec47.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_14": {
+      "file": "archer_14-icon-v1-4f2fc5f5a977.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_14-icon-v1.png",
+      "sourceSha256": "72d456376d6ccb7cff8b4dadaa9a4ca2d11045fd56b51353679a8997a0857ec0",
+      "sha256": "4f2fc5f5a977470d0d1a266d62ca4d2f88195d3752c0fe868b9b18d50bc8eda3",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: อ่านเกราะ — เล็งประณีตข้าม hard DEF บางส่วน ไม่ข้าม soft DEF. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: อ่านเกราะ — เล็งประณีตข้าม hard DEF บางส่วน ไม่ข้าม soft DEF",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-5ceffd8c-eec4-433a-8035-e4ae95dd860f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_15": {
+      "file": "archer_15-icon-v1-760436a83ef6.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_15-icon-v1.png",
+      "sourceSha256": "1c8715e009a20aa2311e99bbb7a1fb5dcfd9b1c14a7151c00b5ee618d29937ba",
+      "sha256": "760436a83ef6c6f75d81fce4871c4885170463ed1e08a508a8fab77d29bec03a",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จุดเล็งสมบูรณ์ — เล็งประณีตโดนเป้าที่หมายหัว ได้โบนัสและใช้หมายหัวหมด ไม่สร้างการร่ายเพิ่ม. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: จุดเล็งสมบูรณ์ — เล็งประณีตโดนเป้าที่หมายหัว ได้โบนัสและใช้หมายหัวหมด ไม่สร้างการร่ายเพิ่ม",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-00195981-d17f-4d3a-804a-6a10d31b73e4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_16": {
+      "file": "archer_16-icon-v1-7a0d86c2f5a8.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_16-icon-v1.png",
+      "sourceSha256": "e70d52e9ecba4b2a5623c8ca63c48f598c933f58a244f3219af66a5851ac8fcf",
+      "sha256": "7a0d86c2f5a860e5e5151900d0568c4f2a5acdc67b72f389960702d05c6e6c25",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: กับดักหนาม — กับดักพื้นหน่วงก่อนพร้อม 1 วิ อายุ 12 วิ ไม่เกิดดาเมจซ้ำเมื่อวาง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: กับดักหนาม — กับดักพื้นหน่วงก่อนพร้อม 1 วิ อายุ 12 วิ ไม่เกิดดาเมจซ้ำเมื่อวาง",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-ea469c68-df16-4217-a330-67203990355e.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_17": {
+      "file": "archer_17-icon-v1-52743dba7215.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_17-icon-v1.png",
+      "sourceSha256": "ec877c2420286e6bd307d2c98c4c0b78747c293a7ecd46c75a62474da2bc2458",
+      "sha256": "52743dba721537809ab6cdd21bd5d90be369cc6c820c37d81b56c354e770e501",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ฝนศร — ฝนศรพื้นที่สี่จังหวะ ศัตรูต้องอยู่ในพื้นที่. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ฝนศร — ฝนศรพื้นที่สี่จังหวะ ศัตรูต้องอยู่ในพื้นที่",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-56e9d0b1-2449-4137-acdf-d0434dbc5623.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_18": {
+      "file": "archer_18-icon-v1-93a4b3bc32c0.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_18-icon-v1.png",
+      "sourceSha256": "0c6fcbae0b9643f2a9d9bb522319462ee7539284fa4de045c0747777e9e0da81",
+      "sha256": "93a4b3bc32c0b5d48a3848053055df35cf5db9b5dc81df119f65329cdd8da2ca",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: กับดักตรึง — กับดักตรึง จำกัด Root หนึ่งวินาที บอสภูมิคุ้มกัน. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: กับดักตรึง — กับดักตรึง จำกัด Root หนึ่งวินาที บอสภูมิคุ้มกัน",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-32e4e13c-1c02-4a08-9399-c4bc749450ff.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_19": {
+      "file": "archer_19-icon-v1-f9380929fec2.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_19-icon-v1.png",
+      "sourceSha256": "6f978444b08fec5ef6d9da8ba941e35e0f3c41fc3c87b6f4a2c32ce11b0093be",
+      "sha256": "f9380929fec247fb05e77829d5bc711c3bf8096f0e5ef9661dae938fd9e9f917",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เรียกกับดักคืน — คืนกับดักที่ยังไม่ทำงาน ได้ MP คืนจากต้นทุนจริงบางส่วน ไม่คืนคูลดาวน์และไม่เกิน MP ที่จ่าย. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เรียกกับดักคืน — คืนกับดักที่ยังไม่ทำงาน ได้ MP คืนจากต้นทุนจริงบางส่วน ไม่คืนคูลดาวน์และไม่เกิน MP ที่จ่าย",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-503c7ffa-dc03-43c8-8d84-b75fc4736911.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_20": {
+      "file": "archer_20-icon-v1-d1f00b32b198.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_20-icon-v1.png",
+      "sourceSha256": "f4bc33373a51d5a6b9849972cd023a35a54f42debb82ee3534c3ddb1a0c10a4f",
+      "sha256": "d1f00b32b1983c70e1d036e59d877027afccff7ece6470e3cef95815b12e802d",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: พรานช่างสังเกต — เพิ่มรัศมีตรวจจับกับดักเป็นเปอร์เซ็นต์ ไม่เพิ่มจำนวนเป้าหมาย. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: พรานช่างสังเกต — เพิ่มรัศมีตรวจจับกับดักเป็นเปอร์เซ็นต์ ไม่เพิ่มจำนวนเป้าหมาย",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-bc658246-717c-4867-8857-063f5376211f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "archer_21": {
+      "file": "archer_21-icon-v1-5df948fb9412.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/archer_21-icon-v1.png",
+      "sourceSha256": "437f3a47f268dfe25a59707392bdc29c177d1e850ace77a0a6ee9eebd68d9361",
+      "sha256": "5df948fb941206be330374f78fcd9e5db7e4ab7d1850567dd7e75e84e0576804",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: แผนล่า — ฝนศรแรงขึ้นต่อเป้าที่อยู่ในกับดักของผู้ใช้เท่านั้น. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: แผนล่า — ฝนศรแรงขึ้นต่อเป้าที่อยู่ในกับดักของผู้ใช้เท่านั้น",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-2fa1b02f-f7a0-441b-9cb4-cac72ad8e98a.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_05": {
+      "file": "mage_05-icon-v1-fc48eecb4cc1.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_05-icon-v1.png",
+      "sourceSha256": "8a60763767245cd82fb7f186ce2e3e7aad8a168dc318e668ace7e10e24451903",
+      "sha256": "fc48eecb4cc1052d48cc214bf1dc50d3db667d305d37beeb389c7b6572473068",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ย้ายวงเวท — ย้ายตนผ่านวงเวทไปจุดเดินได้ในระยะตามแรงค์ ไม่ผ่านกำแพง ไม่เพิ่มดาเมจหรือยืดอายุวงเวทอื่น. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ย้ายวงเวท — ย้ายตนผ่านวงเวทไปจุดเดินได้ในระยะตามแรงค์ ไม่ผ่านกำแพง ไม่เพิ่มดาเมจหรือยืดอายุวงเวทอื่น",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-3be75a06-3834-491f-a15e-58e429028ea4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_06": {
+      "file": "mage_06-icon-v1-d66b4c55526d.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_06-icon-v1.png",
+      "sourceSha256": "965604cbaf346c429685bf106699743ee5b3de2066c1d970e15f8eee7c3b4836",
+      "sha256": "d66b4c55526d212498696a314ce7f7b77099e6b4f8c1a0dfd957e1fd08cd3676",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ผนึกธาตุ — ลด hard MDEF เป้าหมาย ไม่ Silence. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ผนึกธาตุ — ลด hard MDEF เป้าหมาย ไม่ Silence",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-1cf05859-5ade-4a7f-a590-9b0412fec958.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_09": {
+      "file": "mage_09-icon-v1-af1afa8ac0c7.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_09-icon-v1.png",
+      "sourceSha256": "7854950eb6d0e53708cfb5267834266a596caa5b337007c8dba9ef70dbb501b4",
+      "sha256": "af1afa8ac0c754f244a4e5aa001830dd36a5dc9a7e164677163f001a04710a9b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ลำดับธาตุ — ใช้เวทหลักต่างธาตุสองชนิด เสริมเวทหลักถัดไปหนึ่งครั้ง ผล Trigger ไม่นับสะสม. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: ลำดับธาตุ — ใช้เวทหลักต่างธาตุสองชนิด เสริมเวทหลักถัดไปหนึ่งครั้ง ผล Trigger ไม่นับสะสม",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-887e2290-13fa-4c01-8d9d-8caf4de66c02.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_10": {
+      "file": "mage_10-icon-v1-0fef8a2ddd9b.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_10-icon-v1.png",
+      "sourceSha256": "ce1144a604019f1893b6bc3f8b65e1e582f4b9dbcd998e15bba6bba8c3feb20e",
+      "sha256": "0fef8a2ddd9b37622c9d2054c8b36789c054b113fa592de7945e7838a40ee3f1",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ดาวตก — ดาวตกพื้นที่ ร่ายยาวและมีเวลาให้หลบ ไม่เปลี่ยนค่า meteor ในเกมจริงรอบนี้. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ดาวตก — ดาวตกพื้นที่ ร่ายยาวและมีเวลาให้หลบ ไม่เปลี่ยนค่า meteor ในเกมจริงรอบนี้",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-a7c92d82-4a41-434d-acae-7e8689987c71.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_11": {
+      "file": "mage_11-icon-v1-7a8a39cb0a9e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_11-icon-v1.png",
+      "sourceSha256": "b0093c4c24a8a35a90554056ded66209766dec8462acf0449d30fe55590a3f1c",
+      "sha256": "7a8a39cb0a9e074deaea90a3ad47f2365debcb230be3e4dd9873d345c208532f",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: สายลมลูกโซ่ — เวทลมลูกโซ่สามเป้า แต่ละเป้ารับหนึ่งครั้ง ห้ามย้อนเป้าเดิม. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: สายลมลูกโซ่ — เวทลมลูกโซ่สามเป้า แต่ละเป้ารับหนึ่งครั้ง ห้ามย้อนเป้าเดิม",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-39b57eec-4b0a-48df-b9ce-9a73d1fafc51.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_12": {
+      "file": "mage_12-icon-v1-6f870d16731a.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_12-icon-v1.png",
+      "sourceSha256": "970739fc743dce6749980fc56fe68fef2cb0b2cc26cda3255d16893e6c332a33",
+      "sha256": "6f870d16731a63fa8bcd31843a7761423e47036029350a814d46d6ef6e56c9ef",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เพลิงค้าง — พื้นที่ไฟสี่วินาที ไม่ซ้อนพื้นที่ชื่อเดียวกันจากผู้ใช้เดียวกัน. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เพลิงค้าง — พื้นที่ไฟสี่วินาที ไม่ซ้อนพื้นที่ชื่อเดียวกันจากผู้ใช้เดียวกัน",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-deb0e495-cbb7-44cd-a202-3da181aa985e.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_13": {
+      "file": "mage_13-icon-v1-c8369a3eeebb.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_13-icon-v1.png",
+      "sourceSha256": "3a78418ca91f65dbf35ae5feaeed44559e82b3f507d19e277da5757bfcdbf953",
+      "sha256": "c8369a3eeebba724dfc32e37b51e08f8e642d20e7484c2a7b3344e91406c542f",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ฝังธาตุ — ฝังธาตุให้เวทหลักโดยตรงถัดไปได้โบนัสหนึ่งครั้งและลบตรา ไม่ร่ายลูกโซ่. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ฝังธาตุ — ฝังธาตุให้เวทหลักโดยตรงถัดไปได้โบนัสหนึ่งครั้งและลบตรา ไม่ร่ายลูกโซ่",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-25994de5-3954-4f7a-a7cc-e41688a2c724.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_14": {
+      "file": "mage_14-icon-v1-67f100260ddc.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_14-icon-v1.png",
+      "sourceSha256": "314255c105cca41a3d41943ccaaaa51749ff259d500b3a16735f6222b1bb5ef6",
+      "sha256": "67f100260ddcf6f8868c3da681c37b5164ff29b96add63a65848cf401022bf1e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: อาคมรุนแรง — เพิ่มดาเมจเวทหลัก ไม่เพิ่มดาเมจสัตว์หรือAuto Spell. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: อาคมรุนแรง — เพิ่มดาเมจเวทหลัก ไม่เพิ่มดาเมจสัตว์หรือAuto Spell",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-4f5a0c0a-a0cf-4ae3-b543-516e8778c5ab.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_15": {
+      "file": "mage_15-icon-v1-7028e81546d4.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_15-icon-v1.png",
+      "sourceSha256": "52d5c627a9031fd8e40cd259bdd83304b5ee22656499a28f1c2d049869bbfacb",
+      "sha256": "7028e81546d48797c5aa2f835be03b62afc201b54973846ec65cebb5956c76db",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จ้าวธาตุ — ร่ายเวทหลักสำเร็จสามครั้ง เสริมครั้งถัดไปหนึ่งครั้ง. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: จ้าวธาตุ — ร่ายเวทหลักสำเร็จสามครั้ง เสริมครั้งถัดไปหนึ่งครั้ง",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-632df964-4d46-4e99-8055-4782cd6cb64d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_16": {
+      "file": "mage_16-icon-v1-dde9b96d40b5.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_16-icon-v1.png",
+      "sourceSha256": "fb4eff27d2c5749dabc776f529830e2d35d809f3f4e427764696805933580f1d",
+      "sha256": "dde9b96d40b5b753b63afafa9da34ae3c5abf94053230eb841d02fcf82c8d789",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: วงแหวนเย็น — วงเย็น Freeze หนึ่งวินาที ดาเมจใหม่ทำให้หลุด บอสไม่ถูก Freeze. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: วงแหวนเย็น — วงเย็น Freeze หนึ่งวินาที ดาเมจใหม่ทำให้หลุด บอสไม่ถูก Freeze",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-90f0254d-a014-4643-8fe9-f6742751ef6f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_17": {
+      "file": "mage_17-icon-v1-c3aacd3a24b8.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_17-icon-v1.png",
+      "sourceSha256": "5538f156669cec2da97c4ddf9c380ad248a854ac8c86f68acc067d238631d3e1",
+      "sha256": "c3aacd3a24b8d80410ab3ac0f9129128714ed47985d36029fc51db64d30c8dcf",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ผนึกเวท — Silence เป้าเดียวหนึ่งวินาที ไม่หยุดท่าโจมตีกายภาพ. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ผนึกเวท — Silence เป้าเดียวหนึ่งวินาที ไม่หยุดท่าโจมตีกายภาพ",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-45bf5984-4ba0-47bc-ad54-4159d824ecb6.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_18": {
+      "file": "mage_18-icon-v1-e0e7a777339e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_18-icon-v1.png",
+      "sourceSha256": "3738600a180841031137d49c11b2bc5b6957fcb0a67b2ccf5150f681aec2fa98",
+      "sha256": "e0e7a777339e4f1f852ae879d3043c8bf8a3e003212294c5cf6490c36ee9d1e3",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เขตสมาธิ — เขตเพิ่มความเร็วร่ายให้ปาร์ตี้สามคน ต้องอยู่ในวง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เขตสมาธิ — เขตเพิ่มความเร็วร่ายให้ปาร์ตี้สามคน ต้องอยู่ในวง",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-97df2488-cf8b-4366-99bb-e863f4eab71a.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_19": {
+      "file": "mage_19-icon-v1-3178f28bb73b.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_19-icon-v1.png",
+      "sourceSha256": "fffe07e813150cdcdd9684e2a43e1d12b557738e819f7ecdfef71ee5192e082a",
+      "sha256": "3178f28bb73b2b95c7fc3bd5751731f21a9e92dafe4331d457239d44e8eac6ac",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: สะท้อนเวท — ตั้งรับหนึ่งวินาที สะท้อนกระสุนเวทหนึ่งลูกตามเปอร์เซ็นต์ที่กำหนด ไม่สะท้อนผลสะท้อนหรือเวทพื้นที่. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: สะท้อนเวท — ตั้งรับหนึ่งวินาที สะท้อนกระสุนเวทหนึ่งลูกตามเปอร์เซ็นต์ที่กำหนด ไม่สะท้อนผลสะท้อนหรือเวทพื้นที่",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-d8f0d494-e62c-4cf5-b75d-399094f8de06.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_20": {
+      "file": "mage_20-icon-v1-51394e900678.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_20-icon-v1.png",
+      "sourceSha256": "bea7bd0dc71000fe6538d851dffc4de56f7b54161a650dc41273a4c742d737f1",
+      "sha256": "51394e900678b156dd5c7d9767caaba19165c0b6c475f432d65ab18cfb7f44e1",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: รักษาสมาธิ — เมื่อศัตรูขัดการร่าย คืนส่วนหนึ่งของ MP ที่จ่ายจริง ไม่คืนเมื่อผู้ใช้ยกเลิกเอง. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: รักษาสมาธิ — เมื่อศัตรูขัดการร่าย คืนส่วนหนึ่งของ MP ที่จ่ายจริง ไม่คืนเมื่อผู้ใช้ยกเลิกเอง",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-4f328a80-a64a-4c3e-86b0-3f48fcd84064.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "mage_21": {
+      "file": "mage_21-icon-v1-2c2abb2a4ecd.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/mage_21-icon-v1.png",
+      "sourceSha256": "aeb5b98e400ff85a4b931826756c1f9a11e005abb3560be3fbf8c72377349024",
+      "sha256": "2c2abb2a4ecd55d583c0868479d0fc53bafc9a091ae89fb68a842a35720c3b2c",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: คุมวงสมบูรณ์ — บัฟเขตสมาธิคงอยู่หลังออกวงตามวินาทีนี้ ไม่ยืด CC ศัตรู. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: คุมวงสมบูรณ์ — บัฟเขตสมาธิคงอยู่หลังออกวงตามวินาทีนี้ ไม่ยืด CC ศัตรู",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-b3604c94-cd69-4b34-b347-2fc477e3339d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_05": {
+      "file": "healer_05-icon-v1-f400fae47fac.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_05-icon-v1.png",
+      "sourceSha256": "b3b4e194c257f1ec9c6a2ef968462c8c7da50dbb7ab3a4ccd418120d85658861",
+      "sha256": "f400fae47facc082dfd616fc5e66e3e2696217093a9523ee244cde2d2c13825e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ถ่ายเทชีวิต — เสีย HP ตนเอง 8% Max HP ใช้ได้เมื่อเหลือเกิน 30% และมีเพื่อนเป้าหมาย ไม่คิด self damage เป็น Mastery. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ถ่ายเทชีวิต — เสีย HP ตนเอง 8% Max HP ใช้ได้เมื่อเหลือเกิน 30% และมีเพื่อนเป้าหมาย ไม่คิด self damage เป็น Mastery",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-cc233f72-a0d0-43ce-9d86-30333cc06818.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_06": {
+      "file": "healer_06-icon-v1-c2373ac37aeb.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_06-icon-v1.png",
+      "sourceSha256": "0b61daf4b11290403afc7d12e0331dba9e011c362f5b1eca4ccfc72e56e8d621",
+      "sha256": "c2373ac37aebe75242e6c6964180590dca7ac07b4b9ce6451479d8a7d39e9fe2",
+      "prompt": "Create ONE production fantasy RPG support-skill icon. Match the reference painterly oil/gouache brushwork, dark forest-jade background, thin antique-gold rounded-square rim and same generous margins. Subject: one spool of luminous ivory thread, its jade-green magical strand gently stitching a folded piece of clean linen fabric. Only inanimate sewing materials, no people, body parts, injury, blood, skin or wounds. Calm restorative craft symbol, one clear silhouette legible at44px. No text, letters, numerals, grid, watermark or interface. The reference is for style only; do not include a fireball.\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-ab982bb7-c629-493b-be91-e7a6204d5da5.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_07": {
+      "file": "healer_07-icon-v1-6e636b7efa0d.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_07-icon-v1.png",
+      "sourceSha256": "a8b66cc6cac3bd13bb1dc1e7226835295d234a30055db89232cae82914311447",
+      "sha256": "6e636b7efa0d7b57799026a169f000c9dbaec05cda7dd02e42950640ac3c7291",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: มือผู้รักษา — เพิ่มฮีลตามแรงค์; โจมตีปกติด้วยเข็มเวชใช้ MATK55–75%แทน ATK ไม่มีคริติคอลหรือโบนัสคอมโบสาม ให้สายรักษาล้วนมีดาเมจพื้นฐานโดยไม่ต้องยืมเวท. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: มือผู้รักษา — เพิ่มฮีลตามแรงค์; โจมตีปกติด้วยเข็มเวชใช้ MATK55–75%แทน ATK ไม่มีคริติคอลหรือโบนัสคอมโบสาม ให้สายรักษาล้วนมีดาเมจพื้นฐานโดยไม่ต้องยืมเวท\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-1e947a59-c285-4d4f-91ee-ea0bc2c4ed3a.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_08": {
+      "file": "healer_08-icon-v1-019523b8c442.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_08-icon-v1.png",
+      "sourceSha256": "2784dc0791969cbaa5ab2846d57d083e96034896b85c50872b5d678cbd362640",
+      "sha256": "019523b8c442dacfd3691a7c64ddce924dfee9ddabb36d26bf49305f0dbb3d13",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ความรู้เภสัช — เพิ่ม HP จากยาที่ตนใช้ ไม่สร้างยาและไม่เพิ่ม MP จากยา. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: ความรู้เภสัช — เพิ่ม HP จากยาที่ตนใช้ ไม่สร้างยาและไม่เพิ่ม MP จากยา\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-3767a17f-b699-418a-a4bf-da5fcea99ca4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_09": {
+      "file": "healer_09-icon-v1-05f5a1906686.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_09-icon-v1.png",
+      "sourceSha256": "59fd6b5f111183033bf659962a66bab240e2058e9ad280019889fcb05d6ac02d",
+      "sha256": "05f5a19066862fbd8541da7b1bfafd165c6e547d5295c0c9305ab818f4ecfa82",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ดูแลทั่วถึง — ฮีลเพื่อนต่างคนสองคนภายในหกวินาที เสริมฮีลถัดไปหนึ่งครั้ง. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: ดูแลทั่วถึง — ฮีลเพื่อนต่างคนสองคนภายในหกวินาที เสริมฮีลถัดไปหนึ่งครั้ง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-7c355618-c735-46fd-9674-6bafe6a2e47c.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_10": {
+      "file": "healer_10-icon-v1-9fba073d7769.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_10-icon-v1.png",
+      "sourceSha256": "7a70153b4b5300058f8d393df904764d421c0f147f37673aea34b06a56af9ce4",
+      "sha256": "9fba073d77697866fbe39d822f9ed807c797ffee20eb0e2dfb0e193fe67bfdc8",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: วงรักษา — พื้นที่ฮีลสี่วินาที สมาชิกปาร์ตี้สูงสุดสามคน. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: วงรักษา — พื้นที่ฮีลสี่วินาที สมาชิกปาร์ตี้สูงสุดสามคน\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-9a996f72-1a33-4a4a-a21d-66b91ac9d5b6.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_11": {
+      "file": "healer_11-icon-v1-d21f99b0cb47.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_11-icon-v1.png",
+      "sourceSha256": "553fc01d71093ffbc7a6bf6b7424b6ab9cc383797f3a50a581858f070ac1be6e",
+      "sha256": "d21f99b0cb47d0760c6f0b3d825e9d301fde0279f3b59f2f64bdcdede6de74c8",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ชำระอาคม — ล้างหนึ่งดีบัฟที่อนุญาตต่อคน สูงสุดสามคน ไม่ล้างกลไกเฉพาะบอส. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ชำระอาคม — ล้างหนึ่งดีบัฟที่อนุญาตต่อคน สูงสุดสามคน ไม่ล้างกลไกเฉพาะบอส\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-41d7771a-8439-43e7-8db8-ae71d51ad333.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_12": {
+      "file": "healer_12-icon-v1-99f97f4f4e01.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_12-icon-v1.png",
+      "sourceSha256": "81a49c800ce1d97b2cf2724e4d0cb08b551951bab55bed6472233527f79d9f78",
+      "sha256": "99f97f4f4e01c29b03478e39c834e3f29589a853bd652050eea207fdb4622520",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: สายใยรักษา — ฮีลหลักอีกเป้าหมายแล้วแบ่งผลส่วนหนึ่งให้ผู้ผูกสายใย ห้ามแบ่งฮีลที่เกิดจากสายใยซ้ำ. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: สายใยรักษา — ฮีลหลักอีกเป้าหมายแล้วแบ่งผลส่วนหนึ่งให้ผู้ผูกสายใย ห้ามแบ่งฮีลที่เกิดจากสายใยซ้ำ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-37a2bd5b-849a-469c-a5b3-57e82c97612f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_13": {
+      "file": "healer_13-icon-v1-fe64b09a5784.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_13-icon-v1.png",
+      "sourceSha256": "87e36ccfeb42add64a4db9539e7ea5bc2ece484aa5e9e9afa2fc3321c5fce1b4",
+      "sha256": "fe64b09a578471d6628b09419ef1a8caab9054411198e1a88bd7101aacb3a840",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ชีพจรเร่งด่วน — ฮีลเป้าเดียว โบนัสเมื่อ HP ก่อนรับฮีลต่ำกว่า 30%. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ชีพจรเร่งด่วน — ฮีลเป้าเดียว โบนัสเมื่อ HP ก่อนรับฮีลต่ำกว่า 30%\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-519ad8f3-0c5f-4859-9ef4-ba2f574893e2.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_14": {
+      "file": "healer_14-icon-v1-c51793708c9f.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_14-icon-v1.png",
+      "sourceSha256": "3722a963f21a19ec08d2f0a63ece0101a4d45a05ca22bfa8d9c1f315edec86ba",
+      "sha256": "c51793708c9f148f20ce68f40485d285ee3b77fd09d24e1c09f3236e029bd59f",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: วินิจฉัยแม่นยำ — ล้างสถานะจริงสำเร็จ เสริมฮีลโดยตรงถัดไปภายในห้าวินาที. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: วินิจฉัยแม่นยำ — ล้างสถานะจริงสำเร็จ เสริมฮีลโดยตรงถัดไปภายในห้าวินาที\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-42d53256-0082-451d-8073-afaf6d02c5a5.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_15": {
+      "file": "healer_15-icon-v1-bcc9216dfa3c.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_15-icon-v1.png",
+      "sourceSha256": "c8051ece93b9c04093885e4285f9874f54426239587140766fe16d941dc3b429",
+      "sha256": "bcc9216dfa3c68fcea549ba7cf8d7aa2827aa29ceb2076b3245f2820a61f047b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: มือประคองชีวิต — HoT หลักช่วยเพื่อนที่ HP ต่ำกว่า 30% ยืดอายุได้หนึ่งครั้งต่อเป้าในยี่สิบวินาที. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: มือประคองชีวิต — HoT หลักช่วยเพื่อนที่ HP ต่ำกว่า 30% ยืดอายุได้หนึ่งครั้งต่อเป้าในยี่สิบวินาที\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-9b8c91a1-bb30-4fce-b643-0e0ca1173a2d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_16": {
+      "file": "healer_16-icon-v1-4d3c6ee59736.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_16-icon-v1.png",
+      "sourceSha256": "447342a077c690c34505258edc750b12aa281b2dba3f7b3239673bc69d876442",
+      "sha256": "4d3c6ee5973620a680769be8d2a366f911d3cd85a54602b0a471c91ef3d4a9c5",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: น้ำยากัดกร่อน — น้ำยากัดเกราะหนึ่งชุดต่อผู้ใช้ ทำดาเมจเวทต่อเนื่อง ไม่เป็นสถานะ Poison. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: น้ำยากัดกร่อน — น้ำยากัดเกราะหนึ่งชุดต่อผู้ใช้ ทำดาเมจเวทต่อเนื่อง ไม่เป็นสถานะ Poison\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-48a90a2d-9d8c-473f-9809-4f3f8f6ae929.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_17": {
+      "file": "healer_17-icon-v1-3c21c4a085f9.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_17-icon-v1.png",
+      "sourceSha256": "43fd973ae521f498b0b491dfbf2362e74b895d9fe6fb183e6068d3183bc8e17d",
+      "sha256": "3c21c4a085f9855e7761f7c9bbd1f68c35544c1b91b1328fbe1637b7eb67d7f5",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: น้ำยาเคลือบเกราะ — เคลือบเพื่อนให้การโจมตีกายภาพครั้งถัดไปที่รับ ติดลด ATK ผู้โจมตี ไม่สร้างโล่. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: น้ำยาเคลือบเกราะ — เคลือบเพื่อนให้การโจมตีกายภาพครั้งถัดไปที่รับ ติดลด ATK ผู้โจมตี ไม่สร้างโล่\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-2c832692-9400-415c-bf47-ebfe5a7dce6f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_18": {
+      "file": "healer_18-icon-v1-0a083e82378e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_18-icon-v1.png",
+      "sourceSha256": "e664a1ecffb808e8406f8ab8bda9f0a91e6449ac4b265a5ec33db5a06fe3c0f1",
+      "sha256": "0a083e82378ec877155af0ab873565be1bd35a96f1c6d41db60128d668f23473",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ละอองฟื้นฟู — พื้นที่เพิ่มฮีลที่ได้รับ ไม่มีฮีลของตัวเอง ต้องประสานกับการรักษา. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ละอองฟื้นฟู — พื้นที่เพิ่มฮีลที่ได้รับ ไม่มีฮีลของตัวเอง ต้องประสานกับการรักษา\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-2286a040-e3f4-4a44-826d-da8ab358ba09.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_19": {
+      "file": "healer_19-icon-v1-f89656680e47.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_19-icon-v1.png",
+      "sourceSha256": "f29db7e4e4df1ff9842039be66abe13ba1c83a647509b1c944f6487371ab300f",
+      "sha256": "f89656680e47ea236202a027786aab85a9018c58e43c34652af24cdb0b024b5e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ตัวเร่งปฏิกิริยา — ระเบิดดาเมจที่เหลือของน้ำยากัดกร่อนหนึ่งชุดแล้วลบทิ้ง ไม่สร้าง DOT ชุดใหม่. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ตัวเร่งปฏิกิริยา — ระเบิดดาเมจที่เหลือของน้ำยากัดกร่อนหนึ่งชุดแล้วลบทิ้ง ไม่สร้าง DOT ชุดใหม่\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-0d376468-3bd5-4ed2-bec5-b976e1b11ae2.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_20": {
+      "file": "healer_20-icon-v1-2e9bd04fe24e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_20-icon-v1.png",
+      "sourceSha256": "9cf205e31b43b7938246086381b1bf19183f57bcfa6a23483ee030e333d4786e",
+      "sha256": "2e9bd04fe24ec0ddaafcf10eb267d93876665939069681b1a2c13dc1c3663ff8",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ตัวยาเข้มข้น — เพิ่มผลดาเมจน้ำยากัดกร่อน ไม่เพิ่ม Poison หรือAuto Spell. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: ตัวยาเข้มข้น — เพิ่มผลดาเมจน้ำยากัดกร่อน ไม่เพิ่ม Poison หรือAuto Spell\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-97500494-c532-45aa-ad17-bfc1d44ac779.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "healer_21": {
+      "file": "healer_21-icon-v1-b3804e89f44e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/healer_21-icon-v1.png",
+      "sourceSha256": "4a5dc0ea56e5f39f7c509838b173bec805632477513139aa4ce227f3367dcdc8",
+      "sha256": "b3804e89f44e5ea5d0646c2230f31739c21bd084d3abec3c1bc7e8adac26e9a9",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ตำรับชำนาญ — ใช้เภสัชหลักสำเร็จสามครั้ง ลด MP ของครั้งถัดไปหนึ่งครั้ง ไม่คืน MP. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: ตำรับชำนาญ — ใช้เภสัชหลักสำเร็จสามครั้ง ลด MP ของครั้งถัดไปหนึ่งครั้ง ไม่คืน MP\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-45f49423-ebcf-4357-bf52-fb449bb53960.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_05": {
+      "file": "shaman_05-icon-v1-f5a55648d867.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_05-icon-v1.png",
+      "sourceSha256": "8b7dac869f4a16fcc0fb88a95604a2dedd0e3ba070a8c393227805f320e3b6a8",
+      "sha256": "f5a55648d86775d604804a0f8da88ade80cd4676b8a2c55ffc66af323871053b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เรียกกลับ — สัตว์หยุดโจมตีและวิ่งกลับหาผู้ฝึกศาสตร์ รับดาเมจลดลงขณะกลับ ไม่วาร์ปผ่านสิ่งกีดขวาง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เรียกกลับ — สัตว์หยุดโจมตีและวิ่งกลับหาผู้ฝึกศาสตร์ รับดาเมจลดลงขณะกลับ ไม่วาร์ปผ่านสิ่งกีดขวาง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-df4ca520-e362-49f5-b477-93308644f778.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_06": {
+      "file": "shaman_06-icon-v1-f2dd32435558.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_06-icon-v1.png",
+      "sourceSha256": "3798ca81bad75bac5a4ebfdfe3f1f3fc1362a88d05ee55f93050a856dd73abab",
+      "sha256": "f2dd32435558e4f9ef57e1b9b5b50ca7dddded0e5a8f33033ffb35af15151375",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ยันต์วิญญาณ — ยันต์เปิดเผยศัตรูซ่อนตัวสองวินาที พร้อมเวทเป้าเดียว. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ยันต์วิญญาณ — ยันต์เปิดเผยศัตรูซ่อนตัวสองวินาที พร้อมเวทเป้าเดียว\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-333b0a1c-93dd-42d3-a298-3e2e63f1fbdf.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_07": {
+      "file": "shaman_07-icon-v1-6685d3061c43.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_07-icon-v1.png",
+      "sourceSha256": "e761e16fdbaa1349164da1ac6df59389f5de16f04c81100c9b548b41ae8e90c8",
+      "sha256": "6685d3061c43a331e9fc928512da0a8d207c7ccef3eb4f8009f41d7a7046c6c0",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: พันธะเสถียร — ลดระยะเวลา CC ของสัตว์หลัก ผ่านเพดานต้านสถานะ. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: พันธะเสถียร — ลดระยะเวลา CC ของสัตว์หลัก ผ่านเพดานต้านสถานะ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-1a4fed3f-5952-41a0-9739-b2a959fb9436.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_08": {
+      "file": "shaman_08-icon-v1-bba9510e7082.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_08-icon-v1.png",
+      "sourceSha256": "80977dd3cd752bfbd501fea1da08006071654ff0424a0e101b8330fdca1dc218",
+      "sha256": "bba9510e70826b265869f052ef93096ab3ba4925a9c35b12f2a9adfd9b324751",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: หลักยึดจิต — เมื่อสัตว์หลักมีชีวิตและอยู่ใน8เมตร ต้าน Fear และลดดาเมจผู้ฝึกศาสตร์1–8%; หายทันทีเมื่อสัตว์ตายหรือพ้นระยะ ไม่ให้สิทธิ์นี้แก่สายรอง. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: หลักยึดจิต — เมื่อสัตว์หลักมีชีวิตและอยู่ใน8เมตร ต้าน Fear และลดดาเมจผู้ฝึกศาสตร์1–8%; หายทันทีเมื่อสัตว์ตายหรือพ้นระยะ ไม่ให้สิทธิ์นี้แก่สายรอง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-3903485f-31cb-47f1-a57e-8a3d78021369.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_09": {
+      "file": "shaman_09-icon-v1-4c162986fcff.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_09-icon-v1.png",
+      "sourceSha256": "73797cd1e3f656812c53605b2277ef9656eb4d3d3bd05db6a28952b4a384766a",
+      "sha256": "4c162986fcffd504becb1e4705eef797b5d7f532d252cb1ace0115c9ae1fa32f",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จังหวะคู่ — ผู้ฝึกศาสตร์ใช้สกิลหลักและสัตว์โจมตีภายในหนึ่งวินาที เสริมดาเมจสัตว์ครั้งนั้น ไม่ร่ายเพิ่ม. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: จังหวะคู่ — ผู้ฝึกศาสตร์ใช้สกิลหลักและสัตว์โจมตีภายในหนึ่งวินาที เสริมดาเมจสัตว์ครั้งนั้น ไม่ร่ายเพิ่ม\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-0f69caeb-8de9-428f-b1ae-b380bd3d74de.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_10": {
+      "file": "shaman_10-icon-v1-ff952ec7e208.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_10-icon-v1.png",
+      "sourceSha256": "82d371e6b64012a9cc4ddaea69d4f29f6f694786cbc4eee239d951da92bc6c10",
+      "sha256": "ff952ec7e208f13cbd62ee9a24d28e2ba129cbb65cf41fa0f742de55e6e0ca3b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ย้ายพันธะ — สัตว์รับดาเมจแทนผู้ฝึกศาสตร์บางส่วน ต้องอยู่ในระยะและยังมีชีวิต ห้าม redirect กลับเป็นวง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ย้ายพันธะ — สัตว์รับดาเมจแทนผู้ฝึกศาสตร์บางส่วน ต้องอยู่ในระยะและยังมีชีวิต ห้าม redirect กลับเป็นวง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-169a6103-bbc0-4f63-904c-1562b52d8a2b.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_11": {
+      "file": "shaman_11-icon-v1-e85b2933008d.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_11-icon-v1.png",
+      "sourceSha256": "ed2324022bb6c99fba69128e9536e7235620fc6fcb553b29f6987eb803d9a63c",
+      "sha256": "e85b2933008debcd61aee0188ad2a6ba593b15f6d2b7c6367f1b77f249fbdf7e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ประสานเขี้ยว — ผู้ฝึกศาสตร์และสัตว์โจมตีประสาน ต้องมีสัตว์หลักและเข้าถึงเป้าหมาย. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ประสานเขี้ยว — ผู้ฝึกศาสตร์และสัตว์โจมตีประสาน ต้องมีสัตว์หลักและเข้าถึงเป้าหมาย\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-30a43455-c1fd-4109-ad4e-d41cb1a2359f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_12": {
+      "file": "shaman_12-icon-v1-7861de1f6c85.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_12-icon-v1.png",
+      "sourceSha256": "c822a5367d06aa434945c6471c787417e66f39b13bdf5418e7621049f38a5526",
+      "sha256": "7861de1f6c854cd8a964bbf6567ffb8bfedbde742603427281687dea402d50c7",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ปลุกสัญชาตญาณ — เพิ่มความเร็วโจมตีสัตว์หลัก มีเพดานความถี่โจมตี. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ปลุกสัญชาตญาณ — เพิ่มความเร็วโจมตีสัตว์หลัก มีเพดานความถี่โจมตี\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-cb10e9ca-68ce-44a8-8344-4f0ed4dd7db1.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_13": {
+      "file": "shaman_13-icon-v1-6a08b09b939a.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_13-icon-v1.png",
+      "sourceSha256": "f912ecd35b31d0bec8bfde8509d8dca425415b3acf1caea2523f9621df2f98f8",
+      "sha256": "6a08b09b939ae30a463cf1e8afc34150ed51aa54e50e234944c4bff65251f829",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ร่างพิทักษ์ — แปลงร่างสัตว์ตัวเดิม ไม่เพิ่มจำนวนสัตว์และไม่ฟื้น HP เต็ม. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ร่างพิทักษ์ — แปลงร่างสัตว์ตัวเดิม ไม่เพิ่มจำนวนสัตว์และไม่ฟื้น HP เต็ม\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-a821acb1-b132-47f1-8b2b-430666a2249e.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_14": {
+      "file": "shaman_14-icon-v1-b30f711db8cb.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_14-icon-v1.png",
+      "sourceSha256": "eaaff19823e9454b09b2d9a28b387c1f320c83fbd82e492b49b6f8163c8fc7ea",
+      "sha256": "b30f711db8cbacf1d0ed72c39d2e8b7e31175913dd68a43e0ac96135f843d27b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: บ่มเพาะผู้พิทักษ์ — เพิ่ม Max HP สัตว์ ไม่ฟื้น HP ที่หายไปเมื่อสลับสกิล. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: บ่มเพาะผู้พิทักษ์ — เพิ่ม Max HP สัตว์ ไม่ฟื้น HP ที่หายไปเมื่อสลับสกิล\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-17b8176c-3ff8-4b54-9b82-849ffc382d60.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_15": {
+      "file": "shaman_15-icon-v1-897af6f55e74.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_15-icon-v1.png",
+      "sourceSha256": "cef33fac2dc3250dc7a72359571bef8929958ab9d098248f218ae5b0f630bc73",
+      "sha256": "897af6f55e74aa44a4114227348c0d691be4134b7ff0ad3fb168f92fea11ca30",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: คู่สัญญา — ผู้ฝึกศาสตร์รับฮีลจริง แบ่งให้สัตว์บางส่วน ผลแบ่งไม่แบ่งต่อและไม่สร้าง Trigger. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: คู่สัญญา — ผู้ฝึกศาสตร์รับฮีลจริง แบ่งให้สัตว์บางส่วน ผลแบ่งไม่แบ่งต่อและไม่สร้าง Trigger\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-e0ddd018-c0b3-41c0-ada9-54be52405cfb.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_16": {
+      "file": "shaman_16-icon-v1-543e6ba7033c.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_16-icon-v1.png",
+      "sourceSha256": "dd43220425618134ae5da83fbaf8a434bfe697d6212e8fe71317c57b8d98a92d",
+      "sha256": "543e6ba7033cb2d1be04d770cf8e6625a2a85c8ddf1f95c1d827f1adafb71d5c",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เขตปราบอาคม — เขตปราบพื้นที่สี่วินาที มีผล Slow เฉพาะศัตรูที่ไม่ภูมิคุ้มกัน. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เขตปราบอาคม — เขตปราบพื้นที่สี่วินาที มีผล Slow เฉพาะศัตรูที่ไม่ภูมิคุ้มกัน\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-060aa8e6-5893-4acb-9fae-85917afa3cd0.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_17": {
+      "file": "shaman_17-icon-v1-ba86763ffc1c.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_17-icon-v1.png",
+      "sourceSha256": "ce7d8b525442e573e1b5245a5cb5123fc8b875c4b9b04078e4898a3ed07f4319",
+      "sha256": "ba86763ffc1c88df6dd03daecb344583cf5c0e509e3207cb5e24376b044fde03",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ตัดสายอาคม — ลบบัฟศัตรูที่อนุญาตหนึ่งชนิด บอสตรวจ whitelist. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ตัดสายอาคม — ลบบัฟศัตรูที่อนุญาตหนึ่งชนิด บอสตรวจ whitelist\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-65b36477-b8fc-4c40-954d-32596ac67ef4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_18": {
+      "file": "shaman_18-icon-v1-3e23f00c753f.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_18-icon-v1.png",
+      "sourceSha256": "35085d215cb4ba0618a91342471dcb06a6512af9272bc78baca3d3bb259b5218",
+      "sha256": "3e23f00c753f253fb003463819fb93d5cc84b54c3e89373570667371e2932340",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ผนึกอัญเชิญ — ห้ามเรียกสิ่งอัญเชิญช่วงสั้น เฉพาะเป้าที่ระบบรองรับ บอสไม่ถูกปิดการเกิดลูกสมุนตามสคริปต์. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ผนึกอัญเชิญ — ห้ามเรียกสิ่งอัญเชิญช่วงสั้น เฉพาะเป้าที่ระบบรองรับ บอสไม่ถูกปิดการเกิดลูกสมุนตามสคริปต์\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-74e0ac06-4488-4bf6-9df1-7aceb36f5be2.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_19": {
+      "file": "shaman_19-icon-v1-d169bdaf8ca2.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_19-icon-v1.png",
+      "sourceSha256": "c43cf7a3f72283e8fa10e879c27d125bc0b61e52389a3541b01800b35150a918",
+      "sha256": "d169bdaf8ca200be1e445e2111e5534bea67fca05659c0d03dc517bfc9f9a10f",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: มหายันต์ — มหายันต์เวทพื้นที่ โบนัสต่อสิ่งอัญเชิญศัตรู ไม่โบนัสต่อผู้เล่นทุกคน. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: มหายันต์ — มหายันต์เวทพื้นที่ โบนัสต่อสิ่งอัญเชิญศัตรู ไม่โบนัสต่อผู้เล่นทุกคน\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-e377027f-e8a3-4d92-aeb6-12ac78d5207d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_20": {
+      "file": "shaman_20-icon-v1-6bec7d31728e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_20-icon-v1.png",
+      "sourceSha256": "7f1309b8f6ebd46c328eee415667032d8c6e8b857705c704b009a3c10fb61d5a",
+      "sha256": "6bec7d31728e57be055e93cd9449d28918b052835710b62028756b4c835c1274",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: อ่านอาคม — เพิ่มดาเมจต่อสิ่งอัญเชิญและศัตรูประเภทที่ระบุในข้อมูลเท่านั้น. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: อ่านอาคม — เพิ่มดาเมจต่อสิ่งอัญเชิญและศัตรูประเภทที่ระบุในข้อมูลเท่านั้น\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-471e4835-eac0-4e04-8ddf-c5d0361d5b76.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "shaman_21": {
+      "file": "shaman_21-icon-v1-8db821b93688.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/shaman_21-icon-v1.png",
+      "sourceSha256": "9d0dec9cd3b5042cf0e025fffc3fc94c881117fce2bd507b28a05cd8be3a18ad",
+      "sha256": "8db821b936887b5bc30958bf54f5a967f6ec1f9cee5741e4d687da14e0a721de",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: อาคมสิ้นฤทธิ์ — ลบบัฟจริงสำเร็จ ลดคูลดาวน์มหายันต์หนึ่งครั้ง ไม่มีผลเมื่อเป้าไม่มีบัฟ. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: อาคมสิ้นฤทธิ์ — ลบบัฟจริงสำเร็จ ลดคูลดาวน์มหายันต์หนึ่งครั้ง ไม่มีผลเมื่อเป้าไม่มีบัฟ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-6c4ba4f5-ee4a-4421-b68c-7f60de23ac02.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_05": {
+      "file": "rogue_05-icon-v1-c06deb2844fe.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_05-icon-v1.png",
+      "sourceSha256": "5b5d05f8696feb5693f7f4add1c8ad47af4d68db4a43c5165082b6a51a9490c8",
+      "sha256": "c06deb2844fe9b87796d1ea048620b9452e971462b92fff27c285286288ea22d",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ก้าวลอบเงา — เข้าประชิดเป้าหมาย เก็บจุดเริ่มที่เดินได้ไว้สามวินาที. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ก้าวลอบเงา — เข้าประชิดเป้าหมาย เก็บจุดเริ่มที่เดินได้ไว้สามวินาที\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-aca7407c-9953-4321-b809-c2df59c19cb3.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_06": {
+      "file": "rogue_06-icon-v1-2f4ec3150c99.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_06-icon-v1.png",
+      "sourceSha256": "da07d17140aeb3ea31e07580e212f1df89bdb0b0bafc3144bf14a101a24cf8f0",
+      "sha256": "2f4ec3150c99d478e4ee4fb07757b89c4cb84bd6ef7b09618662a324dadc6066",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ซ่อนเงา — ซ่อนตัว จบเมื่อทำดาเมจหรือถูกเปิดเผย ไม่ทำให้ออกจาก combat ไม่รีเซ็ตบอส. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ซ่อนเงา — ซ่อนตัว จบเมื่อทำดาเมจหรือถูกเปิดเผย ไม่ทำให้ออกจาก combat ไม่รีเซ็ตบอส\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-982e4eeb-06d8-450f-b345-084ce76b5baf.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_08": {
+      "file": "rogue_08-icon-v1-bc74912e2b31.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_08-icon-v1.png",
+      "sourceSha256": "1944801c38638c379aa174f15b4007b50fd2262088386111f1bd671f2a5008a7",
+      "sha256": "bc74912e2b31cc40e3ebbfade839b098f3ac22babf124c078a59701569b96fb2",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: สัญชาตญาณหนีภัย — HP ผ่านเส้น 35% ได้ความเร็วหนี ต้องฟื้นเกิน 60% จึงพร้อมใหม่. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: สัญชาตญาณหนีภัย — HP ผ่านเส้น 35% ได้ความเร็วหนี ต้องฟื้นเกิน 60% จึงพร้อมใหม่\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-92b85973-f1de-4139-a5cf-75c7010623b4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_09": {
+      "file": "rogue_09-icon-v1-e20776da07ed.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_09-icon-v1.png",
+      "sourceSha256": "45e5680a9a282b7f3db5bb507d75299ec13ceda4e5d68c5e446e2e81135c5af0",
+      "sha256": "e20776da07ed2f9ae9c8c821afc449ce5e61eb03c145cc3a6a5e3d6583b857d9",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จับจุดอ่อน — เพิ่ม HIT เฉพาะโจมตีจากด้านหลัง ยังมีเพดานโอกาสโดน. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: จับจุดอ่อน — เพิ่ม HIT เฉพาะโจมตีจากด้านหลัง ยังมีเพดานโอกาสโดน\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-02a19147-de43-46ea-81fe-95d8828eb863.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_10": {
+      "file": "rogue_10-icon-v1-39349e2bf853.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_10-icon-v1.png",
+      "sourceSha256": "cb5ab60132dcb446a33de2c9a9eb71fab01bf59c07ba564f9e14645a28edfdac",
+      "sha256": "39349e2bf853bb5e6198b9d27c2d04bf84ab54a208be1404aeed3d7226cec4cf",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จู่โจมฉับพลัน — ท่าประชิดหนัก ด้านหลังได้โบนัสเพิ่ม. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: จู่โจมฉับพลัน — ท่าประชิดหนัก ด้านหลังได้โบนัสเพิ่ม\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-72fbafd2-a414-42df-adbe-efab3145ff5d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_11": {
+      "file": "rogue_11-icon-v1-33598ffbc82f.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_11-icon-v1.png",
+      "sourceSha256": "125f05976c14c4cc1f7a604638154cde5d70c2fed63fe6d05a2e3a6817ca0548",
+      "sha256": "33598ffbc82f9c4beb26f869b183affe7a5ae40013b8ea96941bbcccb45683b6",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ค้นจุดตาย — ต้องเริ่มจากด้านหลัง เปิดช่องให้ท่าหลักถัดไปหนึ่งครั้ง ไม่บวกกับหมายหัวแบบทบคูณ. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ค้นจุดตาย — ต้องเริ่มจากด้านหลัง เปิดช่องให้ท่าหลักถัดไปหนึ่งครั้ง ไม่บวกกับหมายหัวแบบทบคูณ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-4c9b9637-08ed-4ad6-a440-6facdb677ef4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_12": {
+      "file": "rogue_12-icon-v1-d0817eb0aa8f.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_12-icon-v1.png",
+      "sourceSha256": "36b0ec32c041b9c6c950ad039fcf001222466d2ce71d30a8e8bc0b0c3d32fa5e",
+      "sha256": "d0817eb0aa8f2f98e4190c0c9494a08eba132d26af7b88a6220665d6535f8b3b",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ปิดฉาก — โบนัสเมื่อ HP ก่อนโจมตีต่ำกว่า 30% ไม่มีโบนัสต่อเป้าหมายอมตะ. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ปิดฉาก — โบนัสเมื่อ HP ก่อนโจมตีต่ำกว่า 30% ไม่มีโบนัสต่อเป้าหมายอมตะ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-4b3b4ead-fbac-4c96-a094-2529345221e4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_13": {
+      "file": "rogue_13-icon-v1-18eeb2b4a188.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_13-icon-v1.png",
+      "sourceSha256": "db65f4caeabbb2a986305e8731e6d1433af41d72d1b6ad458388cc566a6a3431",
+      "sha256": "18eeb2b4a188942e5622c4be2486d435111509b467695fd446e6a50712943c82",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: สลับเงา — กลับจุดเริ่มก้าวลอบเงาที่ยังปลอดภัยในสามวินาที ได้ DEF ชั่วคราว ไม่ทะลุกำแพง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: สลับเงา — กลับจุดเริ่มก้าวลอบเงาที่ยังปลอดภัยในสามวินาที ได้ DEF ชั่วคราว ไม่ทะลุกำแพง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-42816229-686d-43a9-8f47-c3b4cbf7308d.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_14": {
+      "file": "rogue_14-icon-v1-37a8f794d553.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_14-icon-v1.png",
+      "sourceSha256": "b6a3acf0b6c70dae2009968c01a8b5107547e161557153e533ccd5549ba004f3",
+      "sha256": "37a8f794d553c4e4d35d70b5f55102ff54e53ca302e638cef235c469260e6b4c",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: สังหารเงียบ — เพิ่มดาเมจหลักด้านหลัง ไม่เพิ่มผล DOT. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: สังหารเงียบ — เพิ่มดาเมจหลักด้านหลัง ไม่เพิ่มผล DOT\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-43d92009-7b6e-407c-83af-3136d20cb163.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_15": {
+      "file": "rogue_15-icon-v1-07b234db74ce.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_15-icon-v1.png",
+      "sourceSha256": "717f5bc1530d7c08e6680daaf0cac68b5b3b217912de0315d908ac58a7b4038a",
+      "sha256": "07b234db74ceece30ddbf9944c7c1a8d8efaf40d667c01091ea78fd77e6395fe",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เงาสังหาร — โจมตีหลักด้านหลังสำเร็จ เสริมปิดฉากภายในสี่วินาทีหนึ่งครั้ง. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: เงาสังหาร — โจมตีหลักด้านหลังสำเร็จ เสริมปิดฉากภายในสี่วินาทีหนึ่งครั้ง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-53b1059f-46c1-44d4-a0c4-60d44fae392e.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_16": {
+      "file": "rogue_16-icon-v1-d86ba4c82d3f.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_16-icon-v1.png",
+      "sourceSha256": "2283ce65a964d2ce51a41d7dba17b06de15d75b63f9743700f9b40e34487a8ac",
+      "sha256": "d86ba4c82d3fde8fca8fedd3f3bd89b20410adce4541cdfe47efc85f6fdf8c76",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: มีดพิษ — มีดหนึ่งเป้าและพิษของสกิลเอง พิษจากเคลือบชื่อเดียวกันใช้ค่าที่แรงกว่า. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: มีดพิษ — มีดหนึ่งเป้าและพิษของสกิลเอง พิษจากเคลือบชื่อเดียวกันใช้ค่าที่แรงกว่า\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-108ecbee-a9df-45e6-8b55-060ab9bcacf3.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_17": {
+      "file": "rogue_17-icon-v1-f0e265361849.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_17-icon-v1.png",
+      "sourceSha256": "14170174e6152d90a9fed949bcdbf15eeeffd3721c0d76904894123de71bbe1e",
+      "sha256": "f0e2653618498db2224798cf47abe4f35f33cc9c0a50c2edca447faa905b4e25",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: หลบในเงา — เพิ่ม FLEE ชั่วคราว ผ่านเพดานโอกาสหลบเดิม. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: หลบในเงา — เพิ่ม FLEE ชั่วคราว ผ่านเพดานโอกาสหลบเดิม\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-7c6bbf6c-c430-4cdd-b097-b27cf51e5e21.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_18": {
+      "file": "rogue_18-icon-v1-85d25f80d0d6.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_18-icon-v1.png",
+      "sourceSha256": "57b65ca7c23982e8d37d27c6b72ba59e19a580ae18b61ed9ba93ea779d72238e",
+      "sha256": "85d25f80d0d6a8c02de33e2e8a1ab13adb503c46af479853c5391ac06e23d484",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ระเบิดพิษ — โบนัสเมื่อเป้าติดพิษของผู้ใช้ ไม่ระเบิดหรือต่ออายุพิษฟรี. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ระเบิดพิษ — โบนัสเมื่อเป้าติดพิษของผู้ใช้ ไม่ระเบิดหรือต่ออายุพิษฟรี\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-9492ae27-2554-4e22-adcc-d7294b3101a4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_19": {
+      "file": "rogue_19-icon-v1-8fcee0bb6c33.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_19-icon-v1.png",
+      "sourceSha256": "323c28f9b36d4e13549347a363764962215c4a59be439bdb3ac864bc8f5e2dab",
+      "sha256": "8fcee0bb6c33c96c75805a93ec81082502cee8540f44e17581a167c0445910bb",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เงาลวง — ตัวลวงไม่โจมตี NPC เปลี่ยนเป้าได้ตามกติกา ผู้เล่นเลือกเอง บอสไม่ถูกบังคับเปลี่ยนเป้า. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เงาลวง — ตัวลวงไม่โจมตี NPC เปลี่ยนเป้าได้ตามกติกา ผู้เล่นเลือกเอง บอสไม่ถูกบังคับเปลี่ยนเป้า\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-a639bbb6-f903-4f93-a8b9-4f4755dea24b.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_20": {
+      "file": "rogue_20-icon-v1-defc921ce754.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_20-icon-v1.png",
+      "sourceSha256": "2faaa572d139ee8f8083d2ea0239359cd6511e0e4c8c05d1f5dd355ba1340c66",
+      "sha256": "defc921ce754b71394369122a80217470f40ca1e9dfb1123c7d207c440142082",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: พิษสะสม — เพิ่มพิษหลัก ชุดชื่อเดียวกันไม่ซ้อนจำนวนไม่จำกัด. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: พิษสะสม — เพิ่มพิษหลัก ชุดชื่อเดียวกันไม่ซ้อนจำนวนไม่จำกัด\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-beb9db29-daa3-4030-8e0e-9fc8bb0736d4.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "rogue_21": {
+      "file": "rogue_21-icon-v1-740e7e10c4e2.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/rogue_21-icon-v1.png",
+      "sourceSha256": "34a23f7f249963673c11cac89fbaa024417b06dc19864aa5a0515e7c224bf54d",
+      "sha256": "740e7e10c4e20257f9603ce01b327a5db9d86357131c2e37d6a361c0b88fd843",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: พิษลึก — พิษหลักลดฮีลที่เป้าได้รับ ใช้ค่าที่แรงที่สุด ไม่คูณซ้อนหลายคน. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: พิษลึก — พิษหลักลดฮีลที่เป้าได้รับ ใช้ค่าที่แรงที่สุด ไม่คูณซ้อนหลายคน\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-2d2ffb9a-9b2d-4e15-a88a-990952a46966.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_05": {
+      "file": "boxer_05-icon-v1-a8ec9b418134.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_05-icon-v1.png",
+      "sourceSha256": "a87341bcc49a3e857eb85a7387a9e7a8e433a1d79aa080fc88d48df1e5464dc6",
+      "sha256": "a8ec9b4181346a708cb7fab98d58bf4d70ff2f6227a6c7da50492571515ce207",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เข้าวงใน — เคลื่อนเข้าระยะโดยไม่มีดาเมจ รักษาหน้าต่างคอมโบเพิ่มตามวินาทีที่ระบุ ไม่เพิ่มจังหวะ. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เข้าวงใน — เคลื่อนเข้าระยะโดยไม่มีดาเมจ รักษาหน้าต่างคอมโบเพิ่มตามวินาทีที่ระบุ ไม่เพิ่มจังหวะ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-e2664f2c-5b40-4e21-a29f-e1a59d32c676.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_06": {
+      "file": "boxer_06-icon-v1-e777e6e3163e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_06-icon-v1.png",
+      "sourceSha256": "b497f400c2612f7e8edb807cf96f3b64594414bee4e45c99083cbd6647ce85d9",
+      "sha256": "e777e6e3163e53efe383091b3398f6e54269f7c315613fb8622779d46d8c205e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ยกการ์ด — ยืนรับด้านหน้า 0.6 วิ ลดดาเมจหนึ่งครั้ง ไม่อมตะและไม่รับจากด้านหลัง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ยกการ์ด — ยืนรับด้านหน้า 0.6 วิ ลดดาเมจหนึ่งครั้ง ไม่อมตะและไม่รับจากด้านหลัง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-c3ebbcd6-2f7a-4840-8744-505b70c0bdd0.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_07": {
+      "file": "boxer_07-icon-v1-30ebf121037b.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_07-icon-v1.png",
+      "sourceSha256": "75608f5c2ed62c6bb1b27bd9910f9c308cf70546bb33eca0e9341464ce2bab1b",
+      "sha256": "30ebf121037b836d23f723d492d19dbef5d4dc3c70a3b16a7fc2ad454f6a2a9f",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จังหวะนักมวย — เพิ่มดาเมจท่าปิดชุดมวย ไม่ลดคูลดาวน์แบบจังหวะดาบ. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: จังหวะนักมวย — เพิ่มดาเมจท่าปิดชุดมวย ไม่ลดคูลดาวน์แบบจังหวะดาบ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-07358e53-8728-47d7-85eb-47277eb8ad5f.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_08": {
+      "file": "boxer_08-icon-v1-4173ba20bd38.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_08-icon-v1.png",
+      "sourceSha256": "3d72bfd7e2e1f81b298539d84e43d370e517378bcb6c29946ff7fadf939f94b1",
+      "sha256": "4173ba20bd38066ab52954d79505a8630b81c59ccb3f57e75411f4ad32f21985",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ฐานมวย — ลดระยะถูกผลัก ไม่ต้าน Stun หรือ Root. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: ฐานมวย — ลดระยะถูกผลัก ไม่ต้าน Stun หรือ Root\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-ab992baf-c5c0-48c9-aa6d-cfc6ea0dff23.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_09": {
+      "file": "boxer_09-icon-v1-73bb34f138df.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_09-icon-v1.png",
+      "sourceSha256": "3f4ab4343ee1712c9fa3c249545d3d2ed4ca7d36dba41211ba0fd0bf1fb448e6",
+      "sha256": "73bb34f138dff4fee87ef91d893d51c268de18d0c9f066959f74e09ce548deb0",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จังหวะหายใจ — ปิดคอมโบสำเร็จ ลด MP ของสกิลมวยหลักถัดไปหนึ่งครั้ง. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: จังหวะหายใจ — ปิดคอมโบสำเร็จ ลด MP ของสกิลมวยหลักถัดไปหนึ่งครั้ง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-72b2abd4-e41d-4878-942a-390698bbccfc.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_12": {
+      "file": "boxer_12-icon-v1-43b433c8b96c.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_12-icon-v1.png",
+      "sourceSha256": "13537f494a2283e6cb81587a8a2ad2c7b88c5f86ffb5a80a0efc83f07dd10337",
+      "sha256": "43b433c8b96ceca427ad5432685ca645a5e6bd900594ad72d1447796036d9b2d",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: เตะกวาด — เตะวงใกล้ตัว ไม่ใช่เวทพื้นที่ระยะไกล. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: เตะกวาด — เตะวงใกล้ตัว ไม่ใช่เวทพื้นที่ระยะไกล\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-233afb02-f0d3-45e6-ba07-d0d28e1ad031.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_13": {
+      "file": "boxer_13-icon-v1-a78bbe62b3a9.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_13-icon-v1.png",
+      "sourceSha256": "5ba7882e5eea33a7ab288da2097d105088bd7b3de636f733331671edf0ba0b98",
+      "sha256": "a78bbe62b3a93d32e1d177fe495984f4f825f28e4b788ad33927f43f66f2bf43",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: หมัดแปดทิศ — หมัดชุดเป้าเดียว สี่ฮิตนับ Trigger ครั้งเดียว ใช้สามจังหวะเพื่อเสริมท่าตาม Passive. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: หมัดแปดทิศ — หมัดชุดเป้าเดียว สี่ฮิตนับ Trigger ครั้งเดียว ใช้สามจังหวะเพื่อเสริมท่าตาม Passive\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-a0d78429-118e-4e5c-a5c3-7e8eee2ac0a6.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_14": {
+      "file": "boxer_14-icon-v1-9ce989eb6322.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_14-icon-v1.png",
+      "sourceSha256": "1553f5d2ac20c660cf880ee71679ec03c60e11f681161152f08d162cd0061e8e",
+      "sha256": "9ce989eb6322747811bc858091564c95a7870590df6451893fb3c167c2ad58eb",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: แรงส่ง — โจมตีหลักเป้าเดียวต่อเนื่องสามครั้ง เสริมท่าปิดชุดหนึ่งครั้ง เปลี่ยนเป้าแล้วรีเซ็ต. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: แรงส่ง — โจมตีหลักเป้าเดียวต่อเนื่องสามครั้ง เสริมท่าปิดชุดหนึ่งครั้ง เปลี่ยนเป้าแล้วรีเซ็ต\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-89b2ea01-871f-4248-80cf-60990de36f92.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_15": {
+      "file": "boxer_15-icon-v1-dec26adc4077.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_15-icon-v1.png",
+      "sourceSha256": "d8eb2802405003071a7b32bd337a5ace64943f6197443a6ed68846d113b201a0",
+      "sha256": "dec26adc4077c9e0b2ef300d6460c80e542aa61b872f1ea81846693d4b30709e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: หมัดสุดท้าย — เสริมท่าปิดชุดที่ใช้สามจังหวะจริง ไม่โบนัสทุกฮิตซ้ำ. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: หมัดสุดท้าย — เสริมท่าปิดชุดที่ใช้สามจังหวะจริง ไม่โบนัสทุกฮิตซ้ำ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-eba3fab2-8398-4365-a513-e37673605770.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_16": {
+      "file": "boxer_16-icon-v1-cf88df83ebb6.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_16-icon-v1.png",
+      "sourceSha256": "31db130a8a08dafc1c00b30cf6804910a2fb7ac8987062c98c3dbafc8b9cd26f",
+      "sha256": "cf88df83ebb6948ae0474a8755933f79b8b89a343adf359ad45730dc3ef03264",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ฝ่ามือลมปราณ — โจมตีแล้วลดดาเมจศัตรูครั้งถัดไปที่รับหนึ่งครั้ง. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ฝ่ามือลมปราณ — โจมตีแล้วลดดาเมจศัตรูครั้งถัดไปที่รับหนึ่งครั้ง\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-7299d191-c1c8-421c-ba8d-34b71333939b.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_17": {
+      "file": "boxer_17-icon-v1-c99af4528dc0.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_17-icon-v1.png",
+      "sourceSha256": "bd7a792691bdd81139dd3eab370866dffc5c8e4642f83c5b97fa178cce18d843",
+      "sha256": "c99af4528dc0ad019dd855c224fd69e22d05c539829fd5cf9e350e612aca323d",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ตั้งจิตรับ — ตั้งรับสามวินาที รับการโจมตีจริงแล้วเปิดหน้าต่างสวนสามวินาที. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ตั้งจิตรับ — ตั้งรับสามวินาที รับการโจมตีจริงแล้วเปิดหน้าต่างสวนสามวินาที\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-3eb822c8-670e-4d48-ba52-bcf9b0440c17.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_18": {
+      "file": "boxer_18-icon-v1-0d2acd8e65bf.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_18-icon-v1.png",
+      "sourceSha256": "6cde3b44261735ecce4ed2e0e55b9dfce9927918f158d264380914f5552d7235",
+      "sha256": "0d2acd8e65bf55bf6d6c10f904eddc107534aaaea27d117181bceb7e32ce6698",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: สวนลมปราณ — ใช้ได้หลังตั้งจิตรับรับการโจมตีจริงเท่านั้น ไม่เปิดหน้าต่างจาก self damage. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: สวนลมปราณ — ใช้ได้หลังตั้งจิตรับรับการโจมตีจริงเท่านั้น ไม่เปิดหน้าต่างจาก self damage\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-e5399656-b041-420c-a7fa-09fce7925cdc.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_19": {
+      "file": "boxer_19-icon-v1-db54e62e92aa.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_19-icon-v1.png",
+      "sourceSha256": "73deb63c7a5ebff47c7d6baab17fb4355871a125abb75d96f58f93acf0bdf180",
+      "sha256": "db54e62e92aad80c5638545a37bef6591e60b2c3809f827da57a4cc7e2f4516e",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: ถ่ายแรง — ใช้แรงที่รับระหว่างตั้งจิตรับเสริมสวนหนึ่งครั้ง เพดาน 15% Max HP ไม่สะสมข้ามการต่อสู้. This is a clear skill action emblem. Convey this gameplay meaning visually, never as text: ถ่ายแรง — ใช้แรงที่รับระหว่างตั้งจิตรับเสริมสวนหนึ่งครั้ง เพดาน 15% Max HP ไม่สะสมข้ามการต่อสู้\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-9fcd3496-692d-435f-9081-13a2af4f8ebe.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_20": {
+      "file": "boxer_20-icon-v1-6a854653fdc8.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_20-icon-v1.png",
+      "sourceSha256": "fbc8877f855834f370164e38d1ed18023b1b6c200595ebac71ad573e0d80c5c8",
+      "sha256": "6a854653fdc84173930df578251d392cfe691e4b6ba3ba0063380729eddd379a",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: อ่านแรง — เพิ่มหน้าต่างยกการ์ดเป็นวินาที ไม่เพิ่มความแรงท่าตั้งรับ. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: อ่านแรง — เพิ่มหน้าต่างยกการ์ดเป็นวินาที ไม่เพิ่มความแรงท่าตั้งรับ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-c35b2478-51e8-49b2-9d0b-639d6dbccf25.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    },
+    "boxer_21": {
+      "file": "boxer_21-icon-v1-17aaa7735e1e.webp",
+      "width": 128,
+      "height": 128,
+      "source": "meadow-3d/art/mastery-icons/boxer_21-icon-v1.png",
+      "sourceSha256": "688d76d39869ec3439fd1f34dc73719f992b88fe1cefad2f0cf455ce27b72a54",
+      "sha256": "17aaa7735e1e0d9c3141918bd789f9642e698c4b4f37016fe9235cecfe9b6b62",
+      "prompt": "Create ONE production RPG skill icon for The Beginning Online. Match the reference hand-painted fantasy oil/gouache brushwork, deep forest-jade textured background and restrained thin antique-gold rounded-square rim, same margins. Single dominant silhouette readable at44px. No letters, numerals, words, interface, watermark, grid or multiple icons. Replace the fireball entirely unless a fireball is explicitly the subject. Subject: จิตมวย — สวนสำเร็จเสริมฝ่ามือลมปราณหลักถัดไปหนึ่งครั้ง ไม่มีโล่จากการยืนตีเฉยๆ. This is a passive skill emblem; symbolic and calm, not a casting scene. Convey this gameplay meaning visually, never as text: จิตมวย — สวนสำเร็จเสริมฝ่ามือลมปราณหลักถัดไปหนึ่งครั้ง ไม่มีโล่จากการยืนตีเฉยๆ\nDepict this as a non-graphic fantasy emblem with no blood, wounds, anatomical injury or realistic suffering.",
+      "reference": "meadow-3d/art/mastery-icons/mage_01-icon-v1.png",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "externalPaidProvider": false,
+        "generatedFile": "exec-4131b1f2-8eca-4be2-af99-729dcd478e72.png"
+      },
+      "status": "Normalized and runtime-bound; native-scale game review pending"
+    }
+  }
+}

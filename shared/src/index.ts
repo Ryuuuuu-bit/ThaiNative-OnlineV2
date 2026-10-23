@@ -12,6 +12,7 @@ export * from './game/protocol.js';
 export * from './game/prediction.js';
 
 export * from './jobs.js';
+export * from './mastery.js';
 
 export * from './audio-settings.js';
 
@@ -37,3 +38,5 @@ export {isFrostEnemy} from './game/frost-combat.js';
 export {isYokaiEnemy} from './game/yokai-combat.js';
 
 export * from './game/progression.js';
+
+export {resolveAutomaticSkill,automaticCause} from './game/mastery-automatic.js';

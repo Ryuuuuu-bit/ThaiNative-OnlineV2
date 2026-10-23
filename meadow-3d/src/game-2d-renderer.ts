@@ -19,6 +19,8 @@ import {HERO_METRES,HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
 import type {CombatFeel} from './combat-feel';
 import type {SwordVfxPixi} from './sword-vfx-pixi';
 import {SkillVfx2D} from './skill-vfx-2d';
+import {MasteryVfx2D} from './mastery-vfx-2d';
+import {masteryMotion,summonPose} from './mastery-visuals';
 import {SHIELD_BASH_ART} from './shield-bash-art';
 import {sceneryOpacity,placeWorldLabel,type Rect} from './world-labels';
 
@@ -30,11 +32,12 @@ export class GameCanvas2D{
  private city?:Awaited<ReturnType<typeof loadCity2DScene>>;
  private fields=new Map<MapId,Awaited<ReturnType<typeof loadField2D>>>();private monsterManifest:any;
  private huntingManifest:any;private expansionManifest:any;private monsterImages=new Set<string>();
+ private companionImages=new Set<string>();
  private backdrops=new Map<MapId,Awaited<ReturnType<typeof loadMapBackdrop>>>();
  combatFeel?:CombatFeel;private shakeOffset={x:0,y:0};private monsterFrames=new Map<number,{motion:string;time:number}>();
  private heroStates=new Map<string,{motion:string;clock:number;skill?:SkillMotion;elapsed:number;swing?:number}>();
  private effects:any[]=[];private hits:{id:number;left:number;top:number;right:number;bottom:number}[]=[];
- private swordVfx?:SwordVfxPixi;private swordAttempted=false;readonly skillVfx=new SkillVfx2D();
+ private swordVfx?:SwordVfxPixi;private swordAttempted=false;readonly skillVfx=new SkillVfx2D();readonly masteryVfx=new MasteryVfx2D();
  private width=1;private height=1;private dpr=1;
  /** Static ground (backdrop, roads, map plane) rendered once with a margin, then blitted; redrawn on zoom, resize or after the camera moves past the margin. */
  private groundCache:{canvas:HTMLCanvasElement;ctx:CanvasRenderingContext2D;key:string;ox:number;oy:number}|null=null;
@@ -52,6 +55,8 @@ export class GameCanvas2D{
  async init(map:MapId){
   this.monsterManifest=await this.assets.json('/assets/monsters-painted/manifest.json');
   await Promise.all([SHIELD_BASH_ART.url,...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...Object.keys(MOTION_V2).map(m=>`/assets/hero-painted/hero-${m}-v2.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
+  this.companionImages=new Set(Object.values<any>(this.monsterManifest.species.wolf.motions).map(clip=>'/assets/monsters-painted/'+clip.file));
+  await Promise.all([...this.companionImages].map(path=>this.assets.image(path)));
   const shield=this.assets.get(SHIELD_BASH_ART.url)!;
   this.skillVfx.setShieldArt(shield,SHIELD_BASH_ART.rect);
   await this.prepareMap(map);
@@ -75,9 +80,9 @@ export class GameCanvas2D{
   }
   // Commit only after the destination is ready. Keep shared atlases, release
   // every previous-map monster (including meadow/forest, not just hunting art).
-  for(const path of this.monsterImages)if(!neededMonsters.has(path))this.assets.release(path);
+  for(const path of this.monsterImages)if(!neededMonsters.has(path)&&!this.companionImages.has(path))this.assets.release(path);
   this.monsterImages=neededMonsters;
-  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.heroStates.clear();this.monsterFrames.clear();
+  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.masteryVfx.clear();this.heroStates.clear();this.monsterFrames.clear();
   // Each baked region plane is about 25–35 MB; retain only the current region
   // and two recent regions while travelling across the expanded world.
   for(const cache of [this.fields,this.backdrops])while(cache.size>3){const old=[...cache.keys()].find(key=>key!==id);if(old===undefined)break;cache.delete(old);}
@@ -86,9 +91,10 @@ export class GameCanvas2D{
  ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height/2-this.shakeOffset.y)/this.scale+this.focus.y);}
  pickEnemy(x:number,y:number){return [...this.hits].reverse().find(p=>x>=p.left&&x<=p.right&&y>=p.top&&y<=p.bottom)?.id??null;}
  event(e:any){
-  if(e.type==='skill'&&isSkillMotion(e.skillId)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
+  if(e.type==='skill'&&!e.autoSpell&&isSkillMotion(e.skillId)&&!masteryMotion(e.learnedSkill)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
   // A basic swing plays the attack motion from its own event, in step with the slash VFX.
   if(e.type==='slash'&&e.playerId){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.swing=0;this.heroStates.set(e.playerId,s);}
+  if(this.masteryVfx.event(e))return;
   if(this.skillVfx.event(e))return;
   if(this.swordVfx?.event(e))return;
   if(e.type==='yokai_decoy_break'){this.effects=this.effects.filter(v=>v.type!=='yokai_decoy'||v.playerId!==e.playerId);return;}
@@ -125,7 +131,7 @@ export class GameCanvas2D{
  }
  private ghostCanvas?:HTMLCanvasElement;private paperShadowsDrawn=0;
  private hero(p:any,dt:number,time:number,own:boolean){
-  const state=this.heroStates.get(p.id)??{motion:'idle',clock:0,elapsed:0};this.heroStates.set(p.id,state);const motion=motionFor(p);state.clock=motion===state.motion?state.clock+dt:0;state.motion=motion;state.elapsed+=dt;
+  const state=this.heroStates.get(p.id)??{motion:'idle',clock:0,elapsed:0};this.heroStates.set(p.id,state);const baseMotion=motionFor(p),motion=(baseMotion==='attack'&&masteryMotion(p.attackKind))||baseMotion;state.clock=motion===state.motion?state.clock+dt:0;state.motion=motion;state.elapsed+=dt;
   if(state.skill&&(state.elapsed>SKILL_DURATION[state.skill]||p.dead||p.hurt>0))state.skill=undefined;
   if(state.swing!==undefined){state.swing+=dt;if(state.swing>=MOTION_DURATION.attack||p.dead||p.hurt>0)state.swing=undefined;}
   const swinging=state.swing!==undefined&&(motion==='idle'||motion==='walk'||motion==='run'),shown=swinging?'attack':motion;
@@ -133,10 +139,20 @@ export class GameCanvas2D{
   const v2=state.skill?SKILL_V2[state.skill]:undefined,px=state.skill?(v2??{w:384,h:256,feet:240}):pose;
   if(state.skill){key=`/assets/hero-skills/hero-skill-${state.skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(state.skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[state.skill],rows:v2?8:4};}
   const scale=state.skill?1:pose.scale,image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*scale,h=px.h*HERO_PIXEL_METRES*this.scale*scale,foot=px.feet/px.h;
-  for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w/2,gq.y-h*foot,w,h,p.ghostTint,g.alpha);}
+  for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w/2,gq.y-h*foot,w,h,g.tint??p.ghostTint,g.alpha);}
   this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w/2,qs.y-h*foot,w,h);this.drawCalls++;
   if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-(HERO_METRES+.7)*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-(HERO_METRES+.3)*this.scale);}
   for(const [i,status]of (p.statuses??[]).entries()){if(i>4)break;this.circle(p.x,p.z,.55+i*.08,'transparent',status.id==='guard'?'#b9d9ed88':'#d6d28c66');}
+ }
+ private companion(pet:any,owner:any,time:number){
+  if(pet.dead||pet.hp<=0)return;
+  const def=this.monsterManifest.species.wolf,pose=summonPose(pet,this.masteryVfx.time,this.masteryVfx.petAttacks.get(pet.id));
+  const cell=huntingCell({motion:pose.motion,motionTime:pose.time,motionDuration:pose.duration,fx:pet.fx,fz:pet.fz},pose.windup,def.motions.attack.columns),info=def.motions[cell.motion],image=this.assets.get('/assets/monsters-painted/'+info.file);if(!image)return;
+  const q=this.screen(pet.x,pet.z),w=def.quadWorldSize[0]*this.scale*.65,h=def.quadWorldSize[1]*this.scale*.65,c=this.ctx;
+  this.atmosphere.actorShadow(c,q,this.scale,.48);this.circle(pet.x,pet.z,.5,'#93dece15','#b6decd');
+  c.save();c.globalAlpha=.9;c.drawImage(image,cell.column*image.width/info.columns,cell.row*image.height/info.rows,image.width/info.columns,image.height/info.rows,q.x-w*def.anchor[0],q.y-h*(1-def.anchor[1]),w,h);c.restore();this.drawCalls++;
+  c.fillStyle='#172a25';c.fillRect(q.x-15,q.y-h*.85,30,3);c.fillStyle='#9bcdb7';c.fillRect(q.x-15,q.y-h*.85,30*Math.max(0,Math.min(1,pet.hp/pet.maxHp)),3);
+  if(!this.overview)this.text('ผู้พิทักษ์',q.x,q.y-h*.85-6,'#bce3d2',9);
  }
  private monster(e:any,selected:boolean){
   if(e.dataId==='endgame_focus'){
@@ -205,11 +221,13 @@ export class GameCanvas2D{
    if(e.type==='yokai_decoy'){const owner=[game.p,...others].find(p=>p.id===e.playerId);if(owner){const pose=heroPresentation('idle',owner.fx,owner.fz,0),image=this.assets.get(pose.key);if(image)add(e.x,e.z,()=>{const q=this.screen(e.x,e.z),w=pose.w*HERO_PIXEL_METRES*s*pose.scale,h=pose.h*HERO_PIXEL_METRES*s*pose.scale;this.ghostSprite(image,pose.cell,q.x-w/2,q.y-h*pose.feet/pose.h,w,h,'#b5cbea',.7);this.paperShadowsDrawn++;});}}
   }
   for(const drop of game.drops){const q=this.screen(drop.x,drop.z);add(drop.x,drop.z,()=>{c.fillStyle='#e6ce79';c.beginPath();c.moveTo(q.x,q.y-11);c.lineTo(q.x+5,q.y-5);c.lineTo(q.x,q.y+1);c.lineTo(q.x-5,q.y-5);c.closePath();c.fill();});}
-  for(const p of [game.p,...others]){const pose=this.skillVfx.heroPose(p.id,p.x,p.z),drawn=pose?{...p,x:pose.x,z:pose.z,lift:pose.lift,ghosts:pose.ghosts,ghostTint:pose.tint}:p;if(visible(this.screen(drawn.x,drawn.z),100))add(drawn.x,drawn.z,()=>this.hero(drawn,this.combatFeel?.frozen(p.id,now)?0:dt,time,p===game.p));}
+  for(const p of [game.p,...others])if(p.summon&&visible(this.screen(p.summon.x,p.summon.z),100))add(p.summon.x,p.summon.z,()=>this.companion(p.summon,p,time));
+  for(const p of [game.p,...others]){const pose=this.skillVfx.heroPose(p.id,p.x,p.z);let drawn=pose?{...p,x:pose.x,z:pose.z,lift:pose.lift,ghosts:pose.ghosts,ghostTint:pose.tint}:p;if(p.decoy&&!p.decoy.dead)drawn={...drawn,ghosts:[...(drawn.ghosts??[]),{x:p.decoy.x,z:p.decoy.z,lift:0,alpha:.5,tint:'#b3a0d2'}]};if(visible(this.screen(drawn.x,drawn.z),100))add(drawn.x,drawn.z,()=>this.hero(drawn,this.combatFeel?.frozen(p.id,now)?0:dt,time,p===game.p));}
   const liveIds=new Set<number>();
   for(const e of game.enemies){liveIds.add(e.id);const last=this.monsterFrames.get(e.id),frozen=this.combatFeel?.frozen('monster:'+e.id,now)&&last?.motion===e.motion,motionTime=frozen?last!.time:e.motionTime;this.monsterFrames.set(e.id,{motion:e.motion,time:motionTime});if(visible(this.screen(e.x,e.z),160)){const n=this.combatFeel?.nudge(e.id,now)??{x:0,z:0};add(e.x,e.z,()=>this.monster({...e,x:e.x+n.x,z:e.z+n.z,motionTime,hurt:Math.max(e.hurt,this.combatFeel?.flash(e.id,now)??0)},e.id===game.target));}}
   for(const id of this.monsterFrames.keys())if(!liveIds.has(id))this.monsterFrames.delete(id);
-  const vfxFrame={ctx:c,width:this.width,height:this.height,dpr:this.dpr,scale:s,screen:(x:number,z:number,h?:number)=>this.screen(x,z,h),locate:(id:string)=>[game.p,...others].find(p=>p.id===id),highQuality:this.highQuality};
+  const vfxFrame={ctx:c,width:this.width,height:this.height,dpr:this.dpr,scale:s,screen:(x:number,z:number,h?:number)=>this.screen(x,z,h),locate:(id:string)=>[game.p,...others].find(p=>p.id===id),highQuality:this.highQuality,reducedMotion:this.atmosphere.reducedMotion,enemy:(id:number)=>game.enemies.find((e:any)=>e.id===id)};
+  this.masteryVfx.advance(dt);this.masteryVfx.pre(vfxFrame,[game.p,...others],game.smokeFields??[],game.time);
   this.skillVfx.pre(vfxFrame,dt);
   draws.sort((a,b)=>a.depth-b.depth).forEach(d=>d.draw());
   this.atmosphere.light(c,this.width,this.height,this.map);
@@ -236,9 +254,9 @@ export class GameCanvas2D{
    if(e.type==='skill'||e.type==='skillImpact'){const id=BORROWED_MOTION[e.skillId as SkillMotion]??e.skillId,index=['slash','whirlwind','dash_strike','earth_break','provoke','endure'].indexOf(id),image=this.assets.get('/assets/skills-painted/skills-vfx-v1.png');if(index>=0&&image){const q=this.screen(e.x??game.p.x,e.z??game.p.z,.6),w=s*(3+ratio);c.save();c.globalAlpha=(1-ratio)*.85;c.drawImage(image,index%3*image.width/3,Math.floor(index/3)*image.height/2,image.width/3,image.height/2,q.x-w/2,q.y-w/2,w,w);c.restore();}}
   }
   this.effects=this.effects.filter(e=>e.age<e.life);
-  this.skillVfx.post(vfxFrame);
+  this.skillVfx.post(vfxFrame);this.masteryVfx.post(vfxFrame,[game.p,...others],game.enemies,game.time);
   for(const p of game.projectiles){const q=this.screen(p.x,p.z,.6);c.fillStyle=p.attack==='bolt'?'#f4dfa5':'#add6d5';c.shadowColor=c.fillStyle;c.shadowBlur=8;c.beginPath();c.arc(q.x,q.y,Math.max(3,s*.13),0,Math.PI*2);c.fill();c.shadowBlur=0;}
   this.swordVfx?.render(dt,(x,z,h)=>this.screen(x,z,h),s);
  }
- snapshot(){return{renderer:'Canvas2D',map:this.map,citizens:0,npcs:this.map==='city_plaza'?TOWN_NPCS.length:0,drawCalls:this.drawCalls,paperShadows:this.paperShadowsDrawn,yokaiStance:this.effects.find(e=>e.type==='yokai_stance')?.text??null,atmosphere:this.atmosphere.snapshot(),assets:this.assets.snapshot(),swordVfx:this.swordVfx?.snapshot()??{engine:'canvas'},skillVfx:this.skillVfx.snapshot()};}
+ snapshot(){return{renderer:'Canvas2D',map:this.map,citizens:0,npcs:this.map==='city_plaza'?TOWN_NPCS.length:0,drawCalls:this.drawCalls,paperShadows:this.paperShadowsDrawn,yokaiStance:this.effects.find(e=>e.type==='yokai_stance')?.text??null,atmosphere:this.atmosphere.snapshot(),assets:this.assets.snapshot(),swordVfx:this.swordVfx?.snapshot()??{engine:'canvas'},skillVfx:this.skillVfx.snapshot(),masteryVfx:this.masteryVfx.snapshot()};}
 }

@@ -299,6 +299,7 @@ export function mountSocial(options: { send: Send; you: () => string; enabled: (
 		/** Invite from elsewhere in the UI (e.g. clicking another player). */
 		invite(name: string) { partyUI.invite(name); },
 		openParty:partyUI.open,
+        get allyTarget(){return partyUI.allyTarget;},
 		get typing() { return document.activeElement === input; },
 	};
 }

@@ -1,3 +1,4 @@
+import {masteryTarget} from '@the-beginning-online/shared';
 import {isBiomeMap,BIOME_SCENES} from './biome-scenes';
 import {THORN_NEST} from '@the-beginning-online/shared/maps';
 import { mountWorldMap } from './world-map-ui';
@@ -80,7 +81,7 @@ let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message)
  if(message.t==='ev')message.list=message.list.map(preferOwnArt);
   if(titles?.receive(message)||trade?.receive(message)||social?.receive(message)||quests?.receive(message))return;
  audioUI.receive(message);autoPotionUI.receive(message);inventoryUI.receive(message);autoUI.receive(message);if(message.t==='uiSettings')pendingUI=message;qol?.receive(message);
- if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you){audioUI.receive(e);autoPotionUI.receive(e);}
+ if(message.t==='ev')for(const e of message.list)if(e.playerId===net.you){if(e.type==='stats')game.p.stats=e.derived;audioUI.receive(e);autoPotionUI.receive(e);}
  if(message.t==='snap'){worldState.receive(message,net.you,performance.now());if(message.mapId!==activeMap)void switchMap(message.mapId);}
   if(message.t==='inv'&&message.inventory){game.p.inventory=message.inventory;game.p.gold=message.gold;quests?.refresh();}
  if(message.t==='welcome')window.tnBoot.stage(3);
@@ -194,10 +195,11 @@ function events(){for(const e of game.events.splice(0)){
 function toggleAuto(){if(activeMap==='city_plaza'){notice('เขตปลอดภัย ต่อสู้ในเมืองไม่ได้');return;}if(!started||paused||game.p.dead||!net.connected)return;if(!game.p.auto){qol?.cancel();clearInput();}net.send({t:'auto',on:!game.p.auto});}
 function stopAuto(){if(game.p.auto)net.send({t:'auto',on:false});}
 const nextAction:Partial<Record<Action,number>>={};
-function doAction(name:Action){if(name.startsWith('item:')){if(!started||paused||game.p.dead||!net.connected)return;if(game.p.cd.potion>.05)return;const item=game.p.inventory?.items.find(i=>i.template===name.slice(5)&&i.location==='bag');if(item)net.send({t:'inv',op:'use',req:crypto.randomUUID(),id:item.id});else notice('ไอเทมหมดแล้ว');return;}if(!started||paused||inventoryUI.open||skillsUI.open||statsUI.open||game.p.dead||!net.connected)return;if(activeMap==='city_plaza'&&name!=='potion'){notice('เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้');return;}const id=({attack:'basic',spin:'whirlwind',dash:'dodge'} as Record<string,string>)[name]||name;if(!game.p.skills?.[id]){notice('ยังไม่ได้เรียนสกิลนี้ · เปิด K เพื่อเรียน');return;}const now=performance.now();if(now<(nextAction[name]||0)||game.p.cd[name]>.08)return;nextAction[name]=now+(CD[name]||.12)*1000;
- net.send({t:'act',a:name,...(['attack','meteor'].includes(name)&&game.target?{target:game.target}:{})});worldState.animate(name,now);}
+let groundSkill:Action|undefined;
+function doAction(name:Action){if(name.startsWith('item:')){if(!started||paused||game.p.dead||!net.connected)return;if(game.p.cd.potion>.05)return;const item=game.p.inventory?.items.find(i=>i.template===name.slice(5)&&i.location==='bag');if(item)net.send({t:'inv',op:'use',req:crypto.randomUUID(),id:item.id});else notice('ไอเทมหมดแล้ว');return;}if(!started||paused||inventoryUI.open||skillsUI.open||statsUI.open||game.p.dead||!net.connected)return;if(activeMap==='city_plaza'&&name!=='potion'){notice('เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้');return;}const id=({attack:'basic',spin:'whirlwind',dash:'dodge'} as Record<string,string>)[name]||name;if(!game.p.skills?.[id]){notice('ยังไม่ได้เรียนสกิลนี้ · เปิด K เพื่อเรียน');return;}if(masteryTarget(id)==='ground'&&groundSkill!==name){clearInput();stopAuto();groundSkill=name;notice('เลือกจุดบนพื้น · กดช่องเดิมซ้ำเพื่อใช้ที่เป้า · Esc ยกเลิก');return;}groundSkill=undefined;const now=performance.now();if(now<(nextAction[name]||0)||game.p.cd[name]>.08)return;nextAction[name]=now+(CD[name]||.12)*1000;
+ net.send({t:'act',a:name,...(masteryTarget(id)==='ally'&&social?.allyTarget?{ally:social.allyTarget}:{}),...((['attack','meteor'].includes(name)||['enemy','ground'].includes(masteryTarget(id)))&&game.target?{target:game.target}:{})});worldState.animate(name,now);}
 let heldPointer:{id:number;x:number;y:number;startX:number;startY:number;since:number;ground:boolean;dragged:boolean;nearTarget:number|null}|null=null;
-const joy={x:0,y:0},stick=$('#joystick');let stickId:number|null=null;function clearInput(){heldPointer=null;keys.clear();net.send({t:'steer',dx:0,dz:0});joy.x=joy.y=0;$('#joystick i').style.transform='';}
+const joy={x:0,y:0},stick=$('#joystick');let stickId:number|null=null;function clearInput(){groundSkill=undefined;heldPointer=null;keys.clear();net.send({t:'steer',dx:0,dz:0});joy.x=joy.y=0;$('#joystick i').style.transform='';}
 function joyMove(e:PointerEvent){const b=stick.getBoundingClientRect(),x=e.clientX-b.left-b.width/2,y=e.clientY-b.top-b.height/2,l=Math.hypot(x,y),k=Math.min(1,27/(l||1));joy.x=x*k/27;joy.y=y*k/27;$('#joystick i').style.transform=`translate(${x*k}px,${y*k}px)`;}
 stick.addEventListener('pointerdown',e=>{qol?.cancel();net.send({t:'auto',on:false});stopAuto();stickId=e.pointerId;stick.setPointerCapture(stickId);joyMove(e);});stick.addEventListener('pointermove',e=>{if(e.pointerId===stickId)joyMove(e);});for(const evt of['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(evt,()=>{stickId=null;joy.x=joy.y=0;$('#joystick i').style.transform='';});
 const held=(binding:keyof typeof KEYS)=>KEYS[binding].some(code=>keys.has(code));
@@ -209,6 +211,7 @@ function nextTarget(){
 window.addEventListener('keydown',e=>{
  const dialogs=[...document.querySelectorAll<HTMLDialogElement>('dialog[open]')];
  if(e.code==='Escape'){
+  if(groundSkill){e.preventDefault();groundSkill=undefined;notice('ยกเลิกการเลือกพื้นที่');return;}
   if(e.repeat){e.preventDefault();return;}
   if(dialogs.length){e.preventDefault();dialogs.at(-1)!.close();clearInput();return;}
   if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
@@ -238,9 +241,10 @@ $('#auto-hunt').addEventListener('click',toggleAuto);
 $$('[data-action]').forEach(b=>b.addEventListener('click',()=>doAction(b.dataset.action as Action)));
 function pointerRay(x:number,y:number){point=renderer.ground(x,y);}
 function pointerGround(){if(game.p.mapId===activeMap&&walkable(point.x,point.z,.4,activeMap)){qol?.walkGround({x:Math.round(point.x*100)/100,z:Math.round(point.z*100)/100});marker.x=point.x;marker.z=point.z;markerTime=.65;}}
-renderer.canvas.addEventListener('contextmenu',e=>e.preventDefault());
+renderer.canvas.addEventListener('contextmenu',e=>{e.preventDefault();groundSkill=undefined;});
 renderer.canvas.addEventListener('pointerdown',e=>{
  if(!started||paused||switching||npcDialog.open||inventoryUI.open||skillsUI.open||statsUI.open||game.p.dead||e.button!==0)return;
+ if(groundSkill){pointerRay(e.clientX,e.clientY);const id=groundSkill;groundSkill=undefined;net.send({t:'act',a:id,point:{x:point.x,z:point.z}});marker.x=point.x;marker.z=point.z;markerTime=.65;return;}
  if(qol?.clickNPC((x,z,y)=>renderer.screen(x,z,y),e.clientX,e.clientY))return;
  qol?.cancel();pointerRay(e.clientX,e.clientY);
  const hit=renderer.pickEnemy(e.clientX,e.clientY);

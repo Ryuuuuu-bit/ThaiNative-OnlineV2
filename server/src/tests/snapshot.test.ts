@@ -31,3 +31,19 @@ test('snapshot: a crowd is capped to the nearest players', () => {
 	assert.equal(s.players.length, VIEW_MAX_PLAYERS + 1);
 	assert.ok(JSON.stringify(s).length < 15000);
 });
+
+test('snapshot: peers receive mark target and combo pips without private skill or status magnitudes',()=>{
+ const r=room(2,i=>[i,0]),p=r.game.players.get('p1');
+ p.boxerCombo={steps:3,until:r.game.time+4};
+ p.statuses=[{id:'archer_mark',remaining:4,value:.2,targetId:17},{id:'magic_shield',remaining:5,value:100}];
+ const s=JSON.parse(snapshotFrame(r,{id:'p0',ack:0} as any)).players.find((p:any)=>p.id==='p1');
+ assert.deepEqual(s.boxerCombo,{steps:3});
+ assert.equal(s.statuses[0].targetId,17);assert.equal(s.statuses[0].value,undefined);
+ assert.equal(s.statuses[1].targetId,undefined);assert.equal(s.statuses[1].value,undefined);
+ assert.equal(s.skills,undefined);assert.equal(s.masteries,undefined);
+ p.boxerCombo=undefined;p.statuses=[];
+ const cleared=JSON.parse(snapshotFrame(r,{id:'p0',ack:0} as any)).players.find((p:any)=>p.id==='p1');
+ assert.equal(cleared.boxerCombo,null);assert.deepEqual(cleared.statuses,[]);
+ const own=JSON.parse(snapshotFrame(r,{id:'p1',ack:0} as any)).players.find((p:any)=>p.id==='p1');
+ assert.equal(own.boxerCombo,null,'explicit clear prevents stale local combo pips after consumption');
+});

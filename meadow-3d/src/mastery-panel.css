@@ -1,0 +1,115 @@
+#skills-window [data-view]:focus-visible,
+#skills-window .tree-node:focus-visible {
+ outline:2px solid #e6c98f;
+ outline-offset:2px;
+}
+body dialog#skills-window[open]{width:min(1360px,96vw);height:min(1000px,94dvh);max-height:94dvh}
+/* Keep the constellation usable when Auto Spell and Mix controls exceed the dialog height. */
+@media(min-width:651px){
+ body dialog#skills-window[open]{overflow:auto}
+ body #skills-window #skills-tree{flex:none;min-height:520px;overflow:visible}
+ body #skills-window .sk-main{flex:none;height:440px;min-height:440px}
+}
+body #skills-window,body #skills-window .sk-detail,body #skills-window .sk-tabs{scrollbar-width:thin;scrollbar-color:#70877c #12201e}
+body #skills-window .mastery-map{display:flex;flex-direction:column;overflow:hidden;background:#101a19}
+body #skills-window .sk-tabs button{min-height:50px!important;padding:6px 8px!important;font-size:12px!important}
+body #skills-window .sk-tabs button small{font-size:10px!important}
+body #skills-window .sk-tabs button[aria-pressed=true]{border-color:#e6c98f99!important;background:#e6c98f19!important;color:#e6c98f!important}
+body #skills-window .mastery-overview{grid-template-columns:1fr;grid-template-rows:1fr}
+body #skills-window .mastery-overview>.sk-detail{display:none}
+.mastery-tools{position:relative;z-index:2;display:flex;align-items:center;flex-wrap:wrap;gap:5px;padding:7px;border-bottom:1px solid #ffffff16}
+body #skills-window .mastery-tools button{min-height:32px!important;padding:4px 9px!important;font-size:11px!important}
+.mastery-zoom{min-width:30px;text-align:center;font-size:10px;color:#c9b38b}
+.mastery-search{display:flex;align-items:center;gap:6px;margin-left:auto;font-size:11px;color:#b5c4bc}
+body #skills-window .mastery-search input{width:115px;min-height:32px;padding:4px 6px;border:1px solid #ffffff20;border-radius:6px;background:#0a1413;color:#e6ddc8;font-size:11px}
+.mastery-results{position:absolute;top:100%;right:6px;max-height:230px;width:230px;overflow:auto;padding:6px;background:#152421;border:1px solid #cbb38455;border-radius:7px;box-shadow:0 8px 20px #0008}
+.mastery-results[hidden]{display:none}
+body #skills-window .mastery-results button{display:block;width:100%;text-align:left;min-height:36px!important}
+.mastery-viewport{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:none;cursor:grab;isolation:isolate;background:radial-gradient(ellipse,#8d77461c,transparent 65%),radial-gradient(circle at 24% 37%,#cfbd8d77 1px,transparent 1.5px) 0 0/57px 71px,radial-gradient(circle at 78% 62%,#9eb6b54d 1px,transparent 1.5px) 0 0/91px 89px}
+.mastery-world{position:absolute;left:0;top:0;width:3600px;height:3600px;transform-origin:0 0}
+.mastery-world>svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.mastery-ring{fill:none;stroke:#c4a76e;stroke-width:1.5;opacity:.1}
+.mastery-edge{fill:none;stroke:var(--school);stroke-width:5;opacity:.55;stroke-linecap:round}
+.mastery-focused .mastery-edge.context{opacity:.1;stroke-width:2}
+.mastery-focused .mastery-edge.before{stroke:#e8cc8c;stroke-width:5;opacity:.95}
+.mastery-focused .mastery-edge.next{stroke:#8bc9b5;stroke-width:3;stroke-dasharray:8 8;opacity:.8}
+.mastery-edge-rank rect{fill:#14241f;stroke:#b6a376;stroke-width:1}
+.mastery-edge-rank text{fill:#f0dca9;font:12px sans-serif}
+.overview .mastery-edge-rank{display:none}
+.mastery-route-key{position:absolute;left:8px;top:8px;display:flex;flex-wrap:wrap;gap:8px;padding:5px 8px;border:1px solid #ffffff12;border-radius:6px;background:#101c1bea;color:#b2c9bd;font-size:10px;pointer-events:none}
+.mastery-route-key b{color:#efe2c2}
+.path-before{color:#e8cc8c}
+.path-next{color:#8bc9b5}
+.mastery-focused .mastery-center{opacity:.35}
+.mastery-center{position:absolute;left:1800px;top:1800px;transform:translate(-50%,-50%);display:grid;place-items:center;width:310px;height:310px;border:3px solid #c9ae76;border-radius:50%;box-shadow:0 0 75px #d6be6b22,inset 0 0 55px #bca16c22;color:#d3b986;background:#15211e}
+.mastery-center b{font:120px/1 Georgia,serif}
+.mastery-center span{font-size:40px}
+body #skills-window .mastery-star{position:absolute;transform:translate(-50%,-26px);width:108px;height:110px;min-height:0!important;padding:0!important;border:0!important;background:transparent!important;display:flex;flex-direction:column;align-items:center;gap:5px;color:#b7c6bd;cursor:pointer}
+body #skills-window .mastery-star .job-icon{flex:none;width:52px;height:52px;border:2px solid var(--school);border-radius:50%;box-shadow:0 0 14px #000a}
+body #skills-window .mastery-star.unrelated{opacity:.3}
+body #skills-window .mastery-star.unrelated:hover,body #skills-window .mastery-star.unrelated:focus-visible{opacity:1}
+body #skills-window .mastery-star[hidden],body #skills-window .mastery-school[hidden]{display:none!important}
+body #skills-window .mastery-star.passive .job-icon{border-radius:8px}
+body #skills-window .mastery-star.locked .job-icon{filter:grayscale(1) brightness(.6);border-color:#7f857c}
+body #skills-window .mastery-star.learned .job-icon{border-color:#b6e2cd;box-shadow:0 0 15px #9ee1c355}
+body #skills-window .mastery-star.sel .job-icon,body #skills-window .mastery-star.pending .job-icon{outline:3px solid #e7cb8f;outline-offset:5px;box-shadow:0 0 26px #edce7d66}
+.mastery-star-name{font-size:13px;line-height:1.35;max-width:108px;text-align:center;text-shadow:0 1px 4px #000,0 0 4px #000}
+.mastery-focused .mastery-star:not(.unrelated) .mastery-star-name{font-size:calc(13px * var(--node-label-scale,1))!important;max-width:145px}
+.mastery-focused .overview .mastery-star:not(.unrelated) .mastery-star-name{visibility:visible}
+.mastery-focused .mastery-star.unrelated .mastery-star-name,.mastery-focused .mastery-star.unrelated small{visibility:hidden}
+.mastery-star small{font-size:10px;color:#c9b38b}
+body #skills-window .mastery-star:focus-visible{outline:2px solid #f2dfac;outline-offset:5px}
+body #skills-window .mastery-school{position:absolute;transform:translate(-50%,-50%);min-width:170px;min-height:70px!important;border:2px solid var(--school)!important;border-radius:12px;color:var(--school)!important;background:#15211e!important;padding:12px!important;font-size:36px!important;line-height:1.3}
+.mastery-school small{display:block;font-size:21px;color:#b4c6bb}
+.overview .mastery-star-name,.overview .mastery-star small{visibility:hidden}
+body #skills-window .overview .mastery-star{transform:translate(-50%,-40px)}
+body #skills-window .overview .mastery-star .job-icon{width:80px;height:80px;background-image:none!important;background:radial-gradient(circle,#e9ddbd 0 7%,var(--school) 15%,#253a32 50%)!important;border-width:3px;filter:none}
+body #skills-window .overview .mastery-star.locked .job-icon{opacity:.5}
+body #skills-window .overview .mastery-school{font-size:64px!important;min-width:210px;padding:16px!important;transform:translate(-50%,-50%) scale(var(--label-scale,1))}
+.overview .mastery-school small{display:none}
+.mastery-map-hint{position:absolute;bottom:5px;left:8px;font-size:10px;color:#b8c9bd;pointer-events:none}
+.mastery-steps{border-top:1px solid #ffffff18;margin-top:12px;padding-top:8px}
+body #skills-window .mastery-steps h4{margin:4px 0 8px;font-size:11px;color:#bcb496}
+.mastery-next{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+body #skills-window .mastery-next button,body #skills-window .mastery-steps [data-route]{padding:7px 9px!important;min-height:42px!important;font-size:11px!important;text-align:left;white-space:normal}
+.mastery-next small{display:block;margin-top:4px;font-size:10px;color:#9fbeb0}
+body #skills-window .mastery-steps [data-route]{width:100%}
+body #skills-window .sk-learn{margin:4px 0 12px;min-height:42px!important}
+@media(max-width:650px){
+ body dialog#skills-window .mastery-map{height:350px}
+ body dialog#skills-window .mastery-map .mastery-tools{flex:none;gap:4px}
+ body dialog#skills-window .mastery-search{flex-basis:100%;margin:0;justify-content:space-between}
+ body dialog#skills-window .mastery-search input{width:65%}
+}
+@media(max-width:650px){
+ body dialog#skills-window[open]{
+  display:block;
+  box-sizing:border-box;
+  width:calc(100vw - 16px);
+  height:auto;
+  max-height:calc(100dvh - 16px);
+  padding:16px 12px;
+  overflow:auto;
+  overscroll-behavior:contain;
+ }
+ body dialog#skills-window .g-head{display:block;margin:0 32px 12px 0}
+ body dialog#skills-window .g-head h2{font-size:18px;white-space:nowrap}
+ body dialog#skills-window .g-sub{display:block;margin-top:6px;font-size:11px;line-height:1.6}
+ body dialog#skills-window #skills-tree{display:block!important;overflow:visible;margin:10px 0;height:auto;max-height:none;flex:none}
+ body dialog#skills-window .sk-tabs{display:flex;overflow-x:auto;gap:5px;margin-bottom:10px;padding-bottom:5px;scroll-snap-type:x proximity}
+ body dialog#skills-window .sk-tabs button{min-width:92px;flex:none;min-height:52px!important;padding:6px!important;align-items:center;font-size:11px;scroll-snap-align:start}
+ body dialog#skills-window .sk-tabs button small{font-size:9px!important;text-align:center}
+ body dialog#skills-window .sk-main{display:flex;flex-direction:column;gap:10px}
+ body dialog#skills-window .sk-tree-wrap{height:240px;flex:none;width:100%;box-sizing:border-box}
+ body dialog#skills-window .sk-tree-wrap.mastery-map{height:350px}
+ body dialog#skills-window .sk-detail{max-height:none;overflow:visible;padding:12px}
+ body dialog#skills-window .skill-bar-row{padding-top:10px}
+ body dialog#skills-window .g-foot{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin-top:10px}
+ body dialog#skills-window .g-foot>div{display:flex;flex-wrap:wrap;justify-content:stretch}
+ body dialog#skills-window .g-foot button{flex:1;min-height:44px!important;height:auto!important;padding:8px!important;font-size:12px}
+ body dialog#skills-window .g-foot #skills-reset-keys{flex-basis:100%}
+}
+
+#mastery-loadout{padding:12px;color:#d9cba9}#mastery-loadout p,#mastery-loadout small{font-size:12px;color:#b8bba6}#mastery-loadout label{display:grid;gap:4px}#mastery-loadout select{background:#152b2b;color:#ead9b6;border:1px solid #736348;padding:8px;border-radius:5px;max-width:100%;font:inherit}.mastery-mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:10px 0}
+
+.job-slot .slot-mode,.job-slot .slot-mix{position:absolute;top:2px;right:2px;padding:0 3px;border-radius:3px;background:#3d5370;color:#e4f0ff;font:700 9px/13px sans-serif;pointer-events:none}.job-slot .slot-mix{background:#625330;color:#fff0b0}

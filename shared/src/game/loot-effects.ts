@@ -1,6 +1,10 @@
+import {passiveValue,passiveHealAmount,passiveAfterHeal} from './mastery-passives.js';
 import {endgameTick,endgameAccuracy,endgameDamage,endgameEvade,endgameInterrupt,endgameGuard,endgameKill,endgamePotion,endgameHeal,endgameDot,type EndgameLootState} from './endgame-loot.js';
 import type {Skill,Element} from '../schema.js';
 import type { Game, Player, Enemy } from './sim.js';
+import {restoreMasteryHp} from './mastery-training.js';
+import {advancedHealMultiplier,advancedHealLink,masteryOrigin} from './mastery-runtime.js';
+import {mixHealAmount} from './mastery-mix.js';
 
 export interface LootEffectState {
  endgame?:EndgameLootState;
@@ -24,7 +28,7 @@ export const hasLootCard=(p:Player,id:string)=>!!p.inventory?.items.some(i=>i.lo
 const ready=(p:Player,id:string)=>!(state(p).cooldowns[id]>0);
 const spend=(p:Player,id:string,seconds:number)=>{state(p).cooldowns[id]=seconds;};
 const rollValue=(p:Player,id:string,key:string)=>worn(p,id)?.roll?.affixes.find(a=>a.id===key)?.value??0;
-function heal(g:Game,p:Player,amount:number){if(p.dead)return;const actual=Math.min(amount,p.maxHp-p.hp);p.hp+=actual;if(actual>0)g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount:Math.round(actual)});}
+function heal(g:Game,p:Player,amount:number,caster?:Player,skill?:Skill,limit=Infinity){const rawAmount=amount,before=p.hp,primary=!masteryOrigin(g)&&!masteryOrigin(g,caster??p);if(primary&&caster&&skill?.id.startsWith('healer_'))amount=passiveHealAmount(g,caster,p,amount,skill);const boosted=Math.min(limit,amount*advancedHealMultiplier(g,p)),adjusted=caster?mixHealAmount(g,caster,p,boosted,skill):boosted,actual=restoreMasteryHp(p,Math.min(limit,adjusted),g,caster,skill?.id);if(actual>0)g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount:Math.round(actual),...(skill?{skillId:skill.id,hot:skill.id==='healer_03'}:{})});if(primary)passiveAfterHeal(g,caster??p,p,actual,before,skill,rawAmount);return actual;}
 function proc(g:Game,p:Player,text:string){g.events.push({type:'item_proc',playerId:p.id,x:p.x,z:p.z,text});}
 
 /** Called only after the potion inventory transaction commits; duplicate requests never call this. */
@@ -33,7 +37,7 @@ export function applyPotionEffect(g:Game,p:Player,kind:string,amount:number){
  endgamePotion(g,p,kind);
  if(kind==='party_hp'||kind==='party_cleanse'){applyPartyAid(g,p,kind,amount);p.cd.potion=g.data.skills.skills.find(s=>s.id==='potion')!.cooldown;return;}
  if(kind==='hp'){
-  heal(g,p,amount*(1+rollValue(p,'unique_tide_crown','medicine')/100)*(worn(p,'unique_volcano_relic')?.92:1));
+  heal(g,p,amount*(1+passiveValue(g,p,'healer_08','potionBonus')/100)*(1+rollValue(p,'unique_tide_crown','medicine')/100)*(worn(p,'unique_volcano_relic')?.92:1));
   if(hasLootCard(p,'card_king_jelly')&&ready(p,'king_card')){const s=state(p);s.shield=20;s.shieldFor=4;spend(p,'king_card',12);proc(g,p,'การ์ดราชาวุ้น · เกราะ 20');}
   if(worn(p,'unique_tide_crown')&&ready(p,'tide_pool')){
    state(p).pool={x:p.x,z:p.z,remaining:3,tick:0,map:g.mapId};spend(p,'tide_pool',12);proc(g,p,'มงกุฎแอ่งน้ำ · ฟื้นฟู 3 วินาที');
@@ -136,7 +140,7 @@ export function tickPlayerLoot(g:Game,p:Player,dt:number){
  if(!p.dead&&hasLootCard(p,'card_clay_puff')&&g.time-p.lastCombat>=5)healQuiet(p,dt*2);
  if(!p.dead&&hasLootCard(p,'card_frost_06')&&!moved&&!p.moving&&g.time-p.lastCombat>=5)healQuiet(p,dt*p.maxHp*.002);
 }
-function healQuiet(p:Player,amount:number){p.hp=Math.min(p.maxHp,p.hp+amount);}
+function healQuiet(p:Player,amount:number){restoreMasteryHp(p,amount);}
 export function tickEnemyLoot(g:Game,e:Enemy,dt:number,onDamage:(owner:Player,damage:number,element:Element|'poison')=>void){
  if(e.dead){e.itemPoisons=[];return;}
  for(const poison of e.itemPoisons??[]){
@@ -191,12 +195,13 @@ export function lootEvadedWarning(p:Player,g?:Game){
  if(hasLootCard(p,'card_himmapan_06')&&ready(p,'vine_lion_card')){spend(p,'vine_lion_card',8);spend(p,'vine_lion_buff',5);}}
 /** Shared with inventory prevalidation: never heal a stranger or someone in another room. */
 export function partyAidTarget(g:Game,p:Player,kind:string){const candidates=partyInRange(g,p,6).filter(a=>kind==='party_hp'?a.hp<a.maxHp:a.statuses.some(v=>harmful.has(v.id))||!!a.lootEffects?.venom||(a.lootEffects?.bleed?.remaining??0)>0);return candidates.sort((a,b)=>(a.id===p.id?1:0)-(b.id===p.id?1:0)||Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];}
-export function healPartyMember(g:Game,caster:Player,target:Player,amount:number){
- if(!partyInRange(g,caster,6).includes(target))return 0;
+export function healPartyMember(g:Game,caster:Player,target:Player,amount:number,skill?:Skill,limit=Infinity){
+ if(!partyInRange(g,caster,skill?.range??6).includes(target))return 0;
  const ally=target.id!==caster.id,low=target.hp<target.maxHp*.4;
  if(ally&&low&&hasLootCard(caster,'card_himmapan_blossom_deer')&&ready(caster,'deer_card')){amount*=1.08;spend(caster,'deer_card',8);}
- const beforeHeal=target.hp,actual=Math.min(amount,target.maxHp-target.hp);heal(g,target,amount);endgameHeal(g,caster,target,actual,beforeHeal);
- if(actual>0&&ally){if(hasLootCard(caster,'card_himmapan_01')&&ready(caster,'kinnari_card')){state(caster).spRegenFor=3;spend(caster,'kinnari_card',8);}
+ const beforeHeal=target.hp,actual=heal(g,target,amount,skill&&skill.id.startsWith('healer_')?caster:undefined,skill,limit);if(!masteryOrigin(g,caster))endgameHeal(g,caster,target,actual,beforeHeal);
+ advancedHealLink(g,caster,target,actual,skill,(a,n)=>heal(g,a,n));
+ if(actual>0&&ally&&!masteryOrigin(g,caster)){if(hasLootCard(caster,'card_himmapan_01')&&ready(caster,'kinnari_card')){state(caster).spRegenFor=3;spend(caster,'kinnari_card',8);}
   if(worn(caster,'unique_himmapan_relic')&&ready(caster,'naga_pool')){state(caster).partyPool={x:target.x,z:target.z,remaining:3,tick:0,map:g.mapId,amount:Math.max(1,Math.round(caster.maxHp*.01))};spend(caster,'naga_pool',12);g.events.push({type:'item_pool',playerId:caster.id,x:target.x,z:target.z,r:2,duration:3});}
  }return actual;
 }

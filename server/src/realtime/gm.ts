@@ -3,7 +3,7 @@ import {MAP_INFO} from '@the-beginning-online/shared/maps';
 import type { WebSocket } from "ws";
 import { randomUUID } from "node:crypto";
 import {
-	MAP_ENTRY, isField, walkable, spawn, refreshStats, autoAllocateStats, resetStats, isRolledTemplate, rollEquipment,
+	MAP_ENTRY, isField, walkable, spawn, refreshStats, clearMasteryWounds, autoAllocateStats, resetStats, isRolledTemplate, rollEquipment,
 	type Game, type MapId, type Player, type InventoryOp, type SlimeVariant,
 } from "@the-beginning-online/shared";
 import type { Store, Account } from "../store/types.js";
@@ -104,7 +104,7 @@ export function createGm<P extends GmPeer>(ctx: GmContext<P>) {
 			Object.assign(p, autoAllocateStats(p, data));
 		}
 		p.xp = 0;
-		refreshStats(g, p); p.hp = p.maxHp; p.mp = p.maxMp;
+		refreshStats(g, p); clearMasteryWounds(p); p.hp = p.maxHp; p.mp = p.maxMp;
 		g.events.push({ type: "level", playerId: p.id, x: p.x, z: p.z, level: p.level, skillPoints: p.skillPoints, points: p.statPoints, granted: 0 });
 		ctx.flush(peer.room);
 	}
@@ -150,7 +150,7 @@ export function createGm<P extends GmPeer>(ctx: GmContext<P>) {
 			case "heal": {
 				const t = target(peer, args[0]), p = player(t)!;
 				if (p.dead) { p.dead = false; p.reviveRemaining = 0; }
-				p.hp = p.maxHp; p.mp = p.maxMp;
+				clearMasteryWounds(p); p.hp = p.maxHp; p.mp = p.maxMp;
 				return { text: `ฟื้นฟู ${label(t)} แล้ว`, targetUid: t.uid, touched: t };
 			}
 			case "level": { const t = target(peer, args[1]); setLevel(t, player(t)!, args[0]); return { text: `ตั้งเลเวล ${label(t)} เป็น ${args[0]}`, targetUid: t.uid, touched: t }; }

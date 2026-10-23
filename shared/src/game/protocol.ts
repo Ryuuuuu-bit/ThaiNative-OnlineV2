@@ -28,7 +28,7 @@ export const IntentSchema = z.discriminatedUnion("t", [
 	z.object({t:z.literal('statsReset')}).strict(),
 	z.object({t:z.literal('autoAlloc'),on:z.boolean()}).strict(),
 	z.object({t:z.literal('skillUp'),id:z.string().max(40),seq}).strict(),
- z.object({t:z.literal('hotbar'),slots:z.array(z.object({skill:z.string().max(40).nullable(),key:z.string().max(16)}).strict()).length(10)}).strict(),
+ z.object({t:z.literal('hotbar'),slots:z.array(z.object({skill:z.string().max(40).nullable(),key:z.string().max(16),mode:z.literal('autoSpell').optional(),signature:z.string().regex(/^M(0[1-9]|1[0-6])$/).optional()}).strict()).length(10)}).strict(),
  z.object({t:z.literal('jobChange'),job:z.string().max(40)}).strict(),
  z.object({ t: z.literal("hello") }).strict(),
 	z.object({ t: z.literal("spawnReady") }).strict(),
@@ -37,8 +37,10 @@ export const IntentSchema = z.discriminatedUnion("t", [
 	z
 		.object({
 			t: z.literal("act"),
-			a: z.string().regex(/^[a-z_]{1,40}$/),
+			a: z.string().regex(/^[a-z_][a-z0-9_]{0,39}$/),
 			target: z.number().int().positive().optional(),
+			ally: z.uuid().optional(),
+            point:z.object({x:point,z:point}).strict().optional(),
 			seq,
 		})
 		.strict(),

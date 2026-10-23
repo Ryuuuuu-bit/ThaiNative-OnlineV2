@@ -1,4 +1,5 @@
 import type { GameData, Skill } from "./schema.js";
+import { normalizeMastery, isMasteryAction, isMasteryPassive, resolveMasteryAction, masterySkillLock, learnMasterySkill, masteryAutoRank,masteryTriggerSlots,type MasteryState } from "./mastery.js";
 import { BINDABLE_KEY } from "./keybinds.js";
 import jobDefinitions from "../data/jobs.json" with { type: "json" };
 import itemDefinitions from "../data/items.json" with { type: "json" };
@@ -9,8 +10,10 @@ export const isHotbarItem = (slot: string | null) => !!slot?.startsWith("item:")
 export interface HotbarSlot {
 	skill: string | null;
 	key: string;
+ mode?:'autoSpell';
+ signature?:string;
 }
-export interface JobProgress {
+export interface JobProgress extends MasteryState {
 	jobId: string;
 	jobLevel: number;
 	jobExp: number;
@@ -78,6 +81,7 @@ export function newJob(jobId = "swordsman"): JobProgress {
 	const job = jobDefinitions.jobs.find(j => j.id === jobId);
 	if (!job?.available || job.tier !== 1) throw Error("อาชีพนี้ยังไม่เปิด");
 	return {
+		...normalizeMastery({}),
 		jobId,
 		jobLevel: 1,
 		jobExp: 0,
@@ -88,11 +92,13 @@ export function newJob(jobId = "swordsman"): JobProgress {
 }
 export function migrateJob(level: number): JobProgress {
 	const p = newJob();
+	const skills = { ...p.skills, whirlwind: 1, earth_break: 1 };
 	return {
 		...p,
+		...normalizeMastery({skills}),
 		jobId: "swordsman",
 		skillPoints: Math.min(50, 10 + level - 1),
-		skills: { ...p.skills, whirlwind: 1, earth_break: 1 },
+		skills,
 		hotbar: defaultHotbar("swordsman"),
 	};
 }
@@ -128,11 +134,13 @@ export function oldDefaultHotbars() {
 	);
 }
 export function resolveSkill(data: GameData, id: string, level = 1): Skill {
+	if (isMasteryAction(id)||isMasteryPassive(id)) return resolveMasteryAction(data, id, level);
 	const s = data.skills.skills.find((s) => s.id === skillId(id));
 	if (!s) throw Error("ไม่พบสกิล");
 	const index = Math.max(0, Math.min(s.maxLevel - 1, level - 1));
 	return {
 		...s,
+		jobId:data.mastery.skills.some(v=>v.id===s.id&&v.school==='Swordsman')?'common':s.jobId,
 		percent: s.values?.percent?.[index] ?? s.percent,
 		sp: s.values?.sp?.[index] ?? s.sp,
 	};
@@ -159,6 +167,7 @@ export function skillLock(
 	id: string,
 	data: GameData,
 ): string | null {
+	if (isMasteryAction(id)||isMasteryPassive(id)||data.mastery.skills.some(s=>s.id===id&&s.school==='Swordsman')) return masterySkillLock(p, id, data.mastery);
 	const s = data.skills.skills.find((s) => s.id === id);
 	if (!s) return "ไม่พบสกิล";
 	if (!belongsToJob(p.jobId, s.jobId, data)) return "อาชีพไม่ตรง";
@@ -174,12 +183,15 @@ export function learnSkill(
 	id: string,
 	data: GameData,
 ): JobProgress {
+	if (isMasteryAction(id)||isMasteryPassive(id)||data.mastery.skills.some(s=>s.id===id&&s.school==='Swordsman')) return learnMasterySkill(p, id, data.mastery);
 	const reason = skillLock(p, id, data);
 	if (reason) throw Error(reason);
+	const skills = { ...p.skills, [id]: (p.skills[id] || 0) + 1 };
 	return {
 		...p,
+		...normalizeMastery({...p, skills, masteryVersion: 0}, data.mastery),
 		skillPoints: p.skillPoints - 1,
-		skills: { ...p.skills, [id]: (p.skills[id] || 0) + 1 },
+		skills,
 	};
 }
 export function gainJobExp(
@@ -239,6 +251,8 @@ export function validateHotbar(
 ): HotbarSlot[] {
 	if (slots.length !== 10) throw Error("ต้องมี 10 ช่อง");
 	const used = new Set<string>();
+ const triggers=new Set<string>(),signatures=slots.filter(s=>s.signature);
+ if(signatures.length>1)throw Error('เลือก Signature Mix ได้หนึ่งสูตร');
 	for (const [index, slot] of slots.entries()) {
 		if (
 			!BINDABLE_KEY.test(slot.key) ||
@@ -247,9 +261,17 @@ export function validateHotbar(
 		)
 			throw Error("ปุ่มซ้ำหรือสงวนไว้");
 		used.add(slot.key);
+  if(slot.mode!==undefined){
+   if(slot.mode!=='autoSpell'||!slot.skill||triggers.has(slot.skill)||masteryAutoRank(p,slot.skill,data.mastery)<1)throw Error('Auto Spell ไม่ถูกต้องหรือยังไม่ปลดล็อก');
+   triggers.add(slot.skill);if(triggers.size>masteryTriggerSlots(p.masteries))throw Error('ช่อง Trigger ไม่พอ');
+  }
+  if(slot.signature){
+   const mix=data.mastery.mixes.find(m=>m.id===slot.signature);
+   if(!mix||!slot.skill||!(slot.skill in mix.requires)||slot.mode||Object.entries(mix.masteries).some(([school,level])=>(p.masteries[school as keyof typeof p.masteries]??0)<level!)||Object.entries(mix.pathRanks).some(([id,rank])=>(p.skills[id]??0)<rank)||Object.keys(mix.requires).some(id=>!slots.some(s=>s.skill===id&&!s.mode)))throw Error('Mastery แรงค์ หรือส่วนประกอบ Signature Mix ไม่ครบ');
+  }
 		if(slot.skill?.startsWith('item:')){if(!data.items.items.some(t=>t.id===slot.skill!.slice(5)&&t.type==='consumable'&&t.effect))throw Error('ใช้ไอเทมนี้ในแถบไม่ได้');continue;}
         if (slot.skill !== null) {
-			const s = data.skills.skills.find((s) => s.id === slot.skill);
+			const s = data.mastery.skills.some(s=>s.id===slot.skill) ? resolveSkill(data, slot.skill, p.skills[slot.skill] || 1) : data.skills.skills.find((s) => s.id === slot.skill);
 			if (
 				!s ||
 				s.passive ||
@@ -262,7 +284,12 @@ export function validateHotbar(
 	return slots.map((s) => ({ ...s }));
 }
 export interface TimedEffect {
-	id: "root" | "mdef_down" | "stun" | "knockup" | "taunt" | "def_down" | "slow" | "endure" | "speed" | "guard" | "rage";
+ hardOnly?:boolean;
+ automatic?:boolean;
+ skillId?:string;
+ targetId?: number;
+ tick?: number;
+	id: "root" | "freeze" | "mdef_down" | "atk_down" | "stun" | "knockup" | "taunt" | "def_down" | "slow" | "endure" | "speed" | "guard" | "rage" | "magic_shield" | "slow_resist" | "archer_mark" | "poison_coat" | "push_resist" | "finisher_ready" | "spirit_intercept" | "burn";
 	remaining: number;
 	value: number;
 	sourceId: string;
@@ -277,7 +304,7 @@ export function skillEffects(
 		id: TimedEffect["id"],
 		remaining: number,
 		value = 0,
-	): TimedEffect => ({ id, remaining, value, sourceId });
+	): TimedEffect => ({ id, remaining, value, sourceId,...(s.id==='mage_04'?{skillId:s.id}:{}) });
 	if (s.effect === "dash" || s.effect === "knockup")
 		return [
 			effect(
@@ -294,12 +321,23 @@ export function skillEffects(
 				];
 	if (s.effect === "endure")
 		return [effect("endure", s.duration || 8, skillValue(s, "defUp", level))];
+	if (s.effect === "slow") return [effect("slow", s.duration || 0, skillValue(s, "slow", level) / 100)];
 	if (s.effect === "stun")
 		return [effect("stun", (s.duration || 1) * (isPlayer ? (s.pvpDurationMul ?? 1) : 1))];
 	if (s.effect === "guard") return [effect("guard", s.duration || 10, skillValue(s, "guard", level))];
 	if (s.effect === "rage")
 		return [effect("rage", s.duration || 12, skillValue(s, "atkUp", level)), effect("speed", s.duration || 12, 0.1)];
 	return [];
+}
+/** Walking/velocity use the strongest live Slow; timing and fixed landing positions are unchanged. */
+export function slowMovementMultiplier(target:{statuses:TimedEffect[]}):number{
+ return 1-Math.min(1,Math.max(0,...target.statuses.filter(s=>s.id==='slow'&&s.remaining>0).map(s=>s.value)));
+}
+/** A one-use preparation shortens only the next newly applied Slow; existing effects remain unchanged. */
+export function applySlow(target: {statuses: TimedEffect[]}, sourceId: string, remaining: number, value: number) {
+ const preparation=target.statuses.find(s=>s.id==='slow_resist'&&s.remaining>0);
+ if(preparation&&remaining>0){remaining*=1-Math.max(0,Math.min(1,preparation.value));target.statuses=target.statuses.filter(s=>s!==preparation);}
+ target.statuses.push({id:'slow',sourceId,remaining,value});
 }
 export function applyEffects(
 	target: { statuses: TimedEffect[] },
@@ -311,14 +349,14 @@ export function applyEffects(
 			target.statuses.some((s) => s.id === "endure" && s.remaining > 0)
 		)
 			continue;
-		target.statuses = target.statuses.filter((s) => s.id !== effect.id);
-		target.statuses.push({ ...effect });
+		target.statuses = target.statuses.filter((s) => s.id !== effect.id || (effect.id === "speed" && s.sourceId !== effect.sourceId));
+		if(effect.id==='slow')applySlow(target,effect.sourceId,effect.remaining,effect.value);else target.statuses.push({ ...effect });
 	}
 }
 export function tickEffects(target: { statuses: TimedEffect[] }, dt: number) {
 	target.statuses = target.statuses
 		.map((s) => ({ ...s, remaining: s.remaining - dt }))
-		.filter((s) => s.remaining > 0);
+		.filter((s) => s.remaining > 1e-8);
 }
 export function rhythmCooldowns(
 	cd: Record<string, number>,
@@ -334,7 +372,7 @@ export function rhythmCooldowns(
 				)
 			: 0.1 * level;
 	for (const key of Object.keys(cd))
-		if (!["attack", "basic"].includes(key))
+		if (!key.startsWith("passive:") && !["attack", "basic"].includes(key))
 			cd[key] = Math.max(0, cd[key] - reduction);
 }
 
@@ -343,6 +381,7 @@ export function normalizeJob(
 ): JobProgress {
 	if (!p.jobId) return migrateJob(p.level);
 	const out: JobProgress = {
+		...normalizeMastery(p),
 		jobId: p.jobId,
 		jobLevel: p.jobLevel || 1,
 		jobExp: p.jobExp || 0,

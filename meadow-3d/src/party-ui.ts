@@ -22,6 +22,7 @@ function share(state:PartyState|null,you:string){
  return {eligible,count,bonus,each:Math.round((100+bonus)/count),myMap};
 }
 export function mountParty(o:{send:(m:unknown)=>void;you:()=>string;enabled:()=>boolean;onOpen?:()=>void;chat:()=>void;whisper?:(name:string)=>void}){
+ let selectedAlly:string|undefined;
  const ui=document.querySelector('#ui')!;
  const frame=document.createElement('section');frame.id='party-frame';frame.hidden=true;frame.ariaLabel='สมาชิกปาร์ตี้';
  frame.innerHTML='<header><button type="button" class="party-manage" aria-label="เปิดหน้าต่างปาร์ตี้">ปาร์ตี้ <small></small><em></em></button><button type="button" class="party-collapse" aria-label="ย่อรายชื่อปาร์ตี้" aria-expanded="true">⌃</button></header><ul></ul><div class="pf-pips" aria-hidden="true"></div><div class="pf-actions"><button type="button" data-act="chat">แชท</button><button type="button" data-act="manage">จัดการปาร์ตี้</button></div>';
@@ -141,7 +142,7 @@ export function mountParty(o:{send:(m:unknown)=>void;you:()=>string;enabled:()=>
     const av=document.createElement('span');av.className='pf-av';const canvas=document.createElement('canvas');paintPartyAvatar(canvas);const job=document.createElement('b');job.innerHTML=glyph(m.jobId);av.append(canvas,job);
     const info=document.createElement('div');info.className='pf-info';
     info.innerHTML=`<div class="pf-name">${m.id===state?.leader?'<span class="pf-crown" title="หัวหน้าปาร์ตี้">♛</span>':''}<span class="party-name"></span><small class="pf-lv"></small><span class="pf-tag"></span></div><div class="pf-hp"><b class="party-track"><i></i></b><span class="pf-pct"></span></div><b class="pf-mp party-track"><i></i></b>`;
-    info.querySelector('.party-name')!.textContent=m.name;li.append(av,info);list.append(li);
+    info.querySelector('.party-name')!.textContent=m.name;li.append(av,info);{const target=button('เลือกฮีล',()=>{selectedAlly=selectedAlly===m.id?undefined:m.id;frame.querySelectorAll<HTMLButtonElement>('[data-heal-target]').forEach(b=>{const on=b.dataset.healTarget===selectedAlly;b.setAttribute('aria-pressed',String(on));b.textContent=on?'เป้าฮีล ✓':'เลือกฮีล';});});target.dataset.healTarget=m.id;target.ariaLabel='เลือกเป้าฮีล '+m.name;target.setAttribute('aria-pressed',String(selectedAlly===m.id));li.append(target);}list.append(li);
    }
    if(!others.length){const li=document.createElement('li');li.className='pf-empty';const b=button('＋ เชิญเพื่อนร่วมทาง',open);li.append(b);list.append(li);}
    frame.querySelector('.pf-pips')!.replaceChildren(...others.map(()=>document.createElement('i')));
@@ -192,7 +193,7 @@ export function mountParty(o:{send:(m:unknown)=>void;you:()=>string;enabled:()=>
  }
  setInterval(tick,1000);
  draw();
- return {open,invite:(name:string)=>send('invite',{name}),receive(m:any){
+ return {get allyTarget(){return state?.members.some(m=>m.id===selectedAlly&&m.online&&!m.dead)?selectedAlly:undefined;},open,invite:(name:string)=>send('invite',{name}),receive(m:any){
   if(m.t==='partyOnline'){onlinePlayers=m.list;onlineLoaded=true;$('.online-location').textContent=`${mapName(m.mapId)} · CH เดียวกัน · อัปเดตทุก 4 วิ`;drawOnline();return true;}
   if(m.t==='partyState'){const before=JSON.stringify([state?.id,state?.leader,state?.members.map(m=>m.id)]);state=m.party;if(before!==JSON.stringify([state?.id,state?.leader,state?.members.map(m=>m.id)]))feedback.textContent='';if(state)for(const id of cards.keys())closeInvite(id);draw();return true;}
   if(m.t==='partyInvite'){invitation(m);return true;}

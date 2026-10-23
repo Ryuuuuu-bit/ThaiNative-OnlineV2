@@ -66,7 +66,7 @@ test('Scylla refunds at most3 SP for a multi-target action and cannot refund fro
 });
 test('jellyfish alternation arms the next spell, and ray cast reduction expires after one cast',()=>{
  const{g,p,e}=fixture();card(p,'astral_stardust_jellyfish');card(p,'astral_orbital_ray');assert.equal(lootHitDamage(g,p,e,'fire_bolt',100,false,spell('fire')),100);assert.equal(lootHitDamage(g,p,e,'fire_bolt',100,false,spell('water')),100);assert.equal(lootHitDamage(g,p,e,'fire_bolt',100,false,spell('water')),105);
- lootEvadedWarning(p,g);assert.equal(endgameCast(p,2),1.9);assert.equal(endgameCast(p,2),2);
+ lootEvadedWarning(p,g);const shortened=endgameCast(p,2),normal=endgameCast(p,2);assert(Math.abs(shortened/normal-.95)<1e-8);assert.equal(normal,2*p.stats.castMul);
 });
 test('astral Unique tracks actual supplied spell elements and applies its off-element drawback',()=>{
  const{g,p,e}=fixture();unique(p,'astral');assert.equal(lootHitDamage(g,p,e,'fire_bolt',100,false,spell('fire')),100);assert.equal(lootHitDamage(g,p,e,'fire_bolt',100,false,spell('holy')),100);assert.equal(lootHitDamage(g,p,e,'fire_bolt',100,false,spell('water')),108);assert.equal(lootHitDamage(g,p,e,'fire_bolt',100,false,spell('fire')),96);

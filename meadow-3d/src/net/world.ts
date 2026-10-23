@@ -1,5 +1,6 @@
 import {CITY_SPAWN} from '@the-beginning-online/shared/maps';
 import { predictMovement } from "@the-beginning-online/shared/movement";
+import { normalizeMastery } from "@the-beginning-online/shared";
 import {
 	reconcileMovement,
 	type PendingMovement,
@@ -9,6 +10,7 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 export class NetworkWorld {
 	game = {
 		p: {
+			...normalizeMastery({}),
 			jobId:"swordsman",jobLevel:1,jobExp:0,skillPoints:0,skills:{},hotbar:[],statuses:[],castRemaining:0,
             id: "",
 			name: "",
@@ -41,6 +43,7 @@ export class NetworkWorld {
 		enemies: [],
 		drops: [],
 		projectiles: [],
+        smokeFields: [],
 		events: [],
 		target: null,
 		destination: null,
@@ -54,6 +57,7 @@ export class NetworkWorld {
 		| "enemies"
 		| "drops"
 		| "projectiles"
+        | "smokeFields"
 		| "events"
 		| "target"
 		| "destination"
@@ -152,6 +156,7 @@ export class NetworkWorld {
 		this.game.enemies = blend(b.enemies, a.enemies);
 		this.game.drops = blend(b.drops, a.drops);
 		this.game.projectiles = blend(b.projectiles, a.projectiles);
+        this.game.smokeFields=b.smokeFields??[];
 		this.others = blend(
 			b.players.filter((v: any) => v.id !== p.id),
 			a.players,
@@ -165,7 +170,7 @@ export class NetworkWorld {
 		(this.game as any).bossIn = b.bossIn ?? 0;
         (this.game as any).bossTimers=b.bossTimers??{};
 		this.game.won = b.won;
-		if (!p.dead && !p.auto && p.dash <= 0 && p.castRemaining <= 0 && !p.statuses?.some((s:any)=>s.id==='stun'||s.id==='knockup')) {
+		if (!p.dead && !p.auto && p.dash <= 0 && p.castRemaining <= 0 && !p.statuses?.some((s:any)=>s.id==='stun'||s.id==='knockup'||s.id==='root')) {
 			let direction = input;
 			if (Math.hypot(input.x, input.z) < 0.05 && p.destination) {
 				const dx = p.destination.x - this.prediction.x,
@@ -173,7 +178,7 @@ export class NetworkWorld {
 					d = Math.hypot(dx, dz);
 				direction = d > 0.15 ? { x: dx / d, z: dz / d } : { x: 0, z: 0 };
 			}
-			const speed = (p.attack > 0 ? 1.6 : 4.5) * (p.moveSpeed || 1);
+			const speed = (p.attack > 0 ? 1.6 : 4.5) * (p.moveSpeed ?? 1);
 			this.prediction = predictMovement({...this.prediction,mapId:p.mapId}, direction, dt, speed);
 			if (Math.hypot(direction.x, direction.z) > 0.01) {
 				this.pending.push({ seq, input: direction, dt, speed });

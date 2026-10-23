@@ -4,6 +4,11 @@ import {createGame,spawn,setAuto,step,DEFAULT_AUTO,loadGameData} from '../src/in
 import {LAYOUTS} from '../src/game/maps.js';
 const data=loadGameData(),dt=1/60;
 const field=()=>{const g=createGame(8);g.enemies=[];g.p.x=0;g.p.z=4;return g;};
+test('bow AUTO uses ranged basic attacks even with no MP and no enabled skills',()=>{
+ const g=field();g.p.stats.weaponType='bow';g.p.skills={basic:1};g.p.hotbar=[];g.p.mp=0;g.p.autoCfg={...DEFAULT_AUTO,basic:true};
+ const e=spawn(g,0,10);e.hp=e.maxHp=1e6;e.cooldown=e.wander=999;e.wx=e.x;e.wz=e.z;
+ setAuto(g,true);step(g,dt);assert.equal(g.p.moving,false);assert.equal(g.p.x,0);assert.equal(g.p.z,4);assert(g.events.some(v=>v.type==='bowShot'));assert(e.hp<e.maxHp);
+});
 test('AUTO skips unreachable scouting targets outside hunt range and reaches the next one',()=>{
  const g=field();g.p.x=-50;g.p.z=20;
  const bad=spawn(g,-LAYOUTS.meadow.halfX-10,20),good=spawn(g,-30,-5);

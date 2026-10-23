@@ -1,4 +1,5 @@
 import type {Game,Player,Enemy} from './sim.js';
+import {restoreMasteryHp} from './mastery-training.js';
 import type {Skill} from '../schema.js';
 export interface EndgameLootState {
  map:string;walk:number;still:number;lastX:number;lastZ:number;lastPotion:number;wasSlow:boolean;
@@ -19,7 +20,7 @@ const trigger=(p:Player,k:string,t:number)=>{if(active(p,k))return false;charge(
 const spend=(p:Player,k:string)=>{charge(p,k,0);};
 function combo(p:Player,key:string,target:number,count:number){const s=state(p);let c=s.counts[key];if(!c||c.target!==target)c=s.counts[key]={target,hits:0};if(++c.hits<count)return false;c.hits=0;return true;}
 const restore=(p:Player,n:number)=>{if(!p.dead)p.mp=Math.min(p.maxMp,p.mp+n);};
-const heal=(g:Game,p:Player,n:number)=>{if(p.dead)return;const amount=Math.min(n,p.maxHp-p.hp);p.hp+=amount;if(amount>0)g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount:Math.round(amount)});};
+const heal=(g:Game,p:Player,n:number)=>{const amount=restoreMasteryHp(p,n);if(amount>0)g.events.push({type:'heal',playerId:p.id,x:p.x,z:p.z,amount:Math.round(amount)});};
 const shield=(g:Game,p:Player,key:string,percent=.02,duration=3,owner:Player=p)=>{if(owner.id!==p.id&&card(owner,'ocean_mist_isle_siren'))duration*=1.05;const l=loot(p);l.partyShields=[...(l.partyShields??[]).filter(s=>s.source!==key||s.owner!==owner.id),{amount:Math.max(1,Math.round(p.maxHp*percent)),remaining:duration,source:key,owner:owner.id,map:g.mapId}];g.events.push({type:'item_proc',playerId:p.id,x:p.x,z:p.z,text:'เกราะรอยต่อ',duration});};
 const allies=(g:Game,p:Player)=>(g.partyMembers?.(p.id)??[p.id]).map(id=>g.players.get(id)).filter((a):a is Player=>!!a&&!a.dead&&a.mapId===g.mapId&&Math.hypot(a.x-p.x,a.z-p.z)<=6);
 const poisoned=(e:Enemy)=>e.itemPoisons?.some(v=>!v.bleed&&!v.burn&&v.remaining>0);
@@ -165,7 +166,7 @@ export function endgameSkillSpent(g:Game,p:Player,skill:Skill){
   role(g,p,'support');
  }
 }
-export function endgameCast(p:Player,seconds:number){if(seconds>0&&active(p,'ray_cast')&&card(p,'astral_orbital_ray')){spend(p,'ray_cast');return seconds*.95;}return seconds;}
+export function endgameCast(p:Player,seconds:number,maxReduction=.5){let bonus=1;if(seconds>0&&active(p,'ray_cast')&&card(p,'astral_orbital_ray')){spend(p,'ray_cast');bonus=.95;}return seconds*Math.max(1-maxReduction,p.stats.castMul*bonus);}
 export function endgameAttackInterval(p:Player,n:number){return n*(active(p,'crab_speed')&&card(p,'ocean_mast_crab')?1/1.03:1)*(unique(p,'ocean')?1/.97:1);}
 export function endgameStatus(g:Game,p:Player,e:Enemy){
  const types=[...new Set<string>([...e.statuses.filter(v=>v.sourceId===p.id).map(v=>v.id),...(e.itemPoisons??[]).filter(v=>v.owner===p.id&&v.remaining>0).map(v=>v.burn?'burn':v.bleed?'bleed':'poison')])];if(!types.length)return;

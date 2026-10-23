@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { MasteryCatalogSchema,MasteryLevelsSchema } from "./mastery.js";
 export const StatSchema = z.enum(["str", "agi", "vit", "int", "dex", "luk"]);
 export const ElementSchema = z.enum([
 	"neutral",
@@ -142,6 +143,7 @@ export const CharacterSchema = z
 		modifiers: z.array(ModifierSchema).default([]),
 		starterGrant: z.boolean().default(false),
 		skills: z.record(z.string(), z.number().int().min(0).max(10)).default({}),
+        masteries:MasteryLevelsSchema.optional(),
 	})
 	.strict();
 export const StatsSchema = z
@@ -276,7 +278,7 @@ export const SkillSchema = z
 		hitInterval: positive.optional(),
 		/** leap skills: the strike resolves on landing after `delay` seconds, on enemies within `radius` */
 		landing: z.object({ delay: positive, radius: positive }).strict().optional(),
-		effect: z.enum(["dash", "knockup", "taunt", "endure", "heal", "stun", "guard", "rage"]).optional(),
+		effect: z.enum(["dash", "knockup", "taunt", "endure", "heal", "stun", "guard", "rage", "slow"]).optional(),
 		/** Job 1 skill whose motion, VFX and sound this skill borrows until it has its own art. */
 		visual: id.optional(),
 		duration: nonnegative.optional(),
@@ -581,6 +583,7 @@ export const schemas = { economy: EconomySchema, quests: QuestsSchema,
 	races: RacesSchema,
 	classes: ClassesSchema,
 	skills: SkillsSchema,
+	mastery: MasteryCatalogSchema,
 	monsters: MonstersSchema,
 	status: StatusSchema,
 	pvp: PvpSchema,

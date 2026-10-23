@@ -19,6 +19,9 @@ import {
 	changeJob,
 	validateHotbar,
 	skillId,
+	resolveSkill,
+	isMasteryAction,
+	masteryTarget,advancedMasterySnapshot,clearAdvancedMastery,
 	createGame,
 	addPlayer,
 	withPlayer,
@@ -37,6 +40,8 @@ import {
 	autoAllocateStats,
 	resetStats,
 	refreshStats,
+	clearMasteryWounds,
+	removeSummon,removeWisp,clearMasteryPoisons,clearMasteryHeals,
 	type Game,
 	type Player,
 	type Vec,
@@ -116,6 +121,7 @@ const playerKeys = [
 	"attackKind",
 	"combo",
 	"comboWindow",
+	"boxerCombo",
 	"dash",
 	"invulnerable",
 	"hurt",
@@ -129,6 +135,9 @@ const playerKeys = [
 	"jobExp",
 	"skillPoints",
 	"skills",
+	"masteries",
+	"masteryExp",
+	"masteryVersion",
 	"hotbar",
 	"statuses",
 	"castRemaining",
@@ -136,22 +145,22 @@ const playerKeys = [
 /** Fields other players need to render someone (keeps shared-room snapshots small). */
 const publicKeys = ["id","name","titleId","x","z","fx","fz","hp","maxHp","level","jobId","dead","moving","attack","attackKind","combo","dash","invulnerable","hurt","castRemaining","mapId"] as const;
 const num = (v: unknown) => (typeof v === "number" ? round(v) : v);
-function ownEntry(p: Player) {
+function ownEntry(p: Player, g: Game) {
 	return {
-		...Object.fromEntries(playerKeys.map((k) => [k, num(p[k])])),
+		...Object.fromEntries(playerKeys.map((k) => [k, num(p[k])])),masteryFx:advancedMasterySnapshot(g,p),decoy:p.decoy??null,summon:p.summon??null,wisp:p.wisp??null,healingOverTime:p.healingOverTime??null,boxerCombo:p.boxerCombo??null,
 		titleId:p.displayTitleId??null,
 		cd: Object.fromEntries(Object.entries(p.cd).map(([k, v]) => [k, round(v)])),
 		moveSpeed: p.stats.moveSpeed * (p.gmSpeed ?? 1) * (1 + Math.max(0, ...p.statuses.filter((s) => s.id === "speed").map((s) => s.value))) * (1 - Math.max(0, ...p.statuses.filter((s) => s.id === "slow").map((s) => s.value))),
 	};
 }
-function publicEntry(p: Player) {
-	return { ...Object.fromEntries(publicKeys.map((k) => [k, num(p[k])])), titleId:p.displayTitleId??null, statuses: p.statuses.map((s) => ({ id: s.id, remaining: round(s.remaining) })) };
+function publicEntry(p: Player, g: Game) {
+	return { ...Object.fromEntries(publicKeys.map((k) => [k, num(p[k])])),masteryFx:advancedMasterySnapshot(g,p),decoy:p.decoy??null,summon:p.summon??null,wisp:p.wisp??null,healingOverTime:p.healingOverTime??null,boxerCombo:p.boxerCombo?{steps:p.boxerCombo.steps}:null, titleId:p.displayTitleId??null, statuses: p.statuses.map((s) => ({ id: s.id, remaining: round(s.remaining),...(s.id==='archer_mark'?{targetId:s.targetId}:{}) })) };
 }
 /** Everything in a snapshot that is the same for every viewer, serialised once per room per send. */
 export function snapshotParts(room: Room) {
 	const g = room.game;
 	const others = new Map<string, string>();
-	for (const p of g.players.values()) others.set(p.id, JSON.stringify(publicEntry(p)));
+	for (const p of g.players.values()) others.set(p.id, JSON.stringify(publicEntry(p,g)));
 	// Entities are serialised once per room; each viewer then joins only those within ENTITY_RANGE (bosses always).
 	const entity = <T extends { x: number; z: number }>(list: T[], map: (v: T) => unknown, always = (_v: T) => false) => list.map((v) => ({ x: v.x, z: v.z, always: always(v), json: JSON.stringify(map(v)) }));
 	const enemies = entity(g.enemies, (e) => ({ id: e.id, statuses: e.statuses, dataId: e.dataId, x: round(e.x), z: round(e.z), hp: e.hp, maxHp: e.maxHp, boss: e.boss, dead: e.dead, motion: e.motion, motionTime: round(e.motionTime), motionDuration: e.motionDuration, bossPhase: e.bossPhase, variant: e.variant, deathAge: round(e.deathAge), hurt: round(e.hurt), fx: round(e.fx), fz: round(e.fz), vx: round(e.vx), vz: round(e.vz), moving: e.moving, windup: round(e.windup), aimX: round(e.aimX), aimZ: round(e.aimZ), summoned: e.summoned, nestEgg:e.nestEgg }), (e) => e.boss);
@@ -159,7 +168,7 @@ export function snapshotParts(room: Room) {
 	const projectiles = entity(g.projectiles, (p) => ({ ...p, x: round(p.x), z: round(p.z) }));
 	const world = (me?: { x: number; z: number }) => {
 		const pick = (list: typeof enemies) => list.filter((v) => !me || v.always || Math.abs(v.x - me.x) <= ENTITY_RANGE && Math.abs(v.z - me.z) <= ENTITY_RANGE).map((v) => v.json).join(",");
-		return '"enemies":[' + pick(enemies) + '],"drops":[' + pick(drops) + '],"projectiles":[' + pick(projectiles) + "]";
+		return '"enemies":[' + pick(enemies) + '],"drops":[' + pick(drops) + '],"projectiles":[' + pick(projectiles) + '],"smokeFields":' + JSON.stringify(g.smokeFields);
 	};
 	return { others, world };
 }
@@ -169,11 +178,11 @@ export const VIEW_RANGE = 32, VIEW_MAX_PLAYERS = 30, ENTITY_RANGE = 40;
 export function snapshotFrame(room: Room, peer: Peer, parts = snapshotParts(room), always: string[] = []) {
 	const g = room.game, me = g.players.get(peer.id);
 	const head = JSON.stringify({ t: "snap", mapId: g.mapId, bossIn: Math.ceil(bossTimer(g)), bossTimers:Object.fromEntries(g.enemies.filter(e=>e.boss&&!e.summoned).map(e=>[e.dataId,Math.ceil(bossTimer(g,e.dataId))])), weight: me?.inventory ? inventoryWeight(me.inventory, g.data) : 0, weightLimit: me?.stats.weight, tick: room.tick, ack: peer.ack, time: g.time, kills: g.kills, bossSpawned: g.bossSpawned, won: g.won });
-		const players: string[] = me ? [JSON.stringify(ownEntry(me))] : [];
+		const players: string[] = me ? [JSON.stringify(ownEntry(me,g))] : [];
 	let nearby = [...g.players.values()].filter((p) => p.id !== peer.id && (!me || always.includes(p.id) || Math.hypot(p.x - me.x, p.z - me.z) <= VIEW_RANGE));
 	if (me && nearby.length > VIEW_MAX_PLAYERS)
 		nearby = nearby.map((p) => ({ p, d: always.includes(p.id) ? -1 : Math.hypot(p.x - me.x, p.z - me.z) })).sort((a, b) => a.d - b.d).slice(0, VIEW_MAX_PLAYERS).map((x) => x.p);
-	for (const p of nearby) players.push(parts.others.get(p.id) ?? JSON.stringify(publicEntry(p)));
+	for (const p of nearby) players.push(parts.others.get(p.id) ?? JSON.stringify(publicEntry(p,g)));
 	return head.slice(0, -1) + ',"players":[' + players.join(",") + "]," + parts.world(me) + "}";
 }
 export function snapshot(room: Room, peer: Peer) {
@@ -285,7 +294,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
    const {baseStats,...fields}=progress;
    const leveled=p.level<progress.level;
    Object.assign(p,structuredClone(fields));p.profile.baseStats={...baseStats};refreshStats(g,p);
-   if(leveled){p.hp=p.maxHp;p.mp=p.maxMp;}
+   if(leveled){clearMasteryWounds(p);p.hp=p.maxHp;p.mp=p.maxMp;}
    g.events.push(...stagedGame.events);
    g.events.push({type:'questComplete',playerId:p.id,x:p.x,z:p.z,id:q.id,text:q.complete,rewards:q.rewards});
    flush(room);sendQuests(peer,p);
@@ -326,10 +335,11 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
  }
  function transfer(peer: Peer, destination: {mapId:MapId;x:number;z:number}) {
   const source=peer.room,p=source.game.players.get(peer.id)!;
+  removeSummon(source.game,p,'transfer');removeWisp(source.game,p,'transfer');clearMasteryPoisons(source.game,p.id);clearMasteryHeals(source.game,p.id);clearAdvancedMastery(p);
   const target=getRoom(destination.mapId,peer.id);
   source.peers.delete(peer.id);source.game.players.delete(peer.id);source.accounts.delete(peer.id);source.disconnected.delete(peer.id);source.leases?.delete(peer.id);
-  source.game.meteors=source.game.meteors.filter(m=>m.ownerId!==peer.id);
-  Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,autoUnreachable:undefined,attack:0,dash:0,castRemaining:0,statuses:[],moving:false});
+  source.game.meteors=source.game.meteors.filter(m=>m.ownerId!==peer.id);clearMasteryWounds(p);
+  Object.assign(p,destination,{target:null,destination:null,auto:false,autoState:'idle',autoPath:[],autoGoal:null,autoUnreachable:undefined,attack:0,dash:0,castRemaining:0,statuses:[],moving:false,whirlwindHits:[],boxerCombo:undefined});
   if(destination.mapId==='city_plaza'&&destination.x===CITY_SPAWN.x&&destination.z===CITY_SPAWN.z){p.fx=0;p.fz=1;}
   refreshStats(target.game,p);
   trades.leave(peer.id,'ย้ายแมพ การแลกถูกยกเลิก');peer.input={x:0,z:0};peer.room=target;
@@ -351,6 +361,9 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			jobExp: p.jobExp,
 			skillPoints: p.skillPoints,
 			skills: { ...p.skills },
+				masteries: { ...p.masteries },
+				masteryExp: { ...p.masteryExp },
+				masteryVersion: p.masteryVersion,
 			audioSettings: p.audioSettings,
 			autoPotion: p.autoPotion && { hp: { ...p.autoPotion.hp }, mp: { ...p.autoPotion.mp } },
 			hotbar: p.hotbar.map((s) => ({ ...s })),
@@ -564,7 +577,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 			) {
 				try {
 					if (p.dead) throw Error("รอฟื้นตัวก่อน");
-					if(message.t==='hotbar'&&message.slots.some(s=>reservedKeys(resolveKeys(peer.ui?.keys)).includes(s.key)))throw Error('ปุ่มนี้ใช้กับคำสั่งอื่นอยู่');
+					if(message.t==='hotbar'&&g.time-p.lastCombat<5&&JSON.stringify(message.slots.map(s=>s.signature??null))!==JSON.stringify(p.hotbar.map(s=>s.signature??null)))throw Error('เปลี่ยน Mix ได้เมื่อพ้นการต่อสู้ 5 วินาที');
+                    if(message.t==='hotbar'&&message.slots.some(s=>reservedKeys(resolveKeys(peer.ui?.keys)).includes(s.key)))throw Error('ปุ่มนี้ใช้กับคำสั่งอื่นอยู่');
                     let next = normalizeJob(p);
 					if (message.t === "skillUp") next = learnSkill(p, message.id, g.data);
 					if (message.t === "hotbar")
@@ -686,12 +700,13 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				}
 			}
 			if (message.t === "act") {
+ if((message.point!==undefined&&(masteryTarget(message.a)!=='ground'||message.target!==undefined||message.ally!==undefined))||(message.ally!==undefined&&masteryTarget(message.a)!=='ally')||(['self','ally','pet'].includes(masteryTarget(message.a))&&message.target!==undefined))return;
  if(g.mapId==="city_plaza"){action(g,message.a);return;}
 				if (message.target !== undefined) {
 					const target = g.enemies.find(
 						(e) => e.id === message.target && !e.dead,
 					);
-					const spec = g.data.skills.skills.find(
+					const spec = isMasteryAction(message.a)?resolveSkill(g.data,message.a,p.skills[message.a]||1):g.data.skills.skills.find(
 						(s) => s.id === skillId(message.a),
 					);
 					if (!target || !spec) return;
@@ -702,7 +717,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					if (Math.hypot(target.x - p.x, target.z - p.z) > reach) return;
 					g.target = target.id;
 				}
-				action(g, message.a);
+				action(g, message.a, message.ally,message.point);
 			}
 		});
 		flush(room);
@@ -727,6 +742,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
             ws.on('close',()=>{
              const peer=connectedPeer;if(!peer||live.get(peer.id)!==peer)return;
              live.delete(peer.id);peer.room.peers.delete(peer.id);peer.input={x:0,z:0};
+             const player=peer.room.game.players.get(peer.id);if(player){removeSummon(peer.room.game,player,'disconnect');removeWisp(peer.room.game,player,'disconnect');clearMasteryPoisons(peer.room.game,player.id);clearMasteryHeals(peer.room.game,player.id);clearAdvancedMastery(player);}
              peer.room.disconnected.set(peer.id,Date.now());social.offline(peer.id);trades.leave(peer.id);if(!closing)void save(peer.room,peer.id);
             });
 			const task=(async () => {
