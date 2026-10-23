@@ -1,3 +1,5 @@
+import {shadowOutfit} from '../shadow-outfit';
+if(location.pathname==='/play.html')shadowOutfit();
 import {isMobileDevice} from './device';
 
 // Mobile play stays closed until the owner explicitly resumes mobile support.

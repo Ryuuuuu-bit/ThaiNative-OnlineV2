@@ -1,0 +1,5 @@
+.shadow-portraits{display:flex;align-items:center;justify-content:center;min-width:0;background:radial-gradient(ellipse,#2d4139aa,transparent 70%)}
+.shadow-portraits figure{margin:0;flex:1;min-width:0;text-align:center;color:#d8c99f}
+.shadow-portraits img{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 12px #0008)}
+.shadow-play-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.shadow-play-links a{flex:1;text-align:center}

@@ -25,6 +25,9 @@ import{mountSkills}from'./skills-ui';
 import{loadSelected,mountMenuAccount}from'./web/game-session';
 import{assetJSON}from'./asset-request';
 import{GameCanvas2D}from'./game-2d-renderer';
+import{ShadowHero,parseShadowManifest}from'./shadow-hero';
+import{shadowOutfit,setShadowOutfit}from'./shadow-outfit';
+import './shadow-combat.css';
 import {TOWN_NPCS,nearbyTownNpc} from './city-2d-locations';
 import {cityNpcWorldHeight} from './city-npc-sprite';
 import {paintMinimapLayer} from './minimap-view';
@@ -96,6 +99,19 @@ let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message)
 document.querySelector('#player-name')!.textContent=selected.character.name;
 if(game.bossSpawned){document.querySelector('#quest-name')!.textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';document.querySelector('#quest-note')!.textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';}
 const renderer=new GameCanvas2D(textureManifest);renderer.combatFeel=combatFeel;$('#world').appendChild(renderer.canvas);
+const selectedOutfit=shadowOutfit();
+if(selectedOutfit){
+ const hero=new ShadowHero(parseShadowManifest(await assetJSON('/assets/hero-shadow-8dir-v1/manifest.json')));
+ hero.combat=true;hero.outfit=selectedOutfit;
+ const outfitClips=(outfit:'male'|'female')=>Object.entries(hero.manifest.looks).filter(([look])=>look.startsWith(outfit+'-')).flatMap(([,motions])=>Object.values(motions));
+ await Promise.all(outfitClips(hero.outfit).map(c=>renderer.assets.image(c.url)));renderer.shadowHero=hero;
+ const panel=document.createElement('details');panel.id='shadow-combat-controls';
+ panel.innerHTML='<summary>ชุดนักฆ่า · ทดลอง</summary><label>ตัวละคร <select aria-label="ชุดนักฆ่า"><option value="male">ชาย</option><option value="female">หญิง</option></select></label><button data-inventory>เปลี่ยนอาวุธในกระเป๋า</button><p>Shift หลบ · F เปิด/ปิดออโต้<br>จัดสกิลและ Auto Spell ในหน้าสกิล K</p><output role="status">ภาพทดลองดาบ/โล่และธนู · ใช้อุปกรณ์ที่คุณมี</output><button data-original>กลับชุดเดิม</button>';
+ panel.querySelector<HTMLButtonElement>('[data-inventory]')!.onclick=()=>{panel.open=false;inventoryUI.toggle();};
+ panel.querySelector<HTMLButtonElement>('[data-original]')!.onclick=()=>{setShadowOutfit(null);const url=new URL(location.href);url.searchParams.delete('shadow');location.assign(url.href);};
+ const outfit=panel.querySelector('select')!;outfit.value=hero.outfit;outfit.onchange=async()=>{const next=outfit.value as 'male'|'female',previous=hero.outfit;outfit.disabled=true;try{await Promise.all(outfitClips(next).map(c=>renderer.assets.image(c.url)));hero.outfit=next;setShadowOutfit(next);if(next!==previous)for(const c of outfitClips(previous))renderer.assets.release(c.url);}catch{outfit.value=previous;panel.querySelector('output')!.textContent='โหลดชุดไม่สำเร็จ กรุณาลองใหม่';}finally{outfit.disabled=false;}};
+ document.body.append(panel);
+}
 let assetFailure=false,activeMap:MapId=selected.character.mapId||'city_plaza';
 try{await renderer.init(activeMap);sceneReady=true;window.tnBoot.stage(1);net.ready();$('#load-state').textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';}catch(error){assetFailure=true;window.tnBoot.fail('โหลดภาพเมืองไม่สำเร็จ กรุณาลองใหม่','texture');throw error;}
 sound.setMap(activeMap);
@@ -163,6 +179,7 @@ function number(text:string,e:{x:number;z:number},kind='',height=1.8){if(documen
  numbers.push({el,kind,x:e.x,z:e.z,height:Math.min(height,1.5),life,max:life,jx:(Math.random()-.5)*(kind==='reward'||kind==='boss-skill'?0:34),stack,drift:kind==='hurt'?(Math.random()<.5?-1:1)*22:(Math.random()-.5)*12});}
 
 function events(){for(const e of game.events.splice(0)){
+
  lighterVfx=!!e.playerId&&e.playerId!==net.you;combatFeel.event(e,net.you,game.p,performance.now());if(e.playerId===net.you)guide?.event(e);renderer.event(e);
  if(['kingAttack','phase2','summon','stun','kill','victory'].includes(e.type)){encounterLog.push({...e,time:game.time});if(encounterLog.length>128)encounterLog.shift();}
  sound.setListener(game.p);playEventAudio(sound,{...e,guarded:game.p.statuses?.some(s=>s.id==='guard')},net.you,game.enemies.find(e=>e.boss)||ARENA,id=>{const m=game.enemies.find(x=>x.id===id);return monsterSpecies(m?.dataId,m?.boss);});
@@ -339,7 +356,7 @@ function fieldQuest(boss:any){
  else{$('#quest-line').innerHTML=`${name}ปรากฏตัวแล้วที่ลานบอสส่วนลึก`;$('#quest-progress').style.width='0';}
  $('#quest-note').textContent=MAP_INFO[activeMap].hint+' · บอสเกิดทุก 30 นาที';
 }
-function hud(){if(game.p.dead&&$('#overlay').hidden)showDeath();const revive=$<HTMLButtonElement>('#revive');if(revive){revive.disabled=!net.connected||(game.p.reviveRemaining??0)>0;const count=$('#revive-countdown');if(count)count.textContent=`ฟื้นที่${activeMap==='confluence'?'จุดพักในเรด':'หอนาฬิกา'}ใน ${Math.ceil(game.p.reviveRemaining??0)}…`;if(!game.p.dead&&!netOverlay){paused=false;$('#overlay').hidden=true;}}const count=$('#net-countdown');if(count)count.textContent=`ลองเชื่อมต่อใหม่ใน ${Math.max(0,Math.ceil((net.nextRetryAt-Date.now())/1000))} วินาที`;mapInteractions();const p=game.p;inventoryUI.update(p);skillsUI.update(p);autoUI.update();const auto=$('#auto-hunt');auto.classList.toggle('auto-active',p.auto);auto.setAttribute('aria-pressed',String(p.auto));$('#auto-label').textContent=p.auto?'ออโต้ เปิด':'ออโต้';const status=$('#auto-status');status.hidden=!p.auto;status.textContent='ออโต้: '+(p.autoState==='retreat'?'กลับแคมป์':p.autoState==='fight'?'กำลังสู้':p.autoState==='idle'?'รอมอนสเตอร์เกิด':'กำลังหาเป้าหมาย');$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${Math.ceil(p.maxHp)}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${Math.floor(p.maxMp)}`;$('#xp').style.width=`${p.level>=itemData.stats.maxLevel?100:p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`ปราบแล้ว ${game.kills}`;$('#potions').textContent=String(p.potions);
+function hud(){if(game.p.dead&&deathReveal<=0&&$('#overlay').hidden)showDeath();const revive=$<HTMLButtonElement>('#revive');if(revive){revive.disabled=!net.connected||(game.p.reviveRemaining??0)>0;const count=$('#revive-countdown');if(count)count.textContent=`ฟื้นที่${activeMap==='confluence'?'จุดพักในเรด':'หอนาฬิกา'}ใน ${Math.ceil(game.p.reviveRemaining??0)}…`;if(!game.p.dead&&!netOverlay){paused=false;$('#overlay').hidden=true;}}const count=$('#net-countdown');if(count)count.textContent=`ลองเชื่อมต่อใหม่ใน ${Math.max(0,Math.ceil((net.nextRetryAt-Date.now())/1000))} วินาที`;mapInteractions();const p=game.p;inventoryUI.update(p);skillsUI.update(p);autoUI.update();const auto=$('#auto-hunt');auto.classList.toggle('auto-active',p.auto);auto.setAttribute('aria-pressed',String(p.auto));$('#auto-label').textContent=p.auto?'ออโต้ เปิด':'ออโต้';const status=$('#auto-status');status.hidden=!p.auto;status.textContent='ออโต้: '+(p.autoState==='retreat'?'กลับแคมป์':p.autoState==='fight'?'กำลังสู้':p.autoState==='idle'?'รอมอนสเตอร์เกิด':'กำลังหาเป้าหมาย');$('#level').textContent=String(p.level);$('#hp').style.width=`${p.hp/p.maxHp*100}%`;$('#hp-text').textContent=`${Math.ceil(p.hp)} / ${Math.ceil(p.maxHp)}`;$('#mp').style.width=`${p.mp/p.maxMp*100}%`;$('#mp-text').textContent=`${Math.floor(p.mp)} / ${Math.floor(p.maxMp)}`;$('#xp').style.width=`${p.level>=itemData.stats.maxLevel?100:p.xp/p.nextXp*100}%`;$('#gold').textContent=String(p.gold);$('#kills').textContent=`ปราบแล้ว ${game.kills}`;$('#potions').textContent=String(p.potions);
  const boss=game.enemies.find(e=>e.boss&&(!e.dead||e.deathAge<3.8)&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<28);$('#boss-hud').hidden=!boss;document.body.classList.toggle('boss-active',!!boss);if(boss){$('#boss-hp').style.width=`${boss.hp/boss.maxHp*100}%`;$('#boss-hud h3').textContent=enemyLabel(boss);$('#boss-hud small').textContent=boss.dead?'ปราบแล้ว':`ระยะ ${boss.bossPhase}`;}
  sound.updateMusic({mapId:activeMap,dead:game.p.dead,bossAlive:!!boss&&!boss.dead,bossTargeted:!!boss&&game.target===boss.id,bossBarActive:!!boss&&!$('#boss-hud').hidden,bossAggro:!!boss?.engaged});
  if(activeMap==='city_plaza'){$('#quest-name').textContent='นครที่ถูกลืมเลือน';$('#quest-line').textContent='ใต้: ทุ่ง · ออก: ป่า · เหนือ: ซากนคร · ตก: หุบเขา · ใกล้เมือง Lv.1–3';$('#quest-progress').style.width='0';$('#quest-note').textContent=CITY.empty?'พื้นที่เมืองว่าง · ไม่มี NPC หรือสิ่งปลูกสร้าง':'คุยกับทูตสวรรค์ หรือพักฟื้นข้างน้ำพุ';}else if(isField(activeMap)){fieldQuest(boss);}

@@ -1,5 +1,6 @@
 import {bossAnticipation} from './boss-anticipation';
 import {heroPresentation} from './hero-presentation';
+import type {ShadowHero} from './shadow-hero';
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
 import {titleDefinition} from '@the-beginning-online/shared';
 import {CITY,LAYOUTS,FIELD_BOSS,FIELD_PLACES,GATES,MAP_INFO,isField,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
@@ -27,6 +28,7 @@ import {sceneryOpacity,placeWorldLabel,type Rect} from './world-labels';
 const tint:Record<string,string>={ruin_shroom:'hue-rotate(40deg) saturate(.65)',relic_hound:'sepia(.45)',relic_wisp:'hue-rotate(125deg)',ruin_guard:'saturate(.65)',relic_warden:'sepia(.3)',crag_slime:'sepia(.8) saturate(.7)',crag_wolf:'sepia(.75)',dust_wisp:'saturate(.7)',crag_guard:'sepia(.8)',crag_titan:'sepia(.8) saturate(1.2)'};
 
 export class GameCanvas2D{
+ shadowHero?:ShadowHero;
  readonly atmosphere=new Atmosphere2D();
  readonly canvas=document.createElement('canvas');readonly ctx:CanvasRenderingContext2D;readonly assets:CanvasAssets;
  private city?:Awaited<ReturnType<typeof loadCity2DScene>>;
@@ -64,7 +66,7 @@ export class GameCanvas2D{
  async prepareMap(id:MapId){
   const neededMonsters=new Set<string>();
   if(!this.backdrops.has(id))this.backdrops.set(id,await loadMapBackdrop(id,this.assets));
-  if(id==='city_plaza'&&!this.city)this.city=await loadCity2DScene();
+  if(id==='city_plaza'){if(!this.city)this.city=await loadCity2DScene();}
   else{if(!this.fields.has(id))this.fields.set(id,await loadField2D(id,this.assets));
    await this.prepareSwordVfx();
    const ids=[...new Set([...LAYOUTS[id].spawns.map(m=>monsterVisual(m.dataId).id),...(FIELD_BOSS[id]?[FIELD_BOSS[id]!.dataId]:[]),...(id==='forest'?['thorn_nest_mother']:[])])];
@@ -91,6 +93,7 @@ export class GameCanvas2D{
  ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height/2-this.shakeOffset.y)/this.scale+this.focus.y);}
  pickEnemy(x:number,y:number){return [...this.hits].reverse().find(p=>x>=p.left&&x<=p.right&&y>=p.top&&y<=p.bottom)?.id??null;}
  event(e:any){
+  this.shadowHero?.event(e);
   if(e.type==='skill'&&!e.autoSpell&&isSkillMotion(e.skillId)&&!masteryMotion(e.learnedSkill)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
   // A basic swing plays the attack motion from its own event, in step with the slash VFX.
   if(e.type==='slash'&&e.playerId){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.swing=0;this.heroStates.set(e.playerId,s);}
@@ -135,12 +138,13 @@ export class GameCanvas2D{
   if(state.skill&&(state.elapsed>SKILL_DURATION[state.skill]||p.dead||p.hurt>0))state.skill=undefined;
   if(state.swing!==undefined){state.swing+=dt;if(state.swing>=MOTION_DURATION.attack||p.dead||p.hurt>0)state.swing=undefined;}
   const swinging=state.swing!==undefined&&(motion==='idle'||motion==='walk'||motion==='run'),shown=swinging?'attack':motion;
-  const pose=heroPresentation(shown,p.fx,p.fz,swinging?state.swing!:state.clock);let {cell,key}=pose;
-  const v2=state.skill?SKILL_V2[state.skill]:undefined,px=state.skill?(v2??{w:384,h:256,feet:240}):pose;
-  if(state.skill){key=`/assets/hero-skills/hero-skill-${state.skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(state.skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[state.skill],rows:v2?8:4};}
-  const scale=state.skill?1:pose.scale,image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*scale,h=px.h*HERO_PIXEL_METRES*this.scale*scale,foot=px.feet/px.h;
-  for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w/2,gq.y-h*foot,w,h,g.tint??p.ghostTint,g.alpha);}
-  this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w/2,qs.y-h*foot,w,h);this.drawCalls++;
+  const shadow=own?(this.shadowHero?.combat?this.shadowHero.combatPose(p,dt):this.shadowHero?.pose(state.skill?'cast':shown,p.fx,p.fz,state.skill?state.elapsed:swinging?state.swing!:state.clock)):undefined;
+  const pose=shadow??heroPresentation(shown,p.fx,p.fz,swinging?state.swing!:state.clock);let {cell,key}=pose;
+  const skill=shadow?undefined:state.skill,v2=skill?SKILL_V2[skill]:undefined,px=skill?(v2??{w:384,h:256,feet:240}):pose;
+  if(skill){key=`/assets/hero-skills/hero-skill-${skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[skill],rows:v2?8:4};}
+  const scale=skill?1:pose.scale,image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*scale,h=px.h*HERO_PIXEL_METRES*this.scale*scale,foot=px.feet/px.h,anchorX=shadow?.anchorX??.5;
+  for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w*anchorX,gq.y-h*foot,w,h,g.tint??p.ghostTint,g.alpha);}
+  this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w*anchorX,qs.y-h*foot,w,h);this.drawCalls++;
   if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-(HERO_METRES+.7)*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-(HERO_METRES+.3)*this.scale);}
   for(const [i,status]of (p.statuses??[]).entries()){if(i>4)break;this.circle(p.x,p.z,.55+i*.08,'transparent',status.id==='guard'?'#b9d9ed88':'#d6d28c66');}
  }

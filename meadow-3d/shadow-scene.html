@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shadow Assassin · ทดลองในฉากเมือง</title></head>
+<body><main id="world"></main><aside aria-label="ทดลองตัวละคร">
+<h1>นักฆ่าในเงามืด</h1><p>ชุดต้นแบบ 8 ทิศ · ฉากเมืองจริง</p>
+<label>ตัวละครและอุปกรณ์<select id="look"><option value="male-iron">ชาย · ดาบและโล่</option><option value="male-bow">ชาย · ธนู</option><option value="female-iron">หญิง · ดาบและโล่</option><option value="female-bow">หญิง · ธนู</option></select></label>
+<fieldset><legend>ท่าทาง</legend><div id="motions"></div></fieldset>
+<fieldset><legend>หันหน้า 8 ทิศ</legend><div id="directions"></div></fieldset>
+<label>ระยะกล้อง<select id="zoom"><option value="27.5">ขนาดในเกม</option><option value="16" selected>ดูตัวละครใกล้ขึ้น</option><option value="9">ตรวจรายละเอียด</option></select></label>
+<button id="home">กลับจุดเริ่มต้น</button><button id="pause">หยุดภาพ</button>
+<p>คลิกฉากแล้วกด WASD / ลูกศรเพื่อเดิน<br>คลิกพื้นเพื่อเดินไปยังตำแหน่งนั้น</p>
+<output id="status" role="status">กำลังโหลดฉากและ Sprite…</output>
+<p class="note">พรีวิวชุดนักฆ่า · ใช้ฉาก การบังวัตถุ และการชนของเกม<br>ยังไม่เชื่อมการต่อสู้หรือบันทึกตัวละครบนเซิร์ฟเวอร์</p>
+<p><a href="/play.html?shadow=male">เล่นด้วยชุดชาย</a> · <a href="/play.html?shadow=female">เล่นด้วยชุดหญิง</a></p><a href="/">กลับหน้าเว็บ</a>
+</aside><script type="module" src="/src/shadow-scene.ts"></script></body></html>

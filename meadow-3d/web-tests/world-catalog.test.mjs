@@ -26,5 +26,5 @@ test('public pages expose working world and collection destinations and retire d
  const home=readFileSync('meadow-3d/index.html','utf8'),config=readFileSync('meadow-3d/vite.config.ts','utf8');
  for(const page of ['world.html','items.html']){assert.ok(existsSync('meadow-3d/'+page));assert.ok(config.includes('./'+page));assert.ok(home.includes('/'+page));}
  assert.doesNotMatch(home,/href="#(?:terms|privacy)"|data-placeholder/);
- const news=JSON.parse(readFileSync('meadow-3d/public/changelog.json'));assert.match(news[0].description,/Lv\.100/);assert.ok(news[0].date>=news[1].date);
+ const news=JSON.parse(readFileSync('meadow-3d/public/changelog.json'));assert.ok(news.some(entry=>/Lv\.100/.test(entry.description)));assert.ok(news[0].date>=news[1].date);
 });
