@@ -3,7 +3,7 @@ import type {MapId} from '@the-beginning-online/shared/maps';
 /** Entry roads and playable paths share the same surface across the map boundary. */
 export function fieldRoadTexture(id:MapId){
  if(['desert','frost','ocean','astral','abyss','confluence','dragon'].includes(id))return '/assets/env-painted/tile-stone-v1.png';
- if(id==='city_plaza')return '/assets/city-painted-v1/ground-road-v1.png';
+ if(id==='city_plaza')return '/assets/city-sprite-v2/ground-road.webp';
  if(id==='ruins'||id==='temple')return '/assets/env-painted/tile-stone-v1.png';
  if(id==='himmapan')return '/assets/env-forest/tile-path-v1.png';
  if((id==='forest'||id==='grove')||(id==='canyon'||id==='summit'))return '/assets/env-forest/tile-path-v1.png';

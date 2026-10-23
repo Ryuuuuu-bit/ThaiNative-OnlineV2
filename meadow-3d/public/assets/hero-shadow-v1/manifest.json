@@ -1,0 +1,457 @@
+{
+  "version": 2,
+  "looks": {
+    "male-iron": {
+      "label": "ชาย · ชุดเงาราตรี · ดาบและโล่",
+      "clips": {
+        "walk": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 25,
+          "seconds": 2,
+          "anchor": [
+            202.5,
+            363.75
+          ],
+          "bodyHeight": 336.75,
+          "bounds": [
+            42,
+            21,
+            300,
+            375
+          ],
+          "url": "/assets/hero-shadow-v1/male-iron-walk.webp"
+        },
+        "attack": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 17,
+          "seconds": 1.44,
+          "anchor": [
+            202.5,
+            363.75
+          ],
+          "bodyHeight": 336.75,
+          "bounds": [
+            52,
+            0,
+            380,
+            368
+          ],
+          "impactFrame": 8,
+          "url": "/assets/hero-shadow-v1/male-iron-attack.webp"
+        },
+        "cast": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            202.5,
+            363.75
+          ],
+          "bodyHeight": 336.75,
+          "bounds": [
+            52,
+            24,
+            309,
+            367
+          ],
+          "impactFrame": 8,
+          "url": "/assets/hero-shadow-v1/male-iron-cast.webp"
+        },
+        "idle": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 1,
+          "seconds": 1,
+          "anchor": [
+            202.5,
+            363.75
+          ],
+          "bodyHeight": 336.75,
+          "bounds": [
+            52,
+            0,
+            380,
+            368
+          ],
+          "url": "/assets/hero-shadow-v1/male-iron-attack.webp"
+        },
+        "heal": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            202.5,
+            363.75
+          ],
+          "bodyHeight": 336.75,
+          "bounds": [
+            52,
+            24,
+            309,
+            367
+          ],
+          "impactFrame": 8,
+          "url": "/assets/hero-shadow-v1/male-iron-cast.webp"
+        }
+      }
+    },
+    "male-bow": {
+      "label": "ชาย · ชุดเงาราตรี · ธนู",
+      "clips": {
+        "walk": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 25,
+          "seconds": 2,
+          "anchor": [
+            195.0,
+            302.25
+          ],
+          "bodyHeight": 239.25,
+          "bounds": [
+            136,
+            50,
+            289,
+            322
+          ],
+          "url": "/assets/hero-shadow-v1/male-bow-walk.webp"
+        },
+        "attack": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 25,
+          "seconds": 2,
+          "anchor": [
+            195.0,
+            302.25
+          ],
+          "bodyHeight": 239.25,
+          "bounds": [
+            98,
+            2,
+            306,
+            303
+          ],
+          "impactFrame": 14,
+          "url": "/assets/hero-shadow-v1/male-bow-attack.webp"
+        },
+        "cast": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            195.0,
+            302.25
+          ],
+          "bodyHeight": 239.25,
+          "bounds": [
+            144,
+            56,
+            284,
+            305
+          ],
+          "impactFrame": 9,
+          "url": "/assets/hero-shadow-v1/male-bow-cast.webp"
+        },
+        "idle": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 1,
+          "seconds": 1,
+          "anchor": [
+            195.0,
+            302.25
+          ],
+          "bodyHeight": 239.25,
+          "bounds": [
+            98,
+            2,
+            306,
+            303
+          ],
+          "url": "/assets/hero-shadow-v1/male-bow-attack.webp"
+        },
+        "heal": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            195.0,
+            302.25
+          ],
+          "bodyHeight": 239.25,
+          "bounds": [
+            144,
+            56,
+            284,
+            305
+          ],
+          "impactFrame": 9,
+          "url": "/assets/hero-shadow-v1/male-bow-cast.webp"
+        }
+      }
+    },
+    "female-iron": {
+      "label": "หญิง · ชุดเงาราตรี · ดาบและโล่",
+      "clips": {
+        "walk": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 25,
+          "seconds": 2,
+          "anchor": [
+            210.75,
+            307.5
+          ],
+          "bodyHeight": 252.75,
+          "bounds": [
+            85,
+            48,
+            287,
+            321
+          ],
+          "url": "/assets/hero-shadow-v1/female-iron-walk.webp"
+        },
+        "attack": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 19,
+          "seconds": 1.6,
+          "anchor": [
+            210.75,
+            307.5
+          ],
+          "bodyHeight": 252.75,
+          "bounds": [
+            64,
+            8,
+            346,
+            311
+          ],
+          "impactFrame": 11,
+          "url": "/assets/hero-shadow-v1/female-iron-attack.webp"
+        },
+        "cast": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            210.75,
+            307.5
+          ],
+          "bodyHeight": 252.75,
+          "bounds": [
+            89,
+            52,
+            302,
+            310
+          ],
+          "impactFrame": 8,
+          "url": "/assets/hero-shadow-v1/female-iron-cast.webp"
+        },
+        "idle": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 1,
+          "seconds": 1,
+          "anchor": [
+            210.75,
+            307.5
+          ],
+          "bodyHeight": 252.75,
+          "bounds": [
+            64,
+            8,
+            346,
+            311
+          ],
+          "url": "/assets/hero-shadow-v1/female-iron-attack.webp"
+        },
+        "heal": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            210.75,
+            307.5
+          ],
+          "bodyHeight": 252.75,
+          "bounds": [
+            89,
+            52,
+            302,
+            310
+          ],
+          "impactFrame": 8,
+          "url": "/assets/hero-shadow-v1/female-iron-cast.webp"
+        }
+      }
+    },
+    "female-bow": {
+      "label": "หญิง · ชุดเงาราตรี · ธนู",
+      "clips": {
+        "walk": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 25,
+          "seconds": 2,
+          "anchor": [
+            210.0,
+            306.0
+          ],
+          "bodyHeight": 251.25,
+          "bounds": [
+            124,
+            43,
+            279,
+            335
+          ],
+          "url": "/assets/hero-shadow-v1/female-bow-walk.webp"
+        },
+        "attack": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 25,
+          "seconds": 2,
+          "anchor": [
+            210.0,
+            306.0
+          ],
+          "bodyHeight": 251.25,
+          "bounds": [
+            111,
+            3,
+            314,
+            311
+          ],
+          "impactFrame": 14,
+          "url": "/assets/hero-shadow-v1/female-bow-attack.webp"
+        },
+        "cast": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            210.0,
+            306.0
+          ],
+          "bodyHeight": 251.25,
+          "bounds": [
+            152,
+            52,
+            294,
+            309
+          ],
+          "impactFrame": 9,
+          "url": "/assets/hero-shadow-v1/female-bow-cast.webp"
+        },
+        "idle": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 1,
+          "seconds": 1,
+          "anchor": [
+            210.0,
+            306.0
+          ],
+          "bodyHeight": 251.25,
+          "bounds": [
+            111,
+            3,
+            314,
+            311
+          ],
+          "url": "/assets/hero-shadow-v1/female-bow-attack.webp"
+        },
+        "heal": {
+          "cell": [
+            384,
+            384
+          ],
+          "columns": 5,
+          "frames": 21,
+          "seconds": 1.6,
+          "anchor": [
+            210.0,
+            306.0
+          ],
+          "bodyHeight": 251.25,
+          "bounds": [
+            152,
+            52,
+            294,
+            309
+          ],
+          "impactFrame": 9,
+          "url": "/assets/hero-shadow-v1/female-bow-cast.webp"
+        }
+      }
+    }
+  }
+}

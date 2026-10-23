@@ -1,0 +1,18 @@
+{
+  "character": "herbalist",
+  "name": "ยายแสง · คนปรุงสมุนไพร",
+  "provider": "AutoSprite Turbo reference image-to-video",
+  "characterId": "cmvgy9hl0001dp4vff87iuweb",
+  "spritesheetId": "cmvgyaunp00gamq4bhf9wc9sp",
+  "source": "../../../output/npc-herbalist-video-wave-v1/sprite-sheet.png",
+  "sourceAtlas": "../../../output/npc-herbalist-video-wave-v1/atlas.json",
+  "runtime": "../../public/assets/city-painted-v1/herbalist-wave-v1.webp",
+  "encoding": {"format": "WebP", "quality": 92, "method": 6},
+  "cell": [512, 512],
+  "columns": 6,
+  "frames": 32,
+  "duration": 2.333,
+  "firstFrameBodyBounds": [106, 4, 423, 511],
+  "bodyHeightMetres": 2.05,
+  "notes": "Approved continuous raise-wave-lower motion. All cells share a fixed scale and pivot; no per-frame deformation or alignment."
+}

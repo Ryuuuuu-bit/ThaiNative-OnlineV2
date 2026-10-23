@@ -1,4 +1,4 @@
-﻿import { AudioSettingsSchema, DEFAULT_AUDIO, type AudioSettings } from '@the-beginning-online/shared';
+import { AudioSettingsSchema, DEFAULT_AUDIO, type AudioSettings } from '@the-beginning-online/shared';
 import { assetFetch, reportDeferred } from './asset-request';
 import { MusicSelection, musicDuckGain, type MusicState } from './music-state';
 import { MusicPlayer } from './music';

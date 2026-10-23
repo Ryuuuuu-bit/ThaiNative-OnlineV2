@@ -15,5 +15,5 @@
  document.addEventListener('DOMContentLoaded',init);
  window.addEventListener('error',e=>{if(e.target instanceof HTMLScriptElement||e.error)window.tnBoot.fail('เปิดทุ่งหญ้าไม่สำเร็จ กรุณาลองใหม่',e.target instanceof HTMLScriptElement?'module':'runtime');},true);
  window.addEventListener('unhandledrejection',()=>window.tnBoot.fail('เตรียมการผจญภัยไม่สำเร็จ กรุณาลองใหม่'));
- setInterval(()=>{if(done||failed||timingOut||Date.now()-lastActivity<=45000)return;timingOut=true;window.tnBoot.staleCheck().then(reloading=>{if(!reloading)window.tnBoot.fail('โหลดนานเกินไป กรุณาตรวจสอบการเชื่อมต่อแล้วลองใหม่','timeout');});},1000);
+ setInterval(()=>{if(document.documentElement.dataset.pcOnly==='true'||done||failed||timingOut||Date.now()-lastActivity<=45000)return;timingOut=true;window.tnBoot.staleCheck().then(reloading=>{if(!reloading)window.tnBoot.fail('โหลดนานเกินไป กรุณาตรวจสอบการเชื่อมต่อแล้วลองใหม่','timeout');});},1000);
 })();

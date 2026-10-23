@@ -1,0 +1,22 @@
+{
+  "generator": "built-in image_gen",
+  "status": "standing-pose fitting repair",
+  "logicalCanvas": [
+    1254,
+    1254
+  ],
+  "edits": {
+    "traveler": {
+      "source": "traveler.png",
+      "output": "traveler-fit-v2.png",
+      "prompt": "Precise technical asset repair for a modular RPG clothing overlay. IMAGE 1 is the EXISTING CLOTHING TO EDIT. IMAGE 2 is the exact base body it must fit; use only as alignment template, never include any of that person in output. Preserve EXACT 1254x1254 source canvas, camera, proportions, garment placement, lower body, belt, boots, materials and painterly style of image 1. Repair ONLY THREE OPENINGS: (1) Neck: remove the tall raised scarf hoop that reaches face height. Replace it with a low loose moss-green neck scarf that sits BELOW the mannequin's chin, like a low cowl around the collarbones. Top edge of the front scarf should be around y=340, original body's jaw around y=315 must remain completely clear. The rear collar may extend to y=305 but must not cross the face. The opening for the head/neck above the front scarf must be TRUE ALPHA TRANSPARENCY, not dark painted cavity. Preserve green short shoulder cape. (2) Screen-left cuff at approximately x=448,y=548: remove the painted dark interior of the sleeve opening, make the hole genuinely alpha transparent with thin natural cuff lip, so a wrist underneath can be visible through it. (3) Screen-right cuff near x=820,y=605: same true transparent opening, keep natural sleeve rim. Sleeves stay at original locations. NO head, NO face, NO skin, NO hands, NO mannequin, NO weapons, NO text or annotations. Clothing-only transparent overlay, same frame registration. Do not change pose, do not recenter or zoom, do not add any new accessories. Aim for a physically wearable outfit that can be layered over image 2 without obscuring the face or wrists."
+    },
+    "guardian": {
+      "source": "guardian.png",
+      "output": "guardian-fit-v2.png",
+      "prompt": "Precise technical repair of a clothing-only RPG overlay. IMAGE 1 is the existing blue guardian outfit to EDIT. IMAGE 2 is the exact body alignment reference ONLY; no person may appear in the result. Keep exact 1254x1254 canvas registration, ALL pose coordinates, sleeves, breastplate, straps, tabard, trousers, boots, color and painterly rendering of image 1. Repair collar and cuff openings only. LOWER THE TALL BLUE STANDING COLLAR: make a short soft blue collar with its front neckline around y=345 and rear edge no higher than y=315. The source body's face and chin end around y=315, so no clothing must cross the face. The opening for the neck must be actual transparent alpha, not a dark painted oval. Fix both cuff cavities: opening at screen-left near (452,572) and screen-right near (812,620) must be genuine transparent alpha holes, with natural thin cuff rims that a wrist can overlap from underneath. Do not paint black interior discs or hollow tubes. Do not move cuffs or change garment fit. NO skin, NO head, NO face, NO hair, NO hands, NO mannequin, NO weapons, NO labels, NO backdrop, NO ground shadow. The output is still clothing only with true transparent background and transparent holes. Preserve everything else exactly."
+    }
+  },
+  "registration": "Per-outfit hand placement; sword and shield image pivots map to the same hand grip positions used by guides. Skin beneath garments; jaw foreground mask above rear collar. Original body height and foot anchor preserved.",
+  "limitations": "Only the authored static SE pose has been checked. Walking, attacks and other directions need their own registration."
+}

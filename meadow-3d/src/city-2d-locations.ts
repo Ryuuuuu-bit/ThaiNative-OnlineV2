@@ -4,7 +4,7 @@ import type {CityNpcArt} from './city-npc-sprite.ts';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 
 export type TownNpc={id:string;art:CityNpcArt;name:string;role:string;line:string;x:number;z:number;kind:string;icon:string;color:string};
-export const TOWN_NPCS:TownNpc[]=[
+export const TOWN_NPCS:TownNpc[]=CITY.empty?[]:[
   ...CITY_BUILDINGS.map(b=>({...b.talk,id:b.id,kind:b.id,art:(b.id==='forge'?'blacksmith':b.id==='market'?'merchant':'clerk') as CityNpcArt,
     name:b.id==='forge'?'ศิลา · ช่างตีเหล็ก':b.id==='market'?'มะลิ · พ่อค้าเบ็ดเตล็ด':'นที · คนเฝ้าคลัง',role:b.name,
     icon:b.id==='forge'?'⚒':b.id==='market'?'¤':'▣',color:b.id==='forge'?'#e6ab70':b.id==='market'?'#e6cb88':'#aad4e1',
@@ -15,7 +15,7 @@ export const TOWN_NPCS:TownNpc[]=[
 ];
 export function nearbyTownNpc(x:number,z:number){return TOWN_NPCS.filter(n=>Math.hypot(n.x-x,n.z-z)<3).sort((a,b)=>Math.hypot(a.x-x,a.z-z)-Math.hypot(b.x-x,b.z-z))[0];}
 
-export const WAYPOINTS = [
+export const WAYPOINTS = CITY.empty?[]:[
   {id:'arrival',name:'ลานต้อนรับ',x:0,z:31,color:'#83dad0'},
   {id:'guild',name:'สมาคมแสงอรุณ',x:0,z:-19,color:'#b5a5ed'},
   {id:'market',name:'ตลาดสีคราม',x:30,z:4,color:'#e7c27f'},

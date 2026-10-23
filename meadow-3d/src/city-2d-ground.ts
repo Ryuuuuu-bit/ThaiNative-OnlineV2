@@ -45,10 +45,10 @@ function makeMasks(){
   return {road,path,edge};
 }
 
-export async function makePaintedGround(){
-
+export async function makePaintedGround(shadows=true){
+  if(CITY.empty){const empty=document.createElement('canvas');empty.width=empty.height=1;return empty;}
   const images=await Promise.all(['road','grass','garden'].map(async id=>{
-    const img=new Image();img.src='/assets/city-painted-v1/ground-'+id+'-v1.png';await img.decode();return img;
+    const img=new Image();img.src='/assets/city-sprite-v2/ground-'+id+'.webp';await img.decode();return img;
   }));
   const masks=makeMasks(),plane=document.createElement('canvas');plane.width=plane.height=SIZE;
   const c=plane.getContext('2d')!,pixels=SIZE/EXTENT;
@@ -95,8 +95,10 @@ export async function makePaintedGround(){
   function shadow(x:number,z:number,rx:number,rz:number){
     c.save();c.translate(x,z);c.scale(rx,rz);const g=c.createRadialGradient(0,0,.1,0,0,1);g.addColorStop(0,'#263b302f');g.addColorStop(.55,'#293f301a');g.addColorStop(1,'#293f3000');c.fillStyle=g;c.fillRect(-1,-1,2,2);c.restore();
   }
-  for(const b of [...CITY_HOUSES,...CITY_BUILDINGS,...NEW_BUILDINGS])shadow(b.x+1,b.z+.8,b.w*.85,b.d*.85);
-  for(const p of [...CITY_PLANTERS,...GARDEN_TREES])shadow(p.x+.7,p.z+.6,2.2,2);
+  if(shadows){
+    for(const b of [...CITY_HOUSES,...CITY_BUILDINGS,...NEW_BUILDINGS])shadow(b.x+1,b.z+.8,b.w*.85,b.d*.85);
+    for(const p of [...CITY_PLANTERS,...GARDEN_TREES])shadow(p.x+.7,p.z+.6,2.2,2);
+  }
   c.restore();
   const ground=document.createElement('canvas');ground.width=3000;ground.height=2222;
   const gc=ground.getContext('2d')!;gc.scale(20,20);gc.translate(75,55.5556);

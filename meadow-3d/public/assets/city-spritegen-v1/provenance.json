@@ -1,0 +1,84 @@
+[
+  {
+    "id": "guild-guide",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect / export-pngs",
+    "frames": 4,
+    "uniqueFrames": 4,
+    "duration": 1.0,
+    "groundPivotStable": true,
+    "newDrawing": true,
+    "automatedWarnings": [],
+    "worldHeight": 2.05,
+    "atlasSha256": "6cce494b5d9805e4eb10e997e210a1948caaaecba12e2dfed5333e62710aa829"
+  },
+  {
+    "id": "trainer",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect / export-pngs",
+    "frames": 4,
+    "uniqueFrames": 4,
+    "duration": 1.0,
+    "groundPivotStable": true,
+    "newDrawing": true,
+    "automatedWarnings": [
+      "idle: motion presence is too low (0.0081 < 0.0100)"
+    ],
+    "worldHeight": 2.18,
+    "atlasSha256": "e7772610e737f0070bbf9f8a44a19d3af36f949fd09c3b79db3cca9c5b66d32d"
+  },
+  {
+    "id": "innkeeper",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect / export-pngs",
+    "frames": 4,
+    "uniqueFrames": 4,
+    "duration": 1.0,
+    "groundPivotStable": true,
+    "newDrawing": true,
+    "automatedWarnings": [
+      "idle: motion presence is too low (0.0054 < 0.0100)"
+    ],
+    "worldHeight": 2.0,
+    "atlasSha256": "738abe481dc6777e414dc2c5cf85fb722ff7fbc0f47eb6f2cda6068e9a296166"
+  },
+  {
+    "id": "archivist",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect / export-pngs",
+    "frames": 4,
+    "uniqueFrames": 4,
+    "duration": 1.0,
+    "groundPivotStable": true,
+    "newDrawing": true,
+    "automatedWarnings": [],
+    "worldHeight": 2.08,
+    "atlasSha256": "8b6a411641d924411e93e8cfdfaace0e088d322a3ad0d76166ab51e7e79de706"
+  },
+  {
+    "id": "courier",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect / export-pngs",
+    "frames": 4,
+    "uniqueFrames": 4,
+    "duration": 1.0,
+    "groundPivotStable": true,
+    "newDrawing": true,
+    "automatedWarnings": [],
+    "worldHeight": 2.05,
+    "atlasSha256": "93045b8ea37826b964212015d1e889459beeed7222d10e60872cf65ee7b63c3f"
+  },
+  {
+    "id": "minstrel",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect / export-pngs",
+    "frames": 4,
+    "uniqueFrames": 4,
+    "duration": 1.0,
+    "groundPivotStable": true,
+    "newDrawing": true,
+    "automatedWarnings": [],
+    "worldHeight": 2.05,
+    "atlasSha256": "03d95fe3d9b91b1dadc56d594e147b0f52e5117f749cc7030bc4120db7b1d834"
+  }
+]

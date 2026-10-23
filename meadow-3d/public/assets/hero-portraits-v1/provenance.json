@@ -1,0 +1,43 @@
+{
+  "method": "Existing approved high resolution seed art, deterministic crop, centering and WebP encoding. No AI regeneration or upscaling.",
+  "characters": {
+    "male": {
+      "source": "output\\shadow-assassin-prototype-20261023\\male-iron-seed.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "fullSize": [
+        1254,
+        1254
+      ],
+      "bodyHeight": 1105,
+      "portraitCrop": [
+        520,
+        70,
+        800,
+        350
+      ],
+      "fullBytes": 203146
+    },
+    "female": {
+      "source": "output\\shadow-assassin-prototype-20261023\\female-bow-seed.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "fullSize": [
+        1254,
+        1254
+      ],
+      "bodyHeight": 1120,
+      "portraitCrop": [
+        550,
+        70,
+        850,
+        370
+      ],
+      "fullBytes": 224390
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import {HERO_METRES} from './world-scale.ts';
 export type CitizenRole='buyer'|'guard'|'scholar'|'artisan'|'gardener'|'resident'|'traveler';
 export const CITIZEN_ATLASES=['market','craft','civic','garden','travel'] as const;
 // One identity owns one atlas row. No recolored duplicates or random rerolls on reload.
@@ -29,13 +30,12 @@ const groups: [string,string,string][][]=[
   ['คีตา','นักดนตรีพเนจร','มีเพลงจากเมืองไกลมาเล่าให้ฟัง'],['ขจร','พ่อค้าเร่','เมืองนี้มีอะไรให้แวะดูเยอะจริง ๆ'],
  ],
 ];
-const heights=[2.02,2.06,1.86,2.0,1.96,2.2,1.98,2.1,2.03,2.02,2.17,1.92,1.99,2.1,1.95,1.98,2.22,2.13,2.3,2.08,2.0,2.03,1.94,1.9,1.97,2.14,1.95,2.0,1.85,2.04,1.38,1.94,1.98,1.45,2.13,1.96,2.12,2.06,2.02,2.18];
 function roleFor(group:number,row:number):CitizenRole{
  return group===0?'buyer':group===1?'artisan':group===2?(row<4?'guard':'scholar'):group===3?(row<5?'gardener':'resident'):(row<4?'resident':'traveler');
 }
 export const CITIZEN_PROFILES=groups.flatMap((rows,group)=>rows.map(([name,occupation,speech],row)=>{
  const id=group*8+row,role=roleFor(group,row);
- return {id,key:`${CITIZEN_ATLASES[group]}-${row}`,name,occupation,speech,role,atlas:CITIZEN_ATLASES[group],row,height:heights[id],speed:role==='guard'?1.45+row*.08:1.02+(id%7)*.085,rest:2.3+(id%6)*.7};
+ return {id,key:`${CITIZEN_ATLASES[group]}-${row}`,name,occupation,speech,role,atlas:CITIZEN_ATLASES[group],row,height:id===30||id===33?1.45:HERO_METRES,speed:role==='guard'?1.45+row*.08:1.02+(id%7)*.085,rest:2.3+(id%6)*.7};
 }));
 export type CitizenProfile=typeof CITIZEN_PROFILES[number];
 export function citizenWalkFrame(distance:number,moving:boolean){return moving?Math.floor(Math.max(0,distance)/.95*4)%4:1;}

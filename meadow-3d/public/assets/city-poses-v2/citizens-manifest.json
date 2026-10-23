@@ -1,0 +1,3245 @@
+{
+  "version": 2,
+  "characters": [
+    {
+      "key": "market-0",
+      "image": "/assets/city-poses-v2/citizen-0.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 210,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              156,
+              34,
+              109,
+              152
+            ],
+            [
+              381,
+              35,
+              118,
+              153
+            ],
+            [
+              627,
+              35,
+              111,
+              156
+            ],
+            [
+              857,
+              36,
+              115,
+              150
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 152,
+          "feet": [
+            151,
+            152,
+            156,
+            150
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "market-1",
+      "image": "/assets/city-poses-v2/citizen-1.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              147,
+              200,
+              114,
+              160
+            ],
+            [
+              378,
+              201,
+              120,
+              163
+            ],
+            [
+              613,
+              201,
+              121,
+              165
+            ],
+            [
+              855,
+              201,
+              112,
+              163
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 161,
+          "feet": [
+            160,
+            162,
+            164,
+            162
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "market-2",
+      "image": "/assets/city-poses-v2/citizen-2.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 214,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              147,
+              376,
+              118,
+              156
+            ],
+            [
+              380,
+              375,
+              114,
+              161
+            ],
+            [
+              617,
+              376,
+              114,
+              161
+            ],
+            [
+              853,
+              376,
+              113,
+              161
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 160,
+          "feet": [
+            156,
+            161,
+            160,
+            160
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "market-3",
+      "image": "/assets/city-poses-v2/citizen-3.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 197,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              134,
+              547,
+              137,
+              166
+            ],
+            [
+              377,
+              548,
+              132,
+              166
+            ],
+            [
+              611,
+              548,
+              137,
+              165
+            ],
+            [
+              854,
+              547,
+              126,
+              166
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 165,
+          "feet": [
+            165,
+            165,
+            165,
+            166
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "market-4",
+      "image": "/assets/city-poses-v2/citizen-4.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 204,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              144,
+              729,
+              118,
+              163
+            ],
+            [
+              379,
+              729,
+              120,
+              167
+            ],
+            [
+              619,
+              729,
+              122,
+              165
+            ],
+            [
+              854,
+              729,
+              117,
+              166
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 165,
+          "feet": [
+            163,
+            166,
+            165,
+            166
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "market-5",
+      "image": "/assets/city-poses-v2/citizen-5.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 203,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              141,
+              903,
+              128,
+              162
+            ],
+            [
+              369,
+              904,
+              133,
+              164
+            ],
+            [
+              606,
+              903,
+              133,
+              162
+            ],
+            [
+              845,
+              904,
+              127,
+              163
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 162,
+          "feet": [
+            162,
+            163,
+            161,
+            163
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "market-6",
+      "image": "/assets/city-poses-v2/citizen-6.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              152,
+              1076,
+              110,
+              160
+            ],
+            [
+              383,
+              1076,
+              115,
+              163
+            ],
+            [
+              624,
+              1077,
+              112,
+              159
+            ],
+            [
+              855,
+              1077,
+              111,
+              162
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 161,
+          "feet": [
+            160,
+            162,
+            159,
+            162
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "market-7",
+      "image": "/assets/city-poses-v2/citizen-7.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              143,
+              1244,
+              134,
+              168
+            ],
+            [
+              377,
+              1244,
+              135,
+              168
+            ],
+            [
+              606,
+              1244,
+              141,
+              169
+            ],
+            [
+              844,
+              1244,
+              133,
+              168
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 166,
+          "feet": [
+            167,
+            167,
+            168,
+            168
+          ],
+          "image": "/assets/city-painted-v1/citizens-market-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-0",
+      "image": "/assets/city-poses-v2/citizen-8.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 215,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              149,
+              10,
+              104,
+              170
+            ],
+            [
+              379,
+              10,
+              106,
+              174
+            ],
+            [
+              602,
+              11,
+              108,
+              172
+            ],
+            [
+              829,
+              9,
+              110,
+              174
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 172,
+          "feet": [
+            170,
+            174,
+            171,
+            173
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-1",
+      "image": "/assets/city-poses-v2/citizen-9.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              148,
+              184,
+              110,
+              172
+            ],
+            [
+              387,
+              185,
+              106,
+              171
+            ],
+            [
+              613,
+              185,
+              97,
+              171
+            ],
+            [
+              841,
+              185,
+              105,
+              171
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 171,
+          "feet": [
+            172,
+            171,
+            171,
+            171
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-2",
+      "image": "/assets/city-poses-v2/citizen-10.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              132,
+              358,
+              133,
+              177
+            ],
+            [
+              371,
+              359,
+              126,
+              178
+            ],
+            [
+              591,
+              360,
+              131,
+              180
+            ],
+            [
+              829,
+              359,
+              121,
+              178
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 177,
+          "feet": [
+            177,
+            177,
+            180,
+            178
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-3",
+      "image": "/assets/city-poses-v2/citizen-11.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              141,
+              535,
+              114,
+              183
+            ],
+            [
+              378,
+              536,
+              113,
+              182
+            ],
+            [
+              600,
+              537,
+              113,
+              181
+            ],
+            [
+              832,
+              535,
+              109,
+              182
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 181,
+          "feet": [
+            183,
+            182,
+            181,
+            182
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-4",
+      "image": "/assets/city-poses-v2/citizen-12.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              144,
+              718,
+              113,
+              182
+            ],
+            [
+              377,
+              718,
+              111,
+              183
+            ],
+            [
+              602,
+              718,
+              110,
+              182
+            ],
+            [
+              827,
+              717,
+              116,
+              184
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 183,
+          "feet": [
+            182,
+            183,
+            182,
+            184
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-5",
+      "image": "/assets/city-poses-v2/citizen-13.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              135,
+              899,
+              134,
+              177
+            ],
+            [
+              370,
+              900,
+              132,
+              178
+            ],
+            [
+              586,
+              900,
+              134,
+              178
+            ],
+            [
+              827,
+              900,
+              127,
+              178
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 178,
+          "feet": [
+            177,
+            178,
+            178,
+            178
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-6",
+      "image": "/assets/city-poses-v2/citizen-14.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              142,
+              1078,
+              113,
+              176
+            ],
+            [
+              375,
+              1077,
+              113,
+              179
+            ],
+            [
+              596,
+              1078,
+              116,
+              178
+            ],
+            [
+              828,
+              1078,
+              116,
+              177
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 179,
+          "feet": [
+            175,
+            179,
+            178,
+            177
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "craft-7",
+      "image": "/assets/city-poses-v2/citizen-15.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              135,
+              1254,
+              124,
+              178
+            ],
+            [
+              376,
+              1254,
+              115,
+              182
+            ],
+            [
+              601,
+              1254,
+              114,
+              181
+            ],
+            [
+              835,
+              1254,
+              110,
+              181
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 182,
+          "feet": [
+            178,
+            182,
+            181,
+            181
+          ],
+          "image": "/assets/city-painted-v1/citizens-craft-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-0",
+      "image": "/assets/city-poses-v2/citizen-16.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 214,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              174,
+              5,
+              123,
+              177
+            ],
+            [
+              390,
+              5,
+              105,
+              177
+            ],
+            [
+              595,
+              6,
+              122,
+              177
+            ],
+            [
+              817,
+              6,
+              112,
+              175
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 175,
+          "feet": [
+            176,
+            176,
+            177,
+            174
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-1",
+      "image": "/assets/city-poses-v2/citizen-17.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              175,
+              190,
+              115,
+              169
+            ],
+            [
+              397,
+              189,
+              97,
+              170
+            ],
+            [
+              598,
+              190,
+              113,
+              169
+            ],
+            [
+              825,
+              190,
+              100,
+              169
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 169,
+          "feet": [
+            169,
+            170,
+            169,
+            169
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-2",
+      "image": "/assets/city-poses-v2/citizen-18.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 207,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              185,
+              359,
+              101,
+              183
+            ],
+            [
+              390,
+              359,
+              109,
+              182
+            ],
+            [
+              607,
+              359,
+              102,
+              183
+            ],
+            [
+              816,
+              359,
+              109,
+              182
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 175,
+          "feet": [
+            182,
+            182,
+            183,
+            182
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-3",
+      "image": "/assets/city-poses-v2/citizen-19.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              186,
+              549,
+              97,
+              171
+            ],
+            [
+              391,
+              549,
+              93,
+              170
+            ],
+            [
+              606,
+              549,
+              95,
+              169
+            ],
+            [
+              819,
+              549,
+              92,
+              171
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 170,
+          "feet": [
+            170,
+            170,
+            168,
+            170
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-4",
+      "image": "/assets/city-poses-v2/citizen-20.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              173,
+              725,
+              114,
+              186
+            ],
+            [
+              392,
+              725,
+              96,
+              184
+            ],
+            [
+              599,
+              725,
+              112,
+              186
+            ],
+            [
+              817,
+              725,
+              99,
+              181
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 183,
+          "feet": [
+            186,
+            184,
+            185,
+            181
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-5",
+      "image": "/assets/city-poses-v2/citizen-21.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              184,
+              916,
+              95,
+              170
+            ],
+            [
+              391,
+              916,
+              97,
+              170
+            ],
+            [
+              609,
+              916,
+              96,
+              170
+            ],
+            [
+              821,
+              916,
+              94,
+              170
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 170,
+          "feet": [
+            170,
+            170,
+            170,
+            170
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-6",
+      "image": "/assets/city-poses-v2/citizen-22.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              185,
+              1090,
+              97,
+              173
+            ],
+            [
+              399,
+              1090,
+              89,
+              174
+            ],
+            [
+              604,
+              1089,
+              101,
+              174
+            ],
+            [
+              826,
+              1090,
+              91,
+              174
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 173,
+          "feet": [
+            173,
+            173,
+            174,
+            173
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "civic-7",
+      "image": "/assets/city-poses-v2/citizen-23.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              177,
+              1269,
+              126,
+              175
+            ],
+            [
+              378,
+              1269,
+              119,
+              174
+            ],
+            [
+              600,
+              1269,
+              122,
+              175
+            ],
+            [
+              816,
+              1269,
+              115,
+              174
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 172,
+          "feet": [
+            174,
+            173,
+            174,
+            173
+          ],
+          "image": "/assets/city-painted-v1/citizens-civic-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-0",
+      "image": "/assets/city-poses-v2/citizen-24.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 187,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              127,
+              8,
+              129,
+              176
+            ],
+            [
+              375,
+              7,
+              127,
+              177
+            ],
+            [
+              629,
+              7,
+              122,
+              177
+            ],
+            [
+              886,
+              7,
+              125,
+              176
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 175,
+          "feet": [
+            175,
+            176,
+            176,
+            176
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-1",
+      "image": "/assets/city-poses-v2/citizen-25.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              108,
+              186,
+              138,
+              188
+            ],
+            [
+              377,
+              186,
+              113,
+              188
+            ],
+            [
+              609,
+              186,
+              138,
+              188
+            ],
+            [
+              884,
+              186,
+              120,
+              188
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 187,
+          "feet": [
+            188,
+            188,
+            188,
+            188
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-2",
+      "image": "/assets/city-poses-v2/citizen-26.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              107,
+              374,
+              130,
+              181
+            ],
+            [
+              372,
+              374,
+              115,
+              182
+            ],
+            [
+              606,
+              374,
+              131,
+              181
+            ],
+            [
+              873,
+              374,
+              123,
+              180
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 180,
+          "feet": [
+            181,
+            181,
+            181,
+            179
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-3",
+      "image": "/assets/city-poses-v2/citizen-27.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              122,
+              554,
+              107,
+              181
+            ],
+            [
+              382,
+              554,
+              95,
+              183
+            ],
+            [
+              625,
+              554,
+              110,
+              182
+            ],
+            [
+              886,
+              554,
+              99,
+              180
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 182,
+          "feet": [
+            180,
+            182,
+            181,
+            179
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-4",
+      "image": "/assets/city-poses-v2/citizen-28.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              105,
+              736,
+              129,
+              183
+            ],
+            [
+              368,
+              736,
+              119,
+              185
+            ],
+            [
+              615,
+              736,
+              118,
+              185
+            ],
+            [
+              868,
+              737,
+              126,
+              184
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 183,
+          "feet": [
+            182,
+            184,
+            184,
+            183
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-5",
+      "image": "/assets/city-poses-v2/citizen-29.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              108,
+              922,
+              133,
+              201
+            ],
+            [
+              358,
+              922,
+              148,
+              200
+            ],
+            [
+              615,
+              923,
+              132,
+              199
+            ],
+            [
+              870,
+              924,
+              140,
+              198
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 198,
+          "feet": [
+            200,
+            199,
+            198,
+            198
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-6",
+      "image": "/assets/city-poses-v2/citizen-30.webp",
+      "worldHeight": 1.45,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 205,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              125,
+              1123,
+              122,
+              146
+            ],
+            [
+              376,
+              1124,
+              116,
+              145
+            ],
+            [
+              628,
+              1123,
+              113,
+              146
+            ],
+            [
+              885,
+              1125,
+              117,
+              144
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 144,
+          "feet": [
+            145,
+            144,
+            145,
+            143
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "garden-7",
+      "image": "/assets/city-poses-v2/citizen-31.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 204,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              119,
+              1270,
+              125,
+              171
+            ],
+            [
+              361,
+              1269,
+              134,
+              174
+            ],
+            [
+              617,
+              1270,
+              131,
+              171
+            ],
+            [
+              880,
+              1270,
+              127,
+              172
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 172,
+          "feet": [
+            170,
+            173,
+            170,
+            171
+          ],
+          "image": "/assets/city-painted-v1/citizens-garden-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-0",
+      "image": "/assets/city-poses-v2/citizen-32.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 213,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              142,
+              8,
+              109,
+              180
+            ],
+            [
+              381,
+              10,
+              108,
+              178
+            ],
+            [
+              618,
+              10,
+              107,
+              179
+            ],
+            [
+              843,
+              9,
+              108,
+              180
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 178,
+          "feet": [
+            179,
+            178,
+            179,
+            180
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-1",
+      "image": "/assets/city-poses-v2/citizen-33.webp",
+      "worldHeight": 1.45,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 216,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              152,
+              193,
+              85,
+              148
+            ],
+            [
+              384,
+              193,
+              86,
+              149
+            ],
+            [
+              631,
+              195,
+              80,
+              147
+            ],
+            [
+              859,
+              196,
+              75,
+              144
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 147,
+          "feet": [
+            148,
+            148,
+            146,
+            144
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-2",
+      "image": "/assets/city-poses-v2/citizen-34.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 208,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              145,
+              340,
+              103,
+              197
+            ],
+            [
+              384,
+              341,
+              102,
+              196
+            ],
+            [
+              622,
+              343,
+              111,
+              192
+            ],
+            [
+              848,
+              343,
+              106,
+              194
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 195,
+          "feet": [
+            197,
+            196,
+            192,
+            194
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-3",
+      "image": "/assets/city-poses-v2/citizen-35.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 215,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              136,
+              535,
+              106,
+              187
+            ],
+            [
+              375,
+              536,
+              102,
+              184
+            ],
+            [
+              615,
+              535,
+              110,
+              188
+            ],
+            [
+              848,
+              537,
+              105,
+              185
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 184,
+          "feet": [
+            187,
+            184,
+            187,
+            185
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-4",
+      "image": "/assets/city-poses-v2/citizen-36.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 215,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              134,
+              726,
+              110,
+              181
+            ],
+            [
+              381,
+              726,
+              114,
+              182
+            ],
+            [
+              612,
+              728,
+              111,
+              179
+            ],
+            [
+              836,
+              727,
+              122,
+              179
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 182,
+          "feet": [
+            180,
+            182,
+            179,
+            179
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-5",
+      "image": "/assets/city-poses-v2/citizen-37.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 212,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              131,
+              906,
+              120,
+              188
+            ],
+            [
+              372,
+              906,
+              113,
+              193
+            ],
+            [
+              606,
+              907,
+              122,
+              192
+            ],
+            [
+              849,
+              910,
+              115,
+              188
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 193,
+          "feet": [
+            188,
+            193,
+            192,
+            188
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-6",
+      "image": "/assets/city-poses-v2/citizen-38.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 215,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              138,
+              1096,
+              113,
+              176
+            ],
+            [
+              378,
+              1097,
+              118,
+              175
+            ],
+            [
+              609,
+              1098,
+              118,
+              174
+            ],
+            [
+              850,
+              1098,
+              112,
+              173
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 175,
+          "feet": [
+            176,
+            175,
+            174,
+            173
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    },
+    {
+      "key": "travel-7",
+      "image": "/assets/city-poses-v2/citizen-39.webp",
+      "worldHeight": 2.1,
+      "states": {
+        "idle": {
+          "frames": [
+            [
+              0,
+              0,
+              192,
+              256
+            ],
+            [
+              192,
+              0,
+              192,
+              256
+            ],
+            [
+              384,
+              0,
+              192,
+              256
+            ],
+            [
+              576,
+              0,
+              192,
+              256
+            ]
+          ],
+          "duration": 1.332,
+          "bodyPixels": 214,
+          "feet": [
+            236,
+            236,
+            236,
+            236
+          ]
+        },
+        "walk": {
+          "frames": [
+            [
+              133,
+              1271,
+              115,
+              174
+            ],
+            [
+              371,
+              1270,
+              118,
+              175
+            ],
+            [
+              608,
+              1270,
+              119,
+              175
+            ],
+            [
+              841,
+              1271,
+              118,
+              174
+            ]
+          ],
+          "duration": 0.668,
+          "bodyPixels": 175,
+          "feet": [
+            173,
+            175,
+            175,
+            173
+          ],
+          "image": "/assets/city-painted-v1/citizens-travel-v1.png"
+        }
+      },
+      "walkSource": "Existing walk retained at user request; original frame rectangles, body scale and ground contacts unchanged"
+    }
+  ]
+}

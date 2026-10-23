@@ -98,7 +98,7 @@ export interface RealtimeOptions {
 	devJobExpMultiplier?: number;
 }
 const round = (n: number) => Math.round(n * 1000) / 1000;
-const playerKeys = [
+const playerKeys = ["gender",
 	"id", "reviveRemaining", "bossReadyAt", "bossCooldowns", "mapId", "healerReadyAt", "returnRemaining", "returnReadyAt",
 	"name", "titleId",
 	"x",
@@ -143,7 +143,7 @@ const playerKeys = [
 	"castRemaining",
 ] as const;
 /** Fields other players need to render someone (keeps shared-room snapshots small). */
-const publicKeys = ["id","name","titleId","x","z","fx","fz","hp","maxHp","level","jobId","dead","moving","attack","attackKind","combo","dash","invulnerable","hurt","castRemaining","mapId"] as const;
+const publicKeys = ["gender","id","name","titleId","x","z","fx","fz","hp","maxHp","level","jobId","dead","moving","attack","attackKind","combo","dash","invulnerable","hurt","castRemaining","mapId"] as const;
 const num = (v: unknown) => (typeof v === "number" ? round(v) : v);
 function ownEntry(p: Player, g: Game) {
 	return {
@@ -154,7 +154,7 @@ function ownEntry(p: Player, g: Game) {
 	};
 }
 function publicEntry(p: Player, g: Game) {
-	return { ...Object.fromEntries(publicKeys.map((k) => [k, num(p[k])])),masteryFx:advancedMasterySnapshot(g,p),decoy:p.decoy??null,summon:p.summon??null,wisp:p.wisp??null,healingOverTime:p.healingOverTime??null,boxerCombo:p.boxerCombo?{steps:p.boxerCombo.steps}:null, titleId:p.displayTitleId??null, statuses: p.statuses.map((s) => ({ id: s.id, remaining: round(s.remaining),...(s.id==='archer_mark'?{targetId:s.targetId}:{}) })) };
+	return { weaponType:p.stats.weaponType, ...Object.fromEntries(publicKeys.map((k) => [k, num(p[k])])),masteryFx:advancedMasterySnapshot(g,p),decoy:p.decoy??null,summon:p.summon??null,wisp:p.wisp??null,healingOverTime:p.healingOverTime??null,boxerCombo:p.boxerCombo?{steps:p.boxerCombo.steps}:null, titleId:p.displayTitleId??null, statuses: p.statuses.map((s) => ({ id: s.id, remaining: round(s.remaining),...(s.id==='archer_mark'?{targetId:s.targetId}:{}) })) };
 }
 /** Everything in a snapshot that is the same for every viewer, serialised once per room per send. */
 export function snapshotParts(room: Room) {
@@ -825,7 +825,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
                  p.titleId=character.titleId??null;p.unlockedTitles=character.unlockedTitles??[];p.titleRecords=normalizeTitleRecords(character.titleRecords);
  p.quests=normalizeQuests(character.quests,data);p.bossReadyAt=character.bossReadyAt||0;p.bossCooldowns={...(character.bossCooldowns??{})};p.returnReadyAt=character.returnReadyAt||0;p.healerReadyAt=character.healerReadyAt||0;p.autoSeconds=character.autoSeconds||0;
 					p.profile.classId = p.jobId;
-					p.name = character.name;
+					p.name = character.name;p.gender=character.gender??'male';
 					p.xp = character.xp;
 					
 					p.kills = character.kills;

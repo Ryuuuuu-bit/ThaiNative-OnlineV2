@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="th">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>ออกแบบเมือง · The Beginning Online</title></head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/city-2d-review.html" title="กลับหน้าสำรวจเมือง"><span class="brand-mark">◇</span><span><small>THE BEGINNING ONLINE</small><strong>โรงออกแบบเมือง <em>แบบร่าง</em></strong></span></a>
+  <div class="document"><label class="sr-only" for="draft-name">ชื่อแบบร่าง</label><input id="draft-name" maxlength="80" value="นครที่ถูกลืมเลือน · แบบร่าง"><span id="save-state">กำลังเตรียมฉาก</span></div>
+  <nav aria-label="จัดการแบบร่าง"><button id="recover" hidden>สำรองข้อมูลเดิม</button><button id="import" disabled>เปิดไฟล์</button><button id="export" disabled>ส่งออก JSON ↗</button><button id="save" class="primary" disabled>บันทึกแบบร่าง</button></nav>
+</header>
+<main>
+  <aside class="library" aria-label="คลัง Assets">
+    <div class="panel-heading"><small>01 / ASSET LIBRARY</small><h1>ชิ้นส่วนของเมือง <span id="asset-count">—</span></h1><p>เลือกของ แล้วคลิกตำแหน่งในฉาก</p></div>
+    <label class="search"><span>⌕</span><input id="asset-search" type="search" placeholder="ค้นหาบ้าน ต้นไม้ ของตกแต่ง…" aria-label="ค้นหา Assets"></label>
+    <label class="category-label" for="category">หมวดหมู่</label><select id="category"><option value="">ทั้งหมด</option></select>
+    <div id="asset-library" class="asset-grid" aria-label="เลือก Asset"></div>
+    <div class="library-note"><span class="dot"></span> ชุดเมืองใหม่ · เข้าธีม Sprite ชุดดำ</div>
+  </aside>
+  <section class="workspace" aria-label="พื้นที่ออกแบบเมือง">
+    <div class="scene-bar"><div class="tool-group"><button id="select-tool" aria-pressed="true" title="เลือกและย้าย">↖ เลือก</button><button id="pan-tool" aria-pressed="false" title="เลื่อนมุมมอง">✥ เลื่อน</button></div><div class="tool-group"><button id="undo" disabled title="ย้อนกลับ Ctrl+Z">↶</button><button id="redo" disabled title="ทำซ้ำ Ctrl+Shift+Z">↷</button><span class="divider"></span><label class="grid-label"><input id="grid" type="checkbox" checked> เส้นกริด</label><label class="snap-label">จัดแนว <select id="snap" aria-label="ระยะจัดแนว"><option value="0">อิสระ</option><option value="0.5" selected>0.5 ม.</option><option value="1">1 ม.</option><option value="2">2 ม.</option></select></label></div></div>
+    <div class="viewport"><canvas id="city-editor" tabindex="0" aria-label="ฉากเมือง คลิกเลือกแล้วลากเพื่อย้าย ใช้ลูกศรขยับ และปุ่ม Delete เพื่อลบ"></canvas>
+      <div class="scene-title"><small>นครที่ถูกลืมเลือน / CITY PLAZA</small><span>จัดเมืองในแบบของคุณ</span></div>
+      <div class="view-tools"><button id="fit" title="ดูเมืองทั้งหมด Home">ดูทั้งเมือง</button><button id="zoom-out" aria-label="ซูมออก">−</button><span id="zoom-level">—</span><button id="zoom-in" aria-label="ซูมเข้า">+</button></div>
+      <div id="placement" hidden><span id="placement-name"></span><button id="cancel-place">ยกเลิก Esc</button></div>
+      <div class="canvas-help">ลากของเพื่อย้าย <i>·</i> ลากพื้นที่ว่างเพื่อเลื่อน <i>·</i> ล้อเมาส์เพื่อซูม</div>
+      <div id="loading" role="status"><span class="loader-mark">◇</span><strong>กำลังเปิดโรงออกแบบเมือง…</strong><span>เตรียมบ้านเรือน สวน และชาวเมือง</span></div>
+    </div>
+    <div class="workspace-footer"><span id="coordinates">X 0.0 / Z 0.0</span><span>96 × 96 เมตร <i>·</i> พื้นถนนตามผังเดิม</span></div>
+  </section>
+  <aside class="inspector" aria-label="รายละเอียดวัตถุ">
+    <div class="panel-heading"><small>02 / INSPECTOR</small><h2>รายละเอียดวัตถุ</h2></div>
+    <div id="empty-selection"><span>↖</span><strong>เริ่มจากสิ่งที่อยากเปลี่ยน</strong><p>คลิกบ้าน ต้นไม้ หรือของในเมือง<br>เพื่อเลือกและจัดตำแหน่งใหม่</p></div>
+    <div id="selection" hidden><button id="deselect" aria-label="ปิดรายละเอียดวัตถุ">×</button>
+      <canvas id="selected-preview" width="400" height="280" aria-label="ภาพวัตถุที่เลือก"></canvas><div class="selected-caption"><small id="selected-category"></small><h3 id="selected-name"></h3></div>
+      <div class="property-section"><h4>ตำแหน่ง <span>เมตร</span></h4><div class="position-fields"><label>X<input id="position-x" type="number" min="-48" max="48" step="0.1"></label><label>Z<input id="position-z" type="number" min="-48" max="48" step="0.1"></label></div><p class="hint">ขยับละเอียดด้วยปุ่มลูกศร · Shift ขยับ 1 ม.</p></div>
+      <div class="property-section"><h4><label for="object-scale">ขนาด</label><output id="scale-value">100%</output></h4><input id="object-scale" type="range" min="0.25" max="2" step="0.05" value="1"><button id="flip" class="wide" aria-pressed="false">⇆ กลับด้านภาพ</button></div>
+      <div class="property-section"><h4>ทิศที่หัน<output id="facing-value">0°</output></h4><div class="facing-views" role="group" aria-label="ทิศที่หันบนพื้นเมือง"><button id="facing-0" aria-label="หันด้านเดิม 0 องศา" aria-pressed="true"><canvas width="120" height="100"></canvas><span>ด้านเดิม</span></button><button id="facing-1" aria-label="หันบนพื้น 90 องศา" aria-pressed="false"><canvas width="120" height="100"></canvas><span>90°</span></button><button id="facing-2" aria-label="หันบนพื้น 180 องศา" aria-pressed="false"><canvas width="120" height="100"></canvas><span>180°</span></button><button id="facing-3" aria-label="หันบนพื้น 270 องศา" aria-pressed="false"><canvas width="120" height="100"></canvas><span>270°</span></button></div><p id="facing-note" class="hint">เลือกภาพแต่ละด้าน · วัตถุยังตั้งตรงบนพื้นเมือง</p></div>
+      <div class="object-actions"><button id="duplicate">⧉ ทำสำเนา</button><button id="delete" class="danger">ลบวัตถุ</button></div>
+    </div>
+    <div class="scene-list"><h4><label for="object-search">วัตถุในเมือง</label><span id="object-count">—</span></h4><input id="object-search" type="search" placeholder="ค้นหาวัตถุในฉาก…" aria-label="ค้นหาวัตถุในเมือง"><select id="objects" size="6" aria-label="เลือกวัตถุในเมือง"></select><button id="reset" class="wide" disabled>กลับไปใช้เมืองต้นฉบับ</button></div>
+    <div class="draft-note"><span>◇</span><p><strong>พื้นที่ทดลองส่วนตัว</strong>บันทึกในเบราว์เซอร์นี้ หรือส่งออกไฟล์เก็บไว้ การจัดวางยังเป็นแบบร่างก่อนนำเข้าเกมจริง</p></div>
+  </aside>
+</main>
+<footer class="statusbar"><span id="status" role="status" aria-live="polite">กำลังโหลด Assets ของเมือง…</span><a href="/city-2d-review.html">สำรวจเมืองต้นฉบับ ↗</a></footer>
+<input id="import-file" class="sr-only" type="file" accept=".json,application/json" tabindex="-1">
+<script type="module" src="/src/city-layout-editor.ts"></script>
+</body></html>

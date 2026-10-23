@@ -1,11 +1,12 @@
 import {CITY_NPC_CLIPS} from './city-npc-clips.ts';
+import {CITY_SPRITEGEN_CLIPS} from './city-spritegen-clips.ts';
 
 /** Sample the atlas directly: a low-resolution world bake becomes blurry on HiDPI. */
 export type NpcSprite={source:HTMLImageElement;rect:[number,number,number,number];width:number;height:number;anchor?:[number,number];animation?:{frames:[number,number,number,number][];duration:number;feet?:number[]}};
 export function npcSprite(source:HTMLImageElement,rect:[number,number,number,number],height:number):NpcSprite{
  return {source,rect,width:height*rect[2]/rect[3],height};
 }
-const NPC_CLIPS=CITY_NPC_CLIPS;
+const NPC_CLIPS={...CITY_NPC_CLIPS,...CITY_SPRITEGEN_CLIPS};
 export type CityNpcArt=keyof typeof NPC_CLIPS;
 export const cityNpcWorldHeight=(art:CityNpcArt)=>NPC_CLIPS[art].worldHeight;
 export function cityNpcSprite(source:HTMLImageElement,art:CityNpcArt):NpcSprite{

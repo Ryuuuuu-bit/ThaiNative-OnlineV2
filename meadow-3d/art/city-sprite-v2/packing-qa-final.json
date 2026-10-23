@@ -1,0 +1,2674 @@
+{
+  "sprites": 43,
+  "views": 172,
+  "ground_textures": 3,
+  "orientation_review": "All 43 families reviewed; lamp and portal use identity; six NPC use bottom-row swap; corrected clocktower, flowerbed and human blacksmith included.",
+  "checks": [
+    {
+      "family": "cottage",
+      "source_sha256": "670595222dfbae71e300e3d0660d70b471b8d70c93ce776a77ddb4cb54bfca4b",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            63,
+            36,
+            434,
+            439
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            537,
+            39,
+            430,
+            437
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            555,
+            543,
+            427,
+            424
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            44,
+            538,
+            436,
+            419
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "townhouse",
+      "source_sha256": "8df0e9090fb62911491b5394447782e25d15dbe843df7c61661333d3c6dfa3a6",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            73,
+            29,
+            415,
+            467
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            546,
+            29,
+            404,
+            473
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            567,
+            519,
+            415,
+            482
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            63,
+            516,
+            410,
+            471
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "inn",
+      "source_sha256": "ce402e4e5413f58a131a68c4324a37968af31545d33af0235301cd5b4c89e651",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            56,
+            50,
+            462,
+            432
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            541,
+            45,
+            447,
+            439
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            546,
+            536,
+            434,
+            426
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            63,
+            526,
+            436,
+            426
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "market",
+      "source_sha256": "4aabbc3925ce4b9e630849a7583ec6875f831d22d951becde597d930a2da09cf",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            71,
+            39,
+            430,
+            449
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            541,
+            38,
+            415,
+            451
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            536,
+            543,
+            429,
+            434
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            54,
+            544,
+            446,
+            426
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "forge",
+      "source_sha256": "d193de96f7ef0e3e79032e86aa661f8f9002e826876bcae3a7511b9a3e4ad96d",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            57,
+            45,
+            441,
+            436
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            535,
+            37,
+            443,
+            445
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            547,
+            537,
+            429,
+            432
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            51,
+            532,
+            438,
+            435
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "guild",
+      "source_sha256": "d7af68c7a6cbd4ba7adf117009e6178fba021a62b05ad400fdf175a91ad95347",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            50,
+            23,
+            443,
+            460
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            536,
+            34,
+            446,
+            455
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            541,
+            533,
+            446,
+            446
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            47,
+            529,
+            451,
+            436
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "clocktower",
+      "source_sha256": "c76948e5b6715a1b52083bdbd1d6112df2308a697f5164f1fcfef6c7103d8a68",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            182,
+            3,
+            227,
+            493
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            615,
+            6,
+            228,
+            490
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            156,
+            511,
+            256,
+            487
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            615,
+            515,
+            255,
+            481
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "fountain",
+      "source_sha256": "1d710f43dc701c22147b51a4e3e3e61eb17014260aa76ae568c55e17428f968f",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            37,
+            37,
+            441,
+            449
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            556,
+            39,
+            435,
+            453
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            559,
+            545,
+            430,
+            436
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            40,
+            545,
+            441,
+            412
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "chapel",
+      "source_sha256": "ca6ef94df10337307e008e428fe04fc942afbe3e24dabccdc6493da250807f30",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            82,
+            12,
+            404,
+            469
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            537,
+            12,
+            403,
+            469
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            65,
+            518,
+            407,
+            462
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            549,
+            513,
+            410,
+            465
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "gazebo",
+      "source_sha256": "a1c1c409ce6413738549db8febc41e99734aa3b282b26be4ad7547b0faac4867",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            83,
+            25,
+            379,
+            464
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            561,
+            25,
+            377,
+            466
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            85,
+            524,
+            380,
+            455
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            558,
+            525,
+            380,
+            453
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "wall",
+      "source_sha256": "cc487b97fe130a048419c7472423247194ebeff71826c6ab825829fb907ded7c",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            35,
+            64,
+            461,
+            422
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            549,
+            89,
+            451,
+            411
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            43,
+            530,
+            455,
+            421
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            568,
+            561,
+            430,
+            418
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "watchtower",
+      "source_sha256": "a11ac072746fdf7f9f7d2baa8ae8c5f18c524299a3f044f04dc9fbb0b52f04e2",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            108,
+            26,
+            355,
+            474
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            584,
+            37,
+            363,
+            481
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            96,
+            523,
+            355,
+            464
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            613,
+            523,
+            357,
+            467
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "gate",
+      "source_sha256": "fb44949abc6b55ed7d5327e46b34dc5f9e04fe7f38acca920dc630a58b354c8b",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            18,
+            18,
+            458,
+            479
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            549,
+            18,
+            457,
+            479
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            24,
+            524,
+            453,
+            478
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            547,
+            524,
+            453,
+            478
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "booth",
+      "source_sha256": "c82c1809b0a00d061adc5ccba8b3730fd3c215de05340685848902215ab4621d",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            104,
+            27,
+            383,
+            485
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            541,
+            35,
+            375,
+            476
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            573,
+            523,
+            371,
+            469
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            102,
+            523,
+            364,
+            462
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "lamp",
+      "source_sha256": "786ed5dd0ab896421e2fc8e1036607454bb7a60ed607936a834ad383e8f398d1",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            181,
+            35,
+            185,
+            453
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            658,
+            35,
+            185,
+            455
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            219,
+            538,
+            188,
+            441
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            619,
+            536,
+            187,
+            443
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "banner",
+      "source_sha256": "dafb24f4624a519656e832773adca8ab5d1f2e1e782fb76bf9253b1b2dcbec37",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            209,
+            51,
+            229,
+            413
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            601,
+            66,
+            215,
+            403
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            157,
+            549,
+            196,
+            417
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            677,
+            549,
+            196,
+            419
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "dummy",
+      "source_sha256": "f2d2e995914eb12c2f77a1cf2f5d5278875d6950e37634fcaf33e981fe871c57",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            150,
+            56,
+            249,
+            419
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            632,
+            59,
+            248,
+            421
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            620,
+            543,
+            265,
+            413
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            140,
+            549,
+            265,
+            409
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "flowerbed",
+      "source_sha256": "a8c8d2728f91290a54ef5fe4887e281d807f17f84cd08c62fb186edab2893cbb",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            63,
+            92,
+            427,
+            381
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            597,
+            94,
+            367,
+            389
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            551,
+            553,
+            425,
+            381
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            112,
+            629,
+            314,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "table",
+      "source_sha256": "f6a79ada4d870ae48ac06e135b5cbb91b8cd202cdd1b382686c72d7f88b650a9",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            76,
+            128,
+            377,
+            342
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            572,
+            128,
+            385,
+            323
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            578,
+            604,
+            383,
+            336
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            78,
+            603,
+            399,
+            306
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "stall",
+      "source_sha256": "c43d5dac680681e750ab407b9d66e74921ea6649c7e1b54907e3e79c1c2c6efb",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            96,
+            69,
+            389,
+            413
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            548,
+            69,
+            386,
+            409
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            87,
+            538,
+            394,
+            382
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            560,
+            537,
+            374,
+            386
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "notice",
+      "source_sha256": "74b9819eccd4a3dc5c25f05d34b98e465d002bf7986a48022d20aff602d85784",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            104,
+            37,
+            361,
+            481
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            560,
+            36,
+            364,
+            481
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            99,
+            524,
+            363,
+            465
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            563,
+            524,
+            364,
+            464
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "wagon",
+      "source_sha256": "a7cc24079d643eccfc5515ccbb484a82b8ad13f3ed7613df156578f9fbaaf93c",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            33,
+            47,
+            457,
+            431
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            539,
+            44,
+            442,
+            449
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            56,
+            536,
+            432,
+            423
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            537,
+            536,
+            446,
+            425
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "anvil",
+      "source_sha256": "b241a405c46b01e102d64b2b52383f9ac5bda9cae2b2073165a3b574086d4d72",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            102,
+            79,
+            318,
+            382
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            615,
+            79,
+            321,
+            394
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            139,
+            572,
+            328,
+            365
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            595,
+            549,
+            314,
+            392
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "barrels",
+      "source_sha256": "5d105b97363202d1305f2b6c747fe3fe30d1ecc0a71d6b7bb7d4525498296dbf",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            89,
+            106,
+            376,
+            346
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            584,
+            111,
+            365,
+            338
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            590,
+            597,
+            366,
+            336
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            93,
+            591,
+            389,
+            336
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "bench",
+      "source_sha256": "b3c3d18fc04733343ed343bec6491857f97652a8bcb7aa80fc6aa7cb8a20e58b",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            62,
+            46,
+            398,
+            437
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            564,
+            47,
+            400,
+            433
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            71,
+            582,
+            393,
+            384
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            559,
+            582,
+            397,
+            381
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "hay",
+      "source_sha256": "aac57a4177f12634ccdfd8135c2e7180c196c2bee9a57cb67fde2799487d7c2b",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            72,
+            126,
+            401,
+            346
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            559,
+            124,
+            391,
+            346
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            559,
+            579,
+            395,
+            341
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            71,
+            578,
+            394,
+            342
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "crates",
+      "source_sha256": "5dde1dcca5b54002799549a7398b3867722a7363762bf14cf29922cd6a794d56",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            98,
+            110,
+            355,
+            364
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            596,
+            109,
+            347,
+            366
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            591,
+            577,
+            365,
+            350
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            93,
+            578,
+            366,
+            335
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "well",
+      "source_sha256": "6acb4069b46aea9cababf8fd3fa7efb43ad693047c6eacb543754c49c59c8816",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            105,
+            106,
+            364,
+            352
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            563,
+            106,
+            358,
+            351
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            572,
+            589,
+            365,
+            328
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            111,
+            573,
+            358,
+            335
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "portal",
+      "source_sha256": "e039a72a7ca9b277ef78d79a63c4e705376727ee08d7bd750784ef3abb9b0876",
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "views": [
+        {
+          "rect": [
+            62,
+            126,
+            421,
+            326
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            540,
+            126,
+            423,
+            326
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            63,
+            581,
+            419,
+            324
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            542,
+            581,
+            420,
+            324
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "marker",
+      "source_sha256": "db8cec4b9d26dc16bc18348f3897c65cd76f7c86b49a0809ec7281c3388b2bd8",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            145,
+            75,
+            238,
+            409
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            643,
+            76,
+            236,
+            400
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            639,
+            548,
+            240,
+            397
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            146,
+            549,
+            237,
+            396
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "tree-flowering",
+      "source_sha256": "4aec927c983295a004b1600bf2c08a96ca0f3c234217651e909fd8817ab767f8",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            45,
+            43,
+            458,
+            439
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            540,
+            58,
+            462,
+            438
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            530,
+            542,
+            471,
+            440
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            30,
+            555,
+            478,
+            421
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "tree-tall",
+      "source_sha256": "ed2a54b193b9ebddb28d01c0fbe3170f17b4904f4f0df99af38d7bb8a036501b",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            102,
+            29,
+            359,
+            473
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            589,
+            37,
+            339,
+            465
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            588,
+            534,
+            359,
+            452
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            98,
+            525,
+            368,
+            453
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "tree-round",
+      "source_sha256": "d560543774ecdaf0e59f8267f5a63b4774d1866ef2307e182fe590c1fe0e68ac",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            41,
+            44,
+            461,
+            451
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            534,
+            43,
+            466,
+            456
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            532,
+            538,
+            472,
+            444
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            29,
+            524,
+            468,
+            459
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "bush-flowering",
+      "source_sha256": "cf2999e9e008923c2f86c335f4ab6e9a6235d782b551326c1333ce807e81ac0c",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            89,
+            115,
+            381,
+            347
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            575,
+            133,
+            365,
+            350
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            565,
+            609,
+            378,
+            327
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            92,
+            598,
+            374,
+            324
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "flowers-lavender",
+      "source_sha256": "5a8a8eb08282e552855e4208678ed9f764b597adbb862cd1fdb04dfda88a4555",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            122,
+            94,
+            315,
+            377
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            597,
+            91,
+            318,
+            382
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            596,
+            582,
+            322,
+            367
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            106,
+            578,
+            329,
+            371
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "flowers-white",
+      "source_sha256": "19fecf0ba0408bd1bb021f5c86305549cd0f8d7f1fa311ff30c459f68112189e",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            110,
+            117,
+            338,
+            337
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            591,
+            116,
+            346,
+            347
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            586,
+            585,
+            352,
+            323
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            103,
+            579,
+            342,
+            330
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "grass-2",
+      "source_sha256": "1acb32b4f7871b9f1c436553bca19b71a0550f138cd27104bf0adc69f8bd87ea",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            104,
+            150,
+            339,
+            282
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            611,
+            140,
+            329,
+            296
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            611,
+            640,
+            320,
+            282
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            110,
+            638,
+            333,
+            278
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "npc-clerk",
+      "source_sha256": "eb3cf90fceffb5fba7bfeaa0f289bfa25f3a881dea52c7a45c68302ebd2ba422",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            196,
+            87,
+            191,
+            382
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            706,
+            104,
+            164,
+            376
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            667,
+            570,
+            197,
+            371
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            203,
+            559,
+            182,
+            376
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "npc-blacksmith",
+      "source_sha256": "b62448a826672443e6e7819fd9ef0f0a777a12637ef86b15fe1e5d463f80bb44",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            165,
+            28,
+            198,
+            463
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            672,
+            39,
+            205,
+            450
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            668,
+            532,
+            205,
+            452
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            180,
+            526,
+            205,
+            445
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "npc-merchant",
+      "source_sha256": "e35ac59f5d00887fbc93a048377312774cd0cd6bbf5764eb6b1d7647a0097412",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            194,
+            69,
+            186,
+            405
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            685,
+            70,
+            190,
+            404
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            674,
+            566,
+            208,
+            389
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            183,
+            565,
+            202,
+            391
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "npc-healer",
+      "source_sha256": "0f8bd0528df6a6633e06e81c9c13eb7a96e6452cbcb896eaf0ee50a22a5562ad",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            161,
+            69,
+            178,
+            391
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            684,
+            78,
+            202,
+            391
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            689,
+            574,
+            183,
+            387
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            169,
+            579,
+            187,
+            385
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "npc-guard",
+      "source_sha256": "a19f7193a07fb05a2f830cf5db5c8b85c79b2af221cf7c5a4bbcac204464c250",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            163,
+            42,
+            200,
+            435
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            677,
+            41,
+            211,
+            436
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            681,
+            524,
+            183,
+            444
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            152,
+            533,
+            214,
+            433
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    },
+    {
+      "family": "npc-angel",
+      "source_sha256": "d3c6e29502b51e86c87049ca22ab3048e301b629baa01cdc96b45a606244ed01",
+      "order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "views": [
+        {
+          "rect": [
+            123,
+            55,
+            226,
+            422
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            682,
+            58,
+            250,
+            422
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            658,
+            552,
+            257,
+            416
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        },
+        {
+          "rect": [
+            131,
+            551,
+            237,
+            412
+          ],
+          "anchor": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "coverage": "all alpha >= 16 retained",
+      "packed_pixels": "matches canonical source over black and white"
+    }
+  ]
+}

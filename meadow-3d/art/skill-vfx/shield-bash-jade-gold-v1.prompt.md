@@ -1,0 +1,8 @@
+# Shield Bash — Jade–Gold v1
+
+Generated with the built-in ImageGen tool. Transparent PNG, 1254 × 1254 px.
+Approved for Shield Bash and Bulwark with a 50% opacity multiplier and screen blending. The local gallery retains an A/B checkbox; the game renderer now loads this shared asset. Not deployed.
+
+## Final prompt
+
+Use case: stylized-concept. Asset type: one production-ready transparent 2D fantasy MMORPG VFX shield sprite for The Beginning Online, Guardian Shield Bash. Create a NEW original shield design, front orthographic view, perfectly upright and bilaterally symmetric. A powerful broad kite shield with a gently crowned top, strong angular shoulders, tapering pointed bottom and restrained Thai-fantasy lotus/flame geometry. Deep ink-green and luminous jade enamel/energy central panels, thick warm antique-gold bevelled rim, a bold ivory-gold spear/lotus crest running down the centre with a small radiant jade gemstone. Premium hand-painted 2D game art, crisp cel-shaded planes with elegant painted highlights, broad readable shapes, readable at 64-128 px. Clear separation between gold rim and dark jade core. Restrained small highlights on the rim; NO huge bloom, NO rays, NO separate particles, NO motion trail. Single isolated shield only, no person, no arms, no equipment behind it, no scenery, no labels, no text, no watermark, no drop shadow, no ground. Truly transparent background with clean alpha edges. Square image, shield occupies about 72 percent of image height, centred with generous clear margins on every side. This is a sprite asset, not a concept art presentation sheet or a realistic product photo.

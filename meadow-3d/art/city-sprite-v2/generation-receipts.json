@@ -1,0 +1,294 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "reference": "black-hero-style-reference.png",
+  "pilot": {
+    "family": "cottage",
+    "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-2d2be470-09a0-4e15-b824-492d71916b47.png"
+  },
+  "jobs": [
+    {
+      "family": "inn",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-b9964a9e-3901-4d1e-94e2-221055fe484a.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\inn.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "townhouse",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-d8ad70f8-6f4a-4137-a0ec-3e23f3bd2298.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\townhouse.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "forge",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-39ee53f9-5087-421f-9ddf-63bd4067e1ad.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\forge.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "market",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-2fc5e54c-900f-434f-af94-40d48750bde5.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\market.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "guild",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-069144fd-c369-4822-bbe5-06f63a87c80f.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\guild.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "fountain",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-9a780683-0b23-43af-b1e4-e0bf00112ba2.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\fountain.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "clocktower",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-c078b4d1-87b9-42d8-91b4-8126b9cd07f0.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\clocktower.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "chapel",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-c11584d7-e350-4edb-8478-6b5f09d639c4.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\chapel.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "wall",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-5e1b461c-8f20-41f1-ac52-59b5f7c1ce47.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\wall.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "gazebo",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-db34730b-0965-459c-9fe2-9bb5a6e90d5e.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\gazebo.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "watchtower",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-509d12ee-7f53-4069-bda1-a7d34ecc2ebf.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\watchtower.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "booth",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-902fa9f3-df45-4cc8-a96b-5db27210a444.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\booth.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "gate",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-0ea978ed-1681-4f82-ba1e-631e45bb5b7c.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\gate.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "lamp",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-92e61f7b-3f03-46b2-a1e3-71f894585adb.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\lamp.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "flowerbed",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-d8af839d-7764-40c8-b392-9ef9a858fbce.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\flowerbed.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "banner",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-c69feccf-031d-440c-b0e5-625fded3a88b.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\banner.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "table",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-628f1ba2-a71d-4135-ae9f-927c25f781fc.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\table.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "dummy",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-00c43519-6c01-4a4f-9510-8420d849aa58.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\dummy.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "stall",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-b1393f04-3b60-4e45-920e-cf5f00bc59ce.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\stall.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "notice",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-a8274e68-4a1d-4f97-8871-feece21caec4.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\notice.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "wagon",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-d97a9575-55ba-4248-89b7-9c4a87c6f2a0.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\wagon.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "anvil",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-0b1b2069-6ebe-4c94-92bc-eded3939d8cb.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\anvil.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "hay",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-6fb1186e-aa3d-47e1-b933-bb7b0864d43f.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\hay.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "barrels",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-b29e1b5e-8081-4da4-b322-d1aa83d00dfc.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\barrels.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "crates",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-c9a7a431-b46f-4405-9324-da153efd14e1.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\crates.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "bench",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-764247a0-7163-4c90-bac9-25e4ce9a1a8e.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\bench.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "well",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-adfb0dd3-e106-4b5d-a2d6-d13ab9cc7907.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\well.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "portal",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-4e991407-79be-489b-a3e5-c2d82b690250.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\portal.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "marker",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-0d17ca5e-93c2-49e6-b8f9-496f924a11a1.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\marker.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "tree-tall",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-14f45351-80be-4aa5-862c-eed697b9baff.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\tree-tall.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "tree-flowering",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-e3eab09e-42a5-4ac1-a3b6-a6bb26608faa.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\tree-flowering.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "tree-round",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-27ceb4e4-d95c-496b-b793-86f2bd510bca.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\tree-round.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "bush-flowering",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-f38b4330-60b2-42fd-a463-2e6e558f1af8.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\bush-flowering.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "flowers-lavender",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-ed44d57f-c3e1-41ee-9f30-12c0194251a3.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\flowers-lavender.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "flowers-white",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-348c238e-3421-4935-8657-12c8aaf5f16d.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\flowers-white.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "npc-clerk",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-2987cd5f-a988-4737-89a8-13ee1764b203.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\npc-clerk.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "grass-2",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-0cf46f78-94f5-4b32-97af-51369e5040fa.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\grass-2.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "npc-blacksmith",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-7d2a0ea1-6b24-4e51-bda2-87e9ed030184.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\npc-blacksmith.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "npc-merchant",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-82013d0c-7801-49f5-8200-91747bcdf2e1.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\npc-merchant.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "npc-healer",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-252d2d00-41d3-4c69-8e9c-aefba71e73d4.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\npc-healer.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "npc-guard",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-0a087352-7fe5-482a-9e71-f1f8ecd1e2f6.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\npc-guard.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "ground-grass",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-888e454b-f379-4dcc-bd0f-ac7153493d56.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\ground-grass.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "npc-angel",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-3713519d-cd87-455d-bf7d-7c0fe5d862c8.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\npc-angel.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "ground-garden",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-7f689e9b-0db4-4382-b644-293fc041fc4d.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\ground-garden.png",
+      "tool": "built-in imagegen"
+    },
+    {
+      "family": "ground-road",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-91c7ec6f-a651-4732-8fdf-ca2cd8b7f4f8.png",
+      "destination": "D:\\Project\\The-Beginning-Online\\meadow-3d\\art\\city-sprite-v2\\ground-road.png",
+      "tool": "built-in imagegen"
+    }
+  ],
+  "repairs": [
+    {
+      "family": "clocktower",
+      "prompt": "Edit the supplied clocktower sprite sheet to repair its incorrect object facings and tight framing. Preserve its exact mature painted RPG art style, gray stone, old timber, charcoal slate pyramidal roof, amber lanterns, brass clocks and proportions. Reference 1 is the exact edit target. Reference 2 is the black armored hero style. Produce a transparent square 2x2 sprite sheet, FOUR DISTINCT QUARTER TURNS of the SAME tower around its vertical axis, upright throughout, fixed elevated orthographic camera. CRITICAL geometry: one unique FRONT DOOR with little gabled porch only on FRONT facade, one unique rear lean-to woodshed only on REAR facade; side facades have narrow windows. TL=0deg front+right side, front door on LEFT visible plane. TR=90deg left side+front, FRONT DOOR on RIGHT visible plane; do not repeat TL. BR=180deg rear+left side, REAR WOODSHED on LEFT visible plane; no front door. BL=270deg right side+rear, REAR WOODSHED on RIGHT visible plane; no front door. Thus TL and BR are opposite views, TR and BL opposite views. Clocks on all upper faces may remain. Keep the ENTIRE weather vane/finial and all base stones visible with at least 24px clear transparent margin INSIDE EACH quadrant. No rotation/tilting of the whole bitmap, no scenery, ground, text, labels, grid or characters. Same scale and camera in all4. Painted contours, soft top-left light.",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-c3390635-df87-429f-a5c7-9c615452d6c0.png",
+      "reason": "Original sheet repeated directions; repaired quarter-turn ground orientations."
+    },
+    {
+      "family": "flowerbed",
+      "prompt": "Edit the supplied flowerbed sprite sheet to repair wrong ground directions. Reference 1 is edit target. Reference 2 black-armored hero sets mature painted RPG style. Preserve gray weathered rectangular stone planter, black iron corner caps, olive foliage, lavender and small ivory flowers. TRUE FOUR QUARTER TURNS of one long rectangular planter (length:depth=2.5:1), fixed elevated orthographic camera, upright, same scale. Square transparent 2x2sheet. TL=0deg, long edge slopes DOWN-RIGHT from upper-left to lower-right (backslash), front iron-capped long face visible. TR=90deg, long edge slopes UP-RIGHT from lower-left to upper-right (slash), short end foreground left; MUST be perpendicular to TL not repeated. BR=180deg, long edge slopes DOWN-RIGHT (backslash), REAR long face visible. BL=270deg, long edge slopes UP-RIGHT (slash), opposite short end foreground. Therefore cells clockwise TL TR BR BL alternate long-axis backslash slash backslash slash, and opposite TL/BR share axis, TR/BL share axis. Plants rotate with container, lavender cluster at a consistent physical end, same asymmetrical trailing ivy rotates with it. No text, no scenery, no grid, no labels. Isolated objects with generous transparent padding inside each quadrant, no cropped leaves. Slate gray/olive/lavender palette same as original.",
+      "source": "C:\\Users\\panup\\.codex\\generated_images\\01a1689d-4beb-7942-a545-c9bc890a1d91\\exec-a691e86b-7972-4779-819e-914364a9be40.png",
+      "reason": "Original sheet repeated directions; repaired quarter-turn ground orientations."
+    }
+  ]
+}

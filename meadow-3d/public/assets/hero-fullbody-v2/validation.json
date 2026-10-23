@@ -1,0 +1,1337 @@
+{
+  "scale": 0.75,
+  "planSha256": "68cfdca9723e43b1a918ec268d01a339b50fb84a36f28d04ca9ca640617400a0",
+  "plan": {
+    "looks": {
+      "traveler-iron": {
+        "label": "ชุดนักเดินทาง · ดาบและโล่",
+        "clips": {
+          "walk": {
+            "source": "output/fullbody-motion-v2-20261023/traveler-iron-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23
+            ],
+            "seconds": 1.25,
+            "anchor": [
+              260,
+              454
+            ],
+            "bodyHeight": 354,
+            "characterId": "cmvkmawor00ncou6ef3wu9k52",
+            "spritesheetId": "cmvkmjgye000j561zzh9id0sz",
+            "reviewed": true
+          },
+          "attack": {
+            "source": "output/fullbody-motion-v2-20261023/traveler-iron-attack.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              256,
+              438
+            ],
+            "bodyHeight": 350,
+            "characterId": "cmvkmawor00ncou6ef3wu9k52",
+            "spritesheetId": "cmvkmk43l000uh9tlope44ntp",
+            "reviewed": true,
+            "impactFrame": 4
+          },
+          "cast": {
+            "source": "output/fullbody-motion-v2-20261023/traveler-iron-cast.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              260,
+              456
+            ],
+            "bodyHeight": 366,
+            "characterId": "cmvkmawor00ncou6ef3wu9k52",
+            "spritesheetId": "cmvkmjly30005h9tl5nwyrk6m",
+            "reviewed": true,
+            "impactFrame": 8
+          }
+        }
+      },
+      "traveler-bow": {
+        "label": "ชุดนักเดินทาง · ธนู",
+        "clips": {
+          "walk": {
+            "source": "output/fullbody-motion-v2-20261023/traveler-bow-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23
+            ],
+            "seconds": 1.2,
+            "anchor": [
+              260,
+              448
+            ],
+            "bodyHeight": 357,
+            "characterId": "cmvkmau7w008mq18l9wulluig",
+            "spritesheetId": "cmvkmjkz40001h9tlua8ozsd4",
+            "reviewed": true
+          },
+          "attack": {
+            "source": "output/fullbody-motion-v2-20261023/traveler-bow-attack.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 1.65,
+            "anchor": [
+              256,
+              466
+            ],
+            "bodyHeight": 356,
+            "characterId": "cmvkmau7w008mq18l9wulluig",
+            "spritesheetId": "cmvkmcx76000n5anshxv5rgvd",
+            "reviewed": true,
+            "impactFrame": 7
+          },
+          "cast": {
+            "source": "output/fullbody-motion-v2-20261023/traveler-bow-cast.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              260,
+              450
+            ],
+            "bodyHeight": 352,
+            "characterId": "cmvkmau7w008mq18l9wulluig",
+            "spritesheetId": "cmvkmja680008561zbbp563az",
+            "reviewed": true,
+            "impactFrame": 9
+          }
+        }
+      },
+      "guardian-iron": {
+        "label": "ชุดผู้พิทักษ์ · ดาบและโล่",
+        "clips": {
+          "walk": {
+            "source": "output/fullbody-motion-v2-20261023/guardian-iron-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              260,
+              440
+            ],
+            "bodyHeight": 340,
+            "characterId": "cmvkmazt0008qq18l81kgh5xt",
+            "spritesheetId": "cmvkmk130000kh9tlhhvaoz5e",
+            "reviewed": true,
+            "reviewNotes": "Contact-sheet anatomy reviewed. Trimmed repeated opening/end holds. Modest heading and ground drift remain; runtime loop review required."
+          },
+          "attack": {
+            "source": "output/fullbody-motion-v2-20261023/guardian-iron-attack.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              248,
+              438
+            ],
+            "bodyHeight": 339,
+            "characterId": "cmvkmazt0008qq18l81kgh5xt",
+            "spritesheetId": "cmvkmk7zn0016h9tls9j7oo0x",
+            "reviewed": true,
+            "impactFrame": 15,
+            "reviewNotes": "Whole-body anatomy coherent. Blade becomes very thin or partially transparent in raised frames 7-14 and 16; retained as a documented prototype art limitation. No cell-edge clipping."
+          },
+          "cast": {
+            "source": "output/fullbody-motion-v2-20261023/guardian-iron-cast-correction.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              260,
+              410
+            ],
+            "bodyHeight": 272,
+            "characterId": "cmvkmazt0008qq18l81kgh5xt",
+            "spritesheetId": "cmvkmtxo8002mlrpq4b3ubem1",
+            "reviewed": true,
+            "impactFrame": 10,
+            "reviewNotes": "Corrected single character; sword and shield stay attached. Sword rises to chest and holds. One-shot clip, not a seamless loop. Replaces rejected duplicate-character cast source."
+          }
+        }
+      },
+      "guardian-bow": {
+        "label": "ชุดผู้พิทักษ์ · ธนู",
+        "clips": {
+          "walk": {
+            "source": "output/fullbody-motion-v2-20261023/guardian-bow-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 1.3,
+            "anchor": [
+              265,
+              437
+            ],
+            "bodyHeight": 350,
+            "characterId": "cmvkmb26m008uq18lkcjw9c58",
+            "spritesheetId": "cmvkmk50w000yh9tljnyn0sn8",
+            "reviewed": true,
+            "reviewNotes": "Retained complete source gait including opening hold to preserve both alternating steps; numerical silhouette matching alone could select a half-cycle. Connected knees and feet; minor heading, bow and ground drift remain. Runtime loop review required."
+          },
+          "attack": {
+            "source": "output/fullbody-motion-v2-20261023/guardian-bow-attack.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              230,
+              462
+            ],
+            "bodyHeight": 347,
+            "characterId": "cmvkmb26m008uq18lkcjw9c58",
+            "spritesheetId": "cmvkmk296000qh9tlkttbaj49",
+            "reviewed": true,
+            "impactFrame": 14,
+            "reviewNotes": "Stable connected anatomy and contained bow. Starts fully drawn, releases at 14, recovers, then resets arrow/draw without a full nocking phase. Idle alias is an aiming stance. Minor colored alpha fringes at source resolution."
+          },
+          "cast": {
+            "source": "output/fullbody-motion-v2-20261023/guardian-bow-cast-correction.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              260,
+              412
+            ],
+            "bodyHeight": 276,
+            "characterId": "cmvkmb26m008uq18lkcjw9c58",
+            "spritesheetId": "cmvkmtj8k0028lrpqkes4rxxt",
+            "reviewed": true,
+            "impactFrame": 16,
+            "reviewNotes": "Corrected single character and held bow; free hand rises and opens. One-shot clip ends holding the gesture. Replaces rejected white-wedge/floating-bow cast source."
+          }
+        }
+      }
+    }
+  },
+  "note": "Occupied edges require visual review; projectiles may intentionally leave the cell.",
+  "clips": {
+    "traveler-iron-walk": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/traveler-iron-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "seconds": 1.25,
+        "anchor": [
+          260,
+          454
+        ],
+        "bodyHeight": 354,
+        "characterId": "cmvkmawor00ncou6ef3wu9k52",
+        "spritesheetId": "cmvkmjgye000j561zzh9id0sz",
+        "reviewed": true
+      },
+      "sourceSha256": "e558312fc5e7cafd5a9566db71760f0fbc1bf0e95536037fde026c4dc5eb6be8",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "traveler-iron-walk.webp",
+      "bytes": 395402,
+      "sha256": "cde238824b6e1820be5306849bf4de958ca0f4d64cb75c510dc58a84210d112f"
+    },
+    "traveler-iron-attack": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/traveler-iron-attack.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          256,
+          438
+        ],
+        "bodyHeight": 350,
+        "characterId": "cmvkmawor00ncou6ef3wu9k52",
+        "spritesheetId": "cmvkmk43l000uh9tlope44ntp",
+        "reviewed": true,
+        "impactFrame": 4
+      },
+      "sourceSha256": "fafb88c6ade7ca9e73ecf2d47eaa6b1c6df40429f6c1b91a158e1b5625a738a6",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "traveler-iron-attack.webp",
+      "bytes": 438878,
+      "sha256": "06af4c8c75f0951c7912794169e4763456b755ffbf88feb5c66341705b4b8900"
+    },
+    "traveler-iron-cast": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/traveler-iron-cast.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          260,
+          456
+        ],
+        "bodyHeight": 366,
+        "characterId": "cmvkmawor00ncou6ef3wu9k52",
+        "spritesheetId": "cmvkmjly30005h9tl5nwyrk6m",
+        "reviewed": true,
+        "impactFrame": 8
+      },
+      "sourceSha256": "b1a03d3c1e07f9c0bd2895eefe6e30018dde3d9204ed832c1d9f59e85affbeb3",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "traveler-iron-cast.webp",
+      "bytes": 423722,
+      "sha256": "c898a552e26b35d44b71fcf3a7b4f608e091b219d353198cbbddde26f4e6cfc3"
+    },
+    "traveler-bow-walk": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/traveler-bow-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "seconds": 1.2,
+        "anchor": [
+          260,
+          448
+        ],
+        "bodyHeight": 357,
+        "characterId": "cmvkmau7w008mq18l9wulluig",
+        "spritesheetId": "cmvkmjkz40001h9tlua8ozsd4",
+        "reviewed": true
+      },
+      "sourceSha256": "2aef8e27c37ddacfbe5a4b46dc39744c5b7c6cdfd20096f4ae6fb4ab08978b7b",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "traveler-bow-walk.webp",
+      "bytes": 365722,
+      "sha256": "5cd2b5d21caa770110a43ee38eae645d5a6c4e5de24c9af27cb2f94f26d0ab56"
+    },
+    "traveler-bow-attack": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/traveler-bow-attack.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 1.65,
+        "anchor": [
+          256,
+          466
+        ],
+        "bodyHeight": 356,
+        "characterId": "cmvkmau7w008mq18l9wulluig",
+        "spritesheetId": "cmvkmcx76000n5anshxv5rgvd",
+        "reviewed": true,
+        "impactFrame": 7
+      },
+      "sourceSha256": "fb723090a97d314cf8f444b3aa505f67be650ffd9278de6df87fd8da63b4e874",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "traveler-bow-attack.webp",
+      "bytes": 570770,
+      "sha256": "8c78c910dcd10a4cf639f0204f22ccfd04802a37674883e479dbf7eae0b3887d"
+    },
+    "traveler-bow-cast": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/traveler-bow-cast.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          260,
+          450
+        ],
+        "bodyHeight": 352,
+        "characterId": "cmvkmau7w008mq18l9wulluig",
+        "spritesheetId": "cmvkmja680008561zbbp563az",
+        "reviewed": true,
+        "impactFrame": 9
+      },
+      "sourceSha256": "259de4e321c14f2d974fa5ac6d7e3741872332a999bb1d93934f7a0be94bdf5d",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "traveler-bow-cast.webp",
+      "bytes": 493720,
+      "sha256": "4fcc7e2e371e23bb0521ed37ad32f8ced4e890f0770e53418a2ba27bd28479c5"
+    },
+    "guardian-iron-walk": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/guardian-iron-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          260,
+          440
+        ],
+        "bodyHeight": 340,
+        "characterId": "cmvkmazt0008qq18l81kgh5xt",
+        "spritesheetId": "cmvkmk130000kh9tlhhvaoz5e",
+        "reviewed": true,
+        "reviewNotes": "Contact-sheet anatomy reviewed. Trimmed repeated opening/end holds. Modest heading and ground drift remain; runtime loop review required."
+      },
+      "sourceSha256": "944dcfb7e6656664812c302020eb8de9cf960781dc4bea0456a67905a3786fec",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1536
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "guardian-iron-walk.webp",
+      "bytes": 405736,
+      "sha256": "e2dd520e33b999e495b946999743e6259edfdfefdbe8ddc4c9aae7992a25e716"
+    },
+    "guardian-iron-attack": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/guardian-iron-attack.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          248,
+          438
+        ],
+        "bodyHeight": 339,
+        "characterId": "cmvkmazt0008qq18l81kgh5xt",
+        "spritesheetId": "cmvkmk7zn0016h9tls9j7oo0x",
+        "reviewed": true,
+        "impactFrame": 15,
+        "reviewNotes": "Whole-body anatomy coherent. Blade becomes very thin or partially transparent in raised frames 7-14 and 16; retained as a documented prototype art limitation. No cell-edge clipping."
+      },
+      "sourceSha256": "eda687e3ff8784514282552c21e21e044202b2cf8466c6bae00b8bf4fd26d37b",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "guardian-iron-attack.webp",
+      "bytes": 475460,
+      "sha256": "3e2459bc38e73aaf683eff7eca798ed18d37dd0731ae4cc90867da18871df005"
+    },
+    "guardian-iron-cast": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/guardian-iron-cast-correction.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          260,
+          410
+        ],
+        "bodyHeight": 272,
+        "characterId": "cmvkmazt0008qq18l81kgh5xt",
+        "spritesheetId": "cmvkmtxo8002mlrpq4b3ubem1",
+        "reviewed": true,
+        "impactFrame": 10,
+        "reviewNotes": "Corrected single character; sword and shield stay attached. Sword rises to chest and holds. One-shot clip, not a seamless loop. Replaces rejected duplicate-character cast source."
+      },
+      "sourceSha256": "19339d6e916b51080a6b71385532dc57671a32a0cf13924dd04725d482ed2c70",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "guardian-iron-cast.webp",
+      "bytes": 327006,
+      "sha256": "887263e0141c144870c78edf06cecfc310355596e6b00f39b2a194c975e6ab1f"
+    },
+    "guardian-bow-walk": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/guardian-bow-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 1.3,
+        "anchor": [
+          265,
+          437
+        ],
+        "bodyHeight": 350,
+        "characterId": "cmvkmb26m008uq18lkcjw9c58",
+        "spritesheetId": "cmvkmk50w000yh9tljnyn0sn8",
+        "reviewed": true,
+        "reviewNotes": "Retained complete source gait including opening hold to preserve both alternating steps; numerical silhouette matching alone could select a half-cycle. Connected knees and feet; minor heading, bow and ground drift remain. Runtime loop review required."
+      },
+      "sourceSha256": "12594c3c3380d3116eca9a8b6fdf5aeb6f6fbaca3b969560eff7ea545162a6cf",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "guardian-bow-walk.webp",
+      "bytes": 452858,
+      "sha256": "f42b1d6840e66f68bf602f2832b9d40d08d0eb478ea9f06467dd1df8e4ad1b46"
+    },
+    "guardian-bow-attack": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/guardian-bow-attack.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          230,
+          462
+        ],
+        "bodyHeight": 347,
+        "characterId": "cmvkmb26m008uq18lkcjw9c58",
+        "spritesheetId": "cmvkmk296000qh9tlkttbaj49",
+        "reviewed": true,
+        "impactFrame": 14,
+        "reviewNotes": "Stable connected anatomy and contained bow. Starts fully drawn, releases at 14, recovers, then resets arrow/draw without a full nocking phase. Idle alias is an aiming stance. Minor colored alpha fringes at source resolution."
+      },
+      "sourceSha256": "885143578aa03fc38f3407d240c2d5ac46ed52bfdc03682dddfec302c5c53715",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "guardian-bow-attack.webp",
+      "bytes": 612518,
+      "sha256": "c19e6dc96937ed90721829ad688404c2ab38d4c9e02ea0b281f883a3456e3096"
+    },
+    "guardian-bow-cast": {
+      "source": {
+        "source": "output/fullbody-motion-v2-20261023/guardian-bow-cast-correction.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          260,
+          412
+        ],
+        "bodyHeight": 276,
+        "characterId": "cmvkmb26m008uq18lkcjw9c58",
+        "spritesheetId": "cmvkmtj8k0028lrpqkes4rxxt",
+        "reviewed": true,
+        "impactFrame": 16,
+        "reviewNotes": "Corrected single character and held bow; free hand rises and opens. One-shot clip ends holding the gesture. Replaces rejected white-wedge/floating-bow cast source."
+      },
+      "sourceSha256": "334fea25090e7a66d258d06c84b281131b57aee00d6d876c89c65cf5477968c8",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "guardian-bow-cast.webp",
+      "bytes": 349396,
+      "sha256": "6efb2ebc7918029f448ff2b54763dc50cbd8d3abc66aaf6cec4bc6904f8fbd26"
+    }
+  }
+}

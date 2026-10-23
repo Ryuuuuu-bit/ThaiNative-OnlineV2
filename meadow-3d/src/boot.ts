@@ -1,3 +1,4 @@
+import './pc-only';
 import { assetJSON } from "./asset-request";
 declare global {
 	interface Window {

@@ -100,7 +100,7 @@ test('real simulation damage, evasion and revival select the authored reactions'
  revive(g);assert.equal(g.p.dead,false);assert.match(hero.combatPose(g.p,0).key,/-idle-/);
 });
 
-test('unapproved weapon families keep the existing renderer instead of showing a sword',()=>{
+test('all weapon families keep the selected character identity',()=>{
  const hero=new ShadowHero(manifest());hero.combat=true;
- for(const weaponType of ['staff','dagger','fist'])assert.equal(hero.combatPose({id:'hero',fx:1,fz:0,dead:false,hurt:0,moving:false,stats:{weaponType}},0),undefined);
+ for(const outfit of ['male','female']){hero.outfit=outfit;for(const weaponType of ['staff','dagger','fist'])assert.match(hero.combatPose({id:'hero',fx:1,fz:0,dead:false,hurt:0,moving:false,stats:{weaponType}},0).key,new RegExp(outfit+'-iron'));}
 });

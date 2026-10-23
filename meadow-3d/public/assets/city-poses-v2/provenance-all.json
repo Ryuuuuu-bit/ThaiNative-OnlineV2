@@ -1,0 +1,1054 @@
+[
+  {
+    "key": "clerk",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "5fe429887e2890707c8428cd0e14b0c9f2f2897532d86d39db0cdaeaf626a4b8",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Looks down to adjust the ledger, then returns gaze and hand to rest. Book remains supported."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "clerk.webp",
+    "atlasSha256": "bfcaf60e21917cc94cded1839cda743a0a09effa95b6dabf3df25b8e7f7a09db"
+  },
+  {
+    "key": "blacksmith",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "c5e96c06ac5fd0db5e2d941315757eb02b777f8b73af8694a682ad17d3216ce6",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Hammer rises from rest to chest height, is inspected and lowered. Feet and tool hand stay consistent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "blacksmith.webp",
+    "atlasSha256": "25643b52423b79e0bd40c6598dfc639b8f85106447c6e0e11412b477f2c7de8b"
+  },
+  {
+    "key": "merchant",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "3868f064097f571fe331173734ebe5845667c13ed411b8c69b3466d0959a682b",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Clear open-palm sales gesture; basket remains in its supporting arm. Five complete anatomically coherent poses; recovery returns to rest."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "merchant.webp",
+    "atlasSha256": "ae8e43832722ee1aef1027e79d9c692a67931f80d2af8062998de105925ffe9d"
+  },
+  {
+    "key": "healer",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "b1d4edd6e3f62e0c0f997c17fbc085deec3843d3c95289d29ba6cc896d9457eb",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Gentle palm blessing and recovery; hands and sleeves remain complete."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "healer.webp",
+    "atlasSha256": "6aed1290fced5bf87c7a879aa9a3ccbfae27dda5c4508dc9554b5c57eb0fe273"
+  },
+  {
+    "key": "guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Captain points toward the road while spear remains upright and fixed. Helmet and planted feet stay coherent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "guard.webp",
+    "atlasSha256": "6495d10d9d70df3ee27788356853ce35c84505eeacc5ac972483ec0348d77d64"
+  },
+  {
+    "key": "herbalist",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "fef10c578544c925baa8928b9366b3da94b557046452d320eee5eb1e97a1e837",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Lifts a herb sprig toward the face, inspects it, and returns it. Bundle and hands remain complete."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "herbalist.webp",
+    "atlasSha256": "409430e1fd6e08d102ae064e82d7a6f1547040caaebc0892567a3f6d6f9288dc"
+  },
+  {
+    "key": "angel",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "a22de8fc058a9f8d2250bc4d30a191a5b26214f12d2b276b054274f6343e2a82",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Open-palm blessing and small wing flex; both wings, hands and boots remain intact. Returns to the same rest pose."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "angel.webp",
+    "atlasSha256": "58e1badc650d62857d42bc8d6ad6dff474411edde817f4923ed3fcd9093d7790"
+  },
+  {
+    "key": "guild-guide",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "87d1dd99542e2201e08ad282e9c5c008b6c3335c2528e0f53b4afb5698b48d94",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Welcomes with a free palm, points at the book and recovers. Book, supporting arm, boots and costume are stable."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "guild-guide.webp",
+    "atlasSha256": "7dce981754175df5ade07e551602e3a05ac68e94b477a9c3929f065370072af3"
+  },
+  {
+    "key": "trainer",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "4044ea8aeb253efcc9d5d155d4e4e7d2c544e242c8241e5ffc53fd4f7aa32e4f",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Demonstrates compact guard with the free hand while the sword remains safely grounded; complete arm recovery and stable legs."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "trainer.webp",
+    "atlasSha256": "f37105aa1cd39acd103c85433088f49ea2f06ddc7d288ad3c2347f0c5c74dd10"
+  },
+  {
+    "key": "innkeeper",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "273c87014da08bb351e2f1498bbc5ed1afc36965831493f8a90ea3427f2619f8",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Tray is offered forward, remains level and supported, then returns; nod and recovery are coherent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "innkeeper.webp",
+    "atlasSha256": "9319d385925c929a36662d8a39e12229e1cf141d4dcb5d8d14071df0653eeb76"
+  },
+  {
+    "key": "archivist",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "0cdec478466b886ea17fa2f10146897d98cafc4e3d86f779d308cb97b5a9ca30",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Reading finger traces the book and recovers; both hands, book, cape and feet remain complete."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "archivist.webp",
+    "atlasSha256": "230c87ad3016a6769630602b6bda9b0440bec2694ebe0bd160bd7bc10ee66c18"
+  },
+  {
+    "key": "courier",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "3d710c252f07115057efd2914fb25a82e1147f9e931aecbf48b2605b7711601a",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Scroll is raised, checked, opened slightly and lowered; coherent two-handed message handling and recovery."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "courier.webp",
+    "atlasSha256": "f861c856af3e61142d0c60a200aa3e2eefdd318c5e90f07b8ffb2866a8039d8c"
+  },
+  {
+    "key": "minstrel",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "8ae490bea6d623d91e49d9b4fc50e72b1c6fec347ddca907e84b612797155b7a",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Strumming hand moves over lute strings across the middle poses and returns; instrument neck and supporting hand remain fixed."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [
+      "idle: motion presence is too low (0.0083 < 0.0100)"
+    ],
+    "atlas": "minstrel.webp",
+    "atlasSha256": "fd9c22d46cf94b87b35701edb4e9b006e86ad8d08fa11765a7c3a3aeb08bd972"
+  },
+  {
+    "key": "north-guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Free hand shades the eyes to inspect the road, then lowers back to rest. Spear hand and helmet remain consistent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "north-guard.webp",
+    "atlasSha256": "c0a4ef3acd6ffac9370b638819ca7231c1b1f4e7eecc6cd8c5670fc7a28859c9"
+  },
+  {
+    "key": "east-guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Free hand opens at waist level in a welcoming gesture and returns. Stable spear and planted feet."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "east-guard.webp",
+    "atlasSha256": "64d86da22f98097cf34ab264b54e00261335796c63813aa9cafd32d0541b6b1e"
+  },
+  {
+    "key": "west-guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Compact free-hand chest salute, recovery and rest; spear, helmet, anatomy and planted feet stay coherent across all five poses."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [
+      "idle: motion presence is too low (0.0094 < 0.0100)"
+    ],
+    "atlas": "west-guard.webp",
+    "atlasSha256": "85b1807fd3416266971e82a920d114958dafaeb9a3736bf51376289d79fe0b90"
+  },
+  {
+    "key": "citizen-0",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "bdccb4425cf026dd1a60625bf4742c700efc369321b417d968171ddcb9238613",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Checks the fish basket with a small hand movement and a nod; arms remain complete. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-0.webp",
+    "atlasSha256": "0476f0b74a0117b392fc40a1e1aefb7b6f9350e8853499b17812d22d67c1dae0"
+  },
+  {
+    "key": "citizen-1",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "c19cdbe318d08f2ead824a3def5eaacf376fad984f3c054f33de4169f88a2323",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Checks the fruit satchel and returns gaze to the street; coherent occupied-hand gesture. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-1.webp",
+    "atlasSha256": "bbf14fdb3157d6e033fe0aa41a704e9e05086c5bb63f947bd004bf92471266b1"
+  },
+  {
+    "key": "citizen-2",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "0b3e5f6bc5485a25c2e1ebe22c02f4a3c98ee93b13171ee78253f47144d7337d",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Inspects the folded fabric while keeping it supported with both hands; recovers to rest. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-2.webp",
+    "atlasSha256": "5acd339c64f39827aeda06380b0d09c3f7ccb21df7774f8e41af9619a8532020"
+  },
+  {
+    "key": "citizen-3",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "05cb5c3c0a309ec62904d178f6e1d4e11179aefa467f4b7703e5a14a5627e017",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Checks the spice pouch at the belt and returns; complete hands and unchanged bottle accessories. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-3.webp",
+    "atlasSha256": "389227fe5f9c1417b4871cb60ced4b934a101da96b4272320c20912b2b92de2e"
+  },
+  {
+    "key": "citizen-4",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "a337d5fb1946e5da0f03149498e429fe8e9e6598f59e19453067485f8ca75836",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Glances down and adjusts the belt pouch; hair, skirt and two hands remain coherent. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-4.webp",
+    "atlasSha256": "1057b1daa46dd6a97f0dbd483388c33047aa67f58cb61cbc41c48697b0b070ad"
+  },
+  {
+    "key": "citizen-5",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "432f6c840ea2d5543feaf21fbfa3eb5a0830c7dc0417b6e0faea9d5c4a652db3",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Checks the parcel with a brief grip adjustment and returns gaze; both arms remain intact. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-5.webp",
+    "atlasSha256": "3e497ba68b16411ccbef2c01c73e4448f0dea82b0d362addd0383ab9e4b4a196"
+  },
+  {
+    "key": "citizen-6",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "c64138e121501ac51fd1009972b3baf1be091c5c49743105386dd68479cab4a1",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Inspects the belt fastening with a compact free-hand movement and returns to rest. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-6.webp",
+    "atlasSha256": "e6cf4f576b429206126a6aadfc73b09cbc6129927530437578b188c95e64cd52"
+  },
+  {
+    "key": "citizen-7",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "f6d38e20638de0c39286e347606f57930c5c101598e58add09f303b65ed812dd",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Checks the apron belt and returns to rest; coherent arm and hand poses. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-7.webp",
+    "atlasSha256": "bbd1e84eb0082b118e66e52e360cef3fe36e92da9e04f7890adc3db508883e47"
+  },
+  {
+    "key": "citizen-8",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "d9b691e690ec73eef018dedd292a358cf4276ff3889d7c26397fe5dd674f2ad9",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Raises the hammer to inspect it with the free hand, then lowers it; complete tool and hands. Draft walking rows were rejected and are not shipped; the original walk is retained at user request."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-8.webp",
+    "atlasSha256": "6960bcacce8b64eadd1d9685fc7b6907e5707c86f14ada994acfa5a5e288b7a5"
+  },
+  {
+    "key": "citizen-9",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "3ac5815a129368bf17c2c4ee3f2777c1dceb386321ec2e5601c76ac9c722f304",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Looks down and traces the wooden board with a finger; board remains supported and hands recover.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-9.webp",
+    "atlasSha256": "f1fb3067782bea63c4b215594fa4c41850c9c54767f212d80d1c6a3e4bcffb9e"
+  },
+  {
+    "key": "citizen-10",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "2f2d85c25bfecbe9e625b29071afaa29b6cc4047a06b86c136f12b56d729c7fd",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Checks the work-belt pouch, adjusts it and returns gaze to the road.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-10.webp",
+    "atlasSha256": "2a9c715e49309ba4311e0431cf8ad4511cd1bb03b1019c2c133609a1594ea815"
+  },
+  {
+    "key": "citizen-11",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "da5a0d8b4f9c8b317766821cc41eb2148dcc68aaea7e3c18005f64831d4048e4",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Adjusts the apron belt with a compact two-hand motion and returns to rest.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-11.webp",
+    "atlasSha256": "a5c376e1a5356f1dd61b95f913582a05c22a9149551de359affb0d9725b94a92"
+  },
+  {
+    "key": "citizen-12",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "a873362baf477c6501a5cb41391bda8cc069eed2d2a29b1be47611a2b0e0377d",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Inspects the bundle in the basket and returns; the basket stays attached to the same side.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-12.webp",
+    "atlasSha256": "ca9df351783adc54dafc2d636f754b6a7dd49a5768719eef62b12d821c57bfc5"
+  },
+  {
+    "key": "citizen-13",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "0e18c5e94bb84a78fd7219045ec5183e40562a504d75dbd0b1f019d4d2ce38f8",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Adjusts the belt fitting, briefly using both hands, then returns to rest.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-13.webp",
+    "atlasSha256": "cb4da3416bca380b18d6a762c2e6b809a4c8cb96651341973efa6ee5e14a2939"
+  },
+  {
+    "key": "citizen-14",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "c5fda58513a8344c7a01274d71bb0552b341b837677c4780dd829880f3a5d1a2",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Inspects the work glove and adjusts the wrist fastening, then lowers the arms.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-14.webp",
+    "atlasSha256": "e21e80c5a74dbd033a738d6af4d3d567d3adef82164dd24c1d75e0211fadf2a7"
+  },
+  {
+    "key": "citizen-15",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "b69ecfc2f901f0c7f93df73bf83a775d821071d97a366cc2fa7d4e5eb27cb1a4",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Checks the bread in its wrap and returns gaze to the street; bread stays supported.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-15.webp",
+    "atlasSha256": "6590b839cb59b9f973727adf737245d1f4b0d213704fe4899c1976ce90f7139f"
+  },
+  {
+    "key": "citizen-16",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "5fc60bd8bff2fc136a198c53a82703504238aa8542a52c635a6aab07ad4b6aef",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Scans the road with a head turn and restrained free-hand acknowledgement; helmet remains supported.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-16.webp",
+    "atlasSha256": "5dd9036b6de2fdabdec0ef5348975257b24ecc416df72d8a27de2891f2cb24d5"
+  },
+  {
+    "key": "citizen-17",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "8caeb22d0fd5f6529004ee2268e8cdf14e40a14aaf658583ef2aba25f930e2a1",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Scans and gives a compact free-hand greeting; sword and belt remain stable.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-17.webp",
+    "atlasSha256": "8dc47ae581c5161f57942bbb941ae837d4c8a35ead63df63ec17d8c5467a75f7"
+  },
+  {
+    "key": "citizen-18",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "c20575a73868b766ab69766f28551a31954fa1cfe2fa0a273114c28922bb68df",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Looks toward the road, gives a chest-level acknowledgement, and recovers while the spear stays upright.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-18.webp",
+    "atlasSha256": "8c03fda8b0d5fd4806deb31b4d451395c03f3707abc59dbfbb4f36e33fe1516f"
+  },
+  {
+    "key": "citizen-19",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "7867944e8fc44bbdf61aa8e73001beb1fb265bd802ee47f7bad9e69fabdf0642",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Scans the road with a small head turn, acknowledges with free hand and returns to rest.",
+      "walk": "existing-retained"
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-19.webp",
+    "atlasSha256": "84c9e704469ee35b87c885ffb932d14dfff60c2b6ac16ee022d862b149044be9"
+  },
+  {
+    "key": "citizen-20",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "022f211227104cbda5dd31abcfd6b486ec802537822e4c2ae8420fd4cbca148c",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Looks down at the same book and opens it to inspect the pages, then closes back to the starting supported position."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-20.webp",
+    "atlasSha256": "35398ca2115163754e412a4c0695a76438b2c90257c6bcdf67e20cfc18c2b2ef"
+  },
+  {
+    "key": "citizen-21",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "3d87f93dabc214d63928aa8f5117585c447c4d65e58017c1692da2e7909ec158",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Checks the map held in both hands and returns gaze; paper stays attached and hands remain complete."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-21.webp",
+    "atlasSha256": "4bffa8507372bb452056d76eb6de8b7b3bc789c07139f1ab4e870643b09e46d9"
+  },
+  {
+    "key": "citizen-22",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "e615e38a59a2953f15b9e50e8d92013d4a85b0221382c1f9163808d72ad36e03",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Looks down and adjusts the stack of books while supporting them with both arms; returns to rest."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-22.webp",
+    "atlasSha256": "e8d25c56031c559621a5e6de9afc17332f8bf05856304b695efd2e00e2ceed16"
+  },
+  {
+    "key": "citizen-23",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "4097d942ae5a03fdd4d4119abb7688573be355e5861f77b236575301e5840d3a",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Leans slightly onto the walking stick, adjusts its grip and returns upright. Both boots stay planted."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-23.webp",
+    "atlasSha256": "e42b20d1012b911a51ac3792ea4dc45917d74b6100d7cac42c2f800864831e7c"
+  },
+  {
+    "key": "citizen-24",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "26b963cd84083d03c65203d3e528a5e5fca061d618f16c66e33b840cc1af5b07",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Looks down at the flower basket, adjusts the flowers and returns; occupied hands remain attached."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-24.webp",
+    "atlasSha256": "a7ebf85f112430019831a6512460a16c27466b5e18972b7e76aa80189892a725"
+  },
+  {
+    "key": "citizen-25",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "8e49e486d1eccd3621fb4a17a455d44e2dde833e07523d6b54165637f371e4f1",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Checks and adjusts the gardening belt tool; straw hat and both hands remain coherent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-25.webp",
+    "atlasSha256": "e5829a61558634fdf394bad3f69e75c9d9c05b4147ead409e21ff9a991aeafcd"
+  },
+  {
+    "key": "citizen-26",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "41a96114df44de4815a3b49f302a96f3bad4c81fb5491864fbbbe3fe6eaabc77",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Inspects the flowers and adjusts the bundle with a free hand; returns to the initial supported pose."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-26.webp",
+    "atlasSha256": "eb313396a106fc0f72cfc65d082e592b529df8c8af78dbff501df744202981dd"
+  },
+  {
+    "key": "citizen-27",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "0e648ac513ff0377e7782378081436e482d049b0b4bdb6301a59c7879f577c3e",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Inspects leaves in the herb bundle and adjusts them before returning to rest."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-27.webp",
+    "atlasSha256": "646252bc4be017db4f8ce3e5aa2ef4204f1fa4c95fbbbc334d3a2ce861fdc017"
+  },
+  {
+    "key": "citizen-28",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "a7be4db55f76dbf6379fd7c127b648b5917335c468e03cf38a8e0d7931747ce2",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Looks down to inspect seeds and herbs held near the torso; both hands keep supporting the bundle."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-28.webp",
+    "atlasSha256": "be3545e319360f9ec7c9ece32dedbf48218657928dd877b9b9294dbe7431b4fe"
+  },
+  {
+    "key": "citizen-29",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "a7eb8b132f4ff502f6fa4303e48820a0e3a4baaf9f9d9bf224043032538d28c5",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Small glance and shawl adjustment, then returns to the same composed rest; complete hands and stable skirt."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-29.webp",
+    "atlasSha256": "f8db274314aa2eb06bfe214540ba5339de3fc0e9e5c40ca25f8e870bfab99fdb"
+  },
+  {
+    "key": "citizen-30",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "51d0ac0a1233446fb456b4c8bd4e0b4b957cfe4093d59223e6316085193e8945",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Child gives a gentle glance and smiles while brushing flowers in the supported basket; child identity and proportions preserved."
+    },
+    "worldHeight": 1.45,
+    "automatedWarnings": [],
+    "atlas": "citizen-30.webp",
+    "atlasSha256": "1380c1611b33f7b7117d80b89b5b765c25679d3eba362f72043cedb5a0037342"
+  },
+  {
+    "key": "citizen-31",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "497f12b0bffb2b96955c445856fc1517453f79469c69a0cb781f80f43eaacea9",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Elderly resident makes a restrained acknowledgement and nod while holding the cane; stable feet and cane."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-31.webp",
+    "atlasSha256": "2dd56577c919ec1abf91f0623c0ab7be21148f294a7623fad83d30b4201deb8d"
+  },
+  {
+    "key": "citizen-32",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "36aae7630f002b7542c435482fb50a86e3973589b2c4e8621d92a0f0feac42af",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Looks toward a passerby and down toward the vegetable basket, then recovers; both hands keep supporting it."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-32.webp",
+    "atlasSha256": "0d7d64d84de3b4f81a7c477a2009020f427e0e8b824b43ca25ee278df55a7dee"
+  },
+  {
+    "key": "citizen-33",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "201711c030b11135244335e91f430a1e064e8efab8e75e8b03c5fc77d1fe56e4",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Child smiles and adjusts the parcel grip, then returns to the original rest. No extra fingers or missing arms."
+    },
+    "worldHeight": 1.45,
+    "automatedWarnings": [],
+    "atlas": "citizen-33.webp",
+    "atlasSha256": "cf11783ce6cd387953f09a4bbf725012fe9e9bad104338c81cc203582769343d"
+  },
+  {
+    "key": "citizen-34",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "8c463ad8e2ceb98a36bf06b0989f8e2618d8358370912e11c9e26cc36c560885",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Resident gives a small open-palm conversational greeting and recovers; coherent wrist and arm progression."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-34.webp",
+    "atlasSha256": "36fc1ea5f70bdeb6bcd257db221f74332be9c9f50edca7d5a2a447ee2bfedf11"
+  },
+  {
+    "key": "citizen-35",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "8f950ddee8e998ecf46ce30a60dac155252bee200eacb4d76322d9049edbf37a",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Inn worker makes a compact free-hand conversational gesture while keeping the cloth supported; returns to rest."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-35.webp",
+    "atlasSha256": "b4d4807753ffd99d2deaccf014ac0f345f67fb4815f7abb6b1bba5f59c22be1a"
+  },
+  {
+    "key": "citizen-36",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "42e15f31401267ec83a8e1d3acdb0753d674b4ab39263b7a66c7e5eceb1acf0e",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Traveler checks both backpack straps and looks along the road, then returns to rest; pack stays attached."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-36.webp",
+    "atlasSha256": "1d5e96918d71ab100bcd9e92a837fb47b7e85a94264740e1667d2b721b72466d"
+  },
+  {
+    "key": "citizen-37",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "69a9bf46a59c905fed859efa13c5adb33b6ffdc20182682336eeb9db0b9cfbd1",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Explorer adjusts the backpack strap with a small glance down the road; clear hand recovery and intact costume."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-37.webp",
+    "atlasSha256": "f1b491ba7afae8bd2b9eda1c71aa9d7df7daea827c768e00731b33d90a4a44d6"
+  },
+  {
+    "key": "citizen-38",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "f52bb348595d939d01bfd1c5d67b2e61fdad84836b4f741b82f1d57c806bf2f0",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Musician adjusts the instrument shoulder strap and glances down the road; instrument and hand stay coherent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-38.webp",
+    "atlasSha256": "f26d57f061bf0226a392b65b19829fee2f92c3c08c3a371c3f9dee92fcbc1bce"
+  },
+  {
+    "key": "citizen-39",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "183eb1d6f19b08f5f67469eed167da4a6b1b1af2bbd216abb7f04ee42e7e0331",
+    "frames": 4,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "walk": "existing-retained",
+      "notes": "Traveling merchant adjusts the satchel strap, checks the road and returns to rest. Hat, feather and beard remain consistent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "citizen-39.webp",
+    "atlasSha256": "92c5247c8d6a97ef147ce1611bec25827c9115883356cf5d7cbe3259525856d2"
+  }
+]

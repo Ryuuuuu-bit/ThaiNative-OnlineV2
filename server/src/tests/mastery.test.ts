@@ -81,7 +81,7 @@ test('PostgreSQL Mastery migration, save and pool restart preserve character pro
  {skip:!process.env.PG_TEST_URL&&'PG_TEST_URL not set'},async()=>{
  let store=new PostgresStore(process.env.PG_TEST_URL!);
  try{
-  await store.init();const tag=randomUUID().replaceAll('-','').slice(0,10),a=await store.createGuest('mastery-'+tag),c=await store.createCharacter(a.id,'M'+tag,('m'+tag).toLowerCase());
+  await store.init();const tag=randomUUID().replaceAll('-','').slice(0,10),a=await store.createGuest('mastery-'+tag),c=await store.createCharacter(a.id,'M'+tag,('m'+tag).toLowerCase(),'swordsman','female');
   await store.pool.query('UPDATE tn2_characters SET skills=$2,skill_points=7,masteries=NULL,mastery_version=0 WHERE id=$1',[c.id,JSON.stringify({...c.skills,slash:8})]);
   const before=(await store.character(a.id,c.id))!,inv=await store.inventory(a.id,c.id);
   await store.init();let migrated=(await store.character(a.id,c.id))!;
@@ -90,7 +90,7 @@ test('PostgreSQL Mastery migration, save and pool restart preserve character pro
   migrated.masteries!.Healer=31;migrated.masteryExp!.Healer=41;await store.saveProgress(a.id,c.id,{...migrated});
   await store.close();store=new PostgresStore(process.env.PG_TEST_URL!);await store.init();
   migrated=(await store.character(a.id,c.id))!;assert.equal(migrated.masteries!.Healer,31);assert.equal(migrated.skillPoints,7);
-  assert.equal(migrated.masteryExp!.Healer,41);
+  assert.equal(migrated.masteryExp!.Healer,41);assert.equal(migrated.gender,'female');
   assert.deepEqual(await store.inventory(a.id,c.id),inv);
  }finally{await store.close();}
 });

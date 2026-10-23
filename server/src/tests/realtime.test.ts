@@ -430,7 +430,7 @@ test('stability 9: full bag blocks automatic retry before store transaction; Z r
 });
 
 test('stability 11: snapshots omit inventory and private fields of other players',async t=>{
- const f=await fixture(t,true),a=await f.make('PrivateOne'),b=await f.make('PrivateTwo'),one=f.open(a.cookie),two=f.open(b.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');one.send({t:'spawnReady'});two.send({t:'spawnReady'});const snap=await one.until(m=>m.t==='snap'&&m.players.length===2);assert.equal('inventory'in snap,false);const other=snap.players.find((p:any)=>p.id!==a.character.id);for(const key of ['gold','xp','skills','hotbar','statPoints'])assert.equal(key in other,false);
+ const f=await fixture(t,true),a=await f.make('PrivateOne'),b=await f.make('PrivateTwo'),one=f.open(a.cookie),two=f.open(b.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');one.send({t:'spawnReady'});two.send({t:'spawnReady'});const snap=await one.until(m=>m.t==='snap'&&m.players.length===2);assert.equal('inventory'in snap,false);const other=snap.players.find((p:any)=>p.id!==a.character.id);assert.equal(other.gender,'male');assert.equal(typeof other.weaponType,'string');for(const key of ['gold','xp','skills','hotbar','statPoints'])assert.equal(key in other,false);
 });
 
 test('stability 12: disconnected private rooms expire independently',async t=>{

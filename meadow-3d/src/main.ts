@@ -26,7 +26,7 @@ import{loadSelected,mountMenuAccount}from'./web/game-session';
 import{assetJSON}from'./asset-request';
 import{GameCanvas2D}from'./game-2d-renderer';
 import{ShadowHero,parseShadowManifest}from'./shadow-hero';
-import{shadowOutfit,setShadowOutfit}from'./shadow-outfit';
+
 import './shadow-combat.css';
 import {TOWN_NPCS,nearbyTownNpc} from './city-2d-locations';
 import {cityNpcWorldHeight} from './city-npc-sprite';
@@ -99,23 +99,15 @@ let sceneReady=false,netOverlay=false;const net=new GameSocket({message(message)
 document.querySelector('#player-name')!.textContent=selected.character.name;
 if(game.bossSpawned){document.querySelector('#quest-name')!.textContent='ผู้พิทักษ์แห่งทุ่งหญ้า';document.querySelector('#quest-note')!.textContent='หลบวงสีแดง แล้วโจมตีในช่วงพักของบอส';}
 const renderer=new GameCanvas2D(textureManifest);renderer.combatFeel=combatFeel;$('#world').appendChild(renderer.canvas);
-const selectedOutfit=shadowOutfit();
-if(selectedOutfit){
- const hero=new ShadowHero(parseShadowManifest(await assetJSON('/assets/hero-shadow-8dir-v1/manifest.json')));
- hero.combat=true;hero.outfit=selectedOutfit;
- const outfitClips=(outfit:'male'|'female')=>Object.entries(hero.manifest.looks).filter(([look])=>look.startsWith(outfit+'-')).flatMap(([,motions])=>Object.values(motions));
- await Promise.all(outfitClips(hero.outfit).map(c=>renderer.assets.image(c.url)));renderer.shadowHero=hero;
- const panel=document.createElement('details');panel.id='shadow-combat-controls';
- panel.innerHTML='<summary>ชุดนักฆ่า · ทดลอง</summary><label>ตัวละคร <select aria-label="ชุดนักฆ่า"><option value="male">ชาย</option><option value="female">หญิง</option></select></label><button data-inventory>เปลี่ยนอาวุธในกระเป๋า</button><p>Shift หลบ · F เปิด/ปิดออโต้<br>จัดสกิลและ Auto Spell ในหน้าสกิล K</p><output role="status">ภาพทดลองดาบ/โล่และธนู · ใช้อุปกรณ์ที่คุณมี</output><button data-original>กลับชุดเดิม</button>';
- panel.querySelector<HTMLButtonElement>('[data-inventory]')!.onclick=()=>{panel.open=false;inventoryUI.toggle();};
- panel.querySelector<HTMLButtonElement>('[data-original]')!.onclick=()=>{setShadowOutfit(null);const url=new URL(location.href);url.searchParams.delete('shadow');location.assign(url.href);};
- const outfit=panel.querySelector('select')!;outfit.value=hero.outfit;outfit.onchange=async()=>{const next=outfit.value as 'male'|'female',previous=hero.outfit;outfit.disabled=true;try{await Promise.all(outfitClips(next).map(c=>renderer.assets.image(c.url)));hero.outfit=next;setShadowOutfit(next);if(next!==previous)for(const c of outfitClips(previous))renderer.assets.release(c.url);}catch{outfit.value=previous;panel.querySelector('output')!.textContent='โหลดชุดไม่สำเร็จ กรุณาลองใหม่';}finally{outfit.disabled=false;}};
- document.body.append(panel);
-}
+const hero=new ShadowHero(parseShadowManifest(await assetJSON('/assets/hero-shadow-8dir-v1/manifest.json')));
+hero.combat=true;hero.outfit=selected.character.gender==='female'?'female':'male';
+await Promise.all(Object.values(hero.manifest.looks).flatMap(motions=>Object.values(motions)).map(c=>renderer.assets.image(c.url)));
+renderer.shadowHero=hero;
+document.querySelector<HTMLImageElement>('.avatar img')!.src=`/assets/hero-portraits-v1/${hero.outfit}-portrait.webp`;
 let assetFailure=false,activeMap:MapId=selected.character.mapId||'city_plaza';
 try{await renderer.init(activeMap);sceneReady=true;window.tnBoot.stage(1);net.ready();$('#load-state').textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';}catch(error){assetFailure=true;window.tnBoot.fail('โหลดภาพเมืองไม่สำเร็จ กรุณาลองใหม่','texture');throw error;}
 sound.setMap(activeMap);
-document.documentElement.style.setProperty('--portrait','url("'+renderer.assets.url('/assets/hero-painted/portrait-v1.png')+'")');
+document.documentElement.style.setProperty('--portrait','url("'+`/assets/hero-portraits-v1/${hero.outfit}-portrait.webp`+'")');
 document.documentElement.style.setProperty('--skill-atlas','url("'+renderer.assets.url('/assets/skills-painted/skills-v2.png')+'")');
 const right={x:13/Math.hypot(13,9),z:-9/Math.hypot(13,9)},up={x:-9/Math.hypot(13,9),z:-13/Math.hypot(13,9)};
 let point={x:0,z:0};
@@ -143,7 +135,7 @@ npcTalk.onclick=()=>{if(!nearNpc)return;clearInput();const kind=nearNpc.kind,sho
 function mapInteractions(){
  const mapTitle=document.querySelector('.map-head');if(mapTitle)mapTitle.textContent=areaName(activeMap);
  overview.hidden=activeMap!=='city_plaza';const p=game.p;nearNpc=null;
- if(activeMap==='city_plaza'&&!p.dead){
+ if(activeMap==='city_plaza'&&!CITY.empty&&!p.dead){
   const n=nearbyTownNpc(p.x,p.z);
   if(n&&n.kind!=='angel')nearNpc={name:n.name,kind:n.kind,text:n.line};
  }

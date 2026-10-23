@@ -1,0 +1,15 @@
+{
+  "name": "the-beginning-online-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules --import ../server/node_modules/tsx/dist/loader.mjs --test worker.test.mjs",
+    "check": "wrangler deploy --dry-run --outdir ../.codex-run/cloudflare-worker",
+    "dev": "wrangler dev",
+    "smoke": "node smoke.mjs",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.3"
+  }
+}

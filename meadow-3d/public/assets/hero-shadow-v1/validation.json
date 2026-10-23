@@ -1,0 +1,1319 @@
+{
+  "scale": 0.75,
+  "planSha256": "465dd8371d4ea89bfc61bf5d589fe81b2e82d51eccd316d9b16d2526bb4fa378",
+  "plan": {
+    "looks": {
+      "male-iron": {
+        "label": "ชาย · ชุดเงาราตรี · ดาบและโล่",
+        "clips": {
+          "walk": {
+            "source": "output/shadow-assassin-prototype-20261023/male-iron-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              270,
+              485
+            ],
+            "bodyHeight": 449,
+            "characterId": "cmvko79ni00dki1h2epojk81z",
+            "spritesheetId": "cmvkofi3v00ft13mpcgghg81o",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+          },
+          "attack": {
+            "source": "output/shadow-assassin-prototype-20261023/male-iron-attack.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              5,
+              6,
+              7,
+              8,
+              10,
+              11,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              24
+            ],
+            "seconds": 1.44,
+            "anchor": [
+              270,
+              485
+            ],
+            "bodyHeight": 449,
+            "characterId": "cmvko79ni00dki1h2epojk81z",
+            "spritesheetId": "cmvkofazp011l142gea9uuhfo",
+            "reviewed": true,
+            "reviewNotes": "Inspected all source frames. Omitted source frames 9 and 12 where the sword tip touched the top boundary; retained intact surrounding anticipation, cut and recovery poses. No limb deformation in packing.",
+            "impactFrame": 8
+          },
+          "cast": {
+            "source": "output/shadow-assassin-prototype-20261023/male-iron-cast.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              270,
+              485
+            ],
+            "bodyHeight": 449,
+            "characterId": "cmvko79ni00dki1h2epojk81z",
+            "spritesheetId": "cmvkoks93001fb8dlcb1rq88o",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+            "impactFrame": 8
+          }
+        }
+      },
+      "male-bow": {
+        "label": "ชาย · ชุดเงาราตรี · ธนู",
+        "clips": {
+          "walk": {
+            "source": "output/shadow-assassin-prototype-20261023/male-bow-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              260,
+              403
+            ],
+            "bodyHeight": 319,
+            "characterId": "cmvkodrn800dq13mpuv0ihbdr",
+            "spritesheetId": "cmvkokeyp000eb8dl6yakr0iw",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+          },
+          "attack": {
+            "source": "output/shadow-assassin-prototype-20261023/male-bow-attack-v2.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              260,
+              403
+            ],
+            "bodyHeight": 319,
+            "characterId": "cmvkodrn800dq13mpuv0ihbdr",
+            "spritesheetId": "cmvkoqeqx019o142gtdhll4tq",
+            "reviewed": true,
+            "reviewNotes": "Pinned original pose at both endpoints; inspected all frames. Draw, release and recovery are continuous and outfit stays consistent. Fine string/arrow detail remains faint at native scale; prototype only.",
+            "impactFrame": 14
+          },
+          "cast": {
+            "source": "output/shadow-assassin-prototype-20261023/male-bow-cast.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              260,
+              403
+            ],
+            "bodyHeight": 319,
+            "characterId": "cmvkodrn800dq13mpuv0ihbdr",
+            "spritesheetId": "cmvkok2cd013k142gdqko41dj",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+            "impactFrame": 9
+          }
+        }
+      },
+      "female-iron": {
+        "label": "หญิง · ชุดเงาราตรี · ดาบและโล่",
+        "clips": {
+          "walk": {
+            "source": "output/shadow-assassin-prototype-20261023/female-iron-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              281,
+              410
+            ],
+            "bodyHeight": 337,
+            "characterId": "cmvkodu7j00b0h9l8usuxeszd",
+            "spritesheetId": "cmvkokheo000sb8dlnawg3vyo",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+          },
+          "attack": {
+            "source": "output/shadow-assassin-prototype-20261023/female-iron-attack.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              281,
+              410
+            ],
+            "bodyHeight": 337,
+            "characterId": "cmvkodu7j00b0h9l8usuxeszd",
+            "spritesheetId": "cmvkokvq8000mg3ngs03r1uqf",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+            "impactFrame": 11
+          },
+          "cast": {
+            "source": "output/shadow-assassin-prototype-20261023/female-iron-cast.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              281,
+              410
+            ],
+            "bodyHeight": 337,
+            "characterId": "cmvkodu7j00b0h9l8usuxeszd",
+            "spritesheetId": "cmvkomvd7004yod71epqr9uwf",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+            "impactFrame": 8
+          }
+        }
+      },
+      "female-bow": {
+        "label": "หญิง · ชุดเงาราตรี · ธนู",
+        "clips": {
+          "walk": {
+            "source": "output/shadow-assassin-prototype-20261023/female-bow-walk.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              280,
+              408
+            ],
+            "bodyHeight": 335,
+            "characterId": "cmvkodx1c00b8h9l891z50f9r",
+            "spritesheetId": "cmvkolgh4002kb8dlu6osp7zj",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+          },
+          "attack": {
+            "source": "output/shadow-assassin-prototype-20261023/female-bow-attack-v2.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24
+            ],
+            "seconds": 2,
+            "anchor": [
+              280,
+              408
+            ],
+            "bodyHeight": 335,
+            "characterId": "cmvkodx1c00b8h9l891z50f9r",
+            "spritesheetId": "cmvkoq8iu0194142g2sx678t9",
+            "reviewed": true,
+            "reviewNotes": "Pinned original pose at both endpoints; inspected all frames. Draw, release and recovery are continuous and outfit stays consistent. Fine string/arrow detail remains faint at native scale; prototype only.",
+            "impactFrame": 14
+          },
+          "cast": {
+            "source": "output/shadow-assassin-prototype-20261023/female-bow-cast.png",
+            "sourceCell": [
+              512,
+              512
+            ],
+            "sourceColumns": 5,
+            "sourceFrames": 25,
+            "picks": [
+              0,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              24
+            ],
+            "seconds": 1.6,
+            "anchor": [
+              280,
+              408
+            ],
+            "bodyHeight": 335,
+            "characterId": "cmvkodx1c00b8h9l891z50f9r",
+            "spritesheetId": "cmvkol9on0016g3ngqpfrmlya",
+            "reviewed": true,
+            "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+            "impactFrame": 9
+          }
+        }
+      }
+    }
+  },
+  "note": "Occupied edges require visual review; projectiles may intentionally leave the cell.",
+  "clips": {
+    "male-iron-walk": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/male-iron-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          270,
+          485
+        ],
+        "bodyHeight": 449,
+        "characterId": "cmvko79ni00dki1h2epojk81z",
+        "spritesheetId": "cmvkofi3v00ft13mpcgghg81o",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+      },
+      "sourceSha256": "452cfba6783c43b4a5d7fb74846294052ee7bf39783252c7f181e8dea76b2466",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "male-iron-walk.webp",
+      "bytes": 648566,
+      "sha256": "a5c4455e3ef10162d0a053a9240dd54e376ea245847f203d8adeef5c3298a589"
+    },
+    "male-iron-attack": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/male-iron-attack.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24
+        ],
+        "seconds": 1.44,
+        "anchor": [
+          270,
+          485
+        ],
+        "bodyHeight": 449,
+        "characterId": "cmvko79ni00dki1h2epojk81z",
+        "spritesheetId": "cmvkofazp011l142gea9uuhfo",
+        "reviewed": true,
+        "reviewNotes": "Inspected all source frames. Omitted source frames 9 and 12 where the sword tip touched the top boundary; retained intact surrounding anticipation, cut and recovery poses. No limb deformation in packing.",
+        "impactFrame": 8
+      },
+      "sourceSha256": "3b28b0fa3ed721329a448ce4a02015b45d861381c66b6d13f2a0701c5e759fbc",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1536
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "male-iron-attack.webp",
+      "bytes": 438816,
+      "sha256": "6d79c47d7c37153d34b34b8bb2e36ef064c4b3aa1734d873d411cf70c313bd39"
+    },
+    "male-iron-cast": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/male-iron-cast.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          270,
+          485
+        ],
+        "bodyHeight": 449,
+        "characterId": "cmvko79ni00dki1h2epojk81z",
+        "spritesheetId": "cmvkoks93001fb8dlcb1rq88o",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+        "impactFrame": 8
+      },
+      "sourceSha256": "ab7e96d38066f8c9253788e92a048198a77bc4700f5f9c99690050916843e2ef",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "male-iron-cast.webp",
+      "bytes": 597460,
+      "sha256": "fa151b2e38e9b2d301c7adf1b7d64a2fbf9d35aaccb1a1d8c56ad4027a103ddb"
+    },
+    "male-bow-walk": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/male-bow-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          260,
+          403
+        ],
+        "bodyHeight": 319,
+        "characterId": "cmvkodrn800dq13mpuv0ihbdr",
+        "spritesheetId": "cmvkokeyp000eb8dl6yakr0iw",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+      },
+      "sourceSha256": "e99dca4fe7293e0d712af13a4a06ca1be75dd94d2c34049050db9fcc178c7a94",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "male-bow-walk.webp",
+      "bytes": 433536,
+      "sha256": "154b3f0be3570139ca72f40f236607be407e017b842b65c6aec6c4f93fd02afd"
+    },
+    "male-bow-attack": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/male-bow-attack-v2.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          260,
+          403
+        ],
+        "bodyHeight": 319,
+        "characterId": "cmvkodrn800dq13mpuv0ihbdr",
+        "spritesheetId": "cmvkoqeqx019o142gtdhll4tq",
+        "reviewed": true,
+        "reviewNotes": "Pinned original pose at both endpoints; inspected all frames. Draw, release and recovery are continuous and outfit stays consistent. Fine string/arrow detail remains faint at native scale; prototype only.",
+        "impactFrame": 14
+      },
+      "sourceSha256": "58bd7ac10161b60cc307d9738489bb108353aaf6831e905a1579e3d91df47e0e",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "male-bow-attack.webp",
+      "bytes": 490190,
+      "sha256": "e8bd953d60a0a090f5065701942e2668d993b39b804b7eb9664978800e6dc112"
+    },
+    "male-bow-cast": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/male-bow-cast.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          260,
+          403
+        ],
+        "bodyHeight": 319,
+        "characterId": "cmvkodrn800dq13mpuv0ihbdr",
+        "spritesheetId": "cmvkok2cd013k142gdqko41dj",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+        "impactFrame": 9
+      },
+      "sourceSha256": "227912790f91dd0264d8a81f449a6fb8c541a37847e7e6f5e691e213ce732745",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "male-bow-cast.webp",
+      "bytes": 379898,
+      "sha256": "c375edbddbef232c5994dfba1f71ff32134a2089bf2da551dc994c2800d92170"
+    },
+    "female-iron-walk": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/female-iron-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          281,
+          410
+        ],
+        "bodyHeight": 337,
+        "characterId": "cmvkodu7j00b0h9l8usuxeszd",
+        "spritesheetId": "cmvkokheo000sb8dlnawg3vyo",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+      },
+      "sourceSha256": "7f6f87841c75f3a9cdfe34ab4198ea455b714c752a9ce0f2567eaeea2deb43cc",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "female-iron-walk.webp",
+      "bytes": 468396,
+      "sha256": "0b2a88500e7f089a366ec0d1d8005bb232138f30972e865775bcab6fa6545d45"
+    },
+    "female-iron-attack": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/female-iron-attack.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          281,
+          410
+        ],
+        "bodyHeight": 337,
+        "characterId": "cmvkodu7j00b0h9l8usuxeszd",
+        "spritesheetId": "cmvkokvq8000mg3ngs03r1uqf",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+        "impactFrame": 11
+      },
+      "sourceSha256": "f66eeb4148c0f56afcc841428f272e4514de95eeef326bdf510949396b88e04b",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1536
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "female-iron-attack.webp",
+      "bytes": 348386,
+      "sha256": "fddbc3bb25734b5f36073242b58bd2dc264be726e84782fba0dc29b0178ff352"
+    },
+    "female-iron-cast": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/female-iron-cast.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          281,
+          410
+        ],
+        "bodyHeight": 337,
+        "characterId": "cmvkodu7j00b0h9l8usuxeszd",
+        "spritesheetId": "cmvkomvd7004yod71epqr9uwf",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+        "impactFrame": 8
+      },
+      "sourceSha256": "debf5addfa0d046af2d840ec61ccc6c0318633bf784c850176d508fe1228baa6",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "female-iron-cast.webp",
+      "bytes": 413442,
+      "sha256": "53f81f90ed303d6cca82daabdcd191245e36bad69b5d504b74086243da3647ad"
+    },
+    "female-bow-walk": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/female-bow-walk.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          280,
+          408
+        ],
+        "bodyHeight": 335,
+        "characterId": "cmvkodx1c00b8h9l891z50f9r",
+        "spritesheetId": "cmvkolgh4002kb8dlu6osp7zj",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE."
+      },
+      "sourceSha256": "da0b37b7eec8daa60dccc46ad4662f87b4b93f3c467f57575f9e4afb29aca6c8",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "female-bow-walk.webp",
+      "bytes": 500764,
+      "sha256": "2acf804990991be914d20d9c3918a500c115a5743936f1b18267772601824450"
+    },
+    "female-bow-attack": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/female-bow-attack-v2.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "seconds": 2,
+        "anchor": [
+          280,
+          408
+        ],
+        "bodyHeight": 335,
+        "characterId": "cmvkodx1c00b8h9l891z50f9r",
+        "spritesheetId": "cmvkoq8iu0194142g2sx678t9",
+        "reviewed": true,
+        "reviewNotes": "Pinned original pose at both endpoints; inspected all frames. Draw, release and recovery are continuous and outfit stays consistent. Fine string/arrow detail remains faint at native scale; prototype only.",
+        "impactFrame": 14
+      },
+      "sourceSha256": "0d89707c5b125580a2752c60adbd84fe7e23eee8e7476abb8fd85220d962b235",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "female-bow-attack.webp",
+      "bytes": 523712,
+      "sha256": "e84201d23c0e9f05446b83e83125ace1c11b2fc0bc65b7e6742f5859b76b1fe9"
+    },
+    "female-bow-cast": {
+      "source": {
+        "source": "output/shadow-assassin-prototype-20261023/female-bow-cast.png",
+        "sourceCell": [
+          512,
+          512
+        ],
+        "sourceColumns": 5,
+        "sourceFrames": 25,
+        "picks": [
+          0,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          24
+        ],
+        "seconds": 1.6,
+        "anchor": [
+          280,
+          408
+        ],
+        "bodyHeight": 335,
+        "characterId": "cmvkodx1c00b8h9l891z50f9r",
+        "spritesheetId": "cmvkol9on0016g3ngqpfrmlya",
+        "reviewed": true,
+        "reviewNotes": "Inspected all 25 source frames against green background; whole-body articulation and outfit remain coherent. Camera limited to SE.",
+        "impactFrame": 9
+      },
+      "sourceSha256": "0d656714a8a39cfd2910f771a7f89636420190eeb78ef56bc280eb0797cc7dbd",
+      "sourceAlpha": [
+        0,
+        255
+      ],
+      "edgeFrames": [],
+      "size": [
+        1920,
+        1920
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "file": "female-bow-cast.webp",
+      "bytes": 388816,
+      "sha256": "a711332ccdd39888e09805c011c7da5986e9c9f8b5bd3d18d03b68a5cca810d9"
+    }
+  }
+}

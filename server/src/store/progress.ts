@@ -15,3 +15,9 @@ export function creationJob(input:unknown):string {
 export const needsJob=(c:Pick<Character,'jobId'>)=>c.jobId==='villager'||c.jobId==='needs_job';
 
 export function migrateMap(c: Character) {if(!c.mapId){c.mapId='city_plaza';c.posX=CITY_SPAWN.x;c.posZ=CITY_SPAWN.z;}return c;}
+
+export function characterGender(input:unknown):'male'|'female'{
+ if(input===undefined)return 'male';
+ if(input==='male'||input==='female')return input;
+ throw new AppError(400,'INVALID_GENDER','กรุณาเลือกเพศชายหรือหญิง');
+}

@@ -42,7 +42,7 @@ test('realtime metrics require an ADMIN_IDS account',async t=>{const adminIds:st
 
 test('creation validates all locked and unknown jobs and starts with one unspent point',async t=>{
  const {call,guest}=await fixture(t);const g=await guest();
- for(const jobId of ['archer','mage','healer','shaman','boxer','rogue','villager','guardian','unknown',null,undefined]){
+ for(const jobId of ['archer','mage','healer','shaman','boxer','rogue','villager','guardian','unknown',null]){
   const result=await call('/api/characters','POST',{name:'NewHero',jobId},g.cookie);assert.equal(result.status,400);assert.equal(result.data.error.code,'INVALID_JOB');
  }
  const result=await call('/api/characters','POST',{name:'NewHero',jobId:'swordsman'},g.cookie);assert.equal(result.status,201);
@@ -69,4 +69,17 @@ test('swordsman migration refunds removed passive once and cleans custom hotbar 
  await store.saveProgress(c.accountId,c.id,{...c,jobsVersion:2,jobLevel:23,jobExp:456,skillPoints:2,skills:{basic:1,slash:4,fighter_basics:7,punch:1},hotbar:c.hotbar!.map((s,i)=>i<2?{key:i===0?'KeyZ':'Digit2',skill:i===0?'punch':'fighter_basics'}:s)});
  const next=(await store.character(c.accountId,c.id))!;assert.equal(next.skillPoints,9);assert.equal(next.jobLevel,23);assert.equal(next.jobExp,456);assert.equal(next.skills!.slash,4);assert.equal(next.skills!.punch,undefined);assert.equal(next.skills!.fighter_basics,undefined);assert.deepEqual(next.hotbar![0],{key:'KeyZ',skill:null});assert.equal(next.hotbar![1].skill,null);
  assert.deepEqual(await store.character(c.accountId,c.id),next);assert.deepEqual((await store.characters(c.accountId))[0],next);
+});
+
+test('character creation accepts only name and gender and preserves identity across select and progress',async t=>{
+ const {call,guest,store}=await fixture(t);const g=await guest();
+ for(const gender of ['other','',null,1,{}])assert.equal((await call('/api/characters','POST',{name:'GenderHero',gender},g.cookie)).status,400);
+ for(const gender of ['male','female']){
+  const created=await call('/api/characters','POST',{name:gender+'Hero',gender},g.cookie);assert.equal(created.status,201);
+  const c=created.data.character;assert.equal(c.gender,gender);assert.equal(c.jobId,'swordsman');
+  assert.equal((await call(`/api/characters/${c.id}/select`,'POST',{},g.cookie)).data.character.gender,gender);
+  await store.saveProgress(g.data.account.id,c.id,{...c,xp:1});
+  assert.equal((await call(`/api/characters/${c.id}`,'GET',undefined,g.cookie)).data.character.gender,gender);
+ }
+ const legacy=await call('/api/characters','POST',{name:'LegacyMale'},g.cookie);assert.equal(legacy.data.character.gender,'male');
 });

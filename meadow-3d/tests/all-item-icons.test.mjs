@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {loadGameData} from '@the-beginning-online/shared';
 import {itemIconCell} from '../src/item-icon.ts';
+import {PAINTED_ITEM_ART} from '../src/item-art-data.ts';
 import {createHash} from 'node:crypto';
 
 test('every item template resolves to its declared atlas frame or original SVG',()=>{
@@ -29,6 +30,24 @@ test('every item template resolves to its declared atlas frame or original SVG',
   assert.notEqual(page,-1,`${item.id}: missing frame ${item.icon}`);
   const frame=pages[page].frames[item.icon];
   assert.deepEqual(itemIconCell(item.id),{v2:page===1,position:`${frame.x/64*25}% ${frame.y/64*25}%`},item.id);
+ }
+});
+
+test('packed card portraits retain their source, fit the frame and resolve through the game icon helper',()=>{
+ const receipt=JSON.parse(readFileSync(new URL('../public/assets/starter-loot/provenance.json',import.meta.url),'utf8'));
+ assert.ok(receipt.cardPortraitSources.length>0);
+ for(const entry of receipt.cardPortraitSources){
+  const cell=itemIconCell(entry.id);
+  assert.equal(cell.image,PAINTED_ITEM_ART[entry.id]?`/assets/item-art-v2/${PAINTED_ITEM_ART[entry.id]}`:`/assets/starter-loot/${entry.file}`);
+  const svg=readFileSync(new URL(`../public/assets/starter-loot/${entry.file}`,import.meta.url));
+  assert.equal(createHash('sha256').update(svg).digest('hex'),entry.sha256,entry.id);
+  const source=readFileSync(new URL('../../'+entry.source,import.meta.url));
+  assert.equal(createHash('sha256').update(source).digest('hex'),entry.sourceSha256,entry.id);
+  const png=Buffer.from(svg.toString().match(/href="data:image\/png;base64,([A-Za-z0-9+/=]+)"/)[1],'base64');
+  assert.deepEqual([png.readUInt32BE(16),png.readUInt32BE(20)],entry.portraitSize);
+  assert.ok(entry.portraitSize.every(n=>n>0&&n<=74),entry.id);
+  assert.match(svg.toString(),/<rect\b/);
+  assert.ok(loadGameData().monsters.monsters.some(m=>m.id===entry.monster&&m.drops.some(d=>d.item===entry.id)),entry.id);
  }
 });
 

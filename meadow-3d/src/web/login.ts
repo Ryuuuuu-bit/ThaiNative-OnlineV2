@@ -1,3 +1,4 @@
+import '../pc-only';
 import './navigation';
 import'../web.css';import'../web-glass.css';import'../web-modern.css';import'../web-fantasy.css';import{api,post,showError,ApiError}from'./api';import{getMe,guestKey,startGuest,safeNext,forgetGuest,mountAccountChip,loginPassword,register,logout,type Me}from'./session';import{kindLabel,uidChip,mountBuild}from'./account-ui';
 declare global{interface Window{google?:any}}

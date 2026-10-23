@@ -6,7 +6,6 @@ import {setKeyBindings} from './keys';
 const ACTION_NAMES:Record<KeyAction,string>={attack:'โจมตี',dash:'หลบ',potion:'ดื่มยา',auto:'เปิด/ปิด AUTO',nextTarget:'เปลี่ยนเป้าหมาย',inventory:'กระเป๋า',skills:'สมุดสกิล',stats:'สเตตัส',returnCity:'กลับเมือง'};
 import {GATES,LAYOUTS,MAP_INFO,FIELD_PLACES,FIELD_HABITATS,FIELD_BOSS,THORN_NEST,fieldHabitatAt,isField,gateRoute,type MapId} from '@the-beginning-online/shared/maps';
 import {paintMinimapLayer} from './minimap-view';
-import jobs from '../../shared/data/jobs.json';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
 import {createPlayerPathfinder,createTravelRoute,gateApproach} from './hud-path';
 import {updateMonsterTags} from './monster-tags';
@@ -120,8 +119,8 @@ export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;t
  else if(arrival){const kind=arrival;arrival=null;if(!kind.startsWith('gate:')){o.arrived?.(destinationName);if(!['ground','hunt','boss','place','camp','sign'].includes(kind))o.talk(kind);}}
  $('#wallet').textContent=`${p.gold.toLocaleString('th-TH')} ทอง · ${Math.round(p.carryWeight||0)}/${Math.round(p.weightLimit||0)}`;
  $('#kills').textContent=`ปราบแล้ว ${game.kills}`;$('#level').textContent=`${p.level}`;
- text('#job-label',`ระดับ ${p.level} · ${jobs.jobs.find(j=>j.id===p.jobId)?.nameTh||''} ${p.jobLevel}`);
- const job=jobs.jobs.find(j=>j.id===p.jobId),table=job?.tier===1?jobs.expToNext.tier1:jobs.expToNext.tier2,limit=table[p.jobLevel-1]||1;$('#job-xp').style.width=`${p.jobLevel>=(job?.maxLevel??50)?100:Math.min(100,p.jobExp/limit*100)}%`;$('#job-exp').textContent=`ประสบการณ์ ${p.level>=data.stats.maxLevel?'MAX':p.xp+'/'+p.nextXp} · อาชีพ ${p.jobLevel>=(job?.maxLevel??50)?'MAX':p.jobExp+'/'+limit}`;
+ text('#job-label',`Lv.${p.level} · ความชำนาญ K`);
+ $('#job-xp').parentElement!.hidden=true;$('#job-exp').textContent=`ประสบการณ์ ${p.level>=data.stats.maxLevel?'MAX':p.xp+'/'+p.nextXp}`;
  const effects=[...(p.statuses||[])];if(p.carryWeight>=p.weightLimit*.5)effects.push({id:'weight',remaining:0});const buff=$('#buff-status');const ids=effects.map(s=>s.id).join(',');if(buff.dataset.effects!==ids){buff.dataset.effects=ids;buff.replaceChildren();for(const s of effects){const icon=document.createElement('span');icon.className='buff-icon';buff.append(icon);}}for(const [index,s] of effects.entries()){const names:Record<string,string>={endure:'ใจเหล็ก',speed:'เคลื่อนไหวเร็วขึ้น',stun:'มึนงง',knockup:'ลอย',slow:'ช้าลง',weight:'น้ำหนักเกิน'};const icon=buff.children[index] as HTMLElement,art=masteryStatusArt(s.id,s.sourceId);icon.classList.toggle('job-icon',!!art?.file);icon.style.backgroundImage=art?.file?`url('/assets/mastery-painted/${art.file}')`:'';icon.style.backgroundPosition=art?.file?'center':'';icon.style.backgroundSize=art?.file?'100% 100%':'';icon.textContent=art?.file?'':s.id==='weight'?'⚖':s.id==='speed'?'✚':'✦';icon.title=`${art?.name||names[s.id]||'ผลสถานะ'}${s.remaining?' '+s.remaining.toFixed(1)+' วินาที':''}`;icon.setAttribute('aria-label',icon.title);icon.style.setProperty('--remaining',`${s.remaining?Math.min(1,s.remaining/(s.id==='endure'?8:s.id==='guard'?10:s.id==='rage'?12:60))*360:360}deg`);}
  cast.hidden=!p.returnRemaining;cast.querySelector('span')!.textContent=`กำลังกลับเมือง ${Math.ceil(p.returnRemaining||0)} วินาที`;(cast.querySelector('progress')!).value=5-(p.returnRemaining||0);
  const current=game.enemies.find((e:any)=>e.id===game.target&&!e.dead);if(current){lastTarget=current;targetUntil=performance.now()+4000;}else if(lastTarget){lastTarget=game.enemies.find((e:any)=>e.id===lastTarget.id)||lastTarget;}

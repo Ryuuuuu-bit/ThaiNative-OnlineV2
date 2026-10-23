@@ -45,8 +45,7 @@ export class ShadowHero{
  combatPose(p:{id:string;fx:number;fz:number;dead:boolean;hurt:number;dash?:number;moving:boolean;castRemaining?:number;stats?:{weaponType?:string}},dt:number){
   if(this.playerId&&this.playerId!==p.id){this.action=undefined;this.reaction=undefined;this.hurt=this.dash=0;}
   this.playerId=p.id;this.look=`${this.outfit}-${p.stats?.weaponType==='bow'?'bow':'iron'}`;
-  // shortcut: only sword/shield and bow art is approved; other weapons retain their existing art until authored.
-  if(p.stats?.weaponType && !['sword1h','bow'].includes(p.stats.weaponType))return undefined;
+  // shortcut: non-bow weapons share the armored combat art until their own weapon sheets are authored.
   this.clock+=dt;
   const reaction=p.dead?'death':p.hurt>0?'hit':(p.dash??0)>0?'dodge':undefined;
   const repeated=reaction==='hit'?p.hurt>this.hurt+.05:reaction==='dodge'&&(p.dash??0)>this.dash+.05;

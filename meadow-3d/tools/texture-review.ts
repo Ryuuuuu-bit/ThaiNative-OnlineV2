@@ -40,7 +40,7 @@ if (name === "pond") {
 	aspect = 1;
 }
 const before = await new T.TextureLoader().loadAsync(
-	"/art/texture-sources/" + source.replace("/assets/", ""),
+	(name==='slime'||name==='king')&&monsters.originRevision?source:"/art/texture-sources/" + source.replace("/assets/", ""),
 );
 before.colorSpace = T.SRGBColorSpace;
 before.minFilter = T.LinearFilter;

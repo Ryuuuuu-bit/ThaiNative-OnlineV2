@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="th">
+<head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#182b28">
+ <title>ชุดเงาราตรี · The Beginning Online</title>
+ <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+ <main>
+  <header class="atelier-header">
+   <a class="brand" href="/">THE BEGINNING <span>ONLINE</span></a>
+   <a class="back" href="/character.html">พรีวิวแอนิเมชันเดิม <span aria-hidden="true">↗</span></a>
+   <a class="back" href="/shadow-scene.html">ทดลองชุดเงาราตรี 8 ทิศในฉากเมือง <span aria-hidden="true">↗</span></a>
+  </header>
+  <div class="intro">
+   <div><p class="eyebrow">CHARACTER ATELIER · 03</p><h1>ชุดเงาราตรี</h1>
+    <p class="intro-copy">ชายและหญิง · ชุดดำชุดเดียว เปลี่ยนอุปกรณ์ได้</p></div>
+   <span class="prototype">พรีวิวภาพเต็มตัว / มุม SE</span>
+  </div>
+  <p id="status" class="status" role="status" aria-live="polite">กำลังโหลดเฟรมตัวละครทั้งตัว…</p>
+  <div class="atelier-layout">
+   <section class="wardrobe panel" aria-labelledby="outfit-heading">
+    <div class="panel-heading"><span class="step">01</span><h2 id="outfit-heading">เลือกตัวละคร</h2></div>
+    <p class="hint">ชุดชายเดิม · ชุดหญิงกางเกงขาสั้นหนังดำ</p>
+    <div class="choices" role="group" aria-label="ตัวละครชายหรือหญิง">
+     <button class="choice" data-outfit="male" aria-pressed="true" disabled>
+      <span class="art-thumb"><img src="/assets/hero-shadow-v1/male-thumb.webp" alt="" width="80" height="100"></span>
+      <span><strong>ชาย · เงาราตรี</strong><small>เกราะหนังดำ · ผ้าคลุมสั้น</small></span><span class="selected-mark" aria-hidden="true">✓</span>
+     </button>
+     <button class="choice" data-outfit="female" aria-pressed="false" disabled>
+      <span class="art-thumb"><img src="/assets/hero-shadow-v1/female-thumb.webp" alt="" width="80" height="100"></span>
+      <span><strong>หญิง · เงาราตรี</strong><small>กางเกงขาสั้น · ผ้าข้างเอว</small></span><span class="selected-mark" aria-hidden="true">✓</span>
+     </button>
+    </div>
+    <div class="palette" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="hint">โทนภาพวาดแฟนตาซี<br>ดำอมเทา โลหะหม่น แสงนุ่มแบบฉากในเกม</p>
+   </section>
+   <section class="preview-panel" aria-label="ภาพพรีวิวตัวละคร">
+    <div id="stage" class="stage" data-background="meadow">
+     <div class="stage-caption"><span>ภาพเต็มตัวต่อเฟรม</span><span id="pose-caption">ยืน / SE</span></div>
+     <canvas id="hero" role="img" aria-label="ตัวละครพร้อมชุดและอุปกรณ์ที่เลือก"></canvas>
+     <span class="stage-watermark" aria-hidden="true">THE BEGINNING</span>
+    </div>
+    <div class="stage-toolbar">
+     <div class="backgrounds" role="group" aria-label="พื้นหลังพรีวิว">
+      <button data-background="meadow" aria-pressed="true" title="พื้นหลังทุ่งหญ้า" aria-label="พื้นหลังทุ่งหญ้า"></button>
+      <button data-background="dark" aria-pressed="false" title="พื้นหลังเข้ม" aria-label="พื้นหลังเข้ม"></button>
+      <button data-background="checker" aria-pressed="false" title="พื้นหลังตารางโปร่งใส" aria-label="พื้นหลังตารางโปร่งใส"></button>
+     </div>
+     <label class="check"><input id="guides" type="checkbox"> กรอบภาพและพื้น</label>
+    </div>
+    <p id="look-caption" class="look-caption">ชาย · ชุดเงาราตรี · ดาบและโล่</p>
+    <div class="motion-controls" aria-label="ควบคุมแอนิเมชัน">
+     <div class="motion-buttons" role="group" aria-label="ท่าตัวละคร">
+      <button data-motion="idle" aria-pressed="true" disabled>ยืน</button>
+      <button data-motion="walk" aria-pressed="false" disabled>เดิน</button>
+      <button data-motion="attack" aria-pressed="false" disabled>โจมตี</button>
+      <button data-spell="cast" disabled>ร่ายเวทไฟ</button>
+      <button data-spell="heal" disabled>ฮีล</button>
+      <button id="play-motion" disabled>เล่น</button>
+     </div>
+     <div class="speed-controls" role="group" aria-label="ความเร็วพรีวิว"><span>ความเร็ว</span><button data-speed="1" aria-pressed="true" disabled>1×</button><button data-speed="0.25" aria-pressed="false" disabled>0.25×</button></div>
+     <details class="frame-inspector"><summary>ตรวจแอนิเมชันทีละเฟรม</summary>
+     <div class="frame-controls">
+      <button id="previous-frame" aria-label="เฟรมก่อนหน้า" disabled>‹</button>
+      <label for="motion-frame">เฟรม</label><input id="motion-frame" type="range" min="0" max="0" value="0" disabled>
+      <output id="frame-label" for="motion-frame">01 / 01</output>
+      <button id="next-frame" aria-label="เฟรมถัดไป" disabled>›</button>
+     </div>
+     <p class="motion-hint">เปลี่ยนตัวละครหรืออาวุธเริ่มโจมตีรอบใหม่ · เดินคงจังหวะเดิม · ตรวจมือ เท้า และช่วงคืนท่า</p>
+     </details>
+    </div>
+    <div class="spell-controls" aria-label="ทดลองเวทและฮีล">
+     <label class="check auto-spell"><input id="auto-spell" type="checkbox" checked disabled><span>Auto Spell · ไฟ<small>เอฟเฟกต์ซ้อนระหว่างโจมตี โดยท่าโจมตีเล่นต่อ</small></span></label>
+     <div class="spell-counters"><span>โจมตี <output id="attack-count">0</output> ครั้ง</span><span>Auto Spell <output id="proc-count">0</output> ครั้ง</span></div>
+     <p id="spell-status" class="spell-status" role="status" aria-live="polite">เปิด Auto Spell · กดโจมตีเพื่อทดลอง</p>
+     <p class="motion-hint">เดโมปล่อยไฟทุก 2 ครั้งที่โจมตี · กดร่ายเวท/ฮีลจะเล่นท่านั้นแล้วกลับไปทำท่าเดิม</p>
+    </div>
+   </section>
+   <section class="equipment panel" aria-labelledby="weapon-heading">
+    <div class="panel-heading"><span class="step">02</span><h2 id="weapon-heading">เลือกอาวุธ</h2></div>
+    <p class="hint">ชุดเดิมของแต่ละตัวละคร เปลี่ยนเฉพาะอุปกรณ์</p>
+    <div class="choices" role="group" aria-label="อาวุธ">
+     <button class="choice weapon-choice" data-sword="iron" aria-pressed="true" disabled>
+      <span class="art-thumb"><img src="/assets/hero-modular-v1/iron.webp" alt="" width="80" height="100"></span>
+      <span><strong>ดาบและโล่</strong><small>ดาบมือหลัก · โล่มือรอง</small></span><span class="selected-mark" aria-hidden="true">✓</span>
+     </button>
+     <button class="choice weapon-choice" data-sword="bow" aria-pressed="false" disabled>
+      <span class="art-thumb"><img src="/assets/hero-modular-v1/bow.webp" alt="" width="80" height="100"></span>
+      <span><strong>ธนูเงาราตรี</strong><small>จับสองมือ · เล็งและปล่อยลูกธนู</small></span><span class="selected-mark" aria-hidden="true">✓</span>
+     </button>
+    </div>
+   </section>
+  </div>
+  <section class="scale-review" aria-labelledby="scale-heading">
+   <div class="review-heading"><div><p class="eyebrow">AT GAME SCALE</p><h2 id="scale-heading">ดูภาพเมื่อย่อเป็น Sprite</h2></div>
+    <p>ความสูงร่างกายอ้างอิง 168 px · กดภาพเพื่อเลือกตัวละครและอาวุธ</p></div>
+   <div id="combinations" class="combinations"></div>
+  </section>
+  <details class="contact-review" open>
+   <summary>ตรวจภาพทุกเฟรม</summary><p id="review-caption" class="hint"></p>
+   <p class="motion-hint">กดภาพเพื่อหยุดดูเฟรมนั้น · ตรวจข้อศอก เข่า ฝ่าเท้า และมือจับอาวุธตลอดลำดับ</p>
+   <div id="contact-sheet" class="contact-sheet"></div>
+  </details>
+  <footer><span>ชุดเงาราตรี · ภาพวาดแฟนตาซี · มุม SE</span><span>ต้นแบบพรีวิว · ยังไม่เชื่อมการต่อสู้และโอกาส Auto Spell ในเกมจริง</span></footer>
+ </main>
+ <script type="module" src="/src/equipment-preview.ts"></script>
+</body>
+</html>

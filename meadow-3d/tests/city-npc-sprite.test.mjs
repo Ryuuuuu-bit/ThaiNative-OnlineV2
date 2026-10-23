@@ -2,9 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {npcSprite,cityNpcSprite,loadCityNpcSprites,drawNpcSprite} from '../src/city-npc-sprite.ts';
 import {CITY_NPC_CLIPS} from '../src/city-npc-clips.ts';
+import {CITY_SPRITEGEN_CLIPS} from '../src/city-spritegen-clips.ts';
 import {TOWN_NPCS} from '../src/city-2d-locations.ts';
 import {HERO_METRES} from '../src/world-scale.ts';
-const clips=CITY_NPC_CLIPS;
+const clips={...CITY_NPC_CLIPS,...CITY_SPRITEGEN_CLIPS};
 function draw(sprite,time){
  const calls=[],ctx={imageSmoothingQuality:'low',drawImage:(...args)=>calls.push(args)};
  drawNpcSprite(ctx,sprite,100,200,30,time);assert.equal(ctx.imageSmoothingQuality,'low');return calls[0];

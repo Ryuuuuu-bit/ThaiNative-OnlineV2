@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "status": "modular SE sprite preview prototype; anchor coordinates inspected",
+  "generator": "built-in image_gen",
+  "sourceFile": "exec-47e4eb8d-ed67-45d7-b428-a413f9fcccf4.png",
+  "source": "bow-v1.png",
+  "output": "bow.webp",
+  "logicalCanvas": [
+    1254,
+    1254
+  ],
+  "outputCanvas": [
+    768,
+    768
+  ],
+  "styleReferences": [
+    "body.png",
+    "guardian-fit-v2.png",
+    "../../../public/assets/hero-modular-v1/iron.webp"
+  ],
+  "prompt": "Use case: stylized-concept\nAsset type: standalone modular equipment sprite for a hand-painted fantasy RPG, bow stave only.\nPrimary request: one simple practical wooden recurve bow, upright, isolated on truly transparent background. NO BOWSTRING AND NO ARROW.\nReference context: same warm muted hand-painted fantasy illustration as the body and metal sword images just inspected: visible restrained brush texture, dark clean edges, light from upper left, realistic compact proportions, brown leather grip, warm walnut wood, two small worn brass grip bands. No ornate fantasy spikes.\nComposition: square 1254 by 1254 logical canvas, entire bow contained with generous transparent padding; full height about 950 pixels, tips near y=150 and y=1104. A side-on bow for an archer aiming toward the RIGHT edge of the image. Center grip centered around x=670,y=627; the stave bulges toward SCREEN RIGHT and both string nock tips are to the LEFT of the grip, near x=510. This rightward-bulging silhouette is essential. Upper and lower limb gracefully recurve, but both endpoints end left of the grip. The grip must be clearly visible at exactly mid-height. Thin readable silhouette but enough thickness to show painted wood texture.\nOutput constraints: single isolated bow stave only, transparent PNG alpha background, do not show the hero or hand, no string, no arrow, no shadow, no background, no labels, no typography, no duplicate bow, no frame. Keep the full source square registration.",
+  "registration": {
+    "grip": [
+      765,
+      658
+    ],
+    "upperStringNock": [
+      534,
+      84
+    ],
+    "lowerStringNock": [
+      552,
+      1168
+    ],
+    "alphaThresholdBounds": [
+      511,
+      18,
+      807,
+      1230
+    ],
+    "notes": "Coordinates measured in the full 1254 square source, never cropped. Bow points screen-right; string and arrow are drawn procedurally by the pose renderer."
+  },
+  "normalization": "Preserve original source and full square registration. pack-modular-hero.py clears alpha values below 16, resizes uniformly to 768x768 with Lanczos and writes WebP quality 95.",
+  "limitations": [
+    "Only one SE/right-facing equipment view; additional facings require registered views.",
+    "Baked stave silhouette is static; bowstring/arrow motion is procedural in the local prototype."
+  ]
+}

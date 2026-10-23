@@ -1,0 +1,294 @@
+[
+  {
+    "key": "clerk",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "5fe429887e2890707c8428cd0e14b0c9f2f2897532d86d39db0cdaeaf626a4b8",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Looks down to adjust the ledger, then returns gaze and hand to rest. Book remains supported."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "clerk.webp",
+    "atlasSha256": "bfcaf60e21917cc94cded1839cda743a0a09effa95b6dabf3df25b8e7f7a09db"
+  },
+  {
+    "key": "blacksmith",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "c5e96c06ac5fd0db5e2d941315757eb02b777f8b73af8694a682ad17d3216ce6",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Hammer rises from rest to chest height, is inspected and lowered. Feet and tool hand stay consistent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "blacksmith.webp",
+    "atlasSha256": "25643b52423b79e0bd40c6598dfc639b8f85106447c6e0e11412b477f2c7de8b"
+  },
+  {
+    "key": "merchant",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "3868f064097f571fe331173734ebe5845667c13ed411b8c69b3466d0959a682b",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Clear open-palm sales gesture; basket remains in its supporting arm. Five complete anatomically coherent poses; recovery returns to rest."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "merchant.webp",
+    "atlasSha256": "ae8e43832722ee1aef1027e79d9c692a67931f80d2af8062998de105925ffe9d"
+  },
+  {
+    "key": "healer",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "b1d4edd6e3f62e0c0f997c17fbc085deec3843d3c95289d29ba6cc896d9457eb",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Gentle palm blessing and recovery; hands and sleeves remain complete."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "healer.webp",
+    "atlasSha256": "6aed1290fced5bf87c7a879aa9a3ccbfae27dda5c4508dc9554b5c57eb0fe273"
+  },
+  {
+    "key": "guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Captain points toward the road while spear remains upright and fixed. Helmet and planted feet stay coherent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "guard.webp",
+    "atlasSha256": "6495d10d9d70df3ee27788356853ce35c84505eeacc5ac972483ec0348d77d64"
+  },
+  {
+    "key": "herbalist",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "fef10c578544c925baa8928b9366b3da94b557046452d320eee5eb1e97a1e837",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Lifts a herb sprig toward the face, inspects it, and returns it. Bundle and hands remain complete."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "herbalist.webp",
+    "atlasSha256": "409430e1fd6e08d102ae064e82d7a6f1547040caaebc0892567a3f6d6f9288dc"
+  },
+  {
+    "key": "angel",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "a22de8fc058a9f8d2250bc4d30a191a5b26214f12d2b276b054274f6343e2a82",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Open-palm blessing and small wing flex; both wings, hands and boots remain intact. Returns to the same rest pose."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "angel.webp",
+    "atlasSha256": "58e1badc650d62857d42bc8d6ad6dff474411edde817f4923ed3fcd9093d7790"
+  },
+  {
+    "key": "guild-guide",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "87d1dd99542e2201e08ad282e9c5c008b6c3335c2528e0f53b4afb5698b48d94",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Welcomes with a free palm, points at the book and recovers. Book, supporting arm, boots and costume are stable."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "guild-guide.webp",
+    "atlasSha256": "7dce981754175df5ade07e551602e3a05ac68e94b477a9c3929f065370072af3"
+  },
+  {
+    "key": "trainer",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "4044ea8aeb253efcc9d5d155d4e4e7d2c544e242c8241e5ffc53fd4f7aa32e4f",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Demonstrates compact guard with the free hand while the sword remains safely grounded; complete arm recovery and stable legs."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "trainer.webp",
+    "atlasSha256": "f37105aa1cd39acd103c85433088f49ea2f06ddc7d288ad3c2347f0c5c74dd10"
+  },
+  {
+    "key": "innkeeper",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "273c87014da08bb351e2f1498bbc5ed1afc36965831493f8a90ea3427f2619f8",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Tray is offered forward, remains level and supported, then returns; nod and recovery are coherent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "innkeeper.webp",
+    "atlasSha256": "9319d385925c929a36662d8a39e12229e1cf141d4dcb5d8d14071df0653eeb76"
+  },
+  {
+    "key": "archivist",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "0cdec478466b886ea17fa2f10146897d98cafc4e3d86f779d308cb97b5a9ca30",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Reading finger traces the book and recovers; both hands, book, cape and feet remain complete."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "archivist.webp",
+    "atlasSha256": "230c87ad3016a6769630602b6bda9b0440bec2694ebe0bd160bd7bc10ee66c18"
+  },
+  {
+    "key": "courier",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "3d710c252f07115057efd2914fb25a82e1147f9e931aecbf48b2605b7711601a",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Scroll is raised, checked, opened slightly and lowered; coherent two-handed message handling and recovery."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "courier.webp",
+    "atlasSha256": "f861c856af3e61142d0c60a200aa3e2eefdd318c5e90f07b8ffb2866a8039d8c"
+  },
+  {
+    "key": "minstrel",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "8ae490bea6d623d91e49d9b4fc50e72b1c6fec347ddca907e84b612797155b7a",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Strumming hand moves over lute strings across the middle poses and returns; instrument neck and supporting hand remain fixed."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [
+      "idle: motion presence is too low (0.0083 < 0.0100)"
+    ],
+    "atlas": "minstrel.webp",
+    "atlasSha256": "fd9c22d46cf94b87b35701edb4e9b006e86ad8d08fa11765a7c3a3aeb08bd972"
+  },
+  {
+    "key": "north-guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Free hand shades the eyes to inspect the road, then lowers back to rest. Spear hand and helmet remain consistent."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "north-guard.webp",
+    "atlasSha256": "c0a4ef3acd6ffac9370b638819ca7231c1b1f4e7eecc6cd8c5670fc7a28859c9"
+  },
+  {
+    "key": "east-guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Free hand opens at waist level in a welcoming gesture and returns. Stable spear and planted feet."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [],
+    "atlas": "east-guard.webp",
+    "atlasSha256": "64d86da22f98097cf34ab264b54e00261335796c63813aa9cafd32d0541b6b1e"
+  },
+  {
+    "key": "west-guard",
+    "provider": "codex",
+    "pipeline": "sprite-gen prepare / gen-set / extract / compose-atlas / compose-gif / preview / inspect",
+    "referenceSha256": "61244302322f2b9f6e718820b8528bd851b7af5ee8006c7c0445f173205a20e0",
+    "frames": 5,
+    "states": [
+      "idle"
+    ],
+    "visualReview": {
+      "idle": "pass",
+      "notes": "Compact free-hand chest salute, recovery and rest; spear, helmet, anatomy and planted feet stay coherent across all five poses."
+    },
+    "worldHeight": 2.1,
+    "automatedWarnings": [
+      "idle: motion presence is too low (0.0094 < 0.0100)"
+    ],
+    "atlas": "west-guard.webp",
+    "atlasSha256": "85b1807fd3416266971e82a920d114958dafaeb9a3736bf51376289d79fe0b90"
+  }
+]

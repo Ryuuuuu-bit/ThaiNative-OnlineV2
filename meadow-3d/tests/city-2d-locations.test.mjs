@@ -13,7 +13,7 @@ test('six essential stationary service NPCs are reachable',()=>{
  assert.deepEqual(new Set(TOWN_NPCS.map(n=>n.id)),new Set(['market','forge','storage','healer','angel','captain']));
  assert.equal(new Set(TOWN_NPCS.map(n=>n.id)).size,TOWN_NPCS.length);
  for(const npc of TOWN_NPCS){assert.ok(city2dWalkable(npc.x,npc.z,.4),npc.id);assert.ok(route({x:0,z:14},npc).length,npc.id);assert.ok(CITY_NPC_CLIPS[npc.art],npc.art);assert.equal(nearbyTownNpc(npc.x,npc.z)?.id,npc.id);}
- assert.equal(Object.keys(CITY_NPC_CLIPS).length,6);
+ assert.deepEqual(new Set(Object.keys(CITY_NPC_CLIPS)),new Set(['clerk','blacksmith','merchant','healer','guard','herbalist','angel','north-guard','east-guard','west-guard']));
  for(const clip of Object.values(CITY_NPC_CLIPS))assert.ok(readFileSync(new URL('../public'+clip.file,import.meta.url)).length>0);
 });
 

@@ -1,7 +1,9 @@
 import {heroBodyCalibration} from './city-character-calibration';
 import './city-2d-review.css';
+import {z} from 'zod';
 import { CITY, CITY_BUILDINGS } from '@the-beginning-online/shared/maps';
-import { heroSprite, facing8For, facingFor, motionFrame, v2Cell } from './sprite-animation';
+import {facing8For} from './sprite-animation';
+import {shadowClipSchema,shadowPose} from './shadow-hero';
 import { HERO_METRES,HERO_PIXEL_METRES } from './world-scale';
 import { createCityExplorer, project } from './city-2d-sim';
 
@@ -38,11 +40,21 @@ const image = async (key: string) => {
 };
 
 let ground: HTMLCanvasElement, idle: HTMLImageElement, run: HTMLImageElement;
+const reviewHeroSchema=z.object({version:z.literal(1),looks:z.object({'male-iron':z.object({idle:shadowClipSchema,walk:shadowClipSchema})})});
+let heroManifest:z.infer<typeof reviewHeroSchema>;
 let cityScene:Awaited<ReturnType<typeof loadCity2DScene>>;
 async function init() {
-  manifest=await fetch('/texture-manifest.json').then(r=>{if(!r.ok)throw Error('โหลดรายการภาพไม่สำเร็จ');return r.json();});
-
-  [cityScene,idle,run]=await Promise.all([loadCity2DScene(),image('/assets/hero-painted/hero-idle-v2.png'),image('/assets/hero-painted/hero-walk-v1.png')]);
+  [manifest,heroManifest]=await Promise.all([
+    fetch('/texture-manifest.json').then(r=>{if(!r.ok)throw Error('โหลดรายการภาพไม่สำเร็จ');return r.json();}),
+    fetch('/assets/hero-shadow-8dir-v1/manifest.json').then(r=>{if(!r.ok)throw Error('โหลดข้อมูลตัวละครไม่สำเร็จ');return r.json();}).then(value=>reviewHeroSchema.parse(value)),
+  ]);
+  const hero=heroManifest.looks['male-iron'];
+  if(CITY.empty){
+    [idle,run]=await Promise.all([image(hero.idle.url),image(hero.walk.url)]);
+    ground=await makePaintedGround();backdrop=await loadMapBackdrop('city_plaza',new CanvasAssets(manifest));
+    ready=true;document.querySelector<HTMLElement>('#loading')!.hidden=true;canvas.focus();return;
+  }
+  [cityScene,idle,run]=await Promise.all([loadCity2DScene(),image(hero.idle.url),image(hero.walk.url)]);
   ground=cityScene.ground;props.push(...cityScene.props);paintedSceneAssets=cityScene.paintedSceneAssets;
   for(const [id,sprite]of cityScene.npcSprites)npcSprites.set(id,sprite);
   backdrop=await loadMapBackdrop('city_plaza',new CanvasAssets(manifest));
@@ -93,7 +105,7 @@ document.querySelector('#travel-close')!.addEventListener('click',()=>travelDial
 travelDialog.addEventListener('close',()=>{keys.clear();canvas.focus();});
 
 function label(text:string,x:number,y:number){ctx.font='500 11px Inter,"Noto Sans Thai",sans-serif';ctx.textAlign='center';const w=ctx.measureText(text).width+18;ctx.fillStyle='#1d2e25dd';ctx.fillRect(x-w/2,y-15,w,23);ctx.fillStyle='#e0d5b5';ctx.fillText(text,x,y);}
-function actor(img:HTMLImageElement,x:number,z:number,sw:number,sh:number,col:number,row:number,w:number,h:number,anchor=.9375){const p=project(x,z);const s=scale();const q=screen(p);ctx.drawImage(img,col*sw,row*sh,sw,sh,q.x-w*s/2,q.y-h*s*anchor,w*s,h*s);}
+function actor(img:HTMLImageElement,x:number,z:number,sw:number,sh:number,col:number,row:number,w:number,h:number,anchor:number,anchorX:number){const p=project(x,z);const s=scale();const q=screen(p);ctx.drawImage(img,col*sw,row*sh,sw,sh,q.x-w*s*anchorX,q.y-h*s*anchor,w*s,h*s);}
 function scale(){return overview?Math.min(width/148,height/115):zoom;}
 function screen(p:{x:number;y:number}){const s=scale();return {x:width/2+(p.x-camera.x)*s,y:height*.55+(p.y-camera.y)*s};}
 function drawAtmosphere(s:number){
@@ -115,7 +127,7 @@ function render(now:number){requestAnimationFrame(render);const dt=last?Math.min
   const heroDepth=project(player.x,player.z).y;
   const draws: {depth:number;draw:()=>void}[]=props.map(p=>({depth:project(p.x,p.z).y,draw:()=>{const q=screen(project(p.x,p.z)),w=p.image.width/cacheScale*s,h=p.image.height/cacheScale*s;const x=q.x+p.image.left*s,y=q.y+p.image.top*s;if(x>width||x+w<0||y>height||y+h<0)return;const hp=screen(project(player.x,player.z));ctx.globalAlpha=!overview&&p.fade&&project(p.x,p.z).y>heroDepth&&hp.x>x&&hp.x<x+w&&hp.y>y&&hp.y<q.y?.5:1;ctx.drawImage(p.image,x,y,w,h);ctx.globalAlpha=1;if(p.water)drawFountainWater(ctx,q.x,q.y,s,time);}}));
   for(const p of backdrop.props){const q=screen(project(p.x,p.z));if(q.x<-p.h*s||q.x>width+p.h*s||q.y<0||q.y>height+p.h*s)continue;draws.push({depth:project(p.x,p.z).y,draw:()=>ctx.drawImage(p.image,...p.rect as [number,number,number,number],q.x-p.w*p.anchor[0]*s,q.y-p.h*p.anchor[1]*s,p.w*s,p.h*s)});}
-  for(const p of [...WAYPOINTS,...CITY_EXITS])draws.push({depth:project(p.x,p.z).y+.01,draw:()=>{
+  if(!CITY.empty)for(const p of [...WAYPOINTS,...CITY_EXITS])draws.push({depth:project(p.x,p.z).y+.01,draw:()=>{
     const q=screen(project(p.x,p.z));ctx.save();ctx.strokeStyle=p.color;ctx.lineWidth=Math.max(1,s*.06);
     // Ground effects use the same dimetric plane as roads, rather than a flat 2:1 ellipse.
     for(const r of [1.15,1.55]){ctx.beginPath();for(let i=0;i<=48;i++){const a=i*Math.PI/24,v=project(Math.cos(a)*r,Math.sin(a)*r);i?ctx.lineTo(q.x+v.x*s,q.y+v.y*s):ctx.moveTo(q.x+v.x*s,q.y+v.y*s);}ctx.stroke();}
@@ -124,18 +136,18 @@ function render(now:number){requestAnimationFrame(render);const dt=last?Math.min
     ctx.restore();
   }});
   npcs.forEach((n,i)=>draws.push({depth:project(n.x,n.z).y,draw:()=>{const sprite=npcSprites.get(n.art)!;const q=screen(project(n.x,n.z));if(q.x<-60||q.x>width+60||q.y<-20||q.y>height+90)return;drawNpcSprite(ctx,sprite,q.x,q.y,s,time+i*.173);if(!overview&&Math.hypot(n.x-player.x,n.z-player.z)<4)label(n.icon+' '+n.name,q.x,q.y-(n.art==='angel'?4:2.5)*s);}}));
-  draws.push({depth:heroDepth,draw:()=>{const p=screen(project(player.x,player.z));ctx.beginPath();ctx.ellipse(p.x,p.y,.48*s,.23*s,0,0,Math.PI*2);ctx.fillStyle='#172c2966';ctx.fill();if(!overview){ctx.beginPath();ctx.ellipse(p.x,p.y,.63*s,.31*s,0,0,Math.PI*2);ctx.strokeStyle='#e2d3a2a0';ctx.lineWidth=1;ctx.stroke();}const motion=!paused&&player.moving?'walk':'idle',sprite=heroSprite(motion,player.fx,player.fz,motionFrame(motion,player.clock),player.clock),walking=sprite.sheet==='walk',cell=walking?sprite.cell:v2Cell('idle',facingFor(player.fx,player.fz),0,player.clock),img=walking?run:idle,calibration=heroBodyCalibration(sprite.sheet,facing8For(player.fx,player.fz),cell.column,cell.row),factor=calibration?.scale??1;actor(img,player.x,player.z,img.width/cell.columns,img.height/cell.rows,cell.column,cell.row,384*HERO_PIXEL_METRES*factor,256*HERO_PIXEL_METRES*factor,(calibration?.feet??240)/256);if(overview){ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#f0d786';ctx.fill();}else label('คุณ',p.x,p.y-(HERO_METRES+.3)*s);}});
+  draws.push({depth:heroDepth,draw:()=>{const p=screen(project(player.x,player.z));ctx.beginPath();ctx.ellipse(p.x,p.y,.48*s,.23*s,0,0,Math.PI*2);ctx.fillStyle='#172c2966';ctx.fill();if(!overview){ctx.beginPath();ctx.ellipse(p.x,p.y,.63*s,.31*s,0,0,Math.PI*2);ctx.strokeStyle='#e2d3a2a0';ctx.lineWidth=1;ctx.stroke();}const motion=!paused&&player.moving?'walk':'idle',pose=shadowPose(heroManifest,'male-iron',motion,facing8For(player.fx,player.fz),player.clock),cell=pose.cell,img=motion==='walk'?run:idle;actor(img,player.x,player.z,img.width/cell.columns,img.height/cell.rows,cell.column,cell.row,pose.w*HERO_PIXEL_METRES*pose.scale,pose.h*HERO_PIXEL_METRES*pose.scale,pose.feet/pose.h,pose.anchorX);if(overview){ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#f0d786';ctx.fill();}else label('คุณ',p.x,p.y-(HERO_METRES+.3)*s);}});
   draws.sort((a,b)=>a.depth-b.depth).forEach(d=>d.draw());
-  drawAtmosphere(s);
+  if(!CITY.empty)drawAtmosphere(s);
   for(const p of props.filter(p=>p.label)){const q=screen(project(p.x,p.z));if(!overview&&Math.hypot(p.x-player.x,p.z-player.z)<15)label(p.label!,q.x,q.y+Math.max(18,s*2.1));}
-  if(overview){if(showDistricts)for(const d of DISTRICTS){const p=screen(project(d.x,d.z));label(d.name,p.x,p.y+15);}
+  if(overview&&!CITY.empty){if(showDistricts)for(const d of DISTRICTS){const p=screen(project(d.x,d.z));label(d.name,p.x,p.y+15);}
   for(const gate of CITY_GATES){const q=screen(project(gate.x,gate.z));label(gate.name,q.x,q.y+22);}}
   for(const p of WAYPOINTS)if(overview||Math.hypot(p.x-player.x,p.z-player.z)<11){const q=screen(project(p.x,p.z));label('◇ '+p.name,q.x,q.y+2.1*s);}
   const portal=nearbyWaypoint(player.x,player.z),exit=nearbyExit(player.x,player.z);
   const near=npcs.find(n=>Math.hypot(n.x-player.x,n.z-player.z)<3.2);document.querySelector('#landmark')!.textContent=portal?`E · วาร์ปจาก${portal.name}`:exit?`E · เส้นทางสู่${exit.destination}`:near?`E · คุยกับ${near.name}`:Math.max(Math.abs(player.x),Math.abs(player.z))>44?'เขตประตูเมือง · ตัวอย่างนี้ยังไม่เชื่อมแผนที่ถัดไป':'';
-  const district=districtAt(player.x,player.z);document.querySelector('#district-name')!.textContent=exit?exit.name:district.name;document.querySelector('#district-detail')!.textContent=exit?'ประตูเมือง · จุดรวมพลก่อนออกเดินทาง':district.subtitle;
+  const district=districtAt(player.x,player.z);document.querySelector('#district-name')!.textContent=CITY.empty?'เมืองว่าง':exit?exit.name:district.name;document.querySelector('#district-detail')!.textContent=CITY.empty?'พื้นที่โล่ง ไม่มี NPC อาคาร หรือสิ่งกีดขวาง':exit?'ประตูเมือง · จุดรวมพลก่อนออกเดินทาง':district.subtitle;
   status.textContent=`X ${player.x.toFixed(1)} · Z ${player.z.toFixed(1)}   |   ${overview?'ภาพรวมเมือง':Math.round(zoom/26*100)+'%'}${paused?' · พัก':''}`;
 }
 // Read-only diagnostics for local playtests; nothing is persisted.
-Object.defineProperty(window,'__CITY2D__',{value:{snapshot:()=>({ready,player:{...player},paused,overview,renderer:'Canvas2D',props:props.length,paintedSceneAssets,groundArt:'painted road / garden / grass v1',fountainTime:time,npcs:npcs.length,npcArtTypes:npcSprites.size,waypoints:WAYPOINTS,travelOpen:travelDialog.open,citizens:[],twilight,assetSource:'production hero-idle / hero-run',viewport:[width,height]})}});
+Object.defineProperty(window,'__CITY2D__',{value:{snapshot:()=>({ready,player:{...player},paused,overview,renderer:'Canvas2D',props:props.length,paintedSceneAssets,groundArt:CITY.empty?'grass only':'city-sprite-v2 road / garden / grass',fountainTime:time,npcs:npcs.length,npcArtTypes:npcSprites.size,waypoints:WAYPOINTS,travelOpen:travelDialog.open,citizens:[],twilight,assetSource:'hero-shadow-8dir-v1 male-iron',viewport:[width,height]})}});
 void init().then(()=>{const id=new URLSearchParams(location.search).get('npc');if(id&&npcs.some(n=>n.id===id)){tour.value='npc-'+id;tour.dispatchEvent(new Event('change'));}}).catch(error=>{document.querySelector('#loading')!.textContent=`โหลดฉากไม่สำเร็จ: ${error.message} — ลองรีเฟรชหน้า`;console.error(error);});requestAnimationFrame(render);

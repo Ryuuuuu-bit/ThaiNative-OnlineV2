@@ -240,5 +240,980 @@
     "unique_confluence_relic.svg",
     "astral_fire_scroll.svg",
     "astral_water_scroll.svg"
+  ],
+  "cardPortraitMethod": "Alpha crop of in-game idle sprites, normalized into existing original SVG frames; no new image generation.",
+  "cardPortraitSources": [
+    {
+      "id": "card_jelly_pink",
+      "file": "card_jelly_pink.svg",
+      "monster": "jelly_pink",
+      "source": "meadow-3d/public/assets/monsters-painted/original-slime-idle.webp",
+      "sourceSha256": "8f7e538a8cc36fa198c4439875d381c74f72d5cbb90183aa4f666950107f4bbf",
+      "bounds": [
+        17,
+        92,
+        176,
+        177
+      ],
+      "portraitSize": [
+        74,
+        40
+      ],
+      "sha256": "c23f47cef2dc6ac58e22badfa95beaf2d84c94113338890a6883add88cc14e67"
+    },
+    {
+      "id": "card_king_jelly",
+      "file": "card_king_jelly.svg",
+      "monster": "king_jelly",
+      "source": "meadow-3d/public/assets/monsters-painted/original-king-idle.webp",
+      "sourceSha256": "b0b1dc6ce8faa39cccc91cddcdac7efa7daf43fe540e3eb4b236658e42c058f6",
+      "bounds": [
+        31,
+        26,
+        226,
+        234
+      ],
+      "portraitSize": [
+        69,
+        74
+      ],
+      "sha256": "80bb397385952fbcf32022906f38be4c5434cea490885f9592bf6a54a05c9abb"
+    },
+    {
+      "id": "card_bud_shroom",
+      "file": "card_bud_shroom.svg",
+      "monster": "forest_young_1",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/bud_shroom-idle.webp",
+      "sourceSha256": "8de8fd3436ea52a8c8854fe466e83b12ae2100e7413786fd15e8faf750e53293",
+      "bounds": [
+        15,
+        23,
+        176,
+        177
+      ],
+      "portraitSize": [
+        74,
+        71
+      ],
+      "sha256": "a2aa772655a7065357a8b6f4b703a28f2b07bc2eef3e43290036e24b717ab8b9"
+    },
+    {
+      "id": "card_clay_puff",
+      "file": "card_clay_puff.svg",
+      "monster": "ruins_young_1",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/clay_puff-idle.webp",
+      "sourceSha256": "e1fc519e4cf419e310a36ee129afecda1910363bb68b856c706e0375e0e1686e",
+      "bounds": [
+        27,
+        21,
+        165,
+        177
+      ],
+      "portraitSize": [
+        65,
+        74
+      ],
+      "sha256": "999bad66bb0b4e23bb42f45b032e631a7e233af9377eed397690f9866a0bfa87"
+    },
+    {
+      "id": "card_pebble_puff",
+      "file": "card_pebble_puff.svg",
+      "monster": "canyon_young_1",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/pebble_puff-idle.webp",
+      "sourceSha256": "f492a5902f08c06131e43c4a54f4a2f35725322f739049ef7950b8e1c24135df",
+      "bounds": [
+        18,
+        15,
+        174,
+        177
+      ],
+      "portraitSize": [
+        71,
+        74
+      ],
+      "sha256": "42e235c7f71e6d49d8864ade380599ff228e619e03a8d4cf5d8cc847645ffaf9"
+    },
+    {
+      "id": "card_shade_wolf",
+      "file": "card_shade_wolf.svg",
+      "monster": "shade_wolf",
+      "source": "meadow-3d/public/assets/monsters-painted/original-wolf-idle.webp",
+      "sourceSha256": "c24f8696b317d38cd69956ad3bbb2c1c53a620ca8d72d4797707ae658691edeb",
+      "bounds": [
+        18,
+        17,
+        174,
+        176
+      ],
+      "portraitSize": [
+        73,
+        74
+      ],
+      "sha256": "539f13e433ced5cdffd9f8f95b299e3409db7dc14ead481120f65504b52d8ec9"
+    },
+    {
+      "id": "card_lotus_rabbit",
+      "file": "card_lotus_rabbit.svg",
+      "monster": "lotus_rabbit",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/lotus_rabbit-idle.webp",
+      "sourceSha256": "146b65d697243e6d65a3524654a6f1d56bb59df8862ad39f7ed77061a3821579",
+      "bounds": [
+        17,
+        15,
+        173,
+        177
+      ],
+      "portraitSize": [
+        71,
+        74
+      ],
+      "sha256": "17a7fee2ab5ed66543c8acc461e2072d2cb976f12931e8d4233bedfb77a8ac8c"
+    },
+    {
+      "id": "card_dew_beetle",
+      "file": "card_dew_beetle.svg",
+      "monster": "dew_beetle",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/dew_beetle-idle.webp",
+      "sourceSha256": "181de25586d78990dfe0a249c042b2cd212ac0924b1c48efc256be6bc6d562df",
+      "bounds": [
+        15,
+        62,
+        177,
+        177
+      ],
+      "portraitSize": [
+        74,
+        53
+      ],
+      "sha256": "fb99537e71c804f9c3b411fb5ab9924570401aa164e66742d8456880d5a7cd58"
+    },
+    {
+      "id": "card_dewdrop_moth",
+      "file": "card_dewdrop_moth.svg",
+      "monster": "dewdrop_moth",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/dewdrop_moth-idle.webp",
+      "sourceSha256": "e023f21fd9a050df4e8ca1ba767847f64dcbd76f3671f96141a2300552ad5b61",
+      "bounds": [
+        15,
+        22,
+        177,
+        177
+      ],
+      "portraitSize": [
+        74,
+        71
+      ],
+      "sha256": "c9f2d5011858e7f0ad88c80ce8f4d313558dfb8ea330cc493bce416603fdc50d"
+    },
+    {
+      "id": "card_pine_hedgehog",
+      "file": "card_pine_hedgehog.svg",
+      "monster": "pine_hedgehog",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/pine_hedgehog-idle.webp",
+      "sourceSha256": "099294c0caea66facfe0cbcb06469991e814ee35805853a59aa6c9b08db57060",
+      "bounds": [
+        17,
+        16,
+        175,
+        176
+      ],
+      "portraitSize": [
+        73,
+        74
+      ],
+      "sha256": "d1c2d7d4e34d0354a8a0068795dca3901e1b2fad27e54813a7abed876e62cd7f"
+    },
+    {
+      "id": "card_tile_sparrow",
+      "file": "card_tile_sparrow.svg",
+      "monster": "tile_sparrow",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/tile_sparrow-idle.webp",
+      "sourceSha256": "20e1abd9c5bcbfb8efca1d6560e4555e6f89fc81073c9b1e5ac619e224c53112",
+      "bounds": [
+        15,
+        23,
+        177,
+        176
+      ],
+      "portraitSize": [
+        74,
+        70
+      ],
+      "sha256": "65726673348093da7380a91e90df73a0b61241d0d918b17a287cf6af734729a7"
+    },
+    {
+      "id": "card_clay_pot_doll",
+      "file": "card_clay_pot_doll.svg",
+      "monster": "clay_pot_doll",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/clay_pot_doll-idle.webp",
+      "sourceSha256": "eed12e2f07f2b0554649f9c70ea3b81cb53ddd41f84507f11d6346cd56432266",
+      "bounds": [
+        41,
+        20,
+        151,
+        177
+      ],
+      "portraitSize": [
+        52,
+        74
+      ],
+      "sha256": "78a77896fe82e3fcd60b46d03cce24e13772ae78f214ec2c15a6da21e335d903"
+    },
+    {
+      "id": "card_oretail_lizard",
+      "file": "card_oretail_lizard.svg",
+      "monster": "oretail_lizard",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/oretail_lizard-idle.webp",
+      "sourceSha256": "23c72af62215e60d4ff3c6e7dec892fae9498649f5cfe9d0112a10ba67551057",
+      "bounds": [
+        15,
+        31,
+        176,
+        176
+      ],
+      "portraitSize": [
+        74,
+        67
+      ],
+      "sha256": "046ad7434ec9fce514fa2e444cf1c42c2a584cfd78955b4149b3d1171f10fe43"
+    },
+    {
+      "id": "card_iron_pincer_crab",
+      "file": "card_iron_pincer_crab.svg",
+      "monster": "iron_pincer_crab",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/iron_pincer_crab-idle.webp",
+      "sourceSha256": "d7ed2b554fe13f2aea079b1bd3e8f3142dc7f48566aed1f323f517c034a9bb63",
+      "bounds": [
+        16,
+        63,
+        176,
+        176
+      ],
+      "portraitSize": [
+        74,
+        52
+      ],
+      "sha256": "c6093378d12de144f0948be62629caaac4b8e3e1af441be19946be594af37e3d"
+    },
+    {
+      "id": "card_mist_shroom",
+      "file": "card_mist_shroom.svg",
+      "monster": "mist_shroom",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/mist_shroom-idle.webp",
+      "sourceSha256": "ab12cf007119cc3edd790ae44925166ee2149271b0677cbda5b26887208edfb8",
+      "bounds": [
+        15,
+        37,
+        177,
+        177
+      ],
+      "portraitSize": [
+        74,
+        64
+      ],
+      "sha256": "7250b3f5e0cbeb40e1008f2e0b5133cc79879650d0777b31165bbed057f8d686"
+    },
+    {
+      "id": "card_root_boar",
+      "file": "card_root_boar.svg",
+      "monster": "root_boar",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/root_boar-idle.webp",
+      "sourceSha256": "2c129236aa605d7f0aa2dd7dcd2273fcae50444d415af0fa710146c6b9af4e96",
+      "bounds": [
+        16,
+        25,
+        177,
+        177
+      ],
+      "portraitSize": [
+        74,
+        70
+      ],
+      "sha256": "b13fa87f3e9cb7ac6528e8e25f03e92203da8721d458820797e5d1538a67f393"
+    },
+    {
+      "id": "card_mist_weaver",
+      "file": "card_mist_weaver.svg",
+      "monster": "mist_weaver",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/mist_weaver-idle.webp",
+      "sourceSha256": "7d53b8ab7b92541ea57d0cc97260f7541e24e6aa2e8e3589149d96c8a5ea493b",
+      "bounds": [
+        15,
+        28,
+        177,
+        175
+      ],
+      "portraitSize": [
+        74,
+        67
+      ],
+      "sha256": "6acfade0c8b10b1bebe4ef8528f6fa200852b31a56e05cfe37db80f788a9deb9"
+    },
+    {
+      "id": "card_thorn_nest_mother",
+      "file": "card_thorn_nest_mother.svg",
+      "monster": "thorn_nest_mother",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/thorn_nest_mother-idle.webp",
+      "sourceSha256": "56b5398269749209d6b68dbbd219123cfd14f7e24328aff45f5599c90add88dd",
+      "bounds": [
+        22,
+        30,
+        234,
+        234
+      ],
+      "portraitSize": [
+        74,
+        71
+      ],
+      "sha256": "12d10f85c7304e0df5da126bdfd4d164dc9168dbfbf51b6001cfed0498dee651"
+    },
+    {
+      "id": "card_greek_satyr",
+      "file": "card_greek_satyr.svg",
+      "monster": "greek_satyr",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/greek_satyr-idle.webp",
+      "sourceSha256": "c7f8fc0a315c05c111f1ff62e96099332481e78f3f0bbe1e0139d225d7aaad06",
+      "bounds": [
+        56,
+        15,
+        135,
+        177
+      ],
+      "portraitSize": [
+        36,
+        74
+      ],
+      "sha256": "6ae2cda19c404a466966615a97347e2ba618612b59c33c973617d5c5e0a31dc6"
+    },
+    {
+      "id": "card_greek_harpy",
+      "file": "card_greek_harpy.svg",
+      "monster": "greek_harpy",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/greek_harpy-idle.webp",
+      "sourceSha256": "57a1bbfb4f5ec0d9e7a41d739b0fb1e550e6bddc29bed4881e26e4e3b14d6c9b",
+      "bounds": [
+        39,
+        15,
+        153,
+        176
+      ],
+      "portraitSize": [
+        52,
+        74
+      ],
+      "sha256": "f321dc4fc263e8a5399cbb43e3dd7c96c239563ececbb88981fba0bdc8c9171a"
+    },
+    {
+      "id": "card_greek_gorgon",
+      "file": "card_greek_gorgon.svg",
+      "monster": "greek_gorgon",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/greek_gorgon-idle.webp",
+      "sourceSha256": "23740bf4590c1ddbca99a2e43d532ebc2d734d86b48f51fb03b99f6b5195a0e1",
+      "bounds": [
+        45,
+        15,
+        148,
+        177
+      ],
+      "portraitSize": [
+        47,
+        74
+      ],
+      "sha256": "1f1daa55ea426eb5d32fda5ba6dc599ba70b3cf83835f234329ae5790a9bcf67"
+    },
+    {
+      "id": "card_greek_minotaur",
+      "file": "card_greek_minotaur.svg",
+      "monster": "greek_minotaur",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/greek_minotaur-idle.webp",
+      "sourceSha256": "58f19f98f3dfead2f5ecdfb03e7969bb8b5bb0660651d5420ec62723037b728b",
+      "bounds": [
+        48,
+        22,
+        209,
+        234
+      ],
+      "portraitSize": [
+        56,
+        74
+      ],
+      "sha256": "2c54908355fe18935b65ec57b55be617f68fbc0f03bf10a3d794598da8faab82"
+    },
+    {
+      "id": "card_himmapan_01",
+      "file": "card_himmapan_01.svg",
+      "monster": "himmapan_01",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_01-idle.webp",
+      "sourceSha256": "3b4d40acf8af1d10647e73f7b54b3e45ee3146a656d3c82a4b50cce14998295e",
+      "bounds": [
+        50,
+        17,
+        142,
+        175
+      ],
+      "portraitSize": [
+        43,
+        74
+      ],
+      "sha256": "1849e650939540aa4536636d0dd8cfeca831a25809ff433091e873e920b372a7"
+    },
+    {
+      "id": "card_himmapan_jade_turtle",
+      "file": "card_himmapan_jade_turtle.svg",
+      "monster": "himmapan_jade_turtle",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_jade_turtle-idle.webp",
+      "sourceSha256": "99366dc521ef8e40a4d499f845a9fde6aff578f2e904ddacbe7b0b81843d41f5",
+      "bounds": [
+        16,
+        44,
+        177,
+        177
+      ],
+      "portraitSize": [
+        74,
+        61
+      ],
+      "sha256": "f2058e3b024de5176299d786c92f3c528be981f3855aa00458c2cacd918fe17b"
+    },
+    {
+      "id": "card_himmapan_03",
+      "file": "card_himmapan_03.svg",
+      "monster": "himmapan_03",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_03-idle.webp",
+      "sourceSha256": "5b79c9ee5e88bacaebe03d2944a54ba06315ae1733bf75bd7000bfdaedde3a6e",
+      "bounds": [
+        15,
+        42,
+        177,
+        176
+      ],
+      "portraitSize": [
+        74,
+        61
+      ],
+      "sha256": "551ed6c30a87af8258666bda5f51c3d39f69e8ec34520de3d7147c47da25d817"
+    },
+    {
+      "id": "card_himmapan_blossom_deer",
+      "file": "card_himmapan_blossom_deer.svg",
+      "monster": "himmapan_blossom_deer",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_blossom_deer-idle.webp",
+      "sourceSha256": "6cb849850ec485f72aeedee9da37699ee06ce07981f9d77b6fa126a7c4b0c7b3",
+      "bounds": [
+        36,
+        16,
+        156,
+        176
+      ],
+      "portraitSize": [
+        55,
+        74
+      ],
+      "sha256": "c1fe362d8bc0a50dffc28436e745e39bf0bca2b95118e8e0be85e935bfda1110"
+    },
+    {
+      "id": "card_himmapan_golden_macaque",
+      "file": "card_himmapan_golden_macaque.svg",
+      "monster": "himmapan_golden_macaque",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_golden_macaque-idle.webp",
+      "sourceSha256": "7d9c7c8b8e4cda4db3c7b89b9b95d6133d75096124f75878e6f0820c93fde9b9",
+      "bounds": [
+        17,
+        16,
+        174,
+        176
+      ],
+      "portraitSize": [
+        73,
+        74
+      ],
+      "sha256": "f8774077415e8b049fac8df70f8fd829523645e15c46e0547fad5c0a02f5c869"
+    },
+    {
+      "id": "card_himmapan_06",
+      "file": "card_himmapan_06.svg",
+      "monster": "himmapan_06",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_06-idle.webp",
+      "sourceSha256": "00ac42d13c4d51c3a76ab7db3cff596d1a956195797cf7e9520f492b128954cd",
+      "bounds": [
+        19,
+        16,
+        172,
+        176
+      ],
+      "portraitSize": [
+        71,
+        74
+      ],
+      "sha256": "4a00617fcbf3752261e0cfc84da0a8ea95290250eab9b539d9e58687f47b5761"
+    },
+    {
+      "id": "card_himmapan_azure_garuda",
+      "file": "card_himmapan_azure_garuda.svg",
+      "monster": "himmapan_azure_garuda",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_azure_garuda-idle.webp",
+      "sourceSha256": "d93ac3b35911805b341535661953de5946f54e6429f3e94328c8d421d05046d8",
+      "bounds": [
+        39,
+        16,
+        153,
+        174
+      ],
+      "portraitSize": [
+        53,
+        74
+      ],
+      "sha256": "46924416e072b0c394f52ab52b7b2c7ba360e6cf5185ba5fa2343edd66229b8b"
+    },
+    {
+      "id": "card_himmapan_08",
+      "file": "card_himmapan_08.svg",
+      "monster": "himmapan_08",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/himmapan_08-idle.webp",
+      "sourceSha256": "9fc87de8774ee44aa70888cfc174d5c0ec07c753033bba1c390dfa30291dfcaa",
+      "bounds": [
+        46,
+        32,
+        210,
+        234
+      ],
+      "portraitSize": [
+        60,
+        74
+      ],
+      "sha256": "66337771e86b5e11d6fca295bd4a7e25d2b57abc9d3eee64591ba3d872302132"
+    },
+    {
+      "id": "card_desert_01",
+      "file": "card_desert_01.svg",
+      "monster": "desert_01",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_01-idle.webp",
+      "sourceSha256": "c3e60e32795a550301d5a437dd6d7cbc84ec04dc6af65b4b4d6e6ecfce14d939",
+      "bounds": [
+        16,
+        47,
+        176,
+        177
+      ],
+      "portraitSize": [
+        74,
+        60
+      ],
+      "sha256": "6e5a301ac575ca7efc5385be6e2a792e2cb5bb7a64abfa6dddd4a3d48eacbffd"
+    },
+    {
+      "id": "card_desert_oasis_hawk",
+      "file": "card_desert_oasis_hawk.svg",
+      "monster": "desert_oasis_hawk",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_oasis_hawk-idle.webp",
+      "sourceSha256": "08ba64f8c790545bdf4d4c32dc074c3c3942d4b97f6881dcdb32284151ee8b37",
+      "bounds": [
+        38,
+        16,
+        153,
+        175
+      ],
+      "portraitSize": [
+        54,
+        74
+      ],
+      "sha256": "6c4e2daddc09e00babc84dd6a91a204dcc3b6c24c6c62cb0d8e0cf852698faf5"
+    },
+    {
+      "id": "card_desert_03",
+      "file": "card_desert_03.svg",
+      "monster": "desert_03",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_03-idle.webp",
+      "sourceSha256": "d78e1e18d5265c3cfd6e97cc51c16360ee0a5997fa96b331c702840af2fc1bda",
+      "bounds": [
+        17,
+        35,
+        175,
+        177
+      ],
+      "portraitSize": [
+        74,
+        67
+      ],
+      "sha256": "c1530bac00fba03d25e3b34400abef6db9c520129428df7c6ee9cdae426bebe5"
+    },
+    {
+      "id": "card_desert_sand_ushabti",
+      "file": "card_desert_sand_ushabti.svg",
+      "monster": "desert_sand_ushabti",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_sand_ushabti-idle.webp",
+      "sourceSha256": "960fd666bfa090876a6497ec8c6abd83e7d9327d03ec99349072660c4fd57a93",
+      "bounds": [
+        17,
+        21,
+        175,
+        176
+      ],
+      "portraitSize": [
+        74,
+        73
+      ],
+      "sha256": "b8c72651d475326317e2d5d11ef46fe91a50088acee4da9534ec25e35bbf4056"
+    },
+    {
+      "id": "card_desert_seal_mummy",
+      "file": "card_desert_seal_mummy.svg",
+      "monster": "desert_seal_mummy",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_seal_mummy-idle.webp",
+      "sourceSha256": "2d9db273e36f9ac7ae94fb735c6b07ec679263c53b42be19bf440a63aa6fa9cb",
+      "bounds": [
+        47,
+        19,
+        145,
+        177
+      ],
+      "portraitSize": [
+        46,
+        74
+      ],
+      "sha256": "a64804c0660837b9985e71efb250784e6877f14ea8d498fc0a57be5d6740aaa6"
+    },
+    {
+      "id": "card_desert_06",
+      "file": "card_desert_06.svg",
+      "monster": "desert_06",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_06-idle.webp",
+      "sourceSha256": "d3a9eef05e655d63a3b5eb56dcd833b31d5f701debd857954deb4d7f61fbff75",
+      "bounds": [
+        57,
+        17,
+        135,
+        176
+      ],
+      "portraitSize": [
+        36,
+        74
+      ],
+      "sha256": "41aabb3bf6003c628653fa67c0f5d2720918442121df309506df8626fbe6a271"
+    },
+    {
+      "id": "card_desert_glass_scorpion",
+      "file": "card_desert_glass_scorpion.svg",
+      "monster": "desert_glass_scorpion",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_glass_scorpion-idle.webp",
+      "sourceSha256": "9e5f0ca19189c7a973415faf4ebd347be777740721747286c0758765cc40c50c",
+      "bounds": [
+        16,
+        34,
+        176,
+        177
+      ],
+      "portraitSize": [
+        74,
+        66
+      ],
+      "sha256": "9ace4d1c58587e198cb58a393319fa50703d6293b2972bf28bedde3e11318d00"
+    },
+    {
+      "id": "card_desert_08",
+      "file": "card_desert_08.svg",
+      "monster": "desert_08",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/desert_08-idle.webp",
+      "sourceSha256": "570a22c7f709b327f9ebf187255851fd220828ba28660e13f9cac3a622c597a7",
+      "bounds": [
+        23,
+        54,
+        233,
+        234
+      ],
+      "portraitSize": [
+        74,
+        63
+      ],
+      "sha256": "1b740ab1776019e6988c6b07ccd983733ed7e0065681ec2897440500705bfd6f"
+    },
+    {
+      "id": "card_frost_01",
+      "file": "card_frost_01.svg",
+      "monster": "frost_01",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_01-idle.webp",
+      "sourceSha256": "7fcbd0df69cabdfae62d1c82c85eba08fbfaf2fa05ba511c86dea339aca1c1e3",
+      "bounds": [
+        23,
+        18,
+        169,
+        177
+      ],
+      "portraitSize": [
+        68,
+        74
+      ],
+      "sha256": "b97407645dd3dc28328191bc106f164873421ee39597481918fa6f74e4ddc039"
+    },
+    {
+      "id": "card_frost_rune_raven",
+      "file": "card_frost_rune_raven.svg",
+      "monster": "frost_rune_raven",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_rune_raven-idle.webp",
+      "sourceSha256": "5b571f7c2fb38e9331d119331c1cc12e01efac3a4a90eb1bde37ec4929457250",
+      "bounds": [
+        26,
+        17,
+        166,
+        176
+      ],
+      "portraitSize": [
+        65,
+        74
+      ],
+      "sha256": "67ff1f8f0200736936820793906e47245b575cf582e2c8589299691811fc6c5f"
+    },
+    {
+      "id": "card_frost_03",
+      "file": "card_frost_03.svg",
+      "monster": "frost_03",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_03-idle.webp",
+      "sourceSha256": "e55fe4be31c7ee7f7371d1d72a13004270a1fb3381d4c733cbac8014fbb09f7c",
+      "bounds": [
+        16,
+        16,
+        175,
+        176
+      ],
+      "portraitSize": [
+        74,
+        74
+      ],
+      "sha256": "7fb14c816ded2eb29db3e3d0b4375ca9408eb16130eedf508eb080f0c9932f2d"
+    },
+    {
+      "id": "card_frost_ice_lindworm",
+      "file": "card_frost_ice_lindworm.svg",
+      "monster": "frost_ice_lindworm",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_ice_lindworm-idle.webp",
+      "sourceSha256": "6f892f12bf85a40759fc4605afd9f63ac5e00c80c1fea25d2b525ce2afe7aac0",
+      "bounds": [
+        15,
+        29,
+        176,
+        177
+      ],
+      "portraitSize": [
+        74,
+        68
+      ],
+      "sha256": "dc0b2ae6c1c7103f3e5559f864c7b16d25673f6c035ace9cf908a2ac5bdffe83"
+    },
+    {
+      "id": "card_frost_winter_wavehorse",
+      "file": "card_frost_winter_wavehorse.svg",
+      "monster": "frost_winter_wavehorse",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_winter_wavehorse-idle.webp",
+      "sourceSha256": "8170d318506cb01a8ca46b3c7f6600b1239fdad5490e1d21fe2321decc078dbf",
+      "bounds": [
+        27,
+        15,
+        165,
+        176
+      ],
+      "portraitSize": [
+        63,
+        74
+      ],
+      "sha256": "94f762121541f64fefc7d9c67f27d7d5112c06f4b151adac155bcfbe4507e31e"
+    },
+    {
+      "id": "card_frost_06",
+      "file": "card_frost_06.svg",
+      "monster": "frost_06",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_06-idle.webp",
+      "sourceSha256": "2e8f0f98ba4d5aabfb085ff4e08d5e794f9bfaa6859461e470b6d0e6f7c474a3",
+      "bounds": [
+        24,
+        17,
+        168,
+        177
+      ],
+      "portraitSize": [
+        67,
+        74
+      ],
+      "sha256": "e21d4397053ba0de7a8067419184164273a37f76960a3ad75a2872472e5a3c3c"
+    },
+    {
+      "id": "card_frost_fractured_valkyrie",
+      "file": "card_frost_fractured_valkyrie.svg",
+      "monster": "frost_fractured_valkyrie",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_fractured_valkyrie-idle.webp",
+      "sourceSha256": "a4b9435c575ec4ce4d1a3c916e837efa55b15c0d3cd068824d4d650a182bbcb8",
+      "bounds": [
+        53,
+        18,
+        139,
+        176
+      ],
+      "portraitSize": [
+        40,
+        74
+      ],
+      "sha256": "31a46ff3d4d00a084a0235494af70d1022c3664739e81b7677c81cb417e8cff7"
+    },
+    {
+      "id": "card_frost_08",
+      "file": "card_frost_08.svg",
+      "monster": "frost_08",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/frost_08-idle.webp",
+      "sourceSha256": "b0f4a62100ee1a1b4ef355bbef8d4a98c145557c8f83d6f0b655ca2e9ba7e647",
+      "bounds": [
+        22,
+        25,
+        234,
+        234
+      ],
+      "portraitSize": [
+        74,
+        73
+      ],
+      "sha256": "379c4c1d2c322547548ff488a23761eff4defcf3127a7bbbcad96d74fdc717e2"
+    },
+    {
+      "id": "card_yokai_01",
+      "file": "card_yokai_01.svg",
+      "monster": "yokai_01",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_01-idle.webp",
+      "sourceSha256": "7589827a0ef5776a627d6aed2f76257f0ea5ff0d6e045378de39a267253141a4",
+      "bounds": [
+        27,
+        16,
+        165,
+        176
+      ],
+      "portraitSize": [
+        64,
+        74
+      ],
+      "sha256": "0be73b4eec5db03db9669fda464c2d0feb61eb03dfb96c1444adc41213f717b2"
+    },
+    {
+      "id": "card_yokai_rain_umbrella",
+      "file": "card_yokai_rain_umbrella.svg",
+      "monster": "yokai_rain_umbrella",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_rain_umbrella-idle.webp",
+      "sourceSha256": "a994276fc85d2a542565e948d260dfd207ba9ce53ea644d663183da3c7c739c5",
+      "bounds": [
+        16,
+        19,
+        176,
+        177
+      ],
+      "portraitSize": [
+        74,
+        73
+      ],
+      "sha256": "d57314549deaf933456d932dead302f35b5156500e7fadf0cded59dbf6037969"
+    },
+    {
+      "id": "card_yokai_03",
+      "file": "card_yokai_03.svg",
+      "monster": "yokai_03",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_03-idle.webp",
+      "sourceSha256": "c533c69413b579e3e93a7f57a960b35e68fc45d6b2d4845b45dd6e2c460650b2",
+      "bounds": [
+        48,
+        16,
+        144,
+        174
+      ],
+      "portraitSize": [
+        45,
+        74
+      ],
+      "sha256": "9b79299f6c7b9ae1c26f0ce31d94349c6a091058a14c1af8a769ad362b697b08"
+    },
+    {
+      "id": "card_yokai_bamboo_kodama",
+      "file": "card_yokai_bamboo_kodama.svg",
+      "monster": "yokai_bamboo_kodama",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_bamboo_kodama-idle.webp",
+      "sourceSha256": "3fc6b5e85411cf8a0b2ac9dfbf228deb26c1c8a7ff5c716a7a2b9ebbfeacfa57",
+      "bounds": [
+        32,
+        18,
+        160,
+        177
+      ],
+      "portraitSize": [
+        60,
+        74
+      ],
+      "sha256": "d35fd5d42ba8c4e4ed17af1f8c74ae67dc3fd1634dbe6b3ee9a640869d0a8775"
+    },
+    {
+      "id": "card_yokai_rain_nue",
+      "file": "card_yokai_rain_nue.svg",
+      "monster": "yokai_rain_nue",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_rain_nue-idle.webp",
+      "sourceSha256": "5c5f049eb8d7dcd68949357425cde980bc8f9eb1e95252a7e18d78e95af957fd",
+      "bounds": [
+        19,
+        17,
+        172,
+        176
+      ],
+      "portraitSize": [
+        71,
+        74
+      ],
+      "sha256": "ca8995eac730eddcaad1a242a3a420b348901fdd46ecefe5dbf59dec1718f5e1"
+    },
+    {
+      "id": "card_yokai_06",
+      "file": "card_yokai_06.svg",
+      "monster": "yokai_06",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_06-idle.webp",
+      "sourceSha256": "1ff5825fa6120b7fc5a1f24f0b22012d784ee8adcb203d8a3c8891f3647c2cfc",
+      "bounds": [
+        23,
+        18,
+        168,
+        176
+      ],
+      "portraitSize": [
+        68,
+        74
+      ],
+      "sha256": "be15248e672c6c378e510dff2b0c7c6e0c8675aaace5792b74d2db93172d303a"
+    },
+    {
+      "id": "card_yokai_lantern_rokurokubi",
+      "file": "card_yokai_lantern_rokurokubi.svg",
+      "monster": "yokai_lantern_rokurokubi",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_lantern_rokurokubi-idle.webp",
+      "sourceSha256": "4d00bc0337f33f7932dcd62b6d1645516f927f95a39d5a5769ccf75b3c61c7e2",
+      "bounds": [
+        61,
+        15,
+        131,
+        177
+      ],
+      "portraitSize": [
+        32,
+        74
+      ],
+      "sha256": "6255e8fbb1a495006224a1dfe740f02ffa51ff8f1d4c4ca8c9ff45a2f599d7ed"
+    },
+    {
+      "id": "card_yokai_08",
+      "file": "card_yokai_08.svg",
+      "monster": "yokai_08",
+      "source": "meadow-3d/public/assets/monsters-expansion-v1/yokai_08-idle.webp",
+      "sourceSha256": "4253652c966f7341128e7ac30c2ea5a8ed48f9297eec7c1138135108cf231975",
+      "bounds": [
+        50,
+        26,
+        206,
+        234
+      ],
+      "portraitSize": [
+        55,
+        74
+      ],
+      "sha256": "cf45cafd1d35eeda38b1fa810d0c473fa0ef7afd6fd4edc3d692ba19b5bcaec5"
+    }
   ]
 }

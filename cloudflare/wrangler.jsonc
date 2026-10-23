@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "the-beginning-online-preview",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-22",
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "containers": [{
+    "class_name": "GameServer",
+    "image": "./Dockerfile",
+    "image_build_context": "..",
+    "instance_type": "standard-2",
+    "max_instances": 1
+  }],
+  "durable_objects": {
+    "bindings": [{ "name": "GAME", "class_name": "GameServer" }]
+  },
+  "exports": {
+    "GameServer": { "type": "durable-object", "storage": "sqlite" }
+  }
+}

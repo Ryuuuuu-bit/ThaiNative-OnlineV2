@@ -1,10 +1,10 @@
 import {MAP_INFO} from '@the-beginning-online/shared/maps';
-import { DEFAULT_AUTO, AUTO_RANGES, keyLabel, skillTierRank, belongsToJob, type AutoPotion, huntList, isSurvivalSkill, loadGameData, normalizeAuto, autoSkillSequence, type AutoSettings, type MapId } from "@the-beginning-online/shared";
+import { DEFAULT_AUTO, AUTO_RANGES, keyLabel, skillTierRank, isMasteryAction, resolveSkill, belongsToJob, type AutoPotion, huntList, isSurvivalSkill, loadGameData, normalizeAuto, autoSkillSequence, type AutoSettings, type MapId } from "@the-beginning-online/shared";
 import {KEYS,isKey} from './keys';
 import "./auto-ui.css";
 
 const data = loadGameData(),
-	spec = (id: string) => data.skills.skills.find((s) => s.id === id);
+	spec = (id: string) => isMasteryAction(id)?resolveSkill(data,id):data.skills.skills.find((s) => s.id === id);
 const RANGE_TEXT: Record<keyof typeof AUTO_RANGES, string> = { near: "ใกล้", mid: "กลาง", far: "ไกล", map: "ทั้งแผนที่ปัจจุบัน" };
 
 /**
@@ -31,7 +31,7 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 		const p = o.player(),
 			bar: (string | null)[] = (p?.hotbar ?? []).map((h: any) => h.skill);
 		// Same filter as the sim's autoCast: job skills only (basic attack, dodge and potion have their own handling).
-		const usable = (id: string) => !!p?.skills?.[id] && !!spec(id) && !spec(id).passive && spec(id).jobId !== "common" && belongsToJob(p.jobId,spec(id).jobId,data);
+		const usable = (id: string) => !!p?.skills?.[id] && !!spec(id) && !spec(id).passive && (spec(id).jobId !== "common"||isMasteryAction(id)) && belongsToJob(p.jobId,spec(id).jobId,data);
 		// every usable hotbar skill in AUTO order, the switched-off ones included so they can be turned back on
 		return autoSkillSequence({ ...cfg, off: [] }, bar, usable, Object.keys(p?.skills ?? {}), (id) => skillTierRank(data, id));
 	};

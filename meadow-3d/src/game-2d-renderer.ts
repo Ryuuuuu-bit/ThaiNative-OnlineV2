@@ -1,6 +1,6 @@
 import {bossAnticipation} from './boss-anticipation';
 import {heroPresentation} from './hero-presentation';
-import type {ShadowHero} from './shadow-hero';
+import {ShadowHero} from './shadow-hero';
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
 import {titleDefinition} from '@the-beginning-online/shared';
 import {CITY,LAYOUTS,FIELD_BOSS,FIELD_PLACES,GATES,MAP_INFO,isField,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
@@ -29,6 +29,7 @@ const tint:Record<string,string>={ruin_shroom:'hue-rotate(40deg) saturate(.65)',
 
 export class GameCanvas2D{
  shadowHero?:ShadowHero;
+ private remoteHeroes=new Map<string,ShadowHero>();
  readonly atmosphere=new Atmosphere2D();
  readonly canvas=document.createElement('canvas');readonly ctx:CanvasRenderingContext2D;readonly assets:CanvasAssets;
  private city?:Awaited<ReturnType<typeof loadCity2DScene>>;
@@ -84,7 +85,7 @@ export class GameCanvas2D{
   // every previous-map monster (including meadow/forest, not just hunting art).
   for(const path of this.monsterImages)if(!neededMonsters.has(path)&&!this.companionImages.has(path))this.assets.release(path);
   this.monsterImages=neededMonsters;
-  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.masteryVfx.clear();this.heroStates.clear();this.monsterFrames.clear();
+  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.masteryVfx.clear();this.heroStates.clear();this.remoteHeroes.clear();this.monsterFrames.clear();
   // Each baked region plane is about 25–35 MB; retain only the current region
   // and two recent regions while travelling across the expanded world.
   for(const cache of [this.fields,this.backdrops])while(cache.size>3){const old=[...cache.keys()].find(key=>key!==id);if(old===undefined)break;cache.delete(old);}
@@ -93,7 +94,7 @@ export class GameCanvas2D{
  ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height/2-this.shakeOffset.y)/this.scale+this.focus.y);}
  pickEnemy(x:number,y:number){return [...this.hits].reverse().find(p=>x>=p.left&&x<=p.right&&y>=p.top&&y<=p.bottom)?.id??null;}
  event(e:any){
-  this.shadowHero?.event(e);
+  this.shadowHero?.event(e);this.remoteHeroes.get(e.playerId)?.event(e);
   if(e.type==='skill'&&!e.autoSpell&&isSkillMotion(e.skillId)&&!masteryMotion(e.learnedSkill)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
   // A basic swing plays the attack motion from its own event, in step with the slash VFX.
   if(e.type==='slash'&&e.playerId){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.swing=0;this.heroStates.set(e.playerId,s);}
@@ -138,13 +139,16 @@ export class GameCanvas2D{
   if(state.skill&&(state.elapsed>SKILL_DURATION[state.skill]||p.dead||p.hurt>0))state.skill=undefined;
   if(state.swing!==undefined){state.swing+=dt;if(state.swing>=MOTION_DURATION.attack||p.dead||p.hurt>0)state.swing=undefined;}
   const swinging=state.swing!==undefined&&(motion==='idle'||motion==='walk'||motion==='run'),shown=swinging?'attack':motion;
-  const shadow=own?(this.shadowHero?.combat?this.shadowHero.combatPose(p,dt):this.shadowHero?.pose(state.skill?'cast':shown,p.fx,p.fz,state.skill?state.elapsed:swinging?state.swing!:state.clock)):undefined;
+  let actor=this.shadowHero;
+  if(!own&&actor){let remote=this.remoteHeroes.get(p.id);if(!remote){remote=new ShadowHero(actor.manifest);remote.combat=true;this.remoteHeroes.set(p.id,remote);}actor=remote;}
+  if(actor)actor.outfit=p.gender==='female'?'female':own?actor.outfit:'male';
+  const shadow=actor?.combat?actor.combatPose(own?p:{...p,stats:{weaponType:p.weaponType}},dt):actor?.pose(state.skill?'cast':shown,p.fx,p.fz,state.skill?state.elapsed:swinging?state.swing!:state.clock);
   const pose=shadow??heroPresentation(shown,p.fx,p.fz,swinging?state.swing!:state.clock);let {cell,key}=pose;
   const skill=shadow?undefined:state.skill,v2=skill?SKILL_V2[skill]:undefined,px=skill?(v2??{w:384,h:256,feet:240}):pose;
   if(skill){key=`/assets/hero-skills/hero-skill-${skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[skill],rows:v2?8:4};}
   const scale=skill?1:pose.scale,image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*scale,h=px.h*HERO_PIXEL_METRES*this.scale*scale,foot=px.feet/px.h,anchorX=shadow?.anchorX??.5;
   for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w*anchorX,gq.y-h*foot,w,h,g.tint??p.ghostTint,g.alpha);}
-  this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w*anchorX,qs.y-h*foot,w,h);this.drawCalls++;
+  this.atmosphere.actorShadow(this.ctx,q,this.scale,.76);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w*anchorX,qs.y-h*foot,w,h);this.drawCalls++;
   if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-(HERO_METRES+.7)*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-(HERO_METRES+.3)*this.scale);}
   for(const [i,status]of (p.statuses??[]).entries()){if(i>4)break;this.circle(p.x,p.z,.55+i*.08,'transparent',status.id==='guard'?'#b9d9ed88':'#d6d28c66');}
  }
@@ -192,6 +196,7 @@ export class GameCanvas2D{
   if(!e.dead){this.hits.push({id:e.id,...b});if(selected||e.hp<e.maxHp){const by=q.y-(e.boss?4.8:1.5)*this.scale;c.fillStyle='#17251e';c.fillRect(q.x-22,by,44,4);c.fillStyle='#d99491';c.fillRect(q.x-22,by,44*e.hp/e.maxHp,4);}if(e.statuses?.length)this.text(e.statuses.map((s:any)=>s.id==='stun'?'มึนงง':s.id==='taunt'?'ยั่วยุ':'↓').join(' '),q.x,q.y-1.8*this.scale,'#e7d79d',10);}
  }
  render(game:any,others:any[],dt:number,time:number){
+  const visiblePlayers=new Set(others.map(p=>p.id));for(const id of this.remoteHeroes.keys())if(!visiblePlayers.has(id))this.remoteHeroes.delete(id);
   const c=this.ctx;this.drawCalls=0;this.paperShadowsDrawn=0;this.hits=[];this.scale=this.overview?Math.min(this.width/145,this.height/112):this.height/this.zoomHeight;
   const now=performance.now(),shake=(this.combatFeel?.camera(dt)??0)*this.scale;this.shakeOffset={x:Math.sin(time*113)*shake,y:Math.cos(time*97)*shake*.7};
   // NetworkWorld already smooths movement; a second camera lag moves the hero off centre.

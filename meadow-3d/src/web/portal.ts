@@ -1,4 +1,5 @@
 import './shadow-portal.css';
+import '../pc-only';
 import './navigation';
 import './portal-expansion';
 import'../web.css';import'../web-glass.css';import'../web-modern.css';import'../web-fantasy.css';import{startGuest,mountAccountChip,getMe}from'./session';import{showError}from'./api';import{heroView}from'./portal-state';import{kindLabel,uidChip}from'./account-ui';

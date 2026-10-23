@@ -1,0 +1,122 @@
+{
+  "body": {
+    "file": "body.webp",
+    "size": [
+      768,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bytes": 60192,
+    "sha256": "5a7d2383e10e69c586de8eba1b6ba0edfcc92efec7f222b322584407cea21fb6",
+    "sourceSha256": "4fc9bfd5740647300ea2881d73fc90c5b4f603f1ca0db2300d61b5450bcf82fb",
+    "source": "body.png",
+    "openingAlpha": []
+  },
+  "traveler": {
+    "file": "traveler-fit-v2.webp",
+    "size": [
+      768,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bytes": 61298,
+    "sha256": "5cb9c1a444df4beb2df848e852e6ab8ac12534a3efe8c93f1c1ba19b1d50d9ef",
+    "sourceSha256": "018792aa86204ed301606823dd88c07a8d64fe8f75a61c734a7cd6a81fbcbac0",
+    "source": "traveler-fit-v2.png",
+    "openingAlpha": [
+      1,
+      1,
+      0
+    ]
+  },
+  "guardian": {
+    "file": "guardian-fit-v2.webp",
+    "size": [
+      768,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bytes": 55820,
+    "sha256": "c0771be11828cb89cb9d20ae920ccfe5ba949fbfd99c4a812d1e773f6163c711",
+    "sourceSha256": "3cc79a1b7dee6861438b2fca01a869ddb950795d8b19979c239873b05e410a9b",
+    "source": "guardian-fit-v2.png",
+    "openingAlpha": [
+      0,
+      2,
+      2
+    ]
+  },
+  "iron": {
+    "file": "iron.webp",
+    "size": [
+      768,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bytes": 29020,
+    "sha256": "c13235b6f05f66e1a297a1254797c8a5460616c4e6a81ae265145206d6c78fe8",
+    "sourceSha256": "ebbe7b93b233a916b71f8570f80a08566c8438546733fa83acdf8ab4e0268c8a",
+    "source": "iron.png",
+    "openingAlpha": []
+  },
+  "falchion": {
+    "file": "falchion.webp",
+    "size": [
+      768,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bytes": 41502,
+    "sha256": "f2fd46338c6853b62f6fb42962d8dee96cdb85346e2e912feed27c83c8a1c8ff",
+    "sourceSha256": "ef353d98be5c59d3ef6d1f5212ffb0556caac79bc37b37e15a208a447b4e38c1",
+    "source": "falchion.png",
+    "openingAlpha": []
+  },
+  "shield": {
+    "file": "shield.webp",
+    "size": [
+      768,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bytes": 82870,
+    "sha256": "856bc68b3f406f7bab3c7f101cebc6a998ab6e1d4bc8c7f19e10c1df4dfc7d9c",
+    "sourceSha256": "e6e0cb97be56373380d6690f29eb61e1d4161a8cc79810eaef9faf99c85a83c6",
+    "source": "shield.png",
+    "openingAlpha": []
+  },
+  "bow": {
+    "file": "bow.webp",
+    "size": [
+      768,
+      768
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "bytes": 30814,
+    "sha256": "5bcdf417c0337c1c7f881ac6b98211f003e8ff9c835a965c8a44f02be8bd547e",
+    "sourceSha256": "985b377b6dd4a0f1498cf85e96bb0c617ab51976a121fb78992c05ea04eddf9b",
+    "source": "bow-v1.png",
+    "openingAlpha": []
+  }
+}
