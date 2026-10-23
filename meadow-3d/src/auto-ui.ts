@@ -48,7 +48,7 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 		const el = panel.querySelector(".auto-save");
 		if (el) el.textContent = text;
 	};
-	const sw = (key: "basic" | "attackers" | "elites", label: string, note = "") =>
+	const sw = (key: "basic" | "attackers", label: string, note = "") =>
 		`<label class="auto-row"><span><b>${label}</b>${note ? `<small>${note}</small>` : ""}</span><span class="g-switch"><input type="checkbox" data-key="${key}" ${cfg[key] ? "checked" : ""}><i></i></span></label>`;
 	// HP / SP use the per-character auto-potion rule (also works outside AUTO); 'ปิด' is that rule switched off.
 	const value = (key: "hp" | "mp" | "survive") => {
@@ -100,8 +100,8 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 				</section>
 				<section class="auto-card"><h3>เป้าหมาย</h3>
 					<div class="auto-row col"><span><b>มอนสเตอร์ที่จะตี</b><small>${MAP_INFO[map].name} · เลือกได้หลายตัว · จำแยกแต่ละแผนที่</small></span><div class="auto-chips">${mobChips}</div></div>
-					${sw("attackers", "ตัวที่กำลังตีเราก่อน", "สู้กลับตัวที่ตีเราอยู่ แม้ไม่ได้เลือกไว้")}
-					${sw("elites", "หัวหน้า / บอส ก่อน")}
+					${sw("attackers", "สู้กลับมอนนอกตัวกรอง", "รวมตัวที่ตีเราอยู่ แม้ไม่ได้เลือกไว้ โดยยังเลือกตัวใกล้ที่สุด")}
+					<p class="auto-note">เลือกมอนใกล้ที่สุด แล้วตีจนตายค่อยเปลี่ยนเป้า · ไม่เดินข้ามไปหาบอสไกล ๆ · ข้ามเป้าที่โจมตีไม่ได้หรือเดินไปไม่ถึง</p>
 					<div class="auto-row col"><span><b>รัศมีรอบตัว</b><small>เดินหามอนรอบตัวในระยะนี้</small></span>
 						<div class="auto-ranges">${(Object.keys(AUTO_RANGES) as (keyof typeof AUTO_RANGES)[]).map((k) => `<button type="button" data-range="${k}" aria-pressed="${cfg.range === k}">${RANGE_TEXT[k]}${k === "map" ? "" : ` ${AUTO_RANGES[k]} ม.`}</button>`).join("")}</div></div>
 					<div class="auto-row"><span><b>ของที่ตก</b><small>เก็บตามการตั้งค่าในกระเป๋า</small></span><b class="auto-good">อัตโนมัติ</b></div>
@@ -164,7 +164,7 @@ export function mountAutoSettings(o: { send: (m: any) => void; player: () => any
 	});
 	panel.addEventListener("change", (e) => {
 		const input = e.target as HTMLInputElement;
-		const key = input.dataset.key as "basic" | "attackers" | "elites" | undefined;
+		const key = input.dataset.key as "basic" | "attackers" | undefined;
 		if (key) set({ [key]: input.checked });
 	});
 	// Typing a number key inside the window must not cast the hotbar skill underneath.

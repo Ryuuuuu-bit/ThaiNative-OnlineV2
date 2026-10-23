@@ -1062,7 +1062,7 @@ export function action(g: Game, a: Action) {
 			const seen = new Set<number>();
 			const start = { x: p.x, z: p.z };
 			g.destination = null;
-			g.target = null;
+			if (!p.auto) g.target = null;
 			if (skill.landing) {
 				// Leap: fly over the path (no hits on the way) and land just short of the target; the strike
 				// resolves on landing after landing.delay, while the leaper is airborne and untouchable.
@@ -1152,7 +1152,7 @@ export function action(g: Game, a: Action) {
 		p.cd.dash = CD.dash;
 		p.dash = 0.22;
 		p.invulnerable = 0.35;
-		g.target = null;
+		if (!p.auto) g.target = null;
 		g.destination = null;
 		emit(g, "dash", { dx: p.fx, dz: p.fz });
 		return true;
@@ -1263,7 +1263,7 @@ export function setAuto(g: Game, enabled: boolean) {
 	g.p.autoUnreachable = undefined;
 	g.p.autoProgress = undefined;
 	g.destination = null;
-	if (!enabled) g.target = null;
+	g.target = null;
 	emit(g, "notice", {
 		text: enabled ? "ออโต้ เปิด · แตะจอยหรือกด WASD เพื่อหยุด" : "ออโต้ ปิด",
 	});
@@ -1503,9 +1503,8 @@ function enemyTargetPlayer(g:Game,e:Enemy){
 						)[0];
 }
 /**
- * AUTO target. A monster fighting this player comes first (with `attackers`), then bosses (with
- * `elites`), then the nearest one in range on the map's hunt list. Keep a current/clicked target
- * unless a higher-priority threat appears, so equal-priority neighbours do not cause target flicker.
+ * Pick the nearest eligible monster, then finish it before selecting another.
+ * Attackers may bypass the hunt filter, but neither attackers nor bosses override distance or a live target.
  */
 function autoPickTarget(g: Game, cfg: AutoSettings) {
 	const p = g.p,
@@ -1516,19 +1515,13 @@ function autoPickTarget(g: Game, cfg: AutoSettings) {
 		allowed = (e: Enemy) => !wanted || wanted.has(e.dataId) || fighting(e),
 		skip = p.autoUnreachable || {},
 		living = g.enemies.filter((e) => !e.dead && !endgameBossLocked(g,e) && !desertBurrowed(e) && !((skip[e.id] ?? 0) > g.time) && (!e.summoned || fighting(e)));
-	const rank = (e: Enemy) => (fighting(e) ? 2 : 0) + (cfg.elites && e.boss ? 1 : 0);
-	const score = (e: Enemy) => -rank(e) * 500 + dist(e);
-	// Bosses ('elites') are worth the walk from anywhere on the map; unreachable ones are skipped above.
-	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e) || (cfg.elites && e.boss)));
-	const best = pool.sort((a, b) => score(a) - score(b))[0];
-	const current = pool.find((e) => e.id === g.target);
-	if(best&&current&&rank(best)>rank(current))return best;
-	return current ?? best;
+	const current = living.find((e) => e.id === g.target && allowed(e));
+	return current ?? living.filter((e) => allowed(e) && dist(e) <= R).sort((a, b) => dist(a) - dist(b))[0];
 }
-/** Where AUTO walks with nothing in its hunt range: towards the nearest wanted monster (bosses last unless `elites`), not the map centre. */
+/** With nothing in range, scout towards the nearest wanted monster, including bosses at their actual distance. */
 function autoScoutGoal(g: Game, cfg: AutoSettings): Enemy | undefined {
 	const p = g.p, wanted = wantedMonsters(cfg, g.mapId), skip = p.autoUnreachable || {};
-	const away = (e: Enemy) => (e.boss && !cfg.elites ? 1e6 : 0) + Math.hypot(e.x - p.x, e.z - p.z);
+	const away = (e: Enemy) => Math.hypot(e.x - p.x, e.z - p.z);
 	return g.enemies.filter((e) => !e.dead && !endgameBossLocked(g,e) && !desertBurrowed(e) && !e.summoned && !((skip[e.id] ?? 0) > g.time) && (!wanted || wanted.has(e.dataId))).sort((a, b) => away(a) - away(b))[0];
 }
 /** Learned and enabled skills, in the player's AUTO order. */

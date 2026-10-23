@@ -26,9 +26,9 @@ export const AutoSettingsSchema = z
 		basic: z.boolean(),
 		/** below this % HP, survival skills go first */
 		survive: pct,
-		/** monsters already fighting me come first */
+		/** include monsters fighting me even when they are outside the hunt filter */
 		attackers: z.boolean(),
-		/** then elites and bosses */
+		/** Legacy saved field; targeting always uses distance and ignores boss priority. */
 		elites: z.boolean(),
 		range: z.enum(["near", "mid", "far", "map"]),
 	})
@@ -42,7 +42,6 @@ export const DEFAULT_AUTO: AutoSettings = {
 	basic: true,
 	survive: 45,
 	attackers: true,
-	// Off by default: untouched AUTO hunts the nearest monster instead of crossing the map for the boss.
 	elites: false,
 	range: "mid",
 };
