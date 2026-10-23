@@ -163,3 +163,19 @@
  .fantasy-home .realm-mobile-play{display:none!important}.fantasy-home .realm-footer{padding-bottom:28px}
 }
 @media(prefers-reduced-motion:reduce){.fantasy-home *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Real game scenes stay visible behind the current character illustrations. */
+.fantasy-home .realm-hero-backdrop{opacity:.85;filter:saturate(.9);object-position:center}
+.fantasy-home .realm-hero::before{background:linear-gradient(90deg,#101510fa 3%,#101510e8 28%,#10151045 70%),linear-gradient(0deg,#101312,transparent 55%)}
+.fantasy-home .realm-hero-sigil{background:radial-gradient(ellipse,#d6bd8133,transparent 68%)}
+.realm-gameplay{padding-block:64px;border-bottom:1px solid var(--realm-line)}
+.realm-gameplay-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:20px}
+.realm-gameplay-grid>a{position:relative;display:block;min-width:0;aspect-ratio:1.3;overflow:hidden;border:1px solid #d8bf8944;background:#15211a}
+.realm-gameplay-grid img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.realm-gameplay-grid a:hover img{transform:scale(1.04)}
+.realm-gameplay-grid a>span{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:end;padding:24px;background:linear-gradient(0deg,#08120ef5,transparent 75%)}
+.realm-gameplay-grid small{font-size:9px;letter-spacing:.15em;color:#d8bf89;margin-bottom:8px}
+.realm-gameplay-grid b{font-size:21px;font-weight:550;color:#f1e8d4}
+@media(max-width:1000px){.realm-gameplay-grid{gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}.realm-gameplay-grid a>span{padding:16px}.realm-gameplay-grid b{font-size:16px}}
+@media(max-width:740px){.realm-gameplay-grid{grid-template-columns:1fr}.realm-gameplay-grid>a{aspect-ratio:1.7}.realm-gameplay{padding-block:40px}}
+@media(prefers-reduced-motion:reduce){.realm-gameplay-grid img{transition:none}.realm-gameplay-grid a:hover img{transform:none}}

@@ -8,10 +8,10 @@ test('public game pages use the new game name and current wordmark',()=>{
   assert.match(html,/<title>[^<]*The Beginning Online/,file);
   assert.doesNotMatch(html,/Thai\s*Native/i,file);
   assert.match(html,/logo-v3-512\.webp/,file);
-  if(html.includes('property="og:image"'))assert.match(html,/og-image-v2\.jpg/,file);
+  if(html.includes('property="og:image"'))assert.match(html,/og-image-v3\.jpg/,file);
  }
  assert.match(readFileSync('meadow-3d/character.html','utf8'),/<title>[^<]*The Beginning Online/);
- for(const file of ['logo-v3-512.webp','og-image-v2.jpg'])assert.ok(existsSync('meadow-3d/public/assets/brand/'+file),file);
+ for(const file of ['logo-v3-512.webp','og-image-v3.jpg'])assert.ok(existsSync('meadow-3d/public/assets/brand/'+file),file);
 });
 
 test('installed app name changes without changing its identity or saved-game origin',()=>{

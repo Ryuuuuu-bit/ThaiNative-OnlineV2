@@ -1,0 +1,15 @@
+{
+  "description": "Existing game screenshots cropped to exclude HUD; no generated replacement scenery. Current hero portraits, item art, atlas and monster renderer remain shared with the game.",
+  "captured": "2026-10-22 / 2026-10-24",
+  "sources": {
+    "city": "output/post-sync-playtest-20261024/male-city.png",
+    "meadow": "output/post-sync-playtest-20261024/female-bow-field.png",
+    "yokai": "output/world-exploration-20261022/yokai.png",
+    "dragon": "output/world-exploration-20261022/dragon.png",
+    "ocean": "output/world-exploration-20261022/ocean.png",
+    "astral": "output/world-exploration-20261022/astral.png",
+    "confluence": "output/world-exploration-20261022/confluence.png",
+    "frost": "output/world-exploration-20261022/frost.png"
+  },
+  "derivatives": "loading-{768,1280,1920}.jpg and assets/brand/og-image-v3.jpg derived from city.webp; social image overlays the existing game logo."
+}

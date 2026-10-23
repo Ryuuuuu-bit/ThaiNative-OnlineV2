@@ -8,8 +8,8 @@ body:has(.cs-root) .cs-screen{position:absolute;inset:0;overflow:hidden}
 body:has(.cs-root) .cs-screen[hidden]{display:none}
 body:has(.cs-root) .cs-bg{position:absolute;inset:-30px;background:center/cover no-repeat;animation:cs-drift 30s ease-in-out infinite alternate}
 @keyframes cs-drift{to{transform:scale(1.05) translate(-12px,-6px)}}
-body:has(.cs-root) .cs-bg-select{background-image:url('/assets/brand/loading-dusk-1920-v1.jpg');background-size:220%;background-position:100% 20%;filter:blur(2.5px) brightness(.8)}
-body:has(.cs-root) .cs-bg-create{background-image:url('/assets/web/city-mist-1920-v1.webp');background-size:150%;background-position:20% 30%;filter:blur(2.5px) saturate(.9) brightness(.8)}
+body:has(.cs-root) .cs-bg-select{background-image:url('/assets/web/current-world-v1/city.webp');background-size:cover;background-position:center;filter:blur(2.5px) brightness(.8)}
+body:has(.cs-root) .cs-bg-create{background-image:url('/assets/web/current-world-v1/city.webp');background-size:cover;background-position:center;filter:blur(2.5px) saturate(.9) brightness(.8)}
 body:has(.cs-root) .cs-shade{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 34vw 46vh at 50% 64%,rgba(255,206,130,.18),transparent 70%),radial-gradient(ellipse at 50% 55%,transparent 35%,rgba(4,9,8,.75) 100%),linear-gradient(rgba(4,9,8,.65),transparent 18%,transparent 62%,rgba(4,9,8,.92))}
 body:has(.cs-root) .cs-shade.left{background:radial-gradient(ellipse 34vw 46vh at 43% 64%,rgba(255,206,130,.18),transparent 70%),radial-gradient(ellipse at 43% 55%,transparent 35%,rgba(4,9,8,.78) 100%),linear-gradient(rgba(4,9,8,.65),transparent 18%,transparent 62%,rgba(4,9,8,.92))}
 body:has(.cs-root) .cs-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
