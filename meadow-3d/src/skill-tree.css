@@ -161,3 +161,74 @@ body #skills-window #skills-tree .mt-flow .arr{padding:0;border:0;background:non
 body #skills-window #skills-tree .mt-use{height:44px;border:0!important;border-radius:11px!important;background:linear-gradient(180deg,#b6efb0,var(--mt-ok))!important;font-size:15px!important;font-weight:800;color:#13201d}
 body #skills-window #skills-tree .mt-use.off{border:1px solid var(--g-line-strong)!important;background:none!important;color:var(--g-text)}
 body #skills-window #skills-tree .mt-use:disabled{opacity:.4;cursor:default}
+
+/* ---------- Auto Spell panel (ui-mockup/autospell.html) ---------- */
+body #skills-window #mastery-loadout{--as:#b89cf0;display:grid;grid-template-columns:290px minmax(0,1fr);gap:14px;padding:12px 0 0;color:var(--g-text)}
+body #skills-window #mastery-loadout :is(p,small,span,b,em,li,h3){font-size:inherit!important}
+body #skills-window #mastery-loadout button{min-height:0!important;min-width:0!important;font:inherit;cursor:pointer}
+body #skills-window #mastery-loadout .as-side{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;border:1px solid rgba(184,156,240,.3);background:linear-gradient(170deg,rgba(184,156,240,.1),rgba(255,255,255,.015))}
+body #skills-window #mastery-loadout .as-side h3{display:flex;align-items:baseline;gap:8px;margin:0!important;font-size:16px!important}
+body #skills-window #mastery-loadout .as-side h3 b{margin-left:auto;font-size:22px!important;color:var(--as)}
+body #skills-window #mastery-loadout .as-side h3 b small{font-size:13px!important;color:var(--g-faint)}
+body #skills-window #mastery-loadout .as-side p{margin:0;font-size:12px!important;line-height:1.6;color:var(--g-muted)!important}
+body #skills-window #mastery-loadout .as-track-head{display:flex;justify-content:space-between;font-size:11.5px!important;color:var(--g-muted)}
+body #skills-window #mastery-loadout .as-track-head b{color:var(--g-text)}
+body #skills-window #mastery-loadout .as-track{position:relative;height:42px}
+body #skills-window #mastery-loadout .as-track::before{content:"";position:absolute;left:0;right:0;top:8px;height:8px;border-radius:4px;background:rgba(0,0,0,.4)}
+body #skills-window #mastery-loadout .as-track>i{position:absolute;left:0;top:8px;height:8px;width:calc(var(--v)*1%);border-radius:4px;background:linear-gradient(90deg,#7d6bb8,var(--as))}
+body #skills-window #mastery-loadout .as-track>span{position:absolute;top:2px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px!important;font-weight:700;white-space:nowrap;color:var(--g-faint)}
+body #skills-window #mastery-loadout .as-track em{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:10px!important;background:#1b2221;border:2px solid var(--g-line-strong)}
+body #skills-window #mastery-loadout .as-track>span.on{color:var(--as)}
+body #skills-window #mastery-loadout .as-track>span.on em{background:var(--as);border-color:var(--as);color:#1b1430}
+body #skills-window #mastery-loadout .as-next{color:var(--as)!important}
+body #skills-window #mastery-loadout .as-rules{display:grid;gap:5px;margin:0;padding:0;list-style:none}
+body #skills-window #mastery-loadout .as-rules li{display:flex;align-items:center;gap:8px;font-size:12px!important;color:var(--g-muted)}
+body #skills-window #mastery-loadout .as-rules li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--as)}
+body #skills-window #mastery-loadout .as-mix{margin-top:auto!important;padding-top:8px;border-top:1px solid var(--g-line)}
+body #skills-window #mastery-loadout .as-mix b{color:var(--g-text)}
+body #skills-window #mastery-loadout .as-main{display:flex;flex-direction:column;gap:10px;min-width:0}
+body #skills-window #mastery-loadout .as-sec{display:flex;align-items:center;gap:8px;font-size:11px!important;letter-spacing:.14em;color:var(--g-faint)}
+body #skills-window #mastery-loadout .as-sec::after{content:"";flex:1;height:1px;background:var(--g-line)}
+body #skills-window #mastery-loadout .as-empty{margin:0;font-size:12px!important;color:var(--g-faint)!important}
+body #skills-window #mastery-loadout .as-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+body #skills-window #mastery-loadout .as-card{display:flex;flex-direction:column;gap:9px;padding:12px;border-radius:13px;border:1px solid var(--g-line);background:linear-gradient(170deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
+body #skills-window #mastery-loadout .as-card.on{border-color:rgba(184,156,240,.6);background:linear-gradient(170deg,rgba(184,156,240,.14),rgba(255,255,255,.015))}
+body #skills-window #mastery-loadout .as-card.off{opacity:.62}
+body #skills-window #mastery-loadout .as-top{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center}
+body #skills-window #mastery-loadout .as-top .job-icon{display:block;width:44px;height:44px;border-radius:10px;border:2px solid var(--g-line-strong)}
+body #skills-window #mastery-loadout .as-card.on .as-top .job-icon{border-color:var(--as)}
+body #skills-window #mastery-loadout .as-top b{display:block;font-size:14px!important;color:var(--g-text)}
+body #skills-window #mastery-loadout .as-top small{font-size:11.5px!important;color:var(--g-faint)}
+body #skills-window #mastery-loadout kbd{display:inline-block;min-width:18px;height:18px;margin-right:5px;padding:0 4px!important;border-radius:5px;border:1px solid var(--g-line-strong);background:none!important;font-size:10.5px!important;line-height:16px;text-align:center;color:var(--g-muted)}
+body #skills-window #mastery-loadout .as-sw{position:relative;width:46px;height:26px;padding:0!important;border-radius:13px!important;background:rgba(255,255,255,.12)!important;border:1px solid var(--g-line-strong)!important}
+body #skills-window #mastery-loadout .as-sw::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#cfd6d3;transition:left .15s}
+body #skills-window #mastery-loadout .as-sw.on{background:var(--as)!important;border-color:var(--as)!important}
+body #skills-window #mastery-loadout .as-sw.on::after{left:23px;background:#fff}
+body #skills-window #mastery-loadout .as-sw:disabled{opacity:.4;cursor:default}
+body #skills-window #mastery-loadout .as-sw:focus-visible{outline:2px solid var(--as);outline-offset:2px}
+body #skills-window #mastery-loadout .as-cause{display:inline-flex;align-items:center;gap:5px;width:fit-content;height:22px;padding:0 9px;border-radius:11px;font-size:11px!important;font-weight:700;white-space:nowrap}
+body #skills-window #mastery-loadout .as-cause.hp{background:rgba(232,101,106,.15);color:#ff9a9e}
+body #skills-window #mastery-loadout .as-cause.incoming{background:rgba(232,180,106,.14);color:#e8b46a}
+body #skills-window #mastery-loadout .as-cause.skills{background:rgba(95,182,232,.14);color:#8ccbf0}
+body #skills-window #mastery-loadout .as-ranks{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+body #skills-window #mastery-loadout .as-ranks span{padding:4px 0;border-radius:7px;border:1px solid var(--g-line);text-align:center;font-size:11px!important;font-weight:700;line-height:1.2;color:var(--g-faint)}
+body #skills-window #mastery-loadout .as-ranks small{display:block;font-size:9.5px!important;font-weight:500}
+body #skills-window #mastery-loadout .as-ranks span.got{border-color:rgba(184,156,240,.6);background:rgba(184,156,240,.16);color:var(--g-text)}
+body #skills-window #mastery-loadout .as-ranks span.cur{box-shadow:0 0 0 1px var(--as)}
+body #skills-window #mastery-loadout .as-meta{display:flex;align-items:center;gap:6px;font-size:11.5px!important;color:var(--g-muted)}
+body #skills-window #mastery-loadout .as-meta b{color:var(--g-text)}
+body #skills-window #mastery-loadout .as-meta>span{margin-left:auto;font-weight:700}
+body #skills-window #mastery-loadout .as-meta .ok{color:var(--as)}
+body #skills-window #mastery-loadout .as-meta .no{color:#ef8f86}
+body #skills-window #mastery-loadout .as-meta .dim{color:var(--g-faint)}
+body #skills-window #mastery-loadout .as-others{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+body #skills-window #mastery-loadout .as-row{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;padding:7px 10px 7px 7px;border-radius:11px;border:1px solid var(--g-line);background:rgba(255,255,255,.03)}
+body #skills-window #mastery-loadout .as-row .job-icon{display:block;width:36px;height:36px;border-radius:8px}
+body #skills-window #mastery-loadout .as-row b{display:block;font-size:13px!important;color:var(--g-text)}
+body #skills-window #mastery-loadout .as-row small{font-size:11px!important;color:var(--g-faint)}
+body #skills-window #mastery-loadout .as-row .as-cause{height:18px;padding:0 6px;font-size:10.5px!important}
+body #skills-window #mastery-loadout .as-row button{height:30px;padding:0 12px!important;border-radius:8px!important;border:1px solid rgba(230,201,143,.55)!important;background:none!important;font-size:12px!important;font-weight:600;color:#fff1c9}
+body #skills-window #mastery-loadout .as-row button:disabled{border-color:var(--g-line)!important;color:var(--g-faint);cursor:default}
+/* Auto Spell slots in the hotbar editor and the HUD bar */
+body #skills-window #skill-slots .job-slot:has(.slot-mode),#ui #job-hotbar .job-slot:has(.slot-mode){border-color:#b89cf0!important;box-shadow:0 0 0 1px rgba(184,156,240,.35),0 0 12px rgba(184,156,240,.35)}
+body #skills-window #skill-slots .slot-mode,#ui #job-hotbar .slot-mode{position:absolute;left:auto!important;top:auto!important;right:-6px!important;bottom:-7px!important;height:16px;padding:0 5px;border-radius:5px;background:#b89cf0;color:#1b1430;font-size:9.5px!important;font-weight:900;line-height:16px;z-index:2}

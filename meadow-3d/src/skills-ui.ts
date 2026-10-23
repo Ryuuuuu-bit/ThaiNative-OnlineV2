@@ -314,21 +314,42 @@ export function mountSkills(
 				const extra = mirror && s ? (isItem ? `<b class="slot-count">${bagCount(inventory, slot.skill!.slice(5))}</b>` : `<i class="slot-sp">${Math.round(s.values?.sp?.[Math.max(0, level(s.id) - 1)] ?? s.sp ?? 0) || ""}</i>`) : isItem && s ? '<b class="slot-count"></b>' : "";
 				const target = mirror && selected ? " slot-target" : "";
 				const label = mirror && selected && !s ? "แตะเพื่อวาง" : `${slot.mode==='autoSpell'?'AS · ':''}${slot.signature?slot.signature+' · ':''}${s?.nameTh || "ว่าง"}`;
-				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${isItem ? "item-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}${target}" title="${label} · ${keyLabel(slot.key)}" data-slot="${i}" ${isItem ? `data-item="${slot.skill!.slice(5)}"` : ""} ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${label} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? isItem ? itemIconHTML(slot.skill!.slice(5), 'hotbar-potion') : icon(s) : '<span class="empty-mark">+</span>'}${extra}${slot.mode?'<b class="slot-mode" aria-hidden="true">AS</b>':''}${slot.signature?`<b class="slot-mix" aria-hidden="true">${slot.signature}</b>`:''}<small>${label}</small><em></em>${mirror && s ? '<span class="slot-clear" role="button" aria-label="ล้างช่อง">×</span>' : ""}</button>`;
+				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${isItem ? "item-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}${target}" title="${label} · ${keyLabel(slot.key)}" data-slot="${i}" ${isItem ? `data-item="${slot.skill!.slice(5)}"` : ""} ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${label} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? isItem ? itemIconHTML(slot.skill!.slice(5), 'hotbar-potion') : icon(s) : '<span class="empty-mark">+</span>'}${extra}${slot.mode?'<b class="slot-mode" aria-hidden="true">AUTO</b>':''}${slot.signature?`<b class="slot-mix" aria-hidden="true">${slot.signature}</b>`:''}<small>${label}</small><em></em>${mirror && s ? '<span class="slot-clear" role="button" aria-label="ล้างช่อง">×</span>' : ""}</button>`;
 			})
 			.join("");
 	}
+    /** Auto Spell panel (ui-mockup/autospell.html): slots unlocked by the highest Mastery, one switch per eligible hotbar skill. */
     function drawModes(){
      if(!job)return;
      let root=panel.querySelector<HTMLElement>('#mastery-loadout');if(!root){root=document.createElement('section');root.id='mastery-loadout';$('#skill-slots').after(root);}
      const used=job.hotbar.filter(s=>s.mode==='autoSpell').length,limit=masteryTriggerSlots(job.masteries);
-     const causes={hp:'HP ข้ามลงถึง 40%',incoming:'เสีย HP สะสม 15% ใน 6 วิ',skills:'ใช้สกิลปกติครบ 3 ครั้ง'};
-     root.innerHTML=`<h3>Auto Spell · ${job.hotbar.filter(s=>s.mode==='autoSpell').length}/${masteryTriggerSlots(job.masteries)} ช่อง</h3><p>ใช้พื้นที่ในแถบ 10 ช่อง · สูงสุด 1 ครั้ง/วินาที · ไม่เรียกต่อกันเอง</p><div class="mastery-mode-grid">${job.hotbar.map((slot,i)=>{
-      const plan=gameData.mastery.skills.find(s=>s.id===slot.skill),rank=slot.skill?masteryAutoRank(job!,slot.skill,gameData.mastery):0;
-      if(!plan?.triggerEligible)return '';
-      return `<label>${keyLabel(slot.key)} · ${plan.nameTh}<select data-mode="${i}" aria-label="โหมดช่อง ${i+1}"><option value="manual" ${!slot.mode?'selected':''}>ใช้ปกติ</option><option value="autoSpell" ${slot.mode?'selected':''} ${rank&&(slot.mode||used<limit)?'':'disabled'}>Auto Spell R${rank||'—'}</option></select><small>${rank?causes[automaticCause(plan)]:'ต้องเรียนสกิลและฝึก Mastery ให้ถึงเกณฑ์'}${rank?` · MP ${resolveAutomaticSkill(gameData,plan.id,rank).sp}`:''}</small></label>`;
-     }).join('')}</div><p>Mix ที่ใช้งาน: <b>${(()=>{const m=gameData.mastery.mixes.find(m=>job!.hotbar.some(s=>s.signature===m.id));return m?`${m.id} · ${m.nameTh}`:'ไม่ใช้'})()}</b> · ตั้งได้ที่แท็บ ผสานศาสตร์</p>`;
-     root.querySelectorAll<HTMLSelectElement>('[data-mode]').forEach(el=>el.onchange=()=>{const next=job!.hotbar.map((s,i)=>({...s,...(i===Number(el.dataset.mode)?{mode:el.value==='autoSpell'?'autoSpell' as const:undefined}:{})}));send({t:'hotbar',slots:next});});
+     const masteries=job.masteries as Record<string,number>,best=Object.entries(masteries).sort((a,b)=>b[1]-a[1])[0]??["Swordsman",0],top=best[1];
+     const causes:Record<string,[string,string]>={hp:['❤','HP ลดถึง 40%'],incoming:['⚡','เสีย HP 15% ใน 6 วิ'],skills:['✦','ใช้สกิลปกติครบ 3 ครั้ง']};
+     const cause=(plan:any)=>{const c=automaticCause(plan);return `<span class="as-cause ${c}">${causes[c][0]} ${causes[c][1]}</span>`;};
+     const card=(slot:HotbarSlot,i:number)=>{
+      const plan=gameData.mastery.skills.find(s=>s.id===slot.skill);if(!plan?.triggerEligible)return '';
+      const s=skills.find(x=>x.id===plan.id),rank=masteryAutoRank(job!,plan.id,gameData.mastery),on=slot.mode==='autoSpell',learned=job!.skills[plan.id]??0;
+      const why=!learned?'ยังไม่ได้เรียน':!rank?`ต้อง Mastery ${schoolNames[plan.school]} ${plan.autoRanks[0]?.mastery??0}`:!limit?'ยังไม่มีช่อง Auto':!on&&used>=limit?'ช่อง Auto เต็ม':'';
+      const r=rank?plan.autoRanks[rank-1]:null;
+      return `<article class="as-card${on?' on':''}${why&&!on?' off':''}"><div class="as-top">${s?icon(s):''}<div><b><kbd>${keyLabel(slot.key)}</kbd>${plan.nameTh}</b><small>${schoolNames[plan.school]} · เรียน Lv ${learned}</small></div><button type="button" class="as-sw${on?' on':''}" data-mode="${i}" role="switch" aria-checked="${on}" aria-label="Auto Spell ${plan.nameTh}" ${why&&!on?'disabled':''}></button></div>
+       ${cause(plan)}<div class="as-ranks">${plan.autoRanks.map(x=>`<span class="${x.rank<=rank?'got':''}${x.rank===rank?' cur':''}">R${x.rank}<small>M${x.mastery} · MP ${x.mp}</small></span>`).join('')}</div>
+       <div class="as-meta">${r?`Auto R${rank} · MP <b>${resolveAutomaticSkill(gameData,plan.id,rank).sp}</b> · คูลดาวน์ <b>${r.cooldown}s</b>`:'Auto ยังไม่พร้อม'}<span class="${on?'ok':why?'no':'dim'}">${on?'เปิดอยู่':why||'ปิด'}</span></div></article>`;
+     };
+     const cards=job.hotbar.map(card).join('');
+     const onBar=new Set(job.hotbar.map(s=>s.skill));
+     const others=gameData.mastery.skills.filter(p=>p.triggerEligible&&!onBar.has(p.id)&&(job!.skills[p.id]||(masteries[p.school]??0)>0)).sort((a,b)=>(job!.skills[b.id]??0)-(job!.skills[a.id]??0)).slice(0,6);
+     const freeSlot=job.hotbar.findIndex(s=>!s.skill);
+     const mix=gameData.mastery.mixes.find(m=>job!.hotbar.some(s=>s.signature===m.id));
+     root.innerHTML=`<aside class="as-side"><h3>Auto Spell<b>${used}<small> / ${limit} ช่อง</small></b></h3><p>สกิลในแถบลัดที่เปิด Auto จะร่ายเองเมื่อเข้าเงื่อนไข ระหว่างที่คุณต่อสู้ตามปกติ · ช่องที่เป็น Auto กดใช้เองไม่ได้</p>
+      <div class="as-track-head"><span>ช่องปลดล็อกจาก Mastery สูงสุด</span><b>${schoolNames[best[0]]??best[0]} ${top}</b></div>
+      <div class="as-track" style="--v:${Math.min(100,top)}"><i></i><span class="${top>=50?'on':''}" style="left:50%"><em>${top>=50?'✓':'1'}</em>M50 · ช่อง 1</span><span class="${top>=75?'on':''}" style="left:75%"><em>${top>=75?'✓':'2'}</em>M75 · ช่อง 2</span></div>
+      ${limit<2?`<p class="as-next">${top<50?`อีก ${50-top} Mastery ปลดช่องแรก`:`อีก ${75-top} Mastery ปลดช่องที่ 2`}</p>`:''}
+      <ul class="as-rules"><li>ร่ายเองได้สูงสุด 1 ครั้ง/วินาที</li><li>Auto ไม่เรียก Auto ต่อกันเอง</li><li>ใช้ MP และคูลดาวน์ของระดับ Auto</li></ul>
+      <p class="as-mix">Mix ที่ใช้งาน: <b>${mix?`${mix.id} · ${mix.nameTh}`:'ไม่ใช้'}</b> · ตั้งได้ที่แท็บ ผสานศาสตร์</p></aside>
+      <div class="as-main"><div class="as-sec">สกิลในแถบลัดที่ตั้ง AUTO ได้</div>${cards?`<div class="as-grid">${cards}</div>`:'<p class="as-empty">ยังไม่มีสกิลที่ตั้ง Auto ได้ในแถบลัด · ดูรายการด้านล่าง</p>'}
+      ${others.length?`<div class="as-sec">ใช้ Auto ได้ แต่ยังไม่อยู่ในแถบลัด</div><div class="as-others">${others.map(p=>{const s=skills.find(x=>x.id===p.id),lv=job!.skills[p.id]??0;return `<div class="as-row">${s?icon(s):''}<div><b>${p.nameTh}</b><small>${schoolNames[p.school]} · ${cause(p)}</small></div><button type="button" data-put="${p.id}" ${lv&&freeSlot>=0?'':'disabled'}>${!lv?'ยังไม่เรียน':freeSlot<0?'แถบเต็ม':'+ ใส่แถบ'}</button></div>`;}).join('')}</div>`:''}</div>`;
+     root.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(el=>el.onclick=()=>{const index=Number(el.dataset.mode),on=job!.hotbar[index].mode==='autoSpell';send({t:'hotbar',slots:job!.hotbar.map((s,i)=>({...s,...(i===index?{mode:on?undefined:'autoSpell' as const}:{})}))});$("#skills-status").textContent=on?'กำลังปิด Auto Spell…':'กำลังเปิด Auto Spell…';});
+     root.querySelectorAll<HTMLButtonElement>('[data-put]').forEach(el=>el.onclick=()=>{if(freeSlot>=0)assign(freeSlot,el.dataset.put!);});
     }
 	function assign(index: number, id: string | null) {
 		if (!job) return;
