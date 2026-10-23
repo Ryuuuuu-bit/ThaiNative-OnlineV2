@@ -3,6 +3,7 @@
 !cloudflare/Dockerfile
 !package.json
 !package-lock.json
+!railway.json
 !shared/
 !shared/**
 !maps/
@@ -24,4 +25,8 @@ meadow-3d/art/**
 # This source image is imported by the game bundle.
 !meadow-3d/art/skill-vfx/
 !meadow-3d/art/skill-vfx/shield-bash-jade-gold-v1.png
+!meadow-3d/art/mastery-icons/
+!meadow-3d/art/mastery-icons/manifest.json
+!meadow-3d/art/city-sprite-v2/
+!meadow-3d/art/city-sprite-v2/fortification-calibration.json
 meadow-3d/tools

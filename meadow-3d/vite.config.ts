@@ -64,7 +64,6 @@ export default defineConfig(({ command }) => ({
 					new URL("./characters.html", import.meta.url),
 				),
 				play: fileURLToPath(new URL("./play.html", import.meta.url)),
-				shadowScene: fileURLToPath(new URL('./shadow-scene.html',import.meta.url)),
 				character: fileURLToPath(new URL("./character.html", import.meta.url)),
 				equipmentPreview: fileURLToPath(new URL("./equipment-preview.html", import.meta.url)),
 				shadowScene: fileURLToPath(new URL("./shadow-scene.html", import.meta.url)),
