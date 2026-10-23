@@ -84,11 +84,11 @@ export function paintBiomeGround(c:CanvasRenderingContext2D,id:BiomeMapId){
  }
  c.restore();
 }
-export function paintBiomeWater(c:CanvasRenderingContext2D,id:BiomeMapId){
+export function paintBiomeWater(c:CanvasRenderingContext2D,id:BiomeMapId,road:CanvasPattern){
  const scene=BIOME_SCENES[id];c.save();
- for(const w of LAYOUTS[id].water){c.fillStyle=scene.water;c.beginPath();c.ellipse(w.x,w.z,w.rx,w.rz,0,0,Math.PI*2);c.fill();
+ for(const w of LAYOUTS[id].water){c.fillStyle=scene.water.slice(0,7)+(id==='volcano'?'ee':'33');c.beginPath();c.ellipse(w.x,w.z,w.rx,w.rz,0,0,Math.PI*2);c.fill();
   for(let i=0;i<9;i++){const z=w.z-w.rz*.7+i*w.rz*.16;if(w.bridgeZ!==undefined&&Math.abs(z-w.bridgeZ)<(w.bridgeHalf??1)+.5)continue;const span=w.rx*Math.sqrt(Math.max(0,1-((z-w.z)/w.rz)**2))*.8;c.strokeStyle=scene.accent+'55';c.lineWidth=.13;c.beginPath();c.moveTo(w.x-span,z);c.quadraticCurveTo(w.x,z+.3,w.x+span,z);c.stroke();}
-  if(w.bridgeZ!==undefined){c.fillStyle=id==='volcano'?'#66616a':'#a7b4b0';c.fillRect(w.x-w.rx-.7,w.bridgeZ-w.bridgeHalf!,(w.rx+.7)*2,w.bridgeHalf!*2);c.strokeStyle='#323e47';c.lineWidth=.22;for(const side of [-1,1]){c.beginPath();c.moveTo(w.x-w.rx-.7,w.bridgeZ+side*w.bridgeHalf!);c.lineTo(w.x+w.rx+.7,w.bridgeZ+side*w.bridgeHalf!);c.stroke();}}
+  if(w.bridgeZ!==undefined){c.fillStyle=road;c.fillRect(w.x-w.rx-.7,w.bridgeZ-w.bridgeHalf!,(w.rx+.7)*2,w.bridgeHalf!*2);c.strokeStyle='#64695c88';c.lineWidth=.12;for(const side of [-1,1]){c.beginPath();c.moveTo(w.x-w.rx-.7,w.bridgeZ+side*w.bridgeHalf!);c.lineTo(w.x+w.rx+.7,w.bridgeZ+side*w.bridgeHalf!);c.stroke();}}
  }
  c.restore();
 }

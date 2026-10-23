@@ -1,15 +1,16 @@
 import {createGame,loadGameData} from '@the-beginning-online/shared';
-import type {MapId} from '@the-beginning-online/shared/maps';
+import {MAP_IDS,MAP_INFO,LAYOUTS,type MapId} from '@the-beginning-online/shared/maps';
 import {GameCanvas2D} from './game-2d-renderer';
 import {unproject2D} from './game-2d-projection';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
+$<HTMLSelectElement>('#scene').innerHTML=MAP_IDS.map(id=>`<option value="${id}">${MAP_INFO[id].name}</option>`).join('');
 const manifest=await(await fetch('/texture-manifest.json')).json(),renderer=new GameCanvas2D(manifest,'canvas');
 $('#world').append(renderer.canvas);
 $<HTMLInputElement>('#motion').checked=!renderer.atmosphere.reducedMotion;
 $('#motion').onchange=e=>renderer.atmosphere.setMotionPreview((e.target as HTMLInputElement).checked);
 const starts:Partial<Record<MapId,{x:number;z:number}>>={himmapan:{x:-10,z:10},meadow:{x:19,z:-3},city_plaza:{x:-13,z:27},forest:{x:3,z:-30},ruins:{x:0,z:-7},canyon:{x:-16,z:9},grove:{x:30,z:-23},summit:{x:30,z:-23},temple:{x:42,z:-18}};
 let map:MapId='meadow',game=createGame(47,undefined,'scenery-review',loadGameData(),map),loading=true,version=0,time=12,last=performance.now(),lastStats=last,frames=0,renderMs=0;
-function place(){game.enemies=[];game.drops=[];Object.assign(game.p,starts[map],{name:'นักเดินทาง',fx:1,fz:0});}
+function place(){game.enemies=[];game.drops=[];const landmark=LAYOUTS[map].obstacles.find(o=>o.kind==='biome-landmark');Object.assign(game.p,starts[map]??(landmark?{x:landmark.x,z:landmark.z+9}:{}),{name:'นักเดินทาง',fx:1,fz:0});}
 place();
 async function scene(id:MapId){const token=++version;loading=true;$('#status').textContent='กำลังเตรียมฉาก…';$<HTMLSelectElement>('#scene').disabled=true;
  try{if(token===1)await renderer.init(id);else await renderer.prepareMap(id);if(token!==version)return;map=id;game=createGame(47,undefined,'scenery-review',loadGameData(),map);place();renderer.zoomHeight=30;loading=false;$('#status').textContent='พร้อมแล้ว · ลมเบาและน้ำไหว · ยังไม่ขึ้นเว็บจริง';}
@@ -28,4 +29,5 @@ for(const name of ['pointerup','pointercancel','lostpointercapture'])renderer.ca
 renderer.canvas.addEventListener('wheel',e=>{e.preventDefault();renderer.zoomHeight=Math.max(18,Math.min(46,renderer.zoomHeight*(1+Math.sign(e.deltaY)*.05)));},{passive:false});
 window.addEventListener('resize',()=>renderer.resize());
 function frame(now:number){const dt=Math.min(.05,(now-last)/1000);last=now;if(!loading){if(!$<HTMLInputElement>('#pause').checked&&!document.hidden)time+=dt;const start=performance.now();renderer.render(game,[],dt,time);renderMs+=performance.now()-start;frames++;if(now-lastStats>1000){$('#fps').textContent=`${Math.round(frames*1000/(now-lastStats))} FPS`;$('#scene-data').textContent=JSON.stringify({map,time:+time.toFixed(2),renderMs:+(renderMs/frames).toFixed(3),...renderer.snapshot()},null,2);frames=0;renderMs=0;lastStats=now;}}requestAnimationFrame(frame);}
-void scene(map);requestAnimationFrame(frame);
+const requested=new URLSearchParams(location.search).get('map');if(MAP_IDS.includes(requested as MapId))map=requested as MapId;
+$<HTMLSelectElement>('#scene').value=map;void scene(map);requestAnimationFrame(frame);

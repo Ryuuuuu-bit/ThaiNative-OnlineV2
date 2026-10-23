@@ -2,7 +2,7 @@ import {LAYOUTS,MEADOW_LANDMARKS,FIELD_PLACES,type MapId} from '@the-beginning-o
 import {CanvasAssets} from './game-2d-assets';
 import {canyonRockProps} from './canyon-rock-art';
 import {ruinsProps} from './ruins-art';
-import {fieldRoadTexture,paintFieldPath,groundWear} from './field-ground';
+import {fieldRoadTexture,paintFieldPath,groundWear,FIELD_ROAD_SIZE,meadowTrees} from './field-ground';
 import {paintMeadowGround,decorateMeadow} from './meadow-art';
 import {paintHimmapan,himmapanProps} from './himmapan-art';
 import {isBiomeMap,BIOME_ROCK,biomeRockProps,paintBiomeGround,paintBiomeWater,biomeLandmark,desertPalms,frostDetails,yokaiDetails} from './biome-scenes';
@@ -11,7 +11,8 @@ export type FieldProp={x:number;z:number;image:HTMLImageElement;rect:number[];w:
 export async function loadField2D(id:MapId,assets:CanvasAssets){
  const layout=LAYOUTS[id],forest=(id==='forest'||id==='grove');
  const env=await assets.json<any>('/assets/env-painted/manifest.json');
- const road=await assets.image(fieldRoadTexture(id)),waterArt=await assets.image(forest?'/assets/env-forest/tile-water-v1.png':'/assets/env-painted/tile-water-v2.png');
+ const road=await assets.image(fieldRoadTexture(id)),waterArt=await assets.image('/assets/field-painted-v2/water.webp');
+ const trees=id==='meadow'?await meadowTrees(assets):null;
  const sources=new Map<string,HTMLImageElement>();
  await Promise.all([...new Set<string>(env.assets.map((a:any)=>a.atlas))].map(async file=>sources.set(file,await assets.image('/assets/env-painted/'+file))));
  const plane=document.createElement('canvas');plane.width=Math.max(2048,layout.halfX*32);plane.height=Math.round(plane.width*layout.halfZ/layout.halfX);
@@ -21,7 +22,7 @@ export async function loadField2D(id:MapId,assets:CanvasAssets){
  if(id==='ruins'){
   // Broken city paving forms readable blocks, rather than another forest floor.
   for(const {x:cx,z:cz}of FIELD_PLACES.ruins.filter(p=>['arch','plaza','runes','guardian'].includes(p.kind))){const w=24,h=22;
-   c.fillStyle=pattern(road,7);
+   c.fillStyle=pattern(road,FIELD_ROAD_SIZE);
    for(let x=cx-w/2;x<cx+w/2-2;x+=2.5)for(let z=cz-h/2;z<cz+h/2-2;z+=2.2){
     const edge=Math.min(x-(cx-w/2),cx+w/2-x,z-(cz-h/2),cz+h/2-z);
     if(Math.sin(x*7+z*11)>(edge<3?-.2:.76))continue;
@@ -31,10 +32,10 @@ export async function loadField2D(id:MapId,assets:CanvasAssets){
  }
  // Grass is one continuous world-space layer in MapBackdrop; this canvas holds
  // only roads and water so the playable rectangle cannot leave a texture seam.
- c.lineCap=c.lineJoin='round';c.strokeStyle=pattern(road,5);
- for(const p of layout.paths)paintFieldPath(c,p.points,p.width,pattern(road,5));
+ c.lineCap=c.lineJoin='round';c.strokeStyle=pattern(road,FIELD_ROAD_SIZE);
+ for(const p of layout.paths)paintFieldPath(c,p.points,p.width,pattern(road,FIELD_ROAD_SIZE));
  for(const p of [...layout.camps,...(layout.arena?[layout.arena]:[])]){
-  c.fillStyle=pattern(road,6);const r='r'in p?Number(p.r):3;
+  c.fillStyle=pattern(road,FIELD_ROAD_SIZE);const r='r'in p?Number(p.r):3;
   for(const [extra,alpha]of [[.7,.12],[.35,.25],[0,.85]]){c.globalAlpha=alpha;c.beginPath();c.arc(p.x,p.z,r+extra,0,Math.PI*2);c.fill();}c.globalAlpha=1;
  }
  if(id==='temple'){
@@ -61,14 +62,14 @@ export async function loadField2D(id:MapId,assets:CanvasAssets){
  }
  for(const water of layout.water){
   const outline=(scale:number)=>{c.beginPath();for(let i=0;i<=96;i++){const a=i/96*Math.PI*2,r=scale+.015*Math.sin(a*7)+.012*Math.cos(a*11);const x=water.x+Math.cos(a)*water.rx*r,z=water.z+Math.sin(a)*water.rz*r;i?c.lineTo(x,z):c.moveTo(x,z);}c.closePath();};
-  c.fillStyle=forest?'#374a4355':'#6e795555';outline(1.1);c.fill();c.fillStyle=pattern(waterArt,5);outline(1.035);c.fill();
-  if(water.bridgeZ!==undefined){const left=water.x-water.rx-.7,w=(water.rx+.7)*2,half=water.bridgeHalf??1.3;c.fillStyle='#9b8058';c.fillRect(left,water.bridgeZ-half,w,half*2);c.strokeStyle='#534733';c.lineWidth=.08;for(let x=left;x<left+w;x+=.7){c.beginPath();c.moveTo(x,water.bridgeZ-half);c.lineTo(x,water.bridgeZ+half);c.stroke();}c.strokeRect(left,water.bridgeZ-half,w,half*2);}
+  c.fillStyle=forest?'#374a4355':'#6e795555';outline(1.1);c.fill();c.fillStyle=id==='volcano'?'#7b3b28':pattern(waterArt,7);outline(1.035);c.fill();
+  if(water.bridgeZ!==undefined){const left=water.x-water.rx-.7,w=(water.rx+.7)*2,half=water.bridgeHalf??1.3;c.fillStyle=pattern(road,FIELD_ROAD_SIZE);c.fillRect(left,water.bridgeZ-half,w,half*2);c.strokeStyle='#77756288';c.lineWidth=.08;c.strokeRect(left,water.bridgeZ-half,w,half*2);}
  }
  if(id==='himmapan')paintHimmapan(c);
- if(isBiomeMap(id))paintBiomeWater(c,id);
+ if(isBiomeMap(id))paintBiomeWater(c,id,pattern(road,FIELD_ROAD_SIZE));
  if(id==='meadow')paintMeadowGround(c,env,sources);
  const props:FieldProp[]=[];
- function prop(name:string,x:number,z:number,h:number){const a=env.assets.find((a:any)=>a.name===name);if(!a)throw Error('Missing environment art '+name);props.push({x,z,image:sources.get(a.atlas)!,rect:a.rect,w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor,tree:name.startsWith('tree'),foliage:/tree|reeds|grass|fern/.test(name)});}
+ function prop(name:string,x:number,z:number,h:number){const a=trees?.get(name)??env.assets.find((a:any)=>a.name===name);if(!a)throw Error('Missing environment art '+name);props.push({x,z,image:trees?.get(name)?.image??sources.get(a.atlas)!,rect:a.rect,w:h*a.rect[2]/a.rect[3],h,anchor:a.anchor,tree:name.startsWith('tree'),foliage:/tree|reeds|grass|fern/.test(name)});}
  if(id==='himmapan')props.push(...await himmapanProps(assets));
  if(isBiomeMap(id))props.push(await biomeLandmark(id,assets));
  if(id==='desert')props.push(...await desertPalms(assets));

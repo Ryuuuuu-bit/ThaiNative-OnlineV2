@@ -25,7 +25,7 @@ export class Atmosphere2D{
   this.stats.ponds=0;if(!this.settings.enabled||!this.settings.water||map==='city_plaza')return;
   const t=this.reducedMotion?0:high?time:Math.floor(time*12)/12;
   for(const p of LAYOUTS[map].water){const q=project(p.x,p.z),reach=Math.max(p.rx,p.rz)*s*1.5;if(!this.visible(q,width,height,reach))continue;
-   this.stats.ponds++;this.pond(c,p,q,s,t,high,map==='forest'||map==='himmapan',isBiomeMap(map)?BIOME_SCENES[map].water:undefined,map==='volcano');
+   this.stats.ponds++;this.pond(c,p,q,s,t,high,map==='forest'||map==='himmapan',isBiomeMap(map)?BIOME_SCENES[map].water.slice(0,7)+(map==='volcano'?'ee':'33'):undefined,map==='volcano');
   }
  }
  private pond(c:CanvasRenderingContext2D,p:Ellipse,q:{x:number;y:number},s:number,t:number,high:boolean,forest:boolean,colour?:string,lava=false){

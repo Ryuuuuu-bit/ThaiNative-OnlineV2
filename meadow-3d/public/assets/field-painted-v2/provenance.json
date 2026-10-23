@@ -1,0 +1,67 @@
+{
+  "provider": "OpenAI built-in image_gen",
+  "date": "2026-10-24",
+  "purpose": "Outdoor surfaces matching owner-supplied painted map references; original generated materials, not baked map screenshots",
+  "references": [
+    "ChatGPT Image Oct 24, 2026, 03_12_24 AM.png",
+    "ChatGPT Image Oct 24, 2026, 03_12_48 AM.png",
+    "ChatGPT Image Oct 24, 2026, 03_12_54 AM.png",
+    "ChatGPT Image Oct 24, 2026, 03_12_59 AM.png",
+    "ChatGPT Image Oct 24, 2026, 03_13_03 AM.png",
+    "ChatGPT Image Oct 24, 2026, 03_13_07 AM.png",
+    "ChatGPT Image Oct 24, 2026, 03_13_11 AM.png"
+  ],
+  "processing": "Resize generated square material to 1024x1024 RGB, WebP quality90; original art retained in generated_images",
+  "assets": [
+    {
+      "id": "gravel",
+      "file": "gravel.webp",
+      "prompt": "Production seamless square ground texture for painted isometric fantasy MMORPG, orthographic TOP DOWN flat material. Weathered gray-brown rocky earth with tiny embedded beige pebbles, irregular soft charcoal-gray compacted gravel patches, wisps of subdued olive moss in cracks. A muted gray quarry and crystal highlands floor matching a hand painted fantasy expedition camp. Rich detailed painterly brushwork, soft neutral daylight, moderate contrast. Homogeneous material edge to edge. No leaves, trees, grass tufts, paths, crystals, rocks larger than tiny pebbles, ruins, buildings, characters, perspective, horizon, vignette, text or borders. Must tile seamlessly horizontally and vertically. Square 1024.",
+      "sourceFile": "exec-a03aae66-1c57-42f3-a57f-67f5ea4b05b2.png",
+      "sourceSha256": "15bab475a898b6e2594121997a656a28e50c78f59900af8f9942054e0abcc8bd",
+      "runtimeSha256": "1d2511f5b2e267d58e6b8f2f9601bae7e0ae09b206748fb87d6f94334282fb8e",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "grass",
+      "file": "grass.webp",
+      "prompt": "Production seamless square ground texture for an isometric painted fantasy MMORPG. Orthographic TOP DOWN flat material only: dense short meadow grass with tiny painted leaf clusters, sunny yellow-green highlights, olive midgreens and deep forest green micro shadows; irregular gentle broad patches, small sparse ivory wildflower specks. Reference direction is classic richly detailed hand painted fantasy meadow, natural muted yet luminous chartreuse green, detailed painterly strokes, no flat vector shapes. Edge-to-edge grass ONLY. No trees, paths, characters, buildings, rocks, horizon, borders, labels, lighting vignette, large flowers or focal objects. Uniform scale and diffuse daylight. Must tile seamlessly horizontally and vertically. Square 1024 texture.",
+      "sourceFile": "exec-4c98a382-6752-48ad-8c48-0a42eff14f1e.png",
+      "sourceSha256": "e71f0135e736b2c88fd27b8a2c41656d153837cc15b154f4b522710b258da635",
+      "runtimeSha256": "312cd0d2f9f36aa5c210cf0885d772e91183dffd1dba61507b7346af512c38c1",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "dirt",
+      "file": "dirt.webp",
+      "prompt": "Production seamless square ground texture for an isometric painted fantasy MMORPG. Orthographic TOP DOWN flat material only: compacted sandy ochre footpath, warm pale tan and honey-beige soil, subtle light beige grit, tiny embedded pebbles, irregular muted earth flecks. Richly detailed hand painted fantasy landscape surface, soft painterly edges and balanced diffuse daylight. All-over homogeneous material, no perspective baked in. Edge-to-edge dirt ONLY. No grass edges, path shapes, trees, characters, buildings, large rocks, horizon, borders, text, lighting vignette or focal objects. Must tile seamlessly horizontally and vertically. Square 1024 texture.",
+      "sourceFile": "exec-3f3b10b4-48c9-45a9-b88b-215f126511f1.png",
+      "sourceSha256": "2fd52a8d461d0e236335e4d74acae7a074afcdefe8ec67389e1343a72b22c6b2",
+      "runtimeSha256": "27a3159b929e225dab88cce8765d66d48e7ed2eb261bc76573996a401eb2f600",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "stone",
+      "file": "stone.webp",
+      "prompt": "Production seamless square ground texture for an isometric painted fantasy MMORPG. Orthographic TOP DOWN material only: closely fitted weathered small rectangular cobblestones, irregular staggered rows, warm gray beige limestone, subtle ochre sunlit highlights, darker stone crevices and small olive moss accents. Richly detailed hand painted fantasy town paving, dimensional but gentle diffuse lighting from upper left, natural varied stones, no extreme contrast. Grid aligned horizontal/vertical in texture coordinates; isometric projection happens in engine. Edge-to-edge cobblestones ONLY. No path silhouette, trees, buildings, props, ruins, horizon, borders, text, vignette or focal object. Must tile seamlessly horizontally and vertically. Square 1024 texture.",
+      "sourceFile": "exec-4bcfd3a5-a8a3-4afe-9ebe-f1082e4aac51.png",
+      "sourceSha256": "942e362b51028e7c348e17bd8559c9cea5fa6678691bd4c3990a043b17dc3f10",
+      "runtimeSha256": "f9b98259e9789d97f59d1df0f68e02dc1cb9a338ee47dd907445cca1e55f490e",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "water",
+      "file": "water.webp",
+      "prompt": "Production seamless square water ground texture for a painted isometric fantasy MMORPG. Strict orthographic top down, flat texture ONLY. Clear sunlit jade-turquoise shallow pond, tiny muted pale river pebbles visible below transparent water, fine interlocking sun caustic ripples, rich teal depths and gentle pale mint reflections. Match hand painted fantasy shrine pool, natural medium-light turquoise, highly detailed brushwork, uniform diffuse light. No banks, bridges, structures, lily pads, trees, people, fish, foreground objects, perspective, horizon, borders, words, vignette or large wave crests. Must tile seamlessly on all four edges. Square 1024.",
+      "sourceFile": "exec-db11c6b3-8eaa-4d98-b8dd-806c650abc1c.png",
+      "sourceSha256": "a3399698d22da96d9ac69f94c490b3dee5558a5165ebb3bd2b696f42d1019108",
+      "runtimeSha256": "68d6bcd0c555cf8c945848b4f4875e0788a2439d8e428f4b5a82e987601116a4",
+      "width": 1024,
+      "height": 1024
+    }
+  ]
+}
