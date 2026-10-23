@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {CITY_LAYOUT,CITY_COLLISION,CITY_BUILDINGS,HEALER,cityWalkable,cityLayoutGeometry} from '@the-beginning-online/shared/maps';
+import {CITY_LAYOUT,CITY_COLLISION,CITY_BUILDINGS,HEALER,cityWalkable,cityLayoutGeometry,travelDestination} from '@the-beginning-online/shared/maps';
 import {parseDraft} from '../src/city-layout-model.ts';
 import {route} from '../src/city-2d-layout.ts';
 import {windowEmission,CityLighting} from '../src/city-lighting.ts';
@@ -55,7 +55,7 @@ test('exit auras sit inside the four gates, label destinations and stay still wi
  const previous=globalThis.document;
  globalThis.document={createElement:()=>({getContext:()=>({createRadialGradient:()=>({addColorStop(){}}),fillRect(){}})})};
  try{
-  const lights=new CityLighting(),exits=[{x:0,z:44,name:'south'},{x:44,z:0,name:'east'},{x:0,z:-44,name:'north'},{x:-44,z:0,name:'west'}],original=structuredClone(exits);
+  const lights=new CityLighting(),exits=[{id:'south',name:'south'},{id:'east',name:'east'},{id:'north',name:'north'},{id:'west',name:'west'}],original=structuredClone(exits);
   function frame(time,reduced){
    const images=[],labels=[],arrows=[],anchors=[];
    const c={save(){},restore(){},drawImage(...args){images.push(args.slice(1));},beginPath(){},moveTo(...p){arrows.push(p);},lineTo(...p){arrows.push(p);},stroke(){},measureText(text){return{width:text.length*7};},fillRect(){},fillText(text){labels.push(text);}};
@@ -64,7 +64,7 @@ test('exit auras sit inside the four gates, label destinations and stay still wi
   }
   const still=frame(0,true);assert.deepEqual(still,frame(3,true));
   assert.equal(still.images.length,8);assert.deepEqual(still.labels,['south','east','north','west']);
-  assert.ok(still.anchors.every(([x,z])=>Math.max(Math.abs(x),Math.abs(z))<44));
+  for(const [i,[x,z]] of still.anchors.entries()){assert.ok(cityWalkable(x,z,.38));assert.ok(travelDestination('city_plaza',exits[i].id,{x,z}),'aura must sit inside the server gate activation radius');}
   assert.notDeepEqual(frame(0,false).arrows,frame(3,false).arrows);
   assert.deepEqual(exits,original);
  }finally{globalThis.document=previous;}

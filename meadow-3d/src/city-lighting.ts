@@ -1,4 +1,6 @@
 import type {Sprite} from './city-2d-art';
+import {GATES} from '@the-beginning-online/shared/maps';
+import {gateApproach} from './hud-path.ts';
 
 type LightItem={assetId:string;x:number;z:number;scale:number;facing?:number;flip?:boolean};
 type Project=(x:number,z:number)=>{x:number;y:number};
@@ -43,9 +45,9 @@ export class CityLighting{
   }
   c.restore();
  }
- exits(c:CanvasRenderingContext2D,exits:readonly {x:number;z:number;name:string}[],project:Project,s:number,time:number,width:number,height:number,reducedMotion:boolean){
+ exits(c:CanvasRenderingContext2D,exits:readonly {id:string;name:string}[],project:Project,s:number,time:number,width:number,height:number,reducedMotion:boolean){
   for(const exit of exits){
-   const q=project(exit.x-Math.sign(exit.x)*1.6,exit.z-Math.sign(exit.z)*1.6);
+   const approach=gateApproach(GATES.city_plaza[exit.id]),q=project(approach.x,approach.z);
    if(q.x<-120||q.x>width+120||q.y<-20||q.y>height+4*s)continue;
    c.save();c.globalCompositeOperation='screen';c.globalAlpha=reducedMotion?1:.88+Math.sin(time*1.6)*.12;
    c.drawImage(this.portal,q.x-s*1.5,q.y-s*.5,s*3,s);
