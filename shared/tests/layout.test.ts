@@ -90,20 +90,11 @@ test("meadow landmarks are solid and no spawn, camp or path sits inside them", a
 	for (const o of all) assert.equal(onPath(LAYOUTS.meadow.paths, o.x, o.z, o.r), false, `landmark on a path at ${o.x},${o.z}`);
 });
 
-test("city planters, benches and stalls are solid, stay off the main roads and leave every NPC reachable", async () => {
-	const { CITY_PLANTERS, CITY_BENCHES, CITY_STALLS, CITY_ART_SOLIDS } = await import("../src/game/maps.js");
-	const city = (x: number, z: number) => walkable(x, z, 0.3, "city_plaza");
-	for (const p of CITY_PLANTERS) assert.equal(city(p.x, p.z), false, `planter ${p.x},${p.z}`);
-	for (const b of CITY_BENCHES) assert.equal(city(b.x, b.z), false, `bench ${b.x},${b.z}`);
-	for (const s of CITY_STALLS) {
-		assert.equal(city(s.x, s.z), false, `stall ${s.x},${s.z}`);
-		assert.equal(city(s.x - 1.8, s.z + 0.5), false, "crate beside the stall");
-	}
-	for (const s of CITY_ART_SOLIDS) assert.equal(city(s.x, s.z), false, s.label);
-	// The forge already closes the west road; its firewood stack sits behind it, on the dead end to the closed west gate.
-	const art = CITY_ART_SOLIDS.filter(s => s.label !== "firewood-forge").map(s => (s.kind === "circle" ? { x: s.x, z: s.z, w: s.r * 2, d: s.r * 2 } : s));
-	const boxes = [...CITY_PLANTERS.map(p => ({ x: p.x, z: p.z, w: p.r * 2, d: p.r * 2 })), ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid), ...art];
-	// Both 6 m main roads (|x| < 3, |z| < 3) keep a 0.4 m margin from every prop.
-	for (const b of boxes) assert.ok(Math.min(Math.abs(b.x) - b.w / 2, Math.abs(b.z) - b.d / 2) >= 3.4, `prop on a main road at ${b.x},${b.z}`);
-	for (const p of [CITY_SPAWN, CITY_RETURN, CITY_EAST_RETURN, HEALER, GATE_CAPTAIN, ...CITY_BUILDINGS.map(b => b.talk)]) assert.ok(city(p.x, p.z), `${p.x},${p.z}`);
+test("approved city props are solid, gate approaches stay open and every NPC remains reachable", async () => {
+ const {CITY_COLLISION,CITY_LAYOUT}=await import("../src/game/maps.js");
+ const city=(x:number,z:number)=>walkable(x,z,.3,"city_plaza");
+ for(const p of [...CITY_COLLISION.boxes,...CITY_COLLISION.circles])assert.equal(city(p.x,p.z),false,`solid ${p.x},${p.z}`);
+ for(const p of CITY_LAYOUT.items.filter(p=>p.assetId==='theme:stall:3:2.1'))assert.equal(city(p.x-1.8,p.z+.5),false,"crate beside the stall");
+ for(const [x,z] of [[0,40],[40,0],[0,-40],[-40,0]])assert.ok(city(x,z));
+ for(const p of [CITY_SPAWN,CITY_RETURN,CITY_EAST_RETURN,HEALER,GATE_CAPTAIN,...CITY_BUILDINGS.map(b=>b.talk)])assert.ok(city(p.x,p.z),`${p.x},${p.z}`);
 });

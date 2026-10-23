@@ -50,7 +50,7 @@ test('all maps: the real simulation follows routed segments around representativ
  const data=loadGameData();let routes=0;
  for(const map of Object.keys(LAYOUTS)){
   let mapRoutes=0;const walk=(x,z)=>walkers[map](x,z,.4),nav=createPathfinder(walk,LAYOUTS[map]);
-  const candidates=map==='city_plaza'?[{x:0,z:-30,r:7},{x:32,z:0,r:6}]:LAYOUTS[map].obstacles.slice(0,12);
+  const candidates=map==='city_plaza'?[{x:0,z:0,r:3},{x:-23,z:23,r:4}]:LAYOUTS[map].obstacles.slice(0,12);
   for(const obstacle of candidates){
    const start={x:obstacle.x-obstacle.r-2,z:obstacle.z},goal={x:obstacle.x+obstacle.r+2,z:obstacle.z};
    if(!walk(start.x,start.z)||!walk(goal.x,goal.z))continue;

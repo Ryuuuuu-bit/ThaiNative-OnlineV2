@@ -1,4 +1,5 @@
 import {bake,type Sprite} from './city-2d-art';
+import {CITY_ART_FILTER} from './city-palette';
 import {cityNpcWorldHeight,npcSprite,type CityNpcArt} from './city-npc-sprite';
 import type {Facing} from './city-layout-model';
 import {fortificationTransform} from './city-2d-gates';
@@ -34,7 +35,7 @@ async function loadTheme(){
      const axis=kind==='wall'||kind==='gate',offset=axis&&name==='z'?1:0,index=(facing+offset)%4 as Facing,{source,rect,anchor}=view(family,index);
      if(axis){
        const t=fortificationTransform(kind,index,kind==='wall'?Number(a):6.8);
-       sprites[facing]=bake(c=>{c.transform(t.sx,t.skew,0,t.sy,t.tx,t.ty);c.drawImage(source,...rect,...rect);});
+       sprites[facing]=bake(c=>{c.filter=CITY_ART_FILTER;c.transform(t.sx,t.skew,0,t.sy,t.tx,t.ty);c.drawImage(source,...rect,...rect);});
        continue;
      }
      let width=base.width/28,height:number,bottom=base.top+base.height/28;
@@ -52,12 +53,12 @@ async function loadTheme(){
      }else if(name==='fountain'||name==='well'||name==='portal'){
        width=Number(a);height=width*rect[3]/rect[2];bottom=name==='portal'?3.8*240/359/2:Number(b);
      }else throw Error('ไม่รู้จักชนิดภาพเมือง '+id);
-     sprites[facing]=bake(c=>c.drawImage(source,...rect,-width*anchor[0],bottom-height*anchor[1],width,height));
+     sprites[facing]=bake(c=>{c.filter=CITY_ART_FILTER;c.drawImage(source,...rect,-width*anchor[0],bottom-height*anchor[1],width,height);});
    }
    cache.set(id,sprites);return sprites;
  }
- function npc(art:CityNpcArt){
-   const {source,rect,anchor}=view('npc-'+art),sprite=npcSprite(source,rect,cityNpcWorldHeight(art));sprite.anchor=anchor;return sprite;
+ function npc(art:CityNpcArt,facing:Facing=0){
+   const {source,rect,anchor}=view('npc-'+art,facing),sprite=npcSprite(source,rect,cityNpcWorldHeight(art));sprite.anchor=anchor;return sprite;
  }
  return {manifest,view,faces,npc};
 }

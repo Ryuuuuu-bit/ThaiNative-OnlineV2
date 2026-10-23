@@ -1,7 +1,7 @@
 import RAPIER from '@dimforge/rapier2d-compat';
 import {performance} from 'node:perf_hooks';
 import {walkable} from '@the-beginning-online/shared/collision';
-import {LAYOUTS,MEADOW_LANDMARKS,CITY_PLANTERS,GARDEN_TREES,CITY_ART_SOLIDS,CITY_FOUNTAIN,CITY_BUILDINGS,CITY_HOUSES,CITY_BENCHES,CITY_STALLS,FORTIFICATION_SOLIDS,DECOR,CITY_TOWER,type MapId} from '@the-beginning-online/shared/maps';
+import {LAYOUTS,MEADOW_LANDMARKS,CITY_COLLISION,type MapId} from '@the-beginning-online/shared/maps';
 
 const initStart=performance.now();
 await RAPIER.init();
@@ -16,8 +16,8 @@ export function knockbackGeometry(mapId:MapId):KnockbackGeometry {
  const l=LAYOUTS[mapId];
  const border:Box[]=[{x:l.halfX,z:0,w:2,d:l.halfZ*2+4},{x:-l.halfX,z:0,w:2,d:l.halfZ*2+4},{x:0,z:l.halfZ,w:l.halfX*2+4,d:2},{x:0,z:-l.halfZ,w:l.halfX*2+4,d:2}];
  if(mapId==='city_plaza')return {
-  circles:[CITY_FOUNTAIN,...CITY_PLANTERS,...GARDEN_TREES.map(t=>({...t,r:.55})),...CITY_ART_SOLIDS.filter(s=>s.kind==='circle') as Circle[]],
-  boxes:[...border,{x:0,z:0,w:CITY_TOWER.half*2,d:CITY_TOWER.half*2},...FORTIFICATION_SOLIDS,...DECOR.filter(p=>p.solid),...CITY_BUILDINGS,...CITY_HOUSES,...CITY_BENCHES,...CITY_STALLS.map(s=>s.solid),...CITY_ART_SOLIDS.filter(s=>s.kind==='box') as Box[]],
+  circles:CITY_COLLISION.circles,
+  boxes:[...border,...CITY_COLLISION.boxes],
  };
  return {circles:[...l.obstacles,...(mapId==='meadow'?MEADOW_LANDMARKS.circles:[])],boxes:[...border,...(mapId==='meadow'?MEADOW_LANDMARKS.boxes:[])]};
 }

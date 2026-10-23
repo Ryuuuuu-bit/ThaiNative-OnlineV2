@@ -1,0 +1,2257 @@
+{
+  "version": 2,
+  "mapId": "city_plaza",
+  "name": "นครที่ถูกลืมเลือน · แบบร่าง",
+  "items": [
+    {
+      "id": "nature:tree-flowering:5.4:5.4@-35,35",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": -35,
+      "z": 35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@-26,36",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": -26,
+      "z": 36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-tall:4.7:6.2@-14,33",
+      "assetId": "nature:tree-tall:4.7:6.2",
+      "x": -17,
+      "z": 11.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-tall:4.7:6.2@-19,36",
+      "assetId": "nature:tree-tall:4.7:6.2",
+      "x": -19,
+      "z": 36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@-39,-29",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": -39,
+      "z": -29,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@-30,-35",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": -30,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-tall:4.7:6.2@-23,-37",
+      "assetId": "nature:tree-tall:4.7:6.2",
+      "x": -23,
+      "z": -37,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@8,-41",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": 8,
+      "z": -41,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@22,-38",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": 22,
+      "z": -38,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-tall:4.7:6.2@30,-31",
+      "assetId": "nature:tree-tall:4.7:6.2",
+      "x": 30,
+      "z": -31,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@37,-24",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": 37,
+      "z": -24,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@24,-23",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": 24,
+      "z": -23,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-tall:4.7:6.2@29,-16",
+      "assetId": "nature:tree-tall:4.7:6.2",
+      "x": 29,
+      "z": -16,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@38,-35",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": 38,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@32,34",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": 32,
+      "z": 34,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-tall:4.7:6.2@26,38",
+      "assetId": "nature:tree-tall:4.7:6.2",
+      "x": 26,
+      "z": 38,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@8,37",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": 8,
+      "z": 37,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-flowering:5.4:5.4@-38,15",
+      "assetId": "nature:tree-flowering:5.4:5.4",
+      "x": -38,
+      "z": 15,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-tall:4.7:6.2@-40,38",
+      "assetId": "nature:tree-tall:4.7:6.2",
+      "x": -40,
+      "z": 38,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-12.889335010076936,23.473291734060147",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -12.889335010076936,
+      "z": 23.473291734060147,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-11.390280354716788,27.806242470478885",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -11.390280354716788,
+      "z": 27.806242470478885,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-9.987270964256172,24.71181706375262",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -9.987270964256172,
+      "z": 24.71181706375262,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-11.50611349275891,30.104875572963113",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -11.50611349275891,
+      "z": 30.104875572963113,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-white:0.6:0.6@-11.804501310136969,21.34514533869881",
+      "assetId": "nature:flowers-white:0.6:0.6",
+      "x": -11.804501310136969,
+      "z": 21.34514533869881,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-white:0.6:0.6@-8.450232726513244,26.922173062271504",
+      "assetId": "nature:flowers-white:0.6:0.6",
+      "x": -8.450232726513244,
+      "z": 26.922173062271504,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-8.546735788553859,29.570250609533474",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -8.546735788553859,
+      "z": 29.570250609533474,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-12.471343054061803,19.398732193662962",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -12.471343054061803,
+      "z": 19.398732193662962,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:grass-2:0.5:0.5@-6.5877577654504815,25.330694179035195",
+      "assetId": "nature:grass-2:0.5:0.5",
+      "x": -6.5877577654504815,
+      "z": 25.330694179035195,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-10.385293735841003,32.171214516891816",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -10.385293735841003,
+      "z": 32.171214516891816,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-white:0.6:0.6@-8.601713900286025,20.868904653508206",
+      "assetId": "nature:flowers-white:0.6:0.6",
+      "x": -8.601713900286025,
+      "z": 20.868904653508206,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-white:0.6:0.6@-6.078883749697811,28.30051767769921",
+      "assetId": "nature:flowers-white:0.6:0.6",
+      "x": -6.078883749697811,
+      "z": 28.30051767769921,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-5.678713666725669,23.328948886311125",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -5.678713666725669,
+      "z": 23.328948886311125,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:grass-2:0.5:0.5@-7.37891154160622,31.363964847132824",
+      "assetId": "nature:grass-2:0.5:0.5",
+      "x": -7.37891154160622,
+      "z": 31.363964847132824,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-9.631846884156076,18.843606362608547",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -7.5,
+      "z": 19,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-4.265626227529866,26.487990279625805",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -4.265626227529866,
+      "z": 26.487990279625805,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-5.7489741698925645,21.117918925849715",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -5.7489741698925645,
+      "z": 21.117918925849715,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-white:0.6:0.6@-4.7214924437317265,29.935258448570355",
+      "assetId": "nature:flowers-white:0.6:0.6",
+      "x": -4.7214924437317265,
+      "z": 29.935258448570355,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-6.810554155968044,18.87929958941448",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -6.810554155968044,
+      "z": 18.87929958941448,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-4.123857569099814,31.72687045476287",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -4.123857569099814,
+      "z": 31.72687045476287,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-5.9675512927843535,17.01413815796033",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -5.9675512927843535,
+      "z": 17.01413815796033,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-white:0.6:0.6@-22.01760379486829,39.15936583979258",
+      "assetId": "nature:flowers-white:0.6:0.6",
+      "x": -22.01760379486829,
+      "z": 39.15936583979258,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:grass-2:0.5:0.5@-17.54390836209056,39.79876288215979",
+      "assetId": "nature:grass-2:0.5:0.5",
+      "x": -17.54390836209056,
+      "z": 39.79876288215979,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-40.23360554880161,23.28675906385069",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -40.23360554880161,
+      "z": 23.28675906385069,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:flowers-lavender:0.6:0.7@-20.466645512822165,40.60194780869676",
+      "assetId": "nature:flowers-lavender:0.6:0.7",
+      "x": -20.466645512822165,
+      "z": 40.60194780869676,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-42,-35",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -42,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-34,-35",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -34,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-34,-26",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -34,
+      "z": -26,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-26,-26",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -26,
+      "z": -26,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-16,-39",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -16,
+      "z": -39,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-8,-39",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -8,
+      "z": -39,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-26.5,-39",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -26.5,
+      "z": -39,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-19.5,-39",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -19.5,
+      "z": -39,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@24.5,-35",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 24.5,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@33.5,-35",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 33.5,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@34,-27",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 34,
+      "z": -27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@42,-27",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 42,
+      "z": -27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@25,-22",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 25,
+      "z": -22,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@33,-22",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 33,
+      "z": -22,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@34,-14",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 34,
+      "z": -14,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@42,-14",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 42,
+      "z": -14,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@22,-11",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 22,
+      "z": -11,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@30,-11",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 30,
+      "z": -11,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-42.5,32",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -42.5,
+      "z": 32,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-35.5,32",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -35.5,
+      "z": 32,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-34,41",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -34,
+      "z": 41,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-26,41",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -26,
+      "z": 41,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-15,40",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -15,
+      "z": 40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-7,40",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -7,
+      "z": 40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@26,40",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 26,
+      "z": 40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@34,40",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 34,
+      "z": 40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@34,37",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 34,
+      "z": 37,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@42,37",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": 42,
+      "z": 37,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-42,-6",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -42,
+      "z": -6,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:bush-flowering:1.25:1@-34,-6",
+      "assetId": "nature:bush-flowering:1.25:1",
+      "x": -34,
+      "z": -6,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:guild:11:9@-13,-28",
+      "assetId": "building:guild:11:9",
+      "x": -12,
+      "z": -27.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:chapel:9:10@13,-33",
+      "assetId": "theme:chapel:9:10",
+      "x": 13,
+      "z": -33,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:8:7@-36,-19",
+      "assetId": "building:cottage:8:7",
+      "x": -36,
+      "z": -19,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:inn:10:8@17,30",
+      "assetId": "building:inn:10:8",
+      "x": 17,
+      "z": 30,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:gazebo:5:5@-31,30",
+      "assetId": "theme:gazebo:5:5",
+      "x": -12,
+      "z": 19.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:stall:3:2.4@24,7",
+      "assetId": "theme:stall:3:2.4",
+      "x": 27.5,
+      "z": -1,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:stall:3:2.4@31,8",
+      "assetId": "theme:stall:3:2.4",
+      "x": 32,
+      "z": -1,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:stall:3:2.4@24,20",
+      "assetId": "theme:stall:3:2.4",
+      "x": 24,
+      "z": 20,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:stall:3:2.4@32,21",
+      "assetId": "theme:stall:3:2.4",
+      "x": 25,
+      "z": 15.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-7,-7",
+      "assetId": "theme:lamp:3.2",
+      "x": -7,
+      "z": -7,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@7,-7",
+      "assetId": "theme:lamp:3.2",
+      "x": 7,
+      "z": -7,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-7,7",
+      "assetId": "theme:lamp:3.2",
+      "x": -7,
+      "z": 7,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@7,7",
+      "assetId": "theme:lamp:3.2",
+      "x": 7,
+      "z": 7,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-8,-20",
+      "assetId": "theme:lamp:3.2",
+      "x": -8,
+      "z": -20,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@7,-22",
+      "assetId": "theme:lamp:3.2",
+      "x": 7,
+      "z": -22,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-20,-20",
+      "assetId": "theme:lamp:3.2",
+      "x": -20,
+      "z": -20,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-18,7",
+      "assetId": "theme:lamp:3.2",
+      "x": -18,
+      "z": 7,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@18,7",
+      "assetId": "theme:lamp:3.2",
+      "x": 33,
+      "z": -4,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@9,24",
+      "assetId": "theme:lamp:3.2",
+      "x": 9,
+      "z": 24,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@25,27",
+      "assetId": "theme:lamp:3.2",
+      "x": 25,
+      "z": 27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-35,24",
+      "assetId": "theme:lamp:3.2",
+      "x": -35,
+      "z": 24,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@7,40",
+      "assetId": "theme:lamp:3.2",
+      "x": 7,
+      "z": 40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-7,40",
+      "assetId": "theme:lamp:3.2",
+      "x": -7,
+      "z": 40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@-40,7",
+      "assetId": "theme:lamp:3.2",
+      "x": -40,
+      "z": 7,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@40,-7",
+      "assetId": "theme:lamp:3.2",
+      "x": 39,
+      "z": -4,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:lamp:3.2@7,-40",
+      "assetId": "theme:lamp:3.2",
+      "x": 7,
+      "z": -40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:banner:4.2@-7,-17",
+      "assetId": "theme:banner:4.2",
+      "x": -7,
+      "z": -17,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:banner:4.2@-19,-22",
+      "assetId": "theme:banner:4.2",
+      "x": -19,
+      "z": -22,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:banner:4.2@7,-25",
+      "assetId": "theme:banner:4.2",
+      "x": 7,
+      "z": -25,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:banner:4.2@19,-25",
+      "assetId": "theme:banner:4.2",
+      "x": 19,
+      "z": -25,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:banner:4.2@-7,33",
+      "assetId": "theme:banner:4.2",
+      "x": -7,
+      "z": 33,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:banner:4.2@7,33",
+      "assetId": "theme:banner:4.2",
+      "x": 7,
+      "z": 33,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:3:1.4@-31,20",
+      "assetId": "theme:flowerbed:3:1.4",
+      "x": -33.5,
+      "z": 23.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 1
+    },
+    {
+      "id": "theme:flowerbed:3:1.4@-16,-36",
+      "assetId": "theme:flowerbed:3:1.4",
+      "x": -16,
+      "z": -36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:3:1.4@24,-34",
+      "assetId": "theme:flowerbed:3:1.4",
+      "x": 24,
+      "z": -34,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:3:1.4@31,-27",
+      "assetId": "theme:flowerbed:3:1.4",
+      "x": 31,
+      "z": -27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:3:1.4@9,35",
+      "assetId": "theme:flowerbed:3:1.4",
+      "x": 9,
+      "z": 35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:table:1.8:1.8@12,23",
+      "assetId": "theme:table:1.8:1.8",
+      "x": 12,
+      "z": 23,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:table:1.8:1.8@19,23",
+      "assetId": "theme:table:1.8:1.8",
+      "x": 19,
+      "z": 23,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:table:1.8:1.8@25,30",
+      "assetId": "theme:table:1.8:1.8",
+      "x": 25,
+      "z": 30,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:dummy:2.25@-29,8",
+      "assetId": "theme:dummy:2.25",
+      "x": -34.5,
+      "z": 6.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:dummy:2.25@-33,11",
+      "assetId": "theme:dummy:2.25",
+      "x": -34.5,
+      "z": 11,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:dummy:2.25@-29,15",
+      "assetId": "theme:dummy:2.25",
+      "x": -34.5,
+      "z": 15.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:notice:2:0.7@-6,14",
+      "assetId": "theme:notice:2:0.7",
+      "x": -3.5,
+      "z": 10.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:notice:2:0.7@-19,-19",
+      "assetId": "theme:notice:2:0.7",
+      "x": -19,
+      "z": -19,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:wagon:3.2:2@13,39",
+      "assetId": "theme:wagon:3.2:2",
+      "x": 9,
+      "z": 16.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:wagon:3.2:2@38,29",
+      "assetId": "theme:wagon:3.2:2",
+      "x": 41,
+      "z": 18,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:anvil:1.5:1@-20,-8",
+      "assetId": "theme:anvil:1.5:1",
+      "x": -20.5,
+      "z": -11,
+      "scale": 1,
+      "flip": false,
+      "facing": 3
+    },
+    {
+      "id": "theme:barrels:1.4:1.4@-30,-10",
+      "assetId": "theme:barrels:1.4:1.4",
+      "x": -30,
+      "z": -10,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:barrels:1.4:1.4@-38,-13",
+      "assetId": "theme:barrels:1.4:1.4",
+      "x": -38,
+      "z": -13,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:barrels:1.4:1.4@38,25",
+      "assetId": "theme:barrels:1.4:1.4",
+      "x": 43.5,
+      "z": 15.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:barrels:1.4:1.4@21,35",
+      "assetId": "theme:barrels:1.4:1.4",
+      "x": 21,
+      "z": 35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:bench:2.2:0.7@29,-29",
+      "assetId": "theme:bench:2.2:0.7",
+      "x": 29,
+      "z": -29,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:townhouse:6:6@-38,-36",
+      "assetId": "building:townhouse:6:6",
+      "x": -38,
+      "z": -36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:5@-30,-27",
+      "assetId": "building:cottage:6:5",
+      "x": -30,
+      "z": -27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:4@-12,-40",
+      "assetId": "building:cottage:6:4",
+      "x": -11.5,
+      "z": -40.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:townhouse:5:4@-23,-40",
+      "assetId": "building:townhouse:5:4",
+      "x": -23,
+      "z": -40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:7:6@29,-36",
+      "assetId": "building:cottage:7:6",
+      "x": 29,
+      "z": -36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:6@38,-28",
+      "assetId": "building:cottage:6:6",
+      "x": 38,
+      "z": -28,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:townhouse:6:5@29,-23",
+      "assetId": "building:townhouse:6:5",
+      "x": 29,
+      "z": -23,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:5@38,-15",
+      "assetId": "building:cottage:6:5",
+      "x": 38,
+      "z": -15,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:5@26,-12",
+      "assetId": "building:cottage:6:5",
+      "x": 26,
+      "z": -12,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:townhouse:5:6@-39,31",
+      "assetId": "building:townhouse:5:6",
+      "x": -38,
+      "z": 30.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:5@-30,40",
+      "assetId": "building:cottage:6:5",
+      "x": -30,
+      "z": 40,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:5@-11,39",
+      "assetId": "building:cottage:6:5",
+      "x": -11,
+      "z": 39,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:townhouse:6:5@30,39",
+      "assetId": "building:townhouse:6:5",
+      "x": 30,
+      "z": 39,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:5@38,36",
+      "assetId": "building:cottage:6:5",
+      "x": 38,
+      "z": 36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:cottage:6:5@-38,-7",
+      "assetId": "building:cottage:6:5",
+      "x": -38,
+      "z": -7,
+      "scale": 1,
+      "flip": true,
+      "facing": 0
+    },
+    {
+      "id": "building:guild:8:6@13,-20",
+      "assetId": "building:guild:8:6",
+      "x": 13,
+      "z": -20,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:forge:9:8@-25,-15",
+      "assetId": "building:forge:9:8",
+      "x": -25,
+      "z": -15,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "building:market:8:7@25,13",
+      "assetId": "building:market:8:7",
+      "x": 20,
+      "z": 0,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:clocktower:4.4:4.4@0,0",
+      "assetId": "theme:clocktower:4.4:4.4",
+      "x": 0,
+      "z": 0,
+      "scale": 1.1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:fountain:6:1.6@-23,23",
+      "assetId": "theme:fountain:6:1.6",
+      "x": -23,
+      "z": 23,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@12.010433922646728,4.974884620746167",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": 12.010433922646728,
+      "z": 4.974884620746167,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@12.010433922646728,4.974884620746167",
+      "assetId": "nature:tree-round:5.1",
+      "x": 12.010433922646728,
+      "z": 4.974884620746167,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@-12.01043392264673,-4.974884620746166",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": -12.01043392264673,
+      "z": -4.974884620746166,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@-12.01043392264673,-4.974884620746166",
+      "assetId": "nature:tree-round:5.1",
+      "x": -12.01043392264673,
+      "z": -4.974884620746166,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@4.97488462074617,-12.010433922646726",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": 4.97488462074617,
+      "z": -12.010433922646726,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@4.97488462074617,-12.010433922646726",
+      "assetId": "nature:tree-round:5.1",
+      "x": 4.97488462074617,
+      "z": -12.010433922646726,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@-42,-21",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": -42,
+      "z": -21,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@-42,-21",
+      "assetId": "nature:tree-round:5.1",
+      "x": -42,
+      "z": -21,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@42,-35",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": 42,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@42,-35",
+      "assetId": "nature:tree-round:5.1",
+      "x": 42,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@-41,22",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": -41,
+      "z": 22,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@-41,22",
+      "assetId": "nature:tree-round:5.1",
+      "x": -41,
+      "z": 22,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@42,27",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": 42,
+      "z": 27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@42,27",
+      "assetId": "nature:tree-round:5.1",
+      "x": 42,
+      "z": 27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@-23,-24",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": -23,
+      "z": -24,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@-23,-24",
+      "assetId": "nature:tree-round:5.1",
+      "x": -23,
+      "z": -24,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@21,-27",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": 21,
+      "z": -27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@21,-27",
+      "assetId": "nature:tree-round:5.1",
+      "x": 21,
+      "z": -27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@-7,36",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": -7,
+      "z": 36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@-7,36",
+      "assetId": "nature:tree-round:5.1",
+      "x": -7,
+      "z": 36,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:flowerbed:1.3:1.3@30,30",
+      "assetId": "theme:flowerbed:1.3:1.3",
+      "x": 30,
+      "z": 30,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "nature:tree-round:5.1@30,30",
+      "assetId": "nature:tree-round:5.1",
+      "x": 30,
+      "z": 30,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:bench:2.2:0.7@-11,-9",
+      "assetId": "theme:bench:2.2:0.7",
+      "x": -11,
+      "z": -9,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:bench:2.2:0.7@-11,9",
+      "assetId": "theme:bench:2.2:0.7",
+      "x": -16.5,
+      "z": 8,
+      "scale": 1,
+      "flip": false,
+      "facing": 1
+    },
+    {
+      "id": "theme:bench:2.2:0.7@11,-9",
+      "assetId": "theme:bench:2.2:0.7",
+      "x": 8,
+      "z": -12,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:bench:2.2:0.7@34,-20",
+      "assetId": "theme:bench:2.2:0.7",
+      "x": 34,
+      "z": -20,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:bench:2.2:0.7@24,-28",
+      "assetId": "theme:bench:2.2:0.7",
+      "x": 24,
+      "z": -28,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:stall:3:2.1@33,13",
+      "assetId": "theme:stall:3:2.1",
+      "x": 20,
+      "z": 15,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:stall:3:2.1@19,20",
+      "assetId": "theme:stall:3:2.1",
+      "x": 19,
+      "z": 20,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:booth:1.8:1.8@-7,44.5",
+      "assetId": "theme:booth:1.8:1.8",
+      "x": -7,
+      "z": 44.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:booth:1.8:1.8@44.5,-7",
+      "assetId": "theme:booth:1.8:1.8",
+      "x": 44.5,
+      "z": -7,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:well:2.4200000000000004:0.55@-24,-27",
+      "assetId": "theme:well:2.4200000000000004:0.55",
+      "x": -24,
+      "z": -27,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:wagon:3.2:1.6@-39,9",
+      "assetId": "theme:wagon:3.2:1.6",
+      "x": -17.5,
+      "z": -14.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:wagon:3.2:1.6@21,-30",
+      "assetId": "theme:wagon:3.2:1.6",
+      "x": 21,
+      "z": -30,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:hay:1.2:1.2@-41.5,9",
+      "assetId": "theme:hay:1.2:1.2",
+      "x": -41.5,
+      "z": 9,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:hay:1.2:1.2@23.5,-30",
+      "assetId": "theme:hay:1.2:1.2",
+      "x": 23.5,
+      "z": -30,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:crates:1.8:2@-28,-35",
+      "assetId": "theme:crates:1.8:2",
+      "x": -28,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:crates:1.8:2@34,-35",
+      "assetId": "theme:crates:1.8:2",
+      "x": 34,
+      "z": -35,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:crates:1.8:2@-36,18",
+      "assetId": "theme:crates:1.8:2",
+      "x": -36,
+      "z": 18,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:crates:1.8:2@32,16",
+      "assetId": "theme:crates:1.8:2",
+      "x": 26,
+      "z": 1,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:crates:1.4:3@-31,-15",
+      "assetId": "theme:crates:1.4:3",
+      "x": -31,
+      "z": -15,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-43.483333333333334,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -43.483333333333334,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-36.45,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -36.45,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-29.416666666666664,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -29.416666666666664,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-22.38333333333333,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -22.38333333333333,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-15.349999999999998,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -15.349999999999998,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-8.316666666666663,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -8.316666666666663,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,-43.483333333333334",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": -43.483333333333334,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,-36.45",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": -36.45,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,-29.416666666666664",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": -29.416666666666664,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,-22.38333333333333",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": -22.38333333333333,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,-15.349999999999998",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": -15.349999999999998,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,-8.316666666666663",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": -8.316666666666663,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-43.483333333333334,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -43.483333333333334,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-36.45,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -36.45,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-29.416666666666664,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -29.416666666666664,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-22.38333333333333,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -22.38333333333333,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-15.349999999999998,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -15.349999999999998,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@-8.316666666666663,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": -8.316666666666663,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,-43.483333333333334",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": -43.483333333333334,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,-36.45",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": -36.45,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,-29.416666666666664",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": -29.416666666666664,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,-22.38333333333333",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": -22.38333333333333,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,-15.349999999999998",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": -15.349999999999998,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,-8.316666666666663",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": -8.316666666666663,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@8.316666666666666,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 8.316666666666666,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@15.350000000000001,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 15.350000000000001,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@22.383333333333336,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 22.383333333333336,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@29.41666666666667,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 29.41666666666667,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@36.45,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 36.45,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@43.483333333333334,-47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 43.483333333333334,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,8.316666666666666",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": 8.316666666666666,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,15.350000000000001",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": 15.350000000000001,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,22.383333333333336",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": 22.383333333333336,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,29.41666666666667",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": 29.41666666666667,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,36.45",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": 36.45,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@-47,43.483333333333334",
+      "assetId": "wall:z:7.033333333333334",
+      "x": -47,
+      "z": 43.483333333333334,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@8.316666666666666,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 8.316666666666666,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@15.350000000000001,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 15.350000000000001,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@22.383333333333336,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 22.383333333333336,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@29.41666666666667,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 29.41666666666667,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@36.45,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 36.45,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:x:7.033333333333334@43.483333333333334,47",
+      "assetId": "wall:x:7.033333333333334",
+      "x": 43.483333333333334,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,8.316666666666666",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": 8.316666666666666,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,15.350000000000001",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": 15.350000000000001,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,22.383333333333336",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": 22.383333333333336,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,29.41666666666667",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": 29.41666666666667,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,36.45",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": 36.45,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "wall:z:7.033333333333334@47,43.483333333333334",
+      "assetId": "wall:z:7.033333333333334",
+      "x": 47,
+      "z": 43.483333333333334,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:watchtower:3.4:3.4@-47,-47",
+      "assetId": "theme:watchtower:3.4:3.4",
+      "x": -47,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:watchtower:3.4:3.4@47,-47",
+      "assetId": "theme:watchtower:3.4:3.4",
+      "x": 47,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:watchtower:3.4:3.4@-47,47",
+      "assetId": "theme:watchtower:3.4:3.4",
+      "x": -47,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "theme:watchtower:3.4:3.4@47,47",
+      "assetId": "theme:watchtower:3.4:3.4",
+      "x": 47,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "gate:x@0,47",
+      "assetId": "gate:x",
+      "x": 0,
+      "z": 47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "gate:x@0,-47",
+      "assetId": "gate:x",
+      "x": 0,
+      "z": -47,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "gate:z@47,0",
+      "assetId": "gate:z",
+      "x": 47.5,
+      "z": -0.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "gate:z@-47,0",
+      "assetId": "gate:z",
+      "x": -47,
+      "z": 0,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "npc:clerk@12,-15",
+      "assetId": "npc:clerk",
+      "x": 12,
+      "z": -15,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "npc:blacksmith@-19,-12",
+      "assetId": "npc:blacksmith",
+      "x": -23.5,
+      "z": -8.5,
+      "scale": 1.2,
+      "flip": false,
+      "facing": 1
+    },
+    {
+      "id": "npc:merchant@18,13",
+      "assetId": "npc:merchant",
+      "x": 17,
+      "z": 6.5,
+      "scale": 1.2,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "npc:healer@-16,16",
+      "assetId": "npc:healer",
+      "x": -10.5,
+      "z": 27.5,
+      "scale": 1,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "npc:guard@5,40",
+      "assetId": "npc:guard",
+      "x": 5,
+      "z": 40,
+      "scale": 1.2,
+      "flip": false,
+      "facing": 0
+    },
+    {
+      "id": "npc:angel@0,5.2",
+      "assetId": "npc:angel",
+      "x": -3,
+      "z": 5,
+      "scale": 1.4,
+      "flip": false,
+      "facing": 0
+    }
+  ]
+}

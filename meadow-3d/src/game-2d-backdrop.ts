@@ -8,6 +8,7 @@ import {ruinsProps} from './ruins-art';
 import {fieldRoadTexture,paintFieldPath} from './field-ground';
 import {isBiomeMap,BIOME_SCENES,BIOME_GROUND,BIOME_ROCK,biomeRockProps} from './biome-scenes';
 import {loadCitySpriteTheme} from './city-sprite-theme';
+import {CITY_GROUND_FILTER} from './city-palette';
 
 export async function loadMapBackdrop(id:MapId,assets:CanvasAssets){
  const base=(id==='forest'||id==='grove')?'/assets/env-forest/':'/assets/env-painted/';
@@ -22,7 +23,7 @@ export async function loadMapBackdrop(id:MapId,assets:CanvasAssets){
  const tiles=new Map<string,HTMLCanvasElement>();
  function tile(image:HTMLImageElement,metres:number,pixelsPerMetre:number){
   const size=Math.min(image.width,Math.max(32,Math.ceil(metres*pixelsPerMetre/32)*32)),key=`${image.src}|${size}`;
-  let out=tiles.get(key);if(!out){out=document.createElement('canvas');out.width=size;out.height=Math.max(1,Math.round(size*image.height/image.width));const context=out.getContext('2d')!;context.imageSmoothingQuality='high';context.drawImage(image,0,0,out.width,out.height);tiles.set(key,out);}return out;
+  let out=tiles.get(key);if(!out){out=document.createElement('canvas');out.width=size;out.height=Math.max(1,Math.round(size*image.height/image.width));const context=out.getContext('2d')!;context.imageSmoothingQuality='high';if(id==='city_plaza')context.filter=CITY_GROUND_FILTER;context.drawImage(image,0,0,out.width,out.height);tiles.set(key,out);}return out;
  }
  let grassPattern:CanvasPattern|null=null,roadPattern:CanvasPattern|null=null;
  let patternScale=0;

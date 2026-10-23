@@ -13,7 +13,7 @@ test('diagonal input does not increase world movement speed',()=>{
 test('walking into tower stops at its collision edge',()=>{
   const s=createCityExplorer();s.player.x=0;s.player.z=5;const toward=project(0,-1);
   for(let i=0;i<240;i++){s.step(toward.x,toward.y,1/60);assert.ok(cityWalkable(s.player.x,s.player.z,.38));}
-  assert.ok(s.player.z>=2.38&&s.player.z<2.5);assert.equal(s.player.moving,false);
+  assert.ok(s.player.z>=2.58&&s.player.z<2.7);assert.equal(s.player.moving,false);
 });
 test('city boundary blocks walking and reset restores original spawn',()=>{
   const s=createCityExplorer();s.player.x=45;s.player.z=5;const toward=project(1,0);

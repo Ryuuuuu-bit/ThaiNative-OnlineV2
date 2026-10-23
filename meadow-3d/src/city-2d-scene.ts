@@ -1,4 +1,4 @@
-import { CITY, CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@the-beginning-online/shared/maps';
+import { CITY, CITY_LAYOUT, CITY_BUILDINGS, CITY_PLANTERS, CITY_BENCHES, CITY_STALLS } from '@the-beginning-online/shared/maps';
 import {bake,type Sprite} from './city-2d-art';
 import {CITY_HOUSES,CITY_ART_SOLIDS,DECOR,CITY2D_FOUNTAIN as CITY_FOUNTAIN,GARDEN_TREES,city2dWalkable} from './city-2d-layout';
 import {TOWN_NPCS,WAYPOINTS,CITY_EXITS} from './city-2d-locations';
@@ -7,10 +7,11 @@ import {makePaintedGround,isCityPlantingGround} from './city-2d-ground';
 import {CITY_GATES} from './city-2d-gates';
 import type {NpcSprite} from './city-npc-sprite';
 import {loadCitySpriteTheme} from './city-sprite-theme';
+import {cityWindowGlow} from './city-lighting';
 export type CityAssetCategory='อาคาร'|'ของตกแต่ง'|'ธรรมชาติ'|'กำแพงและประตู'|'NPC';
 export type CitySceneAsset={id:string;name:string;category:CityAssetCategory};
 export async function loadCity2DScene(editor=false){
- type Prop={x:number;z:number;image:Sprite;asset:CitySceneAsset;label?:string;fade?:boolean;water?:boolean;tree?:boolean;foliage?:boolean};
+ type Prop={x:number;z:number;image:Sprite;glow?:Sprite;asset:CitySceneAsset;label?:string;fade?:boolean;water?:boolean;tree?:boolean;foliage?:boolean};
  type PaintedAsset={id:string;rect:[number,number,number,number]};type PaintedGroup={image:string;assets:PaintedAsset[]};
  let manifest:Record<string,{webp:string}>,ground:HTMLCanvasElement,paintedSceneAssets=0;
  const props:Prop[]=[],npcSprites=new Map<string,NpcSprite>(),sprites=new Map<string,Sprite>();
@@ -99,5 +100,20 @@ export async function loadCity2DScene(editor=false){
  for(const prop of props)prop.image=spriteTheme.faces(prop.asset.id,prop.image)[0];
  for(const npc of TOWN_NPCS)npcSprites.set(npc.art,spriteTheme.npc(npc.art));
  paintedSceneAssets=Object.keys(spriteTheme.manifest.assets).length;
+ if(!editor){
+   const templates=new Map(props.map(p=>[p.asset.id,p]));
+   const placed=CITY_LAYOUT.items.filter(p=>!p.assetId.startsWith('npc:')).map(item=>{
+     const base=templates.get(item.assetId);if(!base)throw Error('ไม่มีภาพผังเมือง '+item.assetId);
+     const source=spriteTheme.faces(item.assetId,base.image)[item.facing];
+     const image=item.scale===1&&!item.flip?source:bake(c=>{c.scale(item.flip?-item.scale:item.scale,item.scale);c.drawImage(source,source.left,source.top,source.width/28,source.height/28);});
+     const glow=base.asset.category==='อาคาร'||item.assetId.startsWith('theme:lamp:')?cityWindowGlow(image):undefined;
+     return {...base,x:item.x,z:item.z,image,glow};
+   });
+   props.splice(0,props.length,...placed);
+   for(const item of CITY_LAYOUT.items.filter(p=>p.assetId.startsWith('npc:'))){
+     const art=item.assetId.slice(4) as Parameters<typeof spriteTheme.npc>[0],sprite=spriteTheme.npc(art,item.facing);
+     npcSprites.set(art,{...sprite,width:sprite.width*item.scale,height:sprite.height*item.scale});
+   }
+ }
  return {ground,props,npcSprites,paintedSceneAssets};
 }

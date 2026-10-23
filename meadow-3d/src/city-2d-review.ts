@@ -1,7 +1,8 @@
+import {CityLighting,drawCityWindowGlow} from './city-lighting';
 import {heroBodyCalibration} from './city-character-calibration';
 import './city-2d-review.css';
 import {z} from 'zod';
-import { CITY, CITY_BUILDINGS } from '@the-beginning-online/shared/maps';
+import { CITY, CITY_LAYOUT, CITY_BUILDINGS } from '@the-beginning-online/shared/maps';
 import {facing8For} from './sprite-animation';
 import {shadowClipSchema,shadowPose} from './shadow-hero';
 import { HERO_METRES,HERO_PIXEL_METRES } from './world-scale';
@@ -18,7 +19,8 @@ import {drawNpcSprite,type NpcSprite} from './city-npc-sprite';
 import {CanvasAssets} from './game-2d-assets';
 import {loadMapBackdrop} from './game-2d-backdrop';
 let backdrop:Awaited<ReturnType<typeof loadMapBackdrop>>;
-type Prop = { x: number; z: number; image: Sprite; label?: string; fade?: boolean; water?: boolean };
+const cityLighting=new CityLighting();
+type Prop = {glow?:Sprite; x: number; z: number; image: Sprite; label?: string; fade?: boolean; water?: boolean };
 const canvas = document.querySelector<HTMLCanvasElement>('#city')!;
 const ctx = canvas.getContext('2d')!;
 const sim = createCityExplorer(), player = sim.player;
@@ -117,15 +119,16 @@ function drawAtmosphere(s:number){
  if(!overview){
    for(let i=0;i<7;i++){const a=time*.07+i*2.4,p=screen(project(-12+Math.cos(a)*5,20+Math.sin(a)*6,1+Math.sin(time+i)*.2));ctx.fillStyle=['#e1b4c6','#d7c58e','#e1ccb1'][i%3];ctx.beginPath();ctx.ellipse(p.x,p.y,.07*s,Math.abs(Math.sin(time*5+i))*.12*s+.02*s,.4,0,Math.PI*2);ctx.fill();}
  }
- if(twilight){ctx.fillStyle='#24345150';ctx.fillRect(0,0,width,height);ctx.globalCompositeOperation='screen';for(const lamp of DECOR.filter(p=>p.kind==='lamp')){const p=screen(project(lamp.x,lamp.z,3.5)),r=s*2.1;const glow=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,r);glow.addColorStop(0,'#ffd887b0');glow.addColorStop(.18,'#f6bc5860');glow.addColorStop(1,'#f3a33d00');ctx.fillStyle=glow;ctx.fillRect(p.x-r,p.y-r,r*2,r*2);}ctx.globalCompositeOperation='source-over';}
+ if(twilight){ctx.fillStyle='#24345150';ctx.fillRect(0,0,width,height);}
  if(speechUntil&&time>speechUntil){document.querySelector<HTMLElement>('#speech')!.hidden=true;speechUntil=0;}
 }
 function render(now:number){requestAnimationFrame(render);const dt=last?Math.min((now-last)/1000,.05):0;last=now;if(!ready||document.hidden)return;if(!paused&&!travelDialog.open)time+=dt;
   if(!paused&&!travelDialog.open){const h=Number(keys.has('KeyD')||keys.has('ArrowRight'))-Number(keys.has('KeyA')||keys.has('ArrowLeft'));const v=Number(keys.has('KeyS')||keys.has('ArrowDown'))-Number(keys.has('KeyW')||keys.has('ArrowUp'));sim.step(h,v,dt);}
   const goal=overview?{x:0,y:0}:follow();const smoothing=1-Math.exp(-dt*10);camera.x+=(goal.x-camera.x)*smoothing;camera.y+=(goal.y-camera.y)*smoothing;
   const s=scale(),o=screen({x:0,y:0});ctx.clearRect(0,0,width,height);backdrop.draw(ctx,o,s,width,height);ctx.drawImage(ground,o.x-75*s,o.y-55.5556*s,150*s,111.1111*s);
+  cityLighting.draw(ctx,CITY_LAYOUT.items,(x,z)=>screen(project(x,z)),s,width,height,true);
   const heroDepth=project(player.x,player.z).y;
-  const draws: {depth:number;draw:()=>void}[]=props.map(p=>({depth:project(p.x,p.z).y,draw:()=>{const q=screen(project(p.x,p.z)),w=p.image.width/cacheScale*s,h=p.image.height/cacheScale*s;const x=q.x+p.image.left*s,y=q.y+p.image.top*s;if(x>width||x+w<0||y>height||y+h<0)return;const hp=screen(project(player.x,player.z));ctx.globalAlpha=!overview&&p.fade&&project(p.x,p.z).y>heroDepth&&hp.x>x&&hp.x<x+w&&hp.y>y&&hp.y<q.y?.5:1;ctx.drawImage(p.image,x,y,w,h);ctx.globalAlpha=1;if(p.water)drawFountainWater(ctx,q.x,q.y,s,time);}}));
+  const draws: {depth:number;draw:()=>void}[]=props.map(p=>({depth:project(p.x,p.z).y,draw:()=>{const q=screen(project(p.x,p.z)),w=p.image.width/cacheScale*s,h=p.image.height/cacheScale*s;const x=q.x+p.image.left*s,y=q.y+p.image.top*s;if(x>width||x+w<0||y>height||y+h<0)return;const hp=screen(project(player.x,player.z));ctx.globalAlpha=!overview&&p.fade&&project(p.x,p.z).y>heroDepth&&hp.x>x&&hp.x<x+w&&hp.y>y&&hp.y<q.y?.5:1;ctx.drawImage(p.image,x,y,w,h);drawCityWindowGlow(ctx,p.glow,q.x,q.y,s);ctx.globalAlpha=1;if(p.water)drawFountainWater(ctx,q.x,q.y,s,time);}}));
   for(const p of backdrop.props){const q=screen(project(p.x,p.z));if(q.x<-p.h*s||q.x>width+p.h*s||q.y<0||q.y>height+p.h*s)continue;draws.push({depth:project(p.x,p.z).y,draw:()=>ctx.drawImage(p.image,...p.rect as [number,number,number,number],q.x-p.w*p.anchor[0]*s,q.y-p.h*p.anchor[1]*s,p.w*s,p.h*s)});}
   if(!CITY.empty)for(const p of [...WAYPOINTS,...CITY_EXITS])draws.push({depth:project(p.x,p.z).y+.01,draw:()=>{
     const q=screen(project(p.x,p.z));ctx.save();ctx.strokeStyle=p.color;ctx.lineWidth=Math.max(1,s*.06);
@@ -139,6 +142,7 @@ function render(now:number){requestAnimationFrame(render);const dt=last?Math.min
   draws.push({depth:heroDepth,draw:()=>{const p=screen(project(player.x,player.z));ctx.beginPath();ctx.ellipse(p.x,p.y,.48*s,.23*s,0,0,Math.PI*2);ctx.fillStyle='#172c2966';ctx.fill();if(!overview){ctx.beginPath();ctx.ellipse(p.x,p.y,.63*s,.31*s,0,0,Math.PI*2);ctx.strokeStyle='#e2d3a2a0';ctx.lineWidth=1;ctx.stroke();}const motion=!paused&&player.moving?'walk':'idle',pose=shadowPose(heroManifest,'male-iron',motion,facing8For(player.fx,player.fz),player.clock),cell=pose.cell,img=motion==='walk'?run:idle;actor(img,player.x,player.z,img.width/cell.columns,img.height/cell.rows,cell.column,cell.row,pose.w*HERO_PIXEL_METRES*pose.scale,pose.h*HERO_PIXEL_METRES*pose.scale,pose.feet/pose.h,pose.anchorX);if(overview){ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#f0d786';ctx.fill();}else label('คุณ',p.x,p.y-(HERO_METRES+.3)*s);}});
   draws.sort((a,b)=>a.depth-b.depth).forEach(d=>d.draw());
   if(!CITY.empty)drawAtmosphere(s);
+  cityLighting.draw(ctx,CITY_LAYOUT.items,(x,z)=>screen(project(x,z)),s,width,height);
   for(const p of props.filter(p=>p.label)){const q=screen(project(p.x,p.z));if(!overview&&Math.hypot(p.x-player.x,p.z-player.z)<15)label(p.label!,q.x,q.y+Math.max(18,s*2.1));}
   if(overview&&!CITY.empty){if(showDistricts)for(const d of DISTRICTS){const p=screen(project(d.x,d.z));label(d.name,p.x,p.y+15);}
   for(const gate of CITY_GATES){const q=screen(project(gate.x,gate.z));label(gate.name,q.x,q.y+22);}}

@@ -1,5 +1,6 @@
 import './city-assets-review.css';
 import {loadCitySpriteTheme} from './city-sprite-theme';
+import {CITY_ART_FILTER} from './city-palette';
 let data:Awaited<ReturnType<typeof loadCitySpriteTheme>>,category:'houses'|'npcs'|'residents'='houses';
 const buildings=new Set(['cottage','townhouse','inn','market','forge','guild','clocktower','chapel','gazebo','watchtower','gate','wall','booth']);
 const categories={houses:'อาคาร กำแพง และประตู',npcs:'NPC ประจำเมือง',residents:'ของตกแต่งและธรรมชาติ'};
@@ -11,7 +12,8 @@ function paint(canvas:HTMLCanvasElement,id:string,allViews=false){
  const columns=allViews?2:1,cellW=canvas.width/columns,cellH=canvas.height/columns;
  for(const facing of (allViews?[0,1,2,3]:[0]) as (0|1|2|3)[]){
    const {source,rect}=data.view(id,facing),[x,y,w,h]=rect,left=(facing%columns)*cellW,top=Math.floor(facing/columns)*cellH,scale=Math.min((cellW-60)/w,(cellH-65)/h);
-   ctx.drawImage(source,x,y,w,h,left+(cellW-w*scale)/2,top+cellH-h*scale-30,w*scale,h*scale);
+   ctx.filter=id.startsWith('npc-')?'none':CITY_ART_FILTER;
+   ctx.drawImage(source,x,y,w,h,left+(cellW-w*scale)/2,top+cellH-h*scale-30,w*scale,h*scale);ctx.filter='none';
    if(allViews){ctx.font='18px "Noto Sans Thai",sans-serif';ctx.textAlign='center';ctx.fillStyle='#10231ce6';ctx.fillRect(left+cellW/2-78,top+cellH-28,156,27);ctx.fillStyle='#ece5ce';ctx.fillText(`ทิศ ${facing+1} · ${facing*90}°`,left+cellW/2,top+cellH-7);}
  }
 }

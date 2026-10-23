@@ -1,4 +1,6 @@
 import './city-layout-editor.css';
+import {CITY_GROUND_FILTER} from './city-palette';
+import {CityLighting,cityWindowGlow,drawCityWindowGlow} from './city-lighting';
 import {loadCityLayoutAssets,type CityLayoutAsset} from './city-layout-assets';
 import {createDraft,parseDraft,moveItem,faceItem,createLayoutHistory,type CityLayoutDraft,type LayoutItem,type Facing} from './city-layout-model';
 import {project,unproject} from './city-2d-sim';
@@ -8,6 +10,7 @@ const $=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(
 const canvas=$<HTMLCanvasElement>('city-editor'),ctx=canvas.getContext('2d')!;
 const nameInput=$<HTMLInputElement>('draft-name'),objectList=$<HTMLSelectElement>('objects');
 const storageKey='tbo:city-layout-draft:v1';
+const cityLighting=new CityLighting();
 let assets=new Map<string,CityLayoutAsset>(),ground:HTMLCanvasElement,grass:HTMLImageElement;
 let availableFacings=new Map<string,Facing[]>();
 let original:CityLayoutDraft,draft:CityLayoutDraft,history:ReturnType<typeof createLayoutHistory>;
@@ -94,7 +97,9 @@ function paintItem(item:LayoutItem,alpha=1){
  const image=itemImage(item),p=screen(item.x,item.z),b=itemBounds(item);
  if(b.x>width||b.x+b.w<0||b.y>height||b.y+b.h<0)return;
  ctx.save();ctx.globalAlpha=alpha;ctx.translate(p.x,p.y);ctx.scale(zoom*item.scale*(item.flip?-1:1),zoom*item.scale);
- ctx.drawImage(image,image.left,image.top,image.width/28,image.height/28);ctx.restore();
+ ctx.drawImage(image,image.left,image.top,image.width/28,image.height/28);
+ if(assets.get(item.assetId)!.category==='อาคาร'||item.assetId.startsWith('theme:lamp:'))drawCityWindowGlow(ctx,cityWindowGlow(image),0,0,1);
+ ctx.restore();
 }
 function groundLine(points:number[][],color:string,lineWidth=1){
  ctx.beginPath();for(const [i,[x,z]] of points.entries()){const p=screen(x,z);i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);}ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.stroke();
@@ -105,11 +110,13 @@ function draw(){
  const o=screen(0,0);ctx.save();ctx.transform(.83205*zoom,.39223*zoom,-.5547*zoom,.58835*zoom,o.x,o.y);
  const pattern=ctx.createPattern(grass,'repeat')!;pattern.setTransform(new DOMMatrix().translate(-53,-53).scale(9/grass.width,9/grass.height));ctx.fillStyle=pattern;
  const corners=[[0,0],[width,0],[0,height],[width,height]].map(([x,y])=>world(x,y)),minX=Math.min(...corners.map(p=>p.x))-1,minZ=Math.min(...corners.map(p=>p.z))-1;
- ctx.fillRect(minX,minZ,Math.max(...corners.map(p=>p.x))-minX+1,Math.max(...corners.map(p=>p.z))-minZ+1);ctx.restore();
+ ctx.filter=CITY_GROUND_FILTER;ctx.fillRect(minX,minZ,Math.max(...corners.map(p=>p.x))-minX+1,Math.max(...corners.map(p=>p.z))-minZ+1);ctx.restore();
  ctx.drawImage(ground,o.x-75*zoom,o.y-55.5556*zoom,150*zoom,111.1111*zoom);
+ cityLighting.draw(ctx,draft.items,screen,zoom,width,height,true);
  if($<HTMLInputElement>('grid').checked){for(let v=-48;v<=48;v+=zoom<10?4:2){groundLine([[v,-48],[v,48]],'#e7e8c414');groundLine([[-48,v],[48,v]],'#e7e8c414');}}
  ctx.setLineDash([5,5]);groundLine([[-48,-48],[48,-48],[48,48],[-48,48],[-48,-48]],'#ecdfad99');ctx.setLineDash([]);
  for(const item of sortedItems())paintItem(item);
+ cityLighting.draw(ctx,draft.items,screen,zoom,width,height);
  const item=selectedItem();if(item){
   const b=itemBounds(item),p=screen(item.x,item.z);ctx.save();ctx.strokeStyle='#f0d38d';ctx.lineWidth=1.5;ctx.setLineDash([5,3]);ctx.strokeRect(b.x-3,b.y-3,b.w+6,b.h+6);ctx.setLineDash([]);ctx.fillStyle='#f0d38d';ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fill();ctx.restore();
  }

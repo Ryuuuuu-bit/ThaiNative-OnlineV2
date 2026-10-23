@@ -1,4 +1,6 @@
 import {circleIndex,circleGrid,GRID_MAX_R} from './obstacle-index.js';
+import {CITY_COLLISION,cityNpcPlacement} from './city-approved-layout.js';
+export {CITY_LAYOUT,CITY_COLLISION,cityNpcPlacement,cityLayoutGeometry,type CityLayoutItem} from './city-approved-layout.js';
 import {DECOR,GARDEN_TREES,FORTIFICATION_SOLIDS,CITY2D_FOUNTAIN,CITY2D_HEALER} from './city-details.js';
 import meadow from '../../data/maps/meadow.generated.json' with {type:'json'};
 import forest from '../../data/maps/forest.generated.json' with {type:'json'};
@@ -88,13 +90,13 @@ export const CITY_EAST_RETURN = { x: 44, z: 0 };
 export const CITY_NORTH_RETURN = {x:0,z:-44},CITY_WEST_RETURN={x:-44,z:0};
 export const CITY_TOWER = { half: 2 };
 export const CITY_FOUNTAIN = CITY2D_FOUNTAIN;
-export const HEALER = CITY2D_HEALER;
-export const GATE_CAPTAIN = { x: 5, z: 40 };
+export const HEALER = cityNpcPlacement('healer');
+export const GATE_CAPTAIN = cityNpcPlacement('guard');
 export const CITY_BUILDINGS = [
 	{ id: 'storage', name: 'คลังเก็บของ', npc: 'คนเฝ้าคลัง', x: 13, z: -20, w: 8, d: 6, talk: { x: 12, z: -15 } },
 	{ id: 'forge', name: 'โรงตีเหล็ก', npc: 'ช่างตีเหล็ก', x: -25, z: -15, w: 9, d: 8, talk: { x: -19, z: -12 } },
 	{ id: 'market', name: 'ตลาด', npc: 'พ่อค้าเบ็ดเตล็ด', x: 25, z: 13, w: 8, d: 7, talk: { x: 18, z: 13 } },
-] as const;
+].map(b=>({...b,talk:cityNpcPlacement(b.id==='forge'?'blacksmith':b.id==='market'?'merchant':'clerk')}));
 /** Decorative houses (solid): behind the main roads, clear of every NPC and road. */
 export const CITY_HOUSES: { x: number; z: number; w: number; d: number }[] = [
 	[-38,-36,6,6],[-30,-27,6,5],[-12,-40,6,4],[-23,-40,5,4],
@@ -125,13 +127,11 @@ export const CITY_ART_SOLIDS: ({ kind: 'box'; x: number; z: number; w: number; d
 	{kind:'box',x:32,z:16,w:1.8,d:2,label:'crates-south'},
 	{kind:'box',x:-31,z:-15,w:1.4,d:3,label:'firewood-forge'},
 ];
-const cityBoxes = [...FORTIFICATION_SOLIDS,...DECOR.filter(p=>p.solid),...CITY_BUILDINGS, ...CITY_HOUSES, ...CITY_BENCHES, ...CITY_STALLS.map(s => s.solid), ...CITY_ART_SOLIDS.filter(s => s.kind === 'box')];
-const cityCircleHits = circleIndex([...CITY_PLANTERS, ...CITY_ART_SOLIDS.filter(s => s.kind === 'circle'), ...GARDEN_TREES.map(t=>({...t,r:.55}))]);
+const cityBoxes = CITY_COLLISION.boxes;
+const cityCircleHits = circleIndex(CITY_COLLISION.circles);
 export function cityWalkable(x: number, z: number, r: number) {
 	if (Math.abs(x) >= CITY.halfX - 1 - r || Math.abs(z) >= CITY.halfZ - 1 - r) return false;
 	if (CITY.empty) return true;
-	if (Math.abs(x) < CITY_TOWER.half + r && Math.abs(z) < CITY_TOWER.half + r) return false;
-	if (Math.hypot(x - CITY_FOUNTAIN.x, z - CITY_FOUNTAIN.z) < CITY_FOUNTAIN.r + r) return false;
 	if (cityCircleHits(x,z,r)) return false;
 	return !cityBoxes.some(b => Math.abs(x - b.x) < b.w / 2 + r && Math.abs(z - b.z) < b.d / 2 + r);
 }

@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createCityLife} from '../src/city-2d-life.ts';
-import {city2dWalkable,route,TOUR_STOPS,NEW_BUILDINGS,CITY2D_FOUNTAIN} from '../src/city-2d-layout.ts';
+import {CITY_LAYOUT} from '@the-beginning-online/shared/maps';
+import {city2dWalkable,route,TOUR_STOPS,CITY2D_FOUNTAIN} from '../src/city-2d-layout.ts';
 
 test('new buildings and relocated fountain block movement',()=>{
- for(const b of NEW_BUILDINGS)assert.equal(city2dWalkable(b.x,b.z,.3),false,b.kind);
+ for(const b of CITY_LAYOUT.items.filter(p=>p.assetId.startsWith('building:')||/^theme:(chapel|gazebo):/.test(p.assetId)))assert.equal(city2dWalkable(b.x,b.z,.3),false,b.assetId);
  assert.equal(city2dWalkable(CITY2D_FOUNTAIN.x,CITY2D_FOUNTAIN.z,.3),false);
  assert.equal(city2dWalkable(-14,14,.38),true,'old fountain position is now walkable');
 });
