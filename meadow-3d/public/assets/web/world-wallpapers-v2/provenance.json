@@ -1,0 +1,108 @@
+{
+  "description": "Game-inspired web wallpaper and retouched scenery, generated with the built-in image_gen tool from the existing game references. No player labels, HUD or test characters. Marketing illustrations, not untouched gameplay screenshots.",
+  "created": "2026-10-24",
+  "sources": {
+    "city": {
+      "reference": "current-world-v1/city.webp",
+      "generatedFile": "exec-55e5995c-eeaa-49ed-a4a9-080b09822cf1.png",
+      "sha256": "56c71e2b2a8467382839214dbdfb99cbd11935237ac24b1916983a411f8bc875",
+      "size": [
+        1600,
+        616
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "meadow": {
+      "reference": "current-world-v1/meadow.webp",
+      "generatedFile": "exec-f6136639-3d9e-4117-987f-c4ecde97a985.png",
+      "sha256": "3a89a7ef7de8ed22c1d89da9e348383a076843352158348687877add27f4ddef",
+      "size": [
+        1600,
+        648
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "yokai": {
+      "reference": "current-world-v1/yokai.webp",
+      "generatedFile": "exec-013a64bb-7689-4fbf-abfe-b9efd3c8cbde.png",
+      "sha256": "5f6e1bd5c700023a0947dd13bb9a0b822c50206e56fc9326eaae9fd98755dcb9",
+      "size": [
+        1221,
+        1000
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "dragon": {
+      "reference": "current-world-v1/dragon.webp",
+      "generatedFile": "exec-51e50879-0b2d-4b6e-bfed-b7377ecb8f3a.png",
+      "sha256": "8176123f6067e63bfa08c9e1f918d81827572c243c3e35f83a3a14a37b428b2d",
+      "size": [
+        1221,
+        1000
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "ocean": {
+      "reference": "current-world-v1/ocean.webp",
+      "generatedFile": "exec-455bb5f0-e399-4392-9367-3e6a252623c4.png",
+      "sha256": "e030f383305c2ce02ebe447d9ec4ed4366b29c376a6cd0abeb424a2f6795769c",
+      "size": [
+        1221,
+        1000
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "astral": {
+      "reference": "current-world-v1/astral.webp",
+      "generatedFile": "exec-8f37580a-a351-4004-97a0-f3ce6df29d73.png",
+      "sha256": "09791cc525509aca5cd8e0690463fda43919f60f166c42c3319320552426b795",
+      "size": [
+        1221,
+        1000
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "confluence": {
+      "reference": "current-world-v1/confluence.webp",
+      "generatedFile": "exec-9b8795eb-7736-4074-88db-e4495fa0dee8.png",
+      "sha256": "445d50624a987c7d951e1170a0058b82755156cda38d27bf40d198ad95efad2a",
+      "size": [
+        1223,
+        1000
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "frost": {
+      "reference": "current-world-v1/frost.webp",
+      "generatedFile": "exec-3bb4113b-2d55-46fe-837c-bccd1be802bd.png",
+      "sha256": "fb7a60a81f817996b0b09db43b1b55651b4ad3007f8fd3213ec7e70c522c26db",
+      "size": [
+        1221,
+        1000
+      ],
+      "treatment": "AI retouch; names, HUD, player avatar and combat overlays removed"
+    },
+    "city-wallpaper": {
+      "reference": "current-world-v1/city.webp",
+      "generatedFile": "exec-05f59f38-ef23-4ea5-a113-14045e5ceed0.png",
+      "sha256": "94d58959762108e27895b7fa543a928b8b6cfa3ee8d2a0a58e512561600ae29c",
+      "size": [
+        1920,
+        768
+      ],
+      "treatment": "cinematic theme wallpaper"
+    }
+  },
+  "prompts": {
+    "city": "Remove all text, player names, UI, selection circles and test avatar; retain the painted game city, polish warm lanterns and muted jade foliage.",
+    "meadow": "Use case: precise-object-edit. Edit target: existing meadow isometric painted game screenshot, to be used as a clean website scenic background. Remove EVERY bit of text, player/test names, Thai place labels, alphanumeric IDs, health bars, damage numbers, black label boxes, selection circles, range circles, HUD and UI overlays. Remove the central player avatar and floating combat beams/effects; seamlessly reconstruct matching ground behind these. Preserve the exact region identity, architecture, landmark shapes, paths, trees, rocks, crystals and naturally occurring animals from the original; do not invent buildings or redesign terrain. Same isometric game camera and composition, retain the hand-painted sprite/environment look. Gently polish color, light and contrast for a premium inviting RPG presentation with clearer highlights and rich color appropriate to this biome, no excessive fog, glow or blur. Clean detailed environment artwork with NO text, logos, signatures, borders or interface anywhere. This image is a scenery-only retouch of the existing game.",
+    "yokai": "Use case: precise-object-edit. Edit target: existing yokai isometric painted game screenshot, to be used as a clean website scenic background. Remove EVERY bit of text, player/test names, Thai place labels, alphanumeric IDs, health bars, damage numbers, black label boxes, selection circles, range circles, HUD and UI overlays. Remove the central player avatar and floating combat beams/effects; seamlessly reconstruct matching ground behind these. Preserve the exact region identity, architecture, landmark shapes, paths, trees, rocks, crystals and naturally occurring animals from the original; do not invent buildings or redesign terrain. Same isometric game camera and composition, retain the hand-painted sprite/environment look. Gently polish color, light and contrast for a premium inviting RPG presentation with clearer highlights and rich color appropriate to this biome, no excessive fog, glow or blur. Clean detailed environment artwork with NO text, logos, signatures, borders or interface anywhere. This image is a scenery-only retouch of the existing game.",
+    "dragon": "Use case: precise-object-edit. Edit target: existing dragon isometric painted game screenshot, to be used as a clean website scenic background. Remove EVERY bit of text, player/test names, Thai place labels, alphanumeric IDs, health bars, damage numbers, black label boxes, selection circles, range circles, HUD and UI overlays. Remove the central player avatar and floating combat beams/effects; seamlessly reconstruct matching ground behind these. Preserve the exact region identity, architecture, landmark shapes, paths, trees, rocks, crystals and naturally occurring animals from the original; do not invent buildings or redesign terrain. Same isometric game camera and composition, retain the hand-painted sprite/environment look. Gently polish color, light and contrast for a premium inviting RPG presentation with clearer highlights and rich color appropriate to this biome, no excessive fog, glow or blur. Clean detailed environment artwork with NO text, logos, signatures, borders or interface anywhere. This image is a scenery-only retouch of the existing game.",
+    "ocean": "Use case: precise-object-edit. Edit target: existing ocean isometric painted game screenshot, to be used as a clean website scenic background. Remove EVERY bit of text, player/test names, Thai place labels, alphanumeric IDs, health bars, damage numbers, black label boxes, selection circles, range circles, HUD and UI overlays. Remove the central player avatar and floating combat beams/effects; seamlessly reconstruct matching ground behind these. Preserve the exact region identity, architecture, landmark shapes, paths, trees, rocks, crystals and naturally occurring animals from the original; do not invent buildings or redesign terrain. Same isometric game camera and composition, retain the hand-painted sprite/environment look. Gently polish color, light and contrast for a premium inviting RPG presentation with clearer highlights and rich color appropriate to this biome, no excessive fog, glow or blur. Clean detailed environment artwork with NO text, logos, signatures, borders or interface anywhere. This image is a scenery-only retouch of the existing game.",
+    "astral": "Use case: precise-object-edit. Edit target: existing astral isometric painted game screenshot, to be used as a clean website scenic background. Remove EVERY bit of text, player/test names, Thai place labels, alphanumeric IDs, health bars, damage numbers, black label boxes, selection circles, range circles, HUD and UI overlays. Remove the central player avatar and floating combat beams/effects; seamlessly reconstruct matching ground behind these. Preserve the exact region identity, architecture, landmark shapes, paths, trees, rocks, crystals and naturally occurring animals from the original; do not invent buildings or redesign terrain. Same isometric game camera and composition, retain the hand-painted sprite/environment look. Gently polish color, light and contrast for a premium inviting RPG presentation with clearer highlights and rich color appropriate to this biome, no excessive fog, glow or blur. Clean detailed environment artwork with NO text, logos, signatures, borders or interface anywhere. This image is a scenery-only retouch of the existing game.",
+    "confluence": "Use case: precise-object-edit. Edit target: existing confluence isometric painted game screenshot, to be used as a clean website scenic background. Remove EVERY bit of text, player/test names, Thai place labels, alphanumeric IDs, health bars, damage numbers, black label boxes, selection circles, range circles, HUD and UI overlays. Remove the central player avatar and floating combat beams/effects; seamlessly reconstruct matching ground behind these. Preserve the exact region identity, architecture, landmark shapes, paths, trees, rocks, crystals and naturally occurring animals from the original; do not invent buildings or redesign terrain. Same isometric game camera and composition, retain the hand-painted sprite/environment look. Gently polish color, light and contrast for a premium inviting RPG presentation with clearer highlights and rich color appropriate to this biome, no excessive fog, glow or blur. Clean detailed environment artwork with NO text, logos, signatures, borders or interface anywhere. This image is a scenery-only retouch of the existing game.",
+    "frost": "Use case: precise-object-edit. Edit target: existing frost isometric painted game screenshot, to be used as a clean website scenic background. Remove EVERY bit of text, player/test names, Thai place labels, alphanumeric IDs, health bars, damage numbers, black label boxes, selection circles, range circles, HUD and UI overlays. Remove the central player avatar and floating combat beams/effects; seamlessly reconstruct matching ground behind these. Preserve the exact region identity, architecture, landmark shapes, paths, trees, rocks, crystals and naturally occurring animals from the original; do not invent buildings or redesign terrain. Same isometric game camera and composition, retain the hand-painted sprite/environment look. Gently polish color, light and contrast for a premium inviting RPG presentation with clearer highlights and rich color appropriate to this biome, no excessive fog, glow or blur. Clean detailed environment artwork with NO text, logos, signatures, borders or interface anywhere. This image is a scenery-only retouch of the existing game.",
+    "city-wallpaper": "Create a panoramic cinematic wallpaper based on the game's city: square clock tower, blue slate roofs, amber windows, cobbled plaza, luminous jade fountain and flowering trees, elevated three-quarter view over misty forest hills at golden twilight. Dark calm left third for Thai text, no foreground hero, no lettering, clock numerals, labels, HUD or UI."
+  },
+  "derivatives": "loading JPEGs and og-image-v4.jpg derive from city-wallpaper.webp; social image overlays existing logo."
+}

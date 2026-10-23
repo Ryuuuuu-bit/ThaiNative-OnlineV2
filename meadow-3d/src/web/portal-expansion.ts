@@ -1,6 +1,6 @@
 import './portal-expansion.css';
 import {REGIONS,WORLD_MAX_LEVEL,worldData} from './world-catalog';
-const illustrations=Object.fromEntries(['meadow','yokai','dragon','ocean','astral','confluence'].map(id=>[id,`/assets/web/current-world-v1/${id}.webp`]));
+const illustrations=Object.fromEntries(['meadow','yokai','dragon','ocean','astral','confluence'].map(id=>[id,`/assets/web/world-wallpapers-v2/${id}.webp`]));
 const host=document.querySelector('#realm-new-world');
 if(host)for(const [id,image]of Object.entries(illustrations)){
  const region=REGIONS.find(r=>r.id===id)!;const link=document.createElement('a');link.className='realm-region-card';link.href='/world.html?region='+id;

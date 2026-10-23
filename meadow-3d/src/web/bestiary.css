@@ -14,4 +14,4 @@
 .be-loot-icon{display:grid;place-items:center;flex:none;width:39px;height:39px;border:1px solid #a2b97938;border-radius:7px;background-color:#182e2b;box-shadow:inset 0 0 10px #020d1655}.be-atlas-item{background-image:url('/assets/items/items-v1-alpha.webp');background-size:500% 500%;background-repeat:no-repeat}.be-atlas-v2{background-image:url('/assets/items/items-v2.webp')}.be-loot-icon.is-etched{background:linear-gradient(145deg,#364735,#15292a)}.be-loot-icon .be-icon{width:26px;height:26px;filter:drop-shadow(0 2px 2px #0008)}
 @media(max-width:650px){.be-card-stats{gap:6px}.be-card-stats>span{gap:3px}.be-card-stats .be-icon{width:11px;height:11px}.be-map-tabs button{gap:5px}}
 
-.bestiary-page .be-feature{border:1px solid #d8bf8944;border-radius:6px;background:linear-gradient(0deg,#0b1a17f5,#0b1a1755),url('/assets/web/current-world-v1/meadow.webp') center/cover}
+.bestiary-page .be-feature{border:1px solid #d8bf8944;border-radius:6px;background:linear-gradient(0deg,#0b1a17f5,#0b1a1755),url('/assets/web/world-wallpapers-v2/meadow.webp') center/cover}

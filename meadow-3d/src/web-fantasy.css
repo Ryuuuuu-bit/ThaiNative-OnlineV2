@@ -52,7 +52,7 @@
 
 /* Public artwork follows the painted world shipped in the game. */
 .fantasy-portal .auth-page{max-width:1440px;grid-template-columns:minmax(0,1.25fr) minmax(380px,.85fr);gap:40px;padding:48px}
-.fantasy-portal .auth-art{min-height:660px;background-image:url('/assets/web/current-world-v1/city.webp');background-position:58% center;border-radius:8px;border-color:#d8bf8955;isolation:isolate}
+.fantasy-portal .auth-art{min-height:660px;background-image:url('/assets/web/world-wallpapers-v2/city-wallpaper.webp');background-position:58% center;border-radius:8px;border-color:#d8bf8955;isolation:isolate}
 .fantasy-portal .auth-art::after{z-index:1;background:linear-gradient(0deg,#091311 2%,#091311bb 26%,transparent 65%)}
 .auth-champion{position:absolute;right:-15%;bottom:4%;height:95%;width:auto;max-width:none;object-fit:contain;filter:drop-shadow(0 12px 25px #0009)}
 .auth-scene-label{position:absolute;top:28px;left:28px;z-index:2;font-size:10px;letter-spacing:.19em;color:#f0dba9;padding:9px 12px;border:1px solid #d8bf8960;background:#091311b8}

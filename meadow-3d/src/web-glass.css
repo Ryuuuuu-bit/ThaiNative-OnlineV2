@@ -8,10 +8,10 @@
 }
 html:has(body.glass-portal){background:#0e1917}
 body.glass-portal{color:var(--g-text);background:transparent;font-size:14px}
-body.glass-portal::before{content:'';position:fixed;inset:0;z-index:-2;background:url('/assets/web/current-world-v1/city.webp') center/cover}
+body.glass-portal::before{content:'';position:fixed;inset:0;z-index:-2;background:url('/assets/web/world-wallpapers-v2/city-wallpaper.webp') center/cover}
 body.glass-portal::after{content:'';position:fixed;inset:0;z-index:-1;background:
 	radial-gradient(900px 600px at 15% 0,rgba(6,12,11,.35),transparent 70%),linear-gradient(rgba(8,15,14,.62),rgba(8,15,14,.86))}
-@media(max-width:800px){body.glass-portal::before{background-image:url('/assets/web/current-world-v1/city.webp')}}
+@media(max-width:800px){body.glass-portal::before{background-image:url('/assets/web/world-wallpapers-v2/city-wallpaper.webp')}}
 
 /* Header / footer */
 .glass-portal .site-header{border-bottom:1px solid var(--g-line);background:var(--g-glass);backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);max-width:none;padding-left:max(28px,calc((100vw - 1144px)/2));padding-right:max(28px,calc((100vw - 1144px)/2))}
