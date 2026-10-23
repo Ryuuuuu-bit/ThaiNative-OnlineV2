@@ -13,7 +13,7 @@ export const REFINE_TABLE: readonly { chance: number; gold: number }[] = [
 	{ chance: 0.6, gold: 10000 }, { chance: 0.5, gold: 14000 }, { chance: 0.4, gold: 19000 },
 	{ chance: 0.3, gold: 25000 }, { chance: 0.2, gold: 32000 },
 ];
-/** Per refine level: weapons gain ATK, other armour pieces gain hard DEF, as a share of the item's base value. */
+/** Per refine level: weapons gain their primary ATK/MATK, other armour pieces gain hard DEF, as a share of the item's base value. */
 export const REFINE_WEAPON_SHARE = 0.04;
 export const REFINE_ARMOUR_SHARE = 0.03;
 const ARMOUR_TYPES = ['armour', 'shield', 'garment', 'footgear'];
@@ -22,12 +22,13 @@ export interface RefineMilestone {level:number;modifier:Modifier}
 /** Fixed bonuses are derived from the current refine level, never rolled into prefix/suffix slots. */
 export function refineMilestones(t:Template):RefineMilestone[]{
  if(!refineKind(t))return [];
- const magic=t.type==='weapon'&&(t.matk??0)>(t.atk??0);
+ const magic=refineBase(t).stat==='matk';
  const bonuses:Record<string,Modifier[]>={
   weapon:magic?[{kind:'percent',stat:'matk',value:.03},{kind:'percent',stat:'castMul',value:-.03},{kind:'percent',stat:'matk',value:.05}]:[{kind:'percent',stat:'atk',value:.03},{kind:'flat',stat:'crit',value:.02},{kind:'percent',stat:'aspd',value:.03}],
-  armour:[{kind:'percent',stat:'maxHp',value:.03},{kind:'percent',stat:'hardDef',value:.05},{kind:'percent',stat:'maxHp',value:.05}],
-  shield:[{kind:'percent',stat:'hardDef',value:.05},{kind:'percent',stat:'maxHp',value:.03},{kind:'percent',stat:'hardMdef',value:.05}],
-  garment:[{kind:'flat',stat:'flee',value:3},{kind:'percent',stat:'hardMdef',value:.05},{kind:'percent',stat:'moveSpeed',value:.02}],
+  // Flat defence stays useful even when the character starts with zero hard DEF/MDEF.
+  armour:[{kind:'percent',stat:'maxHp',value:.03},{kind:'flat',stat:'hardDef',value:5},{kind:'percent',stat:'maxHp',value:.05}],
+  shield:[{kind:'flat',stat:'hardDef',value:5},{kind:'percent',stat:'maxHp',value:.03},{kind:'flat',stat:'hardMdef',value:5}],
+  garment:[{kind:'flat',stat:'flee',value:3},{kind:'flat',stat:'hardMdef',value:5},{kind:'percent',stat:'moveSpeed',value:.02}],
   footgear:[{kind:'percent',stat:'moveSpeed',value:.02},{kind:'flat',stat:'flee',value:3},{kind:'percent',stat:'maxHp',value:.03}],
  };
  return bonuses[t.type].map((modifier,index)=>({level:(index+1)*5,modifier}));
@@ -38,8 +39,8 @@ export function refineKind(t: Template | undefined): 'weapon' | 'armour' | null 
 	return t.type === 'weapon' ? 'weapon' : ARMOUR_TYPES.includes(t.type) ? 'armour' : null;
 }
 /** The stat a refine level raises and the item's base value for it. */
-export function refineBase(t: Template): { stat: 'atk' | 'hardDef'; base: number } {
-	if (t.type === 'weapon') return { stat: 'atk', base: t.atk ?? 0 };
+export function refineBase(t: Template): { stat: 'atk' | 'matk' | 'hardDef'; base: number } {
+	if (t.type === 'weapon') return (t.matk ?? 0) > (t.atk ?? 0) ? { stat: 'matk', base: t.matk ?? 0 } : { stat: 'atk', base: t.atk ?? 0 };
 	return { stat: 'hardDef', base: t.modifiers.reduce((n, m) => n + (m.kind === 'flat' && m.stat === 'hardDef' ? m.value : 0), 0) };
 }
 /** Total bonus at `level`; every level is worth at least +1 so low-stat gear still improves. */

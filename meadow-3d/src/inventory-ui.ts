@@ -548,7 +548,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			const primary=mine.find(r=>r.key===((t.matk??0)>(t.atk??0)?'flat:matk':t.type==='weapon'?'flat:atk':'flat:hardDef'));
 			if(primary){const hero=document.createElement('div');hero.className='tip-primary';hero.innerHTML='<small></small><strong></strong>';hero.querySelector('small')!.textContent=primary.label+' · ค่าคงที่รวม';hero.querySelector('strong')!.textContent=itemStatValue(primary);card.append(hero);}
 			const base=document.createElement('p');base.className='tip-base';base.textContent='ค่าฐาน: '+statsOf(t).map(r=>`${r.label} ${itemStatValue(r)}`).join(' · ');card.append(base);
-			if(i?.refine){const bonus=document.createElement('p');bonus.className='tip-refine';bonus.textContent=`ตีบวก +${i.refine} · ${refineBase(t).stat==='atk'?'ATK':'DEF'} +${refineBonusValue(t,i.refine)}`;card.append(bonus);}
+			if(i?.refine){const bonus=document.createElement('p');bonus.className='tip-refine';bonus.textContent=`ตีบวก +${i.refine} · ${refineBase(t).stat==='atk'?'ATK':refineBase(t).stat==='matk'?'MATK':'DEF'} +${refineBonusValue(t,i.refine)}`;card.append(bonus);}
 			appendStatComparison(card,mine,theirs,opts.against!==undefined);
 			if (opts.against === null) { const n = document.createElement("p"); n.className = "tip-note"; n.textContent = "ช่องนี้ยังว่าง"; card.append(n); }
 		} else if (t.type === "consumable") {

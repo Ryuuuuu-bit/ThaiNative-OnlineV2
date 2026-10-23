@@ -800,6 +800,7 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 					};
 					await room.saveQueue;const economyState=await store.inventory(session.accountId,character.id);
                     if(ws.readyState!==WebSocket.OPEN||closing){return;}
+                    profile.equipment=equipped(economyState.inventory);profile.cards=[];
                     created=true;const p = addPlayer(room.game, character.id, profile);p.inventory=economyState.inventory;p.gold=economyState.gold;
                     p.profile.equipment=equipped(p.inventory);p.profile.cards=equippedCards(p.inventory);
 					Object.assign(p, normalizeJob(character));

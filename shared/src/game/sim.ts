@@ -373,6 +373,7 @@ export function createGame(
 		won: false,
 		meteors: [] as {
 			ownerId: string;
+			targetId?: number;
 			x: number;
 			z: number;
 			time: number;
@@ -1002,13 +1003,14 @@ export function action(g: Game, a: Action) {
 		lootSkillSpent(g,p,skill.sp,skill.effect,skill.percent>0);endgameSkillSpent(g,p,skill);
 		p.cd[skill.id] = skill.cooldown;
 		if (skill.id === "whirlwind") p.cd.spin = skill.cooldown;
+		const castTime = skill.cast > 0 ? Math.max(skill.cast * (1 - g.data.stats.caps.maxCastReduction), endgameCast(p, skill.cast * p.stats.castMul)) : 0;
 		const look = skill.visual ?? skill.id;
 		p.attack =
 			look === "whirlwind"
 				? 0.6
 				: skill.effect === "dash"
 					? 0.5
-					: skill.cast || 0.5;
+					: castTime || 0.5;
 		p.attackKind =
 			look === "whirlwind"
 				? "spin"
@@ -1020,7 +1022,7 @@ export function action(g: Game, a: Action) {
 		emit(g, "skill", {
 			skillId: skill.id,
 			visual: skill.visual,
-			duration: skill.cast || 0.7,
+			duration: castTime || 0.7,
 			dx: p.fx,
 			dz: p.fz,
 		});
@@ -1105,9 +1107,10 @@ export function action(g: Game, a: Action) {
 			return true;
 		}
 		if (skill.cast > 0) {
-			p.castRemaining = endgameCast(p,skill.cast);
+			p.castRemaining = castTime;
 			g.meteors.push({
 				ownerId: p.id,
+				targetId: skill.kind === "single" ? target?.id : undefined,
 				x: skill.range && target ? target.x : p.x,
 				z: skill.range && target ? target.z : p.z,
 				time: p.castRemaining,
@@ -2169,16 +2172,13 @@ export function step(
 					g.meteors.splice(i, 1);
 					continue;
 				}
-				emit(g, "skillImpact", {
-					x: m.x,
-					z: m.z,
-					skillId: m.skillId || "meteor",
-					visual: resolveSkill(g.data, m.skillId || "meteor", 1).visual,
-				});
-				const skill = resolveSkill(g.data, m.skillId || "meteor", m.level || 1);
-				for (const e of [...g.enemies])
-					if (!e.dead && Math.hypot(e.x - m.x, e.z - m.z) < skill.radius)
-						hit(g, e, skill);
+                const skill = resolveSkill(g.data, m.skillId || "meteor", m.level || 1);
+                const targets = g.enemies.filter(e => !e.dead && (skill.kind === "single"
+                    ? e.id === m.targetId && Math.hypot(e.x - owner.x, e.z - owner.z) <= skill.range + (e.boss ? .5 : 0)
+                    : Math.hypot(e.x - m.x, e.z - m.z) < skill.radius));
+                const impact = skill.kind === "single" && targets[0] ? targets[0] : m;
+                emit(g, "skillImpact", {x: impact.x, z: impact.z, skillId: skill.id, visual: skill.visual});
+                for (const e of targets) hit(g, e, skill);
 			}
 			g.meteors.splice(i, 1);
 		}

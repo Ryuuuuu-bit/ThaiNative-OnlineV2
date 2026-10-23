@@ -6,7 +6,7 @@ type Template = GameData["items"]["items"][number];
 type Outcome = { ok: boolean; from: number; to: number } | { error: string };
 const fmt = (n: number) => n.toLocaleString("en-US");
 const SLOT_NAMES: Record<string, string> = { weapon: "อาวุธ", armour: "เกราะ", shield: "โล่", garment: "ผ้าคลุม", footgear: "รองเท้า" };
-const statName = (stat: string) => (stat === "atk" ? "ATK" : "DEF");
+const statName = (stat: string) => (stat === "atk" ? "ATK" : stat === "matk" ? "MATK" : "DEF");
 const HAMMER = '<svg viewBox="0 0 110 110" aria-hidden="true"><defs><linearGradient id="rf-hh" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4f6f8"/><stop offset=".5" stop-color="#9aa6ad"/><stop offset="1" stop-color="#58646b"/></linearGradient><linearGradient id="rf-hw" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#8a5a32"/><stop offset="1" stop-color="#5a3a20"/></linearGradient></defs><g transform="rotate(-38 16 96)"><rect x="12" y="34" width="9" height="66" rx="4" fill="url(#rf-hw)"/><rect x="-10" y="10" width="54" height="30" rx="6" fill="url(#rf-hh)" stroke="#2c3438" stroke-width="2"/><rect x="-10" y="10" width="11" height="30" rx="3" fill="#dfe5e9"/><path d="M40 14v22" stroke="#f0c060" stroke-width="2" opacity=".8"/></g></svg>';
 const RUNE = '<svg viewBox="-150 -150 300 300" aria-hidden="true"><g fill="none" stroke="#f0c070"><circle r="138" stroke-opacity=".55" stroke-width="2"/><circle r="122" stroke-opacity=".35" stroke-dasharray="3 9"/><circle r="92" stroke-opacity=".5"/>' + Array.from({ length: 12 }, (_, i) => `<path transform="rotate(${i * 30})" d="M0-138v16M-6-112l6-8 6 8" stroke-opacity=".75"/>`).join("") + '<path d="M0-92 80 46H-80Z" stroke-opacity=".4"/><path d="M0 92-80-46H80Z" stroke-opacity=".4"/></g></svg>';
 const SAY = {
@@ -72,7 +72,7 @@ export function mountRefine(o: {
 		const t = template(item), quote = refineQuote(item, data), { stat, base } = refineBase(t), color = rarityColors[t.rarity as keyof typeof rarityColors] ?? rarityColors.common;
 		const value = (lv: number) => base + refineBonusValue(t, lv);
 		const nm = el("div", "rf-nm"); const name = el("b", "", t.nameTh); name.style.color = color;
-		nm.append(name, el("small", "", `${SLOT_NAMES[t.type] ?? ""} · ${item.location === "equip" ? "สวมอยู่" : "ในกระเป๋า"} · ${stat === "atk" ? "ATK +4%" : "DEF +3%"} ของค่าฐานต่อระดับ (อย่างน้อย +1)`));
+		nm.append(name, el("small", "", `${SLOT_NAMES[t.type] ?? ""} · ${item.location === "equip" ? "สวมอยู่" : "ในกระเป๋า"} · ${statName(stat)} +${t.type === "weapon" ? 4 : 3}% ของค่าฐานต่อระดับ (อย่างน้อย +1)`));
 		const target = el("div", "rf-target"), slot = el("div", "rf-slot"); slot.style.setProperty("--r", color);
 		slot.append(o.itemIcon(t), el("span", "rf-plus", `+${item.refine}`));
 		target.append(slot);
@@ -86,7 +86,7 @@ export function mountRefine(o: {
 		if (typeof quote === "string") { box.append(el("p", "rf-empty", quote)); return box; }
 		const lvl = el("div", "rf-lvl"); lvl.append(el("span", "from", `+${item.refine}`), el("span", "arr", "→"), el("span", "to", `+${quote.next}`)); target.append(lvl);
 		const stats = el("div", "rf-stats");
-		stats.append(el("span", "", stat === "atk" ? "พลังโจมตี (ATK)" : "พลังป้องกัน (DEF)"), el("b", "", String(value(item.refine))), el("i", "", "→"), el("em", "", `${value(quote.next)} (+${value(quote.next) - value(item.refine)})`));
+		stats.append(el("span", "", stat === "atk" ? "พลังโจมตี (ATK)" : stat === "matk" ? "พลังเวท (MATK)" : "พลังป้องกัน (DEF)"), el("b", "", String(value(item.refine))), el("i", "", "→"), el("em", "", `${value(quote.next)} (+${value(quote.next) - value(item.refine)})`));
 		stats.append(el("span", "", "ค่าฐาน"), el("b", "", String(base)), el("i"), el("em", "dim", String(base)));
 		const pct = Math.round(quote.chance * 100), tone = pct === 100 ? "ok" : pct >= 50 ? "warn" : "bad";
 		const odds = el("div", "rf-odds"), ring = el("div", "rf-ring " + tone); ring.style.setProperty("--p", String(pct));

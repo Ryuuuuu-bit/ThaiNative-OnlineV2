@@ -580,3 +580,13 @@ test('Worldcore isolates party encounters, checks invitation, retains empty chec
  const resumed=f.open(users[0].cookie);await resumed.until(m=>m.t==='welcome');resumed.send({t:'spawnReady'});await resumed.until(m=>m.t==='snap'&&m.mapId==='confluence');assert.equal(locate(users[0].character.id),party);assert.ok(guard.dead);
  resumed.send({t:'party',op:'leave'});await resumed.until(m=>m.t==='snap'&&m.mapId==='city_plaza');assert.equal(party.game.players.has(users[0].character.id),false);
 });
+
+test('joining a mage uses persisted staff equipment before deriving initial stats',async t=>{
+ const f=await fixture(t),user=await f.make('MageRefine'),c=user.character;
+ await f.store.saveProgress(c.accountId,c.id,{...c,classId:'mage',jobId:'mage',jobsVersion:3,skills:{basic:1,fire_bolt:1}});
+ const original=f.store.inventory.bind(f.store);
+ f.store.inventory=async(...args)=>{const state=await original(...args);state.inventory.items=[{id:'staff',template:'wood_staff',location:'equip',slot:'weapon',qty:1,refine:10,cards:[],bound:false,source:'test'}];return state;};
+ const peer=f.open(user.cookie);await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
+ const p=[...f.rt.rooms.values()][0].game.players.get(c.id)!;
+ assert.equal(p.jobId,'mage');assert.deepEqual(p.profile.equipment,['wood_staff']);assert.ok(p.stats.matk>25);assert.ok(p.stats.castMul<1);
+});
