@@ -377,7 +377,7 @@ test('two sockets racing released loot award exactly once; disconnect during com
 
 test('simultaneous joins for one character share the same unique inventory and live room',async t=>{
  const f=await fixture(t),a=await f.make('JoinEconomy');const original=f.store.inventory.bind(f.store);f.store.inventory=async(...args)=>{await wait(20);return original(...args);};
- const one=f.open(a.cookie),two=f.open(a.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});await two.until(m=>m.t==='snap');const state=await two.until(m=>m.t==='inv'&&m.inventory);assert.equal(state.inventory.items.filter((i:any)=>i.location==='equip').length,2);assert.equal(new Set(state.inventory.items.map((i:any)=>i.id)).size,3);assert.equal(f.rt.rooms.size,1);assert.ok((await f.store.integrity()).ok);
+ const one=f.open(a.cookie),two=f.open(a.cookie);await one.until(m=>m.t==='welcome');await two.until(m=>m.t==='welcome');two.send({t:'spawnReady'});await two.until(m=>m.t==='snap');const state=await two.until(m=>m.t==='inv'&&m.inventory);assert.equal(state.inventory.items.filter((i:any)=>i.location==='equip').length,2);assert.equal(new Set(state.inventory.items.map((i:any)=>i.id)).size,9);assert.equal(f.rt.rooms.size,1);assert.ok((await f.store.integrity()).ok);
 });
 
 test('HUD settings are account scoped; return cast cancels and cooldown survives transfer',async t=>{

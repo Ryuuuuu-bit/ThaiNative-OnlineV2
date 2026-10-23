@@ -16,6 +16,23 @@ async function fixture() {
 		store.inventoryOp(a.id, c.id, req, op, ctx);
 	return { store, a, c, run };
 }
+test('starter weapons cover every weapon type in the bag and are granted only once', async () => {
+	const { store, a, c, run } = await fixture();
+	const first = await store.inventory(a.id, c.id);
+	const weapons = first.inventory.items.filter(i => i.location === 'bag' && data.items.items.find(t => t.id === i.template)?.type === 'weapon');
+	assert.deepEqual(weapons.map(i => i.template), ['training_sword', 'field_greatsword', 'reed_dagger', 'wood_staff', 'bamboo_bow', 'field_knuckles']);
+	assert.equal(new Set(weapons.map(i => data.items.items.find(t => t.id === i.template)!.weaponType)).size, 6);
+	for (const item of weapons) {
+		assert.equal(item.qty, 1);
+		assert.equal(item.slot, null);
+		assert.equal(data.items.items.find(t => t.id === item.template)!.level, 1);
+	}
+	assert.equal(new Set(first.inventory.items.map(i => i.id)).size, first.inventory.items.length);
+	assert.deepEqual(await store.inventory(a.id, c.id), first);
+	await run({ op: 'discard', id: weapons[0].id, qty: 1 });
+	assert.ok(!(await store.inventory(a.id, c.id)).inventory.items.some(i => i.id === weapons[0].id));
+	assert.ok((await store.integrity()).ok);
+});
 test('ring destination persists and replayed equip requests cannot move or duplicate a ring',async()=>{
  const {store,a,c,run}=await fixture();await run({op:'admin',loot:[{template:'jade_ring',qty:3},{template:'sky_amulet',qty:1}]});
  const initial=await store.inventory(a.id,c.id),rings=initial.inventory.items.filter(i=>i.template==='jade_ring'),amulet=initial.inventory.items.find(i=>i.template==='sky_amulet')!;
@@ -57,7 +74,7 @@ test("100 different concurrent buys with gold for exactly 3 produce exactly 3", 
 	assert.equal(state.gold, 0);
 	assert.equal(
 		state.inventory.items.filter((i) => i.template === "training_sword").length,
-		4,
+		5,
 	);
 	assert.ok((await store.integrity()).ok);
 });

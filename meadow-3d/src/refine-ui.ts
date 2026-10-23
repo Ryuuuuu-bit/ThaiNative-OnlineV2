@@ -1,4 +1,4 @@
-import { REFINE_MAX, refineMilestones, REFINE_TABLE, rarityColors, refineBase, refineBonusValue, refineKind, refineQuote, type GameData, type Inventory, type OwnedItem } from "@the-beginning-online/shared";
+import { REFINE_MAX, refineMilestones, REFINE_TABLE, rarityColors, ownedRarity, refineBase, refineBonusValue, refineKind, refineQuote, type GameData, type Inventory, type OwnedItem } from "@the-beginning-online/shared";
 import "./refine.css";
 import {modifierText} from "./card-text";
 
@@ -54,7 +54,7 @@ export function mountRefine(o: {
 			for (const i of group) {
 				const t = template(i), b = el("button", "rf-it" + (i.id === selected ? " on" : "") + (i.refine >= REFINE_MAX ? " max" : "")) as HTMLButtonElement;
 				b.type = "button"; b.disabled = busy && i.id !== selected;
-				b.style.setProperty("--r", rarityColors[t.rarity as keyof typeof rarityColors] ?? rarityColors.common);
+				b.style.setProperty("--r", rarityColors[ownedRarity(i, t.rarity)]);
 				const icon = el("span", "rf-box"); icon.append(o.itemIcon(t));
 				const text = el("div"); text.append(el("b", "", t.nameTh), el("small", "", `${SLOT_NAMES[t.type] ?? ""}${i.refine >= REFINE_MAX ? " · สูงสุดแล้ว" : ""}`));
 				b.append(icon, text, el("span", "rf-lv" + (i.refine ? "" : " zero"), `+${i.refine}`));
@@ -69,7 +69,7 @@ export function mountRefine(o: {
 	function anvil(item: OwnedItem | undefined) {
 		const box = el("section", "rf-anvil");
 		if (!item) { box.append(el("p", "rf-empty rf-hint", "เลือกอาวุธหรือเกราะจากรายการด้านซ้าย")); return box; }
-		const t = template(item), quote = refineQuote(item, data), { stat, base } = refineBase(t), color = rarityColors[t.rarity as keyof typeof rarityColors] ?? rarityColors.common;
+		const t = template(item), quote = refineQuote(item, data), { stat, base } = refineBase(t), color = rarityColors[ownedRarity(item, t.rarity)];
 		const value = (lv: number) => base + refineBonusValue(t, lv);
 		const nm = el("div", "rf-nm"); const name = el("b", "", t.nameTh); name.style.color = color;
 		nm.append(name, el("small", "", `${SLOT_NAMES[t.type] ?? ""} · ${item.location === "equip" ? "สวมอยู่" : "ในกระเป๋า"} · ${statName(stat)} +${t.type === "weapon" ? 4 : 3}% ของค่าฐานต่อระดับ (อย่างน้อย +1)`));
@@ -208,13 +208,14 @@ export function mountRefine(o: {
 
 	function reveal(id: string, r: { ok: boolean; from: number; to: number }, t: Template) {
 		const anv = root.querySelector<HTMLElement>(".rf-anvil"); if (!anv) return;
+		const item = inv?.items.find((i) => i.id === id);
 		const { stat, base } = refineBase(t), value = (lv: number) => base + refineBonusValue(t, lv);
 		const box = el("div", "rf-result anim" + (r.ok ? "" : " fail"));
-		const slot = el("div", "rf-slot"); slot.style.setProperty("--r", rarityColors[t.rarity as keyof typeof rarityColors] ?? rarityColors.common);
+		const slot = el("div", "rf-slot"); slot.style.setProperty("--r", rarityColors[ownedRarity(item, t.rarity)]);
 		slot.append(o.itemIcon(t), el("span", "rf-plus", `+${r.to}`)); if (!r.ok) slot.append(el("span", "rf-crack"));
 		const p = el("p"); p.append(el("b", "", t.nameTh), ` ${statName(stat)} ${value(r.from)} → `, el("b", r.ok ? "up" : "down", String(value(r.to))));
 		const row = el("div", "rf-row");
-		const item = inv?.items.find((i) => i.id === id), q = item ? refineQuote(item, data) : "";
+		const q = item ? refineQuote(item, data) : "";
 		const again = el("button", "rf-go" + (r.ok ? "" : " again"), typeof q === "string" ? "ปิด" : `${r.ok ? "ตีต่อ" : "ลองอีกครั้ง"} +${q.next} · ${Math.round(q.chance * 100)}%`) as HTMLButtonElement;
 		again.type = "button"; again.onclick = () => { box.remove(); if (item && typeof q !== "string") strike(item); };
 		const close = el("button", "rf-go again", "ปิด") as HTMLButtonElement; close.type = "button"; close.onclick = () => { revealShown = false; box.remove(); };

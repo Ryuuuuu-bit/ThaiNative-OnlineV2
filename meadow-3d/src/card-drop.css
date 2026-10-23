@@ -1,0 +1,29 @@
+#card-drop-popup {
+	position: fixed; inset: 0; z-index: 85; display: grid; place-items: center;
+	background: radial-gradient(ellipse at center, #061018b8, #06101838 75%);
+	pointer-events: none;
+}
+#card-drop-popup .card-drop-panel {
+	width: min(760px, calc(100% - 48px)); max-height: calc(100% - 64px); overflow: hidden;
+	display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+	padding: 28px 38px; border: 1px solid #edc3698c; border-radius: 24px 6px;
+	background: radial-gradient(ellipse at top, #635031e8, #101e25f2 65%);
+	box-shadow: 0 0 70px #edc36922, 0 22px 70px #0008; color: #fff1d2;
+	animation: card-drop-arrive .35s ease-out; pointer-events: auto;
+}
+#card-drop-popup header, #card-drop-popup footer { text-align: center; }
+#card-drop-popup .card-drop-list { overflow: auto; }
+#card-drop-popup header small { color: #edc369; letter-spacing: 5px; font-size: 12px; }
+#card-drop-popup h2 { margin: 4px 0; font-size: 48px; color: #ffe0a2; text-shadow: 0 0 28px #edc36988; }
+#card-drop-popup header p { margin: 0 0 18px; color: #d5c7b0; }
+#card-drop-popup article { display: grid; grid-template-columns: 230px minmax(0, 1fr); align-items: center; gap: 22px; }
+#card-drop-popup .card-drop-art { display: grid; place-items: center; background: radial-gradient(ellipse, #edc36930, transparent 70%); }
+#card-drop-popup .item-icon { display: block; width: 230px; height: 280px; margin: 0; background-repeat: no-repeat; background-position: center; }
+#card-drop-popup .item-icon > .card-slot-badge { top: 10%; right: 10%; width: 44px; max-width: none; }
+#card-drop-popup h3 { margin: 0 0 14px; font-size: 25px; line-height: 1.45; color: #fff4dd; }
+#card-drop-popup .card-drop-slot { color: #93c9ed; font-size: 15px; }
+#card-drop-popup .card-drop-effects { font-size: 18px; line-height: 1.8; }
+#card-drop-popup footer p { color: #afbabd; font-size: 13px; margin: 18px 0 12px; }
+#card-drop-popup footer button { padding: 10px 50px; border: 1px solid #ffe0a2; border-radius: 24px; background: linear-gradient(#e9bb63, #ad752d); color: #24190d; font-size: 18px; font-weight: 700; box-shadow: 0 0 20px #edc36933; }
+@keyframes card-drop-arrive { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #card-drop-popup .card-drop-panel { animation: none; } }

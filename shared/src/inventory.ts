@@ -76,11 +76,11 @@ export interface LedgerEntry {
 	goldDelta: number;
 }
 export const rarityColors = {
-	common: "#eee7d4",
-	fine: "#83ba73",
-	rare: "#79b6ec",
+	common: "#ffffff",
+	fine: "#79b6ec",
+	rare: "#edc369",
 	epic: "#c697ed",
-	legendary: "#edc369",
+	legendary: "#ef5350",
 };
 const missingTemplates=new Set<string>();
 function knownTemplate(data:GameData,id:string){const t=data.items.items.find(t=>t.id===id);if(!t&&!missingTemplates.has(id)){missingTemplates.add(id);console.error('Missing item template',id);}return t;}
@@ -211,6 +211,10 @@ export function starterInventory(
 				bound: false,
 				source: "migration",
 			},
+			...['training_sword', 'field_greatsword', 'reed_dagger', 'wood_staff', 'bamboo_bow', 'field_knuckles'].map((template): OwnedItem => ({
+				id: uuid(), template, qty: 1, location: 'bag', slot: null,
+				refine: 0, cards: [], bound: false, source: 'migration',
+			})),
 			...(potions > 0
 				? [
 						{
@@ -243,6 +247,8 @@ export function rollDrops(
 		const rare = ["rare", "epic", "legendary"].includes(t.rarity);
 		const multiplier =
 			data.economy.dropMultiplier *
+			// TEST UAT boosts cards only; restore cardDropMultiplier to 1 for normal rates.
+			(t.type === 'card' ? data.economy.cardDropMultiplier : 1) *
 			(1 + bonus) *
 			(rare && autoSeconds > data.economy.autoRareAfterSeconds
 				? data.economy.autoRareMultiplier

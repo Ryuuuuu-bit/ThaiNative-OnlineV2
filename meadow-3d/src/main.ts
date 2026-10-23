@@ -18,6 +18,7 @@ import { playEventAudio } from './audio-events';
 import { mountSocial } from './social-ui';
 import { mountTrade } from './trade-ui';
 import { mountLevelUp } from './levelup-ui';
+import { mountCardDrop } from './card-drop-ui';
 import { mountQuests } from './quest-ui';
 import { mountAudioSettings } from './audio-settings-ui';
 import { mountAutoPotion } from './auto-potion-ui';
@@ -36,6 +37,7 @@ type TextureManifest=Record<string,{webp:string}>;
 import{GameSocket}from'./net/socket';import{NetworkWorld}from'./net/world';
 import{KEYS,isKey}from'./keys';
 import './style.css';
+import './card-drop.css';
 import {mountHUDQOL} from './hud-qol';
 import './hud-qol.css';
 import './ui-glass.css';
@@ -69,6 +71,7 @@ const launcher=(()=>{const bar=$('.legacy-actions'),open=document.createElement(
  new MutationObserver(()=>{if(document.querySelector('dialog[open]'))set(false);}).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open']});
  return {adopt:(el:Element)=>panel.append(el)};})();
 const itemData=loadGameData();
+const cardDrop=mountCardDrop(itemData);
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(selected.character.id),keys=new Set<string>();let qualityPreference="high";try{qualityPreference=localStorage.getItem("tn-quality")||"high";}catch{}
 let started=false,paused=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
 sound.restore(selected.character.audioSettings);
@@ -184,6 +187,7 @@ function events(){for(const e of game.events.splice(0)){
  case'heal':number(`+${e.amount}`,e,'heal',2.4);break;
  case'item_proc':if(e.playerId===net.you)notice(e.text);break;
  case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);if(e.kind==='hp'){const b=$('[data-action="potion"]');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
+ case'cardDrop':if(e.playerId===net.you)cardDrop.show(e.loot);break;
  case'itemPickup':if(e.playerId===net.you)social?.items(inventoryUI.names(e.loot));break;
  case'pickup':if(!e.playerId||e.playerId===net.you)social?.loot(e.xp,e.gold);break;
  case'jobLevel':if(e.playerId===net.you){social?.note('loot',`✦ ระดับอาชีพ ${e.jobLevel} · +${e.granted} แต้มสกิล · K`);if(e.jobLevel===40)social?.note('system','✧ ทูตสวรรค์จะนำทางสู่อาชีพขั้นสองเมื่อถึงเวลา');levelUp?.jobLevel(e as any);}break;

@@ -572,11 +572,12 @@ function reward(g: Game, e: Enemy) {
 	e.rewarded = true;
 	const spec = g.data.monsters.monsters.find((m) => m.id === e.dataId)!,
 		ownerId = topDamage(g, e);
+	const loot=rollDrops(spec,g.random,g.data,g.players.get(ownerId)?.autoSeconds||0,g.players.get(ownerId)?.stats.dropBonus||0,g.equipmentRandom);
 	g.drops.push({
 		ownerId,
   source:e.rewardSource,
   boss:e.boss, bossId:e.boss?e.dataId:undefined,
- loot:rollDrops(spec,g.random,g.data,g.players.get(ownerId)?.autoSeconds||0,g.players.get(ownerId)?.stats.dropBonus||0,g.equipmentRandom),
+ loot,
 		id: g.nextId++,
 		x: e.x,
 		z: e.z,
@@ -586,6 +587,8 @@ function reward(g: Game, e: Enemy) {
 		jobExp: spec.jobExp,
 		time: 0,
 	});
+	const cards=loot.filter(d=>g.data.items.items.find(t=>t.id===d.template)?.type==='card');
+	if(cards.length)emit(g,'cardDrop',{playerId:ownerId,x:e.x,z:e.z,loot:cards});
 	if (e.boss) {
 		g.won = true;
 		emit(g, "victory",{dataId:e.dataId,playerId:ownerId,x:e.x,z:e.z});

@@ -88,6 +88,7 @@
 	font-size: 13px;
 }
 .item-icon {
+	position: relative;
 	display: block;
 	margin: auto;
 	width: 60px;
@@ -97,6 +98,19 @@
 	background-size: 500% 500%;
 	border-radius: 4px;
 }
+.item-icon > .card-slot-badge {
+	position: absolute; top: 0; right: 4%; display: block;
+	width: 36%; min-width: 14px; max-width: 24px; aspect-ratio: 1;
+	border: 1px solid #edc369; border-radius: 50%;
+	background: #10251f center / 90% no-repeat;
+	box-shadow: 0 1px 4px #000b; pointer-events: none;
+}
+.card-slot-badge[data-card-slot=weapon] { background-image: url('./ui-icons/equipment-weapon.svg'); }
+.card-slot-badge[data-card-slot=armour] { background-image: url('./ui-icons/equipment-body.svg'); }
+.card-slot-badge[data-card-slot=shield] { background-image: url('./ui-icons/equipment-shield.svg'); }
+.card-slot-badge[data-card-slot=garment] { background-image: url('./ui-icons/equipment-garment.svg'); }
+.card-slot-badge[data-card-slot=footgear] { background-image: url('./ui-icons/equipment-footgear.svg'); }
+.card-slot-badge[data-card-slot=accessory] { background-image: url('./ui-icons/equipment-ring.svg'); }
 .inv-selected {
 	outline: 3px solid #f6d77f;
 	outline-offset: 1px;

@@ -38,7 +38,7 @@ test('material and card drop thresholds include bonuses, auto penalties and incl
   if(item.type!=='material'&&item.type!=='card')continue;
   for(const [seconds,bonus] of [[0,0],[0,.5],[data.economy.autoRareAfterSeconds,0],[data.economy.autoRareAfterSeconds+1,0]]){
    const rare=['rare','epic','legendary'].includes(item.rarity);
-   const rate=Math.min(1,d.rate*data.economy.dropMultiplier*(1+bonus)*(rare&&seconds>data.economy.autoRareAfterSeconds?data.economy.autoRareMultiplier:1));
+   const rate=Math.min(1,d.rate*data.economy.dropMultiplier*(item.type==='card'?data.economy.cardDropMultiplier:1)*(1+bonus)*(rare&&seconds>data.economy.autoRareAfterSeconds?data.economy.autoRareMultiplier:1));
    const monster={...m,drops:[d]};let calls=0;
    const roll=(chance:number,quantity:number)=>{calls=0;return rollDrops(monster,()=>calls++===0?chance:quantity,data,seconds,bonus);};
    if(rate<1)assert.deepEqual(roll(rate,0),[],`${m.id}/${d.item}: exclusive threshold`);

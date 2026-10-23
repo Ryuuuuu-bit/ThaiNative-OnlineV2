@@ -16,7 +16,7 @@ import {
 	type Player,
 } from "@the-beginning-online/shared";
 import "./inventory.css";
-import { itemIconCell } from "./item-icon";
+import { itemIcon } from "./item-icon";
 import { cardEffects, modifierText } from "./card-text";
 import {itemStats,compareItemStats,itemStatValue,type ItemStat} from './item-stats';
 import { mountRefine } from "./refine-ui";
@@ -142,15 +142,6 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (i.location === "equip") request("unequip", { id: i.id });
 		else if (t.slot) request("equip", { id: i.id, ...(slot ? {slot} : {}) });
 		else if (t.type === "consumable") request("use", { id: i.id });
-	}
-	function itemIcon(t: (typeof templates)[number]) {
-		const icon = document.createElement("span");
-		icon.className = "item-icon";
-		const cell = itemIconCell(t.id);
-		if (cell.v2) icon.classList.add("item-icon-v2");
-		icon.style.backgroundPosition = cell.position;
-		if(cell.image){icon.style.backgroundImage=`url(${cell.image})`;icon.style.backgroundSize='contain';}
-		return icon;
 	}
 	function cell(i: OwnedItem, mode = "bag") {
 		const t = template(i),

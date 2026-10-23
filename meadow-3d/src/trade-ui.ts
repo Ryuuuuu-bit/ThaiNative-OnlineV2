@@ -1,5 +1,5 @@
 import { loadGameData, offerProblem, TRADE_MAX_ITEMS, itemRollLines, type OwnedItem, type Player, type TradeOffer } from "@the-beginning-online/shared";
-import { itemIconCell } from "./item-icon";
+import { itemIcon } from "./item-icon";
 import "./trade.css";
 
 const data = loadGameData(), templates = data.items.items;
@@ -31,13 +31,7 @@ export function mountTrade(options: { send: (m: unknown) => void; player: () => 
 		const t = template(templateId);
 		return `${refine ? `+${refine} ` : ""}${t?.nameTh ?? "ไอเทม"}${qty > 1 ? ` ×${qty}` : ""}`;
 	};
-	const icon = (templateId: string) => {
-		const el = document.createElement("span"), cell = itemIconCell(templateId);
-		el.className = "item-icon" + (cell.v2 ? " item-icon-v2" : "");
-		el.style.backgroundPosition = cell.position;
-		if(cell.image){el.style.backgroundImage=`url(${cell.image})`;el.style.backgroundSize='contain';}
-		return el;
-	};
+	const icon = (templateId: string) => itemIcon({ id: templateId });
 	const send = (op: string, extra: Record<string, unknown> = {}) => options.send({ t: "trade", op, ...extra });
 	const sendOffer = () => {
 		const problem = offerProblem({ gold: options.player().gold, inventory: options.player().inventory! }, offer, data);

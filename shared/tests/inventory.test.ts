@@ -27,8 +27,9 @@ test("100k seeded rolls per monster respect rates and quantity bounds", () => {
 				counts[drop.template] = (counts[drop.template] || 0) + 1;
 			}
 		for (const d of m.drops) {
-			const expected = d.rate * 100000,
-				sigma = Math.sqrt(expected * (1 - d.rate));
+			const rate = Math.min(1, d.rate * data.economy.dropMultiplier * (data.items.items.find(t => t.id === d.item)!.type === 'card' ? data.economy.cardDropMultiplier : 1));
+			const expected = rate * 100000,
+				sigma = Math.sqrt(expected * (1 - rate));
 			assert.ok(
 				Math.abs((counts[d.item] || 0) - expected) <= 6 * sigma + 2,
 				`${m.id}/${d.item}`,
@@ -132,7 +133,7 @@ test("weight rules disable all regen at 50%, attack at 90%, enforce 100 slots an
 	step(g, 0.1);
 	assert.ok(p.hp > 20 && p.mp > 10);
 	const inv = starterInventory(0, () => String(g.nextId++));
-	for (let i = 0; i < 100; i++)
+	for (let i = inventorySlots(inv, data); i < 100; i++)
 		inv.items.push({
 			id: "ring" + i,
 			template: "jade_ring",
