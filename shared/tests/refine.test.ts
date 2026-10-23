@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { applyInventory, deriveStats, inventoryProfile, loadGameData, refineBonusValue, refineQuote, REFINE_MAX, REFINE_TABLE, type Inventory, type OwnedItem } from "../src/index.node.js";
+import { applyInventory, deriveStats, inventoryProfile, loadGameData, refineBonusValue, refineQuote, refineMilestones, refineModifiers, REFINE_MAX, REFINE_TABLE, type Inventory, type OwnedItem } from "../src/index.node.js";
 const data = loadGameData(), profile = { ...data.stats.defaultBuild, level: 99 };
 let n = 0;
 const item = (template: string, extra: Partial<OwnedItem> = {}): OwnedItem => ({ id: `r${++n}`, template, qty: 1, location: "bag", slot: null, refine: 0, cards: [], bound: false, source: "test", ...extra });
@@ -8,11 +8,11 @@ const bag = (...items: OwnedItem[]): Inventory => ({ version: 1, autoPickup: tru
 const refine = (inv: Inventory, target: OwnedItem, gold: number, roll?: number) => applyInventory({ gold, inventory: inv }, { op: "refine", id: target.id, roll }, profile, data, () => "uuid");
 const tpl = (id: string) => data.items.items.find((t) => t.id === id)!;
 
-test("refine rates: safe up to +4, riskier after, capped at +10", () => {
+test("refine rates: safe up to +4, riskier within each progression band, capped at +15", () => {
 	assert.equal(REFINE_TABLE.length, REFINE_MAX);
 	assert.ok(REFINE_TABLE.slice(0, 4).every((r) => r.chance === 1));
-	for (let i = 4; i < REFINE_MAX; i++) assert.ok(REFINE_TABLE[i].chance < REFINE_TABLE[i - 1].chance && REFINE_TABLE[i].gold > REFINE_TABLE[i - 1].gold);
-	assert.match(String(refineQuote(item("training_sword", { refine: 10 }), data)), /\+10/);
+	for (let i = 4; i < REFINE_MAX; i++) if(i!==10) assert.ok(REFINE_TABLE[i].chance < REFINE_TABLE[i - 1].chance && REFINE_TABLE[i].gold > REFINE_TABLE[i - 1].gold);
+	assert.match(String(refineQuote(item("training_sword", { refine: 15 }), data)), /\+15/);
 	assert.match(String(refineQuote(item("jade_ring"), data)), /ตีบวกได้เฉพาะ/);
 	assert.match(String(refineQuote(item("red_small"), data)), /ตีบวกได้เฉพาะ/);
 	const q = refineQuote(item("traveler_clothes", { refine: 6 }), data);
@@ -60,3 +60,43 @@ test("clients ask for a refine but cannot choose its roll", async () => {
 	assert.ok(IntentSchema.safeParse({ t: "inv", op: "refine", req, id: "x" }).success);
 	assert.equal(IntentSchema.safeParse({ t: "inv", op: "refine", req, id: "x", roll: 0 }).success, false);
 });
+
+ test("+10 is a floor: failures spend resources, +9 still drops, and +14 can reach +15",()=>{
+  for(const level of [9,10,11,12,13,14]){
+   const sword=item('training_sword',{refine:level}),stones=item('weapon_stone',{qty:2});
+   const out=refine(bag(sword,stones),sword,100000,.999);
+   assert.equal(out.state.inventory.items.find(i=>i.id===sword.id)!.refine,level>=10?Math.max(10,level-1):level-1);
+   assert.equal(out.state.inventory.items.find(i=>i.id===stones.id)!.qty,1);
+   assert.equal(out.state.gold,100000-REFINE_TABLE[level].gold);
+  }
+  const sword=item('training_sword',{refine:14}),stones=item('weapon_stone',{qty:2});
+  const out=refine(bag(sword,stones),sword,100000,0);
+  const max=out.state.inventory.items.find(i=>i.id===sword.id)!;
+  assert.equal(max.refine,15);
+  assert.throws(()=>refine(out.state.inventory,max,out.state.gold,0),/\+15/);
+ });
+ test("fixed milestones activate at 5/10/15 for each gear type and disappear below their threshold",()=>{
+  const types=['weapon','armour','shield','garment','footgear'];
+  for(const type of types){
+   const t=data.items.items.find(t=>t.type===type&&t.slot)!;
+   assert.deepEqual(refineMilestones(t).map(m=>m.level),[5,10,15]);
+   for(const level of [0,4,5,9,10,14,15]){
+    const mods=refineModifiers({refine:level},t);
+    assert.deepEqual(mods.slice(level?1:0),refineMilestones(t).filter(m=>level>=m.level).map(m=>m.modifier));
+   }
+  }
+  assert.deepEqual(refineMilestones(tpl('jade_ring')),[]);
+  const magic=data.items.items.find(t=>t.type==='weapon'&&(t.matk??0)>(t.atk??0))!;
+  assert.equal(refineMilestones(magic)[0].modifier.kind,'percent');
+  assert.deepEqual(refineMilestones(magic)[1].modifier,{kind:'percent',stat:'castMul',value:-.03});
+ });
+ test("milestones affect actual worn stats once, with downgrade and unequip removing the bonus",()=>{
+  const sword=item('training_sword',{refine:10,location:'equip',slot:'weapon'});
+  const at=(i:OwnedItem)=>deriveStats(inventoryProfile(profile,bag(i),data),data);
+  const ten=at(sword),nine=at({...sword,refine:9});
+  assert.ok(Math.abs(ten.crit-nine.crit-.02)<1e-9);
+  assert.deepEqual(at(sword),ten,'recalculation never stacks milestones');
+  assert.deepEqual(at({...sword,location:'bag',slot:null}),deriveStats(inventoryProfile(profile,bag(),data),data));
+  const armour=item('traveler_clothes',{refine:15,location:'equip',slot:'body'});
+  assert.ok(at(armour).maxHp>at({...armour,refine:14}).maxHp);
+ });

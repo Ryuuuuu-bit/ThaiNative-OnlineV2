@@ -1,5 +1,6 @@
-import { REFINE_MAX, REFINE_TABLE, rarityColors, refineBase, refineBonusValue, refineKind, refineQuote, type GameData, type Inventory, type OwnedItem } from "@the-beginning-online/shared";
+import { REFINE_MAX, refineMilestones, REFINE_TABLE, rarityColors, refineBase, refineBonusValue, refineKind, refineQuote, type GameData, type Inventory, type OwnedItem } from "@the-beginning-online/shared";
 import "./refine.css";
+import {modifierText} from "./card-text";
 
 type Template = GameData["items"]["items"][number];
 type Outcome = { ok: boolean; from: number; to: number } | { error: string };
@@ -11,7 +12,7 @@ const RUNE = '<svg viewBox="-150 -150 300 300" aria-hidden="true"><g fill="none"
 const SAY = {
 	idle: "เลือกอาวุธหรือเกราะที่อยากให้แกร่งขึ้น แล้ววางลงบนทั่งของข้า",
 	safe: "ช่วงแรกสบายมาก ข้ารับประกันไม่พลาด",
-	risky: "ตั้งแต่ +5 เริ่มเสี่ยงแล้วนะ ถ้าพลาดของจะลดลงหนึ่งขั้น",
+	risky: "พลาดลดหนึ่งขั้น แต่เมื่อตีถึง +10 แล้ว จะไม่ตกต่ำกว่า +10",
 	ok: "ฮ่า! ประกายสวย ของชิ้นนี้แกร่งขึ้นแล้ว",
 	fail: "โลหะไม่ยอมรับ… ลองใหม่เมื่อพร้อม",
 };
@@ -76,6 +77,12 @@ export function mountRefine(o: {
 		slot.append(o.itemIcon(t), el("span", "rf-plus", `+${item.refine}`));
 		target.append(slot);
 		box.append(nm, target);
+  const milestones=el("div","rf-milestones");milestones.append(el("h3","","ออฟพิเศษตีบวก"));
+  for(const m of refineMilestones(t)){
+   const active=item.refine>=m.level,loses=typeof quote!=="string"&&quote.failTo<m.level&&active;
+   milestones.append(el("p",active?"active":"locked",`+${m.level} · ${modifierText(m.modifier)} · ${active?'ปลดล็อกแล้ว':'ยังไม่ปลดล็อก'}${loses?' · พลาดแล้วโบนัสขั้นนี้จะหาย':''}`));
+  }
+  box.append(milestones);
 		if (typeof quote === "string") { box.append(el("p", "rf-empty", quote)); return box; }
 		const lvl = el("div", "rf-lvl"); lvl.append(el("span", "from", `+${item.refine}`), el("span", "arr", "→"), el("span", "to", `+${quote.next}`)); target.append(lvl);
 		const stats = el("div", "rf-stats");
@@ -86,7 +93,7 @@ export function mountRefine(o: {
 		const inner = el("div"); inner.append(el("b", "", `${pct}%`), el("small", "", "โอกาสสำเร็จ")); ring.append(inner);
 		const out = el("div", "rf-out");
 		const yes = el("p", "yes"); yes.append("สำเร็จ ", el("i", "", `→ +${quote.next}`), " ", el("b", "", `${statName(stat)} ${value(quote.next)}`)); out.append(yes);
-		if (quote.chance < 1) { const no = el("p", "lose"); no.append("ล้มเหลว ", el("i", "", `→ +${quote.failTo}`), " ระดับลด 1 · หินและทองหาย"); out.append(no); }
+		if (quote.chance < 1) { const no = el("p", "lose"); no.append("ล้มเหลว ", el("i", "", `→ +${quote.failTo}`), quote.failTo===item.refine?" คงระดับ · Safe Zone +10 · เสียหินและทอง":" ระดับลด 1 · เสียหินและทอง"); out.append(no); }
 		else out.append(el("p", "safe", "ช่วงปลอดภัย · ไม่มีทางล้มเหลว"));
 		odds.append(ring, out);
 		const have = stones(quote.stone), stoneT = data.items.items.find((x) => x.id === quote.stone)!;
@@ -114,7 +121,7 @@ export function mountRefine(o: {
 			tbl.append(el("b", cls.trim(), `+${lv}`), bar, el("span", "pct" + cls, `${pct}%`));
 		});
 		const legend = el("div", "rf-legend");
-		legend.append(el("span", "ok", "+1–4 ปลอดภัย ไม่มีทางล้มเหลว"), el("span", "warn", "+5–7 ล้มเหลว ระดับลด 1"), el("span", "bad", "+8–10 เสี่ยงสูง ระดับลด 1"));
+		legend.append(el("span", "ok", "+1–4 ปลอดภัย ไม่มีทางล้มเหลว"), el("span", "warn", "+5–7 ล้มเหลว ระดับลด 1"), el("span", "bad", "+8–10 เสี่ยงสูง ระดับลด 1"), el("span", "warn", "+11–15 พลาดลด 1 แต่ไม่ต่ำกว่า +10"));
 		box.append(tbl, legend, el("h3", "", "ประวัติในรอบนี้"));
 		const list = el("ul", "rf-log");
 		for (const l of log.slice(0, 6)) { const li = el("li", l.ok ? "s" : "f"); li.append(el("b", "", l.ok ? "✓" : "✕"), l.text); list.append(li); }
@@ -237,12 +244,12 @@ export function mountRefine(o: {
 	return {
 		root,
 		/** Redraws unless an attempt or its result is on screen (that would wipe the animation). */
-		update(next: Inventory, nextGold: number) {
+		update(next: Inventory, nextGold: number, answered = false) {
 			const before = selected ? inv?.items.find((i) => i.id === selected)?.refine : undefined;
 			inv = next; gold = nextGold;
 			if (settle && selected) {
 				const after = next.items.find((i) => i.id === selected)?.refine;
-				if (before !== undefined && after !== undefined && after !== before) { settle({ ok: after > before, from: before, to: after }); return; }
+				if (before !== undefined && after !== undefined && (answered || after !== before)) { settle({ ok: after > before, from: before, to: after }); return; }
 			}
 			if (!busy && !revealShown) render();
 		},
