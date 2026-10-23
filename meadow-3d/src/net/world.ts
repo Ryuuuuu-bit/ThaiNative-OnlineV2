@@ -96,8 +96,8 @@ export class NetworkWorld {
 			this.prediction = { ...result.position };
 			this.correction = { x: 0, z: 0 };
 		} else {
-			const leavingAuto = this.latest?.players.find((v: any) => v.id === you)?.auto && !own.auto;
-			const displayed = leavingAuto ? this.game.p : this.prediction;
+			// A new snapshot must retain the correction still visible from the previous one.
+			const displayed = this.game.p;
 			this.correction = {
 				x: displayed.x - result.position.x,
 				z: displayed.z - result.position.z,

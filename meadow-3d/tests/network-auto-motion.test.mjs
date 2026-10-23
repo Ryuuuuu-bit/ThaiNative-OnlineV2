@@ -28,6 +28,33 @@ test('manual steering remains locally predicted',()=>{
  assert.ok(w.game.p.x>0);
 });
 
+test('manual walking never jumps backwards when snapshots arrive with network jitter',()=>{
+ for(const hz of [60,120,200]){
+  const w=new NetworkWorld(),latency=[70,110,80,120,90,100];
+  // This straight route is clear of collision, so every correction comes from packet timing.
+  const packet=ms=>({...snap(ms,ms*.0045,{auto:false,z:-42}),ack:1});
+  w.receive(packet(0),'p',0);w.update(0,0,{x:1,z:0},1);
+  let next=100,index=0,previous=w.game.p.x;
+  for(let i=1;i<=hz*6;i++){
+   const now=i*1000/hz;
+   if(now+1e-6>=next+latency[index%latency.length]){
+    w.receive(packet(next),'p',now);next+=100;index++;
+    w.update(now,0,{x:1,z:0},1);
+    assert.ok(Math.abs(w.game.p.x-previous)<1e-9,`${hz} Hz: snapshot jumped the displayed position`);
+   }
+   w.update(now,1/hz,{x:1,z:0},1);
+   if(now>2000){const speed=(w.game.p.x-previous)*hz;assert.ok(speed>2.5&&speed<6,`${hz} Hz: visible speed ${speed}`);}
+   previous=w.game.p.x;
+  }
+ }
+});
+
+test('manual large authoritative relocations still snap immediately',()=>{
+ const w=new NetworkWorld();w.receive(snap(0,0,{auto:false}),'p',0);w.update(0,0,{x:0,z:0},1);
+ w.receive(snap(100,20,{auto:false}),'p',100);w.update(100,0,{x:0,z:0},1);
+ assert.equal(w.game.p.x,20);
+});
+
 test('AUTO packet gap holds the authoritative endpoint instead of extrapolating into terrain',()=>{
  const w=new NetworkWorld();w.receive(snap(0,0),'p',0);w.receive(snap(100,.45),'p',100);
  for(let ms=100;ms<=600;ms+=10){w.update(ms,.01,{x:0,z:0},0);assert.ok(w.game.p.x<=.45+1e-9);}

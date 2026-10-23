@@ -1,9 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {heroPresentation,previewFrameCount,PREVIEW_FACING} from '../src/hero-presentation.ts';
+import {heroPresentation,heroAnimationAssets,previewFrameCount,PREVIEW_FACING} from '../src/hero-presentation.ts';
+import {SKILL_MOTIONS,shownMotion,SKILL_V2} from '../src/skill-motions.ts';
 import {heroSprite,v2Cell,MOTION_V2,motionFrame,facingFor,facing8For,WALK_FRAMES,WALK_DIRECTIONS} from '../src/sprite-animation.ts';
 import {heroBodyCalibration} from '../src/city-character-calibration.ts';
 import {bossAnticipation} from '../src/boss-anticipation.ts';
+
+test('Shadow preload keeps every decoy facing without retaining unused painted combat atlases',()=>{
+ const shadow=heroAnimationAssets(true),painted=heroAnimationAssets(false);
+ assert.equal(shadow.length,2);
+ for(const facing of WALK_DIRECTIONS){
+  const [x,z]=PREVIEW_FACING[facing];
+  assert.ok(shadow.includes(heroPresentation('idle',x,z,0).key));
+  for(const motion of ['idle','walk','run','attack','spin','cast','hit','dodge','death'])assert.ok(painted.includes(heroPresentation(motion,x,z,.3).key));
+ }
+ for(const motion of SKILL_MOTIONS.filter(m=>shownMotion(m)===m))assert.ok(painted.includes(`/assets/hero-skills/hero-skill-${motion}-${SKILL_V2[motion]?'v2':'v1'}.png`));
+ assert.ok(shadow.every(path=>painted.includes(path)));
+});
 
 test('shared presentation keeps the game cell and calibration for every facing and motion',()=>{
  for(const direction of WALK_DIRECTIONS)for(const motion of ['idle','walk','run','attack','spin','cast','hit','dodge','death'])for(const elapsed of [0,.13,.4,.85,2.1]){

@@ -1,7 +1,7 @@
 import {bossAnticipation} from './boss-anticipation';
 import {CityLighting,drawCityWindowGlow} from './city-lighting';
 import {CITY_LAYOUT} from '@the-beginning-online/shared/maps';
-import {heroPresentation} from './hero-presentation';
+import {heroPresentation,heroAnimationAssets} from './hero-presentation';
 import {ShadowHero} from './shadow-hero';
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
 import {titleDefinition} from '@the-beginning-online/shared';
@@ -14,8 +14,8 @@ import {drawFountainWater} from './city-2d-fountain';
 import {loadField2D} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
 import {project2D,unproject2D} from './game-2d-projection';
-import {MOTIONS,MOTION_DURATION,MOTION_V2,motionFor,facingFor,facing8For,WALK_DIRECTIONS} from './sprite-animation';
-import {SKILL_MOTIONS,BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,SKILL_V2,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
+import {MOTION_DURATION,motionFor,facingFor,facing8For,WALK_DIRECTIONS} from './sprite-animation';
+import {BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,SKILL_V2,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
 import {monsterSpecies,monsterVisual,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
 import {huntingCell,HUNTING_ASSET_ROOT,EXPANSION_ASSET_ROOT} from './hunting-monster-animation';
 import {HERO_METRES,HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
@@ -60,7 +60,7 @@ export class GameCanvas2D{
  }
  async init(map:MapId){
   this.monsterManifest=await this.assets.json('/assets/monsters-painted/manifest.json');
-  await Promise.all([SHIELD_BASH_ART.url,...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...Object.keys(MOTION_V2).map(m=>`/assets/hero-painted/hero-${m}-v2.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
+  await Promise.all([SHIELD_BASH_ART.url,...heroAnimationAssets(!!this.shadowHero?.combat),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
   this.companionImages=new Set(Object.values<any>(this.monsterManifest.species.wolf.motions).map(clip=>'/assets/monsters-painted/'+clip.file));
   await Promise.all([...this.companionImages].map(path=>this.assets.image(path)));
   const shield=this.assets.get(SHIELD_BASH_ART.url)!;

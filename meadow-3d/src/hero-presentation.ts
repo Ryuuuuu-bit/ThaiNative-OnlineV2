@@ -1,5 +1,12 @@
-import {heroSprite,motionFrame,frameCount,MOTION_V2,v2Cell,facingFor,facing8For,WALK_FRAMES,DIRECTIONS,IDLE_V2_FRAMES,IDLE_V2_SECONDS,type Motion,type Facing} from './sprite-animation.ts';
+import {heroSprite,motionFrame,frameCount,MOTIONS,MOTION_V2,v2Cell,facingFor,facing8For,WALK_FRAMES,DIRECTIONS,IDLE_V2_FRAMES,IDLE_V2_SECONDS,type Motion,type Facing} from './sprite-animation.ts';
 import {heroBodyCalibration} from './city-character-calibration.ts';
+import {SKILL_MOTIONS,shownMotion,SKILL_V2} from './skill-motions.ts';
+
+export function heroAnimationAssets(shadow:boolean){
+ // Shadow actors only need painted standing poses for the Yokai decoy effect.
+ if(shadow)return ['/assets/hero-painted/hero-idle-v2.png','/assets/hero-painted/hero-walk-v1.png'];
+ return [...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...Object.keys(MOTION_V2).map(m=>`/assets/hero-painted/hero-${m}-v2.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`)];
+}
 
 /** Shared by the game and previews, including cardinal standing poses and foot calibration. */
 export function heroPresentation(motion:Motion,fx:number,fz:number,elapsed:number,frame?:number){
