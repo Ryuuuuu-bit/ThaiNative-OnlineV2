@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted gouache and watercolor isometric MMORPG, fine ink edges, natural matte texture. Original anatomy and palette match approved base. No lettering, glow, scenery or detached props.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter with face visible. subtle breathing or shell settling and small blink, same ready stance, no whole-body translation. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter with face visible. natural alternating footfalls with stable limb lengths, attached feet clearly exchanging support, no whole body translation. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter with face visible. ready, draw the SAME attached weapon or natural attack anatomy back in a clear anticipation, one readable forward strike or bite using that anatomy, recover to ready; no detached projectile or effects. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter with face visible. ready, brief readable recoil with stable attached anatomy, recover, ready. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter with face visible. ready, weaken, collapse into a low defeated pose, remain collapsed on ground; never stand up again. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. subtle breathing or shell settling and small blink, same ready stance, no whole-body translation. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. natural alternating footfalls with stable limb lengths, attached feet clearly exchanging support, no whole body translation. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. ready, draw the SAME attached weapon or natural attack anatomy back in a clear anticipation, one readable forward strike or bite using that anatomy, recover to ready; no detached projectile or effects. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. ready, brief readable recoil with stable attached anatomy, recover, ready. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter looking away with rear body visible; no front face or frontal chest. ready, weaken, collapse into a low defeated pose, remain collapsed on ground; never stand up again. Preserve this exact original identity and anatomy: A solar-shadow lion, one broad dark feline face, four powerful paws, a large asymmetric dense copper and charcoal mane with pale silver tips, one long black tail, no detached halo."
+    }
+  },
+  "body_plan": [
+    "quadruped"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

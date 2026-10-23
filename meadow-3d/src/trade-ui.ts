@@ -1,9 +1,9 @@
-import { loadGameData, offerProblem, TRADE_MAX_ITEMS, type OwnedItem, type Player, type TradeOffer } from "@the-beginning-online/shared";
+import { loadGameData, offerProblem, TRADE_MAX_ITEMS, itemRollLines, type OwnedItem, type Player, type TradeOffer } from "@the-beginning-online/shared";
 import { itemIconCell } from "./item-icon";
 import "./trade.css";
 
 const data = loadGameData(), templates = data.items.items;
-interface SideView { name: string; gold: number; locked: boolean; confirmed: boolean; items: { id: string; template: string; qty: number; refine: number; cards: string[] }[] }
+interface SideView { name: string; gold: number; locked: boolean; confirmed: boolean; items: Pick<OwnedItem,'id'|'template'|'qty'|'refine'|'cards'|'roll'>[] }
 interface TradeView { id: string; settling: boolean; you: SideView; them: SideView }
 const template = (id: string) => templates.find((t) => t.id === id);
 
@@ -35,6 +35,7 @@ export function mountTrade(options: { send: (m: unknown) => void; player: () => 
 		const el = document.createElement("span"), cell = itemIconCell(templateId);
 		el.className = "item-icon" + (cell.v2 ? " item-icon-v2" : "");
 		el.style.backgroundPosition = cell.position;
+		if(cell.image){el.style.backgroundImage=`url(${cell.image})`;el.style.backgroundSize='contain';}
 		return el;
 	};
 	const send = (op: string, extra: Record<string, unknown> = {}) => options.send({ t: "trade", op, ...extra });
@@ -50,7 +51,8 @@ export function mountTrade(options: { send: (m: unknown) => void; player: () => 
 			name.className = "trade-name";
 			name.textContent = label(i.template, i.qty, i.refine);
 			li.append(icon(i.template), name);
-			if (i.cards.length) li.title = `การ์ด: ${i.cards.map((c) => template(c)?.nameTh ?? c).join(", ")}`;
+			li.title=[...itemRollLines(i),...(i.cards.length?[`การ์ด: ${i.cards.map((c) => template(c)?.nameTh ?? c).join(', ')}`]:[])].join('\n');
+			if(i.roll){const rolls=document.createElement('small');rolls.className='trade-rolls';rolls.textContent=itemRollLines(i).join(' · ');name.append(rolls);}
 			if (mine && !side.locked) {
 				const remove = document.createElement("button");
 				remove.type = "button";

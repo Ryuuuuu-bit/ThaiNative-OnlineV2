@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE standalone production environment landmark sprite for The Beginning Online painted isometric MMORPG. An ancient Celtic-inspired fairy arch: two twisted pale oak trunks wrapping around an irregular stone doorway, original triple-spiral reliefs without letters, violet foxglove flowers and soft silver-blue moss, a small green crystal set into the arch crown. Original folklore design, no modern franchise motifs, no scenery behind the opening. Full complete object, orthographic three-quarter top-down isometric view with visible top surfaces, upper-left lighting, hand-painted gouache, ink and watercolor textures, clean organic edges, readable at small game scale, no plastic3D or pixel art. Entire isolated landmark on TRUE TRANSPARENT background with ample padding. No landscape, no ground tile or large floor platform, no cast shadow outside the foot, no UI, no frame, no grid, no lettering, no people, no monsters. Single cohesive object. Original text-only design; no external image or artist references.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-landmarks-20261022\\fae\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\world-biome-landmarks-20261022\\fae\\base.png.raw.png",
+  "raw_bytes": 2452170,
+  "elapsed_seconds": 46.437,
+  "model": null,
+  "session_id": "01a1600f-4149-7362-a308-b78a1941fec1",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-landmarks-20261022\\fae\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1348x1167",
+    "alpha_zero_pct": 45.54,
+    "partial_alpha_pct": 54.45,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 524,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

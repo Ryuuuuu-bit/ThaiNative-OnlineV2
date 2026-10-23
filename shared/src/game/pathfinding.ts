@@ -1,4 +1,6 @@
 import EasyStar from 'easystarjs';
+import { walkable } from './collision.js';
+import { LAYOUTS, type MapId } from './maps.js';
 
 export interface PathPoint { x: number; z: number }
 type Walkable = (x: number, z: number) => boolean;
@@ -21,7 +23,7 @@ const directions = [
 ] as const;
 
 /** One reusable lazy grid per map, in world x/z coordinates. */
-export function createPathfinder(walk: Walkable, bounds: Bounds = { halfX: 64, halfZ: 64 }) {
+export function createPathfinder(walk: Walkable, bounds: Bounds = { halfX: 64, halfZ: 64 }, canStart: Walkable = walk) {
  const halfX = Math.ceil(bounds.halfX), halfZ = Math.ceil(bounds.halfZ);
  const inside = (p: PathPoint) => Number.isFinite(p.x) && Number.isFinite(p.z)
   && Math.abs(p.x) <= halfX && Math.abs(p.z) <= halfZ;
@@ -37,7 +39,7 @@ export function createPathfinder(walk: Walkable, bounds: Bounds = { halfX: 64, h
   finder = new EasyStar.js(); finder.setGrid(grid); finder.setAcceptableTiles([0]);
   finder.enableDiagonals(); finder.disableCornerCutting(); finder.enableSync();
  }
- function anchor(p: PathPoint) {
+ function anchor(p: PathPoint, segmentWalk = walk) {
   const candidates: PathPoint[] = [];
   for (let z = Math.floor(p.z)-1; z <= Math.ceil(p.z)+1; z++) {
    for (let x = Math.floor(p.x)-1; x <= Math.ceil(p.x)+1; x++) {
@@ -45,7 +47,7 @@ export function createPathfinder(walk: Walkable, bounds: Bounds = { halfX: 64, h
    }
   }
   candidates.sort((a,b) => Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z));
-  return candidates.find(candidate => pathSegmentWalkable(p,candidate,walk));
+  return candidates.find(candidate => pathSegmentWalkable(p,candidate,segmentWalk));
  }
  function smooth(start: PathPoint, points: PathPoint[]) {
   const result: PathPoint[] = [];
@@ -64,9 +66,16 @@ export function createPathfinder(walk: Walkable, bounds: Bounds = { halfX: 64, h
   }
   return result;
  }
- return {
-  findPath(start: PathPoint, goal: PathPoint): PathPoint[] {
-   if (!inside(start)||!inside(goal)||!walk(start.x,start.z)||!walk(goal.x,goal.z)) return [];
+ function findPath(start: PathPoint, goal: PathPoint): PathPoint[] {
+   if (!inside(start)||!inside(goal)||!canStart(start.x,start.z)||!walk(goal.x,goal.z)) return [];
+   // Walking can stop inside the route's extra margin; leave it using real body clearance.
+   if (!walk(start.x,start.z)) {
+    prepare();
+    const exit=anchor(start,canStart);
+    if (!exit) return [];
+    const rest=findPath(exit,goal);
+    return rest.length?[exit,...rest]:[];
+   }
    if (pathSegmentWalkable(start,goal,walk)) return [{x:goal.x,z:goal.z}];
    prepare();
    const from=anchor(start),to=anchor(goal);
@@ -95,11 +104,16 @@ export function createPathfinder(walk: Walkable, bounds: Bounds = { halfX: 64, h
     if (!invalid) return smooth(start,[...points,{x:goal.x,z:goal.z}]);
    }
    return [];
-  },
- };
+ }
+ return {findPath};
+}
+
+/** HUD travel and server AUTO share route margins and movement-safe starts. */
+export function createPlayerPathfinder(mapId: MapId) {
+ return createPathfinder((x,z)=>walkable(x,z,.4,mapId),LAYOUTS[mapId],(x,z)=>walkable(x,z,.3,mapId));
 }
 
 /** Stateless helper for map tools and regression tests. */
-export function gridPath(start: PathPoint,goal: PathPoint,walk: Walkable) {
- return createPathfinder(walk).findPath(start,goal);
+export function gridPath(start: PathPoint,goal: PathPoint,walk: Walkable,bounds?:Bounds) {
+ return createPathfinder(walk,bounds).findPath(start,goal);
 }

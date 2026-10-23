@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original thunder-pillar guardian, one angular closed copper helmet, two massive basalt arms and two stone legs, broad layered slate torso with attached pale crystalline seams, holding one heavy short square stone maul in both hands. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_thunder_pillar_guard\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_thunder_pillar_guard\\base.png.raw.png",
+  "raw_bytes": 2147287,
+  "elapsed_seconds": 46.11,
+  "model": null,
+  "session_id": "01a16127-054e-71f3-81b5-1f2ae97eb2ed",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_thunder_pillar_guard\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1239x1270",
+    "alpha_zero_pct": 50.41,
+    "partial_alpha_pct": 49.57,
+    "opaque_pct": 0.02,
+    "cleaned_transparent_rgb_pixels": 396,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

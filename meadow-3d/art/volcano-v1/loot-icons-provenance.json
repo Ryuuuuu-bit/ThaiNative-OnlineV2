@@ -1,0 +1,123 @@
+{
+  "method": "Original authored SVG geometry and normalized original generated creature images; no external assets",
+  "sources": [
+    {
+      "id": "card_volcano_lava_glass_lizard",
+      "base": "output/volcano-monsters-20261022/volcano_lava_glass_lizard/base.png",
+      "baseSha256": "8695d1ef54270b650a75cce5218b4e53af44e066be47129ba1ee35e05d0b4e97",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_volcano_ash_boulder_beetle",
+      "base": "output/volcano-monsters-20261022/volcano_ash_boulder_beetle/base.png",
+      "baseSha256": "5a81d34397af0603f07bc8266124f6ba0bbcbde06711e1a8dfc1aa6f971e0e6e",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_volcano_ash_spine_boar",
+      "base": "output/volcano-monsters-20261022/volcano_ash_spine_boar/base.png",
+      "baseSha256": "e564f3d15d6f6fe700e1bb4c7a9a62fda05dcd73356b446e307d6c0da6756103",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_volcano_old_kiln_sprite",
+      "base": "output/volcano-monsters-20261022/volcano_old_kiln_sprite/base.png",
+      "baseSha256": "54ddd40ef8b1c550df0be219adaea20c644cfc8a3636a2d9ca9de2c9594738c4",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_volcano_red_smoke_shroom",
+      "base": "output/volcano-monsters-20261022/volcano_red_smoke_shroom/base.png",
+      "baseSha256": "b4c8fd55590886a745e380a240a4326bec98ffa116f7e2e3fefb1ce7d86ac036",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_volcano_azure_firebird",
+      "base": "output/volcano-monsters-20261022/volcano_azure_firebird/base.png",
+      "baseSha256": "bd221337fe99aba058e3fb7e75910ee66e974166548ad17979edf3737c2396d3",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_volcano_crater_hammer_ogre",
+      "base": "output/volcano-monsters-20261022/volcano_crater_hammer_ogre/base.png",
+      "baseSha256": "585f4dc038dc53dbc6998c26a4d11781b07c2f41137e676c9ca074523a7a63a4",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_volcano_golden_ash_zmey",
+      "base": "output/volcano-monsters-20261022/volcano_golden_ash_zmey/base.png",
+      "baseSha256": "59105be84cdd6f6021e347f1063d505bb88100fdecd1dcd0e841e29fced20112",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    }
+  ],
+  "files": [
+    {
+      "file": "card_volcano_lava_glass_lizard.svg",
+      "sha256": "1d62e43a428273922b76bdf9efa0248bb4ee8c5cef75a40730f0eda99837d1e1"
+    },
+    {
+      "file": "volcano_lava_glass_lizard_material.svg",
+      "sha256": "87809986a9308c0d75c8b7c4e0d7a5c3fe4f906e0f8f32cd239e575c0f7252ac"
+    },
+    {
+      "file": "card_volcano_ash_boulder_beetle.svg",
+      "sha256": "0dbd90174c7db2e4a6f6ae702a14e84de483ad3c6614a6d5cf0a8847dc7af52f"
+    },
+    {
+      "file": "volcano_ash_boulder_beetle_material.svg",
+      "sha256": "a5fad6876c1c42fc526b23f09e1e2f43afd6b49f8df1639cdc7e1087ecfaba1e"
+    },
+    {
+      "file": "card_volcano_ash_spine_boar.svg",
+      "sha256": "fb269c4494bcd990414282f61138e4845684cf023ef19350a84c1aac95e339a1"
+    },
+    {
+      "file": "volcano_ash_spine_boar_material.svg",
+      "sha256": "df2be5bd34280ea62e5ef86c9982b62cf825bc58593e1e091f733d0d1f58a144"
+    },
+    {
+      "file": "card_volcano_old_kiln_sprite.svg",
+      "sha256": "846f1312389f8ab74bcfb7ce0f14bc249d4f084b0d95955f8743ca55b6c1fc8a"
+    },
+    {
+      "file": "volcano_old_kiln_sprite_material.svg",
+      "sha256": "6438f9f17212708bc55ea4527f4f8066c4a1f54b53ca5970c736c366d7bb6cd1"
+    },
+    {
+      "file": "card_volcano_red_smoke_shroom.svg",
+      "sha256": "2cb9a24666c8ca1134800443a44e117d33b878e91f47bb4a8150bbf9e0579a66"
+    },
+    {
+      "file": "volcano_red_smoke_shroom_material.svg",
+      "sha256": "82fb2247fc3c0afe7498bdc1814bff78b2894807afdd374440ad69257fc54388"
+    },
+    {
+      "file": "card_volcano_azure_firebird.svg",
+      "sha256": "37a2191a0c5cfb605f22948a496cfbd8beec5023951a4467ab69c33299e8f9a0"
+    },
+    {
+      "file": "volcano_azure_firebird_material.svg",
+      "sha256": "5b8a63b54da9f41f54e04c046931ce1f6a2da31b4bf99363e679a85815a4ccfc"
+    },
+    {
+      "file": "card_volcano_crater_hammer_ogre.svg",
+      "sha256": "82d44a0f7548c46296fbced219d85eda4999cb829aad328f6066a68bbd27886c"
+    },
+    {
+      "file": "volcano_crater_hammer_ogre_material.svg",
+      "sha256": "14a6e8a22ab79e1f60ee9a3d29c3932689ab7324895565a1d1cc45478d7d1002"
+    },
+    {
+      "file": "card_volcano_golden_ash_zmey.svg",
+      "sha256": "d0159dca1b9de9263bc2d6371719b953d105ea7906c7d11f2929c3f21bb783f6"
+    },
+    {
+      "file": "volcano_golden_ash_zmey_material.svg",
+      "sha256": "b1843d3a528a845bb06f76b1ab1181b1dae6c29c3421bddf3db4133ec2b6f468"
+    },
+    {
+      "file": "unique_volcano_relic.svg",
+      "sha256": "40140005a580b3a1ccc7d00dbf2ac41757116ec239c7afde105ad50f3c79d969"
+    }
+  ]
+}

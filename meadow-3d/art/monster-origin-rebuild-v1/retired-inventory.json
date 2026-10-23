@@ -1,0 +1,1207 @@
+{
+  "date": "2026-10-21",
+  "status": "archived-outside-public",
+  "reason": "Source-image origin and provider chain cannot be fully established from retained local evidence. This is not a finding of infringement.",
+  "evidence": [
+    "meadow-3d/art/painted-monsters/PROMPTS.md",
+    "meadow-3d/art/painted-forest/PROMPTS.json",
+    "meadow-3d/art/painted-forest/README.md"
+  ],
+  "scope": "Monster sprite atlases and their runtime derivatives; excludes equipment icons, environment, hero and audio.",
+  "textureManifestKeys": [
+    "/assets/monsters-painted/king-charge-v1.png",
+    "/assets/monsters-painted/king-death-v1.png",
+    "/assets/monsters-painted/king-hit-v1.png",
+    "/assets/monsters-painted/king-idle-v1.png",
+    "/assets/monsters-painted/king-move-v1.png",
+    "/assets/monsters-painted/king-phase2-face-v1.png",
+    "/assets/monsters-painted/king-roar-v1.png",
+    "/assets/monsters-painted/king-slam-v1.png",
+    "/assets/monsters-painted/king-spit-v1.png",
+    "/assets/monsters-painted/king-stun-v1.png",
+    "/assets/monsters-painted/king-summon-v1.png",
+    "/assets/monsters-painted/king-sweep-v1.png",
+    "/assets/monsters-painted/king-transform-v1.png",
+    "/assets/monsters-painted/slime-attack-v1.png",
+    "/assets/monsters-painted/slime-death-v1.png",
+    "/assets/monsters-painted/slime-hop-v1.png",
+    "/assets/monsters-painted/slime-idle-v1.png",
+    "/assets/monsters-painted/shroom-attack-v1.png",
+    "/assets/monsters-painted/shroom-death-v1.png",
+    "/assets/monsters-painted/shroom-hop-v1.png",
+    "/assets/monsters-painted/shroom-idle-v1.png",
+    "/assets/monsters-painted/wolf-attack-v1.png",
+    "/assets/monsters-painted/wolf-death-v1.png",
+    "/assets/monsters-painted/wolf-hop-v1.png",
+    "/assets/monsters-painted/wolf-idle-v1.png",
+    "/assets/monsters-painted/wisp-attack-v1.png",
+    "/assets/monsters-painted/wisp-bolt-v1.png",
+    "/assets/monsters-painted/wisp-death-v1.png",
+    "/assets/monsters-painted/wisp-hop-v1.png",
+    "/assets/monsters-painted/wisp-idle-v1.png",
+    "/assets/monsters-painted/stump-attack-v1.png",
+    "/assets/monsters-painted/stump-death-v1.png",
+    "/assets/monsters-painted/stump-hop-v1.png",
+    "/assets/monsters-painted/stump-idle-v1.png",
+    "/assets/monsters-painted/warden-charge-v1.png",
+    "/assets/monsters-painted/warden-death-v1.png",
+    "/assets/monsters-painted/warden-hit-v1.png",
+    "/assets/monsters-painted/warden-idle-v1.png",
+    "/assets/monsters-painted/warden-move-v1.png",
+    "/assets/monsters-painted/warden-roar-v1.png",
+    "/assets/monsters-painted/warden-slam-v1.png",
+    "/assets/monsters-painted/warden-spit-v1.png",
+    "/assets/monsters-painted/warden-stun-v1.png",
+    "/assets/monsters-painted/warden-summon-v1.png",
+    "/assets/monsters-painted/warden-sweep-v1.png",
+    "/assets/monsters-painted/warden-transform-v1.png"
+  ],
+  "files": [
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-charge-v1-3f74beb3bc.webp",
+      "bytes": 285804,
+      "sha256": "3f74beb3bc8efe1baebfc1dc4ff07683cbdd06c5baf79b9811db143cdf3fb22e",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-charge-v1-3f74beb3bc.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-charge-v1-716440b7da.ktx2",
+      "bytes": 593497,
+      "sha256": "716440b7da2e0043d59879342d111b6679fda0643390dbfcdaa8c808bc5ede1d",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-charge-v1-716440b7da.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-charge-v1-hit-c770be7350.webp",
+      "bytes": 109478,
+      "sha256": "c770be7350998f04e3bfa33153c62a4c2c6ac4e28a99f33460efe2282a47e031",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-charge-v1-hit-c770be7350.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-death-v1-b4dc00c920.ktx2",
+      "bytes": 252427,
+      "sha256": "b4dc00c92094bbcef86b725585492bc4f4f682c40ef598bbfc2e44ef38b1384b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-death-v1-b4dc00c920.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-death-v1-c2dcf6088d.webp",
+      "bytes": 184096,
+      "sha256": "c2dcf6088d43274314513d004b1935c43a2f540670287646b1307f75d4bf0686",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-death-v1-c2dcf6088d.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-death-v1-hit-200895eee6.webp",
+      "bytes": 67276,
+      "sha256": "200895eee69f40d4cab46bef9dfe2da12983947493c37d1b38b511700a7fa8e8",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-death-v1-hit-200895eee6.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-hit-v1-1a934d8896.ktx2",
+      "bytes": 496094,
+      "sha256": "1a934d889611f01ef822055c95bf0048f58e6a4cfb96249c42575e5c0bcc479b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-hit-v1-1a934d8896.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-hit-v1-c23f8b49ae.webp",
+      "bytes": 241612,
+      "sha256": "c23f8b49aeaa7208f52201abd13b8dc0009bcc3b2da400dabd725c492e87276f",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-hit-v1-c23f8b49ae.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-hit-v1-hit-a2dd6ee4b0.webp",
+      "bytes": 99980,
+      "sha256": "a2dd6ee4b09a154e4b6fec899e0daae312648e9f251289b53d3406426c214758",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-hit-v1-hit-a2dd6ee4b0.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-idle-v1-5cc2d7e673.webp",
+      "bytes": 289944,
+      "sha256": "5cc2d7e673a32d2b3e93c68b17874202c48d3154afac24d1e31dc5ea783532de",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-idle-v1-5cc2d7e673.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-idle-v1-9c497780b0.ktx2",
+      "bytes": 594484,
+      "sha256": "9c497780b08d49419aac592e1b49b968299b46f866b31d5c42a766b8ec89b98b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-idle-v1-9c497780b0.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-idle-v1-hit-1b2b1a8e0a.webp",
+      "bytes": 107166,
+      "sha256": "1b2b1a8e0ac61c8a5745374843b1eb6ff06e792ccecf8ee7a03476e2495305d6",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-idle-v1-hit-1b2b1a8e0a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-move-v1-85d9e46f03.ktx2",
+      "bytes": 535724,
+      "sha256": "85d9e46f032dbdea5d63c0a0125d020977c04b46095f2221822ccf07140b1af5",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-move-v1-85d9e46f03.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-move-v1-b4f893e63e.webp",
+      "bytes": 268770,
+      "sha256": "b4f893e63e559f37e30bb87f4f597474328907576a4c8aea9e02a3177e1fc65c",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-move-v1-b4f893e63e.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-move-v1-hit-ce2ded3817.webp",
+      "bytes": 101534,
+      "sha256": "ce2ded3817d5a8f9234c2df562fa70099e0c39f62ce0c4b94bb871ddee29685c",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-move-v1-hit-ce2ded3817.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-phase2-face-v1-5cf8cbff64.webp",
+      "bytes": 20806,
+      "sha256": "5cf8cbff647f8b77aa4b6198f6bb0e6a867b8d83faf9970100c3f0e1af58e06b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-phase2-face-v1-5cf8cbff64.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-phase2-face-v1-ac9008862f.ktx2",
+      "bytes": 57601,
+      "sha256": "ac9008862f7b841d3dbe16acced3d971fadfb6cba75b4be0181be6223066ecdd",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-phase2-face-v1-ac9008862f.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-phase2-face-v1-hit-25b689868f.webp",
+      "bytes": 11550,
+      "sha256": "25b689868f48aaa977e5fde54cff4f6844b8440e57efbc680c415fd75baa5aea",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-phase2-face-v1-hit-25b689868f.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-roar-v1-5fb88f89e0.ktx2",
+      "bytes": 581406,
+      "sha256": "5fb88f89e0ffbb5b9cb19dd1f9f4cc5905f2fea56709e49489b452838d2def98",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-roar-v1-5fb88f89e0.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-roar-v1-8c5dcce752.webp",
+      "bytes": 252716,
+      "sha256": "8c5dcce752e97004418e3175d79714d0b0d1125d2604123682c654e5a22589dc",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-roar-v1-8c5dcce752.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-roar-v1-hit-7d45454d41.webp",
+      "bytes": 103934,
+      "sha256": "7d45454d41ddc32851b8202778ce7ae2faccb5f91bc7c49ee0ceb330561c84cd",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-roar-v1-hit-7d45454d41.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-slam-v1-29a11a7281.webp",
+      "bytes": 237416,
+      "sha256": "29a11a728121f06d8698c2d4a13c44977df360c7d7d46cbe641473a6f9223a1e",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-slam-v1-29a11a7281.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-slam-v1-99c0ccb74b.ktx2",
+      "bytes": 418900,
+      "sha256": "99c0ccb74bc4d7854c2608a9aea2e117aab8655d083d8b36d7e40e142fd237df",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-slam-v1-99c0ccb74b.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-slam-v1-hit-b4f939f7f9.webp",
+      "bytes": 82740,
+      "sha256": "b4f939f7f99cb705ba52768927d89a3559be430b4dce1ab2d1cd388738ddb79f",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-slam-v1-hit-b4f939f7f9.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-spit-v1-e88a8e8625.webp",
+      "bytes": 288012,
+      "sha256": "e88a8e86254142c45ab1c72c7f2195c3cc295a4a0ea71b7cfb19d95283c467c3",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-spit-v1-e88a8e8625.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-spit-v1-fd1621778e.ktx2",
+      "bytes": 551453,
+      "sha256": "fd1621778e3300133f84b60a7c059d8774257e8aff6646c876faec805b47c1b6",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-spit-v1-fd1621778e.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-spit-v1-hit-b57cba0043.webp",
+      "bytes": 109530,
+      "sha256": "b57cba0043c605b3a088fe9e7d9d9b1a5de67ad5b805b36dc5af87ffc33e4837",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-spit-v1-hit-b57cba0043.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-stun-v1-5f918e0ba4.ktx2",
+      "bytes": 419426,
+      "sha256": "5f918e0ba4e0616dd009548e822d329b04c4d5053f6a2c7b8f33a9416750b4cd",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-stun-v1-5f918e0ba4.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-stun-v1-6a2b736ef9.webp",
+      "bytes": 201754,
+      "sha256": "6a2b736ef9ab5c3d6fa66d3a610255a34d02645a0fb7d3571c5b778a4c61ab5a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-stun-v1-6a2b736ef9.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-stun-v1-hit-58d5c2a051.webp",
+      "bytes": 77742,
+      "sha256": "58d5c2a05106b28774657eb82679a36cd751531a99f354309a0206f3464e1d23",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-stun-v1-hit-58d5c2a051.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-summon-v1-2cc7b4a2a4.ktx2",
+      "bytes": 459567,
+      "sha256": "2cc7b4a2a4dc5077362fb19f2ee9f64691cf4c71bf43e195762f6cd848c2962b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-summon-v1-2cc7b4a2a4.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-summon-v1-8de280b357.webp",
+      "bytes": 276546,
+      "sha256": "8de280b357e9238734efb43965550deb14f2f191ca5161f2f0692b92a8c1c65a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-summon-v1-8de280b357.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-summon-v1-hit-07330d88d0.webp",
+      "bytes": 101444,
+      "sha256": "07330d88d0f4e70aea95926fcd163e7de93d184542da470adf27fa8bb45db18f",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-summon-v1-hit-07330d88d0.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-sweep-v1-502f13b346.webp",
+      "bytes": 221722,
+      "sha256": "502f13b346d45c6ab17273c002fd726b05358db253cdbc83ce729a199b4d4968",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-sweep-v1-502f13b346.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-sweep-v1-cf6a2241f6.ktx2",
+      "bytes": 475072,
+      "sha256": "cf6a2241f6f358b000685a3b7cdca20e01470007890587c6fa956c95d347f8f1",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-sweep-v1-cf6a2241f6.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-sweep-v1-hit-e66261402a.webp",
+      "bytes": 84374,
+      "sha256": "e66261402adce186bd3d526b7d54e950eb4bffe932005c45188501582b3e7598",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-sweep-v1-hit-e66261402a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-transform-v1-482cad3f49.ktx2",
+      "bytes": 592856,
+      "sha256": "482cad3f496e72887a87050445760122065827f037a98ad52511adacdf28d02f",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-transform-v1-482cad3f49.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-transform-v1-6e0d91f602.webp",
+      "bytes": 251122,
+      "sha256": "6e0d91f6026e46fbcb0fb5cd5301e03c84f026c518ef0bcd123541e9267fec5a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-transform-v1-6e0d91f602.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/king-transform-v1-hit-3f3f3d998c.webp",
+      "bytes": 92496,
+      "sha256": "3f3f3d998ce12e76970970fe76e513aa08622e89bda86e6f2a1eb69255525097",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/king-transform-v1-hit-3f3f3d998c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/manifest.json",
+      "bytes": 220362,
+      "sha256": "b87504fa45ab28e6c32010afbd6187040f516cbc8d40e5668e1b54e09d7618db",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/manifest.json"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-attack-v1-5d857d5419-858edc5fd5.ktx2",
+      "bytes": 339359,
+      "sha256": "858edc5fd5fe56fce6f429db7d9252755779d08c07e8fa447fe56bbb5e83f3ef",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-attack-v1-5d857d5419-858edc5fd5.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-attack-v1-63e95ce0a5.webp",
+      "bytes": 301322,
+      "sha256": "63e95ce0a5ae8176aa1bd79358c312527c737257cef197716455863c816477d2",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-attack-v1-63e95ce0a5.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-attack-v1-hit-5a637f102d.webp",
+      "bytes": 107058,
+      "sha256": "5a637f102dcb3465266f04418df203cba87a2080f021710870f52f3e4d2b95ae",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-attack-v1-hit-5a637f102d.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-death-v1-11d1151fd3.webp",
+      "bytes": 244718,
+      "sha256": "11d1151fd32e6943c1ab52dd9172db2187e07407d35aeec6db30d7f829f69e0a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-death-v1-11d1151fd3.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-death-v1-31d5a83cbc-0705e2db7c.ktx2",
+      "bytes": 252880,
+      "sha256": "0705e2db7cea05a70d193f06f8abc141ec641683e66305a411802763c0e20483",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-death-v1-31d5a83cbc-0705e2db7c.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-death-v1-hit-3ac2627616.webp",
+      "bytes": 94226,
+      "sha256": "3ac2627616765abccf8580b9fee844aaff1d9a17c3e694875afb8d4e6cc007a2",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-death-v1-hit-3ac2627616.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-hop-v1-3b28b2fdf4.webp",
+      "bytes": 272432,
+      "sha256": "3b28b2fdf4dbd3418822a47c658cbde43b74d9b0d2012e50476645fea687c496",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-hop-v1-3b28b2fdf4.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-hop-v1-6d0c7d62f7-c289f49c0b.ktx2",
+      "bytes": 311302,
+      "sha256": "c289f49c0b811aba77656957f468f8247dac06c16956e426beac7c5a1613132a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-hop-v1-6d0c7d62f7-c289f49c0b.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-hop-v1-hit-11fb17beaf.webp",
+      "bytes": 94044,
+      "sha256": "11fb17beaff3e25ae3ade02f391206d0573a6c0f63a421b6ce7b24e6f2980bd4",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-hop-v1-hit-11fb17beaf.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-idle-v1-82885a3bfc.webp",
+      "bytes": 269806,
+      "sha256": "82885a3bfc80939d37b792d0233834591641284a4efa4d2624822b14f69b5944",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-idle-v1-82885a3bfc.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-idle-v1-e7e6f0e696-cae60f3131.ktx2",
+      "bytes": 306781,
+      "sha256": "cae60f31319a5353d6bfc373526aa9ba10e39cd996cc98adc1c66fc16800abfc",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-idle-v1-e7e6f0e696-cae60f3131.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/shroom-idle-v1-hit-8103bb5355.webp",
+      "bytes": 102728,
+      "sha256": "8103bb53550856c2f6dafc83253ce3851bbb808dba645efd4a2f7053cb59ca8a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/shroom-idle-v1-hit-8103bb5355.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-attack-v1-5f2d3f0647.ktx2",
+      "bytes": 169306,
+      "sha256": "5f2d3f0647b856fe90b4b52efbaabed0a03684bf389c70c91e5e8f40b6a4b03b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-attack-v1-5f2d3f0647.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-attack-v1-9ef25c3f62.webp",
+      "bytes": 103966,
+      "sha256": "9ef25c3f62b64eb0e9f30dbaea00d7994ecc23407a0ccdc3680bd3ee11bc8246",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-attack-v1-9ef25c3f62.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-attack-v1-hit-c8ee79e293.webp",
+      "bytes": 40170,
+      "sha256": "c8ee79e293f603c52f06ac4f4420a4d50e4b950ce9c2c3127c022d22e360f1eb",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-attack-v1-hit-c8ee79e293.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-death-v1-e72202e16f.webp",
+      "bytes": 74008,
+      "sha256": "e72202e16ff0935a8faecb0e73faa4ea1457c68041469c0f95f0406c7a3fc9c6",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-death-v1-e72202e16f.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-death-v1-f6de44751d.ktx2",
+      "bytes": 111238,
+      "sha256": "f6de44751de0de35c870532e36a76340d3bce766cd033445f8b30ef78c8aaa9d",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-death-v1-f6de44751d.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-death-v1-hit-93f78f4559.webp",
+      "bytes": 28902,
+      "sha256": "93f78f4559c69e524732609b734c4b8898ea59ef645fe3b0ed1ae4e06af2af64",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-death-v1-hit-93f78f4559.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-hop-v1-0db5535f5a.webp",
+      "bytes": 96092,
+      "sha256": "0db5535f5a64c4b3224f7efeb6559d64f11129c5049e4f3c069261aebaf8eb88",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-hop-v1-0db5535f5a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-hop-v1-e7cda9b674.ktx2",
+      "bytes": 148678,
+      "sha256": "e7cda9b674a1bf740765fde8c1f63f1029772cef7981ad55470e8d46e467d063",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-hop-v1-e7cda9b674.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-hop-v1-hit-6268fbeb03.webp",
+      "bytes": 37906,
+      "sha256": "6268fbeb037ec47bc0cbeac97c9a43622500a96f6596ff80be58a78c95c04652",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-hop-v1-hit-6268fbeb03.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-idle-v1-6ca0ee8ea8.ktx2",
+      "bytes": 166607,
+      "sha256": "6ca0ee8ea876dff6c3ec7749023d83957a3fe2d8171f53eb46358398a8d4629b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-idle-v1-6ca0ee8ea8.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-idle-v1-e8dc1aadd3.webp",
+      "bytes": 103314,
+      "sha256": "e8dc1aadd30e044bea9199e80bad2515acc3a15195dfdda6401f2b76c3912869",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-idle-v1-e8dc1aadd3.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/slime-idle-v1-hit-a67546c97c.webp",
+      "bytes": 39406,
+      "sha256": "a67546c97cd993145de1ea3670853648e9cfe730e0feb13b57b507536115a424",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/slime-idle-v1-hit-a67546c97c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-attack-v1-b54048d7ae.webp",
+      "bytes": 326664,
+      "sha256": "b54048d7aec0aca1576bf7b3742497881a712b757b9c88eae8225f9b76782b27",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-attack-v1-b54048d7ae.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-attack-v1-c83700717a-6536bf320d.ktx2",
+      "bytes": 319220,
+      "sha256": "6536bf320dc7cf9b896ede6d389a3ff42ac3171a9f92ec04b3898491615f5195",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-attack-v1-c83700717a-6536bf320d.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-attack-v1-hit-ba4931d10a.webp",
+      "bytes": 123142,
+      "sha256": "ba4931d10a5622593e7c82772f2a681a59f66c51a3d758f46801498915fa8066",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-attack-v1-hit-ba4931d10a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-death-v1-6563c3b51f-879072db58.ktx2",
+      "bytes": 211725,
+      "sha256": "879072db589e17f56376119bbebf87cea8cba707ffadebdc8537f0e12892461d",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-death-v1-6563c3b51f-879072db58.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-death-v1-cd77f401d5.webp",
+      "bytes": 236118,
+      "sha256": "cd77f401d5be2e7a988f6d1944896d4d78123eac1ecc2bb129b7c40045a95292",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-death-v1-cd77f401d5.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-death-v1-hit-df66008518.webp",
+      "bytes": 90794,
+      "sha256": "df6600851817b8cff151ef414a4b25d6ad821fa7c999fd27e6530b021261b82b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-death-v1-hit-df66008518.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-hop-v1-952935d65b-93af854c6d.ktx2",
+      "bytes": 279888,
+      "sha256": "93af854c6d5d98516e22ed5039632856d1475f1d2d3f864b78e6f4bc1c611638",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-hop-v1-952935d65b-93af854c6d.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-hop-v1-a690e2431b.webp",
+      "bytes": 272686,
+      "sha256": "a690e2431b102d97a48f98506e3a1ac9b42a14440b96a10c1bd6eee170a34e8e",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-hop-v1-a690e2431b.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-hop-v1-hit-04b8dc45e4.webp",
+      "bytes": 93212,
+      "sha256": "04b8dc45e4fe9e412344228830551b2ea569d7f47e565a4ad59692869eebeb05",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-hop-v1-hit-04b8dc45e4.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-idle-v1-c04bdbf178-50b02d55ab.ktx2",
+      "bytes": 295995,
+      "sha256": "50b02d55ab8d73c6d4f5914fdc73d70c420fc5950342a6dcc5df7de35f20f2db",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-idle-v1-c04bdbf178-50b02d55ab.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-idle-v1-e976bcb207.webp",
+      "bytes": 277528,
+      "sha256": "e976bcb207f10edfa4a1cd8f21c1f39b62ee49a5ff7b11debbff95442020c369",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-idle-v1-e976bcb207.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/stump-idle-v1-hit-c15b6d4a59.webp",
+      "bytes": 92772,
+      "sha256": "c15b6d4a5901f12980df2ef1bc97c91dead8b3211130dd5bee25c86c32cb8070",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/stump-idle-v1-hit-c15b6d4a59.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-charge-v1-583392b53a-b82e23e318.ktx2",
+      "bytes": 841036,
+      "sha256": "b82e23e3185cf47def9f49a4e9d63f7a880b808dad876c5d850112d8b96e674c",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-charge-v1-583392b53a-b82e23e318.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-charge-v1-d93415cc4e.webp",
+      "bytes": 811574,
+      "sha256": "d93415cc4e5ff0c597aa6e0dfed497d96b104c71e60db3bbdb49bcc2bc646b39",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-charge-v1-d93415cc4e.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-charge-v1-hit-53cb56efdb.webp",
+      "bytes": 411652,
+      "sha256": "53cb56efdb870c3654c060d56d13ea10d2e8db3670746b1bd551eece21750070",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-charge-v1-hit-53cb56efdb.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-death-v1-b935f3f0b4.webp",
+      "bytes": 389238,
+      "sha256": "b935f3f0b434adfdc669a15d6e6886979e95d163506f99d64d79eae5ed5c0e44",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-death-v1-b935f3f0b4.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-death-v1-bbc8984b4c-32a4be751a.ktx2",
+      "bytes": 336080,
+      "sha256": "32a4be751afcca62f77ceee0e6ebb387eb8b668b9cb1e20ae2ca3aa4fb8cd72a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-death-v1-bbc8984b4c-32a4be751a.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-death-v1-hit-6194216781.webp",
+      "bytes": 172744,
+      "sha256": "61942167814dfa57853bfedfec1535ae83af298bba3d924d2567319ce0ec2740",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-death-v1-hit-6194216781.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-hit-v1-bc4e88e6b0-a7f8b8c9cd.ktx2",
+      "bytes": 741462,
+      "sha256": "a7f8b8c9cdee355cc70c87e2f470c7824ffd41313650b9c0d5bfa21ec98724a9",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-hit-v1-bc4e88e6b0-a7f8b8c9cd.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-hit-v1-fb9fbe8d89.webp",
+      "bytes": 660392,
+      "sha256": "fb9fbe8d890fcd7b65e8cb4a94a971d79cde4d23410c489894a882c037b03890",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-hit-v1-fb9fbe8d89.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-hit-v1-hit-101fbdba2a.webp",
+      "bytes": 331328,
+      "sha256": "101fbdba2a141a18549848d6c04d7b4c8159b5c662ac58152a3354499133b054",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-hit-v1-hit-101fbdba2a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-idle-v1-13aaa450e0-b3fa755c1f.ktx2",
+      "bytes": 850053,
+      "sha256": "b3fa755c1f085567201eafca6ad3b481b0ca2993f7dbfee09b00f09788276607",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-idle-v1-13aaa450e0-b3fa755c1f.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-idle-v1-7c5387913e.webp",
+      "bytes": 769464,
+      "sha256": "7c5387913e9f6373bbc31fce43db58f1fe279bc3d109bac23a4b3282a68acf33",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-idle-v1-7c5387913e.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-idle-v1-hit-5067f73595.webp",
+      "bytes": 375440,
+      "sha256": "5067f73595e614a1d36a408ad647d3d8ef8dab1dc9f67f681a959f402ac6db62",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-idle-v1-hit-5067f73595.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-move-v1-d3a9fd7996-f0095f836f.ktx2",
+      "bytes": 890850,
+      "sha256": "f0095f836f61c48c0b6a1409df91940247a91701ffd578daba7e6462e2f3c19e",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-move-v1-d3a9fd7996-f0095f836f.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-move-v1-fc78fbbe51.webp",
+      "bytes": 819114,
+      "sha256": "fc78fbbe5175548420ee3d3d04ee29f38a32519ed90d5f3efe4427e197d85156",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-move-v1-fc78fbbe51.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-move-v1-hit-205f21d914.webp",
+      "bytes": 401916,
+      "sha256": "205f21d91472fcd0af4b5f241409b1c1d1291b68583da35357e06d56abb736ec",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-move-v1-hit-205f21d914.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-roar-v1-410d4edf3d.webp",
+      "bytes": 876694,
+      "sha256": "410d4edf3d1d343dd62dc635060666215dba31c03defc7c7e0ff5934c08a0d92",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-roar-v1-410d4edf3d.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-roar-v1-98cc086a0d-f277bc1be5.ktx2",
+      "bytes": 981541,
+      "sha256": "f277bc1be5d41f33f2797215f6b1824139bcbc9f1b5a00df269b53f4fa2ce7b5",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-roar-v1-98cc086a0d-f277bc1be5.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-roar-v1-hit-5f90f715ee.webp",
+      "bytes": 457526,
+      "sha256": "5f90f715ee635f40d1719ec7d60c286a63bebfc9e64d166fcdfb28254efc6331",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-roar-v1-hit-5f90f715ee.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-slam-v1-83b4e26d3f.webp",
+      "bytes": 771358,
+      "sha256": "83b4e26d3f57ad437d44e283c6eb60e3bd0b8305b4fa45f5d1634761fd494695",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-slam-v1-83b4e26d3f.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-slam-v1-93c877cfdb-a1e4e3622e.ktx2",
+      "bytes": 721004,
+      "sha256": "a1e4e3622e5fed3f575225b038afe7fb10e10746f2ddda734eaeb40243b33cc2",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-slam-v1-93c877cfdb-a1e4e3622e.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-slam-v1-hit-ce7c43123d.webp",
+      "bytes": 379662,
+      "sha256": "ce7c43123db70f147b0b65928f1e06e58cf6595ce577fe2f2333b8b626a3d423",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-slam-v1-hit-ce7c43123d.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-spit-v1-46a3bf0094.webp",
+      "bytes": 871224,
+      "sha256": "46a3bf0094dac117815cd93de12d02398610f4acb4b38f7f3bcc5bea0e0b80cf",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-spit-v1-46a3bf0094.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-spit-v1-674bdac276-992045cfbd.ktx2",
+      "bytes": 903105,
+      "sha256": "992045cfbd84f4dedb9f89d2c564f6e6700050f129a737820faaefa09cd00c9c",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-spit-v1-674bdac276-992045cfbd.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-spit-v1-hit-aebbae95c2.webp",
+      "bytes": 449554,
+      "sha256": "aebbae95c28ebac9a457bade3daf8b556573c0680b28a543c61ac11cb336cf77",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-spit-v1-hit-aebbae95c2.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-stun-v1-b5d4238be1-a5249791fe.ktx2",
+      "bytes": 609242,
+      "sha256": "a5249791fe68c6c84fbd12473d9e77d0588689280df77557e00c09859694328e",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-stun-v1-b5d4238be1-a5249791fe.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-stun-v1-b9621f27d6.webp",
+      "bytes": 506242,
+      "sha256": "b9621f27d66fbc46c68573fc307fbb041ffa37a40065762526df801339f01655",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-stun-v1-b9621f27d6.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-stun-v1-hit-c8ee230032.webp",
+      "bytes": 238580,
+      "sha256": "c8ee2300320ec17aface226083d411cddcff3c66a31eeec34c1581478933c293",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-stun-v1-hit-c8ee230032.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-summon-v1-77b5e2b099-4481512503.ktx2",
+      "bytes": 758483,
+      "sha256": "4481512503f3647ca539db7b0bcff4c62a95821a65b9f8772287c819f66f84c4",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-summon-v1-77b5e2b099-4481512503.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-summon-v1-e4d7c4fcbb.webp",
+      "bytes": 839422,
+      "sha256": "e4d7c4fcbb14e1c1b25d21d1e9ebca6c8f7fc7e8c28e8b8522359a676ea9d78d",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-summon-v1-e4d7c4fcbb.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-summon-v1-hit-97a201a322.webp",
+      "bytes": 379578,
+      "sha256": "97a201a32291db682fae415e27ea3559b437cf010975f88bf9cb3baced2741fb",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-summon-v1-hit-97a201a322.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-sweep-v1-0f68cd6851-a0e6f9393b.ktx2",
+      "bytes": 795945,
+      "sha256": "a0e6f9393b14124a6f6be736a9217e75966bfb009237ace7a9455da580521588",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-sweep-v1-0f68cd6851-a0e6f9393b.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-sweep-v1-cc7aa93d9c.webp",
+      "bytes": 760784,
+      "sha256": "cc7aa93d9ce37c94a35ec1c2a6381cd0fe8a9bb653c49e02b8715bf6ff09c432",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-sweep-v1-cc7aa93d9c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-sweep-v1-hit-89a9cabf6a.webp",
+      "bytes": 405784,
+      "sha256": "89a9cabf6a2c5c5f4aa83a9bb4ba38cd9c2f7ffe8919689c4e9c7a93cdadc53b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-sweep-v1-hit-89a9cabf6a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-transform-v1-4a14ff3f38-bd79cf3627.ktx2",
+      "bytes": 997842,
+      "sha256": "bd79cf36279e2e185e2948621c3ea53508e88e29289fcd7eb10d866102ab2016",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-transform-v1-4a14ff3f38-bd79cf3627.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-transform-v1-dba4dc162c.webp",
+      "bytes": 838816,
+      "sha256": "dba4dc162c79e905103e5abd7f7c8d329aba43139b6dc6679cbca2fbc8f5aff0",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-transform-v1-dba4dc162c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/warden-transform-v1-hit-defc5ebdf3.webp",
+      "bytes": 404028,
+      "sha256": "defc5ebdf35be34d164809d11694b023ac4140590e5198aec9e4d3cdba661681",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/warden-transform-v1-hit-defc5ebdf3.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-attack-v1-18d77fdafa.webp",
+      "bytes": 346944,
+      "sha256": "18d77fdafa967f84302e71d3c90e04aa347e7f80b50ab894f7053e518c9b5361",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-attack-v1-18d77fdafa.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-attack-v1-c532b22b75-6448aa8a97.ktx2",
+      "bytes": 321150,
+      "sha256": "6448aa8a97b486f85a2c75150b2becc70197d672345fbeb26a708c168cf36b58",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-attack-v1-c532b22b75-6448aa8a97.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-attack-v1-hit-62689828d4.webp",
+      "bytes": 152090,
+      "sha256": "62689828d4b10dc4f0cf1efb942370c7acb9bee3fd44a6ae7a13b40706acd3cf",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-attack-v1-hit-62689828d4.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-bolt-v1-42fec75aa0.webp",
+      "bytes": 36594,
+      "sha256": "42fec75aa03a686feca0e702c8e73c3a9816059cde0d26c294db94e8ce265927",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-bolt-v1-42fec75aa0.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-bolt-v1-a1db352dfa-7fa0053226.ktx2",
+      "bytes": 30321,
+      "sha256": "7fa00532263a294b4a62f164c3a1d77e69174e41650724f83d4afe997d8d1770",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-bolt-v1-a1db352dfa-7fa0053226.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-bolt-v1-hit-733cd56e77.webp",
+      "bytes": 15680,
+      "sha256": "733cd56e77f8dc152828f9bf88b3874490e93e1ef672fe56141bca053ba26736",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-bolt-v1-hit-733cd56e77.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-death-v1-5284bd9319-8e403b428c.ktx2",
+      "bytes": 253324,
+      "sha256": "8e403b428cea69042b9bcc240d82959a704c5aaa397ef00f8b22c60f6350288a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-death-v1-5284bd9319-8e403b428c.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-death-v1-a3957e1f7c.webp",
+      "bytes": 270738,
+      "sha256": "a3957e1f7c4ac7e742851385387a364b492022075ddca0d189684194aef5bd3c",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-death-v1-a3957e1f7c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-death-v1-hit-c5465e1c95.webp",
+      "bytes": 115346,
+      "sha256": "c5465e1c957f4ce99bf418772424acec03f83d22b3757678e1fe902fdfda6dc5",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-death-v1-hit-c5465e1c95.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-hop-v1-e495650eb3-6a771459df.ktx2",
+      "bytes": 258892,
+      "sha256": "6a771459dfb9e77c2d2ad24fc54ed8f4d97860d1b70b4059e0e58302bbac5310",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-hop-v1-e495650eb3-6a771459df.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-hop-v1-f2eaefae55.webp",
+      "bytes": 281182,
+      "sha256": "f2eaefae556bba80f558a8c26ff99edf0656b5362dfb585e9ec7d3db73f09cf7",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-hop-v1-f2eaefae55.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-hop-v1-hit-9f4db091ee.webp",
+      "bytes": 116742,
+      "sha256": "9f4db091ee40883c258ad49e70b4039c1112584a2dbb7b641ca758679c5fd989",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-hop-v1-hit-9f4db091ee.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-idle-v1-278d9e02ca.webp",
+      "bytes": 264762,
+      "sha256": "278d9e02ca975d77e94c0717b9a915d09bc263e495f2dac3e43f53a81cced736",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-idle-v1-278d9e02ca.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-idle-v1-891ee2166a-f540d38b0d.ktx2",
+      "bytes": 246310,
+      "sha256": "f540d38b0d72a7780b19ecabdb00815bc2810aba467c542093d4f8b3b0baf8e5",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-idle-v1-891ee2166a-f540d38b0d.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wisp-idle-v1-hit-56c7239b48.webp",
+      "bytes": 116398,
+      "sha256": "56c7239b482757bccc86ffc9c2fdb4855f31154ecd0e24f601225701dfa16d19",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wisp-idle-v1-hit-56c7239b48.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-attack-v1-29362b6027-f7d77b9b43.ktx2",
+      "bytes": 282383,
+      "sha256": "f7d77b9b43b33fe318d8bcf27cf5c4dd943f4d1ff8f8765693430c20f50990b1",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-attack-v1-29362b6027-f7d77b9b43.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-attack-v1-74816eaee9.webp",
+      "bytes": 261006,
+      "sha256": "74816eaee912114009d4ec1dbb451f797b3b03b572d69e1fa71ad2b5cf1cfb43",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-attack-v1-74816eaee9.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-attack-v1-hit-8d33258713.webp",
+      "bytes": 132422,
+      "sha256": "8d33258713ee03c212b9107a4ee04bfe273acb410da7c1f817bf8b1b8ee68ba1",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-attack-v1-hit-8d33258713.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-death-v1-4ebad4d4c6-7d0bc2893b.ktx2",
+      "bytes": 267846,
+      "sha256": "7d0bc2893b9cb8b8d5a80ccb35d9849d3b3c9599f265b5602b50c8f25110d2ff",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-death-v1-4ebad4d4c6-7d0bc2893b.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-death-v1-9df29f411b.webp",
+      "bytes": 272122,
+      "sha256": "9df29f411b879352e5623e13424c8d8475ac68962a50d7746f01767854b53cb6",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-death-v1-9df29f411b.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-death-v1-hit-679ac1217a.webp",
+      "bytes": 148440,
+      "sha256": "679ac1217a9221a8b13ed3e4f16585b91e9915ab5c714c9e65fc9d9156199eec",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-death-v1-hit-679ac1217a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-hop-v1-8bd4e4dea4-8da08ce02f.ktx2",
+      "bytes": 277313,
+      "sha256": "8da08ce02f8023ecfb6356940c9c877789dba81e83eb416bbef6b4e52c1ecc6a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-hop-v1-8bd4e4dea4-8da08ce02f.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-hop-v1-f537cc75bf.webp",
+      "bytes": 253016,
+      "sha256": "f537cc75bfac5f7ea5e106cf2e399228360771c7d96ba6a694189c53097af0b4",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-hop-v1-f537cc75bf.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-hop-v1-hit-84f1dc1e3c.webp",
+      "bytes": 128260,
+      "sha256": "84f1dc1e3c674b62b3fd75896d4c258e198b89d574f1bfcc829f4aedcfbefd70",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-hop-v1-hit-84f1dc1e3c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-idle-v1-760e155f1c.webp",
+      "bytes": 277432,
+      "sha256": "760e155f1c88de93a4f07df4c78901c82289090dde6e0d59375d9a0450792c90",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-idle-v1-760e155f1c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-idle-v1-fbcf556c7a-bf7e79c9ad.ktx2",
+      "bytes": 302383,
+      "sha256": "bf7e79c9ad854341f848bdb651a616e4c8a59904290ff62e3127f5919c8046cf",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-idle-v1-fbcf556c7a-bf7e79c9ad.ktx2"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-painted/wolf-idle-v1-hit-1c3ccb550a.webp",
+      "bytes": 140066,
+      "sha256": "1c3ccb550a896815569ef8d34c2df8729ffe997941906ba519b440406807e84e",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-painted/wolf-idle-v1-hit-1c3ccb550a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_guard-attack-4997977427ed.webp",
+      "bytes": 215658,
+      "sha256": "4997977427eda3480bf8f9876a414b4a3bf187d49fa96ba141142c095380000a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_guard-attack-4997977427ed.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_guard-death-053193b0eba8.webp",
+      "bytes": 193188,
+      "sha256": "053193b0eba8163835aef630ac9826dc1f05ac9218d88b7ac2b22a22555e82c3",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_guard-death-053193b0eba8.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_guard-hit-fcc965e3f248.webp",
+      "bytes": 210504,
+      "sha256": "fcc965e3f248f40d708992bd726c73789f19938d395dc429f686f95ca78e2f5c",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_guard-hit-fcc965e3f248.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_guard-idle-17156edc59a6.webp",
+      "bytes": 208186,
+      "sha256": "17156edc59a67fb39e7f6603d8d29a19202a7f7b5ce368787674b9b811409609",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_guard-idle-17156edc59a6.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_guard-move-d73ee16f9fb0.webp",
+      "bytes": 207828,
+      "sha256": "d73ee16f9fb0c5c1a910c2bce9e5a03dbd151f3227ef7efbbda4a95ba22d37ca",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_guard-move-d73ee16f9fb0.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_slime-attack-2f9dfaf9bdfb.webp",
+      "bytes": 193064,
+      "sha256": "2f9dfaf9bdfbf25a1cf366ac6f79b73de0b4ebb05cba40598a5bb211645b0a20",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_slime-attack-2f9dfaf9bdfb.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_slime-death-de9984baaa22.webp",
+      "bytes": 164690,
+      "sha256": "de9984baaa22ae98dd89e1f8afc462be97cdce3d38a1d6ba6d2d36b8a803fb29",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_slime-death-de9984baaa22.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_slime-hit-eac81cf9b6f8.webp",
+      "bytes": 187632,
+      "sha256": "eac81cf9b6f89ebd2390e1d0305f50b60e4ca4b1fae6eb063bf2b9c35f7b8863",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_slime-hit-eac81cf9b6f8.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_slime-idle-458590f02d76.webp",
+      "bytes": 182682,
+      "sha256": "458590f02d76f2271abedc3058aedc0c31b956ce62e6e36e23f97abc5e907590",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_slime-idle-458590f02d76.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_slime-move-036ffe3e2bbc.webp",
+      "bytes": 185358,
+      "sha256": "036ffe3e2bbcc5d3252aca07052b461a64b91c47ddca478b97a673aeb9cb250b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_slime-move-036ffe3e2bbc.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_titan-attack-9b6a789676e6.webp",
+      "bytes": 570968,
+      "sha256": "9b6a789676e6845ec8b49ef8045805929e7b0197bdf7720dec914e2ea5fbfdae",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_titan-attack-9b6a789676e6.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_titan-death-8841881cf020.webp",
+      "bytes": 532034,
+      "sha256": "8841881cf0204e4fcedaa0853378dd70bbe0eda598992b00aa3ca0d50083604a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_titan-death-8841881cf020.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_titan-hit-e8acc8ed0044.webp",
+      "bytes": 573614,
+      "sha256": "e8acc8ed004470d5f44464abe7f4d17e48724b7c1d5fd82a38e3f46111df3f0a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_titan-hit-e8acc8ed0044.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_titan-idle-40e5487b3747.webp",
+      "bytes": 585286,
+      "sha256": "40e5487b3747ed5aee77af854fc279166fb300320f48de661bec292f1af8f79a",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_titan-idle-40e5487b3747.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_titan-move-9cdf96d96997.webp",
+      "bytes": 565614,
+      "sha256": "9cdf96d969975c4dc1a72bb451f5b47c2c11ab67aff95444dfd4bcac74efe998",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_titan-move-9cdf96d96997.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_wolf-attack-7929f0788e9f.webp",
+      "bytes": 214280,
+      "sha256": "7929f0788e9f2db15f90b5678ef0e92a46ecc3ffdaa4b073848ca46ff06a15b1",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_wolf-attack-7929f0788e9f.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_wolf-death-ce7668cf8039.webp",
+      "bytes": 186348,
+      "sha256": "ce7668cf80398484b366d55e9423bdfe9afbc50975cdfe5e210da9257d2822ca",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_wolf-death-ce7668cf8039.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_wolf-hit-4c7fab491754.webp",
+      "bytes": 208790,
+      "sha256": "4c7fab491754e2d2ce67e85ead91611217c813386e8a9bb0c3a804946b08a603",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_wolf-hit-4c7fab491754.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_wolf-idle-4660b97c362c.webp",
+      "bytes": 208608,
+      "sha256": "4660b97c362c8b3da17345862939eb23a711610c000871eff2b10d0a9f1fcc95",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_wolf-idle-4660b97c362c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/crag_wolf-move-f4a99c436df1.webp",
+      "bytes": 211994,
+      "sha256": "f4a99c436df1eff73acbc8241cbac6ecda98405a25a4db0f3becc8c9f50b7671",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/crag_wolf-move-f4a99c436df1.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/dust_wisp-attack-e8d05b56d50b.webp",
+      "bytes": 203044,
+      "sha256": "e8d05b56d50ba62be60d878e9356f35724870aea5e8e6a9bf50663b01ff12bab",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/dust_wisp-attack-e8d05b56d50b.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/dust_wisp-death-7237a4a530e0.webp",
+      "bytes": 170850,
+      "sha256": "7237a4a530e0e899a556566006aa3807248019d781ce9caac67af7f0e1a1bf07",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/dust_wisp-death-7237a4a530e0.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/dust_wisp-hit-5f6043647420.webp",
+      "bytes": 192928,
+      "sha256": "5f604364742022e339b851c3f3ad1f46c6f6ffd431db06d4a31a79cc1f268ead",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/dust_wisp-hit-5f6043647420.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/dust_wisp-idle-5fc07b72b82d.webp",
+      "bytes": 176884,
+      "sha256": "5fc07b72b82de77704719f2d7f8eab97f3a6751d73bba18d6198242065482896",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/dust_wisp-idle-5fc07b72b82d.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/dust_wisp-move-9a853cd4b24c.webp",
+      "bytes": 187204,
+      "sha256": "9a853cd4b24cc11d8b36d3dda4c20e7d144717fd912a708b7972472a47e27363",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/dust_wisp-move-9a853cd4b24c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/manifest.json",
+      "bytes": 232744,
+      "sha256": "5fd49b54c7b1e338afb26f686aa69c26f81899d33ac599d310eb03b4039d083f",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/manifest.json"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_hound-attack-df809fba810e.webp",
+      "bytes": 219456,
+      "sha256": "df809fba810e3d1e75763c97096c0ebf93bf6575f012f4a323a4d00845d4a26e",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_hound-attack-df809fba810e.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_hound-death-45c8a45c7d58.webp",
+      "bytes": 173506,
+      "sha256": "45c8a45c7d589a109993c4ffa60acd40a4fa320417d3c64b650be3df7c3e6139",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_hound-death-45c8a45c7d58.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_hound-hit-63c6093f3681.webp",
+      "bytes": 210962,
+      "sha256": "63c6093f36817079c98eff3b4bc9de4b6e3f9d9ce18f586a9a3ca730bfc21b86",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_hound-hit-63c6093f3681.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_hound-idle-bc2ffd319dba.webp",
+      "bytes": 218646,
+      "sha256": "bc2ffd319dba8f0845a9f9a3da83561d99dba8a6fa9f98fce6988932b63ec98b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_hound-idle-bc2ffd319dba.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_hound-move-69ecaf7f2488.webp",
+      "bytes": 212880,
+      "sha256": "69ecaf7f2488030b83bf7f8fb4c6ef64a83548f19b672ac6669ec48a665fa701",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_hound-move-69ecaf7f2488.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_warden-attack-d10e59a09ed1.webp",
+      "bytes": 585614,
+      "sha256": "d10e59a09ed1a9cd32bb889f315d1a9ac22e83b81618cd6423871f1d0dbced62",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_warden-attack-d10e59a09ed1.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_warden-death-ede4008ec16c.webp",
+      "bytes": 467272,
+      "sha256": "ede4008ec16c95aecf427c14cb31e93acee5cb009b4ed9038896c6fc8bb628f4",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_warden-death-ede4008ec16c.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_warden-hit-155ebb089157.webp",
+      "bytes": 581788,
+      "sha256": "155ebb089157cf9d4d65ce2469395328abc72cbaae88997c28d8515796b52157",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_warden-hit-155ebb089157.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_warden-idle-f81c65c6ec7a.webp",
+      "bytes": 617524,
+      "sha256": "f81c65c6ec7a74caf7e487422fec612d38c1df663b6aab62ef4a7a4f321713f1",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_warden-idle-f81c65c6ec7a.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_warden-move-5584278aa570.webp",
+      "bytes": 591292,
+      "sha256": "5584278aa570eb9ae230ec79b5f07f6f904cabc95d4d16e81ae9881a9f9f439d",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_warden-move-5584278aa570.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_wisp-attack-443f8130fadf.webp",
+      "bytes": 217554,
+      "sha256": "443f8130fadffb6027c0808ab59ac7e75b8370420956d4535740ff037f7f78a2",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_wisp-attack-443f8130fadf.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_wisp-death-80e74dc025ca.webp",
+      "bytes": 155718,
+      "sha256": "80e74dc025ca405e001660063c2064628ea695abb9865722423006445a7ac9dc",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_wisp-death-80e74dc025ca.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_wisp-hit-53ae55cb9dc5.webp",
+      "bytes": 162264,
+      "sha256": "53ae55cb9dc578de6401edea3cf30fc4bb043415109006f93a480ab92da3bf97",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_wisp-hit-53ae55cb9dc5.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_wisp-idle-d8701bb6961e.webp",
+      "bytes": 149948,
+      "sha256": "d8701bb6961e6fa50b847ef991b551d16109a1f97a656dd3de75719de26e2599",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_wisp-idle-d8701bb6961e.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/relic_wisp-move-9114ffdecc74.webp",
+      "bytes": 156518,
+      "sha256": "9114ffdecc7497a1c223c7fd318052828d613d0b8cbea0eae99bea54328e8997",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/relic_wisp-move-9114ffdecc74.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_guard-attack-d29bc476d8cd.webp",
+      "bytes": 218582,
+      "sha256": "d29bc476d8cd216ff51950b4f3df2e33e730d3833d82ebedf897e2d8fbba2d53",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_guard-attack-d29bc476d8cd.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_guard-death-01450aba74d8.webp",
+      "bytes": 181758,
+      "sha256": "01450aba74d8ccd0a1c9b35b0139db5e3af5084a4f2551c8ecf0a3a75233de0c",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_guard-death-01450aba74d8.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_guard-hit-763608091f5f.webp",
+      "bytes": 216098,
+      "sha256": "763608091f5f5847da0938b31def85773cf2f204f792109e52a7b9337487217b",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_guard-hit-763608091f5f.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_guard-idle-6f94118558e5.webp",
+      "bytes": 229600,
+      "sha256": "6f94118558e55b949e0d82205a2d1eb994c97dfeb0b538aaf0a638825c84abad",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_guard-idle-6f94118558e5.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_guard-move-b0c164a1a423.webp",
+      "bytes": 219412,
+      "sha256": "b0c164a1a423f0bb3cd4644a86aea8fc37c5c585681f30d6c873589e58534ad7",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_guard-move-b0c164a1a423.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_shroom-attack-69d68b5a7bb5.webp",
+      "bytes": 179038,
+      "sha256": "69d68b5a7bb53adcc04baf5fed3ed6d1c938cb00760e3638f4386a6a50c7fe66",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_shroom-attack-69d68b5a7bb5.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_shroom-death-489646c43745.webp",
+      "bytes": 159812,
+      "sha256": "489646c437450fe3cb7ced49f366d4c3db20ff1fabda330b0f60413f14bd1c76",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_shroom-death-489646c43745.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_shroom-hit-4e8f0bc0bb29.webp",
+      "bytes": 174948,
+      "sha256": "4e8f0bc0bb29512a411109bc9916c6472493d40f25a9514a29299e9ec0ab05b2",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_shroom-hit-4e8f0bc0bb29.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_shroom-idle-707835061f90.webp",
+      "bytes": 167802,
+      "sha256": "707835061f905ee9e7b21f405be233c09bd28b0a692f548c449cd4d7511f3b93",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_shroom-idle-707835061f90.webp"
+    },
+    {
+      "path": "meadow-3d/public/assets/monsters-hunting/ruin_shroom-move-81991c77141d.webp",
+      "bytes": 167206,
+      "sha256": "81991c77141d8e6134f786e99b95d2ae8e4201afcf6cf40815bff8a1abd28cc5",
+      "archivePath": "meadow-3d/art/monster-origin-rebuild-v1/quarantine/monsters-hunting/ruin_shroom-move-81991c77141d.webp"
+    }
+  ],
+  "gameplayData": {
+    "shared/data/monsters.json": "172a8904772b2cbbdf43a37afcfbfcc14b7cd4c21f85b3a73cc97fb82300346d",
+    "shared/data/items.json": "7fad7d35138d6e7cded73b30dcbfa39713bc8fd5fdd738c7759cae6a47941356",
+    "shared/data/cards.json": "d8a7b4583ec71395f58d6d84f3879cfcb46b95cd13efe95ab5add278495becab",
+    "shared/src/game/sim.ts": "4e202ffa52d7db1f0cc7f7b17668115a52bd5d7694f0ed27439fd94007b2c4c8"
+  }
+}

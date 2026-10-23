@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "dragon_cloud_carp",
+      "baseSha256": "2e1e3ae7357732e0361194611b9100551563d2b81beb5f40a0c64c07189b9f22",
+      "run": "output/dragon-monsters-20261022/dragon_cloud_carp/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_cloud_carp/motion-qa.json"
+    },
+    {
+      "id": "dragon_jade_crane",
+      "baseSha256": "beb5bfe3449590b40732b83342bfdfae9bd7a8ae99246690a9ab8ed79ebf3b69",
+      "run": "output/dragon-monsters-20261022/dragon_jade_crane/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_jade_crane/motion-qa.json"
+    },
+    {
+      "id": "dragon_stone_liondog",
+      "baseSha256": "5643965152c2923d2c5e43861e03d2dc8f72050ee5bfbed41af323548da3c11c",
+      "run": "output/dragon-monsters-20261022/dragon_stone_liondog/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_stone_liondog/motion-qa.json"
+    },
+    {
+      "id": "dragon_sky_qilin",
+      "baseSha256": "65701278ce7195ca81bc0c2fca56c33a9ec284863d5d52ba1b23f3474c468588",
+      "run": "output/dragon-monsters-20261022/dragon_sky_qilin/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_sky_qilin/motion-qa.json"
+    },
+    {
+      "id": "dragon_bell_drake",
+      "baseSha256": "fe9380ccec68105b7a55458d808eac633eeb378549ea5c79235c25e863d42138",
+      "run": "output/dragon-monsters-20261022/dragon_bell_drake/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_bell_drake/motion-qa.json"
+    },
+    {
+      "id": "dragon_white_cloud_tiger",
+      "baseSha256": "ffaad28500e42d4d1ad0002ec2a95ceb33bb6793562ce99eafcbabf53dd745e5",
+      "run": "output/dragon-monsters-20261022/dragon_white_cloud_tiger/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_white_cloud_tiger/motion-qa.json"
+    },
+    {
+      "id": "dragon_jade_gatekeeper",
+      "baseSha256": "a07212706185d8bae05e44474ea7e55df13993b9218d50068cad88f02e997c44",
+      "run": "output/dragon-monsters-20261022/dragon_jade_gatekeeper/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_jade_gatekeeper/motion-qa.json"
+    },
+    {
+      "id": "dragon_cloud_dragon_lord",
+      "baseSha256": "152b170bb36838185ec17b5a26a57bf21dfc18c5839fb627aeecd46de512cb48",
+      "run": "output/dragon-monsters-20261022/dragon_cloud_dragon_lord/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/dragon-monsters-v1/dragon_cloud_dragon_lord/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "dragon_cloud_carp-idle.webp",
+      "sha256": "683c96dbef760c188728b32cd2befb9f8e62218d7fa003bd006af3cd411eddd8"
+    },
+    {
+      "file": "dragon_cloud_carp-move.webp",
+      "sha256": "f8ce1d53841c892ea320aa8b7ef8def5b14f1911e2bb24d5e0b50fbc0343d95a"
+    },
+    {
+      "file": "dragon_cloud_carp-attack.webp",
+      "sha256": "101f4fc123132bc1aeb9db585f0709bec1845543d94576e3f205d84ee1cf7e30"
+    },
+    {
+      "file": "dragon_cloud_carp-hit.webp",
+      "sha256": "3fa4d370cb0eaa864ce9df5142b3f8163abeee6bbbe5eecd6d5ea973068a1d5a"
+    },
+    {
+      "file": "dragon_cloud_carp-death.webp",
+      "sha256": "a6018061612b1cc6e5f86789444d7ff67bd9d6a5ddb695e746cc04e200457411"
+    },
+    {
+      "file": "dragon_jade_crane-idle.webp",
+      "sha256": "1201b2453d325f70cc1956cc8e27080e877a7d8e693c322953a9a6587b629347"
+    },
+    {
+      "file": "dragon_jade_crane-move.webp",
+      "sha256": "b8e9d6fb559be52765221af5dcedca65c4411fa58d0c7058c2509d779eedcb73"
+    },
+    {
+      "file": "dragon_jade_crane-attack.webp",
+      "sha256": "d61e400af3ce18481b9e0490add264192d1377a07aeaca465be022852c4216a6"
+    },
+    {
+      "file": "dragon_jade_crane-hit.webp",
+      "sha256": "5359b679ba6a3697d989941987d3ec95da3e15256ea6acd44548881df54b8ac8"
+    },
+    {
+      "file": "dragon_jade_crane-death.webp",
+      "sha256": "9d845f35d31df0ba24108173450d8b2a5f77e6776466c4023d6bf94b341dd2c4"
+    },
+    {
+      "file": "dragon_stone_liondog-idle.webp",
+      "sha256": "4527382b3273d8bdc972eec8f8fca18b2e8b6986cc3d6af622349c43b8477933"
+    },
+    {
+      "file": "dragon_stone_liondog-move.webp",
+      "sha256": "97d6f184a205683703f46489c9959bb94f4c3cb8a7f854dbd87a9e9b55c831d0"
+    },
+    {
+      "file": "dragon_stone_liondog-attack.webp",
+      "sha256": "dc2f7d25e2cb8eb1e9cc56a3404c86db83baec9fdd1c7c2920b1028c7a97c800"
+    },
+    {
+      "file": "dragon_stone_liondog-hit.webp",
+      "sha256": "e5179c7c219fb8dd536ab8e7f9acc33efd137a62142dbcb36c1383ed22a251ee"
+    },
+    {
+      "file": "dragon_stone_liondog-death.webp",
+      "sha256": "ada45a7105a214e680ec7049875570f3d1354f20ad4874e521dc7c328586b67d"
+    },
+    {
+      "file": "dragon_sky_qilin-idle.webp",
+      "sha256": "f5596babffbccf8b5df235ce7da585304ab09854cfdd3979ccd739db5d30ccbd"
+    },
+    {
+      "file": "dragon_sky_qilin-move.webp",
+      "sha256": "6737b4e7876a89c618b4862f08c4a7f33a4d3989c2936ada402b90b8e2a7efa0"
+    },
+    {
+      "file": "dragon_sky_qilin-attack.webp",
+      "sha256": "d4f6ab5868fc1d7a870ceafe999081b4c8896306541beb57a911fa88d3242de3"
+    },
+    {
+      "file": "dragon_sky_qilin-hit.webp",
+      "sha256": "0bc061e2e8aa12454412baca9e3d5ed4cbbcdb6f7a28a915dffca1f5179658a2"
+    },
+    {
+      "file": "dragon_sky_qilin-death.webp",
+      "sha256": "05c44c1fc2d8e39c9cafcbc36002db7ce48f784bbbc5da579d12e07da7c4c184"
+    },
+    {
+      "file": "dragon_bell_drake-idle.webp",
+      "sha256": "0487d0272fae30cb48bece77fe1182170b768ad5c36ea1c2bf5fc1c4c5e34371"
+    },
+    {
+      "file": "dragon_bell_drake-move.webp",
+      "sha256": "39a43d0151db3ac274a10b7a0d38b64adb7722f4112aedb051a034d7466edc17"
+    },
+    {
+      "file": "dragon_bell_drake-attack.webp",
+      "sha256": "faa9ec570013c72090b2781de18b3be695ab804c756885b14c5944e642c74abe"
+    },
+    {
+      "file": "dragon_bell_drake-hit.webp",
+      "sha256": "793616bebcafab5bb339cb50ba726c70843885049a868e853fff064f57e3b24c"
+    },
+    {
+      "file": "dragon_bell_drake-death.webp",
+      "sha256": "d04386e8e31cf06eb524a6b7f31662404f8cab47b0c0efb87c2c0fcedad68be1"
+    },
+    {
+      "file": "dragon_white_cloud_tiger-idle.webp",
+      "sha256": "1473c7a741d52d55c962a85f9db9799df453f18fe86dd175ba507bfb07099b7c"
+    },
+    {
+      "file": "dragon_white_cloud_tiger-move.webp",
+      "sha256": "39e4c5f8ca8b2ac2bacf637d86acf1b2858b83c0d58e926713700bcd38893960"
+    },
+    {
+      "file": "dragon_white_cloud_tiger-attack.webp",
+      "sha256": "b5bd239af2c2eb81a3628a3beb384b77cccac45b8769e713c74512fdd3f2b355"
+    },
+    {
+      "file": "dragon_white_cloud_tiger-hit.webp",
+      "sha256": "f2e49c1d6f7dc969535c68edffae97e77d92ea0b60fdd491f1b29e6090a4cfce"
+    },
+    {
+      "file": "dragon_white_cloud_tiger-death.webp",
+      "sha256": "f56df34c8f0c03861fb5afd245408e625669ad7d7cc4817d84013baf812a608d"
+    },
+    {
+      "file": "dragon_jade_gatekeeper-idle.webp",
+      "sha256": "ab42e39bd1e7ca06ca5156714a8edcd0699ef2eb1ba56cf9f9290f142633bfdd"
+    },
+    {
+      "file": "dragon_jade_gatekeeper-move.webp",
+      "sha256": "9721f194a70d63e21b8650486643a459adb4186c00f5f74ad0a476597cfff5bb"
+    },
+    {
+      "file": "dragon_jade_gatekeeper-attack.webp",
+      "sha256": "1d0ba0f48da550d0a8bef1b3838a177b77dc1b36cba45c6d1aa94447ac9eea3d"
+    },
+    {
+      "file": "dragon_jade_gatekeeper-hit.webp",
+      "sha256": "e105441c16d0a0bef4d117459dbfea5bc8f5762e76a90f68ff44c0a1bd98676f"
+    },
+    {
+      "file": "dragon_jade_gatekeeper-death.webp",
+      "sha256": "02b98879844fc05d004c74e819f0b2aa8941f30bfdd4ad9a4bebe5fee2b90b57"
+    },
+    {
+      "file": "dragon_cloud_dragon_lord-idle.webp",
+      "sha256": "d28b6ab3a53c8e48cf79a3c2c5006a350b30608c795dda7fe618ec77e2ccbcc3"
+    },
+    {
+      "file": "dragon_cloud_dragon_lord-move.webp",
+      "sha256": "277a2182a6f9baa36b7af94a24eede2b9a65ceab5fa174830f341797ae29e092"
+    },
+    {
+      "file": "dragon_cloud_dragon_lord-attack.webp",
+      "sha256": "8d6a5c540318b0dbb82ab1f16222c84681bae3ba611ebc33881339f50c9c9ec1"
+    },
+    {
+      "file": "dragon_cloud_dragon_lord-hit.webp",
+      "sha256": "fc12cd0e8966b625474b46b041faa53906e56a2572b6be54429be1a7ea864f1d"
+    },
+    {
+      "file": "dragon_cloud_dragon_lord-death.webp",
+      "sha256": "7f8768c261f4fda18b74bf34bb551f3e61c29979e71e2748774eed9dc1f38494"
+    }
+  ]
+}

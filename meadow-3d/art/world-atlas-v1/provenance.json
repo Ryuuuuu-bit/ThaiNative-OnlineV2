@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "date": "2026-10-22",
+  "method": "Original text-only GPT ImageGen artwork; no external image references.",
+  "tool": "built-in image_gen",
+  "prompt": "meadow-3d/art/world-atlas-v1/prompt.txt",
+  "file": "meadow-3d/src/assets/world-atlas-v1.webp",
+  "width": 1536,
+  "height": 1024,
+  "externalReferences": [],
+  "note": "Image is decorative geography. Labels, routes, state and controls are authored in game UI.",
+  "sourceFile": "world-map-source.png",
+  "sourceSha256": "0d9f03a67629237b25487871cedaf7f74fe8fcb6bd4f8e7609bcf45a7bd0ed64",
+  "sha256": "4afde90a5858ec409c724c13867809c365947eea7e83aa8d43a9adf7b6a47488",
+  "normalization": "Pillow WebP quality 90; no retouching, crops, rearrangement or image edits."
+}

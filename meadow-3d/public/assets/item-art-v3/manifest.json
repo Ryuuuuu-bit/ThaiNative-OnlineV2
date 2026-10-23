@@ -1,0 +1,2807 @@
+{
+  "version": 3,
+  "method": "Original individual built-in image_gen paintings, native alpha, deterministic crop and contain fit.",
+  "externalReferences": [],
+  "files": [
+    {
+      "id": "mist_spore",
+      "file": "mist_spore.png",
+      "kind": "material",
+      "sha256": "74d56cccfb75713143e3052403e59f39479438cb3bf0eb3864abfb443d8a79c1",
+      "source": "meadow-3d/art/item-art-v3/originals/mist_spore.png",
+      "sourceSha256": "8641a70c5f6e6930ab93434452e0eb44135785fb5b20319f40eaa53b9673118a",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/mist_spore.receipt.json",
+      "receiptSha256": "e79aa34ad77a281b919d2910804665891708eb63edb5c9ab545bb6f46b458bdf",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        14,
+        184,
+        178
+      ],
+      "sourceBounds": [
+        142,
+        167,
+        1129,
+        1084
+      ],
+      "clippedPixels": 0,
+      "bytes": 54115
+    },
+    {
+      "id": "ore_scale",
+      "file": "ore_scale.png",
+      "kind": "material",
+      "sha256": "5887f1c8151dea0dc0a7e07e3a182d0dad2f186271bdf1465fa7ef30e6c0b798",
+      "source": "meadow-3d/art/item-art-v3/originals/ore_scale.png",
+      "sourceSha256": "8615dc6a434d7d2ebc67142c3f3e9df1bfd758de8f65422011397fde8afb45a3",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ore_scale.receipt.json",
+      "receiptSha256": "49e6a1ebd5dcf11757cc331861bb08608326894bd7dfcc20a2fe7dc34af5130a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        183
+      ],
+      "sourceBounds": [
+        144,
+        106,
+        1197,
+        1149
+      ],
+      "clippedPixels": 0,
+      "bytes": 56087
+    },
+    {
+      "id": "magnet_claw",
+      "file": "magnet_claw.png",
+      "kind": "material",
+      "sha256": "4d9839e72b24c52c25ec7eddace88547d83b1b62095bd4d5f3c1f00070b5aac0",
+      "source": "meadow-3d/art/item-art-v3/originals/magnet_claw.png",
+      "sourceSha256": "92326f349a94bf8e1c8cd5cc74717bdb6dccefab4423c8f81361c12e8e867233",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/magnet_claw.receipt.json",
+      "receiptSha256": "57c37c7ca0d9286eaffaabe515963ae38aeb827116a2640cbe4f2076a50a45d4",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        31,
+        184,
+        160
+      ],
+      "sourceBounds": [
+        57,
+        200,
+        1219,
+        1050
+      ],
+      "clippedPixels": 0,
+      "bytes": 42493
+    },
+    {
+      "id": "root_tusk",
+      "file": "root_tusk.png",
+      "kind": "material",
+      "sha256": "c51adb30dd41148626ff254e01521dde15311ca98a2ae5d24d7f89eb4a231d01",
+      "source": "meadow-3d/art/item-art-v3/originals/root_tusk.png",
+      "sourceSha256": "1efae93eba5e2ec2ba2afffd565229809d0c4e3ea52bca2653b162f7351bdeac",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/root_tusk.receipt.json",
+      "receiptSha256": "c76749eb1bb529b91a5b3be2ada823126651329cfef37f2445185a9fa30af94a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ],
+      "sourceBounds": [
+        149,
+        89,
+        1139,
+        1152
+      ],
+      "clippedPixels": 0,
+      "bytes": 35488
+    },
+    {
+      "id": "shadow_fang",
+      "file": "shadow_fang.png",
+      "kind": "material",
+      "sha256": "178c3fc5e56ef7b6a39acef1383e021679d398db07cb100a6de0ae118734cc12",
+      "source": "meadow-3d/art/item-art-v3/originals/shadow_fang.png",
+      "sourceSha256": "383c3d8e33de3cb053422d16b2fd2c0251732e022723386471177160587c1aa6",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/shadow_fang.receipt.json",
+      "receiptSha256": "fbd7fdedcabd2154f51f51500eed4a603ca80079649fd7bd15e734c4eeeb95ac",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        174,
+        184
+      ],
+      "sourceBounds": [
+        140,
+        60,
+        1125,
+        1162
+      ],
+      "clippedPixels": 0,
+      "bytes": 36077
+    },
+    {
+      "id": "mist_silk",
+      "file": "mist_silk.png",
+      "kind": "material",
+      "sha256": "ba47e57ee26f9568ed1c2f0a593e2d8b013a76c0f89d1d3aaf38e38729785791",
+      "source": "meadow-3d/art/item-art-v3/originals/mist_silk.png",
+      "sourceSha256": "2a5a72cb5077d25af762ec5c0e855d7ae1084a3d0f6c6bd026196f4bb694267a",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/mist_silk.receipt.json",
+      "receiptSha256": "780388de8fcef2ce338f891019ca782b5569e7b1c263d66b27a190a86248ac05",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        181
+      ],
+      "sourceBounds": [
+        203,
+        159,
+        1182,
+        1109
+      ],
+      "clippedPixels": 0,
+      "bytes": 58042
+    },
+    {
+      "id": "thorn_nest_heart",
+      "file": "thorn_nest_heart.png",
+      "kind": "material",
+      "sha256": "f6b4a823e92ea0592554ceb27a2fa243cc1dbea4340410342a2f27620c5a4db6",
+      "source": "meadow-3d/art/item-art-v3/originals/thorn_nest_heart.png",
+      "sourceSha256": "a2bd5ca16f637fcc2ef520fb35689ed51dc37bdcfe77912d0ebd46a41d7257d9",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/thorn_nest_heart.receipt.json",
+      "receiptSha256": "9663fdf84b10000d363e4458964426fe76d33cb27bd22a5bf06f0800ba20bd84",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        8,
+        168,
+        184
+      ],
+      "sourceBounds": [
+        189,
+        76,
+        1103,
+        1197
+      ],
+      "clippedPixels": 0,
+      "bytes": 50969
+    },
+    {
+      "id": "greek_reed",
+      "file": "greek_reed.png",
+      "kind": "material",
+      "sha256": "ab1b5e17d510e1948a58d0647cd7457a0fc58cb03b23aef0cf6ee6e3cf440efd",
+      "source": "meadow-3d/art/item-art-v3/originals/greek_reed.png",
+      "sourceSha256": "67ea01010d8c17a3c0f60333a1de75ca64015a17662256780efebe242ec4b065",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/greek_reed.receipt.json",
+      "receiptSha256": "7b710faaecc9715f5f19ee7298d3a99472848c7e418b8310928049f1b7a7ce89",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        16,
+        184,
+        176
+      ],
+      "sourceBounds": [
+        107,
+        132,
+        1195,
+        1120
+      ],
+      "clippedPixels": 0,
+      "bytes": 44521
+    },
+    {
+      "id": "greek_windfeather",
+      "file": "greek_windfeather.png",
+      "kind": "material",
+      "sha256": "0dc9ce165f53e4c04a11616d2d38d0a785442c3f1cd9f66d84ef8ab1d555258d",
+      "source": "meadow-3d/art/item-art-v3/originals/greek_windfeather.png",
+      "sourceSha256": "7273ae79fb2a4bfd3b2bb55001fb2d5690a91f1312b0ee95ae6f5454920e425e",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/greek_windfeather.receipt.json",
+      "receiptSha256": "990c6eecc894fa131036915424ed04e9bba4cd323475f35d2b071ba480257dbd",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ],
+      "sourceBounds": [
+        142,
+        47,
+        1183,
+        1168
+      ],
+      "clippedPixels": 0,
+      "bytes": 45566
+    },
+    {
+      "id": "greek_jadescale",
+      "file": "greek_jadescale.png",
+      "kind": "material",
+      "sha256": "d0f79f841421ea78d0e2e39762ef764a8656c01e385f7bae5a83489bfa1fd5f7",
+      "source": "meadow-3d/art/item-art-v3/originals/greek_jadescale.png",
+      "sourceSha256": "af56966d1f9f64a8b32189deef8474c48a4e75ac2199c8f410a93a467d447c0e",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/greek_jadescale.receipt.json",
+      "receiptSha256": "84b7e4f8a402fa531e25bccd36692a3bd76782167a5b380f9fb7c6531ff7e29b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ],
+      "sourceBounds": [
+        140,
+        107,
+        1131,
+        1152
+      ],
+      "clippedPixels": 0,
+      "bytes": 54165
+    },
+    {
+      "id": "greek_labyrinth_bronze",
+      "file": "greek_labyrinth_bronze.png",
+      "kind": "material",
+      "sha256": "59f1d2657ac1d0d97bdb6c25ded89b0388e4b51a2794cfefc6e78a0103086d57",
+      "source": "meadow-3d/art/item-art-v3/originals/greek_labyrinth_bronze.png",
+      "sourceSha256": "3b3fb25b3c6e725f6cfe92e977e6c8e9074a9df3ba778bab7e79fb8b6ceb49e6",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/greek_labyrinth_bronze.receipt.json",
+      "receiptSha256": "5431a952644a51ab562593818cf153aaa906a84d499bf3f3cf1a1fbb6167ba49",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ],
+      "sourceBounds": [
+        152,
+        101,
+        1156,
+        1156
+      ],
+      "clippedPixels": 0,
+      "bytes": 55073
+    },
+    {
+      "id": "himmapan_01_material",
+      "file": "himmapan_01_material.png",
+      "kind": "material",
+      "sha256": "075cab03d7eae42e1ed5b98f997bc2916897b2cd043c67dfadfeaa6e1c4b5258",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_01_material.png",
+      "sourceSha256": "4fe2f66553ab19aa2da82d7e8ad4968ed8f22624e2b5017dfb08add4f010740a",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_01_material.receipt.json",
+      "receiptSha256": "6f3c01e5f0cc15d2da919053a9fac9c113efb63976d23957451b77b474dbb2de",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        176,
+        184
+      ],
+      "sourceBounds": [
+        167,
+        56,
+        1201,
+        1188
+      ],
+      "clippedPixels": 0,
+      "bytes": 49282
+    },
+    {
+      "id": "himmapan_jade_turtle_material",
+      "file": "himmapan_jade_turtle_material.png",
+      "kind": "material",
+      "sha256": "ac7b13ace4b8251113444b737ee1921e32912f61847fe27d660a28fd31acd4d7",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_jade_turtle_material.png",
+      "sourceSha256": "ff144e5452c01444e90b8fc1715d429020456f9171bb451feec8c3a00bf9b737",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_jade_turtle_material.receipt.json",
+      "receiptSha256": "4ccaae20209268def27cbb97d209fa95c95b8813fd822c4114b2a4e6255edc7c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        19,
+        184,
+        173
+      ],
+      "sourceBounds": [
+        80,
+        151,
+        1186,
+        1118
+      ],
+      "clippedPixels": 0,
+      "bytes": 57977
+    },
+    {
+      "id": "himmapan_03_material",
+      "file": "himmapan_03_material.png",
+      "kind": "material",
+      "sha256": "918cbddfc7802a180b5d95cc4bbadf8a869676837291ed195fabe5361d7d4f30",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_03_material.png",
+      "sourceSha256": "8fd81d5f267ff408fac92766401c80ec4e0c09f809cae2fb465cd6edbfecc5c7",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_03_material.receipt.json",
+      "receiptSha256": "812882057e1e22443ab74601f7103359c8aa28e3111f6fbe6901029681a839e0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        13,
+        184,
+        178
+      ],
+      "sourceBounds": [
+        135,
+        137,
+        1183,
+        1116
+      ],
+      "clippedPixels": 0,
+      "bytes": 51432
+    },
+    {
+      "id": "himmapan_blossom_deer_material",
+      "file": "himmapan_blossom_deer_material.png",
+      "kind": "material",
+      "sha256": "a4752e49e7ce04268a4e6b04d0b60752da090f79804a12e6fbc4fc5af01dd5f9",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_blossom_deer_material.png",
+      "sourceSha256": "0a25bf62512c06c699dc8315fe848048dd3ddb46c64ebbfcc3e0d03207390769",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_blossom_deer_material.receipt.json",
+      "receiptSha256": "c28a39a5c4d9a9a5376fa28b19b2b52ef82d54cf850a764e6f6bd8199bdf8745",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        8,
+        166,
+        184
+      ],
+      "sourceBounds": [
+        218,
+        85,
+        1075,
+        1164
+      ],
+      "clippedPixels": 0,
+      "bytes": 31822
+    },
+    {
+      "id": "himmapan_golden_macaque_material",
+      "file": "himmapan_golden_macaque_material.png",
+      "kind": "material",
+      "sha256": "57bcdbad5dbce7165f08fbcc9cdc837a26d7da0a2b15962cf0a2acca7440d3ba",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_golden_macaque_material.png",
+      "sourceSha256": "dc15d4699aa3ccf5ef5ac222b7c8185913f30b5c933391dabdcd784289cb5a45",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_golden_macaque_material.receipt.json",
+      "receiptSha256": "fad906f539f1d9b4053f44273ee3b993d48f0f247695798ed7fe9d140731ea83",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        16,
+        184,
+        175
+      ],
+      "sourceBounds": [
+        80,
+        112,
+        1178,
+        1105
+      ],
+      "clippedPixels": 0,
+      "bytes": 41697
+    },
+    {
+      "id": "himmapan_06_material",
+      "file": "himmapan_06_material.png",
+      "kind": "material",
+      "sha256": "3338bbd3f936487dae35f14b8d057f4e71e3e4ee91fdd89516f44271b86257ec",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_06_material.png",
+      "sourceSha256": "e01804f23be88c51182db432a29c88b641868866ded0ba5aaf383047dc2a184b",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_06_material.receipt.json",
+      "receiptSha256": "e45ccc1fa5288ff5ab0dd9fe84468cf3faec4d3cf4af654c91c896f04cb8ac29",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ],
+      "sourceBounds": [
+        182,
+        166,
+        1120,
+        1150
+      ],
+      "clippedPixels": 0,
+      "bytes": 56010
+    },
+    {
+      "id": "himmapan_azure_garuda_material",
+      "file": "himmapan_azure_garuda_material.png",
+      "kind": "material",
+      "sha256": "f717cac619bdfb09237cf1c382e1f5f995ba1a35d7fe784b05fc452cceb16038",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_azure_garuda_material.png",
+      "sourceSha256": "4de82aedd2e4dcacdf1c446025b860df5be1a76b136ef049ddc4b3285e2bae3b",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_azure_garuda_material.receipt.json",
+      "receiptSha256": "6b8e007d6124b06e8cfce98f38ca7387d348e83b8c38c415fa44f24fcaef6613",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        8,
+        167,
+        184
+      ],
+      "sourceBounds": [
+        254,
+        22,
+        1202,
+        1188
+      ],
+      "clippedPixels": 0,
+      "bytes": 46347
+    },
+    {
+      "id": "himmapan_08_material",
+      "file": "himmapan_08_material.png",
+      "kind": "material",
+      "sha256": "b4559a8c1d4fa713b52e13447b95a50a6ad895ba34ca071d41d4e10e60e2139f",
+      "source": "meadow-3d/art/item-art-v3/originals/himmapan_08_material.png",
+      "sourceSha256": "982b2124b75694df79e3359a851205e3bd1f3f9ceaaae6152c4c416fe2ca1067",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/himmapan_08_material.receipt.json",
+      "receiptSha256": "e2a1e52d584994ab184cf2150b5be750c5f6b8cd7a3791734d3b5e88d8878e79",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        8,
+        161,
+        184
+      ],
+      "sourceBounds": [
+        261,
+        80,
+        1064,
+        1169
+      ],
+      "clippedPixels": 0,
+      "bytes": 46910
+    },
+    {
+      "id": "lotus_party_dew",
+      "file": "lotus_party_dew.png",
+      "kind": "consumable",
+      "sha256": "961cd029de62e0a9674b661a3ff3a424405ea042a7836135150cd9d92adab3ec",
+      "source": "meadow-3d/art/item-art-v3/originals/lotus_party_dew.png",
+      "sourceSha256": "877a4c56d6df0840bedace5d6da887e3f44b293951e515025971130c58dcec04",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/lotus_party_dew.receipt.json",
+      "receiptSha256": "55a62947e976215b1ba36e95d0b77acd9f078ce72f2eee70cbb2c90b01b30c3b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        30,
+        8,
+        161,
+        184
+      ],
+      "sourceBounds": [
+        280,
+        73,
+        1104,
+        1184
+      ],
+      "clippedPixels": 0,
+      "bytes": 39346
+    },
+    {
+      "id": "naga_cleansing_incense",
+      "file": "naga_cleansing_incense.png",
+      "kind": "consumable",
+      "sha256": "c1ddf17c8863a3f366f649b61d5d4c4f2e6f84ac3cce010467db6150b22f883c",
+      "source": "meadow-3d/art/item-art-v3/originals/naga_cleansing_incense.png",
+      "sourceSha256": "fd1c5b57b9769494d221060578c655097cc74ae1a761a67cc8f4938f96654bb4",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/naga_cleansing_incense.receipt.json",
+      "receiptSha256": "ec1abdac2fd1415d49cfeb1b1f568419d4ae0df52c16970d5b64d538a445c78f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        48,
+        8,
+        143,
+        184
+      ],
+      "sourceBounds": [
+        369,
+        66,
+        969,
+        1180
+      ],
+      "clippedPixels": 0,
+      "bytes": 33588
+    },
+    {
+      "id": "desert_01_material",
+      "file": "desert_01_material.png",
+      "kind": "material",
+      "sha256": "72837215b553b91bbe076736f9bdbf7b774ee9a7b361bca2c3bc98a3fa6010b0",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_01_material.png",
+      "sourceSha256": "fad6f6958f8e905116ba90939d3d42c14cc8cc224782d34976e12c473a8de2e0",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_01_material.receipt.json",
+      "receiptSha256": "8198fb020f6f7b8ed5b7f15f90e2eba908de210ffe01186bb8e9d2c929859e65",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ],
+      "sourceBounds": [
+        187,
+        112,
+        1080,
+        1126
+      ],
+      "clippedPixels": 0,
+      "bytes": 61632
+    },
+    {
+      "id": "desert_oasis_hawk_material",
+      "file": "desert_oasis_hawk_material.png",
+      "kind": "material",
+      "sha256": "5d372c47680435a266322c7028f2ae16582f3b836a06d2fa399229ac882f66f1",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_oasis_hawk_material.png",
+      "sourceSha256": "30b5ed128d09621a5d9c6544bf851c1ee5cf5284c8d06f347ef7b4e57e89edd8",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_oasis_hawk_material.receipt.json",
+      "receiptSha256": "656b68ec21fd278765e0974c39251bad8c652b094bac04adf8667ea462203294",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        174,
+        184
+      ],
+      "sourceBounds": [
+        173,
+        56,
+        1191,
+        1202
+      ],
+      "clippedPixels": 0,
+      "bytes": 40454
+    },
+    {
+      "id": "desert_03_material",
+      "file": "desert_03_material.png",
+      "kind": "material",
+      "sha256": "4763d6859548052bfb3a915f9c4e1f2dd8ec1d9d9edd5f90b39dd1ed8ea78cff",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_03_material.png",
+      "sourceSha256": "24b5b8f02af98dcd27d20b8523696384f8144f4c4a1b914b79130a5944a9dacb",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_03_material.receipt.json",
+      "receiptSha256": "20c016523601c21c197bd10f0b1e974b3a172e1164332385e03ddc15615494ab",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        8,
+        170,
+        184
+      ],
+      "sourceBounds": [
+        281,
+        161,
+        1067,
+        1097
+      ],
+      "clippedPixels": 0,
+      "bytes": 40923
+    },
+    {
+      "id": "desert_sand_ushabti_material",
+      "file": "desert_sand_ushabti_material.png",
+      "kind": "material",
+      "sha256": "7266a20176cda4d584132e8a277658ef96ba615bd8c5c76d196f656576da7694",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_sand_ushabti_material.png",
+      "sourceSha256": "00e4e97c410d2519f73624462f9fbf91d843ac405e4ff6675ba8c8e43535d71c",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_sand_ushabti_material.receipt.json",
+      "receiptSha256": "97134e932d3135acdbccc6358e7da0e5f46507b3b398c80341fc9e7d336b97a6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        8,
+        166,
+        184
+      ],
+      "sourceBounds": [
+        185,
+        74,
+        1063,
+        1180
+      ],
+      "clippedPixels": 0,
+      "bytes": 48306
+    },
+    {
+      "id": "desert_seal_mummy_material",
+      "file": "desert_seal_mummy_material.png",
+      "kind": "material",
+      "sha256": "9a907e90c6a5ca382246acc717185a39c88c87524b21606e7b29d8e349fb9562",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_seal_mummy_material.png",
+      "sourceSha256": "c041651b3ad0ffdd1a270ee57e5c4cba5c77e7829a2490ad3ca41a7894cb3f41",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_seal_mummy_material.receipt.json",
+      "receiptSha256": "dca6f9dc201d9795bb1e14a61986e64298a0a63d014517ddbb52ab66e3085147",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        13,
+        184,
+        178
+      ],
+      "sourceBounds": [
+        92,
+        136,
+        1171,
+        1147
+      ],
+      "clippedPixels": 0,
+      "bytes": 57471
+    },
+    {
+      "id": "desert_06_material",
+      "file": "desert_06_material.png",
+      "kind": "material",
+      "sha256": "55ab16ce48c8754ff7c882359fe4c200137d4d00325b73c1c0aafb0fdd8f99c4",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_06_material.png",
+      "sourceSha256": "be62739e1484f13f6d32b09140475b7dc5402529af76167ddcc0a2b7582915dd",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_06_material.receipt.json",
+      "receiptSha256": "8d2d8df6d629b7b75958181c5da3de44e7227a85f103794321d37e30a4f493df",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ],
+      "sourceBounds": [
+        113,
+        87,
+        1179,
+        1183
+      ],
+      "clippedPixels": 0,
+      "bytes": 63028
+    },
+    {
+      "id": "desert_glass_scorpion_material",
+      "file": "desert_glass_scorpion_material.png",
+      "kind": "material",
+      "sha256": "7f22da024df916e964c39eee281ddf8b01eec540f619ee9838eb7c1c90508026",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_glass_scorpion_material.png",
+      "sourceSha256": "a40e78b8c451667f28e912789eeec6004aedd31fdb78da0626bfbd9752f1035a",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_glass_scorpion_material.receipt.json",
+      "receiptSha256": "f4c22dcf0e601c44098fe6009a54a0a4d57e9fe70b6d4fc890148170b2359061",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        8,
+        170,
+        184
+      ],
+      "sourceBounds": [
+        190,
+        77,
+        1122,
+        1179
+      ],
+      "clippedPixels": 0,
+      "bytes": 33530
+    },
+    {
+      "id": "desert_08_material",
+      "file": "desert_08_material.png",
+      "kind": "material",
+      "sha256": "9138920d2edcbe4ab8488421c2d4a9f245cafe1cdffc11f0bd4382baf79708f5",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_08_material.png",
+      "sourceSha256": "3782d62e9891f5142a4bca1b8121b5e54a96f9ada5d92284881614fddea32213",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_08_material.receipt.json",
+      "receiptSha256": "93377587dfbc4658f0366753e523ebc7c9809c12df560993a9c05844dc20ddc3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ],
+      "sourceBounds": [
+        179,
+        124,
+        1107,
+        1080
+      ],
+      "clippedPixels": 0,
+      "bytes": 69738
+    },
+    {
+      "id": "desert_sun_scroll",
+      "file": "desert_sun_scroll.png",
+      "kind": "consumable",
+      "sha256": "33bbd7b491994e2a89e220adff4274dc0d81f17697045ace1cd4f94554224de6",
+      "source": "meadow-3d/art/item-art-v3/originals/desert_sun_scroll.png",
+      "sourceSha256": "018b0d7949827cf780ddb27a67361025993ea5af7c2442f66b072602dce8e113",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/desert_sun_scroll.receipt.json",
+      "receiptSha256": "8abcdb7b79ca1245b57aa4b0dbade1bbe5dbb9d98d5f862e110b578ade2b086c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        22,
+        184,
+        170
+      ],
+      "sourceBounds": [
+        31,
+        124,
+        1224,
+        1129
+      ],
+      "clippedPixels": 0,
+      "bytes": 40712
+    },
+    {
+      "id": "frost_01_material",
+      "file": "frost_01_material.png",
+      "kind": "material",
+      "sha256": "61b6300edfa518381a449a3132cb868ad0d2f889ef606a9cba6e80bf2eacde53",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_01_material.png",
+      "sourceSha256": "d948afc9da00f87bbbc916c1cc732f5063870c86eb75a3ad9054921227e7e653",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_01_material.receipt.json",
+      "receiptSha256": "0155996f1f907f44b56cf3902034e9fa18db08518fa85556acd7f3a30ee1ba36",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        23,
+        184,
+        169
+      ],
+      "sourceBounds": [
+        78,
+        146,
+        1194,
+        1069
+      ],
+      "clippedPixels": 0,
+      "bytes": 51855
+    },
+    {
+      "id": "frost_rune_raven_material",
+      "file": "frost_rune_raven_material.png",
+      "kind": "material",
+      "sha256": "dfac03fe47310e49886d142e2bbc5543cb7a1826b8a15210e61831599ec10b69",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_rune_raven_material.png",
+      "sourceSha256": "e301928a176d993d84312e731910fa8acd698d777643e380cc461a8d7fe6663a",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_rune_raven_material.receipt.json",
+      "receiptSha256": "6a25cd7b7cc130656218c1ae7a64ee711e71dd8c1ed7c67e8366e39c096ff726",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        177,
+        184
+      ],
+      "sourceBounds": [
+        179,
+        91,
+        1162,
+        1160
+      ],
+      "clippedPixels": 0,
+      "bytes": 42693
+    },
+    {
+      "id": "frost_03_material",
+      "file": "frost_03_material.png",
+      "kind": "material",
+      "sha256": "ce9c72f999343c43cf6466e1577236131b0d7546573d0d5cdbdea6d75d26ff0d",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_03_material.png",
+      "sourceSha256": "971473ae02103378fd163c35eea3b97b6d61482be49d49d4416a27a03f6bfb1f",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_03_material.receipt.json",
+      "receiptSha256": "9d40c6a65de546286782e369ce00fa64875445d4a7f086ea4de68e71175869c3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        8,
+        172,
+        184
+      ],
+      "sourceBounds": [
+        190,
+        90,
+        1105,
+        1150
+      ],
+      "clippedPixels": 0,
+      "bytes": 35518
+    },
+    {
+      "id": "frost_ice_lindworm_material",
+      "file": "frost_ice_lindworm_material.png",
+      "kind": "material",
+      "sha256": "b20e0618da97f248436684166ba6114960f6f5d7bef3c53f28a46630a5bec252",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_ice_lindworm_material.png",
+      "sourceSha256": "90e9d59d8f2839e122399f81f25bbc1ea2bf938e75ff9c909546cb6a2b45e658",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_ice_lindworm_material.receipt.json",
+      "receiptSha256": "d12e997b496cdd3df34caaeab0a91c1fba7ebb2d3889818c862df03973e90eac",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        178,
+        184
+      ],
+      "sourceBounds": [
+        175,
+        116,
+        1124,
+        1126
+      ],
+      "clippedPixels": 0,
+      "bytes": 53683
+    },
+    {
+      "id": "frost_winter_wavehorse_material",
+      "file": "frost_winter_wavehorse_material.png",
+      "kind": "material",
+      "sha256": "cde54250c85aa1bd2c75fda08c92e132096a14881d053cd2b5b9eec3e0a8a644",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_winter_wavehorse_material.png",
+      "sourceSha256": "70ea2ede92aed746ea0086f2bda7ff278214d8645607a3620467b4886679a4d8",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_winter_wavehorse_material.receipt.json",
+      "receiptSha256": "a89ad0ade0421f93ce257ebec55105145e58668137e1966853bb2ce3e4958f8b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        182
+      ],
+      "sourceBounds": [
+        35,
+        45,
+        1221,
+        1212
+      ],
+      "clippedPixels": 0,
+      "bytes": 61304
+    },
+    {
+      "id": "frost_06_material",
+      "file": "frost_06_material.png",
+      "kind": "material",
+      "sha256": "a12a9aa7fbccda8fa20d3c9d0d2c5b10937fb97674c3e4dc71c0e181c68b4fd1",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_06_material.png",
+      "sourceSha256": "9823b58ac9f856b80fc522387c0be53cdf07eab6a67357e331cb4ec1fafa024f",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_06_material.receipt.json",
+      "receiptSha256": "20ffc5f7091137852c32ba99fdf3047350cbed1f995aa91b58bca36efa2304cb",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ],
+      "sourceBounds": [
+        193,
+        205,
+        1085,
+        1094
+      ],
+      "clippedPixels": 0,
+      "bytes": 64611
+    },
+    {
+      "id": "frost_fractured_valkyrie_material",
+      "file": "frost_fractured_valkyrie_material.png",
+      "kind": "material",
+      "sha256": "e3f339b29b34f5c8c607e1069be349fa6cea67de215a6b9e4216551deeab34e5",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_fractured_valkyrie_material.png",
+      "sourceSha256": "dad4049d40fcc020a305e10ad77a1251dd886a0ae4b9973aeb6c6a8ea25fd6d7",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_fractured_valkyrie_material.receipt.json",
+      "receiptSha256": "1c41654f5337f326de63a62291f94ffd8a2a4e832217043d0aefe2af6d40cb71",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ],
+      "sourceBounds": [
+        155,
+        93,
+        1177,
+        1142
+      ],
+      "clippedPixels": 0,
+      "bytes": 41127
+    },
+    {
+      "id": "frost_08_material",
+      "file": "frost_08_material.png",
+      "kind": "material",
+      "sha256": "4de5fcf6e86966a1e16f2a9bc3bb7eae663515353b755f00b38a329790f7a59e",
+      "source": "meadow-3d/art/item-art-v3/originals/frost_08_material.png",
+      "sourceSha256": "2f8beca49cafc6dbcf27ed01d65f023fa8ed2627be7be9febc277145e9853445",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/frost_08_material.receipt.json",
+      "receiptSha256": "3f50130f5cd4a820215100aed31412eab163fed73d34bc09151fa7fad2988277",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        11,
+        184,
+        180
+      ],
+      "sourceBounds": [
+        127,
+        155,
+        1165,
+        1149
+      ],
+      "clippedPixels": 0,
+      "bytes": 67346
+    },
+    {
+      "id": "yokai_01_material",
+      "file": "yokai_01_material.png",
+      "kind": "material",
+      "sha256": "afed7123560c8262a70750c08c23e399d26a7cfb4d7f93233e292f5a5a38eed7",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_01_material.png",
+      "sourceSha256": "ff43177c051383a9219a40d7a5c30626b69ee6816daacc10146b4207b790ba1c",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_01_material.receipt.json",
+      "receiptSha256": "497fc4c08e0204814d1d7fa73c2c2fa198d1ae318cfa758fc365bbbfbd7b02d6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        24,
+        184,
+        168
+      ],
+      "sourceBounds": [
+        90,
+        184,
+        1173,
+        1067
+      ],
+      "clippedPixels": 0,
+      "bytes": 52721
+    },
+    {
+      "id": "yokai_rain_umbrella_material",
+      "file": "yokai_rain_umbrella_material.png",
+      "kind": "material",
+      "sha256": "288552d0bc08ef0da5426641ee554ab0952a6a30bf9f8c5cc4277424e311b157",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_rain_umbrella_material.png",
+      "sourceSha256": "203083233e369c6b381f8bce3180dc74bd8622c301718a2aed961f47d3440a29",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_rain_umbrella_material.receipt.json",
+      "receiptSha256": "d3baba33ac203504d2b1931c9b61befbd037f825330a597fcdd7bbc0cc9aad69",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ],
+      "sourceBounds": [
+        116,
+        112,
+        1160,
+        1180
+      ],
+      "clippedPixels": 0,
+      "bytes": 49854
+    },
+    {
+      "id": "yokai_03_material",
+      "file": "yokai_03_material.png",
+      "kind": "material",
+      "sha256": "49d662739ba13a50ab4d3cd4e41e9e0257d83a3e2df0e204ab057dd22903bee2",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_03_material.png",
+      "sourceSha256": "81ec3b8d35d602cff6d023bdeebc09371921e2a213fc0f0f4c0c157af9393d07",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_03_material.receipt.json",
+      "receiptSha256": "613b0fe6eeba9c19faac10a941b4a9b48e6d814d824f07e066db48851dfab2f2",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        177,
+        184
+      ],
+      "sourceBounds": [
+        157,
+        43,
+        1229,
+        1210
+      ],
+      "clippedPixels": 0,
+      "bytes": 45096
+    },
+    {
+      "id": "yokai_bamboo_kodama_material",
+      "file": "yokai_bamboo_kodama_material.png",
+      "kind": "material",
+      "sha256": "cae38a5d646cccfe77f529d0dd282f4c71eb0cfce4fccf7aba48a805f731d34c",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_bamboo_kodama_material.png",
+      "sourceSha256": "e2168e016e089695b3a246d6aac045c3da4827b95d76c3ddb2b44ef01ba7c8d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_bamboo_kodama_material.receipt.json",
+      "receiptSha256": "bbe95f9cfcaba308605a3f86e128a3cdd6226f78671c2c13c664d71c26d93818",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        174,
+        184
+      ],
+      "sourceBounds": [
+        201,
+        138,
+        1073,
+        1117
+      ],
+      "clippedPixels": 0,
+      "bytes": 45706
+    },
+    {
+      "id": "yokai_rain_nue_material",
+      "file": "yokai_rain_nue_material.png",
+      "kind": "material",
+      "sha256": "eb3f38c349c63ce212b886a48849bab53c9e4864da4f3c45bce07880bd6ce590",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_rain_nue_material.png",
+      "sourceSha256": "b482e1762d67d10298deca2ae243d8b9c7e21f7d010f0277b5b2a8e5999967bd",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_rain_nue_material.receipt.json",
+      "receiptSha256": "3f27d4eef5f96c42388bf9cc00c95ccc67b150366f4408f034ff4b1cddd4cd31",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        8,
+        172,
+        184
+      ],
+      "sourceBounds": [
+        238,
+        123,
+        1070,
+        1085
+      ],
+      "clippedPixels": 0,
+      "bytes": 49516
+    },
+    {
+      "id": "yokai_06_material",
+      "file": "yokai_06_material.png",
+      "kind": "material",
+      "sha256": "314b38aff869e88effac2de8953c68c4387c667f8162858ae7c56f2a70a2574e",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_06_material.png",
+      "sourceSha256": "ec83a0225018e1ddc65f82f97de1ce1c38fb50000afd12e835c082288a8d359b",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_06_material.receipt.json",
+      "receiptSha256": "302a3849f070925687c545f4754c7c7b21c3d4a65fe8bed2a8acd6aab2fa6c1f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ],
+      "sourceBounds": [
+        147,
+        137,
+        1138,
+        1155
+      ],
+      "clippedPixels": 0,
+      "bytes": 60373
+    },
+    {
+      "id": "yokai_lantern_rokurokubi_material",
+      "file": "yokai_lantern_rokurokubi_material.png",
+      "kind": "material",
+      "sha256": "1c206f7193579410cfb0c192cac87c4d93c1a536c21f7082f4c4c34cd074aa16",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_lantern_rokurokubi_material.png",
+      "sourceSha256": "1cdfe644e440a38769618444c6c7432d31f081717226071fd08fd6e71ca13c2e",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_lantern_rokurokubi_material.receipt.json",
+      "receiptSha256": "8a2a362af7fedf6a084babbd39d8c8e70ce09586fa3e59980f3a16bd0349227c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        19,
+        184,
+        173
+      ],
+      "sourceBounds": [
+        129,
+        186,
+        1167,
+        1093
+      ],
+      "clippedPixels": 0,
+      "bytes": 52504
+    },
+    {
+      "id": "yokai_08_material",
+      "file": "yokai_08_material.png",
+      "kind": "material",
+      "sha256": "33e5f39e7b10a4bf0b8dc8966a9e62ac0c652ed71c491de388253baed9c93376",
+      "source": "meadow-3d/art/item-art-v3/originals/yokai_08_material.png",
+      "sourceSha256": "92fa906d99c7f931eee84dade6ad632ef517d7bbf35fac4ae2b3ab94b06faf11",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/yokai_08_material.receipt.json",
+      "receiptSha256": "04d7a38e39a021e666b78895e8db3e35504b35fa9c026232f10f4db6baa2a139",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        14,
+        184,
+        177
+      ],
+      "sourceBounds": [
+        87,
+        109,
+        1172,
+        1114
+      ],
+      "clippedPixels": 0,
+      "bytes": 51643
+    },
+    {
+      "id": "dragon_cloud_carp_material",
+      "file": "dragon_cloud_carp_material.png",
+      "kind": "material",
+      "sha256": "e21a3d3feb2dc41a8562ce3aaac12e0c4699e81b2fc9f05632cbde2abd315898",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_cloud_carp_material.png",
+      "sourceSha256": "4a3d81b0517eaf40377ba865c9891abad6a168b79c26fb08d0a337d3e5593a4e",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_cloud_carp_material.receipt.json",
+      "receiptSha256": "7d2762fd0f98649f6d9c15aa1cea956beb4dbb6bf6085c7c2d3c1dc9c1ad47a2",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ],
+      "sourceBounds": [
+        198,
+        179,
+        1081,
+        1062
+      ],
+      "clippedPixels": 0,
+      "bytes": 57985
+    },
+    {
+      "id": "dragon_jade_crane_material",
+      "file": "dragon_jade_crane_material.png",
+      "kind": "material",
+      "sha256": "598905ed18a73619f4692e60c6555c7c0b3121c8dbc7519165c3c9a1c1b8fd4e",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_jade_crane_material.png",
+      "sourceSha256": "c1e664ad5961d0015200642c02057aeeb6d20778ee0ff6f6fc638b21788b9872",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_jade_crane_material.receipt.json",
+      "receiptSha256": "17463052816aeb326f20ba1e1d036adb88b37cb74676a8822b21a6bb22a33931",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        8,
+        167,
+        184
+      ],
+      "sourceBounds": [
+        259,
+        55,
+        1186,
+        1197
+      ],
+      "clippedPixels": 0,
+      "bytes": 34139
+    },
+    {
+      "id": "dragon_stone_liondog_material",
+      "file": "dragon_stone_liondog_material.png",
+      "kind": "material",
+      "sha256": "79a4e39c3f67f27eec1b3dfa9c584428f27346927abc65472365cb8c6498588a",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_stone_liondog_material.png",
+      "sourceSha256": "d81da099018ab125f104e422f9fda939c56d32cf545903d916c8c873977c3eed",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_stone_liondog_material.receipt.json",
+      "receiptSha256": "b7843f9a262d976a35c893909be02ac282a130c1292d756213f034f110f33365",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        8,
+        172,
+        184
+      ],
+      "sourceBounds": [
+        231,
+        183,
+        1025,
+        1100
+      ],
+      "clippedPixels": 0,
+      "bytes": 52621
+    },
+    {
+      "id": "dragon_sky_qilin_material",
+      "file": "dragon_sky_qilin_material.png",
+      "kind": "material",
+      "sha256": "e805c315ecd3706a172f452593c2e307d99b056ea262026dad153583d43d3bc0",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_sky_qilin_material.png",
+      "sourceSha256": "5fb48a449f094d6aa734a545b711fb928bed5a7b7807876c4dd91249ece3e806",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_sky_qilin_material.receipt.json",
+      "receiptSha256": "8aae4dc6ef959d5e079017c8884b66aff2eee4aeab08b8701bb5ccfdae8d2172",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        174,
+        184
+      ],
+      "sourceBounds": [
+        214,
+        115,
+        1101,
+        1119
+      ],
+      "clippedPixels": 0,
+      "bytes": 42017
+    },
+    {
+      "id": "dragon_bell_drake_material",
+      "file": "dragon_bell_drake_material.png",
+      "kind": "material",
+      "sha256": "0a99b769308a65446dd798db65e8a859d827d5a6bc13204bb3014af002d052dd",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_bell_drake_material.png",
+      "sourceSha256": "eb55532e6183abc3b2770501a0df2b3a016b92a0f4535892a38958e211efc120",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_bell_drake_material.receipt.json",
+      "receiptSha256": "dab4392eb20912124bb031aa952fa67c514b7fea039580177efe75d923548ded",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        175,
+        184
+      ],
+      "sourceBounds": [
+        151,
+        62,
+        1176,
+        1196
+      ],
+      "clippedPixels": 0,
+      "bytes": 50791
+    },
+    {
+      "id": "dragon_white_cloud_tiger_material",
+      "file": "dragon_white_cloud_tiger_material.png",
+      "kind": "material",
+      "sha256": "c81b6490e0de6ae1e26dcc6101b1a96cede8c4aef678a5b74a4373eceff60980",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_white_cloud_tiger_material.png",
+      "sourceSha256": "a9bb07675058585ac8f9fea070734287aa0059d2a3bcf27e6194d597b8ea0190",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_white_cloud_tiger_material.receipt.json",
+      "receiptSha256": "38d04c19a5591fafc9e7960735b93afa2709ff3b056287acd9ced6a3f2d059cf",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        182
+      ],
+      "sourceBounds": [
+        63,
+        79,
+        1193,
+        1188
+      ],
+      "clippedPixels": 0,
+      "bytes": 36477
+    },
+    {
+      "id": "dragon_jade_gatekeeper_material",
+      "file": "dragon_jade_gatekeeper_material.png",
+      "kind": "material",
+      "sha256": "704a6cdcd6a509288ad4e8432400be41d5659a28350b3af1ce8cdcd8a6178a50",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_jade_gatekeeper_material.png",
+      "sourceSha256": "b24ca9eed7180324723523888d898e688cf33570d7e933eaac804c09feb90b2d",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_jade_gatekeeper_material.receipt.json",
+      "receiptSha256": "993b4a178effd3f03652877fb6338de3b91acb597370357741b9edc547d88a37",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ],
+      "sourceBounds": [
+        145,
+        65,
+        1160,
+        1141
+      ],
+      "clippedPixels": 0,
+      "bytes": 59874
+    },
+    {
+      "id": "dragon_cloud_dragon_lord_material",
+      "file": "dragon_cloud_dragon_lord_material.png",
+      "kind": "material",
+      "sha256": "e5d54b1f0e5dab35685f2e999881fbc591ba7dd571ba240a441c6cae4de9b667",
+      "source": "meadow-3d/art/item-art-v3/originals/dragon_cloud_dragon_lord_material.png",
+      "sourceSha256": "86b728a9ac4111434f3ec82ad441551a7b94243fa24d3fd24bd4e4476943fc7b",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/dragon_cloud_dragon_lord_material.receipt.json",
+      "receiptSha256": "76b74de3d5170ff8c2e7159712613ebcd5d45618310f9a8a3b5c2c336b44e5cd",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ],
+      "sourceBounds": [
+        112,
+        100,
+        1182,
+        1161
+      ],
+      "clippedPixels": 0,
+      "bytes": 64046
+    },
+    {
+      "id": "volcano_lava_glass_lizard_material",
+      "file": "volcano_lava_glass_lizard_material.png",
+      "kind": "material",
+      "sha256": "5cf5eac50d8a3409d0bb6569a5dde86eadc41804d7f137ccfcb3634a7e53161a",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_lava_glass_lizard_material.png",
+      "sourceSha256": "5b44f7a44184b6e199724d7da2024e127cbf88360337849fa5e1f70645e746f3",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_lava_glass_lizard_material.receipt.json",
+      "receiptSha256": "bf6fc296eafac0a993e55d3c6bcca6f196ea078943ced24b6dc0e38b2322ef72",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ],
+      "sourceBounds": [
+        206,
+        96,
+        1125,
+        1141
+      ],
+      "clippedPixels": 0,
+      "bytes": 47877
+    },
+    {
+      "id": "volcano_ash_boulder_beetle_material",
+      "file": "volcano_ash_boulder_beetle_material.png",
+      "kind": "material",
+      "sha256": "16009844a5a500c2976701dff4f59bff66e002780d513f4c042a0ca6fb49b3f2",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_ash_boulder_beetle_material.png",
+      "sourceSha256": "fc6e35b8d90319a7984a076385a18203a2a6890316d9bdfb7592b615f3aa2cf0",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_ash_boulder_beetle_material.receipt.json",
+      "receiptSha256": "e53ba83f256b1b394f850a7ae9e7cc8213c9345c605959bc1abcd971a7b54a37",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        182
+      ],
+      "sourceBounds": [
+        103,
+        102,
+        1193,
+        1167
+      ],
+      "clippedPixels": 0,
+      "bytes": 52483
+    },
+    {
+      "id": "volcano_ash_spine_boar_material",
+      "file": "volcano_ash_spine_boar_material.png",
+      "kind": "material",
+      "sha256": "45a6724fb257244695363f9cecf9685496105898b750a657b47d14622e945cf3",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_ash_spine_boar_material.png",
+      "sourceSha256": "f9d8a3a798eb295a91e7d96e0ec061871d4533e33bb3727da52d8687557a48f3",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_ash_spine_boar_material.receipt.json",
+      "receiptSha256": "702b61a77b5c197a3e0896ae1b065e0f0139e70ced7781453195ebeb51c23768",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        8,
+        160,
+        184
+      ],
+      "sourceBounds": [
+        259,
+        68,
+        1071,
+        1176
+      ],
+      "clippedPixels": 0,
+      "bytes": 36767
+    },
+    {
+      "id": "volcano_old_kiln_sprite_material",
+      "file": "volcano_old_kiln_sprite_material.png",
+      "kind": "material",
+      "sha256": "d814b7725ede96d05d9d83d48dc4c6316879b18fed42e1f71e8b8948a2b4a8da",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_old_kiln_sprite_material.png",
+      "sourceSha256": "ed16d1abc1e43197edfb032b71a3cff114d890b1a640825391c1c0c556e2d218",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_old_kiln_sprite_material.receipt.json",
+      "receiptSha256": "f544cccc88aedaec5fb352a2800e569c8606d1bd55e7acf439cc2a82f09d8111",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        182
+      ],
+      "sourceBounds": [
+        141,
+        144,
+        1124,
+        1111
+      ],
+      "clippedPixels": 0,
+      "bytes": 53514
+    },
+    {
+      "id": "volcano_red_smoke_shroom_material",
+      "file": "volcano_red_smoke_shroom_material.png",
+      "kind": "material",
+      "sha256": "91dbe1f4c3930a37deab1cd9c97962ec9f801b8c7031de97b83a4e33ccb34f8e",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_red_smoke_shroom_material.png",
+      "sourceSha256": "6bd7556e2d52f3c9f149e80387b9b24d5fd685ce32eeceb6c429112fceb1c5d3",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_red_smoke_shroom_material.receipt.json",
+      "receiptSha256": "56299cf0583db61e1ef8703480fc7d851b0b4ffd225c104a1595df7617fc13e4",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        175,
+        184
+      ],
+      "sourceBounds": [
+        225,
+        87,
+        1118,
+        1084
+      ],
+      "clippedPixels": 0,
+      "bytes": 56932
+    },
+    {
+      "id": "volcano_azure_firebird_material",
+      "file": "volcano_azure_firebird_material.png",
+      "kind": "material",
+      "sha256": "89ea1f1ea2d79cf68aa12ca17ad0c5a818e15b6dfa02807c85bb559f40d883e8",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_azure_firebird_material.png",
+      "sourceSha256": "1f650fd5a65feae17c8362a4619b0a72b0f845e376db7120b0bacd4d9a22dec4",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_azure_firebird_material.receipt.json",
+      "receiptSha256": "5df0c75dcd735e66c4eb6559fdb25e6ea94dd3ed1718514ff4d69796525888e7",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        8,
+        166,
+        184
+      ],
+      "sourceBounds": [
+        234,
+        68,
+        1135,
+        1197
+      ],
+      "clippedPixels": 0,
+      "bytes": 38123
+    },
+    {
+      "id": "volcano_crater_hammer_ogre_material",
+      "file": "volcano_crater_hammer_ogre_material.png",
+      "kind": "material",
+      "sha256": "1626438c8d4eb8a14b1eed76a317b4bc73b65e65ce450f5873f2739e2f308f7f",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_crater_hammer_ogre_material.png",
+      "sourceSha256": "68003e753b965ee96db14b86f18809551de3a9899a3eee6cbac37a95e66a7691",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_crater_hammer_ogre_material.receipt.json",
+      "receiptSha256": "c71a1185521a4cc038f90aba220eacf87eedac06a25e98bd0cdc711aad981e1f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ],
+      "sourceBounds": [
+        100,
+        90,
+        1161,
+        1162
+      ],
+      "clippedPixels": 0,
+      "bytes": 56150
+    },
+    {
+      "id": "volcano_golden_ash_zmey_material",
+      "file": "volcano_golden_ash_zmey_material.png",
+      "kind": "material",
+      "sha256": "df1bae2184d7b1cc0fa74a63b0f9f057425b4941b72d4b4ec8b1457eb8effddc",
+      "source": "meadow-3d/art/item-art-v3/originals/volcano_golden_ash_zmey_material.png",
+      "sourceSha256": "daba8bfdc3cab5094700c841f6bf471c4c1c3bf8e866eb0319325aef1fd39af4",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/volcano_golden_ash_zmey_material.receipt.json",
+      "receiptSha256": "63c02a374525c3b0fd4e857a6d0c4a1e7c0620d25bb84e23b9c0109da708c86e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        8,
+        170,
+        184
+      ],
+      "sourceBounds": [
+        170,
+        79,
+        1106,
+        1184
+      ],
+      "clippedPixels": 0,
+      "bytes": 51695
+    },
+    {
+      "id": "fae_puca_shadowhorse_material",
+      "file": "fae_puca_shadowhorse_material.png",
+      "kind": "material",
+      "sha256": "f8ebd12e06ea3b10f6631ec3c135b87cdbbd54b7b235de9668d6f7378dad6657",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_puca_shadowhorse_material.png",
+      "sourceSha256": "016b489904b43e394a1760f4c8daf79c668e4f0f4809f07384171c0edffc02a6",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_puca_shadowhorse_material.receipt.json",
+      "receiptSha256": "2a1b6c4578b3018dfa4fd9335157aef7829e5fc505b548d822df93b6f40b6a1f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        11,
+        184,
+        180
+      ],
+      "sourceBounds": [
+        115,
+        148,
+        1142,
+        1134
+      ],
+      "clippedPixels": 0,
+      "bytes": 56717
+    },
+    {
+      "id": "fae_wandering_light_moth_material",
+      "file": "fae_wandering_light_moth_material.png",
+      "kind": "material",
+      "sha256": "5c0152010b9ea38a7860780a549d84f69521203bcf46b56f4d14e74272822ae9",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_wandering_light_moth_material.png",
+      "sourceSha256": "b8bcb45e0582c89db33c205c3e3420f23d4ab693891f65c4be2eede49d3abe3c",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_wandering_light_moth_material.receipt.json",
+      "receiptSha256": "5712b3d07ddf0a2d15c81ea3cce869bb3286804c9ae70b3e330ee500d759e121",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        40,
+        184,
+        152
+      ],
+      "sourceBounds": [
+        101,
+        303,
+        1158,
+        974
+      ],
+      "clippedPixels": 0,
+      "bytes": 39667
+    },
+    {
+      "id": "fae_false_garden_root_material",
+      "file": "fae_false_garden_root_material.png",
+      "kind": "material",
+      "sha256": "bb85e3b36f69c41c2b9c9d0ab3a3c54ee463f69675736d86d2c7ea4784a79c08",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_false_garden_root_material.png",
+      "sourceSha256": "7516e7e407bab1d9a499db6451b1c3744ee812879c0e2a8d18ee9280d443fd00",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_false_garden_root_material.receipt.json",
+      "receiptSha256": "be84fb4b451405911edbd2c479851dcd21b7c64a7c3b986d35a3d5b0c24c6a23",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        32,
+        8,
+        160,
+        184
+      ],
+      "sourceBounds": [
+        232,
+        85,
+        1022,
+        1172
+      ],
+      "clippedPixels": 0,
+      "bytes": 44525
+    },
+    {
+      "id": "fae_moondrop_mirrorfae_material",
+      "file": "fae_moondrop_mirrorfae_material.png",
+      "kind": "material",
+      "sha256": "9ba4981a363c468f09e1ff2cc1ee0a86ea20d9872169f91227334a540b3de88b",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_moondrop_mirrorfae_material.png",
+      "sourceSha256": "7a7d262d13f17bcd11371902deb6645dffac9f6a6b244b1317f8df31036ffab2",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_moondrop_mirrorfae_material.receipt.json",
+      "receiptSha256": "ff5a59b1e44db5b667aa45ae14566b4a028f8c0f3f211d92b5b733d15022785f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ],
+      "sourceBounds": [
+        194,
+        128,
+        1098,
+        1102
+      ],
+      "clippedPixels": 0,
+      "bytes": 51291
+    },
+    {
+      "id": "fae_moonlichen_stag_material",
+      "file": "fae_moonlichen_stag_material.png",
+      "kind": "material",
+      "sha256": "9375a2463408d8d43c2264e47d10b64d95e0247d57d3c473fdeae2c14ba3a573",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_moonlichen_stag_material.png",
+      "sourceSha256": "12b249d00e85e6ec8e0a828c8306022ffdf50ab8989409963a09ce0d05c520fa",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_moonlichen_stag_material.receipt.json",
+      "receiptSha256": "fddaef1c21ea07e53e121c4a7f92cc843d0ab92ca3c3e2345863064a5ea9c744",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        8,
+        170,
+        184
+      ],
+      "sourceBounds": [
+        200,
+        94,
+        1070,
+        1131
+      ],
+      "clippedPixels": 0,
+      "bytes": 33881
+    },
+    {
+      "id": "fae_violet_banshee_material",
+      "file": "fae_violet_banshee_material.png",
+      "kind": "material",
+      "sha256": "71d151f8c1e88633dfb67f06d591e0bfa7be8cd459ce08ac6c68a23bcf2a2437",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_violet_banshee_material.png",
+      "sourceSha256": "946ab3a1c5b08faf7bd6430b608e7d399e43f41acdade5ba73f76337bdd2c5fe",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_violet_banshee_material.receipt.json",
+      "receiptSha256": "628a7a19c5c4a77e61bc98cb80609f8473d791959d6da6be337d0e110b299b8b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ],
+      "sourceBounds": [
+        174,
+        124,
+        1130,
+        1132
+      ],
+      "clippedPixels": 0,
+      "bytes": 55884
+    },
+    {
+      "id": "fae_silverchain_dullahan_material",
+      "file": "fae_silverchain_dullahan_material.png",
+      "kind": "material",
+      "sha256": "152239ed53643628fc72a458dc4a3b3ed0ba8733dfb0fce4ee9510f799fcf96e",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_silverchain_dullahan_material.png",
+      "sourceSha256": "6b2aa740211975f4cca9c58f3129e8e0d60632b70b79e6926e87d2ba7f0305bb",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_silverchain_dullahan_material.receipt.json",
+      "receiptSha256": "b1ffd7ea98f040d05b06c93a9f96f24d677879e29763bda984d8dc68face7e45",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        33,
+        184,
+        158
+      ],
+      "sourceBounds": [
+        63,
+        230,
+        1217,
+        1047
+      ],
+      "clippedPixels": 0,
+      "bytes": 35995
+    },
+    {
+      "id": "fae_twilight_antler_king_material",
+      "file": "fae_twilight_antler_king_material.png",
+      "kind": "material",
+      "sha256": "9a8731af1de912db900808e6e02dbda7634c6e66256d18444520501467f85163",
+      "source": "meadow-3d/art/item-art-v3/originals/fae_twilight_antler_king_material.png",
+      "sourceSha256": "4b81b863a6168d54f0babaab9dc60a7827b35b633a557c9577be73410e7bd01e",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/fae_twilight_antler_king_material.receipt.json",
+      "receiptSha256": "330d24dd7dc2b0aeaf74aca1e3ee0edc726d6f3dfc63ce8e17916540aedbc548",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        25,
+        184,
+        167
+      ],
+      "sourceBounds": [
+        83,
+        171,
+        1195,
+        1069
+      ],
+      "clippedPixels": 0,
+      "bytes": 45739
+    },
+    {
+      "id": "ocean_storm_conch_material",
+      "file": "ocean_storm_conch_material.png",
+      "kind": "material",
+      "sha256": "8abde67803e688b26b536f30df66551528b86ee648cd9a89d6d74de914db05fa",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_storm_conch_material.png",
+      "sourceSha256": "aee395ac18c531da75b5ba6d5436eec2a299088fb0ba9e46de9f635ba6e3fb9c",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_storm_conch_material.receipt.json",
+      "receiptSha256": "10b0d4b760e888564eb4e230cdb9a7fe90a5e85a3b734f4b269495b36af7700f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        8,
+        171,
+        184
+      ],
+      "sourceBounds": [
+        258,
+        135,
+        1098,
+        1119
+      ],
+      "clippedPixels": 0,
+      "bytes": 50026
+    },
+    {
+      "id": "ocean_mast_crab_material",
+      "file": "ocean_mast_crab_material.png",
+      "kind": "material",
+      "sha256": "6895a782330ef5526a171eca014308be0572c577c85beda38620f60923685d9f",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_mast_crab_material.png",
+      "sourceSha256": "895ace4ccca1a76d53fa9644e3efadbf4744699976d3339bbf4a27ab7197ce0e",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_mast_crab_material.receipt.json",
+      "receiptSha256": "050b600e1da5e837aa0160b7830f958c7fb3333967caf2306c676cab51f11b44",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        14,
+        184,
+        177
+      ],
+      "sourceBounds": [
+        65,
+        81,
+        1209,
+        1141
+      ],
+      "clippedPixels": 0,
+      "bytes": 48053
+    },
+    {
+      "id": "ocean_whirlpool_lanternfish_material",
+      "file": "ocean_whirlpool_lanternfish_material.png",
+      "kind": "material",
+      "sha256": "26e0146ce41f886fa7cdc35c8b445ff7bee8ff4710b9b04df487059ef5be19c5",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_whirlpool_lanternfish_material.png",
+      "sourceSha256": "d11956fd0fe1e03f119997a1c2a0c738aca7c2734220c450dae91af79c2d97fe",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_whirlpool_lanternfish_material.receipt.json",
+      "receiptSha256": "ec74f98f030bfeb97b94bb4d6518ab92708d2372c5d058bb83387a3f1babfff1",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        39,
+        8,
+        152,
+        184
+      ],
+      "sourceBounds": [
+        389,
+        67,
+        1098,
+        1173
+      ],
+      "clippedPixels": 0,
+      "bytes": 38014
+    },
+    {
+      "id": "ocean_mist_isle_siren_material",
+      "file": "ocean_mist_isle_siren_material.png",
+      "kind": "material",
+      "sha256": "1cf8fbaa76e4a1ba0eb02a486d77db2d88a3b92a75c5b85eb4b6892b4f3bae28",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_mist_isle_siren_material.png",
+      "sourceSha256": "cc92eb304ffbea5cc1825b80f1c7c776a354b8571331887b81f843c9a227dae3",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_mist_isle_siren_material.receipt.json",
+      "receiptSha256": "bae685437be90e683885ad2202ab5c237bc35eef8017a7cc6efb57b29456a415",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        16,
+        184,
+        175
+      ],
+      "sourceBounds": [
+        91,
+        132,
+        1192,
+        1123
+      ],
+      "clippedPixels": 0,
+      "bytes": 55402
+    },
+    {
+      "id": "ocean_sunken_coral_knight_material",
+      "file": "ocean_sunken_coral_knight_material.png",
+      "kind": "material",
+      "sha256": "1b3684b4123a02dcc96264c0baf35e020baba551fcc575c09403f2b93997b225",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_sunken_coral_knight_material.png",
+      "sourceSha256": "eedd5941849456392a7e78366a217bf48d2e5b9adc93c314d0c2fb93f05736a1",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_sunken_coral_knight_material.receipt.json",
+      "receiptSha256": "ff5edd5395a53e8884237f6aad65aea43e5416f9d2b6c0882bbe1ce7d5b7234e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        8,
+        166,
+        184
+      ],
+      "sourceBounds": [
+        224,
+        55,
+        1078,
+        1124
+      ],
+      "clippedPixels": 0,
+      "bytes": 40588
+    },
+    {
+      "id": "ocean_sixhead_reef_scylla_material",
+      "file": "ocean_sixhead_reef_scylla_material.png",
+      "kind": "material",
+      "sha256": "e9b5cf02fd4af793ae5458660eff2f40889ec786f6dbaf232a227bb911b0b177",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_sixhead_reef_scylla_material.png",
+      "sourceSha256": "0d02c57876188abe9b728ae31f5d542f5c7542f9f9c3fdb67a48d76e7a711781",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_sixhead_reef_scylla_material.receipt.json",
+      "receiptSha256": "519bdd3b16a6fd6ce033a48bafea10bf6de5a5e733597bf75e7536ca25b8d042",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        174,
+        184
+      ],
+      "sourceBounds": [
+        162,
+        84,
+        1117,
+        1156
+      ],
+      "clippedPixels": 0,
+      "bytes": 51673
+    },
+    {
+      "id": "ocean_shipwreck_colossus_material",
+      "file": "ocean_shipwreck_colossus_material.png",
+      "kind": "material",
+      "sha256": "b420351346cd1c53365266f1b90bc371ecbf584b3c1eb550e93eeb05c68d136a",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_shipwreck_colossus_material.png",
+      "sourceSha256": "a3bdaeef052546951cfdbd589eaf557dbbead8e7b95654263e1d3b08b192959f",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_shipwreck_colossus_material.receipt.json",
+      "receiptSha256": "12b0ca49f66ee7902f58d0d7bfe25721fdd72f614c0b7b8dfce1b271a3324b3e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        8,
+        172,
+        184
+      ],
+      "sourceBounds": [
+        151,
+        68,
+        1142,
+        1211
+      ],
+      "clippedPixels": 0,
+      "bytes": 46677
+    },
+    {
+      "id": "ocean_stormcrown_kraken_material",
+      "file": "ocean_stormcrown_kraken_material.png",
+      "kind": "material",
+      "sha256": "31d3ed22a617eb58e2f818ed604d6ba72f1f5bbbdeb43f620f5b2cf9aca51014",
+      "source": "meadow-3d/art/item-art-v3/originals/ocean_stormcrown_kraken_material.png",
+      "sourceSha256": "06b1849520f4457465dd78cff80ae1881d356c56379500df16210f660b671fe1",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/ocean_stormcrown_kraken_material.receipt.json",
+      "receiptSha256": "aa641cafb5064b66edb4ce9a57949a4a3cc4afff0a4d383e5ab729fa65314f86",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        11,
+        184,
+        180
+      ],
+      "sourceBounds": [
+        141,
+        166,
+        1119,
+        1105
+      ],
+      "clippedPixels": 0,
+      "bytes": 60304
+    },
+    {
+      "id": "astral_stardust_jellyfish_material",
+      "file": "astral_stardust_jellyfish_material.png",
+      "kind": "material",
+      "sha256": "f5c919aaf78a8ec59d28a8779ffafc63d2c9348697aa5523b2b7f15d3bb37951",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_stardust_jellyfish_material.png",
+      "sourceSha256": "a01f6122662a74e3b35183d36d7fea0c7d9d24ded3306b53da480332d2c3e648",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_stardust_jellyfish_material.receipt.json",
+      "receiptSha256": "33fc93e09a45fac6a9fa1de0e6d605542c7a13100297af72d19687574cc3efe5",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        34,
+        184,
+        157
+      ],
+      "sourceBounds": [
+        93,
+        257,
+        1174,
+        1010
+      ],
+      "clippedPixels": 0,
+      "bytes": 42513
+    },
+    {
+      "id": "astral_orbital_ray_material",
+      "file": "astral_orbital_ray_material.png",
+      "kind": "material",
+      "sha256": "cbe50819feaac742aaa5f1d5d38b4d7cfc8eb1767d1272a25482bdbc6de46aef",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_orbital_ray_material.png",
+      "sourceSha256": "70afa6cd01deb999c3cc758d541619ac73ed001e35076060f1ea7725f0c17e88",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_orbital_ray_material.receipt.json",
+      "receiptSha256": "c18f3b308e91d46e4e26a826f9460cb17ac38d18d6e9ec9c4ddbf79b2ddf6c6e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ],
+      "sourceBounds": [
+        176,
+        86,
+        1158,
+        1128
+      ],
+      "clippedPixels": 0,
+      "bytes": 46454
+    },
+    {
+      "id": "astral_meteor_ring_serpent_material",
+      "file": "astral_meteor_ring_serpent_material.png",
+      "kind": "material",
+      "sha256": "50e4f6cb9e47733a69b2fb2aeee5c8b3299a91edb2e9705b18149f73843290bd",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_meteor_ring_serpent_material.png",
+      "sourceSha256": "88ef342b5b7b8bdbabef569c3c9bae43e5075108739b9fb9c3be1dd0093c74c0",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_meteor_ring_serpent_material.receipt.json",
+      "receiptSha256": "8cbeb32b82546b0b3a55dbc0d412a375857f2d37f7a4d0ff1b3882fbf25349f6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ],
+      "sourceBounds": [
+        159,
+        146,
+        1089,
+        1097
+      ],
+      "clippedPixels": 0,
+      "bytes": 65806
+    },
+    {
+      "id": "astral_constellation_crane_material",
+      "file": "astral_constellation_crane_material.png",
+      "kind": "material",
+      "sha256": "f00afa027ee8f7069f286b7add6896cce5ff8d50e8a7b8d33f8bff8ca889aea2",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_constellation_crane_material.png",
+      "sourceSha256": "a2e93b1cbbb8db0f3eb4115c27d00dff69a04c7ca4c0c93317f4ecf5e9ab4198",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_constellation_crane_material.receipt.json",
+      "receiptSha256": "4b359729fac6b724ed041203877f3346a0d7b2c7d8fd1be43e18e6b576b8da3f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ],
+      "sourceBounds": [
+        107,
+        66,
+        1174,
+        1201
+      ],
+      "clippedPixels": 0,
+      "bytes": 42029
+    },
+    {
+      "id": "astral_vacuum_bell_construct_material",
+      "file": "astral_vacuum_bell_construct_material.png",
+      "kind": "material",
+      "sha256": "4d93cddbaaee2e050519e845085ed0928e55b6fa9271da24413ffe921622a6f9",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_vacuum_bell_construct_material.png",
+      "sourceSha256": "eed434024acf692ccdd3b794101803c836c0a0a5e7f78d29d53bd79c7c626670",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_vacuum_bell_construct_material.receipt.json",
+      "receiptSha256": "f1d23e5f40676dfa0b1be1bf8f55cbcf2b45cc5bda1421560134f155306833ff",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        34,
+        8,
+        157,
+        184
+      ],
+      "sourceBounds": [
+        246,
+        82,
+        952,
+        1095
+      ],
+      "clippedPixels": 0,
+      "bytes": 41571
+    },
+    {
+      "id": "astral_solarshadow_lion_material",
+      "file": "astral_solarshadow_lion_material.png",
+      "kind": "material",
+      "sha256": "30d217ad0dff713b149404f2e3dfef34267e3a531f4269b555f9275c32d33165",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_solarshadow_lion_material.png",
+      "sourceSha256": "739158b816f1b8c33e4712e3e212200a7c6597455939956a6d74f2e8cfa6e236",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_solarshadow_lion_material.receipt.json",
+      "receiptSha256": "517261285bc5f02acec4101ef75507827a4fbb5fa33bb3381e89a239c869c983",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ],
+      "sourceBounds": [
+        111,
+        61,
+        1176,
+        1209
+      ],
+      "clippedPixels": 0,
+      "bytes": 55772
+    },
+    {
+      "id": "astral_twelve_star_knight_material",
+      "file": "astral_twelve_star_knight_material.png",
+      "kind": "material",
+      "sha256": "f956fa48cb0f7833202b2357d11d9a692059220a770e6170335ac32603b9e966",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_twelve_star_knight_material.png",
+      "sourceSha256": "ff237b3ddb845bdeb735b81653f7867ca48670f6774b0d3b0c7ceb3774cee81a",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_twelve_star_knight_material.receipt.json",
+      "receiptSha256": "05285326ed06a1e1e911cb0417697e2f4d795b125d10608f0ea916dbcebd6d37",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ],
+      "sourceBounds": [
+        57,
+        52,
+        1198,
+        1188
+      ],
+      "clippedPixels": 0,
+      "bytes": 65328
+    },
+    {
+      "id": "astral_star_eating_eclipse_material",
+      "file": "astral_star_eating_eclipse_material.png",
+      "kind": "material",
+      "sha256": "fe2e69a8162770b60577d1c7d4da868043ac83334438802e29e5a9346c36df20",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_star_eating_eclipse_material.png",
+      "sourceSha256": "1ab3943d156f8858bb83e639419157eda94f4d6324df2698c53bcd7ce975aa9f",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_star_eating_eclipse_material.receipt.json",
+      "receiptSha256": "53f2695b43c3cac6d0c5ee373ee02a9b39765d21721721c278dcf17ad8e9cbe9",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        8,
+        173,
+        184
+      ],
+      "sourceBounds": [
+        205,
+        141,
+        1060,
+        1119
+      ],
+      "clippedPixels": 0,
+      "bytes": 53508
+    },
+    {
+      "id": "abyss_black_salt_crab_material",
+      "file": "abyss_black_salt_crab_material.png",
+      "kind": "material",
+      "sha256": "1fd5405585494240a4b30566053b0977a0b32039f8b2308ffc6b7d205bab1cb4",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_black_salt_crab_material.png",
+      "sourceSha256": "241edf77ad5637d4ff264daa83272e0a7e25c19f3b3c35d33130dd67919fea6a",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_black_salt_crab_material.receipt.json",
+      "receiptSha256": "01e7c1331cc46f50dc92b13aea467be4e99ca62070eaf8d02b60e290200d8a88",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        19,
+        184,
+        172
+      ],
+      "sourceBounds": [
+        97,
+        151,
+        1182,
+        1094
+      ],
+      "clippedPixels": 0,
+      "bytes": 48229
+    },
+    {
+      "id": "abyss_silt_mudskipper_material",
+      "file": "abyss_silt_mudskipper_material.png",
+      "kind": "material",
+      "sha256": "79866b54b25c957a0bfe5881a5744c5f6a70187379d4e6faf5a95f13c3513eac",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_silt_mudskipper_material.png",
+      "sourceSha256": "eaa097893b3c868181249890d44c8e0200fe6eacb3ea88670d917cf3d54c203f",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_silt_mudskipper_material.receipt.json",
+      "receiptSha256": "8e7dd371a340c1d452540021fca9b7714c5333c8dc402c2bd6e0bc88da842e65",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        23,
+        184,
+        169
+      ],
+      "sourceBounds": [
+        170,
+        250,
+        1096,
+        1015
+      ],
+      "clippedPixels": 0,
+      "bytes": 47707
+    },
+    {
+      "id": "abyss_ziggurat_clay_guard_material",
+      "file": "abyss_ziggurat_clay_guard_material.png",
+      "kind": "material",
+      "sha256": "cb088d8343f68cd7cda48d81a4afee6dfb3da20058be826046a02d4f8419089d",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_ziggurat_clay_guard_material.png",
+      "sourceSha256": "175401186a1eaa791d1b62ad790ceea5ac0dbc27025ae48c8a31260c25ed6260",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_ziggurat_clay_guard_material.receipt.json",
+      "receiptSha256": "73d479a711ec60228090146362ab349e474b12aadeeeb144bc7c6579fa9c856a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        180,
+        184
+      ],
+      "sourceBounds": [
+        139,
+        104,
+        1139,
+        1148
+      ],
+      "clippedPixels": 0,
+      "bytes": 56570
+    },
+    {
+      "id": "abyss_anzu_lionbird_material",
+      "file": "abyss_anzu_lionbird_material.png",
+      "kind": "material",
+      "sha256": "5498f775512af62e8114bdbbf9cdd688ba69bba75feea346ae7d62a3e72da38c",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_anzu_lionbird_material.png",
+      "sourceSha256": "33b1d73900b3bf5fd682694e18e32c2969cdc55fdc1a22e707a7d0b3e154622d",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_anzu_lionbird_material.receipt.json",
+      "receiptSha256": "53110331983b5060c70676e8e86b5f146dea2d75d4e20770eea86b6c1abd234c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        8,
+        172,
+        184
+      ],
+      "sourceBounds": [
+        195,
+        70,
+        1171,
+        1191
+      ],
+      "clippedPixels": 0,
+      "bytes": 42733
+    },
+    {
+      "id": "abyss_mushhushshu_serpent_material",
+      "file": "abyss_mushhushshu_serpent_material.png",
+      "kind": "material",
+      "sha256": "10ebe8aa42bbf52e10c4b99bf86ef826330cae68f91e217a7cc4d17a569719a0",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_mushhushshu_serpent_material.png",
+      "sourceSha256": "76c461c51a84a752957349ef8929eeff6f0dcfd810d03a256b9d7f758f38c15b",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_mushhushshu_serpent_material.receipt.json",
+      "receiptSha256": "79e8097ceb3603378743592c3a6dcf6d7f1be04aff369d4fff4fe01d32fda048",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        182
+      ],
+      "sourceBounds": [
+        165,
+        137,
+        1154,
+        1107
+      ],
+      "clippedPixels": 0,
+      "bytes": 54544
+    },
+    {
+      "id": "abyss_night_border_scorpion_material",
+      "file": "abyss_night_border_scorpion_material.png",
+      "kind": "material",
+      "sha256": "12901aed306aec311104880ea899559a7b454c71327e7b580325f56264ca0c52",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_night_border_scorpion_material.png",
+      "sourceSha256": "e8c45915dacb28b16d5254f6d00610265edcfd7d7d5a1cd4e958f22292a7fc35",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_night_border_scorpion_material.receipt.json",
+      "receiptSha256": "a0a9f021e2fe232c1c90341b4fb6aae9c8d3bebea94380e643df605fc83e2a62",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        8,
+        170,
+        184
+      ],
+      "sourceBounds": [
+        196,
+        97,
+        1098,
+        1170
+      ],
+      "clippedPixels": 0,
+      "bytes": 38843
+    },
+    {
+      "id": "abyss_blackstone_lamassu_material",
+      "file": "abyss_blackstone_lamassu_material.png",
+      "kind": "material",
+      "sha256": "4a5bf34b1eca0efa18703d5427fd1f382cf8819d666adc09bc9978e18643d1e5",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_blackstone_lamassu_material.png",
+      "sourceSha256": "b8601bc55abd26cadb9f8fa501ed824c560204fc711ec890a0ab4d788be031c8",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_blackstone_lamassu_material.receipt.json",
+      "receiptSha256": "ac62f921f31b15a249ad489d5d1120637d02bed77ee93a24fd57df688fc0f949",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        8,
+        172,
+        184
+      ],
+      "sourceBounds": [
+        143,
+        50,
+        1149,
+        1206
+      ],
+      "clippedPixels": 0,
+      "bytes": 37742
+    },
+    {
+      "id": "abyss_primordial_sea_dragon_material",
+      "file": "abyss_primordial_sea_dragon_material.png",
+      "kind": "material",
+      "sha256": "c9a5632cbc09b11e4a4b038a611f1f3105507675f4646ee0ddbbd0665b7c6988",
+      "source": "meadow-3d/art/item-art-v3/originals/abyss_primordial_sea_dragon_material.png",
+      "sourceSha256": "dca6f4f78f4d446961989df1e21f99851b3aa6f84bb3511de3e36aae2fa12c96",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/abyss_primordial_sea_dragon_material.receipt.json",
+      "receiptSha256": "873150faef98dc36612bc758ef4da381cf536e125546b59e22b5892795d0be90",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        11,
+        184,
+        181
+      ],
+      "sourceBounds": [
+        159,
+        145,
+        1188,
+        1138
+      ],
+      "clippedPixels": 0,
+      "bytes": 55505
+    },
+    {
+      "id": "confluence_life_pillar_guard_material",
+      "file": "confluence_life_pillar_guard_material.png",
+      "kind": "material",
+      "sha256": "4c23c20816172d47f69ec785547b147c51fc2fb05c61401b201a02da8848143d",
+      "source": "meadow-3d/art/item-art-v3/originals/confluence_life_pillar_guard_material.png",
+      "sourceSha256": "e4d4f39125d2f80f03b8f6a987d8813e1e9615a577e1b867d6e9030ef6f6fd55",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/confluence_life_pillar_guard_material.receipt.json",
+      "receiptSha256": "11d531aa9ef2df82fb25cc1a18883f717c6fb5ffd7a4b58d9693253942925e32",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        11,
+        184,
+        181
+      ],
+      "sourceBounds": [
+        82,
+        110,
+        1159,
+        1150
+      ],
+      "clippedPixels": 0,
+      "bytes": 50219
+    },
+    {
+      "id": "confluence_thunder_pillar_guard_material",
+      "file": "confluence_thunder_pillar_guard_material.png",
+      "kind": "material",
+      "sha256": "c4eb558586c33315381967eb2c0061ed88137688a53e2a8fd840a9ebcaa7468b",
+      "source": "meadow-3d/art/item-art-v3/originals/confluence_thunder_pillar_guard_material.png",
+      "sourceSha256": "502871a43df77cf3748d5eb2ae4e98a35e8b5dfc8e4725e3d1c707c05602c937",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/confluence_thunder_pillar_guard_material.receipt.json",
+      "receiptSha256": "8b16c10fda43ef54922fa7bb6b94059096fc3a9dbee9711315d07cbf58ed7bc8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ],
+      "sourceBounds": [
+        135,
+        107,
+        1128,
+        1147
+      ],
+      "clippedPixels": 0,
+      "bytes": 59124
+    },
+    {
+      "id": "confluence_starshadow_pillar_guard_material",
+      "file": "confluence_starshadow_pillar_guard_material.png",
+      "kind": "material",
+      "sha256": "cfddb024492216b364ced22bef62f3f43f83b68c29f9a41a9e9a17fe86f775b8",
+      "source": "meadow-3d/art/item-art-v3/originals/confluence_starshadow_pillar_guard_material.png",
+      "sourceSha256": "a09cc3d183424ae64da51049a4e10209566a4b8057792e7d8ec9e92ff0030411",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/confluence_starshadow_pillar_guard_material.receipt.json",
+      "receiptSha256": "f2c5d2680def2a0ec6e32b8d049c72a430596e424693f063e1877594913af48f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ],
+      "sourceBounds": [
+        163,
+        79,
+        1135,
+        1184
+      ],
+      "clippedPixels": 0,
+      "bytes": 53930
+    },
+    {
+      "id": "confluence_worldcore_sovereign_material",
+      "file": "confluence_worldcore_sovereign_material.png",
+      "kind": "material",
+      "sha256": "0e576acbc88f4bc3e8bd15baca11854aa35c3a8689d86d5ddca6f0ddd5ead82e",
+      "source": "meadow-3d/art/item-art-v3/originals/confluence_worldcore_sovereign_material.png",
+      "sourceSha256": "3c7d7da25b1a6b22c929e79fefc9962d11b286131a6dea9d3ffae16eeb034443",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/confluence_worldcore_sovereign_material.receipt.json",
+      "receiptSha256": "1a172c526dd944c874173a7040894042df7467ebd2b77fb8325c5a0dd61645eb",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        36,
+        8,
+        155,
+        184
+      ],
+      "sourceBounds": [
+        294,
+        93,
+        1010,
+        1159
+      ],
+      "clippedPixels": 0,
+      "bytes": 44274
+    },
+    {
+      "id": "astral_fire_scroll",
+      "file": "astral_fire_scroll.png",
+      "kind": "consumable",
+      "sha256": "466051324e6982cde490fc7ac9cef1843bf8c73c31593c0debf793b29fe11192",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_fire_scroll.png",
+      "sourceSha256": "9ec11993f6f5c1c630d5060c5eb7456fef29f2ee0a1a2356d3cb5ca2db4f4082",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_fire_scroll.receipt.json",
+      "receiptSha256": "465e963962f77c3c1495749b7d2a17d24a941fa47b164bc1a7a5fb60ab36bcc6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        24,
+        184,
+        167
+      ],
+      "sourceBounds": [
+        102,
+        177,
+        1148,
+        1023
+      ],
+      "clippedPixels": 0,
+      "bytes": 36632
+    },
+    {
+      "id": "astral_water_scroll",
+      "file": "astral_water_scroll.png",
+      "kind": "consumable",
+      "sha256": "00d7391ecfba5d0aecd3871f8ccb94edf9f748d1eb624b5ba9e277e3ae9bbece",
+      "source": "meadow-3d/art/item-art-v3/originals/astral_water_scroll.png",
+      "sourceSha256": "52189e58ee84e0992abaecd3cf78057454c75a48c17445a0f33109334e611ffe",
+      "sourceReceipt": "meadow-3d/art/item-art-v3/originals/astral_water_scroll.receipt.json",
+      "receiptSha256": "a60deb9ee35851dd9535778343cf640f3597cd0fb1eea9d847f6300e2fb98d94",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        31,
+        184,
+        160
+      ],
+      "sourceBounds": [
+        70,
+        182,
+        1195,
+        1003
+      ],
+      "clippedPixels": 0,
+      "bytes": 38550
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted ink, gouache and watercolor isometric MMORPG creature. Original character, natural texture, subdued highlights. Match the approved base. NOT pixel art. No text, labels, scenery, floor plane, shadow, or extra creatures.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "front-left three-quarter. tiny gentle breathing and a single slow blink, identity and ground position stable. Preserve exactly the specified anatomy: An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "front-left three-quarter. slow serpentine slither in place, coil compresses and extends; no jumping or legs. Four distinct readable authored poses. Match the anchor direction. Full body, generous margins. An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "Front LEFT three-quarter view. Face and strike ONLY toward image LEFT in ALL four frames. Never turn to the right. Keep the nose and sternum aimed LEFT. Ready, raise shield on the LEFT front side, lean head and shield LEFT toward an enemy off the LEFT edge, recover. Keep the face visible from the same side and the snake coil stable. Shield stays on the LEFT throughout."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-left three-quarter. a brief readable recoil: ready, compress backwards from impact, recover, ready; keep body proportions and the same ground contact. Preserve exactly the specified anatomy: An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-left three-quarter. ready, weaken and droop, fall down into a low defeated pose, remain collapsed on the ground; never stand back up. Preserve exactly the specified anatomy: An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "back-right three-quarter, no visible face. tiny gentle breathing and a single slow blink, identity and ground position stable. Preserve exactly the specified anatomy: An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "back-right three-quarter. slow serpentine slither in place, coil compresses and extends; no jumping or legs. Four distinct readable authored poses. Match the anchor direction. Full body, generous margins. An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter. ready, raise mirror shield and snake crown, lean forward with intense gaze, recover; coiled lower body stays grounded. No weapon swing, no new limbs, no glow. Four distinct readable authored poses. Match the anchor direction. Full body, generous margins. An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter, no visible face. a brief readable recoil: ready, compress backwards from impact, recover, ready; keep body proportions and the same ground contact. Preserve exactly the specified anatomy: An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter, no visible face. ready, weaken and droop, fall down into a low defeated pose, remain collapsed on the ground; never stand back up. Preserve exactly the specified anatomy: An imposing adult female serpentine gorgon with one long thick coiled green snake lower body, two human arms, modest closed bronze cuirass and shoulder wrap, human face with emerald eyes and a compact crown of six small connected living snakes instead of hair. Holds a round pale stone mirror shield with both arms. Jade and antique brass palette. No legs, no wings, no nudity."
+    }
+  },
+  "body_plan": [
+    "legless"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

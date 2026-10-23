@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A squat deep-water lanternfish, one broad blue-black fish head with two round amber eyes, one short attached lure stalk ending in one pale bulb, two broad pectoral fins and one tapering tail, no legs. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_whirlpool_lanternfish\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_whirlpool_lanternfish\\base.png.raw.png",
+  "raw_bytes": 2294413,
+  "elapsed_seconds": 51.609,
+  "model": null,
+  "session_id": "01a16120-94be-7253-8577-08410f10d8e0",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_whirlpool_lanternfish\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 61.57,
+    "partial_alpha_pct": 38.43,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 830246,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

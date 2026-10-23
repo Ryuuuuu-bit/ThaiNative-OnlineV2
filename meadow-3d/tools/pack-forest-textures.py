@@ -15,10 +15,13 @@ new=[]
 # --monsters re-encodes only the forest monster atlases (after pack-monsters.py --forest).
 import sys
 paths=[] if '--monsters' in sys.argv else list((SRC/'env-forest').glob('*.png'))
-for sp in ['shroom','wolf','wisp','stump','warden']:
+monster_manifest=PUBLIC/'assets/monsters-painted/manifest.json'
+original_monsters=monster_manifest.exists() and bool(json.loads(monster_manifest.read_text()).get('originRevision'))
+if original_monsters and '--monsters' in sys.argv:raise SystemExit('Legacy monster texture sources are retired; use pack-original-monsters.py.')
+for sp in ([] if original_monsters else ['shroom','wolf','wisp','stump','warden']):
  paths.extend(p for p in (SRC/'monsters-painted').glob(f'{sp}-*-v1.png') if '-glow-' not in p.name)
 bolt=SRC/'monsters-painted/wisp-bolt-v1.png'
-if bolt.exists() and bolt not in paths:paths.append(bolt)
+if not original_monsters and bolt.exists() and bolt not in paths:paths.append(bolt)
 def encode(p):
  logical='/assets/'+p.relative_to(SRC).as_posix();folder=PUBLIC/'assets'/p.relative_to(SRC).parent;folder.mkdir(parents=True,exist_ok=True)
  im=Image.open(p).convert('RGBA');w,h=im.size;scale=min(1,2048/max(w,h));size=(max(4,round(w*scale/4)*4),max(4,round(h*scale/4)*4))

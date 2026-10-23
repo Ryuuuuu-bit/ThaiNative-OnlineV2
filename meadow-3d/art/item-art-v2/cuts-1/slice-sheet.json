@@ -1,0 +1,470 @@
+{
+  "kind": "sprite-gen-slice-sheet",
+  "version": 1,
+  "sheet": "sheet-1.png",
+  "grid": [
+    4,
+    4
+  ],
+  "canvas": {
+    "w": 192,
+    "h": 192
+  },
+  "baseline_y": 178.0,
+  "target_height": 164.0,
+  "scale": "cell",
+  "fit": "contain",
+  "factor": null,
+  "factor_from": null,
+  "alpha_cleanup": "alpha-cleanup.json",
+  "cells": [
+    {
+      "name": "field_sword",
+      "file": "field_sword.png",
+      "factor": 0.5836298932384342,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 266,
+          "h": 281
+        },
+        "canvas": {
+          "w": 155,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 19,
+        "y": 14,
+        "w": 155,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_staff",
+      "file": "field_staff.png",
+      "factor": 0.5448504983388704,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 301,
+          "h": 301
+        },
+        "canvas": {
+          "w": 164,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 14,
+        "y": 14,
+        "w": 164,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_bow",
+      "file": "field_bow.png",
+      "factor": 0.5466666666666666,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 300,
+          "h": 300
+        },
+        "canvas": {
+          "w": 164,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 14,
+        "y": 14,
+        "w": 164,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_armour",
+      "file": "field_armour.png",
+      "factor": 0.5754385964912281,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 262,
+          "h": 285
+        },
+        "canvas": {
+          "w": 151,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 21,
+        "y": 14,
+        "w": 151,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_shield",
+      "file": "field_shield.png",
+      "factor": 0.5394736842105263,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 231,
+          "h": 304
+        },
+        "canvas": {
+          "w": 125,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 34,
+        "y": 14,
+        "w": 125,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_cloak",
+      "file": "field_cloak.png",
+      "factor": 0.5412541254125413,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 282,
+          "h": 303
+        },
+        "canvas": {
+          "w": 153,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 20,
+        "y": 14,
+        "w": 153,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_boots",
+      "file": "field_boots.png",
+      "factor": 0.6029411764705882,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 254,
+          "h": 272
+        },
+        "canvas": {
+          "w": 153,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 20,
+        "y": 14,
+        "w": 153,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_ring",
+      "file": "field_ring.png",
+      "factor": 0.6804979253112033,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 254,
+          "h": 241
+        },
+        "canvas": {
+          "w": 173,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 10,
+        "y": 14,
+        "w": 173,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_sword",
+      "file": "field_sunsteel_sword.png",
+      "factor": 0.5815602836879432,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 272,
+          "h": 282
+        },
+        "canvas": {
+          "w": 158,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 17,
+        "y": 14,
+        "w": 158,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_staff",
+      "file": "field_sunsteel_staff.png",
+      "factor": 0.5125,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 304,
+          "h": 320
+        },
+        "canvas": {
+          "w": 156,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 18,
+        "y": 14,
+        "w": 156,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_bow",
+      "file": "field_sunsteel_bow.png",
+      "factor": 0.5484949832775919,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 295,
+          "h": 299
+        },
+        "canvas": {
+          "w": 162,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 15,
+        "y": 14,
+        "w": 162,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_armour",
+      "file": "field_sunsteel_armour.png",
+      "factor": 0.5394736842105263,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 272,
+          "h": 304
+        },
+        "canvas": {
+          "w": 147,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 23,
+        "y": 14,
+        "w": 147,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_shield",
+      "file": "field_sunsteel_shield.png",
+      "factor": 0.5466666666666666,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 244,
+          "h": 300
+        },
+        "canvas": {
+          "w": 133,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 30,
+        "y": 14,
+        "w": 133,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_cloak",
+      "file": "field_sunsteel_cloak.png",
+      "factor": 0.5359477124183006,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 292,
+          "h": 306
+        },
+        "canvas": {
+          "w": 156,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 18,
+        "y": 14,
+        "w": 156,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_boots",
+      "file": "field_sunsteel_boots.png",
+      "factor": 0.5857142857142857,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 275,
+          "h": 280
+        },
+        "canvas": {
+          "w": 161,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 16,
+        "y": 14,
+        "w": 161,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_sunsteel_ring",
+      "file": "field_sunsteel_ring.png",
+      "factor": 0.6639676113360324,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 254,
+          "h": 247
+        },
+        "canvas": {
+          "w": 169,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 12,
+        "y": 14,
+        "w": 169,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    }
+  ]
+}

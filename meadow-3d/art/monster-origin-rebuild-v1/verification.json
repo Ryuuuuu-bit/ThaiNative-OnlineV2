@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-21",
+  "passed": true,
+  "tests": {
+    "passed": 479,
+    "postgresSkipped": 5
+  },
+  "gameplayDataUnchanged": true,
+  "renderer": {
+    "monsters": 38,
+    "portraits": 38,
+    "directionMotionFramePickChecks": 3040
+  },
+  "webgl": [
+    {
+      "species": "slime",
+      "actors": 16,
+      "ready": true
+    },
+    {
+      "species": "king",
+      "actors": 16,
+      "ready": true
+    },
+    {
+      "species": "wolf",
+      "actors": 16,
+      "ready": true
+    },
+    {
+      "species": "warden",
+      "actors": 16,
+      "ready": true
+    }
+  ],
+  "fourGatePlaytest": [
+    {
+      "map": "meadow",
+      "direction": "south",
+      "entryLevel": 1,
+      "firstKill": true,
+      "hpAfterFight": 118.2,
+      "maxHp": 126,
+      "minimap": {
+        "holes": 0,
+        "leaks": 0
+      },
+      "returnedToCity": true
+    },
+    {
+      "map": "forest",
+      "direction": "east",
+      "entryLevel": 1,
+      "firstKill": true,
+      "hpAfterFight": 126,
+      "maxHp": 126,
+      "minimap": {
+        "holes": 0,
+        "leaks": 0
+      },
+      "returnedToCity": true
+    },
+    {
+      "map": "ruins",
+      "direction": "north",
+      "entryLevel": 1,
+      "firstKill": true,
+      "hpAfterFight": 126,
+      "maxHp": 126,
+      "minimap": {
+        "holes": 0,
+        "leaks": 0
+      },
+      "returnedToCity": true
+    },
+    {
+      "map": "canyon",
+      "direction": "west",
+      "entryLevel": 1,
+      "firstKill": true,
+      "hpAfterFight": 126,
+      "maxHp": 126,
+      "minimap": {
+        "holes": 0,
+        "leaks": 0
+      },
+      "returnedToCity": true
+    }
+  ],
+  "retiredFilesInPublicAndBuild": [],
+  "deployed": false,
+  "limits": [
+    "No legal clearance opinion.",
+    "Scope is monster sprite atlases, their portraits and projectile derivatives; other assets need a separate audit.",
+    "Some boss abilities share a new attack strip; server warnings, damage and drops are unchanged."
+  ]
+}

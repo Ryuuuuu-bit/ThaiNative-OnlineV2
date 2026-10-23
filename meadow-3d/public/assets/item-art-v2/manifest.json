@@ -1,0 +1,3051 @@
+{
+  "version": 2,
+  "method": "Original GPT artwork through Sprite-Gen native alpha and canonical static-sheet slicing. Cards use verified existing original monster bases inside newly authored vector frames.",
+  "externalReferences": [],
+  "sources": [
+    {
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "receipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "receiptSha256": "d48755f255c3449954420cd324154783ddccb44af7b68bece986fbc07076a817"
+    },
+    {
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "receipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "receiptSha256": "4e74abc1ea728dea342d05d2606faa9c7c9b91d9fdd2b39be02c025d090328de"
+    },
+    {
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "receipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "receiptSha256": "ed5c5776b831b9e0e56c67d3a787260df44e6ed190f2004470245fc032c33733"
+    },
+    {
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "receipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "receiptSha256": "14878ebccd40bede0dfc77e9592e48535718708691c85b64ed713e7fef6ad596"
+    },
+    {
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "receipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "receiptSha256": "6d58d285413c5c3ca1445677ffe7632402dae28fc437aee044651dc4d8dc782d"
+    }
+  ],
+  "files": [
+    {
+      "id": "card_jelly_pink",
+      "kind": "card",
+      "file": "card_jelly_pink.svg",
+      "sha256": "9b527b8d745ca3c4be31237ee3ea30f85604f45a306e3c396614d7e7723a18b8",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/ripple_jelly/base.png",
+      "sourceSha256": "e7895708f39b546f64f769da1036be368555f7bc4b7d7f705c3207e2e7aadb2e",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/ripple_jelly/base-report.json",
+      "monster": "jelly_pink",
+      "element": "neutral",
+      "boss": false
+    },
+    {
+      "id": "card_king_jelly",
+      "kind": "card",
+      "file": "card_king_jelly.svg",
+      "sha256": "5f8b2b4a83afbbc405e95494354bccdab82bab85c13fd8628b7ab925a64e9ea0",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/ripple_regent/base.png",
+      "sourceSha256": "ed510c71145ab6fd85ccba4c1fab98da3fcf7c52dc69b4c38b6ec4a4950ee4e9",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/ripple_regent/base-report.json",
+      "monster": "king_jelly",
+      "element": "water",
+      "boss": true
+    },
+    {
+      "id": "card_mist_warden",
+      "kind": "card",
+      "file": "card_mist_warden.svg",
+      "sha256": "e598415c4418b83cddee44a7fb4e2922fd2d1ad028242436ae6212415d677ab9",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/grove_crown/base.png",
+      "sourceSha256": "4453a312af0821dd10e358a125ae58e3dea9ae5a25f6836eda607ed34f8b5f2b",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/grove_crown/base-report.json",
+      "monster": "mist_warden",
+      "element": "earth",
+      "boss": true
+    },
+    {
+      "id": "card_relic_warden",
+      "kind": "card",
+      "file": "card_relic_warden.svg",
+      "sha256": "e598415c4418b83cddee44a7fb4e2922fd2d1ad028242436ae6212415d677ab9",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/grove_crown/base.png",
+      "sourceSha256": "4453a312af0821dd10e358a125ae58e3dea9ae5a25f6836eda607ed34f8b5f2b",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/grove_crown/base-report.json",
+      "monster": "relic_warden",
+      "element": "earth",
+      "boss": true
+    },
+    {
+      "id": "card_crag_titan",
+      "kind": "card",
+      "file": "card_crag_titan.svg",
+      "sha256": "d208787c57d72ee1dbb5689d4085a3e54d752bfdcfe13127e099594b06202ee9",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/moon_titan/base.png",
+      "sourceSha256": "0bac417fa2b313a1a036c07ceae151cbec4b153fd445ee0ca0610014add92781",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/moon_titan/base-report.json",
+      "monster": "crag_titan",
+      "element": "earth",
+      "boss": true
+    },
+    {
+      "id": "card_grove_crown",
+      "kind": "card",
+      "file": "card_grove_crown.svg",
+      "sha256": "e598415c4418b83cddee44a7fb4e2922fd2d1ad028242436ae6212415d677ab9",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/grove_crown/base.png",
+      "sourceSha256": "4453a312af0821dd10e358a125ae58e3dea9ae5a25f6836eda607ed34f8b5f2b",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/grove_crown/base-report.json",
+      "monster": "grove_crown",
+      "element": "earth",
+      "boss": true
+    },
+    {
+      "id": "card_moon_titan",
+      "kind": "card",
+      "file": "card_moon_titan.svg",
+      "sha256": "d208787c57d72ee1dbb5689d4085a3e54d752bfdcfe13127e099594b06202ee9",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/moon_titan/base.png",
+      "sourceSha256": "0bac417fa2b313a1a036c07ceae151cbec4b153fd445ee0ca0610014add92781",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/moon_titan/base-report.json",
+      "monster": "moon_titan",
+      "element": "earth",
+      "boss": true
+    },
+    {
+      "id": "card_bud_shroom",
+      "kind": "card",
+      "file": "card_bud_shroom.svg",
+      "sha256": "1c27914facf1de537b136b739981e36c526a711b77409ecc9cd0c0c496194e06",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/bud_shroom/base.png",
+      "sourceSha256": "1f1ab3212fc766d9acb886c65158601633575344ad85fba0288a09f9d5a752e4",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/bud_shroom/base-report.json",
+      "monster": "forest_young_1",
+      "element": "neutral",
+      "boss": false
+    },
+    {
+      "id": "card_clay_puff",
+      "kind": "card",
+      "file": "card_clay_puff.svg",
+      "sha256": "a3899d67db157c3b49d460de15a0d09bdf92377257d73c8a71b739877f3cde2e",
+      "source": "meadow-3d/art/monster-expansion-v1/clay_puff/base.png",
+      "sourceSha256": "5896bcb4d6269f7ef320e9dbe4c500d1b2f9561afc1759214b5da63ffc583f41",
+      "sourceReceipt": "meadow-3d/art/monster-expansion-v1/clay_puff/base-report.json",
+      "monster": "ruins_young_1",
+      "element": "neutral",
+      "boss": false
+    },
+    {
+      "id": "card_pebble_puff",
+      "kind": "card",
+      "file": "card_pebble_puff.svg",
+      "sha256": "30b2e0b43763af421b18be502b101540dc3bb26a8d97ea14c30fd429b3a8792d",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/pebble_puff/base.png",
+      "sourceSha256": "9a67098a65ae2a3a1b152e527e57b6e992e06ef9008bf75b33ada221f055245d",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/pebble_puff/base-report.json",
+      "monster": "canyon_young_1",
+      "element": "neutral",
+      "boss": false
+    },
+    {
+      "id": "card_shade_wolf",
+      "kind": "card",
+      "file": "card_shade_wolf.svg",
+      "sha256": "eef3f7f8348e6ac7747dbb550550c885fbf38473aad782144d9cd1b677016ed2",
+      "source": "meadow-3d/art/monster-origin-rebuild-v1/sources/bramble_wolf/base.png",
+      "sourceSha256": "53300baf8a73773d3cb5e35b75b0106a935aa6cb756147e68e6d20237e2a74ba",
+      "sourceReceipt": "meadow-3d/art/monster-origin-rebuild-v1/sources/bramble_wolf/base-report.json",
+      "monster": "shade_wolf",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_lotus_rabbit",
+      "kind": "card",
+      "file": "card_lotus_rabbit.svg",
+      "sha256": "053262a0a8ee6001d0732a903209d6cc67cc63921da8af412a8c432e1687d4de",
+      "source": "meadow-3d/art/starter-monsters-v1/lotus_rabbit/base.png",
+      "sourceSha256": "f3048a601ba36952192ed6914eef629d9b343dcb485ce4645e5bb829a85e4eed",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/lotus_rabbit/base-report.json",
+      "monster": "lotus_rabbit",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_dew_beetle",
+      "kind": "card",
+      "file": "card_dew_beetle.svg",
+      "sha256": "f3398b52646ab972cb2cf249a4bb15061c7627c7e2ca3eba3228e56b37e1a3d4",
+      "source": "meadow-3d/art/starter-monsters-v1/dew_beetle/base.png",
+      "sourceSha256": "b60dfc452cc934bfa04622be276f495788e822cb1f54916d667f907e40255665",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/dew_beetle/base-report.json",
+      "monster": "dew_beetle",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_dewdrop_moth",
+      "kind": "card",
+      "file": "card_dewdrop_moth.svg",
+      "sha256": "13554d5ff31c3decfc3ed7ef3f1bad926ac8eb2f69efb72f2d89641b8bd7dd43",
+      "source": "meadow-3d/art/starter-monsters-v1/dewdrop_moth/base.png",
+      "sourceSha256": "93cb009f4b35ff4f8d7712d497ca979c512d619e92d027250b44f36ee973bd5a",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/dewdrop_moth/base-report.json",
+      "monster": "dewdrop_moth",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_pine_hedgehog",
+      "kind": "card",
+      "file": "card_pine_hedgehog.svg",
+      "sha256": "8a6e30401fb6804f87edcbf594860d063525b780dafb614e45e7d49d2636017b",
+      "source": "meadow-3d/art/starter-monsters-v1/pine_hedgehog/base.png",
+      "sourceSha256": "ad3917bb5e5272a738a01f42aa8d7bbfb3f2630ed6aa879c8c2690449a6b5cfe",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/pine_hedgehog/base-report.json",
+      "monster": "pine_hedgehog",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_tile_sparrow",
+      "kind": "card",
+      "file": "card_tile_sparrow.svg",
+      "sha256": "edfa491979bf1cd9750aae4775d1b01a3ae923db963857dd6b98ba435fa0c61a",
+      "source": "meadow-3d/art/starter-monsters-v1/tile_sparrow/base.png",
+      "sourceSha256": "133adf0059e96863657132cdaf5ce5d542a2ad2601ac9caae2c8da84bc01d906",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/tile_sparrow/base-report.json",
+      "monster": "tile_sparrow",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_clay_pot_doll",
+      "kind": "card",
+      "file": "card_clay_pot_doll.svg",
+      "sha256": "7e8a28a8ac663b02552d8767987b30cc0b6e81d41bfda386c8a7d85a21687106",
+      "source": "meadow-3d/art/starter-monsters-v1/clay_pot_doll/base.png",
+      "sourceSha256": "fec71e7bf54168d9641dfd618e43e7c8ea32faf07f005c3f809a8bc204fbf8a2",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/clay_pot_doll/base-report.json",
+      "monster": "clay_pot_doll",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_oretail_lizard",
+      "kind": "card",
+      "file": "card_oretail_lizard.svg",
+      "sha256": "27614a64e04b3dcfb7bfd771396725f9611525e76617b65514bdf5127a33427b",
+      "source": "meadow-3d/art/starter-monsters-v1/oretail_lizard/base.png",
+      "sourceSha256": "9f72fc766efce8206ccf29e49472223abe41262ff02abe2fb82f0358ad50b190",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/oretail_lizard/base-report.json",
+      "monster": "oretail_lizard",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_iron_pincer_crab",
+      "kind": "card",
+      "file": "card_iron_pincer_crab.svg",
+      "sha256": "3d8d68dc676329500897ad1f29d41398d183c9ce799edfd1a7b5a050c0ff60ad",
+      "source": "meadow-3d/art/starter-monsters-v1/iron_pincer_crab/base.png",
+      "sourceSha256": "44dc5c5a69e126ba2d6fb142b7ab05afa396c002adca074fa654224cbf1e52d7",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/iron_pincer_crab/base-report.json",
+      "monster": "iron_pincer_crab",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_mist_shroom",
+      "kind": "card",
+      "file": "card_mist_shroom.svg",
+      "sha256": "b11bad6f3507f154fc63b60944a26eff161ad06aea043f564b232f721a2d2887",
+      "source": "meadow-3d/art/starter-monsters-v1/mist_shroom/base.png",
+      "sourceSha256": "36e3f9e6d8f418b254099f9868e0dedaee3ed9da69e43aa3c77162740f559ef2",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/mist_shroom/base-report.json",
+      "monster": "mist_shroom",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_root_boar",
+      "kind": "card",
+      "file": "card_root_boar.svg",
+      "sha256": "1cb6931be1f7613f96bde4f8029b7570f73019a67c51cd27a530efd25e1315c5",
+      "source": "meadow-3d/art/starter-monsters-v1/root_boar/base.png",
+      "sourceSha256": "d4753be1a85edde095a9e151c07020534abe4e26041b1a39ced2c897f205fd1e",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/root_boar/base-report.json",
+      "monster": "root_boar",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_mist_weaver",
+      "kind": "card",
+      "file": "card_mist_weaver.svg",
+      "sha256": "a2a1f8284b095429f1e056410968bd66af2e0db0fda408cd99c608fb9f6ff2c5",
+      "source": "meadow-3d/art/starter-monsters-v1/mist_weaver/base.png",
+      "sourceSha256": "eed3e69d3c0511111888bcd11cebcebe38b4870da7f483fb098af3a1a035a38b",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/mist_weaver/base-report.json",
+      "monster": "mist_weaver",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_thorn_nest_mother",
+      "kind": "card",
+      "file": "card_thorn_nest_mother.svg",
+      "sha256": "2c9bc0488db34815ae0e87df00c58b42a5842137673558776e7e27f391727fc3",
+      "source": "meadow-3d/art/starter-monsters-v1/thorn_nest_mother/base.png",
+      "sourceSha256": "bb1766d4dc91966bab0c7b2ed5c7618eab7a7d7363813382f2fee9229df9303a",
+      "sourceReceipt": "meadow-3d/art/starter-monsters-v1/thorn_nest_mother/base-report.json",
+      "monster": "thorn_nest_mother",
+      "element": "earth",
+      "boss": true
+    },
+    {
+      "id": "card_greek_satyr",
+      "kind": "card",
+      "file": "card_greek_satyr.svg",
+      "sha256": "db7bd426b636ed6ff119ec2d97ea619fbbc747cb9691845ee5f20acbf0382878",
+      "source": "meadow-3d/art/greek-monsters-v1/greek_satyr/base.png",
+      "sourceSha256": "e96adeb14cb0946a0bcdfdc6b9d5c1be3fcd2c0b1c214bff86068b7d9c7ee430",
+      "sourceReceipt": "meadow-3d/art/greek-monsters-v1/greek_satyr/base-report.json",
+      "monster": "greek_satyr",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_greek_harpy",
+      "kind": "card",
+      "file": "card_greek_harpy.svg",
+      "sha256": "e29bf914775bbf8d02f5e49f61ba11743c6ed09ad0875ac38889f7f180c9b4c1",
+      "source": "meadow-3d/art/greek-monsters-v1/greek_harpy/base.png",
+      "sourceSha256": "f9f207187d55f180fa8ff2746277a4fa6a464e3dcef472f504e6b71f17d15ec0",
+      "sourceReceipt": "meadow-3d/art/greek-monsters-v1/greek_harpy/base-report.json",
+      "monster": "greek_harpy",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_greek_gorgon",
+      "kind": "card",
+      "file": "card_greek_gorgon.svg",
+      "sha256": "1f457063b499daa871abd027747b3a07d8235486efda0dcf0e3e09649935e891",
+      "source": "meadow-3d/art/greek-monsters-v1/greek_gorgon/base.png",
+      "sourceSha256": "c7a1a88733c08643dd2e1bb3e8592fff19116c803435ba9c389eddf805f045c3",
+      "sourceReceipt": "meadow-3d/art/greek-monsters-v1/greek_gorgon/base-report.json",
+      "monster": "greek_gorgon",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_greek_minotaur",
+      "kind": "card",
+      "file": "card_greek_minotaur.svg",
+      "sha256": "9e8f79b3e5161aac395707520cea809f1fecf26a88021b4e7821717591ad2c4f",
+      "source": "meadow-3d/art/greek-monsters-v1/greek_minotaur/base.png",
+      "sourceSha256": "2709f724052f91ec0dae836265d32ba4ae1dd858098cb9eba15cc3ae1c6f312e",
+      "sourceReceipt": "meadow-3d/art/greek-monsters-v1/greek_minotaur/base-report.json",
+      "monster": "greek_minotaur",
+      "element": "neutral",
+      "boss": true
+    },
+    {
+      "id": "card_himmapan_01",
+      "kind": "card",
+      "file": "card_himmapan_01.svg",
+      "sha256": "183d9fb9765e95d58d549afdc921957b087b8a9d7d2f6bc1546348b4daa7e0a2",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_01/base.png",
+      "sourceSha256": "31aa9727846a8abef67873e8ed173fc2729e9cf8e441220ed5f6022ad93fb83e",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_01/base-report.json",
+      "monster": "himmapan_01",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_himmapan_jade_turtle",
+      "kind": "card",
+      "file": "card_himmapan_jade_turtle.svg",
+      "sha256": "e177d52afdb439d847d682aad342556e234a752809320ed41653ba43fff98cf9",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_jade_turtle/base.png",
+      "sourceSha256": "d8a5cc3f641ff8792aec0ab68f73349ff70251fb9b7a3c9ac1fc94b16e14be00",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_jade_turtle/base-report.json",
+      "monster": "himmapan_jade_turtle",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_himmapan_03",
+      "kind": "card",
+      "file": "card_himmapan_03.svg",
+      "sha256": "1d3e6c8617b7d9eb19e55848b007b9b443dcedb89e8181d13dbf4df022453aa1",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_03/base.png",
+      "sourceSha256": "2b88fa193863e689b5899631f47af58c88b038537358d78bf6daa94eadb5e683",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_03/base-report.json",
+      "monster": "himmapan_03",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_himmapan_blossom_deer",
+      "kind": "card",
+      "file": "card_himmapan_blossom_deer.svg",
+      "sha256": "975d361ea47e5d3e3100326528068b2449ace581082c33e1cab823d6718812eb",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_blossom_deer/base.png",
+      "sourceSha256": "13e2964b4accaac52c9f04049d1d268d98383b1d5198e20306bd6fc570a1db48",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_blossom_deer/base-report.json",
+      "monster": "himmapan_blossom_deer",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_himmapan_golden_macaque",
+      "kind": "card",
+      "file": "card_himmapan_golden_macaque.svg",
+      "sha256": "e7183e9227aa42b14f830361bd75d07f827be9a73ca196a55f206ebe651ef25d",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_golden_macaque/base.png",
+      "sourceSha256": "b8ea87c04ce826ce44b59b9600e3425d987b206783e56cccf057f99d45e273b2",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_golden_macaque/base-report.json",
+      "monster": "himmapan_golden_macaque",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_himmapan_06",
+      "kind": "card",
+      "file": "card_himmapan_06.svg",
+      "sha256": "e1c0d4ef4fcfc93b648f791e0e0e1d6c8f7b71fd80725f15be7b1819cc1f57bd",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_06/base.png",
+      "sourceSha256": "f090cc27749a8c357360a78acd868bc97217e4cf272b95c6f6f06f6e9002a339",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_06/base-report.json",
+      "monster": "himmapan_06",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_himmapan_azure_garuda",
+      "kind": "card",
+      "file": "card_himmapan_azure_garuda.svg",
+      "sha256": "778d42b0ec1b38dc6cc0a36cae7631ab07416f940d80f2b00b14ce59783ec4c6",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_azure_garuda/base.png",
+      "sourceSha256": "919cb91d28b9bbe144d42cb03ee015ce315017bb209e9baf1e3828a3491f5b23",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_azure_garuda/base-report.json",
+      "monster": "himmapan_azure_garuda",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_himmapan_08",
+      "kind": "card",
+      "file": "card_himmapan_08.svg",
+      "sha256": "b0e95078cc674b63a5a54e78dd856de5cae3d53dcc7e68c98ae24d511e0e0ee7",
+      "source": "meadow-3d/art/himmapan-monsters-v1/himmapan_08/base.png",
+      "sourceSha256": "7f6f2efcd33513682c6bcb2363d80c2cd2949186e4c520d0927059139a82b8f5",
+      "sourceReceipt": "meadow-3d/art/himmapan-monsters-v1/himmapan_08/base-report.json",
+      "monster": "himmapan_08",
+      "element": "water",
+      "boss": true
+    },
+    {
+      "id": "card_desert_01",
+      "kind": "card",
+      "file": "card_desert_01.svg",
+      "sha256": "8ca721c5deab503d075b0e49cb3590aa69bad56bdc721d092735e9d21630c8e1",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_01/base.png",
+      "sourceSha256": "8f7fe801c323b413ad26ccefab6ca7076f91e246d0c58561acb19b94637dbced",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_01/base-report.json",
+      "monster": "desert_01",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_desert_oasis_hawk",
+      "kind": "card",
+      "file": "card_desert_oasis_hawk.svg",
+      "sha256": "175b9573a84e144a20e9587919855ec338e0d93326d2c9b497811ca9913c371e",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_oasis_hawk/base.png",
+      "sourceSha256": "6b203c879fd7a9d22321555052be734210d473ce927fcdda09441dd5fa0cc83c",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_oasis_hawk/base-report.json",
+      "monster": "desert_oasis_hawk",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_desert_03",
+      "kind": "card",
+      "file": "card_desert_03.svg",
+      "sha256": "7962f779fd8519a113a878f041aa630665e9c5794746c359d475f80f183b162c",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_03/base.png",
+      "sourceSha256": "20ba255845a77bdac19d501c0b120a8b112f0403cdf5a61681386a5e7e2e41d1",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_03/base-report.json",
+      "monster": "desert_03",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_desert_sand_ushabti",
+      "kind": "card",
+      "file": "card_desert_sand_ushabti.svg",
+      "sha256": "953f3da2a7ee4c0612a5f01769477743810f5468b8a1f053d868d8ddbfbf2a21",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_sand_ushabti/base.png",
+      "sourceSha256": "97e05071c20cd056d611e54a45c44c305dd12026bc15f2084d6d17ded6ba9799",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_sand_ushabti/base-report.json",
+      "monster": "desert_sand_ushabti",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_desert_seal_mummy",
+      "kind": "card",
+      "file": "card_desert_seal_mummy.svg",
+      "sha256": "1936a56b598d8e578e5d76a2dfb49218229bdb217d50ae381f5f22c7dcfbe7a8",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_seal_mummy/base.png",
+      "sourceSha256": "b3ef8acf6fff2fce3534169c613bbb32bf5c54cd937a1a12830fbb8f5ef17110",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_seal_mummy/base-report.json",
+      "monster": "desert_seal_mummy",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_desert_06",
+      "kind": "card",
+      "file": "card_desert_06.svg",
+      "sha256": "9fe073d2eb2fe7398735ebe0cee76fcf0a706aa15f4b9919789f5c2c29d2d6a3",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_06/base.png",
+      "sourceSha256": "681b9978ff2e2c9eddc5368470537c11897a67e79395f84a088f8542eaa73c33",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_06/base-report.json",
+      "monster": "desert_06",
+      "element": "holy",
+      "boss": false
+    },
+    {
+      "id": "card_desert_glass_scorpion",
+      "kind": "card",
+      "file": "card_desert_glass_scorpion.svg",
+      "sha256": "e9187769bb9127b43c653ff717089467aed8fc834a4ef84f5a39649655743535",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_glass_scorpion/base.png",
+      "sourceSha256": "00d7376476ac055822e66c3632088508a4ae52730384878444003b552f00f648",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_glass_scorpion/base-report.json",
+      "monster": "desert_glass_scorpion",
+      "element": "fire",
+      "boss": false
+    },
+    {
+      "id": "card_desert_08",
+      "kind": "card",
+      "file": "card_desert_08.svg",
+      "sha256": "9504239889bcaaf8bd51a253906241fa0f85112d137fb2cb0d64c0da067e04aa",
+      "source": "meadow-3d/art/desert-monsters-v1/desert_08/base.png",
+      "sourceSha256": "8f12e0c904f800544f3618857b25797eace027d97548b3509a0d398d10948ffe",
+      "sourceReceipt": "meadow-3d/art/desert-monsters-v1/desert_08/base-report.json",
+      "monster": "desert_08",
+      "element": "holy",
+      "boss": true
+    },
+    {
+      "id": "card_frost_01",
+      "kind": "card",
+      "file": "card_frost_01.svg",
+      "sha256": "8e1cf5cd0ba187b10d7332e717839951b1dcb35cd5df667b9aff4596d699d6f5",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_01/base.png",
+      "sourceSha256": "afd40d5d96fb7b2964b413cba1f62affc1c1a82fe9ba000aedd49ab8aeb587e7",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_01/base-report.json",
+      "monster": "frost_01",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_frost_rune_raven",
+      "kind": "card",
+      "file": "card_frost_rune_raven.svg",
+      "sha256": "e3199f59ccda9be5e1cba67ad3347548541b33d3be6fa4afd7530b17919245e2",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_rune_raven/base.png",
+      "sourceSha256": "5942c6dd5588a81eab99a07dd428f4a86f4f215454acd0d6f26201b4ce5df2eb",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_rune_raven/base-report.json",
+      "monster": "frost_rune_raven",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_frost_03",
+      "kind": "card",
+      "file": "card_frost_03.svg",
+      "sha256": "38a6b6f6d821e282dfcf1ffaf1f1d2d725f66c5d4f5f1f7c4b8334f51215abb2",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_03/base.png",
+      "sourceSha256": "321d8a26e1062a96c86b6824bd5fd69d9386e620ab9487e7ecce775adfb603c4",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_03/base-report.json",
+      "monster": "frost_03",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_frost_ice_lindworm",
+      "kind": "card",
+      "file": "card_frost_ice_lindworm.svg",
+      "sha256": "68a8269a5500481a7121e1a71950c934491d03fee762832bcea2b84c8c199c51",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_ice_lindworm/base.png",
+      "sourceSha256": "6f32a8686a152ae414fbd692b0b49fcd89ebc05af2f2a2132367c346d394324f",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_ice_lindworm/base-report.json",
+      "monster": "frost_ice_lindworm",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_frost_winter_wavehorse",
+      "kind": "card",
+      "file": "card_frost_winter_wavehorse.svg",
+      "sha256": "a1d47a4f5666056a9b912e3b3b524506e232cff59392377d7b820e0fa5027f09",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_winter_wavehorse/base.png",
+      "sourceSha256": "b9adc1bf36bfbf63dd5ba6eb499e1bac04a3a9f6c8e33f04cf7d3225f1fdae5c",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_winter_wavehorse/base-report.json",
+      "monster": "frost_winter_wavehorse",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_frost_06",
+      "kind": "card",
+      "file": "card_frost_06.svg",
+      "sha256": "194acfff976e3a9341ff026cb773d9a7074e288701f71ae44e15f429ecc1cab5",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_06/base.png",
+      "sourceSha256": "95005d95b43c8e18e84470b80603a75ca2b91c8aa1aae1c3442a2abd501bd35e",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_06/base-report.json",
+      "monster": "frost_06",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_frost_fractured_valkyrie",
+      "kind": "card",
+      "file": "card_frost_fractured_valkyrie.svg",
+      "sha256": "fec11c8b6c67846dd6fe9edef890bc8086b4cc378aa3dbc5c5ccdd2b05488cc3",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_fractured_valkyrie/base.png",
+      "sourceSha256": "abda186df237ffb0795b8ff8876087886b511540fd6c23a81ba2ff073b857623",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_fractured_valkyrie/base-report.json",
+      "monster": "frost_fractured_valkyrie",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_frost_08",
+      "kind": "card",
+      "file": "card_frost_08.svg",
+      "sha256": "f70556825c229be71ad62e163b89334a57853713734655075763c6f08dd6e787",
+      "source": "meadow-3d/art/frost-monsters-v1/frost_08/base.png",
+      "sourceSha256": "1b1a4a1bb494d06a23d83239add3c8bd4d7deeb3b55610411a4c3ab62b5d4a52",
+      "sourceReceipt": "meadow-3d/art/frost-monsters-v1/frost_08/base-report.json",
+      "monster": "frost_08",
+      "element": "water",
+      "boss": true
+    },
+    {
+      "id": "card_yokai_01",
+      "kind": "card",
+      "file": "card_yokai_01.svg",
+      "sha256": "5ac5993d669ee9c5a998d2fd27e15b1b8abb0acc44aed7d91b065a5c65a42f8f",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_01/base.png",
+      "sourceSha256": "aadd7eeb9c8623fdb06df4daf843d48fe76ed1b75fec848d134f72682c98c253",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_01/base-report.json",
+      "monster": "yokai_01",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_yokai_rain_umbrella",
+      "kind": "card",
+      "file": "card_yokai_rain_umbrella.svg",
+      "sha256": "acce79b679e372c4b00f822978667ce65c9d94642ac32649aa5cd9c413e06860",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_rain_umbrella/base.png",
+      "sourceSha256": "d1d45d28eebf0566f73ff022eda5ac1528bb2136522af0436ccdedb5a14d67bf",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_rain_umbrella/base-report.json",
+      "monster": "yokai_rain_umbrella",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_yokai_03",
+      "kind": "card",
+      "file": "card_yokai_03.svg",
+      "sha256": "b795c3afb33ab839b7a25cf1d32ede26cb9fd3c74d37e44d19aa25bc3c53ea2a",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_03/base.png",
+      "sourceSha256": "ee2051d4a6b38d3944908b3dd6a0b2fdd04dd0e2187d0ab88b3ab40a08f41313",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_03/base-report.json",
+      "monster": "yokai_03",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_yokai_bamboo_kodama",
+      "kind": "card",
+      "file": "card_yokai_bamboo_kodama.svg",
+      "sha256": "6788316b2e32f92cb2d790ad7045169d2868fb3856416e311a8079677bb999a6",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_bamboo_kodama/base.png",
+      "sourceSha256": "a939ae82286fdab0c1b6de7de9c682a8d6b7c40063028ffa339a71a7a45a4c98",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_bamboo_kodama/base-report.json",
+      "monster": "yokai_bamboo_kodama",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_yokai_rain_nue",
+      "kind": "card",
+      "file": "card_yokai_rain_nue.svg",
+      "sha256": "52832c2e23fea4d6c0ae23456e6ed0d5f972c0efad63591df8840d8cfa06b522",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_rain_nue/base.png",
+      "sourceSha256": "c4e7bd3069186539d6b30e6af145f3d4eb580e831015a3d4a65dfa9be71eb95d",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_rain_nue/base-report.json",
+      "monster": "yokai_rain_nue",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_yokai_06",
+      "kind": "card",
+      "file": "card_yokai_06.svg",
+      "sha256": "25389c46497612fb8651ee8a42e19bdba3da1c9d340a2e4a6e77239b72ae89f5",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_06/base.png",
+      "sourceSha256": "c4046ccb4aef0a45091781c1ab54fa4a4b5920921dcb52fd27aa3127a8deade9",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_06/base-report.json",
+      "monster": "yokai_06",
+      "element": "fire",
+      "boss": false
+    },
+    {
+      "id": "card_yokai_lantern_rokurokubi",
+      "kind": "card",
+      "file": "card_yokai_lantern_rokurokubi.svg",
+      "sha256": "d6299c33146daa7f3089f3320d2f1d32a52d3b4c6f2d68d9c6e67b97473a85e3",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_lantern_rokurokubi/base.png",
+      "sourceSha256": "15aadce2cadadb1eba8af4a880613684b08aa4888067a8e871baf13aad0d21d0",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_lantern_rokurokubi/base-report.json",
+      "monster": "yokai_lantern_rokurokubi",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_yokai_08",
+      "kind": "card",
+      "file": "card_yokai_08.svg",
+      "sha256": "af84715028b4b13c5ec830ab7840344c8c9df8f3eee31495080c3689416c5f5b",
+      "source": "meadow-3d/art/yokai-monsters-v1/yokai_08/base.png",
+      "sourceSha256": "8d9aea4677475ede7bec403ccd6892174e35432da1fbba594e0df451f78a87bd",
+      "sourceReceipt": "meadow-3d/art/yokai-monsters-v1/yokai_08/base-report.json",
+      "monster": "yokai_08",
+      "element": "fire",
+      "boss": true
+    },
+    {
+      "id": "card_dragon_cloud_carp",
+      "kind": "card",
+      "file": "card_dragon_cloud_carp.svg",
+      "sha256": "3bf9e94cc0ecf1c71936e470a15b25b90ece312a8bca19863278f269bd6cc94b",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_cloud_carp/base.png",
+      "sourceSha256": "2e1e3ae7357732e0361194611b9100551563d2b81beb5f40a0c64c07189b9f22",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_cloud_carp/base-report.json",
+      "monster": "dragon_cloud_carp",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_dragon_jade_crane",
+      "kind": "card",
+      "file": "card_dragon_jade_crane.svg",
+      "sha256": "1b3a6ede2a34ab2006470ddb5ed33bedce426023e57964d61bd57062b7e247c8",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_jade_crane/base.png",
+      "sourceSha256": "beb5bfe3449590b40732b83342bfdfae9bd7a8ae99246690a9ab8ed79ebf3b69",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_jade_crane/base-report.json",
+      "monster": "dragon_jade_crane",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_dragon_stone_liondog",
+      "kind": "card",
+      "file": "card_dragon_stone_liondog.svg",
+      "sha256": "c289f20de6a82e40ac3e04fdc3f39ccecf3d19b9bb5a55322d8719d377c5b016",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_stone_liondog/base.png",
+      "sourceSha256": "5643965152c2923d2c5e43861e03d2dc8f72050ee5bfbed41af323548da3c11c",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_stone_liondog/base-report.json",
+      "monster": "dragon_stone_liondog",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_dragon_sky_qilin",
+      "kind": "card",
+      "file": "card_dragon_sky_qilin.svg",
+      "sha256": "febf3217968c6ec3cd4d0519462f1a85fa509ced7fd7629acdac12f451a17d47",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_sky_qilin/base.png",
+      "sourceSha256": "65701278ce7195ca81bc0c2fca56c33a9ec284863d5d52ba1b23f3474c468588",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_sky_qilin/base-report.json",
+      "monster": "dragon_sky_qilin",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_dragon_bell_drake",
+      "kind": "card",
+      "file": "card_dragon_bell_drake.svg",
+      "sha256": "23e9769fa490e7e33aabcdb09b813488b631f79687daf5b15c2ff1d229f64273",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_bell_drake/base.png",
+      "sourceSha256": "fe9380ccec68105b7a55458d808eac633eeb378549ea5c79235c25e863d42138",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_bell_drake/base-report.json",
+      "monster": "dragon_bell_drake",
+      "element": "holy",
+      "boss": false
+    },
+    {
+      "id": "card_dragon_white_cloud_tiger",
+      "kind": "card",
+      "file": "card_dragon_white_cloud_tiger.svg",
+      "sha256": "b0c1059f099bb43e9268a808824768ef41735c089619049b1b1433e4c002005f",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_white_cloud_tiger/base.png",
+      "sourceSha256": "ffaad28500e42d4d1ad0002ec2a95ceb33bb6793562ce99eafcbabf53dd745e5",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_white_cloud_tiger/base-report.json",
+      "monster": "dragon_white_cloud_tiger",
+      "element": "neutral",
+      "boss": false
+    },
+    {
+      "id": "card_dragon_jade_gatekeeper",
+      "kind": "card",
+      "file": "card_dragon_jade_gatekeeper.svg",
+      "sha256": "958ad4fcd11dba18af1b8938946fbe5f7c2ee1524241d22d7b685f56d581388c",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_jade_gatekeeper/base.png",
+      "sourceSha256": "a07212706185d8bae05e44474ea7e55df13993b9218d50068cad88f02e997c44",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_jade_gatekeeper/base-report.json",
+      "monster": "dragon_jade_gatekeeper",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_dragon_cloud_dragon_lord",
+      "kind": "card",
+      "file": "card_dragon_cloud_dragon_lord.svg",
+      "sha256": "5339170423e3ef57730032671f541a98307411c1e1a13c052ea6a327d4172439",
+      "source": "meadow-3d/art/dragon-monsters-v1/dragon_cloud_dragon_lord/base.png",
+      "sourceSha256": "152b170bb36838185ec17b5a26a57bf21dfc18c5839fb627aeecd46de512cb48",
+      "sourceReceipt": "meadow-3d/art/dragon-monsters-v1/dragon_cloud_dragon_lord/base-report.json",
+      "monster": "dragon_cloud_dragon_lord",
+      "element": "wind",
+      "boss": true
+    },
+    {
+      "id": "card_volcano_lava_glass_lizard",
+      "kind": "card",
+      "file": "card_volcano_lava_glass_lizard.svg",
+      "sha256": "02cb65b1f2536e6183d88e48eafce18a92f481b179bfc9d08b64033768737bc3",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_lava_glass_lizard/base.png",
+      "sourceSha256": "8695d1ef54270b650a75cce5218b4e53af44e066be47129ba1ee35e05d0b4e97",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_lava_glass_lizard/base-report.json",
+      "monster": "volcano_lava_glass_lizard",
+      "element": "fire",
+      "boss": false
+    },
+    {
+      "id": "card_volcano_ash_boulder_beetle",
+      "kind": "card",
+      "file": "card_volcano_ash_boulder_beetle.svg",
+      "sha256": "e6cc5c248b672b9138915a48f3b8cfb633dcde59b9109b55131f85eef5946b63",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_ash_boulder_beetle/base.png",
+      "sourceSha256": "5a81d34397af0603f07bc8266124f6ba0bbcbde06711e1a8dfc1aa6f971e0e6e",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_ash_boulder_beetle/base-report.json",
+      "monster": "volcano_ash_boulder_beetle",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_volcano_ash_spine_boar",
+      "kind": "card",
+      "file": "card_volcano_ash_spine_boar.svg",
+      "sha256": "5d4c98141d137bc765c7b349de92d3147829c4d000320a877968197d65f58c76",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_ash_spine_boar/base.png",
+      "sourceSha256": "e564f3d15d6f6fe700e1bb4c7a9a62fda05dcd73356b446e307d6c0da6756103",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_ash_spine_boar/base-report.json",
+      "monster": "volcano_ash_spine_boar",
+      "element": "fire",
+      "boss": false
+    },
+    {
+      "id": "card_volcano_old_kiln_sprite",
+      "kind": "card",
+      "file": "card_volcano_old_kiln_sprite.svg",
+      "sha256": "540956fd5940e5c6791b462b66745ce8e15edf70b01f9a650dd8188df4456339",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_old_kiln_sprite/base.png",
+      "sourceSha256": "54ddd40ef8b1c550df0be219adaea20c644cfc8a3636a2d9ca9de2c9594738c4",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_old_kiln_sprite/base-report.json",
+      "monster": "volcano_old_kiln_sprite",
+      "element": "fire",
+      "boss": false
+    },
+    {
+      "id": "card_volcano_red_smoke_shroom",
+      "kind": "card",
+      "file": "card_volcano_red_smoke_shroom.svg",
+      "sha256": "90eed674efc269662f1845651ff8f847bc28c3978778dce0aefa99785c066366",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_red_smoke_shroom/base.png",
+      "sourceSha256": "b4c8fd55590886a745e380a240a4326bec98ffa116f7e2e3fefb1ce7d86ac036",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_red_smoke_shroom/base-report.json",
+      "monster": "volcano_red_smoke_shroom",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_volcano_azure_firebird",
+      "kind": "card",
+      "file": "card_volcano_azure_firebird.svg",
+      "sha256": "cf71d58669faa575fe8a5d226bfff0aec583b241bf2b602c16ba6d5a5a5fc066",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_azure_firebird/base.png",
+      "sourceSha256": "bd221337fe99aba058e3fb7e75910ee66e974166548ad17979edf3737c2396d3",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_azure_firebird/base-report.json",
+      "monster": "volcano_azure_firebird",
+      "element": "fire",
+      "boss": false
+    },
+    {
+      "id": "card_volcano_crater_hammer_ogre",
+      "kind": "card",
+      "file": "card_volcano_crater_hammer_ogre.svg",
+      "sha256": "9a9f6645536243c98fc0af78694e0453b59cdd71a29f082642a72ef4dcd209a4",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_crater_hammer_ogre/base.png",
+      "sourceSha256": "585f4dc038dc53dbc6998c26a4d11781b07c2f41137e676c9ca074523a7a63a4",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_crater_hammer_ogre/base-report.json",
+      "monster": "volcano_crater_hammer_ogre",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_volcano_golden_ash_zmey",
+      "kind": "card",
+      "file": "card_volcano_golden_ash_zmey.svg",
+      "sha256": "1c238fd20c5ba5dc0ed060b16b4e310a30e225bce0e9d616b366bdc549e4e1ec",
+      "source": "meadow-3d/art/volcano-monsters-v1/volcano_golden_ash_zmey/base.png",
+      "sourceSha256": "59105be84cdd6f6021e347f1063d505bb88100fdecd1dcd0e841e29fced20112",
+      "sourceReceipt": "meadow-3d/art/volcano-monsters-v1/volcano_golden_ash_zmey/base-report.json",
+      "monster": "volcano_golden_ash_zmey",
+      "element": "fire",
+      "boss": true
+    },
+    {
+      "id": "card_fae_puca_shadowhorse",
+      "kind": "card",
+      "file": "card_fae_puca_shadowhorse.svg",
+      "sha256": "33e06d0914b5c2e6c3c971c47d43b891b2a2d375fad3ef6abbc559c3c5d2030a",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_puca_shadowhorse/base.png",
+      "sourceSha256": "99655b0f86519ea7fd3b7a1febb4792e5882f0691ce11492d34e3ef66ff00a47",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_puca_shadowhorse/base-report.json",
+      "monster": "fae_puca_shadowhorse",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_fae_wandering_light_moth",
+      "kind": "card",
+      "file": "card_fae_wandering_light_moth.svg",
+      "sha256": "78b0bd762a97de9d0cd7f234c3af9fcff1e194efbd4fc373415ad0a702e4c120",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_wandering_light_moth/base.png",
+      "sourceSha256": "5976dd299fd9b95810d813a89d80bc8e169e29cb2967ba06e375ad365f9d25e7",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_wandering_light_moth/base-report.json",
+      "monster": "fae_wandering_light_moth",
+      "element": "holy",
+      "boss": false
+    },
+    {
+      "id": "card_fae_false_garden_root",
+      "kind": "card",
+      "file": "card_fae_false_garden_root.svg",
+      "sha256": "86d2ed1046a4766a6525d9e6011da7dad6041bc8f1ac30c30d0a35dc17298c7f",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_false_garden_root/base.png",
+      "sourceSha256": "316274ee6da158fa405cbb343394dba6711def2826e5efac3334017eca440221",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_false_garden_root/base-report.json",
+      "monster": "fae_false_garden_root",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_fae_moondrop_mirrorfae",
+      "kind": "card",
+      "file": "card_fae_moondrop_mirrorfae.svg",
+      "sha256": "cb39f6390695aa2d65a61c34fbf29babae03915b6a31b1ed12b1fd27bcc372ff",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_moondrop_mirrorfae/base.png",
+      "sourceSha256": "b2f7596e1202a959e6ae14464a871c05757dd1a98d47e447c119629febb38866",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_moondrop_mirrorfae/base-report.json",
+      "monster": "fae_moondrop_mirrorfae",
+      "element": "holy",
+      "boss": false
+    },
+    {
+      "id": "card_fae_moonlichen_stag",
+      "kind": "card",
+      "file": "card_fae_moonlichen_stag.svg",
+      "sha256": "6b3b118bb73226103b57578d884f55f09e3f81f075f9662a9bb312c7a0d3fa72",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_moonlichen_stag/base.png",
+      "sourceSha256": "fa811bac534e0e153fd0d0f1a18d1682383a52392972b579dc1eefd5526ec6d5",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_moonlichen_stag/base-report.json",
+      "monster": "fae_moonlichen_stag",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_fae_violet_banshee",
+      "kind": "card",
+      "file": "card_fae_violet_banshee.svg",
+      "sha256": "aa17a14167c0121640a31574e83c803ad3232a191c514b903b8d94cb1f02f616",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_violet_banshee/base.png",
+      "sourceSha256": "17d1e6958270b1315c82e2b0c5a5b6d466e4e81174f8693e9dc373d64dea4ac2",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_violet_banshee/base-report.json",
+      "monster": "fae_violet_banshee",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_fae_silverchain_dullahan",
+      "kind": "card",
+      "file": "card_fae_silverchain_dullahan.svg",
+      "sha256": "95f47db7ffb8afedcdcbf1c3d91fffc9441a0a0dc90416aa107eb0757cc41f01",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_silverchain_dullahan/base.png",
+      "sourceSha256": "29b80cbb2b78d16af6cae37897370b03021d6901794ae4bb08c07a60d9dc3da3",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_silverchain_dullahan/base-report.json",
+      "monster": "fae_silverchain_dullahan",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_fae_twilight_antler_king",
+      "kind": "card",
+      "file": "card_fae_twilight_antler_king.svg",
+      "sha256": "dc6741fe8b3eeeced33560a6fa73b059a9c75cb21bac3c92f42db89a91a3aa15",
+      "source": "meadow-3d/art/fae-monsters-v1/fae_twilight_antler_king/base.png",
+      "sourceSha256": "be84495489500e460bddad6e86ace1ff7732bfc5efb91acb46cfcc238c3cd46d",
+      "sourceReceipt": "meadow-3d/art/fae-monsters-v1/fae_twilight_antler_king/base-report.json",
+      "monster": "fae_twilight_antler_king",
+      "element": "earth",
+      "boss": true
+    },
+    {
+      "id": "card_ocean_storm_conch",
+      "kind": "card",
+      "file": "card_ocean_storm_conch.svg",
+      "sha256": "d9851c0d4f84ecaa65406178cf555269a39c6e82a8de27b8f467057f24849a40",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_storm_conch/base.png",
+      "sourceSha256": "3a40282cf97d90fe9dd5dcb4c6928e0f70c6fb8dba77594300c7f8bfa8a65a0c",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_storm_conch/base-report.json",
+      "monster": "ocean_storm_conch",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_ocean_mast_crab",
+      "kind": "card",
+      "file": "card_ocean_mast_crab.svg",
+      "sha256": "c106e093a4a86770a548888fa12ee53bb6bb1cc80bcaf8083c5c17476a77acfb",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_mast_crab/base.png",
+      "sourceSha256": "dac1ca57c9eb65ede0ef29613dff6bf5b5a950bfb56141af35deff6b24720bca",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_mast_crab/base-report.json",
+      "monster": "ocean_mast_crab",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_ocean_whirlpool_lanternfish",
+      "kind": "card",
+      "file": "card_ocean_whirlpool_lanternfish.svg",
+      "sha256": "9a4caed94afa749e74edf352249499bc8ad8c281cdfb833a90b0666cab73a3ea",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_whirlpool_lanternfish/base.png",
+      "sourceSha256": "2228335ae0d92b474fc5f8de06e72553a021a1bce4a0a1a99a8520ccc61f579e",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_whirlpool_lanternfish/base-report.json",
+      "monster": "ocean_whirlpool_lanternfish",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_ocean_mist_isle_siren",
+      "kind": "card",
+      "file": "card_ocean_mist_isle_siren.svg",
+      "sha256": "63058d1f93880e224fdb50b7b8108995573165e95871402d7201c63309428ef3",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_mist_isle_siren/base.png",
+      "sourceSha256": "a02cde8e8ffcd057feaa64580d1f7511a731ccfed5b2c8638189f0e6e070e698",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_mist_isle_siren/base-report.json",
+      "monster": "ocean_mist_isle_siren",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_ocean_sunken_coral_knight",
+      "kind": "card",
+      "file": "card_ocean_sunken_coral_knight.svg",
+      "sha256": "54dc076bb411703b09190152a491ac5cb799bd66eee1fc46c7550a304e70f24e",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_sunken_coral_knight/base.png",
+      "sourceSha256": "b422b97d05816c43fed903e0394d1fe54b4948e5a06edc504bd0ad531bcb8403",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_sunken_coral_knight/base-report.json",
+      "monster": "ocean_sunken_coral_knight",
+      "element": "water",
+      "boss": false
+    },
+    {
+      "id": "card_ocean_sixhead_reef_scylla",
+      "kind": "card",
+      "file": "card_ocean_sixhead_reef_scylla.svg",
+      "sha256": "a2657d5518210b43bd9f901585cdde1e29aebfae10b6db8c80ac9832203f04c8",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_sixhead_reef_scylla/base.png",
+      "sourceSha256": "ff00fb1a25e666b0630ad04e11cad6f61895f567a95f2dc9ce4e83142174ae84",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_sixhead_reef_scylla/base-report.json",
+      "monster": "ocean_sixhead_reef_scylla",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_ocean_shipwreck_colossus",
+      "kind": "card",
+      "file": "card_ocean_shipwreck_colossus.svg",
+      "sha256": "b6873ec7d8d8027b2a3605668bceba016b5d82dcac55cd35f13360c5561e660b",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_shipwreck_colossus/base.png",
+      "sourceSha256": "5d9ccc8cbd2b8d06c3ed3904faf3fb205fb0788b5761bc8975629c992d303ea0",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_shipwreck_colossus/base-report.json",
+      "monster": "ocean_shipwreck_colossus",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_ocean_stormcrown_kraken",
+      "kind": "card",
+      "file": "card_ocean_stormcrown_kraken.svg",
+      "sha256": "755d7b5cec078db6321161f460cf76bf2d222aec13c9e1d5f8e0829d6d0ce2a2",
+      "source": "meadow-3d/art/ocean-monsters-v1/ocean_stormcrown_kraken/base.png",
+      "sourceSha256": "498f43cf92703ab5504b26d167fac20e5df6b06c283672eaef5f3414796340c4",
+      "sourceReceipt": "meadow-3d/art/ocean-monsters-v1/ocean_stormcrown_kraken/base-report.json",
+      "monster": "ocean_stormcrown_kraken",
+      "element": "water",
+      "boss": true
+    },
+    {
+      "id": "card_astral_stardust_jellyfish",
+      "kind": "card",
+      "file": "card_astral_stardust_jellyfish.svg",
+      "sha256": "ff93fd8d480b51a017bc7c73befb7c8387f47a6678b97cb296d667efc2dd7f34",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_stardust_jellyfish/base.png",
+      "sourceSha256": "c52844cf47e20487e7e39d55bd9ce5db04c0efb22c3bc9d9a34776bdcce18824",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_stardust_jellyfish/base-report.json",
+      "monster": "astral_stardust_jellyfish",
+      "element": "holy",
+      "boss": false
+    },
+    {
+      "id": "card_astral_orbital_ray",
+      "kind": "card",
+      "file": "card_astral_orbital_ray.svg",
+      "sha256": "13fe7bbb2efd92d418a85f9c7bc3ebce13c480e4749cb575108403e84fb56496",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_orbital_ray/base.png",
+      "sourceSha256": "e28432734d76439dc27e5f4c693e00147038db5fc03f2edf0da110f3114b67da",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_orbital_ray/base-report.json",
+      "monster": "astral_orbital_ray",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_astral_meteor_ring_serpent",
+      "kind": "card",
+      "file": "card_astral_meteor_ring_serpent.svg",
+      "sha256": "feb39127a9f3f0a7cf27fd52682a5cca2f3338ce9fceee202f6737c1d95ba908",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_meteor_ring_serpent/base.png",
+      "sourceSha256": "131fa38603cb49008dbb64aeb1e791bca977d614c7c6fa76ce78737b3f50fb90",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_meteor_ring_serpent/base-report.json",
+      "monster": "astral_meteor_ring_serpent",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_astral_constellation_crane",
+      "kind": "card",
+      "file": "card_astral_constellation_crane.svg",
+      "sha256": "5516b4e77d2e86bf1fd116e66ece38259cc343fcd62b008fdbfb2cbeec3d9d8e",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_constellation_crane/base.png",
+      "sourceSha256": "e88655300d864fffed671197bde2406cf39cd8c7c0b6001096e4ddb25714cfad",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_constellation_crane/base-report.json",
+      "monster": "astral_constellation_crane",
+      "element": "holy",
+      "boss": false
+    },
+    {
+      "id": "card_astral_vacuum_bell_construct",
+      "kind": "card",
+      "file": "card_astral_vacuum_bell_construct.svg",
+      "sha256": "0efec5001948cedb1b01fa00e4604349633954c7b7802ea62a3a63fb43991946",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_vacuum_bell_construct/base.png",
+      "sourceSha256": "39725ee28afe812559c43ef5a288044b853c305062042440de344b163114771d",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_vacuum_bell_construct/base-report.json",
+      "monster": "astral_vacuum_bell_construct",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_astral_solarshadow_lion",
+      "kind": "card",
+      "file": "card_astral_solarshadow_lion.svg",
+      "sha256": "f24fff2ea738699b5f3149348256ee4488f847512c5769fb08eb8ba97f4678d2",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_solarshadow_lion/base.png",
+      "sourceSha256": "e9fe2318fa82ede0d3a50b3ffb4ff552eeb7067371fbfe2c47849c5c66480246",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_solarshadow_lion/base-report.json",
+      "monster": "astral_solarshadow_lion",
+      "element": "fire",
+      "boss": false
+    },
+    {
+      "id": "card_astral_twelve_star_knight",
+      "kind": "card",
+      "file": "card_astral_twelve_star_knight.svg",
+      "sha256": "79bddd7888b5335314d6bb6324185d17c243b0678978f1b69a34c198a713e874",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_twelve_star_knight/base.png",
+      "sourceSha256": "f65efea0e82fb78701e0c7b1fbacc5dfe2a9c7997398285da174e8021f303310",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_twelve_star_knight/base-report.json",
+      "monster": "astral_twelve_star_knight",
+      "element": "holy",
+      "boss": false
+    },
+    {
+      "id": "card_astral_star_eating_eclipse",
+      "kind": "card",
+      "file": "card_astral_star_eating_eclipse.svg",
+      "sha256": "4bb48be7cc8c30db559fd7bce28a2641fd059bcff65cf743a969e82fc7750ba6",
+      "source": "meadow-3d/art/astral-monsters-v1/astral_star_eating_eclipse/base.png",
+      "sourceSha256": "fa5752fe44f76bfa3e9d39b58d5700101473709e5e42ee45257720f000c92fbf",
+      "sourceReceipt": "meadow-3d/art/astral-monsters-v1/astral_star_eating_eclipse/base-report.json",
+      "monster": "astral_star_eating_eclipse",
+      "element": "dark",
+      "boss": true
+    },
+    {
+      "id": "card_abyss_black_salt_crab",
+      "kind": "card",
+      "file": "card_abyss_black_salt_crab.svg",
+      "sha256": "21f914b20fd1ef3353c0508fe72a2db7aa73892dec16956a518d293d0fdde9b9",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_black_salt_crab/base.png",
+      "sourceSha256": "85255aa2bfa8cd0e52111213a2333d0eba2b333cb8e89f5aa5cdc946a6551693",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_black_salt_crab/base-report.json",
+      "monster": "abyss_black_salt_crab",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_abyss_silt_mudskipper",
+      "kind": "card",
+      "file": "card_abyss_silt_mudskipper.svg",
+      "sha256": "a7104d59ff6afc101d50166cc0bbab7cab84a15624645a5795b04a6eebed4eb1",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_silt_mudskipper/base.png",
+      "sourceSha256": "401ff116e4d51f16cf7a8d57c56bfcea9c9a562c5976c3c6ed026d8206fb7afa",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_silt_mudskipper/base-report.json",
+      "monster": "abyss_silt_mudskipper",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_abyss_ziggurat_clay_guard",
+      "kind": "card",
+      "file": "card_abyss_ziggurat_clay_guard.svg",
+      "sha256": "227f18859e9ff43c1146fd4a0d73dbc8f38bb361d4b1c212d5703f4cacc5dcca",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_ziggurat_clay_guard/base.png",
+      "sourceSha256": "4e4ceb29a619b7652a0096c73438f66e5af5b9e74a5d308764b892d31c920dad",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_ziggurat_clay_guard/base-report.json",
+      "monster": "abyss_ziggurat_clay_guard",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_abyss_anzu_lionbird",
+      "kind": "card",
+      "file": "card_abyss_anzu_lionbird.svg",
+      "sha256": "13c236540fe28e2916a9646113a97f428180a25b5cdcde0af1695dc947e14aa9",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_anzu_lionbird/base.png",
+      "sourceSha256": "49db97c04673651b8426136638aa7d7e8996e8e7e2af063d601a84be722410a6",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_anzu_lionbird/base-report.json",
+      "monster": "abyss_anzu_lionbird",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_abyss_mushhushshu_serpent",
+      "kind": "card",
+      "file": "card_abyss_mushhushshu_serpent.svg",
+      "sha256": "2a7989f8599b9e20ea07de72a59fd86142d72133309cfdfa2f2771fe7c771a79",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_mushhushshu_serpent/base.png",
+      "sourceSha256": "78354c52e62ba0e790d470739e6c964fb1cc7c6ebd1336b86435b1e00191c443",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_mushhushshu_serpent/base-report.json",
+      "monster": "abyss_mushhushshu_serpent",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_abyss_night_border_scorpion",
+      "kind": "card",
+      "file": "card_abyss_night_border_scorpion.svg",
+      "sha256": "22c0defd21efcff104f42abd7c01014d74b92e6851dfd841fa9d3f153430f078",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_night_border_scorpion/base.png",
+      "sourceSha256": "68f869f727997c8d69fd01127ee3b23848f29f6cf88c078b2a35c5a0428f1c46",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_night_border_scorpion/base-report.json",
+      "monster": "abyss_night_border_scorpion",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_abyss_blackstone_lamassu",
+      "kind": "card",
+      "file": "card_abyss_blackstone_lamassu.svg",
+      "sha256": "591a8e457aba6a0490cf0a37bc46ea22d8ba231d9d9bf969dc7cbe3a05bb85a9",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_blackstone_lamassu/base.png",
+      "sourceSha256": "cea1b46cfa5193513536f75db87d079c58418416b7e0c1924b4814794d91d143",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_blackstone_lamassu/base-report.json",
+      "monster": "abyss_blackstone_lamassu",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_abyss_primordial_sea_dragon",
+      "kind": "card",
+      "file": "card_abyss_primordial_sea_dragon.svg",
+      "sha256": "f083a444745a6ff6ffe5854376b9eaf25a0510ef0d6990cacfc70302dbb5e66f",
+      "source": "meadow-3d/art/abyss-monsters-v1/abyss_primordial_sea_dragon/base.png",
+      "sourceSha256": "112ec2a91259f1fb5423b511e3c3df1fdf9adfb5d2c5f4ca5d1fe7509592318f",
+      "sourceReceipt": "meadow-3d/art/abyss-monsters-v1/abyss_primordial_sea_dragon/base-report.json",
+      "monster": "abyss_primordial_sea_dragon",
+      "element": "dark",
+      "boss": true
+    },
+    {
+      "id": "card_confluence_life_pillar_guard",
+      "kind": "card",
+      "file": "card_confluence_life_pillar_guard.svg",
+      "sha256": "4e122bd1e404a24b8b08a8b75783dc8c41a65db63dcf990fe0068a7afcc32347",
+      "source": "meadow-3d/art/confluence-monsters-v1/confluence_life_pillar_guard/base.png",
+      "sourceSha256": "f4c58bfa9e679e45a6e31c21ae7ee4d6078c04c7194cffd7148b4f3fcd26828f",
+      "sourceReceipt": "meadow-3d/art/confluence-monsters-v1/confluence_life_pillar_guard/base-report.json",
+      "monster": "confluence_life_pillar_guard",
+      "element": "earth",
+      "boss": false
+    },
+    {
+      "id": "card_confluence_thunder_pillar_guard",
+      "kind": "card",
+      "file": "card_confluence_thunder_pillar_guard.svg",
+      "sha256": "cc3fa6c37eb533fdb865c9a363d86515b6a6084dc31fa55095a2969ade4580c2",
+      "source": "meadow-3d/art/confluence-monsters-v1/confluence_thunder_pillar_guard/base.png",
+      "sourceSha256": "594a986d1893663aac9a5512be252a46168c00203aa2e7b9d186ea9c0f6fccfa",
+      "sourceReceipt": "meadow-3d/art/confluence-monsters-v1/confluence_thunder_pillar_guard/base-report.json",
+      "monster": "confluence_thunder_pillar_guard",
+      "element": "wind",
+      "boss": false
+    },
+    {
+      "id": "card_confluence_starshadow_pillar_guard",
+      "kind": "card",
+      "file": "card_confluence_starshadow_pillar_guard.svg",
+      "sha256": "69e0f60d7b296f9a579e15e5f0975df4bc742e86d66f930edd90a0126fd4348b",
+      "source": "meadow-3d/art/confluence-monsters-v1/confluence_starshadow_pillar_guard/base.png",
+      "sourceSha256": "05d6c7505818ec811a4a8ed3763fbb5ec7714d051a72415f853ebab8ca234c0d",
+      "sourceReceipt": "meadow-3d/art/confluence-monsters-v1/confluence_starshadow_pillar_guard/base-report.json",
+      "monster": "confluence_starshadow_pillar_guard",
+      "element": "dark",
+      "boss": false
+    },
+    {
+      "id": "card_confluence_worldcore_sovereign",
+      "kind": "card",
+      "file": "card_confluence_worldcore_sovereign.svg",
+      "sha256": "14b05b2a14f50f7ecc6f1328a5c2c467af55842d5df6f73e51af33cd3535bfa9",
+      "source": "meadow-3d/art/confluence-monsters-v1/confluence_worldcore_sovereign/base.png",
+      "sourceSha256": "d77b6c0cdef5e8e640156dde3fc05f7da1f0d204ac7ac15233d02e275bf6b347",
+      "sourceReceipt": "meadow-3d/art/confluence-monsters-v1/confluence_worldcore_sovereign/base-report.json",
+      "monster": "confluence_worldcore_sovereign",
+      "element": "neutral",
+      "boss": true
+    },
+    {
+      "id": "field_sword",
+      "file": "field_sword.png",
+      "kind": "gear",
+      "sha256": "78a1789be3f39cbfa1113a624e12aa22e8a662d8efb3d9e436022531fd4124f6",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        19,
+        170,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 21289
+    },
+    {
+      "id": "field_staff",
+      "file": "field_staff.png",
+      "kind": "gear",
+      "sha256": "7d2097e4bf2dfc6595014a10f601bfe214247658c7d3856c5e4504583c61d144",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        19,
+        173,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 21665
+    },
+    {
+      "id": "field_bow",
+      "file": "field_bow.png",
+      "kind": "gear",
+      "sha256": "e822281fba06dbae8fb5005fb07424b6991ac02ce3832d1d9063c3a6053743f4",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        19,
+        173,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 21701
+    },
+    {
+      "id": "field_armour",
+      "file": "field_armour.png",
+      "kind": "gear",
+      "sha256": "407909502be086b804683ad3776f2bd0593c6610271f1d237023a76a531ff1d0",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        19,
+        167,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 45951
+    },
+    {
+      "id": "field_shield",
+      "file": "field_shield.png",
+      "kind": "gear",
+      "sha256": "e038a66888f1b30217cdffd5f10fb48d70ec440f0ec8fc7df9610501b2063657",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        38,
+        19,
+        155,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 34988
+    },
+    {
+      "id": "field_cloak",
+      "file": "field_cloak.png",
+      "kind": "gear",
+      "sha256": "3b12fb6ffb59f36ef16ec963557bfdf2b7fc9ec1ec1835cde125c2b32a7c798a",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        19,
+        168,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 32414
+    },
+    {
+      "id": "field_boots",
+      "file": "field_boots.png",
+      "kind": "gear",
+      "sha256": "710d820eee783ba68627c2f9f64251d0604ed4d48098141599d95740d101e661",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        19,
+        168,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 42451
+    },
+    {
+      "id": "field_ring",
+      "file": "field_ring.png",
+      "kind": "gear",
+      "sha256": "2966c61d162df6b5b98ab29cad5adf00c53c8f89d58a59fa4ca4ed2af9c1ffd8",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        19,
+        177,
+        172
+      ],
+      "clippedPixels": 0,
+      "bytes": 52234
+    },
+    {
+      "id": "field_sunsteel_sword",
+      "file": "field_sunsteel_sword.png",
+      "kind": "gear",
+      "sha256": "ff0b33cb3a597c838cca39f9a61814e7f5d215d33e2c1001c8fd1155656c4e84",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        19,
+        170,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 24339
+    },
+    {
+      "id": "field_sunsteel_staff",
+      "file": "field_sunsteel_staff.png",
+      "kind": "gear",
+      "sha256": "b88794ead7826ce5d8b818ddb9e2b9e31e1d8082a38ce27dc28daa39a901e3b5",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        23,
+        19,
+        169,
+        174
+      ],
+      "clippedPixels": 0,
+      "bytes": 25620
+    },
+    {
+      "id": "field_sunsteel_bow",
+      "file": "field_sunsteel_bow.png",
+      "kind": "gear",
+      "sha256": "562ce8e2d9cafe6037bfbb0701530ceda483fe6cf247112989559daecb150222",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        19,
+        172,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 25847
+    },
+    {
+      "id": "field_sunsteel_armour",
+      "file": "field_sunsteel_armour.png",
+      "kind": "gear",
+      "sha256": "ed3ed9ddae8c1f95a44896ff070e22927fdc3b4c0a7d7f9ed403c63669302014",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        29,
+        19,
+        165,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 49287
+    },
+    {
+      "id": "field_sunsteel_shield",
+      "file": "field_sunsteel_shield.png",
+      "kind": "gear",
+      "sha256": "9c34e57303b66ec0ac92ebecda718ecfae69b4d741ca84282b32bd9920c217bb",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        34,
+        19,
+        159,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 44317
+    },
+    {
+      "id": "field_sunsteel_cloak",
+      "file": "field_sunsteel_cloak.png",
+      "kind": "gear",
+      "sha256": "660e1d28fbd4b9b9c03de5bbc06aa8619c61b970e95b0c4d3764204c91247780",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        19,
+        169,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 40350
+    },
+    {
+      "id": "field_sunsteel_boots",
+      "file": "field_sunsteel_boots.png",
+      "kind": "gear",
+      "sha256": "1180eeb0ffc18bd781f6e62fc2a927c5b3d3334a79386d4cfc54a190ecd72e5f",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        19,
+        172,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 45818
+    },
+    {
+      "id": "field_sunsteel_ring",
+      "file": "field_sunsteel_ring.png",
+      "kind": "gear",
+      "sha256": "e0f239a8904cfabb96a86b29b0cf0f8622695261f7349e257184c800c3bfca5a",
+      "source": "meadow-3d/art/item-art-v2/sheet-1.png",
+      "sourceSha256": "af48afe64283c4a73d3b9ecadb67414aeff8397b078c57a611ca65b828185f23",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-1.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        20,
+        174,
+        172
+      ],
+      "clippedPixels": 0,
+      "bytes": 53440
+    },
+    {
+      "id": "field_naga_sword",
+      "file": "field_naga_sword.png",
+      "kind": "gear",
+      "sha256": "083d2df50d4b2e64b1da321a4992a42f1fb8bc4338eb801ca52b25facad7649c",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        20,
+        167,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 22721
+    },
+    {
+      "id": "field_naga_staff",
+      "file": "field_naga_staff.png",
+      "kind": "gear",
+      "sha256": "e518e44bf7ba94335aa54e411ceb309ca32a3d2288dfdef8e259fbd0951c03ad",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        19,
+        167,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 24001
+    },
+    {
+      "id": "field_naga_bow",
+      "file": "field_naga_bow.png",
+      "kind": "gear",
+      "sha256": "c230014e7ea14bf051d0d2e735080b382c27fbe89af46299365b44981ed94ddf",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        19,
+        169,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 27175
+    },
+    {
+      "id": "field_naga_armour",
+      "file": "field_naga_armour.png",
+      "kind": "gear",
+      "sha256": "14f85b14eba453ca2600d67e85130e41985a6419f341bf7dbd8ff2543f01675a",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        19,
+        170,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 49480
+    },
+    {
+      "id": "field_naga_shield",
+      "file": "field_naga_shield.png",
+      "kind": "gear",
+      "sha256": "54c26c118c884174f20674a84065e35f9af34b3326347e6096f40e3f0020eb90",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        40,
+        19,
+        152,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 35998
+    },
+    {
+      "id": "field_naga_cloak",
+      "file": "field_naga_cloak.png",
+      "kind": "gear",
+      "sha256": "503fd49d802b52a228eda27d057cf72ffc88bdaa377bc7672d934aeedea68c83",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        29,
+        19,
+        163,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 35041
+    },
+    {
+      "id": "field_naga_boots",
+      "file": "field_naga_boots.png",
+      "kind": "gear",
+      "sha256": "cc1f37ecbbe27d7bd62f7abfebd3d5c2e0a4092d32b5b9b4effe4dd414203eca",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        23,
+        19,
+        169,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 43528
+    },
+    {
+      "id": "field_naga_ring",
+      "file": "field_naga_ring.png",
+      "kind": "gear",
+      "sha256": "67c7f1a591f88f4801d783c148bbcff807ba6f1c1598dcb26ac5fce44a7cfa52",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        33,
+        19,
+        159,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 42392
+    },
+    {
+      "id": "field_celestial_sword",
+      "file": "field_celestial_sword.png",
+      "kind": "gear",
+      "sha256": "f1b1af91240692d50f1e3e317124705252268e09f500ea809af53405d26ce906",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        20,
+        168,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 24626
+    },
+    {
+      "id": "field_celestial_staff",
+      "file": "field_celestial_staff.png",
+      "kind": "gear",
+      "sha256": "fe35971f79c7504398789cc4db15837db76e0021e7744680a7ed2f0a10a94560",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        20,
+        168,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 30204
+    },
+    {
+      "id": "field_celestial_bow",
+      "file": "field_celestial_bow.png",
+      "kind": "gear",
+      "sha256": "e5a41db1c3a40eb489c39e5f210e6b90c8e505df4336d9821042e1c32cd20fc6",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        19,
+        171,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 30910
+    },
+    {
+      "id": "field_celestial_armour",
+      "file": "field_celestial_armour.png",
+      "kind": "gear",
+      "sha256": "cd9379548906b03c652179e1e47ace70040d2478a0147f03d65b0ddfb6527dee",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        19,
+        169,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 50060
+    },
+    {
+      "id": "field_celestial_shield",
+      "file": "field_celestial_shield.png",
+      "kind": "gear",
+      "sha256": "50848162bdcd7d6110d2f08ceac3ccca848130a6e9f761301eb4e5e4f01a1be8",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        40,
+        19,
+        155,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 36982
+    },
+    {
+      "id": "field_celestial_cloak",
+      "file": "field_celestial_cloak.png",
+      "kind": "gear",
+      "sha256": "100974ec39a87dafd24558a3854b5fea772978df34840d19d86b24034fa47941",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        19,
+        168,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 40058
+    },
+    {
+      "id": "field_celestial_boots",
+      "file": "field_celestial_boots.png",
+      "kind": "gear",
+      "sha256": "70e07d3297d3b181e9b3aadc306c7d40403264a6c6b6b3c490bbbc7587a24009",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        20,
+        167,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 44646
+    },
+    {
+      "id": "field_celestial_ring",
+      "file": "field_celestial_ring.png",
+      "kind": "gear",
+      "sha256": "b5cd19d945ecd20881f6a00b34e52ecf514a8bc92bcf1377885968535a4d549d",
+      "source": "meadow-3d/art/item-art-v2/sheet-2.png",
+      "sourceSha256": "fae1282196e0702a0a92b972a09dee45c7de5ed31ac6ab6e029a853b08d0b04b",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-2.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        32,
+        19,
+        162,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 43701
+    },
+    {
+      "id": "field_royalguard_sword",
+      "file": "field_royalguard_sword.png",
+      "kind": "gear",
+      "sha256": "5e3da798d0e3340c397640c0553c9426d459e5d1338f9d5552558da4b7ecd89d",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        23,
+        19,
+        168,
+        172
+      ],
+      "clippedPixels": 0,
+      "bytes": 22003
+    },
+    {
+      "id": "field_royalguard_staff",
+      "file": "field_royalguard_staff.png",
+      "kind": "gear",
+      "sha256": "4f8682ffed5106e6d7a36a44a97525091ddfa7795a174e5347e8ac5355d1d379",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        33,
+        19,
+        159,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 20396
+    },
+    {
+      "id": "field_royalguard_bow",
+      "file": "field_royalguard_bow.png",
+      "kind": "gear",
+      "sha256": "01b0961147cda0664d99a66c3bd4f376403cc14f04ed8cb7cd00b2ade1cd1fc9",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        19,
+        163,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 21982
+    },
+    {
+      "id": "field_royalguard_armour",
+      "file": "field_royalguard_armour.png",
+      "kind": "gear",
+      "sha256": "1a36233ab050c5f4ae3200b242253e171e42d9736ef3d097b6d388b057e75a44",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        19,
+        173,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 55378
+    },
+    {
+      "id": "field_royalguard_shield",
+      "file": "field_royalguard_shield.png",
+      "kind": "gear",
+      "sha256": "e6fe2e1dfba1d33d30100e42911fcbf18eec6d6ac7fe7133f17d2c9ecc7011eb",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        42,
+        19,
+        151,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 33136
+    },
+    {
+      "id": "field_royalguard_cloak",
+      "file": "field_royalguard_cloak.png",
+      "kind": "gear",
+      "sha256": "0d97b61ba214d4b56c3c4c1562b1996dd5c01ca09ebad9d3abec1dc4d4ba3c38",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        18,
+        167,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 37792
+    },
+    {
+      "id": "field_royalguard_boots",
+      "file": "field_royalguard_boots.png",
+      "kind": "gear",
+      "sha256": "55a5465b5b2277fd0de40d5c22e55fd921b66b6618af056cff27cb2dc87f8b15",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        32,
+        19,
+        160,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 39114
+    },
+    {
+      "id": "field_royalguard_ring",
+      "file": "field_royalguard_ring.png",
+      "kind": "gear",
+      "sha256": "f8bcb075c7c88af6984b84fb1d4e4ff84afe46695239701fbea7357ee64bdaad",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        29,
+        19,
+        166,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 46945
+    },
+    {
+      "id": "field_mythic_sword",
+      "file": "field_mythic_sword.png",
+      "kind": "gear",
+      "sha256": "cccfa1649d19d4234a087f3cc90cc7b426cc80c796a1bfe5798890d85f7da2ac",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        23,
+        19,
+        170,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 24586
+    },
+    {
+      "id": "field_mythic_staff",
+      "file": "field_mythic_staff.png",
+      "kind": "gear",
+      "sha256": "5748a7c8dd56ff9adc93564b29521879749e0ca9d2ae6e1e3d258a52302fd309",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        19,
+        161,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 21436
+    },
+    {
+      "id": "field_mythic_bow",
+      "file": "field_mythic_bow.png",
+      "kind": "gear",
+      "sha256": "9d53450303387d69754058a6f9f145cae3160ee13d62f4060f086e4bc6f695c5",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        19,
+        168,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 25008
+    },
+    {
+      "id": "field_mythic_armour",
+      "file": "field_mythic_armour.png",
+      "kind": "gear",
+      "sha256": "950214ef33205fe19b3f4ae3a1a7164d5d5d1de8fadd4597361dec994f6a7eb0",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        19,
+        172,
+        171
+      ],
+      "clippedPixels": 0,
+      "bytes": 54100
+    },
+    {
+      "id": "field_mythic_shield",
+      "file": "field_mythic_shield.png",
+      "kind": "gear",
+      "sha256": "4ee87fc37f4399c97a4e803d0d6058248a7f96edb4e299dbd5873c18595af24b",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        40,
+        19,
+        152,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 33640
+    },
+    {
+      "id": "field_mythic_cloak",
+      "file": "field_mythic_cloak.png",
+      "kind": "gear",
+      "sha256": "6caac607be4e6de1cdf599b628dc425d75d20074baf88129a0a19063b2d0405e",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        18,
+        171,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 37422
+    },
+    {
+      "id": "field_mythic_boots",
+      "file": "field_mythic_boots.png",
+      "kind": "gear",
+      "sha256": "8c9a0c3bfe77f04007464bdd17eab1f87f56bb8cb3f2c53a1c13628ceef1da5a",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        19,
+        161,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 40994
+    },
+    {
+      "id": "field_mythic_ring",
+      "file": "field_mythic_ring.png",
+      "kind": "gear",
+      "sha256": "7350bc3fd5097c9cb2b4d59ef89d55a3281915eb2cde863df342645c2585d968",
+      "source": "meadow-3d/art/item-art-v2/sheet-3.png",
+      "sourceSha256": "5619525476c2a3c6c12e46f277a9ebac57cc378f8fdcb8341285bb28039631d2",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-3.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        19,
+        168,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 47576
+    },
+    {
+      "id": "field_eternal_sword",
+      "file": "field_eternal_sword.png",
+      "kind": "gear",
+      "sha256": "b30f0760ddb2696f05502dbbd878a22c4e77e6c7718f392e6bb7307b442f1ec6",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        19,
+        171,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 22877
+    },
+    {
+      "id": "field_eternal_staff",
+      "file": "field_eternal_staff.png",
+      "kind": "gear",
+      "sha256": "2681d978e11b393834cb1039adde34f36977260f70d91c5ceb9cd23cdab7be3c",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        23,
+        19,
+        170,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 22449
+    },
+    {
+      "id": "field_eternal_bow",
+      "file": "field_eternal_bow.png",
+      "kind": "gear",
+      "sha256": "a5a4d059e5413403516958e145e32cd4e60dc0af491b36d2389f5b4bf141c9e2",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        19,
+        174,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 27918
+    },
+    {
+      "id": "field_eternal_armour",
+      "file": "field_eternal_armour.png",
+      "kind": "gear",
+      "sha256": "efd606d8834e600c7dc0bd062e8810434835519e8d31953432ce78b9e1b01bae",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        19,
+        177,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 54789
+    },
+    {
+      "id": "field_eternal_shield",
+      "file": "field_eternal_shield.png",
+      "kind": "gear",
+      "sha256": "fafd6216754cfa6a7fad7548477f255e2e58145295ac30761cf088bc5f3ddb07",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        32,
+        19,
+        161,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 36002
+    },
+    {
+      "id": "field_eternal_cloak",
+      "file": "field_eternal_cloak.png",
+      "kind": "gear",
+      "sha256": "a339ce0d7eb0dc0c1ae1019442bfb2626ef540f834338d99c004a89526bc6fe8",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        19,
+        174,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 39478
+    },
+    {
+      "id": "field_eternal_boots",
+      "file": "field_eternal_boots.png",
+      "kind": "gear",
+      "sha256": "d4757eb192d2ebd4f63603bcb9c3d7ffbff9fabf1b7e8f25822e845290335e4e",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        27,
+        19,
+        165,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 42122
+    },
+    {
+      "id": "field_eternal_ring",
+      "file": "field_eternal_ring.png",
+      "kind": "gear",
+      "sha256": "25ffa604facf3122aa1d562023accfe614d9da7681ea4aa7d10cbcdfdb265e1b",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        19,
+        172,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 50458
+    },
+    {
+      "id": "jelly_slime",
+      "file": "jelly_slime.png",
+      "kind": "material",
+      "sha256": "da466f779476730396a0c967ccfe5d7f568a1c229d847b419a75d5563dada9e4",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        19,
+        184,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 52307
+    },
+    {
+      "id": "lotus_fibre",
+      "file": "lotus_fibre.png",
+      "kind": "material",
+      "sha256": "62744f5d1bcb86681f5442d51db8470025e1d3b460bc5faafeaa785ca55dcb10",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        19,
+        170,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 41456
+    },
+    {
+      "id": "dew_shell",
+      "file": "dew_shell.png",
+      "kind": "material",
+      "sha256": "7a95fd401a211c3267a052ed75e550fada7a17ca8e96fedbd7317e5448979782",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        19,
+        177,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 49637
+    },
+    {
+      "id": "tide_core",
+      "file": "tide_core.png",
+      "kind": "material",
+      "sha256": "c14d3331ceadf28be8e2981df2d72850d18f14dce44a82e06944eec8806b5954",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        19,
+        178,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 53541
+    },
+    {
+      "id": "tea_spore_leaf",
+      "file": "tea_spore_leaf.png",
+      "kind": "material",
+      "sha256": "ce9dc2dacf2a589c3506ba6c9965105fb01444c9e3bfe53fbed68328eca8f5c5",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        30,
+        184,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 43667
+    },
+    {
+      "id": "dewdrop_dust",
+      "file": "dewdrop_dust.png",
+      "kind": "material",
+      "sha256": "ad495fd143bbedbe3ad395a214a2e295926fe9390c953666c09e46ba1e8fdefc",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        29,
+        19,
+        163,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 42128
+    },
+    {
+      "id": "pine_spine",
+      "file": "pine_spine.png",
+      "kind": "material",
+      "sha256": "acf0b9de582e2db4865b300518212b72d880239279aca6ab5d6e3dc04eb62362",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        19,
+        177,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 35712
+    },
+    {
+      "id": "living_clay",
+      "file": "living_clay.png",
+      "kind": "material",
+      "sha256": "48a7e50ddf21f64f4213385e237d2eee756036d48a115c62cc498a77697e8d8e",
+      "source": "meadow-3d/art/item-art-v2/sheet-4.png",
+      "sourceSha256": "47b0f44f5467ede7c8fc70b6f53afa19062d2bfa2158c3ed8c411a3893f4b8fb",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-4.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        19,
+        170,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 39134
+    },
+    {
+      "id": "unique_tide_crown",
+      "file": "unique_tide_crown.png",
+      "kind": "unique",
+      "sha256": "247054770e3c1fa361a6e6e21b788ec6c40bb3ca3acde61c30c549c9409e3494",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        19,
+        184,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 50467
+    },
+    {
+      "id": "unique_mist_weaver",
+      "file": "unique_mist_weaver.png",
+      "kind": "unique",
+      "sha256": "6ae472283b36d347d0b7c13e9fa5b4d26fb6413cdb6b9ef172dab2a0c33b6422",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        19,
+        177,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 54886
+    },
+    {
+      "id": "unique_himmapan_relic",
+      "file": "unique_himmapan_relic.png",
+      "kind": "unique",
+      "sha256": "5bcfb9992338f72f41a06b3808b68724f4e4891d83e9f9dc06cacfa29cce1a9f",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        43,
+        19,
+        149,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 33762
+    },
+    {
+      "id": "unique_desert_relic",
+      "file": "unique_desert_relic.png",
+      "kind": "unique",
+      "sha256": "30642cd108f7cae03e08b844805fcd455c48708f03e53970c00fe170c86d9de1",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        19,
+        167,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 36106
+    },
+    {
+      "id": "unique_frost_relic",
+      "file": "unique_frost_relic.png",
+      "kind": "unique",
+      "sha256": "d1c0d3751e367cdf9975536458a08525d66eadd6902189a93a3d0c1c8b0ebe08",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        19,
+        161,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 40082
+    },
+    {
+      "id": "unique_yokai_relic",
+      "file": "unique_yokai_relic.png",
+      "kind": "unique",
+      "sha256": "f33909ceab23abf71f8b408d5061616a3caba0384485d7bcdfcd06f43810851f",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        19,
+        162,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 42446
+    },
+    {
+      "id": "unique_dragon_relic",
+      "file": "unique_dragon_relic.png",
+      "kind": "unique",
+      "sha256": "c039e7df81cb74a666b8f56b3afaa9c207ebe32d587d8493634196d58a82cbde",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        29,
+        19,
+        162,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 38860
+    },
+    {
+      "id": "unique_volcano_relic",
+      "file": "unique_volcano_relic.png",
+      "kind": "unique",
+      "sha256": "a0dc8f205468056b5daf8a4c1823917c92f0ca8543d076c507d759281be5f8c5",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        34,
+        19,
+        159,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 27315
+    },
+    {
+      "id": "unique_fae_relic",
+      "file": "unique_fae_relic.png",
+      "kind": "unique",
+      "sha256": "39ac12380b88dec8733943bccdbad19265873b6172db38ee3351860480326261",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        19,
+        161,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 42911
+    },
+    {
+      "id": "unique_ocean_relic",
+      "file": "unique_ocean_relic.png",
+      "kind": "unique",
+      "sha256": "8ebc9a50a8b20b768ac893f0d68ca021c889d98fef96aa6d12aedae2e82950c6",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        29,
+        19,
+        163,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 40354
+    },
+    {
+      "id": "unique_astral_relic",
+      "file": "unique_astral_relic.png",
+      "kind": "unique",
+      "sha256": "f3e392a565b495ba12e21df83a1978329c4951b28644a4dcde4dcd379d967a2f",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        19,
+        172,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 46487
+    },
+    {
+      "id": "unique_abyss_relic",
+      "file": "unique_abyss_relic.png",
+      "kind": "unique",
+      "sha256": "017af3ba866c1d0743b6e702fdfc6669cb4f033f317673cbd0edfe05223eaec0",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        29,
+        19,
+        163,
+        174
+      ],
+      "clippedPixels": 0,
+      "bytes": 40719
+    },
+    {
+      "id": "unique_confluence_relic",
+      "file": "unique_confluence_relic.png",
+      "kind": "unique",
+      "sha256": "8c838eade835e8d3f4f937e5cf43c8717bd5a36871a5f1cbfd8b9c79516886c1",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        19,
+        184,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 50016
+    },
+    {
+      "id": "glaze_shard",
+      "file": "glaze_shard.png",
+      "kind": "material",
+      "sha256": "bdfd2a22b3f01954994de9f59d294763fbab90d2725b2fb92f7f8d7e12ebe045",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        19,
+        168,
+        184
+      ],
+      "clippedPixels": 0,
+      "bytes": 51194
+    },
+    {
+      "id": "charmed_lid",
+      "file": "charmed_lid.png",
+      "kind": "material",
+      "sha256": "f373579533c8a65c6594c5b39e429560a1c629e9c88c95d569533e6842a3d4cc",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        20,
+        181,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 44054
+    },
+    {
+      "id": "clear_gravel",
+      "file": "clear_gravel.png",
+      "kind": "material",
+      "sha256": "0ae91981bfefab48e35783e53d210998502ea002d901790ed0f04502272571f5",
+      "source": "meadow-3d/art/item-art-v2/sheet-5.png",
+      "sourceSha256": "51e7ffc7f610f546ec071672b5205ef21af6dc78836cad8b2f971c975d5bb506",
+      "sourceReceipt": "meadow-3d/art/item-art-v2/sheet-5.receipt.json",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        19,
+        179,
+        173
+      ],
+      "clippedPixels": 0,
+      "bytes": 51543
+    }
+  ]
+}

@@ -84,6 +84,8 @@ test("Mist Warden's ring spares players in its hole", () => {
 
 test("AUTO rolls out of a telegraph just before it lands", () => {
 	const { g, boss, p } = arena("meadow");
+	// Isolate dodging: interrupting the warning with earth_break is also a valid escape now.
+	p.skills={basic:1,dodge:1,potion:1};
 	setAuto(g, true);
 	g.target = null;
 	step(g, 0.05);

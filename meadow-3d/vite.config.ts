@@ -52,6 +52,10 @@ export default defineConfig(({ command }) => ({
 		target: "es2022",
 		rollupOptions: {
 			input: {
+				worldGuide: fileURLToPath(new URL('./world.html',import.meta.url)),
+				items: fileURLToPath(new URL('./items.html',import.meta.url)),
+				lootArt: fileURLToPath(new URL('./loot-art-review.html',import.meta.url)),
+				worldDesign: fileURLToPath(new URL('./world-design.html',import.meta.url)),
 				portal: fileURLToPath(new URL("./index.html", import.meta.url)),
                 bestiary: fileURLToPath(new URL("./monsters.html", import.meta.url)),
 				login: fileURLToPath(new URL("./login.html", import.meta.url)),
@@ -59,6 +63,7 @@ export default defineConfig(({ command }) => ({
 					new URL("./characters.html", import.meta.url),
 				),
 				play: fileURLToPath(new URL("./play.html", import.meta.url)),
+				shadowScene: fileURLToPath(new URL('./shadow-scene.html',import.meta.url)),
 				character: fileURLToPath(new URL("./character.html", import.meta.url)),
 				cityReview: fileURLToPath(new URL("./city-2d-review.html", import.meta.url)),
 				cityAssets: fileURLToPath(new URL("./city-assets-review.html", import.meta.url)),

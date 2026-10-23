@@ -1,0 +1,26 @@
+{
+  "kind": "sprite-gen-gen-set-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_lantern_rokurokubi\\run",
+  "states": [
+    "down45_hit"
+  ],
+  "ok": 1,
+  "failed": [],
+  "not_started": [],
+  "items": [
+    {
+      "state": "down45_hit",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_lantern_rokurokubi\\run\\raw\\down45\\hit.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_lantern_rokurokubi\\run\\reports\\gen-set\\down45_hit.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_lantern_rokurokubi\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_lantern_rokurokubi\\run\\references\\layout-guides\\down45\\hit.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 46.1,
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "volcano_lava_glass_lizard",
+      "baseSha256": "8695d1ef54270b650a75cce5218b4e53af44e066be47129ba1ee35e05d0b4e97",
+      "run": "output/volcano-monsters-20261022/volcano_lava_glass_lizard/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_lava_glass_lizard/motion-qa.json"
+    },
+    {
+      "id": "volcano_ash_boulder_beetle",
+      "baseSha256": "5a81d34397af0603f07bc8266124f6ba0bbcbde06711e1a8dfc1aa6f971e0e6e",
+      "run": "output/volcano-monsters-20261022/volcano_ash_boulder_beetle/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_ash_boulder_beetle/motion-qa.json"
+    },
+    {
+      "id": "volcano_ash_spine_boar",
+      "baseSha256": "e564f3d15d6f6fe700e1bb4c7a9a62fda05dcd73356b446e307d6c0da6756103",
+      "run": "output/volcano-monsters-20261022/volcano_ash_spine_boar/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_ash_spine_boar/motion-qa.json"
+    },
+    {
+      "id": "volcano_old_kiln_sprite",
+      "baseSha256": "54ddd40ef8b1c550df0be219adaea20c644cfc8a3636a2d9ca9de2c9594738c4",
+      "run": "output/volcano-monsters-20261022/volcano_old_kiln_sprite/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_old_kiln_sprite/motion-qa.json"
+    },
+    {
+      "id": "volcano_red_smoke_shroom",
+      "baseSha256": "b4c8fd55590886a745e380a240a4326bec98ffa116f7e2e3fefb1ce7d86ac036",
+      "run": "output/volcano-monsters-20261022/volcano_red_smoke_shroom/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_red_smoke_shroom/motion-qa.json"
+    },
+    {
+      "id": "volcano_azure_firebird",
+      "baseSha256": "bd221337fe99aba058e3fb7e75910ee66e974166548ad17979edf3737c2396d3",
+      "run": "output/volcano-monsters-20261022/volcano_azure_firebird/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_azure_firebird/motion-qa.json"
+    },
+    {
+      "id": "volcano_crater_hammer_ogre",
+      "baseSha256": "585f4dc038dc53dbc6998c26a4d11781b07c2f41137e676c9ca074523a7a63a4",
+      "run": "output/volcano-monsters-20261022/volcano_crater_hammer_ogre/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_crater_hammer_ogre/motion-qa.json"
+    },
+    {
+      "id": "volcano_golden_ash_zmey",
+      "baseSha256": "59105be84cdd6f6021e347f1063d505bb88100fdecd1dcd0e841e29fced20112",
+      "run": "output/volcano-monsters-20261022/volcano_golden_ash_zmey/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/volcano-monsters-v1/volcano_golden_ash_zmey/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "volcano_lava_glass_lizard-idle.webp",
+      "sha256": "16ae440105e81f14a31cef0f32e2b7027e8e6bd24ee95626757febff7285680e"
+    },
+    {
+      "file": "volcano_lava_glass_lizard-move.webp",
+      "sha256": "6a10d0211c596d26f31f3fc9d8f8bc4817d69f58b7c4d9f46ecc17d35ae6f544"
+    },
+    {
+      "file": "volcano_lava_glass_lizard-attack.webp",
+      "sha256": "828433f5a85124818b4542bf1cf41a1bef43ce6f9513f53d17dfa45a3f562e50"
+    },
+    {
+      "file": "volcano_lava_glass_lizard-hit.webp",
+      "sha256": "173fae87568209b57850247378526eb447f3b018164c7a898d5ca27defe5f627"
+    },
+    {
+      "file": "volcano_lava_glass_lizard-death.webp",
+      "sha256": "6c9dd58e31a4aa89e315c9b20eeaf81b947ab612f244b7609ffb07d6881227c2"
+    },
+    {
+      "file": "volcano_ash_boulder_beetle-idle.webp",
+      "sha256": "abb878a670472c7a16d8057d42de0a299a0eac2af152762eeee7cfb40be7c79a"
+    },
+    {
+      "file": "volcano_ash_boulder_beetle-move.webp",
+      "sha256": "d868c97deaa2a81b914eef08861d0834186b463dba966c0ca27565850ac7123d"
+    },
+    {
+      "file": "volcano_ash_boulder_beetle-attack.webp",
+      "sha256": "cf5d6c3b9d3c01666f37cb815666b93b7f697960810c93087176807c51a100ad"
+    },
+    {
+      "file": "volcano_ash_boulder_beetle-hit.webp",
+      "sha256": "dda3fe384723665706db453e6d78aecdc9737a987f0a4d742a6a22fdee294be1"
+    },
+    {
+      "file": "volcano_ash_boulder_beetle-death.webp",
+      "sha256": "fd8863585fd46c22729d8431fc67e73be06346f15c1b8b7b6be82f2c101045c8"
+    },
+    {
+      "file": "volcano_ash_spine_boar-idle.webp",
+      "sha256": "d1b1759ca9cfc4db82019fda0656bd6decc885a55dbd9c0f20008ecae1865899"
+    },
+    {
+      "file": "volcano_ash_spine_boar-move.webp",
+      "sha256": "cff2289ad71ad5da4c0a513ac1994166e99ae85c3fab6807effe1d0cde255cd5"
+    },
+    {
+      "file": "volcano_ash_spine_boar-attack.webp",
+      "sha256": "d3f83318f73b63a228989da623df063e65d69cab28ff5d86cf02bd67446dffce"
+    },
+    {
+      "file": "volcano_ash_spine_boar-hit.webp",
+      "sha256": "3f70cdc2f33632c1d010590ae0fd51743f4cf8be970d4206bd2af9b11ee457f5"
+    },
+    {
+      "file": "volcano_ash_spine_boar-death.webp",
+      "sha256": "78c953fbda9325b6a6a361d8e3dfb7465f8ede7b3b02428a95172ee842c1655e"
+    },
+    {
+      "file": "volcano_old_kiln_sprite-idle.webp",
+      "sha256": "0f368fa7cc7485b257572b28ffb0aa14d6e0d9b32829f27a67e898d5ce70756c"
+    },
+    {
+      "file": "volcano_old_kiln_sprite-move.webp",
+      "sha256": "30f7d4dff7c13199717aa778f37bb704992094f97808a885174b735574454c4d"
+    },
+    {
+      "file": "volcano_old_kiln_sprite-attack.webp",
+      "sha256": "8c919891b954a7d523bad57b1f68a7381feab2ee365218e2a98553da9a564362"
+    },
+    {
+      "file": "volcano_old_kiln_sprite-hit.webp",
+      "sha256": "6debe371e654fb29dbfbe4fbeaa70a1389c1d954afc7e5359f749b9030da70c1"
+    },
+    {
+      "file": "volcano_old_kiln_sprite-death.webp",
+      "sha256": "aa89bcbb09df6436b5f38530d35a730e4d686d7f420992a46627f9cdd44ac860"
+    },
+    {
+      "file": "volcano_red_smoke_shroom-idle.webp",
+      "sha256": "3a3614aaa4d580d8da6aec9e04324ba569da7ea9eceafa0045e2ec2224e4ff8e"
+    },
+    {
+      "file": "volcano_red_smoke_shroom-move.webp",
+      "sha256": "929c2bca3833e06659db083934e1c8acdc6b4d76440c7dfc41f149a4f0a1db3a"
+    },
+    {
+      "file": "volcano_red_smoke_shroom-attack.webp",
+      "sha256": "b83575704f8df952ee68f51b694e8a62cecc9662ef663c109fa87b100c8bac4d"
+    },
+    {
+      "file": "volcano_red_smoke_shroom-hit.webp",
+      "sha256": "b5f9f64189c09292a267c7c12db75fa320ea5a6779fde96c6ac48abed35067e0"
+    },
+    {
+      "file": "volcano_red_smoke_shroom-death.webp",
+      "sha256": "c6e5b4de3eecff9c3c6de4517cb86d99fc75151fce623039822f182d5bdcb3df"
+    },
+    {
+      "file": "volcano_azure_firebird-idle.webp",
+      "sha256": "25a94317709b462ba552d1e330e278cdbe43c99c9b73e7c505e83bac06e8c198"
+    },
+    {
+      "file": "volcano_azure_firebird-move.webp",
+      "sha256": "489c0a215c44c27ef714e1ee324d6e80c6e97b882d02995e4b20f3311589b89f"
+    },
+    {
+      "file": "volcano_azure_firebird-attack.webp",
+      "sha256": "888e3a739530ba1963a246d03f481da5faba0d8543e336c16495c28c5db0f452"
+    },
+    {
+      "file": "volcano_azure_firebird-hit.webp",
+      "sha256": "7a461f8566d4fe928f736489f29884f22f4e506b5bec516652c9e03c89380533"
+    },
+    {
+      "file": "volcano_azure_firebird-death.webp",
+      "sha256": "1a1641a3f056d7034e0c4d146f1e22ae63a2c17152ed8dc1a61c2e5c5bbe20ce"
+    },
+    {
+      "file": "volcano_crater_hammer_ogre-idle.webp",
+      "sha256": "f505bc1a88ca9756d58be8aac7aeb730f3a967793037b15748dc5185c2f51208"
+    },
+    {
+      "file": "volcano_crater_hammer_ogre-move.webp",
+      "sha256": "924e8867111b27f08274136a13377aca26dee629d1fd91d387fe1b299ee5a998"
+    },
+    {
+      "file": "volcano_crater_hammer_ogre-attack.webp",
+      "sha256": "4c53352e410a825bb229773867d3b396cc1b0e280560769a2eb776e0bbae0a4b"
+    },
+    {
+      "file": "volcano_crater_hammer_ogre-hit.webp",
+      "sha256": "414346512057b17b1c500ee27901eb12f7581aca6fc725fa9e58e787105977d3"
+    },
+    {
+      "file": "volcano_crater_hammer_ogre-death.webp",
+      "sha256": "ad3c8744e813f110eab05c9b8ecc0c398e766eafd1a2ee57fe5f79834b3a5c77"
+    },
+    {
+      "file": "volcano_golden_ash_zmey-idle.webp",
+      "sha256": "c2285c589b7d7b6e644f35e79b4e71003249b3d62aea1e87e47c0e16259144ac"
+    },
+    {
+      "file": "volcano_golden_ash_zmey-move.webp",
+      "sha256": "2ae0a982adab5852184bd6f572389813809c09e1bce3e6a5bcabc406dea4140c"
+    },
+    {
+      "file": "volcano_golden_ash_zmey-attack.webp",
+      "sha256": "d351d61653c80a628652334646f9455ba9b5224738e55f9150372dd153094c4a"
+    },
+    {
+      "file": "volcano_golden_ash_zmey-hit.webp",
+      "sha256": "470d2db832e0403b627d15c2e3513eb058b3e0340f845c7af936024153eb43d1"
+    },
+    {
+      "file": "volcano_golden_ash_zmey-death.webp",
+      "sha256": "2bd421d0201cc4ccf784a8c683d00e3f01460f187b4749e172ea198d8526e785"
+    }
+  ]
+}

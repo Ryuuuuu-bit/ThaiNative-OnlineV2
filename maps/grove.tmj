@@ -1,0 +1,2638 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "width": 144,
+  "height": 120,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "nextobjectid": 130,
+  "nextlayerid": 8,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "grove"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "value": "ป่าอรุณอำพัน"
+    },
+    {
+      "name": "bossId",
+      "type": "string",
+      "value": "grove_crown"
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads and hunting loops",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "type": "path",
+          "name": "ทางเดิน 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4608,
+              "y": 1920
+            },
+            {
+              "x": 3840,
+              "y": 1920
+            },
+            {
+              "x": 3104,
+              "y": 1664
+            },
+            {
+              "x": 2304,
+              "y": 1664
+            },
+            {
+              "x": 1504,
+              "y": 1920
+            },
+            {
+              "x": 0,
+              "y": 1920
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3840,
+              "y": 1920
+            },
+            {
+              "x": 3488,
+              "y": 1152
+            },
+            {
+              "x": 2464,
+              "y": 800
+            },
+            {
+              "x": 1536,
+              "y": 992
+            },
+            {
+              "x": 640,
+              "y": 1120
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3104,
+              "y": 1664
+            },
+            {
+              "x": 2880,
+              "y": 2624
+            },
+            {
+              "x": 2016,
+              "y": 2944
+            },
+            {
+              "x": 1216,
+              "y": 2624
+            },
+            {
+              "x": 640,
+              "y": 1120
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4128,
+              "y": 1920
+            },
+            {
+              "x": 4128,
+              "y": 2176
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "type": "path",
+          "name": "ทางเดิน 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2400,
+              "y": 1664
+            },
+            {
+              "x": 2400,
+              "y": 1920
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "type": "path",
+          "name": "ทางเดิน 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1056,
+              "y": 1920
+            },
+            {
+              "x": 1056,
+              "y": 2208
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 7,
+          "type": "water",
+          "name": "แอ่งน้ำกลางภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 1856,
+          "y": 2144,
+          "width": 512,
+          "height": 320
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 Gates",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 8,
+          "type": "entry",
+          "name": "จุดเข้า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 4480,
+          "y": 1920,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 9,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "canyon"
+            }
+          ],
+          "point": true,
+          "x": 4576,
+          "y": 1920,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 10,
+          "type": "gate",
+          "name": "west",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "summit"
+            }
+          ],
+          "point": true,
+          "x": 32,
+          "y": 1920,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and boss",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 11,
+          "type": "camp",
+          "name": "แคมป์ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 4128,
+          "y": 2176,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 12,
+          "type": "camp",
+          "name": "แคมป์ 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 2400,
+          "y": 1920,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 13,
+          "type": "camp",
+          "name": "แคมป์ 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1056,
+          "y": 2208,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 14,
+          "type": "arena",
+          "name": "ลานบอส",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 448,
+          "y": 928,
+          "width": 384,
+          "height": 384
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 15,
+          "type": "spawn",
+          "name": "ดงตั๊กแตนอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "amber_mantis"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 20
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true,
+          "x": 2688,
+          "y": 704,
+          "width": 1152,
+          "height": 960
+        },
+        {
+          "id": 16,
+          "type": "spawn",
+          "name": "สวนรังนกอรุณ",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "dawn_owl"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 20
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true,
+          "x": 1120,
+          "y": 2304,
+          "width": 1344,
+          "height": 1088
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Scenery",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 17,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 345.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 18,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 345.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 19,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 761.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 20,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 761.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 21,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 1177.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 22,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 1177.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 23,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 1593.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 24,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 1593.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 25,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2009.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 26,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2009.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 27,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2425.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 28,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2425.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 29,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2841.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2841.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3257.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3257.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3673.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3673.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 4089.6,
+          "y": 185.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 4089.6,
+          "y": 3577.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 317.2931653513806,
+          "y": 670.5075900290094,
+          "width": 82.39502934645861,
+          "height": 82.39502934645861,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 325.9599150417838,
+          "y": 1506.1219363651012,
+          "width": 88.69812003038824,
+          "height": 88.69812003038824,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 365.592922471161,
+          "y": 2659.3776453715327,
+          "width": 117.52212543357165,
+          "height": 117.52212543357165,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 358.5439672037028,
+          "y": 2992.2727057503653,
+          "width": 112.39561251178384,
+          "height": 112.39561251178384,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 362.5710126415826,
+          "y": 3288.763625851443,
+          "width": 115.32437283024193,
+          "height": 115.32437283024193,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 655.9293271955103,
+          "y": 364.0944402675077,
+          "width": 119.22132886946201,
+          "height": 119.22132886946201,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 634.4008483970654,
+          "y": 681.9523819352037,
+          "width": 103.56425337968395,
+          "height": 103.56425337968395,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 622.7759136950539,
+          "y": 2181.678705820938,
+          "width": 95.10975541458465,
+          "height": 95.10975541458465,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 613.30043343734,
+          "y": 2386.0294595656496,
+          "width": 88.21849704533815,
+          "height": 88.21849704533815,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 652.7375649258495,
+          "y": 2702.020488396857,
+          "width": 116.9000472187996,
+          "height": 116.9000472187996,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 623.8433244660031,
+          "y": 3010.4827851880177,
+          "width": 95.88605415709317,
+          "height": 95.88605415709317,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 891.7822083427338,
+          "y": 405.0864328640516,
+          "width": 81.29615152198822,
+          "height": 81.29615152198822,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 895.9165363228415,
+          "y": 722.27174304352,
+          "width": 84.30293550752104,
+          "height": 84.30293550752104,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 922.0091934772906,
+          "y": 1322.1918305615225,
+          "width": 103.2794134380296,
+          "height": 103.2794134380296,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 925.9872764315921,
+          "y": 2717.3395299278036,
+          "width": 106.17256467752159,
+          "height": 106.17256467752159,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 911.545314427535,
+          "y": 2950.118197890167,
+          "width": 95.66931958366186,
+          "height": 95.66931958366186,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 915.994678320305,
+          "y": 3336.742425018551,
+          "width": 98.90522059658542,
+          "height": 98.90522059658542,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1193.3060518456157,
+          "y": 430.85737376251114,
+          "width": 91.13167406953872,
+          "height": 91.13167406953872,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1227.769201683998,
+          "y": 628.3731048588411,
+          "width": 116.19578304290772,
+          "height": 116.19578304290772,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1185.3318540686626,
+          "y": 1206.1897053571681,
+          "width": 85.33225750448183,
+          "height": 85.33225750448183,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1180.3312395836692,
+          "y": 1612.3858600432595,
+          "width": 81.69544696994126,
+          "height": 81.69544696994126,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1205.9976290612017,
+          "y": 3048.0140792945886,
+          "width": 100.36191204451025,
+          "height": 100.36191204451025,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 63,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1192.288578458596,
+          "y": 3218.804780068538,
+          "width": 90.39169342443347,
+          "height": 90.39169342443347,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1498.0712447113358,
+          "y": 346.8087255761729,
+          "width": 103.32454160824419,
+          "height": 103.32454160824419,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 65,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1478.8849316926032,
+          "y": 753.1461075741358,
+          "width": 89.37085941280239,
+          "height": 89.37085941280239,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 66,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1505.6474000708665,
+          "y": 1310.816347138824,
+          "width": 108.83447277881206,
+          "height": 108.83447277881206,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1488.4418464690912,
+          "y": 1517.9780366450125,
+          "width": 96.32134288661183,
+          "height": 96.32134288661183,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 68,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1471.8003445715178,
+          "y": 2152.3165960587394,
+          "width": 84.2184324156493,
+          "height": 84.2184324156493,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 69,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1515.9349041336216,
+          "y": 2363.794710724317,
+          "width": 116.31629391536117,
+          "height": 116.31629391536117,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1472.2745413731318,
+          "y": 2933.7189753723433,
+          "width": 84.56330281682312,
+          "height": 84.56330281682312,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1505.7076322391163,
+          "y": 3331.989357050526,
+          "width": 108.87827799208463,
+          "height": 108.87827799208463,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 72,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1759.3808626325451,
+          "y": 467.87485995961157,
+          "width": 83.91335464185104,
+          "height": 83.91335464185104,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 73,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1769.4357219701167,
+          "y": 627.2428443020938,
+          "width": 91.22597961463035,
+          "height": 91.22597961463035,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 74,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1771.9523744764738,
+          "y": 1231.6105719150553,
+          "width": 93.05627234652638,
+          "height": 93.05627234652638,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 75,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1756.4399563547224,
+          "y": 2093.0656008257347,
+          "width": 81.77451371252538,
+          "height": 81.77451371252538,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 76,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1800.5476508553372,
+          "y": 3041.5020775537187,
+          "width": 113.85283698569984,
+          "height": 113.85283698569984,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 77,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1771.2770368842437,
+          "y": 3239.2448725433724,
+          "width": 92.56511773399544,
+          "height": 92.56511773399544,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 78,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2084.376735036401,
+          "y": 329.44611227799044,
+          "width": 110.81944366283716,
+          "height": 110.81944366283716,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 79,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2085.1417760962736,
+          "y": 1264.7825934257942,
+          "width": 111.37583716092632,
+          "height": 111.37583716092632,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 80,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2353.9994495995343,
+          "y": 452.50651094658156,
+          "width": 97.45414516329765,
+          "height": 97.45414516329765,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 81,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2360.9378854045817,
+          "y": 981.2203718591368,
+          "width": 102.50028029424139,
+          "height": 102.50028029424139,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 82,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2369.908225955581,
+          "y": 1275.9137301008982,
+          "width": 109.02416433133186,
+          "height": 109.02416433133186,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 83,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2371.281005014692,
+          "y": 2467.4172214957716,
+          "width": 110.02254910159391,
+          "height": 110.02254910159391,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 84,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2348.825919170212,
+          "y": 3012.1218002482324,
+          "width": 93.69157757833601,
+          "height": 93.69157757833601,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2360.9894926854877,
+          "y": 3284.6397734246084,
+          "width": 102.53781286217273,
+          "height": 102.53781286217273,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 86,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2631.334314334765,
+          "y": 1225.1040161057194,
+          "width": 89.69768315255642,
+          "height": 89.69768315255642,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 87,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2632.1576534491496,
+          "y": 2376.379193792497,
+          "width": 90.29647523574532,
+          "height": 90.29647523574532,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2651.6709053566215,
+          "y": 2995.6647142714687,
+          "width": 104.48793116845192,
+          "height": 104.48793116845192,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 89,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2951.742419456737,
+          "y": 399.8369049310803,
+          "width": 113.26721415035428,
+          "height": 113.26721415035428,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2921.862844797643,
+          "y": 708.6575050674213,
+          "width": 91.53661439828575,
+          "height": 91.53661439828575,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2930.5643882370323,
+          "y": 1321.2625305033773,
+          "width": 97.86500962693245,
+          "height": 97.86500962693245,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 92,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2921.206312876688,
+          "y": 2961.0911675476423,
+          "width": 91.0591366375913,
+          "height": 91.0591366375913,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2940.247604908468,
+          "y": 3328.4633609751963,
+          "width": 104.90734902434052,
+          "height": 104.90734902434052,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3203.4302812277338,
+          "y": 422.99661909284276,
+          "width": 86.85838634744287,
+          "height": 86.85838634744287,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3207.967680183961,
+          "y": 648.8737012514663,
+          "width": 90.1583128610626,
+          "height": 90.1583128610626,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 96,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3223.3826602683403,
+          "y": 2144.2829853034586,
+          "width": 101.36920746788383,
+          "height": 101.36920746788383,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 97,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3198.5692132819445,
+          "y": 2430.2471477531694,
+          "width": 83.32306420505047,
+          "height": 83.32306420505047,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 98,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3232.364034949511,
+          "y": 2664.6701777029793,
+          "width": 107.90111632691696,
+          "height": 107.90111632691696,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 99,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3228.218480411591,
+          "y": 3040.4739517013336,
+          "width": 104.8861675720662,
+          "height": 104.8861675720662,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 100,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3221.236909891851,
+          "y": 3215.046308460268,
+          "width": 99.80866173952819,
+          "height": 99.80866173952819,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 101,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3490.903910307889,
+          "y": 362.7150721154925,
+          "width": 86.47557113301009,
+          "height": 86.47557113301009,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3510.4531547806228,
+          "y": 743.8484335784353,
+          "width": 100.69320347681642,
+          "height": 100.69320347681642,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 103,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3530.398487302032,
+          "y": 902.4011768527432,
+          "width": 115.1988998560235,
+          "height": 115.1988998560235,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 104,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3497.365073995688,
+          "y": 2138.321380220899,
+          "width": 91.17459926959128,
+          "height": 91.17459926959128,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 105,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3533.361788350856,
+          "y": 2371.943721920672,
+          "width": 117.35402789153159,
+          "height": 117.35402789153159,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 106,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3522.1390325077346,
+          "y": 2750.3210236663726,
+          "width": 109.19202364198864,
+          "height": 109.19202364198864,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 107,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3507.2154292738533,
+          "y": 2927.7813923213585,
+          "width": 98.3384940173477,
+          "height": 98.3384940173477,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 108,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3520.422732033022,
+          "y": 3336.0034229529497,
+          "width": 107.94380511492491,
+          "height": 107.94380511492491,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 109,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3820.2495651033705,
+          "y": 447.92246618834514,
+          "width": 116.54513825699688,
+          "height": 116.54513825699688,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 110,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3781.5302288909907,
+          "y": 627.8078162749403,
+          "width": 88.38562101162971,
+          "height": 88.38562101162971,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 111,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3799.872090441827,
+          "y": 1031.5659177040857,
+          "width": 101.7251566849649,
+          "height": 101.7251566849649,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 112,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3790.259984426014,
+          "y": 1222.160164346365,
+          "width": 94.73453412801028,
+          "height": 94.73453412801028,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 113,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3785.5205356308725,
+          "y": 2096.9769047279387,
+          "width": 91.28766227699816,
+          "height": 91.28766227699816,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 114,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3777.127796676941,
+          "y": 2474.3251094230245,
+          "width": 85.18385212868452,
+          "height": 85.18385212868452,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 115,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3814.263440995198,
+          "y": 2632.854842604506,
+          "width": 112.19159345105291,
+          "height": 112.19159345105291,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 116,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3817.0448007578843,
+          "y": 3044.8681252348174,
+          "width": 114.21440055118875,
+          "height": 114.21440055118875,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 117,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3791.678305074328,
+          "y": 3230.2311515175597,
+          "width": 95.7660400540568,
+          "height": 95.7660400540568,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 118,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4066.426492534997,
+          "y": 340.9364476771198,
+          "width": 86.12835820727051,
+          "height": 86.12835820727051,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 119,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4085.6259488517417,
+          "y": 744.3826964641166,
+          "width": 100.09159916490317,
+          "height": 100.09159916490317,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 120,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4114.558304845635,
+          "y": 920.9607751028666,
+          "width": 121.13331261500717,
+          "height": 121.13331261500717,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 121,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4059.765676924994,
+          "y": 1290.3255247010393,
+          "width": 81.28412867272273,
+          "height": 81.28412867272273,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 122,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4094.3765232631004,
+          "y": 1554.680853214567,
+          "width": 106.45565328225494,
+          "height": 106.45565328225494,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 123,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4072.6718369587325,
+          "y": 2355.615425890493,
+          "width": 90.67042687907815,
+          "height": 90.67042687907815,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 124,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4073.28628737648,
+          "y": 2768.4166755553283,
+          "width": 91.11729991016696,
+          "height": 91.11729991016696,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 125,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4078.440691229864,
+          "y": 2942.681192915547,
+          "width": 94.86595725808293,
+          "height": 94.86595725808293,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 126,
+          "type": "obstacle",
+          "name": "ดงพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4075.2317502313294,
+          "y": 3310.663559386204,
+          "width": 92.53218198642135,
+          "height": 92.53218198642135,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "07 Places",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 37,
+          "type": "poi",
+          "name": "บึงแสงอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wisp-pond"
+            }
+          ],
+          "point": true,
+          "x": 2112,
+          "y": 2560,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 38,
+          "type": "poi",
+          "name": "ลานพฤกษาอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boss"
+            }
+          ],
+          "point": true,
+          "x": 640,
+          "y": 1120,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 39,
+          "type": "poi",
+          "name": "ดงตั๊กแตน · Lv.31",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 3264,
+          "y": 1920,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 40,
+          "type": "poi",
+          "name": "สวนรังนก · Lv.33",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 2048,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 127,
+          "type": "poi",
+          "name": "สวนเห็ดใบชา",
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "x": 3264,
+          "y": 1184,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushrooms"
+            }
+          ]
+        },
+        {
+          "id": 128,
+          "type": "poi",
+          "name": "ซุ้มไม้รังอรุณ",
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "x": 1792,
+          "y": 2848,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "den"
+            }
+          ]
+        },
+        {
+          "id": 129,
+          "type": "poi",
+          "name": "รากไม้ราชัน",
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "x": 640,
+          "y": 1120,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

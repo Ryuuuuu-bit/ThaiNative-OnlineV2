@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Consistent cool frost palette with muted warm accent. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Norse mythology, no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\base.png.raw.png",
+  "raw_bytes": 2229757,
+  "elapsed_seconds": 42.89,
+  "model": null,
+  "session_id": "01a16059-83a8-7191-8b12-c7d83a950d54",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1312x1199",
+    "alpha_zero_pct": 48.36,
+    "partial_alpha_pct": 51.63,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 267,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

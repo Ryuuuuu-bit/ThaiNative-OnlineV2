@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted gouache and watercolor isometric MMORPG creature. Original character and natural texture, no lettering, grid, glow, detached props or scenery. Match the approved base.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. a visible legless BODY S-WAVE cycle: compact low S, uncoil into a long S, send a clear reverse curve along the midbody and tail, compact S again. The HEAD stays on the RIGHT-HAND END and in the accepted facing in ALL FOUR cells; never mirror or turn the head left. Body and tail undulate, not just head bobbing; no legs, hopping or translation. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready low serpentine S, draw head and tail back, sweep the SAME attached long tail forward in a broad low arc while the head keeps facing the accepted direction, return low S; no legs or new fins. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. a visible legless BODY S-WAVE cycle: compact low S, uncoil into a long S, send a clear reverse curve along the midbody and tail, compact S again. The HEAD stays on the RIGHT-HAND END and in the accepted facing in ALL FOUR cells; never mirror or turn the head left. Body and tail undulate, not just head bobbing; no legs, hopping or translation. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready low serpentine S, draw head and tail back, sweep the SAME attached long tail forward in a broad low arc while the head keeps facing the accepted direction, return low S; no legs or new fins. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original legless icy lindworm, one very long low sinuous dark blue and slate scaled body, ONE narrow dragon-like head with two short backward ice horns and cheek gill fins, ONE long tapering tail with a small ice-fin blade. NO legs, arms, wings or cobra hood. Pale ice ridges run along spine, cream-blue belly, narrow observant eyes. Body arranged in a broad low S curve with clear attached tail, not a round cobra coil."
+    }
+  },
+  "body_plan": [
+    "legless"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

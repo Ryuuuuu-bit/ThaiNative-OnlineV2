@@ -34,6 +34,11 @@ PICKS = {'slash': [.09, .27, .45, .64, .82, 1.0],
          'earth_break': [.10, .14, .19, .24, .33, .38, .48, .62, .86],
          'provoke': [.06, .18, .35, .59, .88],
          'endure': [.14, .24, .33, .48, .67]}
+# Move each facing's ground-contact pose to runtime F6 without changing the cast clock.
+EARTH_RETIME = {'SE': [0,1,2,3,4,5,6,7,8], 'SW': [0,1,2,3,4,4,5,6,8],
+                'NE': [0,1,2,3,4,5,7,7,8], 'NW': [0,1,2,3,4,5,7,7,8],
+                'S': [0,1,2,3,4,5,7,7,8], 'E': [0,1,2,3,4,4,5,6,8],
+                'N': [0,1,2,3,4,4,5,6,8], 'W': [0,1,2,3,4,4,5,6,8]}
 
 def active_span(frames):
     alpha = [np.asarray(f.resize((f.width // 4, f.height // 4)).getchannel('A'), dtype=float) / 255 for f in frames]
@@ -43,7 +48,7 @@ def active_span(frames):
 
 def select(normalized):
     SRC.mkdir(parents=True, exist_ok=True)
-    meta = {}
+    meta = json.loads((SRC / 'skills-v2.json').read_text(encoding='utf-8')) if (SRC / 'skills-v2.json').exists() else {}
     for skill, fractions in PICKS.items():
         w, h, ay = CELLS[skill]
         atlas = Image.open(normalized / f'skill-{skill}-8dir.png').convert('RGBA')
@@ -54,6 +59,8 @@ def select(normalized):
             frames = [atlas.crop((i * w, row * h, (i + 1) * w, (row + 1) * h)) for i in range(25)]
             a, b = active_span(frames)
             picked = [round(a + f * (b - a)) for f in fractions]
+            if skill == 'earth_break':
+                picked = [picked[i] for i in EARTH_RETIME[facing]]
             meta[skill]['frames'][facing] = [i + 1 for i in picked]
             for col, i in enumerate(picked):
                 out.alpha_composite(frames[i], (col * w, row * h))
@@ -73,7 +80,7 @@ def pack():
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     dest = PUBLIC / 'assets/hero-skills'
     stage = REPO / '.codex-run/texture-inputs/hero-skills'; stage.mkdir(parents=True, exist_ok=True)
-    for skill in PICKS:
+    for skill in json.loads((SRC / 'skills-v2.json').read_text(encoding='utf-8')):
         name = f'hero-skill-{skill}-v2'
         atlas = Image.open(SRC / f'{name}.png').convert('RGBA')
         # Same rules as prepare-textures.py pack(): longest side <= 2048, multiples of 4.

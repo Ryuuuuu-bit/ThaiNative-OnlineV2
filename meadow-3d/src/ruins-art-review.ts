@@ -19,7 +19,7 @@ $('overview').onclick=()=>{view.overview=!view.overview;$('overview').setAttribu
 $('zoom').oninput=e=>{view.zoomHeight=innerHeight/Number((e.target as HTMLInputElement).value);};view.zoomHeight=innerHeight/30;
 const dialog=$('comparison') as HTMLDialogElement;($('old-image') as HTMLImageElement).src=beforeImage;
 $('before').onclick=()=>{reset();dialog.showModal();};$('close').onclick=()=>dialog.close();
-view.canvas.onclick=e=>{if(view.overview)return;const p=view.ground(e.clientX,e.clientY);if(!ruinsWalkable(p.x,p.z,.4))return;reset();goal=p;route=gridPath(game.p,p,(x,z)=>ruinsWalkable(x,z,.3));next=0;view.canvas.focus();};
+view.canvas.onclick=e=>{if(view.overview)return;const p=view.ground(e.clientX,e.clientY);if(!ruinsWalkable(p.x,p.z,.4))return;reset();goal=p;route=gridPath(game.p,p,(x,z)=>ruinsWalkable(x,z,.3),LAYOUTS.ruins);next=0;view.canvas.focus();};
 addEventListener('keydown',e=>{if(e.target instanceof HTMLInputElement||e.target instanceof HTMLSelectElement||dialog.open)return;if(e.code==='KeyF'){e.preventDefault();auto();return;}if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code)){e.preventDefault();if(!keys.size)reset();keys.add(e.code);}});
 addEventListener('keyup',e=>keys.delete(e.code));addEventListener('blur',()=>keys.clear());addEventListener('resize',()=>view.resize());place('entry');
 let last=performance.now(),uiTime=0;

@@ -1,3 +1,4 @@
+import {inventoryProfile} from './inventory.js';
 import { deriveStats } from "./derive.js";
 import { equipped, equippedCards, inventorySlots, inventoryWeight, type EconomyState, type LedgerEntry, type OwnedItem } from "./inventory.js";
 import type { CharacterInput, GameData } from "./schema.js";
@@ -82,7 +83,7 @@ export function applyTrade(a: TradeSide, b: TradeSide, data: GameData) {
 		if (state.gold > 2147483647) throw fail("ทองเกินขีดจำกัด");
 		const slots = inventorySlots(state.inventory, data);
 		if (slots > data.economy.inventorySlots && slots > inventorySlots(before.inventory, data)) throw fail("กระเป๋าเต็ม");
-		const max = deriveStats({ ...side.profile, equipment: equipped(state.inventory), cards: equippedCards(state.inventory) }, data).weight, weight = inventoryWeight(state.inventory, data);
+		const max = deriveStats(inventoryProfile(side.profile,state.inventory,data), data).weight, weight = inventoryWeight(state.inventory, data);
 		if (weight > max && weight > inventoryWeight(before.inventory, data)) throw fail("น้ำหนักเกิน");
 	});
 	return { a: { state: next[0], ledger: ledgers[0] }, b: { state: next[1], ledger: ledgers[1] }, moved: moving };

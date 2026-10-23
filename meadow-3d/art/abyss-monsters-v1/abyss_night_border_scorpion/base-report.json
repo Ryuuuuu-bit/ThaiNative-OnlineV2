@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A night-border scorpion guardian, one enclosed dark bronze humanlike helmet and armored chest, two strong human arms holding one short spear, lower body one broad scorpion abdomen with exactly eight jointed legs and one attached arched tail with a single blunt sting. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\abyss-monsters-20261022\\abyss_night_border_scorpion\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\abyss-monsters-20261022\\abyss_night_border_scorpion\\base.png.raw.png",
+  "raw_bytes": 1594636,
+  "elapsed_seconds": 56.046,
+  "model": null,
+  "session_id": "01a16125-b24f-7243-82cb-d65b18058728",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\abyss-monsters-20261022\\abyss_night_border_scorpion\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1312x1199",
+    "alpha_zero_pct": 64.94,
+    "partial_alpha_pct": 35.04,
+    "opaque_pct": 0.02,
+    "cleaned_transparent_rgb_pixels": 352,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Restrained bamboo-forest jade, indigo and weathered vermilion palette. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Japanese folk mythology; no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_01\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_01\\base.png.raw.png",
+  "raw_bytes": 1665091,
+  "elapsed_seconds": 52.797,
+  "model": null,
+  "session_id": "01a1607b-0123-7f81-b371-653f0513ff74",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\yokai-monsters-20261022\\yokai_01\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1312x1199",
+    "alpha_zero_pct": 62.24,
+    "partial_alpha_pct": 37.75,
+    "opaque_pct": 0.02,
+    "cleaned_transparent_rgb_pixels": 440,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

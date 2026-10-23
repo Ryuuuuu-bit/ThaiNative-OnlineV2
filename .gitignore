@@ -3,3 +3,10 @@ dist/
 .DS_Store
 *.log
 .codex-run/
+
+# Derived contact sheets and GIFs rebuild from retained curated poses and QA reports.
+meadow-3d/art/**/qa/
+
+# Isolated local preview of candidate item artwork; keep the Lv100 release demo intact.
+meadow-3d/dist-item-art-v2/
+meadow-3d/dist-public-world/

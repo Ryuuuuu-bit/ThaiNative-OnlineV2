@@ -1,0 +1,95 @@
+{
+  "kind": "original-generated-biome-surfaces",
+  "assets": [
+    {
+      "id": "abyss",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "a4c59fac76e969142f8c731008a38e716772d4790831c176850e6c559e88fab6",
+      "runtime": "../../src/assets/biome-abyss-surface-v1.webp",
+      "runtimeSha256": "cdc8cea87710902836a16e164932da45759cb75b144c15e8081df3ac310a76a2",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "astral",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "1b16aea478988ba36ab39af3f534ca8daf818379346211ff518a3695052d4c61",
+      "runtime": "../../src/assets/biome-astral-surface-v1.webp",
+      "runtimeSha256": "2b6fe47ca8acd610a018928c1d4ffd5783cf2096c77ccaa787a6fce13c4a7793",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "basalt-rock",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "902d31758f27433acd74c0df4f261c2b5e8e24fb061290b171068db482db9756",
+      "runtime": "../../src/assets/biome-basalt-rock-surface-v1.webp",
+      "runtimeSha256": "2b4e6eb641cd74c8d73a3e624786778a2d82aacf07518dc6fa47f5708eaa2284",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "coral-rock",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "27584540b0fd3c664ddaea9389465a37f624ebdd1f1040eabb671a334c1e1429",
+      "runtime": "../../src/assets/biome-coral-rock-surface-v1.webp",
+      "runtimeSha256": "7abc2240768bc1302fa2842b55167a4d7224d438b16ae7dc1050b1727557bc38",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "desert",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "ec7351bbba21cceb274aa26d7807e256b730969a1876ebc58dc3d149e63a985d",
+      "runtime": "../../src/assets/biome-desert-surface-v1.webp",
+      "runtimeSha256": "29294690205243ebfb6da61244fd888d90eb31a3f0dd342954a3d5ec762481d4",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "frost",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "ba6225f25ec795c077a1eaaa1ca9d59f90c57b9835e4a5e92731af0612dcf46f",
+      "runtime": "../../src/assets/biome-frost-surface-v1.webp",
+      "runtimeSha256": "2a8e68406b00d8f7b792da257792b0ab374d28127d62a6ba15f6c5bbef6b70d0",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "ocean",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "90448ab7c79a1fe3dc59cf3c2029bc1b3a024f92bf806f18357c7d0dff0c53c7",
+      "runtime": "../../src/assets/biome-ocean-surface-v1.webp",
+      "runtimeSha256": "14215df04248da4fdd6136f5db98a8c1beea2f699f899e1420bc2a53d745d0fb",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "snow-rock",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "f75d0a376ea85758dd497452b41e317526126c7124bcf0fea3eec51810c38d37",
+      "runtime": "../../src/assets/biome-snow-rock-surface-v1.webp",
+      "runtimeSha256": "69fc76d0580137df008046e5c40e0f0f93e2a1a33de0af9f55007dc69572c376",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    },
+    {
+      "id": "volcano",
+      "provider": "GPT via Sprite-Gen codex",
+      "references": [],
+      "sourceSha256": "aa0ceccbfc92ab4d5f4f4b52a04da4cab37b0adc22aa5c5e29e5e86bb51adda2",
+      "runtime": "../../src/assets/biome-volcano-surface-v1.webp",
+      "runtimeSha256": "aded7054807645201b55b62c74c5c9f967eaf7301bb74094f4ccc382028682cb",
+      "processing": "WebP encoding only",
+      "reviewed": true
+    }
+  ]
+}

@@ -1,11 +1,12 @@
 import { z } from "zod";
+import {MAP_IDS} from './world-ids.js';
 import { AudioSettingsSchema } from '../audio-settings.js';
 import {UISettingsSchema} from '../ui-settings.js';
 import { AutoSettingsSchema } from '../auto-settings.js';
 import {AutoPotionSchema} from '../auto-potion.js';
 const seq = z.number().int().nonnegative().max(2147483647),
 	point = z.number().finite().min(-10000).max(10000);
-const movementMap = z.enum(['city_plaza','meadow','forest','ruins','canyon']).optional();
+const movementMap = z.enum(MAP_IDS).optional();
 export const IntentSchema = z.discriminatedUnion("t", [
  z.object({t:z.literal('titles')}).strict(),
  z.object({t:z.literal('titleEquip'),id:z.string().regex(/^[a-z0-9_]{1,40}$/).nullable()}).strict(),
@@ -18,7 +19,7 @@ export const IntentSchema = z.discriminatedUnion("t", [
  z.object({t:z.literal('trade'),op:z.enum(['request','accept','decline','offer','lock','confirm','cancel']),name:z.string().min(1).max(24).optional(),id:z.string().max(40).optional(),items:z.array(z.object({id:z.string().min(1).max(80),qty:z.number().int().min(1).max(9999)}).strict()).max(10).optional(),gold:z.number().int().min(0).max(2147483647).optional()}).strict(),
  z.object({t:z.literal('party'),op:z.enum(['create','status','online','inviteNearby','disband','invite','accept','decline','leave','kick','lead']),name:z.string().min(1).max(24).optional(),id:z.string().max(60).optional()}).strict(),
  z.object({t:z.literal('pickupAll')}).strict(),
- z.object({t:z.literal('inv'),op:z.enum(['buy','sell','equip','unequip','use','discard','pickup','settings','store','retrieve','card','socket']),req:z.uuid(),id:z.string().max(80).optional(),card:z.string().max(80).optional(),slot:z.enum(['weapon','body','shield','garment','footgear','accessory1','ring2','accessory2']).optional(),template:z.string().max(60).optional(),qty:z.number().int().min(1).max(9999).optional(),ids:z.array(z.string().max(80)).max(100).optional(),shop:z.enum(['market','forge']).optional(),drop:z.number().int().positive().optional(),on:z.boolean().optional()}).strict(),
+ z.object({t:z.literal('inv'),op:z.enum(['buy','sell','equip','unequip','use','discard','pickup','settings','store','retrieve','card','socket','refine']),req:z.uuid(),id:z.string().max(80).optional(),card:z.string().max(80).optional(),slot:z.enum(['weapon','body','shield','garment','footgear','accessory1','ring2','accessory2']).optional(),template:z.string().max(60).optional(),qty:z.number().int().min(1).max(9999).optional(),ids:z.array(z.string().max(80)).max(100).optional(),shop:z.enum(['market','forge']).optional(),drop:z.number().int().positive().optional(),on:z.boolean().optional()}).strict(),
  z.object({t:z.literal("travel"),gate:z.enum(["north","south","east","west"])}).strict(),
  z.object({t:z.literal("heal")}).strict(),
  z.object({t:z.literal("audioSettings"),settings:AudioSettingsSchema}).strict(),
@@ -27,7 +28,7 @@ export const IntentSchema = z.discriminatedUnion("t", [
 	z.object({t:z.literal('statsReset')}).strict(),
 	z.object({t:z.literal('autoAlloc'),on:z.boolean()}).strict(),
 	z.object({t:z.literal('skillUp'),id:z.string().max(40),seq}).strict(),
- z.object({t:z.literal('hotbar'),slots:z.array(z.object({skill:z.string().max(40).nullable(),key:z.string().max(16)}).strict()).length(10)}).strict(),
+ z.object({t:z.literal('hotbar'),slots:z.array(z.object({skill:z.string().max(40).nullable(),key:z.string().max(16),mode:z.literal('autoSpell').optional(),signature:z.string().regex(/^M(0[1-9]|1[0-6])$/).optional()}).strict()).length(10)}).strict(),
  z.object({t:z.literal('jobChange'),job:z.string().max(40)}).strict(),
  z.object({ t: z.literal("hello") }).strict(),
 	z.object({ t: z.literal("spawnReady") }).strict(),
@@ -36,8 +37,10 @@ export const IntentSchema = z.discriminatedUnion("t", [
 	z
 		.object({
 			t: z.literal("act"),
-			a: z.string().regex(/^[a-z_]{1,40}$/),
+			a: z.string().regex(/^[a-z_][a-z0-9_]{0,39}$/),
 			target: z.number().int().positive().optional(),
+			ally: z.uuid().optional(),
+            point:z.object({x:point,z:point}).strict().optional(),
 			seq,
 		})
 		.strict(),

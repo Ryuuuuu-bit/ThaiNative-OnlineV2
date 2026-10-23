@@ -60,7 +60,7 @@ export function createTrades<P extends TradePeer>(options: Options<P>) {
 			// What the other side sees: template, amount and upgrades, so a +7 sword is not mistaken for a +0 one.
 			items: offer.items.map((o) => {
 				const item = p?.inventory?.items.find((i) => i.id === o.id);
-				return { id: o.id, template: item?.template ?? "", qty: o.qty, refine: item?.refine ?? 0, cards: item?.cards ?? [] };
+				return { id: o.id, template: item?.template ?? "", qty: o.qty, refine: item?.refine ?? 0, cards: item?.cards ?? [], ...(item?.roll?{roll:item.roll}:{}) };
 			}),
 		};
 	};

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { MasteryCatalogSchema,MasteryLevelsSchema } from "./mastery.js";
 export const StatSchema = z.enum(["str", "agi", "vit", "int", "dex", "luk"]);
 export const ElementSchema = z.enum([
 	"neutral",
@@ -135,13 +136,14 @@ export const CharacterSchema = z
 	.object({
 		race: id,
 		classId: id,
-		level: z.number().int().min(1).max(99),
+		level: z.number().int().min(1).max(100),
 		baseStats: BaseStatsSchema,
 		equipment: z.array(id),
 		cards: z.array(id).default([]),
 		modifiers: z.array(ModifierSchema).default([]),
 		starterGrant: z.boolean().default(false),
 		skills: z.record(z.string(), z.number().int().min(0).max(10)).default({}),
+        masteries:MasteryLevelsSchema.optional(),
 	})
 	.strict();
 export const StatsSchema = z
@@ -151,7 +153,7 @@ export const StatsSchema = z
 		start: z.literal(1),
 		pointsPerLevel: z.literal(3),
 		maxStat: z.literal(99),
-		maxLevel: z.literal(99),
+		maxLevel: z.literal(100),
 		statResetFree: z.boolean(),
 		regen: z
 			.object({
@@ -177,7 +179,7 @@ export const StatsSchema = z
 					.strict(),
 			)
 			.length(10),
-		expToNext: z.array(positive.int()).length(99),
+		expToNext: z.array(positive.int()).length(100),
 		caps: z
 			.object({
 				maxDefReduction: fraction,
@@ -276,7 +278,7 @@ export const SkillSchema = z
 		hitInterval: positive.optional(),
 		/** leap skills: the strike resolves on landing after `delay` seconds, on enemies within `radius` */
 		landing: z.object({ delay: positive, radius: positive }).strict().optional(),
-		effect: z.enum(["dash", "knockup", "taunt", "endure", "heal", "stun", "guard", "rage"]).optional(),
+		effect: z.enum(["dash", "knockup", "taunt", "endure", "heal", "stun", "guard", "rage", "slow"]).optional(),
 		/** Job 1 skill whose motion, VFX and sound this skill borrows until it has its own art. */
 		visual: id.optional(),
 		duration: nonnegative.optional(),
@@ -316,7 +318,9 @@ export const MonsterSchema = z
 	.object({
 		id,
 		nameTh: id,
-		level: positive.int().max(99),
+		artId: id.optional(),
+		visualScale: positive.max(1).optional(),
+		level: positive.int().max(100),
 		hp: positive,
 		sp: nonnegative,
 		atk: nonnegative,
@@ -494,7 +498,7 @@ export const ItemsSchema = z
                         slot: z.enum(["weapon","body","shield","garment","footgear","accessory1","accessory2"]).nullable(),
                         weight: nonnegative, npcPrice: nonnegative.int(), rarity: z.enum(["common","fine","rare","epic","legendary"]),
                         stackable: z.boolean(), maxStack: positive.int(), bind: z.enum(["none","equip","account"]), icon: id,
-                        effect: z.enum(["hp","sp","speed"]).optional(), amount: nonnegative.optional(),
+                        effect: z.enum(["hp","sp","speed","party_hp","party_cleanse","arcane"]).optional(), amount: nonnegative.optional(), arcaneElement:ElementSchema.optional(),
 						weaponType: WeaponSchema.optional(),
 						level: positive.int(),
 						atk: nonnegative.optional(),
@@ -579,6 +583,7 @@ export const schemas = { economy: EconomySchema, quests: QuestsSchema,
 	races: RacesSchema,
 	classes: ClassesSchema,
 	skills: SkillsSchema,
+	mastery: MasteryCatalogSchema,
 	monsters: MonstersSchema,
 	status: StatusSchema,
 	pvp: PvpSchema,

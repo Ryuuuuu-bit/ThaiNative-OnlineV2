@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original stocky draugr frost watchman, exactly TWO arms and TWO booted legs, one weathered gray-blue undead face, short ragged white beard. Tarnished iron scale coat with simple pale blue cloth, battered round wooden shield in LEFT hand and ONE short chipped iron axe in RIGHT hand. Broad hunched grounded stance, no gore, no glowing magical writing, no horned helmet, no recognizable movie or franchise costume. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Consistent cool frost palette with muted warm accent. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Norse mythology, no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_01\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_01\\base.png.raw.png",
+  "raw_bytes": 1734140,
+  "elapsed_seconds": 64.609,
+  "model": null,
+  "session_id": "01a16057-f5e3-7e52-b9d2-c642407e5a1a",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_01\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1334x1179",
+    "alpha_zero_pct": 62.87,
+    "partial_alpha_pct": 37.09,
+    "opaque_pct": 0.04,
+    "cleaned_transparent_rgb_pixels": 967,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

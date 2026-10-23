@@ -1,0 +1,382 @@
+{
+  "date": "2026-10-21",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "lotus_rabbit",
+      "baseSha256": "f3048a601ba36952192ed6914eef629d9b343dcb485ce4645e5bb829a85e4eed",
+      "run": "output/starter-monsters-20261021/lotus_rabbit/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/lotus_rabbit/motion-qa.json"
+    },
+    {
+      "id": "dew_beetle",
+      "baseSha256": "b60dfc452cc934bfa04622be276f495788e822cb1f54916d667f907e40255665",
+      "run": "output/starter-monsters-20261021/dew_beetle/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/dew_beetle/motion-qa.json"
+    },
+    {
+      "id": "dewdrop_moth",
+      "baseSha256": "93cb009f4b35ff4f8d7712d497ca979c512d619e92d027250b44f36ee973bd5a",
+      "run": "output/starter-monsters-20261021/dewdrop_moth/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/dewdrop_moth/motion-qa.json"
+    },
+    {
+      "id": "pine_hedgehog",
+      "baseSha256": "ad3917bb5e5272a738a01f42aa8d7bbfb3f2630ed6aa879c8c2690449a6b5cfe",
+      "run": "output/starter-monsters-20261021/pine_hedgehog/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/pine_hedgehog/motion-qa.json"
+    },
+    {
+      "id": "tile_sparrow",
+      "baseSha256": "133adf0059e96863657132cdaf5ce5d542a2ad2601ac9caae2c8da84bc01d906",
+      "run": "output/starter-monsters-20261021/tile_sparrow/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/tile_sparrow/motion-qa.json"
+    },
+    {
+      "id": "clay_pot_doll",
+      "baseSha256": "fec71e7bf54168d9641dfd618e43e7c8ea32faf07f005c3f809a8bc204fbf8a2",
+      "run": "output/starter-monsters-20261021/clay_pot_doll/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/clay_pot_doll/motion-qa.json"
+    },
+    {
+      "id": "oretail_lizard",
+      "baseSha256": "9f72fc766efce8206ccf29e49472223abe41262ff02abe2fb82f0358ad50b190",
+      "run": "output/starter-monsters-20261021/oretail_lizard/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/oretail_lizard/motion-qa.json"
+    },
+    {
+      "id": "iron_pincer_crab",
+      "baseSha256": "44dc5c5a69e126ba2d6fb142b7ab05afa396c002adca074fa654224cbf1e52d7",
+      "run": "output/starter-monsters-20261021/iron_pincer_crab/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/iron_pincer_crab/motion-qa.json"
+    },
+    {
+      "id": "mist_shroom",
+      "baseSha256": "36e3f9e6d8f418b254099f9868e0dedaee3ed9da69e43aa3c77162740f559ef2",
+      "run": "output/starter-monsters-20261021/mist_shroom/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/mist_shroom/motion-qa.json"
+    },
+    {
+      "id": "root_boar",
+      "baseSha256": "d4753be1a85edde095a9e151c07020534abe4e26041b1a39ced2c897f205fd1e",
+      "run": "output/starter-monsters-20261021/root_boar/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/root_boar/motion-qa.json"
+    },
+    {
+      "id": "mist_weaver",
+      "baseSha256": "eed3e69d3c0511111888bcd11cebcebe38b4870da7f483fb098af3a1a035a38b",
+      "run": "output/starter-monsters-20261021/mist_weaver/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/mist_weaver/motion-qa.json"
+    },
+    {
+      "id": "thorn_nest_mother",
+      "baseSha256": "bb1766d4dc91966bab0c7b2ed5c7618eab7a7d7363813382f2fee9229df9303a",
+      "run": "output/starter-monsters-20261021/thorn_nest_mother/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/starter-monsters-v1/thorn_nest_mother/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "lotus_rabbit-idle.webp",
+      "sha256": "146b65d697243e6d65a3524654a6f1d56bb59df8862ad39f7ed77061a3821579"
+    },
+    {
+      "file": "lotus_rabbit-move.webp",
+      "sha256": "b78f7c4ba4d3b84324414d237712bda4700a8f2b65e7085ad1d2dc257ccc3da1"
+    },
+    {
+      "file": "lotus_rabbit-attack.webp",
+      "sha256": "db8fbc04aa51af7682bb480ab3e807a47654fbfab7f3974c85d13a83db89a1ff"
+    },
+    {
+      "file": "lotus_rabbit-hit.webp",
+      "sha256": "5b46068746a45fa3f930c549e3bb0489915d6ccce705ecf0bd897321301a399e"
+    },
+    {
+      "file": "lotus_rabbit-death.webp",
+      "sha256": "b7e43a77327ef936ada60ffa33829b8f14e84e044635c969fb41ce9168aaac34"
+    },
+    {
+      "file": "dew_beetle-idle.webp",
+      "sha256": "181de25586d78990dfe0a249c042b2cd212ac0924b1c48efc256be6bc6d562df"
+    },
+    {
+      "file": "dew_beetle-move.webp",
+      "sha256": "ded4b7beeff814ae6c9183e364cb77e3aad3bf2e56c432686915c311c070147b"
+    },
+    {
+      "file": "dew_beetle-attack.webp",
+      "sha256": "ffdf04fba959423da407df262579a012ae22a901974325f50092abf0ad37c1fa"
+    },
+    {
+      "file": "dew_beetle-hit.webp",
+      "sha256": "253f2f8df68aff1311e3bff78bd65391d2e01d038f6b44df09e383f7355cd53e"
+    },
+    {
+      "file": "dew_beetle-death.webp",
+      "sha256": "fd90e76c097dca03713a4bf78dcbd1f8b78b31283050403e9d754c23e114469b"
+    },
+    {
+      "file": "dewdrop_moth-idle.webp",
+      "sha256": "e023f21fd9a050df4e8ca1ba767847f64dcbd76f3671f96141a2300552ad5b61"
+    },
+    {
+      "file": "dewdrop_moth-move.webp",
+      "sha256": "0797fb33fa0214de4970e16afd736ffb5668e0e98fcb5aa54a0ee9038e593e0d"
+    },
+    {
+      "file": "dewdrop_moth-attack.webp",
+      "sha256": "5a60e017c6bdcc508d43c32179f033909e84f0bee820bc2cdecc73ee6b7d91d1"
+    },
+    {
+      "file": "dewdrop_moth-hit.webp",
+      "sha256": "85c659b8175d74da3036f941c21bf6a98233052077c6eb00a3b33edd58575060"
+    },
+    {
+      "file": "dewdrop_moth-death.webp",
+      "sha256": "82379e5cc3d5ec85e4d3f3e0722062cd23e3e4adf31d800e40ed6df8bd6cac9c"
+    },
+    {
+      "file": "pine_hedgehog-idle.webp",
+      "sha256": "099294c0caea66facfe0cbcb06469991e814ee35805853a59aa6c9b08db57060"
+    },
+    {
+      "file": "pine_hedgehog-move.webp",
+      "sha256": "21274379860ba8d13594dc06785bd3e07fe8a8985fd59e2f1e80741e9ce527c6"
+    },
+    {
+      "file": "pine_hedgehog-attack.webp",
+      "sha256": "6d6514e55912d87436afd45d1bba92eecfe36439abaa914e23843f0e396496d7"
+    },
+    {
+      "file": "pine_hedgehog-hit.webp",
+      "sha256": "c938b0828019161116367c9c0a35b7efea206705070dacd599dcacd535f77252"
+    },
+    {
+      "file": "pine_hedgehog-death.webp",
+      "sha256": "af18690bb9fdfdb58199e6813247514809b286af143c4ba7cf5a5f45913efe29"
+    },
+    {
+      "file": "tile_sparrow-idle.webp",
+      "sha256": "20e1abd9c5bcbfb8efca1d6560e4555e6f89fc81073c9b1e5ac619e224c53112"
+    },
+    {
+      "file": "tile_sparrow-move.webp",
+      "sha256": "57aad6764748f3746ee6eedcadcd8bf21812c4614becdb9f2c570628ca22f1c8"
+    },
+    {
+      "file": "tile_sparrow-attack.webp",
+      "sha256": "cd7ae303ffafaba7e37855ea91b0d8ec0b27b739efef36b3a1a747cb1d531b9d"
+    },
+    {
+      "file": "tile_sparrow-hit.webp",
+      "sha256": "4b25ef89f3e25f7cc2a8287738bc51de4e2ae7ee16f20c83240ee95545e0b86a"
+    },
+    {
+      "file": "tile_sparrow-death.webp",
+      "sha256": "08d34b211c703cde5be9499dc413a5ab6aa9f9d59e9cedb223308c0f4b878f4f"
+    },
+    {
+      "file": "clay_pot_doll-idle.webp",
+      "sha256": "eed12e2f07f2b0554649f9c70ea3b81cb53ddd41f84507f11d6346cd56432266"
+    },
+    {
+      "file": "clay_pot_doll-move.webp",
+      "sha256": "89ce47ea03fe215291f06da08596159b7e85d32760c603cf932f89e5af9b9b5a"
+    },
+    {
+      "file": "clay_pot_doll-attack.webp",
+      "sha256": "268457e1ef77cae1f1ecaed504cb74f32c63400f0e85e2a6e2e3f1e736525192"
+    },
+    {
+      "file": "clay_pot_doll-hit.webp",
+      "sha256": "b2833d300d924e697d281255aa9f8ed38365662722d46810c0fcfda945d12642"
+    },
+    {
+      "file": "clay_pot_doll-death.webp",
+      "sha256": "0ab26279621bae03ecbd77e05e85b5ef70bca520a5b5d140b9bb1c01df9cfc38"
+    },
+    {
+      "file": "oretail_lizard-idle.webp",
+      "sha256": "23c72af62215e60d4ff3c6e7dec892fae9498649f5cfe9d0112a10ba67551057"
+    },
+    {
+      "file": "oretail_lizard-move.webp",
+      "sha256": "73908fac47ceb5f639f9e07cedc4e4dc0c964583f0489d16e1c238ccc977841d"
+    },
+    {
+      "file": "oretail_lizard-attack.webp",
+      "sha256": "f13fa9472dc0ee51177d870b5a67b18214db04d7c4d7de1db509044e1dc2fe4c"
+    },
+    {
+      "file": "oretail_lizard-hit.webp",
+      "sha256": "261dfde64cb2ff93b565344f112e50b2eb039b4ae644619fa33f3ea73b9955a1"
+    },
+    {
+      "file": "oretail_lizard-death.webp",
+      "sha256": "5c292c79486a73b2a80e81973e51d4cc4318fd4b8cfafa8a37d780527a19f955"
+    },
+    {
+      "file": "iron_pincer_crab-idle.webp",
+      "sha256": "d7ed2b554fe13f2aea079b1bd3e8f3142dc7f48566aed1f323f517c034a9bb63"
+    },
+    {
+      "file": "iron_pincer_crab-move.webp",
+      "sha256": "2a05ed0010f8c5a14b159be628bc8a17280c9d871e36832cb42cb75a635c00a2"
+    },
+    {
+      "file": "iron_pincer_crab-attack.webp",
+      "sha256": "05c476e3d0c899c6d2b7320579131181575fb7bb8ec3e3614e21927c6c771828"
+    },
+    {
+      "file": "iron_pincer_crab-hit.webp",
+      "sha256": "a7d8454d4e4cdb465af451c017818e793237b33113e57309f157cf5fdecfc791"
+    },
+    {
+      "file": "iron_pincer_crab-death.webp",
+      "sha256": "19fbe49e08ff9eb5a1fdff630bdac21cd2e10aa24479e62eb4fef271c01f9227"
+    },
+    {
+      "file": "mist_shroom-idle.webp",
+      "sha256": "ab12cf007119cc3edd790ae44925166ee2149271b0677cbda5b26887208edfb8"
+    },
+    {
+      "file": "mist_shroom-move.webp",
+      "sha256": "e7a570b99679a0f9c7ff995e6c126e16fd6d2d337ff6b094a27dc83eb92c0f3f"
+    },
+    {
+      "file": "mist_shroom-attack.webp",
+      "sha256": "62bcec319ec532027166846ef785a317033674dc56477149ccb04bb99d241b0e"
+    },
+    {
+      "file": "mist_shroom-hit.webp",
+      "sha256": "0b6a5a2b54b0e9008bd80dec2cb059dd2d9b4a2eab2bce2997067268de796530"
+    },
+    {
+      "file": "mist_shroom-death.webp",
+      "sha256": "ddc0ef4eff3156869172cf4785a8297eb309a3d13ee684cc7eb10d5152e973b2"
+    },
+    {
+      "file": "root_boar-idle.webp",
+      "sha256": "2c129236aa605d7f0aa2dd7dcd2273fcae50444d415af0fa710146c6b9af4e96"
+    },
+    {
+      "file": "root_boar-move.webp",
+      "sha256": "224fe8bdd8fa6269e6a7cd65bdade06cb20c52a46d6a8d6e7b4d848d4ce85b33"
+    },
+    {
+      "file": "root_boar-attack.webp",
+      "sha256": "567bffdf881f0e2ea1d3c126dcb4bca6650f5190b789b531b5decb18b71ce0b9"
+    },
+    {
+      "file": "root_boar-hit.webp",
+      "sha256": "9b4b9757ec85908565e43917ca2805c549e456af636aca74ba438068e4a52ed5"
+    },
+    {
+      "file": "root_boar-death.webp",
+      "sha256": "da6f114848d8221fc02c75950ad1c8d8261df2d3d5b0c216833994895d48e9df"
+    },
+    {
+      "file": "mist_weaver-idle.webp",
+      "sha256": "7d53b8ab7b92541ea57d0cc97260f7541e24e6aa2e8e3589149d96c8a5ea493b"
+    },
+    {
+      "file": "mist_weaver-move.webp",
+      "sha256": "db5ae2d19330df491b2bceecd0546d2bffa06ee9f96714938bbd9c054c3a828c"
+    },
+    {
+      "file": "mist_weaver-attack.webp",
+      "sha256": "237552edf9937cd839d4bfd7da9b54f6f02e900c8195a88ed35f7f0a78cbc0f4"
+    },
+    {
+      "file": "mist_weaver-hit.webp",
+      "sha256": "25197ea36de9e74286f5f077c1ddba5aa72cdb647bdb76e63509a225e995e55b"
+    },
+    {
+      "file": "mist_weaver-death.webp",
+      "sha256": "fa77c91d444bc8a2f644242c7ffc451503dccae2ca605eae418117e48e812f71"
+    },
+    {
+      "file": "thorn_nest_mother-idle.webp",
+      "sha256": "56b5398269749209d6b68dbbd219123cfd14f7e24328aff45f5599c90add88dd"
+    },
+    {
+      "file": "thorn_nest_mother-move.webp",
+      "sha256": "af21d4f4dbec9c87c32788cf9b9fd2c3976bfc5ae14c5be45f3a38852d557108"
+    },
+    {
+      "file": "thorn_nest_mother-attack.webp",
+      "sha256": "a92042bb73352789b70f7b107da3f35bd320423a0d5d530221753a8fd829012a"
+    },
+    {
+      "file": "thorn_nest_mother-hit.webp",
+      "sha256": "e5539ddcc31ccc7a7d69daa5c7135537499dd3d158659854680a5af060aa35ec"
+    },
+    {
+      "file": "thorn_nest_mother-death.webp",
+      "sha256": "eadd52c6175fdb88510a0b73f99a5345066b0cc2e5dedd12c6335fa98e101570"
+    }
+  ]
+}

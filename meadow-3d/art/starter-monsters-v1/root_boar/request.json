@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted ink, gouache and watercolor isometric MMORPG creature. Original character, natural texture, subdued highlights. Match the approved base. NOT pixel art. No text, labels, scenery, floor plane, shadow, or extra creatures.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "front-right three-quarter. tiny gentle breathing and a single slow blink, identity and ground position stable. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "front-right three-quarter. a short readable bounding cycle: crouch, lift the entire body slightly, settle, return to the starting stance; no translation across the cell. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-right three-quarter. a readable combat sequence: ready, wind up, strike toward the facing direction, recover to ready; no detached projectile or glow. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-right three-quarter. a brief readable recoil: ready, compress backwards from impact, recover, ready; keep body proportions and the same ground contact. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-right three-quarter. ready, weaken and droop, fall down into a low defeated pose, remain collapsed on the ground; never stand back up. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "back-right three-quarter, no visible face. tiny gentle breathing and a single slow blink, identity and ground position stable. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "back-right three-quarter, no visible face. a short readable bounding cycle: crouch, lift the entire body slightly, settle, return to the starting stance; no translation across the cell. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter, no visible face. a readable combat sequence: ready, wind up, strike toward the facing direction, recover to ready; no detached projectile or glow. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter, no visible face. a brief readable recoil: ready, compress backwards from impact, recover, ready; keep body proportions and the same ground contact. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter, no visible face. ready, weaken and droop, fall down into a low defeated pose, remain collapsed on the ground; never stand back up. Preserve exactly the specified anatomy: A stocky small brown wild boar on four hooved legs, a bristly moss ridge and branching root-shaped ivory tusks. Large snout and short curled vine tail. No clothing."
+    }
+  },
+  "body_plan": [
+    "quadruped"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

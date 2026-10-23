@@ -4,9 +4,11 @@ import type { Enemy, MonsterMotion, SlimeVariant } from './sim';
 import { makeMonsterFallback } from './actors';
 import { uprightSprite } from './upright-depth.ts';
 import { monsterCell, monsterOpacity, VARIANT_HUE, monsterSpecies, SPECIES_SCALE } from './monster-animation';
+import {huntingCell} from './hunting-monster-animation';
+import {DIRECTIONS} from './sprite-animation';
 import type { MonsterSpecies } from './monster-animation';
 interface MotionAtlas{file:string;columns:number;rows:number;frames:number;duration:number;directions:{faceRect:[number,number,number,number]|null;bounds:number[]}[][]}
-interface SpeciesManifest{bodyWorldHeight?:number;cellSize:[number,number];anchor:[number,number];quadWorldSize:[number,number];motions:Record<string,MotionAtlas>}
+interface SpeciesManifest{sourceId?:string;attackWindup?:number;bodyWorldHeight?:number;cellSize:[number,number];anchor:[number,number];quadWorldSize:[number,number];motions:Record<string,MotionAtlas>}
 interface Manifest{species:Record<MonsterSpecies,SpeciesManifest>;phase2:{expressionOverlay:string}}
 interface Bank{manifest:Manifest|null;textures:Record<MonsterSpecies,Record<string,T.Texture>>;expression:T.Texture|null;request:(species:MonsterSpecies)=>void}
 const banks=new WeakMap<PaintedLoader,Bank>();
@@ -83,12 +85,14 @@ export function makePaintedMonster(loader:PaintedLoader,boss=false,options:Monst
   const recovered=recoveryFrom+time-recoveryAt;
   const visualMotion=e.motion==='idle'&&recovered<(bank.manifest?.species[species]?.motions.attack?.duration||0)?'attack':e.motion;
   const visualTime=visualMotion!==e.motion?recovered:e.motionTime;lastMotion=e.motion;
-  const definition=bank.manifest?.species[species],texture=bank.textures[species][visualMotion]||bank.textures[species].idle;
-  const actual=bank.textures[species][visualMotion]?visualMotion:'idle';
+  const definition=bank.manifest?.species[species];
+  const native=definition?.sourceId?huntingCell({...e,motion:visualMotion,motionTime:visualTime},definition.attackWindup,definition.motions.attack.columns):null;
+  const actual=native?.motion||(bank.textures[species][visualMotion]?visualMotion:'idle');
+  const texture=bank.textures[species][actual]||bank.textures[species].idle;
   fallback.visible=!definition||!texture;portrait.visible=!fallback.visible;
   expressionVisible=false;uniforms.uJellyFaceEnabled.value=0;
   if(!definition||!texture){if(placeholder){(fallback.material as T.MeshBasicMaterial).color.set(e.hurt>0?'#ffffff':placeholder.color);(fallback.material as T.MeshBasicMaterial).opacity=opacity;}diagnostic={...diagnostic,motion:e.motion,actualMotion:'fallback',opacity};return;}
-  const cell=monsterCell(species,actual,e.fx,e.fz,visualTime);const info=definition.motions[actual];
+  const cell=native?{...native,direction:DIRECTIONS[native.row]}:monsterCell(species,actual as MonsterMotion,e.fx,e.fz,visualTime);const info=definition.motions[actual];
   uniforms.uJellyCell.value.set(cell.column/info.columns,1-(cell.row+1)/4,1/info.columns,.25);
   if(material.map!==texture){material.map=texture;material.needsUpdate=true;}
   uniforms.uJellyHue.value=species==='slime'||species==='king'?(options.hueShift??VARIANT_HUE[options.variant||e.variant]):0;uniforms.uJellyPhase.value=species==='king'&&e.bossPhase===2?1:0;uniforms.uForestPhase.value=species==='warden'&&e.bossPhase===2&&!e.dead?1:0;uniforms.uJellyFlash.value=e.dead?0:Math.min(1,e.hurt/.18)*.8;uniforms.uJellyTime.value=time;

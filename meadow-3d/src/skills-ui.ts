@@ -1,19 +1,34 @@
-import {resolveSkill,loadGameData} from '@the-beginning-online/shared';
+import {resolveSkill,loadGameData,isMasteryAction,isMasteryPassive,MASTERY_SCHOOLS,masterySkillLock,masteryAutoRank,masteryTriggerSlots,resolveAutomaticSkill,automaticCause} from '@the-beginning-online/shared';
+import constellation from "./mastery-layout.json";
+import {masteryAncestors,masteryCurve} from "./mastery-paths";
+import {masteryCamera} from "./mastery-camera";
+import paintedIcons from "../art/mastery-icons/manifest.json";
 import skillsData from "../../shared/data/skills.json";
 import jobsData from "../../shared/data/jobs.json";
 import type { HotbarSlot, JobProgress } from "@the-beginning-online/shared";
 import "./skills.css";
 import "./skill-art.css";
+import "./mastery-panel.css";
+import "./skill-tree.css";
 import { itemIconCell } from "./item-icon";
 import { BINDABLE_KEY } from "@the-beginning-online/shared";
 import { takenByActions } from "./keys";
-const skills = skillsData.skills as any[];
+const gameData=loadGameData();
+const schoolNames:Record<string,string>={Swordsman:"ดาบ",Archer:"ธนู",Mage:"เวท",Healer:"เยียวยา",Summoner:"อัญเชิญ",Assassin:"ลอบเร้น",Boxer:"หมัด"};
+const schoolColors=["#cdac79","#a4ba7d","#96b8d8","#d2c291","#a5c3b1","#c4a1b6","#cd9f88"];
+const schoolGlyphs:Record<string,string>={Swordsman:"⚔",Archer:"➶",Mage:"✦",Healer:"✚",Summoner:"❖",Assassin:"◆",Boxer:"✊"};
+const branchNames:Record<string,string>={core:"แกนหลัก",guardian:"ผู้พิทักษ์",berserker:"คลั่งศึก",marksman:"แม่นธนู",ranger:"พราน",wizard:"จอมเวท",sage:"ปราชญ์",physician:"แพทย์",alchemist:"นักปรุงยา",spirit_master:"เจ้าวิญญาณ",exorcist:"ผู้ขับไล่",assassin:"นักฆ่า",shadow:"เงา",champion:"แชมเปี้ยน",monk:"นักพรต"};
+const weaponNames:Record<string,string>={any:"ทุกอาวุธ",sword:"ดาบ",bow:"ธนู",dagger:"มีด",unarmed:"มือเปล่า",staff:"คทา"};
+const legacySkills = skillsData.skills as any[];
+const skills:any[]=gameData.mastery.skills.map(plan=>{
+ const live=(isMasteryAction(plan.id)||isMasteryPassive(plan.id))?resolveSkill(gameData,plan.id):legacySkills.find(s=>s.id===plan.id);
+ return {...(live??{id:plan.id,nameTh:plan.nameTh,passive:plan.passive,maxLevel:plan.maxRank,requires:plan.requires.map(r=>({id:r.id,level:r.rank})),icon:0,sp:plan.ranks[0].mp,range:plan.range,percent:0}),school:plan.school,plan,legacyRuntime:!!live&&!isMasteryAction(plan.id)&&!isMasteryPassive(plan.id)};
+}).concat(legacySkills.filter(s=>!gameData.mastery.skills.some(p=>p.id===s.id)));
 const itemTemplates=loadGameData().items.items;
-const slotSpec=(id:string|null)=>id?.startsWith('item:')?itemTemplates.find(t=>t.id===id.slice(5)):skills.find(s=>s.id===id);
+const slotSpec=(id:string|null)=>id?.startsWith('item:')?itemTemplates.find(t=>t.id===id.slice(5)):id&&isMasteryAction(id)?resolveSkill(loadGameData(),id):skills.find(s=>s.id===id);
 /** Consumables that can sit on the bar (HP, MP and speed potions). */
 const barItems=itemTemplates.filter(t=>t.type==='consumable'&&t.effect);
 const POTION_CD=skills.find(s=>s.id==='potion')?.cooldown||1;
-const gameData=loadGameData();
 const ELEMENT_TH=gameData.elements.names as Record<string,string>;
 const BASIC=skills.find(s=>s.id==='basic');
 const itemIconHTML=(template:string,extra='')=>{const c=itemIconCell(template);return `<span class="item-icon${c.v2?' item-icon-v2':''} ${extra}" style="background-position:${c.position}" aria-hidden="true"></span>`;};
@@ -30,6 +45,7 @@ export function mountSkills(
 	play: (id: string) => void = () => {},
 ) {
 	let confirmedJob: string | undefined;
+	let lastSchool: string = "Swordsman", mixFilter = "all", mixId: string | null = null;
 	let job: JobProgress | null = null,
 		pending: Record<string, number> = {},
 		selected: string | null = null,
@@ -42,6 +58,45 @@ export function mountSkills(
 	const panel = $<HTMLDialogElement>("#skills-window"),
 		angel = $<HTMLDialogElement>("#angel-window");
 	const bar = $("#job-hotbar");
+    const camera=masteryCamera(constellation.size);
+    let mapTarget:string|null="all";
+    let mapWidth=0,mapHeight=0;
+    function paintCamera(){
+     const viewport=panel.querySelector<HTMLElement>(".mastery-viewport"),world=panel.querySelector<HTMLElement>(".mastery-world");
+     if(!viewport||!world)return;
+     const c=camera.state;
+     world.style.transform=`translate(${c.x}px,${c.y}px) scale(${c.scale})`;
+     viewport.classList.toggle("overview",c.scale<.53);
+     world.style.setProperty("--node-label-scale",String(Math.max(1,.9/c.scale)));
+     world.style.setProperty("--label-scale",String(Math.max(1,.18/c.scale)));
+     const zoom=panel.querySelector(".mastery-zoom");if(zoom)zoom.textContent=`${Math.round(c.scale*100)}%`;
+    }
+    function positionMap(){
+     const viewport=panel.querySelector<HTMLElement>(".mastery-viewport");
+     if(!viewport||!panel.open)return;
+     const w=viewport.clientWidth,h=viewport.clientHeight;
+     if(w!==mapWidth||h!==mapHeight){
+      if(!mapTarget)mapTarget=viewJob==="all"?"all":detailId;
+      mapWidth=w;mapHeight=h;
+     }
+     if(mapTarget==="all")camera.fit(w,h);
+     else if(mapTarget){
+      const point=(constellation.nodes as Record<string,{x:number;y:number}>)[mapTarget],hub=constellation.hubs.find(s=>s.name===mapTarget);
+      if(point){
+       const ancestors=masteryAncestors(gameData.mastery.skills,mapTarget),ids=new Set([mapTarget,...ancestors,...gameData.mastery.skills.filter(s=>s.requires.some(r=>r.id===mapTarget)).map(s=>s.id)]);
+       const points=[...ids].map(id=>(constellation.nodes as Record<string,{x:number;y:number}>)[id]),xs=points.map(p=>p.x),ys=points.map(p=>p.y);
+       const left=Math.min(...xs)-100,right=Math.max(...xs)+100,top=Math.min(...ys)-100,bottom=Math.max(...ys)+100;
+       camera.focus((left+right)/2,(top+bottom)/2,w,h,Math.min(1,w/(right-left),h/(bottom-top))*.94);
+      }
+      else if(hub){
+       const points=gameData.mastery.skills.filter(s=>s.school===hub.name).map(s=>(constellation.nodes as Record<string,{x:number;y:number}>)[s.id]);
+       const xs=points.map(p=>p.x),ys=points.map(p=>p.y),left=Math.min(...xs)-100,right=Math.max(...xs)+100,top=Math.min(...ys)-100,bottom=Math.max(...ys)+100;
+       camera.focus((left+right)/2,(top+bottom)/2,w,h,Math.min(w/(right-left),h/(bottom-top))*.94);
+      }
+     }else camera.bound(w,h);
+     mapTarget=null;paintCamera();
+    }
+    new ResizeObserver(positionMap).observe(panel);
 	function level(id: string) {
 		return (job?.skills[id] || 0) + (pending[id] || 0);
 	}
@@ -55,6 +110,10 @@ export function mountSkills(
 	}
 	function reason(s: any) {
 		if (!job) return "กำลังรับข้อมูล";
+        if(s.plan){
+         if(!s.legacyRuntime&&!isMasteryAction(s.id)&&!isMasteryPassive(s.id))return "ยังไม่เปิดให้เรียน";
+         return masterySkillLock({...job,skills:{...job.skills,...Object.fromEntries(Object.keys(pending).map(id=>[id,level(id)]))},skillPoints:job.skillPoints-Object.values(pending).reduce((a,b)=>a+b,0)},s.id,gameData.mastery)??"";
+        }
 		if (!owner(s.jobId)) return "อาชีพไม่ตรง";
 		if (level(s.id) >= s.maxLevel) return "ระดับสูงสุด";
 		const req = s.requires.find((r: any) => level(r.id) < r.level);
@@ -64,9 +123,13 @@ export function mountSkills(
 			return "แต้มสกิลไม่พอ";
 		return "";
 	}
-	const icon = (s: any) =>
-		`<span class="job-icon" style="--ix:${s.icon % 4};--iy:${Math.floor(s.icon / 4)}" aria-hidden="true"></span>`;
+	const icon = (s: any,extra="") => {
+        const art=(paintedIcons.icons as Record<string,{file:string}>)[s.id];
+        const style=art?`background-image:url('/assets/mastery-painted/${art.file}');background-position:center;background-size:100% 100%`:`--ix:${s.icon % 4};--iy:${Math.floor(s.icon / 4)}`;
+        return `<span class="job-icon ${extra}" style="${style}" aria-hidden="true"></span>`;
+    };
 	function values(s: any, lv: number) {
+        if(s.plan&&!s.legacyRuntime){const r=s.plan.ranks[Math.max(0,Math.min(s.plan.maxRank-1,lv-1))],effect=r.effect.replace(/\d+(?:\.\d+)?/g,(n:string)=>String(Math.round(Number(n)*100)/100));return s.passive?effect:`${effect} · MP ${r.mp} · CD ${r.cooldown} วิ · ร่าย ${r.cast} วิ · ระยะ ${s.range} ม.`;}
 		const at = (key: string, fallback: number) =>
 			s.values?.[key]?.[Math.max(0, lv - 1)] ?? fallback;
 		const pct = (v: number) => Math.round(v * 100);
@@ -125,24 +188,154 @@ export function mountSkills(
 			${effect ? `<p class="sk-eff">ผลพิเศษ · ${effect}</p>` : ""}
 			<p class="sk-note">แรงกว่าโจมตีปกติ ×${ratio.toFixed(1)}${power ? ` · ≈ คิดจาก${magic ? "พลังเวท" : "พลังโจมตี"} ${n(Math.round(power))} ตอนนี้ ก่อนหักเกราะและธาตุของศัตรู` : ""}</p></section>`;
 	}
+
+	/* ---------- School tree (ui-mockup/skilltree.html): one school per page, rows = Mastery unlock level ---------- */
+	const masteryOf=(school:string)=>(job?.masteries as Record<string,number>|undefined)?.[school]??0;
+	const pointsLeft=()=>(job?.skillPoints??0)-Object.values(pending).reduce((a,b)=>a+b,0);
+	function segHTML(){
+	 const on=(v:boolean)=>`aria-pressed="${v}"`,tree=viewJob!=="mix"&&viewJob!=="items";
+	 return `<nav class="mt-seg" role="toolbar" aria-label="มุมมองสกิล"><button type="button" data-view="${lastSchool}" ${on(tree)}>ผังสกิล</button><button type="button" data-view="mix" ${on(viewJob==="mix")}>ผสานศาสตร์ <i>${gameData.mastery.mixes.length}</i></button><button type="button" data-view="items" ${on(viewJob==="items")}>ยา</button></nav>`;
+	}
+	function bindViews(root:HTMLElement){
+	 root.querySelectorAll<HTMLButtonElement>("[data-view]").forEach(b=>b.onclick=()=>{viewJob=b.dataset.view!;mapTarget="all";selected=null;if(MASTERY_SCHOOLS.some(s=>s===viewJob)&&!skills.some(s=>s.id===detailId&&s.school===viewJob))detailId=null;draw();});
+	}
+	function railHTML(){
+	 const learned=(school:string)=>skills.filter(s=>s.plan&&s.school===school&&level(s.id)).length;
+	 const stars=MASTERY_SCHOOLS.map((school,i)=>{const a=-Math.PI/2+i*2*Math.PI/7,list=skills.filter(s=>s.plan&&s.school===school);
+	  return list.map((s,j)=>{const r=16+((j%7)+1)*7,aa=a+(Math.floor(j/7)-1)*.28;return `<circle cx="${(70+Math.cos(aa)*r).toFixed(1)}" cy="${(70+Math.sin(aa)*r).toFixed(1)}" r="${level(s.id)?2.4:1.4}" fill="${level(s.id)?schoolColors[i]:'#ffffff40'}"/>`;}).join("");}).join("");
+	 const total=skills.filter(s=>s.plan&&level(s.id)).length;
+	 return `<div class="mt-cap">ศาสตร์ · MASTERY</div>${MASTERY_SCHOOLS.map((school,i)=>`<button type="button" class="mt-sch" data-view="${school}" aria-pressed="${viewJob===school}" style="--c:${schoolColors[i]};--m:${masteryOf(school)}"><span class="mt-gl" aria-hidden="true">${schoolGlyphs[school]}</span><b>${schoolNames[school]}<small>เรียน ${learned(school)}/${skills.filter(s=>s.plan&&s.school===school).length}</small></b><span class="mt-mb"><i></i><em>${masteryOf(school)}</em></span></button>`).join("")}
+	  <button type="button" class="mt-mini" data-view="all" aria-label="เปิดผังดวงดาวรวม 147 สกิล"><svg viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="11" fill="#e6c98f26" stroke="#e6c98f80"/><text x="70" y="73" font-size="9" fill="#fff1c9" text-anchor="middle" font-weight="800">${total}</text>${stars}</svg><b>ผังดวงดาวรวม</b><small>เรียนแล้ว ${total} / ${skills.filter(s=>s.plan).length} ดาว · กดเพื่อเปิด</small></button>`;
+	}
+	function drawTree(tree:HTMLElement){
+	 const mix=viewJob==="mix";
+	 tree.innerHTML=`${segHTML()}<div class="mt-body${mix?" mt-mixmode":""}"><aside class="mt-rail"></aside><section class="mt-tree"></section><aside class="mt-det" aria-live="polite"></aside></div>`;
+	 const rail=tree.querySelector<HTMLElement>(".mt-rail")!,main=tree.querySelector<HTMLElement>(".mt-tree")!,det=tree.querySelector<HTMLElement>(".mt-det")!;
+	 if(mix)drawMix(rail,main,det);
+	 else{rail.innerHTML=railHTML();drawSchool(main,det);}
+	 bindViews(tree);
+	}
+	function drawSchool(main:HTMLElement,det:HTMLElement){
+	 const school=viewJob!,color=schoolColors[MASTERY_SCHOOLS.indexOf(school as typeof MASTERY_SCHOOLS[number])],list=skills.filter(s=>s.plan&&s.school===school),m=masteryOf(school);
+	 if(!list.some(s=>s.id===detailId))detailId=(list.find(s=>!reason(s))??list[0])?.id??null;
+	 const lanes=[...new Set(list.map(s=>s.plan.branch as string))].sort((a,b)=>(a==="core"?0:1)-(b==="core"?0:1));
+	 const gates=[...new Set(list.map(s=>s.plan.ranks[0].mastery as number))].sort((a,b)=>a-b);
+	 const COLW=92,GUT=54,ROWH=74,TOP=6,cellOf=(b:string,g:number)=>list.filter(s=>s.plan.branch===b&&s.plan.ranks[0].mastery===g);
+	 const sub=Object.fromEntries(lanes.map(b=>[b,Math.max(b==="core"?3:2,...gates.map(g=>cellOf(b,g).length))]));
+	 const laneX:Record<string,number>={};let x=GUT;for(const b of lanes){laneX[b]=x;x+=sub[b]*COLW+10;}
+	 const pos:Record<string,[number,number]>={};
+	 for(const b of lanes)for(const g of gates){const cell=cellOf(b,g).sort((p,q)=>Number(p.passive)-Number(q.passive)),w=sub[b]*COLW,start=laneX[b]+(w-cell.length*COLW)/2;cell.forEach((s,i)=>{pos[s.id]=[start+COLW*i+COLW/2,TOP+gates.indexOf(g)*ROWH+ROWH/2-4];});}
+	 const laneOf=(id:string)=>list.find(s=>s.id===id)?.plan.branch;
+	 const entry=(b:string)=>{const need=new Map<string,number>();for(const s of list.filter(s=>s.plan.branch===b))for(const r of s.requires)if(laneOf(r.id)!==b)need.set(r.id,Math.max(need.get(r.id)??0,r.level));
+	  return [...need].map(([id,n])=>{const ok=level(id)>=n;return `<em class="${ok?"":"no"}">${ok?"✓":"🔒"} ต้อง ${skills.find(s=>s.id===id)?.nameTh??id} Lv${n}</em>`;}).join("");};
+	 const edges=list.flatMap(s=>s.requires.filter((r:any)=>laneOf(r.id)===s.plan.branch).map((r:any)=>{const a=pos[r.id],b=pos[s.id];if(!a||!b)return"";const met=level(r.id)>=r.level,y1=a[1]+46,y2=b[1]-26,my=(y1+y2)/2;
+	  return `<path class="${met?"met":""}" d="M${a[0]} ${y1} C${a[0]} ${my},${b[0]} ${my},${b[0]} ${y2}"/>${met?"":`<text x="${b[0]+26}" y="${y2+4}">Lv${r.level}</text>`}`;})).join("");
+	 const nowIndex=gates.findIndex(g=>g>m),nowY=nowIndex<0?TOP:TOP+nowIndex*ROWH;
+	 const nodes=list.map(s=>{const lv=level(s.id),lock=reason(s),[nx,ny]=pos[s.id],max=lv>=s.maxLevel;
+	  const cls=["mt-node",s.passive?"pas":"",lv?"learned":"",!lock&&!max?"can":"",!lv&&lock?"lock":"",pending[s.id]?"pending":"",s.id===detailId?"sel":""].filter(Boolean).join(" ");
+	  return `<button type="button" class="${cls}" data-sk="${s.id}" style="left:${nx}px;top:${ny-25}px" draggable="${!s.passive&&!!job!.skills[s.id]}" aria-pressed="${s.id===detailId}" aria-label="${s.nameTh} ระดับ ${lv}/${s.maxLevel} ${lock||"เรียนได้"}" title="${s.nameTh} · ${lv}/${s.maxLevel}${lock?" · "+lock:""}"><span class="mt-ic">${icon(s)}<span class="mt-rk">${lv}/${s.maxLevel}${max?" MAX":""}</span></span><span class="mt-nm">${s.nameTh}</span></button>`;}).join("");
+	 main.style.setProperty("--c",color);
+	 main.innerHTML=`<div class="mt-lanes" style="grid-template-columns:${GUT}px ${lanes.map(b=>sub[b]*COLW+10+"px").join(" ")}"><span></span>${lanes.map(b=>`<span class="${b==="core"?"core":""}">${branchNames[b]??b}<small>${list.filter(s=>s.plan.branch===b).length} สกิล · ${b==="core"?"พื้นฐานของศาสตร์":"สายเฉพาะทาง"}</small>${entry(b)}</span>`).join("")}</div>
+	  <div class="mt-grid" style="height:${TOP+gates.length*ROWH}px">${gates.map((g,i)=>`<div class="mt-row ${g<=m?"open":"locked"}" style="top:${TOP+i*ROWH}px;height:${ROWH}px"><span class="mt-ml">M ${g}${g>m?'<small>🔒</small>':''}</span></div>`).join("")}${lanes.slice(1).map(b=>`<span class="mt-lanebg" style="left:${laneX[b]-5}px"></span>`).join("")}<svg class="mt-edges" aria-hidden="true">${edges}</svg><div class="mt-now${nowIndex<0?" full":""}" style="top:${nowY}px"><span>Mastery ${schoolNames[school]} ${m}${nowIndex<0?" · ปลดล็อกครบทุกแถว":""}</span></div>${nodes}</div>
+	  <div class="mt-legend"><span><i class="l"></i>เรียนแล้ว</span><span><i class="c"></i>เรียนได้ตอนนี้</span><span><i class="k"></i>ยังล็อก</span><span><i></i>แอคทีฟ</span><span><i class="r"></i>พาสซีฟ</span><span class="end">Mastery เพิ่มเมื่อใช้สกิลของศาสตร์นี้ต่อสู้</span></div>`;
+	 main.querySelectorAll<HTMLButtonElement>("[data-sk]").forEach(node=>{
+	  node.onclick=()=>{const s=list.find(s=>s.id===node.dataset.sk)!;detailId=s.id;
+	   if(!s.passive&&job?.skills[s.id]){selected=s.id;$("#skills-status").textContent=`เลือกช่องในแถบลัดเพื่อวาง ${s.nameTh} · หรือลากไอคอนลงไป`;}else selected=null;draw();};
+	  node.ondragstart=e=>{document.body.classList.add("dragging-hotbar");e.dataTransfer?.setData("text/plain",node.dataset.sk!);};
+	  node.ondragend=()=>document.body.classList.remove("dragging-hotbar");
+	 });
+	 const d=list.find(s=>s.id===detailId);if(!d){det.innerHTML="";return;}
+	 const lv=level(d.id),learned=job!.skills[d.id]||0,nextLv=Math.min(d.maxLevel,lv+1),lock=reason(d),max=lv>=d.maxLevel,ranks=d.plan.ranks;
+	 const bars=Array.from({length:d.maxLevel},(_,i)=>`<i class="${i<learned?"on":i<lv?"new":i===lv&&!lock?"nx":ranks[i]?.mastery>m?"gate":""}" title="ระดับ ${i+1} · ต้อง Mastery ${ranks[i]?.mastery??0}"></i>`).join("");
+	 const gateNext=ranks.find((r:any,i:number)=>i>=lv&&r.mastery>m)?.mastery;
+	 const rank=ranks[Math.max(0,Math.min(ranks.length-1,(lv||1)-1))];
+	 const reqs=[...d.requires.map((r:any)=>`<li class="${level(r.id)>=r.level?"":"no"}">${skills.find(s=>s.id===r.id)?.nameTh??r.id} ระดับ ${r.level}<small>มี ${level(r.id)}</small></li>`),
+	  max?"":`<li class="${(ranks[lv]?.mastery??0)<=m?"":"no"}">Mastery ${schoolNames[school]} ${ranks[lv]?.mastery??0}<small>มี ${m}</small></li>`,
+	  max?"":`<li class="${pointsLeft()>0?"":"no"}">แต้มสกิล 1<small>เหลือ ${pointsLeft()}</small></li>`].join("");
+	 const effect=!d.passive&&d.type!=="heal"&&d.percent>0?damageHTML(d,lv,nextLv):`<div class="mt-box"><h4>ผล</h4><p>${lv?`ตอนนี้: <b>${values(d,lv)}</b>`:"ยังไม่ได้เรียน"}</p>${max?"":`<p class="nx">ระดับ ${nextLv}: ${values(d,nextLv)}</p>`}</div>`;
+	 det.style.setProperty("--c",color);
+	 det.innerHTML=`<div class="mt-dh">${icon(d,"mt-big"+(d.passive?" round":""))}<div><h3></h3><div class="mt-tags"><span>${d.passive?"พาสซีฟ":"แอคทีฟ"}</span><span>${schoolNames[school]} · ${branchNames[d.plan.branch]??d.plan.branch}</span><span>${weaponNames[d.plan.weapon]??d.plan.weapon}</span></div></div></div>
+	  <div><div class="mt-rkl"><span>ระดับ <b>${lv} / ${d.maxLevel}</b>${pending[d.id]?` <em>(+${pending[d.id]} รอยืนยัน)</em>`:""}</span><span>${gateNext!==undefined?`ช่องลาย = ต้อง Mastery ${gateNext}`:"เรียนได้ครบทุกระดับ"}</span></div><div class="mt-ranks" style="--n:${d.maxLevel}">${bars}</div></div>
+	  ${effect}
+	  ${d.passive?"":`<div class="mt-kv"><div><small>MP</small><b>${Math.round(rank.mp)}</b></div><div><small>คูลดาวน์</small><b>${rank.cooldown}s</b></div><div><small>ระยะ</small><b>${d.plan.range}m</b></div></div>`}
+	  <div class="mt-box"><h4>เงื่อนไขระดับถัดไป</h4><ul class="mt-req">${max?"<li>เรียนครบแล้ว</li>":reqs}</ul></div>
+	  <div class="mt-acts"><button type="button" class="mt-minus" aria-label="ลดระดับที่เตรียมไว้" ${pending[d.id]?"":"disabled"}>−</button><button type="button" class="mt-learn" data-learn="${d.id}" ${lock||max?"disabled":""}>${max?"ระดับสูงสุดแล้ว":lock?lock:`+ เรียนระดับ ${nextLv}`}${lock||max?"":"<small>1 แต้ม</small>"}</button></div>
+	  <p class="mt-hint">${d.passive?"พาสซีฟทำงานเองเมื่อเรียนแล้ว":learned?"ลากไอคอนลงแถบลัด หรือกดแล้วแตะช่อง":"เรียนแล้วจึงวางลงแถบลัดได้"} · กดยืนยันเรียนสกิลด้านล่างเพื่อบันทึก</p>`;
+	 det.querySelector("h3")!.textContent=d.nameTh;
+	 det.querySelector<HTMLButtonElement>(".mt-learn")!.onclick=()=>{pending[d.id]=(pending[d.id]||0)+1;$("#skills-status").textContent=`เตรียมอัป ${d.nameTh} · กดยืนยันเรียนสกิลด้านล่าง`;draw();};
+	 det.querySelector<HTMLButtonElement>(".mt-minus")!.onclick=()=>{if(!pending[d.id])return;pending[d.id]--;if(!pending[d.id])delete pending[d.id];draw();};
+	}
+	/* ---------- Mix tab ---------- */
+	function mixState(m:(typeof gameData.mastery.mixes)[number]){
+	 const items=[
+	  ...Object.entries(m.masteries).map(([school,n])=>({label:`Mastery ${schoolNames[school]} ${n}`,ok:masteryOf(school)>=n!,have:String(masteryOf(school))})),
+	  ...Object.entries(m.pathRanks).map(([id,n])=>({label:`${skills.find(s=>s.id===id)?.nameTh??id} Lv${n}`,ok:(job!.skills[id]??0)>=n,have:String(job!.skills[id]??0),skill:true})),
+	  ...Object.keys(m.requires).map(id=>({label:`${skills.find(s=>s.id===id)?.nameTh??id} อยู่ในแถบลัด`,ok:job!.hotbar.some(s=>s.skill===id&&!s.mode),have:job!.hotbar.some(s=>s.skill===id&&!s.mode)?"มี":"ไม่มี"})),
+	 ];
+	 const done=items.filter(i=>i.ok).length;
+	 return {items,done,ready:done===items.length,active:job!.hotbar.some(s=>s.signature===m.id)};
+	}
+	function drawMix(rail:HTMLElement,main:HTMLElement,det:HTMLElement){
+	 const mixes=gameData.mastery.mixes,inFilter=(m:typeof mixes[number])=>mixFilter==="all"||(mixFilter==="ready"?mixState(m).ready:mixFilter in m.masteries);
+	 const count=(f:string)=>mixes.filter(m=>f==="all"||(f==="ready"?mixState(m).ready:f in m.masteries)).length;
+	 rail.innerHTML=`<div class="mt-cap">กรองตามศาสตร์</div><button type="button" class="mt-all" data-mf="all" aria-pressed="${mixFilter==="all"}">ทั้งหมด<small>${count("all")} สูตร</small></button><button type="button" class="mt-all" data-mf="ready" aria-pressed="${mixFilter==="ready"}">ใช้ได้ตอนนี้<small>${count("ready")} สูตร</small></button>${MASTERY_SCHOOLS.map((school,i)=>`<button type="button" class="mt-sch" data-mf="${school}" aria-pressed="${mixFilter===school}" style="--c:${schoolColors[i]};--m:${masteryOf(school)}"><span class="mt-gl" aria-hidden="true">${schoolGlyphs[school]}</span><b>${schoolNames[school]}<small>${count(school)} Mix</small></b><span class="mt-mb"><i></i><em>${masteryOf(school)}</em></span></button>`).join("")}`;
+	 rail.querySelectorAll<HTMLButtonElement>("[data-mf]").forEach(b=>b.onclick=()=>{mixFilter=b.dataset.mf!;draw();});
+	 const score=(m:typeof mixes[number])=>{const st=mixState(m);return (st.active?1000:0)+(st.ready?100:0)+st.done/st.items.length;};
+	 const list=mixes.filter(inFilter).sort((a,b)=>score(b)-score(a));
+	 if(!mixId||!mixes.some(m=>m.id===mixId))mixId=list[0]?.id??mixes[0].id;
+	 const colorOf=(school:string)=>schoolColors[MASTERY_SCHOOLS.indexOf(school as typeof MASTERY_SCHOOLS[number])];
+	 main.classList.add("mt-mixgrid");
+	 main.innerHTML=`<p class="mt-mixhead"><b>ผสานศาสตร์ (Mix)</b> · คอมโบข้ามสองศาสตร์ ทำงานเองเมื่อเข้าจังหวะ · ใช้ได้ทีละ 1 สูตร</p>`+list.map(m=>{
+	  const st=mixState(m),[a,b]=Object.keys(m.masteries);
+	  return `<button type="button" class="mt-mc${m.id===mixId?" sel":""}${st.active?" active":""}" data-mix="${m.id}" style="--a:${colorOf(a)};--b:${colorOf(b)}"><span class="mt-pair">${[a,b].map(s=>`<span class="${masteryOf(s)>=m.masteries[s as keyof typeof m.masteries]!?"":"no"}" style="--c:${colorOf(s)}"><i>${schoolGlyphs[s]}</i>${schoolNames[s]} ${m.masteries[s as keyof typeof m.masteries]}</span>`).join("<em>+</em>")}${st.active?'<span class="mt-st act">ใช้งานอยู่</span>':st.ready?'<span class="mt-st ready">พร้อมใช้</span>':`<span class="mt-st miss">ขาดอีก ${st.items.length-st.done}</span>`}</span>
+	   <b class="mt-mname">${m.nameTh}<small>${m.id} · ${weaponNames[m.weapon]??m.weapon}</small></b><span class="mt-meff">${m.effect}</span><span class="mt-bar" style="--p:${Math.round(st.done/st.items.length*100)}"><i></i></span></button>`;}).join("");
+	 main.querySelectorAll<HTMLButtonElement>("[data-mix]").forEach(b=>b.onclick=()=>{mixId=b.dataset.mix!;draw();});
+	 const m=mixes.find(x=>x.id===mixId)!,st=mixState(m),[a,b]=Object.keys(m.masteries);
+	 det.innerHTML=`<div class="mt-emb"><span style="--c:${colorOf(a)}">${schoolGlyphs[a]}</span><b>+</b><span style="--c:${colorOf(b)}">${schoolGlyphs[b]}</span></div><h3 class="mt-mixtitle"></h3><p class="mt-mixsub">${schoolNames[a]} × ${schoolNames[b]} · ${weaponNames[m.weapon]??m.weapon}</p>
+	  <div class="mt-flow"><div class="when"><h4>เมื่อไหร่</h4><span></span></div><div class="arr" aria-hidden="true">↓</div><div class="eff"><h4>ผล</h4><span></span></div><div class="cost"><h4>แลกกับ</h4><span></span></div></div>
+	  <div class="mt-kv"><div><small>MP</small><b>${m.mp}</b></div><div><small>คูลดาวน์</small><b>${m.icd}s</b></div><div><small>หน้าต่างเวลา</small><b>${m.window?m.window+"s":"—"}</b></div></div>
+	  <div class="mt-box"><h4>เงื่อนไข ${st.done}/${st.items.length}</h4><ul class="mt-req">${st.items.map(i=>`<li class="${i.ok?"":"no"}">${i.label}<small>${i.have}</small></li>`).join("")}</ul></div>
+	  <button type="button" class="mt-use${st.active?" off":""}" ${st.ready||st.active?"":"disabled"}>${st.active?"เลิกใช้ Mix นี้":st.ready?"ตั้งเป็น Mix ที่ใช้งาน":"ยังใช้ไม่ได้ · เงื่อนไขไม่ครบ"}</button>
+	  <p class="mt-hint">ใช้ได้ทีละ 1 สูตร · สกิลตัวเปิดในแถบลัดจะมีป้าย ${m.id} · เปลี่ยนได้เมื่อพ้นการต่อสู้ 5 วินาที</p>`;
+	 det.querySelector(".mt-mixtitle")!.textContent=m.nameTh;
+	 const [when,eff,cost]=det.querySelectorAll(".mt-flow span");when.textContent=m.event;eff.textContent=m.effect;cost.textContent=m.trade;
+	 det.querySelector<HTMLButtonElement>(".mt-use")!.onclick=()=>{
+	  const anchor=st.active?-1:job!.hotbar.findIndex(s=>s.skill&&s.skill in m.requires&&!s.mode);
+	  send({t:"hotbar",slots:job!.hotbar.map((s,i)=>({...s,signature:i===anchor?m.id:undefined}))});
+	  $("#skills-status").textContent=st.active?"กำลังเลิกใช้ Mix…":`กำลังตั้ง ${m.nameTh} เป็น Mix ที่ใช้งาน…`;
+	 };
+	}
 	function slotsHTML(mirror = false) {
 		return (job?.hotbar || [])
 			.map((slot, i) => {
-				const s = slotSpec(slot.skill),
+				const s = slot.mode==='autoSpell'&&slot.skill&&job?resolveAutomaticSkill(gameData,slot.skill,Math.max(1,masteryAutoRank(job,slot.skill,gameData.mastery))):slotSpec(slot.skill),
 					learned = !!s && (!!slot.skill?.startsWith('item:') || !!job?.skills[s.id]);
 				const isItem = !!slot.skill?.startsWith("item:");
 				const extra = mirror && s ? (isItem ? `<b class="slot-count">${bagCount(inventory, slot.skill!.slice(5))}</b>` : `<i class="slot-sp">${Math.round(s.values?.sp?.[Math.max(0, level(s.id) - 1)] ?? s.sp ?? 0) || ""}</i>`) : isItem && s ? '<b class="slot-count"></b>' : "";
 				const target = mirror && selected ? " slot-target" : "";
-				const label = mirror && selected && !s ? "แตะเพื่อวาง" : s?.nameTh || "ว่าง";
-				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${isItem ? "item-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}${target}" title="${s?.nameTh || "ว่าง"} · ${keyLabel(slot.key)}" data-slot="${i}" ${isItem ? `data-item="${slot.skill!.slice(5)}"` : ""} ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${s?.nameTh || "ว่าง"} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? isItem ? itemIconHTML(slot.skill!.slice(5), 'hotbar-potion') : icon(s) : '<span class="empty-mark">+</span>'}${extra}<small>${label}</small><em></em>${mirror && s ? '<span class="slot-clear" role="button" aria-label="ล้างช่อง">×</span>' : ""}</button>`;
+				const label = mirror && selected && !s ? "แตะเพื่อวาง" : `${slot.mode==='autoSpell'?'AS · ':''}${slot.signature?slot.signature+' · ':''}${s?.nameTh || "ว่าง"}`;
+				return `<button class="job-slot ${i >= 5 ? "extra-slot" : ""} ${isItem ? "item-slot" : ""} ${learned ? "" : "unlearned"} ${!s ? "vacant" : ""}${target}" title="${label} · ${keyLabel(slot.key)}" data-slot="${i}" ${isItem ? `data-item="${slot.skill!.slice(5)}"` : ""} ${mirror ? 'data-mirror="true"' : ""} aria-label="ช่อง ${i + 1} ${label} ${keyLabel(slot.key)}"><kbd>${keyLabel(slot.key)}</kbd>${s ? isItem ? itemIconHTML(slot.skill!.slice(5), 'hotbar-potion') : icon(s) : '<span class="empty-mark">+</span>'}${extra}${slot.mode?'<b class="slot-mode" aria-hidden="true">AS</b>':''}${slot.signature?`<b class="slot-mix" aria-hidden="true">${slot.signature}</b>`:''}<small>${label}</small><em></em>${mirror && s ? '<span class="slot-clear" role="button" aria-label="ล้างช่อง">×</span>' : ""}</button>`;
 			})
 			.join("");
 	}
+    function drawModes(){
+     if(!job)return;
+     let root=panel.querySelector<HTMLElement>('#mastery-loadout');if(!root){root=document.createElement('section');root.id='mastery-loadout';$('#skill-slots').after(root);}
+     const used=job.hotbar.filter(s=>s.mode==='autoSpell').length,limit=masteryTriggerSlots(job.masteries);
+     const causes={hp:'HP ข้ามลงถึง 40%',incoming:'เสีย HP สะสม 15% ใน 6 วิ',skills:'ใช้สกิลปกติครบ 3 ครั้ง'};
+     root.innerHTML=`<h3>Auto Spell · ${job.hotbar.filter(s=>s.mode==='autoSpell').length}/${masteryTriggerSlots(job.masteries)} ช่อง</h3><p>ใช้พื้นที่ในแถบ 10 ช่อง · สูงสุด 1 ครั้ง/วินาที · ไม่เรียกต่อกันเอง</p><div class="mastery-mode-grid">${job.hotbar.map((slot,i)=>{
+      const plan=gameData.mastery.skills.find(s=>s.id===slot.skill),rank=slot.skill?masteryAutoRank(job!,slot.skill,gameData.mastery):0;
+      if(!plan?.triggerEligible)return '';
+      return `<label>${keyLabel(slot.key)} · ${plan.nameTh}<select data-mode="${i}" aria-label="โหมดช่อง ${i+1}"><option value="manual" ${!slot.mode?'selected':''}>ใช้ปกติ</option><option value="autoSpell" ${slot.mode?'selected':''} ${rank&&(slot.mode||used<limit)?'':'disabled'}>Auto Spell R${rank||'—'}</option></select><small>${rank?causes[automaticCause(plan)]:'ต้องเรียนสกิลและฝึก Mastery ให้ถึงเกณฑ์'}${rank?` · MP ${resolveAutomaticSkill(gameData,plan.id,rank).sp}`:''}</small></label>`;
+     }).join('')}</div><p>Mix ที่ใช้งาน: <b>${(()=>{const m=gameData.mastery.mixes.find(m=>job!.hotbar.some(s=>s.signature===m.id));return m?`${m.id} · ${m.nameTh}`:'ไม่ใช้'})()}</b> · ตั้งได้ที่แท็บ ผสานศาสตร์</p>`;
+     root.querySelectorAll<HTMLSelectElement>('[data-mode]').forEach(el=>el.onchange=()=>{const next=job!.hotbar.map((s,i)=>({...s,...(i===Number(el.dataset.mode)?{mode:el.value==='autoSpell'?'autoSpell' as const:undefined}:{})}));send({t:'hotbar',slots:next});});
+    }
 	function assign(index: number, id: string | null) {
 		if (!job) return;
 		const next = job.hotbar.map((s, i) => ({
 			...s,
 			skill: i === index ? id : s.skill,
+            ...(i===index?{mode:undefined,signature:undefined}:{}),
 		}));
 		send({ t: "hotbar", slots: next });
 		$("#skills-status").textContent = "กำลังบันทึกแถบสกิล…";
@@ -156,7 +349,7 @@ export function mountSkills(
 				if (selected) assign(i, selected);
 				else if (!el.dataset.mirror) {
 					const id = job?.hotbar[i].skill;
-					if (id) act(id);
+					if (id && !job?.hotbar[i].mode) act(id);
 				}
 			};
 			el.ondragover = (e) => e.preventDefault();
@@ -183,21 +376,23 @@ export function mountSkills(
 	}
 	function draw() {
 		if (!job) return;
-		$("#skills-job").textContent =
-			`${jobsData.jobs.find((j) => j.id === job?.jobId)?.nameTh} · ระดับอาชีพ ${job.jobLevel}`;
+        const focusedSkill=(document.activeElement as HTMLElement)?.closest<HTMLElement>('[data-sk]')?.dataset.sk;
+        const focusedLearn=(document.activeElement as HTMLElement)?.dataset.learn;
+		$("#skills-title").textContent="สกิล";
+		$("#skills-job").textContent = viewJob==="mix"?"Mix คอมโบข้ามสองศาสตร์ · ใช้ได้ทีละ 1 สูตร":viewJob==="items"?"ยาและแถบลัด":"ฝึก Mastery ของแต่ละศาสตร์ด้วยการใช้สกิลศาสตร์นั้น";
 		$("#skill-points").textContent = String(
 			job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0),
 		);
 		const tree = $("#skills-tree");
-		// The whole job line: a second job keeps learning its first job's skills. Newest job first.
-		const chain: typeof jobsData.jobs = [];
-		for (let j = jobsData.jobs.find((j) => j.id === job?.jobId); j && !chain.includes(j); j = jobsData.jobs.find((p) => p.id === j?.parent)) chain.push(j);
-		if (!viewJob || (viewJob !== "items" && !chain.some((j) => j.id === viewJob))) viewJob = chain[0]?.id ?? null;
-		const spent = (ids: string[]) => ids.reduce((n, id) => n + level(id), 0);
-		const tabs = [...chain.map((j) => `<button type="button" data-view="${j.id}" aria-selected="${viewJob === j.id}">${j.nameTh}<small>ลงแล้ว ${spent(skills.filter((s) => s.jobId === j.id).map((s) => s.id))} แต้ม</small></button>`),
-			`<button type="button" data-view="items" aria-selected="${viewJob === "items"}">ยา<small>ลากใส่แถบได้</small></button>`].join("");
-		tree.innerHTML = `<nav class="sk-tabs" role="tablist">${tabs}</nav><div class="sk-main"><div class="sk-tree-wrap"><svg class="sk-lines" aria-hidden="true"></svg><div class="sk-grid"></div></div><aside class="sk-detail" aria-live="polite"></aside></div>`;
-		tree.querySelectorAll<HTMLElement>("[data-view]").forEach((b) => (b.onclick = () => { viewJob = b.dataset.view!; draw(); }));
+		if (!viewJob || (!["all","items","mix"].includes(viewJob)&&!MASTERY_SCHOOLS.some(s=>s===viewJob)))viewJob=lastSchool;
+        if(MASTERY_SCHOOLS.some(s=>s===viewJob))lastSchool=viewJob;
+        if(viewJob!=="all"&&viewJob!=="items"){drawTree(tree);drawTail();return;}
+        const spent=(ids:string[])=>ids.reduce((n,id)=>n+level(id),0);
+        const names=schoolNames;
+        const tabs=[`<button type="button" data-view="all" aria-pressed="${viewJob==="all"}" tabindex="${viewJob==="all"?0:-1}">ผังดวงดาว<small>147 สกิล · 7 ศาสตร์</small></button>`,...MASTERY_SCHOOLS.map(s=>`<button type="button" data-view="${s}" aria-pressed="${viewJob===s}" tabindex="${viewJob===s?0:-1}">${names[s]}<small>Mastery ${job!.masteries[s]??0} · ${spent(skills.filter(v=>v.school===s).map(v=>v.id))} แต้ม</small></button>`),`<button type="button" data-view="items" aria-pressed="${viewJob==="items"}" tabindex="${viewJob==="items"?0:-1}">ยา<small>ลากใส่แถบได้</small></button>`].join("");
+        void tabs;
+        tree.innerHTML=`${segHTML()}<div class="sk-main"><div class="sk-tree-wrap"><svg class="sk-lines" aria-hidden="true"></svg><div class="sk-grid"></div></div><aside class="sk-detail" aria-live="polite"></aside></div>`;
+        bindViews(tree);
 		const grid = tree.querySelector<HTMLElement>(".sk-grid")!;
 
 		if (viewJob === "items") {
@@ -260,69 +455,80 @@ export function mountSkills(
 				detail.querySelector<HTMLButtonElement>(".pot-auto-link")!.onclick = () => { panel.close(); document.querySelector<HTMLElement>("#auto-settings-button")?.click(); };
 			}
 		} else {
-			// Columns: each skill with no prerequisite in this job starts one; a skill sits one row below
-			// the first prerequisite it has in the same job, in that prerequisite's column.
-			const list = skills.filter((s) => s.jobId === viewJob),
-				inJob = (id: string) => list.some((s) => s.id === id),
-				parentOf = (s: any) => s.requires.find((r: any) => inJob(r.id))?.id as string | undefined,
-				roots = list.filter((s) => !parentOf(s)).sort((a, b) => Number(!!a.passive) - Number(!!b.passive)),
-				place = new Map<string, { col: number; row: number }>();
-			roots.forEach((r, col) => place.set(r.id, { col, row: 0 }));
-			for (let changed = true; changed; ) {
-				changed = false;
-				for (const s of list) if (!place.has(s.id) && place.has(parentOf(s)!)) { const p = place.get(parentOf(s)!)!; place.set(s.id, { col: p.col, row: p.row + 1 }); changed = true; }
-			}
-			const rows = Math.max(1, ...[...place.values()].map((p) => p.row + 1));
-			if (!list.some((s) => s.id === detailId)) detailId = list[0]?.id ?? null;
-			grid.style.setProperty("--cols", String(roots.length));
-			grid.style.setProperty("--rows", String(rows));
-			let html = '<div class="sk-corner"></div>' + roots.map((r) => {
-				const ids = list.filter((s) => place.get(s.id)?.col === place.get(r.id)!.col).map((s) => s.id);
-				return `<div class="sk-colh${r.passive ? " passive" : ""}"><b>${r.nameTh}</b><small>${r.passive ? "ติดตัว" : "กดใช้"} · ลงแล้ว ${spent(ids)} แต้ม</small></div>`;
-			}).join("");
-			for (let row = 0; row < rows; row++) {
-				html += `<div class="sk-rowl"><span>${row === 0 ? "เริ่ม" : `ขั้น<br>${row + 1}`}</span></div>`;
-				for (let col = 0; col < roots.length; col++) {
-					const cell = list.filter((s) => { const p = place.get(s.id)!; return p.col === col && p.row === row; });
-					html += `<div class="sk-cell">${cell.map((s) => {
-						const lv = level(s.id), lock = reason(s), learned = job!.skills[s.id] || 0,
-							state = lv ? "learned" : lock && lock !== "แต้มสกิลไม่พอ" ? "locked" : "avail",
-							req = s.requires.find((r: any) => level(r.id) < r.level);
-						return `<button type="button" class="tree-node ${state}${s.id === detailId ? " sel" : ""}${pending[s.id] ? " pending" : ""}" data-sk="${s.id}" draggable="${!s.passive && !!learned}" title="${s.nameTh}${lock ? " · " + lock : ""}">${icon(s)}<b class="lvp">${state === "locked" && req ? `ต้อง Lv.${req.level}` : `${lv}/${s.maxLevel}`}</b><span class="nm">${s.nameTh}</span>${s.passive ? '<i class="tag">P</i>' : ""}${lock ? "" : `<i class="plus" data-up="${s.id}" title="เพิ่มระดับ">+</i>`}</button>`;
-					}).join("")}</div>`;
-				}
-			}
-			grid.innerHTML = html;
-			grid.querySelectorAll<HTMLElement>("[data-sk]").forEach((node) => {
-				const s = list.find((x) => x.id === node.dataset.sk)!;
-				node.ondragstart = (e) => {document.body.classList.add('dragging-hotbar');e.dataTransfer?.setData('text/plain',s.id);};
-				node.ondragend = () => document.body.classList.remove('dragging-hotbar');
-				node.onclick = (e) => {
-					detailId = s.id;
-					if ((e.target as HTMLElement).closest("[data-up]")) pending[s.id] = (pending[s.id] || 0) + 1;
-					else if (!s.passive && job?.skills[s.id]) {
-						selected = s.id;
-						$("#skills-status").textContent = `เลือกช่องด้านล่างเพื่อวาง ${s.nameTh}`;
-					}
-					draw();
-				};
-			});
-			// connectors: an elbow from each prerequisite to the skill it opens
-			requestAnimationFrame(() => {
-				const svg = tree.querySelector<SVGSVGElement>(".sk-lines"), wrap = tree.querySelector<HTMLElement>(".sk-tree-wrap");
-				if (!svg || !wrap) return;
-				const box = wrap.getBoundingClientRect(), sc = box.width / (wrap.offsetWidth || 1);
-				svg.setAttribute("viewBox", `0 0 ${wrap.scrollWidth} ${wrap.scrollHeight}`);
-				svg.style.width = wrap.scrollWidth + "px";
-				svg.style.height = wrap.scrollHeight + "px";
-				const at = (id: string) => { const n = wrap.querySelector<HTMLElement>(`[data-sk="${id}"] .job-icon`); if (!n) return null; const r = n.getBoundingClientRect(); return { x: (r.left + r.width / 2 - box.left) / sc + wrap.scrollLeft, top: (r.top - box.top) / sc + wrap.scrollTop, bottom: (r.bottom - box.top) / sc + wrap.scrollTop }; };
-				svg.innerHTML = list.flatMap((s) => s.requires.filter((r: any) => inJob(r.id)).map((r: any) => {
-					const a = at(r.id), b = at(s.id);
-					if (!a || !b) return "";
-					const mid = (a.bottom + b.top) / 2, on = level(r.id) >= r.level;
-					return `<path class="${on ? "on" : ""}" d="M${a.x} ${a.bottom + 22}V${mid}H${b.x}V${b.top - 4}"/>`;
-				})).join("");
-			});
+
+            const list=skills.filter(s=>s.plan);
+            if(!list.some(s=>s.id===detailId))detailId=list[0]?.id??null;
+            const wrap=tree.querySelector<HTMLElement>(".sk-tree-wrap")!;
+            wrap.classList.add("mastery-map");
+            tree.querySelector(".sk-main")!.classList.toggle("mastery-overview",viewJob==="all");
+            const overview=viewJob==="all",ancestors=masteryAncestors(gameData.mastery.skills,detailId!),children=list.filter(s=>s.requires.some((r:any)=>r.id===detailId));
+            const related=new Set([detailId,...ancestors,...children.map(s=>s.id)]);
+            wrap.classList.toggle("mastery-focused",!overview);
+            wrap.innerHTML=`<div class="mastery-tools"><button type="button" data-map="fit">ดูทั้งผัง</button><button type="button" data-map="out" aria-label="ย่อผัง">−</button><output class="mastery-zoom" aria-label="ระดับซูม"></output><button type="button" data-map="in" aria-label="ขยายผัง">+</button><button type="button" data-map="focus">ดาวที่เลือก</button><label class="mastery-search"><span>ค้นหาสกิล</span><input type="search" placeholder="ชื่อสกิล / ID" aria-label="ค้นหาดาวสกิล"></label><div class="mastery-results" hidden></div></div><div class="mastery-viewport" tabindex="0" role="region" aria-label="ผังดวงดาว 147 สกิล ลากเพื่อเลื่อน ใช้ลูกศรเลื่อนและบวกลบซูม"><div class="mastery-world"><svg viewBox="0 0 3600 3600" aria-hidden="true"></svg><div class="mastery-center"><b>147</b><span>สกิล · 7 ศาสตร์</span></div><div class="mastery-stars"></div></div><div class="mastery-route-key">${overview?"ผังเดียวทุกศาสตร์ · เลือกดาวเพื่อดูเส้นทางเรียน":`<b>${names[viewJob!]}</b><span class="path-before">เส้นทึบ · ทางก่อนหน้า</span><span class="path-next">เส้นประ · สกิลถัดไป</span>`}</div><span class="mastery-map-hint">ลากเลื่อน · ล้อเมาส์ซูม · แตะดาวดูรายละเอียด</span></div>`;
+            const viewport=wrap.querySelector<HTMLElement>(".mastery-viewport")!;
+            const world=wrap.querySelector<HTMLElement>(".mastery-world")!;
+            const nodes=constellation.nodes as Record<string,{x:number;y:number}>;
+            world.querySelector("svg")!.innerHTML=[560,1100,1450].map(r=>`<circle class="mastery-ring" cx="1800" cy="1800" r="${r}"/>`).join("")+constellation.edges.map(e=>{
+             const target=list.find(s=>s.id===e.to)!;
+
+             const a=nodes[e.from],b=nodes[e.to],curve=masteryCurve(a,b),before=!overview&&(e.to===detailId||ancestors.has(e.to)),next=!overview&&e.from===detailId;
+             const kind=before?"before":next?"next":"context",color=schoolColors[MASTERY_SCHOOLS.indexOf(target.school)];
+             return `<path class="mastery-edge ${kind} ${level(e.from)>=e.rank?'met':''}" style="--school:${color}" data-edge-to="${e.to}" d="${curve.path}"/>${before||next?`<g class="mastery-edge-rank" data-edge-to="${e.to}" transform="translate(${curve.label.x},${curve.label.y})"><rect x="-21" y="-13" width="42" height="26" rx="9"/><text text-anchor="middle" dominant-baseline="central">R${e.rank}</text></g>`:""}`;
+            }).join("");
+            world.querySelector(".mastery-stars")!.innerHTML=list.map(s=>{
+             const p=nodes[s.id],lv=level(s.id),lock=reason(s),state=lv?"learned":lock?"locked":"avail",color=schoolColors[MASTERY_SCHOOLS.indexOf(s.school)];
+             return `<button type="button" class="mastery-star ${state}${!overview&&!related.has(s.id)?" unrelated":""}${s.passive?" passive":""}${s.id===detailId?" sel":""}${pending[s.id]?" pending":""}" data-sk="${s.id}" style="left:${p.x}px;top:${p.y}px;--school:${color}" draggable="${!s.passive&&!!job!.skills[s.id]}" aria-pressed="${s.id===detailId}" aria-label="${s.nameTh} ระดับ ${lv}/${s.maxLevel} ${lock||'เรียนได้'}" title="${s.nameTh} · ${lv}/${s.maxLevel}${lock?' · '+lock:''}">${icon(s)}<span class="mastery-star-name">${s.nameTh}</span><small>${lv}/${s.maxLevel}${s.passive?' · ติดตัว':''}</small></button>`;
+            }).join("")+constellation.hubs.map((h,i)=>{
+             const a=h.angle*Math.PI/180;return `<button type="button" class="mastery-school" data-school="${h.name}" style="left:${1800+Math.cos(a)*1640}px;top:${1800+Math.sin(a)*1640}px;--school:${schoolColors[i]}">${names[h.name]}<small>Mastery ${job!.masteries[h.name]??0}</small></button>`;
+            }).join("");
+            function choose(id:string){
+             const s=list.find(s=>s.id===id);if(!s)return;
+             detailId=id;viewJob=s.school;mapTarget=id;
+             if(!s.passive&&job?.skills[id]){selected=id;$("#skills-status").textContent=`เลือกช่องด้านล่างเพื่อวาง ${s.nameTh}`;}
+             else selected=null;
+             draw();
+             if(matchMedia('(max-width:650px)').matches)tree.querySelector('.sk-detail')?.scrollIntoView({block:'nearest'});
+            }
+            wrap.querySelectorAll<HTMLButtonElement>("[data-sk]").forEach(node=>{
+             node.onclick=()=>choose(node.dataset.sk!);
+             node.ondragstart=e=>{document.body.classList.add('dragging-hotbar');e.dataTransfer?.setData('text/plain',node.dataset.sk!);};
+             node.ondragend=()=>document.body.classList.remove('dragging-hotbar');
+             node.onfocus=()=>{
+              const p=nodes[node.dataset.sk!],c=camera.state,x=p.x*c.scale+c.x,y=p.y*c.scale+c.y;
+              if(c.scale<.53||x<40||y<40||x>viewport.clientWidth-40||y>viewport.clientHeight-40){camera.focus(p.x,p.y,viewport.clientWidth,viewport.clientHeight);paintCamera();}
+             };
+            });
+            wrap.querySelectorAll<HTMLButtonElement>("[data-school]").forEach(b=>b.onclick=()=>{viewJob=b.dataset.school!;selected=null;draw();});
+            wrap.querySelectorAll<HTMLButtonElement>("[data-map]").forEach(b=>b.onclick=()=>{
+             const w=viewport.clientWidth,h=viewport.clientHeight;
+             if(b.dataset.map==="fit"){viewJob="all";mapTarget="all";selected=null;draw();}
+             else if(b.dataset.map==="focus"){mapTarget=detailId;positionMap();}
+             else{camera.zoom(b.dataset.map==="in"?1.25:.8,w/2,h/2,w,h);paintCamera();}
+            });
+            const results=wrap.querySelector<HTMLElement>(".mastery-results")!;
+            wrap.querySelector<HTMLInputElement>("input")!.oninput=e=>{
+             const q=(e.target as HTMLInputElement).value.trim().toLocaleLowerCase();
+             results.replaceChildren();results.hidden=!q;
+             if(!q)return;
+             const found=list.filter(s=>(s.nameTh+s.id+names[s.school]).toLocaleLowerCase().includes(q));
+             for(const s of found.slice(0,12)){const b=document.createElement("button");b.type="button";b.textContent=`${s.nameTh} · ${names[s.school]}`;b.onclick=()=>choose(s.id);results.append(b);}
+             if(!found.length)results.textContent="ไม่พบสกิล";
+            };
+            viewport.addEventListener("wheel",e=>{e.preventDefault();const r=viewport.getBoundingClientRect();camera.zoom(Math.exp(-e.deltaY*.0015),e.clientX-r.left,e.clientY-r.top,viewport.clientWidth,viewport.clientHeight);paintCamera();},{passive:false});
+            let drag:{id:number;x:number;y:number}|null=null;
+            viewport.onpointerdown=e=>{if((e.target as HTMLElement).closest("button"))return;drag={id:e.pointerId,x:e.clientX,y:e.clientY};viewport.setPointerCapture(e.pointerId);};
+            viewport.onpointermove=e=>{if(!drag||e.pointerId!==drag.id)return;camera.pan(e.clientX-drag.x,e.clientY-drag.y,viewport.clientWidth,viewport.clientHeight);drag={id:e.pointerId,x:e.clientX,y:e.clientY};paintCamera();};
+            viewport.onpointerup=viewport.onpointercancel=()=>{drag=null;};
+            viewport.onkeydown=e=>{
+             if(e.target!==viewport)return;
+             const moves:Record<string,[number,number]>={ArrowLeft:[80,0],ArrowRight:[-80,0],ArrowUp:[0,80],ArrowDown:[0,-80]},w=viewport.clientWidth,h=viewport.clientHeight;
+             if(moves[e.key])camera.pan(...moves[e.key],w,h);
+             else if(e.key==="Home")camera.fit(w,h);
+             else if(["+","=","-"].includes(e.key))camera.zoom(e.key==="-"?.8:1.25,w/2,h/2,w,h);
+             else return;
+             e.preventDefault();e.stopPropagation();paintCamera();
+            };
+            requestAnimationFrame(positionMap);
 			const d = list.find((s) => s.id === detailId);
 			if (d) {
 				const lv = level(d.id),
@@ -330,22 +536,32 @@ export function mountSkills(
 					lock = reason(d),
 					learned = job.skills[d.id] || 0,
 					pips = Array.from({ length: d.maxLevel }, (_, i) => `<i class="${i < learned ? "on" : i < lv ? "new" : ""}"></i>`).join(""),
-					reqs = d.requires.map((r: any) => `<span class="${level(r.id) >= r.level ? "ok" : "no"}">${level(r.id) >= r.level ? "✓" : "✗"} ${skills.find((s) => s.id === r.id)?.nameTh} Lv ${r.level}</span>`).join(""),
+					reqs = d.requires.map((r: any) => `<button type="button" data-route="${r.id}" class="${level(r.id) >= r.level ? "ok" : "no"}">${level(r.id) >= r.level ? "✓" : "✗"} ${skills.find((s) => s.id === r.id)?.nameTh} R${r.level} ←</button>`).join(""),
 					left = job.skillPoints - Object.values(pending).reduce((a, b) => a + b, 0);
-				tree.querySelector(".sk-detail")!.innerHTML = `<div class="sk-dhead"><span class="sk-big job-icon" style="--ix:${d.icon % 4};--iy:${Math.floor(d.icon / 4)}" aria-hidden="true"></span><div><h3>${d.nameTh}</h3><small>${d.passive ? "ติดตัว · ไม่ต้องกดใช้" : `กดใช้ · ${d.kind === "area" ? "วงกว้าง" : d.kind === "single" ? "เป้าเดียว" : "สนับสนุน"}`}</small><div class="sk-pips">${pips}</div></div><span class="sk-dlv">Lv ${lv}/${d.maxLevel}<small>${learned ? "เรียนแล้ว" : lock && lock !== "แต้มสกิลไม่พอ" ? "ยังไม่ปลด" : "เรียนได้"}</small></span></div>
-					${!d.passive && d.percent > 0 ? damageHTML(d, lv, nextLv) : `<dl><dt>ตอนนี้</dt><dd>${lv ? values(d, lv) : "ยังไม่ได้เรียน"}</dd>${lv < d.maxLevel ? `<dt>ระดับถัดไป · Lv ${nextLv}</dt><dd class="skill-next">${values(d, nextLv)}</dd>` : ""}</dl>`}
-					<div class="sk-reqs">${reqs}<span class="${left > 0 ? "ok" : "no"}">${left > 0 ? "✓" : "✗"} แต้มสกิลเหลือ ${left}</span></div>
+				tree.querySelector(".sk-detail")!.innerHTML = `<div class="sk-dhead">${icon(d,"sk-big")}<div><h3>${d.nameTh}</h3><small>${d.passive ? "ติดตัว · ไม่ต้องกดใช้" : `กดใช้ · ${d.kind === "area" ? "วงกว้าง" : d.kind === "single" ? "เป้าเดียว" : "สนับสนุน"}`}</small><div class="sk-pips">${pips}</div></div><span class="sk-dlv">Lv ${lv}/${d.maxLevel}<small>${learned ? "เรียนแล้ว" : lock && lock !== "แต้มสกิลไม่พอ" ? "ยังไม่ปลด" : "เรียนได้"}</small></span></div>
 					<button type="button" class="sk-learn primary" data-learn="${d.id}" ${lock ? "disabled" : ""}>${lock ? lock : lv ? "อัปเลเวล · ใช้ 1 แต้ม" : "เรียนสกิล · ใช้ 1 แต้ม"}</button>
-					${nextJobHTML()}`;
-				tree.querySelector<HTMLElement>("[data-learn]")!.onclick = () => { pending[d.id] = (pending[d.id] || 0) + 1; draw(); };
+                    <section class="mastery-steps"><h4>ต้องเรียนก่อน</h4><div class="sk-reqs">${reqs||"<span>เริ่มเรียนได้โดยไม่มีสกิลก่อนหน้า</span>"}</div>${children.length?`<h4>สกิลถัดไป</h4><div class="mastery-next">${children.map(s=>`<button type="button" data-route="${s.id}">${s.nameTh}<small>${s.requires.filter((r:any)=>r.id===d.id).map((r:any)=>`ต้อง R${r.level}`).join(" · ")} →</small></button>`).join("")}</div>`:""}</section>
+                    ${!d.passive && d.type!=="heal" && d.percent > 0 ? damageHTML(d, lv, nextLv) : `<dl><dt>ตอนนี้</dt><dd>${lv ? values(d, lv) : "ยังไม่ได้เรียน"}</dd>${lv < d.maxLevel ? `<dt>ระดับถัดไป · Lv ${nextLv}</dt><dd class="skill-next">${values(d, nextLv)}</dd>` : ""}</dl>`}
+					${d.plan?`${!d.legacyRuntime?`<p class="sk-note">${d.plan.note}</p>`:""}<p class="sk-note">Mastery ${d.school} ${d.plan.ranks[Math.max(0,nextLv-1)].mastery} · ${d.plan.weapon==='any'?'ทุกอาวุธ':d.plan.weapon==='sword'?'ดาบ':d.plan.weapon==='bow'?'ธนู':d.plan.weapon==='dagger'?'มีด':'มือเปล่า'}</p>`:""}
+                    <div class="sk-reqs"><span class="${left > 0 ? "ok" : "no"}">${left > 0 ? "✓" : "✗"} แต้มสกิลเหลือ ${left}</span></div>
+
+					`;
+				tree.querySelectorAll<HTMLButtonElement>("[data-route]").forEach(b=>{
+                 b.onclick=()=>choose(b.dataset.route!);
+                });
+				tree.querySelector<HTMLElement>("[data-learn]")!.onclick = () => { pending[d.id] = (pending[d.id] || 0) + 1; $("#skills-status").textContent=`เตรียมอัป ${d.nameTh} · กดยืนยันเรียนสกิลด้านล่าง`; draw(); };
 			}
 		}
+		drawTail();
+		if(focusedLearn)tree.querySelector<HTMLButtonElement>(`[data-learn="${focusedLearn}"]`)?.focus();
+        else if(focusedSkill)tree.querySelector<HTMLButtonElement>(`[data-sk="${focusedSkill}"]`)?.focus({preventScroll:true});
+	}
+	/** Hotbar editor, Auto Spell slots and the confirm button: drawn under every view. */
+	function drawTail(){
 		$("#skill-slots").innerHTML = slotsHTML(true);
 		bindSlots($("#skill-slots"));
-		$("#skills-confirm").toggleAttribute(
-			"disabled",
-			!Object.keys(pending).length,
-		);
+        drawModes();
+		$("#skills-confirm").toggleAttribute("disabled", !Object.keys(pending).length);
 		drawKeys();
 	}
 	/** Hotbar key fields (shown in the settings window). Runs on every job update, not only with the skill book open. */
@@ -420,11 +636,6 @@ export function mountSkills(
 		berserker: "ดาบคลั่งไม่ถอย · ตีแรง โจมตีหลายครั้ง ดูดเลือดจากศัตรู",
 	};
 	let choosing: string | null = null;
-	/** Hint toward the second job; empty once the player has one (or the line has none). */
-	function nextJobHTML() {
-		const branches = jobsData.jobs.filter((j) => j.tier === 2 && j.parent === job?.jobId);
-		return branches.length ? `<p class="sk-next-job">อาชีพขั้นต่อไป: ${branches.map((j) => j.nameTh).join(" / ")} · ระดับอาชีพ 40 · คุยกับทูตสวรรค์ที่หอนาฬิกา</p>` : "";
-	}
 	function drawAngel() {
 		if (!job) return;
 		const current = jobsData.jobs.find((j) => j.id === job!.jobId);
@@ -474,6 +685,7 @@ export function mountSkills(
 			else {
 				clear();
 				pending = {};
+                viewJob=lastSchool;mapTarget="all";
 				draw();
 				panel.showModal();
 				play("ui_open");
@@ -482,7 +694,7 @@ export function mountSkills(
 		key(code: string) {
 			const s = job?.hotbar.find((s) => s.key === code);
 			if (s?.skill) {
-				act(s.skill);
+				if(!s.mode)act(s.skill);
 				return true;
 			}
 			return !!s;
@@ -529,7 +741,7 @@ export function mountSkills(
 			inventory = p.inventory;
 
 			const key =
-				JSON.stringify(p.hotbar || []) + JSON.stringify(p.skills || {});
+				JSON.stringify([p.hotbar,p.skills,p.masteries,p.masteryExp,p.skillPoints]);
 			if (p.jobId && key !== last) {
 				last = key;
 				job = {
@@ -539,13 +751,15 @@ export function mountSkills(
 					skillPoints: p.skillPoints,
 					skills: p.skills,
 					hotbar: p.hotbar,
+                    masteryVersion:p.masteryVersion,masteries:p.masteries,masteryExp:p.masteryExp,
 				};
 				drawBar();
+                if(panel.open)draw();
 			}
 			bar.querySelectorAll<HTMLElement>("[data-slot]").forEach((el) => {
 				const id = job?.hotbar[Number(el.dataset.slot)].skill,
 					cd = id ? p.cd[id.startsWith('item:')?'potion':id] || 0 : 0;
-				el.classList.toggle('low-sp',!!id&&!id.startsWith('item:')&&p.mp<resolveSkill(loadGameData(),id,p.skills[id]||1).sp);
+				el.classList.toggle('low-sp',!!id&&!id.startsWith('item:')&&p.mp<(job?.hotbar[Number(el.dataset.slot)].mode==='autoSpell'?resolveAutomaticSkill(gameData,id,Math.max(1,masteryAutoRank(p,id,gameData.mastery))):resolveSkill(gameData,id,p.skills[id]||1)).sp);
 				if(id?.startsWith('item:')){
 					const n=bagCount(p.inventory,id.slice(5)),count=el.querySelector('.slot-count');
 					if(count&&count.textContent!==String(n))count.textContent=String(n);

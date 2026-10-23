@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original worldcore sovereign, one enormous angular obsidian beast head with two short branching ivory horns, four powerful segmented stone legs, one wide low body with interlocking jade and bronze plates, one thick long dark tail, three irregular pale crystals attached along its spine representing life stone and sky, no floating orb or halo. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\base.png.raw.png",
+  "raw_bytes": 2602315,
+  "elapsed_seconds": 55.266,
+  "model": null,
+  "session_id": "01a16127-7097-7721-9500-7cf4c18c7686",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 53.33,
+    "partial_alpha_pct": 46.67,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 706882,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

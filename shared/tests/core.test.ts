@@ -44,8 +44,8 @@ const midpoint = (a = player(), d = pink(), id = "basic", third = false) =>
 		{ rng: () => 0.5, comboThird: third },
 		data,
 	);
-test("all thirteen files validate and browser/Node loaders agree", () => {
-	assert.equal(Object.keys(data).length, 13);
+test("all fourteen files validate and browser/Node loaders agree", () => {
+	assert.equal(Object.keys(data).length, 14);
 	assert.deepEqual(data, browserData());
 	for (const file of Object.values(data)) assert.equal(file.dataVersion, 1);
 });
@@ -94,13 +94,13 @@ test("tables have exact element and size domains, names and directional entries"
 			6,
 		);
 });
-test("EXP follows the specified closed formula through 20 and 18% thereafter", () => {
+test("EXP preserves the starter curve and uses bounded hunting requirements through100", () => {
 	data.stats.expToNext.forEach((xp, i) =>
 		assert.equal(
 			xp,
-			i < 20
+			i < 10
 				? Math.round(60 * 1.45 ** i)
-				: Math.round(data.stats.expToNext[i - 1] * 1.18),
+				: Math.round((20+1.2*(i+1)**2)*(12+1.8*(i+1))),
 		),
 	);
 });

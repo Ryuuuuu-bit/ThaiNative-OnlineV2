@@ -220,33 +220,33 @@
 .inv-tip{position:fixed;inset:auto;left:0;top:0;margin:0;padding:0;border:0;background:none;overflow:visible;z-index:50;pointer-events:none;max-width:calc(100vw - 24px);
 	font:13px/1.45 var(--font-ui,'Noto Sans Thai',sans-serif);color:#f3efe6;text-shadow:none}
 .inv-tip[hidden]{display:none}
-.inv-tip .tip-wrap{display:flex;gap:8px;align-items:flex-start}
-.inv-tip .tip-card{width:260px;padding:12px 14px;border-radius:12px;background:rgba(12,18,18,.95);
+:is(.inv-tip,.inv-inspect) .tip-wrap{display:flex;gap:8px;align-items:flex-start}
+:is(.inv-tip,.inv-inspect) .tip-card{width:260px;padding:12px 14px;border-radius:12px;background:rgba(12,18,18,.95);
 	border:1px solid color-mix(in srgb,var(--rarity) 45%,rgba(255,255,255,.1));box-shadow:0 12px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.05)}
-.inv-tip .tip-card.side{width:230px;opacity:.88;transform:scale(.97);transform-origin:top left}
-.inv-tip .tip-head{display:flex;align-items:center;gap:10px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.08)}
-.inv-tip .tip-ico{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:9px;
+:is(.inv-tip,.inv-inspect) .tip-card.side{width:230px;opacity:.88;transform:scale(.97);transform-origin:top left}
+:is(.inv-tip,.inv-inspect) .tip-head{display:flex;align-items:center;gap:10px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.08)}
+:is(.inv-tip,.inv-inspect) .tip-ico{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:9px;
 	background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--rarity) 22%,transparent),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
-.inv-tip .tip-ico{overflow:hidden}
-.inv-tip .tip-ico .item-icon{width:38px;height:38px;transform:none}
-.inv-tip .tip-head b{display:block;font-size:14.5px;color:var(--rarity)}
-.inv-tip .tip-head small{display:block;font-size:11.5px;color:rgba(243,239,230,.6)}
-.inv-tip .tip-head em{margin-left:auto;align-self:flex-start;font-style:normal;font-size:10.5px;font-weight:700;white-space:nowrap;padding:2px 8px;border-radius:9px;background:#e6c98f;color:#1d2a26}
-.inv-tip .tip-req{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:8px;font-size:12px;color:rgba(243,239,230,.7)}
-.inv-tip .tip-req .bad{color:#ef8f86}
-.inv-tip .tip-stats{display:grid;gap:3px;margin-top:8px}
-.inv-tip .tip-stats>div{display:grid;grid-template-columns:1fr auto 58px;align-items:center;gap:8px;font-size:12.5px}
-.inv-tip .tip-card.side .tip-stats>div{grid-template-columns:1fr auto}
-.inv-tip .tip-stats span{color:rgba(243,239,230,.75)}
-.inv-tip .tip-stats b{font-variant-numeric:tabular-nums;text-align:right}
-.inv-tip .tip-stats i{font-style:normal;font-size:11.5px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
-.inv-tip .tip-stats i.up{color:#8fd18a}
-.inv-tip .tip-stats i.down{color:#ef8f86}
-.inv-tip .tip-stats i.same{color:rgba(243,239,230,.4)}
-.inv-tip .tip-none,.inv-tip .tip-note{font-size:12px;color:rgba(243,239,230,.55);margin:6px 0 0}
-.inv-tip .tip-effect{margin:8px 0 0;font-size:12.5px;color:#cfe8c9}
-.inv-tip .tip-foot{margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(243,239,230,.55)}
-.inv-tip .tip-hint{display:inline-block;margin:6px 0 0;padding:4px 10px;border-radius:8px;background:rgba(12,18,18,.92);border:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(243,239,230,.7)}
+:is(.inv-tip,.inv-inspect) .tip-ico{overflow:hidden}
+:is(.inv-tip,.inv-inspect) .tip-ico .item-icon{width:38px;height:38px;transform:none}
+:is(.inv-tip,.inv-inspect) .tip-head b{display:block;font-size:14.5px;color:var(--rarity)}
+:is(.inv-tip,.inv-inspect) .tip-head small{display:block;font-size:11.5px;color:rgba(243,239,230,.6)}
+:is(.inv-tip,.inv-inspect) .tip-head em{margin-left:auto;align-self:flex-start;font-style:normal;font-size:10.5px;font-weight:700;white-space:nowrap;padding:2px 8px;border-radius:9px;background:#e6c98f;color:#1d2a26}
+:is(.inv-tip,.inv-inspect) .tip-req{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:8px;font-size:12px;color:rgba(243,239,230,.7)}
+:is(.inv-tip,.inv-inspect) .tip-req .bad{color:#ef8f86}
+:is(.inv-tip,.inv-inspect) .tip-stats{display:grid;gap:3px;margin-top:8px}
+:is(.inv-tip,.inv-inspect) .tip-stats>div{display:grid;grid-template-columns:1fr auto 58px;align-items:center;gap:8px;font-size:12.5px}
+:is(.inv-tip,.inv-inspect) .tip-card.side .tip-stats>div{grid-template-columns:1fr auto}
+:is(.inv-tip,.inv-inspect) .tip-stats span{color:rgba(243,239,230,.75)}
+:is(.inv-tip,.inv-inspect) .tip-stats b{font-variant-numeric:tabular-nums;text-align:right}
+:is(.inv-tip,.inv-inspect) .tip-stats i{font-style:normal;font-size:11.5px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+:is(.inv-tip,.inv-inspect) .tip-stats i.up{color:#8fd18a}
+:is(.inv-tip,.inv-inspect) .tip-stats i.down{color:#ef8f86}
+:is(.inv-tip,.inv-inspect) .tip-stats i.same{color:rgba(243,239,230,.4)}
+:is(.inv-tip,.inv-inspect) .tip-none,:is(.inv-tip,.inv-inspect) .tip-note{font-size:12px;color:rgba(243,239,230,.55);margin:6px 0 0}
+:is(.inv-tip,.inv-inspect) .tip-effect{margin:8px 0 0;font-size:12.5px;color:#cfe8c9}
+:is(.inv-tip,.inv-inspect) .tip-foot{margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(243,239,230,.55)}
+:is(.inv-tip,.inv-inspect) .tip-hint{display:inline-block;margin:6px 0 0;padding:4px 10px;border-radius:8px;background:rgba(12,18,18,.92);border:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(243,239,230,.7)}
 @media(hover:none){.inv-tip{display:none}}
 
 /* ---------- Bag layout (ui-mockup/bag.html). Scoped to bag mode so shops and storage keep their layout. ---------- */
@@ -460,3 +460,22 @@ body #inventory-window[data-mode=shop] .g-head h2::before{display:none}
 body #inventory-window[data-mode=shop] .inv-detail{display:none}
 body #inventory-window[data-mode=shop] .inv-cart .cart-go{background:linear-gradient(135deg,#f2dfb2,#d7b679)!important;color:#1d2a26!important;border:0!important}
 body #inventory-window[data-mode=shop] .inv-cart .cart-go.sell{background:linear-gradient(135deg,#f4b7ae,#d9877c)!important}
+.item-roll-line{margin:5px 0;padding:5px 8px;border-left:2px solid #8bbda8;background:#ffffff06;color:#d9e9dc;font-size:12px;line-height:1.5;white-space:normal}
+.tip-wrap{max-height:calc(100vh - 90px);overflow:auto}
+@media(max-width:560px){:is(.inv-tip,.inv-inspect) .tip-card.side{display:none}:is(.inv-tip,.inv-inspect) .tip-card{width:min(320px,calc(100vw - 28px))}}
+
+/* PC comparison cards share the readable, scrollable detail view. */
+.inv-inspect{width:max-content;max-width:calc(100vw - 48px);max-height:88dvh;padding:16px;background:#101b1b;color:#f3efe6;border:1px solid #9b8054;border-radius:12px;overflow:auto}
+.inv-inspect::backdrop{background:#0009}
+.inspect-close{display:block;margin:0 0 12px auto;padding:7px 14px;cursor:pointer}
+:is(.inv-tip,.inv-inspect) .tip-card{width:330px;box-sizing:border-box;border-top:3px solid var(--rarity)}
+:is(.inv-tip,.inv-inspect) .tip-card.side{width:330px;transform:none;opacity:1}
+.inv-tip .tip-wrap{max-height:calc(100dvh - 65px);overflow:hidden}
+:is(.inv-tip,.inv-inspect) h4{font-size:12px;letter-spacing:.05em;margin:12px 0 6px;color:#e6c98f;border-top:1px solid #ffffff20;padding-top:8px}
+:is(.inv-tip,.inv-inspect) .tip-primary{margin:10px 0}
+.tip-primary small,.tip-primary strong{display:block}.tip-primary strong{font-size:32px;color:#fff;font-variant-numeric:tabular-nums}
+.tip-base,.tip-refine{font-size:11px;color:#bcb9ac;margin:5px 0}
+.tip-affixes p,.tip-milestones p{font-size:12px;margin:5px 0;line-height:1.5}
+.tip-affixes.prefix p{color:#c9b4ff}.tip-affixes.suffix p{color:#9cdbb4}
+.tip-milestones .active{color:#f1cf86}.tip-milestones .locked{color:#a1a7aa}
+.tip-cards{white-space:pre-line;font-size:12px;color:#9ed4eb}

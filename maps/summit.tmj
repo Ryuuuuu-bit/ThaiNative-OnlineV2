@@ -1,0 +1,2985 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "width": 160,
+  "height": 128,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "nextobjectid": 152,
+  "nextlayerid": 8,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "summit"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "value": "ผาผลึกจันทรา"
+    },
+    {
+      "name": "bossId",
+      "type": "string",
+      "value": "moon_titan"
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads and hunting loops",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "type": "path",
+          "name": "ทางเดิน 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 5120,
+              "y": 2048
+            },
+            {
+              "x": 4096,
+              "y": 2048
+            },
+            {
+              "x": 3360,
+              "y": 2304
+            },
+            {
+              "x": 2560,
+              "y": 2304
+            },
+            {
+              "x": 1760,
+              "y": 2048
+            },
+            {
+              "x": 0,
+              "y": 2048
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4096,
+              "y": 2048
+            },
+            {
+              "x": 3744,
+              "y": 2816
+            },
+            {
+              "x": 2720,
+              "y": 3168
+            },
+            {
+              "x": 1792,
+              "y": 2976
+            },
+            {
+              "x": 896,
+              "y": 2848
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3360,
+              "y": 2304
+            },
+            {
+              "x": 3136,
+              "y": 1344
+            },
+            {
+              "x": 2272,
+              "y": 1024
+            },
+            {
+              "x": 1472,
+              "y": 1344
+            },
+            {
+              "x": 896,
+              "y": 2848
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4384,
+              "y": 2048
+            },
+            {
+              "x": 4384,
+              "y": 1792
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "type": "path",
+          "name": "ทางเดิน 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2656,
+              "y": 2304
+            },
+            {
+              "x": 2656,
+              "y": 2048
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "type": "path",
+          "name": "ทางเดิน 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.9
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1312,
+              "y": 2048
+            },
+            {
+              "x": 1312,
+              "y": 1760
+            }
+          ]
+        },
+        {
+          "id": 149,
+          "type": "path",
+          "name": "ทางสู่วิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 896,
+              "y": 1248
+            },
+            {
+              "x": 384,
+              "y": 1568
+            },
+            {
+              "x": 0,
+              "y": 2048
+            }
+          ]
+        },
+        {
+          "id": 151,
+          "type": "path",
+          "name": "ทางเชื่อมภูมิภาค frost",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 3136,
+              "y": 1344
+            },
+            {
+              "x": 2560,
+              "y": 704
+            },
+            {
+              "x": 2560,
+              "y": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 7,
+          "type": "water",
+          "name": "แอ่งน้ำกลางภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 2112,
+          "y": 1504,
+          "width": 512,
+          "height": 320
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 Gates",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 8,
+          "type": "entry",
+          "name": "จุดเข้า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 4992,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 9,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "grove"
+            }
+          ],
+          "point": true,
+          "x": 5088,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 148,
+          "type": "gate",
+          "name": "west",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "temple"
+            }
+          ],
+          "point": true,
+          "x": 32,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 150,
+          "type": "gate",
+          "name": "north",
+          "point": true,
+          "x": 2560,
+          "y": 32,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "frost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and boss",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 10,
+          "type": "camp",
+          "name": "แคมป์ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 4384,
+          "y": 1792,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 11,
+          "type": "camp",
+          "name": "แคมป์ 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 2656,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 12,
+          "type": "camp",
+          "name": "แคมป์ 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1312,
+          "y": 1760,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 13,
+          "type": "arena",
+          "name": "ลานบอส",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 704,
+          "y": 2656,
+          "width": 384,
+          "height": 384
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 14,
+          "type": "spawn",
+          "name": "ลานปูผลึก",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "moon_crab"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 20
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true,
+          "x": 2944,
+          "y": 2304,
+          "width": 1152,
+          "height": 960
+        },
+        {
+          "id": 15,
+          "type": "spawn",
+          "name": "สันผาแมวป่าหิมะ",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "frost_lynx"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 20
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true,
+          "x": 1376,
+          "y": 576,
+          "width": 1344,
+          "height": 1088
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Scenery",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 16,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 345.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 17,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 345.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 18,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 761.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 19,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 761.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 20,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 1177.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 21,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 1177.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 22,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 1593.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 23,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 1593.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 24,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2009.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 25,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2009.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 26,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2425.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 28,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2841.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 29,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2841.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3257.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3257.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3673.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3673.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 4089.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 4089.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 4505.6,
+          "y": 3833.6,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "ขอบภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 4505.6,
+          "y": 185.60000000000008,
+          "width": 76.8,
+          "height": 76.8
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 336.46153630069455,
+          "y": 446.5372479516917,
+          "width": 128.61538173425942,
+          "height": 128.61538173425942,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 322.867393689137,
+          "y": 628.4835440491844,
+          "width": 110.4898582521826,
+          "height": 110.4898582521826,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 348.45413295845503,
+          "y": 984.104645725388,
+          "width": 144.60551061127336,
+          "height": 144.60551061127336,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 327.77920329810587,
+          "y": 1246.6973303825218,
+          "width": 117.03893773080782,
+          "height": 117.03893773080782,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 343.0013895892538,
+          "y": 2459.3167380354494,
+          "width": 137.33518611900507,
+          "height": 137.33518611900507,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 354.21903083369835,
+          "y": 3005.040419979049,
+          "width": 152.29204111159777,
+          "height": 152.29204111159777,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 317.2896642426029,
+          "y": 3259.1355867198945,
+          "width": 103.05288565680384,
+          "height": 103.05288565680384,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 315.70322182495147,
+          "y": 3555.9390440316033,
+          "width": 100.9376290999353,
+          "height": 100.9376290999353,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 614.1503683582647,
+          "y": 710.9738221255149,
+          "width": 114.86715781101957,
+          "height": 114.86715781101957,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 629.8694257042429,
+          "y": 949.3038487784307,
+          "width": 135.82590093899051,
+          "height": 135.82590093899051,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 596.3038744099438,
+          "y": 1246.4174416509866,
+          "width": 91.07183254659175,
+          "height": 91.07183254659175,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 632.0967976229265,
+          "y": 1573.9155401588366,
+          "width": 138.79573016390202,
+          "height": 138.79573016390202,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 632.2138755409978,
+          "y": 1759.6424165280735,
+          "width": 138.95183405466378,
+          "height": 138.95183405466378,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 622.4831925974795,
+          "y": 2343.2967506854898,
+          "width": 125.97759012997267,
+          "height": 125.97759012997267,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 640.4393732199445,
+          "y": 3243.4482764349414,
+          "width": 149.91916429325937,
+          "height": 149.91916429325937,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 601.8301360069541,
+          "y": 3601.597260425617,
+          "width": 98.4401813426055,
+          "height": 98.4401813426055,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 915.2774798503378,
+          "y": 414.2224144641327,
+          "width": 132.3699731337838,
+          "height": 132.3699731337838,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 926.3728128931252,
+          "y": 655.6349239858425,
+          "width": 147.16375052416697,
+          "height": 147.16375052416697,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 889.4854600364808,
+          "y": 954.9630512332953,
+          "width": 97.9806133819744,
+          "height": 97.9806133819744,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 921.8101140058134,
+          "y": 1284.773329236912,
+          "width": 141.08015200775117,
+          "height": 141.08015200775117,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 922.143399041961,
+          "y": 3292.055085068946,
+          "width": 141.52453205594793,
+          "height": 141.52453205594793,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 63,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 901.9668834857235,
+          "y": 3504.8346013151454,
+          "width": 114.62251131429802,
+          "height": 114.62251131429802,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1213.953830447048,
+          "y": 367.9142456165607,
+          "width": 146.6051072627306,
+          "height": 146.6051072627306,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 65,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1207.8246020489373,
+          "y": 646.7369565583243,
+          "width": 138.4328027319163,
+          "height": 138.4328027319163,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 66,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1200.030462004384,
+          "y": 1003.293097237865,
+          "width": 128.04061600584538,
+          "height": 128.04061600584538,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1210.8442332820734,
+          "y": 1181.8888447006898,
+          "width": 142.4589777094312,
+          "height": 142.4589777094312,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 68,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1194.3012437903321,
+          "y": 2386.4612003547413,
+          "width": 120.40165838710963,
+          "height": 120.40165838710963,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 69,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1178.304772187909,
+          "y": 3629.7824129919572,
+          "width": 99.0730295838788,
+          "height": 99.0730295838788,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1461.9024725288618,
+          "y": 381.35170957170794,
+          "width": 93.20329670514911,
+          "height": 93.20329670514911,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1488.1295621633994,
+          "y": 715.227030465188,
+          "width": 128.1727495511994,
+          "height": 128.1727495511994,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 72,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1497.0602601827122,
+          "y": 3321.278754328755,
+          "width": 140.08034691028297,
+          "height": 140.08034691028297,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 73,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1493.748542079376,
+          "y": 3486.638199133458,
+          "width": 135.66472277250142,
+          "height": 135.66472277250142,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 74,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1758.42639843598,
+          "y": 439.029139616801,
+          "width": 104.56853124797344,
+          "height": 104.56853124797344,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 75,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1794.3196940337773,
+          "y": 1564.9733111789963,
+          "width": 152.4262587117031,
+          "height": 152.4262587117031,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 76,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1757.740469267615,
+          "y": 2446.990371585176,
+          "width": 103.65395902348682,
+          "height": 103.65395902348682,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 77,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1765.4877893515863,
+          "y": 2641.1539974045704,
+          "width": 113.98371913544833,
+          "height": 113.98371913544833,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 78,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1757.644423756795,
+          "y": 3214.707611348512,
+          "width": 103.52589834239333,
+          "height": 103.52589834239333,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 79,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1786.9417841953807,
+          "y": 3593.5092180337742,
+          "width": 142.58904559384098,
+          "height": 142.58904559384098,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 80,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2076.463603084115,
+          "y": 316.8092648326618,
+          "width": 144.6181374454871,
+          "height": 144.6181374454871,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 81,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2078.728802282503,
+          "y": 726.165129573283,
+          "width": 147.63840304333718,
+          "height": 147.63840304333718,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 82,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2074.664922304312,
+          "y": 1282.0764923319734,
+          "width": 142.219896405749,
+          "height": 142.219896405749,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 83,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2079.8016529484185,
+          "y": 2740.7844924849505,
+          "width": 149.0688705978915,
+          "height": 149.0688705978915,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 84,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2045.2159181501368,
+          "y": 3325.3264620639366,
+          "width": 102.95455753351561,
+          "height": 102.95455753351561,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2044.8646184382028,
+          "y": 3537.3532301934442,
+          "width": 102.48615791760385,
+          "height": 102.48615791760385,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2353.7941419906215,
+          "y": 2462.122833123482,
+          "width": 130.39218932082878,
+          "height": 130.39218932082878,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 89,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2358.515514935972,
+          "y": 3232.2526325282647,
+          "width": 136.6873532479629,
+          "height": 136.6873532479629,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2328.4607476710344,
+          "y": 3568.825758092724,
+          "width": 96.61433022804557,
+          "height": 96.61433022804557,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2654.485065138945,
+          "y": 316.62883565784585,
+          "width": 147.31342018526047,
+          "height": 147.31342018526047,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2652.8124361774417,
+          "y": 1562.275726978625,
+          "width": 145.08324823658913,
+          "height": 145.08324823658913,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2619.3665563173827,
+          "y": 2750.5593699524397,
+          "width": 100.48874175650998,
+          "height": 100.48874175650998,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2657.717523449566,
+          "y": 3565.527527311927,
+          "width": 151.62336459942162,
+          "height": 151.62336459942162,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 96,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2909.411706912797,
+          "y": 667.0542249397652,
+          "width": 103.21560921706259,
+          "height": 103.21560921706259,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 98,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2900.3112902032212,
+          "y": 2467.262880695214,
+          "width": 91.08172027096153,
+          "height": 91.08172027096153,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 99,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2925.2590454677584,
+          "y": 2662.4236121737404,
+          "width": 124.3453939570114,
+          "height": 124.3453939570114,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 100,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2929.535314676177,
+          "y": 3288.315666494186,
+          "width": 130.04708623490296,
+          "height": 130.04708623490296,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 101,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 2907.43602156057,
+          "y": 3518.4017543740697,
+          "width": 100.5813620807603,
+          "height": 100.5813620807603,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3206.2703126594424,
+          "y": 373.14848777533484,
+          "width": 115.02708354592323,
+          "height": 115.02708354592323,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 103,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3209.5691731257366,
+          "y": 666.6950764977466,
+          "width": 119.42556416764856,
+          "height": 119.42556416764856,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 104,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3197.8404597098474,
+          "y": 1006.9237112903546,
+          "width": 103.78727961312978,
+          "height": 103.78727961312978,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 105,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3233.3047164157033,
+          "y": 1182.6093793618256,
+          "width": 151.07295522093773,
+          "height": 151.07295522093773,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 106,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3195.5063308423387,
+          "y": 2702.7953693118543,
+          "width": 100.67510778978466,
+          "height": 100.67510778978466,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 107,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3197.867097911099,
+          "y": 3228.7810368070504,
+          "width": 103.82279721479863,
+          "height": 103.82279721479863,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 108,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3209.314898763131,
+          "y": 3617.324231966192,
+          "width": 119.08653168417513,
+          "height": 119.08653168417513,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 109,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3485.7603692204457,
+          "y": 718.9771049499559,
+          "width": 103.68049229392781,
+          "height": 103.68049229392781,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 110,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3505.170409005489,
+          "y": 905.3655843019687,
+          "width": 129.56054534065188,
+          "height": 129.56054534065188,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 111,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3505.444408160588,
+          "y": 1310.3559890101712,
+          "width": 129.92587754745037,
+          "height": 129.92587754745037,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 112,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3497.4507297415753,
+          "y": 1478.8367406919917,
+          "width": 119.26763965543358,
+          "height": 119.26763965543358,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 113,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3513.228059272168,
+          "y": 2394.9808836919674,
+          "width": 140.30407902955776,
+          "height": 140.30407902955776,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 114,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3513.7989265576934,
+          "y": 3318.3348801031507,
+          "width": 141.06523541025817,
+          "height": 141.06523541025817,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 115,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3481.537133026798,
+          "y": 3503.366370797705,
+          "width": 98.04951070239767,
+          "height": 98.04951070239767,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 116,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3802.2006553339656,
+          "y": 412.0169142076094,
+          "width": 141.60087377862072,
+          "height": 141.60087377862072,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 117,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3779.3696153345286,
+          "y": 626.5661134159424,
+          "width": 111.15948711270465,
+          "height": 111.15948711270465,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 118,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3810.334454560233,
+          "y": 1011.0959580770743,
+          "width": 152.44593941364437,
+          "height": 152.44593941364437,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 119,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3771.5466329597866,
+          "y": 1200.106138546517,
+          "width": 100.7288439463824,
+          "height": 100.7288439463824,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 120,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3766.815900824731,
+          "y": 1601.5931402808737,
+          "width": 94.42120109964162,
+          "height": 94.42120109964162,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 121,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3804.680930164957,
+          "y": 1788.1423557089415,
+          "width": 144.90790688660928,
+          "height": 144.90790688660928,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 122,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3801.9778898207937,
+          "y": 3030.2155712610843,
+          "width": 141.3038530943915,
+          "height": 141.3038530943915,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 123,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 3772.2029860790585,
+          "y": 3213.5891354295313,
+          "width": 101.60398143874481,
+          "height": 101.60398143874481,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 124,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4055.038450006535,
+          "y": 346.7868903012712,
+          "width": 94.71793334204703,
+          "height": 94.71793334204703,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 125,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4073.238548460603,
+          "y": 739.8265621434946,
+          "width": 118.98473128080369,
+          "height": 118.98473128080369,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 126,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4098.235752174072,
+          "y": 886.3133924036605,
+          "width": 152.31433623209597,
+          "height": 152.31433623209597,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 127,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4081.9664279729595,
+          "y": 1295.4927888487216,
+          "width": 130.6219039639458,
+          "height": 130.6219039639458,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 128,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4096.505562959751,
+          "y": 2341.6887267746156,
+          "width": 150.00741727966815,
+          "height": 150.00741727966815,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 129,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4064.1266545025865,
+          "y": 2759.449728139889,
+          "width": 106.83553933678195,
+          "height": 106.83553933678195,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 130,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4052.374186726799,
+          "y": 3337.4616508207973,
+          "width": 91.16558230239897,
+          "height": 91.16558230239897,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 131,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4376.8248344115445,
+          "y": 441.43570484286664,
+          "width": 139.76644588205963,
+          "height": 139.76644588205963,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 132,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4358.68589652353,
+          "y": 616.6799628373553,
+          "width": 115.58119536470622,
+          "height": 115.58119536470622,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 133,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4376.5863624824215,
+          "y": 1003.0794991757472,
+          "width": 139.4484833098948,
+          "height": 139.4484833098948,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 134,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4340.150296812853,
+          "y": 1239.1627779436772,
+          "width": 90.86706241713837,
+          "height": 90.86706241713837,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 135,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4382.933292319695,
+          "y": 2450.9119695951495,
+          "width": 147.91105642626061,
+          "height": 147.91105642626061,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 136,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4346.7911714849415,
+          "y": 2638.530345158943,
+          "width": 99.72156197992153,
+          "height": 99.72156197992153,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 137,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4373.412338760425,
+          "y": 3027.4362161317135,
+          "width": 135.2164516805671,
+          "height": 135.2164516805671,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 138,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4383.7558356761465,
+          "y": 3216.7996697418484,
+          "width": 149.0077809015289,
+          "height": 149.0077809015289,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 139,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4664.389570951089,
+          "y": 316.87751321898224,
+          "width": 139.18609460145234,
+          "height": 139.18609460145234,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 140,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4668.312265396421,
+          "y": 924.388132221299,
+          "width": 144.41635386189444,
+          "height": 144.41635386189444,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 141,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4654.4360786332745,
+          "y": 1250.17553745123,
+          "width": 125.91477151103317,
+          "height": 125.91477151103317,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 142,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4668.2637012690775,
+          "y": 1553.163408765586,
+          "width": 144.35160169210286,
+          "height": 144.35160169210286,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 143,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4639.986896744161,
+          "y": 2347.066528319463,
+          "width": 106.64919565888121,
+          "height": 106.64919565888121,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 144,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4669.702541325241,
+          "y": 2733.909414421836,
+          "width": 146.27005510032177,
+          "height": 146.27005510032177,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 145,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4673.12626775892,
+          "y": 3264.4085198126027,
+          "width": 150.83502367855982,
+          "height": 150.83502367855982,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        },
+        {
+          "id": 146,
+          "type": "obstacle",
+          "name": "หินผาผลึก",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4662.99196171331,
+          "y": 3562.4850213664413,
+          "width": 137.32261561774646,
+          "height": 137.32261561774646,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "07 Places",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 38,
+          "type": "poi",
+          "name": "บึงผลึก",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "amber"
+            }
+          ],
+          "point": true,
+          "x": 2368,
+          "y": 1408,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 39,
+          "type": "poi",
+          "name": "ลานจันทรา",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boss"
+            }
+          ],
+          "point": true,
+          "x": 896,
+          "y": 2848,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 40,
+          "type": "poi",
+          "name": "ลานปูผลึก · Lv.36",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 3520,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 41,
+          "type": "poi",
+          "name": "สันผาหิมะ · Lv.38",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 2304,
+          "y": 2304,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 147,
+          "type": "poi",
+          "name": "แนวแร่จันทรา",
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "x": 2048,
+          "y": 1120,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

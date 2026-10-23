@@ -1,0 +1,3155 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "width": 180,
+  "height": 96,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "nextlayerid": 8,
+  "nextobjectid": 160,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "forest"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads — city approach and deep loops",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.4
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4544,
+              "y": 1536
+            },
+            {
+              "x": 5440,
+              "y": 1536
+            },
+            {
+              "x": 5440,
+              "y": 576
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.4
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1920,
+              "y": 1536
+            },
+            {
+              "x": 2560,
+              "y": 1568
+            },
+            {
+              "x": 3200,
+              "y": 1504
+            },
+            {
+              "x": 3840,
+              "y": 1568
+            },
+            {
+              "x": 4544,
+              "y": 1536
+            },
+            {
+              "x": 4928,
+              "y": 1728
+            },
+            {
+              "x": 5120,
+              "y": 2112
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3200,
+              "y": 1504
+            },
+            {
+              "x": 3392,
+              "y": 1984
+            },
+            {
+              "x": 3136,
+              "y": 2496
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "type": "path",
+          "name": "ทางเดิน 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3840,
+              "y": 1568
+            },
+            {
+              "x": 4032,
+              "y": 1024
+            },
+            {
+              "x": 4224,
+              "y": 768
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "type": "path",
+          "name": "ทางเดิน 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4544,
+              "y": 1536
+            },
+            {
+              "x": 4992,
+              "y": 960
+            },
+            {
+              "x": 5440,
+              "y": 576
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "type": "path",
+          "name": "ทางเดิน 6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2560,
+              "y": 1568
+            },
+            {
+              "x": 2368,
+              "y": 1760
+            },
+            {
+              "x": 2240,
+              "y": 1760
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "type": "path",
+          "name": "ทางเดิน 7",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.7
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3136,
+              "y": 2496
+            },
+            {
+              "x": 3680,
+              "y": 2496
+            },
+            {
+              "x": 3968,
+              "y": 2112
+            },
+            {
+              "x": 4576,
+              "y": 2368
+            },
+            {
+              "x": 5120,
+              "y": 2112
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "type": "path",
+          "name": "ทางเดิน 8",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.7
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4224,
+              "y": 768
+            },
+            {
+              "x": 4736,
+              "y": 768
+            },
+            {
+              "x": 5440,
+              "y": 576
+            },
+            {
+              "x": 5632,
+              "y": 1536
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "type": "path",
+          "name": "ทางเดิน 9",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 0,
+              "y": 1536
+            },
+            {
+              "x": 1920,
+              "y": 1536
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "type": "path",
+          "name": "ทางเดิน 10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 512,
+              "y": 1536
+            },
+            {
+              "x": 512,
+              "y": 1056
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "type": "path",
+          "name": "ทางเดิน 11",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1216,
+              "y": 1536
+            },
+            {
+              "x": 1216,
+              "y": 2048
+            }
+          ]
+        },
+        {
+          "id": 159,
+          "type": "path",
+          "name": "ทางสู่ป่าหิมพานต์",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3776,
+              "y": 1536
+            },
+            {
+              "x": 4288,
+              "y": 1536
+            },
+            {
+              "x": 5760,
+              "y": 1536
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 12,
+          "type": "water",
+          "name": "แอ่งน้ำ 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 3968,
+          "y": 320,
+          "width": 640,
+          "height": 384
+        },
+        {
+          "id": 13,
+          "type": "water",
+          "name": "แอ่งน้ำ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 2880,
+          "y": 2496,
+          "width": 384,
+          "height": 256
+        },
+        {
+          "id": 14,
+          "type": "water",
+          "name": "แอ่งน้ำ 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 5280,
+          "y": 2496,
+          "width": 320,
+          "height": 256
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 City arrival and return gate",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 15,
+          "type": "entry",
+          "name": "จุดเข้าจากเมือง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 128,
+          "y": 1536,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 16,
+          "type": "gate",
+          "name": "west",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "city_plaza"
+            }
+          ],
+          "point": true,
+          "x": 32,
+          "y": 1536,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 158,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "himmapan"
+            }
+          ],
+          "point": true,
+          "x": 5728,
+          "y": 1536,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and boss",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 17,
+          "type": "camp",
+          "name": "แคมป์ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 224,
+          "y": 1760,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 18,
+          "type": "camp",
+          "name": "แคมป์ 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 2240,
+          "y": 1760,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 19,
+          "type": "camp",
+          "name": "แคมป์ 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 3968,
+          "y": 2112,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 20,
+          "type": "arena",
+          "name": "ลานบอส",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 5011.2,
+          "y": 2003.2,
+          "width": 217.6,
+          "height": 217.6
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Progression habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 21,
+          "type": "spawn",
+          "name": "สวนเห็ดตูม",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "forest_young_1"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 256,
+          "y": 736,
+          "width": 512,
+          "height": 640
+        },
+        {
+          "id": 22,
+          "type": "spawn",
+          "name": "ชายป่าผีเสื้อหยดแสง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "dewdrop_moth"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 960,
+          "y": 1728,
+          "width": 512,
+          "height": 640
+        },
+        {
+          "id": 23,
+          "type": "spawn",
+          "name": "ชายป่าเห็ดหมอก",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "mist_shroom"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 16
+            }
+          ],
+          "ellipse": true,
+          "x": 2080,
+          "y": 448,
+          "width": 960,
+          "height": 1280
+        },
+        {
+          "id": 24,
+          "type": "spawn",
+          "name": "ลานหมาป่าเงา",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "shade_wolf"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            }
+          ],
+          "ellipse": true,
+          "x": 2976,
+          "y": 1760,
+          "width": 896,
+          "height": 832
+        },
+        {
+          "id": 25,
+          "type": "spawn",
+          "name": "บึงภูตตะเกียง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "lantern_wisp"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 12
+            }
+          ],
+          "ellipse": true,
+          "x": 3872,
+          "y": 576,
+          "width": 1088,
+          "height": 768
+        },
+        {
+          "id": 26,
+          "type": "spawn",
+          "name": "เขตตอไม้โบราณ",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "stump_guard"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 12
+            }
+          ],
+          "ellipse": true,
+          "x": 4832,
+          "y": 704,
+          "width": 768,
+          "height": 1344
+        },
+        {
+          "id": 154,
+          "type": "spawn",
+          "name": "พุ่มเม่นลูกสน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "pine_hedgehog"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 4
+            }
+          ],
+          "ellipse": true,
+          "x": 1184,
+          "y": 608,
+          "width": 384,
+          "height": 384
+        },
+        {
+          "id": 155,
+          "type": "spawn",
+          "name": "ดงรากฝอย",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "root_boar"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 2688,
+          "y": 640,
+          "width": 448,
+          "height": 448
+        },
+        {
+          "id": 156,
+          "type": "spawn",
+          "name": "ทางใยหมอก",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "mist_weaver"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 4
+            }
+          ],
+          "ellipse": true,
+          "x": 2816,
+          "y": 2176,
+          "width": 384,
+          "height": 384
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Solid scenery",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 27,
+          "type": "obstacle",
+          "name": "pine 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2288.1985163331033,
+          "y": 326.03311812281606,
+          "width": 58.61944718360901,
+          "height": 58.61944718360901
+        },
+        {
+          "id": 28,
+          "type": "obstacle",
+          "name": "hollow 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 4205.21795309484,
+          "y": 2463.8346372038127,
+          "width": 80.58585725426674,
+          "height": 80.58585725426674
+        },
+        {
+          "id": 29,
+          "type": "obstacle",
+          "name": "oak 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2721.9203053057195,
+          "y": 447.33083244562147,
+          "width": 62.53852154016495,
+          "height": 62.53852154016495
+        },
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "pine 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2350.948325777054,
+          "y": 2384.9581394732,
+          "width": 56.48125655651093,
+          "height": 56.48125655651093
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "oak 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 4327.769485706091,
+          "y": 1727.1495057582856,
+          "width": 60.829793345928195,
+          "height": 60.829793345928195
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "hollow 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 4021.2615563064815,
+          "y": 238.0995085924864,
+          "width": 77.89404944777489,
+          "height": 77.89404944777489
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "oak 6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3986.451747739315,
+          "y": 795.6423275411129,
+          "width": 64.194788646698,
+          "height": 64.194788646698
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "oak 7",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 4337.614882239699,
+          "y": 156.33910075724125,
+          "width": 59.356255632638934,
+          "height": 59.356255632638934
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "hollow 8",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5389.23787921071,
+          "y": 2789.7706807494164,
+          "width": 62.727914822101596,
+          "height": 62.727914822101596
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "oak 9",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3780.139202141762,
+          "y": 1709.5590709984303,
+          "width": 77.43435986042023,
+          "height": 77.43435986042023
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "oak 10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2021.017282435298,
+          "y": 1197.4134627372027,
+          "width": 65.60393880009651,
+          "height": 65.60393880009651
+        },
+        {
+          "id": 38,
+          "type": "obstacle",
+          "name": "hollow 11",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 4065.737983906269,
+          "y": 1201.228633517027,
+          "width": 57.530536603927615,
+          "height": 57.530536603927615
+        },
+        {
+          "id": 39,
+          "type": "obstacle",
+          "name": "dead 12",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 2674.567032942176,
+          "y": 2710.104596415162,
+          "width": 56.78403316140175,
+          "height": 56.78403316140175
+        },
+        {
+          "id": 40,
+          "type": "obstacle",
+          "name": "pine 13",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 3841.644610220194,
+          "y": 54.4547154545784,
+          "width": 69.01072241067887,
+          "height": 69.01072241067887
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "hollow 14",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5232.896783092618,
+          "y": 976.1769207805395,
+          "width": 62.979624432325366,
+          "height": 62.979624432325366
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "hollow 15",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 4619.381287568807,
+          "y": 2078.4018525123597,
+          "width": 77.86904133558274,
+          "height": 77.86904133558274
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "pine 16",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 3645.1596550136805,
+          "y": 121.88931185901166,
+          "width": 76.46037415862084,
+          "height": 76.46037415862084
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "dead 17",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 2655.0630842089654,
+          "y": 1353.1416454255582,
+          "width": 67.89622230529785,
+          "height": 67.89622230529785
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "hollow 18",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2764.4240145772696,
+          "y": 852.3244835525751,
+          "width": 63.951221090555194,
+          "height": 63.951221090555194
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "hollow 19",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2832.3338577091695,
+          "y": 1198.9200459361077,
+          "width": 55.28147555589676,
+          "height": 55.28147555589676
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "hollow 20",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2545.51311455071,
+          "y": 339.1441338151693,
+          "width": 80.94995109438896,
+          "height": 80.94995109438896
+        },
+        {
+          "id": 48,
+          "type": "obstacle",
+          "name": "pine 21",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2010.7283675909043,
+          "y": 2732.6599971592427,
+          "width": 67.10811407566071,
+          "height": 67.10811407566071
+        },
+        {
+          "id": 49,
+          "type": "obstacle",
+          "name": "pine 22",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 4322.506148049235,
+          "y": 2721.339076855779,
+          "width": 73.3338224709034,
+          "height": 73.3338224709034
+        },
+        {
+          "id": 50,
+          "type": "obstacle",
+          "name": "dead 23",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4268.28543651998,
+          "y": 1178.9421215444804,
+          "width": 74.43985067009926,
+          "height": 74.43985067009926
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "oak 24",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 4119.248981052637,
+          "y": 2309.453781569004,
+          "width": 69.93470550775528,
+          "height": 69.93470550775528
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "dead 25",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 2447.638375425339,
+          "y": 477.3592105448246,
+          "width": 67.36782748699189,
+          "height": 67.36782748699189
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "pine 27",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 3562.384874099493,
+          "y": 2261.7286011219026,
+          "width": 52.89913405179978,
+          "height": 52.89913405179978
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "dead 28",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4757.444655576348,
+          "y": 2692.2955091685058,
+          "width": 74.29293422102928,
+          "height": 74.29293422102928
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "hollow 29",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5311.603314721584,
+          "y": 2301.096224540472,
+          "width": 69.29553194046021,
+          "height": 69.29553194046021
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "hollow 30",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5007.222477295994,
+          "y": 528.3367538541555,
+          "width": 74.42035905718804,
+          "height": 74.42035905718804
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "dead 31",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4156.580163681507,
+          "y": 1873.5870104968549,
+          "width": 59.36821837425232,
+          "height": 59.36821837425232
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "pine 32",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 5590.170038828253,
+          "y": 2256.8940875917674,
+          "width": 60.20955978035927,
+          "height": 60.20955978035927
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "pine 33",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2261.280292803049,
+          "y": 1297.6249057888986,
+          "width": 78.4667208313942,
+          "height": 78.4667208313942
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "oak 34",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3751.139727333188,
+          "y": 2733.073879608512,
+          "width": 65.83450285792351,
+          "height": 65.83450285792351
+        },
+        {
+          "id": 63,
+          "type": "obstacle",
+          "name": "dead 36",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4742.4134329944845,
+          "y": 68.36497552096844,
+          "width": 61.04797963500023,
+          "height": 61.04797963500023
+        },
+        {
+          "id": 64,
+          "type": "obstacle",
+          "name": "dead 37",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4325.564835646748,
+          "y": 844.8293616861105,
+          "width": 52.47731487154961,
+          "height": 52.47731487154961
+        },
+        {
+          "id": 65,
+          "type": "obstacle",
+          "name": "dead 38",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4109.650411868095,
+          "y": 104.99716442227364,
+          "width": 67.57268793582917,
+          "height": 67.57268793582917
+        },
+        {
+          "id": 67,
+          "type": "obstacle",
+          "name": "pine 40",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2157.7849116116763,
+          "y": 2100.7340594619513,
+          "width": 56.55582634806633,
+          "height": 56.55582634806633
+        },
+        {
+          "id": 69,
+          "type": "obstacle",
+          "name": "dead 42",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4362.905138561129,
+          "y": 1921.1113106995822,
+          "width": 78.09333084225655,
+          "height": 78.09333084225655
+        },
+        {
+          "id": 70,
+          "type": "obstacle",
+          "name": "oak 43",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 5148.75490116477,
+          "y": 473.7928039073944,
+          "width": 73.55685366392136,
+          "height": 73.55685366392136
+        },
+        {
+          "id": 71,
+          "type": "obstacle",
+          "name": "hollow 44",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5604.36286226809,
+          "y": 2749.1445859164,
+          "width": 66.38176040053368,
+          "height": 66.38176040053368
+        },
+        {
+          "id": 72,
+          "type": "obstacle",
+          "name": "pine 45",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 3060.6579578757287,
+          "y": 1243.5586664617063,
+          "width": 57.812779140472415,
+          "height": 57.812779140472415
+        },
+        {
+          "id": 73,
+          "type": "obstacle",
+          "name": "oak 46",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 5188.645478972792,
+          "y": 2432.5141524463893,
+          "width": 63.07571707367897,
+          "height": 63.07571707367897
+        },
+        {
+          "id": 75,
+          "type": "obstacle",
+          "name": "oak 48",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2498.71212477386,
+          "y": 2783.4197522193194,
+          "width": 67.34744809269905,
+          "height": 67.34744809269905
+        },
+        {
+          "id": 76,
+          "type": "obstacle",
+          "name": "hollow 49",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 4605.1655155360695,
+          "y": 1107.3504729509355,
+          "width": 68.08470214605332,
+          "height": 68.08470214605332
+        },
+        {
+          "id": 77,
+          "type": "obstacle",
+          "name": "dead 50",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 2959.4191696286202,
+          "y": 116.54768239855767,
+          "width": 64.93490405082703,
+          "height": 64.93490405082703
+        },
+        {
+          "id": 79,
+          "type": "obstacle",
+          "name": "dead 52",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 2784.8112390577794,
+          "y": 1922.6708285450936,
+          "width": 82.97984815835953,
+          "height": 82.97984815835953
+        },
+        {
+          "id": 80,
+          "type": "obstacle",
+          "name": "hollow 53",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2052.508403995633,
+          "y": 233.26453960835934,
+          "width": 74.34807268977166,
+          "height": 74.34807268977166
+        },
+        {
+          "id": 81,
+          "type": "obstacle",
+          "name": "pine 54",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 3459.9522622317077,
+          "y": 894.5390305310488,
+          "width": 83.14371011853218,
+          "height": 83.14371011853218
+        },
+        {
+          "id": 82,
+          "type": "obstacle",
+          "name": "pine 55",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2927.215091699362,
+          "y": 1067.1240080833436,
+          "width": 61.4969805598259,
+          "height": 61.4969805598259
+        },
+        {
+          "id": 83,
+          "type": "obstacle",
+          "name": "hollow 56",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2879.5898183971644,
+          "y": 1389.6812153548003,
+          "width": 63.950526517629626,
+          "height": 63.950526517629626
+        },
+        {
+          "id": 84,
+          "type": "obstacle",
+          "name": "oak 57",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3691.266120517254,
+          "y": 477.66027926802633,
+          "width": 61.24321670532227,
+          "height": 61.24321670532227
+        },
+        {
+          "id": 85,
+          "type": "obstacle",
+          "name": "oak 58",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3413.3360391646625,
+          "y": 1175.9020407289267,
+          "width": 64.97587005496025,
+          "height": 64.97587005496025
+        },
+        {
+          "id": 86,
+          "type": "obstacle",
+          "name": "hollow 59",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 3143.2099073171617,
+          "y": 1790.8272516071797,
+          "width": 81.23501570224762,
+          "height": 81.23501570224762
+        },
+        {
+          "id": 87,
+          "type": "obstacle",
+          "name": "dead 60",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4701.350160309672,
+          "y": 462.03750500977037,
+          "width": 65.81414816975594,
+          "height": 65.81414816975594
+        },
+        {
+          "id": 88,
+          "type": "obstacle",
+          "name": "oak 61",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 4764.471989029646,
+          "y": 2509.025518679619,
+          "width": 60.93822015523911,
+          "height": 60.93822015523911
+        },
+        {
+          "id": 89,
+          "type": "obstacle",
+          "name": "pine 62",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2899.95466991663,
+          "y": 2927.9960664451123,
+          "width": 58.50724835395813,
+          "height": 58.50724835395813
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "dead 63",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 2238.7897881358863,
+          "y": 1958.9053812414409,
+          "width": 76.7645367205143,
+          "height": 76.7645367205143
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "dead 64",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 3519.4046235620976,
+          "y": 1310.1393770813943,
+          "width": 81.27346016168595,
+          "height": 81.27346016168595
+        },
+        {
+          "id": 92,
+          "type": "obstacle",
+          "name": "oak 65",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 4553.9906772017475,
+          "y": 2597.4046533048154,
+          "width": 62.99653024673462,
+          "height": 62.99653024673462
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "pine 66",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 4739.095886731147,
+          "y": 2874.794327670336,
+          "width": 77.4059623003006,
+          "height": 77.4059623003006
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "dead 67",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4215.267675825953,
+          "y": 2812.1954799681903,
+          "width": 57.60567734837532,
+          "height": 57.60567734837532
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "pine 68",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 2320.5062795072795,
+          "y": 930.976859280467,
+          "width": 74.55482010245323,
+          "height": 74.55482010245323
+        },
+        {
+          "id": 96,
+          "type": "obstacle",
+          "name": "hollow 69",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2552.6124489843846,
+          "y": 1779.9674837231637,
+          "width": 59.80010439157486,
+          "height": 59.80010439157486
+        },
+        {
+          "id": 97,
+          "type": "obstacle",
+          "name": "pine 70",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 3680.7421921730042,
+          "y": 1892.1707566320897,
+          "width": 73.95724065303803,
+          "height": 73.95724065303803
+        },
+        {
+          "id": 98,
+          "type": "obstacle",
+          "name": "pine 71",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 3846.4202017724515,
+          "y": 857.8689970016479,
+          "width": 68.38101853132248,
+          "height": 68.38101853132248
+        },
+        {
+          "id": 99,
+          "type": "obstacle",
+          "name": "dead 72",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 3083.063811221719,
+          "y": 2830.213031360507,
+          "width": 66.41801480650902,
+          "height": 66.41801480650902
+        },
+        {
+          "id": 100,
+          "type": "obstacle",
+          "name": "oak 73",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3319.8785029292108,
+          "y": 2708.588663572073,
+          "width": 59.228969764709475,
+          "height": 59.228969764709475
+        },
+        {
+          "id": 101,
+          "type": "obstacle",
+          "name": "pine 74",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 5624.292419442534,
+          "y": 384.538477101922,
+          "width": 51.99086247086525,
+          "height": 51.99086247086525
+        },
+        {
+          "id": 102,
+          "type": "obstacle",
+          "name": "dead 75",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 3423.1899775207044,
+          "y": 2794.403503203392,
+          "width": 53.38341535329819,
+          "height": 53.38341535329819
+        },
+        {
+          "id": 103,
+          "type": "obstacle",
+          "name": "dead 76",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 2412.9758809000255,
+          "y": 87.48611445128918,
+          "width": 67.95714334845543,
+          "height": 67.95714334845543
+        },
+        {
+          "id": 104,
+          "type": "obstacle",
+          "name": "oak 77",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3210.9815903246404,
+          "y": 1077.4520234704019,
+          "width": 71.71603084802628,
+          "height": 71.71603084802628
+        },
+        {
+          "id": 105,
+          "type": "obstacle",
+          "name": "hollow 78",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5442.117479780316,
+          "y": 96.54653180539609,
+          "width": 78.71284882426262,
+          "height": 78.71284882426262
+        },
+        {
+          "id": 106,
+          "type": "obstacle",
+          "name": "pine 79",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ],
+          "ellipse": true,
+          "x": 4861.345731401443,
+          "y": 2004.332443290949,
+          "width": 66.58906371593476,
+          "height": 66.58906371593476
+        },
+        {
+          "id": 108,
+          "type": "obstacle",
+          "name": "hollow 81",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 3322.210255393386,
+          "y": 868.3952588230371,
+          "width": 62.86744413971901,
+          "height": 62.86744413971901
+        },
+        {
+          "id": 109,
+          "type": "obstacle",
+          "name": "oak 82",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2682.162186482549,
+          "y": 2488.4328427404166,
+          "width": 67.52906171679497,
+          "height": 67.52906171679497
+        },
+        {
+          "id": 110,
+          "type": "obstacle",
+          "name": "hollow 83",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 3688.128646799922,
+          "y": 625.319596388936,
+          "width": 79.78822301030159,
+          "height": 79.78822301030159
+        },
+        {
+          "id": 111,
+          "type": "obstacle",
+          "name": "oak 84",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3525.6952425181867,
+          "y": 534.7001919984817,
+          "width": 51.28759254217148,
+          "height": 51.28759254217148
+        },
+        {
+          "id": 112,
+          "type": "obstacle",
+          "name": "oak 85",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2641.5928260177375,
+          "y": 2018.634143152833,
+          "width": 77.96953807473183,
+          "height": 77.96953807473183
+        },
+        {
+          "id": 113,
+          "type": "obstacle",
+          "name": "hollow 86",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2369.058922582865,
+          "y": 671.8898713231087,
+          "width": 82.1774895310402,
+          "height": 82.1774895310402
+        },
+        {
+          "id": 114,
+          "type": "obstacle",
+          "name": "oak 87",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3946.5653087437154,
+          "y": 1753.902809226513,
+          "width": 61.91162158250809,
+          "height": 61.91162158250809
+        },
+        {
+          "id": 115,
+          "type": "obstacle",
+          "name": "oak 88",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2513.536893466115,
+          "y": 2211.709752330184,
+          "width": 73.88655464053154,
+          "height": 73.88655464053154
+        },
+        {
+          "id": 116,
+          "type": "obstacle",
+          "name": "oak 89",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2847.741251730919,
+          "y": 2784.4661857426167,
+          "width": 57.15293295383454,
+          "height": 57.15293295383454
+        },
+        {
+          "id": 117,
+          "type": "obstacle",
+          "name": "hollow 90",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 2828.6658522576095,
+          "y": 2227.379487851262,
+          "width": 79.49173949360848,
+          "height": 79.49173949360848
+        },
+        {
+          "id": 118,
+          "type": "obstacle",
+          "name": "oak 91",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 5033.9637364983555,
+          "y": 1034.170339936018,
+          "width": 52.36913533210755,
+          "height": 52.36913533210755
+        },
+        {
+          "id": 119,
+          "type": "obstacle",
+          "name": "hollow 92",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5249.391320759058,
+          "y": 2764.5779022812844,
+          "width": 64.34073044061661,
+          "height": 64.34073044061661
+        },
+        {
+          "id": 120,
+          "type": "obstacle",
+          "name": "hollow 93",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 3601.7105857372285,
+          "y": 2913.8301940500737,
+          "width": 70.01665027141571,
+          "height": 70.01665027141571
+        },
+        {
+          "id": 121,
+          "type": "obstacle",
+          "name": "oak 94",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2846.1428143918515,
+          "y": 286.6460567951202,
+          "width": 79.5602859377861,
+          "height": 79.5602859377861
+        },
+        {
+          "id": 123,
+          "type": "obstacle",
+          "name": "dead 96",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 5035.670037695765,
+          "y": 139.1671014815569,
+          "width": 75.14508507847786,
+          "height": 75.14508507847786
+        },
+        {
+          "id": 124,
+          "type": "obstacle",
+          "name": "oak 97",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 5102.732689017057,
+          "y": 2697.9933376550675,
+          "width": 58.24035609960556,
+          "height": 58.24035609960556
+        },
+        {
+          "id": 125,
+          "type": "obstacle",
+          "name": "hollow 98",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 5643.667144501209,
+          "y": 764.7934676349163,
+          "width": 52.50898451805115,
+          "height": 52.50898451805115
+        },
+        {
+          "id": 127,
+          "type": "obstacle",
+          "name": "hollow 100",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 4753.127521345019,
+          "y": 1936.8484525471927,
+          "width": 54.34552190899849,
+          "height": 54.34552190899849
+        },
+        {
+          "id": 128,
+          "type": "obstacle",
+          "name": "hollow 101",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 4157.281837934255,
+          "y": 1716.001797103882,
+          "width": 78.53923119306565,
+          "height": 78.53923119306565
+        },
+        {
+          "id": 129,
+          "type": "obstacle",
+          "name": "oak 102",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3778.4046191364528,
+          "y": 1014.4233918875456,
+          "width": 59.04781560301781,
+          "height": 59.04781560301781
+        },
+        {
+          "id": 130,
+          "type": "obstacle",
+          "name": "hollow 103",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 3227.226580628753,
+          "y": 1251.167874494195,
+          "width": 64.39928875565529,
+          "height": 64.39928875565529
+        },
+        {
+          "id": 131,
+          "type": "obstacle",
+          "name": "hollow 104",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "ellipse": true,
+          "x": 3327.46310069561,
+          "y": 281.02503269314764,
+          "width": 53.908522439002994,
+          "height": 53.908522439002994
+        },
+        {
+          "id": 132,
+          "type": "obstacle",
+          "name": "oak 105",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 3047.008814865351,
+          "y": 317.8920135140419,
+          "width": 68.39755893945694,
+          "height": 68.39755893945694
+        },
+        {
+          "id": 133,
+          "type": "obstacle",
+          "name": "dead 106",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 4904.266848513484,
+          "y": 2278.112995246053,
+          "width": 80.92626355290413,
+          "height": 80.92626355290413
+        },
+        {
+          "id": 134,
+          "type": "obstacle",
+          "name": "oak 107",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 2146.2434551358224,
+          "y": 937.9133192241192,
+          "width": 53.49168581962586,
+          "height": 53.49168581962586
+        },
+        {
+          "id": 135,
+          "type": "obstacle",
+          "name": "oak 108",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ],
+          "ellipse": true,
+          "x": 5280.855431938171,
+          "y": 1940.9658887922765,
+          "width": 72.9116311788559,
+          "height": 72.9116311788559
+        },
+        {
+          "id": 136,
+          "type": "obstacle",
+          "name": "dead 109",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "dead"
+            }
+          ],
+          "ellipse": true,
+          "x": 5371.148286888003,
+          "y": 267.0188190728426,
+          "width": 69.1988081753254,
+          "height": 69.1988081753254
+        },
+        {
+          "id": 146,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 352,
+          "y": 384,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 147,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 352,
+          "y": 2624,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 148,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 736,
+          "y": 384,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 149,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 736,
+          "y": 2624,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 150,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 1120,
+          "y": 384,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 151,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 1120,
+          "y": 2624,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pine"
+            }
+          ]
+        },
+        {
+          "id": 152,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 1504,
+          "y": 384,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        },
+        {
+          "id": 153,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 1504,
+          "y": 2624,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "oak"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "08 Places and level signs",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 137,
+          "type": "poi",
+          "name": "สวนเห็ดชายป่า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushrooms"
+            }
+          ],
+          "point": true,
+          "x": 2560,
+          "y": 1088,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 138,
+          "type": "poi",
+          "name": "ลานล่าใต้ร่มไม้",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "den"
+            }
+          ],
+          "point": true,
+          "x": 3424,
+          "y": 2176,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 139,
+          "type": "poi",
+          "name": "บึงหิ่งห้อย",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wisp-pond"
+            }
+          ],
+          "point": true,
+          "x": 4256,
+          "y": 800,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 140,
+          "type": "poi",
+          "name": "ต้นไม้โพรงโบราณ",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hollow"
+            }
+          ],
+          "point": true,
+          "x": 5184,
+          "y": 1152,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 141,
+          "type": "poi",
+          "name": "สวนเห็ดตูม",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushrooms"
+            }
+          ],
+          "point": true,
+          "x": 512,
+          "y": 1056,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 142,
+          "type": "poi",
+          "name": "ดงเห็ดอ่อน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushrooms"
+            }
+          ],
+          "point": true,
+          "x": 1216,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 143,
+          "type": "poi",
+          "name": "สวนเห็ดตูม · Lv.1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 512,
+          "y": 1536,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 144,
+          "type": "poi",
+          "name": "ดงเห็ดอ่อน · Lv.3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 1216,
+          "y": 1536,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 145,
+          "type": "poi",
+          "name": "เขตลึก · มอน Lv.6+",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 2176,
+          "y": 1536,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 157,
+          "type": "poi",
+          "name": "รังแม่หนาม Lv.10",
+          "point": true,
+          "x": 2112,
+          "y": 2496,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushrooms"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

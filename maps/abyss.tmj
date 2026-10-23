@@ -1,0 +1,5247 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "width": 192,
+  "height": 160,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "nextobjectid": 268,
+  "nextlayerid": 8,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "abyss"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "value": "มหาสมุทรบรรพกาลและนครดินดำ"
+    },
+    {
+      "name": "exploration",
+      "type": "bool",
+      "value": false
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads and gate approaches",
+      "objects": [
+        {
+          "id": 243,
+          "type": "path",
+          "name": "ทางเดิน 0",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.6
+            }
+          ],
+          "polyline": [
+            {
+              "x": 640,
+              "y": 2560
+            },
+            {
+              "x": 1536,
+              "y": 3136
+            },
+            {
+              "x": 2688,
+              "y": 3136
+            },
+            {
+              "x": 3712,
+              "y": 2560
+            },
+            {
+              "x": 4608,
+              "y": 1664
+            },
+            {
+              "x": 5504,
+              "y": 2304
+            }
+          ]
+        },
+        {
+          "id": 244,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "polyline": [
+            {
+              "x": 1536,
+              "y": 3136
+            },
+            {
+              "x": 1664,
+              "y": 1472
+            },
+            {
+              "x": 2688,
+              "y": 896
+            },
+            {
+              "x": 3968,
+              "y": 896
+            },
+            {
+              "x": 4608,
+              "y": 1664
+            },
+            {
+              "x": 4672,
+              "y": 3776
+            },
+            {
+              "x": 3264,
+              "y": 4096
+            },
+            {
+              "x": 2688,
+              "y": 3136
+            }
+          ]
+        },
+        {
+          "id": 245,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 2688,
+              "y": 896
+            },
+            {
+              "x": 3072,
+              "y": 32
+            }
+          ]
+        },
+        {
+          "id": 246,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 640,
+              "y": 2560
+            },
+            {
+              "x": 32,
+              "y": 2560
+            }
+          ]
+        },
+        {
+          "id": 247,
+          "type": "path",
+          "name": "ทางเดิน 4",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 5504,
+              "y": 2304
+            },
+            {
+              "x": 6112,
+              "y": 2560
+            }
+          ]
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water and impassable terrain",
+      "objects": [
+        {
+          "id": 248,
+          "type": "water",
+          "name": "ขอบเขตเดินไม่ได้",
+          "rotation": 0,
+          "visible": true,
+          "x": 2400,
+          "y": 1632,
+          "width": 960,
+          "height": 1088,
+          "properties": [],
+          "ellipse": true
+        },
+        {
+          "id": 249,
+          "type": "water",
+          "name": "ขอบเขตเดินไม่ได้",
+          "rotation": 0,
+          "visible": true,
+          "x": 4800,
+          "y": 3840,
+          "width": 768,
+          "height": 704,
+          "properties": [],
+          "ellipse": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 World gates",
+      "objects": [
+        {
+          "id": 250,
+          "type": "entry",
+          "name": "จุดเข้า",
+          "rotation": 0,
+          "visible": true,
+          "x": 3072,
+          "y": 160,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 1,
+          "type": "gate",
+          "name": "north",
+          "rotation": 0,
+          "visible": true,
+          "x": 3072,
+          "y": 32,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "fae"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 2,
+          "type": "gate",
+          "name": "west",
+          "rotation": 0,
+          "visible": true,
+          "x": 32,
+          "y": 2560,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "ocean"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 3,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "x": 6112,
+          "y": 2560,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "confluence"
+            }
+          ],
+          "point": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and future arena",
+      "objects": [
+        {
+          "id": 251,
+          "type": "camp",
+          "name": "ค่ายพัก 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 640,
+          "y": 2560,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 252,
+          "type": "camp",
+          "name": "ค่ายพัก 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 2688,
+          "y": 3136,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 253,
+          "type": "camp",
+          "name": "ค่ายพัก 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 3968,
+          "y": 896,
+          "width": 0,
+          "height": 0,
+          "properties": [],
+          "point": true
+        },
+        {
+          "id": 254,
+          "type": "arena",
+          "name": "มังกรทะเลบรรพกาลเทียแมต",
+          "rotation": 0,
+          "visible": true,
+          "x": 3904,
+          "y": 3392,
+          "width": 768,
+          "height": 768,
+          "properties": [],
+          "ellipse": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Named landmarks",
+      "objects": [
+        {
+          "id": 255,
+          "type": "poi",
+          "name": "ฝั่งคูน้ำบรรพกาล",
+          "rotation": 0,
+          "visible": true,
+          "x": 1536,
+          "y": 3136,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 256,
+          "type": "poi",
+          "name": "ถนนตราหินดำ",
+          "rotation": 0,
+          "visible": true,
+          "x": 1664,
+          "y": 1472,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 257,
+          "type": "poi",
+          "name": "ศาลปีกศิลา",
+          "rotation": 0,
+          "visible": true,
+          "x": 2688,
+          "y": 960,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        },
+        {
+          "id": 258,
+          "type": "poi",
+          "name": "ลานมารดาทะเล",
+          "rotation": 0,
+          "visible": true,
+          "x": 4672,
+          "y": 3776,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "place"
+            }
+          ],
+          "point": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Landscape solids",
+      "objects": [
+        {
+          "id": 4,
+          "type": "obstacle",
+          "name": "ฐานจุดเด่นภูมิภาค",
+          "rotation": 0,
+          "visible": true,
+          "x": 4166.4,
+          "y": 3046.4,
+          "width": 243.2,
+          "height": 243.2,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "biome-landmark"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 5,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 1",
+          "rotation": 0,
+          "visible": true,
+          "x": 280.1134861250821,
+          "y": 172.5540583710681,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 6,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 2",
+          "rotation": 0,
+          "visible": true,
+          "x": 205.1094839495836,
+          "y": 570.0885401874909,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 7,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 3",
+          "rotation": 0,
+          "visible": true,
+          "x": 180.044304916511,
+          "y": 733.3622542858157,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 8,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 4",
+          "rotation": 0,
+          "visible": true,
+          "x": 284.6938811076275,
+          "y": 1139.1115595443855,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 9,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 5",
+          "rotation": 0,
+          "visible": true,
+          "x": 185.98588650474403,
+          "y": 1337.2679347721016,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 10,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 6",
+          "rotation": 0,
+          "visible": true,
+          "x": 198.08214149528158,
+          "y": 1671.237120248411,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 11,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 7",
+          "rotation": 0,
+          "visible": true,
+          "x": 282.48341911199805,
+          "y": 1965.3129130173847,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 12,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 8",
+          "rotation": 0,
+          "visible": true,
+          "x": 170.56245035031043,
+          "y": 2196.272050227571,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 13,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 9",
+          "rotation": 0,
+          "visible": true,
+          "x": 273.71703548736696,
+          "y": 2748.8403149803657,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 14,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 10",
+          "rotation": 0,
+          "visible": true,
+          "x": 160.47843025091834,
+          "y": 3160.011639161782,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 15,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 11",
+          "rotation": 0,
+          "visible": true,
+          "x": 239.2276598118424,
+          "y": 3344.860652427443,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 16,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 12",
+          "rotation": 0,
+          "visible": true,
+          "x": 259.32645102418564,
+          "y": 3697.6572993598697,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 17,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 13",
+          "rotation": 0,
+          "visible": true,
+          "x": 156.80558984140953,
+          "y": 3970.731914316627,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 18,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 14",
+          "rotation": 0,
+          "visible": true,
+          "x": 257.9622572207909,
+          "y": 4221.133207350558,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 19,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 15",
+          "rotation": 0,
+          "visible": true,
+          "x": 240.8411455290925,
+          "y": 4592.573231842839,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 20,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 16",
+          "rotation": 0,
+          "visible": true,
+          "x": 159.93429097634953,
+          "y": 4766.122476074277,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 21,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 17",
+          "rotation": 0,
+          "visible": true,
+          "x": 464.6649199260928,
+          "y": 284.7375878547423,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 22,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 18",
+          "rotation": 0,
+          "visible": true,
+          "x": 497.5254630770801,
+          "y": 451.70907237018855,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 23,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 19",
+          "rotation": 0,
+          "visible": true,
+          "x": 566.2699187518692,
+          "y": 836.8969558304373,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 24,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 20",
+          "rotation": 0,
+          "visible": true,
+          "x": 452.10260152273486,
+          "y": 1068.8238278966826,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 25,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 21",
+          "rotation": 0,
+          "visible": true,
+          "x": 518.388326506742,
+          "y": 1361.8157919143832,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 26,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 22",
+          "rotation": 0,
+          "visible": true,
+          "x": 554.1569072417365,
+          "y": 1696.792260882605,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 27,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 23",
+          "rotation": 0,
+          "visible": true,
+          "x": 445.56627367464034,
+          "y": 1894.1969319180378,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 28,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 24",
+          "rotation": 0,
+          "visible": true,
+          "x": 445.7506393300323,
+          "y": 2860.6795226286713,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 29,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 25",
+          "rotation": 0,
+          "visible": true,
+          "x": 554.9477502125205,
+          "y": 3074.6774642830514,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 26",
+          "rotation": 0,
+          "visible": true,
+          "x": 517.2685997356693,
+          "y": 3388.5225429890793,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 27",
+          "rotation": 0,
+          "visible": true,
+          "x": 452.63610348582506,
+          "y": 3703.4281346749926,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 28",
+          "rotation": 0,
+          "visible": true,
+          "x": 566.7586517481354,
+          "y": 3916.554058371068,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 29",
+          "rotation": 0,
+          "visible": true,
+          "x": 496.41391735872367,
+          "y": 4314.088540187491,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 30",
+          "rotation": 0,
+          "visible": true,
+          "x": 465.490855810579,
+          "y": 4477.362254285816,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 31",
+          "rotation": 0,
+          "visible": true,
+          "x": 572.4095124809946,
+          "y": 4883.111559544386,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 32",
+          "rotation": 0,
+          "visible": true,
+          "x": 817.9121280069994,
+          "y": 176.45188537011472,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 33",
+          "rotation": 0,
+          "visible": true,
+          "x": 833.0356596088341,
+          "y": 530.1902211200616,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 38,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 34",
+          "rotation": 0,
+          "visible": true,
+          "x": 732.8305308377267,
+          "y": 802.1695590880997,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 39,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 35",
+          "rotation": 0,
+          "visible": true,
+          "x": 836.2235499379144,
+          "y": 1053.625043323647,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 40,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 36",
+          "rotation": 0,
+          "visible": true,
+          "x": 814.1416846130091,
+          "y": 1424.2393337934377,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 37",
+          "rotation": 0,
+          "visible": true,
+          "x": 736.8657569578345,
+          "y": 1598.239089335576,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 38",
+          "rotation": 0,
+          "visible": true,
+          "x": 850.3449041415402,
+          "y": 2011.362944041403,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 39",
+          "rotation": 0,
+          "visible": true,
+          "x": 793.4045769427244,
+          "y": 2185.3549274869843,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 40",
+          "rotation": 0,
+          "visible": true,
+          "x": 773.0283462760372,
+          "y": 3079.4188706049185,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 41",
+          "rotation": 0,
+          "visible": true,
+          "x": 762.9403451982448,
+          "y": 3433.1411592601826,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 42",
+          "rotation": 0,
+          "visible": true,
+          "x": 860.618800454663,
+          "y": 3617.3799852970806,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 43",
+          "rotation": 0,
+          "visible": true,
+          "x": 755.1786470670681,
+          "y": 4028.737587854742,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 48,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 44",
+          "rotation": 0,
+          "visible": true,
+          "x": 782.2084122205524,
+          "y": 4195.709072370188,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 49,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 45",
+          "rotation": 0,
+          "visible": true,
+          "x": 855.6793982455247,
+          "y": 4580.896955830437,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 50,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 46",
+          "rotation": 0,
+          "visible": true,
+          "x": 741.7526054933205,
+          "y": 4812.823827896683,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 47",
+          "rotation": 0,
+          "visible": true,
+          "x": 1090.4632826339875,
+          "y": 221.08710311016102,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 48",
+          "rotation": 0,
+          "visible": true,
+          "x": 1030.0437248649987,
+          "y": 534.9137293301319,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 53,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 49",
+          "rotation": 0,
+          "visible": true,
+          "x": 1143.8991196290235,
+          "y": 748.9268788031416,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 50",
+          "rotation": 0,
+          "visible": true,
+          "x": 1069.6574197185548,
+          "y": 1145.923569576529,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 51",
+          "rotation": 0,
+          "visible": true,
+          "x": 1043.6106062073131,
+          "y": 1309.2900532856802,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 52",
+          "rotation": 0,
+          "visible": true,
+          "x": 1148.658897876,
+          "y": 1715.4080991876713,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 53",
+          "rotation": 0,
+          "visible": true,
+          "x": 1050.4609612592171,
+          "y": 1912.7997632865452,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 54",
+          "rotation": 0,
+          "visible": true,
+          "x": 1061.555235111913,
+          "y": 2247.79371102161,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 55",
+          "rotation": 0,
+          "visible": true,
+          "x": 1146.631537280537,
+          "y": 2540.7668311090474,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 56",
+          "rotation": 0,
+          "visible": true,
+          "x": 1081.9703959533722,
+          "y": 3157.8865674314857,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 57",
+          "rotation": 0,
+          "visible": true,
+          "x": 1138.032512558027,
+          "y": 3324.8628387734257,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 62,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 58",
+          "rotation": 0,
+          "visible": true,
+          "x": 1024.669415771329,
+          "y": 3736.223597473577,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 63,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 59",
+          "rotation": 0,
+          "visible": true,
+          "x": 1102.6862966474184,
+          "y": 3920.4518853701143,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 64,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 60",
+          "rotation": 0,
+          "visible": true,
+          "x": 1123.7757570308797,
+          "y": 4274.190221120061,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 65,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 61",
+          "rotation": 0,
+          "visible": true,
+          "x": 1020.8155411033072,
+          "y": 4546.1695590881,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 66,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 62",
+          "rotation": 0,
+          "visible": true,
+          "x": 1121.5011814648858,
+          "y": 4797.625043323647,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 67,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 63",
+          "rotation": 0,
+          "visible": true,
+          "x": 1341.3678956141368,
+          "y": 264.73233351542285,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 68,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 64",
+          "rotation": 0,
+          "visible": true,
+          "x": 1436.3445389983326,
+          "y": 449.59202247325175,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 69,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 65",
+          "rotation": 0,
+          "visible": true,
+          "x": 1329.0754764727815,
+          "y": 860.7600266237946,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 70,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 66",
+          "rotation": 0,
+          "visible": true,
+          "x": 1360.9701763369717,
+          "y": 1027.456145910971,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 71,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 67",
+          "rotation": 0,
+          "visible": true,
+          "x": 1316.366694351312,
+          "y": 1644.2777675865555,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 72,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 68",
+          "rotation": 0,
+          "visible": true,
+          "x": 1381.829770579975,
+          "y": 1938.372396928129,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 73,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 69",
+          "rotation": 0,
+          "visible": true,
+          "x": 1309.655834109409,
+          "y": 2470.49354396598,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 74,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 70",
+          "rotation": 0,
+          "visible": true,
+          "x": 1309.656148586206,
+          "y": 3437.0522791581143,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 75,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 71",
+          "rotation": 0,
+          "visible": true,
+          "x": 1418.554789456432,
+          "y": 3650.1630940059704,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 76,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 72",
+          "rotation": 0,
+          "visible": true,
+          "x": 1381.8278606359133,
+          "y": 3965.0871031101606,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 77,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 73",
+          "rotation": 0,
+          "visible": true,
+          "x": 1316.36760435805,
+          "y": 4278.913729330132,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 78,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 74",
+          "rotation": 0,
+          "visible": true,
+          "x": 1430.5169553366618,
+          "y": 4492.926878803141,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 79,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 75",
+          "rotation": 0,
+          "visible": true,
+          "x": 1360.9682803475225,
+          "y": 4889.923569576529,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 80,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 76",
+          "rotation": 0,
+          "visible": true,
+          "x": 1712.4142003673683,
+          "y": 156.8903378037835,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 81,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 77",
+          "rotation": 0,
+          "visible": true,
+          "x": 1599.7615702172175,
+          "y": 568.4309317687148,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 82,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 78",
+          "rotation": 0,
+          "visible": true,
+          "x": 1681.3783535152509,
+          "y": 752.0465692385037,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 83,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 79",
+          "rotation": 0,
+          "visible": true,
+          "x": 1697.499600945734,
+          "y": 1106.721478411205,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 84,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 80",
+          "rotation": 0,
+          "visible": true,
+          "x": 1722.6320351920872,
+          "y": 3382.8584810809753,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 85,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 81",
+          "rotation": 0,
+          "visible": true,
+          "x": 1637.5534376288365,
+          "y": 3655.951820444525,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 86,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 82",
+          "rotation": 0,
+          "visible": true,
+          "x": 1626.4625893016653,
+          "y": 4008.7323335154224,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 87,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 83",
+          "rotation": 0,
+          "visible": true,
+          "x": 1724.6587698091796,
+          "y": 4193.592022473251,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 88,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 84",
+          "rotation": 0,
+          "visible": true,
+          "x": 1619.609129634535,
+          "y": 4604.760026623794,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 89,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 85",
+          "rotation": 0,
+          "visible": true,
+          "x": 1645.6592941861297,
+          "y": 4771.456145910971,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 86",
+          "rotation": 0,
+          "visible": true,
+          "x": 1886.177584590486,
+          "y": 269.4212809612868,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 87",
+          "rotation": 0,
+          "visible": true,
+          "x": 1996.4833820276995,
+          "y": 481.65079646602135,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 92,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 88",
+          "rotation": 0,
+          "visible": true,
+          "x": 1955.0254022722063,
+          "y": 797.6516408904617,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 89",
+          "rotation": 0,
+          "visible": true,
+          "x": 1934.206533799618,
+          "y": 1721.7538426664555,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 90",
+          "rotation": 0,
+          "visible": true,
+          "x": 1907.1801126295966,
+          "y": 1885.2227942793652,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 91",
+          "rotation": 0,
+          "visible": true,
+          "x": 2012.6189454970975,
+          "y": 2291.7003895298208,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 96,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 92",
+          "rotation": 0,
+          "visible": true,
+          "x": 1914.9387080883184,
+          "y": 2488.334393140882,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 97,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 93",
+          "rotation": 0,
+          "visible": true,
+          "x": 1925.030137507962,
+          "y": 2824.3494463248426,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 98,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 94",
+          "rotation": 0,
+          "visible": true,
+          "x": 1899.269774578936,
+          "y": 3349.1521952287026,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 99,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 95",
+          "rotation": 0,
+          "visible": true,
+          "x": 1945.4065034658813,
+          "y": 3733.629122738885,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 100,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 96",
+          "rotation": 0,
+          "visible": true,
+          "x": 2002.3438473681172,
+          "y": 3900.8903378037835,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 101,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 97",
+          "rotation": 0,
+          "visible": true,
+          "x": 1888.8650803222076,
+          "y": 4312.430931768715,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 102,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 98",
+          "rotation": 0,
+          "visible": true,
+          "x": 1966.1435416700256,
+          "y": 4496.046569238504,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 103,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 99",
+          "rotation": 0,
+          "visible": true,
+          "x": 1988.222030159098,
+          "y": 4850.721478411206,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 104,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 100",
+          "rotation": 0,
+          "visible": true,
+          "x": 2299.3001551364746,
+          "y": 214.29659570810918,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 105,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 101",
+          "rotation": 0,
+          "visible": true,
+          "x": 2210.9468850738926,
+          "y": 488.48639257449395,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 106,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 102",
+          "rotation": 0,
+          "visible": true,
+          "x": 2204.8773416795234,
+          "y": 840.3200891987383,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 107,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 103",
+          "rotation": 0,
+          "visible": true,
+          "x": 2193.489435420767,
+          "y": 1436.7774883762904,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 108,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 104",
+          "rotation": 0,
+          "visible": true,
+          "x": 2224.415810128504,
+          "y": 1603.2076816342494,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 109,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 105",
+          "rotation": 0,
+          "visible": true,
+          "x": 2180.6351785085267,
+          "y": 2219.7329929454413,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 110,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 106",
+          "rotation": 0,
+          "visible": true,
+          "x": 2245.2705120062574,
+          "y": 2514.929813360442,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 111,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 107",
+          "rotation": 0,
+          "visible": true,
+          "x": 2282.9464134721106,
+          "y": 2847.853058530061,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 112,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 108",
+          "rotation": 0,
+          "visible": true,
+          "x": 2265.2249393261154,
+          "y": 3452.1592474994727,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 113,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 109",
+          "rotation": 0,
+          "visible": true,
+          "x": 2266.230397142836,
+          "y": 3615.3485626231277,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 114,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 110",
+          "rotation": 0,
+          "visible": true,
+          "x": 2173.566571348683,
+          "y": 4013.4212809612864,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 115,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 111",
+          "rotation": 0,
+          "visible": true,
+          "x": 2282.158268314948,
+          "y": 4225.650796466021,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 116,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 112",
+          "rotation": 0,
+          "visible": true,
+          "x": 2246.386419037828,
+          "y": 4541.651640890462,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 117,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 113",
+          "rotation": 0,
+          "visible": true,
+          "x": 2180.1034964881005,
+          "y": 4854.397291958862,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 118,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 114",
+          "rotation": 0,
+          "visible": true,
+          "x": 2473.5308499748558,
+          "y": 181.5969126722498,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 119,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 115",
+          "rotation": 0,
+          "visible": true,
+          "x": 2544.842977729514,
+          "y": 1327.6447355720768,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 120,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 116",
+          "rotation": 0,
+          "visible": true,
+          "x": 2464.4790749082717,
+          "y": 2750.4869108403677,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 121,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 117",
+          "rotation": 0,
+          "visible": true,
+          "x": 2474.5636456218745,
+          "y": 3708.964504336731,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 122,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 118",
+          "rotation": 0,
+          "visible": true,
+          "x": 2586.483933445764,
+          "y": 3958.2965957081087,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 123,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 119",
+          "rotation": 0,
+          "visible": true,
+          "x": 2502.080337900924,
+          "y": 4232.486392574494,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 124,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 120",
+          "rotation": 0,
+          "visible": true,
+          "x": 2489.987505353029,
+          "y": 4584.320089198738,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 125,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 121",
+          "rotation": 0,
+          "visible": true,
+          "x": 2588.6937700263866,
+          "y": 4769.808666887724,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 126,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 122",
+          "rotation": 0,
+          "visible": true,
+          "x": 2819.587037483951,
+          "y": 1374.216112400765,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 127,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 123",
+          "rotation": 0,
+          "visible": true,
+          "x": 2763.6292317822854,
+          "y": 3925.5969126722493,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 128,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 124",
+          "rotation": 0,
+          "visible": true,
+          "x": 2808.842875041577,
+          "y": 4309.367255917344,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 129,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 125",
+          "rotation": 0,
+          "visible": true,
+          "x": 2866.651015691279,
+          "y": 4476.922809931616,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 130,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 126",
+          "rotation": 0,
+          "visible": true,
+          "x": 2753.0654086780173,
+          "y": 4888.633625913584,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 131,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 127",
+          "rotation": 0,
+          "visible": true,
+          "x": 3052.3608573948113,
+          "y": 541.4513308762669,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 132,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 128",
+          "rotation": 0,
+          "visible": true,
+          "x": 3075.464333607633,
+          "y": 1065.0225453973715,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 133,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 129",
+          "rotation": 0,
+          "visible": true,
+          "x": 3068.3892717901394,
+          "y": 1415.9044583887094,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 134,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 130",
+          "rotation": 0,
+          "visible": true,
+          "x": 3108.7105943040074,
+          "y": 3091.4879978362487,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 135,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 131",
+          "rotation": 0,
+          "visible": true,
+          "x": 3147.335795587668,
+          "y": 3423.379347575561,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 136,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 132",
+          "rotation": 0,
+          "visible": true,
+          "x": 3037.481914587869,
+          "y": 4589.786499324502,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 137,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 133",
+          "rotation": 0,
+          "visible": true,
+          "x": 3145.7582176431574,
+          "y": 4801.140611527375,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 138,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 134",
+          "rotation": 0,
+          "visible": true,
+          "x": 3367.1412164589156,
+          "y": 233.45817761431863,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 139,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 135",
+          "rotation": 0,
+          "visible": true,
+          "x": 3450.1727950836134,
+          "y": 523.1213011319794,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 140,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 136",
+          "rotation": 0,
+          "visible": true,
+          "x": 3387.6632189226743,
+          "y": 1141.100987343894,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 141,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 137",
+          "rotation": 0,
+          "visible": true,
+          "x": 3441.073753079496,
+          "y": 1308.9602526301212,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 142,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 138",
+          "rotation": 0,
+          "visible": true,
+          "x": 3328.1105553820057,
+          "y": 1720.8316641356441,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 143,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 139",
+          "rotation": 0,
+          "visible": true,
+          "x": 3407.7657464638287,
+          "y": 3151.213728777231,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 144,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 140",
+          "rotation": 0,
+          "visible": true,
+          "x": 3328.2927672147634,
+          "y": 3326.6180997997567,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 145,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 141",
+          "rotation": 0,
+          "visible": true,
+          "x": 3441.3985398174764,
+          "y": 3739.697893250638,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 146,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 142",
+          "rotation": 0,
+          "visible": true,
+          "x": 3338.215820231739,
+          "y": 4285.451330876267,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 147,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 143",
+          "rotation": 0,
+          "visible": true,
+          "x": 3450.331031795903,
+          "y": 4533.7352163943015,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 148,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 144",
+          "rotation": 0,
+          "visible": true,
+          "x": 3366.6090060918254,
+          "y": 4809.022545397372,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 149,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 145",
+          "rotation": 0,
+          "visible": true,
+          "x": 3721.35328358842,
+          "y": 254.90294584692447,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 150,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 146",
+          "rotation": 0,
+          "visible": true,
+          "x": 3613.401920890934,
+          "y": 455.4086411181943,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 151,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 147",
+          "rotation": 0,
+          "visible": true,
+          "x": 3613.9543315438286,
+          "y": 1422.1479058284817,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 152,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 148",
+          "rotation": 0,
+          "visible": true,
+          "x": 3723.722868535784,
+          "y": 1632.6325788898068,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 153,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 149",
+          "rotation": 0,
+          "visible": true,
+          "x": 3684.1481445658665,
+          "y": 1950.7804737170109,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 154,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 150",
+          "rotation": 0,
+          "visible": true,
+          "x": 3621.186191602289,
+          "y": 2261.3584820373217,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 155,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 151",
+          "rotation": 0,
+          "visible": true,
+          "x": 3663.308125893537,
+          "y": 2873.4001731469043,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 156,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 152",
+          "rotation": 0,
+          "visible": true,
+          "x": 3634.3288746111393,
+          "y": 3037.1031227981293,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 157,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 153",
+          "rotation": 0,
+          "visible": true,
+          "x": 3740.5241461193914,
+          "y": 3444.272131665449,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 158,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 154",
+          "rotation": 0,
+          "visible": true,
+          "x": 3643.9020690628777,
+          "y": 3639.412201498588,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 159,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 155",
+          "rotation": 0,
+          "visible": true,
+          "x": 3739.0469792205213,
+          "y": 4267.12130113198,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 160,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 156",
+          "rotation": 0,
+          "visible": true,
+          "x": 3627.9925151836596,
+          "y": 4502.044680683863,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 161,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 157",
+          "rotation": 0,
+          "visible": true,
+          "x": 3672.279554538915,
+          "y": 4885.100987343894,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 162,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 158",
+          "rotation": 0,
+          "visible": true,
+          "x": 3905.271093653606,
+          "y": 158.75412741170976,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 163,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 159",
+          "rotation": 0,
+          "visible": true,
+          "x": 4018.955021759644,
+          "y": 571.79976545671,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 164,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 160",
+          "rotation": 0,
+          "visible": true,
+          "x": 4027.0474276380824,
+          "y": 1365.1743868229935,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 165,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 161",
+          "rotation": 0,
+          "visible": true,
+          "x": 3939.9837536232153,
+          "y": 1641.560237192701,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 166,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 162",
+          "rotation": 0,
+          "visible": true,
+          "x": 3922.32743141037,
+          "y": 2588.7974757838924,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 167,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 163",
+          "rotation": 0,
+          "visible": true,
+          "x": 3951.310011782388,
+          "y": 2754.7242166160463,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 168,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 164",
+          "rotation": 0,
+          "visible": true,
+          "x": 4023.22770873235,
+          "y": 3142.631731663667,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 169,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 165",
+          "rotation": 0,
+          "visible": true,
+          "x": 3909.1852369009594,
+          "y": 3370.6474701323414,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 171,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 167",
+          "rotation": 0,
+          "visible": true,
+          "x": 3901.953966810813,
+          "y": 4199.408641118194,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 172,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 168",
+          "rotation": 0,
+          "visible": true,
+          "x": 3992.208921049386,
+          "y": 4603.990019753793,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 173,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 169",
+          "rotation": 0,
+          "visible": true,
+          "x": 3995.228423221762,
+          "y": 4767.042680388264,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 174,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 170",
+          "rotation": 0,
+          "visible": true,
+          "x": 4316.723892469777,
+          "y": 276.55153896910724,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 175,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 171",
+          "rotation": 0,
+          "visible": true,
+          "x": 4217.513520792596,
+          "y": 470.95545176182395,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 176,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 172",
+          "rotation": 0,
+          "visible": true,
+          "x": 4230.610815657118,
+          "y": 810.0110873252061,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 177,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 173",
+          "rotation": 0,
+          "visible": true,
+          "x": 4271.7675890374,
+          "y": 2478.851640435275,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 178,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 174",
+          "rotation": 0,
+          "visible": true,
+          "x": 4290.874147101531,
+          "y": 2836.3048507421054,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 179,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 175",
+          "rotation": 0,
+          "visible": true,
+          "x": 4188.800618271605,
+          "y": 3103.9163979402956,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 181,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 177",
+          "rotation": 0,
+          "visible": true,
+          "x": 4305.074866135632,
+          "y": 4315.79976545671,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 182,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 178",
+          "rotation": 0,
+          "visible": true,
+          "x": 4251.661289988933,
+          "y": 4488.043886989799,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 183,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 179",
+          "rotation": 0,
+          "visible": true,
+          "x": 4201.871931023521,
+          "y": 4861.935616669294,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 184,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 180",
+          "rotation": 0,
+          "visible": true,
+          "x": 4483.842920573043,
+          "y": 202.10680642975512,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 185,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 181",
+          "rotation": 0,
+          "visible": true,
+          "x": 4550.946136322816,
+          "y": 500.6064971226083,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 186,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 182",
+          "rotation": 0,
+          "visible": true,
+          "x": 4585.75684456194,
+          "y": 830.4238904151066,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 187,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 183",
+          "rotation": 0,
+          "visible": true,
+          "x": 4477.481633739744,
+          "y": 1031.722014718396,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 188,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 184",
+          "rotation": 0,
+          "visible": true,
+          "x": 4508.387608244897,
+          "y": 4214.9554517618235,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 189,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 185",
+          "rotation": 0,
+          "visible": true,
+          "x": 4515.466105251802,
+          "y": 4554.011087325206,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 190,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 186",
+          "rotation": 0,
+          "visible": true,
+          "x": 4603.175786425878,
+          "y": 4842.570505329383,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 191,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 187",
+          "rotation": 0,
+          "visible": true,
+          "x": 4868.666744919164,
+          "y": 192.11983915408064,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 192,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 188",
+          "rotation": 0,
+          "visible": true,
+          "x": 4845.597575517554,
+          "y": 558.5103331675293,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 193,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 189",
+          "rotation": 0,
+          "visible": true,
+          "x": 4769.066101224424,
+          "y": 734.8949830913084,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 194,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 190",
+          "rotation": 0,
+          "visible": true,
+          "x": 4882.652058185689,
+          "y": 1147.8967353684536,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 195,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 191",
+          "rotation": 0,
+          "visible": true,
+          "x": 4824.840949495991,
+          "y": 1319.726326868037,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 196,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 192",
+          "rotation": 0,
+          "visible": true,
+          "x": 4804.505104702239,
+          "y": 2218.0994261202723,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 197,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 193",
+          "rotation": 0,
+          "visible": true,
+          "x": 4795.420735866437,
+          "y": 2567.0631669180093,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 198,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 194",
+          "rotation": 0,
+          "visible": true,
+          "x": 4892.573865073031,
+          "y": 2754.4860731955646,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 199,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 195",
+          "rotation": 0,
+          "visible": true,
+          "x": 4814.758665691868,
+          "y": 3330.489253495146,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 200,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 196",
+          "rotation": 0,
+          "visible": true,
+          "x": 4876.103666324036,
+          "y": 4574.423890415107,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 201,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 197",
+          "rotation": 0,
+          "visible": true,
+          "x": 4766.063135733533,
+          "y": 4775.722014718396,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 202,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 198",
+          "rotation": 0,
+          "visible": true,
+          "x": 5101.109483949584,
+          "y": 281.02764170914315,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 203,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 199",
+          "rotation": 0,
+          "visible": true,
+          "x": 5076.044304916511,
+          "y": 445.003277090083,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 204,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 200",
+          "rotation": 0,
+          "visible": true,
+          "x": 5180.693881107627,
+          "y": 852.8266079954512,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 205,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 201",
+          "rotation": 0,
+          "visible": true,
+          "x": 5081.985886504744,
+          "y": 1046.5016468791061,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 206,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 202",
+          "rotation": 0,
+          "visible": true,
+          "x": 5094.082141495282,
+          "y": 1386.5629690221326,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 207,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 203",
+          "rotation": 0,
+          "visible": true,
+          "x": 5178.483419111998,
+          "y": 1674.018637982001,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 209,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 205",
+          "rotation": 0,
+          "visible": true,
+          "x": 5169.717035487367,
+          "y": 2461.0500376982573,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 210,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 206",
+          "rotation": 0,
+          "visible": true,
+          "x": 5056.478430250918,
+          "y": 2873.2137115338655,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 211,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 207",
+          "rotation": 0,
+          "visible": true,
+          "x": 5135.227659811842,
+          "y": 3054.46044067919,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 212,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 208",
+          "rotation": 0,
+          "visible": true,
+          "x": 5155.326451024186,
+          "y": 3412.829038105315,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 213,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 209",
+          "rotation": 0,
+          "visible": true,
+          "x": 5052.8055898414095,
+          "y": 3679.3523917573452,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 214,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 210",
+          "rotation": 0,
+          "visible": true,
+          "x": 5168.747124711981,
+          "y": 4891.896735368454,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 215,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 211",
+          "rotation": 0,
+          "visible": true,
+          "x": 5393.52546307708,
+          "y": 162.2588277949776,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 216,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 212",
+          "rotation": 0,
+          "visible": true,
+          "x": 5462.269918751869,
+          "y": 551.4797232679666,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 217,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 213",
+          "rotation": 0,
+          "visible": true,
+          "x": 5348.102601522734,
+          "y": 777.5675973284062,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 218,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 214",
+          "rotation": 0,
+          "visible": true,
+          "x": 5414.388326506742,
+          "y": 1077.1667248977146,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 219,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 215",
+          "rotation": 0,
+          "visible": true,
+          "x": 5450.156907241737,
+          "y": 1405.9422185575597,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 220,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 216",
+          "rotation": 0,
+          "visible": true,
+          "x": 5341.56627367464,
+          "y": 1608.0395185547081,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 221,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 217",
+          "rotation": 0,
+          "visible": true,
+          "x": 5341.750639330032,
+          "y": 2574.859171066896,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 222,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 218",
+          "rotation": 0,
+          "visible": true,
+          "x": 5450.947750212521,
+          "y": 2783.623128476549,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 223,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 219",
+          "rotation": 0,
+          "visible": true,
+          "x": 5413.268599735669,
+          "y": 3103.908690117379,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 224,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 220",
+          "rotation": 0,
+          "visible": true,
+          "x": 5348.6361034858255,
+          "y": 3412.312028241919,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 225,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 221",
+          "rotation": 0,
+          "visible": true,
+          "x": 5462.758651748136,
+          "y": 3630.8462689836215,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 226,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 222",
+          "rotation": 0,
+          "visible": true,
+          "x": 5468.409512480995,
+          "y": 4596.826607995451,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 227,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 223",
+          "rotation": 0,
+          "visible": true,
+          "x": 5372.8756695805005,
+          "y": 4790.501646879106,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 228,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 224",
+          "rotation": 0,
+          "visible": true,
+          "x": 5729.035659608834,
+          "y": 245.3513556612902,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 229,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 225",
+          "rotation": 0,
+          "visible": true,
+          "x": 5628.830530837727,
+          "y": 510.78818696134385,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 230,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 226",
+          "rotation": 0,
+          "visible": true,
+          "x": 5732.223549937915,
+          "y": 768.62564972518,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 231,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 227",
+          "rotation": 0,
+          "visible": true,
+          "x": 5710.141684613009,
+          "y": 1134.1528193273107,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 232,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 228",
+          "rotation": 0,
+          "visible": true,
+          "x": 5632.8657569578345,
+          "y": 1311.0406558779405,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 233,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 229",
+          "rotation": 0,
+          "visible": true,
+          "x": 5746.344904141541,
+          "y": 1723.9887954402052,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 234,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 230",
+          "rotation": 0,
+          "visible": true,
+          "x": 5689.404576942725,
+          "y": 1895.4128966468365,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 235,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 231",
+          "rotation": 0,
+          "visible": true,
+          "x": 5669.028346276037,
+          "y": 2794.640070223376,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 236,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 232",
+          "rotation": 0,
+          "visible": true,
+          "x": 5658.940345198245,
+          "y": 3142.6375717220008,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 237,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 233",
+          "rotation": 0,
+          "visible": true,
+          "x": 5756.618800454663,
+          "y": 3330.720974417253,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 238,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 234",
+          "rotation": 0,
+          "visible": true,
+          "x": 5651.178647067069,
+          "y": 3740.7975438564295,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 239,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 235",
+          "rotation": 0,
+          "visible": true,
+          "x": 5678.208412220552,
+          "y": 3906.258827794977,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 240,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 236",
+          "rotation": 0,
+          "visible": true,
+          "x": 5751.679398245525,
+          "y": 4295.479723267967,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 241,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 237",
+          "rotation": 0,
+          "visible": true,
+          "x": 5637.7526054933205,
+          "y": 4521.567597328406,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 242,
+          "type": "obstacle",
+          "name": "ภูมิประเทศ 238",
+          "rotation": 0,
+          "visible": true,
+          "x": 5699.027322359242,
+          "y": 4821.166724897715,
+          "width": 70.4,
+          "height": 70.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "rock-cluster"
+            }
+          ],
+          "ellipse": true
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown"
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "08 Endgame habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 259,
+          "type": "spawn",
+          "name": "ปูเกลือดำ",
+          "rotation": 0,
+          "visible": true,
+          "x": 2560,
+          "y": 768,
+          "width": 512,
+          "height": 384,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "abyss_black_salt_crab"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 6
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 260,
+          "type": "spawn",
+          "name": "ปลาตีนคราบดิน",
+          "rotation": 0,
+          "visible": true,
+          "x": 1440,
+          "y": 1536,
+          "width": 512,
+          "height": 384,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "abyss_silt_mudskipper"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 6
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 261,
+          "type": "spawn",
+          "name": "หุ่นดินดำซิกกูแรต",
+          "rotation": 0,
+          "visible": true,
+          "x": 1472,
+          "y": 3008,
+          "width": 512,
+          "height": 384,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "abyss_ziggurat_clay_guard"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 6
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 262,
+          "type": "spawn",
+          "name": "สิงห์นกอันซู",
+          "rotation": 0,
+          "visible": true,
+          "x": 3136,
+          "y": 2752,
+          "width": 512,
+          "height": 384,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "abyss_anzu_lionbird"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 6
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 263,
+          "type": "spawn",
+          "name": "มังกรงูมุชฮุชชู",
+          "rotation": 0,
+          "visible": true,
+          "x": 3776,
+          "y": 1696,
+          "width": 512,
+          "height": 384,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "abyss_mushhushshu_serpent"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 6
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 264,
+          "type": "spawn",
+          "name": "แมงป่องชายแดนราตรี",
+          "rotation": 0,
+          "visible": true,
+          "x": 2912,
+          "y": 3776,
+          "width": 512,
+          "height": 384,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "abyss_night_border_scorpion"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 4
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 265,
+          "type": "spawn",
+          "name": "ผู้พิทักษ์ลามัสสุหินดำ",
+          "rotation": 0,
+          "visible": true,
+          "x": 4960,
+          "y": 2144,
+          "width": 512,
+          "height": 384,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "abyss_blackstone_lamassu"
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "value": 4
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true
+        },
+        {
+          "id": 266,
+          "type": "path",
+          "name": "ลานต่อสู้เปิด",
+          "rotation": 0,
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 12
+            }
+          ],
+          "polyline": [
+            {
+              "x": 4284.8,
+              "y": 3776
+            },
+            {
+              "x": 4291.2,
+              "y": 3776
+            }
+          ]
+        },
+        {
+          "id": 267,
+          "type": "poi",
+          "name": "มังกรทะเลบรรพกาลเทียแมต",
+          "rotation": 0,
+          "visible": true,
+          "x": 4288,
+          "y": 3776,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boss"
+            }
+          ],
+          "point": true
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

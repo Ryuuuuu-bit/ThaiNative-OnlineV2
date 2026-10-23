@@ -1,4 +1,4 @@
-import {GATES,GATE_CAPTAIN,LAYOUTS,type MapId} from '@the-beginning-online/shared/maps';
+import {GATES,GATE_CAPTAIN,LAYOUTS,gateRoute,type MapId} from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json';
 import './tutorial-guide.css';
 
@@ -18,9 +18,9 @@ const learnedTotal=(p:any)=>Object.values(p.skills||{}).reduce((a:number,b:any)=
 /** The gate on the current map that leads toward `dest` (city sits between the meadow and the forest). */
 function gateToward(map:MapId,dest:MapId):Point|null{
  if(map===dest)return null;
- if(map==='city_plaza')return {...GATES.city_plaza[dest==='forest'?'east':'south'],label:dest==='forest'?'ประตูตะวันออก':'ประตูใต้'};
- if(map==='ruins'||map==='canyon')return {...GATES[map].west,label:'ประตูตะวันตก · ย้อนกลับ'};
- return map==='meadow'?{...GATES.meadow.north,label:'ประตูเหนือ · กลับเมือง'}:{...GATES.forest.west,label:'ประตูตะวันตก · กลับเมือง'};
+ const step=gateRoute(map,dest)[0];if(!step)return null;
+ const at=(GATES[map] as Record<string,{x:number;z:number}>)[step.gate];
+ return {...at,label:'ประตู'+({north:'เหนือ',south:'ใต้',east:'ตะวันออก',west:'ตะวันตก'} as Record<string,string>)[step.gate]};
 }
 const nearestMonster=(c:Ctx):Point|null=>{let best:any=null,d=Infinity;for(const e of c.game.enemies)if(!e.dead&&!e.boss){const n=Math.hypot(e.x-c.p.x,e.z-c.p.z);if(n<d){d=n;best=e;}}return best&&d>4?{x:best.x,z:best.z,label:'มอนสเตอร์'}:null;};
 const inField=(c:Ctx)=>c.map!=='city_plaza';
@@ -45,14 +45,14 @@ const STEPS:Step[]=[
   focus:'#skills-button',start:(c,s)=>{s.learned=learnedTotal(c.p);},done:(c,s)=>learnedTotal(c.p)>s.learned||(c.p.skillPoints<=0&&!!document.querySelector('#skills-window[open]'))},
  {id:'potion',title:'ยาฟื้นพลัง',text:c=>c.mobile?'แตะปุ่ม ✚ เพื่อดื่มยาแดง หรือตั้ง “เติมยาอัตโนมัติ” ในเมนู ตั้งค่า':'กด R ดื่มยาแดง หรือตั้ง “เติมยาอัตโนมัติ” ในเมนู ☰ › ตั้งค่า',
   focus:'[data-action="potion"]',start:(c,s)=>{s.potions=c.p.potions;},done:(c,s)=>!!s.drank||c.p.potions<s.potions||!!s.autoPotion},
- {id:'home',title:'กลับเมือง',text:c=>c.map==='city_plaza'?'ถึงเมืองแล้ว':`กด${c.mobile?'ปุ่ม ⌂':' H'} เพื่อร่ายกลับเมือง หรือเดินออกประตูเหนือ · นักบวชหมอข้างน้ำพุฟื้นพลังให้ฟรี`,
+ {id:'home',title:'กลับเมือง',text:c=>c.map==='city_plaza'?'ถึงเมืองแล้ว':`กด${c.mobile?'ปุ่ม ⌂':' H'} เพื่อร่ายกลับเมือง หรือเดินตามป้ายกลับเมือง · นักบวชหมอข้างน้ำพุฟื้นพลังให้ฟรี`,
   target:c=>gateToward(c.map,'city_plaza'),focus:'#return-city',start:(c,s)=>{s.away=inField(c);},done:(c,s)=>{if(inField(c))s.away=true;return s.away&&c.map==='city_plaza';}},
  {id:'turnin',title:'ส่งเควสต์แรก',text:c=>{const a=c.quests.active[FIRST];if(!a)return 'คุยกับหัวหน้าทหารประตูเพื่อรับและส่งเควสต์ “ล่าครั้งแรกนอกกำแพง” · เควสต์ทั้งหมดดูได้ในบันทึกการเดินทาง';const n=a.progress[0]??0;return n>=8?'ปราบวุ้นครบแล้ว · กลับไปส่งเควสต์ที่หัวหน้าทหารประตู รับยาและเงินรางวัล':`ปราบวุ้นจิ๋วให้ครบ ${n}/8 ตัว แล้วกลับมาส่งที่หัวหน้าทหารประตู`;},
   target:c=>{const a=c.quests.active[FIRST];if(a&&(a.progress[0]??0)<8)return inField(c)?nearestMonster(c):gateToward(c.map,'meadow');return c.map==='city_plaza'?{...GATE_CAPTAIN,label:'หัวหน้าทหารประตู'}:gateToward(c.map,'city_plaza');},
   done:c=>c.quests.done[FIRST]!==undefined},
- {id:'boss',title:'บอสสนาม',text:()=>'ราชาวุ้น (ทุ่งวุ้นจิ๋ว) และผู้เฝ้าป่าหมอก (ป่าหมอก ระดับ 6+) ฟื้นทุก 30 นาที · รับเควสต์ล่าบอสจากหัวหน้าทหารประตู ความคืบหน้าจะขึ้นในบันทึกการเดินทาง',
+ {id:'boss',title:'บอสสนาม',text:()=>'ราชาวุ้น (ทุ่งวุ้นจิ๋ว) และผู้เฝ้าป่าหมอก (ป่าหมอกส่วนลึก Lv.15) ฟื้นทุก 30 นาที · รับเควสต์ล่าบอสจากหัวหน้าทหารประตู ความคืบหน้าจะขึ้นในบันทึกการเดินทาง',
   start:(c,s)=>{s.at=performance.now();},done:(c,s)=>performance.now()-s.at>20000||Object.keys(c.quests.active).some(id=>/king|warden/.test(id))},
- {id:'angel',title:'อาชีพขั้นที่สอง',text:c=>c.p.jobLevel>=40?'ระดับอาชีพครบ 40 แล้ว · ไปคุยกับทูตสวรรค์กลางเมืองเพื่อเลือกเส้นทางใหม่':`ล่ามอนสเตอร์จนระดับอาชีพถึง 40 (ตอนนี้ ${c.p.jobLevel}/40) แล้วทูตสวรรค์กลางเมืองจะเปลี่ยนอาชีพให้ · ป่าหมอกทางประตูตะวันออกเหมาะกับระดับ 6 ขึ้นไป`,
+ {id:'angel',title:'อาชีพขั้นที่สอง',text:c=>c.p.jobLevel>=40?'ระดับอาชีพครบ 40 แล้ว · ไปคุยกับทูตสวรรค์กลางเมืองเพื่อเลือกเส้นทางใหม่':`ล่ามอนสเตอร์จนระดับอาชีพถึง 40 (ตอนนี้ ${c.p.jobLevel}/40) แล้วทูตสวรรค์กลางเมืองจะเปลี่ยนอาชีพให้ · ป่าหมอกทางตะวันออกมีโซน Lv.1–3 ใกล้เมือง แล้วค่อยลึกขึ้น`,
   target:c=>c.p.jobLevel>=40?(c.map==='city_plaza'?{...ANGEL,label:'ทูตสวรรค์'}:gateToward(c.map,'city_plaza')):null,done:c=>tier(c.p.jobId)>=2},
 ];
 

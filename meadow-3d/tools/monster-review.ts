@@ -22,7 +22,8 @@ const manifest = await fetch("/assets/monsters-painted/manifest.json").then((r) 
 // Facing vectors that resolve to SE, SW, NE, NW under the game camera.
 const FACINGS: [string, number, number][] = [["SE", 1, 0], ["SW", 0, 1], ["NE", 0, -1], ["NW", -1, 0]];
 const only = params.get("species");
-const SPECIES = ([["mist_shroom", "shroom", false], ["shade_wolf", "wolf", false], ["lantern_wisp", "wisp", false], ["stump_guard", "stump", false], ["mist_warden", "warden", true]] as [string, string, boolean][]).filter(([, sp]) => !only || only.split(",").includes(sp));
+const SPECIES = ([["jelly_pink", "slime", false], ["king_jelly", "king", true], ["mist_shroom", "shroom", false], ["shade_wolf", "wolf", false], ["lantern_wisp", "wisp", false], ["stump_guard", "stump", false], ["mist_warden", "warden", true]] as [string, string, boolean][]).filter(([, sp]) => !only || only.split(",").includes(sp));
+if(!SPECIES.length)throw Error('Unknown monster review species: '+only);
 const bossMotion: Record<string, string> = { hop: "move", attack: "slam" };
 const actors: { update: (e: Enemy, t: number) => void; snapshot: () => { loaded: string[] }; motions: number; enemy: Enemy }[] = [];
 const spacing = 6.2, rowGap = 6;
@@ -59,7 +60,7 @@ function frame() {
 	requestAnimationFrame(frame);
 	for (const a of actors) a.update(a.enemy, 0);
 	renderer.render(scene, camera);
-	if (actors.every((a) => a.snapshot().loaded.length >= a.motions) && ++settled === 10) document.body.dataset.ready = "true";
+	if (actors.every((a) => a.snapshot().loaded.length >= a.motions) && ++settled === 10) { document.body.dataset.ready = "true";document.body.dataset.actorCount=String(actors.length); }
 }
 frame();
 document.querySelector("#title")!.textContent = perDirection ? `${SPECIES[0][1]} ${motion} · rows: SE, SW, NE, NW · columns: frames` : `${motion} · rows: ${SPECIES.map((s) => s[1]).join(", ")} · columns: SE, SW, NE, NW × frames`;

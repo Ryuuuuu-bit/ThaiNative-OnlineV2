@@ -1,8 +1,9 @@
 import { z } from "zod";
+import {MAP_INFO} from '@the-beginning-online/shared/maps';
 import type { WebSocket } from "ws";
 import { randomUUID } from "node:crypto";
 import {
-	CITY_SPAWN, MEADOW_ENTRY, FOREST_ENTRY, isField, walkable, spawn, refreshStats, autoAllocateStats, resetStats,
+	MAP_ENTRY, isField, walkable, spawn, refreshStats, clearMasteryWounds, autoAllocateStats, resetStats, isRolledTemplate, rollEquipment,
 	type Game, type MapId, type Player, type InventoryOp, type SlimeVariant,
 } from "@the-beginning-online/shared";
 import type { Store, Account } from "../store/types.js";
@@ -31,8 +32,8 @@ export interface GmContext<P extends GmPeer> {
 
 /** Same reply for players and for unknown commands, so GM commands are not discoverable. */
 export const UNKNOWN_COMMAND = "ไม่รู้จักคำสั่งนี้ · พิมพ์ /help ดูคำสั่ง";
-const MAP_LABEL: Record<MapId, string> = { city_plaza: "เมือง", meadow: "ทุ่งวุ้นจิ๋ว", forest: "ป่าหมอก",ruins:"ซากนครโบราณ",canyon:"หุบเขาหิน" };
-const MAP_SPAWN: Record<MapId, { x: number; z: number }> = { city_plaza: CITY_SPAWN, meadow: MEADOW_ENTRY, forest: FOREST_ENTRY,ruins:{x:-58,z:0},canyon:{x:-58,z:0} };
+const MAP_LABEL: Record<MapId, string> = {...Object.fromEntries(Object.entries(MAP_INFO).map(([id,info])=>[id,info.name])),city_plaza:'เมือง'} as Record<MapId,string>;
+const MAP_SPAWN = MAP_ENTRY;
 
 const UID = /^\d{9}$/;
 const int = (min: number, max: number) => z.coerce.number().int().min(min).max(max);
@@ -41,17 +42,17 @@ const coord = z.coerce.number().finite().min(-500).max(500);
 const who = z.string().min(1).max(24);
 const uid = z.string().regex(UID, "UID ต้องเป็นตัวเลข 9 หลัก");
 const id = z.string().regex(/^[a-z0-9_]{1,40}$/, "รหัสไม่ถูกต้อง");
-const mapId = z.enum(["city_plaza", "meadow", "forest", "ruins", "canyon"]);
+const mapId = z.enum(Object.keys(MAP_LABEL) as [MapId,...MapId[]]);
 const onOff = z.enum(["on", "off"]);
 /** One schema per command: a union of the accepted argument lists. */
 const shapes = <T extends [z.ZodTypeAny, ...z.ZodTypeAny[]][]>(...lists: T) => z.union(lists.map(l => z.tuple(l as any)) as any);
 const COMMANDS = {
 	help: { usage: "/gm help", text: "รายการคำสั่ง GM", args: shapes([] as any) },
-	tp: { usage: "/gm tp <x> <z> | /gm tp <city_plaza|meadow|forest|ruins|canyon>", text: "วาร์ปไปพิกัดในแผนที่นี้ หรือไปแผนที่อื่น", args: shapes([coord, coord], [mapId]) },
+	tp: { usage: `/gm tp <x> <z> | /gm tp <${Object.keys(MAP_LABEL).join('|')}>`, text: "วาร์ปไปพิกัดในแผนที่นี้ หรือไปแผนที่อื่น", args: shapes([coord, coord], [mapId]) },
 	goto: { usage: "/gm goto <uid|ชื่อ>", text: "วาร์ปไปหาผู้เล่น", args: shapes([who]) },
 	summon: { usage: "/gm summon <uid|ชื่อ>", text: "ดึงผู้เล่นมาหาเรา", args: shapes([who]) },
 	heal: { usage: "/gm heal [uid|ชื่อ]", text: "เติม HP/SP เต็ม (ฟื้นถ้าตาย)", args: shapes([] as any, [who]) },
-	level: { usage: "/gm level <1-99> [uid|ชื่อ]", text: "ตั้งเลเวล", args: shapes([int(1, 99)], [int(1, 99), who]) },
+	level: { usage: "/gm level <1-100> [uid|ชื่อ]", text: "ตั้งเลเวล", args: shapes([int(1, 100)], [int(1, 100), who]) },
 	joblevel: { usage: "/gm joblevel <n> [uid|ชื่อ]", text: "ตั้งเลเวลอาชีพ", args: shapes([int(1, 70)], [int(1, 70), who]) },
 	give: { usage: "/gm give <itemId> [จำนวน 1-999] [uid|ชื่อ]", text: "ให้ไอเทม (ผ่านระบบกระเป๋า+บัญชี)", args: shapes([id], [id, int(1, 999)], [id, int(1, 999), who]) },
 	gold: { usage: "/gm gold <1-100000000> [uid|ชื่อ]", text: "ให้ทอง (ผ่านระบบบัญชี)", args: shapes([int(1, 100_000_000)], [int(1, 100_000_000), who]) },
@@ -103,7 +104,7 @@ export function createGm<P extends GmPeer>(ctx: GmContext<P>) {
 			Object.assign(p, autoAllocateStats(p, data));
 		}
 		p.xp = 0;
-		refreshStats(g, p); p.hp = p.maxHp; p.mp = p.maxMp;
+		refreshStats(g, p); clearMasteryWounds(p); p.hp = p.maxHp; p.mp = p.maxMp;
 		g.events.push({ type: "level", playerId: p.id, x: p.x, z: p.z, level: p.level, skillPoints: p.skillPoints, points: p.statPoints, granted: 0 });
 		ctx.flush(peer.room);
 	}
@@ -149,7 +150,7 @@ export function createGm<P extends GmPeer>(ctx: GmContext<P>) {
 			case "heal": {
 				const t = target(peer, args[0]), p = player(t)!;
 				if (p.dead) { p.dead = false; p.reviveRemaining = 0; }
-				p.hp = p.maxHp; p.mp = p.maxMp;
+				clearMasteryWounds(p); p.hp = p.maxHp; p.mp = p.maxMp;
 				return { text: `ฟื้นฟู ${label(t)} แล้ว`, targetUid: t.uid, touched: t };
 			}
 			case "level": { const t = target(peer, args[1]); setLevel(t, player(t)!, args[0]); return { text: `ตั้งเลเวล ${label(t)} เป็น ${args[0]}`, targetUid: t.uid, touched: t }; }
@@ -159,7 +160,8 @@ export function createGm<P extends GmPeer>(ctx: GmContext<P>) {
 				if (!item) fail(`ไม่พบไอเทม "${template}"`);
 				if (!item!.stackable && qty > 20) fail("ไอเทมที่ซ้อนไม่ได้ ให้ได้ครั้งละไม่เกิน 20");
 				const t = target(peer, query);
-				await grant(peer, t, { op: "admin", loot: [{ template, qty }] });
+				const loot=isRolledTemplate(template)?Array.from({length:qty},()=>({template,qty:1,roll:rollEquipment(template,player(t)!.level,g.data,g.equipmentRandom)})):[{template,qty}];
+				await grant(peer, t, { op: "admin", loot });
 				return { text: `ให้ ${item!.nameTh ?? template} ×${qty} กับ ${label(t)} แล้ว`, targetUid: t.uid };
 			}
 			case "gold": {

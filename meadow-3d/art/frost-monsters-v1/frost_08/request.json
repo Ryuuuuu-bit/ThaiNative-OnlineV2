@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted gouache and watercolor isometric MMORPG creature. Original character and natural texture, no lettering, grid, glow, detached props or scenery. Match the approved base.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. a clear natural walking cycle with anatomically correct alternating footfalls, all limbs stay attached, return to starting stance, no whole-body translation. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready holding ONE huge stone maul in both hands, draw the maul up and back in a clear heavy windup, slam the same maul down and forward, recover holding it; no detached hammer, no lightning or effects. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. a clear natural walking cycle with anatomically correct alternating footfalls, all limbs stay attached, return to starting stance, no whole-body translation. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready holding ONE huge stone maul in both hands, draw the maul up and back in a clear heavy windup, slam the same maul down and forward, recover holding it; no detached hammer, no lightning or effects. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original enormous jotun fjord guardian, exactly TWO massive arms and TWO thick booted legs, one broad blue-gray stone-skinned face with a thick frost-white beard, shaggy short white hair and deep-set dark eyes. Heavy irregular glacier-stone shoulder guards over plain brown fur and slate cloth, ONE enormous long-handled rough stone maul held with BOTH hands. Massive grounded stooped giant silhouette. No lightning, no god symbols, no horned helmet, no hammer resembling any named superhero weapon, no franchise references."
+    }
+  },
+  "body_plan": [
+    "biped"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

@@ -43,3 +43,12 @@ test('AUTO large relocations snap instead of sliding through intervening terrain
  const w=new NetworkWorld();w.receive(snap(0,0),'p',0);w.receive(snap(100,20),'p',100);w.update(100,.01,{x:0,z:0},0);
  assert.equal(w.game.p.x,20);
 });
+
+
+test('manual prediction respects Root and authoritative zero movement speed instead of falling back to normal speed',()=>{
+ for(const options of [{moveSpeed:0},{moveSpeed:1.2,statuses:[{id:'root',remaining:2}]}]){const w=new NetworkWorld();w.receive(snap(0,0,{auto:false,...options}),'p',0);w.update(50,.05,{x:1,z:0},1);assert.equal(w.game.p.x,0);}
+});
+
+test('manual prediction uses the authoritative speed multiplier for movement buffs',()=>{
+ const w=new NetworkWorld();w.receive(snap(0,0,{auto:false,moveSpeed:1.2}),'p',0);w.update(50,.05,{x:1,z:0},1);assert(Math.abs(w.game.p.x-.27)<1e-8);
+});

@@ -31,3 +31,4 @@
 #trade-window footer button.primary{background:#5c4a1f;border-color:#ecd28e}
 #trade-window footer button:disabled{opacity:.45;cursor:default}
 @media (max-width:560px){.trade-sides{grid-template-columns:1fr}}
+.trade-rolls{display:block;white-space:normal;font-size:11px;line-height:1.5;color:#bcd8c9;max-width:300px}

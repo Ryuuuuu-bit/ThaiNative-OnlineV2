@@ -1,0 +1,470 @@
+{
+  "kind": "sprite-gen-slice-sheet",
+  "version": 1,
+  "sheet": "sheet-2.png",
+  "grid": [
+    4,
+    4
+  ],
+  "canvas": {
+    "w": 192,
+    "h": 192
+  },
+  "baseline_y": 178.0,
+  "target_height": 164.0,
+  "scale": "cell",
+  "fit": "contain",
+  "factor": null,
+  "factor_from": null,
+  "alpha_cleanup": "alpha-cleanup.json",
+  "cells": [
+    {
+      "name": "field_naga_sword",
+      "file": "field_naga_sword.png",
+      "factor": 0.543046357615894,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 280,
+          "h": 302
+        },
+        "canvas": {
+          "w": 152,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 20,
+        "y": 14,
+        "w": 152,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_naga_staff",
+      "file": "field_naga_staff.png",
+      "factor": 0.543046357615894,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 277,
+          "h": 302
+        },
+        "canvas": {
+          "w": 150,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 21,
+        "y": 14,
+        "w": 150,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_naga_bow",
+      "file": "field_naga_bow.png",
+      "factor": 0.5484949832775919,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 283,
+          "h": 299
+        },
+        "canvas": {
+          "w": 155,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 19,
+        "y": 14,
+        "w": 155,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_naga_armour",
+      "file": "field_naga_armour.png",
+      "factor": 0.5578231292517006,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 283,
+          "h": 294
+        },
+        "canvas": {
+          "w": 158,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 17,
+        "y": 14,
+        "w": 158,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_naga_shield",
+      "file": "field_naga_shield.png",
+      "factor": 0.5077399380804953,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 239,
+          "h": 323
+        },
+        "canvas": {
+          "w": 121,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 36,
+        "y": 14,
+        "w": 121,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_naga_cloak",
+      "file": "field_naga_cloak.png",
+      "factor": 0.5141065830721003,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 280,
+          "h": 319
+        },
+        "canvas": {
+          "w": 144,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 24,
+        "y": 14,
+        "w": 144,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_naga_boots",
+      "file": "field_naga_boots.png",
+      "factor": 0.5540540540540541,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 282,
+          "h": 296
+        },
+        "canvas": {
+          "w": 156,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 18,
+        "y": 14,
+        "w": 156,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_naga_ring",
+      "file": "field_naga_ring.png",
+      "factor": 0.6283524904214559,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 213,
+          "h": 261
+        },
+        "canvas": {
+          "w": 134,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 29,
+        "y": 14,
+        "w": 134,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_sword",
+      "file": "field_celestial_sword.png",
+      "factor": 0.5359477124183006,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 287,
+          "h": 306
+        },
+        "canvas": {
+          "w": 154,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 19,
+        "y": 14,
+        "w": 154,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_staff",
+      "file": "field_celestial_staff.png",
+      "factor": 0.5377049180327869,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 280,
+          "h": 305
+        },
+        "canvas": {
+          "w": 151,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 21,
+        "y": 14,
+        "w": 151,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_bow",
+      "file": "field_celestial_bow.png",
+      "factor": 0.5714285714285714,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 285,
+          "h": 287
+        },
+        "canvas": {
+          "w": 163,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 15,
+        "y": 14,
+        "w": 163,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_armour",
+      "file": "field_celestial_armour.png",
+      "factor": 0.5359477124183006,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 288,
+          "h": 306
+        },
+        "canvas": {
+          "w": 154,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 19,
+        "y": 14,
+        "w": 154,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_shield",
+      "file": "field_celestial_shield.png",
+      "factor": 0.5093167701863354,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 242,
+          "h": 322
+        },
+        "canvas": {
+          "w": 123,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 35,
+        "y": 14,
+        "w": 123,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_cloak",
+      "file": "field_celestial_cloak.png",
+      "factor": 0.5342019543973942,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 289,
+          "h": 307
+        },
+        "canvas": {
+          "w": 154,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 19,
+        "y": 14,
+        "w": 154,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_boots",
+      "file": "field_celestial_boots.png",
+      "factor": 0.5521885521885522,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 275,
+          "h": 297
+        },
+        "canvas": {
+          "w": 152,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 20,
+        "y": 14,
+        "w": 152,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_celestial_ring",
+      "file": "field_celestial_ring.png",
+      "factor": 0.6431372549019608,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 214,
+          "h": 255
+        },
+        "canvas": {
+          "w": 138,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 28,
+        "y": 14,
+        "w": 138,
+        "h": 164
+      },
+      "anchor": [
+        97.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An anzu lionbird, one stern eagle head with one hooked beak, four broad lion paws, two folded dark ochre feathered wings attached at shoulders, a compact tawny lion body and one short tufted tail. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\abyss-monsters-20261022\\abyss_anzu_lionbird\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\abyss-monsters-20261022\\abyss_anzu_lionbird\\base.png.raw.png",
+  "raw_bytes": 1985437,
+  "elapsed_seconds": 53.843,
+  "model": null,
+  "session_id": "01a16125-53c2-75d2-8547-4c29b210a1ed",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\abyss-monsters-20261022\\abyss_anzu_lionbird\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1374x1145",
+    "alpha_zero_pct": 53.1,
+    "partial_alpha_pct": 46.89,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 635,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

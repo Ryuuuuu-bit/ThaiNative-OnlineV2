@@ -1,0 +1,6 @@
+#shadow-combat-controls{position:fixed;right:16px;top:115px;z-index:30;max-width:min(230px,calc(100vw - 32px));padding:10px;background:#17251eed;color:#f1e4bf;border:1px solid #c9b67d;border-radius:8px;font-size:12px}
+#shadow-combat-controls summary{cursor:pointer;font-weight:700}
+#shadow-combat-controls label{display:block;margin-top:8px}
+#shadow-combat-controls button,#shadow-combat-controls select{font:inherit;color:#f1e4bf;background:#30483b;border:1px solid #c9b67d;padding:8px;border-radius:4px;margin:4px 0}
+#shadow-combat-controls output{display:block}
+#shadow-combat-controls :focus-visible{outline:2px solid #fff2b4;outline-offset:2px}

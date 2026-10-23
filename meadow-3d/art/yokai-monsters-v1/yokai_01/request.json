@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted gouache and watercolor isometric MMORPG creature. Original character and natural texture, no lettering, grid, glow, detached props or scenery. Match the approved base.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "FRONT-RIGHT three-quarter, face visible. a clear natural walking cycle with anatomically correct alternating footfalls, all limbs stay attached, return to starting stance, no whole-body translation. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready with two webbed hands, bend knees and draw hands inward, reach both same webbed hands forward in one clear tug, recover; shell and water dish stay attached. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "FRONT-RIGHT three-quarter, face visible. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. subtle breathing or small carapace settling, a slow blink where applicable, same ready stance throughout, no whole-body translation. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. a clear natural walking cycle with anatomically correct alternating footfalls, all limbs stay attached, return to starting stance, no whole-body translation. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready with two webbed hands, bend knees and draw hands inward, reach both same webbed hands forward in one clear tug, recover; shell and water dish stay attached. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, recoil briefly from impact with the same attached body parts, recover, ready; stable ground line. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "TRUE BACK-RIGHT three-quarter, looking away, rear body visible, no front face, no frontal chest. ready, weaken, collapse into a low defeated pose, remain collapsed on the ground; never stand up again. Preserve exactly this anatomy and identity: An original squat river kappa, one broad olive turtle-frog head with a blunt muted amber beak, two short arms with webbed hands and two bent webbed legs. A shallow plain water dish lies naturally in the crown of its head, dark jade turtle shell attached to back, pale moss-green belly and sparse dark reed-like hair at sides. Sturdy friendly-wary river creature, no clothes, weapons, text, detached water or effects."
+    }
+  },
+  "body_plan": [
+    "biped"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

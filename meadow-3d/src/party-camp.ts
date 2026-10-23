@@ -11,6 +11,11 @@ export function paintPartyPortrait(canvas:HTMLCanvasElement,member:PartyMember){
  canvas.width=240;canvas.height=154;canvas.ariaLabel='ตัวละคร '+member.name;canvas.setAttribute('role','img');
  void art().then(a=>{const c=canvas.getContext('2d')!;c.clearRect(0,0,240,154);hero(c,a.hero,120,148,178,'SE');}).catch(()=>{canvas.hidden=true;});
 }
+/** Head-and-shoulders crop of the shared hero atlas for the HUD party strip. */
+export function paintPartyAvatar(canvas:HTMLCanvasElement){
+ canvas.width=64;canvas.height=64;
+ void art().then(a=>{const c=canvas.getContext('2d')!;c.clearRect(0,0,64,64);hero(c,a.hero,32,111,150,'SE');}).catch(()=>{canvas.hidden=true;});
+}
 /** Local illustrative camp assembled from the same painted props and hero atlas as gameplay. */
 export function mountPartyCamp(host:HTMLElement,isOpen:()=>boolean,you:()=>string,onInvite:()=>void){
  const canvas=document.createElement('canvas');canvas.width=1100;canvas.height=350;canvas.ariaLabel='ค่ายพักและตัวละครสมาชิกปาร์ตี้';canvas.setAttribute('role','img');host.append(canvas);

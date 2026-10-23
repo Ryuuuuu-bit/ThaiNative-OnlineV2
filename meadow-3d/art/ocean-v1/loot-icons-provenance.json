@@ -1,0 +1,123 @@
+{
+  "method": "Original authored SVG geometry and normalized original generated creature images; no external assets",
+  "sources": [
+    {
+      "id": "card_ocean_storm_conch",
+      "base": "output/ocean-monsters-20261022/ocean_storm_conch/base.png",
+      "baseSha256": "3a40282cf97d90fe9dd5dcb4c6928e0f70c6fb8dba77594300c7f8bfa8a65a0c",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_ocean_mast_crab",
+      "base": "output/ocean-monsters-20261022/ocean_mast_crab/base.png",
+      "baseSha256": "dac1ca57c9eb65ede0ef29613dff6bf5b5a950bfb56141af35deff6b24720bca",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_ocean_whirlpool_lanternfish",
+      "base": "output/ocean-monsters-20261022/ocean_whirlpool_lanternfish/base.png",
+      "baseSha256": "2228335ae0d92b474fc5f8de06e72553a021a1bce4a0a1a99a8520ccc61f579e",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_ocean_mist_isle_siren",
+      "base": "output/ocean-monsters-20261022/ocean_mist_isle_siren/base.png",
+      "baseSha256": "a02cde8e8ffcd057feaa64580d1f7511a731ccfed5b2c8638189f0e6e070e698",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_ocean_sunken_coral_knight",
+      "base": "output/ocean-monsters-20261022/ocean_sunken_coral_knight/base.png",
+      "baseSha256": "b422b97d05816c43fed903e0394d1fe54b4948e5a06edc504bd0ad531bcb8403",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_ocean_sixhead_reef_scylla",
+      "base": "output/ocean-monsters-20261022/ocean_sixhead_reef_scylla/base.png",
+      "baseSha256": "ff00fb1a25e666b0630ad04e11cad6f61895f567a95f2dc9ce4e83142174ae84",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_ocean_shipwreck_colossus",
+      "base": "output/ocean-monsters-20261022/ocean_shipwreck_colossus/base.png",
+      "baseSha256": "5d9ccc8cbd2b8d06c3ed3904faf3fb205fb0788b5761bc8975629c992d303ea0",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_ocean_stormcrown_kraken",
+      "base": "output/ocean-monsters-20261022/ocean_stormcrown_kraken/base.png",
+      "baseSha256": "498f43cf92703ab5504b26d167fac20e5df6b06c283672eaef5f3414796340c4",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    }
+  ],
+  "files": [
+    {
+      "file": "card_ocean_storm_conch.svg",
+      "sha256": "e3d14c7f72a8cc6b5b32226388315dbdaf2112a2f174c539bffd35ccd12073e7"
+    },
+    {
+      "file": "ocean_storm_conch_material.svg",
+      "sha256": "3ca22c688f49a1d7daf634d440c0813ac952b654d073fb9eb1d827f601dde293"
+    },
+    {
+      "file": "card_ocean_mast_crab.svg",
+      "sha256": "744ddb720dcd21872de8ce6a44ec0f8677d528e3fa0fbdcee840889b3b99f44f"
+    },
+    {
+      "file": "ocean_mast_crab_material.svg",
+      "sha256": "b08f27ea68be849b7ab86a5549403cf45dc7204d460ee27d7c2a1426a8fd3d46"
+    },
+    {
+      "file": "card_ocean_whirlpool_lanternfish.svg",
+      "sha256": "b6a23d215642f1a05419fc2baca84021b0eccc51160b2ac06c16209a8ffb7e92"
+    },
+    {
+      "file": "ocean_whirlpool_lanternfish_material.svg",
+      "sha256": "054527e71719ea00cf45baadab2d8547ab23ae3dcb0fd87d31241038649dd2e4"
+    },
+    {
+      "file": "card_ocean_mist_isle_siren.svg",
+      "sha256": "d0005fd110ec0e042f0e645c532521d88732b57096a4414e4b3d7fab9638f9d8"
+    },
+    {
+      "file": "ocean_mist_isle_siren_material.svg",
+      "sha256": "c350d09a12967016b205742855bb61d55d15d5a51afe815b4f203600776a2c5c"
+    },
+    {
+      "file": "card_ocean_sunken_coral_knight.svg",
+      "sha256": "53af0706d27dc734316847c2ec34e08a77a43f48d3734181d7f126afa0b9ec77"
+    },
+    {
+      "file": "ocean_sunken_coral_knight_material.svg",
+      "sha256": "b0e77a2dc8ac62c3c2c1bf727c21a7f599c2096de064cc05ca7673315a8916e0"
+    },
+    {
+      "file": "card_ocean_sixhead_reef_scylla.svg",
+      "sha256": "f22933a6aa4cd829df4cfbb1e66636c69d6d9c94a8b8b226076a4dcc5c6e2498"
+    },
+    {
+      "file": "ocean_sixhead_reef_scylla_material.svg",
+      "sha256": "7decc29fe92a95f743660f869e6b7fe159320d3893ac603863fbe30a4b69a85d"
+    },
+    {
+      "file": "card_ocean_shipwreck_colossus.svg",
+      "sha256": "9a8b38164400a250a78325999cb53456b94fab6446f021b76cd6f22b6916f0b1"
+    },
+    {
+      "file": "ocean_shipwreck_colossus_material.svg",
+      "sha256": "2f7931b3ecb354982e0c92c42ecc00b69c829f3d7d38f3a34a460118d051c4a6"
+    },
+    {
+      "file": "card_ocean_stormcrown_kraken.svg",
+      "sha256": "a789233aa6f288decf7f18afa8a767c2a982985353fc6f8c332088254fc584b1"
+    },
+    {
+      "file": "ocean_stormcrown_kraken_material.svg",
+      "sha256": "e8b2cdc802017ed75c926fe767e20ee363c93be984db7f56c33664dfee3c618c"
+    },
+    {
+      "file": "unique_ocean_relic.svg",
+      "sha256": "98d688f3084bd922b965341219a237f0a96435bc8bab78f3a2f14373e488f744"
+    }
+  ]
+}

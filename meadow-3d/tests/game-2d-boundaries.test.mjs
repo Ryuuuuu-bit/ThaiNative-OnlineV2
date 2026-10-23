@@ -12,7 +12,7 @@ test('2D projection round trips at map corners and outside the playable boundary
 });
 test('minimap routes reach walkable positions within every gate activation radius',()=>{
  for(const [id,start,walk]of [['city_plaza',CITY_SPAWN,cityWalkable],['meadow',MEADOW_ENTRY,meadowWalkable],['forest',FOREST_ENTRY,forestWalkable]])for(const gate of Object.values(GATES[id])){
-  const goal=gateApproach(gate),path=gridPath(start,goal,(x,z)=>walk(x,z,.3));assert.ok(path.length,`${id} has a route to its gate`);const last=path.at(-1);assert.ok(walk(last.x,last.z,.3));assert.ok(Math.hypot(last.x-gate.x,last.z-gate.z)<1.25,`${id} can trigger travel`);
+  const goal=gateApproach(gate),path=gridPath(start,goal,(x,z)=>walk(x,z,.3),LAYOUTS[id]);assert.ok(path.length,`${id} has a route to its gate`);const last=path.at(-1);assert.ok(walk(last.x,last.z,.3));assert.ok(Math.hypot(last.x-gate.x,last.z-gate.z)<1.25,`${id} can trigger travel`);
  }
 });
 for(const id of ['city_plaza','meadow','forest'])test(`${id}: scenery surrounds every side without obstructing playable space or outward roads`,()=>{

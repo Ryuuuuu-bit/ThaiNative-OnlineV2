@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "frost_01",
+      "baseSha256": "afd40d5d96fb7b2964b413cba1f62affc1c1a82fe9ba000aedd49ab8aeb587e7",
+      "run": "output/frost-monsters-20261022/frost_01/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_01/motion-qa.json"
+    },
+    {
+      "id": "frost_rune_raven",
+      "baseSha256": "5942c6dd5588a81eab99a07dd428f4a86f4f215454acd0d6f26201b4ce5df2eb",
+      "run": "output/frost-monsters-20261022/frost_rune_raven/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_rune_raven/motion-qa.json"
+    },
+    {
+      "id": "frost_03",
+      "baseSha256": "321d8a26e1062a96c86b6824bd5fd69d9386e620ab9487e7ecce775adfb603c4",
+      "run": "output/frost-monsters-20261022/frost_03/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_03/motion-qa.json"
+    },
+    {
+      "id": "frost_ice_lindworm",
+      "baseSha256": "6f32a8686a152ae414fbd692b0b49fcd89ebc05af2f2a2132367c346d394324f",
+      "run": "output/frost-monsters-20261022/frost_ice_lindworm/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_ice_lindworm/motion-qa.json"
+    },
+    {
+      "id": "frost_winter_wavehorse",
+      "baseSha256": "b9adc1bf36bfbf63dd5ba6eb499e1bac04a3a9f6c8e33f04cf7d3225f1fdae5c",
+      "run": "output/frost-monsters-20261022/frost_winter_wavehorse/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_winter_wavehorse/motion-qa.json"
+    },
+    {
+      "id": "frost_06",
+      "baseSha256": "95005d95b43c8e18e84470b80603a75ca2b91c8aa1aae1c3442a2abd501bd35e",
+      "run": "output/frost-monsters-20261022/frost_06/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_06/motion-qa.json"
+    },
+    {
+      "id": "frost_fractured_valkyrie",
+      "baseSha256": "abda186df237ffb0795b8ff8876087886b511540fd6c23a81ba2ff073b857623",
+      "run": "output/frost-monsters-20261022/frost_fractured_valkyrie/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_fractured_valkyrie/motion-qa.json"
+    },
+    {
+      "id": "frost_08",
+      "baseSha256": "1b1a4a1bb494d06a23d83239add3c8bd4d7deeb3b55610411a4c3ab62b5d4a52",
+      "run": "output/frost-monsters-20261022/frost_08/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/frost-monsters-v1/frost_08/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "frost_01-idle.webp",
+      "sha256": "7fcbd0df69cabdfae62d1c82c85eba08fbfaf2fa05ba511c86dea339aca1c1e3"
+    },
+    {
+      "file": "frost_01-move.webp",
+      "sha256": "95337d804740a144ad9d50adc6f3d52a3526f312ff188bea22ea1c731a232adb"
+    },
+    {
+      "file": "frost_01-attack.webp",
+      "sha256": "5be67a745446a018b7b70265ae1a7e7cebb6fcdfd66ea755a040251c31c57f56"
+    },
+    {
+      "file": "frost_01-hit.webp",
+      "sha256": "b846e8fd51ee7d43dc47a05fd294172994ad9d46ece5092c188987bdf62b46ab"
+    },
+    {
+      "file": "frost_01-death.webp",
+      "sha256": "4c84dc29eb87868a39f21fa8c7384f07bf3ee18fc4bf2e57f1f3e93d716dcb18"
+    },
+    {
+      "file": "frost_rune_raven-idle.webp",
+      "sha256": "5b571f7c2fb38e9331d119331c1cc12e01efac3a4a90eb1bde37ec4929457250"
+    },
+    {
+      "file": "frost_rune_raven-move.webp",
+      "sha256": "ce84f8b4e9f18a9ecd0fa9cf35922c454e82f409afc08ce887c54d971a4cdd32"
+    },
+    {
+      "file": "frost_rune_raven-attack.webp",
+      "sha256": "9c4a61dd77e1b1e00e8e5c1689d75f2ea8ceed3aa7f4b32aacdb1ebc1312f797"
+    },
+    {
+      "file": "frost_rune_raven-hit.webp",
+      "sha256": "3af7b0e00a45ee8e7020b497ddee83daa7891646615c76e4c25c3c19e8dbbc3f"
+    },
+    {
+      "file": "frost_rune_raven-death.webp",
+      "sha256": "4c84403919e5804e079b9e4f20b9225479e93e4c84aaf9ea2cc716845814fab2"
+    },
+    {
+      "file": "frost_03-idle.webp",
+      "sha256": "e55fe4be31c7ee7f7371d1d72a13004270a1fb3381d4c733cbac8014fbb09f7c"
+    },
+    {
+      "file": "frost_03-move.webp",
+      "sha256": "0303c93e5086bd064a3b0deaa9e23c9380ec4ac553a27a3632e337182c870ba3"
+    },
+    {
+      "file": "frost_03-attack.webp",
+      "sha256": "7bffbe1289fac349d7abcc8e48eb57aa9886dbfea2c198a1665f48da67f191a5"
+    },
+    {
+      "file": "frost_03-hit.webp",
+      "sha256": "085fb447404313aa58189162482216f8961a1d69259c675ff52104c0de64c530"
+    },
+    {
+      "file": "frost_03-death.webp",
+      "sha256": "b593ce5cb3fa477220bcf096af3257afcac2ff6d99b336c631aa89e02adaf2b0"
+    },
+    {
+      "file": "frost_ice_lindworm-idle.webp",
+      "sha256": "6f892f12bf85a40759fc4605afd9f63ac5e00c80c1fea25d2b525ce2afe7aac0"
+    },
+    {
+      "file": "frost_ice_lindworm-move.webp",
+      "sha256": "298b513b2befe0bde460c9a82e230cc64805cd5eecb97b40fc680360bf6e38aa"
+    },
+    {
+      "file": "frost_ice_lindworm-attack.webp",
+      "sha256": "9faf5a3c862b088dbf545bafd54d1e564114b86da4a4eb37afd7c2f552a82f9d"
+    },
+    {
+      "file": "frost_ice_lindworm-hit.webp",
+      "sha256": "6d6116adaa77a90cc932662c6bf7068f8aab045987be6cb2f209bcef8228e617"
+    },
+    {
+      "file": "frost_ice_lindworm-death.webp",
+      "sha256": "c7e50821b13a48fe339aac38db41c75a6d1389ebe22795ff18c3a5bb219078f2"
+    },
+    {
+      "file": "frost_winter_wavehorse-idle.webp",
+      "sha256": "8170d318506cb01a8ca46b3c7f6600b1239fdad5490e1d21fe2321decc078dbf"
+    },
+    {
+      "file": "frost_winter_wavehorse-move.webp",
+      "sha256": "e35afe69096dbb9a47fe1a9ed8fdb4d1f49b4e9352227c0f5eb18ce5aab291ca"
+    },
+    {
+      "file": "frost_winter_wavehorse-attack.webp",
+      "sha256": "6e2d894cd52339a4585ecd3e9ca3a96ee8fdfcb8dde659cefec08d90349f8c8a"
+    },
+    {
+      "file": "frost_winter_wavehorse-hit.webp",
+      "sha256": "7d6539a4143fdb92487d07588f91ea068d7e2122c54f1eea937297d9a0ff9fd5"
+    },
+    {
+      "file": "frost_winter_wavehorse-death.webp",
+      "sha256": "a290c911ab7a410ad5abdf46003ac6a94df78af50c07e965746fefeec237ddbf"
+    },
+    {
+      "file": "frost_06-idle.webp",
+      "sha256": "2e8f0f98ba4d5aabfb085ff4e08d5e794f9bfaa6859461e470b6d0e6f7c474a3"
+    },
+    {
+      "file": "frost_06-move.webp",
+      "sha256": "8eee657676141e2665fbdcad56e15a8b881f8fcabb8ac7c7d7cdf1b3b6673f4e"
+    },
+    {
+      "file": "frost_06-attack.webp",
+      "sha256": "35a290c173e1ca38bdbd4f4f580a256953dacac397c77aef60e12813adfbfd89"
+    },
+    {
+      "file": "frost_06-hit.webp",
+      "sha256": "dd80adcdf0d205ab199f536f458714512319b6a445051e0707cb70a1acdb14ad"
+    },
+    {
+      "file": "frost_06-death.webp",
+      "sha256": "0b8ed1313efff46f37963d3aaeb82fdf28010fe04f8401ddfa478cf5c233a3e0"
+    },
+    {
+      "file": "frost_fractured_valkyrie-idle.webp",
+      "sha256": "a4b9435c575ec4ce4d1a3c916e837efa55b15c0d3cd068824d4d650a182bbcb8"
+    },
+    {
+      "file": "frost_fractured_valkyrie-move.webp",
+      "sha256": "49dcdc957efe7bbd0762fa6af5372fb2dab5e58fbf32f681ac89e75396e63847"
+    },
+    {
+      "file": "frost_fractured_valkyrie-attack.webp",
+      "sha256": "c6554b949a4e0949b4592bc37ba450046f02f0208906cfc624c20a0e6003ff0b"
+    },
+    {
+      "file": "frost_fractured_valkyrie-hit.webp",
+      "sha256": "57388e39607220f7bdc5afab29ac475cad6fb2726c78587d7587e1c8a2413ce8"
+    },
+    {
+      "file": "frost_fractured_valkyrie-death.webp",
+      "sha256": "261e74960b3a4d53cf6e5743c8a8c50ad5bfdf015b4444a783c358695440096d"
+    },
+    {
+      "file": "frost_08-idle.webp",
+      "sha256": "b0f4a62100ee1a1b4ef355bbef8d4a98c145557c8f83d6f0b655ca2e9ba7e647"
+    },
+    {
+      "file": "frost_08-move.webp",
+      "sha256": "85adc5e2a7a0c239adc8bc548dbe0a7a44aa08e47fc00ffe7284dceae61f247e"
+    },
+    {
+      "file": "frost_08-attack.webp",
+      "sha256": "675012b3ce2f52a2958004cd398071f04d2574e67b2a683d5e1d802da22319d7"
+    },
+    {
+      "file": "frost_08-hit.webp",
+      "sha256": "d42ff6558819c5a79d7cc732850c4c0d65ac73248d8da43032c46c8add5c80f9"
+    },
+    {
+      "file": "frost_08-death.webp",
+      "sha256": "3d5d07961110341914b55d31a7af7d8a33ae2dbb51cf5cfffe663012cba69062"
+    }
+  ]
+}

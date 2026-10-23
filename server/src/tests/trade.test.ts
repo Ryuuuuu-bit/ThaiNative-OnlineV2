@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { once } from "node:events";
 import { randomUUID } from "node:crypto";
 import { WebSocket } from "ws";
-import { loadGameData, applyTrade, type Inventory } from "@the-beginning-online/shared";
+import { loadGameData, applyTrade, rollEquipment, type LootItem, type Inventory } from "@the-beginning-online/shared";
 import { createApp } from "../app.js";
 import { MemoryStore } from "../store/memory.js";
 import { mountRealtime } from "../realtime/index.js";
@@ -21,7 +21,7 @@ async function fixture(t: any) {
 	};
 	const sockets: WebSocket[] = [];
 	/** A ready player in the shared city room, given `loot` and `gold` first. */
-	async function player(name: string, loot: { template: string; qty: number }[] = [], gold = 0) {
+	async function player(name: string, loot: LootItem[] = [], gold = 0) {
 		const guest = await call("/api/guest", {}), c = (await call("/api/characters", { name, jobId: "swordsman" }, guest.cookie)).data.character;
 		if (loot.length || gold) await store.inventoryOp(c.accountId, c.id, randomUUID(), { op: "admin", loot, gold }, { profile });
 		await call(`/api/characters/${c.id}/select`, {}, guest.cookie);
@@ -48,6 +48,16 @@ async function fixture(t: any) {
 	return { store, rt, player };
 }
 const bagItem = (inv: Inventory, template: string) => inv.items.find((i) => i.template === template && i.location === "bag");
+
+test('trade offer shows exact affixes to the receiver before locking',async(t)=>{
+ const f=await fixture(t),roll=rollEquipment('field_sword',5,data,()=>.5,'rare')!;
+ const a=await f.player('RollSeller',[{template:'field_sword',qty:1,roll}]),b=await f.player('RollBuyer');
+ const item=bagItem((await a.inventory()).inventory,'field_sword')!;
+ a.send({t:'trade',op:'request',name:b.c.name});const invite=await b.until(m=>m.t==='tradeInvite');b.send({t:'trade',op:'accept',id:invite.id});
+ await a.until(m=>m.t==='tradeState');a.send({t:'trade',op:'offer',items:[{id:item.id,qty:1}],gold:0});
+ const offer=await b.until(m=>m.t==='tradeState'&&m.trade.them.items.some((i:any)=>i.id===item.id));
+ assert.deepEqual(offer.trade.them.items[0].roll,roll);assert.equal(offer.trade.them.locked,false);
+});
 
 test("two players swap a unique item, part of a stack and gold in one step", async (t) => {
 	const f = await fixture(t);

@@ -1,5 +1,6 @@
 import {DEFAULT_ATMOSPHERE,atmosphereSettings,sunPosition,breeze,pondOutline,leafPose,type AtmosphereSettings} from './atmosphere-model';
 import {LAYOUTS,type MapId,type Ellipse} from '@the-beginning-online/shared/maps';
+import {isBiomeMap,BIOME_SCENES} from './biome-scenes';
 export type AtmosphereTree={x:number;z:number;h:number;w:number};
 type Project=(x:number,z:number,h?:number)=>{x:number;y:number};
 /** Decorative Canvas2D layers. No server state, collision footprints or extra textures downloaded. */
@@ -24,25 +25,25 @@ export class Atmosphere2D{
   this.stats.ponds=0;if(!this.settings.enabled||!this.settings.water||map==='city_plaza')return;
   const t=this.reducedMotion?0:high?time:Math.floor(time*12)/12;
   for(const p of LAYOUTS[map].water){const q=project(p.x,p.z),reach=Math.max(p.rx,p.rz)*s*1.5;if(!this.visible(q,width,height,reach))continue;
-   this.stats.ponds++;this.pond(c,p,q,s,t,high,map==='forest');
+   this.stats.ponds++;this.pond(c,p,q,s,t,high,map==='forest'||map==='himmapan',isBiomeMap(map)?BIOME_SCENES[map].water:undefined,map==='volcano');
   }
  }
- private pond(c:CanvasRenderingContext2D,p:Ellipse,q:{x:number;y:number},s:number,t:number,high:boolean,forest:boolean){
+ private pond(c:CanvasRenderingContext2D,p:Ellipse,q:{x:number;y:number},s:number,t:number,high:boolean,forest:boolean,colour?:string,lava=false){
   c.save();c.transform(.83205*s,.39223*s,-.5547*s,.58835*s,q.x,q.y);
   const outline=(factor=1)=>{c.beginPath();for(let i=0;i<=72;i++){const a=i/72*Math.PI*2,r=pondOutline(a)*factor,x=Math.cos(a)*p.rx*r,z=Math.sin(a)*p.rz*r;i?c.lineTo(x,z):c.moveTo(x,z);}c.closePath();};
   outline();c.clip();
   if(p.bridgeZ!==undefined){c.beginPath();c.rect(-p.rx*1.2,-p.rz*1.2,p.rx*2.4,p.rz*2.4);c.rect(-p.rx*1.2,p.bridgeZ-p.z-(p.bridgeHalf??1.3),p.rx*2.4,(p.bridgeHalf??1.3)*2);c.clip('evenodd');}
-  const depth=c.createRadialGradient(-p.rx*.2,-p.rz*.2,.3,0,0,Math.max(p.rx,p.rz));depth.addColorStop(0,forest?'#24567570':'#176e9f7a');depth.addColorStop(.65,'#299bab45');depth.addColorStop(1,'#9dddd037');c.fillStyle=depth;c.fillRect(-p.rx*1.2,-p.rz*1.2,p.rx*2.4,p.rz*2.4);
+  const depth=c.createRadialGradient(-p.rx*.2,-p.rz*.2,.3,0,0,Math.max(p.rx,p.rz));depth.addColorStop(0,colour??(forest?'#24567570':'#176e9f7a'));depth.addColorStop(.65,colour??'#299bab45');depth.addColorStop(1,colour??'#9dddd037');c.fillStyle=depth;c.fillRect(-p.rx*1.2,-p.rz*1.2,p.rx*2.4,p.rz*2.4);
   const lines=high?18:8;
   c.lineCap='round';
   for(let i=0;i<lines;i++){
    const yy=-p.rz+(i+.5)/lines*p.rz*2,phase=i*2.399;
    c.beginPath();for(let j=0;j<=20;j++){const x=-p.rx*1.1+j/20*p.rx*2.2,z=yy+Math.sin(x*1.3+t*.55+phase)*.19+Math.sin(x*2.2-t*.28+i)*.08;j?c.lineTo(x,z):c.moveTo(x,z);}
-   c.strokeStyle=`rgba(177,239,222,${.10+.07*Math.sin(i*3.1+t*.4)**2})`;c.lineWidth=.035;c.stroke();
+   c.strokeStyle=`rgba(${lava?'255,196,94':'177,239,222'},${.10+.07*Math.sin(i*3.1+t*.4)**2})`;c.lineWidth=.035;c.stroke();
   }
   for(let i=0;i<(high?24:8);i++){
    const a=i*2.39996,r=Math.sqrt((i+.5)/24)*.85,x=Math.cos(a)*p.rx*r,z=Math.sin(a)*p.rz*r,glow=Math.max(0,Math.sin(t*.85+i*2.31))**9;
-   if(glow<.08)continue;c.globalAlpha=glow*.65;c.strokeStyle='#e4ffec';c.lineWidth=.035;c.beginPath();c.moveTo(x-.035,z);c.lineTo(x+.05+glow*.09,z-.015);c.stroke();
+   if(glow<.08)continue;c.globalAlpha=glow*.65;c.strokeStyle=lava?'#ffd38c':'#e4ffec';c.lineWidth=.035;c.beginPath();c.moveTo(x-.035,z);c.lineTo(x+.05+glow*.09,z-.015);c.stroke();
   }
   c.globalAlpha=1;outline(.985);c.strokeStyle='#b7eadb4d';c.lineWidth=.09;c.stroke();
   for(let i=0;i<3;i++){const phase=(t*.09+i*.31)%1;c.beginPath();c.ellipse(Math.sin(i*4)*p.rx*.3,Math.cos(i*3)*p.rz*.25,p.rx*(.12+phase*.35),p.rz*(.1+phase*.25),0,0,Math.PI*2);c.strokeStyle=`rgba(203,245,232,${Math.sin(phase*Math.PI)*.16})`;c.lineWidth=.035;c.stroke();}

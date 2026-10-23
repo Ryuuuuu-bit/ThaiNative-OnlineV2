@@ -1,0 +1,75 @@
+{
+  "accepted": true,
+  "date": "2026-10-21",
+  "reviewMethod": "Sequential contact-frame visual inspection, extractor/alpha inspection and generated animation previews; runtime verification recorded separately.",
+  "states": {
+    "down45_idle": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Gentle breathing/blink; subtle motion is intentional.",
+      "contact": "run/qa/down45_idle-contact.png",
+      "animatedPreview": "run/qa/down45_idle.gif"
+    },
+    "down45_hop": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Bounding crouch/lift/settle/return; this is a hop cycle, not a walk/run claim.",
+      "contact": "run/qa/down45_hop-contact.png",
+      "animatedPreview": "run/qa/down45_hop.gif"
+    },
+    "down45_attack": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Wind-up, contact and recovery read in order.",
+      "contact": "run/qa/down45_attack-contact.png",
+      "animatedPreview": "run/qa/down45_attack.gif"
+    },
+    "down45_hit": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Brief recoil returns to the ready pose.",
+      "contact": "run/qa/down45_hit-contact.png",
+      "animatedPreview": "run/qa/down45_hit.gif"
+    },
+    "down45_death": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Collapse ends on the ground and does not stand back up.",
+      "contact": "run/qa/down45_death-contact.png",
+      "animatedPreview": "run/qa/down45_death.gif"
+    },
+    "up45_idle": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Gentle breathing/blink; subtle motion is intentional.",
+      "contact": "run/qa/up45_idle-contact.png",
+      "animatedPreview": "run/qa/up45_idle.gif"
+    },
+    "up45_hop": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Bounding crouch/lift/settle/return; this is a hop cycle, not a walk/run claim.",
+      "contact": "run/qa/up45_hop-contact.png",
+      "animatedPreview": "run/qa/up45_hop.gif"
+    },
+    "up45_attack": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Wind-up, contact and recovery read in order.",
+      "contact": "run/qa/up45_attack-contact.png",
+      "animatedPreview": "run/qa/up45_attack.gif"
+    },
+    "up45_hit": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Brief recoil returns to the ready pose.",
+      "contact": "run/qa/up45_hit-contact.png",
+      "animatedPreview": "run/qa/up45_hit.gif"
+    },
+    "up45_death": {
+      "accepted": true,
+      "review": "Four-frame contact sequence inspected for stable identity, complete anatomy and readable pose progression. Collapse ends on the ground and does not stand back up.",
+      "contact": "run/qa/up45_death-contact.png",
+      "animatedPreview": "run/qa/up45_death.gif"
+    }
+  },
+  "limitations": [
+    "Four authored poses per motion; bounding movement, not full walking strides.",
+    "Left directions are mirrored from the declared symmetric design."
+  ],
+  "regeneratedRows": [
+    "down45_hit",
+    "up45_hit"
+  ]
+}

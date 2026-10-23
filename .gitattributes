@@ -1,0 +1,8 @@
+# Provenance hashes cover exact asset and receipt bytes, including line endings.
+meadow-3d/public/assets/item-art-v2/*.svg -text whitespace=cr-at-eol
+meadow-3d/public/assets/item-art-v2/*.json -text whitespace=cr-at-eol
+meadow-3d/art/item-art-v2/*.json -text whitespace=cr-at-eol
+meadow-3d/art/item-art-v2/cuts-*/*.json -text whitespace=cr-at-eol
+meadow-3d/public/assets/item-art-v3/*.json -text whitespace=cr-at-eol
+meadow-3d/art/item-art-v3/*.json -text whitespace=cr-at-eol
+meadow-3d/art/item-art-v3/originals/*.json -text whitespace=cr-at-eol

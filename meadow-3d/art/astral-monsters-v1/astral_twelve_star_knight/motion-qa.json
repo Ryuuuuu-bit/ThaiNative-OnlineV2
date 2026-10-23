@@ -1,0 +1,221 @@
+{
+  "accepted": true,
+  "stage": "candidate for actual runtime verification",
+  "frontFacing": "right",
+  "backFacing": "right",
+  "method": "Ten canonical four-pose contact sequences visually reviewed in order; canonical animated previews produced. Numeric ground, loop-seam and collapse checks supplement visual review. Runtime playback and picking remain separate.",
+  "review": "Twelve-star polearm sweeps then recovers, rear cape and weapon read, final armoured collapse stays within bounds. All ten four-pose contact rows reviewed; animated runtime check remains separate.",
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        260,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        11.283802083333333,
+        7.248850911458334,
+        5.822926432291666,
+        10.989342447916668
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "down45_hop": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        231,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        11.769365234375,
+        12.032861328125,
+        8.670048828125,
+        10.327255859375
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "down45_attack": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        198,
+        258
+      ],
+      "adjacentPixelDifferences": [
+        11.736149088541666,
+        11.821809895833333,
+        10.850745442708332,
+        7.564036458333334
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "down45_hit": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        251,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        11.899108072916667,
+        11.976090494791668,
+        8.661259765625,
+        3.8750260416666666
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "down45_death": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        81,
+        237
+      ],
+      "adjacentPixelDifferences": [
+        10.4969140625,
+        9.786725260416667,
+        7.705458984375,
+        11.323974609375
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "up45_idle": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        258,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        9.118440755208333,
+        8.141393229166667,
+        5.059293619791667,
+        6.418255208333334
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "up45_hop": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        256,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        9.397298177083334,
+        9.850869140624999,
+        7.836412760416667,
+        11.291839192708332
+      ],
+      "loop": true,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "up45_attack": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        198,
+        221
+      ],
+      "adjacentPixelDifferences": [
+        8.933616536458333,
+        10.425146484375,
+        9.367845052083334,
+        5.5987304687499995
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "up45_hit": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        254,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        12.159475911458335,
+        10.789915364583331,
+        11.72638671875,
+        1.207138671875
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    },
+    "up45_death": {
+      "frames": 4,
+      "groundY": [
+        290,
+        290,
+        290,
+        290
+      ],
+      "heightRange": [
+        101,
+        260
+      ],
+      "adjacentPixelDifferences": [
+        13.208450520833333,
+        12.598385416666668,
+        8.640598958333333,
+        12.22421875
+      ],
+      "loop": false,
+      "verdict": "pass reviewed pose sequence and numeric checks"
+    }
+  },
+  "errors": []
+}

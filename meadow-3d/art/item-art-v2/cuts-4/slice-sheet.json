@@ -1,0 +1,470 @@
+{
+  "kind": "sprite-gen-slice-sheet",
+  "version": 1,
+  "sheet": "sheet-4.png",
+  "grid": [
+    4,
+    4
+  ],
+  "canvas": {
+    "w": 192,
+    "h": 192
+  },
+  "baseline_y": 178.0,
+  "target_height": 164.0,
+  "scale": "cell",
+  "fit": "contain",
+  "factor": null,
+  "factor_from": null,
+  "alpha_cleanup": "alpha-cleanup.json",
+  "cells": [
+    {
+      "name": "field_eternal_sword",
+      "file": "field_eternal_sword.png",
+      "factor": 0.5503355704697986,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 291,
+          "h": 298
+        },
+        "canvas": {
+          "w": 160,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 16,
+        "y": 14,
+        "w": 160,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_eternal_staff",
+      "file": "field_eternal_staff.png",
+      "factor": 0.5359477124183006,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 293,
+          "h": 306
+        },
+        "canvas": {
+          "w": 157,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 18,
+        "y": 14,
+        "w": 157,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_eternal_bow",
+      "file": "field_eternal_bow.png",
+      "factor": 0.5857142857142857,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 282,
+          "h": 280
+        },
+        "canvas": {
+          "w": 165,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 14,
+        "y": 14,
+        "w": 165,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_eternal_armour",
+      "file": "field_eternal_armour.png",
+      "factor": 0.5674740484429066,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 304,
+          "h": 289
+        },
+        "canvas": {
+          "w": 173,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 10,
+        "y": 14,
+        "w": 173,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_eternal_shield",
+      "file": "field_eternal_shield.png",
+      "factor": 0.5206349206349207,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 264,
+          "h": 315
+        },
+        "canvas": {
+          "w": 137,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 28,
+        "y": 14,
+        "w": 137,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_eternal_cloak",
+      "file": "field_eternal_cloak.png",
+      "factor": 0.5394736842105263,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 309,
+          "h": 304
+        },
+        "canvas": {
+          "w": 167,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 13,
+        "y": 14,
+        "w": 167,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_eternal_boots",
+      "file": "field_eternal_boots.png",
+      "factor": 0.5484949832775919,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 270,
+          "h": 299
+        },
+        "canvas": {
+          "w": 148,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 22,
+        "y": 14,
+        "w": 148,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "field_eternal_ring",
+      "file": "field_eternal_ring.png",
+      "factor": 0.7068965517241379,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 230,
+          "h": 232
+        },
+        "canvas": {
+          "w": 163,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 15,
+        "y": 14,
+        "w": 163,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "jelly_slime",
+      "file": "jelly_slime.png",
+      "factor": 0.6586345381526104,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 289,
+          "h": 249
+        },
+        "canvas": {
+          "w": 190,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 1,
+        "y": 14,
+        "w": 190,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "lotus_fibre",
+      "file": "lotus_fibre.png",
+      "factor": 0.5714285714285714,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 277,
+          "h": 287
+        },
+        "canvas": {
+          "w": 158,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 17,
+        "y": 14,
+        "w": 158,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "dew_shell",
+      "file": "dew_shell.png",
+      "factor": 0.6381322957198443,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 271,
+          "h": 257
+        },
+        "canvas": {
+          "w": 173,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 10,
+        "y": 14,
+        "w": 173,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "tide_core",
+      "file": "tide_core.png",
+      "factor": 0.6307692307692307,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 279,
+          "h": 260
+        },
+        "canvas": {
+          "w": 176,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 8,
+        "y": 14,
+        "w": 176,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "tea_spore_leaf",
+      "file": "tea_spore_leaf.png",
+      "factor": 0.6620689655172414,
+      "factor_from": "fit",
+      "subject": {
+        "sheet": {
+          "w": 289,
+          "h": 233
+        },
+        "canvas": {
+          "w": 191,
+          "h": 154
+        }
+      },
+      "box": {
+        "x": 1,
+        "y": 24,
+        "w": 191,
+        "h": 154
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "dewdrop_dust",
+      "file": "dewdrop_dust.png",
+      "factor": 0.5342019543973942,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 272,
+          "h": 307
+        },
+        "canvas": {
+          "w": 145,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 24,
+        "y": 14,
+        "w": 145,
+        "h": 164
+      },
+      "anchor": [
+        96.5,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "pine_spine",
+      "file": "pine_spine.png",
+      "factor": 0.5985401459854015,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 291,
+          "h": 274
+        },
+        "canvas": {
+          "w": 174,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 9,
+        "y": 14,
+        "w": 174,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    },
+    {
+      "name": "living_clay",
+      "file": "living_clay.png",
+      "factor": 0.5942028985507246,
+      "factor_from": "target_height",
+      "subject": {
+        "sheet": {
+          "w": 266,
+          "h": 276
+        },
+        "canvas": {
+          "w": 158,
+          "h": 164
+        }
+      },
+      "box": {
+        "x": 17,
+        "y": 14,
+        "w": 158,
+        "h": 164
+      },
+      "anchor": [
+        96.0,
+        178.0
+      ],
+      "clipped_px": 0,
+      "parts": 1
+    }
+  ]
+}

@@ -1,0 +1,1432 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "width": 160,
+  "height": 128,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "nextobjectid": 65,
+  "nextlayerid": 8,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "temple"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "value": "วิหารกรีกหลงกาล"
+    },
+    {
+      "name": "bossId",
+      "type": "string",
+      "value": "greek_minotaur"
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Marble processional roads",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "type": "path",
+          "name": "ทางวิหาร 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 4.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 5120,
+              "y": 2048
+            },
+            {
+              "x": 4480,
+              "y": 2048
+            },
+            {
+              "x": 3712,
+              "y": 1728
+            },
+            {
+              "x": 2944,
+              "y": 2048
+            },
+            {
+              "x": 2048,
+              "y": 1888
+            },
+            {
+              "x": 1280,
+              "y": 2240
+            },
+            {
+              "x": 736,
+              "y": 2624
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "path",
+          "name": "ทางวิหาร 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.4
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4480,
+              "y": 2048
+            },
+            {
+              "x": 3904,
+              "y": 1472
+            },
+            {
+              "x": 3008,
+              "y": 1248
+            },
+            {
+              "x": 1696,
+              "y": 1216
+            },
+            {
+              "x": 960,
+              "y": 1728
+            },
+            {
+              "x": 736,
+              "y": 2624
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "path",
+          "name": "ทางวิหาร 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.4
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2944,
+              "y": 2048
+            },
+            {
+              "x": 2816,
+              "y": 2816
+            },
+            {
+              "x": 2176,
+              "y": 3328
+            },
+            {
+              "x": 1408,
+              "y": 3168
+            },
+            {
+              "x": 736,
+              "y": 2624
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "type": "path",
+          "name": "ทางวิหาร 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.4
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4480,
+              "y": 2048
+            },
+            {
+              "x": 4480,
+              "y": 2304
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "type": "path",
+          "name": "ทางวิหาร 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.4
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2944,
+              "y": 2048
+            },
+            {
+              "x": 2944,
+              "y": 2272
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "type": "path",
+          "name": "ทางวิหาร 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.4
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2048,
+              "y": 1888
+            },
+            {
+              "x": 1760,
+              "y": 2432
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "type": "path",
+          "name": "ทางเชื่อมภูมิภาค desert",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 3.2
+            }
+          ],
+          "polyline": [
+            {
+              "x": 2944,
+              "y": 2272
+            },
+            {
+              "x": 2944,
+              "y": 3328
+            },
+            {
+              "x": 2560,
+              "y": 4096
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Reflecting pools",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 7,
+          "type": "water",
+          "name": "สระสะท้อนจันทร์",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 2176,
+          "y": 2848,
+          "width": 384,
+          "height": 256
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 Gates",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 8,
+          "type": "entry",
+          "name": "จุดเข้า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 4992,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 9,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "summit"
+            }
+          ],
+          "point": true,
+          "x": 5088,
+          "y": 2048,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 63,
+          "type": "gate",
+          "name": "south",
+          "point": true,
+          "x": 2560,
+          "y": 4064,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "desert"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Rest courts and boss",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 10,
+          "type": "camp",
+          "name": "ค่ายหน้าวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 4480,
+          "y": 2304,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 11,
+          "type": "camp",
+          "name": "ลานพักเสาหิน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 2944,
+          "y": 2272,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 12,
+          "type": "camp",
+          "name": "ค่ายก่อนเขาวงกต",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1760,
+          "y": 2432,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 13,
+          "type": "arena",
+          "name": "ลานมิโนทอร์",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 480,
+          "y": 2368,
+          "width": 512,
+          "height": 512
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Greek habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 14,
+          "type": "spawn",
+          "name": "สวนซาเทอร์",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "greek_satyr"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true,
+          "x": 3584,
+          "y": 1184,
+          "width": 640,
+          "height": 576
+        },
+        {
+          "id": 15,
+          "type": "spawn",
+          "name": "ระเบียงฮาร์ปี",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "greek_harpy"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 12
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true,
+          "x": 2464,
+          "y": 2528,
+          "width": 704,
+          "height": 576
+        },
+        {
+          "id": 16,
+          "type": "spawn",
+          "name": "ลานกระจกกอร์กอน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "greek_gorgon"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 10
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            }
+          ],
+          "ellipse": true,
+          "x": 1376,
+          "y": 928,
+          "width": 640,
+          "height": 576
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Colonnades",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 17,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 356.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 18,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 356.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 19,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 900.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 20,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 900.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 21,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 1444.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 22,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 1444.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 23,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 1988.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 24,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 1988.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 25,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 2532.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 26,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 2532.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 27,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3076.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 28,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3076.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 29,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3620.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 30,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3620.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 31,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 4164.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 32,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 4164.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 4708.8,
+          "y": 324.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "เสาขอบวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 4708.8,
+          "y": 3716.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3428.8,
+          "y": 1060.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3428.8,
+          "y": 1828.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 4324.8,
+          "y": 1060.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 38,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 4324.8,
+          "y": 1828.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 39,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 2340.8,
+          "y": 2404.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 40,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 2340.8,
+          "y": 3172.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3236.8,
+          "y": 2404.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 3236.8,
+          "y": 3172.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 1220.8,
+          "y": 804.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 1220.8,
+          "y": 1572.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 2116.8,
+          "y": 804.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "เสาลานวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ],
+          "ellipse": true,
+          "x": 2116.8,
+          "y": 1572.8,
+          "width": 54.4,
+          "height": 54.4
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 292.8,
+          "y": 2180.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 708.8,
+          "y": 2180.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1124.8,
+          "y": 2180.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 292.8,
+          "y": 2596.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1124.8,
+          "y": 2596.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 292.8,
+          "y": 3012.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 708.8,
+          "y": 3012.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 1124.8,
+          "y": 3012.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4708.8,
+          "y": 1796.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4708.8,
+          "y": 2244.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4388.8,
+          "y": 1796.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "type": "obstacle",
+          "name": "เสามุขวิหาร",
+          "rotation": 0,
+          "visible": true,
+          "ellipse": true,
+          "x": 4388.8,
+          "y": 2564.8,
+          "width": 54.4,
+          "height": 54.4,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "pillar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "07 Greek landmarks",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 47,
+          "type": "poi",
+          "name": "สวนขลุ่ยกก · Lv.40",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 3904,
+          "y": 1472,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 48,
+          "type": "poi",
+          "name": "ระเบียงปีกลม · Lv.43",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 2816,
+          "y": 2816,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 49,
+          "type": "poi",
+          "name": "ลานกระจกหยก · Lv.46",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 1696,
+          "y": 1216,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 50,
+          "type": "poi",
+          "name": "เขาวงกตสำริด · Lv.49",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "boss"
+            }
+          ],
+          "point": true,
+          "x": 736,
+          "y": 2624,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

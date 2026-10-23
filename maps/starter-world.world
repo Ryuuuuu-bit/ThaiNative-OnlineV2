@@ -1,0 +1,132 @@
+{
+  "type": "world",
+  "onlyShowAdjacentMaps": false,
+  "maps": [
+    {
+      "fileName": "city-reference.tmj",
+      "x": 0,
+      "y": 0,
+      "width": 3072,
+      "height": 3072
+    },
+    {
+      "fileName": "south-meadow.tmj",
+      "x": -256,
+      "y": 3072,
+      "width": 3584,
+      "height": 3200
+    },
+    {
+      "fileName": "east-forest.tmj",
+      "x": 3072,
+      "y": 0,
+      "width": 5760,
+      "height": 3072
+    },
+    {
+      "fileName": "north-ruins.tmj",
+      "x": -64,
+      "y": -7168,
+      "width": 3200,
+      "height": 7168
+    },
+    {
+      "fileName": "west-quarry.tmj",
+      "x": -7808,
+      "y": -128,
+      "width": 7808,
+      "height": 3328
+    },
+    {
+      "fileName": "grove.tmj",
+      "x": -12416,
+      "y": -384,
+      "width": 4608,
+      "height": 3840
+    },
+    {
+      "fileName": "summit.tmj",
+      "x": -17536,
+      "y": -512,
+      "width": 5120,
+      "height": 4096
+    },
+    {
+      "fileName": "himmapan.tmj",
+      "x": 8832,
+      "y": -640,
+      "width": 5376,
+      "height": 4352
+    },
+    {
+      "fileName": "desert.tmj",
+      "x": 24000,
+      "y": 0,
+      "width": 5632,
+      "height": 4608
+    },
+    {
+      "fileName": "frost.tmj",
+      "x": 30600,
+      "y": 0,
+      "width": 5376,
+      "height": 5120
+    },
+    {
+      "fileName": "yokai.tmj",
+      "x": 37200,
+      "y": 0,
+      "width": 4992,
+      "height": 5504
+    },
+    {
+      "fileName": "dragon.tmj",
+      "x": 43800,
+      "y": 0,
+      "width": 6144,
+      "height": 4992
+    },
+    {
+      "fileName": "volcano.tmj",
+      "x": 50400,
+      "y": 0,
+      "width": 5760,
+      "height": 4864
+    },
+    {
+      "fileName": "fae.tmj",
+      "x": 24000,
+      "y": 6800,
+      "width": 5248,
+      "height": 4736
+    },
+    {
+      "fileName": "ocean.tmj",
+      "x": 30600,
+      "y": 6800,
+      "width": 5888,
+      "height": 5632
+    },
+    {
+      "fileName": "astral.tmj",
+      "x": 37200,
+      "y": 6800,
+      "width": 5632,
+      "height": 5632
+    },
+    {
+      "fileName": "abyss.tmj",
+      "x": 43800,
+      "y": 6800,
+      "width": 6144,
+      "height": 5120
+    },
+    {
+      "fileName": "confluence.tmj",
+      "x": 50400,
+      "y": 6800,
+      "width": 5632,
+      "height": 5120
+    }
+  ]
+}

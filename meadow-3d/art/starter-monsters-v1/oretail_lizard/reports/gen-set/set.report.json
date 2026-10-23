@@ -1,0 +1,41 @@
+{
+  "kind": "sprite-gen-gen-set-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run",
+  "states": [
+    "down45_attack",
+    "up45_attack"
+  ],
+  "ok": 2,
+  "failed": [],
+  "not_started": [],
+  "items": [
+    {
+      "state": "down45_attack",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\raw\\down45\\attack.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\reports\\gen-set\\down45_attack.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\references\\layout-guides\\down45\\attack.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 54.3,
+      "ok": true
+    },
+    {
+      "state": "up45_attack",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\raw\\up45\\attack.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\reports\\gen-set\\up45_attack.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\references\\anchors\\up45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\oretail_lizard\\run\\references\\layout-guides\\up45\\attack.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 53.4,
+      "ok": true
+    }
+  ]
+}

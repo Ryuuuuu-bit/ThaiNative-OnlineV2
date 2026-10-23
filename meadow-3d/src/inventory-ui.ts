@@ -1,6 +1,8 @@
+import {canEquipWeapon} from '@the-beginning-online/shared';
 import {
 	loadGameData,
 	rarityColors,
+	ownedRarity, itemRollLines, requiredEquipmentLevel, refineMilestones, refineBase, refineBonusValue,
 		inventorySlots,
 	storageSlots,
 	equipmentSlots,
@@ -15,7 +17,9 @@ import {
 } from "@the-beginning-online/shared";
 import "./inventory.css";
 import { itemIconCell } from "./item-icon";
-import { cardEffects } from "./card-text";
+import { cardEffects, modifierText } from "./card-text";
+import {itemStats,compareItemStats,itemStatValue,type ItemStat} from './item-stats';
+import { mountRefine } from "./refine-ui";
 const data = loadGameData(),
 	templates = data.items.items;
 const slotNames: Record<string, string> = {
@@ -56,7 +60,6 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		forge: ["ช่างตีเหล็ก", "โรงตีเหล็ก · นครที่ถูกลืมเลือน", "อาวุธดีต้องเหมาะกับมือ เลือกให้ดี แล้วค่อยกลับมาหาข้า"],
 		storage: ["คนเฝ้าคลัง", "คลังเก็บของ · นครที่ถูกลืมเลือน", "ฝากไว้กับข้า ของในคลังปลอดภัยเสมอ"],
 	};
-	const metricNames: Record<string, string> = { atk: "พลังโจมตี", matk: "พลังเวท", flee: "หลบหลีก", hardDef: "เกราะกายภาพ", hardMdef: "เกราะเวท", softDef: "ป้องกันกายภาพ", maxSp: "พลังสกิลสูงสุด", maxHp: "พลังชีวิตสูงสุด", hit: "ความแม่นยำ", crit: "คริติคอล" };
 	const cart = new Map<string, number>();
 	/** Quantity typed on a shop card before it goes into the cart. */
 	const draftQty = new Map<string, number>();
@@ -89,7 +92,11 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	tip.setAttribute("popover", "manual");
 	document.body.append(tip);
 	let tipTimer = 0, tipAnchor: HTMLElement | null = null;
-	panel.addEventListener("close", () => { hideTip(); markSeen(); });
+	const inspect = document.createElement("dialog");
+ inspect.className = "inv-inspect";
+ inspect.setAttribute("aria-label", "รายละเอียดและเปรียบเทียบไอเทม");
+ document.body.append(inspect);
+ panel.addEventListener("close", () => { hideTip(); inspect.close(); markSeen(); });
 	/** Item ids this character has already seen in the bag; anything else is "new" until the bag closes. */
 	let seen: Set<string> | null = null, seenKey = "";
 	function loadSeen() {
@@ -123,6 +130,13 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	}
 	const template = (i: OwnedItem) =>
 		templates.find((t) => t.id === i.template)!;
+	let refineReq = "";
+	const refine = mountRefine({
+		data,
+		itemIcon: (t) => itemIcon(t),
+		request: (id) => { request("refine", { id }); refineReq = pending?.req ?? ""; if (!refineReq) refine.failed("กำลังบันทึก กรุณารอสักครู่"); },
+		say: (text) => { const say = summary.querySelector(".shop-say"); if (say) say.textContent = text; },
+	});
 	function action(i: OwnedItem, slot?: string) {
 		const t = template(i);
 		if (i.location === "equip") request("unequip", { id: i.id });
@@ -135,13 +149,14 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const cell = itemIconCell(t.id);
 		if (cell.v2) icon.classList.add("item-icon-v2");
 		icon.style.backgroundPosition = cell.position;
+		if(cell.image){icon.style.backgroundImage=`url(${cell.image})`;icon.style.backgroundSize='contain';}
 		return icon;
 	}
 	function cell(i: OwnedItem, mode = "bag") {
 		const t = template(i),
 			b = document.createElement("button");
 		b.className = "inv-cell";
-		b.style.setProperty("--rarity", rarityColors[t.rarity]);
+		b.style.setProperty("--rarity", rarityColors[ownedRarity(i,t.rarity)]);
 		b.dataset.item = i.template;
 		b.dataset.id = i.id;
 		b.setAttribute("aria-label", `${t.nameTh} ×${i.qty}`);
@@ -150,12 +165,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const count = document.createElement("b");
 		count.textContent = i.qty > 1 ? String(i.qty) : i.bound ? "◆" : "";
 		b.append(count);
-        const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+        const incompatible=!canEquipWeapon({classId:p?.profile?.classId||p?.jobId||'',masteries:p?.masteries},t.weaponType,data);
         if(mode==='buy'||mode==='sell'){b.classList.add('shop-cell');const caption=document.createElement('span');caption.className='shop-caption';caption.textContent=t.nameTh;const price=document.createElement('small');price.textContent=`${mode==='buy'?data.economy.shops[shop!][t.id]:Math.floor(t.npcPrice*data.economy.sellMultiplier)} ทอง`;b.append(caption,price);}
         if(mode==='bag'&&isNew(i)){const dot=document.createElement('span');dot.className='inv-new';dot.title='ของใหม่';b.append(dot);}
         if(mode==='bag'&&i.location==='bag'&&t.slot){
-            if(!wearable(t)){const no=document.createElement('span');no.className='inv-no';no.setAttribute('aria-hidden','true');b.append(no);b.setAttribute('aria-label',`${t.nameTh} · ใส่ไม่ได้ตอนนี้`);}
-            else if(betterThanWorn(t)){const up=document.createElement('span');up.className='inv-up';up.textContent='▲';b.append(up);b.setAttribute('aria-label',`${t.nameTh} · ดีกว่าที่ใส่`);}
+            if(!wearable(t,i)){const no=document.createElement('span');no.className='inv-no';no.setAttribute('aria-hidden','true');b.append(no);b.setAttribute('aria-label',`${t.nameTh} · ใส่ไม่ได้ตอนนี้`);}
+            else if(betterThanWorn(t,i)){const up=document.createElement('span');up.className='inv-up';up.textContent='▲';b.append(up);b.setAttribute('aria-label',`${t.nameTh} · ดีกว่าที่ใส่`);}
         }
         else if(incompatible){const note=document.createElement('small');note.textContent='อาชีพนี้ใช้ไม่ได้';b.append(note);}
 		if (multi.has(i.id)) b.classList.add("inv-selected");
@@ -219,7 +234,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		const t = template(i);
 		detail.replaceChildren();
 		detail.classList.add("inv-strip");
-		detail.style.setProperty("--rarity", rarityColors[t.rarity]);
+		detail.style.setProperty("--rarity", rarityColors[ownedRarity(i,t.rarity)]);
 		const ico = document.createElement("span");
 		ico.className = "strip-ico";
 		ico.append(itemIcon(t));
@@ -232,13 +247,13 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		btns.className = "strip-actions";
 		const add = (label: string, fn: () => void, cls = "") => { const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.className = cls; b.onclick = fn; btns.append(b); return b; };
 		const kind = t.slot ? (t.slot === "accessory1" ? "แหวน" : slotNames[t.slot]) : describe(t);
-		const stats = t.slot ? Object.entries(statsOf(t)).map(([k, v]) => `${metricNames[k] || k} +${v}`).join(" · ") : "";
+		const stats = t.slot ? statsOf(t,i).map(r=>`${r.label} ${r.value>=0?'+':''}${itemStatValue(r)}`).join(" · ") : "";
 		let where = "";
 		if (i.location === "equip") {
 			where = `สวมอยู่ที่ ${slotNames[i.slot!]}`;
 			add("ถอด", () => action(i), "gold");
 		} else if (t.slot) {
-			if (!wearable(t)) where = t.level > playerLevel() ? `ต้องการระดับ ${t.level}` : "อาชีพนี้ใช้ไม่ได้";
+			if (!wearable(t,i)) where = requiredEquipmentLevel(t.level,i) > playerLevel() ? `ต้องการระดับ ${requiredEquipmentLevel(t.level,i)}` : "อาชีพนี้ใช้ไม่ได้";
 			else {
 				const slots = equipmentSlots(t.slot), wornIn = (sl: string) => inv!.items.find((x) => x.location === "equip" && x.slot === sl);
 				const target = equipmentTarget(inv!, t.slot);
@@ -289,6 +304,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			}, "ghost");
 		}
 		detail.append(ico, text, btns);
+		add('รายละเอียด',()=>openInspect(i));
 	}
 	function showDetail(i: OwnedItem, actions = true, requestedSlot?: string) {
 		if (!shop && !storage) { showStrip(i); return; }
@@ -297,7 +313,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		detail.replaceChildren();
 		const title = document.createElement("h3");
 		title.textContent = t.nameTh;
-		title.style.color = rarityColors[t.rarity];
+		title.style.color = rarityColors[ownedRarity(i,t.rarity)];
 		detail.append(title);
 		const text = document.createElement("p");
 		const targetSlot = t.slot && inv ? (i.location === 'equip' ? i.slot : equipmentTarget(inv, t.slot, requestedSlot)) : t.slot;
@@ -305,46 +321,18 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			(i) => i.location === "equip" && i.slot === targetSlot,
 		);
 		const oldT = old && template(old);
-		text.textContent = `${(t.slot === "accessory1" ? (i.location === "equip" ? slotNames[i.slot!] : "แหวน") : slotNames[t.slot || ""]) || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${t.level}\nน้ำหนัก ${fmtWeight(t.weight)} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + fmtGold(data.economy.shops[shop][t.id]) : "ขาย " + fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
+		text.textContent = `${(t.slot === "accessory1" ? (i.location === "equip" ? slotNames[i.slot!] : "แหวน") : slotNames[t.slot || ""]) || ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type]} · ต้องการระดับ ${requiredEquipmentLevel(t.level,i)}\nน้ำหนัก ${fmtWeight(t.weight)} · ${shop && shopTab === "ซื้อ" ? "ซื้อ " + fmtGold(data.economy.shops[shop][t.id]) : "ขาย " + fmtGold(Math.floor(t.npcPrice * data.economy.sellMultiplier))} ทอง · ช่องการ์ด ${t.slots}\n${i.bound ? "ผูกมัดแล้ว" : t.bind === "equip" ? "ผูกมัดเมื่อสวมใส่" : t.bind === "account" ? "ผูกบัญชี" : "แลกเปลี่ยนได้"}`;
 		detail.append(text);
+		appendRollGroups(detail,i);
 		if (t.slot === 'accessory1' && i.location === 'bag' && !shop && !storage && actions) {
 			const label = document.createElement('label'), select = document.createElement('select');
 			label.textContent = 'ช่องแหวน '; select.setAttribute('aria-label', 'ช่องแหวนที่จะสวม');
 			for (const slot of equipmentSlots(t.slot)) { const option = document.createElement('option'); option.value = slot; option.textContent = slotNames[slot]; select.append(option); }
 			select.value = targetSlot!; select.onchange = () => showDetail(i, actions, select.value); label.append(select); detail.append(label);
 		}
-        const incompatible=!!t.weaponType&&!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+        const incompatible=!canEquipWeapon({classId:p?.profile?.classId||p?.jobId||'',masteries:p?.masteries},t.weaponType,data);
         if(incompatible){const note=document.createElement('p');note.textContent='อาชีพนี้ใช้ไม่ได้';detail.append(note);}
-		const metrics = [
-			["พลังโจมตี", t.atk || 0, oldT?.atk || 0],
-			["พลังเวท", t.matk || 0, oldT?.matk || 0],
-			...t.modifiers
-				.filter(
-					(m): m is Extract<typeof m, { value: number }> =>
-						m.kind === "flat" || m.kind === "stat" || m.kind === "percent",
-				)
-				.map((m) => [
-					"stat" in m ? m.stat : "",
-					m.value,
-					oldT?.modifiers.reduce(
-						(n, o) =>
-							n +
-							("stat" in o && "stat" in m && o.stat === m.stat ? o.value : 0),
-						0,
-					) || 0,
-				]),
-		];
-		for (const [name, value, oldValue] of metrics) {
-			if (!value && !oldValue) continue;
-			const row = document.createElement("div");
-            row.textContent = `${metricNames[String(name)]||name} +${value}`;
-			const diff = Number(value) - Number(oldValue),
-				span = document.createElement("span");
-			span.textContent = ` (${diff >= 0 ? "+" : ""}${diff} เทียบ${t.slot === 'accessory1' ? slotNames[targetSlot!] : 'ที่สวม'})`;
-			span.style.color = diff >= 0 ? "#8ac68a" : "#e88d85";
-			row.append(span);
-			detail.append(row);
-		}
+		appendStatComparison(detail,statsOf(t,i),oldT?statsOf(oldT,old):[],true);
 				if (!actions) return;
 		const buttons = document.createElement("div");
 		buttons.className = "inv-actions";
@@ -404,7 +392,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	}
 	const levelBand = (level: number) => level >= 99 ? 99 : Math.floor(level / 10) * 10;
  const playerLevel = () => p?.level ?? 1;
- const compatible = (t: (typeof templates)[number]) => !t.weaponType || !!data.classes.classes.find(c=>c.id===(p?.profile?.classId||p?.jobId))?.weapons.includes(t.weaponType);
+ const compatible = (t: (typeof templates)[number]) => canEquipWeapon({classId:p?.profile?.classId||p?.jobId||'',masteries:p?.masteries},t.weaponType,data);
  const shopItems = () => Object.keys(data.economy.shops[shop!]).filter(id=>{
   const t=templates.find(t=>t.id===id)!;
   const band=shopRange==='current'?levelBand(playerLevel()):Number(shopRange);
@@ -466,22 +454,16 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	const priceOf = (id: string) => data.economy.shops[shop!][id] as number;
 	const sellPrice = (i: OwnedItem) => Math.floor(template(i).npcPrice * data.economy.sellMultiplier) * i.qty;
 	const owned = (id: string) => inv?.items.filter((i) => i.location === "bag" && i.template === id).reduce((n, i) => n + i.qty, 0) || 0;
-	function statsOf(t: (typeof templates)[number]) {
-		const out: Record<string, number> = {};
-		if (t.atk) out.atk = t.atk;
-		if (t.matk) out.matk = t.matk;
-		for (const m of t.modifiers) if ("stat" in m && "value" in m && (m.kind === "flat" || m.kind === "stat")) out[m.stat] = (out[m.stat] || 0) + m.value;
-		return out;
+	function statsOf(t: (typeof templates)[number], i?:OwnedItem) {
+		return itemStats(t,i,data);
 	}
-	const wearable = (t: (typeof templates)[number]) => !t.slot || (t.level <= playerLevel() && compatible(t));
-	const statSum = (t: (typeof templates)[number]) => Object.values(statsOf(t)).reduce((a, b) => a + b, 0);
-	/** Gear that would raise at least one stat over what sits in its slot now (and lose less than it gains). */
-	function betterThanWorn(t: (typeof templates)[number]) {
-		if (!t.slot || !inv || !wearable(t)) return false;
+	const wearable = (t: (typeof templates)[number],i?:OwnedItem) => !t.slot || (requiredEquipmentLevel(t.level,i) <= playerLevel() && compatible(t));
+	/** A clear upgrade improves something without losing another numeric contribution; never sum unlike units. */
+	function betterThanWorn(t: (typeof templates)[number], i?:OwnedItem) {
+		if (!t.slot || !inv || !wearable(t,i)) return false;
 		const worn = inv.items.find((x) => x.location === "equip" && x.slot === equipmentTarget(inv!, t.slot!));
-		if (!worn) return statSum(t) > 0;
-		const a = statsOf(t), b = statsOf(template(worn));
-		return Object.entries(a).some(([k, v]) => v > (b[k] || 0)) && statSum(t) >= statSum(template(worn));
+		const rows=compareItemStats(statsOf(t,i),worn?statsOf(template(worn),worn):[]);
+		return rows.some(r=>r.improvement>0)&&rows.every(r=>r.improvement>=0);
 	}
 	const RARITY_RANK: Record<string, number> = { legendary: 0, epic: 1, rare: 2, fine: 3, common: 4 };
 	const TYPE_RANK: Record<string, number> = { weapon: 0, armour: 1, shield: 2, garment: 3, footgear: 4, accessory: 5, consumable: 6, refine: 7, card: 8, material: 9 };
@@ -498,11 +480,46 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 	const WEAPON_NAMES: Record<string, string> = { sword1h: "ดาบมือเดียว", dagger: "มีดสั้น", staff: "คทา", bow: "ธนู" };
 	const RARITY_NAMES: Record<string, string> = { common: "ธรรมดา", fine: "ดี", rare: "หายาก", epic: "มหากาพย์", legendary: "ตำนาน" };
 	type TipSource = { t: (typeof templates)[number]; i?: OwnedItem; mode?: string };
+ function appendStatComparison(parent:HTMLElement,mine:ItemStat[],theirs:ItemStat[],compare:boolean){
+  const heading=document.createElement('h4');heading.textContent=compare?'ค่ารวม · เทียบกับชิ้นที่สวม':'ค่ารวมของไอเทม';parent.append(heading);
+  const grid=document.createElement('div');grid.className='tip-stats';
+  for(const row of compareItemStats(mine,theirs)){
+   const line=document.createElement('div'),label=document.createElement('span'),value=document.createElement('b');
+   label.textContent=row.label;value.textContent=itemStatValue(row);line.append(label,value);
+   if(compare){const delta=document.createElement('i');delta.className=row.improvement>0?'up':row.improvement<0?'down':'same';delta.textContent=row.improvement===0?'—':`${row.delta>0?'+':''}${itemStatValue(row,row.delta)}`;line.append(delta);}
+   grid.append(line);
+  }
+  const note=document.createElement('p');note.className='tip-note';note.textContent='รวมค่าฐาน ออฟ ตีบวก และการ์ด · ค่าคงที่และโบนัส % แยกกัน';parent.append(grid,note);
+ }
+ function appendRollGroups(parent:HTMLElement,i:OwnedItem){
+  if(!i.roll)return;
+  const lines=itemRollLines(i).slice(1);
+  for(const kind of i.roll.quality==='unique'?['UNIQUE']:['Prefix','Suffix']){
+   const group=document.createElement('section');group.className='tip-affixes '+kind.toLowerCase();
+   const rows=kind==='UNIQUE'?lines:lines.filter(l=>l.startsWith(kind+' · ')).map(l=>l.slice(kind.length+3));
+   const head=document.createElement('h4');head.textContent=kind==='UNIQUE'?'UNIQUE · พลังพิเศษ':`${kind.toUpperCase()} · ${rows.length}/${i.roll.quality==='magic'?1:3}`;group.append(head);
+   for(const text of rows.length?rows:['ไม่มีออฟในกลุ่มนี้']){const line=document.createElement('p');line.className='item-roll-line';line.textContent=text;group.append(line);}
+   parent.append(group);
+  }
+ }
+ function appendMilestones(parent:HTMLElement,t:(typeof templates)[number],level:number){
+  const milestones=refineMilestones(t);if(!milestones.length)return;
+  const group=document.createElement('section');group.className='tip-milestones';
+  const head=document.createElement('h4');head.textContent='ออฟพิเศษตีบวก';group.append(head);
+  for(const m of milestones){const line=document.createElement('p');line.className=level>=m.level?'active':'locked';line.textContent=`+${m.level} · ${modifierText(m.modifier)} · ${level>=m.level?'ปลดล็อกแล้ว':'ยังไม่ปลดล็อก'}`;group.append(line);}
+  parent.append(group);
+ }
+ function openInspect(i:OwnedItem){
+  hideTip();renderTip({t:template(i),i});
+  const close=document.createElement('button');close.type='button';close.className='inspect-close';close.textContent='ปิดรายละเอียด ×';close.onclick=()=>inspect.close();
+  inspect.replaceChildren(close,...Array.from(tip.childNodes));
+  if(!inspect.open)inspect.showModal();
+ }
 	/** One item card. With `against`, every stat shows its change from that equipped item (missing stats count as 0). */
-	function tipCard(t: (typeof templates)[number], i: OwnedItem | undefined, opts: { worn?: boolean; against?: (typeof templates)[number] | null; slot?: string } = {}) {
+	function tipCard(t: (typeof templates)[number], i: OwnedItem | undefined, opts: { worn?: boolean; against?: (typeof templates)[number] | null; againstItem?:OwnedItem; slot?: string } = {}) {
 		const card = document.createElement("div");
 		card.className = "tip-card" + (opts.worn ? " worn" : "");
-		card.style.setProperty("--rarity", rarityColors[t.rarity]);
+		card.style.setProperty("--rarity", rarityColors[ownedRarity(i,t.rarity)]);
 		const head = document.createElement("div");
 		head.className = "tip-head";
 		const ico = document.createElement("span");
@@ -513,13 +530,13 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			? `${t.slot === "accessory1" ? (opts.slot ? slotNames[opts.slot] : "แหวน") : slotNames[t.slot]}${t.weaponType ? " · " + (WEAPON_NAMES[t.weaponType] || t.weaponType) : ""}`
 			: TYPE_NAMES[t.type] || t.type;
 		name.innerHTML = "<b></b><small></small>";
-		name.querySelector("b")!.textContent = t.nameTh;
-		name.querySelector("small")!.textContent = `${kind} · ${RARITY_NAMES[t.rarity] || t.rarity}`;
+		name.querySelector("b")!.textContent = `${t.nameTh}${i?.refine?' +'+i.refine:''}`;
+		name.querySelector("small")!.textContent = `${kind} · ${i?.roll?.quality??RARITY_NAMES[t.rarity]??t.rarity}${i?.roll?' · iLv '+i.roll.itemLevel:''}`;
 		head.append(ico, name);
 		if (opts.worn) { const tag = document.createElement("em"); tag.textContent = "สวมอยู่"; head.append(tag); }
 		card.append(head);
 		const notes: [string, boolean][] = [];
-		if (t.slot || t.level > 1) notes.push([`ต้องการระดับ ${t.level}`, (p?.level ?? 1) < t.level]);
+		if (t.slot || t.level > 1) notes.push([`ต้องการระดับ ${requiredEquipmentLevel(t.level,i)}`, (p?.level ?? 1) < requiredEquipmentLevel(t.level,i)]);
 		if (t.weaponType && !compatible(t)) notes.push(["อาชีพนี้ใช้ไม่ได้", true]);
 		if (notes.length) {
 			const req = document.createElement("div");
@@ -528,25 +545,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			card.append(req);
 		}
 		if (t.slot) {
-			const mine = statsOf(t), theirs = opts.against ? statsOf(opts.against) : null;
-			const keys = [...new Set([...Object.keys(mine), ...(theirs ? Object.keys(theirs) : [])])];
-			const list = document.createElement("div");
-			list.className = "tip-stats";
-			for (const k of keys) {
-				const row = document.createElement("div"), v = mine[k] || 0;
-				row.innerHTML = "<span></span><b></b>";
-				row.querySelector("span")!.textContent = metricNames[k] || k;
-				row.querySelector("b")!.textContent = v ? `+${v}` : "—";
-				if (theirs || opts.against === null) {
-					const d = v - (theirs?.[k] || 0), diff = document.createElement("i");
-					diff.textContent = d > 0 ? `▲ ${d}` : d < 0 ? `▼ ${-d}` : "=";
-					diff.className = d > 0 ? "up" : d < 0 ? "down" : "same";
-					row.append(diff);
-				}
-				list.append(row);
-			}
-			if (!keys.length) list.innerHTML = '<div class="tip-none">ไม่มีค่าพลังเพิ่ม</div>';
-			card.append(list);
+			const mine = statsOf(t,i), theirs = opts.against ? statsOf(opts.against,opts.againstItem) : [];
+			const primary=mine.find(r=>r.key===((t.matk??0)>(t.atk??0)?'flat:matk':t.type==='weapon'?'flat:atk':'flat:hardDef'));
+			if(primary){const hero=document.createElement('div');hero.className='tip-primary';hero.innerHTML='<small></small><strong></strong>';hero.querySelector('small')!.textContent=primary.label+' · ค่าคงที่รวม';hero.querySelector('strong')!.textContent=itemStatValue(primary);card.append(hero);}
+			const base=document.createElement('p');base.className='tip-base';base.textContent='ค่าฐาน: '+statsOf(t).map(r=>`${r.label} ${itemStatValue(r)}`).join(' · ');card.append(base);
+			if(i?.refine){const bonus=document.createElement('p');bonus.className='tip-refine';bonus.textContent=`ตีบวก +${i.refine} · ${refineBase(t).stat==='atk'?'ATK':refineBase(t).stat==='matk'?'MATK':'DEF'} +${refineBonusValue(t,i.refine)}`;card.append(bonus);}
+			appendStatComparison(card,mine,theirs,opts.against!==undefined);
 			if (opts.against === null) { const n = document.createElement("p"); n.className = "tip-note"; n.textContent = "ช่องนี้ยังว่าง"; card.append(n); }
 		} else if (t.type === "consumable") {
 			const e = document.createElement("p");
@@ -554,6 +558,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			e.textContent = describe(t);
 			card.append(e);
 		}
+		if(i){appendRollGroups(card,i);appendMilestones(card,t,i.refine);}
+		for(const m of t.modifiers.filter(m=>!('value' in m)||typeof m.value!=='number')){const text=document.createElement('p');text.className='tip-effect';text.textContent=modifierText(m);card.append(text);}
 		if (t.type === "card") {
 			const spec = data.cards.cards.find((c) => c.id === t.id);
 			if (spec) { const e = document.createElement("p"); e.className = "tip-effect"; e.textContent = `ใส่ได้กับ${CARD_SLOT_NAMES[spec.slot]} · ${cardEffects(data, t.id)}`; card.append(e); }
@@ -582,7 +588,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			old = inv.items.find((x) => x.location === "equip" && x.slot === slot);
 		}
 		const oldT = old ? template(old) : null;
-		const main = tipCard(t, i, { worn: equipped, against: t.slot && !equipped ? oldT : undefined, slot: equipped ? i!.slot : slot });
+		const main = tipCard(t, i, { worn: equipped, against: t.slot && !equipped ? oldT : undefined, againstItem:old, slot: equipped ? i!.slot : slot });
 		wrap.append(main);
 		if (oldT && old) {
 			const side = tipCard(oldT, old, { worn: true, slot });
@@ -659,10 +665,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		who.querySelector("small")!.textContent = `ระดับ ${(p as any)?.level ?? 1}`;
 		doll.append(who);
 		dollBox.replaceChildren(doll);
-		const total: Record<string, number> = {};
+		const total = new Map<string,ItemStat>();
 		for (const i of inv!.items.filter((i) => i.location === "equip"))
-			for (const [k, v] of Object.entries(statsOf(template(i)))) total[k] = (total[k] || 0) + v;
-		bonusBox.innerHTML = Object.entries(total).map(([k, v]) => `<span>${metricNames[k] || k}<b>+${v}</b></span>`).join("") || `<span class="inv-bonus-none">ยังไม่มีโบนัสจากอุปกรณ์</span>`;
+			for (const row of statsOf(template(i),i)){const old=total.get(row.key);if(old)old.value+=row.value;else total.set(row.key,{...row});}
+		bonusBox.replaceChildren();for(const row of total.values()){const span=document.createElement('span'),value=document.createElement('b');span.textContent=row.label;value.textContent=(row.value>=0?'+':'')+itemStatValue(row);span.append(value);bonusBox.append(span);}if(!total.size)bonusBox.textContent='ยังไม่มีโบนัสจากอุปกรณ์';
 	}
 	function shopCard(t: (typeof templates)[number], id: string) {
 		const card = document.createElement("div"), price = priceOf(id), inCart = cart.get(id) || 0;
@@ -723,8 +729,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		return card;
 	}
 	function describe(t: (typeof templates)[number]) {
-		const st = Object.entries(statsOf(t)).map(([k, v]) => `${metricNames[k] || k} ${v}`).join(" · ");
-		return t.slot ? `Lv.${t.level} · ${t.slot==='accessory1'?'แหวน':slotNames[t.slot]}${st ? " · " + st : ""}` : t.effect ? `ฟื้นฟู ${t.effect==='hp'?'HP':t.effect==='sp'?'SP':'ความเร็ว'} ${t.effect==='speed'?Math.round(t.amount!*100)+'%':fmtGold(t.amount!)}` : ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type] || "";
+		const st = statsOf(t).map(r=>`${r.label} ${itemStatValue(r)}`).join(" · ");
+		return t.slot ? `Lv.${t.level} · ${t.slot==='accessory1'?'แหวน':slotNames[t.slot]}${st ? " · " + st : ""}` : t.effect==='party_hp'?`ฮีลสมาชิกปาร์ตี้ใกล้สุดใน 6 เมตร ${fmtGold(t.amount!)} HP · ใช้คูลดาวน์ร่วมกับยา`:t.effect==='party_cleanse'?'ล้างสถานะลบให้สมาชิกปาร์ตี้ใกล้สุดใน 6 เมตร · ใช้คูลดาวน์ร่วมกับยา':t.effect ? `ฟื้นฟู ${t.effect==='hp'?'HP':t.effect==='sp'?'SP':'ความเร็ว'} ${t.effect==='speed'?Math.round(t.amount!*100)+'%':fmtGold(t.amount!)}` : ({ consumable: "ของใช้", material: "วัตถุดิบ", refine: "หินตีบวก", card: "การ์ด" } as any)[t.type] || "";
 	}
 	function cartLine(t: (typeof templates)[number], middle: string, sub: string) {
 		const line = document.createElement("div");
@@ -843,7 +849,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		if (filter === "สวมใส่") filter = "ทั้งหมด";
 		tabs.replaceChildren();
 		content.replaceChildren();
-		for (const name of storage ? ["ฝากของ", "ในคลัง"] : shop ? ["ซื้อ", "ขาย"] : ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ", "การ์ด"]) {
+		for (const name of storage ? ["ฝากของ", "ในคลัง"] : shop === "forge" ? ["ซื้อ", "ขาย", "ตีบวก"] : shop ? ["ซื้อ", "ขาย"] : ["ทั้งหมด", "อุปกรณ์", "ของใช้", "วัตถุดิบ", "การ์ด"]) {
 			const b = document.createElement("button");
 			b.textContent = name;
 			if (mode === "bag") {
@@ -863,8 +869,10 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			};
 			tabs.append(b);
 		}
-		controls.hidden=mode!=='shop';
-		if (mode === "shop") drawShopTools();
+		const refining = shop === "forge" && shopTab === "ตีบวก";
+		panel.dataset.tab = refining ? "refine" : "";
+		controls.hidden=mode!=='shop'||refining;
+		if (mode === "shop" && !refining) drawShopTools();
 		bagTools.hidden = mode !== "bag";
 		if (mode === "bag") { if (document.activeElement !== searchBox) searchBox.value = search; sortBox.value = sortBy; bagTools.querySelectorAll<HTMLButtonElement>("[data-q]").forEach((b) => b.setAttribute("aria-pressed", String(quick === b.dataset.q))); }
   if (mode === "bag") { loadSeen(); drawDoll(); }
@@ -886,6 +894,12 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			}
 			content.append(grid);
 			countBox.textContent = "ดับเบิลคลิกเพื่อฝาก/ถอนทั้งกอง · คลังแยกตามตัวละคร";
+			return;
+		}
+		if (refining) {
+			content.append(refine.root);
+			refine.update(inv, p?.gold ?? 0);
+			countBox.textContent = "หินตีบวก 1 ก้อน + ทอง ต่อครั้ง · +1 ถึง +4 ไม่มีทางล้มเหลว · ต้องยืนคุยกับช่างตีเหล็ก";
 			return;
 		}
 		if (shop) {
@@ -935,8 +949,8 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 			if (filter === "การ์ด" && t.type !== "card") continue;
 			if (quick === "new" && !isNew(i)) continue;
 			if (search && !t.nameTh.toLowerCase().includes(search)) continue;
-			if (quick === "wear" && !(t.slot && wearable(t))) continue;
-			if (quick === "better" && !betterThanWorn(t)) continue;
+			if (quick === "wear" && !(t.slot && wearable(t,i))) continue;
+			if (quick === "better" && !betterThanWorn(t,i)) continue;
 			if (quick === "sell" && i.bound) continue;
 			for (let left = i.qty; left > 0; left -= t.maxStack) {
 				grid.append(cell({ ...i, qty: Math.min(left, t.maxStack) }, "bag"));
@@ -956,7 +970,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 		storage = nextShop === "storage";
 		if (storage) storageTab = "ฝากของ";
 		shop = storage ? null : nextShop;
-		shopRange = shop === "forge" ? "current" : "all"; shopCategory = "all"; shopOwnClass = true; shopSearch = ""; sellCategory = "all"; draftQty.clear(); shopTab = "ซื้อ";
+		shopRange = shop === "forge" ? "current" : "all"; shopCategory = "all"; shopOwnClass = true; shopSearch = ""; sellCategory = "all"; draftQty.clear(); shopTab = "ซื้อ"; refine.reset();
 		selected = null;
 		multi.clear();
 		cart.clear();
@@ -1010,6 +1024,7 @@ export function mountInventory(send: (m: any) => void, onOpen: () => void) {
 					}
 				}
 				if (pending?.req === m.req) pending = undefined;
+				if (refineReq && refineReq === m.req) { refineReq = ""; if (m.error) refine.failed(m.error); else if(m.inventory) refine.update(m.inventory,m.gold,true); }
 				multi.clear();
 				if (m.error) buyQueue = [];
 				else if (!pending && buyQueue.length) { nextBuy(); return; }

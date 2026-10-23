@@ -1,4 +1,7 @@
 const missingItems=new Set<string>();
+export function canEquipWeapon(profile:{classId:string;masteries?:CharacterInput['masteries']},weapon:Weapon|undefined,data:GameData){
+ return !weapon||!!profile.masteries||!!data.classes.classes.find(c=>c.id===profile.classId)?.weapons.includes(weapon);
+}
 import {
 	CharacterSchema,
 	type CharacterInput,
@@ -13,6 +16,7 @@ import {
 	type Modifier,
 } from "./schema.js";
 import { autoAllocateStats } from "./allocation.js";
+import {masteryPassiveValue} from './mastery.js';
 export const clamp = (n: number, min: number, max: number) =>
 	Math.min(max, Math.max(min, n));
 export interface Combatant {
@@ -75,8 +79,8 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 	});
 	const weapon = equipment.find((i) => i.type === "weapon"),
 		armour = equipment.find((i) => i.type === "armour");
-	if (weapon?.weaponType && !job.weapons.includes(weapon.weaponType))
-		throw new Error(`${job.id} cannot equip ${weapon.weaponType}`);
+	if (!canEquipWeapon(char,weapon?.weaponType,data))
+		throw new Error(`${job.id} cannot equip ${weapon?.weaponType}`);
 	for (const slot of ["weapon", "armour"] as const) {
 		const selected = char.cards
 			.map((id) => {
@@ -99,6 +103,13 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 			: 0;
 	};
 	const passive: Modifier[] = [];
+ const masteryValue=(id:Parameters<typeof masteryPassiveValue>[3],key:string)=>masteryPassiveValue(data,char,weapon?.weaponType??'unarmed',id,key);
+ passive.push(
+  {kind:'flat',stat:'hit',value:masteryValue('archer_07','hit')},
+  {kind:'flat',stat:'flee',value:masteryValue('rogue_07','flee')},
+  {kind:'percent',stat:'maxSp',value:masteryValue('mage_08','maxMp')/100},
+  {kind:'percent',stat:'castMul',value:-masteryValue('mage_07','castDown')/100},
+ );
 	if (["sword1h", "sword2h"].includes(weapon?.weaponType || ""))
 		passive.push({
 			kind: "flat",

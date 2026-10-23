@@ -1,0 +1,2341 @@
+{
+  "type": "map",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "width": 244,
+  "height": 104,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "nextlayerid": 8,
+  "nextobjectid": 112,
+  "properties": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "value": "canyon"
+    },
+    {
+      "name": "pixelsPerMetre",
+      "type": "float",
+      "value": 32
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "objectgroup",
+      "name": "01 Roads — city approach and deep loops",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "type": "path",
+          "name": "ทางเดิน 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.7
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3968,
+              "y": 1664
+            },
+            {
+              "x": 3136,
+              "y": 1664
+            },
+            {
+              "x": 2688,
+              "y": 1216
+            },
+            {
+              "x": 1984,
+              "y": 1216
+            },
+            {
+              "x": 1408,
+              "y": 1664
+            },
+            {
+              "x": 704,
+              "y": 1792
+            },
+            {
+              "x": 512,
+              "y": 2304
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "path",
+          "name": "ทางเดิน 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3136,
+              "y": 1664
+            },
+            {
+              "x": 2944,
+              "y": 2464
+            },
+            {
+              "x": 2176,
+              "y": 2624
+            },
+            {
+              "x": 1408,
+              "y": 2240
+            },
+            {
+              "x": 1408,
+              "y": 1664
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "path",
+          "name": "ทางเดิน 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.8
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2688,
+              "y": 1216
+            },
+            {
+              "x": 2496,
+              "y": 544
+            },
+            {
+              "x": 1600,
+              "y": 576
+            },
+            {
+              "x": 896,
+              "y": 960
+            },
+            {
+              "x": 704,
+              "y": 1792
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "type": "path",
+          "name": "ทางเดิน 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3616,
+              "y": 1664
+            },
+            {
+              "x": 3616,
+              "y": 1888
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "type": "path",
+          "name": "ทางเดิน 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 2048,
+              "y": 1216
+            },
+            {
+              "x": 2048,
+              "y": 928
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "type": "path",
+          "name": "ทางเดิน 6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.2
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 1408,
+              "y": 1952
+            },
+            {
+              "x": 1216,
+              "y": 1952
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "type": "path",
+          "name": "ทางเดิน 7",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 7808,
+              "y": 1664
+            },
+            {
+              "x": 3968,
+              "y": 1664
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "type": "path",
+          "name": "ทางเดิน 8",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 7296,
+              "y": 1664
+            },
+            {
+              "x": 7296,
+              "y": 1184
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "type": "path",
+          "name": "ทางเดิน 9",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 6624,
+              "y": 1664
+            },
+            {
+              "x": 6624,
+              "y": 2176
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "type": "path",
+          "name": "ทางเดิน 10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 5952,
+              "y": 1664
+            },
+            {
+              "x": 5952,
+              "y": 1184
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "type": "path",
+          "name": "ทางเดิน 11",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 5280,
+              "y": 1664
+            },
+            {
+              "x": 5280,
+              "y": 2176
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "type": "path",
+          "name": "ทางเดิน 12",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 4608,
+              "y": 1664
+            },
+            {
+              "x": 4608,
+              "y": 1184
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "type": "path",
+          "name": "ทางเดิน 13",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 1.6
+            }
+          ],
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "polyline": [
+            {
+              "x": 3936,
+              "y": 1664
+            },
+            {
+              "x": 3936,
+              "y": 2176
+            }
+          ]
+        },
+        {
+          "id": 109,
+          "type": "path",
+          "name": "ทางสู่ป่าอำพัน",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "pathWidth",
+              "type": "float",
+              "value": 2.8
+            }
+          ],
+          "polyline": [
+            {
+              "x": 3328,
+              "y": 1664
+            },
+            {
+              "x": 0,
+              "y": 1664
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "objectgroup",
+      "name": "02 Water",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 14,
+          "type": "water",
+          "name": "แอ่งน้ำ 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 1984,
+          "y": 1792,
+          "width": 448,
+          "height": 320
+        },
+        {
+          "id": 15,
+          "type": "water",
+          "name": "แอ่งน้ำ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 992,
+          "y": 2688,
+          "width": 320,
+          "height": 192
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "objectgroup",
+      "name": "03 City arrival and return gate",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 16,
+          "type": "entry",
+          "name": "จุดเข้าจากเมือง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 7680,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 17,
+          "type": "gate",
+          "name": "east",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "city_plaza"
+            }
+          ],
+          "point": true,
+          "x": 7776,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 108,
+          "type": "gate",
+          "name": "west",
+          "point": true,
+          "x": 32,
+          "y": 1664,
+          "width": 0,
+          "height": 0,
+          "properties": [
+            {
+              "name": "destination",
+              "type": "string",
+              "value": "grove"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "04 Camps and boss",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 18,
+          "type": "camp",
+          "name": "แคมป์ 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 7584,
+          "y": 1888,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 19,
+          "type": "camp",
+          "name": "แคมป์ 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 3616,
+          "y": 1888,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 20,
+          "type": "camp",
+          "name": "แคมป์ 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 2048,
+          "y": 928,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 21,
+          "type": "camp",
+          "name": "แคมป์ 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "point": true,
+          "x": 1216,
+          "y": 1952,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 22,
+          "type": "arena",
+          "name": "ลานบอส",
+          "rotation": 0,
+          "visible": true,
+          "properties": [],
+          "ellipse": true,
+          "x": 336,
+          "y": 2256,
+          "width": 352,
+          "height": 352
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "objectgroup",
+      "name": "05 Progression habitats",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 23,
+          "type": "spawn",
+          "name": "ลานวุ้นกรวดจิ๋ว",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "canyon_young_1"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 7040,
+          "y": 864,
+          "width": 512,
+          "height": 640
+        },
+        {
+          "id": 24,
+          "type": "spawn",
+          "name": "เนินกิ้งก่าหางแร่",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "oretail_lizard"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 6368,
+          "y": 1856,
+          "width": 512,
+          "height": 640
+        },
+        {
+          "id": 27,
+          "type": "spawn",
+          "name": "ช่องแร่ชั้นกลาง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "canyon_young_16"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 4352,
+          "y": 864,
+          "width": 512,
+          "height": 640
+        },
+        {
+          "id": 28,
+          "type": "spawn",
+          "name": "ด่านหินชั้นใน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "canyon_young_20"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 8
+            }
+          ],
+          "ellipse": true,
+          "x": 3680,
+          "y": 1856,
+          "width": 512,
+          "height": 640
+        },
+        {
+          "id": 29,
+          "type": "spawn",
+          "name": "ลานวุ้นแร่",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "crag_slime"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            }
+          ],
+          "ellipse": true,
+          "x": 2624,
+          "y": 608,
+          "width": 960,
+          "height": 896
+        },
+        {
+          "id": 30,
+          "type": "spawn",
+          "name": "สันผาหมาป่า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "crag_wolf"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            }
+          ],
+          "ellipse": true,
+          "x": 2240,
+          "y": 2144,
+          "width": 960,
+          "height": 768
+        },
+        {
+          "id": 31,
+          "type": "spawn",
+          "name": "แอ่งฝุ่นอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "dust_wisp"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 14
+            }
+          ],
+          "ellipse": true,
+          "x": 928,
+          "y": 352,
+          "width": 1024,
+          "height": 832
+        },
+        {
+          "id": 32,
+          "type": "spawn",
+          "name": "ลานรากผา",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "crag_guard"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 12
+            }
+          ],
+          "ellipse": true,
+          "x": 448,
+          "y": 1568,
+          "width": 960,
+          "height": 1088
+        },
+        {
+          "id": 110,
+          "type": "spawn",
+          "name": "บ่อปูหนีบเหล็ก",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "dataId",
+              "type": "string",
+              "value": "iron_pincer_crab"
+            },
+            {
+              "name": "variant",
+              "type": "string",
+              "value": "pink"
+            },
+            {
+              "name": "count",
+              "type": "float",
+              "value": 4
+            }
+          ],
+          "ellipse": true,
+          "x": 6432,
+          "y": 864,
+          "width": 384,
+          "height": 384
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "objectgroup",
+      "name": "06 Solid scenery",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 33,
+          "type": "obstacle",
+          "name": "canyon-crag 0",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3660.8,
+          "y": 1196.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 34,
+          "type": "obstacle",
+          "name": "canyon-outcrop 1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 3811.2,
+          "y": 1283.2,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 35,
+          "type": "obstacle",
+          "name": "canyon-scree 2",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 3577.6,
+          "y": 1328,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 36,
+          "type": "obstacle",
+          "name": "canyon-crag 3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3660.8,
+          "y": 2220.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 37,
+          "type": "obstacle",
+          "name": "canyon-outcrop 4",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 3632.0485941063143,
+          "y": 2109.545468931654,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 38,
+          "type": "obstacle",
+          "name": "canyon-crag 5",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3436.8,
+          "y": 460.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 39,
+          "type": "obstacle",
+          "name": "canyon-outcrop 6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 3406.6346863625517,
+          "y": 616.3048000719612,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 40,
+          "type": "obstacle",
+          "name": "canyon-scree 7",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 3366.017081930675,
+          "y": 386.4455337400127,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 41,
+          "type": "obstacle",
+          "name": "canyon-crag 8",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 3276.8,
+          "y": 2860.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 42,
+          "type": "obstacle",
+          "name": "canyon-outcrop 9",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 3427.8712292203704,
+          "y": 2820.5604376538367,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 43,
+          "type": "obstacle",
+          "name": "canyon-scree 10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 3316.145034618815,
+          "y": 3048.372499776071,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 44,
+          "type": "obstacle",
+          "name": "canyon-crag 11",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2892.8,
+          "y": 716.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 45,
+          "type": "obstacle",
+          "name": "canyon-outcrop 12",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 2778.009555207338,
+          "y": 698.4718542333239,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 46,
+          "type": "obstacle",
+          "name": "canyon-scree 13",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 3027.870097102447,
+          "y": 636.8456526884556,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 47,
+          "type": "obstacle",
+          "name": "canyon-crag 14",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2476.8,
+          "y": 2988.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 48,
+          "type": "obstacle",
+          "name": "canyon-outcrop 15",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 2572.8481008950694,
+          "y": 3133.90271893707,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 49,
+          "type": "obstacle",
+          "name": "canyon-scree 16",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 2360.5731982372113,
+          "y": 3041.4494615359063,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 50,
+          "type": "obstacle",
+          "name": "canyon-crag 17",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 2028.8,
+          "y": 172.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 51,
+          "type": "obstacle",
+          "name": "canyon-outcrop 18",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 2079.779131082847,
+          "y": 54.97434875690733,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 52,
+          "type": "obstacle",
+          "name": "canyon-scree 19",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 2187.444064029347,
+          "y": 297.4210436973226,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 53,
+          "type": "obstacle",
+          "name": "canyon-crag 20",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 1612.8,
+          "y": 2988.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 54,
+          "type": "obstacle",
+          "name": "canyon-outcrop 21",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 1777.3871794882964,
+          "y": 3027.4112920263306,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 55,
+          "type": "obstacle",
+          "name": "canyon-scree 22",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 1569.7126877596088,
+          "y": 3154.7885956120617,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 56,
+          "type": "obstacle",
+          "name": "canyon-crag 23",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 1036.8,
+          "y": 172.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 57,
+          "type": "obstacle",
+          "name": "canyon-outcrop 24",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 965.3065182152352,
+          "y": 87.19993482254718,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 58,
+          "type": "obstacle",
+          "name": "canyon-scree 25",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 1218.0731952074257,
+          "y": 164.4433513468573,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 59,
+          "type": "obstacle",
+          "name": "canyon-crag 26",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 364.8,
+          "y": 588.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 60,
+          "type": "obstacle",
+          "name": "canyon-outcrop 27",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 383.4806734704836,
+          "y": 754.2600105206443,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 61,
+          "type": "obstacle",
+          "name": "canyon-scree 28",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 262.8682934679623,
+          "y": 557.4458486372855,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 62,
+          "type": "obstacle",
+          "name": "canyon-crag 29",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 172.8,
+          "y": 1324.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 63,
+          "type": "obstacle",
+          "name": "canyon-outcrop 30",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 294.57849681674924,
+          "y": 1244.2246904814394,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 64,
+          "type": "obstacle",
+          "name": "canyon-scree 31",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 264.1595116336339,
+          "y": 1501.7062781004133,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 65,
+          "type": "obstacle",
+          "name": "canyon-crag 32",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 716.8,
+          "y": 2988.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 66,
+          "type": "obstacle",
+          "name": "canyon-outcrop 33",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 596.3625387427949,
+          "y": 3020.001117065259,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 67,
+          "type": "obstacle",
+          "name": "canyon-scree 34",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 806.3113993998686,
+          "y": 2881.575171071797,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 68,
+          "type": "obstacle",
+          "name": "canyon-crag 35",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 76.8,
+          "y": 2508.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 69,
+          "type": "obstacle",
+          "name": "canyon-outcrop 36",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 210.4686770489172,
+          "y": 2621.196008288056,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 70,
+          "type": "obstacle",
+          "name": "canyon-crag 37",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-crag"
+            }
+          ],
+          "ellipse": true,
+          "x": 396.8,
+          "y": 2860.8,
+          "width": 166.4,
+          "height": 166.4
+        },
+        {
+          "id": 71,
+          "type": "obstacle",
+          "name": "canyon-outcrop 38",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ],
+          "ellipse": true,
+          "x": 397.9458276351217,
+          "y": 2741.6787642892978,
+          "width": 121.6,
+          "height": 121.6
+        },
+        {
+          "id": 72,
+          "type": "obstacle",
+          "name": "canyon-scree 39",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-scree"
+            }
+          ],
+          "ellipse": true,
+          "x": 578.6274344799272,
+          "y": 2937.652796518777,
+          "width": 96,
+          "height": 96
+        },
+        {
+          "id": 90,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 7363.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 7363.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 92,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 6979.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 93,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 6979.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 94,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 6595.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 95,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 6595.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 96,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 6211.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 97,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 6211.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 98,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 5827.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 99,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 5827.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 100,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 5443.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 101,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 5443.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 5059.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 103,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 5059.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 104,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 4675.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 105,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 4675.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 106,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 4291.2,
+          "y": 483.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        },
+        {
+          "id": 107,
+          "type": "obstacle",
+          "name": "ขอบทางชายเมือง",
+          "ellipse": true,
+          "rotation": 0,
+          "x": 4291.2,
+          "y": 2723.2,
+          "width": 121.6,
+          "height": 121.6,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "canyon-outcrop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "objectgroup",
+      "name": "08 Places and level signs",
+      "visible": true,
+      "opacity": 1,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 73,
+          "type": "poi",
+          "name": "แหล่งแร่ริมทาง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ],
+          "point": true,
+          "x": 3104,
+          "y": 1056,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 74,
+          "type": "poi",
+          "name": "สันผาหมาป่า",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ridge"
+            }
+          ],
+          "point": true,
+          "x": 2720,
+          "y": 2528,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 75,
+          "type": "poi",
+          "name": "แอ่งอำพัน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "amber"
+            }
+          ],
+          "point": true,
+          "x": 1440,
+          "y": 768,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 76,
+          "type": "poi",
+          "name": "วงหินรากผา",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "stone-ring"
+            }
+          ],
+          "point": true,
+          "x": 928,
+          "y": 2112,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 77,
+          "type": "poi",
+          "name": "ลานวุ้นกรวดจิ๋ว",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ],
+          "point": true,
+          "x": 7296,
+          "y": 1184,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 78,
+          "type": "poi",
+          "name": "เนินวุ้นกรวด",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ],
+          "point": true,
+          "x": 6624,
+          "y": 2176,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 79,
+          "type": "poi",
+          "name": "ทางผาอ่อน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ],
+          "point": true,
+          "x": 5952,
+          "y": 1184,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 80,
+          "type": "poi",
+          "name": "ลานหินอุ่น",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ],
+          "point": true,
+          "x": 5280,
+          "y": 2176,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 81,
+          "type": "poi",
+          "name": "ช่องแร่ชั้นกลาง",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ],
+          "point": true,
+          "x": 4608,
+          "y": 1184,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 82,
+          "type": "poi",
+          "name": "ด่านหินชั้นใน",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "ore"
+            }
+          ],
+          "point": true,
+          "x": 3936,
+          "y": 2176,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 83,
+          "type": "poi",
+          "name": "ลานวุ้นกรวดจิ๋ว · Lv.1",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 7296,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 84,
+          "type": "poi",
+          "name": "เนินวุ้นกรวด · Lv.3",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 6624,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 85,
+          "type": "poi",
+          "name": "ทางผาอ่อน · Lv.6",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 5952,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 86,
+          "type": "poi",
+          "name": "ลานหินอุ่น · Lv.10",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 5280,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 87,
+          "type": "poi",
+          "name": "ช่องแร่ชั้นกลาง · Lv.16",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 4608,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 88,
+          "type": "poi",
+          "name": "ด่านหินชั้นใน · Lv.20",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 3936,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": 89,
+          "type": "poi",
+          "name": "เขตลึก · มอน Lv.23+",
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sign"
+            }
+          ],
+          "point": true,
+          "x": 3712,
+          "y": 1664,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    }
+  ],
+  "tilesets": []
+}

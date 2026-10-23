@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE original hand-painted isometric fantasy MMORPG creature. Fine sepia ink, gouache and watercolor, matte natural texture, restrained highlights, upper-left light. Front three-quarter view facing image-left, entire body centered with generous transparent padding. A small ivory rabbit with two broad flat lotus-leaf ears, four rabbit paws and a round seed tail. Sage leaf veins, warm tan nose. No clothing. Original text-only design, no reference to any franchise or artist. Transparent background, no floor, shadow, labels, frame or scenery.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\lotus_rabbit\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\lotus_rabbit\\base.png.raw.png",
+  "raw_bytes": 1820550,
+  "elapsed_seconds": 55.969,
+  "model": null,
+  "session_id": "01a15f58-6e86-7b10-9145-544f704b1f04",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\starter-monsters-20261021\\lotus_rabbit\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1374x1145",
+    "alpha_zero_pct": 55.39,
+    "partial_alpha_pct": 44.6,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 1194,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

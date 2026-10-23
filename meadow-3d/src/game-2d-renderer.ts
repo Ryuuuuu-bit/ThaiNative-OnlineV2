@@ -1,45 +1,50 @@
+import {bossAnticipation} from './boss-anticipation';
+import {heroPresentation} from './hero-presentation';
+import type {ShadowHero} from './shadow-hero';
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
 import {titleDefinition} from '@the-beginning-online/shared';
-import {LAYOUTS,FIELD_BOSS,GATES,MAP_INFO,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
-import jobs from '../../shared/data/jobs.json' with {type:'json'};
+import {CITY,LAYOUTS,FIELD_BOSS,FIELD_PLACES,GATES,MAP_INFO,isField,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
 import {CanvasAssets} from './game-2d-assets';
 import {loadCity2DScene} from './city-2d-scene';
-import {loadCitizenArt} from './city-2d-citizen-art';
 import {drawNpcSprite} from './city-npc-sprite';
-import {createCityLife} from './city-2d-life';
 import {TOWN_NPCS,CITY_EXITS,WAYPOINTS} from './city-2d-locations';
 import {drawFountainWater} from './city-2d-fountain';
 import {loadField2D} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
 import {project2D,unproject2D} from './game-2d-projection';
-import {MOTIONS,MOTION_DURATION,MOTION_V2,motionFor,motionFrame,facingFor,facing8For,heroSprite,v2Cell,WALK_DIRECTIONS} from './sprite-animation';
+import {MOTIONS,MOTION_DURATION,MOTION_V2,motionFor,facingFor,facing8For,WALK_DIRECTIONS} from './sprite-animation';
 import {SKILL_MOTIONS,BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,SKILL_V2,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
-import {monsterSpecies,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
-import {huntingCell,HUNTING_ASSET_ROOT} from './hunting-monster-animation';
-import {HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
+import {monsterSpecies,monsterVisual,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
+import {huntingCell,HUNTING_ASSET_ROOT,EXPANSION_ASSET_ROOT} from './hunting-monster-animation';
+import {HERO_METRES,HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
 import type {CombatFeel} from './combat-feel';
 import type {SwordVfxPixi} from './sword-vfx-pixi';
 import {SkillVfx2D} from './skill-vfx-2d';
+import {MasteryVfx2D} from './mastery-vfx-2d';
+import {masteryMotion,summonPose} from './mastery-visuals';
 import {SHIELD_BASH_ART} from './shield-bash-art';
+import {sceneryOpacity,placeWorldLabel,type Rect} from './world-labels';
 
 const tint:Record<string,string>={ruin_shroom:'hue-rotate(40deg) saturate(.65)',relic_hound:'sepia(.45)',relic_wisp:'hue-rotate(125deg)',ruin_guard:'saturate(.65)',relic_warden:'sepia(.3)',crag_slime:'sepia(.8) saturate(.7)',crag_wolf:'sepia(.75)',dust_wisp:'saturate(.7)',crag_guard:'sepia(.8)',crag_titan:'sepia(.8) saturate(1.2)'};
 
 export class GameCanvas2D{
+ shadowHero?:ShadowHero;
  readonly atmosphere=new Atmosphere2D();
  readonly canvas=document.createElement('canvas');readonly ctx:CanvasRenderingContext2D;readonly assets:CanvasAssets;
- private city?:Awaited<ReturnType<typeof loadCity2DScene>>;private citizenArt?:Awaited<ReturnType<typeof loadCitizenArt>>;
- private life=createCityLife();private fields=new Map<MapId,Awaited<ReturnType<typeof loadField2D>>>();private monsterManifest:any;
- private huntingManifest:any;private monsterImages=new Set<string>();
+ private city?:Awaited<ReturnType<typeof loadCity2DScene>>;
+ private fields=new Map<MapId,Awaited<ReturnType<typeof loadField2D>>>();private monsterManifest:any;
+ private huntingManifest:any;private expansionManifest:any;private monsterImages=new Set<string>();
+ private companionImages=new Set<string>();
  private backdrops=new Map<MapId,Awaited<ReturnType<typeof loadMapBackdrop>>>();
  combatFeel?:CombatFeel;private shakeOffset={x:0,y:0};private monsterFrames=new Map<number,{motion:string;time:number}>();
  private heroStates=new Map<string,{motion:string;clock:number;skill?:SkillMotion;elapsed:number;swing?:number}>();
  private effects:any[]=[];private hits:{id:number;left:number;top:number;right:number;bottom:number}[]=[];
- private swordVfx?:SwordVfxPixi;private swordAttempted=false;readonly skillVfx=new SkillVfx2D();
+ private swordVfx?:SwordVfxPixi;private swordAttempted=false;readonly skillVfx=new SkillVfx2D();readonly masteryVfx=new MasteryVfx2D();
  private width=1;private height=1;private dpr=1;
  /** Static ground (backdrop, roads, map plane) rendered once with a margin, then blitted; redrawn on zoom, resize or after the camera moves past the margin. */
  private groundCache:{canvas:HTMLCanvasElement;ctx:CanvasRenderingContext2D;key:string;ox:number;oy:number}|null=null;
  /** Hue-shifted copies of slime atlases (canvas filters are far too slow to run per sprite per frame). */
- private tints=new WeakMap<CanvasImageSource,Map<string,HTMLCanvasElement>>();private focus={x:0,y:0};private initialized=false;private map:MapId='city_plaza';
+ private tints=new WeakMap<CanvasImageSource,Map<string,HTMLCanvasElement>>();private focus={x:0,y:0};private map:MapId='city_plaza';
  scale=30;zoomHeight=27.5;overview=false;highQuality=true;drawCalls=0;
  constructor(manifest:Record<string,{webp:string}>,private swordEffects:'canvas'|'pixi'='canvas'){this.assets=new CanvasAssets(manifest);this.canvas.setAttribute('aria-label','โลกเกม 2D');this.canvas.tabIndex=0;const context=this.canvas.getContext('2d');if(!context)throw Error('เบราว์เซอร์ไม่รองรับ Canvas 2D');this.ctx=context;this.resize();window.addEventListener('pagehide',e=>{if(!e.persisted)this.swordVfx?.destroy();});}
  resize(){this.width=innerWidth;this.height=innerHeight;const dpr=this.highQuality?Math.min(devicePixelRatio,1.5):1;this.dpr=dpr;this.canvas.width=Math.round(this.width*dpr);this.canvas.height=Math.round(this.height*dpr);this.canvas.style.width='100%';this.canvas.style.height='100%';this.ctx.setTransform(dpr,0,0,dpr,0,0);this.swordVfx?.resize(this.width,this.height,dpr);}
@@ -52,6 +57,8 @@ export class GameCanvas2D{
  async init(map:MapId){
   this.monsterManifest=await this.assets.json('/assets/monsters-painted/manifest.json');
   await Promise.all([SHIELD_BASH_ART.url,...MOTIONS.map(m=>`/assets/hero-painted/hero-${m}-v1.png`),...Object.keys(MOTION_V2).map(m=>`/assets/hero-painted/hero-${m}-v2.png`),...SKILL_MOTIONS.filter(m=>shownMotion(m)===m).map(m=>`/assets/hero-skills/hero-skill-${m}-${SKILL_V2[m]?'v2':'v1'}.png`),'/assets/skills-painted/angel-v1.png','/assets/hero-painted/portrait-v1.png','/assets/skills-painted/skills-v2.png','/assets/skills-painted/skills-vfx-v1.png','/assets/skills-painted/skills-vfx-job2-v1.png'].map(p=>this.assets.image(p)));
+  this.companionImages=new Set(Object.values<any>(this.monsterManifest.species.wolf.motions).map(clip=>'/assets/monsters-painted/'+clip.file));
+  await Promise.all([...this.companionImages].map(path=>this.assets.image(path)));
   const shield=this.assets.get(SHIELD_BASH_ART.url)!;
   this.skillVfx.setShieldArt(shield,SHIELD_BASH_ART.rect);
   await this.prepareMap(map);
@@ -59,35 +66,43 @@ export class GameCanvas2D{
  async prepareMap(id:MapId){
   const neededMonsters=new Set<string>();
   if(!this.backdrops.has(id))this.backdrops.set(id,await loadMapBackdrop(id,this.assets));
-  if(id==='city_plaza'){if(!this.city){const [city,people]=await Promise.all([loadCity2DScene(),loadCitizenArt()]);this.city=city;this.citizenArt=people;}}
+  if(id==='city_plaza'){if(!this.city)this.city=await loadCity2DScene();}
   else{if(!this.fields.has(id))this.fields.set(id,await loadField2D(id,this.assets));
    await this.prepareSwordVfx();
-   const ids=[...new Set([...LAYOUTS[id].spawns.map(m=>m.dataId),FIELD_BOSS[id].dataId])];
+   const ids=[...new Set([...LAYOUTS[id].spawns.map(m=>monsterVisual(m.dataId).id),...(FIELD_BOSS[id]?[FIELD_BOSS[id]!.dataId]:[]),...(id==='forest'?['thorn_nest_mother']:[])])];
+   this.expansionManifest??=await this.assets.json(EXPANSION_ASSET_ROOT+'manifest.json');
+   for(const dataId of ids)for(const clip of Object.values<any>(this.expansionManifest.species[dataId]?.motions??{}))neededMonsters.add(EXPANSION_ASSET_ROOT+clip.file);
    if(id==='ruins'||id==='canyon'){
     this.huntingManifest??=await this.assets.json(HUNTING_ASSET_ROOT+'manifest.json');
     for(const dataId of ids)for(const clip of Object.values<any>(this.huntingManifest.species[dataId]?.motions??{}))neededMonsters.add(HUNTING_ASSET_ROOT+clip.file);
    }
-   const species=[...new Set(ids.filter(dataId=>!this.huntingManifest?.species[dataId]).map(dataId=>monsterSpecies(dataId,dataId===FIELD_BOSS[id].dataId)))];
+   const species=[...new Set(ids.filter(dataId=>!this.expansionManifest.species[dataId]&&!this.huntingManifest?.species[dataId]).map(dataId=>monsterSpecies(dataId,dataId===FIELD_BOSS[id]?.dataId)))];
    for(const s of species)for(const clip of Object.values<any>(this.monsterManifest.species[s].motions))neededMonsters.add('/assets/monsters-painted/'+clip.file);
    await Promise.all([...neededMonsters].map(p=>this.assets.image(p)));
   }
   // Commit only after the destination is ready. Keep shared atlases, release
   // every previous-map monster (including meadow/forest, not just hunting art).
-  for(const path of this.monsterImages)if(!neededMonsters.has(path))this.assets.release(path);
+  for(const path of this.monsterImages)if(!neededMonsters.has(path)&&!this.companionImages.has(path))this.assets.release(path);
   this.monsterImages=neededMonsters;
-  this.map=id;this.initialized=false;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.heroStates.clear();this.monsterFrames.clear();
+  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.masteryVfx.clear();this.heroStates.clear();this.monsterFrames.clear();
+  // Each baked region plane is about 25–35 MB; retain only the current region
+  // and two recent regions while travelling across the expanded world.
+  for(const cache of [this.fields,this.backdrops])while(cache.size>3){const old=[...cache.keys()].find(key=>key!==id);if(old===undefined)break;cache.delete(old);}
  }
- screen(x:number,z:number,h=0){const p=project2D(x,z,h);return{x:this.width/2+(p.x-this.focus.x)*this.scale+this.shakeOffset.x,y:this.height*.55+(p.y-this.focus.y)*this.scale+this.shakeOffset.y};}
- ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height*.55-this.shakeOffset.y)/this.scale+this.focus.y);}
+ screen(x:number,z:number,h=0){const p=project2D(x,z,h);return{x:this.width/2+(p.x-this.focus.x)*this.scale+this.shakeOffset.x,y:this.height/2+(p.y-this.focus.y)*this.scale+this.shakeOffset.y};}
+ ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height/2-this.shakeOffset.y)/this.scale+this.focus.y);}
  pickEnemy(x:number,y:number){return [...this.hits].reverse().find(p=>x>=p.left&&x<=p.right&&y>=p.top&&y<=p.bottom)?.id??null;}
  event(e:any){
-  if(e.type==='skill'&&isSkillMotion(e.skillId)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
+  this.shadowHero?.event(e);
+  if(e.type==='skill'&&!e.autoSpell&&isSkillMotion(e.skillId)&&!masteryMotion(e.learnedSkill)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
   // A basic swing plays the attack motion from its own event, in step with the slash VFX.
   if(e.type==='slash'&&e.playerId){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.swing=0;this.heroStates.set(e.playerId,s);}
+  if(this.masteryVfx.event(e))return;
   if(this.skillVfx.event(e))return;
   if(this.swordVfx?.event(e))return;
-  if(e.type==='warningCancel'){this.effects=this.effects.filter(v=>v.id!==e.id||v.type!=='warning');return;}
-  if(['warning','bossBlast','slash','skill','skillImpact','heal','level','dash','impact','slam','hit','kill','meteor'].includes(e.type))this.effects.push({...e,age:0,life:e.duration??(e.type==='level'?.9:.45)});
+  if(e.type==='yokai_decoy_break'){this.effects=this.effects.filter(v=>v.type!=='yokai_decoy'||v.playerId!==e.playerId);return;}
+  if(e.type==='warningCancel'){this.effects=this.effects.filter(v=>v.id!==e.id||!['warning','safe_zone','frost_ward','yokai_echo','yokai_stance'].includes(v.type));return;}
+  if(['hazardDestroyed','illusionDestroyed','yokai_echo','yokai_puddle','yokai_stance','yokai_decoy','warning','safe_zone','frost_signal','frost_ward','frost_tracks','sand_patch','sun_scroll','item_pool','bossBlast','slash','skill','skillImpact','heal','level','dash','impact','slam','hit','kill','meteor'].includes(e.type))this.effects.push({...e,age:0,life:e.duration??(e.type==='level'?.9:.45)});
   if(this.effects.length>140)this.effects.splice(0,this.effects.length-140);
  }
  private text(text:string,x:number,y:number,color='#eee1bc',size=12){const c=this.ctx;c.font=`500 ${size}px Inter,"Noto Sans Thai",sans-serif`;c.textAlign='center';c.lineJoin='round';c.lineWidth=3;c.strokeStyle='#17251ee0';c.strokeText(text,x,y);c.fillStyle=color;c.fillText(text,x,y);}
@@ -117,82 +132,135 @@ export class GameCanvas2D{
   t.globalCompositeOperation='source-over';t.clearRect(0,0,cw,ch);t.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,0,0,w,h);t.globalCompositeOperation='source-atop';t.fillStyle=tint;t.fillRect(0,0,cw,ch);
   const c=this.ctx;c.save();c.globalAlpha=alpha;c.globalCompositeOperation='lighter';c.drawImage(o,x,y,w,h);c.restore();this.drawCalls++;
  }
- private ghostCanvas?:HTMLCanvasElement;
+ private ghostCanvas?:HTMLCanvasElement;private paperShadowsDrawn=0;
  private hero(p:any,dt:number,time:number,own:boolean){
-  const state=this.heroStates.get(p.id)??{motion:'idle',clock:0,elapsed:0};this.heroStates.set(p.id,state);const motion=motionFor(p);state.clock=motion===state.motion?state.clock+dt:0;state.motion=motion;state.elapsed+=dt;
+  const state=this.heroStates.get(p.id)??{motion:'idle',clock:0,elapsed:0};this.heroStates.set(p.id,state);const baseMotion=motionFor(p),motion=(baseMotion==='attack'&&masteryMotion(p.attackKind))||baseMotion;state.clock=motion===state.motion?state.clock+dt:0;state.motion=motion;state.elapsed+=dt;
   if(state.skill&&(state.elapsed>SKILL_DURATION[state.skill]||p.dead||p.hurt>0))state.skill=undefined;
   if(state.swing!==undefined){state.swing+=dt;if(state.swing>=MOTION_DURATION.attack||p.dead||p.hurt>0)state.swing=undefined;}
   const swinging=state.swing!==undefined&&(motion==='idle'||motion==='walk'||motion==='run'),shown=swinging?'attack':motion;
-  const sprite=heroSprite(shown,p.fx,p.fz,motionFrame(shown,swinging?state.swing!:state.clock),state.clock);const base=MOTION_V2[sprite.sheet];let cell=base?v2Cell(sprite.sheet,facingFor(p.fx,p.fz),sprite.cell.column,state.clock):sprite.cell,key=`/assets/hero-painted/hero-${sprite.sheet}-${base?'v2':'v1'}.png`;
-  // v2 skills: 8 facings and their own cell size, with the feet at `feet` px from the cell top.
-  const v2=state.skill?SKILL_V2[state.skill]:undefined,px=v2??(state.skill?undefined:base)??{w:384,h:256,feet:240};
-  if(state.skill){key=`/assets/hero-skills/hero-skill-${state.skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(state.skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[state.skill],rows:v2?8:4};}
-  const image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale,h=px.h*HERO_PIXEL_METRES*this.scale,foot=px.feet/px.h;
-  for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w/2,gq.y-h*foot,w,h,p.ghostTint,g.alpha);}
-  this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w/2,qs.y-h*foot,w,h);this.drawCalls++;
-  if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-2.5*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-2.1*this.scale);}
+  const shadow=own?(this.shadowHero?.combat?this.shadowHero.combatPose(p,dt):this.shadowHero?.pose(state.skill?'cast':shown,p.fx,p.fz,state.skill?state.elapsed:swinging?state.swing!:state.clock)):undefined;
+  const pose=shadow??heroPresentation(shown,p.fx,p.fz,swinging?state.swing!:state.clock);let {cell,key}=pose;
+  const skill=shadow?undefined:state.skill,v2=skill?SKILL_V2[skill]:undefined,px=skill?(v2??{w:384,h:256,feet:240}):pose;
+  if(skill){key=`/assets/hero-skills/hero-skill-${skill}-${v2?'v2':'v1'}.png`;cell={column:skillFrame(skill,state.elapsed),row:v2?WALK_DIRECTIONS.indexOf(facing8For(p.fx,p.fz)):['SE','SW','NE','NW'].indexOf(facingFor(p.fx,p.fz)),columns:SKILL_FRAMES[skill],rows:v2?8:4};}
+  const scale=skill?1:pose.scale,image=this.assets.get(key)!;const q=this.screen(p.x,p.z),qs=p.lift?this.screen(p.x,p.z,p.lift):q,w=px.w*HERO_PIXEL_METRES*this.scale*scale,h=px.h*HERO_PIXEL_METRES*this.scale*scale,foot=px.feet/px.h,anchorX=shadow?.anchorX??.5;
+  for(const g of p.ghosts??[]){const gq=this.screen(g.x,g.z,g.lift);this.ghostSprite(image,cell,gq.x-w*anchorX,gq.y-h*foot,w,h,g.tint??p.ghostTint,g.alpha);}
+  this.atmosphere.actorShadow(this.ctx,q,this.scale);this.circle(p.x,p.z,.42,this.atmosphere.settings.enabled?'transparent':'#162c2940',own?'#e7d39b88':undefined);this.ctx.drawImage(image,cell.column*image.width/cell.columns,cell.row*image.height/cell.rows,image.width/cell.columns,image.height/cell.rows,qs.x-w*anchorX,qs.y-h*foot,w,h);this.drawCalls++;
+  if(!this.overview&&!p.dead){const title=titleDefinition(p.titleId);if(title)this.text(title.name,qs.x,qs.y-(HERO_METRES+.7)*this.scale,title.color,10);this.text(p.name||'นักผจญภัย',qs.x,qs.y-(HERO_METRES+.3)*this.scale);}
   for(const [i,status]of (p.statuses??[]).entries()){if(i>4)break;this.circle(p.x,p.z,.55+i*.08,'transparent',status.id==='guard'?'#b9d9ed88':'#d6d28c66');}
  }
+ private companion(pet:any,owner:any,time:number){
+  if(pet.dead||pet.hp<=0)return;
+  const def=this.monsterManifest.species.wolf,pose=summonPose(pet,this.masteryVfx.time,this.masteryVfx.petAttacks.get(pet.id));
+  const cell=huntingCell({motion:pose.motion,motionTime:pose.time,motionDuration:pose.duration,fx:pet.fx,fz:pet.fz},pose.windup,def.motions.attack.columns),info=def.motions[cell.motion],image=this.assets.get('/assets/monsters-painted/'+info.file);if(!image)return;
+  const q=this.screen(pet.x,pet.z),w=def.quadWorldSize[0]*this.scale*.65,h=def.quadWorldSize[1]*this.scale*.65,c=this.ctx;
+  this.atmosphere.actorShadow(c,q,this.scale,.48);this.circle(pet.x,pet.z,.5,'#93dece15','#b6decd');
+  c.save();c.globalAlpha=.9;c.drawImage(image,cell.column*image.width/info.columns,cell.row*image.height/info.rows,image.width/info.columns,image.height/info.rows,q.x-w*def.anchor[0],q.y-h*(1-def.anchor[1]),w,h);c.restore();this.drawCalls++;
+  c.fillStyle='#172a25';c.fillRect(q.x-15,q.y-h*.85,30,3);c.fillStyle='#9bcdb7';c.fillRect(q.x-15,q.y-h*.85,30*Math.max(0,Math.min(1,pet.hp/pet.maxHp)),3);
+  if(!this.overview)this.text('ผู้พิทักษ์',q.x,q.y-h*.85-6,'#bce3d2',9);
+ }
  private monster(e:any,selected:boolean){
-  const species=monsterSpecies(e.dataId,e.boss),fresh=this.huntingManifest?.species[e.dataId],def=fresh??this.monsterManifest.species[species];
-  const legacyMotion=def.motions[e.motion]?e.motion:'idle',cell=fresh?huntingCell(e,def.attackWindup):monsterCell(species,legacyMotion,e.fx,e.fz,e.motionTime),motion='motion' in cell?cell.motion:legacyMotion;
-  const info=def.motions[motion],image=this.assets.get((fresh?HUNTING_ASSET_ROOT:'/assets/monsters-painted/')+info.file);if(!image)return;
-  const factor=fresh?1:SPECIES_SCALE[species]*(e.boss?BOSS_METRES/(def.bodyWorldHeight||6.9):1),w=def.quadWorldSize[0]*factor*this.scale,h=def.quadWorldSize[1]*factor*this.scale,q=this.screen(e.x,e.z),x=q.x-w*def.anchor[0],y=q.y-h*(1-def.anchor[1]);
+  if(e.dataId==='endgame_focus'){
+   const q=this.screen(e.x,e.z),c=this.ctx,s=this.scale,r=s*.55;c.save();c.globalAlpha=monsterOpacity(e);this.atmosphere.actorShadow(c,q,s,.6);
+   if(selected)this.circle(e.x,e.z,.75,'#d3b65b33','#f7d987');
+   c.fillStyle='#223b42';c.strokeStyle='#b5d5d1';c.lineWidth=2;c.beginPath();c.moveTo(q.x-r,q.y);c.lineTo(q.x-r*.8,q.y-s*.7);c.lineTo(q.x+r*.8,q.y-s*.7);c.lineTo(q.x+r,q.y);c.closePath();c.fill();c.stroke();
+   c.fillStyle='#d7bd76';c.beginPath();c.moveTo(q.x,q.y-s*1.5);c.lineTo(q.x+r*.65,q.y-s);c.lineTo(q.x,q.y-s*.5);c.lineTo(q.x-r*.65,q.y-s);c.closePath();c.fill();c.stroke();c.restore();
+   if(!e.dead){this.hits.push({id:e.id,left:q.x-r,right:q.x+r,top:q.y-s*1.5,bottom:q.y});this.text('ทำลายตรา · '+Math.ceil(e.hp),q.x,q.y-s*1.7,'#e8d08e',11);}this.drawCalls++;return;
+  }
+  if(e.dataId==='desert_sand_ball'||e.dataId==='desert_binding_knot'){
+   const q=this.screen(e.x,e.z),c=this.ctx,s=this.scale,r=s*.5;this.atmosphere.actorShadow(c,q,s,.5);c.save();c.globalAlpha=monsterOpacity(e);
+   if(selected)this.circle(e.x,e.z,.65,'#e5b94d22','#efcb82');
+   if(e.dataId==='desert_sand_ball'){const g=c.createRadialGradient(q.x-r*.3,q.y-r*1.25,r*.1,q.x,q.y-r,r);g.addColorStop(0,'#f2d99a');g.addColorStop(1,'#826038');c.fillStyle=g;c.beginPath();c.arc(q.x,q.y-r,r,0,Math.PI*2);c.fill();c.strokeStyle='#b59763';c.lineWidth=1.2;for(let i=0;i<5;i++){c.beginPath();c.ellipse(q.x,q.y-r,r*.85,r*.24,i*.7+e.motionTime*3,0,Math.PI*2);c.stroke();}}
+   else{c.lineCap='round';c.strokeStyle='#8e6340';c.lineWidth=s*.2;c.beginPath();c.moveTo(q.x,q.y);c.lineTo(q.x,q.y-s*.9);c.stroke();c.strokeStyle='#e8d9b0';c.lineWidth=s*.12;for(let i=0;i<4;i++){c.beginPath();c.ellipse(q.x,q.y-s*(.2+i*.15),s*.3,s*.09,-.2,0,Math.PI*2);c.stroke();}c.beginPath();c.moveTo(q.x,q.y-s*.7);c.bezierCurveTo(q.x+s*.6,q.y-s*.9,q.x+s*.6,q.y-s*.25,q.x+s*.9,q.y-s*.3);c.stroke();}
+   c.restore();if(!e.dead)this.hits.push({id:e.id,left:q.x-r*1.2,right:q.x+r*1.2,top:q.y-s*1.05,bottom:q.y});this.drawCalls++;return;
+  }
+  if(e.nestEgg){const q=this.screen(e.x,e.z),c=this.ctx,r=this.scale*.65;c.save();c.globalAlpha=monsterOpacity(e);c.fillStyle='#d9d4b6';c.strokeStyle='#587159';c.lineWidth=2;c.beginPath();c.ellipse(q.x,q.y-r,r*.75,r,0,0,Math.PI*2);c.fill();c.stroke();for(let n=0;n<4;n++){c.beginPath();c.ellipse(q.x,q.y-r,r*.75,r*.3,n*.7,0,Math.PI*2);c.stroke();}c.restore();if(!e.dead)this.text('ถุงไข่ · '+Math.ceil(e.nestEgg.hatch),q.x,q.y-r*2.3,'#f4e7ba',11);if(!e.dead)this.hits.push({id:e.id,left:q.x-r,top:q.y-r*2,right:q.x+r,bottom:q.y});return;}
+
+  const visual=monsterVisual(e.dataId),species=monsterSpecies(e.dataId,e.boss),expansion=this.expansionManifest?.species[visual.id],fresh=expansion??this.huntingManifest?.species[visual.id],def=fresh??this.monsterManifest.species[species];
+  const legacyMotion=def.motions[e.motion]?e.motion:'idle',cell=fresh||def.sourceId?huntingCell(e,['thorn_nest_mother','greek_minotaur'].includes(e.dataId)&&e.motion==='attack'?e.motionDuration-.35:def.attackWindup,def.motions.attack.columns):monsterCell(species,legacyMotion,e.fx,e.fz,e.motionTime),motion='motion' in cell?cell.motion:legacyMotion;
+  const info=def.motions[motion],image=this.assets.get((expansion?EXPANSION_ASSET_ROOT:fresh?HUNTING_ASSET_ROOT:'/assets/monsters-painted/')+info.file);if(!image)return;
+  const factor=visual.scale*(fresh?1:SPECIES_SCALE[species]*(e.boss?BOSS_METRES/(def.bodyWorldHeight||6.9):1)),w=def.quadWorldSize[0]*factor*this.scale,h=def.quadWorldSize[1]*factor*this.scale,q=this.screen(e.x,e.z),x=q.x-w*def.anchor[0],y=q.y-h*(1-def.anchor[1]);
   if(selected)this.circle(e.x,e.z,e.boss?1.6:.7,'#a66e3322','#eec68b');
-  this.atmosphere.actorShadow(this.ctx,q,this.scale,e.boss?1.3:.55);
+  if(!e.illusion&&!(e.dataId==='yokai_06'&&e.summoned))this.atmosphere.actorShadow(this.ctx,q,this.scale,e.boss?1.3:.55);
 
   const c=this.ctx,src=fresh?image:tint[e.dataId]?this.tinted(image as HTMLImageElement,tint[e.dataId]):species==='slime'&&e.variant!=='pink'?this.tinted(image as HTMLImageElement,`hue-rotate(${e.variant==='mint'?162:220}deg)`):image,alpha=monsterOpacity(e),sx=cell.column*image.width/info.columns,sy=cell.row*image.height/info.rows,sw=image.width/info.columns,sh=image.height/info.rows;
-  c.globalAlpha=alpha;c.drawImage(src,sx,sy,sw,sh,x,y,w,h);this.drawCalls++;
+  const anticipation=bossAnticipation(e,info.file===def.motions.attack?.file);
+  c.save();if(anticipation){c.translate(q.x,q.y);c.transform(anticipation.x,0,anticipation.skew,anticipation.y,0,0);c.translate(-q.x,-q.y);}
+  c.globalAlpha=alpha*(e.illusion?.55:1)*(e.dataId==='desert_03'&&e.motion==='attack'&&e.windup>0&&e.motionTime>.3?.3:1);c.drawImage(src,sx,sy,sw,sh,x,y,w,h);this.drawCalls++;
   // Hit flash: add 35 % of the sprite again (≈ brightness(1.35)) instead of a canvas filter.
-  if(e.hurt>0){c.globalCompositeOperation='lighter';c.globalAlpha=alpha*.35;c.drawImage(src,sx,sy,sw,sh,x,y,w,h);c.globalCompositeOperation='source-over';this.drawCalls++;}c.globalAlpha=1;
+  if(e.hurt>0){c.globalCompositeOperation='lighter';c.globalAlpha=alpha*.35;c.drawImage(src,sx,sy,sw,sh,x,y,w,h);c.globalCompositeOperation='source-over';this.drawCalls++;}c.restore();
   const bounds=info.directions?.[cell.row]?.[cell.column]?.bounds;const b=bounds?{left:x+bounds[0]/def.cellSize[0]*w,top:y+bounds[1]/def.cellSize[1]*h,right:x+bounds[2]/def.cellSize[0]*w,bottom:y+bounds[3]/def.cellSize[1]*h}:{left:q.x-w*.25,top:q.y-h*.7,right:q.x+w*.25,bottom:q.y};
   if(!e.dead){this.hits.push({id:e.id,...b});if(selected||e.hp<e.maxHp){const by=q.y-(e.boss?4.8:1.5)*this.scale;c.fillStyle='#17251e';c.fillRect(q.x-22,by,44,4);c.fillStyle='#d99491';c.fillRect(q.x-22,by,44*e.hp/e.maxHp,4);}if(e.statuses?.length)this.text(e.statuses.map((s:any)=>s.id==='stun'?'มึนงง':s.id==='taunt'?'ยั่วยุ':'↓').join(' '),q.x,q.y-1.8*this.scale,'#e7d79d',10);}
  }
  render(game:any,others:any[],dt:number,time:number){
-  const c=this.ctx;this.drawCalls=0;this.hits=[];this.scale=this.overview?Math.min(this.width/145,this.height/112):this.height/this.zoomHeight;
+  const c=this.ctx;this.drawCalls=0;this.paperShadowsDrawn=0;this.hits=[];this.scale=this.overview?Math.min(this.width/145,this.height/112):this.height/this.zoomHeight;
   const now=performance.now(),shake=(this.combatFeel?.camera(dt)??0)*this.scale;this.shakeOffset={x:Math.sin(time*113)*shake,y:Math.cos(time*97)*shake*.7};
-  const focus=this.overview?{x:0,y:0}:project2D(game.p.x,game.p.z,3);
-  if(!this.initialized){this.focus=focus;this.initialized=true;}else{const k=1-Math.exp(-dt*8);this.focus.x+=(focus.x-this.focus.x)*k;this.focus.y+=(focus.y-this.focus.y)*k;}
+  // NetworkWorld already smooths movement; a second camera lag moves the hero off centre.
+  this.focus=this.overview?{x:0,y:0}:project2D(game.p.x,game.p.z,HERO_METRES/2);
   c.clearRect(0,0,this.width,this.height);c.fillStyle=this.map==='forest'?'#223d35':'#364f36';c.fillRect(0,0,this.width,this.height);
   const draws:{depth:number;draw:()=>void}[]=[],s=this.scale,add=(x:number,z:number,draw:()=>void)=>draws.push({depth:project2D(x,z).y,draw});
   const visible=(q:{x:number;y:number},r=220)=>q.x>-r&&q.x<this.width+r&&q.y>-r&&q.y<this.height+r;
+  const protectedActors=[game.p,...game.enemies.filter((e:any)=>!e.dead&&(e.id===game.target||(e.boss&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<12)))].map((a:any)=>{
+   const q=this.screen(a.x,a.z),height=(a.boss?BOSS_METRES:HERO_METRES+.6)*s,width=(a.boss?2:.82)*s;
+   return{left:q.x-width/2,top:q.y-height,right:q.x+width/2,bottom:q.y,footY:q.y};
+  });
   const backdrop=this.backdrops.get(this.map);this.drawGround(c,backdrop,s);
   const sceneryTrees:AtmosphereTree[]=[];this.atmosphere.water(c,this.map,(x,z,h)=>this.screen(x,z,h),s,time,this.width,this.height,this.highQuality);
-  for(const p of backdrop?.props??[]){const q=this.screen(p.x,p.z);if(!visible(q,p.h*s))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const hp=this.screen(game.p.x,game.p.z),x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=q.y>hp.y&&hp.x>x&&hp.x<x+p.w*s&&hp.y>y&&hp.y<q.y?.35:1;c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();this.drawCalls++;});}
+  for(const p of backdrop?.props??[]){const q=this.screen(p.x,p.z);if(!visible(q,p.h*s))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=sceneryOpacity({left:x,top:y,right:x+p.w*s,bottom:y+p.h*s},q.y,protectedActors);c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();this.drawCalls++;});}
   if(this.map==='city_plaza'&&this.city){
-   this.life.step(dt);
-   for(const p of this.city.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push({x:p.x,z:p.z,h:p.image.height/28,w:p.image.width/28});add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x+p.image.left*s,y=q.y+p.image.top*s,w=p.image.width/28*s,h=p.image.height/28*s,hp=this.screen(game.p.x,game.p.z);c.globalAlpha=p.fade&&q.y>hp.y&&hp.x>x&&hp.x<x+w&&hp.y>y&&hp.y<q.y?.45:1;c.drawImage(p.image,x,y,w,h);c.restore();if(p.water)drawFountainWater(c,q.x,q.y,s,time,this.atmosphere.reducedMotion);});}
-   for(const n of TOWN_NPCS){const q=this.screen(n.x,n.z);if(!visible(q))continue;add(n.x,n.z,()=>drawNpcSprite(c,this.city!.npcSprites.get(n.art)!,q.x,q.y,s));}
-   for(const n of this.life.citizens){const q=this.screen(n.x,n.z);if(visible(q,100))add(n.x,n.z,()=>this.citizenArt!.draw(c,n,q,s));}
-   for(const p of [...CITY_EXITS,...WAYPOINTS]){this.circle(p.x,p.z,1.35,'transparent',p.color);}
-   // The job-change NPC remains at the authoritative service position.
-   add(jobs.angel.x,jobs.angel.z,()=>{const q=this.screen(jobs.angel.x,jobs.angel.z),sprite=this.assets.get('/assets/skills-painted/angel-v1.png')!;c.drawImage(sprite,q.x-1.3*s,q.y-3.9*.975*s,2.6*s,3.9*s);this.circle(jobs.angel.x,jobs.angel.z,.8,'transparent','#e9d594');});
+   for(const p of this.city.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push({x:p.x,z:p.z,h:p.image.height/28,w:p.image.width/28});add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x+p.image.left*s,y=q.y+p.image.top*s,w=p.image.width/28*s,h=p.image.height/28*s;c.globalAlpha=p.fade?sceneryOpacity({left:x,top:y,right:x+w,bottom:y+h},q.y,protectedActors):1;c.drawImage(p.image,x,y,w,h);c.restore();if(p.water)drawFountainWater(c,q.x,q.y,s,time,this.atmosphere.reducedMotion);});}
+   for(const [i,n] of TOWN_NPCS.entries()){const q=this.screen(n.x,n.z);if(!visible(q))continue;add(n.x,n.z,()=>{drawNpcSprite(c,this.city!.npcSprites.get(n.art)!,q.x,q.y,s,time+i*.173);if(n.art==='angel')this.circle(n.x,n.z,.8,'transparent','#e9d594');});}
+   if(!CITY.empty)for(const p of [...CITY_EXITS,...WAYPOINTS]){this.circle(p.x,p.z,1.35,'transparent',p.color);}
   }else{const field=this.fields.get(this.map);if(field){
-   for(const p of field.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const hp=this.screen(game.p.x,game.p.z),x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=q.y>hp.y&&hp.x>x&&hp.x<x+p.w*s&&hp.y>y&&hp.y<q.y?.4:1;c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();});}
+   for(const p of field.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=sceneryOpacity({left:x,top:y,right:x+p.w*s,bottom:y+p.h*s},q.y,protectedActors);c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();});}
   }}
   this.atmosphere.shadows(c,sceneryTrees,(x,z,h)=>this.screen(x,z,h),s,time);
-  for(const effect of this.effects){effect.age+=dt;if(effect.type==='warning'){const half=(effect.angle??360)*Math.PI/360,start=effect.shape==='cone'?Math.atan2(effect.fz,effect.fx)-half:0,end=effect.shape==='cone'?start+half*2:Math.PI*2;this.circle(effect.x,effect.z,effect.r??2,'#e5503a42','#ff8264',effect.shape==='ring'?effect.inner:0,start,end);}}
+  for(const effect of this.effects){effect.age+=dt;if(effect.type==='frost_ward'||effect.type==='frost_signal')this.circle(effect.x,effect.z,effect.r??1.5,'#9bcae033','#d0eeff');if(effect.type==='frost_tracks'){for(let i=0;i<10;i++){const t=i/9;this.circle(effect.x+(effect.targetX-effect.x)*t+(i%2?.18:-.18),effect.z+(effect.targetZ-effect.z)*t,.13,'#577a9b99');}}if(effect.type==='sand_patch')this.circle(effect.x,effect.z,effect.r??1.3,'#d1ae6555','#bc8a3c');if((effect.type==='item_pool'||effect.type==='safe_zone'))this.circle(effect.x,effect.z,effect.r??2,'#79cdbc44','#a7f1dd');if(effect.type==='warning'){const half=(effect.angle??360)*Math.PI/360,start=effect.shape==='cone'?Math.atan2(effect.fz,effect.fx)-half:0,end=effect.shape==='cone'?start+half*2:Math.PI*2;this.circle(effect.x,effect.z,effect.r??2,'#e5503a42','#ff8264',effect.shape==='ring'?effect.inner:0,start,end);}}
+  for(const e of this.effects){
+   if(e.type==='yokai_puddle')this.circle(e.x,e.z,e.r??1.5,'#6ca9b455','#add3cc');
+   if(e.type==='yokai_stance'){
+    const color=e.text==='กระบองหนัก'?'#ffac79':'#bdb4ff';this.circle(e.x,e.z,e.r??1.5,'transparent',color);
+    for(const lamp of LAYOUTS[this.map].obstacles.filter(o=>o.kind==='yokai-lantern'))add(lamp.x,lamp.z,()=>{const q=this.screen(lamp.x,lamp.z,1.2),r=s*.48;c.save();const glow=c.createRadialGradient(q.x,q.y,0,q.x,q.y,r);glow.addColorStop(0,color+'ee');glow.addColorStop(.4,color+'aa');glow.addColorStop(1,color+'00');c.fillStyle=glow;c.beginPath();c.arc(q.x,q.y,r,0,Math.PI*2);c.fill();c.restore();});
+   }
+   if(e.type==='yokai_echo'){const source=game.enemies.find((v:any)=>v.id===e.id);if(source?.dataId==='yokai_bamboo_kodama')add(e.x,e.z,()=>{const hits=this.hits.length;this.monster({...source,x:e.x,z:e.z,illusion:true},false);this.hits.length=hits;});else this.circle(e.x,e.z,e.r??2,'#adb8de33','#d6c2dd');}
+   if(e.type==='yokai_decoy'){const owner=[game.p,...others].find(p=>p.id===e.playerId);if(owner){const pose=heroPresentation('idle',owner.fx,owner.fz,0),image=this.assets.get(pose.key);if(image)add(e.x,e.z,()=>{const q=this.screen(e.x,e.z),w=pose.w*HERO_PIXEL_METRES*s*pose.scale,h=pose.h*HERO_PIXEL_METRES*s*pose.scale;this.ghostSprite(image,pose.cell,q.x-w/2,q.y-h*pose.feet/pose.h,w,h,'#b5cbea',.7);this.paperShadowsDrawn++;});}}
+  }
   for(const drop of game.drops){const q=this.screen(drop.x,drop.z);add(drop.x,drop.z,()=>{c.fillStyle='#e6ce79';c.beginPath();c.moveTo(q.x,q.y-11);c.lineTo(q.x+5,q.y-5);c.lineTo(q.x,q.y+1);c.lineTo(q.x-5,q.y-5);c.closePath();c.fill();});}
-  for(const p of [game.p,...others]){const pose=this.skillVfx.heroPose(p.id,p.x,p.z),drawn=pose?{...p,x:pose.x,z:pose.z,lift:pose.lift,ghosts:pose.ghosts,ghostTint:pose.tint}:p;if(visible(this.screen(drawn.x,drawn.z),100))add(drawn.x,drawn.z,()=>this.hero(drawn,this.combatFeel?.frozen(p.id,now)?0:dt,time,p===game.p));}
+  for(const p of [game.p,...others])if(p.summon&&visible(this.screen(p.summon.x,p.summon.z),100))add(p.summon.x,p.summon.z,()=>this.companion(p.summon,p,time));
+  for(const p of [game.p,...others]){const pose=this.skillVfx.heroPose(p.id,p.x,p.z);let drawn=pose?{...p,x:pose.x,z:pose.z,lift:pose.lift,ghosts:pose.ghosts,ghostTint:pose.tint}:p;if(p.decoy&&!p.decoy.dead)drawn={...drawn,ghosts:[...(drawn.ghosts??[]),{x:p.decoy.x,z:p.decoy.z,lift:0,alpha:.5,tint:'#b3a0d2'}]};if(visible(this.screen(drawn.x,drawn.z),100))add(drawn.x,drawn.z,()=>this.hero(drawn,this.combatFeel?.frozen(p.id,now)?0:dt,time,p===game.p));}
   const liveIds=new Set<number>();
   for(const e of game.enemies){liveIds.add(e.id);const last=this.monsterFrames.get(e.id),frozen=this.combatFeel?.frozen('monster:'+e.id,now)&&last?.motion===e.motion,motionTime=frozen?last!.time:e.motionTime;this.monsterFrames.set(e.id,{motion:e.motion,time:motionTime});if(visible(this.screen(e.x,e.z),160)){const n=this.combatFeel?.nudge(e.id,now)??{x:0,z:0};add(e.x,e.z,()=>this.monster({...e,x:e.x+n.x,z:e.z+n.z,motionTime,hurt:Math.max(e.hurt,this.combatFeel?.flash(e.id,now)??0)},e.id===game.target));}}
   for(const id of this.monsterFrames.keys())if(!liveIds.has(id))this.monsterFrames.delete(id);
-  const vfxFrame={ctx:c,width:this.width,height:this.height,dpr:this.dpr,scale:s,screen:(x:number,z:number,h?:number)=>this.screen(x,z,h),locate:(id:string)=>[game.p,...others].find(p=>p.id===id),highQuality:this.highQuality};
+  const vfxFrame={ctx:c,width:this.width,height:this.height,dpr:this.dpr,scale:s,screen:(x:number,z:number,h?:number)=>this.screen(x,z,h),locate:(id:string)=>[game.p,...others].find(p=>p.id===id),highQuality:this.highQuality,reducedMotion:this.atmosphere.reducedMotion,enemy:(id:number)=>game.enemies.find((e:any)=>e.id===id)};
+  this.masteryVfx.advance(dt);this.masteryVfx.pre(vfxFrame,[game.p,...others],game.smokeFields??[],game.time);
   this.skillVfx.pre(vfxFrame,dt);
   draws.sort((a,b)=>a.depth-b.depth).forEach(d=>d.draw());
   this.atmosphere.light(c,this.width,this.height,this.map);
   this.atmosphere.leaves(c,sceneryTrees,(x,z,h)=>this.screen(x,z,h),s,time,this.width,this.height,this.highQuality);
-  if(this.map==='ruins'||this.map==='canyon'||this.map==='forest')for(const [gate,p] of Object.entries(GATES[this.map])){
+  const labelSpace:Rect[]=[...protectedActors];
+  c.save();c.font='500 12px Inter,"Noto Sans Thai",sans-serif';
+  for(const p of [game.p,...others])if(!p.dead){
+   const q=this.screen(p.x,p.z),width=c.measureText(p.name||'นักผจญภัย').width;
+   labelSpace.push({left:q.x-width/2-4,top:q.y-(HERO_METRES+.3)*s-15,right:q.x+width/2+4,bottom:q.y-(HERO_METRES+.3)*s+4});
+   if(p.titleId)labelSpace.push({left:q.x-100,top:q.y-(HERO_METRES+.7)*s-15,right:q.x+100,bottom:q.y-(HERO_METRES+.7)*s+4});
+  }c.restore();
+  const label=(value:string,x:number,z:number,color='#f4e4b5')=>{const q=this.screen(x,z);if(!visible(q,80))return;c.save();c.font='12px "Noto Sans Thai",sans-serif';const r=placeWorldLabel(q.x,q.y-28,c.measureText(value).width+16,labelSpace);if(r){labelSpace.push(r);c.fillStyle='#10251ee8';c.fillRect(r.left,r.top,r.right-r.left,18);this.text(value,q.x,r.bottom-4,color);}c.restore();};
+  if(this.map!=='city_plaza')for(const [gate,p] of Object.entries(GATES[this.map])){
    const destination=travelDestination(this.map,gate,p),q=this.screen(p.x,p.z);if(!destination||!visible(q,100))continue;
-   this.circle(p.x,p.z,1.1,'#d5c58222','#dfca88');c.save();c.font='12px sans-serif';c.textAlign='center';c.lineWidth=4;c.strokeStyle='#17221e';c.fillStyle='#f4e4b5';const label=(p.x<0?'← ':'→ ')+MAP_INFO[destination.mapId].name;c.strokeText(label,q.x,q.y-30);c.fillText(label,q.x,q.y-30);c.restore();
+   const to=destination.mapId,explore=LAYOUTS[to].exploration,high=to!=='city_plaza'&&!explore&&parseInt(MAP_INFO[to].levels,10)>game.p.level+2,color=high?'#ffb48d':explore?'#a8d7d0':'#dfca88';
+   this.circle(p.x,p.z,1.1,high?'#c4714422':'#d5c58222',color);label('◇ ไป'+MAP_INFO[to].name+(to==='city_plaza'?' · เขตปลอดภัย':' · Lv.'+MAP_INFO[to].levels)+(explore?' · สำรวจ':high?' · ระดับสูง':''),p.x,p.z,color);
   }
-  for(const e of this.effects){if(e.type==='warning')continue;const ratio=e.age/e.life,r=e.r??(e.type==='hit'?.3:1.6);this.circle(e.x??game.p.x,e.z??game.p.z,r*(.4+ratio),'transparent',e.type==='heal'?'#b9e49e':e.type==='bossBlast'?'#f3a67a':'#e8d4a4');
+  if(this.map!=='city_plaza')for(const [i,p] of LAYOUTS[this.map].camps.entries()){
+   this.circle(p.x,p.z,2,'#8bd9ba12','#a9d9bd88');
+   if(Math.hypot(p.x-game.p.x,p.z-game.p.z)<12)label(`△ แคมป์ ${i+1} · ฟื้น HP · ยังมีอันตราย`,p.x,p.z);
+  }
+  if(isField(this.map))for(const p of FIELD_PLACES[this.map])if(p.kind!=='boss'&&Math.hypot(p.x-game.p.x,p.z-game.p.z)<(p.kind==='sign'?10:14))label((p.kind==='sign'?'':'⌖ ')+p.name,p.x,p.z);
+  for(const e of this.effects){if(['yokai_echo','yokai_puddle','yokai_stance','yokai_decoy','warning','sand_patch','frost_tracks','frost_ward','frost_signal'].includes(e.type))continue;const ratio=e.age/e.life,r=e.r??(e.type==='hit'?.3:1.6);this.circle(e.x??game.p.x,e.z??game.p.z,r*(.4+ratio),'transparent',e.type==='heal'?'#b9e49e':e.type==='bossBlast'?'#f3a67a':'#e8d4a4');
    if(e.type==='skill'||e.type==='skillImpact'){const id=BORROWED_MOTION[e.skillId as SkillMotion]??e.skillId,index=['slash','whirlwind','dash_strike','earth_break','provoke','endure'].indexOf(id),image=this.assets.get('/assets/skills-painted/skills-vfx-v1.png');if(index>=0&&image){const q=this.screen(e.x??game.p.x,e.z??game.p.z,.6),w=s*(3+ratio);c.save();c.globalAlpha=(1-ratio)*.85;c.drawImage(image,index%3*image.width/3,Math.floor(index/3)*image.height/2,image.width/3,image.height/2,q.x-w/2,q.y-w/2,w,w);c.restore();}}
   }
   this.effects=this.effects.filter(e=>e.age<e.life);
-  this.skillVfx.post(vfxFrame);
+  this.skillVfx.post(vfxFrame);this.masteryVfx.post(vfxFrame,[game.p,...others],game.enemies,game.time);
   for(const p of game.projectiles){const q=this.screen(p.x,p.z,.6);c.fillStyle=p.attack==='bolt'?'#f4dfa5':'#add6d5';c.shadowColor=c.fillStyle;c.shadowBlur=8;c.beginPath();c.arc(q.x,q.y,Math.max(3,s*.13),0,Math.PI*2);c.fill();c.shadowBlur=0;}
   this.swordVfx?.render(dt,(x,z,h)=>this.screen(x,z,h),s);
  }
- snapshot(){return{renderer:'Canvas2D',map:this.map,citizens:this.map==='city_plaza'?40:0,drawCalls:this.drawCalls,atmosphere:this.atmosphere.snapshot(),assets:this.assets.snapshot(),swordVfx:this.swordVfx?.snapshot()??{engine:'canvas'},skillVfx:this.skillVfx.snapshot()};}
+ snapshot(){return{renderer:'Canvas2D',map:this.map,citizens:0,npcs:this.map==='city_plaza'?TOWN_NPCS.length:0,drawCalls:this.drawCalls,paperShadows:this.paperShadowsDrawn,yokaiStance:this.effects.find(e=>e.type==='yokai_stance')?.text??null,atmosphere:this.atmosphere.snapshot(),assets:this.assets.snapshot(),swordVfx:this.swordVfx?.snapshot()??{engine:'canvas'},skillVfx:this.skillVfx.snapshot(),masteryVfx:this.masteryVfx.snapshot()};}
 }

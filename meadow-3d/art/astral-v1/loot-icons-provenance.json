@@ -1,0 +1,139 @@
+{
+  "method": "Original authored SVG geometry and normalized original generated creature images; no external assets",
+  "sources": [
+    {
+      "id": "card_astral_stardust_jellyfish",
+      "base": "output/astral-monsters-20261022/astral_stardust_jellyfish/base.png",
+      "baseSha256": "c52844cf47e20487e7e39d55bd9ce5db04c0efb22c3bc9d9a34776bdcce18824",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_astral_orbital_ray",
+      "base": "output/astral-monsters-20261022/astral_orbital_ray/base.png",
+      "baseSha256": "e28432734d76439dc27e5f4c693e00147038db5fc03f2edf0da110f3114b67da",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_astral_meteor_ring_serpent",
+      "base": "output/astral-monsters-20261022/astral_meteor_ring_serpent/base.png",
+      "baseSha256": "131fa38603cb49008dbb64aeb1e791bca977d614c7c6fa76ce78737b3f50fb90",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_astral_constellation_crane",
+      "base": "output/astral-monsters-20261022/astral_constellation_crane/base.png",
+      "baseSha256": "e88655300d864fffed671197bde2406cf39cd8c7c0b6001096e4ddb25714cfad",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_astral_vacuum_bell_construct",
+      "base": "output/astral-monsters-20261022/astral_vacuum_bell_construct/base.png",
+      "baseSha256": "39725ee28afe812559c43ef5a288044b853c305062042440de344b163114771d",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_astral_solarshadow_lion",
+      "base": "output/astral-monsters-20261022/astral_solarshadow_lion/base.png",
+      "baseSha256": "e9fe2318fa82ede0d3a50b3ffb4ff552eeb7067371fbfe2c47849c5c66480246",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_astral_twelve_star_knight",
+      "base": "output/astral-monsters-20261022/astral_twelve_star_knight/base.png",
+      "baseSha256": "f65efea0e82fb78701e0c7b1fbacc5dfe2a9c7997398285da174e8021f303310",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_astral_star_eating_eclipse",
+      "base": "output/astral-monsters-20261022/astral_star_eating_eclipse/base.png",
+      "baseSha256": "fa5752fe44f76bfa3e9d39b58d5700101473709e5e42ee45257720f000c92fbf",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "astral_fire_scroll",
+      "method": "Original authored SVG geometry: rolled parchment with an elemental glyph; no external image reference or third-party art."
+    },
+    {
+      "id": "astral_water_scroll",
+      "method": "Original authored SVG geometry: rolled parchment with an elemental glyph; no external image reference or third-party art."
+    }
+  ],
+  "files": [
+    {
+      "file": "card_astral_stardust_jellyfish.svg",
+      "sha256": "bcd77eb03751cc4e9c010e2b5f63094411308182a74e393ab21cf738bff50bf8"
+    },
+    {
+      "file": "astral_stardust_jellyfish_material.svg",
+      "sha256": "7b04b2c5e603bdff7d99fc3b7089f36b5c438466ff9f887d0ee231fbc74841e6"
+    },
+    {
+      "file": "card_astral_orbital_ray.svg",
+      "sha256": "cd025de6d4520bcbc381787c77b324959be4615bb28a7aa2fc76243aa73c6d19"
+    },
+    {
+      "file": "astral_orbital_ray_material.svg",
+      "sha256": "a36d039bc2bd07c6c4e6e3e011a63f19314e0e0d059cdbd938b716c0c6d2e54e"
+    },
+    {
+      "file": "card_astral_meteor_ring_serpent.svg",
+      "sha256": "bf3b9e3281cd94229b903616befc12f5b03d626a2008fdc1856d1a980825ffd2"
+    },
+    {
+      "file": "astral_meteor_ring_serpent_material.svg",
+      "sha256": "a3543e14014b22e0bb99651c06f269ac3f4c632f254407d3ea868fb49b0fe0ae"
+    },
+    {
+      "file": "card_astral_constellation_crane.svg",
+      "sha256": "8dd04b782a93ffe8b1e3a3d4624250215e78f5b83cb2e19e567f034a7efdfecb"
+    },
+    {
+      "file": "astral_constellation_crane_material.svg",
+      "sha256": "7f7172b87598b413f65e2578ea61edf6aa0d10f5f940892054b22b9cea158fc9"
+    },
+    {
+      "file": "card_astral_vacuum_bell_construct.svg",
+      "sha256": "74b4a39f0f5c8d8dbfcae5d1a2dc0bea57598c1e25d06065e49ab03d3452fe63"
+    },
+    {
+      "file": "astral_vacuum_bell_construct_material.svg",
+      "sha256": "8fb943bae1301357a7050ef53159b635cdf0d8ea10784f221fadb7c717e81c49"
+    },
+    {
+      "file": "card_astral_solarshadow_lion.svg",
+      "sha256": "c8b50b57667d2b5d6bce097e6e03745db0cf942cea13d96e2a5181ff8c3ccc3c"
+    },
+    {
+      "file": "astral_solarshadow_lion_material.svg",
+      "sha256": "bb6c0258a71470fbe5bbfb3a775a5eff618e5d4f979feb02daaafce3a59ee89d"
+    },
+    {
+      "file": "card_astral_twelve_star_knight.svg",
+      "sha256": "d50026bd247a86123e18c307951b71b3036dc745d1fb9f7534e3ae69a39d7a47"
+    },
+    {
+      "file": "astral_twelve_star_knight_material.svg",
+      "sha256": "8e7b6cc72166ff4efea3484c26c3922681633689167aeb0e6aa4af6cccfd4a9e"
+    },
+    {
+      "file": "card_astral_star_eating_eclipse.svg",
+      "sha256": "5fa7af60b61df543548a248caeb9a01fb6708232dfb4283185bddf9b84c79fde"
+    },
+    {
+      "file": "astral_star_eating_eclipse_material.svg",
+      "sha256": "1a7889321607e141cde3405e98c30a221f19e89614298f6eb74a85becd944e52"
+    },
+    {
+      "file": "unique_astral_relic.svg",
+      "sha256": "d004ef83794bbe74124b0d921fb00465425847bcfcb653c6630fbd763528ab70"
+    },
+    {
+      "file": "astral_fire_scroll.svg",
+      "sha256": "e775a11a09938b1bb665ad3c45b268c739b46275243fb0cb3fab2c4c5a5e8861"
+    },
+    {
+      "file": "astral_water_scroll.svg",
+      "sha256": "69d1a730872e424e68a9ae9018460dd8cc9aee8a43f7e6dbf5f7e57f9e216a40"
+    }
+  ]
+}

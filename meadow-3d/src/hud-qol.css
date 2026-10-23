@@ -95,3 +95,17 @@
 #game-menu-window .uid-code{font:600 13px/1 var(--font-ui);letter-spacing:.08em;color:#e6c98f;user-select:all}
 #game-menu-window .uid-copy{display:inline-block!important;margin:0!important;border:0;border-radius:999px;background:rgba(255,255,255,.1)!important;color:#f3efe6;font-size:11px;padding:5px 10px!important;min-height:26px}
 #game-menu-window .uid-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#ui #travel-status:not([hidden]){display:grid;gap:4px;margin-top:8px;padding-top:8px;border-top:1px solid #bca16a66;font-size:12px;line-height:1.5}
+#travel-status span{color:#cce8d9}
+#ui #travel-status button{justify-self:start;min-height:30px;padding:3px 10px;background:#132b25;color:#ebd7a4;border:1px solid #bca16a66;border-radius:5px;pointer-events:auto}
+#ui .quest.collapsed #travel-status:not([hidden]){display:grid}
+#ui #hunting-area{margin:5px 0 9px;padding:5px 8px;border-left:3px solid #efb0c2;background:#10241ec9;font-size:12px;line-height:1.6;color:#f0d8df}
+#ui #hunting-area[data-variant=mint]{border-color:#8bd5ac;color:#c2edd3}
+#ui #hunting-area[data-variant=sky]{border-color:#9bcfe9;color:#c7e9f4}
+#ui #hunting-area[data-variant=boss]{border-color:#e3c785;color:#f0dfaf}
+#ui #hunting-area[data-variant=road]{border-color:#a4b5a2;color:#c4d1c4}
+#ui #hunting-area[data-variant=forest]{border-color:#7dbeaf;color:#c0e4d8}
+#ui #hunting-area[data-variant=ruins]{border-color:#b5a4cf;color:#e0d6ed}
+#ui #hunting-area[data-variant=canyon]{border-color:#d3aa6b;color:#f0d7b0}
+#ui #hunting-area[data-variant=grove]{border-color:#d9ad5e;color:#f3dba0}
+#ui #hunting-area[data-variant=summit]{border-color:#9cbbe9;color:#d8e8ff}

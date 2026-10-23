@@ -1,0 +1,13 @@
+{
+  "accepted": true,
+  "reviewMethod": "All ten contact strips inspected; both regenerated tail-sweep rows preserve facing and show preparation, sweep and recovery. Extraction inspection passed.",
+  "frontFacing": "right",
+  "backFacing": "right",
+  "regeneratedRows": [
+    "down45_attack",
+    "up45_attack"
+  ],
+  "limitations": [
+    "Four native poses per motion, bounding cycle rather than walking strides."
+  ]
+}

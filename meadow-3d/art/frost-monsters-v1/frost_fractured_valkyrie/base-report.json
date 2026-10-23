@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original tall female Nordic frost sentinel, TWO arms and TWO booted legs, ONE human face partly shaded by a simple open iron brow band, TWO compact folded metallic feather wings attached behind shoulders. Worn silver-blue plate armor with visible cracked edges and muted ivory cloth, ONE long plain iron spear in RIGHT hand and ONE oval iron shield in LEFT. Restrained pale braid, upright disciplined posture. No horned helmet, no revealing costume, no iconic franchise armor or logos. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. Consistent cool frost palette with muted warm accent. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only design inspired broadly by Norse mythology, no external image or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_fractured_valkyrie\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_fractured_valkyrie\\base.png.raw.png",
+  "raw_bytes": 2421427,
+  "elapsed_seconds": 48.922,
+  "model": null,
+  "session_id": "01a16059-3f2e-7f02-889f-15de5bedfeec",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_fractured_valkyrie\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1024x1536",
+    "alpha_zero_pct": 61.34,
+    "partial_alpha_pct": 38.66,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 908540,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

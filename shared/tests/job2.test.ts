@@ -28,7 +28,7 @@ function job2Game(jobId: "guardian" | "berserker", skills: Record<string, number
 	g.enemies = [];
 	g.random = () => 0.5;
 	Object.assign(g.p, { jobId, x: 0, z: 4, fx: 1, fz: 0, skills: { ...g.p.skills, ...skills } });
-	g.p.profile.classId = jobId;
+	g.p.profile.classId = jobId;g.p.masteries.Swordsman=100;
 	refreshStats(g, g.p);
 	g.p.mp = g.p.maxMp;
 	return g;
@@ -54,25 +54,14 @@ test("swordsman Job 40 becomes Guardian or Berserker at the angel, keeping skill
 	assert.throws(() => changeJob({ ...guardian, jobLevel: 70 }, "berserker", angel.x, angel.z, data), /ยังไม่เปิด/);
 });
 
-test("Job 2 skills need the branch, prerequisites, and can still level first-job skills", () => {
-	const sword = swordsmanAt40();
-	assert.match(skillLock(sword, "shield_bash", data)!, /อาชีพ/);
-	let guardian = changeJob(sword, "guardian", angel.x, angel.z, data);
-	assert.match(skillLock(guardian, "frenzy_slash", data)!, /อาชีพ/, "Guardian cannot learn Berserker skills");
-	assert.match(skillLock(guardian, "quake_slam", data)!, /กระแทกโล่/);
-	for (let i = 0; i < 3; i++) guardian = learnSkill(guardian, "shield_bash", data);
-	guardian = learnSkill(guardian, "quake_slam", data);
-	guardian = learnSkill(guardian, "whirlwind", data);
-	assert.equal(guardian.skills.quake_slam, 1);
-	assert.ok(guardian.skills.whirlwind >= 1);
-	const slots = guardian.hotbar.map((s, i) => ({ ...s, skill: i === 0 ? "shield_bash" : i === 1 ? "whirlwind" : s.skill }));
-	assert.equal(validateHotbar(guardian, slots, data)[0].skill, "shield_bash");
-	assert.throws(() => validateHotbar(guardian, slots.map((s, i) => (i === 2 ? { ...s, skill: "retribution" } : s)), data), /เรียน/);
-	assert.equal(
-		Object.values(data.skills.skills).filter((s) => s.jobId === "guardian" || s.jobId === "berserker").every((s) => !s.visual || data.skills.skills.some((o) => o.id === s.visual && o.jobId === "swordsman")),
-		true,
-		"every borrowed look is a swordsman skill",
-	);
+test("Sword paths use local Mastery and prerequisites across old class branches", () => {
+ let hero=swordsmanAt40();assert.match(skillLock(hero,'shield_bash',data)!,/Mastery/);
+ hero.masteries.Swordsman=100;hero.skills.endure=3;
+ hero=learnSkill(hero,'shield_bash',data);assert.equal(hero.jobId,'swordsman');
+ hero.skills.shield_bash=3;hero=learnSkill(hero,'quake_slam',data);assert.equal(hero.skills.quake_slam,1);
+ assert.equal(skillLock(hero,'frenzy_slash',data),null);
+ hero.skills.slash=3;hero=learnSkill(hero,'frenzy_slash',data);assert.equal(hero.skills.frenzy_slash,1);
+ const slots=hero.hotbar.map((s,i)=>({...s,skill:i===0?'shield_bash':null}));assert.equal(validateHotbar(hero,slots,data)[0].skill,'shield_bash');
 });
 
 test("Guardian: shield bash stuns, bulwark cuts damage taken, retribution reflects, passive raises defence", () => {

@@ -285,7 +285,7 @@ test("PvP slow affects authoritative movement and expires; 20Hz slam resolves in
 	assert.ok(e.hp < 500);
 });
 
-test("normal AUTO swordsman progression reaches Job10 near fifteen minutes with slash upgrades", () => {
+test("starter AUTO grants job progress but cannot remain on trivial monsters through Job10", () => {
 	const g = createGame(
 		1,
 		{ ...data.stats.defaultBuild, classId: "swordsman" },
@@ -297,12 +297,13 @@ test("normal AUTO swordsman progression reaches Job10 near fifteen minutes with 
 	for (let n = 0; n < 24000 && g.p.jobLevel < 10; n++) {
 		step(g, 0.05);
 		g.events.length = 0;
-		while (g.p.skillPoints > 0 && (g.p.skills.slash || 0) < 10)
+		while (g.p.skillPoints > 0 && (g.p.skills.slash || 0) < 10 && !skillLock(g.p,"slash",data))
 			Object.assign(g.p, learnSkill(g.p, "slash", data));
 	}
-	assert.equal(g.p.jobLevel, 10);
-	assert.ok(g.time >= 720 && g.time <= 1080, `Job10 at ${g.time}s`);
-	assert.equal(g.p.skills.slash, 10);
+	assert.ok(g.p.jobLevel>=7&&g.p.jobLevel<10, `Move to a higher-level zone at Job${g.p.jobLevel}`);
+	assert.ok(g.p.level>6);
+	assert.ok(g.p.skills.slash>=1);
+ assert.match(skillLock(g.p,"slash",data)!,/Mastery/,"Job EXP cannot bypass local Mastery rank gates");
 });
 
 test("Whirlwind reserves the original total, rounds halves, and keeps delayed hits owned by the caster", () => {

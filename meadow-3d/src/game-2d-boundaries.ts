@@ -1,10 +1,11 @@
-import {LAYOUTS,type MapId} from '@the-beginning-online/shared/maps';
+import {LAYOUTS,GATES,BIOME_IDS,type MapId} from '@the-beginning-online/shared/maps';
 
 export type BoundaryRoad={x:number;z:number;dx:number;dz:number;width:number};
 export function boundaryRoads(id:MapId):BoundaryRoad[]{
  const l=LAYOUTS[id];
  if(id==='city_plaza')return [{x:0,z:-48,dx:0,dz:-1,width:4},{x:0,z:48,dx:0,dz:1,width:4},{x:-48,z:0,dx:-1,dz:0,width:4},{x:48,z:0,dx:1,dz:0,width:4}];
  const roads:BoundaryRoad[]=[];
+ if((BIOME_IDS as readonly string[]).includes(id))return Object.entries(GATES[id]).map(([direction,g])=>({x:direction==='west'?-l.halfX:direction==='east'?l.halfX:g.x,z:direction==='north'?-l.halfZ:direction==='south'?l.halfZ:g.z,dx:direction==='west'?-1:direction==='east'?1:0,dz:direction==='north'?-1:direction==='south'?1:0,width:3.2}));
  for(const p of l.paths)for(const [x,z]of [p.points[0],p.points[p.points.length-1]]){
   if(Math.abs(x)>=l.halfX-.1)roads.push({x,z,dx:Math.sign(x),dz:0,width:p.width});
   else if(Math.abs(z)>=l.halfZ-.1)roads.push({x,z,dx:0,dz:Math.sign(z),width:p.width});

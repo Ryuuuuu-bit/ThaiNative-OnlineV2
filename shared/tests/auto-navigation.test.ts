@@ -47,19 +47,29 @@ test('AUTO skips an unreachable monster and resumes hunting a reachable one',()=
  const g=createGame(8);g.enemies=[];g.p.x=0;g.p.z=4;
  const blocked=spawn(g,LAYOUTS.meadow.halfX+10,0,true),near=spawn(g,3,4);
  blocked.hp=blocked.maxHp=1e6;near.hp=near.maxHp=1e6;g.p.autoCfg={...DEFAULT_AUTO,elites:true};setAuto(g,true);
+ g.target=blocked.id;
  step(g,dt);
  assert.ok((g.p.autoUnreachable?.[blocked.id]??0)>g.time,'unreachable boss is temporarily skipped');
  for(let i=0;i<600&&near.hp===near.maxHp;i++)tickFixed(g,near,{x:3,z:4});
  assert.ok(near.hp<near.maxHp,'reachable target is attacked');
 });
 
-test('with nothing in range AUTO walks towards the nearest regular monster, not the map centre or a boss',()=>{
+test('with nothing in range AUTO scouts by distance, treating a nearby boss like any other monster',()=>{
  const g=createGame(9);g.enemies=[];g.p.x=-30;g.p.z=20;
  const boss=spawn(g,-30,36,true),nearer=spawn(g,-30,-5);spawn(g,10,20);
  for(const e of g.enemies){e.aggro=0;e.cooldown=99;e.wander=999;e.wx=e.x;e.wz=e.z;}
  setAuto(g,true);step(g,dt);
  assert.equal(g.target,null,'nothing is targeted outside the hunt range');
  for(let i=0;i<1200&&!g.target;i++)step(g,dt);
- assert.equal(g.target,nearer.id,'walked to the nearest regular monster and picked it up');
- assert.ok(boss);
+ assert.equal(g.target,boss.id,'the closer boss is eligible without a separate priority setting');
+ assert.equal(nearer.hp,nearer.maxHp);
+});
+
+test('AUTO resumes pursuit from a body-valid position inside the route margin',()=>{
+ const g=createGame(7);g.enemies=[];g.p.x=-35.896;g.p.z=-13.529;
+ assert.ok(walkable(g.p.x,g.p.z,.3,'meadow'));assert.equal(walkable(g.p.x,g.p.z,.4,'meadow'),false);
+ const goal=LAYOUTS.meadow.camps[0],enemy=spawn(g,goal.x,goal.z);enemy.hp=enemy.maxHp=1e6;
+ g.p.autoCfg={...DEFAULT_AUTO,range:'far'};setAuto(g,true);
+ for(let i=0;i<1800&&enemy.hp===enemy.maxHp;i++)tickFixed(g,enemy,goal);
+ assert.ok(enemy.hp<enemy.maxHp,'AUTO leaves the obstacle edge and attacks its target');
 });

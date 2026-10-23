@@ -54,7 +54,9 @@ def pack(p,logical,mode='uastc',mips=False,cpu=False,mask=False):
 for p in (SRC/'hero-painted').glob('*.png'):pack(p,'/assets/hero-painted/'+p.name,cpu=p.name=='portrait-v1.png')
 for p in (ROOT/'art/hero-skills').glob('hero-skill-*-v1.png'):pack(p,'/assets/hero-skills/'+p.name)
 for p in (SRC/'hero-painted/preview').glob('*.png'):pack(p,'/assets/hero-painted/preview/'+p.name,cpu=True)
-for p in (SRC/'monsters-painted').glob('*.png'):
+monster_manifest=PUBLIC/'assets/monsters-painted/manifest.json'
+original_monsters=monster_manifest.exists() and bool(json.loads(monster_manifest.read_text()).get('originRevision'))
+for p in ([] if original_monsters else (SRC/'monsters-painted').glob('*.png')):
     if '-glow-' not in p.name:pack(p,'/assets/monsters-painted/'+p.name,mask=True)
 for name in ['env-near-v2.png','env-far-v2.png','tile-grass-v1.png','tile-dirt-v1.png','tile-stone-v1.png','tile-water-v2.png','tile-transition-v1.png']:
     pack(SRC/'env-painted'/name,'/assets/env-painted/'+name,mode='uastc' if name in ['env-near-v2.png','tile-water-v2.png'] else 'etc1s',mips=name.startswith('tile-') and 'transition' not in name,cpu='transition' in name)

@@ -67,6 +67,8 @@ def slots(im,size,layout=None):
  return result,{'row':round(row_cut,2),'columns':[round(c,2) for c in cuts],'gridLineColumns':int(line_cols.sum()),'gridLineRows':int(line_rows.sum())}
 
 def pack():
+ if (OUT/'manifest.json').exists() and json.loads((OUT/'manifest.json').read_text()).get('originRevision'):
+  raise RuntimeError('Legacy forest monster sources are retired; use pack-original-monsters.py.')
  OUT.mkdir(exist_ok=True,parents=True);ARCHIVE.mkdir(exist_ok=True,parents=True)
  preview=ART/'previews';preview.mkdir(exist_ok=True)
  defs=json.loads((ROOT/'art/painted-monsters/motions.json').read_text())

@@ -3,14 +3,16 @@ import assert from 'node:assert/strict';
 import {createGame,spawn,step,setAuto,moveTo,action,revive,nearestCamp,walkable,OBSTACLES,DEFAULT_AUTO} from '@the-beginning-online/shared';
 const tick=(g,seconds=1/60)=>{for(let t=0;t<seconds-1e-8;t+=1/60)step(g,1/60);};
 function field(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=4;return g;}
-test('AUTO selects nearest, preserves clicked preference, then prioritises living King once bosses are enabled',()=>{
- const g=field(),near=spawn(g,1,4),far=spawn(g,5,4);setAuto(g,true);tick(g);assert.equal(g.target,near.id);
+test('AUTO preserves a manually selected target without letting legacy boss priority replace it',()=>{
+ const g=field(),near=spawn(g,1,4),far=spawn(g,5,4);g.p.autoCfg={...DEFAULT_AUTO,attackers:false};setAuto(g,true);tick(g);assert.equal(g.target,near.id);
  g.target=far.id;tick(g,.2);assert.equal(g.target,far.id);
  const boss=spawn(g,1,-9,true);g.bossSpawned=true;tick(g,.2);assert.equal(g.target,far.id,'untouched settings ignore a boss outside the hunt range');
- g.p.autoCfg={...DEFAULT_AUTO,elites:true};tick(g,.2);assert.equal(g.target,boss.id);
+ g.p.autoCfg={...DEFAULT_AUTO,elites:true,attackers:false};tick(g,.2);assert.equal(g.target,far.id);
 });
 test('untouched AUTO hunts the nearest monster, not the boss across the map',()=>{
- const g=createGame();setAuto(g,true);tick(g,.1);const t=g.enemies.find(e=>e.id===g.target);assert.ok(t&&!t.boss);
+ const g=createGame();const first=g.enemies.filter(e=>!e.boss).sort((a,b)=>Math.hypot(a.x-g.p.x,a.z-g.p.z)-Math.hypot(b.x-g.p.x,b.z-g.p.z))[0];
+ // Start inside a hunting area; the Tiled meadow deliberately leaves its arrival road clear.
+ g.p.x=first.x;g.p.z=first.z;setAuto(g,true);tick(g,.1);const t=g.enemies.find(e=>e.id===g.target);assert.ok(t&&!t.boss);
  const nearest=g.enemies.filter(e=>!e.dead&&!e.boss).sort((a,b)=>Math.hypot(a.x-g.p.x,a.z-g.p.z)-Math.hypot(b.x-g.p.x,b.z-g.p.z))[0];assert.equal(t.id,nearest.id);
 });
 test('AUTO seeks then fights inside the combo reach',()=>{
@@ -57,8 +59,8 @@ test('AUTO routes around a blocking rock and waits idle without targets',()=>{
  const g=field();g.p.x=3;g.p.z=3;const e=spawn(g,7,3);e.wander=100;e.wx=7;e.wz=3;setAuto(g,true);tick(g,4);assert.ok(e.hp<e.maxHp);
  assert.ok(walkable(g.p.x,g.p.z));g.enemies=[];tick(g,8);assert.equal(g.p.autoState,'idle');assert.equal(g.p.moving,false);
 });
-test('deterministic AUTO hunt with bosses enabled unlocks and engages King without steering',()=>{
- const g=createGame();g.p.autoCfg={...DEFAULT_AUTO,elites:true};setAuto(g,true);tick(g,60);assert.ok(g.kills>=6);assert.ok(g.enemies.some(e=>e.boss&&e.engaged));assert.equal(g.p.dead,false);
+test('deterministic AUTO hunt keeps defeating nearby monsters with legacy boss priority enabled',()=>{
+ const g=createGame();g.p.autoCfg={...DEFAULT_AUTO,elites:true};setAuto(g,true);tick(g,60);assert.ok(g.kills>=6);assert.equal(g.p.dead,false);
 });
 // A boulder with open ground on its west side, so the test does not depend on the generated layout.
 const rock=OBSTACLES.find(o=>o.kind==='boulder'&&[...Array(8)].every((_,i)=>walkable(o.x-o.r-.6-i*.4,o.z,.4)&&walkable(o.x+o.r+.5,o.z,.3)));

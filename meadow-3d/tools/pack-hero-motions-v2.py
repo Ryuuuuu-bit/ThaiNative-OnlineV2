@@ -3,7 +3,7 @@
 Rows SE SW NE NW like the v1 sheets. To keep the AutoSprite cost low (user decision):
   - attack, dodge, hit: SE and NE renders; SW and NW are their mirrors (sword in the left hand).
   - idle: the SE breathing loop (SW mirrored); NE / NW keep the still v1 idle pose.
-  - death, spin: one SE render for every facing (SW / NW mirrored).
+  - death, spin: SE render for the front; original painted NE back poses (SW / NW mirrored).
 Every render gets the approved transform: game idle height 168 px / frame-1 height, frame-1 feet on
 the anchor. The cell grows (never the scale) so no frame is clipped.
 
@@ -66,7 +66,11 @@ def select(se_root, ne_root):
             cell = idle_v1.crop((2 * 384, 0, 3 * 384, 256))  # still v1 NE pose, already 168 px / feet at (192, 240)
             rows['NE'] = [(cell, 192, 240)] * len(picks)
         else:
-            rows['NE'] = rows['SE']
+            # The original painted strip has real back poses; never reuse the front-facing render here.
+            back = Image.open(ROOT / f'art/texture-sources/hero-painted/hero-{motion}-v1.png').convert('RGBA')
+            bw, bh = back.width // len(picks), back.height // 4
+            rows['NE'] = [(back.crop((i*bw, 2*bh, (i+1)*bw, 3*bh)), bw/2, 240) for i in range(len(picks))]
+            meta.setdefault(motion, {})['backSource'] = f'hero-{motion}-v1 NE; NW mirrored'
         if motion == 'idle':
             nw = [(idle_v1.crop((3 * 384, 0, 4 * 384, 256)), 192, 240)] * len(picks)
         else:

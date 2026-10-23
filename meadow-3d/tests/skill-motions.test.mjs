@@ -56,10 +56,29 @@ test('8-facing swordsman sheets match their packed sources: frame counts, 8 rows
  const meta=JSON.parse(readFileSync(new URL('../art/texture-sources/hero-skills-v2/skills-v2.json',import.meta.url),'utf8'));
  const manifest=JSON.parse(readFileSync(new URL('../public/texture-manifest.json',import.meta.url),'utf8'));
  assert.deepEqual(Object.keys(SKILL_V2).sort(),Object.keys(meta).sort());
+ assert.deepEqual(Object.keys(SKILL_V2).sort(),[...SKILL_MOTIONS].sort());
  for(const [id,cell] of Object.entries(SKILL_V2)){
   assert.deepEqual(meta[id].cell,[cell.w,cell.h]);assert.equal(meta[id].anchor[1],cell.feet);
   for(const frames of Object.values(meta[id].frames))assert.equal(frames.length,SKILL_FRAMES[id]);
   assert.equal(Object.keys(meta[id].frames).length,8);
   assert.deepEqual(manifest[`/assets/hero-skills/hero-skill-${id}-v2.png`].originalSize,[cell.w*SKILL_FRAMES[id],cell.h*8]);
+  const entry=manifest[`/assets/hero-skills/hero-skill-${id}-v2.png`];
+  const source=readFileSync(new URL('../'+entry.source,import.meta.url));
+  assert.deepEqual([source.readUInt32BE(16),source.readUInt32BE(20)],entry.originalSize);
+  const packed=readFileSync(new URL('../public'+entry.ktx2,import.meta.url));
+  assert.deepEqual([packed.readUInt32LE(20),packed.readUInt32LE(24)],entry.size);
+  assert.ok(readFileSync(new URL('../public'+entry.webp,import.meta.url)).length>0);
  }
+});
+
+test('Job 2 combo has three distinct source contacts and rear leap has a planted landing',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const meta=JSON.parse(readFileSync(new URL('../art/texture-sources/hero-skills-v2/skills-v2.json',import.meta.url),'utf8'));
+ const contacts=MULTI_CONTACTS.frenzy_slash.map(f=>meta.frenzy_slash.poseRepair.frames[f]);
+ assert.equal(new Set(contacts.map(p=>p.skill+':'+p.frame)).size,3);
+ for(const id of ['frenzy_slash','leap_strike'])assert.deepEqual(meta[id].anchor,[192,240]);
+ assert.deepEqual(meta.leap_strike.poseRepair.facings,['NE','NW','N']);
+ assert.equal(meta.leap_strike.poseRepair.frames['4'].skill,'quake_slam');
+ assert.equal(meta.leap_strike.poseRepair.frames['4'].frame,CONTACT_FRAME.quake_slam);
+ assert.equal(skillFrame('leap_strike',.4),4);
 });

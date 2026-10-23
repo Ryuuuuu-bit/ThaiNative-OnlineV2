@@ -29,7 +29,7 @@
       "qty": 10
     },
     {
-      "maxLevel": 99,
+      "maxLevel": 100,
       "gold": 15000,
       "material": "crag_root",
       "qty": 10
@@ -53,7 +53,9 @@
       "red_supreme": 1000,
       "blue_large": 110,
       "blue_greater": 300,
-      "blue_supreme": 750
+      "blue_supreme": 750,
+      "astral_fire_scroll": 250,
+      "astral_water_scroll": 250
     },
     "forge": {
       "training_sword": 80,

@@ -1,0 +1,153 @@
+{
+  "kind": "sprite-gen-gen-set-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run",
+  "states": [
+    "down45_idle",
+    "up45_idle",
+    "down45_hop",
+    "down45_attack",
+    "down45_hit",
+    "down45_death",
+    "up45_hop",
+    "up45_attack",
+    "up45_hit",
+    "up45_death"
+  ],
+  "ok": 10,
+  "failed": [],
+  "not_started": [],
+  "items": [
+    {
+      "state": "down45_idle",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\down45\\idle.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\down45_idle.json",
+      "reused": true,
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "ok": true
+    },
+    {
+      "state": "up45_idle",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\up45\\idle.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\up45_idle.json",
+      "reused": true,
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "ok": true
+    },
+    {
+      "state": "down45_hop",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\down45\\hop.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\down45_hop.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\down45\\hop.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 56.2,
+      "ok": true
+    },
+    {
+      "state": "down45_attack",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\down45\\attack.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\down45_attack.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\down45\\attack.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 56.9,
+      "ok": true
+    },
+    {
+      "state": "down45_hit",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\down45\\hit.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\down45_hit.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\down45\\hit.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 57.0,
+      "ok": true
+    },
+    {
+      "state": "down45_death",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\down45\\death.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\down45_death.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\down45\\death.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 59.1,
+      "ok": true
+    },
+    {
+      "state": "up45_hop",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\up45\\hop.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\up45_hop.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\up45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\up45\\hop.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 56.1,
+      "ok": true
+    },
+    {
+      "state": "up45_attack",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\up45\\attack.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\up45_attack.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\up45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\up45\\attack.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 60.7,
+      "ok": true
+    },
+    {
+      "state": "up45_hit",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\up45\\hit.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\up45_hit.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\up45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\up45\\hit.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 55.6,
+      "ok": true
+    },
+    {
+      "state": "up45_death",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\raw\\up45\\death.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\reports\\gen-set\\up45_death.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\anchors\\up45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\confluence-monsters-20261022\\confluence_worldcore_sovereign\\run\\references\\layout-guides\\up45\\death.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 67.0,
+      "ok": true
+    }
+  ]
+}

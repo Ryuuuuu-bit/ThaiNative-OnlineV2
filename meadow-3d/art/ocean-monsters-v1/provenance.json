@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-22",
+  "provider": "codex",
+  "externalBaseImageReferences": [],
+  "note": "Generation provenance and visual review do not constitute a legal clearance opinion.",
+  "sources": [
+    {
+      "id": "ocean_storm_conch",
+      "baseSha256": "3a40282cf97d90fe9dd5dcb4c6928e0f70c6fb8dba77594300c7f8bfa8a65a0c",
+      "run": "output/ocean-monsters-20261022/ocean_storm_conch/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_storm_conch/motion-qa.json"
+    },
+    {
+      "id": "ocean_mast_crab",
+      "baseSha256": "dac1ca57c9eb65ede0ef29613dff6bf5b5a950bfb56141af35deff6b24720bca",
+      "run": "output/ocean-monsters-20261022/ocean_mast_crab/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_mast_crab/motion-qa.json"
+    },
+    {
+      "id": "ocean_whirlpool_lanternfish",
+      "baseSha256": "2228335ae0d92b474fc5f8de06e72553a021a1bce4a0a1a99a8520ccc61f579e",
+      "run": "output/ocean-monsters-20261022/ocean_whirlpool_lanternfish/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_whirlpool_lanternfish/motion-qa.json"
+    },
+    {
+      "id": "ocean_mist_isle_siren",
+      "baseSha256": "a02cde8e8ffcd057feaa64580d1f7511a731ccfed5b2c8638189f0e6e070e698",
+      "run": "output/ocean-monsters-20261022/ocean_mist_isle_siren/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_mist_isle_siren/motion-qa.json"
+    },
+    {
+      "id": "ocean_sunken_coral_knight",
+      "baseSha256": "b422b97d05816c43fed903e0394d1fe54b4948e5a06edc504bd0ad531bcb8403",
+      "run": "output/ocean-monsters-20261022/ocean_sunken_coral_knight/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_sunken_coral_knight/motion-qa.json"
+    },
+    {
+      "id": "ocean_sixhead_reef_scylla",
+      "baseSha256": "ff00fb1a25e666b0630ad04e11cad6f61895f567a95f2dc9ce4e83142174ae84",
+      "run": "output/ocean-monsters-20261022/ocean_sixhead_reef_scylla/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_sixhead_reef_scylla/motion-qa.json"
+    },
+    {
+      "id": "ocean_shipwreck_colossus",
+      "baseSha256": "5d9ccc8cbd2b8d06c3ed3904faf3fb205fb0788b5761bc8975629c992d303ea0",
+      "run": "output/ocean-monsters-20261022/ocean_shipwreck_colossus/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_shipwreck_colossus/motion-qa.json"
+    },
+    {
+      "id": "ocean_stormcrown_kraken",
+      "baseSha256": "498f43cf92703ab5504b26d167fac20e5df6b06c283672eaef5f3414796340c4",
+      "run": "output/ocean-monsters-20261022/ocean_stormcrown_kraken/run",
+      "curatedOnly": true,
+      "mirrorDirections": [
+        "SE",
+        "NW"
+      ],
+      "motionQA": "meadow-3d/art/ocean-monsters-v1/ocean_stormcrown_kraken/motion-qa.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "ocean_storm_conch-idle.webp",
+      "sha256": "ee76b3f753e45e3355b33afdcd6cd29259c0357f14d4463ac715678b3cd4af32"
+    },
+    {
+      "file": "ocean_storm_conch-move.webp",
+      "sha256": "d5907d71a58307abf587e3b978de20f9b870b83225ccab015dd4da5a1a4421ea"
+    },
+    {
+      "file": "ocean_storm_conch-attack.webp",
+      "sha256": "969231437b6e7ca87a34339fdc0ac04e8a602150262ea945b2c562971313afb5"
+    },
+    {
+      "file": "ocean_storm_conch-hit.webp",
+      "sha256": "ae0cd29efc225df75ec5f8707d19100c4303847eb249d187f78fa785671faa3a"
+    },
+    {
+      "file": "ocean_storm_conch-death.webp",
+      "sha256": "d836f01b6c201dceb451a61abdfdf48a6df624fd953901ec2450e70fb844cf58"
+    },
+    {
+      "file": "ocean_mast_crab-idle.webp",
+      "sha256": "854bb2723691d8c3836de592dac82b79d59da32507585243b885dacddf0ae966"
+    },
+    {
+      "file": "ocean_mast_crab-move.webp",
+      "sha256": "df0b4fe7cfebfc365c382c2c6a710fcb1b55af25aae612d560dcca918eac06b0"
+    },
+    {
+      "file": "ocean_mast_crab-attack.webp",
+      "sha256": "21ec61a5d998fe863a81f1650cea8004138f936667845dfd2a792d0200b4687d"
+    },
+    {
+      "file": "ocean_mast_crab-hit.webp",
+      "sha256": "e80c8762753ab0d3bc8e88874b32d3d042857377659f78d657417272e4b0924c"
+    },
+    {
+      "file": "ocean_mast_crab-death.webp",
+      "sha256": "38be1e02ecb3ee0e2609e7842f8abd6efba8222cb26744c66a55ad802c9c6483"
+    },
+    {
+      "file": "ocean_whirlpool_lanternfish-idle.webp",
+      "sha256": "8d68f8ae9e77fe2cbc472d9ea5f0c55afa85589d88f018164b69fbe0101353be"
+    },
+    {
+      "file": "ocean_whirlpool_lanternfish-move.webp",
+      "sha256": "771054ec3b020910d1644ff940a43595d992ac036d7ed0a79bcec68b8d9639a4"
+    },
+    {
+      "file": "ocean_whirlpool_lanternfish-attack.webp",
+      "sha256": "70e4a7b0fdff26f943ff61778594e33a10c426e44953e284d22f425f021e03b3"
+    },
+    {
+      "file": "ocean_whirlpool_lanternfish-hit.webp",
+      "sha256": "ac844195052311cfcc412f4fca17854151cd8cf15c6ba95ebd7dcdb2718f8d5e"
+    },
+    {
+      "file": "ocean_whirlpool_lanternfish-death.webp",
+      "sha256": "10ec1358a69f740ec86847c1e48c6cbb0af6291460035c6f5ae80394255c2a4c"
+    },
+    {
+      "file": "ocean_mist_isle_siren-idle.webp",
+      "sha256": "64b59c55b807707419ee33a81466db0bdec7b4658696dbeb6513320f35b0bdcd"
+    },
+    {
+      "file": "ocean_mist_isle_siren-move.webp",
+      "sha256": "7b5e28912b7389df6b37a5358178be49963d5c00d94ea2a6d201bc2377b4ee91"
+    },
+    {
+      "file": "ocean_mist_isle_siren-attack.webp",
+      "sha256": "404392b113558d12c927f2e2a0368b5db4b8e632e1334eb38a8d20a18ca3c3e8"
+    },
+    {
+      "file": "ocean_mist_isle_siren-hit.webp",
+      "sha256": "8ce1bad43b074189fe5786a69e22b278c70a0a5348a8fabdae08d9c36f136566"
+    },
+    {
+      "file": "ocean_mist_isle_siren-death.webp",
+      "sha256": "c01f56672c870a952f439c34cb05abcfc0af4c12faed039a1e015dfcfe265385"
+    },
+    {
+      "file": "ocean_sunken_coral_knight-idle.webp",
+      "sha256": "ce35c346ca6a018199c5068a1e4cda9a37c524b5aca8f6c565afc2b61c5aca7a"
+    },
+    {
+      "file": "ocean_sunken_coral_knight-move.webp",
+      "sha256": "ac7199f5f52297832fc1cba2b01d57fdd39b861de7abff388a60cc6b8446928f"
+    },
+    {
+      "file": "ocean_sunken_coral_knight-attack.webp",
+      "sha256": "fbb4222717a587b36d7a9f5bbc714e04b5cd271a51daab54a29eca5e183c7e7b"
+    },
+    {
+      "file": "ocean_sunken_coral_knight-hit.webp",
+      "sha256": "2ca7a19c3097efaf43a3866b0ef868add2eb6358e996b2d9167612d353d88cdf"
+    },
+    {
+      "file": "ocean_sunken_coral_knight-death.webp",
+      "sha256": "0b31da35a78ae88d553d1587f247885f17d50321c4f0140361feadbc01978c39"
+    },
+    {
+      "file": "ocean_sixhead_reef_scylla-idle.webp",
+      "sha256": "9a24ab9f82cc77687d6f1504f813e281f6ff7436b80c481c823f0118234e0056"
+    },
+    {
+      "file": "ocean_sixhead_reef_scylla-move.webp",
+      "sha256": "73bd0672eba857d68e055f95409693b6a6fc529bc786e9a1989a467d80d77565"
+    },
+    {
+      "file": "ocean_sixhead_reef_scylla-attack.webp",
+      "sha256": "c4d99ff654ee7a4e9a3a48ec646c4d41886a6c7657c104513817d669bbb06128"
+    },
+    {
+      "file": "ocean_sixhead_reef_scylla-hit.webp",
+      "sha256": "97688718af88d6c072168c7286f56e5a2883bb7eaa68b74dabaf3d59e74a608b"
+    },
+    {
+      "file": "ocean_sixhead_reef_scylla-death.webp",
+      "sha256": "486241c9500c0904185e496f52f4cf47468bc4665ac139dcad3b9a4f15b5d64d"
+    },
+    {
+      "file": "ocean_shipwreck_colossus-idle.webp",
+      "sha256": "3686c539bdf94c335da22cd9a329bb2ee05214eafb5d66496e4b7e5e59eab065"
+    },
+    {
+      "file": "ocean_shipwreck_colossus-move.webp",
+      "sha256": "09eb347bcdf2804f80c97d8a3bee722e7b8e66f5a14c387f1937204f8db113f8"
+    },
+    {
+      "file": "ocean_shipwreck_colossus-attack.webp",
+      "sha256": "7f05c6c1be6c11e3cba714e01d7ff8ecf09eb5b9c05389a661d19ce0c3064317"
+    },
+    {
+      "file": "ocean_shipwreck_colossus-hit.webp",
+      "sha256": "d98bf6015ae6b8fe8474451f94f55e2a6151911e8e0ab97537cd01ca7ade5be0"
+    },
+    {
+      "file": "ocean_shipwreck_colossus-death.webp",
+      "sha256": "990c3f8ea707ebb56fcf35222f362ca43b1e802b0e948903bcf6b61a00e5a5a9"
+    },
+    {
+      "file": "ocean_stormcrown_kraken-idle.webp",
+      "sha256": "c15af7d3795d9453f336926593ed8b3eea02d153ff7782f7fe5c9c56ddb847aa"
+    },
+    {
+      "file": "ocean_stormcrown_kraken-move.webp",
+      "sha256": "b823b131472114a3c9942a0f2ee41acf62df3426571def4c252cca59ad81d721"
+    },
+    {
+      "file": "ocean_stormcrown_kraken-attack.webp",
+      "sha256": "aa36ca4491a380bed23d2c5cde6d87d705d8512b3d59addd90265dcf3852c50d"
+    },
+    {
+      "file": "ocean_stormcrown_kraken-hit.webp",
+      "sha256": "6fb75bf613515ff4e8c78eca0c40596e198b1389e4fc6def0a815707e144e4e7"
+    },
+    {
+      "file": "ocean_stormcrown_kraken-death.webp",
+      "sha256": "9a4b102221fd75b2429764d42f261bd90ac2a1631f8a17cddfc32568ed49ecbb"
+    }
+  ]
+}

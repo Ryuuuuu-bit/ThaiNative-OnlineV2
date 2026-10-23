@@ -1,0 +1,3042 @@
+[
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "SE",
+    "sheetId": "c574f2a0-9c99-4b99-82e5-287d884a3025",
+    "sourceHash": "e4c59504a700c3c8e69c420d9e5b9ef885977f34c408c4a6175d45ca4105f515",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 212.375,
+      "height": 154.375
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "SW",
+    "sheetId": "6f5adda4-e0f4-4160-853f-6ba7f3e4a23f",
+    "sourceHash": "1547b05d1f32808b69aa6b3a1502918cc359c85126557d44bd22e316a3694d09",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 143.125
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "NE",
+    "sheetId": "8532274c-7bf4-4e72-925b-ffd879a6c823",
+    "sourceHash": "05899d23bf72465f8b11ce2df5c3e53636c2d8eaa6c02d4e66c3c4991b13f7a4",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.625,
+      "height": 139.375
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "NW",
+    "sheetId": "5f13a2c8-0a20-450c-a43f-9204d66c98e5",
+    "sourceHash": "634f10fa71cb79572e77d74d6d88957397ff47f7a633a388ad9e60c05597c3d0",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.625,
+      "height": 140.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "S",
+    "sheetId": "f3be1c4c-793e-42cd-9613-c0f072ded715",
+    "sourceHash": "8c9a07a862f77c98af717f1ed63fdb69a37b231d93ee2748627dcec810334645",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 197.375,
+      "height": 138.75
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "E",
+    "sheetId": "3487cab8-d0d4-46d2-b4a3-acb687fa60ee",
+    "sourceHash": "4ed65937f5207ae6c834c43f4a699d51d44e870974bcd8a3e1dbbcf8d406d113",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 203.0,
+      "height": 144.375
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "N",
+    "sheetId": "c9d4f385-8699-432d-ba39-37d7929f0f49",
+    "sourceHash": "b3cc4b6168aab63fd5ef9bab59d1a703058e059a94e8ef58e9d79cd8eb01ea73",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 138.125
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "idle",
+    "direction": "W",
+    "sheetId": "2113e8b9-3084-493d-9bc1-3b94d63c6725",
+    "sourceHash": "03f813405749706e69a38ec5aa31a8f4e3a58f7edd240d1957fc73ca560048a7",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 202.375,
+      "height": 143.125
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "SE",
+    "sheetId": "996b22f2-7f78-4ba6-899f-6d2a4ed196eb",
+    "sourceHash": "756f781abde179b5cfed2601cb0b0acd6d01fc0b44a216d7813ad41da01dfdcd",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 187.375,
+      "height": 125.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "SW",
+    "sheetId": "3634b722-6cea-4652-a277-243b9001b22b",
+    "sourceHash": "f25b3f311a8da1bf70479a96d5fa618c5dba29d9e3afe874f1d9d7ac957a333c",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 140.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "NE",
+    "sheetId": "8ba6e661-47c5-4b83-a411-1d967bc5f33e",
+    "sourceHash": "689598f328f9ad4d85355c170ac5e74cb301d0584b180efbc11e0e39931063c7",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 184.875,
+      "height": 120.625
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "NW",
+    "sheetId": "35851df9-5bb8-409b-8108-0736b01008d2",
+    "sourceHash": "6dffc9121a404b205d35eaf793d057b088821eb11a8a511dbba351dffd366244",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 184.875,
+      "height": 121.25
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "S",
+    "sheetId": "2eea5c2b-e4d5-4d76-8e04-321ac51a6f8e",
+    "sourceHash": "54110f525f33a1cd2774e74e23d97fceff6dde5089a62aab5932bf5fab2ed39d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.875,
+      "height": 131.875
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "E",
+    "sheetId": "3baf74c8-3caf-44b5-9733-7d794a29da8f",
+    "sourceHash": "fc2facf487edb448f02d2aa1258b72a9bbe9554f3da56ea26f38a1b327cac79e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 138.75
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "N",
+    "sheetId": "6120a86d-a33d-41e9-8f39-fcd4099fb0c0",
+    "sourceHash": "36851667d22079faceba8704b5270001cf18bb29648d7dfbc187f075896945c2",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 191.125,
+      "height": 127.5
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "walk",
+    "direction": "W",
+    "sheetId": "d1a69d96-6f63-41ad-b052-d6deb529d5fe",
+    "sourceHash": "d5ca6246861da3bd61905ee4bc1f298d37c1241694d36d8c6a9a6b5801a1aa10",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 138.75
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "SE",
+    "sheetId": "0c0dfeba-a018-4db6-a500-15c127a708b8",
+    "sourceHash": "a925134d2748db701b0520d3316c2a93425cec2b301dc42021c81a26ab734d5a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 143.125
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "SW",
+    "sheetId": "a884debe-ff76-4b65-bb34-0033750f5601",
+    "sourceHash": "10a6c2b26718ddcf2e5d6eb9d7dd6fd2ea364c76e58c32a19f362fc4dd92f8fa",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 144.375
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "NE",
+    "sheetId": "44d06151-fc7c-4e6f-a7a7-22f5c48cdf4a",
+    "sourceHash": "3d3d858da5d729ae9cfaac4e2e6c0c1a70e392bc2dc18a96553c92043a69dde4",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 143.125
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "NW",
+    "sheetId": "4256cc8c-ce4d-4812-84a5-5138c4ce549c",
+    "sourceHash": "d65b87a40b5c85bef059d84e1c70d8a6a1ef5c98602927009d013259faf4d0f9",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 144.375
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "S",
+    "sheetId": "fce4457a-59fc-45d9-a8b2-b6ddd8d77d66",
+    "sourceHash": "68fe4b98a2a7c939d0c034399bbdc4da5a3d12ec1cc52a91199249dbbe811bb0",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 192.375,
+      "height": 133.75
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "E",
+    "sheetId": "c6534799-232a-4958-9284-17bd3a69d277",
+    "sourceHash": "59c42b1c08e1eb474333f9fcbbbefcd44e6d30bdd82fa98a0f28ce58e1d28b2a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 143.75
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "N",
+    "sheetId": "5eebe3c5-d214-4ed9-9cde-bc0cece7a557",
+    "sourceHash": "71c85a53360da90d06f2b8a9ebdba1a6a4ce304102859cab57d9d228d0715379",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.0,
+      "height": 135.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "attack",
+    "direction": "W",
+    "sheetId": "03afd6bf-ded4-4ae8-b635-cdd05dc7c3ed",
+    "sourceHash": "f58c1bf8075b84bc5cd8649c7fa1159cdf8a9561b92d182c963c9b4a57d4f0f3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 200.5,
+      "height": 146.25
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "SE",
+    "sheetId": "1f00f666-eb0c-4efd-8c9e-dffeb3f903c5",
+    "sourceHash": "b165294ef7881af521d95521a261041a7c2f91f1d5a0e22cc643da264cc3ae34",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.75,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "SW",
+    "sheetId": "da430a3e-3c3f-48b9-9e32-4a123c44acb8",
+    "sourceHash": "4566c0ec556f8282bdbbcd8378e978489d84caed22b297ddb9e198d92bfc1c58",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.75,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "NE",
+    "sheetId": "62b21798-ae79-4d4d-82db-b668a8153872",
+    "sourceHash": "c5cffcea78c8785224ef27e39255f08cf1efa17a9b6e2dca4f5299eb11ef76e8",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 140.625
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "NW",
+    "sheetId": "6b753f88-daa5-40e4-a53e-4d5bde078eed",
+    "sourceHash": "ae722f9177704618183454c97b8973c081ffab80c5b5832c90f3c405accead5e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 140.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "S",
+    "sheetId": "6beb7545-0037-43b5-b8e5-79f834532b20",
+    "sourceHash": "ace44ae47f2b39e4de2dbda76c6e835528732dbdf00fa26cae4442547f21381b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 196.75,
+      "height": 138.75
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "E",
+    "sheetId": "0cb64784-4962-4338-965c-3f067d822737",
+    "sourceHash": "a97cceaa408cceaa918595ee9f7ddaf6a137a4c7adc9bacb0665b8823d423eff",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 200.5,
+      "height": 143.75
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "N",
+    "sheetId": "e1159496-0126-4e60-8fd1-95c54ec4b626",
+    "sourceHash": "0d5f2a7e64aaa43e3f77c452b6f9995511fecf66668ddcdc4d295a199344dd8a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 197.375,
+      "height": 138.125
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "cast",
+    "direction": "W",
+    "sheetId": "dd71913c-834b-46c3-b091-c8b99c75024d",
+    "sourceHash": "e191c9bf87a21409d4d306b4167c7aeac84c1807d06aaf237645967ba5b19665",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 200.5,
+      "height": 144.375
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "SE",
+    "sheetId": "c023aaf0-c83b-4ba9-9530-7ae03ba57d18",
+    "sourceHash": "b7da6e46e91a5d8d12e2c9316cbb48f7f6440a6057c8a7b8b27a4fac4669a1d9",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.75,
+      "height": 142.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "SW",
+    "sheetId": "5767a4b9-061b-4cc8-bd1c-b79812461473",
+    "sourceHash": "dba63a2a0c1118bcb78d7311b1d7a96c7260f1431fbe4b1c75570036e8a47696",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.75,
+      "height": 142.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "NE",
+    "sheetId": "5e2a01a8-9266-4fb1-9dba-ad77fcff5a0a",
+    "sourceHash": "04d36523fb24576f34c6de951fd94a8826da20f6b4808a59880895c1140eb05f",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.625,
+      "height": 139.375
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "NW",
+    "sheetId": "1edd0e35-b59e-4c01-921e-0730d3283818",
+    "sourceHash": "525221af42e129ef5869b0c0910fb25029d44e866bf83b95e337163673125f31",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 140.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "S",
+    "sheetId": "8c7e1413-9c33-4f49-ab7c-71ac56246b07",
+    "sourceHash": "fec5178b8842c3762f443f8636a906899d9b49099d67d53c4dfb174233490937",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 138.125
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "E",
+    "sheetId": "03f2aaee-dfb0-4e0d-9ab1-44d55e07f310",
+    "sourceHash": "473197a65bc2af6461263e62af09491b29703e017e79f9d9e3901b5711895a4d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 142.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "N",
+    "sheetId": "fc5997bb-e9a1-4e82-be9c-d0e28bc425a5",
+    "sourceHash": "dd252f0ae185b4243c58beb3973efe5ea46b4f318ec0582f81f55ffccf770b7b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 196.75,
+      "height": 137.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "idle",
+    "direction": "W",
+    "sheetId": "61430eab-a11f-4707-9a6f-c0a1987d8dd9",
+    "sourceHash": "2d76ebb231f9b9a04728c209300c03274d836894a1beed1edc6377c93bc022f3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 141.875
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "SE",
+    "sheetId": "97f51e05-7358-46c0-95f5-156138e1bbff",
+    "sourceHash": "362c7ce6ad7c75128511b75f67658d75adb0cf7ac009aa9ccf2461a20cefb1d4",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 191.75,
+      "height": 133.75
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "SW",
+    "sheetId": "47043ee6-e72a-4363-979f-3db134b3b4cb",
+    "sourceHash": "f006bd2e62be832299e15aab35e6b34989931950b0faa01f09e8c277755deead",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.25,
+      "height": 135.625
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "NE",
+    "sheetId": "c2f8e4cb-efc5-4721-a428-02032120eb2b",
+    "sourceHash": "c4bb7dd2aac433ad72cbfb687c002064ae2c7d039d209373dc48d79ac5bc7198",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 186.125,
+      "height": 119.375
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "NW",
+    "sheetId": "1ed75297-3bc4-4d74-9b8a-c5ecce974ef1",
+    "sourceHash": "f82a933ccb0308dc20f0c57c6202244e2573260f45ce14a4147163969e87cf93",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 190.5,
+      "height": 132.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "S",
+    "sheetId": "bc3887c3-eed9-446b-ae98-999fc55e759e",
+    "sourceHash": "587edd4e96a4974fa47989c5512dbb46dfb763ac61cb2fd33bce77edaf7e7685",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.75,
+      "height": 143.75
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "E",
+    "sheetId": "c683dba3-053c-41ce-b39b-0a34abe9406d",
+    "sourceHash": "48468d6a5c947d95e7c7670a92285691b32457f9cbf6f3382bc0d7a1b30e267d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 191.75,
+      "height": 133.75
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "N",
+    "sheetId": "cddd8016-6c8c-4341-85dd-54725618622f",
+    "sourceHash": "4d5ff249968f1b186aeb7f8bddc3d8b8013396283618b3e3f46d7221ddb6bdec",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 188.0,
+      "height": 121.875
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "walk",
+    "direction": "W",
+    "sheetId": "4d9477c1-193a-427b-92e9-06084c01314c",
+    "sourceHash": "56d6e3353b917f26bd184d4fe70855bede1f20074ba8a5880712fbbc73b83926",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 191.125,
+      "height": 133.125
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "SE",
+    "sheetId": "58e915b0-4ba6-42b4-9868-539fad5b39d2",
+    "sourceHash": "ee1bbe74f25fd9acfa1326bc867fd0711682781c9a78d54e14e279e96d7806bc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.625,
+      "height": 125.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "SW",
+    "sheetId": "b0de7fd9-7e75-4256-b31f-e531b5d6d6cb",
+    "sourceHash": "d48d1a3fc8739065f29a4b464a68c148da5247129c05a80b1c3883881e5dd798",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.25,
+      "height": 125.625
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "NE",
+    "sheetId": "12f70129-2dbc-4e1a-af68-728ed182e5c3",
+    "sourceHash": "90be37ff4bf2f3562b34ddc3719e939e87d138df1aa5f57ae83ee880747f3c27",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 195.5,
+      "height": 124.375
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "NW",
+    "sheetId": "c1454e51-6302-4b0e-9c82-0e0b6cfc3abd",
+    "sourceHash": "360520fe8dd209f5b5a380999606c0e114b066f65d1c6922ec04220b9b8615d4",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 191.75,
+      "height": 120.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "S",
+    "sheetId": "8224ca3b-4ccc-4879-a933-0456f7244026",
+    "sourceHash": "7a1b277097b5ca326d8a95f77aa6dc0017d1046a810697f58581d25e909432f9",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 191.75,
+      "height": 121.875
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "E",
+    "sheetId": "f7d023bf-8252-462b-80ea-b87757396989",
+    "sourceHash": "8ab2c67946c50bac275006655b00604f25d186e3522cadd44277f88ba0529b76",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 196.75,
+      "height": 128.125
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "N",
+    "sheetId": "f8eed4c2-ad24-44e9-a1c1-9f8c794b94fa",
+    "sourceHash": "c62a200e72d1b04e31c7c00466b1c9dbf12321d11eb4675c64e2498b3e2c766d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 192.375,
+      "height": 120.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "attack",
+    "direction": "W",
+    "sheetId": "75db6499-0fc3-4b45-b590-3b77cf722471",
+    "sourceHash": "6fa0a01c968a98ec5fa032fb825f96f5eb02e82b8d9e0138ef3b8e55c9fdf9f1",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.25,
+      "height": 125.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "SE",
+    "sheetId": "50dd1392-3505-467e-a80f-9ab5d2250bf4",
+    "sourceHash": "f8b952b4365a03abd7526006db633a4f9e3acb0bed2aaa31ca69842414cf6ec3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.25,
+      "height": 132.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "SW",
+    "sheetId": "920a2f5a-8fd3-4fd4-baaf-99822d28108a",
+    "sourceHash": "08608efaf9c2fcaf710dc9e279ace7a2bf6f00e340ad585b3bea3e76821fecec",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 140.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "NE",
+    "sheetId": "b0e8e551-7ab3-4fa2-93f4-a2013967e9cb",
+    "sourceHash": "c2256215837236c817f2561d18e0fd77cde9776d00cc9b988d3f848bb381a62b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 189.25,
+      "height": 126.875
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "NW",
+    "sheetId": "0a6ce26b-b946-45d3-8d78-a2be01d72570",
+    "sourceHash": "ba2d24c2444d534446e983a7f9370e4305946a383780142a5c43ef759b4873b8",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 189.25,
+      "height": 126.875
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "S",
+    "sheetId": "b3a1123d-0c5d-4d26-976a-fc333bea1f5e",
+    "sourceHash": "ebd8f28eeace7432ec8e6801bb26f9dd596f94b3332ce4281f8358d2b4adcf72",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.0,
+      "height": 134.375
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "E",
+    "sheetId": "5fdccc49-3806-46c5-9780-1c8621d69fde",
+    "sourceHash": "e0ce3cf927a1e6213efb581db01f7f40e5014b524d09e2c16c157de8940f7873",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 195.5,
+      "height": 132.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "N",
+    "sheetId": "e54aa0f1-aa37-4ef7-8db3-45b6ad9a3903",
+    "sourceHash": "b76d8ebc91d0c4031d16f659298127077a99469f0a42c78be7311c0f5476ea3c",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 185.5,
+      "height": 122.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "cast",
+    "direction": "W",
+    "sheetId": "4f916124-ae16-47e4-ac15-643ebdd2efec",
+    "sourceHash": "a8e78a4713e414d72f665011e7830fc76797e7d3c0e1f62d12fd788c9e92d62b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.875,
+      "height": 132.5
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "SE",
+    "sheetId": "ad9b15b9-4424-45a2-b35f-8989bd433be4",
+    "sourceHash": "71b7c2aef3ab58bbea6513a42f3d432eecdaa46e419b4cfe920de165073e7404",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 140.625
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "SW",
+    "sheetId": "6a21a9cd-a340-4d73-b332-d6d7d05e9cd9",
+    "sourceHash": "67bdc5d6776f4d1c9fc8b60be78e648b171a9fa898618eff8947c6184a1ee31c",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.875,
+      "height": 141.25
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "NE",
+    "sheetId": "320fbc97-fe89-4468-8b72-426632c0ebae",
+    "sourceHash": "be76fc2e572a123017f0d825f73d4ed018540f3bbcdf0295583b9d69cd9143ed",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 196.75,
+      "height": 136.25
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "NW",
+    "sheetId": "258379c0-7eaa-47a3-b264-902e7051d538",
+    "sourceHash": "b21aa0ab45c1275d97eb97fc337cb49054976e4fb8b0cb567661cff1a61329e5",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 196.75,
+      "height": 136.25
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "S",
+    "sheetId": "a2013486-942f-45da-bf40-a958e43f6ec4",
+    "sourceHash": "b4ee037289b235bb6d7f6d39a405a9c47fcdafeb4b4e6a83c6cde24fc304de55",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 197.375,
+      "height": 138.75
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "E",
+    "sheetId": "df47fb94-adce-4af7-bb69-b0ac4ba5906a",
+    "sourceHash": "bff8c0e584a8b1b0f36ed04a5be72fa327471f1feb43f3ac05cc71ed8fb05fbe",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.875,
+      "height": 139.375
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "N",
+    "sheetId": "a18d0e7f-48ee-436a-b677-a9df90eab582",
+    "sourceHash": "2e88bcd0fcc08d565298d659a790c138e3454a1c665e9f05557579877b7ea8dc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 195.5,
+      "height": 134.375
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "idle",
+    "direction": "W",
+    "sheetId": "46d80d75-d39c-4378-a128-3def826b7397",
+    "sourceHash": "a535a5f44cb079926a8d08d260d248bdcb7590aa2b4beab703fe71387c1c8d48",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.875,
+      "height": 140.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "SE",
+    "sheetId": "f8c1138a-0f12-48ed-a4b2-f677afa50e50",
+    "sourceHash": "b671058f86eca70bb98a5f95bb4cdddb5ff3cc252016687667fb25408e1de45d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 200.5,
+      "height": 141.875
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "SW",
+    "sheetId": "7c37da1e-d13d-45b8-b708-c7bd0bebcd22",
+    "sourceHash": "cb69876470bdfa469072430b170da0d38c84a8f6e5d4441a85160e42db32c214",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.625,
+      "height": 135.625
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "NE",
+    "sheetId": "50f1c7b7-1017-45e5-9b35-bee6915c9401",
+    "sourceHash": "bb6b23899a3d387fb84ca2aef447801a2caa5f67a14afdf85d572bd2ab8923d7",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 189.25,
+      "height": 130.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "NW",
+    "sheetId": "d54bb2b5-5727-447a-91e3-799c70165820",
+    "sourceHash": "36c6b6e60e3a2ca1376cd9f8d9855891622313fca6c2aa6fa7321591ffea6108",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 189.25,
+      "height": 129.375
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "S",
+    "sheetId": "1891bad9-b94d-4e6c-a3ce-343408aa1bbd",
+    "sourceHash": "9bc8d72c29b5a58ae9b1d8c421f80eb9624d7dddbcc00c28d35d0528fd835e9b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 203.0,
+      "height": 146.875
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "E",
+    "sheetId": "ad068618-8d88-46da-9ccc-56854b480773",
+    "sourceHash": "e7abeb0f83f29fa796678eb2d9b34dab4110c54dc22a3b63d6847a56536cdd21",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.0,
+      "height": 132.5
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "N",
+    "sheetId": "42d1c583-2055-4ea0-8365-95013766d3de",
+    "sourceHash": "359e190059d25f1b418dd234a79faffadf76981afa65ab6b82b90063d273d10b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 139.375
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "walk",
+    "direction": "W",
+    "sheetId": "168bb392-c247-47dc-8bb0-bb037047c7fd",
+    "sourceHash": "67dae98cb7c0951c5a4217432a2f13930556d6fb0a038b2cd0bfc83c70829aae",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 191.125,
+      "height": 131.25
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "SE",
+    "sheetId": "44c6db72-8a4b-4f06-9667-9d2af835a72a",
+    "sourceHash": "951358f18295c47a9c7523613494cada6a138b61e28e4561364acc6dc0e2f95f",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 195.5,
+      "height": 136.875
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "SW",
+    "sheetId": "82daeea6-2445-4b69-a99f-442906ef150d",
+    "sourceHash": "dce860dd94e05bdc67fd35c853f2889fa54b35a617dfdf0acf30b878b9d1a104",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 195.5,
+      "height": 137.5
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "NE",
+    "sheetId": "a3a9b615-6057-4d16-a997-6ccd70627001",
+    "sourceHash": "52a11ef63f167ed0120c9eef0fd37e957da23d28cc631cfb0d61915e2ec8ecde",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 132.5
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "NW",
+    "sheetId": "92d00733-d4eb-43e5-ba46-33204ebea708",
+    "sourceHash": "95e3469d6b0781f00762e0605ff26fe3abac5b4678efb77dd586b634835b6e08",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 132.5
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "S",
+    "sheetId": "53d2efe5-f399-47c4-8eff-ed8ab76d0426",
+    "sourceHash": "59c3dba9719b8c03c143e8a0bfe6487b9d782ef1ea7c71e159680d3584f21e08",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 184.875,
+      "height": 125.625
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "E",
+    "sheetId": "d464b2d1-4eb0-4759-8454-ac1e9c0fd40e",
+    "sourceHash": "d7e15146d1812ae962c9a0521e3e272a09ef84bca472eb2f7058587cb09c88f8",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 136.875
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "N",
+    "sheetId": "eaf81506-d3eb-4eaa-8561-d82a58baaf3f",
+    "sourceHash": "5f84872e9b07338ba48e9c9f5dcc404caac5f45dfb061790697f6c639f2e1598",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 192.375,
+      "height": 125.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "attack",
+    "direction": "W",
+    "sheetId": "d6b4a55b-c2f1-4f41-8384-387e183d4dcc",
+    "sourceHash": "24b44daed1b21fbd6b9a0bfa951f6912d8d1d7df5cd2ec3bdb250fefbb596d3e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.0,
+      "height": 135.625
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "SE",
+    "sheetId": "33a9c7e2-bc5a-416f-921f-5d8af16d1325",
+    "sourceHash": "e0618570743f384ff382af20e1796c67381b9b429f2c6e019e38a7bc9ea82790",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.875,
+      "height": 143.75
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "SW",
+    "sheetId": "15955532-4d1c-4d17-a459-82e4bb438013",
+    "sourceHash": "82bba6848454ae3306b4b46f58920c919a351525c634ee2318fae1afb76d62ac",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.875,
+      "height": 143.125
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "NE",
+    "sheetId": "69579e64-46c5-4218-afbc-405fabaf494b",
+    "sourceHash": "3cd9af041d6b1161860231cfd4fddee6d111829dbe2dbd33fb8b5f363f43fc92",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 196.125,
+      "height": 136.25
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "NW",
+    "sheetId": "bc3c7112-1fcb-4b6d-adb5-772deab4de09",
+    "sourceHash": "b0975787c24341103713358d1eed731ae8d5c7b94ed9d2d0e14419217c67c74b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 196.125,
+      "height": 136.875
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "S",
+    "sheetId": "5c86409c-5118-490a-9a31-d2c8349b9634",
+    "sourceHash": "bc730a28970226ae40e1fd1c087ae914d8f94f45776a0ffc60918ad7c3c95a3e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.25,
+      "height": 138.125
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "E",
+    "sheetId": "5e4b1800-7463-4181-8432-07097be834b3",
+    "sourceHash": "608ea90afb216c742ddcc99907a6cc9bfdf339342a8178d63bd3eedce9bce691",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 141.875
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "N",
+    "sheetId": "1a623c95-b1fb-4632-b901-793df9c392aa",
+    "sourceHash": "b2f7a223b43b5991525a317e59a80c1d1934c3c02b3337fdee26e4e9f7d1971f",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.0,
+      "height": 131.875
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "cast",
+    "direction": "W",
+    "sheetId": "8aed5bbf-bdfc-45dc-a9ba-a03d4dd1ead0",
+    "sourceHash": "74df12ebbfffe74a922d06f9ddb5da887271861a71b786f90b3c4fbf7ba9d376",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.875,
+      "height": 141.875
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "SE",
+    "sheetId": "b02449ab-75fb-493f-af69-2dc6e81274e7",
+    "sourceHash": "888668265f5b12bb771a8e04220a70d54c1a4f3ca0c22e93715039f7955bcfe3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 141.25
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "SW",
+    "sheetId": "ac30c138-a777-4878-b242-d3ada3dfce29",
+    "sourceHash": "b59be3ed654ad300d7689deb168231e5c8f1bc924a69e2f72d44dce92643b7ae",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.125,
+      "height": 141.25
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "NE",
+    "sheetId": "8d0c5431-d510-4d2b-8b8d-95fd21badbce",
+    "sourceHash": "38eee5f6c7b43c52f8bdbd6a7d969ffc5ccfffac0c369ab5f5a26dcd4fb7c08b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 195.5,
+      "height": 133.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "NW",
+    "sheetId": "21c7057f-523a-4d47-9a48-cb13064cbc8b",
+    "sourceHash": "2b4e2d12dc046a1ee35dc8e37e9c641c6fca8e0b8d942577be29a44cdc87d6ad",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 195.5,
+      "height": 133.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "S",
+    "sheetId": "1c5f823e-83a6-4f66-ba13-21b604bbcd5e",
+    "sourceHash": "4e9be4cafb27dc00f24394122b03c50be7974b1aefffc7fac7f3a67908385d08",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 198.625,
+      "height": 139.375
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "E",
+    "sheetId": "3684e398-f8a0-4154-9dc2-075978c1494c",
+    "sourceHash": "b0289cacd5bd056330acf3b229217166b01e382ea963a4626b9d8bf60f21cc34",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.875,
+      "height": 141.25
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "N",
+    "sheetId": "0e261194-0e81-4424-97b8-97be9d3d69e4",
+    "sourceHash": "d65bbe5db21308e08f3977c11d44f5a34cfd75a001fba5d49aa3af7a35b159f6",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.625,
+      "height": 130.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "idle",
+    "direction": "W",
+    "sheetId": "90a9183c-9616-4594-8317-4aec62edb33f",
+    "sourceHash": "b4ebe4745e9283a006cb1819e525fbb7c00185e58a4b0643bd122da542efe6b2",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 140.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "SE",
+    "sheetId": "539f74ee-ccbc-4141-813f-26876df54d30",
+    "sourceHash": "c963640684c9eaf98481d81126e3d313f9af5525a8680d8aab6f93e15df1f0aa",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.0,
+      "height": 133.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "SW",
+    "sheetId": "216df949-b4b1-4c5e-b811-5126a1cd03e7",
+    "sourceHash": "21d5f5d19ee6690c97cb1a3dc7c70741b7affba70d244528aefe0d3d3fc25c38",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 193.0,
+      "height": 133.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "NE",
+    "sheetId": "fd1eaad4-34db-4dbc-a05b-c22b1d1400df",
+    "sourceHash": "942a9cd2792444b7cd06a46d191e125a21926bad7964b627365cdf0e15efd711",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 189.25,
+      "height": 126.25
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "NW",
+    "sheetId": "cee5863f-57df-4b1f-941b-11949108ae99",
+    "sourceHash": "bec3cfc59cf5748df7b9a30e8b6a7810f8fed8ff545f4d229f4991c4b460900b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 188.625,
+      "height": 126.25
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "S",
+    "sheetId": "22ce299d-dd0a-4986-9d66-587997d215d6",
+    "sourceHash": "9738d82f4860c5be497217ac6df6e25f8e968f394c338fb232ed794e5b0121a2",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 199.25,
+      "height": 141.25
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "E",
+    "sheetId": "dde2eef8-ef55-47e7-bbc5-2f31bd491b29",
+    "sourceHash": "58debf01487dc1de8ef6e4a05f7d51d57b1f91d0fd20e39c31f9c5c16d68b183",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 186.75,
+      "height": 124.375
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "N",
+    "sheetId": "632f6892-a48b-4e6e-9a6e-d686984c1baa",
+    "sourceHash": "d91a6f8f74031059944510b7d95abc1f2847512fa3a223b6e7c390d642c44d3e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 194.25,
+      "height": 131.875
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "walk",
+    "direction": "W",
+    "sheetId": "9ab206a1-1569-45ab-b3c0-eee3a87363d5",
+    "sourceHash": "d72f3d8312669b093011a338d41b7b812642b5fa73a90082e3686b8289c42a05",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 186.75,
+      "height": 124.375
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "SE",
+    "sheetId": "f934b617-c042-447b-94c7-412685c79833",
+    "sourceHash": "1d83b6e773670806036f1f98b2b9975553b15a200e618909279d9043d1dc48c1",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 186.125,
+      "height": 116.875
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "SW",
+    "sheetId": "f80ca5cc-a677-49b9-808d-34e756055b35",
+    "sourceHash": "778a29acfc35f64d9b818a810622b581fece8f8dacecf1978185bb5ac516056d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 186.125,
+      "height": 117.5
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "NE",
+    "sheetId": "97837a8d-091a-49e4-ba82-05ddaac908e2",
+    "sourceHash": "95004786c6093c0bf9bbcb5ea27b37d7a4f31a39d127cd18401647d28d6a2484",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 186.125,
+      "height": 108.75
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "NW",
+    "sheetId": "72942e7f-8d54-42b2-9c84-3be2c21af62a",
+    "sourceHash": "1bd6fb33b3d63cf6e20576fc7f8337b92fb46f2dd13ed49a4d0290c15aeb85da",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 185.5,
+      "height": 108.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "S",
+    "sheetId": "7b368cb3-b6e1-497e-946e-535ff0deb963",
+    "sourceHash": "9fb703b7b43aac9bf86b5db9b577f0b627222ef6599a5c3ee633cf78ddd00edc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 181.125,
+      "height": 113.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "E",
+    "sheetId": "a51fcb14-3b88-42bc-bf2f-982609f2684f",
+    "sourceHash": "b8390697a180b4dc84815cde211b2adf3de70d6b0a98775802321109746bb0cc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 187.375,
+      "height": 115.625
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "N",
+    "sheetId": "beed79ef-60cf-4ded-b059-72b9f864a647",
+    "sourceHash": "6064c5362ac6354b07ffd2a5776efaeb19abb236ccebf0de5765be402f7cde35",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 183.0,
+      "height": 105.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "attack",
+    "direction": "W",
+    "sheetId": "f3543ed5-3362-46d4-9851-b584da955f71",
+    "sourceHash": "b95c2e992bc1c625f47cb3a16a63f2984a6c79ac2c7bbebf20afc716fc8da0ed",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 186.75,
+      "height": 116.25
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "SE",
+    "sheetId": "fb092359-74da-43bf-80f1-a3981f641802",
+    "sourceHash": "4a1fda198f2e152120451cf7f397ccc31e64dbe1af71ac1527cd3cf7e53e977d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 206.75,
+      "height": 153.75
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "SW",
+    "sheetId": "9a76e7e3-bcb7-483d-9a72-9ad93a75088f",
+    "sourceHash": "6d534d93bfe401a1373a9001cc7ca2e1fd70a9e03a42a7917d6afe032a67945b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 206.125,
+      "height": 153.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "NE",
+    "sheetId": "650df32a-ed78-43ce-a445-324fe8557550",
+    "sourceHash": "741b607654d4c92242c4855220bac154aec4b049c00a9fd9809db758a053b22b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 203.0,
+      "height": 148.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "NW",
+    "sheetId": "31ba717c-dc7f-444e-9b6c-4969208e2dce",
+    "sourceHash": "decca3d456bc48184dd603c700e947f90401d780d5b168847cca18bb9152e8d1",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 203.0,
+      "height": 148.125
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "S",
+    "sheetId": "aa29792a-1f9d-435c-8280-e8fe3d9e6211",
+    "sourceHash": "618c1ac771b5a8b861d336bccf533734407282780b0d49c398c6bb2042669fe1",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 204.25,
+      "height": 150.625
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "E",
+    "sheetId": "5883d449-e5b7-4ca0-ab64-572a6e6271b3",
+    "sourceHash": "77365ee9a07662325c8e76e807cd3af6c67c906c27abaae250477239d28cbe4b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 206.125,
+      "height": 152.5
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "N",
+    "sheetId": "001e9683-62cc-4516-a75d-5c511bf6ecc2",
+    "sourceHash": "6fd4b09b88ee7088fbc019a6b116a6c32e94f4783e39569927ab4805a807957c",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 201.75,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "cast",
+    "direction": "W",
+    "sheetId": "bc06b189-698f-406a-9688-c8eeb9ee6102",
+    "sourceHash": "04cdd804d5cf6a43143fab37e0c11b9750b8bd543c560570944e676384d3d97d",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128.0,
+      "y": 205.5,
+      "height": 151.875
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "SE",
+    "sourceHash": "339c880139c3992b28de03d728ef212eb293d04a0ce6bc4a304277296992a155",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "SE",
+    "sourceHash": "339c880139c3992b28de03d728ef212eb293d04a0ce6bc4a304277296992a155",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "SE",
+    "sourceHash": "339c880139c3992b28de03d728ef212eb293d04a0ce6bc4a304277296992a155",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.4246
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "SW",
+    "sourceHash": "9c1739d77b5409167b1e3493b1c93ef1f69a02d1ca16973aa023ea276bd59e6f",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "SW",
+    "sourceHash": "9c1739d77b5409167b1e3493b1c93ef1f69a02d1ca16973aa023ea276bd59e6f",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "SW",
+    "sourceHash": "9c1739d77b5409167b1e3493b1c93ef1f69a02d1ca16973aa023ea276bd59e6f",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "NE",
+    "sourceHash": "9597f81b10f3b6d24c8994dc9d0316d63f47cee335ec65298ba75a9269f9b0b3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "NE",
+    "sourceHash": "9597f81b10f3b6d24c8994dc9d0316d63f47cee335ec65298ba75a9269f9b0b3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "NE",
+    "sourceHash": "9597f81b10f3b6d24c8994dc9d0316d63f47cee335ec65298ba75a9269f9b0b3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "NW",
+    "sourceHash": "82c791ec0abea5ed0de72de926e1bd24840012a254eb5f07db2cf4225cbe6d59",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "NW",
+    "sourceHash": "82c791ec0abea5ed0de72de926e1bd24840012a254eb5f07db2cf4225cbe6d59",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 143.9139
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "NW",
+    "sourceHash": "82c791ec0abea5ed0de72de926e1bd24840012a254eb5f07db2cf4225cbe6d59",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.5431
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "S",
+    "sourceHash": "3d66a2eed01e38798072bdf500333523e447d47e19cc3e9f72bb9d356a540750",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.4858
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "S",
+    "sourceHash": "3d66a2eed01e38798072bdf500333523e447d47e19cc3e9f72bb9d356a540750",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.5142
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "S",
+    "sourceHash": "3d66a2eed01e38798072bdf500333523e447d47e19cc3e9f72bb9d356a540750",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "E",
+    "sourceHash": "973676a1bfe295a703255460f8bb51b9bd3eb2ddda3a29697643d7c492062f26",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.4966
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "E",
+    "sourceHash": "973676a1bfe295a703255460f8bb51b9bd3eb2ddda3a29697643d7c492062f26",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "E",
+    "sourceHash": "973676a1bfe295a703255460f8bb51b9bd3eb2ddda3a29697643d7c492062f26",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.0068
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "N",
+    "sourceHash": "45ca6a43dd0fa50113c8796ffe8da6a5829760d3fdae2e713be1f378aa0e4acc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "N",
+    "sourceHash": "45ca6a43dd0fa50113c8796ffe8da6a5829760d3fdae2e713be1f378aa0e4acc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.5124
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "N",
+    "sourceHash": "45ca6a43dd0fa50113c8796ffe8da6a5829760d3fdae2e713be1f378aa0e4acc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 142.9505
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "hit",
+    "direction": "W",
+    "sourceHash": "60c954535bb2187d864d361d3bc362f56de491dd699bf9c1982e1aac9b3f882a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.4708
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "dodge",
+    "direction": "W",
+    "sourceHash": "60c954535bb2187d864d361d3bc362f56de491dd699bf9c1982e1aac9b3f882a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-iron",
+    "motion": "death",
+    "direction": "W",
+    "sourceHash": "60c954535bb2187d864d361d3bc362f56de491dd699bf9c1982e1aac9b3f882a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.5292
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "SE",
+    "sourceHash": "718098c892de6a905f81ab675ca452635ecae3fecec7816f47dbc2b0867c49c6",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 146.3987
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "SE",
+    "sourceHash": "718098c892de6a905f81ab675ca452635ecae3fecec7816f47dbc2b0867c49c6",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "SE",
+    "sourceHash": "718098c892de6a905f81ab675ca452635ecae3fecec7816f47dbc2b0867c49c6",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 134.7428
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "SW",
+    "sourceHash": "9df19dbb6103cdc9fe2b16d03aab3e378fccff2fd42f8c61e1e710d2a393ea95",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "SW",
+    "sourceHash": "9df19dbb6103cdc9fe2b16d03aab3e378fccff2fd42f8c61e1e710d2a393ea95",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.5469
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "SW",
+    "sourceHash": "9df19dbb6103cdc9fe2b16d03aab3e378fccff2fd42f8c61e1e710d2a393ea95",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "NE",
+    "sourceHash": "2bbc5c1bb31d4ae57d94ea601c112afcce5dcbd16e45b32c34f2eec69268a80e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.9119
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "NE",
+    "sourceHash": "2bbc5c1bb31d4ae57d94ea601c112afcce5dcbd16e45b32c34f2eec69268a80e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "NE",
+    "sourceHash": "2bbc5c1bb31d4ae57d94ea601c112afcce5dcbd16e45b32c34f2eec69268a80e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 139.0723
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "NW",
+    "sourceHash": "e23b23fefbe3e67e48ad4e737ae44775b05c475c563db1264a119b41cbdaada3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "NW",
+    "sourceHash": "e23b23fefbe3e67e48ad4e737ae44775b05c475c563db1264a119b41cbdaada3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 146.6171
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "NW",
+    "sourceHash": "e23b23fefbe3e67e48ad4e737ae44775b05c475c563db1264a119b41cbdaada3",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 142.3048
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "S",
+    "sourceHash": "6b59d90b36af4523e59f08b4fc83e9cc7cee5e16c62ea19bdd7e44e7d93c24df",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "S",
+    "sourceHash": "6b59d90b36af4523e59f08b4fc83e9cc7cee5e16c62ea19bdd7e44e7d93c24df",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "S",
+    "sourceHash": "6b59d90b36af4523e59f08b4fc83e9cc7cee5e16c62ea19bdd7e44e7d93c24df",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "E",
+    "sourceHash": "a9bd54e6a2945399d4e2316ef7a77a68b35d78c1c6bec91c2cc152732f1641dc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 146.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "E",
+    "sourceHash": "a9bd54e6a2945399d4e2316ef7a77a68b35d78c1c6bec91c2cc152732f1641dc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "E",
+    "sourceHash": "a9bd54e6a2945399d4e2316ef7a77a68b35d78c1c6bec91c2cc152732f1641dc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 141.5
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "N",
+    "sourceHash": "d6d02c51a388d96c0cb69886ab5a57cac5de349e5b5ade2636c17ba1b22239ac",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "N",
+    "sourceHash": "d6d02c51a388d96c0cb69886ab5a57cac5de349e5b5ade2636c17ba1b22239ac",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.541
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "N",
+    "sourceHash": "d6d02c51a388d96c0cb69886ab5a57cac5de349e5b5ade2636c17ba1b22239ac",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "hit",
+    "direction": "W",
+    "sourceHash": "92066b4e5d6fad55a342a4f47b181f72b890064a70c6cb032efad1bc49777b68",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "dodge",
+    "direction": "W",
+    "sourceHash": "92066b4e5d6fad55a342a4f47b181f72b890064a70c6cb032efad1bc49777b68",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 143.968
+    }
+  },
+  {
+    "look": "male-bow",
+    "motion": "death",
+    "direction": "W",
+    "sourceHash": "92066b4e5d6fad55a342a4f47b181f72b890064a70c6cb032efad1bc49777b68",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "SE",
+    "sourceHash": "4e925d8ca03ea3a058e095d8929929d9cb3542dffdbf9e36e7763430bf3cf627",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "SE",
+    "sourceHash": "4e925d8ca03ea3a058e095d8929929d9cb3542dffdbf9e36e7763430bf3cf627",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "SE",
+    "sourceHash": "4e925d8ca03ea3a058e095d8929929d9cb3542dffdbf9e36e7763430bf3cf627",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 123.6888
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "SW",
+    "sourceHash": "f08d2b1e6ee4384e406da620bc31127b6de556089ef4f490ed86e61cb75cd693",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "SW",
+    "sourceHash": "f08d2b1e6ee4384e406da620bc31127b6de556089ef4f490ed86e61cb75cd693",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "SW",
+    "sourceHash": "f08d2b1e6ee4384e406da620bc31127b6de556089ef4f490ed86e61cb75cd693",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 146.0545
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "NE",
+    "sourceHash": "4e2a493f8e052f92a4d607a9c17662d0ad8f4e10ed9ae2506b9c6aa2805af722",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "NE",
+    "sourceHash": "4e2a493f8e052f92a4d607a9c17662d0ad8f4e10ed9ae2506b9c6aa2805af722",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "NE",
+    "sourceHash": "4e2a493f8e052f92a4d607a9c17662d0ad8f4e10ed9ae2506b9c6aa2805af722",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.4948
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "NW",
+    "sourceHash": "963696e3996b2e9aa804a817f36fc2e3736f2f2b82eb3c7b3665542318b9d382",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "NW",
+    "sourceHash": "963696e3996b2e9aa804a817f36fc2e3736f2f2b82eb3c7b3665542318b9d382",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.5246
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "NW",
+    "sourceHash": "963696e3996b2e9aa804a817f36fc2e3736f2f2b82eb3c7b3665542318b9d382",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.9508
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "S",
+    "sourceHash": "bb7d883d9f4cbae67fd212a99b70555f80c75a7616574f832b538f174d961748",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "S",
+    "sourceHash": "bb7d883d9f4cbae67fd212a99b70555f80c75a7616574f832b538f174d961748",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "S",
+    "sourceHash": "bb7d883d9f4cbae67fd212a99b70555f80c75a7616574f832b538f174d961748",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.5426
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "E",
+    "sourceHash": "782491dc533bb2c6655dcc27d20b4cd34e152e4daeeb963c6e0d91b7f047327b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "E",
+    "sourceHash": "782491dc533bb2c6655dcc27d20b4cd34e152e4daeeb963c6e0d91b7f047327b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "E",
+    "sourceHash": "782491dc533bb2c6655dcc27d20b4cd34e152e4daeeb963c6e0d91b7f047327b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "N",
+    "sourceHash": "5d079d17bdd98ea8d4dd5df9a5d26fba4d8faad4ef622b91ba6b5f834a8fb371",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "N",
+    "sourceHash": "5d079d17bdd98ea8d4dd5df9a5d26fba4d8faad4ef622b91ba6b5f834a8fb371",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.4677
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "N",
+    "sourceHash": "5d079d17bdd98ea8d4dd5df9a5d26fba4d8faad4ef622b91ba6b5f834a8fb371",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.5323
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "hit",
+    "direction": "W",
+    "sourceHash": "174dfe761063244c7b57f51a79b4cc1a14f4fba8f4d4b913953625d4ac97bb50",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "dodge",
+    "direction": "W",
+    "sourceHash": "174dfe761063244c7b57f51a79b4cc1a14f4fba8f4d4b913953625d4ac97bb50",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 147.3849
+    }
+  },
+  {
+    "look": "female-iron",
+    "motion": "death",
+    "direction": "W",
+    "sourceHash": "174dfe761063244c7b57f51a79b4cc1a14f4fba8f4d4b913953625d4ac97bb50",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 143.5691
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "SE",
+    "sourceHash": "a6008e8c629f26610488968ae0ee1ad4919a850745fc84d680057e248f10af53",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 148.5583
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "SE",
+    "sourceHash": "a6008e8c629f26610488968ae0ee1ad4919a850745fc84d680057e248f10af53",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "SE",
+    "sourceHash": "a6008e8c629f26610488968ae0ee1ad4919a850745fc84d680057e248f10af53",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 140.5521
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "SW",
+    "sourceHash": "213565120655ffbfda8bdf17c35e191449879c3dee74faa2aa7a66bcc3736ca1",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "SW",
+    "sourceHash": "213565120655ffbfda8bdf17c35e191449879c3dee74faa2aa7a66bcc3736ca1",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "SW",
+    "sourceHash": "213565120655ffbfda8bdf17c35e191449879c3dee74faa2aa7a66bcc3736ca1",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 143.6321
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "NE",
+    "sourceHash": "e914c345e705ba9b238399238370e77cef86a03a9683bcc29f59b914b44ab731",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.4932
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "NE",
+    "sourceHash": "e914c345e705ba9b238399238370e77cef86a03a9683bcc29f59b914b44ab731",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "NE",
+    "sourceHash": "e914c345e705ba9b238399238370e77cef86a03a9683bcc29f59b914b44ab731",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.5068
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "NW",
+    "sourceHash": "7b7caff32a714672106dab4d5cf2fa1a2887021795b666993106bb39debc0d1a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.9732
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "NW",
+    "sourceHash": "7b7caff32a714672106dab4d5cf2fa1a2887021795b666993106bb39debc0d1a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.0268
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "NW",
+    "sourceHash": "7b7caff32a714672106dab4d5cf2fa1a2887021795b666993106bb39debc0d1a",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "S",
+    "sourceHash": "809575f1fbb4aa238b960189c1c7be4415864e1f7cec2c1f22850914c5de536b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.9831
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "S",
+    "sourceHash": "809575f1fbb4aa238b960189c1c7be4415864e1f7cec2c1f22850914c5de536b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.5085
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "S",
+    "sourceHash": "809575f1fbb4aa238b960189c1c7be4415864e1f7cec2c1f22850914c5de536b",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "E",
+    "sourceHash": "9e731ee8c8e2dc1e0cd5a37aff01a20bba153b502b7b2eec8fb0897de9e6560e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 150.0958
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "E",
+    "sourceHash": "9e731ee8c8e2dc1e0cd5a37aff01a20bba153b502b7b2eec8fb0897de9e6560e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "E",
+    "sourceHash": "9e731ee8c8e2dc1e0cd5a37aff01a20bba153b502b7b2eec8fb0897de9e6560e",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 140.8307
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "N",
+    "sourceHash": "31b24112b38fea845a06efc64169c4ad5ac8d639355cc99576c86ce388cbf380",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.9539
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "N",
+    "sourceHash": "31b24112b38fea845a06efc64169c4ad5ac8d639355cc99576c86ce388cbf380",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "N",
+    "sourceHash": "31b24112b38fea845a06efc64169c4ad5ac8d639355cc99576c86ce388cbf380",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 139.2763
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "hit",
+    "direction": "W",
+    "sourceHash": "288c10d8245d47fbeff28bc2fe8dcf5da9b474ad3b5c3cc4ced1a525d04c22cc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 145.0
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "dodge",
+    "direction": "W",
+    "sourceHash": "288c10d8245d47fbeff28bc2fe8dcf5da9b474ad3b5c3cc4ced1a525d04c22cc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 144.523
+    }
+  },
+  {
+    "look": "female-bow",
+    "motion": "death",
+    "direction": "W",
+    "sourceHash": "288c10d8245d47fbeff28bc2fe8dcf5da9b474ad3b5c3cc4ced1a525d04c22cc",
+    "edgeFrames": [],
+    "gutter": 8,
+    "anchor": {
+      "x": 128,
+      "y": 210,
+      "height": 146.9079
+    }
+  }
+]

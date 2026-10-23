@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. A large soft moth with one small fuzzy body, two broad pairs of asymmetric pale amber and lilac wings, six tiny attached insect legs and two feathery antennae, no detached lights. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\fae-monsters-20261022\\fae_wandering_light_moth\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\fae-monsters-20261022\\fae_wandering_light_moth\\base.png.raw.png",
+  "raw_bytes": 2117409,
+  "elapsed_seconds": 50.437,
+  "model": null,
+  "session_id": "01a1611e-0cd4-7750-9f67-8fbbe8ce5ea2",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\fae-monsters-20261022\\fae_wandering_light_moth\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1536x1024",
+    "alpha_zero_pct": 68.24,
+    "partial_alpha_pct": 31.76,
+    "opaque_pct": 0.0,
+    "cleaned_transparent_rgb_pixels": 872183,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "ONE complete original monster sprite for The Beginning Online painted isometric MMORPG. An original six-head reef scylla, one wide dark teal mollusk body and exactly six long attached eel necks ending in six small toothless reptile heads, a skirt of six short thick attached tentacles, pale rough coral plates on the body. Full body entirely visible, orthographic three-quarter top-down FRONT-RIGHT view, upper-left natural diffuse light, hand-painted gouache and watercolor with fine ink edges and natural texture, readable at small game scale. NOT pixel art or glossy plastic3D. TRUE TRANSPARENT background with ample padding. No ground plane, cast shadow outside the foot, scenery, text, logo, frame, grid or extra character. Original text-only mythology-inspired design; no external image, existing game, franchise or artist reference.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_sixhead_reef_scylla\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_sixhead_reef_scylla\\base.png.raw.png",
+  "raw_bytes": 2204023,
+  "elapsed_seconds": 60.266,
+  "model": null,
+  "session_id": "01a16121-616d-7542-ba0f-498713e2682d",
+  "refs": [],
+  "transparent": true,
+  "alpha": {
+    "strategy": "native",
+    "strategy_source": "provider-default",
+    "out": "D:\\Project\\The-Beginning-Online\\output\\ocean-monsters-20261022\\ocean_sixhead_reef_scylla\\base.png",
+    "mode": "RGBA",
+    "method": "native",
+    "size": "1312x1199",
+    "alpha_zero_pct": 49.67,
+    "partial_alpha_pct": 50.33,
+    "opaque_pct": 0.01,
+    "cleaned_transparent_rgb_pixels": 676,
+    "stale_transparent_rgb_pixels": 0
+  },
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": true
+  },
+  "provider_resolved_from": "explicit"
+}

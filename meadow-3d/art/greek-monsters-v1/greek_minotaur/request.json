@@ -1,0 +1,90 @@
+{
+  "style": "Hand-painted ink, gouache and watercolor isometric MMORPG creature. Original character, natural texture, subdued highlights. Match the approved base. NOT pixel art. No text, labels, scenery, floor plane, shadow, or extra creatures.",
+  "cell": {
+    "width": 320,
+    "height": 320,
+    "safe_margin": 30
+  },
+  "states": {
+    "down45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "front-left three-quarter. tiny gentle breathing and a single slow blink, identity and ground position stable. Preserve exactly the specified anatomy: A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "down45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "front-left three-quarter. heavy short marching step in place, alternate hooves, hold axe stable. Four distinct readable authored poses. Match the anchor direction. Full body, generous margins. A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "down45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-left three-quarter. ready axe held with both hands, pull axe back, powerful low forward axe cleave, recover; keep hooves planted and horns complete. Four distinct readable authored poses. Match the anchor direction. Full body, generous margins. A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "down45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-left three-quarter. a brief readable recoil: ready, compress backwards from impact, recover, ready; keep body proportions and the same ground contact. Preserve exactly the specified anatomy: A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "down45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "front-left three-quarter. ready, weaken and droop, fall down into a low defeated pose, remain collapsed on the ground; never stand back up. Preserve exactly the specified anatomy: A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "up45_idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "action": "back-right three-quarter, no visible face. tiny gentle breathing and a single slow blink, identity and ground position stable. Preserve exactly the specified anatomy: A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "up45_hop": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "action": "back-right three-quarter. heavy short marching step in place, alternate hooves, hold axe stable. Four distinct readable authored poses. Match the anchor direction. Full body, generous margins. A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "up45_attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter. ready axe held with both hands, pull axe back, powerful low forward axe cleave, recover; keep hooves planted and horns complete. Four distinct readable authored poses. Match the anchor direction. Full body, generous margins. A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "up45_hit": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter, no visible face. a brief readable recoil: ready, compress backwards from impact, recover, ready; keep body proportions and the same ground contact. Preserve exactly the specified anatomy: A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    },
+    "up45_death": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "action": "back-right three-quarter, no visible face. ready, weaken and droop, fall down into a low defeated pose, remain collapsed on the ground; never stand back up. Preserve exactly the specified anatomy: A massive upright bull-headed minotaur guardian with two broad ivory horns, two muscular arms, two cloven hoof legs, dark brown fur, heavy terracotta bronze breastplate and fully covered linen waist skirt. Holds one broad double-bladed bronze axe with both hands. Squat powerful triangle silhouette, worn meander-like geometric trim without letters. No franchise emblems."
+    }
+  },
+  "body_plan": [
+    "biped"
+  ],
+  "directions": {
+    "set": [
+      "down45",
+      "up45"
+    ],
+    "mirror": {
+      "down45_left": "down45",
+      "up45_left": "up45"
+    }
+  },
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "ground_frames": true,
+    "pixel_unfake": false
+  }
+}

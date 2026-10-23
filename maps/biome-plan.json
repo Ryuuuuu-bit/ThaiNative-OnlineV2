@@ -1,0 +1,2043 @@
+{
+  "version": 2,
+  "title": "โลกหลายภูมิภาค · หลายตำนาน",
+  "playableMaxLevel": 100,
+  "proposedMaxLevel": 100,
+  "principles": [
+    "รูปร่าง พฤติกรรม และของดรอปต่างกันตาม biome",
+    "แต่ละช่วงมีทางเลือกเก็บ EXP ล่าการ์ด และหาวัตถุดิบ",
+    "มอนเริ่มต้นอ่านง่าย แล้วเพิ่มกลไกเป็นลำดับ",
+    "ใช้รูปลักษณ์ต้นฉบับและเก็บหลักฐานที่มาของภาพ"
+  ],
+  "biomes": [
+    {
+      "id": "meadow",
+      "mapId": "meadow",
+      "name": "ทุ่งและสวนริมน้ำ",
+      "status": "playable",
+      "levels": [
+        1,
+        5
+      ],
+      "myth": "สิ่งมีชีวิตต้นฉบับของโลกเกม",
+      "colour": "#9bab65",
+      "position": [
+        500,
+        477
+      ],
+      "terrain": "meadow",
+      "climate": "ทุ่งอุ่น ริมน้ำและสวนเก่า",
+      "travel": "เส้นทางเปิด มองเห็นศัตรูง่าย สะพานเป็นจุดเปลี่ยนฝั่ง",
+      "hunt": "เริ่มเก็บเวล วัตถุดิบฟื้นฟู และของสายยา",
+      "identity": "วุ้น กระต่ายใบบัว และด้วงเกราะหยดน้ำ เป็นภาพจำช่วงแรก",
+      "reward": "การ์ดฟื้นตัว · วัตถุดิบยา · มงกุฎแอ่งน้ำ"
+    },
+    {
+      "id": "forest",
+      "mapId": "forest",
+      "name": "ป่าชื้นและบึงหมอก",
+      "status": "playable",
+      "levels": [
+        1,
+        15
+      ],
+      "myth": "วิญญาณป่าและสิ่งมีชีวิตต้นฉบับ",
+      "colour": "#589788",
+      "position": [
+        760,
+        300
+      ],
+      "terrain": "forest",
+      "climate": "ร่มไม้ชื้น สปอร์และบึงเรืองแสง",
+      "travel": "ทางวนล่า ช่องเปิดหลบใย และค่ายพักใต้ต้นไม้",
+      "hunt": "สายพิษ ควบคุมพื้นที่ และกลุ่มมอนที่ต้องแยกจัดการ",
+      "identity": "เห็ด หมาป่า แมงมุม และผู้พิทักษ์ป่า",
+      "reward": "การ์ดพิษ/ใย · ไหมหมอก · ถุงมือทอหมอก"
+    },
+    {
+      "id": "ruins",
+      "mapId": "ruins",
+      "name": "นครร้างและหออักขระ",
+      "status": "playable",
+      "levels": [
+        1,
+        22
+      ],
+      "myth": "อาคมและหุ่นพิทักษ์ต้นฉบับ",
+      "colour": "#a294b2",
+      "position": [
+        500,
+        117
+      ],
+      "terrain": "ruins",
+      "climate": "จัตุรัสหิน ทางบ้านร้างและวิหารเก่า",
+      "travel": "ถนนหลายแยก ลานเปิดสลับทางแคบ",
+      "hunt": "สายแม่นยำ โล่ และอุปกรณ์เวท",
+      "identity": "เครื่องดินเผามีชีวิต นกกระเบื้อง และผู้เฝ้าวิหาร",
+      "reward": "การ์ดตั้งรับ/แม่นยำ · ดินอาคม · วัตถุดิบอักขระ"
+    },
+    {
+      "id": "canyon",
+      "mapId": "canyon",
+      "name": "หุบผาและเหมืองแร่",
+      "status": "playable",
+      "levels": [
+        1,
+        30
+      ],
+      "myth": "สัตว์แร่และผู้พิทักษ์ศิลาต้นฉบับ",
+      "colour": "#b78b5e",
+      "position": [
+        240,
+        300
+      ],
+      "terrain": "mountain",
+      "climate": "หินอุ่น แร่ อำพันและสันผา",
+      "travel": "ลานกว้างสลับช่องผา เลือกเดินตามแหล่งแร่",
+      "hunt": "สายกายภาพ ตัดจังหวะ และวัตถุดิบอาวุธ",
+      "identity": "กิ้งก่าหางแร่ ปูเหล็ก และอสูรยอดผา",
+      "reward": "การ์ดโจมตี · แร่ · วัสดุอาวุธ/เกราะ"
+    },
+    {
+      "id": "grove",
+      "mapId": "grove",
+      "name": "ป่าอรุณและสวนอำพัน",
+      "status": "playable",
+      "levels": [
+        31,
+        35
+      ],
+      "myth": "พฤกษาและภูตต้นฉบับ",
+      "colour": "#c69b55",
+      "position": [
+        165,
+        446
+      ],
+      "terrain": "forest",
+      "climate": "ใบไม้สีทอง เมล็ดแสง และสวนโบราณ",
+      "travel": "ทางวนสองฝั่งบึง มีลานพักกลางภูมิภาค",
+      "hunt": "สำรวจสายแสงและล่าบอสพฤกษา",
+      "identity": "ตั๊กแตนอำพัน นกฮูกอรุณ และราชันพฤกษา",
+      "reward": "การ์ดประจำตัว · วัตถุดิบอำพัน/พฤกษา"
+    },
+    {
+      "id": "summit",
+      "mapId": "summit",
+      "name": "ผาผลึกและทุ่งอัลไพน์",
+      "status": "playable",
+      "levels": [
+        36,
+        40
+      ],
+      "myth": "สัตว์จันทราและไททันต้นฉบับ",
+      "colour": "#94aac6",
+      "position": [
+        165,
+        585
+      ],
+      "terrain": "snow",
+      "climate": "ผาสูงเย็น เศษผลึก และแสงจันทร์",
+      "travel": "ทางเลียบผลึก ลานปาร์ตี้และประตูสู่วิหาร",
+      "hunt": "สายรับมือศัตรูหนัก และวัสดุผลึก",
+      "identity": "ปูผลึก แมวป่าหิมะ และไททันจันทรา",
+      "reward": "การ์ดผลึก/หิมะ · แก่นไททันจันทรา"
+    },
+    {
+      "id": "temple",
+      "mapId": "temple",
+      "name": "วิหารกรีกหลงกาล",
+      "status": "playable",
+      "levels": [
+        40,
+        49
+      ],
+      "myth": "ตำนานกรีก — ออกแบบรูปลักษณ์ใหม่",
+      "colour": "#d5bf8f",
+      "position": [
+        360,
+        668
+      ],
+      "terrain": "temple",
+      "climate": "ลานเมดิเตอร์เรเนียน เสาหินและสระสะท้อน",
+      "travel": "ลานวิหารสามกลุ่ม วนเข้าหาบอสเขาวงกต",
+      "hunt": "สาย SP ธาตุลม ต้านช้า และต่อสู้มอนตัวใหญ่",
+      "identity": "ซาเทอร์ ฮาร์ปี กอร์กอน และมิโนทอร์",
+      "reward": "การ์ดกรีก 4 ใบ · สำริดเขาวงกต · อุปกรณ์สุ่มออฟ"
+    },
+    {
+      "id": "himmapan",
+      "mapId": "himmapan",
+      "name": "ป่าหิมพานต์และธารนาคา",
+      "status": "playable",
+      "levels": [
+        50,
+        59
+      ],
+      "myth": "ไทย–หิมพานต์",
+      "colour": "#64b9a0",
+      "position": [
+        997,
+        390
+      ],
+      "terrain": "forest",
+      "climate": "ป่าฝนชั้นสูง บึงบัว รากไม้และน้ำตก",
+      "travel": "ทางหลักรากไม้ วนสองฝั่งบึง มีสะพานข้ามกลางบึงและทางอ้อมบนตลิ่ง",
+      "hunt": "สายฟื้นฟู น้ำ และการคุ้มกันปาร์ตี้ · น้ำค้างบัวฮีลเพื่อนและธูปชำระธาราใช้คูลดาวน์ร่วมกับยา",
+      "identity": "มอนสัตว์ผสมจำรูปร่างได้ แยกปีก เกล็ด และทรงสิงห์",
+      "reward": "การ์ดสายคุ้มกัน 8 ใบ · วัสดุประจำมอน 8 ชนิด · หยดนาคาคราม Lv.59",
+      "access": "ผ่านประตูตะวันออกของป่าหมอก · แนะนำ Lv.50 ขึ้นไป ภารกิจปลดล็อกเฉพาะภูมิภาคยังไม่รวมในต้นแบบนี้",
+      "monsters": [
+        {
+          "name": "กินรีเฝ้าบึง",
+          "level": 50,
+          "rank": "normal",
+          "behaviour": "รักษาพันธมิตรที่บาดเจ็บใน 9 เมตร แล้วใช้เวทก้านบัวรักษาระยะ แยกออกจากฝูงแล้วจัดการ",
+          "material": "ขนปีกบัว",
+          "card": "ฮีลเพื่อนแล้วเพิ่มการฟื้น SP 0.2/วินาที นาน 3 วินาที · CD 8 วินาที",
+          "id": "himmapan_01",
+          "cardId": "card_himmapan_01",
+          "materialId": "himmapan_01_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "เต่าตะไคร่หยก",
+          "behaviour": "ซ่อนหัวรับการโจมตีด้านหน้า เปิดช่องด้านหลังเมื่อพ่นน้ำ",
+          "material": "กระดองตะไคร่หยก",
+          "card": "ยืนนิ่ง 2 วินาทีแล้วลดดาเมจน้ำ 8% จนเริ่มเคลื่อนที่",
+          "level": 51,
+          "rank": "normal",
+          "id": "himmapan_jade_turtle",
+          "cardId": "card_himmapan_jade_turtle",
+          "materialId": "himmapan_jade_turtle_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "มกรธารา",
+          "level": 52,
+          "rank": "normal",
+          "behaviour": "เตือนวงบนตลิ่งก่อนพุ่งไปยังจุดที่ล็อกไว้ ถอยพ้นวงเพื่อหลบ",
+          "material": "เกล็ดธารา",
+          "card": "รับดาเมจน้ำแล้วได้เกราะ 2% Max HP นาน 3 วินาที · CD 10 วินาที",
+          "id": "himmapan_03",
+          "cardId": "card_himmapan_03",
+          "materialId": "himmapan_03_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "กวางเถาดอก",
+          "behaviour": "วิ่งผ่านแปลงดอกไม้เพื่อฟื้นตัว ตัดทางไปแปลงดอกไม้ได้",
+          "material": "กิ่งเขาดอกอรุณ",
+          "card": "ฮีลพันธมิตร HP ต่ำกว่า 40% ได้ผลเพิ่ม 8% · CD 8 วินาที",
+          "level": 54,
+          "rank": "normal",
+          "id": "himmapan_blossom_deer",
+          "cardId": "card_himmapan_blossom_deer",
+          "materialId": "himmapan_blossom_deer_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "วานรผลทอง",
+          "behaviour": "ขว้างผลทองพร้อมเตือนวงสองแนว แล้วถอยรักษาระยะ",
+          "material": "เมล็ดผลทอง",
+          "card": "ใช้ยา SP แล้วเพิ่มความเร็วเคลื่อนที่ 10% นาน 2 วินาที · CD 10 วินาที",
+          "level": 55,
+          "rank": "normal",
+          "id": "himmapan_golden_macaque",
+          "cardId": "card_himmapan_golden_macaque",
+          "materialId": "himmapan_golden_macaque_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "สิงห์เถาวัลย์",
+          "level": 56,
+          "rank": "elite",
+          "behaviour": "กระโจนเป็นเส้นตรงแล้วพักให้โจมตีด้านข้าง",
+          "material": "แผงคอรากทอง",
+          "card": "หลบวงเตือนบอสหรือหิมพานต์แล้วตีปกติถัดไปแรงขึ้น 8% ภายใน 5 วินาที · CD 8 วินาที",
+          "id": "himmapan_06",
+          "cardId": "card_himmapan_06",
+          "materialId": "himmapan_06_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ครุฑเวหาคราม",
+          "behaviour": "บินขึ้นเตือนเงาบนพื้นก่อนดิ่งลง ปีกเปิดจุดอ่อนหลังลงจอด",
+          "material": "ขนครุฑคราม",
+          "card": "ตัดท่าศัตรูสำเร็จแล้วให้เกราะ 2% Max HP กับเพื่อนใกล้ที่สุด · CD 10 วินาที",
+          "level": 57,
+          "rank": "elite",
+          "id": "himmapan_azure_garuda",
+          "cardId": "card_himmapan_azure_garuda",
+          "materialId": "himmapan_azure_garuda_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "นาคพิทักษ์บึง",
+          "level": 59,
+          "rank": "boss",
+          "behaviour": "ปล่อยคลื่นน้ำเป็นวง สลับตำแหน่งเกาะปลอดภัย มีระยะเตือนชัดก่อนโจมตี · HP ต่ำกว่าครึ่งเปลี่ยนเป็นจังหวะคลื่นเร็วขึ้น",
+          "material": "แก่นธารานาคา",
+          "card": "ล้างสถานะให้เพื่อนแล้วให้เกราะเพื่อนสูงสุด 3 คน คนละ 2% Max HP · CD 15 วินาที",
+          "id": "himmapan_08",
+          "cardId": "card_himmapan_08",
+          "materialId": "himmapan_08_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_himmapan_relic",
+        "name": "หยดนาคาคราม",
+        "level": 59,
+        "source": "himmapan_08",
+        "effect": "ฮีลเพื่อนในปาร์ตี้แล้วสร้างแอ่งฟื้นฟูรัศมี 2 เมตร นาน 3 วินาที ฟื้น 1% Max HP ผู้สวมต่อวินาทีให้สมาชิกปาร์ตี้ในแอ่ง",
+        "tradeoff": "ดาเมจโดยตรงของผู้สวมลด 6%",
+        "cooldown": "12 วินาที",
+        "slot": "accessory",
+        "status": "implemented-prototype"
+      }
+    },
+    {
+      "id": "desert",
+      "mapId": "desert",
+      "name": "ทะเลทรายสุริยคราส",
+      "status": "playable",
+      "levels": [
+        50,
+        59
+      ],
+      "myth": "อียิปต์",
+      "colour": "#d2a46e",
+      "position": [
+        640,
+        685
+      ],
+      "terrain": "desert",
+      "climate": "เนินทราย โอเอซิส สุสานและลานหินทราย",
+      "travel": "ทางคาราวานเชื่อมโอเอซิสสองแห่ง ลานเสาหิน ทางวน และค่ายพักสามจุด",
+      "hunt": "สายไฟ แสง และการเจาะเกราะ",
+      "identity": "แมลงกระดอง อสรพิษ หมาจิ้งจอกพิทักษ์ และสฟิงซ์",
+      "reward": "การ์ดเจาะเกราะ/สลับพลัง · ทรายแก้ว · Unique ตราสุริยคราส",
+      "access": "ต้นแบบเดินเข้าจากวิหารกรีกได้โดยตรง แนะนำ Lv.50 ขึ้นไป; ภารกิจปลดล็อกยังไม่เปิด",
+      "monsters": [
+        {
+          "name": "สคารับทรายแก้ว",
+          "level": 50,
+          "rank": "normal",
+          "behaviour": "กลิ้งลูกทรายตามแนวเตือน ลูกทรายเป็นสิ่งเรียกที่ทำลายได้และไม่มี EXP/ของดรอป",
+          "material": "กระดองแก้ว",
+          "card": "ทำลายสิ่งเรียกแล้วฟื้น HP 1% Max HP · CD10",
+          "id": "desert_01",
+          "cardId": "card_desert_01",
+          "materialId": "desert_01_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "เหยี่ยวโอเอซิส",
+          "behaviour": "ล็อกจุดโฉบด้วยเงาเตือนแล้วบินกลับคอนเดิม",
+          "material": "ขนปีกสุริยัน",
+          "card": "หลบระยะไกลแล้ว HIT+10 นาน3วินาที · CD8",
+          "level": 51,
+          "rank": "normal",
+          "id": "desert_oasis_hawk",
+          "cardId": "card_desert_oasis_hawk",
+          "materialId": "desert_oasis_hawk_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อสรพิษฝังทราย",
+          "level": 52,
+          "rank": "normal",
+          "behaviour": "มุดตามรอยเตือนแล้วผุดที่จุดล็อก ช่วงอยู่ใต้ทรายตีไม่ได้",
+          "material": "เขี้ยวทราย",
+          "card": "ตีปกติใส่ศัตรูติดช้า มีโอกาส10% เลือดไหล3วินาที · CD8",
+          "id": "desert_03",
+          "cardId": "card_desert_03",
+          "materialId": "desert_03_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "หุ่นอุชับติหินทราย",
+          "behaviour": "คราดแนวทรายสามวง ทิ้งพื้นชะลอ3.5วินาทีและเปิดท่าพัก",
+          "material": "เศษอุชับติ",
+          "card": "ตีตรงใส่ศัตรูมีเกราะ +5% แต่ ASPD−2%",
+          "level": 54,
+          "rank": "normal",
+          "id": "desert_sand_ushabti",
+          "cardId": "card_desert_sand_ushabti",
+          "materialId": "desert_sand_ushabti_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "มัมมี่พันตรา",
+          "behaviour": "เตือนก่อนมัดด้วยปมผ้าทำลายได้ ตีปมเพื่อแก้ตรึงทันที",
+          "material": "ผ้าพันตรา",
+          "card": "เวลาถูกตรึงสั้นลง15%",
+          "level": 55,
+          "rank": "normal",
+          "id": "desert_seal_mummy",
+          "cardId": "card_desert_seal_mummy",
+          "materialId": "desert_seal_mummy_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ผู้พิทักษ์เศียรหมาไน",
+          "level": 56,
+          "rank": "elite",
+          "behaviour": "หอกแนวยาวเตือนค้างทิศ ตัดท่าหรืออ้อมหลังได้",
+          "material": "สำริดสุสาน",
+          "card": "ตัดท่าแล้วตีปกติถัดไปเจาะเกราะ6% · CD10",
+          "id": "desert_06",
+          "cardId": "card_desert_06",
+          "materialId": "desert_06_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ราชินีแมงป่องแก้ว",
+          "behaviour": "หางล็อกแนวแทงสามจุดแล้วเปิดช่อง2วินาที เปลือกแตกเมื่อโดนซ้ำ",
+          "material": "เหล็กในแก้ว",
+          "card": "ตีปกติซ้ำเป้า4ครั้ง ลดเกราะ4%3วินาที · CD10",
+          "level": 57,
+          "rank": "elite",
+          "id": "desert_glass_scorpion",
+          "cardId": "card_desert_glass_scorpion",
+          "materialId": "desert_glass_scorpion_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "สฟิงซ์สุริยคราส",
+          "level": 59,
+          "rank": "boss",
+          "behaviour": "สลับตราพื้นปลอดภัยสามตำแหน่งกับลำแสงล็อกแนว สองเฟส",
+          "material": "ตราสฟิงซ์",
+          "card": "สลับกายภาพ/เวทโดนครบ3ครั้ง ดาเมจตรง+5%3วินาที · CD15",
+          "id": "desert_08",
+          "cardId": "card_desert_08",
+          "materialId": "desert_08_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_desert_relic",
+        "name": "ตราสุริยคราส",
+        "level": 59,
+        "source": "desert_08",
+        "effect": "สลับกายภาพ–เวท–กายภาพหรือเวท–กายภาพ–เวทสำเร็จภายใน5วินาที ตีปกติถัดไปภายใน5วินาทีเจาะเกราะกายภาพ10% · สายดาบใช้ม้วนตราสุริยันจากโซนนี้ทำดาเมจเวทได้",
+        "tradeoff": "ตีชนิดเดิมซ้ำเริ่มใหม่ พิษ/เลือดไหล/สะท้อนไม่นับและไม่ได้โบนัส",
+        "cooldown": "10 วินาที",
+        "slot": "accessory",
+        "status": "prototype"
+      },
+      "prototypeNote": "ทดสอบในเกมจริงครบ8ชนิด ของดรอป การ์ด Unique และของใช้ม้วนตราสุริยันเพื่อให้สายดาบสลับดาเมจเวทได้; Mage ยังไม่เปิดสร้างตัวละคร ภารกิจปลดล็อกและ balance ยังต้องทำต่อ"
+    },
+    {
+      "id": "frost",
+      "mapId": "frost",
+      "name": "ฟยอร์ดรูนเหมันต์",
+      "status": "playable",
+      "levels": [
+        60,
+        69
+      ],
+      "myth": "นอร์ส",
+      "colour": "#9ccddd",
+      "position": [
+        43,
+        700
+      ],
+      "terrain": "snow",
+      "climate": "ป่าสนหิมะ หน้าผาฟยอร์ด และซากเรือ",
+      "travel": "ทางฟยอร์ดวนสองฝั่ง บึงธารแข็ง ค่ายพักสามจุด และลานหินปลอดภัยโยตุน",
+      "hunt": "สายรับดาเมจ ประชิด และป้องกันการควบคุม",
+      "identity": "ดรอเกิร์ หมาป่ารูน โทรลล์ และยักษ์โยตุน",
+      "reward": "การ์ด Guard / แนวร่วม 8 ใบ · วัสดุประจำตัว · Unique หัวใจฟยอร์ด",
+      "access": "ต้นแบบเดินเข้าจากผาผลึกจันทราได้โดยตรง แนะนำ Lv.60 ขึ้นไป; ภารกิจปลดล็อกยังไม่เปิด",
+      "monsters": [
+        {
+          "name": "ดรอเกิร์เกราะเยือก",
+          "level": 60,
+          "rank": "normal",
+          "behaviour": "ตั้งโล่ลดดาเมจด้านหน้า ยกขวานฟันเป็นกรวย พลาดแล้วเปิดช่องสองวินาที",
+          "material": "เหล็กเยือก",
+          "card": "รับโจมตีตรงขณะ Guard ลดดาเมจกายภาพ3%3วินาที · CD10",
+          "id": "frost_01",
+          "cardId": "card_frost_01",
+          "materialId": "frost_01_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อีกาหิมะรูน",
+          "behaviour": "ส่งสัญญาณเพิ่มโจมตี12%ให้มอนนอร์สใกล้หนึ่งตัว4วินาที แล้วกลับลงจิก",
+          "material": "ขนรูนหิมะ",
+          "card": "ใช้สกิลสนับสนุนสำเร็จ สกิลที่ใช้SPถัดไปภายใน5วินาที ลดSP5% · CD8",
+          "level": 61,
+          "rank": "normal",
+          "id": "frost_rune_raven",
+          "cardId": "card_frost_rune_raven",
+          "materialId": "frost_rune_raven_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "หมาป่ารูนหิมะ",
+          "level": 62,
+          "rank": "normal",
+          "behaviour": "ล้อมคู่ด้วยจุดเตือนคนละด้าน พุ่งตามจุดล็อก ทิ้งรอยเท้าและไม่พุ่งทะลุหิน",
+          "material": "เขี้ยวรูน",
+          "card": "สังหารมอนธรรมชาติแล้วตีปกติเป้าใหม่ภายใน5วินาที เคลื่อนที่+10%2วินาที · CD8",
+          "id": "frost_03",
+          "cardId": "card_frost_03",
+          "materialId": "frost_03_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ลินด์เวิร์มธารแข็ง",
+          "behaviour": "ขดเกล็ดลดดาเมจ30%ช่วงตั้งท่า กวาดหางเป็นกรวยกว้างและทำเลือดไหล4วินาที",
+          "material": "เกล็ดธารแข็ง",
+          "card": "ดาเมจเลือดไหลที่รับลด10%",
+          "level": 64,
+          "rank": "normal",
+          "id": "frost_ice_lindworm",
+          "cardId": "card_frost_ice_lindworm",
+          "materialId": "frost_ice_lindworm_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ม้าคลื่นเหมันต์",
+          "behaviour": "ล็อกแนวเตือนสี่จุดแล้วไถลผ่าน หยุดพัก1.4วินาที เปิดให้สวน",
+          "material": "แผงคอคลื่นเย็น",
+          "card": "รับดาเมจน้ำแล้วเคลื่อนที่+10%2วินาที · CD10",
+          "level": 65,
+          "rank": "normal",
+          "id": "frost_winter_wavehorse",
+          "cardId": "card_frost_winter_wavehorse",
+          "materialId": "frost_winter_wavehorse_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "โทรลล์หินน้ำแข็ง",
+          "level": 66,
+          "rank": "elite",
+          "behaviour": "HPต่ำถอยกลับถิ่น ปักหลัก2.2วินาทีเพื่อฟื้น12%HP ตัดท่าแล้วไม่ได้ฮีล",
+          "material": "หินชีพเย็น",
+          "card": "พ้นต่อสู้5วินาทีและหยุดนิ่ง ฟื้นHP0.2%MaxHP/วินาที",
+          "id": "frost_06",
+          "cardId": "card_frost_06",
+          "materialId": "frost_06_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "วาลคีรีเกราะร้าว",
+          "behaviour": "หอกสองจังหวะ โล่ลดดาเมจด้านหน้าช่วงตั้งท่า หลังคอมโบเปิดด้านหลังสองวินาที",
+          "material": "ปีกโลหะร้าว",
+          "card": "รับโจมตีตรงขณะGuardครบ3ครั้ง ตีปกติถัดไปฟื้นSP3 · CD8",
+          "level": 67,
+          "rank": "elite",
+          "id": "frost_fractured_valkyrie",
+          "cardId": "card_frost_fractured_valkyrie",
+          "materialId": "frost_fractured_valkyrie_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "โยตุนผู้เฝ้าฟยอร์ด",
+          "level": 69,
+          "rank": "boss",
+          "behaviour": "ทุบพื้นยี่สิบวง เว้นแนวหินปลอดภัยห้าจุดที่ย้ายตำแหน่ง สลับค้อนกรวย สองเฟส",
+          "material": "หัวใจฟยอร์ด",
+          "card": "รับท่าหนักบอสขณะGuard ให้เกราะเพื่อนปาร์ตี้ใกล้สูงสุด3คน คนละ2%MaxHP3วินาที · CD15",
+          "id": "frost_08",
+          "cardId": "card_frost_08",
+          "materialId": "frost_08_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_frost_relic",
+        "name": "หัวใจฟยอร์ด",
+        "level": 69,
+        "source": "frost_08",
+        "effect": "รับโจมตีตรงขณะGuardครบ3ครั้ง ได้เกราะ4%MaxHP4วินาที",
+        "tradeoff": "เคลื่อนที่ช้าลง4%ขณะเกราะยังอยู่ แม้ถอดUniqueออก",
+        "cooldown": "12 วินาที",
+        "slot": "accessory",
+        "status": "prototype"
+      },
+      "prototypeNote": "มอนนอร์ส 8 ชนิดรวมโยตุน Lv.69 พร้อมภาพต้นฉบับครบ 5 ท่า การ์ด 8 ใบ และ Unique ตรงตัว; สมดุล EXP และภารกิจปลดล็อกยังรอปรับ"
+    },
+    {
+      "id": "yokai",
+      "mapId": "yokai",
+      "name": "ป่าไผ่และศาลจันทร์",
+      "status": "playable",
+      "levels": [
+        60,
+        69
+      ],
+      "myth": "ญี่ปุ่น–โยไค",
+      "colour": "#c69fa9",
+      "position": [
+        790,
+        80
+      ],
+      "terrain": "bamboo",
+      "climate": "ป่าไผ่ ลำธาร สวนโคมและศาลเจ้าร้าง",
+      "travel": "ถนนไผ่และโคมวนผ่านบึงเงาจันทร์ ศาลเก่า ค่ายพักสามแห่ง และลานโอนิ",
+      "hunt": "สายหลบหลีก คริติคอล และกลยุทธ์ลวงเป้าหมาย",
+      "identity": "คัปปะ เท็งงู คิทสึเนะ และโอนิ",
+      "reward": "การ์ดหลบ/ตัดจังหวะ8ใบ · วัสดุประจำตัว · หน้ากากจันทร์ซ้อน",
+      "access": "ต้นแบบเดินเข้าจากซากนครโบราณได้โดยตรง แนะนำ Lv.60 ขึ้นไป; ภารกิจปลดล็อกยังไม่เปิด",
+      "monsters": [
+        {
+          "name": "คัปปะลำธาร",
+          "level": 60,
+          "rank": "normal",
+          "behaviour": "มือดึงธารเตือนเป็นกรวย เกราะแข็งใกล้ขอบบึงและเสียเปรียบเมื่อล่อขึ้นฝั่ง",
+          "material": "กระดองธาร",
+          "card": "หลบวงเตือนที่ล็อกเป้าคุณสำเร็จ ฟื้นSP2 · CD8",
+          "id": "yokai_01",
+          "cardId": "card_yokai_01",
+          "materialId": "yokai_01_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "คาซะโอบาเกะหยดฝน",
+          "behaviour": "ร่มขาเดียวล็อกจุดกระโดด กางหน้าร่มลดดาเมจช่วงเตือน แล้วเปิดช่องพักและทิ้งหยดฝน",
+          "material": "กระดาษร่มอาคม",
+          "card": "เวลาถูกSlowสั้นลง10% และลดดาเมจลม3%",
+          "level": 61,
+          "rank": "normal",
+          "id": "yokai_rain_umbrella",
+          "cardId": "card_yokai_rain_umbrella",
+          "materialId": "yokai_rain_umbrella_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "คาราสึเท็งงู",
+          "level": 62,
+          "rank": "normal",
+          "behaviour": "ลมกรวยแคบหนึ่งจังหวะ แล้วล็อกเงาจุดโฉบเป็นอีกจังหวะ",
+          "material": "ขนอีกาวายุ",
+          "card": "โจมตีจากด้านข้างของศัตรู เพิ่มHIT12",
+          "id": "yokai_03",
+          "cardId": "card_yokai_03",
+          "materialId": "yokai_03_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "โคดามะโคนไผ่",
+          "behaviour": "เสียงก้องสองร่างไม่มีเงา หลอกตำแหน่ง แต่ตัวจริงโจมตีจากที่เดิม",
+          "material": "แก่นไผ่ก้อง",
+          "card": "โจมตีศัตรูช่วงตั้งท่า เพิ่มHIT12",
+          "level": 64,
+          "rank": "normal",
+          "id": "yokai_bamboo_kodama",
+          "cardId": "card_yokai_bamboo_kodama",
+          "materialId": "yokai_bamboo_kodama_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "นูเอเมฆฝน",
+          "behaviour": "หางอสรพิษเตือนหนึ่งฝั่ง แล้วกรงเล็บเตือนสวนฝั่งตรงข้ามที่ล็อกไว้",
+          "material": "เขี้ยวเมฆฝน",
+          "card": "หลบสองวงใน6วินาที เพิ่มคริติคอล3%3วินาที · CD12",
+          "level": 65,
+          "rank": "normal",
+          "id": "yokai_rain_nue",
+          "cardId": "card_yokai_rain_nue",
+          "materialId": "yokai_rain_nue_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "คิทสึเนะโคมคราม",
+          "level": 66,
+          "rank": "elite",
+          "behaviour": "แยกสามตำแหน่ง ตัวจริงมีเงา อีกสองร่างไม่มีเงา ตีแตกได้แต่ไม่มีEXP/ของดรอป/ยอดสังหาร อยู่ได้6วินาที",
+          "material": "ไหมโคมคราม",
+          "card": "หลบวงเตือนแล้วสกิลโจมตีที่ใช้SPถัดไป ลดSP5% · CD10",
+          "id": "yokai_06",
+          "cardId": "card_yokai_06",
+          "materialId": "yokai_06_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "โรคุโรคุบิโคมชาด",
+          "behaviour": "ยืดคอเตือนเป็นแนวแคบข้ามสิ่งกีดขวาง ตั้งท่านานสองวินาทีให้ตัด แล้วพักคอนาน",
+          "material": "ไหมคอโคมชาด",
+          "card": "ตัดท่าศัตรูไกลกว่า2เมตรสำเร็จ ฟื้นSP3 · CD10",
+          "level": 67,
+          "rank": "elite",
+          "id": "yokai_lantern_rokurokubi",
+          "cardId": "card_yokai_lantern_rokurokubi",
+          "materialId": "yokai_lantern_rokurokubi_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "โอนิประตูแดง",
+          "level": 69,
+          "rank": "boss",
+          "behaviour": "เปลี่ยนสัญญาณโคมระหว่างกระบองกรวยกับคลื่นวงแหวน เว้นพื้นที่ใกล้ตัวปลอดภัย สองเฟส",
+          "material": "ตราประตูแดง",
+          "card": "ตัดท่าครบ2ครั้ง ฮิตแรกของสกิลโจมตีSP15+/พลังพื้นฐาน120%+ ถัดไปแรง8% · CD15",
+          "id": "yokai_08",
+          "cardId": "card_yokai_08",
+          "materialId": "yokai_08_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_yokai_relic",
+        "name": "หน้ากากจันทร์ซ้อน",
+        "level": 69,
+        "source": "yokai_08",
+        "effect": "หลบวงเตือนที่ล็อกเป้าคุณสำเร็จ สร้างเงารับการตีปกติประชิดที่โดนหนึ่งครั้งภายใน5วินาที ไม่รับท่าพิเศษ/กระสุน/DOT",
+        "tradeoff": "ดาเมจโจมตีปกติลด5% รวมถึงช่วงเงายังอยู่หลังถอดUnique",
+        "cooldown": "15 วินาที",
+        "slot": "accessory",
+        "status": "prototype"
+      },
+      "prototypeNote": "โยไค8ชนิดรวมโอนิ Lv.69 พร้อมภาพต้นฉบับครบ5ท่า การ์ด8ใบ Uniqueและร่างลวงที่ไม่มีรางวัล; ใช้EXP/Job EXPตามส่วนต่างเลเวลแล้ว"
+    },
+    {
+      "id": "dragon",
+      "name": "นครมังกรเหนือทะเลเมฆ",
+      "levels": [
+        70,
+        79
+      ],
+      "myth": "จีน–สัตว์มงคลและมังกร",
+      "colour": "#82bba6",
+      "position": [
+        1130,
+        600
+      ],
+      "terrain": "temple",
+      "climate": "หน้าผาคาร์สต์ ป่าสนเมฆ น้ำตกและตำหนักหยก",
+      "travel": "สะพานหินเชื่อมยอดเขา ลมเปิดปิดทางข้าม มีลานปาร์ตี้ก่อนตำหนัก",
+      "hunt": "สายสายฟ้า ความแม่นยำ และการเคลื่อนที่เป็นจังหวะ",
+      "identity": "ปลาบิน นกกระเรียน สัตว์เขาเดี่ยว และมังกรลำตัวยาว",
+      "reward": "การ์ดสายเคลื่อนที่/สายฟ้า · หยกเมฆ · Unique ระฆังกิเลน",
+      "access": "เดินผ่านประตูเชื่อมโลกได้โดยตรง แนะนำ Lv.70 ขึ้นไป และรับเควสต์เดินทางจากหัวหน้าทหารในเมือง",
+      "mapId": "dragon",
+      "status": "playable",
+      "monsters": [
+        {
+          "name": "ปลามังกรเมฆา",
+          "behaviour": "ว่ายในสายหมอกแล้วกระโจนข้ามทาง ทิ้งรอยหมอกให้คาดทิศได้",
+          "material": "เกล็ดเมฆอ่อน",
+          "card": "เดินต่อเนื่อง 3 วินาทีแล้วโจมตีปกติถัดไปแม่นยำ +15 · CD 8 วินาที",
+          "level": 70,
+          "rank": "normal",
+          "id": "dragon_cloud_carp",
+          "cardId": "card_dragon_cloud_carp",
+          "materialId": "dragon_cloud_carp_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "กระเรียนหยกวายุ",
+          "behaviour": "กระพือคลื่นลมเป็นสามช่องสลับ ช่วงพับปีกตัดท่าได้",
+          "material": "ขนกระเรียนหยก",
+          "card": "หลบวงเตือนแล้วฟื้น SP 2 หน่วย · CD 8 วินาที",
+          "level": 71,
+          "rank": "normal",
+          "id": "dragon_jade_crane",
+          "cardId": "card_dragon_jade_crane",
+          "materialId": "dragon_jade_crane_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "สุนัขศิลาหน้าตำหนัก",
+          "behaviour": "เฝ้าตราสองฝั่ง หากลากออกจากตราจะเสียเกราะบางส่วน",
+          "material": "เศษตราศิลา",
+          "card": "ดาเมจต่อผู้พิทักษ์ที่ HP มากกว่า 80% เพิ่ม 5%",
+          "level": 72,
+          "rank": "normal",
+          "id": "dragon_stone_liondog",
+          "cardId": "card_dragon_stone_liondog",
+          "materialId": "dragon_stone_liondog_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "กิเลนธารฟ้า",
+          "behaviour": "ทิ้งรอยกีบสายฟ้าเป็นแนวแล้วพัก ห้ามยืนซ้ำรอยเดิม",
+          "material": "เขากิเลนอ่อน",
+          "card": "รับการฮีลจากเพื่อนแล้วต้านลม 8% นาน 3 วินาที · CD 10 วินาที",
+          "level": 74,
+          "rank": "normal",
+          "id": "dragon_sky_qilin",
+          "cardId": "card_dragon_sky_qilin",
+          "materialId": "dragon_sky_qilin_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "มังกรน้อยกระดิ่ง",
+          "behaviour": "เรียกกระดิ่งเวทที่ทำลายได้ก่อนยิงลูกพลัง",
+          "material": "กระดิ่งเมฆร้าว",
+          "card": "ทำลายสิ่งเรียกแล้วเพิ่มดาเมจเวท 4% นาน 3 วินาที · CD 10 วินาที",
+          "level": 75,
+          "rank": "normal",
+          "id": "dragon_bell_drake",
+          "cardId": "card_dragon_bell_drake",
+          "materialId": "dragon_bell_drake_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "พยัคฆ์ขาวเกราะเมฆ",
+          "behaviour": "ย่อตัวเตือนก่อนกระโจนสองครั้ง ท้ายครั้งที่สองเปิดหลัง",
+          "material": "เขี้ยวพยัคฆ์ขาว",
+          "card": "โจมตีหลังหลบเพิ่มดาเมจ 8% หนึ่งครั้ง · CD 8 วินาที",
+          "level": 76,
+          "rank": "elite",
+          "id": "dragon_white_cloud_tiger",
+          "cardId": "card_dragon_white_cloud_tiger",
+          "materialId": "dragon_white_cloud_tiger_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ผู้เฝ้าประตูหยก",
+          "behaviour": "ย้ายโล่หยกคุมสองทิศ ต้องโจมตีจากช่องที่โล่เว้นไว้",
+          "material": "ตราประตูหยก",
+          "card": "ยืนนิ่งขณะ Guard ครบ 2 วินาที ให้เกราะ 2% Max HP · CD 12 วินาที",
+          "level": 77,
+          "rank": "elite",
+          "id": "dragon_jade_gatekeeper",
+          "cardId": "card_dragon_jade_gatekeeper",
+          "materialId": "dragon_jade_gatekeeper_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อ้าวหลงผู้คุมทะเลเมฆ",
+          "behaviour": "เลื้อยล้อมลาน สร้างสายฟ้าเป็นแนว ผู้เล่นเลือกทำลายเสาพายุเพื่อเปิดที่ยืน",
+          "material": "หัวใจทะเลเมฆ",
+          "card": "ขัดท่าบอสแล้วเพิ่มความเร็วเคลื่อนที่กลุ่ม 8% นาน 3 วินาที · CD 15 วินาที",
+          "level": 79,
+          "rank": "boss",
+          "id": "dragon_cloud_dragon_lord",
+          "cardId": "card_dragon_cloud_dragon_lord",
+          "materialId": "dragon_cloud_dragon_lord_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_dragon_relic",
+        "name": "ระฆังกิเลน",
+        "level": 79,
+        "source": "dragon_cloud_dragon_lord",
+        "effect": "ใช้สกิลสนับสนุนแล้วโจมตีภายใน 5 วินาที ส่งสายฟ้า 12% ATK ไปยังศัตรูใกล้เป้าหมายสูงสุด 3 ตัว · CD 12 วินาที",
+        "tradeoff": "ดาเมจโจมตีโดยตรงลด 6%",
+        "cooldown": "12 วินาที",
+        "slot": "accessory",
+        "status": "concept"
+      },
+      "prototypeNote": "ภาพต้นฉบับครบ5ท่า มอน การ์ด วัสดุ Unique และภารกิจเชื่อมเกมแล้ว ตรวจเดินทาง แอนิเมชันและของบอสในเบราว์เซอร์จริง; EXP/Job EXP ใช้กฎส่วนต่างเลเวล"
+    },
+    {
+      "id": "volcano",
+      "name": "ภูเขาไฟและสวนเถ้าเพลิง",
+      "levels": [
+        70,
+        79
+      ],
+      "myth": "สลาฟ–วิหคเพลิงและมังกรซเมย์",
+      "colour": "#d38f71",
+      "position": [
+        805,
+        755
+      ],
+      "terrain": "mountain",
+      "climate": "ลาวาเย็นสลับธารร้อน ป่าไหม้ และสวนแก้วออบซิเดียน",
+      "travel": "วนตามแนวหินเย็น ช่องลาวาเตือนก่อนพุ มีกำบังตามซากรากไม้",
+      "hunt": "สายไฟ เลือดไหล และเสี่ยงแลกพลังโจมตี",
+      "identity": "วิหคเพลิง จิ้งจกแก้ว หมูป่าเถ้า และมังกรหลายเศียร",
+      "reward": "การ์ดไฟ/เลือดไหล · แก้วเถ้าร้อน · Unique ขนวิหคคืนเพลิง",
+      "access": "เดินผ่านประตูเชื่อมโลกได้โดยตรง แนะนำ Lv.70 ขึ้นไป และรับเควสต์เดินทางจากหัวหน้าทหารในเมือง",
+      "mapId": "volcano",
+      "status": "playable",
+      "monsters": [
+        {
+          "name": "จิ้งจกแก้วลาวา",
+          "behaviour": "กักความร้อนในเกล็ดก่อนพ่นไฟสั้น ๆ ต้องตีช่วงเกล็ดดับ",
+          "material": "เกล็ดแก้วร้อน",
+          "card": "โจมตีไฟครั้งแรกต่อเป้าหมายเพิ่ม 6% · CD ต่อเป้าหมาย 10 วินาที",
+          "level": 70,
+          "rank": "normal",
+          "id": "volcano_lava_glass_lizard",
+          "cardId": "card_volcano_lava_glass_lizard",
+          "materialId": "volcano_lava_glass_lizard_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ด้วงขี้เถ้ากลิ้งหิน",
+          "behaviour": "ดันก้อนหินร้อนเป็นแนว ขัดท่าก่อนก้อนเริ่มกลิ้งได้",
+          "material": "กระดองเถ้า",
+          "card": "รับดาเมจไฟแล้วลดดาเมจการตีประชิดถัดไป 5% · CD 8 วินาที",
+          "level": 71,
+          "rank": "normal",
+          "id": "volcano_ash_boulder_beetle",
+          "cardId": "card_volcano_ash_boulder_beetle",
+          "materialId": "volcano_ash_boulder_beetle_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "หมูป่าเถ้าหนาม",
+          "behaviour": "ขูดพื้นก่อนพุ่งชนทิ้งหนามทางเดิม จังหวะกลับตัวช้า",
+          "material": "หนามออบซิเดียน",
+          "card": "โจมตีเป้าหมายเลือดไหลเพิ่ม HIT 12",
+          "level": 72,
+          "rank": "normal",
+          "id": "volcano_ash_spine_boar",
+          "cardId": "card_volcano_ash_spine_boar",
+          "materialId": "volcano_ash_spine_boar_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ภูตถ่านเตาเก่า",
+          "behaviour": "สลับกองถ่านจริงกับถ่านดับ ความสว่างบอกจุดยิงครั้งถัดไป",
+          "material": "ถ่านมีชีพ",
+          "card": "ดาเมจเผาไหม้ที่ผู้สวมสร้างเพิ่ม 5%",
+          "level": 74,
+          "rank": "normal",
+          "id": "volcano_old_kiln_sprite",
+          "cardId": "card_volcano_old_kiln_sprite",
+          "materialId": "volcano_old_kiln_sprite_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "เห็ดแก้วควันแดง",
+          "behaviour": "พ่นควันบดบังขอบวง ต้องย้ายออกก่อนก้านเห็ดปะทุ",
+          "material": "สปอร์แก้วแดง",
+          "card": "ฟื้นตัวจากพิษเร็วขึ้น 10% และต้านไฟ 3%",
+          "level": 75,
+          "rank": "normal",
+          "id": "volcano_red_smoke_shroom",
+          "cardId": "card_volcano_red_smoke_shroom",
+          "materialId": "volcano_red_smoke_shroom_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "วิหคเพลิงปีกคราม",
+          "behaviour": "บินตามทางไฟ ทิ้งขนนกร้อนที่ต้องทำลายเพื่อหยุดฟื้นตัว",
+          "material": "ขนเพลิงคราม",
+          "card": "ใช้ยา HP แล้วเพิ่มดาเมจไฟ 5% นาน 3 วินาที · CD 12 วินาที",
+          "level": 76,
+          "rank": "elite",
+          "id": "volcano_azure_firebird",
+          "cardId": "card_volcano_azure_firebird",
+          "materialId": "volcano_azure_firebird_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อสูรค้อนปากปล่อง",
+          "behaviour": "ยกค้อนเก็บแรงแล้วฟาดเป็นทางแยก มีด้านปลอดภัยสลับ",
+          "material": "โลหะปากปล่อง",
+          "card": "รับการโจมตีหนักขณะ Guard แล้วตีปกติถัดไปแรง 10% · CD 10 วินาที",
+          "level": 77,
+          "rank": "elite",
+          "id": "volcano_crater_hammer_ogre",
+          "cardId": "card_volcano_crater_hammer_ogre",
+          "materialId": "volcano_crater_hammer_ogre_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ซเมย์สามเศียรเถ้าทอง",
+          "behaviour": "แต่ละเศียรเตือนแนวไฟต่างกัน ผู้เล่นทำลายเกราะคอเพื่อหยุดหนึ่งแนวชั่วคราว",
+          "material": "แก่นเถ้าทอง",
+          "card": "ฆ่าศัตรูที่เผาไหม้แล้วให้เกราะ 2% Max HP · CD 10 วินาที",
+          "level": 79,
+          "rank": "boss",
+          "id": "volcano_golden_ash_zmey",
+          "cardId": "card_volcano_golden_ash_zmey",
+          "materialId": "volcano_golden_ash_zmey_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_volcano_relic",
+        "name": "ขนวิหคคืนเพลิง",
+        "level": 79,
+        "source": "volcano_golden_ash_zmey",
+        "effect": "โจมตีทำให้ติดไฟ 6% ATK ต่อวินาที นาน 3 วินาที · CD ต่อเป้าหมาย 6 วินาที · เมื่อ HP ต่ำกว่า 50% ดาเมจไฟเพิ่ม 8%",
+        "tradeoff": "ผลฟื้น HP จากยาลด 8%",
+        "cooldown": "6 วินาทีต่อเป้าหมาย · ไฟ3วินาที ไม่ซ้อนชั้น",
+        "slot": "accessory",
+        "status": "concept"
+      },
+      "prototypeNote": "ภาพต้นฉบับครบ5ท่า มอน การ์ด วัสดุ Unique และภารกิจเชื่อมเกมแล้ว ตรวจเดินทาง แอนิเมชันและของบอสในเบราว์เซอร์จริง; EXP/Job EXP ใช้กฎส่วนต่างเลเวล"
+    },
+    {
+      "id": "fae",
+      "name": "ป่าสนธยาและวงแหวนภูต",
+      "levels": [
+        80,
+        89
+      ],
+      "myth": "เคลต์–ภูต พูกา แบนชี และนักขี่ไร้เศียร",
+      "colour": "#b3a0ca",
+      "position": [
+        355,
+        925
+      ],
+      "terrain": "forest",
+      "climate": "ป่าม่วงยามพลบ แสงจันทร์ วงเห็ดและหมอกต่ำ",
+      "travel": "ทางวงแหวนและรากไม้ ติดตามโคมจริงเพื่อออกจากทางลวง",
+      "hunt": "สายเวท สถานะ และการฟื้น SP ด้วยจังหวะคอมโบ",
+      "identity": "ม้าแปลงกาย แมลงแสง ภูตเสียงคร่ำครวญ และอัศวินไร้เศียร",
+      "reward": "การ์ดสถานะ/คอมโบ · เรซินสนธยา · Unique ตะเกียงพูกา",
+      "access": "เดินผ่านประตูเชื่อมโลกได้โดยตรง แนะนำ Lv.80 ขึ้นไป และรับเควสต์เดินทางจากหัวหน้าทหารในเมือง",
+      "mapId": "fae",
+      "status": "playable",
+      "monsters": [
+        {
+          "name": "พูกาม้าเงา",
+          "behaviour": "เปลี่ยนรูปร่างก่อนวิ่งหลอกหนึ่งแนว ตัวจริงมีรอยเท้าส่องแสง",
+          "material": "ขนพูกา",
+          "card": "เปลี่ยนเป้าหมายหลังสังหารแล้วลด SP สกิลถัดไป 5% · CD 8 วินาที",
+          "level": 80,
+          "rank": "normal",
+          "id": "fae_puca_shadowhorse",
+          "cardId": "card_fae_puca_shadowhorse",
+          "materialId": "fae_puca_shadowhorse_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ผีเสื้อแสงหลงทาง",
+          "behaviour": "ล่อให้เดินเข้าวงเห็ดก่อนยิงแสง โคมจริงให้รู้เส้นปลอดภัย",
+          "material": "ผงปีกสนธยา",
+          "card": "เวทโดนเป้าหมายที่ติดสถานะเพิ่ม HIT กายภาพ 10 นาน 3 วินาที · CD 8 วินาที",
+          "level": 81,
+          "rank": "normal",
+          "id": "fae_wandering_light_moth",
+          "cardId": "card_fae_wandering_light_moth",
+          "materialId": "fae_wandering_light_moth_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "รากเดินสวนลวง",
+          "behaviour": "ทอดรากขวางทางแล้วอ่อนตัวเมื่อรากยืดสุด",
+          "material": "เรซินสนธยา",
+          "card": "ระยะเวลาที่ถูกลดความเร็วลด 10% และ Max SP +2%",
+          "level": 82,
+          "rank": "normal",
+          "id": "fae_false_garden_root",
+          "cardId": "card_fae_false_garden_root",
+          "materialId": "fae_false_garden_root_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ภูตกระจกหยดจันทร์",
+          "behaviour": "ตั้งกระจกสะท้อนแนวยิงเฉพาะด้านหน้า ต้องอ้อม",
+          "material": "เศษกระจกจันทร์",
+          "card": "เวทหลังโจมตีปกติโดนเพิ่มดาเมจ 5% หนึ่งครั้ง · CD 8 วินาที",
+          "level": 84,
+          "rank": "normal",
+          "id": "fae_moondrop_mirrorfae",
+          "cardId": "card_fae_moondrop_mirrorfae",
+          "materialId": "fae_moondrop_mirrorfae_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "กวางตะไคร่จันทรา",
+          "behaviour": "ย้ายวงรักษาตามแสงจันทร์ ลากออกนอกวงแล้วหยุดฟื้น",
+          "material": "เขาตะไคร่จันทรา",
+          "card": "ฮีลเพื่อนคนเดิมซ้ำภายใน 4 วินาทีลด SP 5% · ไม่สะสม",
+          "level": 85,
+          "rank": "normal",
+          "id": "fae_moonlichen_stag",
+          "cardId": "card_fae_moonlichen_stag",
+          "materialId": "fae_moonlichen_stag_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "แบนชีผ้าคลุมม่วง",
+          "behaviour": "กรีดร้องเป็นวงแหวน ช่องเงียบบอกตำแหน่งยืน",
+          "material": "ม่านเสียงคร่ำครวญ",
+          "card": "เวทโดนแล้วเพิ่มต้านเวท 5% นาน 3 วินาที · CD 10 วินาที",
+          "level": 86,
+          "rank": "elite",
+          "id": "fae_violet_banshee",
+          "cardId": "card_fae_violet_banshee",
+          "materialId": "fae_violet_banshee_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ดูลาฮานโซ่เงิน",
+          "behaviour": "ขี่ม้าตีวงแล้วเหวี่ยงโซ่ล็อกเส้น มีช่องให้ตัดจังหวะตอนยกแขน",
+          "material": "ข้อโซ่เงินภูต",
+          "card": "ตัดจังหวะแล้วการโจมตีถัดไปลดต้านเวทเป้าหมาย 4% นาน 3 วินาที · CD 12 วินาที",
+          "level": 87,
+          "rank": "elite",
+          "id": "fae_silverchain_dullahan",
+          "cardId": "card_fae_silverchain_dullahan",
+          "materialId": "fae_silverchain_dullahan_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ราชันเขากวางสนธยา",
+          "behaviour": "ทำให้บางทางเป็นภาพลวง ผู้เล่นจุดโคมยืนยันพื้นที่จริงก่อนคลื่นหมอก",
+          "material": "มงกุฎรากสนธยา",
+          "card": "ให้สถานะสำเร็จครบ 2 แบบแล้วคืน SP 3% Max SP · CD 15 วินาที",
+          "level": 89,
+          "rank": "boss",
+          "id": "fae_twilight_antler_king",
+          "cardId": "card_fae_twilight_antler_king",
+          "materialId": "fae_twilight_antler_king_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_fae_relic",
+        "name": "ตะเกียงพูกา",
+        "level": 89,
+        "source": "fae_twilight_antler_king",
+        "effect": "สลับใช้สกิลเป้าหมายเดี่ยว หมู่ และสนับสนุนครบทั้ง 3 ชนิด คืน SP 4% Max SP · CD 12 วินาที",
+        "tradeoff": "SP ที่ใช้สกิลเดิมซ้ำเพิ่ม 4%",
+        "cooldown": "12 วินาที",
+        "slot": "accessory",
+        "status": "concept"
+      },
+      "prototypeNote": "ภาพต้นฉบับครบ5ท่า มอน การ์ด วัสดุ Unique และภารกิจเชื่อมเกมแล้ว ตรวจเดินทาง แอนิเมชันและของบอสในเบราว์เซอร์จริง; EXP/Job EXP ใช้กฎส่วนต่างเลเวล"
+    },
+    {
+      "id": "ocean",
+      "name": "หมู่เกาะพายุและนครจมน้ำ",
+      "levels": [
+        80,
+        89
+      ],
+      "myth": "ตำนานเดินเรือ–ไซเรน สกิลลา และคราเคน",
+      "colour": "#6daec7",
+      "position": [
+        1110,
+        940
+      ],
+      "terrain": "water",
+      "climate": "หน้าผาทะเล แนวปะการัง ซากเรือและวิหารน้ำตื้น",
+      "travel": "เดินบนแนวหินและเรือพาข้ามฉาก ระดับน้ำเปิดปิดทางแบบมีสัญญาณ",
+      "hunt": "สายน้ำ การวางพื้นที่ และการโจมตีต่อเนื่อง",
+      "identity": "หอยเกราะ ปูเรือ อมนุษย์เพลงลวง อสูรทะเลและหมึกยักษ์",
+      "reward": "การ์ดพื้นที่/โจมตีต่อเนื่อง · ไข่มุกพายุ · Unique สมอคราเคน",
+      "access": "เดินผ่านประตูเชื่อมโลกได้โดยตรง แนะนำ Lv.80 ขึ้นไป และรับเควสต์เดินทางจากหัวหน้าทหารในเมือง",
+      "mapId": "ocean",
+      "status": "playable",
+      "monsters": [
+        {
+          "name": "หอยสังข์เกราะพายุ",
+          "behaviour": "ปิดเปลือกกักคลื่นก่อนปล่อยเป็นแนว เปิดเปลือกแล้วรับดาเมจเต็ม",
+          "material": "เปลือกสังข์พายุ",
+          "card": "รับดาเมจระยะไกลลด 4% ขณะไม่เคลื่อนที่",
+          "level": 80,
+          "rank": "normal",
+          "id": "ocean_storm_conch",
+          "cardId": "card_ocean_storm_conch",
+          "materialId": "ocean_storm_conch_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ปูเสากระโดง",
+          "behaviour": "ยกซากเสากระโดงกวาดด้านข้าง ท้ายท่าติดพื้นชั่วคราว",
+          "material": "ก้ามซากเรือ",
+          "card": "ตีปกติโดนซ้ำ 3 ครั้งเพิ่ม ASPD 3% นาน 3 วินาที · CD 10 วินาที",
+          "level": 81,
+          "rank": "normal",
+          "id": "ocean_mast_crab",
+          "cardId": "card_ocean_mast_crab",
+          "materialId": "ocean_mast_crab_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ปลาโคมกระแสวน",
+          "behaviour": "ลากวงน้ำตามแสงโคมก่อนหยุดยิง บังคับให้ออกนอกกระแสวน",
+          "material": "โคมไข่มุก",
+          "card": "ออกจากสถานะช้าแล้วเพิ่มต้านน้ำ 8% นาน 3 วินาที · CD 10 วินาที",
+          "level": 82,
+          "rank": "normal",
+          "id": "ocean_whirlpool_lanternfish",
+          "cardId": "card_ocean_whirlpool_lanternfish",
+          "materialId": "ocean_whirlpool_lanternfish_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ไซเรนเกาะหมอก",
+          "behaviour": "ร้องเรียกคลื่นเป็นช่วง โขดหินช่วยบังแนวเสียง",
+          "material": "ไหมเพลงลวง",
+          "card": "สกิลสนับสนุนที่ใช้กับเพื่อนเพิ่มระยะเวลาบัฟ 5% · ไม่เพิ่มระยะควบคุมศัตรู",
+          "level": 84,
+          "rank": "normal",
+          "id": "ocean_mist_isle_siren",
+          "cardId": "card_ocean_mist_isle_siren",
+          "materialId": "ocean_mist_isle_siren_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อัศวินปะการังจม",
+          "behaviour": "ตั้งโล่ปะการังแล้วแทงหอกหลังแนวคลื่นผ่าน มีช่องหลังแทง",
+          "material": "ปะการังอาคม",
+          "card": "ดาเมจต่อศัตรูที่อยู่ในพื้นที่สกิลของผู้สวมเพิ่ม 5%",
+          "level": 85,
+          "rank": "normal",
+          "id": "ocean_sunken_coral_knight",
+          "cardId": "card_ocean_sunken_coral_knight",
+          "materialId": "ocean_sunken_coral_knight_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "สกิลลาผาหกเศียร",
+          "behaviour": "เศียรแต่ละฝั่งโจมตีคนละจังหวะ ต้องสลับยืนตามลำดับเตือน",
+          "material": "เขี้ยวผาหกเศียร",
+          "card": "โจมตีโดนศัตรูหลายตัวฟื้น SP 1 หน่วยต่อตัว สูงสุด 3 · CD 10 วินาที",
+          "level": 86,
+          "rank": "elite",
+          "id": "ocean_sixhead_reef_scylla",
+          "cardId": "card_ocean_sixhead_reef_scylla",
+          "materialId": "ocean_sixhead_reef_scylla_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อสูรเรืออับปาง",
+          "behaviour": "ดึงสมอเปิดแนววงน้ำแล้วพักร่าง ใช้ซากเสาเป็นกำบัง",
+          "material": "สมอผุมีชีพ",
+          "card": "ดึงหรือตรึงศัตรูสำเร็จแล้วให้เกราะตัวเอง 2% Max HP · CD 12 วินาที",
+          "level": 87,
+          "rank": "elite",
+          "id": "ocean_shipwreck_colossus",
+          "cardId": "card_ocean_shipwreck_colossus",
+          "materialId": "ocean_shipwreck_colossus_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "คราเคนมงกุฎพายุ",
+          "behaviour": "สลับหนวดคุมพื้นที่กับคลื่น ผู้เล่นตัดหนวดเพื่อเปิดทางไปแกนกลาง",
+          "material": "ไข่มุกคราเคน",
+          "card": "โจมตีเป้าหมายเดิมครบ 6 ครั้ง ครั้งที่หกเพิ่มดาเมจ 8% ATK · CD 12 วินาที",
+          "level": 89,
+          "rank": "boss",
+          "id": "ocean_stormcrown_kraken",
+          "cardId": "card_ocean_stormcrown_kraken",
+          "materialId": "ocean_stormcrown_kraken_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_ocean_relic",
+        "name": "สมอคราเคน",
+        "level": 89,
+        "source": "ocean_stormcrown_kraken",
+        "effect": "โจมตีเป้าหมายเดิมครบ 5 ครั้ง สร้างวงน้ำตรึงศัตรูปกติ 1 วินาที บอสติดช้า 25% แทน · CD 12 วินาที",
+        "tradeoff": "ASPD ลด 3%",
+        "cooldown": "12 วินาที",
+        "slot": "accessory",
+        "status": "concept"
+      },
+      "prototypeNote": "ภาพต้นฉบับครบ5ท่า มอน การ์ด วัสดุ Unique และภารกิจเชื่อมเกมแล้ว ตรวจเดินทาง แอนิเมชันและของบอสในเบราว์เซอร์จริง; EXP/Job EXP ใช้กฎส่วนต่างเลเวล"
+    },
+    {
+      "id": "astral",
+      "name": "ทะเลดาวและวิหารจักรราศี",
+      "levels": [
+        90,
+        99
+      ],
+      "myth": "สัตว์จักรราศีและดวงดาวต้นฉบับของโลกเกม",
+      "colour": "#b4b0e5",
+      "position": [
+        1280,
+        1170
+      ],
+      "terrain": "stars",
+      "climate": "เกาะลอยกลางทะเลดาว หินอุกกาบาตและวงโคจร",
+      "travel": "สะพานแสงหมุนเป็นคาบ มีลานหลักปลอดภัยและเส้นวนล่าสั้น",
+      "hunt": "สายเวทผสมธาตุ การจัดคอมโบ และลดช่องว่างระหว่างสกิล",
+      "identity": "แมงกะพรุนดาว อสรพิษวงแหวน นกกลุ่มดาว และอสูรจักรราศี",
+      "reward": "การ์ดสลับธาตุ · ผลึกวงโคจร · Unique เข็มทิศจักรราศี",
+      "access": "เดินผ่านประตูเชื่อมโลกได้โดยตรง แนะนำ Lv.90 ขึ้นไป และรับเควสต์เดินทางจากหัวหน้าทหารในเมือง",
+      "mapId": "astral",
+      "status": "playable",
+      "monsters": [
+        {
+          "name": "แมงกะพรุนละอองดาว",
+          "behaviour": "ลอยสร้างจุดดาวที่ระเบิดตามลำดับ ดวงที่สว่างสุดจะระเบิดก่อน",
+          "material": "ละอองดาวมีชีพ",
+          "card": "ใช้เวทคนละธาตุต่อเนื่องเพิ่มดาเมจเวทถัดไป 5% · CD 8 วินาที",
+          "level": 90,
+          "rank": "normal",
+          "id": "astral_stardust_jellyfish",
+          "cardId": "card_astral_stardust_jellyfish",
+          "materialId": "astral_stardust_jellyfish_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "กระเบนวงโคจร",
+          "behaviour": "บินเป็นวงแล้วกวาดลำแสงแนวสัมผัส อ่านเงาตามวงโคจร",
+          "material": "ครีบวงโคจร",
+          "card": "หลบวงเตือนแล้วลดเวลาร่ายสกิลถัดไป 5% · CD 10 วินาที",
+          "level": 91,
+          "rank": "normal",
+          "id": "astral_orbital_ray",
+          "cardId": "card_astral_orbital_ray",
+          "materialId": "astral_orbital_ray_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "งูวงแหวนอุกกาบาต",
+          "behaviour": "ขดเป็นวงแหวนก่อนบีบพื้นที่ มีช่องว่างบนเกล็ดที่ไม่ส่องแสง",
+          "material": "เกล็ดอุกกาบาต",
+          "card": "โจมตีเป้าหมายที่มีสถานะ 2 แบบเพิ่ม HIT 15",
+          "level": 92,
+          "rank": "normal",
+          "id": "astral_meteor_ring_serpent",
+          "cardId": "card_astral_meteor_ring_serpent",
+          "materialId": "astral_meteor_ring_serpent_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "นกกระเรียนกลุ่มดาว",
+          "behaviour": "เชื่อมเสาดาวสองต้นก่อนยิง ปิดเสาหนึ่งต้นเพื่อลดแนวโจมตี",
+          "material": "ขนกลุ่มดาว",
+          "card": "สลับโจมตีกายภาพกับเวทคืน SP 2 หน่วย · CD 6 วินาที",
+          "level": 94,
+          "rank": "normal",
+          "id": "astral_constellation_crane",
+          "cardId": "card_astral_constellation_crane",
+          "materialId": "astral_constellation_crane_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "หุ่นระฆังสุญญากาศ",
+          "behaviour": "กระแทกระฆังเป็นคลื่นเงียบแล้วเปิดแกนตามช่วงพัก",
+          "material": "แกนระฆังดาว",
+          "card": "ไม่ใช้ยา 10 วินาทีแล้วเพิ่มฟื้น SP 0.3/วินาที จนใช้ยา",
+          "level": 95,
+          "rank": "normal",
+          "id": "astral_vacuum_bell_construct",
+          "cardId": "card_astral_vacuum_bell_construct",
+          "materialId": "astral_vacuum_bell_construct_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ราชสีห์สุริยเงา",
+          "behaviour": "สลับเงาที่บอกจังหวะกระโจนจริงกับภาพแสงที่ไม่ทำดาเมจ",
+          "material": "แผงสุริยเงา",
+          "card": "หลังใช้สกิลสองชนิดไม่ซ้ำ ตีปกติถัดไปแรงขึ้น 10% · CD 10 วินาที",
+          "level": 96,
+          "rank": "elite",
+          "id": "astral_solarshadow_lion",
+          "cardId": "card_astral_solarshadow_lion",
+          "materialId": "astral_solarshadow_lion_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อัศวินตราสิบสองดาว",
+          "behaviour": "เปิดเกราะตามตราดาว ต้องโจมตีจากทิศที่ตราดับ",
+          "material": "ตราสิบสองดาว",
+          "card": "ใช้สกิลสนับสนุนต่างชนิด 2 แบบ ได้ต้านดาเมจทั้งหมด 3% นาน 4 วินาที · CD 15 วินาที",
+          "level": 97,
+          "rank": "elite",
+          "id": "astral_twelve_star_knight",
+          "cardId": "card_astral_twelve_star_knight",
+          "materialId": "astral_twelve_star_knight_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อสูรสุริยคราสผู้กลืนดาว",
+          "behaviour": "เปลี่ยนวงโคจรให้ผู้เล่นแบ่งปิดแกนสามจุด ก่อนคลื่นสุริยคราสเข้าลานกลาง",
+          "material": "หัวใจสุริยคราส",
+          "card": "สลับโจมตีกายภาพ/เวทครบ 4 ครั้ง เพิ่มดาเมจทั้งสอง 5% นาน 4 วินาที · CD 15 วินาที",
+          "level": 99,
+          "rank": "boss",
+          "id": "astral_star_eating_eclipse",
+          "cardId": "card_astral_star_eating_eclipse",
+          "materialId": "astral_star_eating_eclipse_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_astral_relic",
+        "name": "เข็มทิศจักรราศี",
+        "level": 99,
+        "source": "astral_star_eating_eclipse",
+        "effect": "สลับเวทธาตุครบ 3 แบบ เลือกธาตุล่าสุดเพิ่มดาเมจ 8% นาน 5 วินาที · CD 15 วินาที",
+        "tradeoff": "ดาเมจธาตุที่ไม่ได้เลือกช่วงนั้นลด 4%",
+        "cooldown": "15 วินาที",
+        "slot": "accessory",
+        "status": "concept"
+      },
+      "prototypeNote": "ภาพต้นฉบับครบ5ท่า มอน การ์ด วัสดุ Unique และภารกิจเชื่อมเกมแล้ว ตรวจเดินทาง แอนิเมชันและของบอสในเบราว์เซอร์จริง; EXP/Job EXP ใช้กฎส่วนต่างเลเวล"
+    },
+    {
+      "id": "abyss",
+      "name": "มหาสมุทรบรรพกาลและนครดินดำ",
+      "levels": [
+        90,
+        99
+      ],
+      "myth": "เมโสโปเตเมีย–มุชฮุชชู อันซู และอสูรบรรพกาล",
+      "colour": "#a28b94",
+      "position": [
+        715,
+        1170
+      ],
+      "terrain": "water",
+      "climate": "บึงน้ำเค็มมืด ซิกกูแรตจมน้ำ หินดำและฟ้าคะนอง",
+      "travel": "ระเบียงหินวนขึ้นวิหาร แบ่งเส้นทางน้ำตื้นกับทางกำแพง มีจุดพักแยกจากวงอันตราย",
+      "hunt": "สายพิษ เลือดไหล และลดเกราะผ่านสถานะ",
+      "identity": "อสูรสิงห์นก มังกรงู หุ่นดินดำ และมังกรน้ำบรรพกาล",
+      "reward": "การ์ดสถานะผสม · เกลือดำ · Unique เกล็ดมารดาทะเล",
+      "access": "เดินผ่านประตูเชื่อมโลกได้โดยตรง แนะนำ Lv.90 ขึ้นไป และรับเควสต์เดินทางจากหัวหน้าทหารในเมือง",
+      "mapId": "abyss",
+      "status": "playable",
+      "monsters": [
+        {
+          "name": "ปูเกลือดำ",
+          "behaviour": "ทิ้งคราบเกลือลดความเร็วขณะถอย ด้านข้างเปิดให้ตัดก้าม",
+          "material": "กระดองเกลือดำ",
+          "card": "โจมตีศัตรูติดพิษเพิ่มดาเมจ 5%",
+          "level": 90,
+          "rank": "normal",
+          "id": "abyss_black_salt_crab",
+          "cardId": "card_abyss_black_salt_crab",
+          "materialId": "abyss_black_salt_crab_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ปลาตีนคราบดิน",
+          "behaviour": "กระโจนลงร่องน้ำก่อนยิงโคลน ต้องย้ายพ้นรอยดินเข้ม",
+          "material": "เมือกดินบรรพ์",
+          "card": "ฟื้นตัวจากเลือดไหลเร็วขึ้น 15%",
+          "level": 91,
+          "rank": "normal",
+          "id": "abyss_silt_mudskipper",
+          "cardId": "card_abyss_silt_mudskipper",
+          "materialId": "abyss_silt_mudskipper_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "หุ่นดินดำซิกกูแรต",
+          "behaviour": "ประกอบแขนจากดินก่อนฟาด ทำลายก้อนดินข้างตัวเพื่อลดระยะท่า",
+          "material": "ดินดำอาคม",
+          "card": "สร้างสถานะต่อเป้าหมายแล้วเพิ่มดาเมจประชิด 4% นาน 3 วินาที · CD 8 วินาที",
+          "level": 92,
+          "rank": "normal",
+          "id": "abyss_ziggurat_clay_guard",
+          "cardId": "card_abyss_ziggurat_clay_guard",
+          "materialId": "abyss_ziggurat_clay_guard_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "สิงห์นกอันซู",
+          "behaviour": "ตีปีกฝุ่นเป็นแนวก่อนพุ่งกรงเล็บ ความหนาฝุ่นบอกทิศ",
+          "material": "ขนอันซู",
+          "card": "ศัตรูเลือดไหลอยู่แล้ว ตีคริติคอลฟื้น HP 1% Max HP · CD 10 วินาที",
+          "level": 94,
+          "rank": "normal",
+          "id": "abyss_anzu_lionbird",
+          "cardId": "card_abyss_anzu_lionbird",
+          "materialId": "abyss_anzu_lionbird_material",
+          "cardSlot": "footgear",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "มังกรงูมุชฮุชชู",
+          "behaviour": "เลื้อยผ่านตราดินแล้วเกราะแข็ง พาออกจากตราก่อนโจมตี",
+          "material": "เกล็ดมุชฮุชชู",
+          "card": "ดาเมจต่อมังกรเพิ่ม 7%",
+          "level": 95,
+          "rank": "normal",
+          "id": "abyss_mushhushshu_serpent",
+          "cardId": "card_abyss_mushhushshu_serpent",
+          "materialId": "abyss_mushhushshu_serpent_material",
+          "cardSlot": "garment",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "แมงป่องชายแดนราตรี",
+          "behaviour": "ตั้งหอกกับหางแยกแนว ต้องหลบสองด้านก่อนตอบโต้",
+          "material": "พิษหางราตรี",
+          "card": "ทำพิษและเลือดไหลต่อศัตรูตัวเดียว เพิ่มความเสียหายต่อเนื่อง 5% · ไม่คูณต่อชั้น",
+          "level": 96,
+          "rank": "elite",
+          "id": "abyss_night_border_scorpion",
+          "cardId": "card_abyss_night_border_scorpion",
+          "materialId": "abyss_night_border_scorpion_material",
+          "cardSlot": "shield",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ผู้พิทักษ์ลามัสสุหินดำ",
+          "behaviour": "ใช้ปีกบังลานก่อนวิ่งชน เตือนแนวด้วยอักขระบนพื้น",
+          "material": "ปีกหินดำ",
+          "card": "ป้องกันด้วย Guard แล้วล้างพิษหนึ่งครั้ง · CD 20 วินาที",
+          "level": 97,
+          "rank": "elite",
+          "id": "abyss_blackstone_lamassu",
+          "cardId": "card_abyss_blackstone_lamassu",
+          "materialId": "abyss_blackstone_lamassu_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "มังกรทะเลบรรพกาลเทียแมต",
+          "behaviour": "แยกสนามเป็นน้ำพิษกับพื้นหิน ผู้เล่นปิดตราน้ำก่อนเผชิญลมหายใจ",
+          "material": "เกล็ดมารดาทะเล",
+          "card": "ฆ่าศัตรูติดพิษและเลือดไหลแล้วฟื้น SP 3% Max SP · CD 15 วินาที · ไม่ต่อโซ่",
+          "level": 99,
+          "rank": "boss",
+          "id": "abyss_primordial_sea_dragon",
+          "cardId": "card_abyss_primordial_sea_dragon",
+          "materialId": "abyss_primordial_sea_dragon_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_abyss_relic",
+        "name": "เกล็ดมารดาทะเล",
+        "level": 99,
+        "source": "abyss_primordial_sea_dragon",
+        "effect": "เมื่อโจมตีศัตรูที่มีทั้งพิษและเลือดไหลของผู้สวม ยืดทั้งสองสถานะให้เหลืออย่างน้อย 3 วินาที ได้หนึ่งครั้งต่อสถานะ · CD 10 วินาที",
+        "tradeoff": "ดาเมจโดยตรงลด 7%",
+        "cooldown": "10 วินาที · รีเฟรชสูงสุดหนึ่งครั้งต่อการใช้",
+        "slot": "accessory",
+        "status": "concept"
+      },
+      "prototypeNote": "ภาพต้นฉบับครบ5ท่า มอน การ์ด วัสดุ Unique และภารกิจเชื่อมเกมแล้ว ตรวจเดินทาง แอนิเมชันและของบอสในเบราว์เซอร์จริง; EXP/Job EXP ใช้กฎส่วนต่างเลเวล"
+    },
+    {
+      "id": "confluence",
+      "mapId": "confluence",
+      "status": "playable",
+      "name": "มหาวิหารรอยต่อพิภพ",
+      "levels": [
+        100,
+        100
+      ],
+      "myth": "ตำนานแกนโลกต้นฉบับ — จุดบรรจบของทุกเส้นทาง",
+      "colour": "#e1cb94",
+      "position": [
+        1030,
+        1390
+      ],
+      "terrain": "temple",
+      "climate": "เกาะวิหารกลางรอยต่อธาตุ ผสมแสงดาว หินดำ และธารชีวิต",
+      "travel": "โถงเตรียมตัวปลอดภัย จุดตรวจหลังผู้พิทักษ์แต่ละตน และลานเรดที่กลับเข้าหลังล้มได้",
+      "hunt": "Endgame สำหรับปาร์ตี้ วัสดุอุปกรณ์ Lv.100 และการ์ดเปลี่ยนแนวบิลด์",
+      "identity": "ผู้พิทักษ์สามหลักและอสูรแกนโลก ไม่มีมอนย้อมสีจากภูมิภาคเดิม",
+      "reward": "การ์ดผู้พิทักษ์ 3 ใบ + การ์ดเรด · แก่นรอยต่อ · Unique มงกุฎรอยต่อพิภพ",
+      "access": "Lv.100 และเควสต์คำเชิญสู่รอยต่อพิภพจากหัวหน้าทหาร: พิชิตบอส Lv.99 สายใดสายหนึ่ง · ห้องแยกตามปาร์ตี้สูงสุด6คน · ปิดหลักทั้งสามก่อนเปิดแกนโลก",
+      "monsters": [
+        {
+          "name": "ผู้พิทักษ์หลักธารชีวิต",
+          "behaviour": "ทดสอบการช่วยเพื่อนและแยกวงพิษ จุดชุบและพื้นที่พักแยกจากวงบอส",
+          "material": "แก่นหลักชีวิต",
+          "card": "ฮีลเพื่อน HP ต่ำกว่า 30% ให้เกราะ 2% Max HP · CD 15 วินาที",
+          "level": 100,
+          "rank": "elite",
+          "id": "confluence_life_pillar_guard",
+          "cardId": "card_confluence_life_pillar_guard",
+          "materialId": "confluence_life_pillar_guard_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ผู้พิทักษ์หลักอสนีศิลา",
+          "behaviour": "ผลัดผู้รับแนวฟาดและเปิดเกราะด้วยการตัดท่า มีกรวยเตือนทุกครั้ง",
+          "material": "แก่นหลักศิลา",
+          "card": "ตัดท่าแล้วต้านกายภาพ 4% นาน 4 วินาที · CD 12 วินาที",
+          "level": 100,
+          "rank": "elite",
+          "id": "confluence_thunder_pillar_guard",
+          "cardId": "card_confluence_thunder_pillar_guard",
+          "materialId": "confluence_thunder_pillar_guard_material",
+          "cardSlot": "armour",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "ผู้พิทักษ์หลักเงาดารา",
+          "behaviour": "แบ่งปิดตราดาวพร้อมกัน ใช้การเคลื่อนที่และเปลี่ยนเป้าหมาย",
+          "material": "แก่นหลักดารา",
+          "card": "เปลี่ยนเป้าหมายแล้วโจมตีสำเร็จคืน SP 2 หน่วย · CD 8 วินาที",
+          "level": 100,
+          "rank": "elite",
+          "id": "confluence_starshadow_pillar_guard",
+          "cardId": "card_confluence_starshadow_pillar_guard",
+          "materialId": "confluence_starshadow_pillar_guard_material",
+          "cardSlot": "weapon",
+          "assetStatus": "generated-runtime-validated"
+        },
+        {
+          "name": "อสูรแกนโลกผู้คืนสมดุล",
+          "behaviour": "สามช่วงสนามตามหลักที่ปิด ผู้เล่นเลือกปิดภัยที่ถนัดก่อน มีช่วงเปิดแกนตอบโต้",
+          "material": "แก่นรอยต่อพิภพ",
+          "card": "ทำหน้าที่โจมตี สนับสนุน หรือป้องกันตามเงื่อนไข ได้บัฟเฉพาะบทบาทหนึ่งแบบ · CD 20 วินาที · ไม่สะสมข้ามบทบาท",
+          "level": 100,
+          "rank": "boss",
+          "id": "confluence_worldcore_sovereign",
+          "cardId": "card_confluence_worldcore_sovereign",
+          "materialId": "confluence_worldcore_sovereign_material",
+          "cardSlot": "accessory",
+          "assetStatus": "generated-runtime-validated"
+        }
+      ],
+      "unique": {
+        "id": "unique_confluence_relic",
+        "name": "มงกุฎรอยต่อพิภพ",
+        "level": 100,
+        "source": "confluence_worldcore_sovereign",
+        "effect": "เริ่มบทบาทโจมตี สนับสนุน หรือป้องกัน ได้ดาเมจ +8% ฮีลเพื่อนเพิ่ม 8% หรือรับดาเมจลด 8% เพียงแบบเดียว นาน 5 วินาที · CD 20 วินาที",
+        "tradeoff": "เปลี่ยนบทบาทได้เมื่อพ้นคูลดาวน์ บัฟไม่ซ้อนข้ามบทบาท",
+        "cooldown": "20 วินาที",
+        "slot": "accessory",
+        "status": "prototype"
+      },
+      "prototypeNote": "ภาพต้นฉบับครบ5ท่า มอน การ์ด วัสดุ Unique และภารกิจเชื่อมเกมแล้ว ตรวจเดินทาง แอนิเมชันและของบอสในเบราว์เซอร์จริง; EXP/Job EXP ใช้กฎส่วนต่างเลเวล · ฟื้นที่ค่ายในเรดและคงcheckpointในห้อง30นาทีหลังกลุ่มออก; เซิร์ฟเวอร์รีสตาร์ทเริ่มห้องใหม่"
+    }
+  ],
+  "links": [
+    {
+      "from": "city",
+      "to": "meadow",
+      "status": "playable"
+    },
+    {
+      "from": "city",
+      "to": "forest",
+      "status": "playable"
+    },
+    {
+      "from": "city",
+      "to": "ruins",
+      "status": "playable"
+    },
+    {
+      "from": "city",
+      "to": "canyon",
+      "status": "playable"
+    },
+    {
+      "from": "canyon",
+      "to": "grove",
+      "status": "playable"
+    },
+    {
+      "from": "grove",
+      "to": "summit",
+      "status": "playable"
+    },
+    {
+      "from": "summit",
+      "to": "temple",
+      "status": "playable"
+    },
+    {
+      "from": "forest",
+      "to": "himmapan",
+      "status": "playable"
+    },
+    {
+      "from": "temple",
+      "to": "desert",
+      "status": "playable"
+    },
+    {
+      "from": "summit",
+      "to": "frost",
+      "status": "playable"
+    },
+    {
+      "from": "ruins",
+      "to": "yokai",
+      "status": "playable"
+    },
+    {
+      "from": "himmapan",
+      "to": "dragon",
+      "status": "playable"
+    },
+    {
+      "from": "desert",
+      "to": "dragon",
+      "status": "playable"
+    },
+    {
+      "from": "desert",
+      "to": "volcano",
+      "status": "playable"
+    },
+    {
+      "from": "frost",
+      "to": "volcano",
+      "status": "playable"
+    },
+    {
+      "from": "frost",
+      "to": "fae",
+      "status": "playable"
+    },
+    {
+      "from": "volcano",
+      "to": "fae",
+      "status": "playable"
+    },
+    {
+      "from": "yokai",
+      "to": "ocean",
+      "status": "playable"
+    },
+    {
+      "from": "dragon",
+      "to": "ocean",
+      "status": "playable"
+    },
+    {
+      "from": "dragon",
+      "to": "astral",
+      "status": "playable"
+    },
+    {
+      "from": "ocean",
+      "to": "astral",
+      "status": "playable"
+    },
+    {
+      "from": "fae",
+      "to": "abyss",
+      "status": "playable"
+    },
+    {
+      "from": "ocean",
+      "to": "abyss",
+      "status": "playable"
+    },
+    {
+      "from": "astral",
+      "to": "confluence",
+      "status": "playable"
+    },
+    {
+      "from": "abyss",
+      "to": "confluence",
+      "status": "playable"
+    }
+  ],
+  "nextPriority": "confluence",
+  "runtimeLevelCap": 100,
+  "releasePolicy": "ผลิตและทดสอบทีละชุดในเครื่อง รวมปล่อยครั้งเดียวหลังตรวจครบ ไม่มี deploy ระหว่างทำแผน",
+  "campaignBands": [
+    {
+      "levels": [
+        1,
+        10
+      ],
+      "regions": [
+        "meadow",
+        "forest",
+        "ruins",
+        "canyon"
+      ],
+      "goal": "เรียนรู้การเดิน หลบ ตัดท่า สุ่มออฟและการ์ด",
+      "party": "solo / คู่",
+      "gearTier": "T1 · 1–10"
+    },
+    {
+      "levels": [
+        11,
+        20
+      ],
+      "regions": [
+        "forest",
+        "ruins",
+        "canyon"
+      ],
+      "goal": "เลือกสายอาวุธ จัดการมอนระยะไกลและฝูง",
+      "party": "solo / คู่",
+      "gearTier": "T2 · 11–20"
+    },
+    {
+      "levels": [
+        21,
+        30
+      ],
+      "regions": [
+        "ruins",
+        "canyon"
+      ],
+      "goal": "บิลด์แรกและบอสที่ต้องอ่านวงเตือน",
+      "party": "solo + บอสกลุ่ม",
+      "gearTier": "T3 · 21–30"
+    },
+    {
+      "levels": [
+        31,
+        39
+      ],
+      "regions": [
+        "grove",
+        "summit"
+      ],
+      "goal": "สลับชุดรับมือธาตุและบทบาทปาร์ตี้",
+      "party": "solo / กลุ่มเล็ก",
+      "gearTier": "T4 · 31–39"
+    },
+    {
+      "levels": [
+        40,
+        49
+      ],
+      "regions": [
+        "summit",
+        "temple"
+      ],
+      "goal": "คอมโบกรีก ต้านช้า และบอสเขาวงกต",
+      "party": "solo + บอสกลุ่ม",
+      "gearTier": "T5 · 40–49"
+    },
+    {
+      "levels": [
+        50,
+        59
+      ],
+      "regions": [
+        "himmapan",
+        "desert"
+      ],
+      "goal": "เลือกสายสนับสนุนธารา หรือโจมตีเจาะเกราะ",
+      "party": "solo / กลุ่มเล็ก",
+      "gearTier": "T6 · 50–59"
+    },
+    {
+      "levels": [
+        60,
+        69
+      ],
+      "regions": [
+        "frost",
+        "yokai"
+      ],
+      "goal": "เลือกยืนรับการโจมตี หรือเคลื่อนที่หลบตอบโต้",
+      "party": "solo / กลุ่มเล็ก",
+      "gearTier": "T7 · 60–69"
+    },
+    {
+      "levels": [
+        70,
+        79
+      ],
+      "regions": [
+        "dragon",
+        "volcano"
+      ],
+      "goal": "เลือกคอมโบเคลื่อนที่สายฟ้า หรือดาเมจไฟต่อเนื่อง",
+      "party": "solo + บอสกลุ่ม",
+      "gearTier": "T8 · 70–79"
+    },
+    {
+      "levels": [
+        80,
+        89
+      ],
+      "regions": [
+        "fae",
+        "ocean"
+      ],
+      "goal": "เลือกเวทสถานะ หรือควบคุมพื้นที่น้ำ",
+      "party": "solo + กลุ่มประสานงาน",
+      "gearTier": "T9 · 80–89"
+    },
+    {
+      "levels": [
+        90,
+        99
+      ],
+      "regions": [
+        "astral",
+        "abyss"
+      ],
+      "goal": "เลือกสลับธาตุ หรือผสมพิษและเลือดไหล ปิดบิลด์ Endgame",
+      "party": "solo + กลุ่มประสานงาน",
+      "gearTier": "T10 · 90–99"
+    },
+    {
+      "levels": [
+        100,
+        100
+      ],
+      "regions": [
+        "confluence"
+      ],
+      "goal": "เรดบทบาทและทางเลือกบิลด์ อุปกรณ์ Lv.100",
+      "party": "ปาร์ตี้เรด · ต้องตรวจขนาดกลุ่มที่ระบบรองรับ",
+      "gearTier": "T11 · 100"
+    }
+  ],
+  "implementationPhases": [
+    {
+      "id": "foundation",
+      "name": "รองรับ Lv.100 และยืนยันข้อมูลเดิม",
+      "regions": [],
+      "deliverables": [
+        "ขยายเพดานตัวละคร/มอนและตาราง EXP 99→100",
+        "migration CHECK ฐานข้อมูลและ round-trip save/load",
+        "สุ่มออฟรองรับ item level 1–100 แล้ว และมีฐาน T6/T7 ต้นแบบ; ตรวจ tier ที่เหลือ validation ของเดิม และสมดุลอุปกรณ์ก่อนปล่อย",
+        "ทดสอบเก็บเวลผ่าน 98→99→100 และแสดง MAX",
+        "ตรวจข้อจำกัดปาร์ตี้และสร้าง party instance / checkpoint สำหรับเรด Lv.100",
+        "ยืนยัน rules ส่วนต่างเลเวลและสิทธิ์ดรอปฝั่ง server ก่อนปรับเศรษฐกิจ"
+      ]
+    },
+    {
+      "id": "first",
+      "name": "หิมพานต์ก่อน แล้วอียิปต์",
+      "regions": [
+        "himmapan",
+        "desert"
+      ],
+      "deliverables": [
+        "Tiled + collision + minimap + เส้นทางเดินทาง",
+        "ภาพ/แอนิเมชันมอนและไอคอนพร้อม provenance",
+        "AI วงเตือน ดรอป การ์ด Unique และ playtest"
+      ]
+    },
+    {
+      "id": "second",
+      "name": "นอร์สและโยไค",
+      "regions": [
+        "frost",
+        "yokai"
+      ],
+      "deliverables": [
+        "ดินแดน Lv.60–69 และชุดอุปกรณ์ T7",
+        "ทดสอบสายตั้งรับและหลบเคลื่อนที่เทียบกัน"
+      ]
+    },
+    {
+      "id": "third",
+      "name": "นครมังกรและภูเขาไฟ",
+      "regions": [
+        "dragon",
+        "volcano"
+      ],
+      "deliverables": [
+        "ดินแดน Lv.70–79 และชุดอุปกรณ์ T8",
+        "ทดสอบสลับธาตุและดาเมจต่อเนื่อง ไม่ให้ proc ต่อโซ่"
+      ]
+    },
+    {
+      "id": "fourth",
+      "name": "ป่าสนธยาและหมู่เกาะ",
+      "regions": [
+        "fae",
+        "ocean"
+      ],
+      "deliverables": [
+        "ดินแดน Lv.80–89 และชุดอุปกรณ์ T9",
+        "ทดสอบวงพื้นที่ ภาพลวง และเส้นทางน้ำ"
+      ]
+    },
+    {
+      "id": "fifth",
+      "name": "ทะเลดาวและบรรพกาล",
+      "regions": [
+        "astral",
+        "abyss"
+      ],
+      "deliverables": [
+        "ดินแดน Lv.90–99 และชุดอุปกรณ์ T10",
+        "ทดสอบสถานะผสม ค่าสะสม และโหลด combat"
+      ]
+    },
+    {
+      "id": "endgame",
+      "name": "รอยต่อพิภพ Lv.100",
+      "regions": [
+        "confluence"
+      ],
+      "deliverables": [
+        "โถงเตรียมตัว checkpoint ผู้พิทักษ์และเรด",
+        "สิทธิ์รางวัลปาร์ตี้และ idempotent pickup หลังบอสตาย",
+        "ทดสอบ wipe กลับเข้า instance และรีเซ็ตโดยไม่เพิ่มรางวัลซ้ำ"
+      ]
+    },
+    {
+      "id": "release",
+      "name": "รวมตรวจและปล่อยครั้งเดียว",
+      "regions": [],
+      "deliverables": [
+        "ตรวจใบอนุญาต/ที่มาภาพและ QA ทุกมอนทุกท่า",
+        "balance แผนที่ การ์ด Unique และเศรษฐกิจรวม",
+        "ทดสอบ migration กับ PostgreSQL + tests + build + browser playtest",
+        "รวมชุด release แล้ว deploy ตามการอนุมัติที่มีในขณะนั้น"
+      ]
+    }
+  ],
+  "runtimeItemRollCap": 100
+}

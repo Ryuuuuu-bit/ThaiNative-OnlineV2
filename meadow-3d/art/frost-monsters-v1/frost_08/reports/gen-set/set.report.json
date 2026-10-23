@@ -1,0 +1,26 @@
+{
+  "kind": "sprite-gen-gen-set-report",
+  "run_dir": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\run",
+  "states": [
+    "down45_death"
+  ],
+  "ok": 1,
+  "failed": [],
+  "not_started": [],
+  "items": [
+    {
+      "state": "down45_death",
+      "out": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\run\\raw\\down45\\death.png",
+      "report": "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\run\\reports\\gen-set\\down45_death.json",
+      "refs": [
+        "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\run\\references\\anchors\\down45-anchor-x8.png",
+        "D:\\Project\\The-Beginning-Online\\output\\frost-monsters-20261022\\frost_08\\run\\references\\layout-guides\\down45\\death.png"
+      ],
+      "provider": "codex",
+      "provider_resolved_from": "explicit",
+      "auth_source": "codex-login",
+      "elapsed_seconds": 51.7,
+      "ok": true
+    }
+  ]
+}

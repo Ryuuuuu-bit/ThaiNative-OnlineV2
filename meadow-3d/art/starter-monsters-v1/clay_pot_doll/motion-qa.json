@@ -1,0 +1,12 @@
+{
+  "accepted": true,
+  "reviewMethod": "All ten four-pose contact strips visually inspected; transparent extraction inspection passed. Corrected pot attack direction reviewed again. In-game playback verification pending.",
+  "frontFacing": "left",
+  "backFacing": "right",
+  "regeneratedRows": [
+    "down45_attack"
+  ],
+  "limitations": [
+    "Four native poses per motion, bounding cycle rather than walking strides."
+  ]
+}

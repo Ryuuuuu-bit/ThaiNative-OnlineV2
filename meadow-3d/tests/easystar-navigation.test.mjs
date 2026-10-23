@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createPathfinder,gridPath} from '../src/hud-path.ts';
 import {createGame,loadGameData,moveTo,step} from '@the-beginning-online/shared';
-import {LAYOUTS,MAP_ENTRY,cityWalkable,meadowWalkable,forestWalkable,ruinsWalkable,canyonWalkable} from '@the-beginning-online/shared/maps';
-const walkers={city_plaza:cityWalkable,meadow:meadowWalkable,forest:forestWalkable,ruins:ruinsWalkable,canyon:canyonWalkable};
+import {LAYOUTS,MAP_ENTRY,cityWalkable,meadowWalkable,forestWalkable,ruinsWalkable,canyonWalkable,groveWalkable,summitWalkable,templeWalkable,himmapanWalkable} from '@the-beginning-online/shared/maps';
+import {walkable} from '@the-beginning-online/shared/collision';
+const walkers=Object.fromEntries(Object.keys(LAYOUTS).map(id=>[id,(x,z,r)=>walkable(x,z,r,id)]));
 
 function validate(start,path,walk){
  let previous=start;

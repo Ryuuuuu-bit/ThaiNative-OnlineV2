@@ -1,0 +1,67 @@
+{
+  "method": "Original authored SVG geometry and normalized original generated creature images; no external assets",
+  "sources": [
+    {
+      "id": "card_confluence_life_pillar_guard",
+      "base": "output/confluence-monsters-20261022/confluence_life_pillar_guard/base.png",
+      "baseSha256": "f4c58bfa9e679e45a6e31c21ae7ee4d6078c04c7194cffd7148b4f3fcd26828f",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_confluence_thunder_pillar_guard",
+      "base": "output/confluence-monsters-20261022/confluence_thunder_pillar_guard/base.png",
+      "baseSha256": "594a986d1893663aac9a5512be252a46168c00203aa2e7b9d186ea9c0f6fccfa",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_confluence_starshadow_pillar_guard",
+      "base": "output/confluence-monsters-20261022/confluence_starshadow_pillar_guard/base.png",
+      "baseSha256": "05d6c7505818ec811a4a8ed3763fbb5ec7714d051a72415f853ebab8ca234c0d",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    },
+    {
+      "id": "card_confluence_worldcore_sovereign",
+      "base": "output/confluence-monsters-20261022/confluence_worldcore_sovereign/base.png",
+      "baseSha256": "d77b6c0cdef5e8e640156dde3fc05f7da1f0d204ac7ac15233d02e275bf6b347",
+      "method": "Deterministic alpha crop and size normalization of approved original generated base, in an authored SVG card frame."
+    }
+  ],
+  "files": [
+    {
+      "file": "card_confluence_life_pillar_guard.svg",
+      "sha256": "72a5d6deccd8f4c3d9436459cc3a878ba81c84be94c364874d7081e749e5d513"
+    },
+    {
+      "file": "confluence_life_pillar_guard_material.svg",
+      "sha256": "2b7bd10d8f5f779490932236a2d464d715e4b80814fa934a11c0ebe58faf2262"
+    },
+    {
+      "file": "card_confluence_thunder_pillar_guard.svg",
+      "sha256": "da513187167fc3511b755b10a97a73ea27351c79823f9c130aeb3fbd878f0a94"
+    },
+    {
+      "file": "confluence_thunder_pillar_guard_material.svg",
+      "sha256": "86cf6e7cd2eb36daaed2c6b94cbd0e42b5a7ef009b587930baf11c5bc2396af1"
+    },
+    {
+      "file": "card_confluence_starshadow_pillar_guard.svg",
+      "sha256": "293062b73bc27635acbbf13bfb02e5ec87a72d21dc845d1cbbb0cfd760d32acc"
+    },
+    {
+      "file": "confluence_starshadow_pillar_guard_material.svg",
+      "sha256": "a497dea6129325dbace15a4b13ae27b774d6036471a4a16d5c93b2f04ef4e866"
+    },
+    {
+      "file": "card_confluence_worldcore_sovereign.svg",
+      "sha256": "3a93f3e618d231196286629fb29be011460be3efd37edc12927ab919ba2e4485"
+    },
+    {
+      "file": "confluence_worldcore_sovereign_material.svg",
+      "sha256": "bb4e43f4ed345b63d608b911a56a1c868c71fc800cffbd3dc101b2f6461d1cf0"
+    },
+    {
+      "file": "unique_confluence_relic.svg",
+      "sha256": "d1c7fa96073fa03f514b5008eb065170c970526d9e9c030f7d4d6467b49fd262"
+    }
+  ]
+}

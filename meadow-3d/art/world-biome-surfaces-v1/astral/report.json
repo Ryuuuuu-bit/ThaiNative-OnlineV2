@@ -1,0 +1,22 @@
+{
+  "kind": "sprite-gen-image-report",
+  "provider": "codex",
+  "prompt": "Create a production game ground texture tile for an original hand-painted isometric fantasy MMORPG. ancient muted slate-violet stone dust, subtle mineral speckles and sparse fine silvery glints, grounded quiet texture not a starfield. Absolutely flat orthographic TOP DOWN texture, seamless-looking edge continuity, even diffuse light, low frequency painterly watercolor-gouache detail, restrained natural value variation, no shadows, no horizon, no perspective, no text, no symbols, no objects, no vignette, no border. Fill entire SQUARE image edge to edge with OPAQUE ground. This is a repeating material surface, not an illustration. No external image or artist references.",
+  "out": "D:\\Project\\The-Beginning-Online\\output\\world-biome-surfaces-20261022\\astral\\base.png",
+  "raw": "D:\\Project\\The-Beginning-Online\\output\\world-biome-surfaces-20261022\\astral\\base.png.raw.png",
+  "raw_bytes": 3575537,
+  "elapsed_seconds": 36.391,
+  "model": null,
+  "session_id": "01a1601b-5257-7120-96f8-da25bc8e705c",
+  "refs": [],
+  "transparent": false,
+  "alpha": null,
+  "chroma": null,
+  "extra": {
+    "auth_source": "codex-login",
+    "inline_results": 1,
+    "rollout_cleaned": true,
+    "transparent_background_reported": false
+  },
+  "provider_resolved_from": "explicit"
+}

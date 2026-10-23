@@ -28,11 +28,11 @@ test('Angel billboard clears the tower and both steps at desktop and mobile defa
  }
 });
 
-test('all fifteen building envelopes preserve the authoritative footprint, including roofs and porches',()=>{
+test('all building envelopes preserve the authoritative footprint, including roofs and porches',()=>{
  const previous=globalThis.document;
  globalThis.document={createElement:()=>({getContext:()=>({createRadialGradient:()=>({addColorStop(){}}),fillRect(){}})})};
  let city;try{city=buildCity(new T.Scene(),{load:()=>new T.Texture()});}finally{globalThis.document=previous;}
- assert.equal(city.buildingBounds.length,15);
+ assert.equal(city.buildingBounds.length,CITY_BUILDINGS.length+CITY_HOUSES.length);
  for(const [i,b]of [...CITY_BUILDINGS,...CITY_HOUSES].entries()){
   const visual=city.buildingBounds.find(v=>v.name===(i<3?b.id:'house-'+(i-3)));assert.ok(visual);
   const expected=[b.x-b.w/2,b.z-b.d/2,b.x+b.w/2,b.z+b.d/2];
