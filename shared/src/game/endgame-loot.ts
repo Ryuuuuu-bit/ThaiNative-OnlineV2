@@ -155,14 +155,15 @@ export function endgameSkillCost(p:Player,base:number,skillId?:string){
 export function endgameSkillSpent(g:Game,p:Player,skill:Skill){
  const s=state(p);if(skill.sp>0){spend(p,'puca_discount');spend(p,'stag_discount');}
 
- const kind=skill.percent>0?(skill.kind==='area'?'area':'single'):'support';
+ const kind=skill.type==='heal'||skill.kind==='utility'||!skill.percent?'support':skill.kind==='area'?'area':'single';
  if(s.lastSkill!==skill.id){s.skillTypes.push(kind);s.skillTypes=s.skillTypes.slice(-3);}
  if(unique(p,'fae')&&new Set(s.skillTypes).size===3&&trigger(p,'fae_cd',12)){restore(p,p.maxMp*.04);s.skillTypes=[];}
  if(card(p,'astral_solarshadow_lion')&&s.lastSkill&&s.lastSkill!==skill.id&&trigger(p,'sunlion_cd',10))charge(p,'sunlion',5);
  s.lastSkill=skill.id;
- if(!skill.percent&&['guard','endure','heal','taunt'].includes(skill.effect??'')){
+ if(kind==='support'){
   if(unique(p,'dragon'))charge(p,'qilin_chain',5);
-  if(card(p,'astral_twelve_star_knight')){if(!s.supportTypes.includes(skill.effect!))s.supportTypes.push(skill.effect!);if(s.supportTypes.length>=2&&trigger(p,'knight_cd',15)){charge(p,'all_resist',4);s.supportTypes=[];}}
+  const supportType=skill.effect??skill.id;
+  if(card(p,'astral_twelve_star_knight')){if(!s.supportTypes.includes(supportType))s.supportTypes.push(supportType);if(s.supportTypes.length>=2&&trigger(p,'knight_cd',15)){charge(p,'all_resist',4);s.supportTypes=[];}}
   role(g,p,'support');
  }
 }

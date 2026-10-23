@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {loadGameData} from '@the-beginning-online/shared';
 import {PAINTED_ITEM_ART} from '../src/item-art-data.ts';
+import {CLASS_ITEM_ART} from '../src/class-item-art-data.ts';
 import {itemIconCell} from '../src/item-icon.ts';
 const root=new URL('../../',import.meta.url),read=p=>readFileSync(new URL(p,root)),json=p=>JSON.parse(read(p)),hash=p=>createHash('sha256').update(read(p)).digest('hex');
 const manifest=json('meadow-3d/public/assets/item-art-v2/manifest.json'),data=loadGameData();
@@ -12,7 +13,12 @@ test('every field base, Unique and card has a matching verified original icon',(
  const expected=data.items.items.filter(i=>/^(?:field_|unique_|card_)/.test(i.id));
  assert.equal(manifest.files.length,191);assert.equal(Object.keys(PAINTED_ITEM_ART).length,191);
  assert.equal(new Set(manifest.files.map(f=>f.id)).size,191);
- for(const item of expected){const entry=manifest.files.find(f=>f.id===item.id);assert.ok(entry,item.id);assert.equal(itemIconCell(item.id).image,'/assets/item-art-v2/'+entry.file);}
+ for(const item of expected){
+  const entry=manifest.files.find(f=>f.id===item.id);
+  if(entry)assert.equal(itemIconCell(item.id).image,'/assets/item-art-v2/'+entry.file);
+  else if(CLASS_ITEM_ART[item.id])assert.equal(itemIconCell(item.id).image,'/assets/class-items-v1/'+CLASS_ITEM_ART[item.id]);
+  else {const source=data.items.items.find(i=>i.id===item.icon);assert.ok(source&&source.id!==item.id,item.id);assert.deepEqual(itemIconCell(item.id),itemIconCell(source.id),item.id);}
+ }
  assert.equal(manifest.files.filter(f=>f.kind==='material').length,11);
  for(const entry of manifest.files){
   assert.ok(data.items.items.some(i=>i.id===entry.id),entry.id);

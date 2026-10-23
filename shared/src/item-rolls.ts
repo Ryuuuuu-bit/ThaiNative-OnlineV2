@@ -10,7 +10,7 @@ export const ItemRollSchema = z.object({
 }).strict();
 export type ItemRoll = z.infer<typeof ItemRollSchema>;
 export interface LootItem { template: string; qty: number; roll?: ItemRoll }
-type Affix = {id:string; name:string; side:'prefix'|'suffix'; types:string[]; stat:'atk'|'matk'|'maxHp'|'maxSp'|'hardDef'|'hit'|'flee'|'crit'|'moveSpeed'|'aspd'; min:number; max:number; perLevel:number; percent?:boolean};
+type Affix = {id:string; name:string; side:'prefix'|'suffix'; types:string[]; stat:'atk'|'matk'|'maxHp'|'maxSp'|'hardDef'|'hardMdef'|'hit'|'flee'|'crit'|'moveSpeed'|'aspd'|'castMul'|'spRegen'|'hpRegen'; min:number; max:number; perLevel:number; percent?:boolean; reduction?:boolean};
 const all=['weapon','armour','shield','garment','footgear','accessory'];
 export const STARTER_AFFIXES: readonly Affix[] = [
  {id:'force',name:'พลังโจมตี',side:'prefix',types:['weapon'],stat:'atk',min:2,max:5,perLevel:.5},
@@ -23,9 +23,22 @@ export const STARTER_AFFIXES: readonly Affix[] = [
  {id:'keen',name:'คริติคอล (%)',side:'suffix',types:all,stat:'crit',min:1,max:2,perLevel:.1},
  {id:'quick',name:'ความเร็วโจมตี (%)',side:'suffix',types:['weapon','accessory'],stat:'aspd',min:1,max:2,perLevel:.1,percent:true},
  {id:'stride',name:'ความเร็วเดิน (%)',side:'suffix',types:['footgear'],stat:'moveSpeed',min:2,max:4,perLevel:.2,percent:true},
+ {id:'might',name:'พลังโจมตี',side:'prefix',types:['armour','garment','footgear','accessory'],stat:'atk',min:1,max:3,perLevel:.15},
+ {id:'wisdom',name:'พลังเวท',side:'prefix',types:['armour','shield','garment','footgear','accessory'],stat:'matk',min:1,max:3,perLevel:.15},
+ {id:'ward',name:'เกราะเวท',side:'prefix',types:all,stat:'hardMdef',min:1,max:3,perLevel:.2},
+ {id:'meditation',name:'ฟื้น SP (%)',side:'suffix',types:all,stat:'spRegen',min:3,max:6,perLevel:.1,percent:true},
+ {id:'renewal',name:'ฟื้น HP (%)',side:'suffix',types:['armour','shield','garment','footgear','accessory'],stat:'hpRegen',min:3,max:6,perLevel:.1,percent:true},
+ {id:'focus',name:'เวลาร่าย (%)',side:'suffix',types:all,stat:'castMul',min:1,max:2,perLevel:.04,percent:true,reduction:true},
 ];
 export const STARTER_UNIQUES = {
  ...ENDGAME_UNIQUES,
+ unique_blade_oath:{name:'ดาบสัตย์พิทักษ์',level:30,rolls:[{id:'force',name:'พลังโจมตี',min:8,max:12,stat:'atk'},{id:'life',name:'HP สูงสุด',min:60,max:90,stat:'maxHp'}],lines:['Swordsman · ดาบมือเดียวสำหรับสายป้องกัน ใช้ร่วมกับโล่ได้','Unique ไม่มีช่องการ์ด']},
+ unique_hunters_eye:{name:'ธนูเนตรเหยี่ยว',level:30,rolls:[{id:'accuracy',name:'ความแม่นยำ',min:10,max:16,stat:'hit'},{id:'force',name:'พลังโจมตี',min:8,max:12,stat:'atk'}],lines:['Archer · ธนูสำหรับหมายหัว ยิงประณีต และกับดัก','Unique ไม่มีช่องการ์ด']},
+ unique_ember_robe:{name:'อาภรณ์อัคคีสงบ',level:30,rolls:[{id:'arcane',name:'พลังเวท',min:10,max:16,stat:'matk'},{id:'spirit',name:'SP สูงสุด',min:20,max:35,stat:'maxSp'}],lines:['Mage · เกราะเวทสำหรับร่ายธาตุ ลดเวลาร่าย แลกกับเกราะกายภาพที่ต่ำ','Unique ไม่มีช่องการ์ด']},
+ unique_lotus_vow:{name:'จี้สัตย์บัวขาว',level:30,rolls:[{id:'arcane',name:'พลังเวท',min:10,max:16,stat:'matk'},{id:'spirit',name:'SP สูงสุด',min:25,max:40,stat:'maxSp'}],lines:['Healer · MATK เสริมพลังรักษาและน้ำยากัดกร่อน ฟื้น SP สำหรับสกิลต่อเนื่อง','Unique ไม่มีช่องการ์ด']},
+ unique_spirit_bond:{name:'ผ้าคลุมพันธะวิญญาณ',level:30,rolls:[{id:'arcane',name:'พลังเวท',min:10,max:16,stat:'matk'},{id:'life',name:'HP สูงสุด',min:60,max:90,stat:'maxHp'}],lines:['Summoner · MATK และ Max HP เสริมพลังโจมตีและชีวิตผู้พิทักษ์ตามสูตรอัญเชิญ','Unique ไม่มีช่องการ์ด']},
+ unique_shadow_fang:{name:'กริชเขี้ยวเงา',level:30,rolls:[{id:'force',name:'พลังโจมตี',min:8,max:12,stat:'atk'},{id:'evasion',name:'หลบหลีก',min:8,max:12,stat:'flee'}],lines:['Assassin · กริชสำหรับโจมตีด้านหลังและเคลือบพิษ','Unique ไม่มีช่องการ์ด']},
+ unique_flowing_fist:{name:'ผ้าพันหมัดธารปราณ',level:30,rolls:[{id:'force',name:'พลังโจมตี',min:8,max:12,stat:'atk'},{id:'spirit',name:'SP สูงสุด',min:20,max:35,stat:'maxSp'}],lines:['Boxer · อาวุธชนิดมือเปล่า ใช้คอมโบหมัด ปัดป้อง และสวนลมปราณได้','Unique ไม่มีช่องการ์ด']},
  unique_yokai_relic:{name:'หน้ากากจันทร์ซ้อน',level:69,rolls:[{id:'evasion',name:'หลบหลีก',min:12,max:18,stat:'flee'},{id:'spirit',name:'SP สูงสุด',min:25,max:40,stat:'maxSp'}],lines:['หลบวงเตือนที่ล็อกเป้าคุณสำเร็จ สร้างเงารับการตีปกติประชิดที่โดน 1 ครั้ง ภายใน 5 วินาที · คูลดาวน์ 15 วินาที','เงาไม่รับท่าพิเศษ กระสุน หรือ DOT · ตีปกติของผู้สวมลด 5% รวมถึงระหว่างเงายังอยู่หลังถอด Unique','Unique ไม่มีช่องการ์ด']},
  unique_frost_relic:{name:'หัวใจฟยอร์ด',level:69,rolls:[{id:'life',name:'HP สูงสุด',min:180,max:240,stat:'maxHp'},{id:'guard',name:'เกราะ',min:8,max:12,stat:'hardDef'}],lines:['รับการโจมตีตรงขณะ Guard ครบ 3 ครั้ง ได้เกราะ 4% Max HP นาน 4 วินาที · คูลดาวน์ 12 วินาที','เคลื่อนที่ช้าลง 4% ระหว่างที่เกราะนี้ยังคงอยู่ แม้ถอด Unique ออก','Unique ไม่มีช่องการ์ด']},
  unique_desert_relic:{name:'ตราสุริยคราส',level:59,rolls:[{id:'spirit',name:'SP สูงสุด',min:35,max:55,stat:'maxSp'},{id:'accuracy',name:'ความแม่นยำ',min:10,max:16,stat:'hit'}],lines:['โจมตีตรงสลับกายภาพ–เวท–กายภาพ หรือ เวท–กายภาพ–เวท สำเร็จภายใน 5 วินาที ตีปกติถัดไปภายใน 5 วินาทีเจาะเกราะกายภาพ 10% · คูลดาวน์ 10 วินาที','ตีชนิดเดิมซ้ำเริ่มลำดับใหม่ · พิษ เลือดไหล และสะท้อนไม่นับและไม่ได้โบนัส','Unique ไม่มีช่องการ์ด']},
@@ -105,8 +118,10 @@ export function rollEquipment(template:string, level:number, data:GameData, rng:
  const q=quality??(rng()<.7?'magic':'rare'), limit=q==='magic'?1:3;
  const count=q==='magic'?pick(1,2):pick(3,itemLevel<6?4:6);
  const affixes:ItemRoll['affixes']=[],sides={prefix:0,suffix:0};
+ // Filter new weapon rolls only; legacy off-build rolls still validate unchanged.
+ const excludedDamageAffix=t.type==='weapon'?((t.matk??0)>(t.atk??0)?'force':'arcane'):undefined;
  for(let i=0;i<count;i++){
-  const pool=STARTER_AFFIXES.filter(a=>a.types.includes(t.type)&&sides[a.side]<limit&&!affixes.some(v=>v.id===a.id));
+  const pool=STARTER_AFFIXES.filter(a=>a.types.includes(t.type)&&a.id!==excludedDamageAffix&&sides[a.side]<limit&&!affixes.some(v=>v.id===a.id));
   const a=pool[pick(0,pool.length-1)],range=affixRange(a,itemLevel);sides[a.side]++;
   affixes.push({id:a.id,value:pick(range.min,range.max)});
  }
@@ -132,12 +147,12 @@ export function rolledModifiers(item:Pick<OwnedItem,'template'|'roll'>):Modifier
  return item.roll.affixes.flatMap(a=>{
   if(unique){const def=unique.rolls.find(d=>d.id===a.id);return def&&'stat' in def?[{kind:'flat' as const,stat:def.stat,value:a.value}]:[];}
   // Stored integers are unchanged: crit adds percentage points; attack speed is relative percent.
-  const def=STARTER_AFFIXES.find(d=>d.id===a.id);return def?[{kind:def.percent?'percent' as const:'flat' as const,stat:def.stat,value:def.percent||def.stat==='crit'?a.value/100:a.value}]:[];
+  const def=STARTER_AFFIXES.find(d=>d.id===a.id);return def?[{kind:def.percent?'percent' as const:'flat' as const,stat:def.stat,value:(def.percent||def.stat==='crit'?a.value/100:a.value)*(def.reduction?-1:1)}]:[];
  });
 }
 export function itemRollLines(item:Pick<OwnedItem,'template'|'roll'>):string[]{
  const unique=starterUnique(item.template),r=item.roll;
- return [...(r?[`${r.quality==='unique'?'Unique':r.quality==='rare'?'Rare':'Magic'} · ระดับไอเทม ${r.itemLevel}`,...r.affixes.map(a=>{const def=unique?.rolls.find(d=>d.id===a.id)??STARTER_AFFIXES.find(d=>d.id===a.id);if(!def)return '';const range=unique?def:affixRange(def as Affix,r.itemLevel);return `${'side' in def?(def.side==='prefix'?'Prefix':'Suffix')+' · ':''}${def.name} +${a.value} [${range.min}–${range.max}]`;})]:[]),...(unique?.lines??[])];
+ return [...(r?[`${r.quality==='unique'?'Unique':r.quality==='rare'?'Rare':'Magic'} · ระดับไอเทม ${r.itemLevel}`,...r.affixes.map(a=>{const def=unique?.rolls.find(d=>d.id===a.id)??STARTER_AFFIXES.find(d=>d.id===a.id);if(!def)return '';const range=unique?def:affixRange(def as Affix,r.itemLevel);return `${'side' in def?(def.side==='prefix'?'Prefix':'Suffix')+' · ':''}${def.name} ${'reduction' in def&&def.reduction?'-':'+'}${a.value} [${range.min}–${range.max}]`;})]:[]),...(unique?.lines??[])];
 }
 export function ownedRarity(item:Pick<OwnedItem,'roll'>|undefined,fallback:'common'|'fine'|'rare'|'epic'|'legendary'){return item?.roll?(item.roll.quality==='unique'?'legendary':item.roll.quality==='rare'?'rare':'fine'):fallback;}
 

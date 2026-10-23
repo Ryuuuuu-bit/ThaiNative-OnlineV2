@@ -1,0 +1,4588 @@
+{
+  "version": 1,
+  "provider": "image_gen",
+  "method": "One original generation per item; alpha crop, contain, and center with 8px safe margin.",
+  "styleReference": {
+    "source": "meadow-3d/art/class-items-v1/style-reference.jpg",
+    "sha256": "a70ce44b6f6134ba437c08e5cdc916b08b91b7246437d9cc2e185d6133a96905"
+  },
+  "externalReferences": [],
+  "files": [
+    {
+      "id": "field_greatsword",
+      "nameTh": "ดาบใหญ่ฝึกหัด",
+      "file": "field_greatsword.png",
+      "kind": "gear",
+      "sha256": "194b29154c87068ba8e8c8b1222492eb1dbeddb9d8c3217f6e3528ae91b52806",
+      "bytes": 25315,
+      "source": "meadow-3d/art/class-items-v1/sources/field_greatsword.png",
+      "sourceSha256": "22f66a0aa29c4f71c769d27a8805da29d04f76ac40a59a7abfb4caf13c42a3c2",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_greatsword.receipt.json",
+      "receiptSha256": "c69f2a0968428148b42e1498a752e3166292263c6caa648f6ca8e061f291f7f1",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "field_dagger",
+      "nameTh": "กริชฝึกหัด",
+      "file": "field_dagger.png",
+      "kind": "gear",
+      "sha256": "ad8e469c37c544a05b72be7ea1542773c87c94234024214ae125882548001a28",
+      "bytes": 27682,
+      "source": "meadow-3d/art/class-items-v1/sources/field_dagger.png",
+      "sourceSha256": "dc1421da58dab1cba2b9715cf77dc9183d37bbd0dac9e782703afbaef3c859b1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_dagger.receipt.json",
+      "receiptSha256": "5e53a7ccd3a9b6dceca58af51955dabe9e82488bbfb1860101d1ec98f08a747a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_knuckles",
+      "nameTh": "ผ้าพันหมัดฝึกหัด",
+      "file": "field_knuckles.png",
+      "kind": "gear",
+      "sha256": "d47aca49149093309908d52838f9cc95fb82e4224146a5cf8dd74ea95c47f660",
+      "bytes": 62534,
+      "source": "meadow-3d/art/class-items-v1/sources/field_knuckles.png",
+      "sourceSha256": "149480441fa69cbf389c5ead5ca6c2b66f6f2ae5dfe163278219c68534e4262b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_knuckles.receipt.json",
+      "receiptSha256": "669ca2021980f1853ba1cc2972855a1e50fa1c70c915efb93a8d5a2ac461ac22",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        13,
+        184,
+        179
+      ]
+    },
+    {
+      "id": "field_robe",
+      "nameTh": "อาภรณ์อาคมฝึกหัด",
+      "file": "field_robe.png",
+      "kind": "gear",
+      "sha256": "c98c4662d799008a47701c4de9e99bd5ef80777e325b1abc42aeda100665400c",
+      "bytes": 61571,
+      "source": "meadow-3d/art/class-items-v1/sources/field_robe.png",
+      "sourceSha256": "ad975b3864d57ffc1abdf4cc4bcffb6eb98e9b4f411dfcc2169c62eb974628d9",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_robe.receipt.json",
+      "receiptSha256": "65fc5d929d77982521ac84e93c043622809a9d8f8caea78839d29f7330c938e2",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_focus_shield",
+      "nameTh": "โล่อาคมฝึกหัด",
+      "file": "field_focus_shield.png",
+      "kind": "gear",
+      "sha256": "0fd9bbdee1b5eb4ef1fc17a5ba7f239702e98c6ea7714fd8ee5d61b38142832a",
+      "bytes": 48234,
+      "source": "meadow-3d/art/class-items-v1/sources/field_focus_shield.png",
+      "sourceSha256": "01ee436bac90b546137b834a12ff81d5927d1f172f21b1a93fdaa71065d00d60",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_focus_shield.receipt.json",
+      "receiptSha256": "46a0bb8e999b87c93c9517d9ec428a0524edc7c0ba4e371ef0e0b817ad3bbe3d",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        32,
+        8,
+        160,
+        184
+      ]
+    },
+    {
+      "id": "field_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียกฝึกหัด",
+      "file": "field_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "eff760274d60fd45492926fa6584e6f94464b9fcf980e47b052e8f5da426f24f",
+      "bytes": 49096,
+      "source": "meadow-3d/art/class-items-v1/sources/field_spirit_cloak.png",
+      "sourceSha256": "31e10df1c8324d2c789e644462b8e65ffe44e75ccaa1369856fc123134baf950",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_spirit_cloak.receipt.json",
+      "receiptSha256": "2173f9f403391252ef22e67c295ebad773d67016a173aab0ba1de20654dd96dc",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "field_swift_boots",
+      "nameTh": "รองเท้าลอบล่าฝึกหัด",
+      "file": "field_swift_boots.png",
+      "kind": "gear",
+      "sha256": "b16f85fe34592e5711c1c0532948659d40d3f0e4b89525d6748e479f6ebb8e7f",
+      "bytes": 54869,
+      "source": "meadow-3d/art/class-items-v1/sources/field_swift_boots.png",
+      "sourceSha256": "01c9ebfce2d127cee576648fcc1345bef8219edb008a8dbf3e26dbbe8aca2a3a",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_swift_boots.receipt.json",
+      "receiptSha256": "687698ee79cd10b746ef9f46ea9bf804436e18e39d2cd8b167981ca9f3ae608f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "field_arcane_ring",
+      "nameTh": "แหวนอาคมฝึกหัด",
+      "file": "field_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "d04f76d706362491df1f9abf59cf91a378c5f96785ebcf31e36fdf2c980e319c",
+      "bytes": 59676,
+      "source": "meadow-3d/art/class-items-v1/sources/field_arcane_ring.png",
+      "sourceSha256": "3bef53c35a1aefcb5e340f11dbd41bd0f6798a51ca0c8ee36da55024d720946d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_arcane_ring.receipt.json",
+      "receiptSha256": "23aff15dd722ff91df29d5154da0b074ce4a89a723d02e71363884981339fa59",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_amulet",
+      "nameTh": "จี้ฟื้นจิตฝึกหัด",
+      "file": "field_amulet.png",
+      "kind": "gear",
+      "sha256": "bfb5e1afcf9a410cc179c8fce8e9b767554f4982664c65aa66485dd556206302",
+      "bytes": 34789,
+      "source": "meadow-3d/art/class-items-v1/sources/field_amulet.png",
+      "sourceSha256": "a421500657990cd5ec6dad590097d4ea86c92fa45b11e5317581637bd764d2b9",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_amulet.receipt.json",
+      "receiptSha256": "0770f1c40fa2b4fbdd50f9a922cd25071b495adc9a8bbc42ab46c43f5631dada",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        33,
+        8,
+        158,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_sword",
+      "nameTh": "ดาบเหล็กกล้า",
+      "file": "field_iron_sword.png",
+      "kind": "gear",
+      "sha256": "b60463ba0179fba7603b255a10da472c7287434a59d819b1723b1992e3d4f230",
+      "bytes": 26311,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_sword.png",
+      "sourceSha256": "40f71796c06841fdca5850ede4403ad3c91b8485fa749333f23aac5aa79edeb0",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_sword.receipt.json",
+      "receiptSha256": "6518dea547af0e38bcc7f3e416e7b2fb27e63863e925e1ea5173e9aca510cc44",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_iron_staff",
+      "nameTh": "คทาเหล็กกล้า",
+      "file": "field_iron_staff.png",
+      "kind": "gear",
+      "sha256": "939a3cb434da23bff59119035dddbaeb14e76b4f3d2ffdb16fff58111af1571e",
+      "bytes": 23228,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_staff.png",
+      "sourceSha256": "fa8fa7c185f7ab8e7a4ebc0806ee108c84b59b005d18f4092d608d13483199b4",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_staff.receipt.json",
+      "receiptSha256": "f31c647d31996cfaf44796bc1880893a41e8b394e7fb98fdf9872ffc6ff30ebe",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_bow",
+      "nameTh": "ธนูเหล็กกล้า",
+      "file": "field_iron_bow.png",
+      "kind": "gear",
+      "sha256": "b477fdaf57922a686f1bdc4bf750018f265f7b4d5e74ade884f1f99df887e6d1",
+      "bytes": 24635,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_bow.png",
+      "sourceSha256": "6e0959529de9e44bbf0e95837420125fd7767451ac1d3ed50ec2f93870708510",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_bow.receipt.json",
+      "receiptSha256": "48a30cd445c093aa6651da44916c4d19f242e64360ee4024c2f5ebdfaf575076",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_iron_armour",
+      "nameTh": "เกราะเหล็กกล้า",
+      "file": "field_iron_armour.png",
+      "kind": "gear",
+      "sha256": "32df156810c54e026f14c1c45460408b409384ab6bdd12bb7048a229893c2e29",
+      "bytes": 64247,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_armour.png",
+      "sourceSha256": "2a7067179302b7db68a30281b2693be96d762b34809064353473fdb81422a22e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_armour.receipt.json",
+      "receiptSha256": "93f2cbeb1edd33a843253fca150b7ecbb2bba33fffbb52789a6549d8490ec3a8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        182
+      ]
+    },
+    {
+      "id": "field_iron_shield",
+      "nameTh": "โล่เหล็กกล้า",
+      "file": "field_iron_shield.png",
+      "kind": "gear",
+      "sha256": "a69b814d2ddee9ae98f09da294025438fc9ee4b8288b6db77578cf702ab2f277",
+      "bytes": 45875,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_shield.png",
+      "sourceSha256": "9d1dd28f58985feb6949c83bc02dd9f8570b5f5c09396c035e41347988e03fe3",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_shield.receipt.json",
+      "receiptSha256": "a79aac24c05fe91c1e34dc3b57f9c4041709ad9c9e3884e05ee2b44a91ef714c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        33,
+        8,
+        159,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_cloak",
+      "nameTh": "ผ้าคลุมเหล็กกล้า",
+      "file": "field_iron_cloak.png",
+      "kind": "gear",
+      "sha256": "76495ab83c059a1c2c82f769b61e7afe13596ac0540ddbcaa81527a988547397",
+      "bytes": 47288,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_cloak.png",
+      "sourceSha256": "c9964ab72b9afd5f65e5a13b17a8722176a44282a8947682317b3ae425c57454",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_cloak.receipt.json",
+      "receiptSha256": "6beb57c898218fa45454431593a2936a1c398fad2f5240fce582a27aecc370db",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_boots",
+      "nameTh": "รองเท้าเหล็กกล้า",
+      "file": "field_iron_boots.png",
+      "kind": "gear",
+      "sha256": "b4faecbf48f69f13b1e17d80eb46e34c65985102f877534f084ddd8e42381774",
+      "bytes": 59797,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_boots.png",
+      "sourceSha256": "288e9b76b4608a6f8e46655b5a59266cd215a0f321a046d480426cd226e12365",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_boots.receipt.json",
+      "receiptSha256": "5f745afd2e2d1e0879d9826707357ada2ed793b50e5e86e0f3835aef88df6bb7",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        181
+      ]
+    },
+    {
+      "id": "field_iron_ring",
+      "nameTh": "แหวนพลังเหล็กกล้า",
+      "file": "field_iron_ring.png",
+      "kind": "gear",
+      "sha256": "6920e66d600581521fbc32ae3ac126cadb365a9b97529177af78f0fd48d0efef",
+      "bytes": 56080,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_ring.png",
+      "sourceSha256": "c086ddf097d9b0975b12d7b22eece4c56b4ed2cb59a43cc3bb2dd992440be33b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_ring.receipt.json",
+      "receiptSha256": "e20154ad1e23f2cc17470b27a033f6a950b38095893ed846c271b5de1b965925",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "iron_greatsword",
+      "nameTh": "ดาบใหญ่ เหล็กกล้า",
+      "file": "iron_greatsword.png",
+      "kind": "gear",
+      "sha256": "be6a11c3c0ee0f650433e8dd6bcaa837f1967041bcdc33331c298ec54d53cba8",
+      "bytes": 20708,
+      "source": "meadow-3d/art/class-items-v1/sources/iron_greatsword.png",
+      "sourceSha256": "c83401a5333497c3c464d4a46bac627b11d199d04469eda1718870cea451c7ce",
+      "receipt": "meadow-3d/art/class-items-v1/sources/iron_greatsword.receipt.json",
+      "receiptSha256": "d5952f8f1b7c37b9fd13861b4d4dc17e27f389eb3e364c87186026ce54b6fe36",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_greatsword",
+      "nameTh": "ดาบใหญ่ เหล็กกล้า",
+      "file": "field_iron_greatsword.png",
+      "kind": "gear",
+      "sha256": "c71dce7f5e2ff2132a721b3808d819638ea53a6978d071c59f2ab236217b9079",
+      "bytes": 24017,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_greatsword.png",
+      "sourceSha256": "2e72a5f584bcd1e0af11bf8213b3ba7bc3c6b96b8c8e89dcff7a58df5c497f33",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_greatsword.receipt.json",
+      "receiptSha256": "20f77dec965520f3b2f7ba327bec7a084db778e4dff9e68ba306c4c72fac95d0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "iron_dagger",
+      "nameTh": "กริช เหล็กกล้า",
+      "file": "iron_dagger.png",
+      "kind": "gear",
+      "sha256": "46786eef890ff7f5d048d27a14aedc576a88ff033ba6b6ec5033e473b36a4a3d",
+      "bytes": 22667,
+      "source": "meadow-3d/art/class-items-v1/sources/iron_dagger.png",
+      "sourceSha256": "9b2ee174ceb3ed4e84ce3e35016de26875f0f02ee9a8ae54cdfe82e4c5269409",
+      "receipt": "meadow-3d/art/class-items-v1/sources/iron_dagger.receipt.json",
+      "receiptSha256": "984e3934116bb9f16920b1bb0019bb7ef3f34c88a06156fc105bb6e99ac761cc",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_dagger",
+      "nameTh": "กริช เหล็กกล้า",
+      "file": "field_iron_dagger.png",
+      "kind": "gear",
+      "sha256": "0773129612e1d30cc76eb7e9a046b2d6abc5677852610410c89aec64a8a8e972",
+      "bytes": 27709,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_dagger.png",
+      "sourceSha256": "bdf40174adaf9469c25db421233233c13be723a7991e54e506eab069025633e0",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_dagger.receipt.json",
+      "receiptSha256": "a529197f5e4a4e84d199ce8e99437850bd1ef7e85af57ec1879e524b0c1c0a54",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "iron_knuckles",
+      "nameTh": "ผ้าพันหมัด เหล็กกล้า",
+      "file": "iron_knuckles.png",
+      "kind": "gear",
+      "sha256": "deaac611da65fa9f24439823ee580ac23408cfb400d3076d6583f03bf7b7c236",
+      "bytes": 52888,
+      "source": "meadow-3d/art/class-items-v1/sources/iron_knuckles.png",
+      "sourceSha256": "e3c4026930f546b0ad4d2ec418f1a631cd5e377cb08ed57b9eca9499156bc981",
+      "receipt": "meadow-3d/art/class-items-v1/sources/iron_knuckles.receipt.json",
+      "receiptSha256": "5f0c1e68922236c6a1df7f6865aeb6afb3cfa7d4acda7ac47bbf325c667dd2d3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        19,
+        184,
+        172
+      ]
+    },
+    {
+      "id": "field_iron_knuckles",
+      "nameTh": "ผ้าพันหมัด เหล็กกล้า",
+      "file": "field_iron_knuckles.png",
+      "kind": "gear",
+      "sha256": "32ed1154cabdf65d3bddab208d8d8a6c33b65dffe2c796f26963d0484bfdac20",
+      "bytes": 61886,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_knuckles.png",
+      "sourceSha256": "11b67b9f40a506353a99a418afa8f858f80ccbe145833dcede6cd0a19ee3571e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_knuckles.receipt.json",
+      "receiptSha256": "428541758ec2097743e7637ee04c0fa1991c0cc62e1f8ba267019562896e7ef5",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "iron_robe",
+      "nameTh": "อาภรณ์อาคม เหล็กกล้า",
+      "file": "iron_robe.png",
+      "kind": "gear",
+      "sha256": "ecc5c28367927beb52bb8ac70cebf9e6596738dbde67a2aefda2d91856a35484",
+      "bytes": 58881,
+      "source": "meadow-3d/art/class-items-v1/sources/iron_robe.png",
+      "sourceSha256": "b6436e9217c6c8e27a2c5f0bbfc3315390ad60956e2a4f41f596171883fba8f9",
+      "receipt": "meadow-3d/art/class-items-v1/sources/iron_robe.receipt.json",
+      "receiptSha256": "0c31a257c09ce7b5dc695fba9bc94dd762199d376185c07b1cd95437b500b4bf",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_robe",
+      "nameTh": "อาภรณ์อาคม เหล็กกล้า",
+      "file": "field_iron_robe.png",
+      "kind": "gear",
+      "sha256": "bed4cb193453c35a8f200673ffad70e4bbc8d5b0a7297e5078277365dd10c886",
+      "bytes": 57428,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_robe.png",
+      "sourceSha256": "4a7109127122dea4b2411843a59b5ea022b6f50168449205dcc7fcd825bc1f5e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_robe.receipt.json",
+      "receiptSha256": "68ad3d2a90ff6f7924ddf806c0970d67896985444d7abcd855bb10d929a5e40a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        175,
+        184
+      ]
+    },
+    {
+      "id": "iron_focus_shield",
+      "nameTh": "โล่อาคม เหล็กกล้า",
+      "file": "iron_focus_shield.png",
+      "kind": "gear",
+      "sha256": "60eaf6259e78919799c2f12c98958395823aa857b8de62ce5a3782b508e8a857",
+      "bytes": 49119,
+      "source": "meadow-3d/art/class-items-v1/sources/iron_focus_shield.png",
+      "sourceSha256": "e9a27c13e37f67606301bde36ce61152c6f2ce444c5faa41974f46cb091134ce",
+      "receipt": "meadow-3d/art/class-items-v1/sources/iron_focus_shield.receipt.json",
+      "receiptSha256": "594e17712fa644dde17d338e93abe99073414f0bf4a535154c56899234367a33",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        28,
+        8,
+        163,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_focus_shield",
+      "nameTh": "โล่อาคม เหล็กกล้า",
+      "file": "field_iron_focus_shield.png",
+      "kind": "gear",
+      "sha256": "84b6828e67213825923f779a25e9426c51caf5f3a017b0742499d11a7db93148",
+      "bytes": 53514,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_focus_shield.png",
+      "sourceSha256": "6c58b431699fa292c268730fa165749ff40d3f3e0ef924533ddbac01923f0b70",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_focus_shield.receipt.json",
+      "receiptSha256": "f8610318b43d86ce40452219de67b91e64ee4677927895d8d936804578e73894",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        8,
+        167,
+        184
+      ]
+    },
+    {
+      "id": "iron_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เหล็กกล้า",
+      "file": "iron_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "384baa6802cd28a019c85bb12d87d02d0f3bb62386a8ef172662643ccff6c89c",
+      "bytes": 47211,
+      "source": "meadow-3d/art/class-items-v1/sources/iron_spirit_cloak.png",
+      "sourceSha256": "2a2163840ee1ec762535c188ac5b1eb7f5acb02c8a08ed19abb23a4e12b8fc78",
+      "receipt": "meadow-3d/art/class-items-v1/sources/iron_spirit_cloak.receipt.json",
+      "receiptSha256": "14ae5624667962fe38ea4aaabdb6e6f1560ce76b301bd781e12a99033d9c0f44",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เหล็กกล้า",
+      "file": "field_iron_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "09fecc460e9710119eee5b0dc1a46af2e810a8c5b515c22da3c2bf7068dfb3df",
+      "bytes": 48499,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_spirit_cloak.png",
+      "sourceSha256": "93757e6e65af49ee2c280ef89fde6ca21ec8912b192bb0cb21d8f23aeb1f0395",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_spirit_cloak.receipt.json",
+      "receiptSha256": "1f367a01097bcccaaeb847fec5ce4e4e3852c6a3ead25ded5f179c549ceb0ad8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "iron_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เหล็กกล้า",
+      "file": "iron_swift_boots.png",
+      "kind": "gear",
+      "sha256": "312b944c77b2e46c80b5dcad8a443ef4a3ad5f605947aa8b8d9157fcb96f64c0",
+      "bytes": 52753,
+      "source": "meadow-3d/art/class-items-v1/sources/iron_swift_boots.png",
+      "sourceSha256": "c895d6b45db0992c8fd457c05e85a3aba2982e09bfb9a27a78fc723e2917a136",
+      "receipt": "meadow-3d/art/class-items-v1/sources/iron_swift_boots.receipt.json",
+      "receiptSha256": "ca0b0c8ab2abc31b3f9629243c18f8029687b75aef2c5158f6408bf1b851f811",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        8,
+        171,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เหล็กกล้า",
+      "file": "field_iron_swift_boots.png",
+      "kind": "gear",
+      "sha256": "1726702bf7b345b7d467e26f15b315a2debbb52387b484b697fd917a41a06c2e",
+      "bytes": 56182,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_swift_boots.png",
+      "sourceSha256": "e963ecc7b7e1dc0fa0d33461651a5b03621dad2782d9ef51ec1dd31c9c1e973f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_swift_boots.receipt.json",
+      "receiptSha256": "65637d2c51fb9ffe98514444d0b9bd8117b92b904b62b49b621cf7d930499364",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        13,
+        184,
+        179
+      ]
+    },
+    {
+      "id": "field_iron_arcane_ring",
+      "nameTh": "แหวนอาคม เหล็กกล้า",
+      "file": "field_iron_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "edf7624ef6df70add6470ae59c4eeb1d2e00b3f36766bbc5bff40023f074adb0",
+      "bytes": 49402,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_arcane_ring.png",
+      "sourceSha256": "90b4a7100367b5312fe6cacde01fbc356e67e7a838b74d8062ac7d6def4c1853",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_arcane_ring.receipt.json",
+      "receiptSha256": "dc5c2098497e3a1406bb56ad22aefdf91032e8b90098ab8a2e1bea5535774c2c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        175,
+        184
+      ]
+    },
+    {
+      "id": "field_iron_amulet",
+      "nameTh": "จี้ฟื้นจิต เหล็กกล้า",
+      "file": "field_iron_amulet.png",
+      "kind": "gear",
+      "sha256": "5837a43f6e8b9a28d7d547a01bba4c1933d411932d24515d6cf45101120d2c8c",
+      "bytes": 41856,
+      "source": "meadow-3d/art/class-items-v1/sources/field_iron_amulet.png",
+      "sourceSha256": "e0911a1935167d042e359145d93ddd641f140ff230463909fb10baa41174ca88",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_iron_amulet.receipt.json",
+      "receiptSha256": "095806fd8109ab9febd368091fa0ee3ba8146d3066222c749935d74b5ef19056",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        8,
+        165,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_sword",
+      "nameTh": "ดาบยามนคร",
+      "file": "field_sentinel_sword.png",
+      "kind": "gear",
+      "sha256": "2b38e38f95fcda6537c131908409c069d3d28c59a88be3c90bb50d955f65e47a",
+      "bytes": 25945,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_sword.png",
+      "sourceSha256": "c403b1b8e622063283458da02f562cd23dc1cfe5b72dfd626939faf1d42daaa5",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_sword.receipt.json",
+      "receiptSha256": "d08edf5ca4346deeec7f230be4bacc4e608a3dc001b348a3cdd748c1eaab031b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_sentinel_staff",
+      "nameTh": "คทายามนคร",
+      "file": "field_sentinel_staff.png",
+      "kind": "gear",
+      "sha256": "8a955d31f916edeee2b5a83a1e3cdcdd4979ab3dc9a9d51cea965ce547220f86",
+      "bytes": 26687,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_staff.png",
+      "sourceSha256": "133dba253cfe040f3ba49433ec38c0507cf19538987c59518e70b2b16224adae",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_staff.receipt.json",
+      "receiptSha256": "5d695ef9eb1fbfbc0699611e53aecfbcc190bfda6689b28faaa69ca6f152e9b1",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_bow",
+      "nameTh": "ธนูยามนคร",
+      "file": "field_sentinel_bow.png",
+      "kind": "gear",
+      "sha256": "74c8abeaf97756b8b74a2f33864969ad0c593b0abc007050bfe516ac4077b0f9",
+      "bytes": 24348,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_bow.png",
+      "sourceSha256": "61449263dabb57b5a091a99d55d8c68cfe0bf8b6ab863b7b66e6d3f295a5f8a5",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_bow.receipt.json",
+      "receiptSha256": "c42a6768f2c896cec9ab80e3b2daca3c0ec7e34ba69a10e1c99fa347d0916841",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_armour",
+      "nameTh": "เกราะยามนคร",
+      "file": "field_sentinel_armour.png",
+      "kind": "gear",
+      "sha256": "b1d54fab38940923dec53b8f7f0b9b8b50c27423c48e16047b7a0c77ac8e396c",
+      "bytes": 64586,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_armour.png",
+      "sourceSha256": "038f0577443bd096df5dfb108ce92996df3f31b943d9ab0c0e44dc8dbf2eeea7",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_armour.receipt.json",
+      "receiptSha256": "cabea3a8d3392395f8f49ac0aa5f8e6b446dae199afeeb7dbd3e020db04d419f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_shield",
+      "nameTh": "โล่ยามนคร",
+      "file": "field_sentinel_shield.png",
+      "kind": "gear",
+      "sha256": "a54c3c5dac655acfb1c3b87f2583db78adef6656551d19f400be7a2b2538364b",
+      "bytes": 43478,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_shield.png",
+      "sourceSha256": "acde20de30c423aae529b73e3cadd6ff31933a16dbad262b920499e82f2e3696",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_shield.receipt.json",
+      "receiptSha256": "b0a9da2ebb2948d2044be946f687a91491007b94213defa870b351a33c4e63d3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        36,
+        8,
+        156,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_cloak",
+      "nameTh": "ผ้าคลุมยามนคร",
+      "file": "field_sentinel_cloak.png",
+      "kind": "gear",
+      "sha256": "68ec9dbb2cc00e4e44c4f7bc8bcd11273c01f4a66ff8268e215b0a3e2b8b42ac",
+      "bytes": 47255,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_cloak.png",
+      "sourceSha256": "4abce84383c1927013bc9f0ff12a5eaeea4e2ad72e1f760ca12ba20e31c3ba23",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_cloak.receipt.json",
+      "receiptSha256": "de92598e0aed30733ef4050cb8f0aa9884b9a042d27387630ac57531cd2e4adf",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_boots",
+      "nameTh": "รองเท้ายามนคร",
+      "file": "field_sentinel_boots.png",
+      "kind": "gear",
+      "sha256": "fd2fdd3326c4a905966ae8a8919a7f2d3a2bb733278d86288c066dbdafcb01ff",
+      "bytes": 65922,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_boots.png",
+      "sourceSha256": "3b3d0f9cfd63a3b5d40b8cb7a024835524a6d19c78888f93517298f48b436bce",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_boots.receipt.json",
+      "receiptSha256": "6b4e17277170a2da7945b10f3e5eab9e4add71dff001c8c5a36f6315edcfb449",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_ring",
+      "nameTh": "แหวนพลังยามนคร",
+      "file": "field_sentinel_ring.png",
+      "kind": "gear",
+      "sha256": "418671f87a9c41203567c545eee01d32983ebacadb6e516c27734808074ee0a9",
+      "bytes": 62497,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_ring.png",
+      "sourceSha256": "164c4c6e3df8a2e453af28bf33519ebfe1c9a2a69405ec4f61d2fadcbf269a23",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_ring.receipt.json",
+      "receiptSha256": "dd5c862d4fdf29e184be16f57fead39faacbd57a52767b93d031243bc6bf3f2a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "sentinel_greatsword",
+      "nameTh": "ดาบใหญ่ ยามนคร",
+      "file": "sentinel_greatsword.png",
+      "kind": "gear",
+      "sha256": "01c8b0cd71506c0750dc0064522c87f4db5f53651389f59f7efc7fa387f5014f",
+      "bytes": 25776,
+      "source": "meadow-3d/art/class-items-v1/sources/sentinel_greatsword.png",
+      "sourceSha256": "9f847e7fd682de32b3e4fa5a2cdbfb6e3bcb3648e7420ff8f6fb0133ab2662cc",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sentinel_greatsword.receipt.json",
+      "receiptSha256": "417c72c660f50aac7b74a0f9cf48eaa0601e221ebc44c90e9286c42fd6cdf42f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_greatsword",
+      "nameTh": "ดาบใหญ่ ยามนคร",
+      "file": "field_sentinel_greatsword.png",
+      "kind": "gear",
+      "sha256": "aa078cf20e6a6df0c8ea011a96198bf420408a9b6225af33aec31ce42ba9b8a4",
+      "bytes": 26590,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_greatsword.png",
+      "sourceSha256": "fd06c8c60a4b572b2668747916b4c46c9f7c00e40ba951c79b413a962b3d67ad",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_greatsword.receipt.json",
+      "receiptSha256": "ea60924169ed3ad094a799a88f9b23c3c0ed422697c9e0134410fdb71cef41e3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "sentinel_dagger",
+      "nameTh": "กริช ยามนคร",
+      "file": "sentinel_dagger.png",
+      "kind": "gear",
+      "sha256": "7b56a6c111373b1a39067518d440d287da2186238813ba6d604af8c97a614acf",
+      "bytes": 26205,
+      "source": "meadow-3d/art/class-items-v1/sources/sentinel_dagger.png",
+      "sourceSha256": "69348d8203e8ae0b8abafcbacd63060d58040e1d4438e9172b44b03c2bbd31ae",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sentinel_dagger.receipt.json",
+      "receiptSha256": "1a00c72f76eda1b51a7b3b2e500f351bccef5050b4d612a359a5e2cbb336f3a9",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_dagger",
+      "nameTh": "กริช ยามนคร",
+      "file": "field_sentinel_dagger.png",
+      "kind": "gear",
+      "sha256": "832d70dbd9af8fe2ffb05e7d504ef1724b579eecb73c4f0c3fac5f49166335a5",
+      "bytes": 26103,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_dagger.png",
+      "sourceSha256": "7ff516666b4fff4d234181d910234f7e15cc23a294011fdf317ab142b8459af1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_dagger.receipt.json",
+      "receiptSha256": "8300f43d48a50e74380b2a535e346a06fd0b6130864a1bd1aea9a6636da4ece4",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ]
+    },
+    {
+      "id": "sentinel_knuckles",
+      "nameTh": "ผ้าพันหมัด ยามนคร",
+      "file": "sentinel_knuckles.png",
+      "kind": "gear",
+      "sha256": "f1e1166b63cf0c26ba1387bc862c9bb340a4ba37113f217d7bb00b3caddc8b6b",
+      "bytes": 56468,
+      "source": "meadow-3d/art/class-items-v1/sources/sentinel_knuckles.png",
+      "sourceSha256": "b07b2da19a042c98bd496bc6075d508a9868d36b22265f20cb85b42666d23e59",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sentinel_knuckles.receipt.json",
+      "receiptSha256": "b45fae467e6f0675dca111c35142297909747f716972d8c22bac22fdddd716c8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        17,
+        184,
+        174
+      ]
+    },
+    {
+      "id": "field_sentinel_knuckles",
+      "nameTh": "ผ้าพันหมัด ยามนคร",
+      "file": "field_sentinel_knuckles.png",
+      "kind": "gear",
+      "sha256": "e1669946cf107aecc55c4e9bdd9a40ad45a581536f561a72707692dfd8c34e22",
+      "bytes": 59273,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_knuckles.png",
+      "sourceSha256": "63347985a63040db8332132c4b4c40342fab773ddd9f697faf3c0606ea268b4f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_knuckles.receipt.json",
+      "receiptSha256": "813153af64ff58b5f4bf25e706da687c69401d94e88cf2833db5df4ac7fc326c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        182
+      ]
+    },
+    {
+      "id": "sentinel_robe",
+      "nameTh": "อาภรณ์อาคม ยามนคร",
+      "file": "sentinel_robe.png",
+      "kind": "gear",
+      "sha256": "dfb667eadf707144e9144c67a1ea12bb2fe9b422baccf882e354252eef2bab8e",
+      "bytes": 56551,
+      "source": "meadow-3d/art/class-items-v1/sources/sentinel_robe.png",
+      "sourceSha256": "df12cb7c8c025308571911dd6a82060a4afacef3e9fc29423b654de8cd8f934c",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sentinel_robe.receipt.json",
+      "receiptSha256": "0c3b0c24aafcf9327a2cf4acdf3550e1470d20d04c65a0e37564f6ab5dd3caa6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_robe",
+      "nameTh": "อาภรณ์อาคม ยามนคร",
+      "file": "field_sentinel_robe.png",
+      "kind": "gear",
+      "sha256": "c3dee69a1b1be41945499cb5b241d2b5e6e7e0cbb3cdae27f2f6a6dcd1d0f6b1",
+      "bytes": 57954,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_robe.png",
+      "sourceSha256": "6261674be40318b5c9af8a7cfeb4396e27a16b2fca80bac8859bfe7c13f81b81",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_robe.receipt.json",
+      "receiptSha256": "bf5b173e741f0c67e0df96475b74bfd8a01aeebdc40f8d94a4ed36909a36488b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "sentinel_focus_shield",
+      "nameTh": "โล่อาคม ยามนคร",
+      "file": "sentinel_focus_shield.png",
+      "kind": "gear",
+      "sha256": "13f22b169d59ec43a5d24c4b289ca64efca522074a04bea2423adb30199bb4a5",
+      "bytes": 51085,
+      "source": "meadow-3d/art/class-items-v1/sources/sentinel_focus_shield.png",
+      "sourceSha256": "74af61e2af50770e51d5f4096ba0f381b01260f03b2afc5159b6487f1087ecbb",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sentinel_focus_shield.receipt.json",
+      "receiptSha256": "ed3341a87255b03f5e61ced8f664e3c1c17bb6ad2330d3b200f88fdce9df366b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        8,
+        168,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_focus_shield",
+      "nameTh": "โล่อาคม ยามนคร",
+      "file": "field_sentinel_focus_shield.png",
+      "kind": "gear",
+      "sha256": "4cfc3e601574510110a02a1bb691c3f19594d2c6af18c89f03a89789ca1222e8",
+      "bytes": 49750,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_focus_shield.png",
+      "sourceSha256": "175de269dbcf2ae63344edc22a2900ee2fd73d094fb9c67db4c10000dfe2ea9a",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_focus_shield.receipt.json",
+      "receiptSha256": "5348afa22df97f3470846a44425a09e8879ab2f94a9aab9e67ff936182e753f6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        174,
+        184
+      ]
+    },
+    {
+      "id": "sentinel_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ยามนคร",
+      "file": "sentinel_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "1ae36d8899e48b48492965521ec8b6e73803c6f78affb0f1258b3cb3bbebfeb9",
+      "bytes": 48002,
+      "source": "meadow-3d/art/class-items-v1/sources/sentinel_spirit_cloak.png",
+      "sourceSha256": "6e92aac87660ff4dddf009c1b1f9a04e24784b61ce2259d944ab73cef997e098",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sentinel_spirit_cloak.receipt.json",
+      "receiptSha256": "63039004199102f01b02c0480669abe2ffdee465822b829d0b9284be2f6aff35",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        181
+      ]
+    },
+    {
+      "id": "field_sentinel_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ยามนคร",
+      "file": "field_sentinel_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "a23888072b07b2e1fc494cdea12d45f91d127c09a068266b1128dc488928d8c5",
+      "bytes": 48094,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_spirit_cloak.png",
+      "sourceSha256": "8606eebb78bc8b717f0eeca69b61455d2ede02357220953360cf5024e1dbc0fe",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_spirit_cloak.receipt.json",
+      "receiptSha256": "6de256015c5c00fa73372680280656b65127ab283a1b2615f08e1197bb95ab28",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "sentinel_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ยามนคร",
+      "file": "sentinel_swift_boots.png",
+      "kind": "gear",
+      "sha256": "a20617772cfba875348698181a85642aa0d62cf8cf561470977108c29ffcd6e7",
+      "bytes": 52475,
+      "source": "meadow-3d/art/class-items-v1/sources/sentinel_swift_boots.png",
+      "sourceSha256": "8cff67f05cc9e10172e635d9fc7989150d2a1f1f972b178818e4d0babfe445a3",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sentinel_swift_boots.receipt.json",
+      "receiptSha256": "10718b8ee3b78efa17a980019af48fb3e2f80bef22eca725126f16d95e6768e0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        8,
+        169,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ยามนคร",
+      "file": "field_sentinel_swift_boots.png",
+      "kind": "gear",
+      "sha256": "4c9e2e2b74bc7edcc75cd2b0facffeac6e7afd65055503161d7db8b5b9b1bb04",
+      "bytes": 57493,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_swift_boots.png",
+      "sourceSha256": "795080ebf4f0909884678cfcf7f0254d61c4f5431af653032dcc1114d538dfeb",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_swift_boots.receipt.json",
+      "receiptSha256": "e45106b63467e2c02bcd82707d55335040b892311ee804b0b689c57be13d0409",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_sentinel_arcane_ring",
+      "nameTh": "แหวนอาคม ยามนคร",
+      "file": "field_sentinel_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "3a428310101cdf2ec1cbc2831ebe65737d8cb12aa827ceb05a7e5957f9b9c69d",
+      "bytes": 59314,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_arcane_ring.png",
+      "sourceSha256": "450532659ffb212366d5957987effebba82194700e53590b18f0b292091fabb5",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_arcane_ring.receipt.json",
+      "receiptSha256": "b0140584be312a92dcbcfa7dcd65db846b969b9e692b9d9acd51a214ada50d62",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_sentinel_amulet",
+      "nameTh": "จี้ฟื้นจิต ยามนคร",
+      "file": "field_sentinel_amulet.png",
+      "kind": "gear",
+      "sha256": "0a7a257830881b45c801c4fbd6464946b5bd44335566bba5da5240110b78c9a8",
+      "bytes": 39997,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sentinel_amulet.png",
+      "sourceSha256": "55ddd77d3b6d9dfc9ff55a9085353e1050f38778a62db44f7f250f088f44a761",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sentinel_amulet.receipt.json",
+      "receiptSha256": "12e0c1d89082255de6545f04fe0986c387dc89026d95da807b307f583212ec9c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        8,
+        168,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_sword",
+      "nameTh": "ดาบศิลาโบราณ",
+      "file": "field_relic_sword.png",
+      "kind": "gear",
+      "sha256": "102ffff58088721d8a253124c3059f51578f9faf62b4f7ffabfff3d830cbfda2",
+      "bytes": 25898,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_sword.png",
+      "sourceSha256": "90e7923cc089ef619bc3b929a9365af5617f2fecaf2ee858f18030aea4efcf2e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_sword.receipt.json",
+      "receiptSha256": "e5bae88c894073a0bcb4225d529bea9fab519e237ddffec5cd614c33da09e18a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_staff",
+      "nameTh": "คทาศิลาโบราณ",
+      "file": "field_relic_staff.png",
+      "kind": "gear",
+      "sha256": "14691a4493e65205d93a4af8cf72ed4a2696c4e2b2d8c9a4a92b9284b306e741",
+      "bytes": 24303,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_staff.png",
+      "sourceSha256": "a7224da5a5dbed02a3ad3ba2493b856f09f33e98624ec4d823e9e5a689f5c401",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_staff.receipt.json",
+      "receiptSha256": "698594e67c737f0f069d2fb0390d0e0c2dfa0ddb541fea7f55ce80d74bc92951",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_bow",
+      "nameTh": "ธนูศิลาโบราณ",
+      "file": "field_relic_bow.png",
+      "kind": "gear",
+      "sha256": "763084063ba2a4f2c98aa38fc4b0541a5633f8928b2ff4ccffe14e78c09e35bd",
+      "bytes": 28630,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_bow.png",
+      "sourceSha256": "7b4230c729eea2259c3cb35410f250f35d7fedca7b8d9c9773de26b786180420",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_bow.receipt.json",
+      "receiptSha256": "a9251b1c38941219593255bd05b5c4690b8ace3b94d7ecfa3148ae1407e5f239",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_armour",
+      "nameTh": "เกราะศิลาโบราณ",
+      "file": "field_relic_armour.png",
+      "kind": "gear",
+      "sha256": "d058617254d2f82e8ebf97aaaeed9baab96561df7407ec5892cf40e1d3fbb702",
+      "bytes": 61191,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_armour.png",
+      "sourceSha256": "2cb4d18207339292cb63ae5ca106ebea74e38438dc5323e0e89fbff51a1d4ca7",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_armour.receipt.json",
+      "receiptSha256": "fe665f65e591ba1c0ba846ea52f3218b2da9eb56f36d1e8635208b5511c120ca",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_shield",
+      "nameTh": "โล่ศิลาโบราณ",
+      "file": "field_relic_shield.png",
+      "kind": "gear",
+      "sha256": "6680dbcde3dff49892351711861902689c1554f091f0b03c69e7257f217307ed",
+      "bytes": 46264,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_shield.png",
+      "sourceSha256": "71d053e1aa6aff9e4ca8c0ac77f1ca799bd9b0e4dffeba13e0949505f66a4f37",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_shield.receipt.json",
+      "receiptSha256": "2dc70a320576c4c0469e0da891f8dbb9557468771ffe46f5b6ba24f4975412dc",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        24,
+        8,
+        168,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_cloak",
+      "nameTh": "ผ้าคลุมศิลาโบราณ",
+      "file": "field_relic_cloak.png",
+      "kind": "gear",
+      "sha256": "66290c9669091878fa3ed4406c05c51246a6357d6e272614c9b5b7edd7f9b65b",
+      "bytes": 48169,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_cloak.png",
+      "sourceSha256": "af9941c772dcf5a36ae73c321e3e746aff8cfc40bc2484f8893d482cc6f2120e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_cloak.receipt.json",
+      "receiptSha256": "ce1cb1b6c44376f19f08e5b2d33d795c98d49541cb2e2955e996ae7b8aa0f2e6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_boots",
+      "nameTh": "รองเท้าศิลาโบราณ",
+      "file": "field_relic_boots.png",
+      "kind": "gear",
+      "sha256": "d29e8420d48063a6389636f73155f21bb54591b653527a4fd52c59f3ec48d7bc",
+      "bytes": 66961,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_boots.png",
+      "sourceSha256": "0b194c2aebc28a0fe5bef90177f1ecbf38d89bb3ccd1740c6215914abd72473e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_boots.receipt.json",
+      "receiptSha256": "8aea5f5e788e4b85f505cc5bdffbb37594a057c0d4996f560adfc1086a3c269c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        12,
+        184,
+        179
+      ]
+    },
+    {
+      "id": "field_relic_ring",
+      "nameTh": "แหวนพลังศิลาโบราณ",
+      "file": "field_relic_ring.png",
+      "kind": "gear",
+      "sha256": "d7b31bbe0cdd5668f4a02932d0052ff259c003137ba7b059a4271c883ffd8aba",
+      "bytes": 60214,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_ring.png",
+      "sourceSha256": "a73b39d39f40333807dde17569c67fd3c56d217e1ecedb27a762e965b9b199fd",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_ring.receipt.json",
+      "receiptSha256": "77f1a736dfccd85ca54d004d87719e87c5d2df3bc2db0db8e8b002b93d6fb504",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "relic_greatsword",
+      "nameTh": "ดาบใหญ่ ศิลาโบราณ",
+      "file": "relic_greatsword.png",
+      "kind": "gear",
+      "sha256": "67530112ce5652f0f047a351e81d9f2e18dcc84ece14c214181f1032d3e82902",
+      "bytes": 25044,
+      "source": "meadow-3d/art/class-items-v1/sources/relic_greatsword.png",
+      "sourceSha256": "e1992b64e7006d6ee54db5695c5822b73521b77e01abc1d303fa285e9fce77b6",
+      "receipt": "meadow-3d/art/class-items-v1/sources/relic_greatsword.receipt.json",
+      "receiptSha256": "b8fe5738bbffd9ec1a7d88fcb0ee1871e2f879d72967e6b1ceace6c7b71e7a1e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_relic_greatsword",
+      "nameTh": "ดาบใหญ่ ศิลาโบราณ",
+      "file": "field_relic_greatsword.png",
+      "kind": "gear",
+      "sha256": "18457923a76180de8cfbbeaada358cd28bed1dceb0621d2d7805fd51bcc6189d",
+      "bytes": 26300,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_greatsword.png",
+      "sourceSha256": "fa4cdd296a63b2dcd2d347ea57d62743db653158d859a826810b3a944b3b4da1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_greatsword.receipt.json",
+      "receiptSha256": "96bb8c887835a5ff360d5e6f033b5c84ff47ee1815a1c7922bc0411a7c3461ce",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "relic_dagger",
+      "nameTh": "กริช ศิลาโบราณ",
+      "file": "relic_dagger.png",
+      "kind": "gear",
+      "sha256": "8cc7ebe78d62451593b2e3be94106131b5f7e6c448201a240be46fa6daa2f390",
+      "bytes": 24130,
+      "source": "meadow-3d/art/class-items-v1/sources/relic_dagger.png",
+      "sourceSha256": "84c7289ad02db0e3c75c5b042ac3253aa1fb217bbfb85777debf7a05bdbd7485",
+      "receipt": "meadow-3d/art/class-items-v1/sources/relic_dagger.receipt.json",
+      "receiptSha256": "2ee1719a1954a0deff8b671eedf035835009522ef20b5a0a3f63b799d3db1712",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        8,
+        170,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_dagger",
+      "nameTh": "กริช ศิลาโบราณ",
+      "file": "field_relic_dagger.png",
+      "kind": "gear",
+      "sha256": "b73024e68716b074b4356c5894d3aae1e3e6010283544c784d5bcb0b8d3b28e1",
+      "bytes": 26725,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_dagger.png",
+      "sourceSha256": "62572dec2fed9a3271f7e1d023ab031b12f019dc940054e142d6900dfdde2796",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_dagger.receipt.json",
+      "receiptSha256": "770b7aa4e5500675dcaa1641870eb7287aeb939848e3f6740b494d48266cf719",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "relic_knuckles",
+      "nameTh": "ผ้าพันหมัด ศิลาโบราณ",
+      "file": "relic_knuckles.png",
+      "kind": "gear",
+      "sha256": "79daa70204d4c8e446a59f532683da2442eae63bde14db603cb1bbc1f41cb899",
+      "bytes": 57515,
+      "source": "meadow-3d/art/class-items-v1/sources/relic_knuckles.png",
+      "sourceSha256": "fc9d3b5ff302e220ce57784006c8684338794b54de58218a597e7c75f80650ce",
+      "receipt": "meadow-3d/art/class-items-v1/sources/relic_knuckles.receipt.json",
+      "receiptSha256": "83653247f78be1617dc9c90886f6d30a0001ed9ff0e89ab129bb76b83c2ac9d0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        182
+      ]
+    },
+    {
+      "id": "field_relic_knuckles",
+      "nameTh": "ผ้าพันหมัด ศิลาโบราณ",
+      "file": "field_relic_knuckles.png",
+      "kind": "gear",
+      "sha256": "faae65de24a4591573d706d2e9895309fe5be91e88483b593eebb6a582180a8b",
+      "bytes": 57407,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_knuckles.png",
+      "sourceSha256": "3ca3cf3d1472d626f966008da2e10bc532da456b80ee6ff07ed141c67a8ab26f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_knuckles.receipt.json",
+      "receiptSha256": "76eba23845fb9cbf6b115c1ae1e9771212df557c462c1ab434de86d7c924f8fc",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        182
+      ]
+    },
+    {
+      "id": "relic_robe",
+      "nameTh": "อาภรณ์อาคม ศิลาโบราณ",
+      "file": "relic_robe.png",
+      "kind": "gear",
+      "sha256": "b07d0294b8171a24a05563cd497a7d7c9a90ed34e458319cf638cbed051c37be",
+      "bytes": 54458,
+      "source": "meadow-3d/art/class-items-v1/sources/relic_robe.png",
+      "sourceSha256": "28c16fb803e5b49edf2c5ac3fef1760a3ddf00185be728ae028c85b1e6c4b87b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/relic_robe.receipt.json",
+      "receiptSha256": "bbf42fc6e4af1133cfa20b0519064e41a7fdbdc457d89cb7d43f54e7d6ab8720",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        19,
+        8,
+        173,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_robe",
+      "nameTh": "อาภรณ์อาคม ศิลาโบราณ",
+      "file": "field_relic_robe.png",
+      "kind": "gear",
+      "sha256": "579ffc20a1a1211bf6ce07e7f1e3505cad4b2ce499ac69bca9513f5bf61fd8a5",
+      "bytes": 57669,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_robe.png",
+      "sourceSha256": "303ab35f86222968be46519ed11306da1d5be6b96c631e6fd3eea9c64928e877",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_robe.receipt.json",
+      "receiptSha256": "95d24fe36c7cf63a4c67754cf35b48e16e580c1e00aa2b02870f4dabb5debca1",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "relic_focus_shield",
+      "nameTh": "โล่อาคม ศิลาโบราณ",
+      "file": "relic_focus_shield.png",
+      "kind": "gear",
+      "sha256": "445a2f195ef16e73a1f432c198b01733f4de0c8b19809284fa1e76ba0a9b53ad",
+      "bytes": 48808,
+      "source": "meadow-3d/art/class-items-v1/sources/relic_focus_shield.png",
+      "sourceSha256": "8c721c319e69556ff60923d53bd04b14730886acd501a01cb16cd219db61673d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/relic_focus_shield.receipt.json",
+      "receiptSha256": "72076b11a179782a683608a97a6abc487b71f13f0a919e1957ccc897d7511eae",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        31,
+        8,
+        161,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_focus_shield",
+      "nameTh": "โล่อาคม ศิลาโบราณ",
+      "file": "field_relic_focus_shield.png",
+      "kind": "gear",
+      "sha256": "f6cf7067f27a27caec9a10f543acf2c5a0655da267b8e67a317004985dfcd8fc",
+      "bytes": 52389,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_focus_shield.png",
+      "sourceSha256": "2981b9e606e5215f7f69bd235e2beb06688d4f4d50384c038d92498d46319823",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_focus_shield.receipt.json",
+      "receiptSha256": "9db51cacbeb500290c8e32678055e78ee62b00a92081e380cefe378498fbfe27",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        8,
+        170,
+        184
+      ]
+    },
+    {
+      "id": "relic_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ศิลาโบราณ",
+      "file": "relic_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "69909b143a0cc1623c739cda03401cabad975b554b7c9ab0e8f3a11466d0934d",
+      "bytes": 46783,
+      "source": "meadow-3d/art/class-items-v1/sources/relic_spirit_cloak.png",
+      "sourceSha256": "aaeb892fe98b3c5a762428952023a8fe1407fc98df883b2a610899dfc53ed060",
+      "receipt": "meadow-3d/art/class-items-v1/sources/relic_spirit_cloak.receipt.json",
+      "receiptSha256": "18ac7125c9f407e22ba0f5f9a3fc996697bb5ffc4b7da7b14f9cce3c3afb74b2",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ศิลาโบราณ",
+      "file": "field_relic_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "2c9abb6f03647f05e8af48ee31ce83fc436731541a0cbd27e3c3b239145cb5b1",
+      "bytes": 48086,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_spirit_cloak.png",
+      "sourceSha256": "fdd37a47b39869651474eb49d8b68abf8a0899c408e00715cb4797c28e5f42fb",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_spirit_cloak.receipt.json",
+      "receiptSha256": "2888ac9266dd843715bba11ef023c6afd5ca38b5dc92b52bb4b0a6364034e3fe",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "relic_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ศิลาโบราณ",
+      "file": "relic_swift_boots.png",
+      "kind": "gear",
+      "sha256": "6100e4bdfeeefdc534e1c1debba330fa5454aa7ae76e122980dbca5e92c7e133",
+      "bytes": 58939,
+      "source": "meadow-3d/art/class-items-v1/sources/relic_swift_boots.png",
+      "sourceSha256": "08a84b3ba6dfc20e6d9b5e1d1ddb6be433ef637d8552c3218d9fe11c76d125c0",
+      "receipt": "meadow-3d/art/class-items-v1/sources/relic_swift_boots.receipt.json",
+      "receiptSha256": "f522c61f0007ef74eb34fb0744c0188d510e39c471d9aa8ee2a24f6d7dd1ceca",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ศิลาโบราณ",
+      "file": "field_relic_swift_boots.png",
+      "kind": "gear",
+      "sha256": "cde0ea74cf9e7465a1dbafd2440e3d95ad9bf89e3885c8fbc662f57faff8641b",
+      "bytes": 58164,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_swift_boots.png",
+      "sourceSha256": "50c52a6f1b721f6deed81020eef49d7cb343b02c4affc2d4b318c0091c3053ad",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_swift_boots.receipt.json",
+      "receiptSha256": "354785bc7b62ad758c92ff84c349f8a4e212fdb9e28a69d7f857f75f54fb1c85",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_arcane_ring",
+      "nameTh": "แหวนอาคม ศิลาโบราณ",
+      "file": "field_relic_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "bf9ca0d7a19a262713b7be49bb98208ec3ef54e0cf57c67f55342f6fdd832a93",
+      "bytes": 61946,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_arcane_ring.png",
+      "sourceSha256": "8a0a91fdbc006e31285cd3652eb668f03c90154fceff1f260d8f185949e03ea9",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_arcane_ring.receipt.json",
+      "receiptSha256": "b41084b08c39c3813383b94939b8d1385f019c02d21a399cf89c3a6ee2ef2c00",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_relic_amulet",
+      "nameTh": "จี้ฟื้นจิต ศิลาโบราณ",
+      "file": "field_relic_amulet.png",
+      "kind": "gear",
+      "sha256": "a39265c2a8dc7aef7688e66c2e9cfeb1987d26c52139ece6a9948e5a6b8b874f",
+      "bytes": 42667,
+      "source": "meadow-3d/art/class-items-v1/sources/field_relic_amulet.png",
+      "sourceSha256": "d0cb5a652194ac85af964d1c6a12627157fb97cde07aff85c6374276080550dd",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_relic_amulet.receipt.json",
+      "receiptSha256": "ecc3e9c2020411076a07a33afe63a27d1ea796c1e8ac1f50a0b236150ec3622d",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        27,
+        8,
+        164,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_sword",
+      "nameTh": "ดาบเงินจันทรา",
+      "file": "field_silver_sword.png",
+      "kind": "gear",
+      "sha256": "06a09ca61b38b9cf34d5a1675acf3bd59ba0f9423059007e7e229fe80c96e9a3",
+      "bytes": 25850,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_sword.png",
+      "sourceSha256": "4d274f1f29d11924a3012e384e834b687e9cb6054145264d8db72887c0fb1cba",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_sword.receipt.json",
+      "receiptSha256": "a9524cbe0050fa1157e7e20f98499f0d57a57acaf01d5edfe07f5d02250a600c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_staff",
+      "nameTh": "คทาเงินจันทรา",
+      "file": "field_silver_staff.png",
+      "kind": "gear",
+      "sha256": "fa337a5ea901ba3cdf505df9d78ece53a7c4522b71da122157b5a34ad9803a75",
+      "bytes": 28308,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_staff.png",
+      "sourceSha256": "dbedf66a46397f33120b1fb17719215f57b2955592b3bd2441521b53fd75cd49",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_staff.receipt.json",
+      "receiptSha256": "f5504faefb9674649df4fbec633e16153d273da084132f44c167d87fa6f63f1d",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_bow",
+      "nameTh": "ธนูเงินจันทรา",
+      "file": "field_silver_bow.png",
+      "kind": "gear",
+      "sha256": "30f501cac15d84a83523b29deacd3ebec53232fc3d26dc907c576adbcd09b119",
+      "bytes": 27930,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_bow.png",
+      "sourceSha256": "728d59c186ca19c03a4c250f4fbc56c116c84f823af202045e7fb4306b53fa13",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_bow.receipt.json",
+      "receiptSha256": "6c72c76a264d318a5a98b9c516e521c7650993c9d16dff28a416ec021998b5c5",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_armour",
+      "nameTh": "เกราะเงินจันทรา",
+      "file": "field_silver_armour.png",
+      "kind": "gear",
+      "sha256": "c3ac8de94f79188ac7cc726d3d76b9c4179e97be3e2fc8521f25f2500592b062",
+      "bytes": 68737,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_armour.png",
+      "sourceSha256": "6c81c962b9d2b4b1988f9ef35b7b6eb4e0148c1b7e48832a3b9350f5c536cf1a",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_armour.receipt.json",
+      "receiptSha256": "11fccf7fc9f4c31824a25ceee40cd8e36f9327853e92107e2fff3fb1eca34d49",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_shield",
+      "nameTh": "โล่เงินจันทรา",
+      "file": "field_silver_shield.png",
+      "kind": "gear",
+      "sha256": "d4112f60c505c7321ee56670784de6604daab46a5fd48d29294a68505cce09c2",
+      "bytes": 43039,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_shield.png",
+      "sourceSha256": "aa66cca5bc166c24fcb41b0a20c6f995ca12e584bc4de7dd0e5015524c76e0bf",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_shield.receipt.json",
+      "receiptSha256": "5c9920ebdb0a72d4ffba19c82f353521d1e36d27d4e35d81194b79d43bc3bdf8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        38,
+        8,
+        153,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_cloak",
+      "nameTh": "ผ้าคลุมเงินจันทรา",
+      "file": "field_silver_cloak.png",
+      "kind": "gear",
+      "sha256": "67c338655de3f14ed9b4f4f7f14c364da8dc00e0283b26b180d1df16b1886896",
+      "bytes": 51879,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_cloak.png",
+      "sourceSha256": "7d3055bc1715d98ebfaaeae672c512d017579d706d4b8483c106d7698d1dbb39",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_cloak.receipt.json",
+      "receiptSha256": "6cb52c5d1090015a7fb8c409cb5166a54b928b676733822f74c8a7f442fc6bd0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_boots",
+      "nameTh": "รองเท้าเงินจันทรา",
+      "file": "field_silver_boots.png",
+      "kind": "gear",
+      "sha256": "9cf547a2024e1bd8b8ed9f21fff299e5890813286c6e32911ceebc850bad3a68",
+      "bytes": 67755,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_boots.png",
+      "sourceSha256": "1ef75ae978ce09e0ff52aaadaeb01ac564733d33c9ec06cd567a2fa19853fb13",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_boots.receipt.json",
+      "receiptSha256": "1fffc171aaa08a61d842d29e05e2cdc9815e3ffbd9fa1b14117461e88b93d9b5",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_ring",
+      "nameTh": "แหวนพลังเงินจันทรา",
+      "file": "field_silver_ring.png",
+      "kind": "gear",
+      "sha256": "e685af6c9ebebf5507e0e3f959525d5fc8de8fe2f01b382f40b0c3ae3eb96ec1",
+      "bytes": 68927,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_ring.png",
+      "sourceSha256": "788e77ba56b4c66af8ba0902391f1dbd7cc6734ac0df8d7f09e90e374b89caf4",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_ring.receipt.json",
+      "receiptSha256": "24dc019650c40557be48adffb92df9538ba4326ee14cdd767f858d6822408485",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "silver_greatsword",
+      "nameTh": "ดาบใหญ่ เงินจันทรา",
+      "file": "silver_greatsword.png",
+      "kind": "gear",
+      "sha256": "2da560c6f336756ca4c9622e48bb19c62d583fccb643f02d1dde258fe55c542b",
+      "bytes": 23940,
+      "source": "meadow-3d/art/class-items-v1/sources/silver_greatsword.png",
+      "sourceSha256": "6cf3a0d1f8d1fbfd8f24af4597b86d615fc00d429506f21d97890bf29a040aad",
+      "receipt": "meadow-3d/art/class-items-v1/sources/silver_greatsword.receipt.json",
+      "receiptSha256": "cef14db84dd8d4555941f9560ea9742bfc39324d4d7004bc7f963620a02fb533",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_greatsword",
+      "nameTh": "ดาบใหญ่ เงินจันทรา",
+      "file": "field_silver_greatsword.png",
+      "kind": "gear",
+      "sha256": "6328cbd540ed89eac7998a734ca434be333997ba811d61f05121b9e2e40fefaf",
+      "bytes": 26161,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_greatsword.png",
+      "sourceSha256": "63a4a92895777a302425757f65ef3f0a15b2d3dbbb2f2327000e73ca557e1b05",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_greatsword.receipt.json",
+      "receiptSha256": "5ef3210665f41f00c3ad86a4168f05a679924cf6d4459223a158476570424848",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "silver_dagger",
+      "nameTh": "กริช เงินจันทรา",
+      "file": "silver_dagger.png",
+      "kind": "gear",
+      "sha256": "5c291e11e25560ad714decae5083f81f1bc9588c298ff1c8b302f1dd746d970f",
+      "bytes": 26634,
+      "source": "meadow-3d/art/class-items-v1/sources/silver_dagger.png",
+      "sourceSha256": "2ca1fb89d810bfb9ea68b6bafd3bf48f973b2227fe6ae9d46dca708b43af505e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/silver_dagger.receipt.json",
+      "receiptSha256": "d09cbe26fef2f0d70a9a999b566b1ecfde2eb4974e98adfb978f970335f4d992",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_dagger",
+      "nameTh": "กริช เงินจันทรา",
+      "file": "field_silver_dagger.png",
+      "kind": "gear",
+      "sha256": "f78aedb36bcc3232e6846b478e0c5d2efe6acf6e06d7b55ac8f90cacf76771c6",
+      "bytes": 28597,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_dagger.png",
+      "sourceSha256": "060908b2893d1653f3e62ef13ea684c02ad87b08ebf230356a012eaabc19c8b0",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_dagger.receipt.json",
+      "receiptSha256": "4db56d9887b2d91113de7a602ac04337e27c595e50652fdf6aa10a6e396aeb73",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "silver_knuckles",
+      "nameTh": "ผ้าพันหมัด เงินจันทรา",
+      "file": "silver_knuckles.png",
+      "kind": "gear",
+      "sha256": "e90e5d7456415da129e94b22e5bac30d0dca4206a60b5fccc930880aaf943843",
+      "bytes": 61106,
+      "source": "meadow-3d/art/class-items-v1/sources/silver_knuckles.png",
+      "sourceSha256": "fe2d9f2716c9fa021d2602cf3b5e6432b8fa49fcb48ee2bd7cfbfc7ad7018f3d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/silver_knuckles.receipt.json",
+      "receiptSha256": "5a1393c07a47d7a2ed9af94bc950596f6f0ed9a881cf9c6b3f83c1808b36db27",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        17,
+        184,
+        174
+      ]
+    },
+    {
+      "id": "field_silver_knuckles",
+      "nameTh": "ผ้าพันหมัด เงินจันทรา",
+      "file": "field_silver_knuckles.png",
+      "kind": "gear",
+      "sha256": "cc40af20838d4b730a737b1fe41faf9be2e1000d43b55aeeb2657a35ad74c4ca",
+      "bytes": 64024,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_knuckles.png",
+      "sourceSha256": "7801bb477a1bca60b34a2e6608ba05d30835690e3890557e5b6efd9f97e107c8",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_knuckles.receipt.json",
+      "receiptSha256": "20aec9acc29cfe65ee07305bcfe4005d6075fdf3cb51e296246ac162b115839f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        15,
+        184,
+        176
+      ]
+    },
+    {
+      "id": "silver_robe",
+      "nameTh": "อาภรณ์อาคม เงินจันทรา",
+      "file": "silver_robe.png",
+      "kind": "gear",
+      "sha256": "d34a230543985e68f423e032a267e99aa04dccb3925e1cc252d2870bad57962b",
+      "bytes": 64991,
+      "source": "meadow-3d/art/class-items-v1/sources/silver_robe.png",
+      "sourceSha256": "b544ec760101a99cc2165df592f54712bfadc1d412e36f83a6b35d196cede35d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/silver_robe.receipt.json",
+      "receiptSha256": "12d88bc2cde852844daf70bc1d6d8951da19bc9e59dd5fe0017d27d7114fe089",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_robe",
+      "nameTh": "อาภรณ์อาคม เงินจันทรา",
+      "file": "field_silver_robe.png",
+      "kind": "gear",
+      "sha256": "93b33b87c3f7de509feb1d9a182f1545c8e91b53eb8a57f533cc62688791820d",
+      "bytes": 66543,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_robe.png",
+      "sourceSha256": "22167bd4e7a549ecbb0897e3e5fa0659b15c93fca1ab7dd5f5510816f5c81f73",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_robe.receipt.json",
+      "receiptSha256": "baa7cb6e1d44f1d9b9c630bf7e8c84da9b8ebd3d4581453680caa2a995a3d8c0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "silver_focus_shield",
+      "nameTh": "โล่อาคม เงินจันทรา",
+      "file": "silver_focus_shield.png",
+      "kind": "gear",
+      "sha256": "514ceca03c9a0dcd5b65439a6444b5fc36e862fc838fc5cd0f49b13d3b9521cc",
+      "bytes": 50017,
+      "source": "meadow-3d/art/class-items-v1/sources/silver_focus_shield.png",
+      "sourceSha256": "40098b9156bcae5cda444c9eb6a5dd697a86f2ab27aa5b319bc6916997946b93",
+      "receipt": "meadow-3d/art/class-items-v1/sources/silver_focus_shield.receipt.json",
+      "receiptSha256": "bc9f37d764a0c93130c6d378f67faf24da420ad4afa55e579537afdc5bccdeb4",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        32,
+        8,
+        160,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_focus_shield",
+      "nameTh": "โล่อาคม เงินจันทรา",
+      "file": "field_silver_focus_shield.png",
+      "kind": "gear",
+      "sha256": "d2e6ab4dd153b66ff0276db0004cea4581b96098e4371e5eb057e9485acad76c",
+      "bytes": 52364,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_focus_shield.png",
+      "sourceSha256": "a34cb23542bc0f748d2561d5cda7291f3dac41d4500873a5ecebd8e6423f3de3",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_focus_shield.receipt.json",
+      "receiptSha256": "913b37f5f8beff45534a3d97a5dbba91bceef829c8b34531f27298ffab1ad99c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        8,
+        166,
+        184
+      ]
+    },
+    {
+      "id": "silver_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เงินจันทรา",
+      "file": "silver_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "cedd5449f09d002bfaafe27de7ab7f210c8d5007e198cc4772acc5e6c0b330e7",
+      "bytes": 47615,
+      "source": "meadow-3d/art/class-items-v1/sources/silver_spirit_cloak.png",
+      "sourceSha256": "4b54b8bdf9c920e5a5c47dc3981abaf70c38e001e8d1372ac0321a02852d1a8f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/silver_spirit_cloak.receipt.json",
+      "receiptSha256": "a132475b9ed1c3f6152ec546f7437b36cb78e2fddd1799b713fe26a3fd8e7d1c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เงินจันทรา",
+      "file": "field_silver_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "b253110a709cc45bd96978bfca988288dfbbd31c8b41cbddb7bf54352e585bf5",
+      "bytes": 49591,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_spirit_cloak.png",
+      "sourceSha256": "84f3d524ab2ec084ba5264609421f58b135645f59139e21e6a019dabea28ee8f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_spirit_cloak.receipt.json",
+      "receiptSha256": "44d4502be16cb5cfb5b70798ef1161f0f3e08af365ebed6cbbd0b6e9654f6e76",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "silver_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เงินจันทรา",
+      "file": "silver_swift_boots.png",
+      "kind": "gear",
+      "sha256": "23e11c8218ea4de13e0e8397d31bced947b2d100a1f58bddfc9edf7a599a00d5",
+      "bytes": 53584,
+      "source": "meadow-3d/art/class-items-v1/sources/silver_swift_boots.png",
+      "sourceSha256": "685792eaaafd3dc9b937fb474989168ff4d0bf6fd9435753220d76d735124197",
+      "receipt": "meadow-3d/art/class-items-v1/sources/silver_swift_boots.receipt.json",
+      "receiptSha256": "1bf79438e3ceb563f100faa09e2d460d3a3e03136386f98e8be5a0c151b68562",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เงินจันทรา",
+      "file": "field_silver_swift_boots.png",
+      "kind": "gear",
+      "sha256": "2b7c1650ea5730f69c86cb1ad56b526674c677432daeb7f06778f9597cecb5e4",
+      "bytes": 57994,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_swift_boots.png",
+      "sourceSha256": "64f6d87b8831c96f8d95e0a99d4887bde1c6635fcb9925b7f998b02cfa934430",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_swift_boots.receipt.json",
+      "receiptSha256": "07f11fe1164291ee159d978ba1cd8986e82feba2d194bdfd6d149a1ebf8e4b73",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_arcane_ring",
+      "nameTh": "แหวนอาคม เงินจันทรา",
+      "file": "field_silver_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "b14f9b14fd1e03df816638f8f2f5a6874c9e1bea68c8edcaecc3ed28c0636aef",
+      "bytes": 62126,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_arcane_ring.png",
+      "sourceSha256": "2a1aae4858d5367ee9a3ba1f16fad86eeae8f5d378d191b35934f35e8e980302",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_arcane_ring.receipt.json",
+      "receiptSha256": "77e15e749c1e054759966880c36216231faf7154d3a5cc38dc1d836b22c11e66",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_silver_amulet",
+      "nameTh": "จี้ฟื้นจิต เงินจันทรา",
+      "file": "field_silver_amulet.png",
+      "kind": "gear",
+      "sha256": "aedb69dfba4a2e75b5f4ca87ae867cf6413f6236a1455442e71382c67c06a29f",
+      "bytes": 48910,
+      "source": "meadow-3d/art/class-items-v1/sources/field_silver_amulet.png",
+      "sourceSha256": "e5f76bdd33cd9b8166912fa3c71f29afe419bc3c913f177b0ea45f4b583303d4",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_silver_amulet.receipt.json",
+      "receiptSha256": "b1ec6e879b3c822109a412528eedaa6d677efb5e13d7eb167cee35edd71be093",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "sunsteel_greatsword",
+      "nameTh": "ดาบใหญ่ เหล็กสุริยัน",
+      "file": "sunsteel_greatsword.png",
+      "kind": "gear",
+      "sha256": "2192251b5d6b460f471204576f55aa4ddcee8d659a802fe8427e5bc7b8f42f77",
+      "bytes": 26821,
+      "source": "meadow-3d/art/class-items-v1/sources/sunsteel_greatsword.png",
+      "sourceSha256": "8d015cda919ca86e697f7652ceab88701c24f172f55469cbc2e4606c12dd5c89",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sunsteel_greatsword.receipt.json",
+      "receiptSha256": "1436e5a13c223d61e185dff28104d9d60337ba9e515bc2e9f4c01543f720aa3f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_sunsteel_greatsword",
+      "nameTh": "ดาบใหญ่ เหล็กสุริยัน",
+      "file": "field_sunsteel_greatsword.png",
+      "kind": "gear",
+      "sha256": "53fcb488a15f07ac53c83aef730232b3145bd109a3c10460205073039358cd6a",
+      "bytes": 30084,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_greatsword.png",
+      "sourceSha256": "cb3005a61ce2b784ab42bfd9b48443cb6d3ba6bf3b6723aff617f3ceea6825d2",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_greatsword.receipt.json",
+      "receiptSha256": "d1db3f6647484de9aca3524d46443bb4c106b6c696ef7e336c7bc2c4889dfcc6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "sunsteel_dagger",
+      "nameTh": "กริช เหล็กสุริยัน",
+      "file": "sunsteel_dagger.png",
+      "kind": "gear",
+      "sha256": "1095f58d25ecf7d0faf4d6a5188755dc4833355ef66f2fde23090628d0001d39",
+      "bytes": 26905,
+      "source": "meadow-3d/art/class-items-v1/sources/sunsteel_dagger.png",
+      "sourceSha256": "711c9f9d31e8e262818042b74b2561f3758ac3367311c3e076514200172c595d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sunsteel_dagger.receipt.json",
+      "receiptSha256": "d8fd5b1a793bc4e81466725b9e2342f01bf88d0fc9ce2aafe8e2d137d73078c0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "field_sunsteel_dagger",
+      "nameTh": "กริช เหล็กสุริยัน",
+      "file": "field_sunsteel_dagger.png",
+      "kind": "gear",
+      "sha256": "777282d4bcf7b186b90e2607151ebd35bcb1cec4b0789488106c24f4aba60ac4",
+      "bytes": 27904,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_dagger.png",
+      "sourceSha256": "d1988d6173d552eab7d34c39fd56a43137357a8eda4e4c8577a0e14891bf2565",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_dagger.receipt.json",
+      "receiptSha256": "c4429b4d1d6e32b2921da22b6be1042eb2c0e6fca71ce18158ccd31511e897bf",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        174,
+        184
+      ]
+    },
+    {
+      "id": "sunsteel_knuckles",
+      "nameTh": "ผ้าพันหมัด เหล็กสุริยัน",
+      "file": "sunsteel_knuckles.png",
+      "kind": "gear",
+      "sha256": "175656cb93d57f5f23b7a7eb7cd0fee23c7c06e69061d9a6b941170a3b15d97c",
+      "bytes": 65842,
+      "source": "meadow-3d/art/class-items-v1/sources/sunsteel_knuckles.png",
+      "sourceSha256": "dec4a6a6f4bca8874da72f86db1a3d7fb5c1e46a7da6022844c67536a9e473ec",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sunsteel_knuckles.receipt.json",
+      "receiptSha256": "d6574b6fbc9cae057b7b48c076b7e82fa8a492bfdb035b34e0587e0756732712",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_sunsteel_knuckles",
+      "nameTh": "ผ้าพันหมัด เหล็กสุริยัน",
+      "file": "field_sunsteel_knuckles.png",
+      "kind": "gear",
+      "sha256": "a6faee25c58b99c00a02decb2bb15adab87e946a3bb45869783aa6fab44d0e70",
+      "bytes": 65363,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_knuckles.png",
+      "sourceSha256": "20455db7bf1d492a748dda16310a33ce6575cffc1511f6d2b6705a87d890e845",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_knuckles.receipt.json",
+      "receiptSha256": "e136dd7ff6e15dfd372c450bc410ded44d09832686097a7a8854366b01ca7025",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        18,
+        184,
+        174
+      ]
+    },
+    {
+      "id": "sunsteel_robe",
+      "nameTh": "อาภรณ์อาคม เหล็กสุริยัน",
+      "file": "sunsteel_robe.png",
+      "kind": "gear",
+      "sha256": "1ae67177f358eea56aceeb6410b3c9c710d5c236f9ba2321a4b9fd1d58f5d60a",
+      "bytes": 57057,
+      "source": "meadow-3d/art/class-items-v1/sources/sunsteel_robe.png",
+      "sourceSha256": "e47cbf9bbab4f79669187a00a0d5a4fc3a483c55f293a46ead1c21d85aa08375",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sunsteel_robe.receipt.json",
+      "receiptSha256": "755a150410d9360c89963c236363820d6bd2ca52f0a2fafeaf072139d3a23e37",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_sunsteel_robe",
+      "nameTh": "อาภรณ์อาคม เหล็กสุริยัน",
+      "file": "field_sunsteel_robe.png",
+      "kind": "gear",
+      "sha256": "67594593f79ddad663fabfa6477e676e72f453f763d3643c721c35602f28f793",
+      "bytes": 66051,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_robe.png",
+      "sourceSha256": "0e13641f684486c4c00023bbcc8e82493c0432c36e61ed8b3aa59c98da0fa67f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_robe.receipt.json",
+      "receiptSha256": "f56fd2596ae46fdb0b510e9017e0644542cedc2a4a15f2a5c9c1bd21f0d6ea65",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "sunsteel_focus_shield",
+      "nameTh": "โล่อาคม เหล็กสุริยัน",
+      "file": "sunsteel_focus_shield.png",
+      "kind": "gear",
+      "sha256": "5a2c69b941aa7d483f4637ce2692deea303863a0c26995fc8ab18d2bfc4c2d49",
+      "bytes": 54494,
+      "source": "meadow-3d/art/class-items-v1/sources/sunsteel_focus_shield.png",
+      "sourceSha256": "fcb75130386b7bebc5d0482db7d096dabff81cb7aaaae3ea39ef703c840ce178",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sunsteel_focus_shield.receipt.json",
+      "receiptSha256": "cca3747264c380fdc74767b96cc48e17fe8b01f17e088c24c29cb57e3343c93d",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        8,
+        167,
+        184
+      ]
+    },
+    {
+      "id": "field_sunsteel_focus_shield",
+      "nameTh": "โล่อาคม เหล็กสุริยัน",
+      "file": "field_sunsteel_focus_shield.png",
+      "kind": "gear",
+      "sha256": "3ceffa53d15aae5b4176ae427c3350442704a8443de883c2d02cd9e01ce6a930",
+      "bytes": 54337,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_focus_shield.png",
+      "sourceSha256": "b678782585099428a981a6546ea7da606a26910092107bf0b4e233f9aa9422aa",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_focus_shield.receipt.json",
+      "receiptSha256": "2116d6172cdef90c55d509a93be63939f67c8910228be453566453f902852ed7",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        22,
+        8,
+        170,
+        184
+      ]
+    },
+    {
+      "id": "sunsteel_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เหล็กสุริยัน",
+      "file": "sunsteel_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "8e310e86664d0f7abe1549e3701a27680704be7d268aea5cea286e911c5f0674",
+      "bytes": 48948,
+      "source": "meadow-3d/art/class-items-v1/sources/sunsteel_spirit_cloak.png",
+      "sourceSha256": "0db79136863ed210063a23d14a0fbc8d8c808f100b5a196ce17ea3b1f69dd51f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sunsteel_spirit_cloak.receipt.json",
+      "receiptSha256": "4a148f02a9ac672f1992b23ced40302bf2e3c33c18fcc3f858e7d62ea1263da8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_sunsteel_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เหล็กสุริยัน",
+      "file": "field_sunsteel_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "3a16baacfc430d896081b7a8777673a6168283a2808b037521ef315f692cc3ab",
+      "bytes": 52811,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_spirit_cloak.png",
+      "sourceSha256": "2b6e88ea1f2be79c092e10f94687d369b74ec5adabfc2ad3dcd555645f50d485",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_spirit_cloak.receipt.json",
+      "receiptSha256": "0c31e19ea522c9f18cac0f975346a57f84e161b13ca17a7870a21d7be8349a94",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "sunsteel_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เหล็กสุริยัน",
+      "file": "sunsteel_swift_boots.png",
+      "kind": "gear",
+      "sha256": "46183807525d8abbbdcd2f930d4f59082bf7f38aa73c22d0f79d5f06b22709d4",
+      "bytes": 61332,
+      "source": "meadow-3d/art/class-items-v1/sources/sunsteel_swift_boots.png",
+      "sourceSha256": "d389283060c27869a149d3c239699721fdb7c96f33d00e702caa25b467b1e417",
+      "receipt": "meadow-3d/art/class-items-v1/sources/sunsteel_swift_boots.receipt.json",
+      "receiptSha256": "b4dae6ea858cdd52c3c53a3143e116c4043961d571f7e7c3198c1349ac41cb20",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "field_sunsteel_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เหล็กสุริยัน",
+      "file": "field_sunsteel_swift_boots.png",
+      "kind": "gear",
+      "sha256": "a288d97b74f2a75783ee4682cc97a31e4f9d94e067ff29947162c523225c7d1a",
+      "bytes": 61329,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_swift_boots.png",
+      "sourceSha256": "b17a2aa30571b86524e30d7c2c8c94667f5beb9bf16b8d3a74b55361fa6e2dcf",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_swift_boots.receipt.json",
+      "receiptSha256": "3d22f51bee9ad23ebfcf998f2ff0a70c001e3b1205d80f64c3dd152a033d4f28",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        13,
+        184,
+        178
+      ]
+    },
+    {
+      "id": "field_sunsteel_arcane_ring",
+      "nameTh": "แหวนอาคม เหล็กสุริยัน",
+      "file": "field_sunsteel_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "e8d0ad11928994b72342d5dd7bb1156c2d62ab9628817ef5514263f9e33a66f2",
+      "bytes": 62527,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_arcane_ring.png",
+      "sourceSha256": "7b1373dbe0523f2467977464b0ad0438ee468e5558e0493f996a811cb91a2b0a",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_arcane_ring.receipt.json",
+      "receiptSha256": "260297f9668b342c95be061ddbb02db458155b9184fe925238bf208cd3ab2ac3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_sunsteel_amulet",
+      "nameTh": "จี้ฟื้นจิต เหล็กสุริยัน",
+      "file": "field_sunsteel_amulet.png",
+      "kind": "gear",
+      "sha256": "6e2e92158b38dfa3e7e4955a78acdf8be85029bed8171a7e67cd1c9236776b0d",
+      "bytes": 35687,
+      "source": "meadow-3d/art/class-items-v1/sources/field_sunsteel_amulet.png",
+      "sourceSha256": "626ea9c2d04587ace0eb6b3c2e6ba13e0265c87ef0dee57ff7502c8678fd125b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_sunsteel_amulet.receipt.json",
+      "receiptSha256": "f94ca90fcb16a86260ec58fdf0afef6881e73814995260e89e575c22cf26fbcc",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        40,
+        8,
+        152,
+        184
+      ]
+    },
+    {
+      "id": "naga_greatsword",
+      "nameTh": "ดาบใหญ่ เกล็ดนาคา",
+      "file": "naga_greatsword.png",
+      "kind": "gear",
+      "sha256": "ea823c9add80c8bd2c943fa1f6529e159a1fd928347839fbec9b99d4e50652ed",
+      "bytes": 27017,
+      "source": "meadow-3d/art/class-items-v1/sources/naga_greatsword.png",
+      "sourceSha256": "8206fb2bd145e5db9d5cc1dfeb2d0a605b64aff4bc2af9f0ac4428b6a7e5457d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/naga_greatsword.receipt.json",
+      "receiptSha256": "a58c34549affc98b17fd384031ad347a44c63ad1cb6eb2a04b1c7736d7f6b928",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_greatsword",
+      "nameTh": "ดาบใหญ่ เกล็ดนาคา",
+      "file": "field_naga_greatsword.png",
+      "kind": "gear",
+      "sha256": "4fcfafc1fe992a66d352bc1c5b57f4c076f4286767f4a19442fd4be92b3f462f",
+      "bytes": 28142,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_greatsword.png",
+      "sourceSha256": "03c02a4615407e73023b8710708ac6d4c136e57746a5a994ee796edd5117fb09",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_greatsword.receipt.json",
+      "receiptSha256": "f1aa8f049acb506c4d81a4f5c1afd4d299f50490289239559cd79de56830ffc2",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "naga_dagger",
+      "nameTh": "กริช เกล็ดนาคา",
+      "file": "naga_dagger.png",
+      "kind": "gear",
+      "sha256": "c33692b69e94e658d25e8b1ad9969403a2b244a9b25a2f698e2da363ace2250b",
+      "bytes": 25877,
+      "source": "meadow-3d/art/class-items-v1/sources/naga_dagger.png",
+      "sourceSha256": "5dbf75d5442fe0b395978402591f9e253684f4992e6f661df44a491d4583c857",
+      "receipt": "meadow-3d/art/class-items-v1/sources/naga_dagger.receipt.json",
+      "receiptSha256": "f4bf43dc881878e654d11a115c2ced4d1da98147bae76713cffe9c2f9e2c5a99",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_dagger",
+      "nameTh": "กริช เกล็ดนาคา",
+      "file": "field_naga_dagger.png",
+      "kind": "gear",
+      "sha256": "75e0b099668c25796d39836a9c7e9070faf035810c13e5b5ecf5e34aa6bcc312",
+      "bytes": 29606,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_dagger.png",
+      "sourceSha256": "52791b8e8fe474f73a6c958437e998fe448991044417f7460f0007cd45cfbb13",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_dagger.receipt.json",
+      "receiptSha256": "49f3e68031e5d723b9b024bc397cc391560e7b3bf99e2f2051b0dc968a9f7ca0",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        174,
+        184
+      ]
+    },
+    {
+      "id": "naga_knuckles",
+      "nameTh": "ผ้าพันหมัด เกล็ดนาคา",
+      "file": "naga_knuckles.png",
+      "kind": "gear",
+      "sha256": "c333b3f8c5609664cc32a117875a166e23449c32cfbe4b43eaa997b1b7c0f3d6",
+      "bytes": 60831,
+      "source": "meadow-3d/art/class-items-v1/sources/naga_knuckles.png",
+      "sourceSha256": "96efda8b1781ed305a469431a3bd6b83f403dc397cf4543af30426356704c460",
+      "receipt": "meadow-3d/art/class-items-v1/sources/naga_knuckles.receipt.json",
+      "receiptSha256": "f930f4877e878a898f55830c9179d65258b10487fff88b03886c983e8b664805",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_naga_knuckles",
+      "nameTh": "ผ้าพันหมัด เกล็ดนาคา",
+      "file": "field_naga_knuckles.png",
+      "kind": "gear",
+      "sha256": "7b729973c832d3cdd2da08d5d538015650c6340dc47eee873eae99bd9ea439c5",
+      "bytes": 61372,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_knuckles.png",
+      "sourceSha256": "86c0ca5a6b168db20359a82e8c1219642dbeea796416abaeee213a72a79472e5",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_knuckles.receipt.json",
+      "receiptSha256": "55dad0db7654499997c660dfc3f4bb6e012305a7e09bb28961da5a290148c0ac",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        181
+      ]
+    },
+    {
+      "id": "naga_robe",
+      "nameTh": "อาภรณ์อาคม เกล็ดนาคา",
+      "file": "naga_robe.png",
+      "kind": "gear",
+      "sha256": "d5e96ae8792babfe47dd86a4a064c7b7a60f9a92320210db359ca9e36631e1c8",
+      "bytes": 58934,
+      "source": "meadow-3d/art/class-items-v1/sources/naga_robe.png",
+      "sourceSha256": "b86a10eea9005a0fe3eace95ceb07f9c6b9e7c46776000971f58a8f402e288f2",
+      "receipt": "meadow-3d/art/class-items-v1/sources/naga_robe.receipt.json",
+      "receiptSha256": "7dddecda6e0b0b6b92cf805e97e33567fa81b18cbd282b2cd64125fd8e1d8d35",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_robe",
+      "nameTh": "อาภรณ์อาคม เกล็ดนาคา",
+      "file": "field_naga_robe.png",
+      "kind": "gear",
+      "sha256": "4adc2e209ac92b2e85580a171ad601c1de935b36804ad4e7f1d9ca944e276a81",
+      "bytes": 56528,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_robe.png",
+      "sourceSha256": "75ca11803b63cc1fc0ccdba44fb79ee3a2b0ee97589852de56f5a77670c70db7",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_robe.receipt.json",
+      "receiptSha256": "148bd710a81a23664758959057de34cdf0f2e5df139ebec66edfe40dea11dc9d",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "naga_focus_shield",
+      "nameTh": "โล่อาคม เกล็ดนาคา",
+      "file": "naga_focus_shield.png",
+      "kind": "gear",
+      "sha256": "fdb8f73913adaf18a42614446d7349773a007029ba0cf76ce2e690bd45762f2c",
+      "bytes": 46941,
+      "source": "meadow-3d/art/class-items-v1/sources/naga_focus_shield.png",
+      "sourceSha256": "b8133cf334297240b5c706e6763693b94474646688f68ac041d4c9db04936b97",
+      "receipt": "meadow-3d/art/class-items-v1/sources/naga_focus_shield.receipt.json",
+      "receiptSha256": "b7c2cf387bd9dc9c530e1ca704b7b3486650f29987547ca4e147968f22d842f3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        28,
+        8,
+        163,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_focus_shield",
+      "nameTh": "โล่อาคม เกล็ดนาคา",
+      "file": "field_naga_focus_shield.png",
+      "kind": "gear",
+      "sha256": "3bde0fe7057912e86c02271566d5c7701be1d7ed3db87eb47be97a4fd87e4a01",
+      "bytes": 48865,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_focus_shield.png",
+      "sourceSha256": "29af311e07f9847811f553ebdcc99137555b239e08aa6ad543f41da791238543",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_focus_shield.receipt.json",
+      "receiptSha256": "a17c3a17e7bef8277b5cbb93ac4277b5606fcce70f1573e4ff1cf3d267d6ed27",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        8,
+        166,
+        184
+      ]
+    },
+    {
+      "id": "naga_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เกล็ดนาคา",
+      "file": "naga_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "67dc0d11ebb68bdfc6518ea7485669ba4d76c832623233b105b6b2221e63334e",
+      "bytes": 46806,
+      "source": "meadow-3d/art/class-items-v1/sources/naga_spirit_cloak.png",
+      "sourceSha256": "57831e6e32e15363e35cf43ed4cb3e7cb9184db3bee9bdd09d58f55315fcaa21",
+      "receipt": "meadow-3d/art/class-items-v1/sources/naga_spirit_cloak.receipt.json",
+      "receiptSha256": "149cb0601e2a723ef911c4266d7d75830afc572885d31c98cc993257069d484c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เกล็ดนาคา",
+      "file": "field_naga_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "31f2991e1ec6c5b15fa15fc6957c0cf1a5339465e310fbe717982d45e6442702",
+      "bytes": 50542,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_spirit_cloak.png",
+      "sourceSha256": "08738dd02e168f6fa56a52b89b7127da9d3d627baa0df7c65a58c338b9558fb9",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_spirit_cloak.receipt.json",
+      "receiptSha256": "645bfb9eb4e338ee107c19867d6ccdbb7326ac73fd91026275fbba2a41bc9454",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        174,
+        184
+      ]
+    },
+    {
+      "id": "naga_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เกล็ดนาคา",
+      "file": "naga_swift_boots.png",
+      "kind": "gear",
+      "sha256": "b810ca3139b08a0d21ed0b13e0570c339d45e80583ce2f2abff871b5c1a69b92",
+      "bytes": 57342,
+      "source": "meadow-3d/art/class-items-v1/sources/naga_swift_boots.png",
+      "sourceSha256": "657aadc3a846403234925ef4fd677183ced18de5b3f42d639a37f05a499f11d8",
+      "receipt": "meadow-3d/art/class-items-v1/sources/naga_swift_boots.receipt.json",
+      "receiptSha256": "b0d1c2d12b1c46fe3bca0658c7bb02b7c6c3c068edd582297309531495de7fa1",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เกล็ดนาคา",
+      "file": "field_naga_swift_boots.png",
+      "kind": "gear",
+      "sha256": "b97625f8ad846b91b4bfe746f1a23f3a8f0bbc961683ce78b1d2beb983852569",
+      "bytes": 58623,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_swift_boots.png",
+      "sourceSha256": "680cd39f16021fd59f9d55dee47b315c7f2024028618976e2c83cc50474c15ce",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_swift_boots.receipt.json",
+      "receiptSha256": "06305abcefc061d6e0d3bc8e2ca79f431fe2cb7d256c705be1245efef41440c6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        8,
+        165,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_arcane_ring",
+      "nameTh": "แหวนอาคม เกล็ดนาคา",
+      "file": "field_naga_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "f7ae9c2718a4c77efed21447378cfcb52567e87d8a7e7b33d3445ce70f24a687",
+      "bytes": 58902,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_arcane_ring.png",
+      "sourceSha256": "9f33221f9e57290a1f8159b6d789651fae4ce6bffe352f37b222ced7deaad2bd",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_arcane_ring.receipt.json",
+      "receiptSha256": "6b94a972b9d70d4201514fd6048b149488aa3f876af25145e3ca0b62c0a77322",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_naga_amulet",
+      "nameTh": "จี้ฟื้นจิต เกล็ดนาคา",
+      "file": "field_naga_amulet.png",
+      "kind": "gear",
+      "sha256": "4ace9696178fdb8de9f83cfcf990ad03a1b832a629f1be8b3593597476418ea3",
+      "bytes": 40885,
+      "source": "meadow-3d/art/class-items-v1/sources/field_naga_amulet.png",
+      "sourceSha256": "0076afe65ac45ddc3312f51e1ea172f1ec1efffce777cd12123ef3cdec7d00bf",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_naga_amulet.receipt.json",
+      "receiptSha256": "48d865c872f2d4e6c16d5d5a3aa3a0fec3ba4499cb99f0352a87ffa26909de90",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        8,
+        166,
+        184
+      ]
+    },
+    {
+      "id": "celestial_greatsword",
+      "nameTh": "ดาบใหญ่ ดาราสวรรค์",
+      "file": "celestial_greatsword.png",
+      "kind": "gear",
+      "sha256": "163a3383533413373d19aa4b69ea218b1f98af0a20f472f86770702f0b6b3d34",
+      "bytes": 27755,
+      "source": "meadow-3d/art/class-items-v1/sources/celestial_greatsword.png",
+      "sourceSha256": "7517b344607d4c574565f5adef5109fa4ffa0a4d52cb97513d5fbf0f4e9aa1f1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/celestial_greatsword.receipt.json",
+      "receiptSha256": "6d314f5c581a66dd44dfb69493d3c9921df7933c239cf90cc246509501c1f0df",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_celestial_greatsword",
+      "nameTh": "ดาบใหญ่ ดาราสวรรค์",
+      "file": "field_celestial_greatsword.png",
+      "kind": "gear",
+      "sha256": "ba2ede5ef3967802fa2de4bbcf9eb038619d34334ec6d62f68d09f18ecf8386b",
+      "bytes": 29361,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_greatsword.png",
+      "sourceSha256": "63db38eeeefe2a9ea1428eb54fd8da70f03ce180c97575ec9d8b55518a79dff5",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_greatsword.receipt.json",
+      "receiptSha256": "b2d270eca609f054f86adf2954d080fbca3a77d28525ec33f4568e477135e5be",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "celestial_dagger",
+      "nameTh": "กริช ดาราสวรรค์",
+      "file": "celestial_dagger.png",
+      "kind": "gear",
+      "sha256": "1ed6bc033ecbe5cf14a2a455afffaa385b6c3b55ec804c70b05e7103bf7da18f",
+      "bytes": 30432,
+      "source": "meadow-3d/art/class-items-v1/sources/celestial_dagger.png",
+      "sourceSha256": "84e32a52011c9b2a99a615be74d0b0a2f6b1184be037216985c7b0b2070b9688",
+      "receipt": "meadow-3d/art/class-items-v1/sources/celestial_dagger.receipt.json",
+      "receiptSha256": "12b340a7b35bc621512565208493a8c20ceb7cba442d4934f3294d12c433e87c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_celestial_dagger",
+      "nameTh": "กริช ดาราสวรรค์",
+      "file": "field_celestial_dagger.png",
+      "kind": "gear",
+      "sha256": "231f2d866fea14e4fd250a6398ca2051113e8097c52bc779cb22c03362bdb1a1",
+      "bytes": 31575,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_dagger.png",
+      "sourceSha256": "1ebc2d27757020f3d590dd17b7ac1ba5823e4251ea8a83c3aefaf8571677953d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_dagger.receipt.json",
+      "receiptSha256": "5ffa4a3a01b8344d545db2f11725e2a0d9d3307d9a14ba601a670622566d05da",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "celestial_knuckles",
+      "nameTh": "ผ้าพันหมัด ดาราสวรรค์",
+      "file": "celestial_knuckles.png",
+      "kind": "gear",
+      "sha256": "d2286bc1d6254d63ac3d026c0ced456f84839efa739ca35a975ad44cc7f248a7",
+      "bytes": 66362,
+      "source": "meadow-3d/art/class-items-v1/sources/celestial_knuckles.png",
+      "sourceSha256": "a909cbe2b6724d941f706731c2eedac6ae4c4be405e5c64fc7028f1b1119074e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/celestial_knuckles.receipt.json",
+      "receiptSha256": "10483a917b607cd7ec2479e8626381e7de542995c20810d1a395c98cc18f3c02",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "field_celestial_knuckles",
+      "nameTh": "ผ้าพันหมัด ดาราสวรรค์",
+      "file": "field_celestial_knuckles.png",
+      "kind": "gear",
+      "sha256": "33dd792b9e9592855cd4be908a5e1b97bab8830a86a2f6c1293ae2977437709d",
+      "bytes": 60266,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_knuckles.png",
+      "sourceSha256": "7d2301e1bff37e82483bce824b2c668a14e063f20a2c03f61af04e34bf4ffe44",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_knuckles.receipt.json",
+      "receiptSha256": "60949f70b3567328a49550e1554648b8085a85834c8dfa09c8bf360a5d201ecd",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        13,
+        184,
+        178
+      ]
+    },
+    {
+      "id": "celestial_robe",
+      "nameTh": "อาภรณ์อาคม ดาราสวรรค์",
+      "file": "celestial_robe.png",
+      "kind": "gear",
+      "sha256": "f63581ed99a615c2badd1959a704f07937f46f9ba70706e740c0b43268102235",
+      "bytes": 64482,
+      "source": "meadow-3d/art/class-items-v1/sources/celestial_robe.png",
+      "sourceSha256": "21fda49ca1cc2ca493e90b42489dc9689070251b55bbc62998a3f40cda857321",
+      "receipt": "meadow-3d/art/class-items-v1/sources/celestial_robe.receipt.json",
+      "receiptSha256": "ab236f049a4da6bbfca5150bb367797690046f0bd622ec158a03fe1b58ad77fe",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_celestial_robe",
+      "nameTh": "อาภรณ์อาคม ดาราสวรรค์",
+      "file": "field_celestial_robe.png",
+      "kind": "gear",
+      "sha256": "88e7e98fbd3ad560590e124705f55080d13e822d7b82a24e104dc8e8d2cac6dd",
+      "bytes": 62382,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_robe.png",
+      "sourceSha256": "2cebf044ad476d65f1958f2804332c2d8a4e2f6c7c56e1129aa7ff3b2746f8ad",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_robe.receipt.json",
+      "receiptSha256": "b8e530212ec20b8487c7d06f14a028366ddc7972bf6e601ff100712c6da15bee",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "celestial_focus_shield",
+      "nameTh": "โล่อาคม ดาราสวรรค์",
+      "file": "celestial_focus_shield.png",
+      "kind": "gear",
+      "sha256": "3f36e254b3289dedad8349eed85b37d257dbcf9484a815939239a4fa8f071aa2",
+      "bytes": 54782,
+      "source": "meadow-3d/art/class-items-v1/sources/celestial_focus_shield.png",
+      "sourceSha256": "fd84c8c4e09540501758f29332cdef00b25195feba34e0fe6028f83a89041e2c",
+      "receipt": "meadow-3d/art/class-items-v1/sources/celestial_focus_shield.receipt.json",
+      "receiptSha256": "fa74da974999626e46679cb207da7ced13d48a7b8c5272bc0e250ed33d13c11f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        18,
+        8,
+        173,
+        184
+      ]
+    },
+    {
+      "id": "field_celestial_focus_shield",
+      "nameTh": "โล่อาคม ดาราสวรรค์",
+      "file": "field_celestial_focus_shield.png",
+      "kind": "gear",
+      "sha256": "192b22ae277639c6a82e4007d7d76a986ca79203fa21b9584d75351560771cd2",
+      "bytes": 53929,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_focus_shield.png",
+      "sourceSha256": "d35e275b473e68faef367455eccb697032e28a12c1e3c6ef3fe66dcab54dc059",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_focus_shield.receipt.json",
+      "receiptSha256": "0b960fcfd582bc0bec20bc2d4c07b586e37e0d3abb09adce1273b56ce9b47cdb",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        25,
+        8,
+        167,
+        184
+      ]
+    },
+    {
+      "id": "celestial_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ดาราสวรรค์",
+      "file": "celestial_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "8b5545c4156754109ff78bcf8ff7e31108c51ead0d2beb4dd10f331747c30238",
+      "bytes": 51941,
+      "source": "meadow-3d/art/class-items-v1/sources/celestial_spirit_cloak.png",
+      "sourceSha256": "4dad2f7dab69c131cdb996afa91719e62d4f65320c29c45407b13f308f76078b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/celestial_spirit_cloak.receipt.json",
+      "receiptSha256": "317786f45b73215e5026fcb19c44e84298b105c2924904a3256b60b8f87b649b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_celestial_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ดาราสวรรค์",
+      "file": "field_celestial_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "6c0311c1101496cffd9d50b26dc493dc6aa7e7fbda740dab0c697e4893304fc1",
+      "bytes": 54207,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_spirit_cloak.png",
+      "sourceSha256": "1a8e57039f97f6dc0a462a5a143ce361851fe71eba3d4e314949f54e55f3ffe3",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_spirit_cloak.receipt.json",
+      "receiptSha256": "8ed71161fe0c992389b54c7fc6fd47592346a01a9b30e176cb8130ca32d5693c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "celestial_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ดาราสวรรค์",
+      "file": "celestial_swift_boots.png",
+      "kind": "gear",
+      "sha256": "99206cdd950a85c56f16642cedda2db9d7b3c63a0737b87ea5846c63dbcfec5f",
+      "bytes": 59147,
+      "source": "meadow-3d/art/class-items-v1/sources/celestial_swift_boots.png",
+      "sourceSha256": "f52a238d29150c7352d56d5cd855d3c025d8d00b4d7df346c7a32a9daafb6ce8",
+      "receipt": "meadow-3d/art/class-items-v1/sources/celestial_swift_boots.receipt.json",
+      "receiptSha256": "a0284d8b42c2e3112ffcc07f0d22c70180c6699adae481261258d9862418d48c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_celestial_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ดาราสวรรค์",
+      "file": "field_celestial_swift_boots.png",
+      "kind": "gear",
+      "sha256": "21dc53e42795e4e5307d020313c8c9e2d802e54f88c5ef3f5e8b614ac492b808",
+      "bytes": 63310,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_swift_boots.png",
+      "sourceSha256": "b568fd38a411c8d72e2cd45707e718b2465dc3f64cd98eda7d9de44910c26080",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_swift_boots.receipt.json",
+      "receiptSha256": "73b75d0e14d95faa75e50a9827287bf87c0c9b94d3f90993ba38fa429b97f3c7",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        9,
+        184,
+        183
+      ]
+    },
+    {
+      "id": "field_celestial_arcane_ring",
+      "nameTh": "แหวนอาคม ดาราสวรรค์",
+      "file": "field_celestial_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "3c0a2c016738a67eb2c3e8c3e51573d5835afddd9da2a86e67819c2458266e75",
+      "bytes": 63696,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_arcane_ring.png",
+      "sourceSha256": "b00ae3b4a2db0865b43f78c367c68466d61f67c25d14bc051eaeddd84e197633",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_arcane_ring.receipt.json",
+      "receiptSha256": "353a744b6db9b4c7fced32d47da1f807f264ade36ceaef681118a591df63d201",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_celestial_amulet",
+      "nameTh": "จี้ฟื้นจิต ดาราสวรรค์",
+      "file": "field_celestial_amulet.png",
+      "kind": "gear",
+      "sha256": "4ddf1a0266b7ab405ba7156abe7676f3453277fd2a31eb66f11c8c7903ae8b6b",
+      "bytes": 38646,
+      "source": "meadow-3d/art/class-items-v1/sources/field_celestial_amulet.png",
+      "sourceSha256": "852c01a8bdcbc0f20f235ea09b3bf807bf2369c6f64fa9ad793780ee7c1e8f4a",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_celestial_amulet.receipt.json",
+      "receiptSha256": "7614a061c5c9846c097368389c46d0cbd7b8ca931402c966803c7b9a217abe3a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        27,
+        8,
+        164,
+        184
+      ]
+    },
+    {
+      "id": "royalguard_greatsword",
+      "nameTh": "ดาบใหญ่ ราชองครักษ์",
+      "file": "royalguard_greatsword.png",
+      "kind": "gear",
+      "sha256": "3408e0a99337964bfe541a305196222a9dabb4675576eb196d4e22d4427ba809",
+      "bytes": 26226,
+      "source": "meadow-3d/art/class-items-v1/sources/royalguard_greatsword.png",
+      "sourceSha256": "cd49ff804570b4dfbc944aca0f2f401992d7d43629cf145f38e09ded48a4fb7f",
+      "receipt": "meadow-3d/art/class-items-v1/sources/royalguard_greatsword.receipt.json",
+      "receiptSha256": "5dbaee1c2ba894eb8535b49920e563252880ec72b0aba04be4cbd729ad9427c4",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_greatsword",
+      "nameTh": "ดาบใหญ่ ราชองครักษ์",
+      "file": "field_royalguard_greatsword.png",
+      "kind": "gear",
+      "sha256": "0d484de248218318fe4c29501dd5f3b1d8506df46804c386da26fbff02068c19",
+      "bytes": 27367,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_greatsword.png",
+      "sourceSha256": "4c5974f61ded869e1c61a62c5ec068c5586c141a8f9e21f01d5d95b6557c3b46",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_greatsword.receipt.json",
+      "receiptSha256": "6f69d64db9ef62bbe537956e688a2152f2a6fd2db35d7bf223b1b42e0b87a44c",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "royalguard_dagger",
+      "nameTh": "กริช ราชองครักษ์",
+      "file": "royalguard_dagger.png",
+      "kind": "gear",
+      "sha256": "ee187045ffa2fac79c2c418d8d82e3985b4bcb9c47616e74eada33cae083d5da",
+      "bytes": 26865,
+      "source": "meadow-3d/art/class-items-v1/sources/royalguard_dagger.png",
+      "sourceSha256": "505db2eeaa1c58d7d132fb9f9a589ffc3bbff70b25b7c6c7c8aa5b25acc3eff4",
+      "receipt": "meadow-3d/art/class-items-v1/sources/royalguard_dagger.receipt.json",
+      "receiptSha256": "60c930833aed555f8f3d20da9fbb87d469080b123c7374282d3dcb151927e4ce",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_dagger",
+      "nameTh": "กริช ราชองครักษ์",
+      "file": "field_royalguard_dagger.png",
+      "kind": "gear",
+      "sha256": "bd54343bc7e1f6d3d44de95cfb57120886c459129a40d2098af0d20e2021f9c6",
+      "bytes": 27924,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_dagger.png",
+      "sourceSha256": "634aa9c99b711ae1eef0691b0fcbb0f4f51fa878b9f51b26cbee6270af38bf8a",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_dagger.receipt.json",
+      "receiptSha256": "53cb1e5a72a2c9a5b31de16a0b34e8982a67fd6b623b757569c86ababbc3e8fe",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "royalguard_knuckles",
+      "nameTh": "ผ้าพันหมัด ราชองครักษ์",
+      "file": "royalguard_knuckles.png",
+      "kind": "gear",
+      "sha256": "f564becd2cc8d9a59783b27cc4633c5d735a8831340bddf769450aa837c97647",
+      "bytes": 54314,
+      "source": "meadow-3d/art/class-items-v1/sources/royalguard_knuckles.png",
+      "sourceSha256": "952939335e9a1c1a6db5ada7034aa0dc16d5534343f97d9fcd0487cafc4f7763",
+      "receipt": "meadow-3d/art/class-items-v1/sources/royalguard_knuckles.receipt.json",
+      "receiptSha256": "cc556e5085b9a677499a9b713fdf08b69ab28adece297015abee1ddb7edc87c7",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        14,
+        184,
+        177
+      ]
+    },
+    {
+      "id": "field_royalguard_knuckles",
+      "nameTh": "ผ้าพันหมัด ราชองครักษ์",
+      "file": "field_royalguard_knuckles.png",
+      "kind": "gear",
+      "sha256": "cf4cdb85307190775e3ed97cb98e3a46b55199b8b84801dcb2fd87f8a402ce50",
+      "bytes": 57402,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_knuckles.png",
+      "sourceSha256": "f1ca1ab0a8fafcb1c9711bc487ac9e29a678a196179df4b938cf258097934932",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_knuckles.receipt.json",
+      "receiptSha256": "918f65a080fed66e67fa14e56bca26a7c1c9b1fa51def94b686d05f7ace37c7f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        15,
+        184,
+        177
+      ]
+    },
+    {
+      "id": "royalguard_robe",
+      "nameTh": "อาภรณ์อาคม ราชองครักษ์",
+      "file": "royalguard_robe.png",
+      "kind": "gear",
+      "sha256": "f1359d2ba5c701f9219209666b529bd54581a4e7a1bb2565e5f7268f88ea78d9",
+      "bytes": 58458,
+      "source": "meadow-3d/art/class-items-v1/sources/royalguard_robe.png",
+      "sourceSha256": "fd8241b538515570b6cc93311eb52eebf804cd0603bfffcf1e941140ae0f28d2",
+      "receipt": "meadow-3d/art/class-items-v1/sources/royalguard_robe.receipt.json",
+      "receiptSha256": "2aaee6da81074c20a11c860ae2ce9459facbdacdb9c64a48267e2e9a30eeb548",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_robe",
+      "nameTh": "อาภรณ์อาคม ราชองครักษ์",
+      "file": "field_royalguard_robe.png",
+      "kind": "gear",
+      "sha256": "e0a8b4f7e79c5dadbbc8a88f09debcff5994ab21f88f478a9af2cc9663b1da5e",
+      "bytes": 58854,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_robe.png",
+      "sourceSha256": "ca39cc7b3dc59b29d364032cdb799ada55ad91cddb3a2852a3ce72f51ff1871e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_robe.receipt.json",
+      "receiptSha256": "6041bd574bcac2c86824ff728f3076becb87445f6479f2b4d636c20891843f14",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        15,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "royalguard_focus_shield",
+      "nameTh": "โล่อาคม ราชองครักษ์",
+      "file": "royalguard_focus_shield.png",
+      "kind": "gear",
+      "sha256": "cb7355d4c3876139c7ba91b882cfbad4e003ab9c1922e306e64ba7139a11df0f",
+      "bytes": 51246,
+      "source": "meadow-3d/art/class-items-v1/sources/royalguard_focus_shield.png",
+      "sourceSha256": "141c49c0ebc336c1ee19b39efbb0ebe4b6689bbbc568f974cef2d2acedf28477",
+      "receipt": "meadow-3d/art/class-items-v1/sources/royalguard_focus_shield.receipt.json",
+      "receiptSha256": "6280d3d42ffde985865c80449d3878fbb90be8b558b594e63f6bc3e7044c6b29",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        26,
+        8,
+        165,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_focus_shield",
+      "nameTh": "โล่อาคม ราชองครักษ์",
+      "file": "field_royalguard_focus_shield.png",
+      "kind": "gear",
+      "sha256": "ded3da5b16e9693858c4787fe7d1bc9936ebfe02d9c036653cd1aef928de93ad",
+      "bytes": 56049,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_focus_shield.png",
+      "sourceSha256": "d2335b028fbfcfaa54d7a689143ca7d70a2269d5d3e4c069eff6dc8d05f65678",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_focus_shield.receipt.json",
+      "receiptSha256": "9a4df0907161aa102f1beb948045483e5e95353ed7601e1126b5a5883f82970d",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        8,
+        170,
+        184
+      ]
+    },
+    {
+      "id": "royalguard_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ราชองครักษ์",
+      "file": "royalguard_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "dbe682226082b3ed505f8674808791b7f0a5c5f4d51397e0f3edb32f0aaf7b83",
+      "bytes": 48247,
+      "source": "meadow-3d/art/class-items-v1/sources/royalguard_spirit_cloak.png",
+      "sourceSha256": "7dcda2f7263e5fd875d000c116a519ded26c7b1355f90d927d29410923f1a9cc",
+      "receipt": "meadow-3d/art/class-items-v1/sources/royalguard_spirit_cloak.receipt.json",
+      "receiptSha256": "7b80dd648d1d248d5409016795d849b8522f4e9de8fc6ecd60877159c7c5d479",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก ราชองครักษ์",
+      "file": "field_royalguard_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "c08b8c992e8fe144bbf51831876c10e44b622ee5c0ea31246c9d8e02b36e8067",
+      "bytes": 53428,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_spirit_cloak.png",
+      "sourceSha256": "ed8162987e5b8c02313ab894cb2d92e41bbfa8d73b0d5f9b9a000063765ce12e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_spirit_cloak.receipt.json",
+      "receiptSha256": "001ac9c2759b5a1275eb3cb85d6fb359330e442e185b2242939b0f4160a3fbf6",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "royalguard_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ราชองครักษ์",
+      "file": "royalguard_swift_boots.png",
+      "kind": "gear",
+      "sha256": "fe9060d53b378087ed9416bd2e4ae177c6b08bf0dfcf551485b8c8ae82ed5237",
+      "bytes": 60326,
+      "source": "meadow-3d/art/class-items-v1/sources/royalguard_swift_boots.png",
+      "sourceSha256": "be070e663ca12f95e2cbe04467ccbae9b2160c5b47309d6b1b613acb24b16e60",
+      "receipt": "meadow-3d/art/class-items-v1/sources/royalguard_swift_boots.receipt.json",
+      "receiptSha256": "f5e547c4d8587ad81e0346935df961792c4c0803f16df5a93b7ff8ff312062f5",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_swift_boots",
+      "nameTh": "รองเท้าลอบล่า ราชองครักษ์",
+      "file": "field_royalguard_swift_boots.png",
+      "kind": "gear",
+      "sha256": "eaa39442bbb1a99a1abbaa44f1a34d29bf146e0be285cc100cec0e5e25fe7e56",
+      "bytes": 58996,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_swift_boots.png",
+      "sourceSha256": "2ef6552cd3f006cc795defa32f538df232ec841875fd89f9f9b053ad9be1a7c1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_swift_boots.receipt.json",
+      "receiptSha256": "02794899a95786493874c62c6a3249a5b54f9000ffcd18275a85cd4f2434e810",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        178,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_arcane_ring",
+      "nameTh": "แหวนอาคม ราชองครักษ์",
+      "file": "field_royalguard_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "fcd52fe9774282983526614206aa9c4e0a36f6378ae1193427b84463611bf138",
+      "bytes": 53933,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_arcane_ring.png",
+      "sourceSha256": "9c6e10331c4c77a4cee0d5ae19b25768689929a35fbcef8a5461fb3b860dbc90",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_arcane_ring.receipt.json",
+      "receiptSha256": "7d4236eec0157d7c19b03955c34df284abdc5d46ddbf7d53e10e9f422ed2d31e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        174,
+        184
+      ]
+    },
+    {
+      "id": "field_royalguard_amulet",
+      "nameTh": "จี้ฟื้นจิต ราชองครักษ์",
+      "file": "field_royalguard_amulet.png",
+      "kind": "gear",
+      "sha256": "ead84146fb5b3962432870accfef469f47065693fd670264fca0cf5a6c5230ad",
+      "bytes": 43500,
+      "source": "meadow-3d/art/class-items-v1/sources/field_royalguard_amulet.png",
+      "sourceSha256": "20898a747246420999ed262baed0ba8c6390e0705d083e723787ddcc204426c3",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_royalguard_amulet.receipt.json",
+      "receiptSha256": "1ac0e99eb76828398b1a90a295e3f47cf139ac28b4f210ab3c503d6a6cd50cb2",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        30,
+        8,
+        162,
+        184
+      ]
+    },
+    {
+      "id": "mythic_greatsword",
+      "nameTh": "ดาบใหญ่ เทพพิทักษ์",
+      "file": "mythic_greatsword.png",
+      "kind": "gear",
+      "sha256": "f288288f57a2e5998a3a662c2f8ccff644eb8c9c2710d3ade78a782cadbc24e9",
+      "bytes": 25255,
+      "source": "meadow-3d/art/class-items-v1/sources/mythic_greatsword.png",
+      "sourceSha256": "662a90c6f3abd48f8594d5312dcbf232dc1bd1b85fc82394e634a1d3f450ca39",
+      "receipt": "meadow-3d/art/class-items-v1/sources/mythic_greatsword.receipt.json",
+      "receiptSha256": "4a6f165d0af8dcca7ddb5b8b418036187061337c25fa2c761df83e6660f974d3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_greatsword",
+      "nameTh": "ดาบใหญ่ เทพพิทักษ์",
+      "file": "field_mythic_greatsword.png",
+      "kind": "gear",
+      "sha256": "0240f03a90f7c2a9d0fcf85c07e23cf6800477c7fdb9e23bbd20717e6ce39aa5",
+      "bytes": 29585,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_greatsword.png",
+      "sourceSha256": "107d73edc2d6ea9360af3fb067205780cd2b07ef930a2b1ea44ceab6961534c1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_greatsword.receipt.json",
+      "receiptSha256": "a68ec5a8c7626bdf494c5b97b1f21b4930f41c70ba79d8c3204d489f876c30d5",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "mythic_dagger",
+      "nameTh": "กริช เทพพิทักษ์",
+      "file": "mythic_dagger.png",
+      "kind": "gear",
+      "sha256": "1b2b79669669421b716b8615227b911fcd7deeead82e244a4222128d56ef5657",
+      "bytes": 25150,
+      "source": "meadow-3d/art/class-items-v1/sources/mythic_dagger.png",
+      "sourceSha256": "5ffa58abb1484fee3d77720f8a777c03e99f1c77648c0ead454e42a7c2f782d2",
+      "receipt": "meadow-3d/art/class-items-v1/sources/mythic_dagger.receipt.json",
+      "receiptSha256": "8b1dc68791ba18adafcf964aef020c325f24101a3a11e45b6e4f8f3c1e2ef030",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        21,
+        8,
+        170,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_dagger",
+      "nameTh": "กริช เทพพิทักษ์",
+      "file": "field_mythic_dagger.png",
+      "kind": "gear",
+      "sha256": "c163a9e8070479bb347ba20b37ec6425fa4bb8b4dd4edf0b5d9aa1517acaff16",
+      "bytes": 29054,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_dagger.png",
+      "sourceSha256": "f4cc1a15d18a6f80819a20df2ef590cd6ea492a8936e823e5820dc880a78c12b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_dagger.receipt.json",
+      "receiptSha256": "2fb925737c22021c9fc854e5ad0eae7d3001d1371cef4f43e3320bb89c7d8ced",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "mythic_knuckles",
+      "nameTh": "ผ้าพันหมัด เทพพิทักษ์",
+      "file": "mythic_knuckles.png",
+      "kind": "gear",
+      "sha256": "991955b09ce4490cc2fe4c915b2bd0a4ce3b0563581408ea5212a198319015d3",
+      "bytes": 60997,
+      "source": "meadow-3d/art/class-items-v1/sources/mythic_knuckles.png",
+      "sourceSha256": "56333287375bbe6529cc64092fc25e5269e48e25d89ab5c1d3f17cba6c75d47c",
+      "receipt": "meadow-3d/art/class-items-v1/sources/mythic_knuckles.receipt.json",
+      "receiptSha256": "da7e29416a3553ff339f03106559588b67d58552184d08d0a29f93905f353348",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        11,
+        184,
+        181
+      ]
+    },
+    {
+      "id": "field_mythic_knuckles",
+      "nameTh": "ผ้าพันหมัด เทพพิทักษ์",
+      "file": "field_mythic_knuckles.png",
+      "kind": "gear",
+      "sha256": "8e709b7726fd9d48b2e88e5ead64711aff520dc63e48cde376404112e3121740",
+      "bytes": 61228,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_knuckles.png",
+      "sourceSha256": "fcd9d327613bc7f8ad33beafbc7fed90a9ef5341652361de99f5513a69c2e34d",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_knuckles.receipt.json",
+      "receiptSha256": "b0fa6a10f2a25d934ffdc2b96c5b5062fb353e860e919bda4d509097ed05fe6f",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        14,
+        184,
+        178
+      ]
+    },
+    {
+      "id": "mythic_robe",
+      "nameTh": "อาภรณ์อาคม เทพพิทักษ์",
+      "file": "mythic_robe.png",
+      "kind": "gear",
+      "sha256": "48368f755f463bd42e732c0ad6971b820a63cff61565c5c65c31450e5e3a4142",
+      "bytes": 60200,
+      "source": "meadow-3d/art/class-items-v1/sources/mythic_robe.png",
+      "sourceSha256": "42d6b4935414dca71d8b2e6b3ec122893aafcd2a266ec0001f2593d52d7a3936",
+      "receipt": "meadow-3d/art/class-items-v1/sources/mythic_robe.receipt.json",
+      "receiptSha256": "065b6d5190cb729609660df5bc2d3316a5f187af002a1a915f47bdc7f323def4",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_robe",
+      "nameTh": "อาภรณ์อาคม เทพพิทักษ์",
+      "file": "field_mythic_robe.png",
+      "kind": "gear",
+      "sha256": "addc799f2ecdf69bff70356678a6091ce0bfb2c05425058d5cc76a16e0c5a252",
+      "bytes": 64652,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_robe.png",
+      "sourceSha256": "bfd5c791f13eba326606607c3ab2db22f83b81f0eb77a327740169dc183e76f1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_robe.receipt.json",
+      "receiptSha256": "993c396e9f5af0f279188875dc8c468bb8c2bb2cdcab43141fff33b61420a203",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        181
+      ]
+    },
+    {
+      "id": "mythic_focus_shield",
+      "nameTh": "โล่อาคม เทพพิทักษ์",
+      "file": "mythic_focus_shield.png",
+      "kind": "gear",
+      "sha256": "34236f0babec921891d33da990a11a1a37fc1a17e9b5096fa6b077d2e5dbddb5",
+      "bytes": 50177,
+      "source": "meadow-3d/art/class-items-v1/sources/mythic_focus_shield.png",
+      "sourceSha256": "915c2ae2f6cdc9bacc5bbc2b8f4e92d8498c594917c7ae777251133b2b9defd3",
+      "receipt": "meadow-3d/art/class-items-v1/sources/mythic_focus_shield.receipt.json",
+      "receiptSha256": "1d929a33a600af54bbc6cecdce939a75e1be1d266b53b9a84ab2ce5983c87b8e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        27,
+        8,
+        165,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_focus_shield",
+      "nameTh": "โล่อาคม เทพพิทักษ์",
+      "file": "field_mythic_focus_shield.png",
+      "kind": "gear",
+      "sha256": "7edf4674a41d05d7872dd3af0db2ee767ac49e986c5e50e4fffaa82aedd548ab",
+      "bytes": 47590,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_focus_shield.png",
+      "sourceSha256": "01bb218554fde0b27ef5a7e81237d269f05217226e10d18de1e7fabc97b256ee",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_focus_shield.receipt.json",
+      "receiptSha256": "949446c16d0f69f0b2fa09b8f5287d0516bf4e43b4ce4c882ef76368098c8b38",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        32,
+        8,
+        160,
+        184
+      ]
+    },
+    {
+      "id": "mythic_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เทพพิทักษ์",
+      "file": "mythic_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "34d675f41cbf6aabad1886d485eab3e029a7063cb00d41fbb79df8ad1a0358d6",
+      "bytes": 43723,
+      "source": "meadow-3d/art/class-items-v1/sources/mythic_spirit_cloak.png",
+      "sourceSha256": "4cd181cabde8593f0ab7597dd187328106c830a5788c9c6ba47ae738fe6a87c7",
+      "receipt": "meadow-3d/art/class-items-v1/sources/mythic_spirit_cloak.receipt.json",
+      "receiptSha256": "9f11253992bb40d1967a9d6759765da1307f5e6bc1a802a8c338d062aa3b40cc",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        16,
+        8,
+        176,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เทพพิทักษ์",
+      "file": "field_mythic_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "6e8fc373228461e56dfc45fc4e9209ea1dc6f8e18604d918f0b06c16fe2618ae",
+      "bytes": 53440,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_spirit_cloak.png",
+      "sourceSha256": "82cd0126c9b14d33cd6ee4c4697c3379984dbb60369abd15714e49ec020bf326",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_spirit_cloak.receipt.json",
+      "receiptSha256": "dfd219e69a985d1e1a80a59fdf9993b03c6625b1d0222020eba8b5e13ddd191a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "mythic_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เทพพิทักษ์",
+      "file": "mythic_swift_boots.png",
+      "kind": "gear",
+      "sha256": "f914eb4f35435c8ab4ffa673d563558a7d9f239b0f5048ec0dabb0f56a4d1afe",
+      "bytes": 59637,
+      "source": "meadow-3d/art/class-items-v1/sources/mythic_swift_boots.png",
+      "sourceSha256": "022e59779a483b2d88d2c5df4b828c1a74bee720d6d314be5995b0412ba2b307",
+      "receipt": "meadow-3d/art/class-items-v1/sources/mythic_swift_boots.receipt.json",
+      "receiptSha256": "5dba86e59638ec70887e2aafe46dc9d1b1d3923aebc127094e2435768fbf6e7b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เทพพิทักษ์",
+      "file": "field_mythic_swift_boots.png",
+      "kind": "gear",
+      "sha256": "7683cd54c64138abfe18d76ef56a04ddfa790a84b1d9d060b68edc8906e22cb2",
+      "bytes": 57600,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_swift_boots.png",
+      "sourceSha256": "7fe9648521be0bdad0d454050380e7c64a6981ba76eebf2389b13deff658d705",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_swift_boots.receipt.json",
+      "receiptSha256": "dff7b26b914d7addfbf2bf6e06333547fdb74878b6a5e66cc81f0d94ef602d00",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        175,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_arcane_ring",
+      "nameTh": "แหวนอาคม เทพพิทักษ์",
+      "file": "field_mythic_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "79d46390e1543b2b848267ac520c04667501b52047d42bc53e0d9be01dde16a4",
+      "bytes": 61318,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_arcane_ring.png",
+      "sourceSha256": "0977b703a43571e47063422b33cfcd9ff2bd66f1958da6d0ec2aaeb5d0d4d136",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_arcane_ring.receipt.json",
+      "receiptSha256": "64d9db4dc289a2c92a4e7a6edbe7a5022e9ae8ce5f92eebb8b3f443e9facfada",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_mythic_amulet",
+      "nameTh": "จี้ฟื้นจิต เทพพิทักษ์",
+      "file": "field_mythic_amulet.png",
+      "kind": "gear",
+      "sha256": "8cb1d46dfdddad430a29f1507254953476e9fd52f59a054771c266836ae5ebdd",
+      "bytes": 49527,
+      "source": "meadow-3d/art/class-items-v1/sources/field_mythic_amulet.png",
+      "sourceSha256": "46170339d1bc5cfb6ccdc28b0de7a8f7b9611f147fb5c44d83e23c54e5e2f1da",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_mythic_amulet.receipt.json",
+      "receiptSha256": "d34efcd5762dcfa1dd6a218ffd810ebec759a2b3da2f2c416afb68023c49565b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        23,
+        8,
+        169,
+        184
+      ]
+    },
+    {
+      "id": "eternal_greatsword",
+      "nameTh": "ดาบใหญ่ นิรันดร์",
+      "file": "eternal_greatsword.png",
+      "kind": "gear",
+      "sha256": "340d13ed61e304da5130e3a11cea98c3f198399ced574e14a46af81c7f886129",
+      "bytes": 26027,
+      "source": "meadow-3d/art/class-items-v1/sources/eternal_greatsword.png",
+      "sourceSha256": "c3bbf14f1d8204e776a65cee4344b74c222d1600085989e555c9bc23cf2f154c",
+      "receipt": "meadow-3d/art/class-items-v1/sources/eternal_greatsword.receipt.json",
+      "receiptSha256": "d36e86655563011096ccb456d9081009ec37bb14eaa3c712042d637c09725dd3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_greatsword",
+      "nameTh": "ดาบใหญ่ นิรันดร์",
+      "file": "field_eternal_greatsword.png",
+      "kind": "gear",
+      "sha256": "f10823fcdc35252f61dd35dbf64ef0ddeafd7eb535cd7162ee6776e20c368c4b",
+      "bytes": 26986,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_greatsword.png",
+      "sourceSha256": "f136f6982045b4a162fe05be29c6064c3d5723dab04720f4a44fb2b56f969ddb",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_greatsword.receipt.json",
+      "receiptSha256": "6055b4b8eb0b62bb028e300fb8418ea115ade3bb5a05351c84a067be9e98c69e",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "eternal_dagger",
+      "nameTh": "กริช นิรันดร์",
+      "file": "eternal_dagger.png",
+      "kind": "gear",
+      "sha256": "3ba93232c3c41645da8da7667afe65506146801478336b59619d8efd12efbf25",
+      "bytes": 22832,
+      "source": "meadow-3d/art/class-items-v1/sources/eternal_dagger.png",
+      "sourceSha256": "8be338fac9a77aed788264c6cc8468937066951f84d6d4717b51e39ab1d4320b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/eternal_dagger.receipt.json",
+      "receiptSha256": "4e6da96ac23691ec790973ecc09d2429b716331007fbe08faa94b3d45452306b",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_dagger",
+      "nameTh": "กริช นิรันดร์",
+      "file": "field_eternal_dagger.png",
+      "kind": "gear",
+      "sha256": "b8aba73b2214397252f97040bf184293e0a08444942ff3c98d6153bf0949590d",
+      "bytes": 28046,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_dagger.png",
+      "sourceSha256": "b9b73d0f3841e7a033f091fa3e8ac9b099b0fc8477ce50844b8c8ba31939e281",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_dagger.receipt.json",
+      "receiptSha256": "cfb6aea5d2ec9ea05a541d8ba5a51480df4fe22f3199cb0a5c568b2ae97f73a8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        20,
+        8,
+        172,
+        184
+      ]
+    },
+    {
+      "id": "eternal_knuckles",
+      "nameTh": "ผ้าพันหมัด นิรันดร์",
+      "file": "eternal_knuckles.png",
+      "kind": "gear",
+      "sha256": "6a32dc4abd88ef98e8ed08b8f06893b32fc0d7979e800c097141e92789cc263e",
+      "bytes": 65362,
+      "source": "meadow-3d/art/class-items-v1/sources/eternal_knuckles.png",
+      "sourceSha256": "4ba7ec3dc4cba635b306fe8aa8634780530d6ceac735b0329413b96aea109b29",
+      "receipt": "meadow-3d/art/class-items-v1/sources/eternal_knuckles.receipt.json",
+      "receiptSha256": "1ff6b91ac4225b03370b31c3afe789a8e992c9a80070f2fec730d74102b26895",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        15,
+        184,
+        177
+      ]
+    },
+    {
+      "id": "field_eternal_knuckles",
+      "nameTh": "ผ้าพันหมัด นิรันดร์",
+      "file": "field_eternal_knuckles.png",
+      "kind": "gear",
+      "sha256": "07d5a6e172c30a00ff8494494acaf333667a01d013d5d676072c625c4baefa6c",
+      "bytes": 67427,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_knuckles.png",
+      "sourceSha256": "f2b1bed906f334af464e2ea78f645b46b55efef5ea6f0dcc8f1c353f5af1d13c",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_knuckles.receipt.json",
+      "receiptSha256": "51801379086a7c9dbf68e1b5c4a9884eea3ab0b52862e6a19690821ee2cc63e3",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        12,
+        184,
+        180
+      ]
+    },
+    {
+      "id": "eternal_robe",
+      "nameTh": "อาภรณ์อาคม นิรันดร์",
+      "file": "eternal_robe.png",
+      "kind": "gear",
+      "sha256": "291c6995effe71cfea99faedde8757bc8cf2fe1734199455e2463ff32c61fa8e",
+      "bytes": 63195,
+      "source": "meadow-3d/art/class-items-v1/sources/eternal_robe.png",
+      "sourceSha256": "7d76c8c9dd0a182f26e5ff64c5e7aab56cc09381a856effcbaa404668aba381b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/eternal_robe.receipt.json",
+      "receiptSha256": "05fdceeae5ac8b52f0baec96fe536eeebbb21115d21c73fdd0fe8c65400a9e98",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        9,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_robe",
+      "nameTh": "อาภรณ์อาคม นิรันดร์",
+      "file": "field_eternal_robe.png",
+      "kind": "gear",
+      "sha256": "a2676c3b9800b8e82ac05ab3b07475e3e72bbedc0fe785089b976b4f9eeaaf5b",
+      "bytes": 66171,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_robe.png",
+      "sourceSha256": "714f5f20c9dbc74b722d80b6b820694fefd8a23394b4259802743d3973fdfd0e",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_robe.receipt.json",
+      "receiptSha256": "88bc948ae216c5d524cb86191ce62047cb31a87ffc3baac8c2c1052107cdbe3a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        10,
+        184,
+        182
+      ]
+    },
+    {
+      "id": "eternal_focus_shield",
+      "nameTh": "โล่อาคม นิรันดร์",
+      "file": "eternal_focus_shield.png",
+      "kind": "gear",
+      "sha256": "3ffd6167268f392a08c19f67cfa46a78bd81ba02f7c2fe2d1149059706505f8d",
+      "bytes": 46049,
+      "source": "meadow-3d/art/class-items-v1/sources/eternal_focus_shield.png",
+      "sourceSha256": "67a15164259149f9136e7c53aa377c2fa5b0b0587d54d790694c781bb09bbacc",
+      "receipt": "meadow-3d/art/class-items-v1/sources/eternal_focus_shield.receipt.json",
+      "receiptSha256": "de4a574331e4da97f9eec49dd3c9d0babf7a29dcb7bfbccb60d865c1dca93dea",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        30,
+        8,
+        162,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_focus_shield",
+      "nameTh": "โล่อาคม นิรันดร์",
+      "file": "field_eternal_focus_shield.png",
+      "kind": "gear",
+      "sha256": "d661efc13f09d4f3febe6d79297bdee66f020366d15a8874c8ab751b5290ec80",
+      "bytes": 61636,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_focus_shield.png",
+      "sourceSha256": "b3c027939ce576c3b0bb73be7e03056dd233d5921903dadbdc72bb5f329a19eb",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_focus_shield.receipt.json",
+      "receiptSha256": "470ba6567c55dc6f9625648dd4d43747fc8658485f7d7372433246b1cf041ea8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        183,
+        184
+      ]
+    },
+    {
+      "id": "eternal_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก นิรันดร์",
+      "file": "eternal_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "02de1a413f9ca886460c1ca193174ec8a309e6eb4f7e35acf6ce8e9a24062abb",
+      "bytes": 50475,
+      "source": "meadow-3d/art/class-items-v1/sources/eternal_spirit_cloak.png",
+      "sourceSha256": "f17ceed69b951426d70c1654942652388e54f8310f02769c915601b3b350bcb9",
+      "receipt": "meadow-3d/art/class-items-v1/sources/eternal_spirit_cloak.receipt.json",
+      "receiptSha256": "3def3b769c583ef2a15f9fc7f0d43ac6dccf735ab2a3272a4a21aa0fd95d1b53",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        11,
+        8,
+        180,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก นิรันดร์",
+      "file": "field_eternal_spirit_cloak.png",
+      "kind": "gear",
+      "sha256": "4c1308f2044bd406cadff313c2528271837d21ce3c17ad3fa5b5c4dfa316e74a",
+      "bytes": 48934,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_spirit_cloak.png",
+      "sourceSha256": "b968a3a932de02572854996df0262e8789718aa40cb009814182704574038f74",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_spirit_cloak.receipt.json",
+      "receiptSha256": "dd83c10b222a43935a68e86e3225f54ca21a7b54eb574aeb404aae6cc0e6c116",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        17,
+        8,
+        175,
+        184
+      ]
+    },
+    {
+      "id": "eternal_swift_boots",
+      "nameTh": "รองเท้าลอบล่า นิรันดร์",
+      "file": "eternal_swift_boots.png",
+      "kind": "gear",
+      "sha256": "d52a06cd5f9754988f2a2fb8796876e29ac1ed738ffe10ae6358780a2fe24fb9",
+      "bytes": 58690,
+      "source": "meadow-3d/art/class-items-v1/sources/eternal_swift_boots.png",
+      "sourceSha256": "2022d0ad56a85fbafbdb38b225a5d7193ddb2a99eaed13d6b5924743fb5539d1",
+      "receipt": "meadow-3d/art/class-items-v1/sources/eternal_swift_boots.receipt.json",
+      "receiptSha256": "b3a8efbde925c312bd67c196e8e74c12029c0331bed7572bcc470cc87300f461",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_swift_boots",
+      "nameTh": "รองเท้าลอบล่า นิรันดร์",
+      "file": "field_eternal_swift_boots.png",
+      "kind": "gear",
+      "sha256": "62ebfd415bd476d679f5bca4752a852e0b263d3fe8e8d32127cbc45632800a40",
+      "bytes": 60880,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_swift_boots.png",
+      "sourceSha256": "0006bfd55e33a639519b6c697c521955748f3c9209e21b3c4560181126960b44",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_swift_boots.receipt.json",
+      "receiptSha256": "d0e3aeb57e32d4bc72be7cf721bae21a64e9a3cea08b3cb8074e545711f670f2",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        12,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_arcane_ring",
+      "nameTh": "แหวนอาคม นิรันดร์",
+      "file": "field_eternal_arcane_ring.png",
+      "kind": "gear",
+      "sha256": "128b35b54e726d376db852ad6fa649caf5489c8e4820bce80d06ab70d5087d58",
+      "bytes": 65012,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_arcane_ring.png",
+      "sourceSha256": "a5e2a93654129b3edb95c45222bb2bead8148540bc60f56b1e7b8406da72fa96",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_arcane_ring.receipt.json",
+      "receiptSha256": "272eacc3067ec3b090e2f72870d5fc67278e33a6764050a4602d72a13fed6916",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        181,
+        184
+      ]
+    },
+    {
+      "id": "field_eternal_amulet",
+      "nameTh": "จี้ฟื้นจิต นิรันดร์",
+      "file": "field_eternal_amulet.png",
+      "kind": "gear",
+      "sha256": "127d3b55dc2156cc6222e29c3837e4bce262b147a665962dd722409db0ce027d",
+      "bytes": 40101,
+      "source": "meadow-3d/art/class-items-v1/sources/field_eternal_amulet.png",
+      "sourceSha256": "d57d5cf6fc3c099a3bd95ea0e164c135469046d990b7da3a44eca8b909f82157",
+      "receipt": "meadow-3d/art/class-items-v1/sources/field_eternal_amulet.receipt.json",
+      "receiptSha256": "2414fa4297ca3b27cf7c2b3c1661908fb92799728e720c6d7bfbf7e2b59793e4",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        35,
+        8,
+        156,
+        184
+      ]
+    },
+    {
+      "id": "unique_blade_oath",
+      "nameTh": "ดาบสัตย์พิทักษ์",
+      "file": "unique_blade_oath.png",
+      "kind": "unique",
+      "sha256": "e5e9da230c6abbe613d79ca524cb041e50bd6d8879f71317e9c0c88b002a9ccb",
+      "bytes": 29536,
+      "source": "meadow-3d/art/class-items-v1/sources/unique_blade_oath.png",
+      "sourceSha256": "0d2954260383c837d7129d7cb5ce378dbfeab0dfc451cf904994f4dd369f15af",
+      "receipt": "meadow-3d/art/class-items-v1/sources/unique_blade_oath.receipt.json",
+      "receiptSha256": "3bdc6f0bda829933c72a1c8569bd0247a7d05ec0022d2d04f53a5d3e2f7d53cf",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        10,
+        8,
+        182,
+        184
+      ]
+    },
+    {
+      "id": "unique_hunters_eye",
+      "nameTh": "ธนูเนตรเหยี่ยว",
+      "file": "unique_hunters_eye.png",
+      "kind": "unique",
+      "sha256": "1b0d70445eaffb0cbb812cd72cc698c93690d5be2a53776233ef750613f08fa5",
+      "bytes": 25512,
+      "source": "meadow-3d/art/class-items-v1/sources/unique_hunters_eye.png",
+      "sourceSha256": "ef57ed8c46269effd4c4e45d9885de97bc16f0dbbcbf219569d7820e38dbe524",
+      "receipt": "meadow-3d/art/class-items-v1/sources/unique_hunters_eye.receipt.json",
+      "receiptSha256": "a4db542b4ba583c7d01aa95ae37e79b0f32e24c94015c68a3df770f39bdde15a",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        8,
+        184,
+        184
+      ]
+    },
+    {
+      "id": "unique_ember_robe",
+      "nameTh": "อาภรณ์อัคคีสงบ",
+      "file": "unique_ember_robe.png",
+      "kind": "unique",
+      "sha256": "60e8adf2515e0da99395ce1cfbf6157aa5da3870bece35f21397386d73dbf2b2",
+      "bytes": 50975,
+      "source": "meadow-3d/art/class-items-v1/sources/unique_ember_robe.png",
+      "sourceSha256": "6eb3f27974f96f1318fdcb8ad2d5c9c2b6ebdc0f1d7e0e5bbbc6027aeeaa74ee",
+      "receipt": "meadow-3d/art/class-items-v1/sources/unique_ember_robe.receipt.json",
+      "receiptSha256": "57b5ef5b42113c7c8b56c56ff890642700991d8b8042dc3c4cf0fb8557163cc8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        28,
+        8,
+        163,
+        184
+      ]
+    },
+    {
+      "id": "unique_lotus_vow",
+      "nameTh": "จี้สัตย์บัวขาว",
+      "file": "unique_lotus_vow.png",
+      "kind": "unique",
+      "sha256": "11761da39782a3442cb60f2b93d52223d529dfe08e753d700246d8997dc3f7c5",
+      "bytes": 29109,
+      "source": "meadow-3d/art/class-items-v1/sources/unique_lotus_vow.png",
+      "sourceSha256": "7bf8b7b935b07de0e645dd89ae7878fd62fdd179beb46ccc9419d7ad655ede07",
+      "receipt": "meadow-3d/art/class-items-v1/sources/unique_lotus_vow.receipt.json",
+      "receiptSha256": "e419bdb15535d98f1193a28777f3ed2217e8690f23378d50cfb4435c9b5a1c50",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        33,
+        8,
+        159,
+        184
+      ]
+    },
+    {
+      "id": "unique_spirit_bond",
+      "nameTh": "ผ้าคลุมพันธะวิญญาณ",
+      "file": "unique_spirit_bond.png",
+      "kind": "unique",
+      "sha256": "1b79750da9264e63f718a6527c690e87b0a9b483c596e24ef89a9ed3a00d5cc9",
+      "bytes": 49299,
+      "source": "meadow-3d/art/class-items-v1/sources/unique_spirit_bond.png",
+      "sourceSha256": "86852a5fc186fa2f462a17fc20580348825bdef2751cc468625de1574997e36b",
+      "receipt": "meadow-3d/art/class-items-v1/sources/unique_spirit_bond.receipt.json",
+      "receiptSha256": "747f38658af1b3c70dfd0572e0004a3e06582789c21441c775d36a9cd91cbdcd",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        13,
+        8,
+        179,
+        184
+      ]
+    },
+    {
+      "id": "unique_shadow_fang",
+      "nameTh": "กริชเขี้ยวเงา",
+      "file": "unique_shadow_fang.png",
+      "kind": "unique",
+      "sha256": "9fa1bb7d51ce430cdb6ad8122990391c5e429c05f4ebf36a125924e93b23a0fb",
+      "bytes": 24521,
+      "source": "meadow-3d/art/class-items-v1/sources/unique_shadow_fang.png",
+      "sourceSha256": "02db9e2e66a27e11689c23a40c7105ab9c6380411c5bca0fb1d2e582b056f2e4",
+      "receipt": "meadow-3d/art/class-items-v1/sources/unique_shadow_fang.receipt.json",
+      "receiptSha256": "faa2d6c22fa21b083bb5630148e189de1824a5fec0177db5827bcb9bd99812ac",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        14,
+        8,
+        177,
+        184
+      ]
+    },
+    {
+      "id": "unique_flowing_fist",
+      "nameTh": "ผ้าพันหมัดธารปราณ",
+      "file": "unique_flowing_fist.png",
+      "kind": "unique",
+      "sha256": "a414cb17b29e9b1cbec39e22f85a700862767cadaca5fff612132c0d0de939d7",
+      "bytes": 52316,
+      "source": "meadow-3d/art/class-items-v1/sources/unique_flowing_fist.png",
+      "sourceSha256": "958760aa9c1070166bcac4bbf075bcc3cdac79f28a636b32d2a7bf19edd0b990",
+      "receipt": "meadow-3d/art/class-items-v1/sources/unique_flowing_fist.receipt.json",
+      "receiptSha256": "cb448ef31662b947b43aaaa7bcf9f6b60e3f00b52d3ef77665d7f109cc87aae8",
+      "canvas": [
+        192,
+        192
+      ],
+      "bounds": [
+        8,
+        20,
+        184,
+        172
+      ]
+    }
+  ]
+}

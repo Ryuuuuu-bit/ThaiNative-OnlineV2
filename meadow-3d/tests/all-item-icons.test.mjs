@@ -11,7 +11,7 @@ test('every item template resolves to its declared atlas frame or original SVG',
  for(const item of loadGameData().items.items){
   const resolved=itemIconCell(item.id);
   if(resolved.image){
-   if(/^\/assets\/item-art-v[23]\//.test(resolved.image)){
+   if(/^\/assets\/(?:item-art-v[23]|class-items-v1)\//.test(resolved.image)){
     const directory=resolved.image.slice(0,resolved.image.lastIndexOf('/'));
     const manifest=JSON.parse(readFileSync(new URL('../public'+directory+'/manifest.json',import.meta.url),'utf8'));
     const file=manifest.files.find(f=>f.id===item.id)??manifest.files.find(f=>f.id===item.icon);assert.ok(file,item.id);

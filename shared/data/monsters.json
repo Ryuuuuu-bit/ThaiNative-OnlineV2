@@ -59,7 +59,25 @@
         },
         {
           "item": "field_boots",
-          "rate": 0.035,
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sword",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_staff",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_bow",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -368,20 +386,110 @@
           "max": 1
         },
         {
-          "item": "field_ring",
-          "rate": 0.3,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "unique_tide_crown",
           "rate": 0.08,
           "min": 1,
           "max": 1
         },
         {
+          "item": "field_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_sword",
-          "rate": 0.2,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }
@@ -485,14 +593,32 @@
           "max": 1
         },
         {
-          "item": "field_cloak",
-          "rate": 0.035,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_cloak",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_boots",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_ring",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_greatsword",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -570,14 +696,32 @@
           "max": 1
         },
         {
-          "item": "field_bow",
-          "rate": 0.035,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_bow",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_dagger",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_knuckles",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_robe",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -638,6 +782,24 @@
         {
           "item": "blue_potion",
           "rate": 0.08,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_sword",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_staff",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_bow",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -705,6 +867,24 @@
         {
           "item": "red_medium",
           "rate": 0.06,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_armour",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_cloak",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -794,6 +974,108 @@
           "rate": 0.4,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_iron_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 1914,
@@ -886,6 +1168,24 @@
           "rate": 0.08,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "field_iron_dagger",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_knuckles",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_robe",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 180,
@@ -942,6 +1242,24 @@
         {
           "item": "red_large",
           "rate": 0.08,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_focus_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_spirit_cloak",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_swift_boots",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -1001,6 +1319,24 @@
         {
           "item": "blue_large",
           "rate": 0.08,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_sword",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_staff",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_bow",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -1068,6 +1404,24 @@
         {
           "item": "red_large",
           "rate": 0.06,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_armour",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_cloak",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -1157,6 +1511,108 @@
           "rate": 0.4,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sentinel_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 3966,
@@ -1255,6 +1711,24 @@
           "rate": 0.06,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "field_sentinel_dagger",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_knuckles",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_robe",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 360
@@ -1302,6 +1776,24 @@
         {
           "item": "red_greater",
           "rate": 0.06,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_focus_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_spirit_cloak",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_swift_boots",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -1361,6 +1853,24 @@
         {
           "item": "blue_greater",
           "rate": 0.06,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_arcane_ring",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_amulet",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_sword",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -1428,6 +1938,24 @@
         {
           "item": "red_greater",
           "rate": 0.045,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_staff",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_bow",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_armour",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -1517,6 +2045,138 @@
           "rate": 0.4,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_relic_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "unique_blade_oath",
+          "rate": 0.011428571428571429,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "unique_ember_robe",
+          "rate": 0.011428571428571429,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "unique_lotus_vow",
+          "rate": 0.011428571428571429,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "unique_shadow_fang",
+          "rate": 0.011428571428571429,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "unique_flowing_fist",
+          "rate": 0.011428571428571429,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 7260,
@@ -1617,7 +2277,25 @@
         },
         {
           "item": "field_staff",
-          "rate": 0.035,
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_focus_shield",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_spirit_cloak",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_swift_boots",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -1759,7 +2437,25 @@
         },
         {
           "item": "field_armour",
-          "rate": 0.035,
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_arcane_ring",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_amulet",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sword",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -2061,7 +2757,25 @@
         },
         {
           "item": "field_sword",
-          "rate": 0.035,
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_staff",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_bow",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_armour",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -2330,6 +3044,24 @@
           "rate": 0.12,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "field_iron_arcane_ring",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_amulet",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_sword",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 180,
@@ -2381,6 +3113,24 @@
         {
           "item": "red_small",
           "rate": 0.12,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_cloak",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_boots",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -2443,6 +3193,24 @@
           "rate": 0.06,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "field_relic_armour",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_cloak",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 645,
@@ -2499,6 +3267,24 @@
         {
           "item": "blue_greater",
           "rate": 0.06,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_boots",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_ring",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_greatsword",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -2590,6 +3376,114 @@
           "rate": 0.4,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_relic_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "unique_spirit_bond",
+          "rate": 0.011428571428571429,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 9834,
@@ -2688,6 +3582,24 @@
           "rate": 0.045,
           "min": 1,
           "max": 1
+        },
+        {
+          "item": "field_relic_focus_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_spirit_cloak",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_swift_boots",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 866,
@@ -2744,6 +3656,24 @@
         {
           "item": "red_greater",
           "rate": 0.06,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_arcane_ring",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_amulet",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_sword",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -2833,6 +3763,114 @@
           "rate": 0.4,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_silver_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "unique_hunters_eye",
+          "rate": 0.011428571428571429,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 12804,
@@ -2928,14 +3966,26 @@
           "max": 1
         },
         {
-          "item": "field_boots",
-          "rate": 0.035,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_boots",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_cloak",
+          "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
@@ -3001,14 +4051,32 @@
           "max": 1
         },
         {
-          "item": "field_shield",
-          "rate": 0.06,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_shield",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_ring",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_greatsword",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_dagger",
+          "rate": 0.015,
           "min": 1,
           "max": 1
         }
@@ -3074,14 +4142,32 @@
           "max": 1
         },
         {
-          "item": "field_staff",
-          "rate": 0.035,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_staff",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_knuckles",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_robe",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_focus_shield",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -3149,14 +4235,32 @@
           "max": 1
         },
         {
-          "item": "field_cloak",
-          "rate": 0.06,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_cloak",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_spirit_cloak",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_swift_boots",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_arcane_ring",
+          "rate": 0.015,
           "min": 1,
           "max": 1
         }
@@ -3222,14 +4326,32 @@
           "max": 1
         },
         {
-          "item": "field_bow",
-          "rate": 0.035,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_bow",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_amulet",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sword",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_staff",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -3295,14 +4417,26 @@
           "max": 1
         },
         {
-          "item": "field_shield",
-          "rate": 0.06,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_shield",
+          "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_bow",
+          "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_armour",
+          "rate": 0.02,
           "min": 1,
           "max": 1
         }
@@ -3368,14 +4502,32 @@
           "max": 1
         },
         {
-          "item": "field_armour",
-          "rate": 0.035,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_armour",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_cloak",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_boots",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_ring",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -3441,14 +4593,32 @@
           "max": 1
         },
         {
-          "item": "field_sword",
-          "rate": 0.06,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_sword",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_greatsword",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_dagger",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_knuckles",
+          "rate": 0.015,
           "min": 1,
           "max": 1
         }
@@ -3514,14 +4684,32 @@
           "max": 1
         },
         {
-          "item": "field_sword",
-          "rate": 0.035,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_sword",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_robe",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_focus_shield",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_spirit_cloak",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -3587,14 +4775,32 @@
           "max": 1
         },
         {
-          "item": "field_cloak",
-          "rate": 0.06,
+          "item": "red_small",
+          "rate": 0.1,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_small",
-          "rate": 0.1,
+          "item": "field_cloak",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_swift_boots",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_arcane_ring",
+          "rate": 0.015,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_amulet",
+          "rate": 0.015,
           "min": 1,
           "max": 1
         }
@@ -3666,12 +4872,6 @@
           "max": 1
         },
         {
-          "item": "field_ring",
-          "rate": 0.3,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_small",
           "rate": 0.1,
           "min": 1,
@@ -3680,6 +4880,108 @@
         {
           "item": "unique_mist_weaver",
           "rate": 0.08,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_ring",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_sword",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_staff",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_bow",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_armour",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_shield",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_cloak",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_boots",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_greatsword",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_dagger",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_knuckles",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_robe",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_focus_shield",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_spirit_cloak",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_swift_boots",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_arcane_ring",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_iron_amulet",
+          "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         }
@@ -3779,14 +5081,32 @@
           "max": 1
         },
         {
-          "item": "field_staff",
-          "rate": 0.035,
+          "item": "red_greater",
+          "rate": 0.12,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_greater",
-          "rate": 0.12,
+          "item": "field_silver_staff",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_armour",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_shield",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_cloak",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -3854,14 +5174,32 @@
           "max": 1
         },
         {
-          "item": "field_bow",
-          "rate": 0.035,
+          "item": "red_greater",
+          "rate": 0.12,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_greater",
-          "rate": 0.12,
+          "item": "field_silver_bow",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_boots",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_ring",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_greatsword",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -3927,14 +5265,32 @@
           "max": 1
         },
         {
-          "item": "field_shield",
-          "rate": 0.035,
+          "item": "red_greater",
+          "rate": 0.12,
           "min": 1,
           "max": 1
         },
         {
-          "item": "red_greater",
-          "rate": 0.12,
+          "item": "field_silver_shield",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_dagger",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_knuckles",
+          "rate": 0.00875,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_robe",
+          "rate": 0.00875,
           "min": 1,
           "max": 1
         }
@@ -4000,16 +5356,112 @@
           "max": 1
         },
         {
-          "item": "field_sword",
-          "rate": 0.3,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.4,
           "min": 2,
           "max": 3
+        },
+        {
+          "item": "field_silver_sword",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_staff",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_bow",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_armour",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_shield",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_cloak",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_boots",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_ring",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_greatsword",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_dagger",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_knuckles",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_robe",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_focus_shield",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_spirit_cloak",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_swift_boots",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_arcane_ring",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_silver_amulet",
+          "rate": 0.01764705882352941,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 19148,
@@ -4093,12 +5545,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4115,6 +5561,24 @@
           "rate": 0.2,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sunsteel_staff",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_sword",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_bow",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 1661,
@@ -4174,12 +5638,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4188,6 +5646,24 @@
         {
           "item": "card_himmapan_jade_turtle",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_shield",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_cloak",
+          "rate": 0.013333333333333334,
           "min": 1,
           "max": 1
         }
@@ -4247,12 +5723,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4269,6 +5739,30 @@
           "rate": 0.2,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_boots",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_ring",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_greatsword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 1796,
@@ -4326,12 +5820,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4348,6 +5836,30 @@
           "rate": 0.2,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_dagger",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_knuckles",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_robe",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 1935,
@@ -4405,12 +5917,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4419,6 +5925,30 @@
         {
           "item": "card_himmapan_golden_macaque",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_bow",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_focus_shield",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_spirit_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_swift_boots",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -4480,12 +6010,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4494,6 +6018,24 @@
         {
           "item": "card_himmapan_06",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_sword",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_arcane_ring",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_amulet",
+          "rate": 0.013333333333333334,
           "min": 1,
           "max": 1
         }
@@ -4553,12 +6095,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4567,6 +6103,30 @@
         {
           "item": "card_himmapan_azure_garuda",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_staff",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_bow",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -4626,12 +6186,6 @@
           "max": 3
         },
         {
-          "item": "field_sunsteel_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4654,6 +6208,108 @@
           "rate": 0.2,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 27701,
@@ -4737,12 +6393,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4751,6 +6401,30 @@
         {
           "item": "card_desert_01",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_shield",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_ring",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_greatsword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_dagger",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -4810,12 +6484,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4824,6 +6492,30 @@
         {
           "item": "card_desert_oasis_hawk",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_bow",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_knuckles",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_robe",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_focus_shield",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -4883,12 +6575,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4897,6 +6583,30 @@
         {
           "item": "card_desert_03",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_spirit_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_swift_boots",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_arcane_ring",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -4956,12 +6666,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -4978,6 +6682,24 @@
           "rate": 0.3,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sunsteel_staff",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_amulet",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_sword",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 1935,
@@ -5035,12 +6757,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5057,6 +6773,24 @@
           "rate": 0.3,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_bow",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_shield",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 2008,
@@ -5114,12 +6848,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5128,6 +6856,30 @@
         {
           "item": "card_desert_06",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_sword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_boots",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_ring",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -5187,12 +6939,6 @@
           "max": 2
         },
         {
-          "item": "field_sunsteel_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5201,6 +6947,30 @@
         {
           "item": "card_desert_glass_scorpion",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_boots",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_greatsword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_dagger",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_knuckles",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -5260,12 +7030,6 @@
           "max": 3
         },
         {
-          "item": "field_sunsteel_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -5288,6 +7052,108 @@
           "rate": 0.3,
           "min": 1,
           "max": 2
+        },
+        {
+          "item": "field_sunsteel_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sunsteel_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
         }
       ],
       "jobExp": 27701,
@@ -5469,12 +7335,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5483,6 +7343,30 @@
         {
           "item": "card_frost_01",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_shield",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_sword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_staff",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_bow",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -5542,12 +7426,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5556,6 +7434,24 @@
         {
           "item": "card_frost_rune_raven",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_cloak",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_shield",
+          "rate": 0.013333333333333334,
           "min": 1,
           "max": 1
         }
@@ -5615,12 +7511,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5629,6 +7519,24 @@
         {
           "item": "card_frost_03",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_boots",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_ring",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_greatsword",
+          "rate": 0.013333333333333334,
           "min": 1,
           "max": 1
         }
@@ -5688,12 +7596,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5702,6 +7604,30 @@
         {
           "item": "card_frost_ice_lindworm",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_staff",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_dagger",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_knuckles",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_robe",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -5761,12 +7687,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5775,6 +7695,30 @@
         {
           "item": "card_frost_winter_wavehorse",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_focus_shield",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_spirit_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_swift_boots",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -5834,12 +7778,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5848,6 +7786,30 @@
         {
           "item": "card_frost_06",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_arcane_ring",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_amulet",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_sword",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -5907,12 +7869,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -5921,6 +7877,30 @@
         {
           "item": "card_frost_fractured_valkyrie",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_sword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_staff",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_bow",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -5980,12 +7960,6 @@
           "max": 3
         },
         {
-          "item": "field_naga_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -6000,6 +7974,108 @@
         {
           "item": "unique_frost_relic",
           "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_amulet",
+          "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         }
@@ -6084,12 +8160,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -6098,6 +8168,30 @@
         {
           "item": "card_yokai_01",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_shield",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_ring",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_greatsword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_dagger",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -6157,12 +8251,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -6171,6 +8259,30 @@
         {
           "item": "card_yokai_rain_umbrella",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_knuckles",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_robe",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_focus_shield",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -6230,12 +8342,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -6244,6 +8350,30 @@
         {
           "item": "card_yokai_03",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_boots",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_spirit_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_swift_boots",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_arcane_ring",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -6303,12 +8433,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -6317,6 +8441,24 @@
         {
           "item": "card_yokai_bamboo_kodama",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_staff",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_amulet",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_sword",
+          "rate": 0.013333333333333334,
           "min": 1,
           "max": 1
         }
@@ -6376,12 +8518,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -6390,6 +8526,24 @@
         {
           "item": "card_yokai_rain_nue",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_bow",
+          "rate": 0.013333333333333334,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_shield",
+          "rate": 0.013333333333333334,
           "min": 1,
           "max": 1
         }
@@ -6449,12 +8603,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -6463,6 +8611,30 @@
         {
           "item": "card_yokai_06",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_cloak",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_boots",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_ring",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -6522,12 +8694,6 @@
           "max": 2
         },
         {
-          "item": "field_naga_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.15,
           "min": 1,
@@ -6536,6 +8702,30 @@
         {
           "item": "card_yokai_lantern_rokurokubi",
           "rate": 0.001,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_sword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_greatsword",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_dagger",
+          "rate": 0.01,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_knuckles",
+          "rate": 0.01,
           "min": 1,
           "max": 1
         }
@@ -6595,12 +8785,6 @@
           "max": 3
         },
         {
-          "item": "field_naga_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -6615,6 +8799,108 @@
         {
           "item": "unique_yokai_relic",
           "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_naga_amulet",
+          "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         }
@@ -6700,12 +8986,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -6718,8 +8998,26 @@
           "max": 1
         },
         {
+          "item": "field_celestial_staff",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_sword",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_bow",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -6779,12 +9077,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -6797,8 +9089,26 @@
           "max": 1
         },
         {
+          "item": "field_celestial_cloak",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_shield",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -6858,12 +9168,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -6876,8 +9180,26 @@
           "max": 1
         },
         {
+          "item": "field_celestial_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_boots",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_greatsword",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -6937,12 +9259,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -6955,8 +9271,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_dagger",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_knuckles",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_robe",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7016,12 +9356,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7034,8 +9368,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_bow",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_focus_shield",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_spirit_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_swift_boots",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7095,12 +9453,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7113,8 +9465,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_shield",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_arcane_ring",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_amulet",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_sword",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7174,12 +9550,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7192,8 +9562,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_staff",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_bow",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_armour",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7253,12 +9647,6 @@
           "max": 3
         },
         {
-          "item": "field_celestial_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -7277,8 +9665,104 @@
           "max": 1
         },
         {
+          "item": "field_celestial_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.15,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_sword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }
@@ -7362,12 +9846,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7380,8 +9858,26 @@
           "max": 1
         },
         {
+          "item": "field_celestial_staff",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_greatsword",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_dagger",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -7441,12 +9937,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7459,8 +9949,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_knuckles",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_robe",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_focus_shield",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7520,12 +10034,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7538,8 +10046,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_armour",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_spirit_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_swift_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_arcane_ring",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7599,12 +10131,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7617,8 +10143,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_amulet",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_staff",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7678,12 +10228,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7696,8 +10240,26 @@
           "max": 1
         },
         {
+          "item": "field_celestial_bow",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_shield",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -7757,12 +10319,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7775,8 +10331,26 @@
           "max": 1
         },
         {
+          "item": "field_celestial_shield",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_cloak",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_boots",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -7836,12 +10410,6 @@
           "max": 2
         },
         {
-          "item": "field_celestial_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -7854,8 +10422,32 @@
           "max": 1
         },
         {
+          "item": "field_celestial_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_greatsword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_dagger",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_knuckles",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -7915,12 +10507,6 @@
           "max": 3
         },
         {
-          "item": "field_celestial_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -7939,8 +10525,104 @@
           "max": 1
         },
         {
+          "item": "field_celestial_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_celestial_ring",
-          "rate": 0.15,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_sword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_celestial_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }
@@ -8024,12 +10706,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8042,8 +10718,26 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_staff",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_sword",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_bow",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -8103,12 +10797,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8121,8 +10809,26 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_cloak",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_shield",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -8182,12 +10888,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8200,8 +10900,26 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_boots",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_greatsword",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -8261,12 +10979,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8279,8 +10991,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_dagger",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_knuckles",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_robe",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -8340,12 +11076,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8358,8 +11088,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_bow",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_focus_shield",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_spirit_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_swift_boots",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -8419,12 +11173,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8437,8 +11185,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_shield",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_arcane_ring",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_amulet",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_sword",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -8498,12 +11270,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8516,8 +11282,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_staff",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_bow",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_armour",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -8577,12 +11367,6 @@
           "max": 3
         },
         {
-          "item": "field_royalguard_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -8601,8 +11385,104 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.15,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_sword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }
@@ -8686,12 +11566,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8704,8 +11578,26 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_staff",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_greatsword",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_dagger",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -8765,12 +11657,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8783,8 +11669,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_knuckles",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_robe",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_focus_shield",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -8844,12 +11754,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8862,8 +11766,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_armour",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_spirit_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_swift_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_arcane_ring",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -8923,12 +11851,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -8941,8 +11863,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_amulet",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_staff",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -9002,12 +11948,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9020,8 +11960,26 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_bow",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_shield",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -9081,12 +12039,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9099,8 +12051,26 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_shield",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_cloak",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_boots",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -9160,12 +12130,6 @@
           "max": 2
         },
         {
-          "item": "field_royalguard_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9178,8 +12142,32 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_greatsword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_dagger",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_knuckles",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -9239,12 +12227,6 @@
           "max": 3
         },
         {
-          "item": "field_royalguard_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -9263,8 +12245,104 @@
           "max": 1
         },
         {
+          "item": "field_royalguard_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_royalguard_ring",
-          "rate": 0.15,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_sword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_royalguard_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }
@@ -9348,12 +12426,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9366,8 +12438,26 @@
           "max": 1
         },
         {
+          "item": "field_mythic_staff",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_sword",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_bow",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -9427,12 +12517,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9445,8 +12529,26 @@
           "max": 1
         },
         {
+          "item": "field_mythic_cloak",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_shield",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -9506,12 +12608,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9524,8 +12620,26 @@
           "max": 1
         },
         {
+          "item": "field_mythic_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_boots",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_greatsword",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -9585,12 +12699,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9603,8 +12711,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_dagger",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_knuckles",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_robe",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -9664,12 +12796,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9682,8 +12808,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_bow",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_focus_shield",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_spirit_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_swift_boots",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -9743,12 +12893,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9761,8 +12905,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_shield",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_arcane_ring",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_amulet",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_sword",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -9822,12 +12990,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -9840,8 +13002,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_staff",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_bow",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_armour",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -9901,12 +13087,6 @@
           "max": 3
         },
         {
-          "item": "field_mythic_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -9925,8 +13105,104 @@
           "max": 1
         },
         {
+          "item": "field_mythic_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.15,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_sword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }
@@ -10010,12 +13286,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10028,8 +13298,26 @@
           "max": 1
         },
         {
+          "item": "field_mythic_staff",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_greatsword",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_dagger",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -10089,12 +13377,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10107,8 +13389,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_knuckles",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_robe",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_focus_shield",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -10168,12 +13474,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10186,8 +13486,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_armour",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_spirit_cloak",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_swift_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_arcane_ring",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -10247,12 +13571,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_boots",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10265,8 +13583,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_boots",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_amulet",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_staff",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -10326,12 +13668,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_bow",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10344,8 +13680,26 @@
           "max": 1
         },
         {
+          "item": "field_mythic_bow",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_shield",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -10405,12 +13759,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_shield",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10423,8 +13771,26 @@
           "max": 1
         },
         {
+          "item": "field_mythic_shield",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_cloak",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_boots",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -10484,12 +13850,6 @@
           "max": 2
         },
         {
-          "item": "field_mythic_sword",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10502,8 +13862,32 @@
           "max": 1
         },
         {
+          "item": "field_mythic_sword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.015,
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_greatsword",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_dagger",
+          "rate": 0.011,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_knuckles",
+          "rate": 0.011,
           "min": 1,
           "max": 1
         }
@@ -10563,12 +13947,6 @@
           "max": 3
         },
         {
-          "item": "field_mythic_armour",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -10587,8 +13965,104 @@
           "max": 1
         },
         {
+          "item": "field_mythic_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_mythic_ring",
-          "rate": 0.15,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_sword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_mythic_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }
@@ -10672,12 +14146,6 @@
           "max": 2
         },
         {
-          "item": "field_eternal_staff",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10690,8 +14158,26 @@
           "max": 1
         },
         {
+          "item": "field_eternal_staff",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_eternal_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_sword",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_bow",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -10751,12 +14237,6 @@
           "max": 2
         },
         {
-          "item": "field_eternal_cloak",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10769,8 +14249,26 @@
           "max": 1
         },
         {
+          "item": "field_eternal_cloak",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_eternal_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_shield",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -10830,12 +14328,6 @@
           "max": 2
         },
         {
-          "item": "field_eternal_armour",
-          "rate": 0.04,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.18,
           "min": 1,
@@ -10848,8 +14340,26 @@
           "max": 1
         },
         {
+          "item": "field_eternal_armour",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_eternal_ring",
-          "rate": 0.015,
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_boots",
+          "rate": 0.01375,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_greatsword",
+          "rate": 0.01375,
           "min": 1,
           "max": 1
         }
@@ -10909,12 +14419,6 @@
           "max": 3
         },
         {
-          "item": "field_eternal_boots",
-          "rate": 0.35,
-          "min": 1,
-          "max": 1
-        },
-        {
           "item": "red_greater",
           "rate": 0.8,
           "min": 2,
@@ -10933,8 +14437,104 @@
           "max": 1
         },
         {
+          "item": "field_eternal_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
           "item": "field_eternal_ring",
-          "rate": 0.15,
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_sword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_staff",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_bow",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_armour",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_greatsword",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_dagger",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_knuckles",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_robe",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_focus_shield",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_spirit_cloak",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_swift_boots",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_arcane_ring",
+          "rate": 0.029411764705882353,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_eternal_amulet",
+          "rate": 0.029411764705882353,
           "min": 1,
           "max": 1
         }

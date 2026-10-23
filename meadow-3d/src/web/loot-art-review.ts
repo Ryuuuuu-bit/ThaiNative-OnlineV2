@@ -4,6 +4,7 @@ import {cardEffects,modifierText} from '../card-text';
 import {dropOwners} from './world-catalog';
 import {itemIconCell} from '../item-icon';
 import {PAINTED_ITEM_ART} from '../item-art-data';
+import {CLASS_ITEM_ART} from '../class-item-art-data';
 
 const data=loadGameData(),grid=document.querySelector<HTMLElement>('#art-grid')!;
 const search=document.querySelector<HTMLInputElement>('#art-search')!,kind=document.querySelector<HTMLSelectElement>('#art-kind')!,size=document.querySelector<HTMLSelectElement>('#art-size')!;
@@ -18,7 +19,7 @@ function icon(id:string){
 }
 function render(){
  const query=search.value.trim().toLocaleLowerCase();
- const items=data.items.items.filter(item=>(publicCatalog||Object.hasOwn(PAINTED_ITEM_ART,item.id))&&(kind.value==='all'||category(item.id)===kind.value)&&(!query||(item.nameTh+' '+item.id).toLocaleLowerCase().includes(query)));
+ const items=data.items.items.filter(item=>(publicCatalog||Object.hasOwn(PAINTED_ITEM_ART,item.id)||Object.hasOwn(CLASS_ITEM_ART,item.id))&&(kind.value==='all'||category(item.id)===kind.value)&&(!query||(item.nameTh+' '+item.id).toLocaleLowerCase().includes(query)));
  grid.replaceChildren(...items.map(item=>{
   const article=document.createElement('article');article.className='art-item art-'+category(item.id);article.dataset.item=item.id;
   const image=icon(item.id);if(image instanceof HTMLImageElement)image.alt=item.nameTh;
@@ -39,7 +40,7 @@ function showItem(id:string){
  const title=document.createElement('h2');title.id='item-title';title.textContent=item.nameTh;content.append(icon(id),title);
  const level=document.createElement('p');level.textContent=names[category(id)]+' · ระดับที่ใช้ '+item.level;content.append(level);
  const card=data.cards.cards.find(c=>c.id===id);if(card){const slot=document.createElement('p');const labels={weapon:'อาวุธ',armour:'เกราะ',shield:'โล่',garment:'ผ้าคลุม',footgear:'รองเท้า',accessory:'เครื่องประดับ'};slot.textContent='ติดตั้งใน: '+(labels[card.slot]??card.slot)+'ที่มีช่องการ์ด';content.append(slot);}
- const unique=STARTER_UNIQUES[id],effects=id.startsWith('card_')?[cardEffects(data,id)]:unique?[...unique.rolls.map(r=>`${r.name} ${r.min}–${r.max}`),...unique.lines]:item.modifiers.map(modifierText).filter(Boolean);
+ const unique=STARTER_UNIQUES[id],effects=id.startsWith('card_')?[cardEffects(data,id)]:[...item.modifiers.map(modifierText).filter(Boolean),...(unique?[...unique.rolls.map(r=>`${r.name} ${r.min}–${r.max}`),...unique.lines]:[])];
  if(category(id)==='gear'&&id.startsWith('field_'))effects.unshift('อุปกรณ์ฐานสำหรับสุ่มออฟ · ค่าของจริงขึ้นกับระดับไอเทมและผลสุ่ม');
  if(item.atk)effects.push('พลังโจมตีฐาน '+item.atk);if(item.matk)effects.push('พลังเวทฐาน '+item.matk);
  const lines=document.createElement('ul');for(const effect of effects.filter(Boolean)){const line=document.createElement('li');line.textContent=effect;lines.append(line);}content.append(lines);

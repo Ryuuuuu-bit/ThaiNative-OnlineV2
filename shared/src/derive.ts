@@ -79,6 +79,7 @@ export function deriveStats(input: CharacterInput, data: GameData): Combatant {
 	});
 	const weapon = equipment.find((i) => i.type === "weapon"),
 		armour = equipment.find((i) => i.type === "armour");
+ if(weapon?.weaponType==='sword2h'&&equipment.some(i=>i.type==='shield'))throw Error('ดาบสองมือใช้ร่วมกับโล่ไม่ได้');
 	if (!canEquipWeapon(char,weapon?.weaponType,data))
 		throw new Error(`${job.id} cannot equip ${weapon?.weaponType}`);
 	for (const slot of ["weapon", "armour"] as const) {

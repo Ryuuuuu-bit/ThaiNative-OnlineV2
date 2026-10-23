@@ -7,7 +7,7 @@ test('Regional roll bases preserve the existing Lv50/Lv60 equipment stats and or
 });
 
 test('All32 new regional species drop rolled bases from their own level band instead of starter equipment',()=>{
- for(const map of ['himmapan','desert','frost','yokai'] as const){const tier=map==='himmapan'||map==='desert'?'sunsteel':'naga';for(const listed of huntList(map,data)){const m=data.monsters.monsters.find(m=>m.id===listed.id)!;const gear=rollDrops(m,()=>0,data,0,0,()=>0).filter(d=>d.template.startsWith('field_'));assert.equal(gear.length,1,m.id);assert.ok(gear[0].template.startsWith('field_'+tier+'_'),m.id);assert.equal(gear[0].roll!.itemLevel,m.level);assert.deepEqual(validateItemRoll(gear[0].template,gear[0].roll,data),gear[0].roll);}}
+ for(const map of ['himmapan','desert','frost','yokai'] as const){const tier=map==='himmapan'||map==='desert'?'sunsteel':'naga';for(const listed of huntList(map,data)){const m=data.monsters.monsters.find(m=>m.id===listed.id)!;const gear=rollDrops(m,()=>0,data,0,0,()=>0).filter(d=>d.template.startsWith('field_'));assert.ok(gear.length>=3,m.id);for(const drop of gear){assert.ok(drop.template.startsWith('field_'+tier+'_'),m.id);assert.equal(drop.roll!.itemLevel,m.level);assert.deepEqual(validateItemRoll(drop.template,drop.roll,data),drop.roll);}}}
 });
 
 test('Regional sword really raises equipped attack, retains its socketed card through storage and cannot bypass item-level requirements',()=>{
