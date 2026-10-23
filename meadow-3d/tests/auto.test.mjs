@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import {createGame,spawn,step,setAuto,moveTo,action,revive,nearestCamp,walkable,OBSTACLES,DEFAULT_AUTO} from '@the-beginning-online/shared';
 const tick=(g,seconds=1/60)=>{for(let t=0;t<seconds-1e-8;t+=1/60)step(g,1/60);};
 function field(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=4;return g;}
-test('AUTO selects nearest, preserves clicked preference, then prioritises living King once bosses are enabled',()=>{
- const g=field(),near=spawn(g,1,4),far=spawn(g,5,4);setAuto(g,true);tick(g);assert.equal(g.target,near.id);
+test('with attacker priority off AUTO preserves clicked preference, then prioritises an enabled boss',()=>{
+ const g=field(),near=spawn(g,1,4),far=spawn(g,5,4);g.p.autoCfg={...DEFAULT_AUTO,attackers:false};setAuto(g,true);tick(g);assert.equal(g.target,near.id);
  g.target=far.id;tick(g,.2);assert.equal(g.target,far.id);
  const boss=spawn(g,1,-9,true);g.bossSpawned=true;tick(g,.2);assert.equal(g.target,far.id,'untouched settings ignore a boss outside the hunt range');
- g.p.autoCfg={...DEFAULT_AUTO,elites:true};tick(g,.2);assert.equal(g.target,boss.id);
+ g.p.autoCfg={...DEFAULT_AUTO,elites:true,attackers:false};tick(g,.2);assert.equal(g.target,boss.id);
 });
 test('untouched AUTO hunts the nearest monster, not the boss across the map',()=>{
  const g=createGame();const first=g.enemies.filter(e=>!e.boss).sort((a,b)=>Math.hypot(a.x-g.p.x,a.z-g.p.z)-Math.hypot(b.x-g.p.x,b.z-g.p.z))[0];

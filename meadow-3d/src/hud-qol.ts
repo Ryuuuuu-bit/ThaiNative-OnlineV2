@@ -7,15 +7,16 @@ import {GATES,LAYOUTS,MAP_INFO,FIELD_PLACES,FIELD_HABITATS,FIELD_BOSS,THORN_NEST
 import {paintMinimapLayer} from './minimap-view';
 import jobs from '../../shared/data/jobs.json';
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
-import {createPlayerPathfinder,gateApproach} from './hud-path';
+import {createPlayerPathfinder,createTravelRoute,gateApproach} from './hud-path';
 import {updateMonsterTags} from './monster-tags';
-export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;talk:(kind:string)=>void;settings:()=>void;party:()=>void;stop:()=>void;/** release held movement without touching AUTO */release:()=>void;/** world-map travel reached its map */arrived?:(name:string)=>void}){
+export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;talk:(kind:string)=>void;settings:()=>void;party:()=>void;stop:()=>void;notice:(text:string)=>void;/** release held movement without touching AUTO */release:()=>void;/** world-map travel reached its map */arrived?:(name:string)=>void}){
  const signature=(s:UISettings)=>JSON.stringify([s.scale,resolveKeys(s.keys),...(['bag','stats','skills'] as const).map(k=>s.windows[k]?[s.windows[k]!.x,s.windows[k]!.y]:null)]);
  let confirmed=structuredClone(DEFAULT_UI);
  let settings:UISettings=structuredClone(DEFAULT_UI),dirty=false,saving=false,lastTarget:any=null,targetUntil=0;
- let route:{x:number;z:number}[]=[],arrival:string|null=null,nextWaypoint=0,routeMap=o.map();
+ let arrival:string|null=null,nextWaypoint=0,routeMap=o.map(),destinationName='';
  /** World-map travel: the map we are walking to, one gate at a time. */
  let goalMap:MapId|null=null;
+ let goalPoint:{map:MapId;x:number;z:number;kind:string;name?:string}|null=null;
  const travel=document.createElement('div');travel.id='travel-status';travel.hidden=true;travel.innerHTML='<b id="travel-destination"></b><span id="travel-next"></span><button type="button">หยุดเดินทาง</button>';$('.quest').append(travel);
  const data=loadGameData();const text=(id:string,value:string)=>{const el=$(id);if(el.textContent!==value)el.textContent=value;};
  const huntingArea=document.createElement('div');huntingArea.id='hunting-area';huntingArea.hidden=true;$('#quest-name').after(huntingArea);
@@ -67,26 +68,28 @@ export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;t
  const points=()=>{const map=o.map();return [...npcs(),...(isField(map)?[...FIELD_PLACES[map].filter(p=>p.kind!=='boss').map(p=>({...p,kind:p.kind==='sign'?'sign':'place',icon:p.kind==='sign'?'➜':'⌖'})),...FIELD_HABITATS[map].map(h=>({...h,kind:'hunt',icon:'●',name:`${h.name} · Lv.${data.monsters.monsters.find(m=>m.id===h.dataId)!.level}`}))]:[]),...LAYOUTS[map].camps.map((c,i)=>({...c,kind:'camp',icon:'△',name:`แคมป์ ${i+1} · ฟื้น HP · ยังมีอันตราย`})),...Object.entries(GATES[map]).map(([kind,p])=>({...p,kind:'gate:'+kind,icon:'◇',name:'ประตู'}))];};
  const coords=(p:{x:number;z:number})=>{const l=LAYOUTS[o.map() as MapId];return{x:(p.x+l.halfX)/(l.halfX*2)*160,y:(p.z+l.halfZ)/(l.halfZ*2)*132};};
  /** Stops walking; `keepGoal` keeps world-map travel going (gates and map changes), a player's own input ends it. */
- const cancel=(keepGoal=false)=>{route=[];arrival=null;nextWaypoint=0;if(!keepGoal)goalMap=null;};
+ const cancel=(keepGoal=false)=>{journey.clear();arrival=null;nextWaypoint=0;if(!keepGoal){goalMap=null;goalPoint=null;}};
  // Explicitly clear the server's last waypoint even when AUTO is already off.
  travel.querySelector('button')!.onclick=()=>{cancel();o.stop();o.send({t:'auto',on:false});};
  let pathfinder:ReturnType<typeof createPlayerPathfinder>|undefined,pathfinderMap:MapId|undefined;
- const navigate=(p:{x:number;z:number;kind:string})=>{o.stop();if(!pathfinder||pathfinderMap!==o.map()){pathfinder=createPlayerPathfinder(o.map());pathfinderMap=o.map();}route=pathfinder.findPath(o.player(),p.kind.startsWith('gate:')?gateApproach(p):p);arrival=route.length?p.kind:null;nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});};
+ const journey=createTravelRoute((from,to)=>{if(!pathfinder||pathfinderMap!==o.map()){pathfinder=createPlayerPathfinder(o.map());pathfinderMap=o.map();}return pathfinder.findPath(from,to);});
+ const navigate=(p:{x:number;z:number;kind:string;name?:string})=>{o.stop();const ok=journey.start(o.player(),p.kind.startsWith('gate:')?gateApproach(p):p,performance.now());arrival=ok?p.kind:null;destinationName=p.name??(p.kind==='ground'?'จุดที่เลือก':'จุดหมาย');nextWaypoint=0;routeMap=o.map();o.send({t:'auto',on:false});if(!ok){cancel();o.notice('ไม่พบทางเดินไปจุดหมาย ลองเลือกจุดใกล้เคียง');}return ok;};
  const returnCity=()=>{cancel();o.send({t:'returnCity'});};$('#return-city').onclick=returnCity;
  map.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('.map').classList.toggle('expanded');}};
  map.onclick=e=>{const box=map.getBoundingClientRect();if(innerWidth<650&&!$('.map').classList.contains('expanded')){$('.map').classList.add('expanded');return;}
- const v=(map as any).view||{k:1,ox:0,oy:0},x=((e.clientX-box.left)/box.width*map.width-v.ox)/v.k,y=((e.clientY-box.top)/box.height*map.height-v.oy)/v.k;const hit=points().sort((a,b)=>Math.hypot(coords(a).x-x,coords(a).y-y)-Math.hypot(coords(b).x-x,coords(b).y-y))[0];if(hit&&Math.hypot(coords(hit).x-x,coords(hit).y-y)<Math.max(16,22*160/box.width)){navigate(hit);$('.map').classList.remove('expanded');}};
+ const v=(map as any).view||{k:1,ox:0,oy:0},x=((e.clientX-box.left)/box.width*map.width-v.ox)/v.k,y=((e.clientY-box.top)/box.height*map.height-v.oy)/v.k;const hit=points().sort((a,b)=>Math.hypot(coords(a).x-x,coords(a).y-y)-Math.hypot(coords(b).x-x,coords(b).y-y))[0];if(hit&&Math.hypot(coords(hit).x-x,coords(hit).y-y)<Math.max(16,22*160/box.width)){cancel();navigate(hit);$('.map').classList.remove('expanded');}};
  document.addEventListener('dragstart',()=>document.body.classList.add('dragging-hotbar'));document.addEventListener('dragend',()=>document.body.classList.remove('dragging-hotbar'));document.addEventListener('drop',()=>document.body.classList.remove('dragging-hotbar'));
  let bannerTimer:ReturnType<typeof setTimeout>;const banner=()=>{clearTimeout(bannerTimer);$('#area-name').classList.remove('area-faded');bannerTimer=setTimeout(()=>$('#area-name').classList.add('area-faded'),4000);};banner();
  return {cancel,banner,toggleMap,walkGround(p:{x:number;z:number}){navigate({...p,kind:'ground'});},
  /** Walk to a point of the current map (world map list): NPCs are talked to on arrival. */
- goTo(p:{x:number;z:number;kind:string}){navigate(p);},
+ goTo(p:{x:number;z:number;kind:string;name?:string}){cancel();return navigate(p);},
+ goToMap(p:{map:MapId;x:number;z:number;kind:string;name?:string}){cancel();if(p.map===o.map())return navigate(p);if(!gateRoute(o.map(),p.map,o.player().level).length){o.notice('ยังไม่มีเส้นทางไปจุดหมายนี้');return false;}o.stop();o.send({t:'auto',on:false});goalMap=p.map;goalPoint=p;return true;},
  /** Points of interest on the current map, as the minimap shows them. */
  points,
  /** Walk to another map through its gates; returns false when there is no way. */
- travelTo(map:MapId){if(map===o.map())return true;if(!gateRoute(o.map(),map,o.player().level).length)return false;cancel();goalMap=map;return true;},
+ travelTo(map:MapId){if(!gateRoute(o.map(),map,o.player().level).length&&map!==o.map())return false;cancel();o.stop();o.send({t:'auto',on:false});goalMap=map;return true;},
  get goal(){return goalMap;},attacked(enemy:any){lastTarget=enemy;targetUntil=performance.now()+4000;},key(code:string){const keys=resolveKeys(settings.keys);if(code===keys.returnCity){returnCity();return true;}return false;},
- clickNPC(project:(x:number,z:number,y:number)=>{x:number;y:number},x:number,y:number){const candidates=npcs().map(n=>({...n,screen:project(n.x,n.z,1.5)})).filter(n=>Math.hypot(n.screen.x-x,n.screen.y-y)<32).sort((a,b)=>Math.hypot(a.screen.x-x,a.screen.y-y)-Math.hypot(b.screen.x-x,b.screen.y-y));if(candidates[0]){navigate(candidates[0]);return true;}return false;},
+ clickNPC(project:(x:number,z:number,y:number)=>{x:number;y:number},x:number,y:number){const candidates=npcs().map(n=>({...n,screen:project(n.x,n.z,1.5)})).filter(n=>Math.hypot(n.screen.x-x,n.screen.y-y)<32).sort((a,b)=>Math.hypot(a.screen.x-x,a.screen.y-y)-Math.hypot(b.screen.x-x,b.screen.y-y));if(candidates[0]){cancel();navigate(candidates[0]);return true;}return false;},
  receive(m:any){if(m.t==='welcome'){saving=false;if(dirty)save();}if(m.t==='uiSettings'){if(saving){saving=false;if(signature(m.settings)!==signature(settings)){save();return;}dirty=false;}if(!dirty){confirmed=structuredClone(m.settings);settings=structuredClone(m.settings);apply();$('#hud-save').textContent='บันทึกแล้ว';}}if(m.t==='uiSettingsError'){saving=false;dirty=false;settings=structuredClone(confirmed);apply();$('#hud-save').textContent=m.text;}},
  update(game:any){const p=game.p;
  const huntingMap=o.map();huntingArea.hidden=!isField(huntingMap);
@@ -96,20 +99,24 @@ export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;t
   text('#hunting-area',nearBoss?`ลาน${monster!.nameTh} · Lv.${monster!.level}`:h?`${h.name} · Lv.${monster!.level}`:LAYOUTS[huntingMap].exploration?'แมปสำรวจ · มอนและของดรอปยังไม่เปิด':'ทางเดินเชื่อมพื้นที่ล่า');
  }
  if(routeMap!==o.map()||routeMap!==p.mapId||p.dead)cancel(!p.dead);
- if(goalMap&&!route.length&&!arrival&&p.mapId===o.map()){
-  if(o.map()===goalMap){goalMap=null;o.arrived?.(MAP_INFO[o.map()].name);}
+ const previousWaypoint=journey.points[0],routeState=journey.update(p,performance.now());
+ if(previousWaypoint!==journey.points[0])nextWaypoint=0;
+ if(routeState==='blocked'){cancel();o.send({t:'auto',on:false});o.notice('เดินต่อไม่ได้ ระบบหยุดนำทางแล้ว ลองเลือกจุดหมายใหม่');}
+ if(goalMap&&!journey.points.length&&!arrival&&p.mapId===o.map()){
+  if(o.map()===goalMap){goalMap=null;const point=goalPoint;goalPoint=null;if(point)navigate(point);else o.arrived?.(MAP_INFO[o.map()].name);}
   else{const step=gateRoute(o.map(),goalMap,p.level)[0],gate=step&&(GATES[o.map()] as Record<string,{x:number;z:number}>)[step.gate];
    // Standing on the gate: the controller sends the travel; just wait for the map to change.
-   if(gate&&Math.hypot(p.x-gate.x,p.z-gate.z)>1.6){navigate({...gate,kind:'gate:'+step.gate});if(!route.length)goalMap=null;}
+   if(gate&&Math.hypot(p.x-gate.x,p.z-gate.z)>1.6){navigate({...gate,kind:'gate:'+step.gate});if(!journey.points.length)goalMap=null;}
    else if(!gate)goalMap=null;}
  }
- travel.hidden=!goalMap;
+ travel.hidden=!goalMap&&!arrival;
  if(goalMap){const steps=gateRoute(o.map(),goalMap,p.level),next=steps[0],destination=next&&(GATES[next.map] as Record<string,{x:number;z:number}>)[next.gate];
-  text('#travel-destination','กำลังไป'+MAP_INFO[goalMap].name);
+  text('#travel-destination','กำลังไป'+(goalPoint?.name??MAP_INFO[goalMap].name));
   text('#travel-next',next?`ถัดไป: ประตู${({north:'เหนือ',south:'ใต้',east:'ตะวันออก',west:'ตะวันตก'} as Record<string,string>)[next.gate]} · เหลือ ${steps.length} ประตู${destination?' · '+Math.round(Math.hypot(p.x-destination.x,p.z-destination.z))+' ม. ถึงประตู':''}`:'ถึงปลายทางแล้ว');
  }
- if(route.length){const point=route[0];if(Math.hypot(p.x-point.x,p.z-point.z)<.18){route.shift();nextWaypoint=0;}else if(performance.now()>nextWaypoint){o.send({t:'move',x:point.x,z:point.z,mapId:routeMap});nextWaypoint=performance.now()+600;}}
- else if(arrival){const kind=arrival;arrival=null;if(kind!=='ground'&&!kind.startsWith('gate:'))o.talk(kind);}
+ else if(arrival){let distance=0,previous=p;for(const point of journey.points){distance+=Math.hypot(point.x-previous.x,point.z-previous.z);previous=point;}text('#travel-destination','กำลังไป'+destinationName);text('#travel-next',`เหลือ ${Math.ceil(distance)} ม. · เดินเองหรือ Esc เพื่อหยุด`);}
+ if(journey.points.length){const point=journey.points[0];if(performance.now()>nextWaypoint){o.send({t:'move',x:point.x,z:point.z,mapId:routeMap});nextWaypoint=performance.now()+600;}}
+ else if(arrival){const kind=arrival;arrival=null;if(!kind.startsWith('gate:')){o.arrived?.(destinationName);if(!['ground','hunt','boss','place','camp','sign'].includes(kind))o.talk(kind);}}
  $('#wallet').textContent=`${p.gold.toLocaleString('th-TH')} ทอง · ${Math.round(p.carryWeight||0)}/${Math.round(p.weightLimit||0)}`;
  $('#kills').textContent=`ปราบแล้ว ${game.kills}`;$('#level').textContent=`${p.level}`;
  text('#job-label',`ระดับ ${p.level} · ${jobs.jobs.find(j=>j.id===p.jobId)?.nameTh||''} ${p.jobLevel}`);
@@ -120,7 +127,7 @@ export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;t
  const target=current||(performance.now()<targetUntil?lastTarget:null);$('#target').hidden=!target||target.boss;if(target){const monster=data.monsters.monsters.find(m=>m.id===target.dataId);$('#target-name').textContent=monster?.nameTh||'ราชาวุ้น';$('#target-lv').textContent=`ระดับ ${monster?.level??1}`;updateMonsterTags(targetTags,monster);$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;let percent=$('#target-percent');if(!percent){percent=document.createElement('small');percent.id='target-percent';$('#target .bar').append(percent);}percent.textContent=`${Math.ceil(target.hp/target.maxHp*100)}%`;}
  // Field bosses live far across the big maps; only a boss whose bar is on screen replaces the target frame.
  const boss=$('#boss-hud').hidden?null:game.enemies.find((e:any)=>e.boss&&(!e.dead||e.deathAge<3.8)&&Math.hypot(e.x-game.p.x,e.z-game.p.z)<28);if(boss){$('#target').hidden=true;updateMonsterTags(bossTags,data.monsters.monsters.find(m=>m.id===boss.dataId));$('#boss-hud small').textContent=boss.dead?'ปราบแล้ว':`ระยะ ${boss.bossPhase} · ${Math.ceil(boss.hp/boss.maxHp*100)}%`;$('#boss-hud').style.setProperty('--phase',boss.bossPhase===2?'#f4a9ba':'#e4cc91');}
- const ctx=map.getContext('2d')!,view=(map as any).view||{k:1,ox:0,oy:0},mk=view.k;paintMinimapLayer(ctx,map.width,view,()=>{if(route.length){ctx.save();ctx.strokeStyle='#9cead4';ctx.lineWidth=2/mk;ctx.setLineDash([4/mk,3/mk]);ctx.beginPath();const origin=coords(p);ctx.moveTo(origin.x,origin.y);for(const waypoint of route){const point=coords(waypoint);ctx.lineTo(point.x,point.y);}ctx.stroke();ctx.restore();}ctx.font=`bold ${13/mk}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';for(const p of points()){const c=coords(p);ctx.fillStyle='#102921';ctx.beginPath();ctx.arc(c.x,c.y,7/mk,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff4d6';ctx.fillText(p.icon,c.x,c.y);}
+ const ctx=map.getContext('2d')!,view=(map as any).view||{k:1,ox:0,oy:0},mk=view.k;paintMinimapLayer(ctx,map.width,view,()=>{if(journey.points.length){ctx.save();ctx.strokeStyle='#9cead4';ctx.lineWidth=2/mk;ctx.setLineDash([4/mk,3/mk]);ctx.beginPath();const origin=coords(p);ctx.moveTo(origin.x,origin.y);for(const waypoint of journey.points){const point=coords(waypoint);ctx.lineTo(point.x,point.y);}ctx.stroke();ctx.restore();}ctx.font=`bold ${13/mk}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';for(const p of points()){const c=coords(p);ctx.fillStyle='#102921';ctx.beginPath();ctx.arc(c.x,c.y,7/mk,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff4d6';ctx.fillText(p.icon,c.x,c.y);}
  const c=coords(p);ctx.save();ctx.translate(c.x,c.y);ctx.scale(1/mk,1/mk);ctx.rotate(Math.atan2(p.fx,-p.fz));ctx.fillStyle='#fff';ctx.strokeStyle='#132b27';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-6);ctx.lineTo(4,5);ctx.lineTo(0,3);ctx.lineTo(-4,5);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();});
  }};
 }

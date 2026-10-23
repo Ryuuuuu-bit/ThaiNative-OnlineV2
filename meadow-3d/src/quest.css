@@ -21,6 +21,8 @@
 #quest-tracker b{font-size:13px;color:#ecd28e}
 #quest-tracker small{font-size:12px;opacity:.9}
 #quest-tracker li.ready small{color:#a9e3c4}
+#ui #quest-tracker .quest-navigate{justify-self:start;min-height:32px;margin-top:4px;padding:4px 10px;border:1px solid var(--g-line-strong);border-radius:6px;background:rgba(230,201,143,.08);color:var(--g-gold);font:inherit;font-size:12px;pointer-events:auto}
+#ui #quest-tracker .quest-navigate:focus-visible{outline:2px solid var(--g-gold);outline-offset:2px}
 @media(max-width:650px){.quest-actions button{min-height:44px}#quest-tracker b{font-size:12px}}
 #npc-dialog .npc-close,#npc-dialog .npc-shop-open{font:inherit;min-height:38px;padding:0 16px;color:#fff4d6;background:#17372b;border:1px solid #b49e69;border-radius:6px;cursor:pointer}
 #npc-dialog .npc-shop-open{background:#5c4a1f;border-color:#ecd28e}

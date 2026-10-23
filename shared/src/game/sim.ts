@@ -163,6 +163,7 @@ export interface Player extends Vec, JobProgress {
 	autoCharge: number;
 	/** AUTO: enemy id → game time until which it is skipped because no route reached it. */
 	autoUnreachable?: Record<number, number>;
+	autoProgress?: { x: number; z: number; at: number; retried: boolean };
 	auto: boolean;
 	autoState: AutoState;
 	hp: number;
@@ -1260,6 +1261,7 @@ export function setAuto(g: Game, enabled: boolean) {
 	g.autoGoal = null;
 	g.autoCharge = -1;
 	g.p.autoUnreachable = undefined;
+	g.p.autoProgress = undefined;
 	g.destination = null;
 	if (!enabled) g.target = null;
 	emit(g, "notice", {
@@ -1317,6 +1319,14 @@ function navigate(g: Game, goal: Vec, reach = 0): Vec {
 	) {
 		g.autoGoal = { ...goal };
 		g.autoPath = route(g.mapId, p, goal);
+		p.autoProgress = {x:p.x,z:p.z,at:g.time,retried:false};
+	}
+	const progress=p.autoProgress;
+	if(progress){
+		if(Math.hypot(p.x-progress.x,p.z-progress.z)>.25){progress.x=p.x;progress.z=p.z;progress.at=g.time;progress.retried=false;}
+		else if(g.time-progress.at>3&&p.castRemaining<=0&&!p.statuses.some(s=>s.id==='stun'||s.id==='knockup')){
+			g.autoPath=progress.retried?[]:route(g.mapId,p,goal);progress.retried=true;progress.at=g.time;
+		}
 	}
 	while (
 		g.autoPath.length &&
@@ -1426,7 +1436,7 @@ function autoStep(g: Game, dt: number): Vec {
 		const retreat = p.autoState === "retreat" && p.hp < p.maxHp * 0.9;
 		const target = autoPickTarget(g, cfg);
 		g.target = target?.id ?? null;
-		const reach = target ? (target.boss ? 2.3 : 1.8) : 0,
+		const reach = target ? autoReach(g,cfg,target) : 0,
 			d = target ? Math.hypot(target.x - p.x, target.z - p.z) : Infinity;
 		p.autoState = retreat
 			? "retreat"
@@ -1441,17 +1451,19 @@ function autoStep(g: Game, dt: number): Vec {
 			p.fz = (target.z - p.z) / (d || 1);
 			autoCast(g, cfg);
 		}
+		else if(p.hp<p.maxHp*cfg.survive/100) autoCast(g,cfg,true);
 	}
+	if(p.castRemaining>0)return still;
 	const target = g.enemies.find((e) => e.id === g.target && !e.dead);
 	const retreat = p.autoState === "retreat",
 				atCamp = Math.hypot(p.x - campFor(g.mapId, p).x, p.z - campFor(g.mapId, p).z) < 1;
 	if (target) {
 		const d = Math.hypot(target.x - p.x, target.z - p.z),
-			reach = target.boss ? 2.3 : 1.8;
+			reach = autoReach(g,p.autoCfg??DEFAULT_AUTO,target);
 		if (d < reach && (!retreat || atCamp)) {
 			p.fx = (target.x - p.x) / (d || 1);
 			p.fz = (target.z - p.z) / (d || 1);
-			if ((p.autoCfg ?? DEFAULT_AUTO).basic) action(g, "attack");
+			if ((p.autoCfg ?? DEFAULT_AUTO).basic && d < (target.boss?2.3:1.8)) action(g, "attack");
 			g.destination = null;
 			if (!retreat) p.autoState = "fight";
 			return still;
@@ -1461,62 +1473,88 @@ function autoStep(g: Game, dt: number): Vec {
 			const direction = navigate(g, target, reach);
 			if (g.autoPath.length) return direction;
 			// No route: standing still on this target would freeze AUTO, so hunt something else.
-			p.autoUnreachable = Object.fromEntries(
-				Object.entries(p.autoUnreachable || {}).filter(([, until]) => until > g.time),
-			);
-			p.autoUnreachable[target.id] = g.time + 8;
-			g.target = null;
-			g.autoTimer = 0;
+			skipAutoTarget(g,target);
 			return still;
 		}
 	}
 		if (retreat) return atCamp ? still : navigate(g, campFor(g.mapId, p));
 	p.autoState = target ? "seek" : "idle";
 	const scout = autoScoutGoal(g, p.autoCfg ?? DEFAULT_AUTO);
-	if (scout) { p.autoState = "seek"; return navigate(g, scout, 1); }
-	return Math.hypot(p.x, p.z) < 0.4 ? still : navigate(g, { x: 0, z: 0 });
+	if (scout) { p.autoState = "seek"; const direction=navigate(g,scout,1);if(!g.autoPath.length)skipAutoTarget(g,scout);return direction; }
+	g.destination=null;
+	return still;
+}
+function skipAutoTarget(g:Game,target:Enemy){
+	g.p.autoUnreachable=Object.fromEntries(Object.entries(g.p.autoUnreachable??{}).filter(([,until])=>until>g.time));
+	g.p.autoUnreachable[target.id]=g.time+8;g.target=null;g.autoPath=[];g.autoGoal=null;g.p.autoProgress=undefined;g.autoTimer=0;
+}
+/** AUTO and enemy decisions must agree on which player is being attacked. */
+function enemyTargetPlayer(g:Game,e:Enemy){
+		const forced = e.statuses.find((s) => s.id === "taunt");
+		const taunter = forced ? g.players.get(forced.sourceId) : undefined;
+		return taunter && !taunter.dead
+				? taunter
+				: [...g.players.values()]
+						.filter((p) => !p.dead)
+						.sort(
+							(a, b) =>
+								Math.hypot(a.x - e.x, a.z - e.z) -
+								Math.hypot(b.x - e.x, b.z - e.z),
+						)[0];
 }
 /**
  * AUTO target. A monster fighting this player comes first (with `attackers`), then bosses (with
- * `elites`), then the nearest one in range on the map's hunt list. The current (or clicked) target is
- * kept until it dies or a boss appears, so AUTO neither flips between close monsters nor ignores a click.
+ * `elites`), then the nearest one in range on the map's hunt list. Keep a current/clicked target
+ * unless a higher-priority threat appears, so equal-priority neighbours do not cause target flicker.
  */
 function autoPickTarget(g: Game, cfg: AutoSettings) {
 	const p = g.p,
 		R = AUTO_RANGES[cfg.range],
 		wanted = wantedMonsters(cfg, g.mapId),
 		dist = (e: Enemy) => Math.hypot(e.x - p.x, e.z - p.z),
-		fighting = (e: Enemy) => cfg.attackers && e.aggro > 0 && (e.engaged || (e.damageBy[p.id] ?? 0) > 0) && dist(e) < 6,
+		fighting = (e: Enemy) => cfg.attackers && e.aggro > 0 && (e.engaged || (e.damageBy[p.id] ?? 0) > 0) && dist(e) < 6 && enemyTargetPlayer(g,e)?.id===p.id,
 		allowed = (e: Enemy) => !wanted || wanted.has(e.dataId) || fighting(e),
 		skip = p.autoUnreachable || {},
-		living = g.enemies.filter((e) => !e.dead && !((skip[e.id] ?? 0) > g.time) && (!e.summoned || fighting(e)));
+		living = g.enemies.filter((e) => !e.dead && !endgameBossLocked(g,e) && !desertBurrowed(e) && !((skip[e.id] ?? 0) > g.time) && (!e.summoned || fighting(e)));
 	const rank = (e: Enemy) => (fighting(e) ? 2 : 0) + (cfg.elites && e.boss ? 1 : 0);
 	const score = (e: Enemy) => -rank(e) * 500 + dist(e);
 	// Bosses ('elites') are worth the walk from anywhere on the map; unreachable ones are skipped above.
 	const pool = living.filter((e) => allowed(e) && (dist(e) <= R || fighting(e) || (cfg.elites && e.boss)));
 	const best = pool.sort((a, b) => score(a) - score(b))[0];
 	const current = pool.find((e) => e.id === g.target);
-	// Keep the current (or clicked) target; only a boss (with `elites`) takes over. Attackers win when picking anew.
-	const boss = cfg.elites ? pool.filter((e) => e.boss).sort((a, b) => dist(a) - dist(b))[0] : undefined;
-	if (boss && !current?.boss) return boss;
+	if(best&&current&&rank(best)>rank(current))return best;
 	return current ?? best;
 }
 /** Where AUTO walks with nothing in its hunt range: towards the nearest wanted monster (bosses last unless `elites`), not the map centre. */
-function autoScoutGoal(g: Game, cfg: AutoSettings): Vec | undefined {
+function autoScoutGoal(g: Game, cfg: AutoSettings): Enemy | undefined {
 	const p = g.p, wanted = wantedMonsters(cfg, g.mapId), skip = p.autoUnreachable || {};
 	const away = (e: Enemy) => (e.boss && !cfg.elites ? 1e6 : 0) + Math.hypot(e.x - p.x, e.z - p.z);
-	return g.enemies.filter((e) => !e.dead && !e.summoned && !((skip[e.id] ?? 0) > g.time) && (!wanted || wanted.has(e.dataId))).sort((a, b) => away(a) - away(b))[0];
+	return g.enemies.filter((e) => !e.dead && !endgameBossLocked(g,e) && !desertBurrowed(e) && !e.summoned && !((skip[e.id] ?? 0) > g.time) && (!wanted || wanted.has(e.dataId))).sort((a, b) => away(a) - away(b))[0];
 }
-/** Cast the first ready skill in the player's AUTO order (cycle / priority, survival first when low). */
-function autoCast(g: Game, cfg: AutoSettings) {
+/** Learned and enabled skills, in the player's AUTO order. */
+function autoSkills(g: Game, cfg: AutoSettings) {
 	const p = g.p,
 		hotbar = (p.hotbar ?? []).map((h) => h.skill),
 		spec = (id: string) => g.data.skills.skills.find((s) => s.id === id),
 		// Job skills only: basic attack, dodge and potion are common skills with their own handling (dodge would drop the target).
-		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !!spec(id) && !spec(id)!.passive && spec(id)!.jobId !== "common" && belongsToJob(p.jobId, spec(id)!.jobId, g.data), Object.keys(p.skills), (id) => skillTierRank(g.data, id)),
-		order = autoCastOrder(seq, cfg, p.hp / p.maxHp, p.autoNext ?? null, (id) => isSurvivalSkill(spec(id)));
+		seq = autoSkillSequence(cfg, hotbar, (id) => !!p.skills[id] && !!spec(id) && !spec(id)!.passive && spec(id)!.jobId !== "common" && belongsToJob(p.jobId, spec(id)!.jobId, g.data), Object.keys(p.skills), (id) => skillTierRank(g.data, id));
+	return seq;
+}
+/** Affordable ranged attacks keep their distance while cooling down; no SP falls back to melee. */
+function autoReach(g:Game,cfg:AutoSettings,target:Enemy){
+	let reach=target.boss?2.3:1.8;
+	for(const id of autoSkills(g,cfg)){
+		const skill=gameSkill(g,id);
+		if(skill.percent>0&&skill.kind==='single'&&skill.effect!=='dash'&&g.p.mp>=skill.sp&&worthCasting(g,skill,target))reach=Math.max(reach,skill.range+(target.boss?.5:0)-.2);
+	}
+	return reach;
+}
+/** Cast one ready skill; retreating players may still heal and guard. */
+function autoCast(g: Game, cfg: AutoSettings, survivalOnly=false) {
+	const p=g.p,seq=autoSkills(g,cfg),order=autoCastOrder(seq,cfg,p.hp/p.maxHp,p.autoNext??null,id=>isSurvivalSkill(gameSkill(g,id)));
 	const target = g.enemies.find((e) => e.id === g.target && !e.dead);
 	for (const id of order) {
+		if(survivalOnly&&!isSurvivalSkill(gameSkill(g,id)))continue;
 		if ((p.cd[id] || 0) > 0 || p.mp < gameSkill(g, id).sp) continue;
 		if (!worthCasting(g, gameSkill(g, id), target)) continue;
 		if (action(g, id)) {
@@ -2041,18 +2079,7 @@ export function step(
 		 if(e.hp===0)defeat(g,e);else enterSecondPhase(g,e);g.p=previousPlayer;
 		});
 		tickEffects(e, dt);
-		const forced = e.statuses.find((s) => s.id === "taunt");
-		const taunter = forced ? g.players.get(forced.sourceId) : undefined;
-		const nearest =
-			taunter && !taunter.dead
-				? taunter
-				: [...g.players.values()]
-						.filter((p) => !p.dead)
-						.sort(
-							(a, b) =>
-								Math.hypot(a.x - e.x, a.z - e.z) -
-								Math.hypot(b.x - e.x, b.z - e.z),
-						)[0];
+		const nearest = enemyTargetPlayer(g,e);
 		if (nearest) g.p = nearest;
 		const p = g.p;
 		e.hurt = Math.max(0, e.hurt - dt);

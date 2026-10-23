@@ -1,14 +1,16 @@
 import { loadGameData, questStatus, objectiveProgress, questsFor, emptyQuests, type QuestState, type QuestGiver, type Inventory } from '@the-beginning-online/shared';
 import './quest.css';
+import { questDestination, type QuestDestination } from './quest-navigation';
+import { MAP_INFO, type MapId } from '@the-beginning-online/shared/maps';
 
 const data = loadGameData();
 export const GIVER_NAME: Record<QuestGiver, string> = { guard: 'หัวหน้าทหารประตู', heal: 'นักบวชหมอ', forge: 'ช่างตีเหล็ก', market: 'พ่อค้าเบ็ดเตล็ด', storage: 'คนเฝ้าคลัง' };
 const itemName = (id: string) => data.items.items.find(i => i.id === id)?.nameTh ?? id;
 const isGiver = (kind: string): kind is QuestGiver => kind in GIVER_NAME;
-interface PlayerView { level: number; inventory?: Inventory }
+interface PlayerView { level: number; x: number; z: number; inventory?: Inventory }
 
 /** NPC quest dialogs and the journal tracker. The server validates every accept/turn-in. */
-export function mountQuests(options: { send: (m: unknown) => void; player: () => PlayerView; notice: (text: string, chat?: 'system' | 'loot') => void }) {
+export function mountQuests(options: { send: (m: unknown) => void; player: () => PlayerView; map: () => MapId; navigate: (point: QuestDestination) => void; notice: (text: string, chat?: 'system' | 'loot') => void }) {
 	let state: QuestState = emptyQuests(), ready = new Set<string>(), openGiver: QuestGiver | null = null, onChange: (() => void) | null = null;
 	const tracker = document.createElement('ol');
 	tracker.id = 'quest-tracker';
@@ -40,6 +42,8 @@ export function mountQuests(options: { send: (m: unknown) => void; player: () =>
 					s.textContent = `${o.label} ${progress[i]} / ${o.count}`;
 					li.append(s);
 				});
+			const destination=questDestination(data,q,progress,options.map(),p);
+			if(destination){const go=document.createElement('button');go.type='button';go.className='quest-navigate';go.textContent=done?'↗ นำทางไปส่งเควสต์':'↗ นำทางไปเป้าหมาย';go.title=`${destination.name} · ${MAP_INFO[destination.map].name}`;go.onclick=()=>options.navigate(destination);li.append(go);}
 			tracker.append(li);
 		}
 		tracker.hidden = !tracker.children.length;

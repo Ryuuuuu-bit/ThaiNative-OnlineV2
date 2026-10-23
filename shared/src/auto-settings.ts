@@ -46,6 +46,12 @@ export const DEFAULT_AUTO: AutoSettings = {
 	elites: false,
 	range: "mid",
 };
+function huntIds(mapId:MapId){
+	const ids=new Set(LAYOUTS[mapId]?.spawns.map(s=>s.dataId)??[]),boss=FIELD_BOSS[mapId as keyof typeof FIELD_BOSS];
+	if(boss)ids.add(boss.dataId);
+	if(mapId==='forest')ids.add('thorn_nest_mother');
+	return ids;
+}
 /** Anything malformed falls back field by field to the defaults. */
 export function normalizeAuto(s: unknown): AutoSettings {
 	const o = { ...DEFAULT_AUTO, ...(s && typeof s === "object" ? s : {}) } as Record<string, unknown>;
@@ -54,7 +60,15 @@ export function normalizeAuto(s: unknown): AutoSettings {
 		const field = AutoSettingsSchema.shape[key].safeParse(o[key]);
 		out[key] = field.success ? field.data : DEFAULT_AUTO[key];
 	}
-	return out as AutoSettings;
+	const cfg=out as AutoSettings;
+	// Map art/content updates can retire IDs saved in an older hunt list.
+	for(const [map,selected] of Object.entries(cfg.mobs)){
+		if(!Object.hasOwn(LAYOUTS,map))continue;
+		const available=huntIds(map as MapId),current=selected.filter(id=>available.has(id));
+		if(current.length)cfg.mobs[map]=current;
+		else delete cfg.mobs[map];
+	}
+	return cfg;
 }
 
 /** Skills that keep the player alive (buffs, heals): cast first once HP drops under `survive`. */
@@ -63,10 +77,7 @@ export const isSurvivalSkill = (skill: { effect?: string } | undefined) =>
 
 /** The monsters a field map spawns (its boss included), weakest first, for the hunt list. */
 export function huntList(mapId: MapId, data: GameData) {
-	const ids = new Set(LAYOUTS[mapId]?.spawns.map((s) => s.dataId) ?? []);
-	const boss = (FIELD_BOSS as Record<string, { dataId: string; minion: string }>)[mapId];
-	if (boss) ids.add(boss.dataId);
-	if(mapId==='forest')ids.add('thorn_nest_mother');
+	const ids = huntIds(mapId);
 	return [...ids]
 		.map((id) => data.monsters.monsters.find((m) => m.id === id))
 		.filter((m): m is NonNullable<typeof m> => !!m)
