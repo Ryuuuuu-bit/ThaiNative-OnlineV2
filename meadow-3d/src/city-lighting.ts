@@ -23,11 +23,12 @@ export function drawCityWindowGlow(c:CanvasRenderingContext2D,glow:Sprite|undefi
 
 /** Reusable light stamps: no per-frame canvas filters or additional asset downloads. */
 export class CityLighting{
- private halo:HTMLCanvasElement;private pool:HTMLCanvasElement;
+ private halo:HTMLCanvasElement;private pool:HTMLCanvasElement;private portal:HTMLCanvasElement;
  constructor(){
   const stamp=(stops:[number,string][])=>{const out=document.createElement('canvas');out.width=out.height=128;const c=out.getContext('2d')!,g=c.createRadialGradient(64,64,0,64,64,64);for(const [at,color] of stops)g.addColorStop(at,color);c.fillStyle=g;c.fillRect(0,0,128,128);return out;};
   this.halo=stamp([[0,'#fff1c9e0'],[.07,'#ffdc88ae'],[.24,'#ffb54148'],[1,'#f4a23b00']]);
   this.pool=stamp([[0,'#ffd18a70'],[.35,'#e9ad4634'],[1,'#d99d3d00']]);
+  this.portal=stamp([[0,'#d5fff2a0'],[.25,'#81dec973'],[.65,'#65b8bf29'],[1,'#65b8bf00']]);
  }
  draw(c:CanvasRenderingContext2D,items:readonly LightItem[],project:Project,s:number,width:number,height:number,ground=false){
   c.save();c.globalCompositeOperation='screen';
@@ -41,5 +42,21 @@ export class CityLighting{
    c.drawImage(ground?this.pool:this.halo,q.x-rx,q.y-ry,rx*2,ry*2);
   }
   c.restore();
+ }
+ exits(c:CanvasRenderingContext2D,exits:readonly {x:number;z:number;name:string}[],project:Project,s:number,time:number,width:number,height:number,reducedMotion:boolean){
+  for(const exit of exits){
+   const q=project(exit.x-Math.sign(exit.x)*1.6,exit.z-Math.sign(exit.z)*1.6);
+   if(q.x<-120||q.x>width+120||q.y<-20||q.y>height+4*s)continue;
+   c.save();c.globalCompositeOperation='screen';c.globalAlpha=reducedMotion?1:.88+Math.sin(time*1.6)*.12;
+   c.drawImage(this.portal,q.x-s*1.5,q.y-s*.5,s*3,s);
+   c.drawImage(this.portal,q.x-s*.8,q.y-s*3,s*1.6,s*3);
+   c.globalCompositeOperation='source-over';c.globalAlpha=1;
+   const lift=reducedMotion?0:Math.sin(time*1.6)*s*.08;
+   c.strokeStyle='#f2d69a';c.lineWidth=Math.max(2,s*.07);c.lineCap='round';
+   c.beginPath();c.moveTo(q.x-s*.22,q.y-s*.65+lift);c.lineTo(q.x,q.y-s*.4+lift);c.lineTo(q.x+s*.22,q.y-s*.65+lift);c.stroke();
+   c.font=`600 ${Math.max(11,Math.min(14,s*.5))}px "Noto Sans Thai",sans-serif`;c.textAlign='center';
+   const label=exit.name,w=c.measureText(label).width+18,y=q.y-s*3.15;
+   c.fillStyle='#102c2be8';c.fillRect(q.x-w/2,y-15,w,22);c.fillStyle='#f4dfad';c.fillText(label,q.x,y+1);c.restore();
+  }
  }
 }

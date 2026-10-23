@@ -1,6 +1,6 @@
 import {CITY,CITY_LAYOUT,cityWalkable} from '@the-beginning-online/shared/maps';
 import {CITY_GROUND_FILTER} from './city-palette';
-import {CITY2D_FOUNTAIN as FOUNTAIN} from './city-2d-layout';
+const FOUNTAIN=CITY_LAYOUT.items.find(p=>p.assetId.startsWith('theme:fountain:'))!;
 
 const EXTENT=106,HALF=53,SIZE=2048,MASK_SIZE=768;
 const aprons=CITY_LAYOUT.items.filter(p=>p.assetId.startsWith('building:')||/^theme:(chapel|gazebo):/.test(p.assetId)).map(p=>{
@@ -78,20 +78,6 @@ export async function makePaintedGround(shadows=true){
     const x=Math.sin(i*12.9898)*47,z=Math.sin(i*78.233+2)*47,r=1.4+(i%7)*.5;
     const g=c.createRadialGradient(x,z,0,x,z,r);g.addColorStop(0,i%3?'#d5c79c0a':'#334c3110');g.addColorStop(1,'#0000');c.fillStyle=g;c.fillRect(x-r,z-r,r*2,r*2);
   }
-  function stoneRing(x:number,z:number,r:number,width:number){
-    c.beginPath();c.arc(x,z,r,0,Math.PI*2);c.strokeStyle='#79736666';c.lineWidth=width+.07;c.stroke();
-    c.setLineDash([.42,.055]);c.beginPath();c.arc(x,z,r,0,Math.PI*2);c.strokeStyle='#cfbd9899';c.lineWidth=width;c.stroke();c.setLineDash([]);
-  }
-  for(const r of [4.2,4.5,11.7,12.1])stoneRing(0,0,r,.13);
-  for(const r of [3.5,6.3])stoneRing(FOUNTAIN.x,FOUNTAIN.z,r,.17);
-  stoneRing(0,23,3,.22);
-  // Brass rays make the central plaza a recognisable gathering landmark.
-  c.strokeStyle='#b4a16d88';c.lineWidth=.09;
-  for(let i=0;i<16;i++){const a=i*Math.PI/8;c.beginPath();c.moveTo(Math.cos(a)*4.7,Math.sin(a)*4.7);c.lineTo(Math.cos(a)*11.5,Math.sin(a)*11.5);c.stroke();}
-  // Curbs define the market and guild forecourts without adding obstacles.
-  c.strokeStyle='#dfd2b077';c.lineWidth=.14;c.setLineDash([.7,.15]);
-  for(const [x,z,w,d]of [[15.5,5,26,19],[-22,-20,18,4],[6,-26,15,11],[-37,4,17,14]])c.strokeRect(x,z,w,d);
-  c.setLineDash([]);
   // Small olive tufts and seed flowers stay in planting soil, clear of the saved layout.
   for(let i=0;i<2400;i++){
     const x=Math.sin(i*127.1+3)*46,z=Math.sin(i*311.7+7)*46;
@@ -99,9 +85,6 @@ export async function makePaintedGround(shadows=true){
     c.strokeStyle=i%3?'#a1a05d88':'#3e492e99';c.lineWidth=.035;c.beginPath();c.moveTo(x-.07,z+.04);c.lineTo(x,z-.13);c.lineTo(x+.06,z+.03);c.stroke();
     if(i%11===0){c.fillStyle=i%22?'#d4c996aa':'#a49ab199';c.fillRect(x-.035,z-.13,.07,.07);}
   }
-  // Inlaid compass uses the stone surface beneath it, preserving the painted grain.
-  c.globalAlpha=.32;
-  for(let i=0;i<8;i++){const a=i*Math.PI/4;c.beginPath();c.moveTo(Math.cos(a)*2.75,23+Math.sin(a)*2.75);c.lineTo(Math.cos(a+.6)*.65,23+Math.sin(a+.6)*.65);c.lineTo(0,23);c.closePath();c.fillStyle=i%2?'#dfcba3':'#607c74';c.fill();}c.globalAlpha=1;
   // Soft contact shadows integrate vegetation and buildings with textured ground.
   function shadow(x:number,z:number,rx:number,rz:number){
     c.save();c.translate(x,z);c.scale(rx,rz);const g=c.createRadialGradient(0,0,.1,0,0,1);g.addColorStop(0,'#263b302f');g.addColorStop(.55,'#293f301a');g.addColorStop(1,'#293f3000');c.fillStyle=g;c.fillRect(-1,-1,2,2);c.restore();

@@ -6,9 +6,9 @@ import {route} from '../src/city-2d-layout.ts';
 import {windowEmission,CityLighting} from '../src/city-lighting.ts';
 import jobs from '../../shared/data/jobs.json' with {type:'json'};
 
-test('approved city preserves the saved 250 placements, facing, scale and NPC service coordinates',()=>{
+test('approved city preserves the saved 242 placements, facing, scale and NPC service coordinates',()=>{
  const parsed=parseDraft(CITY_LAYOUT,new Set(CITY_LAYOUT.items.map(p=>p.assetId)));
- assert.equal(parsed.items.length,250);
+ assert.equal(parsed.items.length,242);
  const gazebo=parsed.items.find(p=>p.assetId==='theme:gazebo:5:5');
  assert.deepEqual([gazebo.x,gazebo.z],[-12,19.5]);
  const merchant=parsed.items.find(p=>p.assetId==='npc:merchant');
@@ -22,8 +22,9 @@ test('collision follows moved, removed, rotated and scaled scenery',()=>{
  assert.equal(cityWalkable(-12,19.5,.2),false,'moved gazebo is solid');
  assert.equal(cityWalkable(-9,22,.2),true,'old gazebo footprint is released');
  assert.equal(cityWalkable(27,24,.2),true,'removed well leaves no invisible obstacle');
- const bench=CITY_COLLISION.boxes.find(p=>p.x===-16.5&&p.z===8);
- assert.deepEqual(bench,{x:-16.5,z:8,w:.7,d:2.2});
+ assert.equal(cityWalkable(-16.5,8,.2),true,'removed bench leaves no invisible obstacle');
+ assert.ok(CITY_COLLISION.boxes.some(p=>p.x===-33&&p.z===23.5&&p.w===1.4&&p.d===3),'rotated flowerbed follows the latest placement');
+ assert.ok(CITY_COLLISION.circles.some(p=>p.x===-22.5&&p.z===23.5&&p.r===2.5),'fountain collision moves with its artwork');
  assert.ok(CITY_COLLISION.boxes.some(p=>p.x===0&&p.z===0&&p.w===4.4&&p.d===4.4));
  assert.throws(()=>cityLayoutGeometry([{assetId:'theme:unknown',x:0,z:0,scale:1,facing:0}]),/footprint/);
 });
@@ -45,6 +46,26 @@ test('city lamps share cached stamps, cull offscreen lights and restore composit
   const states=[],lights=new CityLighting(),c={globalCompositeOperation:'source-over',save(){states.push(this.globalCompositeOperation);},restore(){this.globalCompositeOperation=states.pop();},drawImage(){draws++;}};
   const items=[{assetId:'theme:lamp:3.2',x:50,z:50,scale:1},{assetId:'theme:lamp:3.2',x:500,z:500,scale:1},{assetId:'theme:bench:2.2:0.7',x:50,z:50,scale:1}];
   for(let i=0;i<2;i++)lights.draw(c,items,(x,z)=>({x,y:z}),10,100,100);
-  assert.equal(stamps,2);assert.equal(draws,2);assert.equal(c.globalCompositeOperation,'source-over');
+  assert.equal(stamps,3);assert.equal(draws,2);assert.equal(c.globalCompositeOperation,'source-over');
+ }finally{globalThis.document=previous;}
+});
+
+
+test('exit auras sit inside the four gates, label destinations and stay still with reduced motion',()=>{
+ const previous=globalThis.document;
+ globalThis.document={createElement:()=>({getContext:()=>({createRadialGradient:()=>({addColorStop(){}}),fillRect(){}})})};
+ try{
+  const lights=new CityLighting(),exits=[{x:0,z:44,name:'south'},{x:44,z:0,name:'east'},{x:0,z:-44,name:'north'},{x:-44,z:0,name:'west'}],original=structuredClone(exits);
+  function frame(time,reduced){
+   const images=[],labels=[],arrows=[],anchors=[];
+   const c={save(){},restore(){},drawImage(...args){images.push(args.slice(1));},beginPath(){},moveTo(...p){arrows.push(p);},lineTo(...p){arrows.push(p);},stroke(){},measureText(text){return{width:text.length*7};},fillRect(){},fillText(text){labels.push(text);}};
+   lights.exits(c,exits,(x,z)=>{anchors.push([x,z]);return{x:100+x,y:100+z};},10,time,200,200,reduced);
+   return{images,labels,arrows,anchors};
+  }
+  const still=frame(0,true);assert.deepEqual(still,frame(3,true));
+  assert.equal(still.images.length,8);assert.deepEqual(still.labels,['south','east','north','west']);
+  assert.ok(still.anchors.every(([x,z])=>Math.max(Math.abs(x),Math.abs(z))<44));
+  assert.notDeepEqual(frame(0,false).arrows,frame(3,false).arrows);
+  assert.deepEqual(exits,original);
  }finally{globalThis.document=previous;}
 });

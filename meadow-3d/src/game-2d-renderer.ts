@@ -5,11 +5,11 @@ import {heroPresentation} from './hero-presentation';
 import {ShadowHero} from './shadow-hero';
 import {Atmosphere2D,type AtmosphereTree} from './atmosphere-2d';
 import {titleDefinition} from '@the-beginning-online/shared';
-import {CITY,LAYOUTS,FIELD_BOSS,FIELD_PLACES,GATES,MAP_INFO,isField,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
+import {LAYOUTS,FIELD_BOSS,FIELD_PLACES,GATES,MAP_INFO,isField,travelDestination,type MapId} from '@the-beginning-online/shared/maps';
 import {CanvasAssets} from './game-2d-assets';
 import {loadCity2DScene} from './city-2d-scene';
 import {drawNpcSprite} from './city-npc-sprite';
-import {TOWN_NPCS,CITY_EXITS,WAYPOINTS} from './city-2d-locations';
+import {TOWN_NPCS,CITY_EXITS} from './city-2d-locations';
 import {drawFountainWater} from './city-2d-fountain';
 import {loadField2D} from './game-2d-fields';
 import {loadMapBackdrop} from './game-2d-backdrop';
@@ -217,8 +217,7 @@ export class GameCanvas2D{
   for(const p of backdrop?.props??[]){const q=this.screen(p.x,p.z);if(!visible(q,p.h*s))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=sceneryOpacity({left:x,top:y,right:x+p.w*s,bottom:y+p.h*s},q.y,protectedActors);c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();this.drawCalls++;});}
   if(this.map==='city_plaza'&&this.city){
    for(const p of this.city.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push({x:p.x,z:p.z,h:p.image.height/28,w:p.image.width/28});add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x+p.image.left*s,y=q.y+p.image.top*s,w=p.image.width/28*s,h=p.image.height/28*s;c.globalAlpha=p.fade?sceneryOpacity({left:x,top:y,right:x+w,bottom:y+h},q.y,protectedActors):1;c.drawImage(p.image,x,y,w,h);drawCityWindowGlow(c,p.glow,q.x,q.y,s);c.restore();if(p.water)drawFountainWater(c,q.x,q.y,s,time,this.atmosphere.reducedMotion);});}
-   for(const [i,n] of TOWN_NPCS.entries()){const q=this.screen(n.x,n.z);if(!visible(q))continue;add(n.x,n.z,()=>{drawNpcSprite(c,this.city!.npcSprites.get(n.art)!,q.x,q.y,s,time+i*.173);if(n.art==='angel')this.circle(n.x,n.z,.8,'transparent','#e9d594');});}
-   if(!CITY.empty)for(const p of [...CITY_EXITS,...WAYPOINTS]){this.circle(p.x,p.z,1.35,'transparent',p.color);}
+   for(const [i,n] of TOWN_NPCS.entries()){const q=this.screen(n.x,n.z);if(!visible(q))continue;add(n.x,n.z,()=>{drawNpcSprite(c,this.city!.npcSprites.get(n.art)!,q.x,q.y,s,time+i*.173);});}
   }else{const field=this.fields.get(this.map);if(field){
    for(const p of field.props){const q=this.screen(p.x,p.z);if(!visible(q))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree||p.foliage){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=sceneryOpacity({left:x,top:y,right:x+p.w*s,bottom:y+p.h*s},q.y,protectedActors);c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();});}
   }}
@@ -245,6 +244,7 @@ export class GameCanvas2D{
   draws.sort((a,b)=>a.depth-b.depth).forEach(d=>d.draw());
   this.atmosphere.light(c,this.width,this.height,this.map);
   if(this.map==='city_plaza')this.cityLighting.draw(c,CITY_LAYOUT.items,(x,z)=>this.screen(x,z),s,this.width,this.height);
+  if(this.map==='city_plaza')this.cityLighting.exits(c,CITY_EXITS,(x,z)=>this.screen(x,z),s,time,this.width,this.height,this.atmosphere.reducedMotion);
   this.atmosphere.leaves(c,sceneryTrees,(x,z,h)=>this.screen(x,z,h),s,time,this.width,this.height,this.highQuality);
   const labelSpace:Rect[]=[...protectedActors];
   c.save();c.font='500 12px Inter,"Noto Sans Thai",sans-serif';

@@ -20,6 +20,7 @@ import {CanvasAssets} from './game-2d-assets';
 import {loadMapBackdrop} from './game-2d-backdrop';
 let backdrop:Awaited<ReturnType<typeof loadMapBackdrop>>;
 const cityLighting=new CityLighting();
+const cityMotionPreference=matchMedia('(prefers-reduced-motion: reduce)');
 type Prop = {glow?:Sprite; x: number; z: number; image: Sprite; label?: string; fade?: boolean; water?: boolean };
 const canvas = document.querySelector<HTMLCanvasElement>('#city')!;
 const ctx = canvas.getContext('2d')!;
@@ -130,19 +131,12 @@ function render(now:number){requestAnimationFrame(render);const dt=last?Math.min
   const heroDepth=project(player.x,player.z).y;
   const draws: {depth:number;draw:()=>void}[]=props.map(p=>({depth:project(p.x,p.z).y,draw:()=>{const q=screen(project(p.x,p.z)),w=p.image.width/cacheScale*s,h=p.image.height/cacheScale*s;const x=q.x+p.image.left*s,y=q.y+p.image.top*s;if(x>width||x+w<0||y>height||y+h<0)return;const hp=screen(project(player.x,player.z));ctx.globalAlpha=!overview&&p.fade&&project(p.x,p.z).y>heroDepth&&hp.x>x&&hp.x<x+w&&hp.y>y&&hp.y<q.y?.5:1;ctx.drawImage(p.image,x,y,w,h);drawCityWindowGlow(ctx,p.glow,q.x,q.y,s);ctx.globalAlpha=1;if(p.water)drawFountainWater(ctx,q.x,q.y,s,time);}}));
   for(const p of backdrop.props){const q=screen(project(p.x,p.z));if(q.x<-p.h*s||q.x>width+p.h*s||q.y<0||q.y>height+p.h*s)continue;draws.push({depth:project(p.x,p.z).y,draw:()=>ctx.drawImage(p.image,...p.rect as [number,number,number,number],q.x-p.w*p.anchor[0]*s,q.y-p.h*p.anchor[1]*s,p.w*s,p.h*s)});}
-  if(!CITY.empty)for(const p of [...WAYPOINTS,...CITY_EXITS])draws.push({depth:project(p.x,p.z).y+.01,draw:()=>{
-    const q=screen(project(p.x,p.z));ctx.save();ctx.strokeStyle=p.color;ctx.lineWidth=Math.max(1,s*.06);
-    // Ground effects use the same dimetric plane as roads, rather than a flat 2:1 ellipse.
-    for(const r of [1.15,1.55]){ctx.beginPath();for(let i=0;i<=48;i++){const a=i*Math.PI/24,v=project(Math.cos(a)*r,Math.sin(a)*r);i?ctx.lineTo(q.x+v.x*s,q.y+v.y*s):ctx.moveTo(q.x+v.x*s,q.y+v.y*s);}ctx.stroke();}
-    for(let i=0;i<8;i++){const a=i*Math.PI/4+time*.22,v=project(Math.cos(a)*1.35,Math.sin(a)*1.35);ctx.beginPath();ctx.arc(q.x+v.x*s,q.y+v.y*s,Math.max(1,s*.065),0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();}
-    if(!overview)for(let i=0;i<5;i++){const phase=(time*.3+i/5)%1;ctx.globalAlpha=(1-phase)*.6;ctx.fillStyle=p.color;const x=q.x+Math.sin(i*2.4)*s*.85,y=q.y-phase*2.2*s;ctx.fillRect(x,y,Math.max(1,s*.055),Math.max(2,s*.1));}
-    ctx.restore();
-  }});
   npcs.forEach((n,i)=>draws.push({depth:project(n.x,n.z).y,draw:()=>{const sprite=npcSprites.get(n.art)!;const q=screen(project(n.x,n.z));if(q.x<-60||q.x>width+60||q.y<-20||q.y>height+90)return;drawNpcSprite(ctx,sprite,q.x,q.y,s,time+i*.173);if(!overview&&Math.hypot(n.x-player.x,n.z-player.z)<4)label(n.icon+' '+n.name,q.x,q.y-(n.art==='angel'?4:2.5)*s);}}));
   draws.push({depth:heroDepth,draw:()=>{const p=screen(project(player.x,player.z));ctx.beginPath();ctx.ellipse(p.x,p.y,.48*s,.23*s,0,0,Math.PI*2);ctx.fillStyle='#172c2966';ctx.fill();if(!overview){ctx.beginPath();ctx.ellipse(p.x,p.y,.63*s,.31*s,0,0,Math.PI*2);ctx.strokeStyle='#e2d3a2a0';ctx.lineWidth=1;ctx.stroke();}const motion=!paused&&player.moving?'walk':'idle',pose=shadowPose(heroManifest,'male-iron',motion,facing8For(player.fx,player.fz),player.clock),cell=pose.cell,img=motion==='walk'?run:idle;actor(img,player.x,player.z,img.width/cell.columns,img.height/cell.rows,cell.column,cell.row,pose.w*HERO_PIXEL_METRES*pose.scale,pose.h*HERO_PIXEL_METRES*pose.scale,pose.feet/pose.h,pose.anchorX);if(overview){ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#f0d786';ctx.fill();}else label('คุณ',p.x,p.y-(HERO_METRES+.3)*s);}});
   draws.sort((a,b)=>a.depth-b.depth).forEach(d=>d.draw());
   if(!CITY.empty)drawAtmosphere(s);
   cityLighting.draw(ctx,CITY_LAYOUT.items,(x,z)=>screen(project(x,z)),s,width,height);
+  cityLighting.exits(ctx,CITY_EXITS,(x,z)=>screen(project(x,z)),s,time,width,height,cityMotionPreference.matches);
   for(const p of props.filter(p=>p.label)){const q=screen(project(p.x,p.z));if(!overview&&Math.hypot(p.x-player.x,p.z-player.z)<15)label(p.label!,q.x,q.y+Math.max(18,s*2.1));}
   if(overview&&!CITY.empty){if(showDistricts)for(const d of DISTRICTS){const p=screen(project(d.x,d.z));label(d.name,p.x,p.y+15);}
   for(const gate of CITY_GATES){const q=screen(project(gate.x,gate.z));label(gate.name,q.x,q.y+22);}}
