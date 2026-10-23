@@ -1,3 +1,5 @@
+import {mountCombatBar} from './combat-bar';
+import {bestPotion} from '@the-beginning-online/shared';
 import {masteryTarget} from '@the-beginning-online/shared';
 import {isBiomeMap,BIOME_SCENES} from './biome-scenes';
 import {THORN_NEST} from '@the-beginning-online/shared/maps';
@@ -43,6 +45,7 @@ import './hud-qol.css';
 import './ui-glass.css';
 import './ui-windows.css';
 import './ui-theme.css';
+import './combat-bar.css';
 import {mountTutorialGuide} from './tutorial-guide';
 let guide:ReturnType<typeof mountTutorialGuide>|undefined;
 let qol:ReturnType<typeof mountHUDQOL>|undefined;let worldMap:ReturnType<typeof mountWorldMap>|undefined;let settingsUI:ReturnType<typeof mountSettingsWindow>|undefined;let pendingUI:any;
@@ -72,6 +75,7 @@ const launcher=(()=>{const bar=$('.legacy-actions'),open=document.createElement(
  return {adopt:(el:Element)=>panel.append(el)};})();
 const itemData=loadGameData();
 const cardDrop=mountCardDrop(itemData);
+const combatBar=mountCombatBar(()=>drinkMana());
 const worldState=new NetworkWorld(),game=worldState.game,sound=new AudioEngine(selected.character.id),keys=new Set<string>();let qualityPreference="high";try{qualityPreference=localStorage.getItem("tn-quality")||"high";}catch{}
 let started=false,paused=false,quality=qualityPreference!=="low",time=0,previous=performance.now(),accumulator=0,shake=0,zoomHeight=innerWidth<650?19.5:27.5,deathReveal=0;
 sound.restore(selected.character.audioSettings);
@@ -186,7 +190,7 @@ function events(){for(const e of game.events.splice(0)){
  case'evade':number('หลบ',e,'evade',2.4);break;
  case'heal':number(`+${e.amount}`,e,'heal',2.4);break;
  case'item_proc':if(e.playerId===net.you)notice(e.text);break;
- case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);if(e.kind==='hp'){const b=$('[data-action="potion"]');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
+ case'autoPotion':if(e.playerId===net.you){skillsUI.flash(e.template);{const b=$(e.kind==='hp'?'[data-action="potion"]':'#mana-potion');b.classList.remove('auto-drank');void b.offsetWidth;b.classList.add('auto-drank');setTimeout(()=>b.classList.remove('auto-drank'),900);}number(e.kind==='hp'?'ยาอัตโนมัติ':'ยาฟ้าอัตโนมัติ',e,'reward',3.1);}break;
  case'cardDrop':if(e.playerId===net.you)cardDrop.show(e.loot);break;
  case'itemPickup':if(e.playerId===net.you)social?.items(inventoryUI.names(e.loot));break;
  case'pickup':if(!e.playerId||e.playerId===net.you)social?.loot(e.xp,e.gold);break;
@@ -209,6 +213,11 @@ function toggleAuto(){if(activeMap==='city_plaza'){notice('เขตปลอด
 function stopAuto(){if(game.p.auto)net.send({t:'auto',on:false});}
 const nextAction:Partial<Record<Action,number>>={};
 let groundSkill:Action|undefined;
+function drinkMana(){
+ if(!started||paused||game.p.dead||!net.connected||game.p.mp>=game.p.maxMp||game.p.cd.potion>.05||document.querySelector('dialog[open]'))return;
+ const item=game.p.inventory&&bestPotion(game.p.inventory,itemData,'sp');
+ if(item)doAction(('item:'+item.template) as Action);else notice('ยาฟ้าในกระเป๋าหมดแล้ว');
+}
 function doAction(name:Action){if(name.startsWith('item:')){if(!started||paused||game.p.dead||!net.connected)return;if(game.p.cd.potion>.05)return;const item=game.p.inventory?.items.find(i=>i.template===name.slice(5)&&i.location==='bag');if(item)net.send({t:'inv',op:'use',req:crypto.randomUUID(),id:item.id});else notice('ไอเทมหมดแล้ว');return;}if(!started||paused||inventoryUI.open||skillsUI.open||statsUI.open||game.p.dead||!net.connected)return;if(activeMap==='city_plaza'&&name!=='potion'){notice('เขตปลอดภัย ใช้สกิลต่อสู้ในเมืองไม่ได้');return;}const id=({attack:'basic',spin:'whirlwind',dash:'dodge'} as Record<string,string>)[name]||name;if(!game.p.skills?.[id]){notice('ยังไม่ได้เรียนสกิลนี้ · เปิด K เพื่อเรียน');return;}if(masteryTarget(id)==='ground'&&groundSkill!==name){clearInput();stopAuto();groundSkill=name;notice('เลือกจุดบนพื้น · กดช่องเดิมซ้ำเพื่อใช้ที่เป้า · Esc ยกเลิก');return;}groundSkill=undefined;const now=performance.now();if(now<(nextAction[name]||0)||game.p.cd[name]>.08)return;nextAction[name]=now+(CD[name]||.12)*1000;
  net.send({t:'act',a:name,...(masteryTarget(id)==='ally'&&social?.allyTarget?{ally:social.allyTarget}:{}),...((['attack','meteor'].includes(name)||['enemy','ground'].includes(masteryTarget(id)))&&game.target?{target:game.target}:{})});worldState.animate(name,now);}
 let heldPointer:{id:number;x:number;y:number;startX:number;startY:number;since:number;ground:boolean;dragged:boolean;nearTarget:number|null}|null=null;
@@ -229,7 +238,7 @@ window.addEventListener('keydown',e=>{
   if(dialogs.length){e.preventDefault();dialogs.at(-1)!.close();clearInput();return;}
   if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
   if(!started||game.p.dead||netOverlay||!$('#overlay').hidden)return;
-  e.preventDefault();qol?.cancel();net.send({t:'auto',on:false});clearInput();settingsUI?.open();return;
+  e.preventDefault();qol?.cancel();net.send({t:'auto',on:false});clearInput();$('#game-menu').click();return;
  }
  if(e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable))return;
  if(isKey('map',e.code)&&(!dialogs.length||worldMap?.open)&&started&&!netOverlay&&$('#overlay').hidden){e.preventDefault();if(!e.repeat)worldMap?.toggle();return;}
@@ -245,7 +254,7 @@ window.addEventListener('keydown',e=>{
  if(['up','down','left','right'].some(a=>isKey(a as keyof typeof KEYS,e.code))){qol?.cancel();stopAuto();}
  keys.add(e.code);if(e.repeat)return;
  if(qol?.key(e.code))return;
- if(isKey('auto',e.code))toggleAuto();else if(isKey('nextTarget',e.code))nextTarget();
+ if(isKey('manaPotion',e.code))drinkMana();else if(isKey('auto',e.code))toggleAuto();else if(isKey('nextTarget',e.code))nextTarget();
  else if(skillsUI.key(e.code))e.preventDefault();else for(const a of ['dash','potion'] as const)if(isKey(a,e.code))doAction(a);
 });
 window.addEventListener('keyup',e=>keys.delete(e.code));
@@ -357,7 +366,7 @@ function hud(){if(game.p.dead&&deathReveal<=0&&$('#overlay').hidden)showDeath();
  sound.updateMusic({mapId:activeMap,dead:game.p.dead,bossAlive:!!boss&&!boss.dead,bossTargeted:!!boss&&game.target===boss.id,bossBarActive:!!boss&&!$('#boss-hud').hidden,bossAggro:!!boss?.engaged});
  if(activeMap==='city_plaza'){$('#quest-name').textContent='นครที่ถูกลืมเลือน';$('#quest-line').textContent='ใต้: ทุ่ง · ออก: ป่า · เหนือ: ซากนคร · ตก: หุบเขา · ใกล้เมือง Lv.1–3';$('#quest-progress').style.width='0';$('#quest-note').textContent=CITY.empty?'พื้นที่เมืองว่าง · ไม่มี NPC หรือสิ่งปลูกสร้าง':'คุยกับทูตสวรรค์ หรือพักฟื้นข้างน้ำพุ';}else if(isField(activeMap)){fieldQuest(boss);}
  const target=game.enemies.find(e=>e.id===game.target&&!e.dead);$('#target').hidden=!target||target.boss;if(target){$('#target-name').textContent=enemyLabel(target);$('#target-lv').textContent=`ระดับ ${monsterSpec(target)?.level??1}`;$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;}
- for(const b of $$('[data-action]')){const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);guide?.update();}
+ for(const b of $$('[data-action]')){if(b.matches('[data-potion]'))continue;const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);combatBar.update(p);guide?.update();}
 function render(dt:number){sound.setListener(game.p);renderer.overview=overviewOn&&activeMap==='city_plaza';renderer.zoomHeight=zoomHeight;renderer.render(game,worldState.others,dt,time);
  if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(!deathReveal&&game.p.dead)showDeath();}
  for(const n of npcLabels){const q=renderer.screen(n.x,n.z,n.head+.3);n.el.hidden=activeMap!=='city_plaza'||Math.hypot(n.x-game.p.x,n.z-game.p.z)>10;n.el.style.left=q.x+'px';n.el.style.top=q.y+'px';}

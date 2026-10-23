@@ -7,6 +7,7 @@ export const KEY_ACTIONS = [
 	"attack",
 	"dash",
 	"potion",
+	"manaPotion",
 	"auto",
 	"nextTarget",
 	"inventory",
@@ -20,7 +21,8 @@ export type KeyBindings = Record<KeyAction, string>;
 export const DEFAULT_KEYS: KeyBindings = {
 	attack: "Space",
 	dash: "ShiftLeft",
-	potion: "KeyR",
+	potion: "KeyQ",
+	manaPotion: "KeyE",
 	auto: "KeyF",
 	nextTarget: "Tab",
 	inventory: "KeyI",
@@ -35,11 +37,18 @@ export const BINDABLE_KEY =
 	/^(Key[A-Z]|Digit[0-9]|F([1-9]|1[0-2])|Space|Tab|ShiftLeft|ShiftRight|Backquote|Minus|Equal|BracketLeft|BracketRight|Semicolon|Quote|Comma|Period|Slash|Backslash|Numpad[0-9])$/;
 
 /** Saved keys over the defaults; anything malformed or fixed falls back to the default for that action. */
-export function resolveKeys(saved?: Partial<Record<string, string>> | null): KeyBindings {
+export function resolveKeys(saved?: Partial<Record<string, string>> | null, hotbarKeys: readonly string[] = []): KeyBindings {
 	const out = { ...DEFAULT_KEYS };
+	const explicit = new Set<KeyAction>();
 	for (const action of KEY_ACTIONS) {
 		const code = saved?.[action];
-		if (typeof code === "string" && BINDABLE_KEY.test(code) && !(FIXED_KEYS as readonly string[]).includes(code)) out[action] = code;
+		if (typeof code === "string" && BINDABLE_KEY.test(code) && !(FIXED_KEYS as readonly string[]).includes(code)) {out[action] = code;explicit.add(action);}
+	}
+	// New potion defaults must never take a saved action or hotbar key.
+	for (const action of ['potion','manaPotion'] as const) {
+		if (explicit.has(action) && !hotbarKeys.includes(out[action])) continue;
+		const occupied = new Set([...hotbarKeys,...FIXED_KEYS,...KEY_ACTIONS.filter(a=>a!==action).flatMap(a=>[out[a],...(ALT_KEYS[a]?[ALT_KEYS[a]!]:[])])]);
+		out[action] = [DEFAULT_KEYS[action],'KeyR',...'QVBGZXEUYOPLNF'.split('').map(k=>'Key'+k),...Array.from({length:12},(_,i)=>'F'+(i+1))].find(code=>!occupied.has(code))!;
 	}
 	return out;
 }

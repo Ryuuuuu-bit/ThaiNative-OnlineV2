@@ -95,6 +95,23 @@ test("AUTO casts the skills its settings allow, and skips switched-off ones", ()
 });
 
 import { resolveKeys, actionKeys, reservedKeys, bindingProblem, DEFAULT_KEYS, UISettingsSchema, validateHotbar, newJob, loadGameData as loadData } from "../src/index.node.js";
+test('HP/MP defaults preserve saved actions and every existing hotbar binding',()=>{
+ assert.equal(resolveKeys().potion,'KeyQ');assert.equal(resolveKeys().manaPotion,'KeyE');
+ assert.equal(resolveKeys({potion:'KeyR'}).potion,'KeyR');
+ // Account keys can meet a different character's old hotbar after switching characters.
+ const otherCharacter=resolveKeys({potion:'KeyR',manaPotion:'KeyE'},['KeyE']);
+ assert.equal(otherCharacter.potion,'KeyR');assert.notEqual(otherCharacter.manaPotion,'KeyE');
+ assert.equal(bindingProblem(otherCharacter,['KeyE']),null);
+ for(const saved of [{attack:'KeyQ',returnCity:'KeyE'},{potion:'KeyE',auto:'KeyQ'},{}]){
+  const hotbar=['KeyQ','KeyE','KeyR','KeyV','KeyB','Digit1','Digit2','Digit3','Digit4','Digit5'].filter(key=>!Object.values(saved).includes(key));
+  const keys=resolveKeys(saved,hotbar);
+  for(const [action,code] of Object.entries(saved))assert.equal(keys[action as keyof typeof keys],code);
+  assert.equal(bindingProblem(keys,hotbar),null);
+  assert.deepEqual(resolveKeys(keys,hotbar),keys);
+ }
+ assert.match(bindingProblem({...DEFAULT_KEYS,manaPotion:'KeyQ'})!,/ใช้อยู่/);
+ assert.match(bindingProblem({...DEFAULT_KEYS,manaPotion:'Digit1'},['Digit1'])!,/แถบสกิล/);
+});
 test("action keys: defaults with old alternates, rebinding frees the old key, conflicts are refused", () => {
 	const d = resolveKeys(undefined);
 	assert.equal(d.attack, "Space");

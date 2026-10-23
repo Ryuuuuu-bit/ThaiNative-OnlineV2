@@ -19,6 +19,7 @@ export function mountAutoPotion(send: (message: any) => void) {
       panel.querySelector(`[data-ap-out="${key}"]`)!.textContent = settings[key].at + '%';
     }
     document.querySelector('[data-action="potion"]')?.classList.toggle('auto-on', settings.hp.on);
+    document.querySelector('#mana-potion')?.classList.toggle('auto-on', settings.mp.on);
   }
   function save() { send({ t: 'autoPotion', settings: structuredClone(settings) }); }
   function changed() {

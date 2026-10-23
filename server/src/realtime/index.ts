@@ -531,7 +531,8 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
  }
         if(message.t==='uiSettings'){
  // Every action key is rebindable; the shared rules check fixed keys, duplicates and the hotbar's own keys.
- const problem=bindingProblem(resolveKeys(message.settings.keys),player.hotbar.map(s=>s.key));if(problem){send(peer.ws,{t:'uiSettingsError',text:problem});return;}
+ const explicitPotionConflict=['potion','manaPotion'].some(action=>player.hotbar.some(s=>s.key===(message.settings.keys as Record<string,string>)[action]));
+ const problem=explicitPotionConflict?'ปุ่มนี้ใช้กับช่องแถบสกิลอยู่':bindingProblem(resolveKeys(message.settings.keys,player.hotbar.map(s=>s.key)),player.hotbar.map(s=>s.key));if(problem){send(peer.ws,{t:'uiSettingsError',text:problem});return;}
  const merged={...message.settings,...(peer.ui?.auto?{auto:peer.ui.auto}:{})};void store.saveUISettings(peer.accountId,merged).then(()=>{peer.ui=merged;send(peer.ws,{t:'uiSettings',settings:message.settings});}).catch(()=>send(peer.ws,{t:'uiSettingsError',text:'บันทึกการตั้งค่าไม่สำเร็จ'}));return;
  }
 
@@ -578,13 +579,13 @@ export function mountRealtime(server: Server, options: RealtimeOptions) {
 				try {
 					if (p.dead) throw Error("รอฟื้นตัวก่อน");
 					if(message.t==='hotbar'&&g.time-p.lastCombat<5&&JSON.stringify(message.slots.map(s=>s.signature??null))!==JSON.stringify(p.hotbar.map(s=>s.signature??null)))throw Error('เปลี่ยน Mix ได้เมื่อพ้นการต่อสู้ 5 วินาที');
-                    if(message.t==='hotbar'&&message.slots.some(s=>reservedKeys(resolveKeys(peer.ui?.keys)).includes(s.key)))throw Error('ปุ่มนี้ใช้กับคำสั่งอื่นอยู่');
+                    if(message.t==='hotbar'&&message.slots.some(s=>reservedKeys(resolveKeys(peer.ui?.keys,p.hotbar.map(s=>s.key))).includes(s.key)))throw Error('ปุ่มนี้ใช้กับคำสั่งอื่นอยู่');
                     let next = normalizeJob(p);
 					if (message.t === "skillUp") next = learnSkill(p, message.id, g.data);
 					if (message.t === "hotbar")
 						next = {
 							...next,
-							hotbar: validateHotbar(p, message.slots, g.data, reservedKeys(resolveKeys(peer.ui?.keys))),
+							hotbar: validateHotbar(p, message.slots, g.data, reservedKeys(resolveKeys(peer.ui?.keys,p.hotbar.map(s=>s.key)))),
 						};
 					if (message.t === "jobChange") {
 						if(g.mapId!=="city_plaza")throw Error("ไปพบทูตสวรรค์ในเมืองก่อน");

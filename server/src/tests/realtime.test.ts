@@ -398,6 +398,20 @@ test('HUD settings are account scoped; return cast cancels and cooldown survives
  await wait(100);const saved=await f.store.character(user.character.accountId,p.id);assert.equal(saved!.returnReadyAt,p.returnReadyAt);
 });
 
+test('potion defaults preserve old Q/E hotbars and explicit conflicting potion keys are rejected',async t=>{
+ const f=await fixture(t),user=await f.make('PotionKeys',true),peer=f.open(user.cookie);
+ await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='uiSettings');
+ const room=[...f.rt.rooms.values()][0],p=room.game.players.get(user.character.id)!;
+ p.hotbar[0].key='KeyQ';p.hotbar[1].key='KeyE';
+ const settings={scale:110,windows:{},keys:{returnCity:'KeyH'}};
+ peer.send({t:'uiSettings',settings});await peer.until(m=>m.t==='uiSettings'&&m.settings.scale===110);
+ peer.send({t:'hotbar',slots:p.hotbar});
+ await peer.until(m=>m.t==='ev'&&m.list.some((e:any)=>e.job?.hotbar[0].key==='KeyQ'));
+ peer.send({t:'uiSettings',settings:{...settings,keys:{...settings.keys,manaPotion:'KeyE'}}});
+ await peer.until(m=>m.t==='uiSettingsError');
+ assert.deepEqual(await f.store.uiSettings(user.character.accountId),settings);
+});
+
 test('pickup all respects four metre radius, ownership and pending inventory transactions',async t=>{
  const f=await fixture(t),user=await f.make('PickupHero',true),peer=f.open(user.cookie);await peer.until(m=>m.t==='welcome');peer.send({t:'spawnReady'});await peer.until(m=>m.t==='snap');
  const room=[...f.rt.rooms.values()][0],g=room.game,p=g.players.get(user.character.id)!;g.enemies=[];p.x=0;p.z=0;

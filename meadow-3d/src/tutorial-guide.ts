@@ -1,3 +1,5 @@
+import {keyLabel} from '@the-beginning-online/shared';
+import {KEYS} from './keys';
 import {GATES,GATE_CAPTAIN,LAYOUTS,gateRoute,type MapId} from '@the-beginning-online/shared/maps';
 import jobs from '../../shared/data/jobs.json';
 import './tutorial-guide.css';
@@ -43,7 +45,7 @@ const STEPS:Step[]=[
   focus:'#inventory-button',done:()=>!!document.querySelector('#inventory-window[open]')},
  {id:'learn',title:'เรียนสกิล',text:c=>c.p.skillPoints>0?`มีแต้มสกิล ${c.p.skillPoints} แต้ม · เปิดสมุดสกิล${c.mobile?'':' (K)'} เลือกสกิล แล้วกดยืนยันเรียน`:'แต้มสกิลได้จากการเพิ่มระดับอาชีพ · เปิดสมุดสกิลดูสกิลที่เรียนได้ แล้วลากลงแถบ',
   focus:'#skills-button',start:(c,s)=>{s.learned=learnedTotal(c.p);},done:(c,s)=>learnedTotal(c.p)>s.learned||(c.p.skillPoints<=0&&!!document.querySelector('#skills-window[open]'))},
- {id:'potion',title:'ยาฟื้นพลัง',text:c=>c.mobile?'แตะปุ่ม ✚ เพื่อดื่มยาแดง หรือตั้ง “เติมยาอัตโนมัติ” ในเมนู ตั้งค่า':'กด R ดื่มยาแดง หรือตั้ง “เติมยาอัตโนมัติ” ในเมนู ☰ › ตั้งค่า',
+ {id:'potion',title:'ยาฟื้นพลัง',text:c=>c.mobile?'แตะปุ่ม ✚ เพื่อดื่มยาแดง หรือตั้ง “เติมยาอัตโนมัติ” ในเมนู ตั้งค่า':`กด ${keyLabel(KEYS.potion[0])} ดื่มยา HP · ${keyLabel(KEYS.manaPotion[0])} ดื่มยา MP · ตั้งเติมยาอัตโนมัติได้ที่ตั้งค่า AUTO`,
   focus:'[data-action="potion"]',start:(c,s)=>{s.potions=c.p.potions;},done:(c,s)=>!!s.drank||c.p.potions<s.potions||!!s.autoPotion},
  {id:'home',title:'กลับเมือง',text:c=>c.map==='city_plaza'?'ถึงเมืองแล้ว':`กด${c.mobile?'ปุ่ม ⌂':' H'} เพื่อร่ายกลับเมือง หรือเดินตามป้ายกลับเมือง · นักบวชหมอข้างน้ำพุฟื้นพลังให้ฟรี`,
   target:c=>gateToward(c.map,'city_plaza'),focus:'#return-city',start:(c,s)=>{s.away=inField(c);},done:(c,s)=>{if(inField(c))s.away=true;return s.away&&c.map==='city_plaza';}},
