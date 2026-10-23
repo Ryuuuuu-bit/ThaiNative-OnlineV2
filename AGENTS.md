@@ -2,6 +2,10 @@
 
 Rules for everyone pushing to this repository: people, Codex and Claude.
 
+## Current platform scope: PC first
+
+Mobile and tablet play is temporarily closed. Keep the Thai “เวอร์ชันมือถือกำลังพัฒนา” notice and the device gate on account/play entry pages. Do not resume mobile gameplay, mobile layout work or touch-control improvements until the owner explicitly requests it. Focus development and gameplay testing on PC; a narrow desktop window or a touchscreen PC must not be blocked merely because of its size or touch support.
+
 ## `main` deploys to UAT
 
 Every push to `main` builds and deploys UAT on Railway. Several people and agents push to `main` on the same day.
