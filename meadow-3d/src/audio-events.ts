@@ -17,7 +17,7 @@ export function playEventAudio(sound: AudioEngine, e: any, you: string, boss?: {
       if (['slash', 'whirlwind', 'provoke', 'endure'].includes(e.skillId)) play(e.skillId);
       if (e.skillId === 'dash_strike') play('dash');
       break;
-    case 'skillImpact': if (id === 'earth_break'||id==='quake_slam') play(id); break;
+    case 'skillImpact': if (id === 'earth_break'||id==='quake_slam') play(id); if (id === 'leap_strike') play('leap_strike_land'); break;
     case 'hit': if(e.reflect)play('reflect');if(real==='frenzy_slash')play('frenzy_slash');if(real==='blade_cyclone')play('blade_cyclone_tick'); if (!e.boss) { play('hit_thock'); play(MATERIAL[species?.(e.id) ?? 'slime'] ?? 'mat_jelly'); } if (e.crit) play('crit'); break;
     case 'kill': if (!e.boss) play('jelly_death'); break;
     case 'dash': case 'evade': play('dodge'); break;

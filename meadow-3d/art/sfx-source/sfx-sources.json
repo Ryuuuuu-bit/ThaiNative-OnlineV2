@@ -22,7 +22,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/2dZAHm9fOkT59PnWPTWn/ytEN9b3ZY3lViqvKVsWE/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125320Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=65350d69a45726226c4fa05c2c87d8a2e679d431f4a1484143d7fc120a9a9c96ca3cfe30e817a2f4e034f8843654fc04f2bbbe4878c2d2d7a6a9d2fbd182d446b2925f0f2d9d79e18ed17e1642204b5dec2faff1f4bccf3605dd6c9841bda12e9c79be0b1bdf943e35eafc630982113c1574ee4f0fb4d5f321f92e142479d975a3d6bbfcf8fa95270157dfd1e3f89da9d76c2f270f7f65a304f3e6dbe8c7adae7e3745354186e925029de46ef2c841fc27611cd54e1b697c0c15cf2e4ada20c316b12fca5af0d1690de4939eac2e19697c0d767419da762428de23ebfe26b55a5dc7a122bac619edf961ed6b6b4daf0b24952bb1dbc94e689af028a3bbe00359"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.04,
+  "max": 0.8,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "a9979ba549acedcd179b1ca406e07801ba9d4b307415cdf5084ef024b7860953",
+   "wavSha256": "fdc0e2a3f696493cda86ff2b16e23ce1230f6b48e36f233cb97834e8d10c070e",
+   "prompt": "One circular double sword sweep with connected warm air ribbons. Compact rotating gesture lasting 650 milliseconds. No sustained engine sound. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.97:d=0.03"
+  }
  },
  "jelly_hit": {
   "target": 0.5,
@@ -72,7 +83,16 @@
     "dur": 1,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/X1Z2xbQLe0Mw1lcMsamZ/CPqEqry9X52RnWHNQYHA/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125324Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=29f4e22152b6110676008d1ff60aa27376d79b293b2ec974a1acfd7f57bb1e492da37be1d546d062cef9899f46a1aa7bf24025f7ae7c7592b73a6d8aef66fd845ced675cea4f32776701c8c9c9a4aadd67994dc68b0af9ac149d3ea7426972885ad3cb3302889eb5d41842f8d456445769f2ad6da513cbb6f03bcb4db3973ef0f9a7e5908203dcd444e9efa39b7fc597661c77e45c6f5cfca2e842cbe0955f2c192d2099b5dbe52c48954312016a5524891802e9d4e57b1c77e2c6a1e96c5a469b05d459208d08af4958575e4ba9298d73e74c1434d3a0294e9199ec7c676062db5b20b01945273b19d9bad1fa83484c78345551a1f1f5c0c464930a8947d74b"
    }
-  ]
+  ],
+  "lufs": -25,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "6580d308352319d021e4f034cea91784f98d33e5488c6cfb73d78c4117ad514f",
+   "wavSha256": "df71431f44c013367407a82879c8f75168d313534807317c357982f87a9e5659",
+   "prompt": "One original level-up reward flourish. Warm celesta and tiny bell tones rise into a soft resolved chord. Under 1.2 seconds. Fresh melody with no recognizable game quotation. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=1.45:d=0.03"
+  }
  },
  "ui_click": {
   "target": 0.2,
@@ -97,7 +117,18 @@
     "dur": 5,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/L9Yfsn9WZrgiBM2jSYgu/irv2HIKketWPhqJYK1hg/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125618Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=8b8a48b8c618b1bfaad6d188080dc417e4de1d8383c870da205ca5f16601adbe53c9c79666e452129c4c9f43ab20038490e91d2698eeb425a115be286d1adb2afdf6b5b9c59cb86302fc005572b42d723cd711930e379aaa7d9b53682f05df3291a21dd19a669b0f25909a84e6b6233a3a154941b192b459d18f01453142d0d8b5ef186fac63d577962250c253a1a3afe077651c693acbd44a1899aa4bed7d7dbcaeca31011b545cfd52a5b5f3faed5d7c6546a2ae875d5d1c068c5c0609ea4f72484b142afa61b7c87cd94d38343311e1290669803c80d874665d606eba9a167b3afd61bd8767362f17a634f8c9f86bbba9b956ef838ffbe1602e6099ae08a7"
    }
-  ]
+  ],
+  "lufs": -25,
+  "lead": 0.002,
+  "max": 0.08,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "cd18dc12e93917df3093a7afc1d38dc31112f1376f3dc58cc93528d090ac7b58",
+   "wavSha256": "714e1b90ef4a119192a96563a7de1a6c6a6801e03521f92cc4ca0ce5c6025892",
+   "prompt": "One very soft wooden bead UI click under 45 milliseconds. Dry tactile center with a tiny felt-muted glass tick. Single click only. Soft close natural detail. Felt-muted high tones and rounded tactile body. Quiet restrained everyday feedback. No sharp clicks or ringing high notes.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "job_change": {
   "target": 3,
@@ -122,7 +153,16 @@
     "dur": 1,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/K3XMhSQehmvSi7HLg8uM/PFw7FUI1gY2bax7xdXY3/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125648Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=0176a9ca66369e02ce2586f23fee69a4348617d0df2aff2fad7ced315583f87818ca7bbaf227fc09732b8cdff680be2011e0ddd84fc3ffecb5847fa30d79a2d035c1488882b9203ff4bc511de8a3c0817bd18e7d53f2e25d7312832043160095ef8ae54e3506b1d823b6b3306a1d14499295c6b4bb1224638d3d1d3890cacc72fdd2111b29ac40589070e3230bf074a60c8df2e7e43055003257fd9b633e5e21c543baae221fbf5b867ac3a795896f33b501579b4d73ea9e0a602087cb3f2b2199eefca6287a403f60768af61d8d1d763683c116cdfbe19433b5486e5c058ecfa7b978cff722a0469877d62d66574ccd5289582e1b7510ae55875b1774939544"
    }
-  ]
+  ],
+  "lufs": -25,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "458a944766adbda129fc3863607cbac3ac8f48d617ce040ae481c8832145dd1a",
+   "wavSha256": "1ff9e36d634f9df2bdf61a75500dca8eee6c7aaa6cd2d769cb0d7219eff99162",
+   "prompt": "One original job advancement flourish. Warm small brass ensemble with celesta and soft harp lifting into a proud resolved chord. Under 2.5 seconds. Newly composed motif. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=2.97:d=0.03"
+  }
  },
  "combo1": {
   "target": 0.5,
@@ -147,7 +187,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/V7OV4hkCixxzFHboqu3A/ZlTifrJlwLKgbY5c5vfY/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125446Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=1319ecb2e155fa8f99587588284b900e4f32276b881014c9a6b09dc3507e63fe362cd65e4b43adb1620e38f3788054de828a8815246e5e9032f9dcfe8b77fe19e1705ac54e7eec4d53c71bad9f04218aeae1a0826b09a4d2738610f871a1ea8245327d7d356270568d380e1f9dfd2c764d7d402e5f3b45ed9e95e20249fe28c43fdfaba2a07d12a81e047817105639b2945d604f2f5c5fe54cd702453ad2264a0319af393e47231d06395e943c00aaec3c76bcfea085179636cd787b0310bcfb75b8b84b9282e1a28a0553bac7d8a585171ea9f9e1c01dec0282ea695c7d7e8d517a7727d3d7201bae31d2f38d21579d27b0eccea55f0238f16942620a8711a8"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.04,
+  "max": 0.24,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "1a99e7d8ddffd9c61ec8f573ebba4d07f7c76bc42a5a8240552e97b15f419df6",
+   "wavSha256": "5c91f5ebf03fb95c6178a9f6cacba6bcd11f7bcde3f04ba78d496e9fc020ae85",
+   "prompt": "Natural Foley of one light real sword swing through air. A gentle narrow low whoof and cloth-like air brush. Quick first combo stroke with a rounded dry stop. No contact impact. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "combo2": {
   "target": 0.5,
@@ -172,7 +223,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/2anhPLNP6KVatYrtLd7x/maIGk44IVm2C5sCUTCrL/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125453Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=3f72f5af2ae67b2d685ee5a5e6a78289c7e2793331d8f5cbe0ffbff81a37945b8fa86f0d61a2c2cb5330afcd84e30602ad41f38f822eaac43ea09812ca3c1b5d90e2f5c740dbbb782672ccd9b45df4210f6b3748aecca8c9530233adfa53a364a4bfe48bfe1653c92e864bd42806f6e0a037d282c13ea1303788f98d1aa559ded82389a4ab1cebae6156ad5b9ec5ce3aaa75a8c019ccbd4ed2daf91d302141e2db05a827d14279a04e68ea167f8612b4f77353927befefc16b2d2ed39b58ebdbf090580771b2f0b0bc3512c1265d9bce9e63987501149fef463f5fe3b140522edaf0d3cccaffc5be7565a76c2dad5d868f4451f48acbe8bf8d5bb7dd7ada3c7c"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.04,
+  "max": 0.27,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "594f751e193860c7ee49df4444c36f1eef5437a07b0516de3c383225e49370cc",
+   "wavSha256": "e253717fce6162912cc270c58aac57eebeda72c8edb3d35da2ba99bf5d5af46f",
+   "prompt": "Natural Foley of one reverse real sword swing through air. A soft lower wider whoof and cloth-like air brush. Slightly weightier second combo stroke. No contact impact. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "combo3": {
   "target": 0.8,
@@ -197,7 +259,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/yCxfEsU1MhMaXpLPhff6/T6L3TXJ2X2v5xXbQtpVz/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125448Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=91e6779a8760e60a14c80c46a9360cef4b2caced766896e4c55d55d5c646bbf8ca0246431c84aa0b9046d5f8faa832c62cb165f441598ed35560a77aca02f120f1a3b664ea030d2608a73444e45859f707d91f33cbe07ab9435a550040166cf0f47630c748d370e8c2015d24b4e2f91db910e735d2e049b6ca8c2d770614bae2a59e25a53c90e031a867b976425bb330069f27b3a58f2d7ac9ec445df5113fab3e1077cded6dcfbff9114cb0661992a76dfc2b8c6df722e6eca53f6edf4b89ada059ca66d09857d4510145e04823137e1f69b78a573a2baa79c48234098fac28247aca8f4c1a18b6d50532ea9ea91467e79b1230d05f62675b746d8f7b9a9b2c"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.04,
+  "max": 0.38,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "4b23bd0cd4061f3969b2ccbe5c058c3fbb311a9d47c3704abe5f7126c4aee30f",
+   "wavSha256": "ae8db94764497cbf4241a5417b0ad3fc453dea40924648e474b7affa1c902502",
+   "prompt": "Natural Foley of one firm finishing sword swing through air. A broad warm low whoof and a short rounded stop. Fuller than the first two swings without a metallic ring. No contact impact. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "slash": {
   "target": 0.8,
@@ -222,7 +295,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/c4KaACo0XGHPlHY8Yfyf/23Z7B8KZIjIHsrnqA4gN/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125503Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=4e999d4f6e23f34c93d709080ccab3db5291dde8ae955ffd71632896c59c1d2416ed09dd7e7f619721648fb72bf7d4f6e52c38bce14a13b5831899b20c39850b6d09eaa23e7e778b6afc275c5ebfffd3f2dddc3a93e806e3a06a679ef58c553738a49be5bda26805648025990aea81fa1a8d01b4d10372ab69a117e99ae1ff08ab826b07969dc6e543d826f76673229254a1f7fb7286dd7ed324047f6be6c970de7ab57bd024195dc8d1fe6d9869c63c88cbfb879f1107721620db5c0d916ef9007b044d42faa75f0f2a65673526a0e527ac6da91567c6ec9aec798869073d27cba403539740567a00ea1d1db84f46eca929ba34a0d538e88ddf3b79b0eba3a9"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.04,
+  "max": 0.35,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "e9909ca74967c3adb8ffefd71275f77518f3a642ce840b011d1536c62419a1b5",
+   "wavSha256": "09405ee5a566128a48cc2be26b615ab084f87692815820f809d49d5155ef75a1",
+   "prompt": "Natural close-miked Foley of a real sword swung once through still air at moderate speed. Soft broad low whoof and light cloth-like air brush. Smooth rounded onset with a short dry decay. The swing ends within 300 milliseconds then quiet room tone. Intimate physical movement for a small fantasy character. No contact impact, metallic ringing, high whistle, synthesized energy, music or voice.",
+   "processing": "Unchanged approved soft-v2 WAV; no regeneration or further processing."
+  }
  },
  "dash": {
   "target": 0.8,
@@ -247,7 +331,18 @@
     "dur": 3,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/xFGz3US42I08iyLQMQC6/ZInG4T9VGrQVE938zFls/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125524Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=79fa1c0f6a8ccd9920d0912b2df21fc7fc62d02295582499b9833c4188fa6912853ba422631abc335b672228253da2c361cf5b096253625b0babb38767a8e8a519ac04bf3a6ebb72ab463294d8f79b51ac71e06f58300479a0b87d15ae6f3dfb681a534405ad01d08ab2b5783f0be3c5b32a6c2a28eb713e149dfff5defe82b483bb79610ce5aa1d57c45d450130e4478bb46eac32f065f59fbfccb8fda3d2538990993cb923780cdac279b4d4a0dff5df5468632762d7ad922d65f55edcc6cbdd75db086d8d6072746d3990d141c063ee67cf1528336d0c40fd45429d66ba3e1fc96b0a7d2cd830ffcb68fc94c0d4cd3ca9b8ec14b6c61a8d56984560495671"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.04,
+  "max": 0.65,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "d955560fdf091201228c33e1ef34e1639447c9a6f9856ac5bdba7a9aa172cb2a",
+   "wavSha256": "23effe7c3ae6fed31ce17318fcb95b3857084595808bd62aadbc5e8e4f44b231",
+   "prompt": "One forward rushing sword thrust with cloth air movement and a short steel tip accent. Compact acceleration under 650 milliseconds. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "earth_break": {
   "target": 1.2,
@@ -272,7 +367,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/jeUSL9GMqdYm9XJdwmHi/QxfShyoQyfmQO8UWGHVO/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125531Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=984f0a72524d45e453681d9bc3bace1328136c54054af4b4e96b7404f9bb21c1e6e6694014d4720387949ccd2b1cf79e410040be6d07245cc2294f2878040393c4de40449553fae477fd908d8ba863583abe0d674f3cb3388fd44333b343bf51096286885e436ee5837c8cfee13d239ddaad2f7a1e0f30d9002282d234981aebc598880c653eaaf7d9648f47561875cb32f512da63d3cc8df60e5cd2dc79db1f2408e91c59710d138ca85e8333dd6dc8d8efa4643f3c293928c066e1e62cc69a6c53e41469077d44ee3ece18f437f19532657e1a55c8bba7d0b3b9da918bc7f638837306648a6ee9044a82264e303ad5b0ec1db0bc86ae5b5cd7698bea656238"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.015,
+  "max": 0.5,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "f73d9fbac8f14f78a5464c9ba8ab7cef154631fbba94bbe7606ec7492337a739",
+   "wavSha256": "7c44be6991e08f87f0fd023ca220577f2d4985a6be039017abf90927dd04a387",
+   "prompt": "One downward blade impact into earth. Immediate dry stone thud and tiny gravel scatter. Main impact under 390 milliseconds. No preceding charge. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "provoke": {
   "target": 1.2,
@@ -297,7 +403,16 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/q9W9p9fa3vp6zZbupL3V/PBVwa42p8H7KLV6bgxh3/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125511Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=6440f513fe93d4cf1c0ccab62deb02168a754da35419c3a5bf1dd948dc20dd72d05e3c8879d0c0653e7b41da1195e90032688a2781ef8a424345deaf97550c31c1421e5c32dcf122bbac06217268385356b77c0c37d4ca9c2f151e3d39543866246da0985a55a622ba1579b626a16e086ec7223fc4f4878bd24c731d4232668923f57be47dc5f9e895b781f2566132d070c5cef47680bf8c24b572b00c8bddd7a9f483367d714567cdb0dbfffb5a0c33a410d316da6ea388cf76cbec569f7a9a8053c98d38c3dc6b73a32f2b8adb196fac29e0840a8aeb41639759230fd3a5dee7a7523deb856192e49940e11ec40cb4e3a4fdc3c919e7816d18e3aa84f344d7"
    }
-  ]
+  ],
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "4ffbae7d352fcadb2caff7d3f9eacd3e6599fa30718ae6db6c84e2c22a84366a",
+   "wavSha256": "24bf623cc3f4b084fe1c38ab07d617abb55f9da7d7aa997de891724e1e34ac86",
+   "prompt": "One forceful nonverbal human battle breath with a low chest resonance. Brief confident challenge without spoken words. Not a monster roar. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=1.17:d=0.03"
+  }
  },
  "endure": {
   "target": 1.5,
@@ -322,7 +437,16 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/dfp4JEmGrmcEjHNIKwrs/xWs8bMqBqVsckwAp3mjN/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125457Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=698b603cbd0bc93b86ec3f38c49564a8f5d8395f59c071751a4d60ad0b8893a5a8bbc406c7e6896751114eafb441a336bf4199a9366c5df0ffc899676029c6f6251f6d826dab8f5c1ebd6ea84511fdf485f879e13af41c0b04facaf123d6563af2ccb8c06603bffe5a5e93b449db4dbc7420faf2552e07e562b978b9d583468d5a95647556a74485f3a901d9b329c4d2949e11761452ec28917ad73e7dd2af7a66366d925906a82e6b424ce168e8b3a37fd2ed22039185afdc820471daba84f8a1592b6d6070526c3c388699b5f516e1365cc347a68eece3f1cdcc96a7502ad1499b5cf6e7ebda22b30c61321992ea4bc43b389a0973cd8db82a5d04849ee9aa"
    }
-  ]
+  ],
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "a1215cfaddc873efe5f5a34a69b9ebc209b9bdf3ccd5944c5cfc99bee91c8056",
+   "wavSha256": "4fc657cbfa695c149d61a22a181fa67a1746e652da185922f41ea94c8f7274d8",
+   "prompt": "One steady defensive activation. Low warm metal resonance rises into a soft firm pulse. Compact grounded body without an explosion. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.97:d=0.03"
+  }
  },
  "punch": {
   "target": 0.5,
@@ -347,7 +471,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/AcR4U6olzBJ2VBWEQfJu/GjgcF4GLkOXyENa8yIYT/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125535Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=942dbb3c4ee21532f87990a2623165a9b5c376d3b492cbc4ec84f2728ed51f797feb56c005e849b818edffed4361f3526a261f10e87ac62f0a2bd9ddc986d1e8b2703ab74ce4f4af37dde047072aaecd0f5b478de53797afad5b01f3df44ca1acb8d41aeabb34d9b48c43c04768b07325c15bb325fc141448d28394c3cab24afd7510fc08953e58585ca08c18a666b0fd30f1589e98f5906a849950e453b0f1bafb61249b8c7fa75fe0a50da5448d46ca04cb0a5b45c5b27535c138af855f17fa08c2bde69effd4aae30eac6232fb63f97efddfb2b6ce40265263a7b756ed4d350e237d2da8fd32f3431f23762aa8cdf122b54cc23545843efb0f14a3fb8246b"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.015,
+  "max": 0.3,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "ee8225e112e40bed1076e130d47cf3eed053d75010f4eb1aee9fd1e80cbb65ce",
+   "wavSha256": "09d4d394bded7a181d6fa061807518933bcd3d38506e9790423c1a5a07bd7e58",
+   "prompt": "One unarmed punch. Compact cloth air motion into a dry rounded padded impact under 300 milliseconds. No metallic edge. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "crit": {
   "target": 0.8,
@@ -372,7 +507,18 @@
     "dur": 14,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/TdIpHWrOajJqyMXjVeYb/Hd8e7vGcDiNahTVjG4F3/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125534Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=0980fd8b1dc3ede316e67d297f8cdf77963f8df67ce806bdb984249a7148c9ce103454c3ce35e65d428f28c8f8769b76eab589f2da57d55cc598519271fc084a3a3556a61b7f83a4be7da14cbc59315a794e5e13721546b384d020a5c0e7410fef16649c512e354959fd6e3708c4efd3185b6e7c35d43e5c71a308a15dc5b8aecd286621cda9616e7d4ba7d1641bfbb95bc7f1ad77382144e3db8e35fb134a3f8da719b325ff2da157efdfc17cc16de3e31ed3bcae606b4da6f57da36de85f5f933ce6ba478d08afee0140191254a06e2441d7d7b947837a81176c3693bad0f215c7bd066b6368b0ccf984dfb701c99b713b571a6ee3032f0ec6d9bd14b6c333"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.005,
+  "max": 0.24,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "409d41251517b5f97e4d14d8084556e7eca381eeac0ab8e0d0ab2603016fb31b",
+   "wavSha256": "ba162c3dd6237a19cf96fa44acf00ee558633ad1bd685b93fa5664e047623e90",
+   "prompt": "One critical contact accent. Tight rounded metallic spark with a low body click under 280 milliseconds. Readable but no shrill ringing or extra weapon hit. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "king_slam": {
   "target": 1.5,
@@ -397,7 +543,18 @@
     "dur": 0.48,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/pLWuxvYQt0VVtglfj05c/c5ORkslDvpwzHtdFUPoi/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125542Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=10e99a2ee8e1d4e9d7d0b30b132e0942d0e4f81ea2bae3ab30e09cf46eb3867f3a8ba9194908078a90d8fc5e747527255dcc0819dd4988e772eb439c5256a2c280622a6c2d154b3445ed3fd2444578c10cd00e8b8b151c5d06efb1f2ea1d2163251dc4faf3a20326676083220d123b2a8418dbb53200a646fde6adaa278063584c3c97595474e170e13af6aa43bfeb16fba290dd70976376f7430667168a7851d9963a44ad01b2e084e198836d9d00b7a6968dd85cbb05cfba5995d074a2905b813e5d4036bafb5db699420dedc4c20acac8f3b990b293c5a16820ba268eb0d9c6998c78897f9f36651141eb6fb387e17a9d49b6ec2190ff22b8ae3b0fdd3e43"
    }
-  ]
+  ],
+  "lufs": -21,
+  "lead": 0.02,
+  "max": 1.2,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "2f061106c2c12132e7136d739444c4c845e649e0de063ffdf058e75a850dbecb",
+   "wavSha256": "fbdd839de57ce276ac4c7cc853bf4ec64035aab3f8a630098237d431181eda11",
+   "prompt": "One giant jelly body slam. Immediate broad soft wet impact with earth weight and a short gelatin wobble. Main transient at the start. Tail under 900 milliseconds. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=1.17:d=0.03"
+  }
  },
  "potion": {
   "target": 1.5,
@@ -417,7 +574,16 @@
     "dur": 1,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/DF1F5XHpgdEisAc1Dy88/3EblKpKU0nXzdAZD6ymt/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125535Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=adc4c69727153096de98aff032b13d3c88170808db1fc8561577cd2a8af98756929a89d34d7e275a410028101fa480fb85aa110c4963e62b6b822bdc7ec9c518be3a570d758719d36fe187c5ab5c8127e35166b4bfebe661db1f8f462dab72649fccf5aed29966540daf9ae4036845883ae2294cbf097bff80faa2e7ea39effe029790b8152be752719b2ed2fa01dc2169f6b70a76636b88a9bfd1bd7518356f1f12e6a2826326dbbbee9fe7b16d1a71cedb2fd34a8da5f8c68c67338206c0e20b703ca43d2185b503b2ec6f50bcf6d3810b1768f4d6e8ee70dc0e6616ca8ecab28063ae9bf2b233459cf38690c2d27b9c36c58dd304ece01ea5df850222ebac"
    }
-  ]
+  ],
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "453c8865a89458e084a76c26ab8f9f81d166449ac21200dd5cb27303e067c4bc",
+   "wavSha256": "149defc63397102ec22e0be097353c6371c82b4786a362cb3561ac6029b3a8e4",
+   "prompt": "One healing potion use. Small glass uncork and tiny liquid gulp followed by a warm restorative sparkle. Main gesture under 400 milliseconds. Soft close natural detail. Felt-muted high tones and rounded tactile body. Quiet restrained everyday feedback. No sharp clicks or ringing high notes.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "ui_open": {
   "target": 0.6,
@@ -442,7 +608,16 @@
     "dur": 14,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/KBHdMyjUjdQfJ5vCkykq/IZuOHwZqqbRsmdZS5v4O/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125527Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=5d3eedbb5ba8812d5919d943af982f2cfa0d240e7a102e3d4626033597a1a0c8a7a70496db72f379376dbac42a6559b9bcb33628bf10a599a05d2ffdfc0aba8f839fa018c13a29415cc9d5658612531474e9622a88979158683460ffdd9e679cd3a363d27791b9d5d8c349a210acbda61ce70d0336fa68596b10a5e0065e9cdd9217024f684e0ca6ace1374a640b40b76eb8e446e03b233b5efdc3b6a68a51387f4aa0c425b6c0c202800ac233e6c5528aab86401c194119c0f46cc1643b439940405b6a5e6869df64b64510741ca3d945618ff73cd389df5d9806812b6c6fe9b9b0afed076a28db6902c580ae64ee99f84d447a3d253f4caa4b63bba59930f0"
    }
-  ]
+  ],
+  "lufs": -25,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "2281e7c27e8ad2cd5f552b87793989a402175fe9828e3ef9500e77b21c4e926a",
+   "wavSha256": "1f60dbe3892bd55458942f63f6342f9531f85d0ea500d40da6908c685d5afbb7",
+   "prompt": "One inventory panel opening. Short parchment slide and soft wooden latch with a tiny warm bell accent. Under 400 milliseconds. Soft close natural detail. Felt-muted high tones and rounded tactile body. Quiet restrained everyday feedback. No sharp clicks or ringing high notes.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "amb_meadow": {
   "target": 30,
@@ -462,7 +637,16 @@
     "dur": 1,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/dAuPi8ZGD9iCGAPmcdWi/1QW9lZ3SAwizbrV971It/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125532Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=35cea757fd57a561770005036b036672272879257f18609d8c9a46be35c3456a47def9028b9775ef53f90b5c1cce8a138f4d7fdf1b54e637e0ff207bdf980bd19638170faa0e80637903f42f520409e95f6fce18ea52ea921de98452cbbc45ad8c07b2d896dd7d1dd6c401569e529496e788946817129f2716f2cb854a3693865e9a51d890d31dba221b18a07ac32d3f639a042688ac657956b3c3339f0feb4d20e6dc64831f65fef5ca9bea5d66d9ef1ae8cdab88392241c3205dbe08919ffeafd91530250ed3000a8653a5c390eb84f5c8b98678b7e4ddb154a2757c2bb86d005c9f94ae6b0669d00cfbd8b2c02c7eb58fe14f9a7906e6deab775bc0cd9713"
    }
-  ]
+  ],
+  "lufs": -26,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "a47bd891a6c9e71a16809d1d78e9064c015eada164a6f7b20befb7878bb08af6",
+   "wavSha256": "b3f2480ab5ad40e2f2451cf5ae06453f183c90125e64314a65be708c3294ebf4",
+   "prompt": "A quiet environmental bed of gentle open meadow breeze with sparse small birds and soft grass rustle. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000"
+  }
  },
  "dodge": {
   "target": 0.6,
@@ -487,7 +671,18 @@
     "dur": 2,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/N3klmvJZz1CAJ2TqlivI/xeHJpwPLCvAwMCegd3Mx/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125549Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=a7453bea7c63aa32d7b26e3879cd9557903f6ae2ceadd093110ffd1e8abf6e8dc1897542311dc17c12af0244f4bb3755e39c48a9e1d845ab8ec0db0303a1878339e7c78ebcac59a0355071aaf55c8af14d06c6eb4df56713a54daa7c400e286219c9927868cd9cccb387b7a619de89538ef68fb5cfa494839b6c19fd5c4e7b47ef06a860cdbb447320e557ab2875062e88e6765bdaff0740f4384824c0c02788eb68dabba43c66ceec5bdb87cd06bfc32bd27b99933cfbdc2ec8289cb8cbe16dfd4653983438a5dbdc82abd4f400621367a1035c528f186ef33003f27f2880b3ef607cf0e93425ea1e0b02cffbad37eb22c4c365e96d349b03f8afb541ea83e9"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.02,
+  "max": 0.45,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "ff5db532f24abc6a16df6a8f17f4cd7010ef474bba925d6977ce3cc94cde3ed2",
+   "wavSha256": "5f957edb894c75d158bc6161442c3ddf77a85a0456c7c96c2a67835903af2a6d",
+   "prompt": "One evasive sidestep. Short cloth brush and clean airy slip under 400 milliseconds. No impact or voiced exclamation. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "hurt": {
   "target": 0.6,
@@ -512,7 +707,18 @@
     "dur": 1,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/cD5JEjrnMoCcIDy0kMf9/5VS6ZzhHbUCegIcp4exr/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125600Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=4d2dd3673af57fa7d0f788ad867f85a85c146337f14e4d82efe737c3ecd563f86993f69af497ee708db002a65fa21f8e04c7555cb0c4f37f26080acbe7c69d473f6b662b4d5518cc911038400e6c852e22b99c86a87a553e3e572d0d896d83a7c607a23c08d2db93669f161b6bf50a918421b8b77144fa8ed5f7983cd0848087fe494f82b69f062c5a3034400b32ab2d35698dfdd07a3f68b8bba079ddb718bac2fd704c7ef4c35a1b6173f4a906f1106ded6a53ba5c78b505c09a2b6b3437f0272230122226ef232603478d044fdd360c9239952de2866107352330ae5baa4da4f3672cb4311c273609ca9ddffc8961ae97ead3e01d32e33416ddd6d875deff"
    }
-  ]
+  ],
+  "lufs": -23,
+  "lead": 0.01,
+  "max": 0.2,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "6f4e5e4e5c919f196cca0b39c36a1940b730d74c8e4982bfb88bd415ecbb9b21",
+   "wavSha256": "439319952bb1b2fe4ee4375aaa932c0d9ba1d3df4702eb31a31a5f5d95f49693",
+   "prompt": "One short human pain breath with a soft body thud under 200 milliseconds. Gender-neutral nonverbal exertion. No scream or gore. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "death": {
   "target": 2.5,
@@ -537,7 +743,16 @@
     "dur": 1,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/BMIcx7Xdib8u7vgQXVC1/Var1JI1u17MRlQsg7xRD/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125556Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=8cf0806cc633736825cbda9682c98e74fe991055b81980bb767724f4608200f6a960d287d7cc33668152a045336ab41dc338f483251360ae3f32f0ff8117c7f2dce1e0ec34a88eab685e743db1c948a98b5d91ff009daa6921cfcf8bd52d4c3c14469d8eb9631019ac5aa5e88dc6f0c06480345d5b7a60fccc130f59fe870e1dc50e8a090fbe7832c787e936e962d32a424b5abe3cdc619b40fcc7d8f306c2485e6e792ec1b87705cdb59f6a56dd12b707df3f3cf7f35e874598ab10de195c6f0a66ffff58a290ad93a1323bdd6411521df5580bee5839e60e24d3339569eff7e42ab14f16518b3837842445ccefde80529a092702f30ed91085bdf6943419ac"
    }
-  ]
+  ],
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "e1cca27f3f1669e6a25f44d3e4f49fcca78363268627a597098bdfbfe3527334",
+   "wavSha256": "739ffc90d3a851fbe779cb4330c81f36fa75910073c412aae5cb9ee8d53cc05e",
+   "prompt": "One exhausted human fall. Short nonverbal exhale and cloth settling with a soft earth contact. Gentle descending emotional texture without music. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=1.97:d=0.03"
+  }
  },
  "jelly_hop": {
   "target": 0.4,
@@ -562,7 +777,16 @@
     "dur": 3,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/EhxacShZu7ptTOKOFMnF/xBwg1vixA38MzO4Ny6cW/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125600Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=9966bc1ecc069a8270a635202828d72238d346473036b68d003d81c3159ce630ac8430c0ac4a389078fbe132e46a18a109574926599e0166a359cfd12c3df5365cf47826b6560b0329fdd905d3291a86809e1be7cd382bfd30145f2e26c8796831233dc28e2c1c467e9b6aa770ff188db1ae085d1b5b4ce12f92649154983af6e855be373035be9681952af6d77f023cb9d5927c52e16973bd5867ff9cbe3b4eb52d057b56b9c9d7f61a913d3a600d49b25dc9700182dc54fff080dd427b6bc5243ed40d8b9d2cf1dcd8e7af7cfc96fcf8158a3ccd6897830c6bebba34eaa3d835fa9f826f1508f077b1f0dcf158bfe558d1760409bec0fa232a3bc30ce278a4"
    }
-  ]
+  ],
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "4d9d7261de0fe634a33644ce62510dae71ec348f7b785bdf9a24f3a31f03f69a",
+   "wavSha256": "763a0b553090b48bd28097ee0fccb4908652733b4c9d54b628e2b2e812908adc",
+   "prompt": "One small jelly creature hop. Soft elastic squeeze and a tiny damp landing pop. Single movement under 400 milliseconds. Cute rather than comic boing. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "jelly_death": {
   "target": 1,
@@ -587,7 +811,16 @@
     "dur": 5,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/fNVhvIRWR8yv4oAXAOqM/zZSSoxPhFIl6SzjWLeB4/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125609Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=afcbf5639d1ebbda133f69e5bc9d95a33f9cd4feeeedb864245233b989d49b525fb859a6b479a439b5d306d2f8bb84e417d44665808b7e16ba366e5c36336013df7558e8b5e5f6fc59dd5467c8874b1d36ff32e7d4a40172cad8864b29893a1347351a8cd970117c35712cfac4b089609c5f188e35d0eb8851eb7a233b12e78955198566e87bd480bb5a669fbcc56117584edc44c0a635b2a45940d8f9f475a967b7548873ad295b8ed69dfa718fcc1e1e5837fc553aac0ec3ce382cf3eb747dc39873ebcbfb699e701dc070a974a792dfba324a794a18114ca22ce60d714eedeca523b01dd43a6f0f2c054499e26ca7d18360440ea82ab07d155bf1d23719ec"
    }
-  ]
+  ],
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "0802c3c6957c6220eab08a63284e4afae837e2bd7b006b855db24246e6582973",
+   "wavSha256": "63cca0ea352398b92558f65c65790bd467883508e64be976400d599ff99541f7",
+   "prompt": "One small jelly creature dissolving. Damp rounded pop and a few tiny bubbles collapsing under 650 milliseconds. No human voice. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "king_roar": {
   "target": 2,
@@ -612,7 +845,16 @@
     "dur": 1,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/QnrzMk3kcMK1M9eLgA3u/pdhahkxMwv6FfE5PK5wh/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125636Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=3c8da757ac91a56907d96a6ade6873f7a8c75a436659f91b229d8349247467ddcfc63f55797361a327b11aa680d6bf21d2f8ee801d528d942c9d3f30334436727fe45fbe2acff6542056016ad5207304567db36c8e6246e2892cdb1f7af63376784609519fadcc20ba3a9a2b5f1846df063eb859c4967d6799e893eec569a255f7af432f65482ad022bdf094ffe5728a3157e7ce4da93095f8f99ac1f601aba2334e21826e3d71d3a717d7053ffe800b38bb847d5e44fee696f2ed0eea838e4e5e8f3eef988dd938594656ba828718cb5d08852a0e40df483f43ccfd0502f383c2cab5b1a517ab5d793784b26e9a6f628e2738714a102f94c0cc789c7074c14c"
    }
-  ]
+  ],
+  "lufs": -21,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "5e62f18994f1cd055398de9a2d7715b83649905e4d260f8c87e5d95f3d61caf0",
+   "wavSha256": "406ddd6fe4074631085a4f5ef78fb9fce788fdfd08611dc2b89301eecf4567f9",
+   "prompt": "One giant jelly king challenge. Deep gelatinous chest warble swelling into a rounded bubbly roar. Powerful whimsical creature without human speech or sub-bass overload. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=1.97:d=0.03"
+  }
  },
  "pickup": {
   "target": 0.6,
@@ -622,66 +864,281 @@
     "dur": 0.48,
     "url": "https://storage.googleapis.com/xi-backend/database/workspace/1c79088a79094f4caa58d6a5e17b2a84/content_generation/ad9NFjs7LQBkTmqrOZGd/OpMku9m7G8WpDWKHMcIP/content.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=xi-backend-prod%40xi-labs.iam.gserviceaccount.com%2F20261016%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261016T125520Z&X-Goog-Expires=7200&X-Goog-SignedHeaders=host&X-Goog-Signature=3d5c8a359dcb474edb2a6d4f84cf76de5e84f60885fa16cff930dcf4918e103e3ee7cdf7f637384d7852e976c5d7e075ac5bf73cca1c6704b829897da37b8245f7d9ad0d00214ca5474142e597666660ea38c82f75cf68f32eba1a6746b76519150ac46422259ac9f1031fbd2dabbafae9acab594a1f25fefa3b2573242055837ae3c0bd1c92733bb6c4121b4828e0871be5ae531e6cd98438c60e527c90c1e7fb0e63c6dae6de6e58e9080808fa73bcc5dc25fa34d4cc8a818504e623b264e52aef321145cce316a75d8f93c4403a90bb55dcf086b92fbaba029ef4aa1d5350c2cd67b74e9579a24c3e969a17d18de68b667ea62c35985b68e7f7cec5a71f3b"
    }
-  ]
+  ],
+  "lufs": -25,
+  "lead": 0.015,
+  "max": 0.28,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "269c0bb4b17b66e28cf81da5a00b7ac47de496c5cc184a3a1c5a12edf4fadabc",
+   "wavSha256": "002bb6d1b085ec22eab29b74779c54c467889a5997e80aebc025a928c42fae16",
+   "prompt": "One small loot pickup. A light coin and soft wooden bead chink under 230 milliseconds. Pleasant everyday reward without a fanfare. Soft close natural detail. Felt-muted high tones and rounded tactile body. Quiet restrained everyday feedback. No sharp clicks or ringing high notes.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "shield_bash": {
   "target": 0.36,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.015,
+  "max": 0.36,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "1a69f59a86420da067118df89ef66bdaa98b54b16ea3f3cbad2a6e49ae156652",
+   "wavSha256": "209a31433d9989b41edaf9b74233c2bb9403f5901c94c0a9d3715f17e68955cf",
+   "prompt": "One broad shield bash. Rounded bronze and leather knock with a small dark metal ring. Immediate contact ends within 300 milliseconds. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "bulwark": {
   "target": 0.8,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "a97cfb9f8dd49095cc6e5ab8c883ccd8c82d247741b1f315004d2859d109679b",
+   "wavSha256": "27787e11c833e65f9a4985271715f22d8fc98190a469d7bd2234814881be16ae",
+   "prompt": "One protective shield aura opening. Low resonant metal bloom and warm harmonic shell settling in 750 milliseconds. No ongoing loop. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.97:d=0.03"
+  }
  },
  "quake_slam": {
   "target": 0.8,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.015,
+  "max": 0.8,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "ea6f5236fe059fce02c55aa44bbea143cc223dec05b00ba21b522f01e097567e",
+   "wavSha256": "ee11b4641c7aca03df7969dc9fd35a99b98760306ee7de7452f7fb856c21bce4",
+   "prompt": "One heavy shield slam into stone. Immediate broad low mid impact followed by short grit and a restrained rumble under 750 milliseconds. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.97:d=0.03"
+  }
  },
  "rally_roar": {
   "target": 0.75,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "4af88558abdd5bb8f59f668d31bed67679af9da9556ca07f85741f09f494bac0",
+   "wavSha256": "5221a306c13a5e256c88e81975284691b66a050129387f8785bc76228d69436e",
+   "prompt": "One inspiring nonverbal battle call with a warm ascending protective pulse. Friendly rallying energy without hostile growls or words. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.97:d=0.03"
+  }
  },
  "frenzy_slash": {
   "target": 0.18,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.015,
+  "max": 0.14,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "7ec6906ebac7125e523e3d8c81f9dd56f056a1d21a8960f1b42b69000aad8d86",
+   "wavSha256": "91c182babe478ecd5bc448249ec86e3b1c30742274dbf5a9601cf922068e1280",
+   "prompt": "One very fast ragged sword cut. Rough cloth air edge and small rounded steel snap. One stroke under 180 milliseconds. No multi-hit sequence. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "blood_rage": {
   "target": 0.7,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "1ae78a62baeec14e918c1ef15c5684c0caa52627f50144f9c1d8fd31d1ef1c3c",
+   "wavSha256": "2fb85192e14c7521f29ed195af5abfcdcd74fa00a6ac7ee18390bd51cc8afc98",
+   "prompt": "One blood rage activation. Two close low heartbeat pulses swell into a warm rough breath then stop within 650 milliseconds. No horror scream. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "blade_cyclone": {
   "target": 0.6,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.04,
+  "max": 0.65,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "f468fda5e14a305a7acf65f4b67f9dc605a6195c9e98c6a3ae5a6949b2fcc329",
+   "wavSha256": "8a203efbfc395b9f10f96b8ad70955391e2c8d4984cc958f0ef647cdf2f4f475",
+   "prompt": "One blade cyclone activation. A compact spiral of rounded sword air with dark metallic accents. Gesture under 600 milliseconds. No repeated damage ticks. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "leap_strike": {
   "target": 0.3,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.02,
+  "max": 0.3,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "a04f1bf19faee91eaba6cd94ec0017f97cd0e8f309d3695ac5d45b6911b4dbeb",
+   "wavSha256": "73527a8412497094b2ee2de50e11db260253dc87998f99ebf2e6325b4798c5a3",
+   "prompt": "One upward leaping sword movement. Tight cloth lift and steel air arc under 300 milliseconds. No landing impact. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "guard_block": {
   "target": 0.22,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.005,
+  "max": 0.18,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "01d03d08691554d6cd26244865e4e6fd01b9e98f6a368304c947500ed7a6a22b",
+   "wavSha256": "fdecde1bdb9db12967cc6788b95609778648abef2d07b8fc3169eb3ce455501d",
+   "prompt": "One successful shield guard. Short rounded metal clonk with a leather strap creak under 170 milliseconds. No piercing clang. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "reflect": {
   "target": 0.22,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.005,
+  "max": 0.18,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "86956554f7e79d58a927807aa52e8aee8d33704e6f7c75f9caa2b82ceeb49420",
+   "wavSha256": "0aa66cdb28455681d1ec9adda9ec820370a9001fc83f7d605d4cab02d74bcf70",
+   "prompt": "One reflected hit. A tiny soft glass-metal ping descending into a rounded return pulse under 170 milliseconds. Distinct from the critical hit sound. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "blade_cyclone_tick": {
   "target": 0.1,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.005,
+  "max": 0.1,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "eab3851e8282b704743c42a3acd36707604201edf9da34ccec17584dee8a485c",
+   "wavSha256": "339f6bdbccea46a0a0d73c10905e94f164bdccc13b440649a9909da2309e58d0",
+   "prompt": "One quiet tiny blade pass under 100 milliseconds. Soft narrow air tick without a heavy impact. Suitable for repeated server-confirmed damage ticks. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  },
  "leap_strike_land": {
   "target": 0.24,
   "source": "Original deterministic synthesis: tools/synth-job2-sfx.mjs",
-  "license": "Original project asset; no third-party samples"
+  "license": "Original project asset; no third-party samples",
+  "lufs": -23,
+  "lead": 0.005,
+  "max": 0.23,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "35c6b4d74547eed9a87ca7e864beb0b047d96cfe086673d7c96f9365dd82bb92",
+   "wavSha256": "d6e8dbcea1aa012fbe976d6b12c9793b5610319b36f3d6f139289bc6544128e0",
+   "prompt": "One compact blade-assisted landing. Rounded earth thud and tiny short sword scrape under 200 milliseconds. No jump or takeoff sound. Close natural tactile detail. Soft rounded onset and warm lower mids. Gentle dry decay. No shrill ringing, sharp clicks, heavy bass or cinematic processing.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
+ },
+ "hit_thock": {
+  "lufs": -23,
+  "lead": 0.01,
+  "max": 0.16,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "33f83e49295c8411dbe3f6ddeffba45bfdde30af54184653b37fc39e80f681d3",
+   "wavSha256": "5faf756094359983e2dac2e9b28752b8d80e179d55403d376a0ba3ba3aa76df4",
+   "prompt": "Natural close-miked Foley of one moderate blunt strike on a thick leather-covered wooden training dummy. A soft dense warm lower-mid tuk with padded wooden body. Rounded cushioned onset and short dry decay. Contact ends within 180 milliseconds then quiet room tone. One contact only for a fantasy sword hit body layer. No swing, metallic clang, brittle crack, sharp click, splatter, synthesized sound, music or voice.",
+   "processing": "Unchanged approved soft-v2 WAV; no regeneration or further processing."
+  }
+ },
+ "mat_fur": {
+  "lufs": -23,
+  "lead": 0.01,
+  "max": 0.16,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "e57a0537a8b83367f32c8a6e31d606109dc965b7d59908582f8081444001372f",
+   "wavSha256": "908ad147f3ec02f8fcd4e55048a93f8104ce95e42342cfaa72afe9a864ad3f6b",
+   "prompt": "One muted fur and hide contact with a soft breath of friction under 130 milliseconds. Material layer only without vocalization or weapon impact. Quiet close material Foley. Soft rounded texture without a hard attack. No music, voice, metallic ringing or sharp high crack. Keep separate from the main impact body.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
+ },
+ "mat_jelly": {
+  "lufs": -23,
+  "lead": 0.01,
+  "max": 0.2,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "68fde07eccd8b2d04be2e7b751130561d40686b6d518af7710afd15d77312887",
+   "wavSha256": "1b3e0b0860ba35992a4a0dbc5a55b135af7971184e634ab93123b32972076747",
+   "prompt": "One tiny wet gelatin compression and soft wobble under 190 milliseconds. Material layer only without weapon thock or swing. Quiet close material Foley. Soft rounded texture without a hard attack. No music, voice, metallic ringing or sharp high crack. Keep separate from the main impact body.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
+ },
+ "mat_shroom": {
+  "lufs": -23,
+  "lead": 0.01,
+  "max": 0.18,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "4ebe2e6182a2c8b521ee2dd3d9e421f23c4d732b151eeeb115675eefca74a2d6",
+   "wavSha256": "7147d54099c27309df17789e1e6b3e805062b66a97a6531b7f1ae59c40092916",
+   "prompt": "One soft porous mushroom compression with a tiny damp puff under 150 milliseconds. Material layer only without weapon impact. Quiet close material Foley. Soft rounded texture without a hard attack. No music, voice, metallic ringing or sharp high crack. Keep separate from the main impact body.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
+ },
+ "mat_wisp": {
+  "lufs": -23,
+  "lead": 0.015,
+  "max": 0.25,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "b316eba4e782403ababa96ece9024a6815c06b4835861bb26d557b908584e577",
+   "wavSha256": "02e5e236eae1ae184e22f04fbb28fdd7585c91cc6db0de8be07f06f3c3e9d011",
+   "prompt": "One airy spectral ripple with a hollow glassy shimmer under 250 milliseconds. Soft dark high end. Material layer only without a pitched melody. Quiet close material Foley. Soft rounded texture without a hard attack. No music, voice, metallic ringing or sharp high crack. Keep separate from the main impact body.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
+ },
+ "mat_wood": {
+  "lufs": -23,
+  "lead": 0.01,
+  "max": 0.2,
+  "approved": {
+   "model": "eleven_text_to_sound_v2",
+   "take": 1,
+   "sourceSha256": "7b4bf87537a8d95ff46401fd41a2ad6ee0beb88a6e15957ac4044bd7805933fd",
+   "wavSha256": "627cd2b78a9b24663f9b83f301a4e753c87a2cf605c2400a74e6c067ec15cfad",
+   "prompt": "One small fibrous bark crack with rounded woody flecks under 190 milliseconds. Material layer only without a heavy body impact. Quiet close material Foley. Soft rounded texture without a hard attack. No music, voice, metallic ringing or sharp high crack. Keep separate from the main impact body.",
+   "processing": "highpass=f=65,highshelf=f=3000:g=-4,lowpass=f=7000,afade=t=in:d=0.003,afade=t=out:st=0.77:d=0.03"
+  }
  }
 }
