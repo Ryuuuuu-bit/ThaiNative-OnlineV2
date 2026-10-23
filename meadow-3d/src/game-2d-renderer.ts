@@ -39,7 +39,7 @@ export class GameCanvas2D{
  /** Static ground (backdrop, roads, map plane) rendered once with a margin, then blitted; redrawn on zoom, resize or after the camera moves past the margin. */
  private groundCache:{canvas:HTMLCanvasElement;ctx:CanvasRenderingContext2D;key:string;ox:number;oy:number}|null=null;
  /** Hue-shifted copies of slime atlases (canvas filters are far too slow to run per sprite per frame). */
- private tints=new WeakMap<CanvasImageSource,Map<string,HTMLCanvasElement>>();private focus={x:0,y:0};private initialized=false;private map:MapId='city_plaza';
+ private tints=new WeakMap<CanvasImageSource,Map<string,HTMLCanvasElement>>();private focus={x:0,y:0};private map:MapId='city_plaza';
  scale=30;zoomHeight=27.5;overview=false;highQuality=true;drawCalls=0;
  constructor(manifest:Record<string,{webp:string}>,private swordEffects:'canvas'|'pixi'='canvas'){this.assets=new CanvasAssets(manifest);this.canvas.setAttribute('aria-label','โลกเกม 2D');this.canvas.tabIndex=0;const context=this.canvas.getContext('2d');if(!context)throw Error('เบราว์เซอร์ไม่รองรับ Canvas 2D');this.ctx=context;this.resize();window.addEventListener('pagehide',e=>{if(!e.persisted)this.swordVfx?.destroy();});}
  resize(){this.width=innerWidth;this.height=innerHeight;const dpr=this.highQuality?Math.min(devicePixelRatio,1.5):1;this.dpr=dpr;this.canvas.width=Math.round(this.width*dpr);this.canvas.height=Math.round(this.height*dpr);this.canvas.style.width='100%';this.canvas.style.height='100%';this.ctx.setTransform(dpr,0,0,dpr,0,0);this.swordVfx?.resize(this.width,this.height,dpr);}
@@ -77,13 +77,13 @@ export class GameCanvas2D{
   // every previous-map monster (including meadow/forest, not just hunting art).
   for(const path of this.monsterImages)if(!neededMonsters.has(path))this.assets.release(path);
   this.monsterImages=neededMonsters;
-  this.map=id;this.initialized=false;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.heroStates.clear();this.monsterFrames.clear();
+  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.heroStates.clear();this.monsterFrames.clear();
   // Each baked region plane is about 25–35 MB; retain only the current region
   // and two recent regions while travelling across the expanded world.
   for(const cache of [this.fields,this.backdrops])while(cache.size>3){const old=[...cache.keys()].find(key=>key!==id);if(old===undefined)break;cache.delete(old);}
  }
- screen(x:number,z:number,h=0){const p=project2D(x,z,h);return{x:this.width/2+(p.x-this.focus.x)*this.scale+this.shakeOffset.x,y:this.height*.55+(p.y-this.focus.y)*this.scale+this.shakeOffset.y};}
- ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height*.55-this.shakeOffset.y)/this.scale+this.focus.y);}
+ screen(x:number,z:number,h=0){const p=project2D(x,z,h);return{x:this.width/2+(p.x-this.focus.x)*this.scale+this.shakeOffset.x,y:this.height/2+(p.y-this.focus.y)*this.scale+this.shakeOffset.y};}
+ ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height/2-this.shakeOffset.y)/this.scale+this.focus.y);}
  pickEnemy(x:number,y:number){return [...this.hits].reverse().find(p=>x>=p.left&&x<=p.right&&y>=p.top&&y<=p.bottom)?.id??null;}
  event(e:any){
   if(e.type==='skill'&&isSkillMotion(e.skillId)){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.skill=shownMotion(e.skillId);s.elapsed=0;this.heroStates.set(e.playerId,s);}
@@ -174,8 +174,8 @@ export class GameCanvas2D{
  render(game:any,others:any[],dt:number,time:number){
   const c=this.ctx;this.drawCalls=0;this.paperShadowsDrawn=0;this.hits=[];this.scale=this.overview?Math.min(this.width/145,this.height/112):this.height/this.zoomHeight;
   const now=performance.now(),shake=(this.combatFeel?.camera(dt)??0)*this.scale;this.shakeOffset={x:Math.sin(time*113)*shake,y:Math.cos(time*97)*shake*.7};
-  const focus=this.overview?{x:0,y:0}:project2D(game.p.x,game.p.z,3);
-  if(!this.initialized){this.focus=focus;this.initialized=true;}else{const k=1-Math.exp(-dt*8);this.focus.x+=(focus.x-this.focus.x)*k;this.focus.y+=(focus.y-this.focus.y)*k;}
+  // NetworkWorld already smooths movement; a second camera lag moves the hero off centre.
+  this.focus=this.overview?{x:0,y:0}:project2D(game.p.x,game.p.z,HERO_METRES/2);
   c.clearRect(0,0,this.width,this.height);c.fillStyle=this.map==='forest'?'#223d35':'#364f36';c.fillRect(0,0,this.width,this.height);
   const draws:{depth:number;draw:()=>void}[]=[],s=this.scale,add=(x:number,z:number,draw:()=>void)=>draws.push({depth:project2D(x,z).y,draw});
   const visible=(q:{x:number;y:number},r=220)=>q.x>-r&&q.x<this.width+r&&q.y>-r&&q.y<this.height+r;
