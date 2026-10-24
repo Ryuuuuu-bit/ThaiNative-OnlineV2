@@ -24,8 +24,8 @@ function show(id:string){
 }
 function filter(){
  const [min,max]=band.value==='all'?[1,100]:band.value.split('-').map(Number),regions=regionsForLevel(min,max);
- picker.replaceChildren(new Option('เลือกภูมิภาค',''),...regions.map(r=>new Option(`${r.name} · Lv.${r.levels.join('–')}`,r.id)));
- list.innerHTML=regions.map(r=>`<button type="button" data-region="${r.id}"><span>Lv.${r.levels[0]===r.levels[1]?r.levels[0]:r.levels.join('–')}</span><b>${esc(r.name)}</b><small>${esc(r.myth)}</small></button>`).join('');
+ picker.replaceChildren(new Option('เลือกภูมิภาค',''),...regions.map(r=>new Option(`${r.name} · ${atlasLevel(r)}`,r.id)));
+ list.innerHTML=regions.map(r=>`<button type="button" data-region="${r.id}"><span>${atlasLevel(r)}</span><b>${esc(r.name)}</b><small>${esc(r.myth)}</small></button>`).join('');
  document.querySelector('#world-count')!.textContent=regions.length+' ภูมิภาค';
  return regions;
 }

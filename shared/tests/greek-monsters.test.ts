@@ -8,7 +8,7 @@ function fixture(id:string){const g=createGame(7,undefined,'greek-test',data,'ru
 
 test('Greek roster has separate habitats, cards, materials and authoritative rolled equipment drops',()=>{
  const materials=new Set<string>();
- for(const id of ids){const m=data.monsters.monsters.find(m=>m.id===id)!;assert.ok(m.tags.includes('greek'));assert.ok(m.level>=40&&m.level<=49);assert.equal(m.artId,id);const maps=Object.entries(LAYOUTS).filter(([,l])=>l.spawns.some(s=>s.dataId===id));assert.equal(maps.length,m.boss?0:1);if(m.boss)assert.equal(createGame(1,undefined,'boss',data,'temple').enemies.find(e=>e.boss)?.dataId,id);for(const [map,l]of maps)for(const s of l.spawns.filter(s=>s.dataId===id))assert.ok(walkable(s.x,s.z,.4,map as any),id);
+ for(const id of ids){const m=data.monsters.monsters.find(m=>m.id===id)!;assert.ok(m.tags.includes('greek'));assert.ok(m.level>=30&&m.level<=35);assert.equal(m.artId,id);const maps=Object.entries(LAYOUTS).filter(([,l])=>l.spawns.some(s=>s.dataId===id));assert.equal(maps.length,m.boss?0:1);if(m.boss)assert.equal(createGame(1,undefined,'boss',data,'temple').enemies.find(e=>e.boss)?.dataId,id);for(const [map,l]of maps)for(const s of l.spawns.filter(s=>s.dataId===id))assert.ok(walkable(s.x,s.z,.4,map as any),id);
   const drops=rollDrops(m,()=>0,data);assert.ok(drops.some(d=>d.template==='card_'+id));assert.ok(drops.some(d=>d.template.startsWith('field_')&&d.roll));assert.ok(!drops.some(d=>d.template.startsWith('unique_')));materials.add(m.drops.find(d=>d.item.startsWith('greek_'))!.item);
  }assert.equal(materials.size,4);
 });

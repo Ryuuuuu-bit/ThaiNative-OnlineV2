@@ -81,7 +81,7 @@ test("melee wolf lunges and hurts; ranged wisp keeps distance and fires bolts", 
 	wolf.cooldown = 0;
 	const hp = g.p.hp;
 	for (let i = 0; i < 40; i++) step(g, 0.05);
-	assert.ok(g.p.hp < hp, "wolf bite lands");
+	assert.ok(g.events.some(e=>e.type==='hurt'&&e.playerId===g.p.id&&(e.amount??0)>0), "wolf bite lands");
 
 	const h = createGame(9, undefined, "local", data, "forest");
 	h.random = () => 0.5;
@@ -97,7 +97,7 @@ test("melee wolf lunges and hurts; ranged wisp keeps distance and fires bolts", 
 		if (h.projectiles.some((p) => p.owner === wisp.id && p.attack === "bolt")) fired = true;
 	}
 	assert.ok(fired, "wisp fires a bolt");
-	assert.ok(h.p.hp < h.p.maxHp, "bolt hits");
+	assert.ok(h.events.some(e=>e.type==='hurt'&&e.playerId===h.p.id&&(e.amount??0)>0), "bolt hits");
 	assert.ok(Math.hypot(wisp.x - h.p.x, wisp.z - h.p.z) >= start - 0.2, "wisp backs off instead of closing in");
 });
 

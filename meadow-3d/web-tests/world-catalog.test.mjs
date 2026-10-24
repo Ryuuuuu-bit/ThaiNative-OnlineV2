@@ -4,7 +4,8 @@ import {REGIONS,WORLD_MAX_LEVEL,regionsForLevel,regionDrops,regionMonsters,cityR
 test('public hunting guide covers every level and keeps parallel biome choices',()=>{
  assert.equal(WORLD_MAX_LEVEL,100);assert.equal(REGIONS.length,18);
  for(let level=1;level<=100;level++)assert.ok(regionsForLevel(level,level).length,'missing level '+level);
- assert.deepEqual(regionsForLevel(50,59).map(r=>r.id).sort(),['desert','himmapan']);
+ assert.deepEqual(regionsForLevel(50,59).map(r=>r.id).sort(),['frost']);
+ assert.deepEqual(regionsForLevel(70,79).map(r=>r.id).sort(),['dragon','volcano']);
  assert.deepEqual(regionsForLevel(100,100).map(r=>r.id),['confluence']);
  assert.deepEqual(regionsForLevel(101,110),[]);
 });

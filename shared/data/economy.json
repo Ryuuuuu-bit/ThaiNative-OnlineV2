@@ -12,19 +12,19 @@
   "storageSlots": 300,
   "socketing": [
     {
-      "maxLevel": 9,
+      "maxLevel": 4,
       "gold": 500,
       "material": "jelly_slime",
       "qty": 10
     },
     {
-      "maxLevel": 19,
+      "maxLevel": 9,
       "gold": 2000,
       "material": "mist_wood",
       "qty": 10
     },
     {
-      "maxLevel": 29,
+      "maxLevel": 14,
       "gold": 6000,
       "material": "ancient_vine",
       "qty": 10

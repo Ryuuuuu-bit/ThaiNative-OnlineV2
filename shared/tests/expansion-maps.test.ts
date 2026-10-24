@@ -7,7 +7,7 @@ import {walkable} from '../src/game/collision.js';
 import {createPathfinder} from '../src/game/pathfinding.js';
 import {importTiledMap} from '../src/game/tiled-map.js';
 const data=loadGameData();
-for(const [map,levels] of [['grove',[31,33,35]],['summit',[36,38,40]]] as const){
+for(const [map,levels] of [['grove',[20,23,25]],['summit',[25,28,30]]] as const){
  test(`${map}: Tiled geometry, spawn progression and every destination agree`,()=>{
   const source=JSON.parse(readFileSync(new URL(`../../../maps/${map}.tmj`,import.meta.url),'utf8'));
   const authored=importTiledMap(source),live=LAYOUTS[map];

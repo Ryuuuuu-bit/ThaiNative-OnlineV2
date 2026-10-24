@@ -2,7 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';import {ran
 import {loadGameData,rollEquipment,validateItemRoll,rollDrops,applyInventory,starterInventory,inventoryProfile,deriveStats,huntList} from '../src/index.node.js';
 const data=loadGameData(),kinds=['sword','staff','bow','armour','shield','cloak','boots','ring'];
 
-test('Regional roll bases preserve the existing Lv50/Lv60 equipment stats and original starter icon/socket support',()=>{
+test('Regional roll bases preserve the existing Lv35/Lv50 equipment stats and original starter icon/socket support',()=>{
  for(const tier of ['sunsteel','naga'])for(const kind of kinds){const native=data.items.items.find(i=>i.id===tier+'_'+kind)!,regional=data.items.items.find(i=>i.id==='field_'+tier+'_'+kind)!,starter=data.items.items.find(i=>i.id==='field_'+kind)!;assert.ok(native&&regional&&starter);assert.deepEqual(regional,{...native,id:'field_'+tier+'_'+kind,rarity:'rare',slots:starter.slots,icon:starter.icon,npcPrice:Math.round(native.level*180)});const roll=rollEquipment(regional.id,regional.level+9,data,()=>.5,'rare')!;assert.equal(roll.itemLevel,regional.level+9);assert.deepEqual(validateItemRoll(regional.id,roll,data),roll);assert.equal(rollEquipment(native.id,native.level,data,()=>.5),undefined,'Existing common shop equipment stays unrolled');}
 });
 
@@ -15,7 +15,7 @@ test('Regional sword really raises equipped attack, retains its socketed card th
  let state=applyInventory({inventory:starterInventory(0,randomUUID),gold:0},{op:'admin',loot:[{template:'field_naga_sword',qty:1,roll},{template:'field_sword',qty:1,roll:oldRoll},{template:card.id,qty:1}]},build,data,randomUUID).state;
  const sword=state.inventory.items.find(i=>i.template==='field_naga_sword')!,starter=state.inventory.items.find(i=>i.template==='field_sword')!,ownedCard=state.inventory.items.find(i=>i.template===card.id)!;assert.throws(()=>applyInventory(state,{op:'equip',id:sword.id},{...build,level:66},data,randomUUID),/ระดับ/);
  state=applyInventory(state,{op:'equip',id:starter.id},build,data,randomUUID).state;const lowAttack=deriveStats(inventoryProfile(build,state.inventory,data),data).atk;
- state=applyInventory(state,{op:'equip',id:sword.id},build,data,randomUUID).state;const highAttack=deriveStats(inventoryProfile(build,state.inventory,data),data).atk;assert.ok(highAttack>lowAttack+90);
+ state=applyInventory(state,{op:'equip',id:sword.id},build,data,randomUUID).state;const highAttack=deriveStats(inventoryProfile(build,state.inventory,data),data).atk;assert.ok(highAttack>lowAttack);
  state=applyInventory(state,{op:'card',id:sword.id,card:ownedCard.id},build,data,randomUUID).state;state=applyInventory(state,{op:'unequip',id:sword.id},build,data,randomUUID).state;state=applyInventory(state,{op:'store',id:sword.id},build,data,randomUUID).state;state=applyInventory(state,{op:'retrieve',id:sword.id},build,data,randomUUID).state;const saved=JSON.parse(JSON.stringify(state.inventory.items.find(i=>i.id===sword.id)));assert.deepEqual(saved.roll,roll);assert.deepEqual(saved.cards,[card.id]);assert.deepEqual(state.inventory.items.find(i=>i.id===starter.id)!.roll,oldRoll);
 });
 

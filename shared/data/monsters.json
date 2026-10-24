@@ -543,17 +543,17 @@
     {
       "id": "mist_shroom",
       "nameTh": "เห็ดหมอก",
-      "level": 6,
-      "hp": 160,
+      "level": 7,
+      "hp": 190,
       "sp": 0,
-      "atk": 26,
+      "atk": 28,
       "matk": 0,
-      "hardDef": 6,
+      "hardDef": 7,
       "softDef": 3,
       "hardMdef": 4,
       "softMdef": 2,
-      "hit": 176,
-      "flee": 112,
+      "hit": 178,
+      "flee": 114,
       "element": "earth",
       "race": "plant",
       "size": "small",
@@ -568,10 +568,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 70,
+      "exp": 101,
       "gold": [
-        12,
-        22
+        13,
+        24
       ],
       "drops": [
         {
@@ -599,31 +599,31 @@
           "max": 1
         },
         {
-          "item": "field_cloak",
+          "item": "field_iron_cloak",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_boots",
+          "item": "field_iron_boots",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_iron_ring",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_greatsword",
+          "item": "field_iron_greatsword",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 50,
+      "jobExp": 72,
       "behavior": {
         "ai": "melee",
         "speed": 1.6,
@@ -639,17 +639,17 @@
     {
       "id": "shade_wolf",
       "nameTh": "หมาป่าเงา",
-      "level": 9,
-      "hp": 240,
+      "level": 8,
+      "hp": 207,
       "sp": 0,
-      "atk": 38,
+      "atk": 35,
       "matk": 0,
-      "hardDef": 9,
+      "hardDef": 8,
       "softDef": 4,
       "hardMdef": 5,
       "softMdef": 3,
-      "hit": 192,
-      "flee": 132,
+      "hit": 190,
+      "flee": 130,
       "element": "dark",
       "race": "brute",
       "size": "medium",
@@ -665,10 +665,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 115,
+      "exp": 79,
       "gold": [
-        18,
-        30
+        17,
+        28
       ],
       "drops": [
         {
@@ -702,31 +702,31 @@
           "max": 1
         },
         {
-          "item": "field_bow",
+          "item": "field_iron_bow",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_dagger",
+          "item": "field_iron_dagger",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_knuckles",
+          "item": "field_iron_knuckles",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_robe",
+          "item": "field_iron_robe",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 80,
+      "jobExp": 55,
       "behavior": {
         "ai": "melee",
         "speed": 3.3,
@@ -740,17 +740,17 @@
     {
       "id": "lantern_wisp",
       "nameTh": "ภูตตะเกียง",
-      "level": 11,
-      "hp": 220,
+      "level": 9,
+      "hp": 168,
       "sp": 0,
       "atk": 0,
-      "matk": 44,
-      "hardDef": 6,
+      "matk": 39,
+      "hardDef": 5,
       "softDef": 3,
-      "hardMdef": 14,
-      "softMdef": 6,
-      "hit": 198,
-      "flee": 140,
+      "hardMdef": 12,
+      "softMdef": 5,
+      "hit": 194,
+      "flee": 136,
       "element": "ghost",
       "race": "demon",
       "size": "small",
@@ -767,10 +767,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 165,
+      "exp": 37,
       "gold": [
-        20,
-        34
+        18,
+        30
       ],
       "drops": [
         {
@@ -804,7 +804,7 @@
           "max": 1
         }
       ],
-      "jobExp": 91,
+      "jobExp": 20,
       "behavior": {
         "ai": "ranged",
         "speed": 1.8,
@@ -820,17 +820,17 @@
     {
       "id": "stump_guard",
       "nameTh": "ตอไม้เฝ้าป่า",
-      "level": 13,
-      "hp": 520,
+      "level": 9,
+      "hp": 315,
       "sp": 0,
-      "atk": 46,
+      "atk": 36,
       "matk": 0,
-      "hardDef": 25,
-      "softDef": 8,
-      "hardMdef": 8,
-      "softMdef": 4,
-      "hit": 205,
-      "flee": 118,
+      "hardDef": 19,
+      "softDef": 6,
+      "hardMdef": 6,
+      "softMdef": 3,
+      "hit": 197,
+      "flee": 110,
       "element": "earth",
       "race": "plant",
       "size": "medium",
@@ -846,10 +846,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 223,
+      "exp": 33,
       "gold": [
-        26,
-        44
+        20,
+        34
       ],
       "drops": [
         {
@@ -889,7 +889,7 @@
           "max": 1
         }
       ],
-      "jobExp": 123,
+      "jobExp": 18,
       "behavior": {
         "ai": "melee",
         "speed": 1.2,
@@ -903,17 +903,17 @@
     {
       "id": "mist_warden",
       "nameTh": "ผู้เฝ้าป่าหมอก",
-      "level": 15,
-      "hp": 6000,
+      "level": 10,
+      "hp": 3375,
       "sp": 0,
-      "atk": 70,
+      "atk": 53,
       "matk": 0,
-      "hardDef": 28,
-      "softDef": 12,
-      "hardMdef": 20,
-      "softMdef": 8,
-      "hit": 230,
-      "flee": 130,
+      "hardDef": 21,
+      "softDef": 9,
+      "hardMdef": 15,
+      "softMdef": 6,
+      "hit": 220,
+      "flee": 120,
       "element": "earth",
       "race": "plant",
       "size": "large",
@@ -933,10 +933,10 @@
         "spit",
         "summon"
       ],
-      "exp": 3480,
+      "exp": 523,
       "gold": [
-        600,
-        900
+        450,
+        675
       ],
       "drops": [
         {
@@ -971,543 +971,6 @@
         },
         {
           "item": "blue_potion",
-          "rate": 0.4,
-          "min": 1,
-          "max": 2
-        },
-        {
-          "item": "field_iron_sword",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_staff",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_bow",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_armour",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_shield",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_cloak",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_boots",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_ring",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_greatsword",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_dagger",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_knuckles",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_robe",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_focus_shield",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_spirit_cloak",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_swift_boots",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_arcane_ring",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_amulet",
-          "rate": 0.020588235294117647,
-          "min": 1,
-          "max": 1
-        }
-      ],
-      "jobExp": 1914,
-      "phase2": {
-        "atk": 78,
-        "element": "dark"
-      },
-      "attacks": {
-        "slam": {
-          "percent": 112,
-          "phase2Percent": 133
-        },
-        "sweep": {
-          "percent": 95,
-          "phase2Percent": 113
-        },
-        "charge": {
-          "percent": 103,
-          "phase2Percent": 125
-        },
-        "spit": {
-          "percent": 61,
-          "phase2Percent": 75
-        }
-      },
-      "telegraphs": [
-        {
-          "id": "mist_crush",
-          "nameTh": "หมอกทับร่าง",
-          "shape": "circle",
-          "windup": 1.8,
-          "radius": 3,
-          "percent": 150,
-          "phase2Percent": 175
-        },
-        {
-          "id": "mist_tide",
-          "nameTh": "วงหมอกล้อมป่า",
-          "shape": "ring",
-          "windup": 2.4,
-          "radius": 7,
-          "inner": 2.5,
-          "percent": 140,
-          "phase2Percent": 165
-        }
-      ]
-    },
-    {
-      "id": "ruin_shroom",
-      "nameTh": "เห็ดศิลา",
-      "level": 16,
-      "hp": 420,
-      "sp": 0,
-      "atk": 55,
-      "matk": 0,
-      "hardDef": 12,
-      "softDef": 8,
-      "hardMdef": 9,
-      "softMdef": 6,
-      "hit": 238,
-      "flee": 147,
-      "element": "earth",
-      "race": "plant",
-      "size": "small",
-      "realm": "forest_spirit",
-      "tags": [
-        "ruins"
-      ],
-      "weakness": [
-        "fire"
-      ],
-      "boss": false,
-      "skills": [
-        "basic"
-      ],
-      "exp": 327,
-      "gold": [
-        32,
-        48
-      ],
-      "drops": [
-        {
-          "item": "stone_spore",
-          "rate": 0.7,
-          "min": 1,
-          "max": 2
-        },
-        {
-          "item": "red_large",
-          "rate": 0.08,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_dagger",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_knuckles",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_robe",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        }
-      ],
-      "jobExp": 180,
-      "behavior": {
-        "ai": "melee",
-        "speed": 1.6,
-        "aggroRange": 3,
-        "attackRange": 1.35,
-        "lunge": 4,
-        "cooldown": 1.7,
-        "windup": 0.55
-      }
-    },
-    {
-      "id": "relic_hound",
-      "nameTh": "หมาป่าซากนคร",
-      "level": 18,
-      "hp": 510,
-      "sp": 0,
-      "atk": 66,
-      "matk": 0,
-      "hardDef": 15,
-      "softDef": 9,
-      "hardMdef": 10,
-      "softMdef": 6,
-      "hit": 244,
-      "flee": 151,
-      "element": "dark",
-      "race": "brute",
-      "size": "medium",
-      "realm": "mythic_beast",
-      "tags": [
-        "ruins"
-      ],
-      "weakness": [
-        "holy"
-      ],
-      "boss": false,
-      "skills": [
-        "basic"
-      ],
-      "exp": 409,
-      "gold": [
-        36,
-        54
-      ],
-      "drops": [
-        {
-          "item": "relic_fang",
-          "rate": 0.6,
-          "min": 1,
-          "max": 2
-        },
-        {
-          "item": "red_large",
-          "rate": 0.08,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_focus_shield",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_spirit_cloak",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_iron_swift_boots",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        }
-      ],
-      "jobExp": 225,
-      "behavior": {
-        "ai": "melee",
-        "speed": 3.3,
-        "aggroRange": 5.5,
-        "attackRange": 1.5,
-        "lunge": 7,
-        "cooldown": 1.3,
-        "windup": 0.4
-      }
-    },
-    {
-      "id": "relic_wisp",
-      "nameTh": "ภูตอักขระ",
-      "level": 20,
-      "hp": 480,
-      "sp": 0,
-      "atk": 0,
-      "matk": 72,
-      "hardDef": 13,
-      "softDef": 10,
-      "hardMdef": 20,
-      "softMdef": 7,
-      "hit": 250,
-      "flee": 155,
-      "element": "ghost",
-      "race": "demon",
-      "size": "small",
-      "realm": "ghost",
-      "tags": [
-        "ruins"
-      ],
-      "weakness": [
-        "holy",
-        "dark"
-      ],
-      "boss": false,
-      "skills": [
-        "basic"
-      ],
-      "exp": 500,
-      "gold": [
-        40,
-        60
-      ],
-      "drops": [
-        {
-          "item": "rune_shard",
-          "rate": 0.55,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "blue_large",
-          "rate": 0.08,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_sentinel_sword",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_sentinel_staff",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_sentinel_bow",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        }
-      ],
-      "jobExp": 275,
-      "behavior": {
-        "ai": "ranged",
-        "speed": 1.8,
-        "aggroRange": 6.5,
-        "attackRange": 6,
-        "lunge": 0,
-        "cooldown": 2.2,
-        "windup": 0.7,
-        "keepAway": 4,
-        "projectileSpeed": 6
-      }
-    },
-    {
-      "id": "ruin_guard",
-      "nameTh": "ผู้พิทักษ์เถาวัลย์",
-      "level": 21,
-      "hp": 850,
-      "sp": 0,
-      "atk": 70,
-      "matk": 0,
-      "hardDef": 32,
-      "softDef": 11,
-      "hardMdef": 14,
-      "softMdef": 7,
-      "hit": 253,
-      "flee": 157,
-      "element": "earth",
-      "race": "plant",
-      "size": "medium",
-      "realm": "forest_spirit",
-      "tags": [
-        "ruins"
-      ],
-      "weakness": [
-        "fire",
-        "wind"
-      ],
-      "boss": false,
-      "skills": [
-        "basic"
-      ],
-      "exp": 549,
-      "gold": [
-        42,
-        63
-      ],
-      "drops": [
-        {
-          "item": "ancient_vine",
-          "rate": 0.6,
-          "min": 1,
-          "max": 2
-        },
-        {
-          "item": "armour_stone",
-          "rate": 0.02,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "red_large",
-          "rate": 0.06,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_sentinel_armour",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_sentinel_shield",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "field_sentinel_cloak",
-          "rate": 0.011666666666666667,
-          "min": 1,
-          "max": 1
-        }
-      ],
-      "jobExp": 302,
-      "behavior": {
-        "ai": "melee",
-        "speed": 1.2,
-        "aggroRange": 3,
-        "attackRange": 1.6,
-        "lunge": 3,
-        "cooldown": 2,
-        "windup": 0.75
-      }
-    },
-    {
-      "id": "relic_warden",
-      "nameTh": "ผู้เฝ้าวิหารโบราณ",
-      "level": 22,
-      "hp": 10500,
-      "sp": 0,
-      "atk": 95,
-      "matk": 0,
-      "hardDef": 36,
-      "softDef": 11,
-      "hardMdef": 27,
-      "softMdef": 8,
-      "hit": 256,
-      "flee": 159,
-      "element": "earth",
-      "race": "plant",
-      "size": "large",
-      "realm": "forest_spirit",
-      "tags": [
-        "ruins",
-        "boss"
-      ],
-      "weakness": [
-        "fire"
-      ],
-      "boss": true,
-      "skills": [
-        "slam",
-        "sweep",
-        "charge",
-        "spit",
-        "summon"
-      ],
-      "exp": 7210,
-      "gold": [
-        880,
-        1430
-      ],
-      "drops": [
-        {
-          "item": "temple_seal",
-          "rate": 1,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "weapon_stone",
-          "rate": 0.15,
-          "min": 1,
-          "max": 2
-        },
-        {
-          "item": "armour_stone",
-          "rate": 0.15,
-          "min": 1,
-          "max": 2
-        },
-        {
-          "item": "card_relic_warden",
-          "rate": 0.005,
-          "min": 1,
-          "max": 1
-        },
-        {
-          "item": "red_large",
-          "rate": 0.4,
-          "min": 2,
-          "max": 3
-        },
-        {
-          "item": "blue_large",
           "rate": 0.4,
           "min": 1,
           "max": 2
@@ -1615,9 +1078,546 @@
           "max": 1
         }
       ],
-      "jobExp": 3966,
+      "jobExp": 288,
       "phase2": {
-        "atk": 109,
+        "atk": 59,
+        "element": "dark"
+      },
+      "attacks": {
+        "slam": {
+          "percent": 112,
+          "phase2Percent": 133
+        },
+        "sweep": {
+          "percent": 95,
+          "phase2Percent": 113
+        },
+        "charge": {
+          "percent": 103,
+          "phase2Percent": 125
+        },
+        "spit": {
+          "percent": 61,
+          "phase2Percent": 75
+        }
+      },
+      "telegraphs": [
+        {
+          "id": "mist_crush",
+          "nameTh": "หมอกทับร่าง",
+          "shape": "circle",
+          "windup": 1.8,
+          "radius": 3,
+          "percent": 150,
+          "phase2Percent": 175
+        },
+        {
+          "id": "mist_tide",
+          "nameTh": "วงหมอกล้อมป่า",
+          "shape": "ring",
+          "windup": 2.4,
+          "radius": 7,
+          "inner": 2.5,
+          "percent": 140,
+          "phase2Percent": 165
+        }
+      ]
+    },
+    {
+      "id": "ruin_shroom",
+      "nameTh": "เห็ดศิลา",
+      "level": 14,
+      "hp": 344,
+      "sp": 0,
+      "atk": 50,
+      "matk": 0,
+      "hardDef": 11,
+      "softDef": 7,
+      "hardMdef": 8,
+      "softMdef": 5,
+      "hit": 234,
+      "flee": 143,
+      "element": "earth",
+      "race": "plant",
+      "size": "small",
+      "realm": "forest_spirit",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 233,
+      "gold": [
+        29,
+        43
+      ],
+      "drops": [
+        {
+          "item": "stone_spore",
+          "rate": 0.7,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "red_large",
+          "rate": 0.08,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_dagger",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_knuckles",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_robe",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 128,
+      "behavior": {
+        "ai": "melee",
+        "speed": 1.6,
+        "aggroRange": 3,
+        "attackRange": 1.35,
+        "lunge": 4,
+        "cooldown": 1.7,
+        "windup": 0.55
+      }
+    },
+    {
+      "id": "relic_hound",
+      "nameTh": "หมาป่าซากนคร",
+      "level": 14,
+      "hp": 348,
+      "sp": 0,
+      "atk": 55,
+      "matk": 0,
+      "hardDef": 12,
+      "softDef": 7,
+      "hardMdef": 8,
+      "softMdef": 5,
+      "hit": 236,
+      "flee": 143,
+      "element": "dark",
+      "race": "brute",
+      "size": "medium",
+      "realm": "mythic_beast",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "holy"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 214,
+      "gold": [
+        30,
+        45
+      ],
+      "drops": [
+        {
+          "item": "relic_fang",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "red_large",
+          "rate": 0.08,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_focus_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_spirit_cloak",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_sentinel_swift_boots",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 118,
+      "behavior": {
+        "ai": "melee",
+        "speed": 3.3,
+        "aggroRange": 5.5,
+        "attackRange": 1.5,
+        "lunge": 7,
+        "cooldown": 1.3,
+        "windup": 0.4
+      }
+    },
+    {
+      "id": "relic_wisp",
+      "nameTh": "ภูตอักขระ",
+      "level": 15,
+      "hp": 307,
+      "sp": 0,
+      "atk": 0,
+      "matk": 58,
+      "hardDef": 10,
+      "softDef": 8,
+      "hardMdef": 16,
+      "softMdef": 6,
+      "hit": 240,
+      "flee": 145,
+      "element": "ghost",
+      "race": "demon",
+      "size": "small",
+      "realm": "ghost",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "holy",
+        "dark"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 236,
+      "gold": [
+        32,
+        48
+      ],
+      "drops": [
+        {
+          "item": "rune_shard",
+          "rate": 0.55,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "blue_large",
+          "rate": 0.08,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_sword",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_staff",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_bow",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 130,
+      "behavior": {
+        "ai": "ranged",
+        "speed": 1.8,
+        "aggroRange": 6.5,
+        "attackRange": 6,
+        "lunge": 0,
+        "cooldown": 2.2,
+        "windup": 0.7,
+        "keepAway": 4,
+        "projectileSpeed": 6
+      }
+    },
+    {
+      "id": "ruin_guard",
+      "nameTh": "ผู้พิทักษ์เถาวัลย์",
+      "level": 15,
+      "hp": 503,
+      "sp": 0,
+      "atk": 54,
+      "matk": 0,
+      "hardDef": 25,
+      "softDef": 8,
+      "hardMdef": 11,
+      "softMdef": 5,
+      "hit": 241,
+      "flee": 145,
+      "element": "earth",
+      "race": "plant",
+      "size": "medium",
+      "realm": "forest_spirit",
+      "tags": [
+        "ruins"
+      ],
+      "weakness": [
+        "fire",
+        "wind"
+      ],
+      "boss": false,
+      "skills": [
+        "basic"
+      ],
+      "exp": 227,
+      "gold": [
+        32,
+        48
+      ],
+      "drops": [
+        {
+          "item": "ancient_vine",
+          "rate": 0.6,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.02,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_large",
+          "rate": 0.06,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_armour",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_shield",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_cloak",
+          "rate": 0.011666666666666667,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 125,
+      "behavior": {
+        "ai": "melee",
+        "speed": 1.2,
+        "aggroRange": 3,
+        "attackRange": 1.6,
+        "lunge": 3,
+        "cooldown": 2,
+        "windup": 0.75
+      }
+    },
+    {
+      "id": "relic_warden",
+      "nameTh": "ผู้เฝ้าวิหารโบราณ",
+      "level": 15,
+      "hp": 5761,
+      "sp": 0,
+      "atk": 70,
+      "matk": 0,
+      "hardDef": 27,
+      "softDef": 8,
+      "hardMdef": 20,
+      "softMdef": 6,
+      "hit": 242,
+      "flee": 145,
+      "element": "earth",
+      "race": "plant",
+      "size": "large",
+      "realm": "forest_spirit",
+      "tags": [
+        "ruins",
+        "boss"
+      ],
+      "weakness": [
+        "fire"
+      ],
+      "boss": true,
+      "skills": [
+        "slam",
+        "sweep",
+        "charge",
+        "spit",
+        "summon"
+      ],
+      "exp": 2630,
+      "gold": [
+        652,
+        1059
+      ],
+      "drops": [
+        {
+          "item": "temple_seal",
+          "rate": 1,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "weapon_stone",
+          "rate": 0.15,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "armour_stone",
+          "rate": 0.15,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "card_relic_warden",
+          "rate": 0.005,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "red_large",
+          "rate": 0.4,
+          "min": 2,
+          "max": 3
+        },
+        {
+          "item": "blue_large",
+          "rate": 0.4,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "item": "field_relic_sword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_staff",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_bow",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_armour",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_greatsword",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_dagger",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_knuckles",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_robe",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_focus_shield",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_spirit_cloak",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_swift_boots",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_arcane_ring",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "item": "field_relic_amulet",
+          "rate": 0.020588235294117647,
+          "min": 1,
+          "max": 1
+        }
+      ],
+      "jobExp": 1447,
+      "phase2": {
+        "atk": 81,
         "element": "dark"
       },
       "attacks": {
@@ -1663,17 +1663,17 @@
     {
       "id": "crag_slime",
       "nameTh": "วุ้นแร่ผา",
-      "level": 23,
-      "hp": 650,
+      "level": 19,
+      "hp": 478,
       "sp": 0,
-      "atk": 78,
+      "atk": 67,
       "matk": 0,
-      "hardDef": 11,
-      "softDef": 12,
-      "hardMdef": 10,
-      "softMdef": 8,
-      "hit": 259,
-      "flee": 161,
+      "hardDef": 9,
+      "softDef": 10,
+      "hardMdef": 9,
+      "softMdef": 7,
+      "hit": 251,
+      "flee": 153,
       "element": "earth",
       "race": "formless",
       "size": "small",
@@ -1688,10 +1688,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 655,
+      "exp": 392,
       "gold": [
-        46,
-        69
+        39,
+        59
       ],
       "drops": [
         {
@@ -1713,40 +1713,40 @@
           "max": 1
         },
         {
-          "item": "field_sentinel_dagger",
+          "item": "field_relic_dagger",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_knuckles",
+          "item": "field_relic_knuckles",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_robe",
+          "item": "field_relic_robe",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 360
+      "jobExp": 216
     },
     {
       "id": "crag_wolf",
       "nameTh": "หมาป่าสันผา",
-      "level": 25,
-      "hp": 820,
+      "level": 19,
+      "hp": 525,
       "sp": 0,
-      "atk": 94,
+      "atk": 75,
       "matk": 0,
-      "hardDef": 18,
-      "softDef": 13,
-      "hardMdef": 13,
-      "softMdef": 9,
-      "hit": 265,
-      "flee": 165,
+      "hardDef": 14,
+      "softDef": 10,
+      "hardMdef": 10,
+      "softMdef": 7,
+      "hit": 253,
+      "flee": 153,
       "element": "dark",
       "race": "brute",
       "size": "medium",
@@ -1761,10 +1761,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 770,
+      "exp": 367,
       "gold": [
-        50,
-        75
+        40,
+        60
       ],
       "drops": [
         {
@@ -1780,25 +1780,25 @@
           "max": 1
         },
         {
-          "item": "field_sentinel_focus_shield",
+          "item": "field_relic_focus_shield",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_spirit_cloak",
+          "item": "field_relic_spirit_cloak",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_swift_boots",
+          "item": "field_relic_swift_boots",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 424,
+      "jobExp": 202,
       "behavior": {
         "ai": "melee",
         "speed": 3.3,
@@ -1812,17 +1812,17 @@
     {
       "id": "dust_wisp",
       "nameTh": "ภูตฝุ่นอำพัน",
-      "level": 27,
-      "hp": 720,
+      "level": 19,
+      "hp": 405,
       "sp": 0,
       "atk": 0,
-      "matk": 106,
-      "hardDef": 15,
-      "softDef": 14,
-      "hardMdef": 22,
-      "softMdef": 9,
-      "hit": 271,
-      "flee": 169,
+      "matk": 80,
+      "hardDef": 11,
+      "softDef": 11,
+      "hardMdef": 17,
+      "softMdef": 7,
+      "hit": 255,
+      "flee": 153,
       "element": "ghost",
       "race": "demon",
       "size": "small",
@@ -1838,10 +1838,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 895,
+      "exp": 346,
       "gold": [
-        54,
-        81
+        41,
+        61
       ],
       "drops": [
         {
@@ -1857,25 +1857,25 @@
           "max": 1
         },
         {
-          "item": "field_sentinel_arcane_ring",
+          "item": "field_relic_arcane_ring",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_amulet",
+          "item": "field_relic_amulet",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_sword",
+          "item": "field_relic_sword",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 492,
+      "jobExp": 190,
       "behavior": {
         "ai": "ranged",
         "speed": 1.8,
@@ -1891,17 +1891,17 @@
     {
       "id": "crag_guard",
       "nameTh": "ผู้พิทักษ์รากผา",
-      "level": 29,
-      "hp": 1400,
+      "level": 20,
+      "hp": 757,
       "sp": 0,
-      "atk": 100,
+      "atk": 74,
       "matk": 0,
-      "hardDef": 35,
-      "softDef": 15,
-      "hardMdef": 17,
-      "softMdef": 10,
-      "hit": 277,
-      "flee": 173,
+      "hardDef": 26,
+      "softDef": 11,
+      "hardMdef": 13,
+      "softMdef": 7,
+      "hit": 259,
+      "flee": 155,
       "element": "earth",
       "race": "plant",
       "size": "medium",
@@ -1917,10 +1917,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 1029,
+      "exp": 374,
       "gold": [
-        58,
-        87
+        43,
+        64
       ],
       "drops": [
         {
@@ -1942,25 +1942,25 @@
           "max": 1
         },
         {
-          "item": "field_sentinel_staff",
+          "item": "field_relic_staff",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_bow",
+          "item": "field_relic_bow",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_armour",
+          "item": "field_relic_armour",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 566,
+      "jobExp": 206,
       "behavior": {
         "ai": "melee",
         "speed": 1.2,
@@ -1974,17 +1974,17 @@
     {
       "id": "crag_titan",
       "nameTh": "อสูรยอดผา",
-      "level": 30,
-      "hp": 18000,
+      "level": 20,
+      "hp": 9184,
       "sp": 0,
-      "atk": 130,
+      "atk": 93,
       "matk": 0,
-      "hardDef": 39,
-      "softDef": 15,
-      "hardMdef": 29,
-      "softMdef": 11,
-      "hit": 280,
-      "flee": 175,
+      "hardDef": 28,
+      "softDef": 11,
+      "hardMdef": 21,
+      "softMdef": 8,
+      "hit": 260,
+      "flee": 155,
       "element": "earth",
       "race": "plant",
       "size": "large",
@@ -2004,10 +2004,10 @@
         "spit",
         "summon"
       ],
-      "exp": 13200,
+      "exp": 4364,
       "gold": [
-        1200,
-        1950
+        857,
+        1393
       ],
       "drops": [
         {
@@ -2179,9 +2179,9 @@
           "max": 1
         }
       ],
-      "jobExp": 7260,
+      "jobExp": 2400,
       "phase2": {
-        "atk": 150,
+        "atk": 107,
         "element": "dark"
       },
       "attacks": {
@@ -2227,17 +2227,17 @@
     {
       "id": "forest_young_1",
       "nameTh": "เห็ดตูมใบชา",
-      "level": 1,
-      "hp": 45,
+      "level": 5,
+      "hp": 125,
       "sp": 0,
-      "atk": 12,
+      "atk": 20,
       "matk": 0,
-      "hardDef": 3,
-      "softDef": 1,
-      "hardMdef": 3,
-      "softMdef": 1,
-      "hit": 162,
-      "flee": 101,
+      "hardDef": 5,
+      "softDef": 2,
+      "hardMdef": 5,
+      "softMdef": 2,
+      "hit": 170,
+      "flee": 109,
       "element": "neutral",
       "race": "plant",
       "size": "small",
@@ -2251,10 +2251,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 24,
+      "exp": 106,
       "gold": [
-        7,
-        14
+        12,
+        23
       ],
       "drops": [
         {
@@ -2276,31 +2276,31 @@
           "max": 1
         },
         {
-          "item": "field_staff",
+          "item": "field_iron_staff",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_focus_shield",
+          "item": "field_iron_focus_shield",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_spirit_cloak",
+          "item": "field_iron_spirit_cloak",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_swift_boots",
+          "item": "field_iron_swift_boots",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 18,
+      "jobExp": 80,
       "artId": "bud_shroom",
       "visualScale": 0.68,
       "behavior": {
@@ -2316,17 +2316,17 @@
     {
       "id": "forest_young_3",
       "nameTh": "เห็ดตูมใบชา · รุ่น 3",
-      "level": 3,
-      "hp": 75,
+      "level": 6,
+      "hp": 142,
       "sp": 0,
-      "atk": 14,
+      "atk": 19,
       "matk": 0,
-      "hardDef": 4,
-      "softDef": 2,
-      "hardMdef": 4,
-      "softMdef": 2,
-      "hit": 166,
-      "flee": 103,
+      "hardDef": 6,
+      "softDef": 3,
+      "hardMdef": 6,
+      "softMdef": 3,
+      "hit": 172,
+      "flee": 109,
       "element": "neutral",
       "race": "plant",
       "size": "small",
@@ -2340,10 +2340,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 36,
+      "exp": 110,
       "gold": [
-        10,
-        18
+        14,
+        25
       ],
       "drops": [
         {
@@ -2353,25 +2353,25 @@
           "max": 1
         },
         {
-          "item": "field_staff",
+          "item": "field_iron_staff",
           "rate": 0.035,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_iron_armour",
           "rate": 0.025,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_iron_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 27,
+      "jobExp": 83,
       "artId": "bud_shroom",
       "visualScale": 0.68,
       "behavior": {
@@ -2387,17 +2387,17 @@
     {
       "id": "ruins_young_1",
       "nameTh": "วุ้นดินปั้น",
-      "level": 1,
-      "hp": 45,
+      "level": 10,
+      "hp": 281,
       "sp": 0,
-      "atk": 12,
+      "atk": 30,
       "matk": 0,
-      "hardDef": 3,
-      "softDef": 1,
-      "hardMdef": 3,
-      "softMdef": 1,
-      "hit": 162,
-      "flee": 101,
+      "hardDef": 8,
+      "softDef": 3,
+      "hardMdef": 8,
+      "softMdef": 3,
+      "hit": 180,
+      "flee": 119,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2411,10 +2411,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 24,
+      "exp": 680,
       "gold": [
-        7,
-        14
+        18,
+        35
       ],
       "drops": [
         {
@@ -2436,31 +2436,31 @@
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_sentinel_armour",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_arcane_ring",
+          "item": "field_sentinel_arcane_ring",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_amulet",
+          "item": "field_sentinel_amulet",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_sentinel_sword",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 18,
+      "jobExp": 510,
       "artId": "clay_puff",
       "visualScale": 0.68,
       "behavior": {
@@ -2476,17 +2476,17 @@
     {
       "id": "ruins_young_3",
       "nameTh": "วุ้นดินปั้น · รุ่น 3",
-      "level": 3,
-      "hp": 75,
+      "level": 10,
+      "hp": 264,
       "sp": 0,
-      "atk": 14,
+      "atk": 26,
       "matk": 0,
-      "hardDef": 4,
-      "softDef": 2,
-      "hardMdef": 4,
-      "softMdef": 2,
-      "hit": 166,
-      "flee": 103,
+      "hardDef": 8,
+      "softDef": 4,
+      "hardMdef": 8,
+      "softMdef": 4,
+      "hit": 180,
+      "flee": 117,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2500,10 +2500,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 36,
+      "exp": 486,
       "gold": [
-        10,
-        18
+        19,
+        34
       ],
       "drops": [
         {
@@ -2513,31 +2513,31 @@
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_sentinel_sword",
           "rate": 0.035,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_sentinel_armour",
           "rate": 0.025,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_sentinel_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_shield",
+          "item": "field_sentinel_shield",
           "rate": 0.035,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 27,
+      "jobExp": 364,
       "artId": "clay_puff",
       "visualScale": 0.68,
       "behavior": {
@@ -2553,17 +2553,17 @@
     {
       "id": "ruins_young_6",
       "nameTh": "วุ้นดินปั้น · รุ่น 6",
-      "level": 6,
-      "hp": 160,
+      "level": 11,
+      "hp": 339,
       "sp": 0,
-      "atk": 26,
+      "atk": 38,
       "matk": 0,
-      "hardDef": 6,
-      "softDef": 3,
-      "hardMdef": 4,
-      "softMdef": 2,
-      "hit": 176,
-      "flee": 112,
+      "hardDef": 9,
+      "softDef": 4,
+      "hardMdef": 6,
+      "softMdef": 3,
+      "hit": 186,
+      "flee": 122,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2577,10 +2577,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 70,
+      "exp": 955,
       "gold": [
-        12,
-        22
+        17,
+        32
       ],
       "drops": [
         {
@@ -2590,31 +2590,31 @@
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_sentinel_sword",
           "rate": 0.035,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_sentinel_armour",
           "rate": 0.025,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_sentinel_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_shield",
+          "item": "field_sentinel_shield",
           "rate": 0.035,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 50,
+      "jobExp": 682,
       "behavior": {
         "ai": "melee",
         "speed": 1.64,
@@ -2630,17 +2630,17 @@
     {
       "id": "ruins_young_10",
       "nameTh": "วุ้นดินปั้น · รุ่น 10",
-      "level": 10,
-      "hp": 240,
+      "level": 12,
+      "hp": 308,
       "sp": 0,
-      "atk": 38,
+      "atk": 43,
       "matk": 0,
-      "hardDef": 9,
-      "softDef": 4,
-      "hardMdef": 5,
+      "hardDef": 10,
+      "softDef": 5,
+      "hardMdef": 6,
       "softMdef": 3,
-      "hit": 192,
-      "flee": 132,
+      "hit": 196,
+      "flee": 136,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2654,10 +2654,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 115,
+      "exp": 438,
       "gold": [
-        18,
-        30
+        20,
+        34
       ],
       "drops": [
         {
@@ -2667,31 +2667,31 @@
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_sentinel_sword",
           "rate": 0.035,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_sentinel_armour",
           "rate": 0.025,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_sentinel_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_shield",
+          "item": "field_sentinel_shield",
           "rate": 0.035,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 80,
+      "jobExp": 305,
       "behavior": {
         "ai": "melee",
         "speed": 1.7599999999999998,
@@ -2707,17 +2707,17 @@
     {
       "id": "canyon_young_1",
       "nameTh": "วุ้นกรวดผลึก",
-      "level": 1,
-      "hp": 45,
+      "level": 15,
+      "hp": 500,
       "sp": 0,
-      "atk": 12,
+      "atk": 40,
       "matk": 0,
-      "hardDef": 3,
-      "softDef": 1,
-      "hardMdef": 3,
-      "softMdef": 1,
-      "hit": 162,
-      "flee": 101,
+      "hardDef": 10,
+      "softDef": 3,
+      "hardMdef": 10,
+      "softMdef": 3,
+      "hit": 190,
+      "flee": 129,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2731,10 +2731,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 24,
+      "exp": 4524,
       "gold": [
-        7,
-        14
+        23,
+        47
       ],
       "drops": [
         {
@@ -2756,31 +2756,31 @@
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_relic_sword",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_staff",
+          "item": "field_relic_staff",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_bow",
+          "item": "field_relic_bow",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_relic_armour",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 18,
+      "jobExp": 3393,
       "artId": "pebble_puff",
       "visualScale": 0.68,
       "behavior": {
@@ -2796,17 +2796,17 @@
     {
       "id": "canyon_young_3",
       "nameTh": "วุ้นกรวดผลึก · รุ่น 3",
-      "level": 3,
-      "hp": 75,
+      "level": 15,
+      "hp": 469,
       "sp": 0,
-      "atk": 14,
+      "atk": 35,
       "matk": 0,
-      "hardDef": 4,
-      "softDef": 2,
-      "hardMdef": 4,
-      "softMdef": 2,
-      "hit": 166,
-      "flee": 103,
+      "hardDef": 10,
+      "softDef": 5,
+      "hardMdef": 10,
+      "softMdef": 5,
+      "hit": 190,
+      "flee": 127,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2820,10 +2820,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 36,
+      "exp": 3231,
       "gold": [
-        10,
-        18
+        25,
+        45
       ],
       "drops": [
         {
@@ -2833,25 +2833,25 @@
           "max": 1
         },
         {
-          "item": "field_bow",
+          "item": "field_relic_bow",
           "rate": 0.035,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_relic_armour",
           "rate": 0.025,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_relic_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 27,
+      "jobExp": 2424,
       "artId": "pebble_puff",
       "visualScale": 0.68,
       "behavior": {
@@ -2867,17 +2867,17 @@
     {
       "id": "canyon_young_6",
       "nameTh": "วุ้นกรวดผลึก · รุ่น 6",
-      "level": 6,
-      "hp": 160,
+      "level": 16,
+      "hp": 583,
       "sp": 0,
-      "atk": 26,
+      "atk": 50,
       "matk": 0,
-      "hardDef": 6,
-      "softDef": 3,
-      "hardMdef": 4,
-      "softMdef": 2,
-      "hit": 176,
-      "flee": 112,
+      "hardDef": 11,
+      "softDef": 6,
+      "hardMdef": 8,
+      "softMdef": 4,
+      "hit": 196,
+      "flee": 132,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2891,10 +2891,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 70,
+      "exp": 2427,
       "gold": [
-        12,
-        22
+        23,
+        42
       ],
       "drops": [
         {
@@ -2904,25 +2904,25 @@
           "max": 1
         },
         {
-          "item": "field_bow",
+          "item": "field_relic_bow",
           "rate": 0.035,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_relic_armour",
           "rate": 0.025,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_relic_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 50,
+      "jobExp": 1734,
       "behavior": {
         "ai": "melee",
         "speed": 1.64,
@@ -2938,17 +2938,17 @@
     {
       "id": "canyon_young_10",
       "nameTh": "วุ้นกรวดผลึก · รุ่น 10",
-      "level": 10,
-      "hp": 240,
+      "level": 17,
+      "hp": 516,
       "sp": 0,
-      "atk": 38,
+      "atk": 56,
       "matk": 0,
-      "hardDef": 9,
-      "softDef": 4,
-      "hardMdef": 5,
-      "softMdef": 3,
-      "hit": 192,
-      "flee": 132,
+      "hardDef": 13,
+      "softDef": 6,
+      "hardMdef": 7,
+      "softMdef": 4,
+      "hit": 206,
+      "flee": 146,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -2962,10 +2962,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 115,
+      "exp": 1057,
       "gold": [
-        18,
-        30
+        26,
+        44
       ],
       "drops": [
         {
@@ -2975,25 +2975,25 @@
           "max": 1
         },
         {
-          "item": "field_bow",
+          "item": "field_relic_bow",
           "rate": 0.035,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_relic_armour",
           "rate": 0.025,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_relic_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 80,
+      "jobExp": 735,
       "behavior": {
         "ai": "melee",
         "speed": 1.7599999999999998,
@@ -3009,17 +3009,17 @@
     {
       "id": "canyon_young_16",
       "nameTh": "วุ้นกรวดผลึก · รุ่น 16",
-      "level": 16,
-      "hp": 420,
+      "level": 18,
+      "hp": 504,
       "sp": 0,
-      "atk": 55,
+      "atk": 60,
       "matk": 0,
-      "hardDef": 12,
-      "softDef": 8,
-      "hardMdef": 9,
-      "softMdef": 6,
-      "hit": 238,
-      "flee": 147,
+      "hardDef": 13,
+      "softDef": 9,
+      "hardMdef": 10,
+      "softMdef": 7,
+      "hit": 242,
+      "flee": 151,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -3033,10 +3033,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 327,
+      "exp": 445,
       "gold": [
-        32,
-        48
+        35,
+        53
       ],
       "drops": [
         {
@@ -3046,25 +3046,25 @@
           "max": 1
         },
         {
-          "item": "field_iron_arcane_ring",
+          "item": "field_relic_arcane_ring",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_iron_amulet",
+          "item": "field_relic_amulet",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_iron_sword",
+          "item": "field_relic_sword",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 180,
+      "jobExp": 245,
       "behavior": {
         "ai": "melee",
         "speed": 1.88,
@@ -3080,17 +3080,17 @@
     {
       "id": "canyon_young_20",
       "nameTh": "วุ้นกรวดผลึก · รุ่น 20",
-      "level": 20,
-      "hp": 510,
+      "level": 18,
+      "hp": 432,
       "sp": 0,
-      "atk": 66,
+      "atk": 61,
       "matk": 0,
-      "hardDef": 15,
-      "softDef": 9,
-      "hardMdef": 10,
+      "hardDef": 14,
+      "softDef": 8,
+      "hardMdef": 9,
       "softMdef": 6,
-      "hit": 244,
-      "flee": 151,
+      "hit": 240,
+      "flee": 147,
       "element": "neutral",
       "race": "formless",
       "size": "small",
@@ -3104,10 +3104,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 500,
+      "exp": 378,
       "gold": [
-        36,
-        54
+        33,
+        50
       ],
       "drops": [
         {
@@ -3117,25 +3117,25 @@
           "max": 1
         },
         {
-          "item": "field_sentinel_shield",
+          "item": "field_relic_shield",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_cloak",
+          "item": "field_relic_cloak",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sentinel_boots",
+          "item": "field_relic_boots",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 275,
+      "jobExp": 208,
       "behavior": {
         "ai": "melee",
         "speed": 2,
@@ -3151,17 +3151,17 @@
     {
       "id": "amber_mantis",
       "nameTh": "ตั๊กแตนอำพัน",
-      "level": 31,
-      "hp": 1700,
+      "level": 20,
+      "hp": 820,
       "sp": 0,
-      "atk": 118,
+      "atk": 82,
       "matk": 0,
-      "hardDef": 18,
-      "softDef": 13,
-      "hardMdef": 13,
-      "softMdef": 9,
-      "hit": 283,
-      "flee": 177,
+      "hardDef": 13,
+      "softDef": 9,
+      "hardMdef": 9,
+      "softMdef": 6,
+      "hit": 261,
+      "flee": 155,
       "element": "earth",
       "race": "insect",
       "size": "medium",
@@ -3176,10 +3176,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 1173,
+      "exp": 354,
       "gold": [
-        68,
-        99
+        47,
+        69
       ],
       "drops": [
         {
@@ -3213,7 +3213,7 @@
           "max": 1
         }
       ],
-      "jobExp": 645,
+      "jobExp": 195,
       "behavior": {
         "ai": "melee",
         "speed": 3.3,
@@ -3227,17 +3227,17 @@
     {
       "id": "dawn_owl",
       "nameTh": "นกฮูกอรุณ",
-      "level": 33,
-      "hp": 1800,
+      "level": 23,
+      "hp": 977,
       "sp": 0,
       "atk": 0,
-      "matk": 135,
-      "hardDef": 15,
-      "softDef": 14,
-      "hardMdef": 22,
-      "softMdef": 9,
-      "hit": 289,
-      "flee": 181,
+      "matk": 99,
+      "hardDef": 11,
+      "softDef": 10,
+      "hardMdef": 16,
+      "softMdef": 7,
+      "hit": 269,
+      "flee": 161,
       "element": "wind",
       "race": "brute",
       "size": "small",
@@ -3252,10 +3252,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 1327,
+      "exp": 490,
       "gold": [
-        74,
-        107
+        55,
+        79
       ],
       "drops": [
         {
@@ -3289,7 +3289,7 @@
           "max": 1
         }
       ],
-      "jobExp": 730,
+      "jobExp": 269,
       "behavior": {
         "ai": "ranged",
         "speed": 2,
@@ -3305,17 +3305,17 @@
     {
       "id": "grove_crown",
       "nameTh": "ราชันพฤกษาอำพัน",
-      "level": 35,
-      "hp": 27000,
+      "level": 25,
+      "hp": 15188,
       "sp": 0,
-      "atk": 165,
+      "atk": 124,
       "matk": 0,
-      "hardDef": 39,
-      "softDef": 15,
-      "hardMdef": 29,
-      "softMdef": 11,
-      "hit": 295,
-      "flee": 185,
+      "hardDef": 29,
+      "softDef": 11,
+      "hardMdef": 22,
+      "softMdef": 8,
+      "hit": 275,
+      "flee": 165,
       "element": "earth",
       "race": "plant",
       "size": "large",
@@ -3335,10 +3335,10 @@
         "spit",
         "summon"
       ],
-      "exp": 17880,
+      "exp": 7022,
       "gold": [
-        1500,
-        2400
+        1125,
+        1800
       ],
       "drops": [
         {
@@ -3378,103 +3378,103 @@
           "max": 2
         },
         {
-          "item": "field_relic_sword",
+          "item": "field_silver_sword",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_staff",
+          "item": "field_silver_staff",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_bow",
+          "item": "field_silver_bow",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_armour",
+          "item": "field_silver_armour",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_shield",
+          "item": "field_silver_shield",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_cloak",
+          "item": "field_silver_cloak",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_boots",
+          "item": "field_silver_boots",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_ring",
+          "item": "field_silver_ring",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_greatsword",
+          "item": "field_silver_greatsword",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_dagger",
+          "item": "field_silver_dagger",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_knuckles",
+          "item": "field_silver_knuckles",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_robe",
+          "item": "field_silver_robe",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_focus_shield",
+          "item": "field_silver_focus_shield",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_spirit_cloak",
+          "item": "field_silver_spirit_cloak",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_swift_boots",
+          "item": "field_silver_swift_boots",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_arcane_ring",
+          "item": "field_silver_arcane_ring",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_amulet",
+          "item": "field_silver_amulet",
           "rate": 0.020588235294117647,
           "min": 1,
           "max": 1
@@ -3486,9 +3486,9 @@
           "max": 1
         }
       ],
-      "jobExp": 9834,
+      "jobExp": 3862,
       "phase2": {
-        "atk": 193,
+        "atk": 145,
         "element": "dark"
       },
       "attacks": {
@@ -3534,17 +3534,17 @@
     {
       "id": "moon_crab",
       "nameTh": "ปูผลึกจันทรา",
-      "level": 36,
-      "hp": 2500,
+      "level": 25,
+      "hp": 1338,
       "sp": 0,
-      "atk": 140,
+      "atk": 102,
       "matk": 0,
-      "hardDef": 35,
-      "softDef": 15,
-      "hardMdef": 17,
-      "softMdef": 10,
-      "hit": 298,
-      "flee": 187,
+      "hardDef": 26,
+      "softDef": 11,
+      "hardMdef": 12,
+      "softMdef": 7,
+      "hit": 276,
+      "flee": 165,
       "element": "water",
       "race": "fish",
       "size": "medium",
@@ -3559,10 +3559,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 1575,
+      "exp": 571,
       "gold": [
-        83,
-        119
+        61,
+        87
       ],
       "drops": [
         {
@@ -3584,25 +3584,25 @@
           "max": 1
         },
         {
-          "item": "field_relic_focus_shield",
+          "item": "field_silver_focus_shield",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_spirit_cloak",
+          "item": "field_silver_spirit_cloak",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_swift_boots",
+          "item": "field_silver_swift_boots",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 866,
+      "jobExp": 314,
       "behavior": {
         "ai": "melee",
         "speed": 1.2,
@@ -3616,17 +3616,17 @@
     {
       "id": "frost_lynx",
       "nameTh": "แมวป่าหิมะ",
-      "level": 38,
-      "hp": 2400,
+      "level": 28,
+      "hp": 1414,
       "sp": 0,
-      "atk": 155,
+      "atk": 119,
       "matk": 0,
-      "hardDef": 18,
-      "softDef": 13,
-      "hardMdef": 13,
-      "softMdef": 9,
-      "hit": 304,
-      "flee": 191,
+      "hardDef": 14,
+      "softDef": 10,
+      "hardMdef": 10,
+      "softMdef": 7,
+      "hit": 284,
+      "flee": 171,
       "element": "water",
       "race": "brute",
       "size": "medium",
@@ -3641,10 +3641,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 1753,
+      "exp": 746,
       "gold": [
-        89,
-        127
+        68,
+        97
       ],
       "drops": [
         {
@@ -3660,25 +3660,25 @@
           "max": 1
         },
         {
-          "item": "field_relic_arcane_ring",
+          "item": "field_silver_arcane_ring",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_amulet",
+          "item": "field_silver_amulet",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_relic_sword",
+          "item": "field_silver_sword",
           "rate": 0.011666666666666667,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 964,
+      "jobExp": 410,
       "behavior": {
         "ai": "melee",
         "speed": 3.3,
@@ -3692,17 +3692,17 @@
     {
       "id": "moon_titan",
       "nameTh": "ไททันจันทรา",
-      "level": 40,
-      "hp": 38000,
+      "level": 30,
+      "hp": 22988,
       "sp": 0,
-      "atk": 195,
+      "atk": 152,
       "matk": 0,
-      "hardDef": 39,
-      "softDef": 15,
-      "hardMdef": 29,
-      "softMdef": 11,
-      "hit": 310,
-      "flee": 195,
+      "hardDef": 30,
+      "softDef": 12,
+      "hardMdef": 23,
+      "softMdef": 9,
+      "hit": 290,
+      "flee": 175,
       "element": "earth",
       "race": "formless",
       "size": "large",
@@ -3722,10 +3722,10 @@
         "spit",
         "summon"
       ],
-      "exp": 23280,
+      "exp": 10371,
       "gold": [
-        2000,
-        3000
+        1556,
+        2333
       ],
       "drops": [
         {
@@ -3873,9 +3873,9 @@
           "max": 1
         }
       ],
-      "jobExp": 12804,
+      "jobExp": 5704,
       "phase2": {
-        "atk": 228,
+        "atk": 177,
         "element": "dark"
       },
       "attacks": {
@@ -4097,17 +4097,17 @@
     {
       "id": "dewdrop_moth",
       "nameTh": "ผีเสื้อหยดแสง",
-      "level": 3,
-      "hp": 100,
+      "level": 6,
+      "hp": 189,
       "sp": 0,
-      "atk": 19,
-      "matk": 21,
-      "hardDef": 5,
-      "softDef": 2,
-      "hardMdef": 3,
+      "atk": 26,
+      "matk": 29,
+      "hardDef": 7,
+      "softDef": 3,
+      "hardMdef": 4,
       "softMdef": 1,
-      "hit": 169,
-      "flee": 109,
+      "hit": 175,
+      "flee": 115,
       "element": "earth",
       "race": "insect",
       "size": "small",
@@ -4123,10 +4123,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 39,
+      "exp": 119,
       "gold": [
-        9,
-        15
+        12,
+        21
       ],
       "drops": [
         {
@@ -4148,31 +4148,31 @@
           "max": 1
         },
         {
-          "item": "field_staff",
+          "item": "field_iron_staff",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_knuckles",
+          "item": "field_iron_knuckles",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_robe",
+          "item": "field_iron_robe",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_focus_shield",
+          "item": "field_iron_focus_shield",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 27,
+      "jobExp": 83,
       "behavior": {
         "ai": "ranged",
         "speed": 2.2,
@@ -4190,17 +4190,17 @@
     {
       "id": "pine_hedgehog",
       "nameTh": "เม่นลูกสน",
-      "level": 4,
-      "hp": 216,
+      "level": 6,
+      "hp": 323,
       "sp": 0,
-      "atk": 22,
+      "atk": 27,
       "matk": 0,
-      "hardDef": 6,
+      "hardDef": 7,
       "softDef": 2,
-      "hardMdef": 4,
+      "hardMdef": 5,
       "softMdef": 2,
-      "hit": 172,
-      "flee": 112,
+      "hit": 176,
+      "flee": 116,
       "element": "earth",
       "race": "brute",
       "size": "small",
@@ -4216,10 +4216,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 52,
+      "exp": 109,
       "gold": [
-        12,
-        20
+        15,
+        24
       ],
       "drops": [
         {
@@ -4241,31 +4241,31 @@
           "max": 1
         },
         {
-          "item": "field_cloak",
+          "item": "field_iron_cloak",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_spirit_cloak",
+          "item": "field_iron_spirit_cloak",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_swift_boots",
+          "item": "field_iron_swift_boots",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_arcane_ring",
+          "item": "field_iron_arcane_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 36,
+      "jobExp": 76,
       "behavior": {
         "ai": "melee",
         "speed": 1.6,
@@ -4281,17 +4281,17 @@
     {
       "id": "tile_sparrow",
       "nameTh": "นกกระจอกกระเบื้อง",
-      "level": 3,
-      "hp": 100,
+      "level": 10,
+      "hp": 352,
       "sp": 0,
-      "atk": 19,
+      "atk": 36,
       "matk": 0,
-      "hardDef": 5,
-      "softDef": 2,
-      "hardMdef": 3,
-      "softMdef": 1,
-      "hit": 169,
-      "flee": 109,
+      "hardDef": 9,
+      "softDef": 4,
+      "hardMdef": 6,
+      "softMdef": 2,
+      "hit": 183,
+      "flee": 123,
       "element": "earth",
       "race": "formless",
       "size": "small",
@@ -4307,10 +4307,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 39,
+      "exp": 526,
       "gold": [
-        9,
-        15
+        17,
+        28
       ],
       "drops": [
         {
@@ -4332,31 +4332,31 @@
           "max": 1
         },
         {
-          "item": "field_bow",
+          "item": "field_sentinel_bow",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_amulet",
+          "item": "field_sentinel_amulet",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_sentinel_sword",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_staff",
+          "item": "field_sentinel_staff",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 27,
+      "jobExp": 364,
       "behavior": {
         "ai": "melee",
         "speed": 1.6,
@@ -4372,17 +4372,17 @@
     {
       "id": "clay_pot_doll",
       "nameTh": "ตุ๊กตาหม้อดิน",
-      "level": 4,
-      "hp": 216,
+      "level": 11,
+      "hp": 683,
       "sp": 0,
-      "atk": 22,
+      "atk": 39,
       "matk": 0,
-      "hardDef": 6,
-      "softDef": 2,
-      "hardMdef": 4,
-      "softMdef": 2,
-      "hit": 172,
-      "flee": 112,
+      "hardDef": 11,
+      "softDef": 4,
+      "hardMdef": 7,
+      "softMdef": 4,
+      "hit": 186,
+      "flee": 126,
       "element": "earth",
       "race": "formless",
       "size": "small",
@@ -4398,10 +4398,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 52,
+      "exp": 1493,
       "gold": [
-        12,
-        20
+        21,
+        36
       ],
       "drops": [
         {
@@ -4423,25 +4423,25 @@
           "max": 1
         },
         {
-          "item": "field_shield",
+          "item": "field_sentinel_shield",
           "rate": 0.02,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_bow",
+          "item": "field_sentinel_bow",
           "rate": 0.02,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_sentinel_armour",
           "rate": 0.02,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 36,
+      "jobExp": 1033,
       "behavior": {
         "ai": "melee",
         "speed": 1.3,
@@ -4457,17 +4457,17 @@
     {
       "id": "oretail_lizard",
       "nameTh": "กิ้งก่าหางแร่",
-      "level": 3,
-      "hp": 100,
+      "level": 15,
+      "hp": 625,
       "sp": 0,
-      "atk": 19,
+      "atk": 48,
       "matk": 0,
-      "hardDef": 5,
-      "softDef": 2,
-      "hardMdef": 3,
-      "softMdef": 1,
-      "hit": 169,
-      "flee": 109,
+      "hardDef": 13,
+      "softDef": 5,
+      "hardMdef": 8,
+      "softMdef": 3,
+      "hit": 193,
+      "flee": 133,
       "element": "earth",
       "race": "brute",
       "size": "small",
@@ -4483,10 +4483,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 39,
+      "exp": 3501,
       "gold": [
-        9,
-        15
+        23,
+        38
       ],
       "drops": [
         {
@@ -4508,31 +4508,31 @@
           "max": 1
         },
         {
-          "item": "field_armour",
+          "item": "field_relic_armour",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_cloak",
+          "item": "field_relic_cloak",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_boots",
+          "item": "field_relic_boots",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_ring",
+          "item": "field_relic_ring",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 27,
+      "jobExp": 2424,
       "behavior": {
         "ai": "melee",
         "speed": 1.6,
@@ -4548,17 +4548,17 @@
     {
       "id": "iron_pincer_crab",
       "nameTh": "ปูหนีบเหล็ก",
-      "level": 4,
-      "hp": 216,
+      "level": 16,
+      "hp": 1176,
       "sp": 0,
-      "atk": 22,
+      "atk": 51,
       "matk": 0,
-      "hardDef": 6,
-      "softDef": 2,
-      "hardMdef": 4,
-      "softMdef": 2,
-      "hit": 172,
-      "flee": 112,
+      "hardDef": 14,
+      "softDef": 5,
+      "hardMdef": 9,
+      "softMdef": 5,
+      "hit": 196,
+      "flee": 136,
       "element": "earth",
       "race": "brute",
       "size": "small",
@@ -4574,10 +4574,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 52,
+      "exp": 3793,
       "gold": [
-        12,
-        20
+        28,
+        47
       ],
       "drops": [
         {
@@ -4599,31 +4599,31 @@
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_relic_sword",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_greatsword",
+          "item": "field_relic_greatsword",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_dagger",
+          "item": "field_relic_dagger",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_knuckles",
+          "item": "field_relic_knuckles",
           "rate": 0.015,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 36,
+      "jobExp": 2626,
       "behavior": {
         "ai": "melee",
         "speed": 1.6,
@@ -4690,25 +4690,25 @@
           "max": 1
         },
         {
-          "item": "field_sword",
+          "item": "field_iron_sword",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_robe",
+          "item": "field_iron_robe",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_focus_shield",
+          "item": "field_iron_focus_shield",
           "rate": 0.00875,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_spirit_cloak",
+          "item": "field_iron_spirit_cloak",
           "rate": 0.00875,
           "min": 1,
           "max": 1
@@ -4730,17 +4730,17 @@
     {
       "id": "mist_weaver",
       "nameTh": "แมงมุมทอหมอก",
-      "level": 9,
-      "hp": 396,
+      "level": 8,
+      "hp": 341,
       "sp": 0,
-      "atk": 37,
-      "matk": 39,
-      "hardDef": 11,
+      "atk": 34,
+      "matk": 36,
+      "hardDef": 10,
       "softDef": 5,
-      "hardMdef": 9,
+      "hardMdef": 8,
       "softMdef": 3,
-      "hit": 187,
-      "flee": 127,
+      "hit": 185,
+      "flee": 125,
       "element": "earth",
       "race": "insect",
       "size": "small",
@@ -4756,10 +4756,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 117,
+      "exp": 81,
       "gold": [
-        27,
-        45
+        25,
+        42
       ],
       "drops": [
         {
@@ -4781,31 +4781,31 @@
           "max": 1
         },
         {
-          "item": "field_cloak",
+          "item": "field_iron_cloak",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_swift_boots",
+          "item": "field_iron_swift_boots",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_arcane_ring",
+          "item": "field_iron_arcane_ring",
           "rate": 0.015,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_amulet",
+          "item": "field_iron_amulet",
           "rate": 0.015,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 81,
+      "jobExp": 56,
       "behavior": {
         "ai": "ranged",
         "speed": 2.2,
@@ -5036,17 +5036,17 @@
     {
       "id": "greek_satyr",
       "nameTh": "ซาเทอร์ขลุ่ยกก",
-      "level": 40,
-      "hp": 1950,
+      "level": 30,
+      "hp": 1180,
       "sp": 0,
-      "atk": 120,
-      "matk": 145,
-      "hardDef": 38,
-      "softDef": 40,
-      "hardMdef": 35,
-      "softMdef": 25,
-      "hit": 290,
-      "flee": 205,
+      "atk": 93,
+      "matk": 113,
+      "hardDef": 30,
+      "softDef": 31,
+      "hardMdef": 27,
+      "softMdef": 19,
+      "hit": 270,
+      "flee": 185,
       "element": "earth",
       "race": "demihuman",
       "size": "medium",
@@ -5062,10 +5062,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 1940,
+      "exp": 864,
       "gold": [
-        320,
-        480
+        249,
+        373
       ],
       "drops": [
         {
@@ -5111,7 +5111,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1067,
+      "jobExp": 475,
       "behavior": {
         "ai": "ranged",
         "speed": 2,
@@ -5129,17 +5129,17 @@
     {
       "id": "greek_harpy",
       "nameTh": "ฮาร์ปีลมผา",
-      "level": 43,
-      "hp": 2200,
+      "level": 32,
+      "hp": 1307,
       "sp": 0,
-      "atk": 120,
+      "atk": 93,
       "matk": 0,
-      "hardDef": 38,
-      "softDef": 43,
-      "hardMdef": 35,
-      "softMdef": 25,
-      "hit": 293,
-      "flee": 208,
+      "hardDef": 29,
+      "softDef": 33,
+      "hardMdef": 27,
+      "softMdef": 19,
+      "hit": 271,
+      "flee": 186,
       "element": "wind",
       "race": "brute",
       "size": "medium",
@@ -5155,10 +5155,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 2239,
+      "exp": 972,
       "gold": [
-        344,
-        516
+        265,
+        398
       ],
       "drops": [
         {
@@ -5204,7 +5204,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1231,
+      "jobExp": 535,
       "behavior": {
         "ai": "melee",
         "speed": 3.3,
@@ -5220,17 +5220,17 @@
     {
       "id": "greek_gorgon",
       "nameTh": "กอร์กอนเกล็ดหยก",
-      "level": 46,
-      "hp": 2650,
+      "level": 33,
+      "hp": 1471,
       "sp": 0,
-      "atk": 155,
+      "atk": 115,
       "matk": 0,
-      "hardDef": 38,
-      "softDef": 46,
-      "hardMdef": 35,
-      "softMdef": 25,
-      "hit": 296,
-      "flee": 211,
+      "hardDef": 28,
+      "softDef": 34,
+      "hardMdef": 26,
+      "softMdef": 19,
+      "hit": 270,
+      "flee": 185,
       "element": "earth",
       "race": "demon",
       "size": "medium",
@@ -5246,10 +5246,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 2559,
+      "exp": 999,
       "gold": [
-        368,
-        552
+        274,
+        411
       ],
       "drops": [
         {
@@ -5295,7 +5295,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1407,
+      "jobExp": 549,
       "behavior": {
         "ai": "melee",
         "speed": 2,
@@ -5311,17 +5311,17 @@
     {
       "id": "greek_minotaur",
       "nameTh": "มิโนทอร์พิทักษ์เขาวงกต",
-      "level": 49,
-      "hp": 29000,
+      "level": 35,
+      "hp": 15912,
       "sp": 0,
-      "atk": 245,
+      "atk": 181,
       "matk": 0,
-      "hardDef": 58,
-      "softDef": 49,
-      "hardMdef": 35,
-      "softMdef": 25,
-      "hit": 299,
-      "flee": 214,
+      "hardDef": 43,
+      "softDef": 36,
+      "hardMdef": 26,
+      "softMdef": 19,
+      "hit": 271,
+      "flee": 186,
       "element": "neutral",
       "race": "brute",
       "size": "large",
@@ -5337,10 +5337,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 34814,
+      "exp": 13383,
       "gold": [
-        2000,
-        3000
+        1481,
+        2222
       ],
       "drops": [
         {
@@ -5362,109 +5362,109 @@
           "max": 3
         },
         {
-          "item": "field_silver_sword",
+          "item": "field_sunsteel_sword",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_staff",
+          "item": "field_sunsteel_staff",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_bow",
+          "item": "field_sunsteel_bow",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_armour",
+          "item": "field_sunsteel_armour",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_shield",
+          "item": "field_sunsteel_shield",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_cloak",
+          "item": "field_sunsteel_cloak",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_boots",
+          "item": "field_sunsteel_boots",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_ring",
+          "item": "field_sunsteel_ring",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_greatsword",
+          "item": "field_sunsteel_greatsword",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_dagger",
+          "item": "field_sunsteel_dagger",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_knuckles",
+          "item": "field_sunsteel_knuckles",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_robe",
+          "item": "field_sunsteel_robe",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_focus_shield",
+          "item": "field_sunsteel_focus_shield",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_spirit_cloak",
+          "item": "field_sunsteel_spirit_cloak",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_swift_boots",
+          "item": "field_sunsteel_swift_boots",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_arcane_ring",
+          "item": "field_sunsteel_arcane_ring",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         },
         {
-          "item": "field_silver_amulet",
+          "item": "field_sunsteel_amulet",
           "rate": 0.01764705882352941,
           "min": 1,
           "max": 1
         }
       ],
-      "jobExp": 19148,
+      "jobExp": 7361,
       "behavior": {
         "ai": "melee",
         "speed": 1.6,
@@ -5477,7 +5477,7 @@
       "artId": "greek_minotaur",
       "visualScale": 1,
       "phase2": {
-        "atk": 290,
+        "atk": 215,
         "element": "neutral"
       },
       "telegraphs": [
@@ -5506,17 +5506,17 @@
     {
       "id": "himmapan_01",
       "nameTh": "กินรีเฝ้าบึง",
-      "level": 50,
-      "hp": 4030,
+      "level": 35,
+      "hp": 2132,
       "sp": 0,
-      "atk": 190,
-      "matk": 165,
-      "hardDef": 38,
-      "softDef": 50,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 350,
-      "flee": 260,
+      "atk": 138,
+      "matk": 120,
+      "hardDef": 28,
+      "softDef": 36,
+      "hardMdef": 31,
+      "softMdef": 25,
+      "hit": 320,
+      "flee": 230,
       "element": "wind",
       "race": "angel",
       "size": "medium",
@@ -5532,10 +5532,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3020,
+      "exp": 1096,
       "gold": [
-        420,
-        650
+        305,
+        473
       ],
       "drops": [
         {
@@ -5581,7 +5581,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1661,
+      "jobExp": 603,
       "behavior": {
         "ai": "ranged",
         "speed": 2.4,
@@ -5599,17 +5599,17 @@
     {
       "id": "himmapan_jade_turtle",
       "nameTh": "เต่าตะไคร่หยก",
-      "level": 51,
-      "hp": 6240,
+      "level": 36,
+      "hp": 3345,
       "sp": 0,
-      "atk": 213,
+      "atk": 156,
       "matk": 0,
-      "hardDef": 41,
-      "softDef": 51,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 351,
-      "flee": 261,
+      "hardDef": 30,
+      "softDef": 37,
+      "hardMdef": 31,
+      "softMdef": 26,
+      "hit": 321,
+      "flee": 231,
       "element": "water",
       "race": "brute",
       "size": "medium",
@@ -5625,10 +5625,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3141,
+      "exp": 1165,
       "gold": [
-        465,
-        700
+        340,
+        513
       ],
       "drops": [
         {
@@ -5668,7 +5668,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1728,
+      "jobExp": 641,
       "behavior": {
         "ai": "melee",
         "speed": 1.2,
@@ -5684,17 +5684,17 @@
     {
       "id": "himmapan_03",
       "nameTh": "มกรธารา",
-      "level": 52,
-      "hp": 5980,
+      "level": 36,
+      "hp": 3094,
       "sp": 0,
-      "atk": 247,
+      "atk": 178,
       "matk": 0,
-      "hardDef": 44,
-      "softDef": 52,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 352,
-      "flee": 262,
+      "hardDef": 32,
+      "softDef": 37,
+      "hardMdef": 30,
+      "softMdef": 25,
+      "hit": 320,
+      "flee": 230,
       "element": "water",
       "race": "dragon",
       "size": "large",
@@ -5710,10 +5710,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3265,
+      "exp": 1146,
       "gold": [
-        510,
-        750
+        367,
+        539
       ],
       "drops": [
         {
@@ -5765,7 +5765,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1796,
+      "jobExp": 630,
       "behavior": {
         "ai": "melee",
         "speed": 2.4,
@@ -5781,17 +5781,17 @@
     {
       "id": "himmapan_blossom_deer",
       "nameTh": "กวางเถาดอก",
-      "level": 54,
-      "hp": 5720,
+      "level": 37,
+      "hp": 2899,
       "sp": 0,
-      "atk": 224,
+      "atk": 159,
       "matk": 0,
-      "hardDef": 47,
-      "softDef": 54,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 354,
-      "flee": 264,
+      "hardDef": 33,
+      "softDef": 38,
+      "hardMdef": 30,
+      "softMdef": 25,
+      "hit": 320,
+      "flee": 230,
       "element": "earth",
       "race": "brute",
       "size": "medium",
@@ -5807,10 +5807,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3519,
+      "exp": 1197,
       "gold": [
-        555,
-        800
+        395,
+        569
       ],
       "drops": [
         {
@@ -5862,7 +5862,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1935,
+      "jobExp": 658,
       "behavior": {
         "ai": "melee",
         "speed": 3.5,
@@ -5878,17 +5878,17 @@
     {
       "id": "himmapan_golden_macaque",
       "nameTh": "วานรผลทอง",
-      "level": 55,
-      "hp": 5330,
+      "level": 38,
+      "hp": 2738,
       "sp": 0,
-      "atk": 218,
-      "matk": 190,
-      "hardDef": 50,
-      "softDef": 55,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 355,
-      "flee": 265,
+      "atk": 156,
+      "matk": 136,
+      "hardDef": 36,
+      "softDef": 39,
+      "hardMdef": 30,
+      "softMdef": 25,
+      "hit": 321,
+      "flee": 231,
       "element": "earth",
       "race": "brute",
       "size": "small",
@@ -5904,10 +5904,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3650,
+      "exp": 1270,
       "gold": [
-        600,
-        850
+        430,
+        609
       ],
       "drops": [
         {
@@ -5953,7 +5953,7 @@
           "max": 1
         }
       ],
-      "jobExp": 2008,
+      "jobExp": 698,
       "behavior": {
         "ai": "ranged",
         "speed": 3.1,
@@ -5971,17 +5971,17 @@
     {
       "id": "himmapan_06",
       "nameTh": "สิงห์เถาวัลย์",
-      "level": 56,
-      "hp": 12750,
+      "level": 38,
+      "hp": 6336,
       "sp": 0,
-      "atk": 319,
+      "atk": 225,
       "matk": 0,
-      "hardDef": 53,
-      "softDef": 56,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 356,
-      "flee": 266,
+      "hardDef": 37,
+      "softDef": 39,
+      "hardMdef": 30,
+      "softMdef": 25,
+      "hit": 320,
+      "flee": 230,
       "element": "earth",
       "race": "brute",
       "size": "large",
@@ -5997,10 +5997,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 8323,
+      "exp": 2749,
       "gold": [
-        645,
-        900
+        455,
+        634
       ],
       "drops": [
         {
@@ -6040,7 +6040,7 @@
           "max": 1
         }
       ],
-      "jobExp": 4578,
+      "jobExp": 1512,
       "behavior": {
         "ai": "melee",
         "speed": 3.4,
@@ -6056,17 +6056,17 @@
     {
       "id": "himmapan_azure_garuda",
       "nameTh": "ครุฑเวหาคราม",
-      "level": 57,
-      "hp": 13800,
+      "level": 39,
+      "hp": 6950,
       "sp": 0,
-      "atk": 344,
+      "atk": 244,
       "matk": 0,
-      "hardDef": 56,
-      "softDef": 57,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 357,
-      "flee": 267,
+      "hardDef": 40,
+      "softDef": 40,
+      "hardMdef": 30,
+      "softMdef": 25,
+      "hit": 321,
+      "flee": 231,
       "element": "wind",
       "race": "angel",
       "size": "large",
@@ -6082,10 +6082,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 8621,
+      "exp": 2912,
       "gold": [
-        690,
-        950
+        490,
+        674
       ],
       "drops": [
         {
@@ -6131,7 +6131,7 @@
           "max": 1
         }
       ],
-      "jobExp": 4742,
+      "jobExp": 1602,
       "behavior": {
         "ai": "melee",
         "speed": 3,
@@ -6147,17 +6147,17 @@
     {
       "id": "himmapan_08",
       "nameTh": "นาคพิทักษ์บึง",
-      "level": 59,
-      "hp": 272000,
+      "level": 40,
+      "hp": 134473,
       "sp": 0,
-      "atk": 635,
+      "atk": 446,
       "matk": 0,
-      "hardDef": 68,
-      "softDef": 59,
-      "hardMdef": 42,
-      "softMdef": 35,
-      "hit": 359,
-      "flee": 269,
+      "hardDef": 48,
+      "softDef": 41,
+      "hardMdef": 30,
+      "softMdef": 25,
+      "hit": 321,
+      "flee": 231,
       "element": "water",
       "race": "dragon",
       "size": "large",
@@ -6173,10 +6173,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 50366,
+      "exp": 16544,
       "gold": [
-        3500,
-        5000
+        2461,
+        3516
       ],
       "drops": [
         {
@@ -6312,7 +6312,7 @@
           "max": 1
         }
       ],
-      "jobExp": 27701,
+      "jobExp": 9099,
       "behavior": {
         "ai": "melee",
         "speed": 0.8,
@@ -6325,7 +6325,7 @@
       "artId": "himmapan_08",
       "visualScale": 1,
       "phase2": {
-        "atk": 743,
+        "atk": 522,
         "element": "water"
       },
       "telegraphs": [
@@ -6354,17 +6354,17 @@
     {
       "id": "desert_01",
       "nameTh": "สคารับทรายแก้ว",
-      "level": 50,
-      "hp": 4680,
+      "level": 40,
+      "hp": 3133,
       "sp": 0,
-      "atk": 178,
+      "atk": 146,
       "matk": 0,
-      "hardDef": 34,
-      "softDef": 50,
-      "hardMdef": 35,
-      "softMdef": 32,
-      "hit": 350,
-      "flee": 260,
+      "hardDef": 28,
+      "softDef": 41,
+      "hardMdef": 29,
+      "softMdef": 26,
+      "hit": 330,
+      "flee": 240,
       "element": "earth",
       "race": "insect",
       "size": "small",
@@ -6380,10 +6380,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3020,
+      "exp": 1598,
       "gold": [
-        430,
-        660
+        352,
+        540
       ],
       "drops": [
         {
@@ -6429,7 +6429,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1661,
+      "jobExp": 879,
       "behavior": {
         "ai": "melee",
         "speed": 1.8,
@@ -6445,17 +6445,17 @@
     {
       "id": "desert_oasis_hawk",
       "nameTh": "เหยี่ยวโอเอซิส",
-      "level": 51,
-      "hp": 4290,
+      "level": 41,
+      "hp": 2895,
       "sp": 0,
-      "atk": 201,
+      "atk": 165,
       "matk": 0,
-      "hardDef": 38,
-      "softDef": 51,
-      "hardMdef": 37,
-      "softMdef": 32,
-      "hit": 351,
-      "flee": 261,
+      "hardDef": 31,
+      "softDef": 42,
+      "hardMdef": 30,
+      "softMdef": 26,
+      "hit": 331,
+      "flee": 241,
       "element": "wind",
       "race": "brute",
       "size": "small",
@@ -6471,10 +6471,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3141,
+      "exp": 1684,
       "gold": [
-        475,
-        710
+        390,
+        583
       ],
       "drops": [
         {
@@ -6520,7 +6520,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1728,
+      "jobExp": 926,
       "behavior": {
         "ai": "melee",
         "speed": 3.8,
@@ -6536,17 +6536,17 @@
     {
       "id": "desert_03",
       "nameTh": "อสรพิษฝังทราย",
-      "level": 52,
-      "hp": 5720,
+      "level": 42,
+      "hp": 3889,
       "sp": 0,
-      "atk": 241,
+      "atk": 199,
       "matk": 0,
-      "hardDef": 42,
-      "softDef": 52,
-      "hardMdef": 39,
-      "softMdef": 32,
-      "hit": 352,
-      "flee": 262,
+      "hardDef": 35,
+      "softDef": 43,
+      "hardMdef": 32,
+      "softMdef": 26,
+      "hit": 332,
+      "flee": 242,
       "element": "earth",
       "race": "brute",
       "size": "medium",
@@ -6562,10 +6562,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3265,
+      "exp": 1773,
       "gold": [
-        520,
-        760
+        429,
+        627
       ],
       "drops": [
         {
@@ -6611,7 +6611,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1796,
+      "jobExp": 975,
       "behavior": {
         "ai": "melee",
         "speed": 2.6,
@@ -6627,17 +6627,17 @@
     {
       "id": "desert_sand_ushabti",
       "nameTh": "หุ่นอุชับติหินทราย",
-      "level": 54,
-      "hp": 8840,
+      "level": 44,
+      "hp": 6097,
       "sp": 0,
-      "atk": 259,
+      "atk": 215,
       "matk": 0,
-      "hardDef": 46,
-      "softDef": 54,
-      "hardMdef": 41,
-      "softMdef": 32,
-      "hit": 354,
-      "flee": 264,
+      "hardDef": 38,
+      "softDef": 45,
+      "hardMdef": 34,
+      "softMdef": 27,
+      "hit": 334,
+      "flee": 244,
       "element": "earth",
       "race": "formless",
       "size": "large",
@@ -6653,10 +6653,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3519,
+      "exp": 1957,
       "gold": [
-        565,
-        810
+        469,
+        673
       ],
       "drops": [
         {
@@ -6702,7 +6702,7 @@
           "max": 1
         }
       ],
-      "jobExp": 1935,
+      "jobExp": 1076,
       "behavior": {
         "ai": "melee",
         "speed": 1.2,
@@ -6718,17 +6718,17 @@
     {
       "id": "desert_seal_mummy",
       "nameTh": "มัมมี่พันตรา",
-      "level": 55,
-      "hp": 6890,
+      "level": 45,
+      "hp": 4785,
       "sp": 0,
-      "atk": 253,
+      "atk": 211,
       "matk": 0,
-      "hardDef": 50,
-      "softDef": 55,
-      "hardMdef": 43,
-      "softMdef": 32,
-      "hit": 355,
-      "flee": 265,
+      "hardDef": 42,
+      "softDef": 46,
+      "hardMdef": 36,
+      "softMdef": 27,
+      "hit": 335,
+      "flee": 245,
       "element": "dark",
       "race": "undead",
       "size": "medium",
@@ -6744,10 +6744,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 3650,
+      "exp": 2053,
       "gold": [
-        610,
-        860
+        508,
+        717
       ],
       "drops": [
         {
@@ -6793,7 +6793,7 @@
           "max": 1
         }
       ],
-      "jobExp": 2008,
+      "jobExp": 1129,
       "behavior": {
         "ai": "melee",
         "speed": 1.1,
@@ -6809,17 +6809,17 @@
     {
       "id": "desert_06",
       "nameTh": "ผู้พิทักษ์เศียรหมาไน",
-      "level": 56,
-      "hp": 14250,
+      "level": 46,
+      "hp": 9961,
       "sp": 0,
-      "atk": 356,
+      "atk": 298,
       "matk": 0,
-      "hardDef": 54,
-      "softDef": 56,
-      "hardMdef": 45,
-      "softMdef": 32,
-      "hit": 356,
-      "flee": 266,
+      "hardDef": 45,
+      "softDef": 47,
+      "hardMdef": 38,
+      "softMdef": 27,
+      "hit": 336,
+      "flee": 246,
       "element": "holy",
       "race": "demihuman",
       "size": "medium",
@@ -6835,10 +6835,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 8323,
+      "exp": 4732,
       "gold": [
-        655,
-        910
+        548,
+        761
       ],
       "drops": [
         {
@@ -6884,7 +6884,7 @@
           "max": 1
         }
       ],
-      "jobExp": 4578,
+      "jobExp": 2603,
       "behavior": {
         "ai": "melee",
         "speed": 2.6,
@@ -6900,17 +6900,17 @@
     {
       "id": "desert_glass_scorpion",
       "nameTh": "ราชินีแมงป่องแก้ว",
-      "level": 57,
-      "hp": 15000,
+      "level": 47,
+      "hp": 10552,
       "sp": 0,
-      "atk": 369,
+      "atk": 309,
       "matk": 0,
-      "hardDef": 58,
-      "softDef": 57,
-      "hardMdef": 47,
-      "softMdef": 32,
-      "hit": 357,
-      "flee": 267,
+      "hardDef": 49,
+      "softDef": 48,
+      "hardMdef": 39,
+      "softMdef": 27,
+      "hit": 337,
+      "flee": 247,
       "element": "fire",
       "race": "insect",
       "size": "large",
@@ -6926,10 +6926,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 8621,
+      "exp": 4953,
       "gold": [
-        700,
-        960
+        587,
+        805
       ],
       "drops": [
         {
@@ -6975,7 +6975,7 @@
           "max": 1
         }
       ],
-      "jobExp": 4742,
+      "jobExp": 2724,
       "behavior": {
         "ai": "melee",
         "speed": 1.5,
@@ -6991,17 +6991,17 @@
     {
       "id": "desert_08",
       "nameTh": "สฟิงซ์สุริยคราส",
-      "level": 59,
-      "hp": 304000,
+      "level": 49,
+      "hp": 216422,
       "sp": 0,
-      "atk": 660,
+      "atk": 557,
       "matk": 0,
-      "hardDef": 75,
-      "softDef": 59,
-      "hardMdef": 52,
-      "softMdef": 32,
-      "hit": 359,
-      "flee": 269,
+      "hardDef": 63,
+      "softDef": 50,
+      "hardMdef": 44,
+      "softMdef": 27,
+      "hit": 339,
+      "flee": 249,
       "element": "holy",
       "race": "brute",
       "size": "large",
@@ -7017,10 +7017,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 50366,
+      "exp": 29512,
       "gold": [
-        3600,
-        5200
+        3038,
+        4388
       ],
       "drops": [
         {
@@ -7156,7 +7156,7 @@
           "max": 1
         }
       ],
-      "jobExp": 27701,
+      "jobExp": 16232,
       "behavior": {
         "ai": "melee",
         "speed": 0.8,
@@ -7169,7 +7169,7 @@
       "artId": "desert_08",
       "visualScale": 1,
       "phase2": {
-        "atk": 776,
+        "atk": 655,
         "element": "holy"
       },
       "telegraphs": [
@@ -7198,17 +7198,17 @@
     {
       "id": "desert_sand_ball",
       "nameTh": "ลูกทรายกลิ้ง",
-      "level": 50,
-      "hp": 300,
+      "level": 40,
+      "hp": 201,
       "sp": 0,
-      "atk": 150,
+      "atk": 123,
       "matk": 0,
       "hardDef": 0,
       "softDef": 0,
       "hardMdef": 0,
       "softMdef": 0,
-      "hit": 350,
-      "flee": 0,
+      "hit": 330,
+      "flee": 1,
       "element": "earth",
       "race": "insect",
       "size": "small",
@@ -7247,17 +7247,17 @@
     {
       "id": "desert_binding_knot",
       "nameTh": "ปมผ้าผูกมัด",
-      "level": 50,
-      "hp": 180,
+      "level": 40,
+      "hp": 120,
       "sp": 0,
-      "atk": 150,
+      "atk": 123,
       "matk": 0,
       "hardDef": 0,
       "softDef": 0,
       "hardMdef": 0,
       "softMdef": 0,
-      "hit": 350,
-      "flee": 0,
+      "hit": 330,
+      "flee": 1,
       "element": "earth",
       "race": "insect",
       "size": "small",
@@ -7296,17 +7296,17 @@
     {
       "id": "frost_01",
       "nameTh": "ดรอเกิร์เกราะเยือก",
-      "level": 60,
-      "hp": 7930,
+      "level": 50,
+      "hp": 5678,
       "sp": 0,
-      "atk": 259,
+      "atk": 219,
       "matk": 0,
-      "hardDef": 44,
-      "softDef": 60,
-      "hardMdef": 40,
-      "softMdef": 40,
-      "hit": 400,
-      "flee": 305,
+      "hardDef": 37,
+      "softDef": 51,
+      "hardMdef": 34,
+      "softMdef": 34,
+      "hit": 380,
+      "flee": 285,
       "element": "water",
       "race": "undead",
       "size": "medium",
@@ -7322,10 +7322,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 4340,
+      "exp": 2567,
       "gold": [
-        560,
-        820
+        474,
+        694
       ],
       "drops": [
         {
@@ -7371,7 +7371,7 @@
           "max": 1
         }
       ],
-      "jobExp": 2387,
+      "jobExp": 1412,
       "behavior": {
         "ai": "melee",
         "speed": 1.5,
@@ -7387,17 +7387,17 @@
     {
       "id": "frost_rune_raven",
       "nameTh": "อีกาหิมะรูน",
-      "level": 61,
-      "hp": 6240,
+      "level": 51,
+      "hp": 4492,
       "sp": 0,
-      "atk": 236,
+      "atk": 200,
       "matk": 0,
-      "hardDef": 48,
-      "softDef": 61,
-      "hardMdef": 42,
-      "softMdef": 40,
-      "hit": 401,
-      "flee": 306,
+      "hardDef": 41,
+      "softDef": 52,
+      "hardMdef": 36,
+      "softMdef": 34,
+      "hit": 381,
+      "flee": 286,
       "element": "wind",
       "race": "brute",
       "size": "small",
@@ -7413,10 +7413,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 4485,
+      "exp": 2677,
       "gold": [
-        610,
-        880
+        518,
+        747
       ],
       "drops": [
         {
@@ -7456,7 +7456,7 @@
           "max": 1
         }
       ],
-      "jobExp": 2467,
+      "jobExp": 1472,
       "behavior": {
         "ai": "melee",
         "speed": 3,
@@ -7472,17 +7472,17 @@
     {
       "id": "frost_03",
       "nameTh": "หมาป่ารูนหิมะ",
-      "level": 62,
-      "hp": 7670,
+      "level": 52,
+      "hp": 5551,
       "sp": 0,
-      "atk": 293,
+      "atk": 249,
       "matk": 0,
-      "hardDef": 52,
-      "softDef": 62,
-      "hardMdef": 44,
-      "softMdef": 40,
-      "hit": 402,
-      "flee": 307,
+      "hardDef": 44,
+      "softDef": 53,
+      "hardMdef": 37,
+      "softMdef": 34,
+      "hit": 382,
+      "flee": 287,
       "element": "water",
       "race": "brute",
       "size": "medium",
@@ -7498,10 +7498,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 4633,
+      "exp": 2789,
       "gold": [
-        660,
-        940
+        561,
+        800
       ],
       "drops": [
         {
@@ -7541,7 +7541,7 @@
           "max": 1
         }
       ],
-      "jobExp": 2548,
+      "jobExp": 1534,
       "behavior": {
         "ai": "melee",
         "speed": 3.5,
@@ -7557,17 +7557,17 @@
     {
       "id": "frost_ice_lindworm",
       "nameTh": "ลินด์เวิร์มธารแข็ง",
-      "level": 64,
-      "hp": 9880,
+      "level": 54,
+      "hp": 7224,
       "sp": 0,
-      "atk": 334,
+      "atk": 286,
       "matk": 0,
-      "hardDef": 56,
-      "softDef": 64,
-      "hardMdef": 46,
-      "softMdef": 40,
-      "hit": 404,
-      "flee": 309,
+      "hardDef": 48,
+      "softDef": 55,
+      "hardMdef": 39,
+      "softMdef": 34,
+      "hit": 384,
+      "flee": 289,
       "element": "water",
       "race": "dragon",
       "size": "large",
@@ -7583,10 +7583,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 4935,
+      "exp": 3021,
       "gold": [
-        710,
-        1000
+        607,
+        855
       ],
       "drops": [
         {
@@ -7632,7 +7632,7 @@
           "max": 1
         }
       ],
-      "jobExp": 2714,
+      "jobExp": 1661,
       "behavior": {
         "ai": "melee",
         "speed": 2,
@@ -7648,17 +7648,17 @@
     {
       "id": "frost_winter_wavehorse",
       "nameTh": "ม้าคลื่นเหมันต์",
-      "level": 65,
-      "hp": 10660,
+      "level": 55,
+      "hp": 7832,
       "sp": 0,
-      "atk": 357,
+      "atk": 306,
       "matk": 0,
-      "hardDef": 60,
-      "softDef": 65,
-      "hardMdef": 48,
-      "softMdef": 40,
-      "hit": 405,
-      "flee": 310,
+      "hardDef": 51,
+      "softDef": 56,
+      "hardMdef": 41,
+      "softMdef": 34,
+      "hit": 385,
+      "flee": 290,
       "element": "water",
       "race": "brute",
       "size": "large",
@@ -7674,10 +7674,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 5090,
+      "exp": 3141,
       "gold": [
-        760,
-        1060
+        651,
+        909
       ],
       "drops": [
         {
@@ -7723,7 +7723,7 @@
           "max": 1
         }
       ],
-      "jobExp": 2800,
+      "jobExp": 1728,
       "behavior": {
         "ai": "melee",
         "speed": 3.4,
@@ -7739,17 +7739,17 @@
     {
       "id": "frost_06",
       "nameTh": "โทรลล์หินน้ำแข็ง",
-      "level": 66,
-      "hp": 21300,
+      "level": 56,
+      "hp": 15723,
       "sp": 0,
-      "atk": 450,
+      "atk": 387,
       "matk": 0,
-      "hardDef": 64,
-      "softDef": 66,
-      "hardMdef": 50,
-      "softMdef": 40,
-      "hit": 406,
-      "flee": 311,
+      "hardDef": 55,
+      "softDef": 57,
+      "hardMdef": 43,
+      "softMdef": 34,
+      "hit": 386,
+      "flee": 291,
       "element": "earth",
       "race": "brute",
       "size": "large",
@@ -7765,10 +7765,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 11544,
+      "exp": 7178,
       "gold": [
-        810,
-        1120
+        696,
+        962
       ],
       "drops": [
         {
@@ -7814,7 +7814,7 @@
           "max": 1
         }
       ],
-      "jobExp": 6349,
+      "jobExp": 3948,
       "behavior": {
         "ai": "melee",
         "speed": 1.5,
@@ -7830,17 +7830,17 @@
     {
       "id": "frost_fractured_valkyrie",
       "nameTh": "วาลคีรีเกราะร้าว",
-      "level": 67,
-      "hp": 18750,
+      "level": 57,
+      "hp": 13903,
       "sp": 0,
-      "atk": 438,
+      "atk": 377,
       "matk": 0,
-      "hardDef": 68,
-      "softDef": 67,
-      "hardMdef": 52,
-      "softMdef": 40,
-      "hit": 407,
-      "flee": 312,
+      "hardDef": 59,
+      "softDef": 58,
+      "hardMdef": 45,
+      "softMdef": 34,
+      "hit": 387,
+      "flee": 292,
       "element": "wind",
       "race": "angel",
       "size": "medium",
@@ -7856,10 +7856,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 11895,
+      "exp": 7451,
       "gold": [
-        860,
-        1180
+        741,
+        1016
       ],
       "drops": [
         {
@@ -7905,7 +7905,7 @@
           "max": 1
         }
       ],
-      "jobExp": 6542,
+      "jobExp": 4098,
       "behavior": {
         "ai": "melee",
         "speed": 2.6,
@@ -7921,17 +7921,17 @@
     {
       "id": "frost_08",
       "nameTh": "โยตุนผู้เฝ้าฟยอร์ด",
-      "level": 69,
-      "hp": 440000,
+      "level": 59,
+      "hp": 329116,
       "sp": 0,
-      "atk": 825,
+      "atk": 714,
       "matk": 0,
-      "hardDef": 90,
-      "softDef": 69,
-      "hardMdef": 65,
-      "softMdef": 40,
-      "hit": 409,
-      "flee": 314,
+      "hardDef": 78,
+      "softDef": 60,
+      "hardMdef": 56,
+      "softMdef": 35,
+      "hit": 389,
+      "flee": 294,
       "element": "water",
       "race": "demihuman",
       "size": "large",
@@ -7947,10 +7947,10 @@
       "skills": [
         "basic"
       ],
-      "exp": 68798,
+      "exp": 43710,
       "gold": [
-        4800,
-        6900
+        4151,
+        5968
       ],
       "drops": [
         {
@@ -8080,7 +8080,7 @@
           "max": 1
         }
       ],
-      "jobExp": 37839,
+      "jobExp": 24040,
       "behavior": {
         "ai": "melee",
         "speed": 0.8,
@@ -8093,7 +8093,7 @@
       "artId": "frost_08",
       "visualScale": 1,
       "phase2": {
-        "atk": 974,
+        "atk": 842,
         "element": "water"
       },
       "telegraphs": [

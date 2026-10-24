@@ -10,7 +10,7 @@ test("each hunting map's monsters drop materials of their own", () => {
 	const owner = new Map<string, string>();
 	for (const m of data.monsters.monsters.filter((m) => !m.boss && m.level >= 6))
 		for (const mat of materials(m.id)) {
-			const tier = m.level <= 15 ? 0 : m.level <= 22 ? 1 : 2;
+			const tier = m.tags.includes('forest') ? 0 : m.tags.includes('ruins') ? 1 : 2;
 			const seen = owner.get(mat.id);
 			assert.ok(!seen || seen === String(tier), `${mat.id} dropped on two maps (${m.id})`);
 			owner.set(mat.id, String(tier));

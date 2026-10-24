@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import {loadGameData,starterInventory,applyInventory,deriveStats,equipped} from '../src/index.js';
 
 const data=loadGameData(),forge=data.economy.shops.forge;
-const power=(t: typeof data.items.items[number])=>t.atk??t.modifiers.reduce((n,m)=>n+('value' in m&&typeof m.value==='number'?m.value:0),0);
-const levels=[10,20,30,40,50,60,70,80,90,99];
-const gear=data.items.items.filter(t=>t.slot&&t.level>=10&&forge[t.id]!==undefined);
+const power=(t: typeof data.items.items[number])=>(t.atk??0)+(t.matk??0)+t.modifiers.reduce((n,m)=>n+('value' in m&&typeof m.value==='number'?m.value:0),0);
+const levels=[5,10,15,25,35,50,70,80,90,99];
+const gear=data.items.items.filter(t=>t.slot&&t.level>=5&&forge[t.id]!==undefined);
 
 test('every equipment tier supports every current class and all physical equipment slots',()=>{
  for(const level of levels){

@@ -1,5 +1,36 @@
 # Starter world authoring
 
+## Current level progression (2026-10-25)
+
+The live progression supersedes the older level examples below:
+
+| Map | Levels |
+| --- | --- |
+| meadow | 1–5 |
+| forest | 5–10 |
+| ruins | 10–15 |
+| canyon | 15–20 |
+| grove | 20–25 |
+| summit | 25–30 |
+| temple | 30–35 |
+| himmapan | 35–40 |
+| desert | 40–44 / 45–49 |
+| frost | 50–54 / 55–59 |
+| yokai | 60–64 / 65–69 |
+| dragon, volcano | 70–74 / 75–79 |
+| fae, ocean | 80–84 / 85–89 |
+| astral, abyss | 90–94 / 95–99 |
+| confluence | 100 |
+
+Later bands use the existing physical habitats, named with their five-level range in
+Tiled. Map geometry, gate connections and the Lv.100 invitation requirement stay the
+same. Monster stats, EXP and gold were rescaled with the changed monster levels;
+equipment bases and new Unique rolls follow the new progression. Existing template
+IDs and saved roll values remain valid. Owned equipment uses the updated template's
+base stats; saved item levels above 10 still enforce their original level requirement.
+Character levels and quest completion are unchanged. Shop prices, potion strengths
+and Unique affix bounds are retained; playtest pacing and boss difficulty before UAT.
+
 Open `starter-world.world` in Tiled to see the city and all four playable hunting maps.
 The source files are `south-meadow.tmj`, `east-forest.tmj`, `north-ruins.tmj` and
 `west-quarry.tmj`. The last two filenames retain the earlier theme-plan directions;

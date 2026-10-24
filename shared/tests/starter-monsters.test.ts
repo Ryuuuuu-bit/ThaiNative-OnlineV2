@@ -7,14 +7,14 @@ function fixture(){const g=createGame(7,undefined,'test',data,'forest');g.enemie
 function card(g:ReturnType<typeof fixture>,id:string){g.p.inventory={items:[{id:'test-item',template:'field_armour',qty:1,location:'equip',slot:'body',cards:[id],refine:0,bound:false,source:'test'}]} as any;}
 test('all 18 starter species have real habitats, distinct cards/materials and exactly the intended Unique sources',()=>{
  const cards=new Set<string>();
- for(const id of ids){const m=data.monsters.monsters.find(m=>m.id===id)!;assert.ok(m&&m.level<=10);assert.ok(id==='thorn_nest_mother'||id==='king_jelly'||Object.values(LAYOUTS).some(l=>l.spawns.some(s=>s.dataId===id)),id);
+ for(const id of ids){const m=data.monsters.monsters.find(m=>m.id===id)!;assert.ok(m&&m.level<=20);assert.ok(id==='thorn_nest_mother'||id==='king_jelly'||Object.values(LAYOUTS).some(l=>l.spawns.some(s=>s.dataId===id)),id);
   const card=m.drops.filter(d=>d.item.startsWith('card_'));assert.equal(card.length,1,id);assert.ok(STARTER_CARD_TEXT[card[0].item]);cards.add(card[0].item);
   assert.ok(m.drops.some(d=>data.items.items.find(i=>i.id===d.item)?.type==='material'),id);
  }
  assert.equal(cards.size,18);
  for(const [unique,boss]of [['unique_tide_crown','king_jelly'],['unique_mist_weaver','thorn_nest_mother']])assert.deepEqual(data.monsters.monsters.filter(m=>m.drops.some(d=>d.item===unique)).map(m=>m.id),[boss]);
 });
-test('level-one gate creatures stay passive until struck and long windups retain contact/recovery time',()=>{
+test('gate creatures stay passive until struck and long windups retain contact/recovery time',()=>{
  const g=fixture(),e=spawn(g,-23,30,false,'pink',false,'forest_young_1');g.random=()=>.5;
  for(let i=0;i<20;i++)step(g,.05);assert.equal(e.aggro,0);assert.equal(g.p.hp,g.p.maxHp);
  g.p.x=e.x;g.p.z=e.z+1;action(g,'attack');assert.ok(e.aggro>0);

@@ -1244,7 +1244,7 @@
       {
         "x": -60,
         "z": -20,
-        "name": "สคารับทรายแก้ว",
+        "name": "สคารับทรายแก้ว · Lv.40–44",
         "dataId": "desert_01",
         "variant": "pink",
         "rx": 10,
@@ -1254,7 +1254,7 @@
       {
         "x": -36,
         "z": -34,
-        "name": "เหยี่ยวโอเอซิส",
+        "name": "เหยี่ยวโอเอซิส · Lv.40–44",
         "dataId": "desert_oasis_hawk",
         "variant": "pink",
         "rx": 9,
@@ -1264,7 +1264,7 @@
       {
         "x": -58,
         "z": 45,
-        "name": "อสรพิษฝังทราย",
+        "name": "อสรพิษฝังทราย · Lv.40–44",
         "dataId": "desert_03",
         "variant": "pink",
         "rx": 10,
@@ -1274,7 +1274,7 @@
       {
         "x": -8,
         "z": -28,
-        "name": "หุ่นอุชับติหินทราย",
+        "name": "หุ่นอุชับติหินทราย · Lv.40–44",
         "dataId": "desert_sand_ushabti",
         "variant": "pink",
         "rx": 9,
@@ -1284,7 +1284,7 @@
       {
         "x": -20,
         "z": 32,
-        "name": "มัมมี่พันตรา",
+        "name": "มัมมี่พันตรา · Lv.45–49",
         "dataId": "desert_seal_mummy",
         "variant": "pink",
         "rx": 9,
@@ -1294,7 +1294,7 @@
       {
         "x": 42,
         "z": -24,
-        "name": "ผู้พิทักษ์เศียรหมาไน",
+        "name": "ผู้พิทักษ์เศียรหมาไน · Lv.45–49",
         "dataId": "desert_06",
         "variant": "pink",
         "rx": 8,
@@ -1304,7 +1304,7 @@
       {
         "x": 26,
         "z": 36,
-        "name": "ราชินีแมงป่องแก้ว",
+        "name": "ราชินีแมงป่องแก้ว · Lv.45–49",
         "dataId": "desert_glass_scorpion",
         "variant": "pink",
         "rx": 8,
@@ -1357,7 +1357,7 @@
     },
     "exploration": false,
     "name": "ทะเลทรายสุริยคราส",
-    "levels": "50–59"
+    "levels": "40–49"
   },
   "frost": {
     "id": "frost",
@@ -2736,7 +2736,7 @@
       {
         "x": -60,
         "z": 36,
-        "name": "ดรอเกิร์เกราะเยือก",
+        "name": "ดรอเกิร์เกราะเยือก · Lv.50–54",
         "dataId": "frost_01",
         "variant": "pink",
         "rx": 9,
@@ -2746,7 +2746,7 @@
       {
         "x": -48,
         "z": 2,
-        "name": "อีกาหิมะรูน",
+        "name": "อีกาหิมะรูน · Lv.50–54",
         "dataId": "frost_rune_raven",
         "variant": "pink",
         "rx": 9,
@@ -2756,7 +2756,7 @@
       {
         "x": -18,
         "z": 42,
-        "name": "หมาป่ารูนหิมะ",
+        "name": "หมาป่ารูนหิมะ · Lv.50–54",
         "dataId": "frost_03",
         "variant": "pink",
         "rx": 9,
@@ -2766,7 +2766,7 @@
       {
         "x": -24,
         "z": -25,
-        "name": "ลินด์เวิร์มธารแข็ง",
+        "name": "ลินด์เวิร์มธารแข็ง · Lv.50–54",
         "dataId": "frost_ice_lindworm",
         "variant": "pink",
         "rx": 10,
@@ -2776,7 +2776,7 @@
       {
         "x": 20,
         "z": 50,
-        "name": "ม้าคลื่นเหมันต์",
+        "name": "ม้าคลื่นเหมันต์ · Lv.55–59",
         "dataId": "frost_winter_wavehorse",
         "variant": "pink",
         "rx": 10,
@@ -2786,7 +2786,7 @@
       {
         "x": 20,
         "z": -37,
-        "name": "โทรลล์หินน้ำแข็ง",
+        "name": "โทรลล์หินน้ำแข็ง · Lv.55–59",
         "dataId": "frost_06",
         "variant": "pink",
         "rx": 8,
@@ -2796,7 +2796,7 @@
       {
         "x": 44,
         "z": -12,
-        "name": "วาลคีรีเกราะร้าว",
+        "name": "วาลคีรีเกราะร้าว · Lv.55–59",
         "dataId": "frost_fractured_valkyrie",
         "variant": "pink",
         "rx": 9,
@@ -2849,7 +2849,7 @@
     },
     "exploration": false,
     "name": "ฟยอร์ดรูนเหมันต์",
-    "levels": "60–69"
+    "levels": "50–59"
   },
   "yokai": {
     "id": "yokai",
@@ -4135,7 +4135,7 @@
       {
         "x": -8,
         "z": 34,
-        "name": "คัปปะลำธาร",
+        "name": "คัปปะลำธาร · Lv.60–64",
         "dataId": "yokai_01",
         "variant": "pink",
         "rx": 11,
@@ -4145,7 +4145,7 @@
       {
         "x": -40,
         "z": 20,
-        "name": "คาซะโอบาเกะหยดฝน",
+        "name": "คาซะโอบาเกะหยดฝน · Lv.60–64",
         "dataId": "yokai_rain_umbrella",
         "variant": "pink",
         "rx": 10,
@@ -4155,7 +4155,7 @@
       {
         "x": -40,
         "z": -40,
-        "name": "คาราสึเท็งงู",
+        "name": "คาราสึเท็งงู · Lv.60–64",
         "dataId": "yokai_03",
         "variant": "pink",
         "rx": 9,
@@ -4165,7 +4165,7 @@
       {
         "x": 16,
         "z": 20,
-        "name": "โคดามะโคนไผ่",
+        "name": "โคดามะโคนไผ่ · Lv.60–64",
         "dataId": "yokai_bamboo_kodama",
         "variant": "pink",
         "rx": 10,
@@ -4175,7 +4175,7 @@
       {
         "x": 42,
         "z": 12,
-        "name": "นูเอเมฆฝน",
+        "name": "นูเอเมฆฝน · Lv.65–69",
         "dataId": "yokai_rain_nue",
         "variant": "pink",
         "rx": 9,
@@ -4185,7 +4185,7 @@
       {
         "x": -20,
         "z": -18,
-        "name": "คิทสึเนะโคมคราม",
+        "name": "คิทสึเนะโคมคราม · Lv.65–69",
         "dataId": "yokai_06",
         "variant": "pink",
         "rx": 10,
@@ -4195,7 +4195,7 @@
       {
         "x": 5,
         "z": -43,
-        "name": "โรคุโรคุบิโคมชาด",
+        "name": "โรคุโรคุบิโคมชาด · Lv.65–69",
         "dataId": "yokai_lantern_rokurokubi",
         "variant": "pink",
         "rx": 8,
@@ -5738,7 +5738,7 @@
       {
         "x": -56,
         "z": 14,
-        "name": "ปลามังกรเมฆา",
+        "name": "ปลามังกรเมฆา · Lv.70–74",
         "dataId": "dragon_cloud_carp",
         "variant": "pink",
         "rx": 8,
@@ -5748,7 +5748,7 @@
       {
         "x": -38,
         "z": -24,
-        "name": "กระเรียนหยกวายุ",
+        "name": "กระเรียนหยกวายุ · Lv.70–74",
         "dataId": "dragon_jade_crane",
         "variant": "pink",
         "rx": 8,
@@ -5758,7 +5758,7 @@
       {
         "x": -15,
         "z": 12,
-        "name": "สุนัขศิลาหน้าตำหนัก",
+        "name": "สุนัขศิลาหน้าตำหนัก · Lv.70–74",
         "dataId": "dragon_stone_liondog",
         "variant": "pink",
         "rx": 8,
@@ -5768,7 +5768,7 @@
       {
         "x": 6,
         "z": -42,
-        "name": "กิเลนธารฟ้า",
+        "name": "กิเลนธารฟ้า · Lv.70–74",
         "dataId": "dragon_sky_qilin",
         "variant": "pink",
         "rx": 8,
@@ -5778,7 +5778,7 @@
       {
         "x": 18,
         "z": 12,
-        "name": "มังกรน้อยกระดิ่ง",
+        "name": "มังกรน้อยกระดิ่ง · Lv.75–79",
         "dataId": "dragon_bell_drake",
         "variant": "pink",
         "rx": 8,
@@ -5788,7 +5788,7 @@
       {
         "x": 56,
         "z": 15,
-        "name": "พยัคฆ์ขาวเกราะเมฆ",
+        "name": "พยัคฆ์ขาวเกราะเมฆ · Lv.75–79",
         "dataId": "dragon_white_cloud_tiger",
         "variant": "pink",
         "rx": 8,
@@ -5798,7 +5798,7 @@
       {
         "x": 25,
         "z": -28,
-        "name": "ผู้เฝ้าประตูหยก",
+        "name": "ผู้เฝ้าประตูหยก · Lv.75–79",
         "dataId": "dragon_jade_gatekeeper",
         "variant": "pink",
         "rx": 8,
@@ -7238,7 +7238,7 @@
       {
         "x": -25,
         "z": -42,
-        "name": "จิ้งจกแก้วลาวา",
+        "name": "จิ้งจกแก้วลาวา · Lv.70–74",
         "dataId": "volcano_lava_glass_lizard",
         "variant": "pink",
         "rx": 8,
@@ -7248,7 +7248,7 @@
       {
         "x": -49,
         "z": -20,
-        "name": "ด้วงขี้เถ้ากลิ้งหิน",
+        "name": "ด้วงขี้เถ้ากลิ้งหิน · Lv.70–74",
         "dataId": "volcano_ash_boulder_beetle",
         "variant": "pink",
         "rx": 8,
@@ -7258,7 +7258,7 @@
       {
         "x": -27,
         "z": 22,
-        "name": "หมูป่าเถ้าหนาม",
+        "name": "หมูป่าเถ้าหนาม · Lv.70–74",
         "dataId": "volcano_ash_spine_boar",
         "variant": "pink",
         "rx": 8,
@@ -7268,7 +7268,7 @@
       {
         "x": 20,
         "z": -35,
-        "name": "ภูตถ่านเตาเก่า",
+        "name": "ภูตถ่านเตาเก่า · Lv.70–74",
         "dataId": "volcano_old_kiln_sprite",
         "variant": "pink",
         "rx": 8,
@@ -7278,7 +7278,7 @@
       {
         "x": 25,
         "z": 14,
-        "name": "เห็ดแก้วควันแดง",
+        "name": "เห็ดแก้วควันแดง · Lv.75–79",
         "dataId": "volcano_red_smoke_shroom",
         "variant": "pink",
         "rx": 8,
@@ -7288,7 +7288,7 @@
       {
         "x": 12,
         "z": 42,
-        "name": "วิหคเพลิงปีกคราม",
+        "name": "วิหคเพลิงปีกคราม · Lv.75–79",
         "dataId": "volcano_azure_firebird",
         "variant": "pink",
         "rx": 8,
@@ -7298,7 +7298,7 @@
       {
         "x": 58,
         "z": -10,
-        "name": "อสูรค้อนปากปล่อง",
+        "name": "อสูรค้อนปากปล่อง · Lv.75–79",
         "dataId": "volcano_crater_hammer_ogre",
         "variant": "pink",
         "rx": 8,
@@ -8487,7 +8487,7 @@
       {
         "x": 53,
         "z": 10,
-        "name": "พูกาม้าเงา",
+        "name": "พูกาม้าเงา · Lv.80–84",
         "dataId": "fae_puca_shadowhorse",
         "variant": "pink",
         "rx": 8,
@@ -8497,7 +8497,7 @@
       {
         "x": 22,
         "z": 20,
-        "name": "ผีเสื้อแสงหลงทาง",
+        "name": "ผีเสื้อแสงหลงทาง · Lv.80–84",
         "dataId": "fae_wandering_light_moth",
         "variant": "pink",
         "rx": 8,
@@ -8507,7 +8507,7 @@
       {
         "x": -28,
         "z": 18,
-        "name": "รากเดินสวนลวง",
+        "name": "รากเดินสวนลวง · Lv.80–84",
         "dataId": "fae_false_garden_root",
         "variant": "pink",
         "rx": 8,
@@ -8517,7 +8517,7 @@
       {
         "x": -18,
         "z": -18,
-        "name": "ภูตกระจกหยดจันทร์",
+        "name": "ภูตกระจกหยดจันทร์ · Lv.80–84",
         "dataId": "fae_moondrop_mirrorfae",
         "variant": "pink",
         "rx": 8,
@@ -8527,7 +8527,7 @@
       {
         "x": 22,
         "z": -22,
-        "name": "กวางตะไคร่จันทรา",
+        "name": "กวางตะไคร่จันทรา · Lv.85–89",
         "dataId": "fae_moonlichen_stag",
         "variant": "pink",
         "rx": 8,
@@ -8537,7 +8537,7 @@
       {
         "x": -41,
         "z": -24,
-        "name": "แบนชีผ้าคลุมม่วง",
+        "name": "แบนชีผ้าคลุมม่วง · Lv.85–89",
         "dataId": "fae_violet_banshee",
         "variant": "pink",
         "rx": 8,
@@ -8547,7 +8547,7 @@
       {
         "x": -14,
         "z": -44,
-        "name": "ดูลาฮานโซ่เงิน",
+        "name": "ดูลาฮานโซ่เงิน · Lv.85–89",
         "dataId": "fae_silverchain_dullahan",
         "variant": "pink",
         "rx": 8,
@@ -10071,7 +10071,7 @@
       {
         "x": -51,
         "z": 14,
-        "name": "หอยสังข์เกราะพายุ",
+        "name": "หอยสังข์เกราะพายุ · Lv.80–84",
         "dataId": "ocean_storm_conch",
         "variant": "pink",
         "rx": 8,
@@ -10081,7 +10081,7 @@
       {
         "x": -30,
         "z": -10,
-        "name": "ปูเสากระโดง",
+        "name": "ปูเสากระโดง · Lv.80–84",
         "dataId": "ocean_mast_crab",
         "variant": "pink",
         "rx": 8,
@@ -10091,7 +10091,7 @@
       {
         "x": -34,
         "z": 43,
-        "name": "ปลาโคมกระแสวน",
+        "name": "ปลาโคมกระแสวน · Lv.80–84",
         "dataId": "ocean_whirlpool_lanternfish",
         "variant": "pink",
         "rx": 8,
@@ -10101,7 +10101,7 @@
       {
         "x": 12,
         "z": 34,
-        "name": "ไซเรนเกาะหมอก",
+        "name": "ไซเรนเกาะหมอก · Lv.80–84",
         "dataId": "ocean_mist_isle_siren",
         "variant": "pink",
         "rx": 8,
@@ -10111,7 +10111,7 @@
       {
         "x": 32,
         "z": -8,
-        "name": "อัศวินปะการังจม",
+        "name": "อัศวินปะการังจม · Lv.85–89",
         "dataId": "ocean_sunken_coral_knight",
         "variant": "pink",
         "rx": 8,
@@ -10121,7 +10121,7 @@
       {
         "x": 7,
         "z": -48,
-        "name": "สกิลลาผาหกเศียร",
+        "name": "สกิลลาผาหกเศียร · Lv.85–89",
         "dataId": "ocean_sixhead_reef_scylla",
         "variant": "pink",
         "rx": 8,
@@ -10131,7 +10131,7 @@
       {
         "x": 56,
         "z": 5,
-        "name": "อสูรเรืออับปาง",
+        "name": "อสูรเรืออับปาง · Lv.85–89",
         "dataId": "ocean_shipwreck_colossus",
         "variant": "pink",
         "rx": 8,
@@ -11677,7 +11677,7 @@
       {
         "x": -12,
         "z": 53,
-        "name": "แมงกะพรุนละอองดาว",
+        "name": "แมงกะพรุนละอองดาว · Lv.90–94",
         "dataId": "astral_stardust_jellyfish",
         "variant": "pink",
         "rx": 8,
@@ -11687,7 +11687,7 @@
       {
         "x": 25,
         "z": 34,
-        "name": "กระเบนวงโคจร",
+        "name": "กระเบนวงโคจร · Lv.90–94",
         "dataId": "astral_orbital_ray",
         "variant": "pink",
         "rx": 8,
@@ -11697,7 +11697,7 @@
       {
         "x": -30,
         "z": 35,
-        "name": "งูวงแหวนอุกกาบาต",
+        "name": "งูวงแหวนอุกกาบาต · Lv.90–94",
         "dataId": "astral_meteor_ring_serpent",
         "variant": "pink",
         "rx": 8,
@@ -11707,7 +11707,7 @@
       {
         "x": -32,
         "z": -10,
-        "name": "นกกระเรียนกลุ่มดาว",
+        "name": "นกกระเรียนกลุ่มดาว · Lv.90–94",
         "dataId": "astral_constellation_crane",
         "variant": "pink",
         "rx": 8,
@@ -11717,7 +11717,7 @@
       {
         "x": 37,
         "z": -35,
-        "name": "หุ่นระฆังสุญญากาศ",
+        "name": "หุ่นระฆังสุญญากาศ · Lv.95–99",
         "dataId": "astral_vacuum_bell_construct",
         "variant": "pink",
         "rx": 8,
@@ -11727,7 +11727,7 @@
       {
         "x": 57,
         "z": -15,
-        "name": "ราชสีห์สุริยเงา",
+        "name": "ราชสีห์สุริยเงา · Lv.95–99",
         "dataId": "astral_solarshadow_lion",
         "variant": "pink",
         "rx": 8,
@@ -11737,7 +11737,7 @@
       {
         "x": -18,
         "z": -57,
-        "name": "อัศวินตราสิบสองดาว",
+        "name": "อัศวินตราสิบสองดาว · Lv.95–99",
         "dataId": "astral_twelve_star_knight",
         "variant": "pink",
         "rx": 8,
@@ -13386,7 +13386,7 @@
       {
         "x": -8,
         "z": -50,
-        "name": "ปูเกลือดำ",
+        "name": "ปูเกลือดำ · Lv.90–94",
         "dataId": "abyss_black_salt_crab",
         "variant": "pink",
         "rx": 8,
@@ -13396,7 +13396,7 @@
       {
         "x": -43,
         "z": -26,
-        "name": "ปลาตีนคราบดิน",
+        "name": "ปลาตีนคราบดิน · Lv.90–94",
         "dataId": "abyss_silt_mudskipper",
         "variant": "pink",
         "rx": 8,
@@ -13406,7 +13406,7 @@
       {
         "x": -42,
         "z": 20,
-        "name": "หุ่นดินดำซิกกูแรต",
+        "name": "หุ่นดินดำซิกกูแรต · Lv.90–94",
         "dataId": "abyss_ziggurat_clay_guard",
         "variant": "pink",
         "rx": 8,
@@ -13416,7 +13416,7 @@
       {
         "x": 10,
         "z": 12,
-        "name": "สิงห์นกอันซู",
+        "name": "สิงห์นกอันซู · Lv.90–94",
         "dataId": "abyss_anzu_lionbird",
         "variant": "pink",
         "rx": 8,
@@ -13426,7 +13426,7 @@
       {
         "x": 30,
         "z": -21,
-        "name": "มังกรงูมุชฮุชชู",
+        "name": "มังกรงูมุชฮุชชู · Lv.95–99",
         "dataId": "abyss_mushhushshu_serpent",
         "variant": "pink",
         "rx": 8,
@@ -13436,7 +13436,7 @@
       {
         "x": 3,
         "z": 44,
-        "name": "แมงป่องชายแดนราตรี",
+        "name": "แมงป่องชายแดนราตรี · Lv.95–99",
         "dataId": "abyss_night_border_scorpion",
         "variant": "pink",
         "rx": 8,
@@ -13446,7 +13446,7 @@
       {
         "x": 67,
         "z": -7,
-        "name": "ผู้พิทักษ์ลามัสสุหินดำ",
+        "name": "ผู้พิทักษ์ลามัสสุหินดำ · Lv.95–99",
         "dataId": "abyss_blackstone_lamassu",
         "variant": "pink",
         "rx": 8,

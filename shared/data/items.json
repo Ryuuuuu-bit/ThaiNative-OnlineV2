@@ -770,7 +770,7 @@
       "nameTh": "ดาบเหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 70,
       "npcPrice": 1500,
       "rarity": "fine",
@@ -781,7 +781,7 @@
       "bind": "none",
       "icon": "training_sword",
       "weaponType": "sword1h",
-      "atk": 22,
+      "atk": 17,
       "matk": 0,
       "interval": 0.44
     },
@@ -790,7 +790,7 @@
       "nameTh": "คทาเหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 55,
       "npcPrice": 1650,
       "rarity": "fine",
@@ -801,8 +801,8 @@
       "bind": "none",
       "icon": "wood_staff",
       "weaponType": "staff",
-      "atk": 6,
-      "matk": 31,
+      "atk": 5,
+      "matk": 23,
       "interval": 0.65
     },
     {
@@ -810,7 +810,7 @@
       "nameTh": "ธนูเหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 55,
       "npcPrice": 1500,
       "rarity": "fine",
@@ -821,7 +821,7 @@
       "bind": "none",
       "icon": "bamboo_bow",
       "weaponType": "bow",
-      "atk": 21,
+      "atk": 16,
       "interval": 0.65
     },
     {
@@ -829,7 +829,7 @@
       "nameTh": "เกราะเหล็กกล้า",
       "type": "armour",
       "slot": "body",
-      "level": 10,
+      "level": 5,
       "weight": 100,
       "npcPrice": 1125,
       "rarity": "fine",
@@ -839,12 +839,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 10
+          "value": 8
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 30
+          "value": 23
         }
       ],
       "slots": 0,
@@ -856,7 +856,7 @@
       "nameTh": "โล่เหล็กกล้า",
       "type": "shield",
       "slot": "shield",
-      "level": 10,
+      "level": 5,
       "weight": 60,
       "npcPrice": 600,
       "rarity": "fine",
@@ -866,7 +866,7 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
+          "value": 4
         },
         {
           "kind": "flat",
@@ -883,7 +883,7 @@
       "nameTh": "ผ้าคลุมเหล็กกล้า",
       "type": "garment",
       "slot": "garment",
-      "level": 10,
+      "level": 5,
       "weight": 25,
       "npcPrice": 525,
       "rarity": "fine",
@@ -893,7 +893,7 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 5
+          "value": 4
         },
         {
           "kind": "flat",
@@ -910,7 +910,7 @@
       "nameTh": "รองเท้าเหล็กกล้า",
       "type": "footgear",
       "slot": "footgear",
-      "level": 10,
+      "level": 5,
       "weight": 30,
       "npcPrice": 450,
       "rarity": "fine",
@@ -920,12 +920,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 20
+          "value": 15
         }
       ],
       "slots": 0,
@@ -937,7 +937,7 @@
       "nameTh": "แหวนพลังเหล็กกล้า",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 10,
+      "level": 5,
       "weight": 5,
       "npcPrice": 675,
       "rarity": "fine",
@@ -947,7 +947,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 0,
@@ -959,7 +959,7 @@
       "nameTh": "แหวนเวทเหล็กกล้า",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 10,
+      "level": 5,
       "weight": 5,
       "npcPrice": 675,
       "rarity": "fine",
@@ -969,7 +969,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 5
+          "value": 4
         }
       ],
       "slots": 0,
@@ -981,7 +981,7 @@
       "nameTh": "จี้เหล็กกล้า",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 10,
+      "level": 5,
       "weight": 5,
       "npcPrice": 600,
       "rarity": "fine",
@@ -991,7 +991,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 25
+          "value": 19
         },
         {
           "kind": "flat",
@@ -1008,7 +1008,7 @@
       "nameTh": "ดาบยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 70,
       "npcPrice": 6000,
       "rarity": "fine",
@@ -1019,7 +1019,7 @@
       "bind": "none",
       "icon": "training_sword",
       "weaponType": "sword1h",
-      "atk": 34,
+      "atk": 23,
       "matk": 0,
       "interval": 0.44
     },
@@ -1028,7 +1028,7 @@
       "nameTh": "คทายามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 55,
       "npcPrice": 6600,
       "rarity": "fine",
@@ -1039,8 +1039,8 @@
       "bind": "none",
       "icon": "wood_staff",
       "weaponType": "staff",
-      "atk": 8,
-      "matk": 48,
+      "atk": 5,
+      "matk": 32,
       "interval": 0.65
     },
     {
@@ -1048,7 +1048,7 @@
       "nameTh": "ธนูยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 55,
       "npcPrice": 6000,
       "rarity": "fine",
@@ -1059,7 +1059,7 @@
       "bind": "none",
       "icon": "bamboo_bow",
       "weaponType": "bow",
-      "atk": 32,
+      "atk": 21,
       "interval": 0.65
     },
     {
@@ -1067,7 +1067,7 @@
       "nameTh": "เกราะยามนคร",
       "type": "armour",
       "slot": "body",
-      "level": 20,
+      "level": 10,
       "weight": 100,
       "npcPrice": 4500,
       "rarity": "fine",
@@ -1077,7 +1077,245 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 13
+          "value": 9
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 50
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "traveler_clothes"
+    },
+    {
+      "id": "sentinel_shield",
+      "nameTh": "โล่ยามนคร",
+      "type": "shield",
+      "slot": "shield",
+      "level": 10,
+      "weight": 60,
+      "npcPrice": 2400,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 5
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 3
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "wood_shield"
+    },
+    {
+      "id": "sentinel_cloak",
+      "nameTh": "ผ้าคลุมยามนคร",
+      "type": "garment",
+      "slot": "garment",
+      "level": 10,
+      "weight": 25,
+      "npcPrice": 2100,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 5
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 3
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "leaf_cloak"
+    },
+    {
+      "id": "sentinel_boots",
+      "nameTh": "รองเท้ายามนคร",
+      "type": "footgear",
+      "slot": "footgear",
+      "level": 10,
+      "weight": 30,
+      "npcPrice": 1800,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 3
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 30
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "trail_boots"
+    },
+    {
+      "id": "sentinel_ring",
+      "nameTh": "แหวนพลังยามนคร",
+      "type": "accessory",
+      "slot": "accessory1",
+      "level": 10,
+      "weight": 5,
+      "npcPrice": 2700,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "atk",
+          "value": 4
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "jade_ring"
+    },
+    {
+      "id": "sentinel_arcane_ring",
+      "nameTh": "แหวนเวทยามนคร",
+      "type": "accessory",
+      "slot": "accessory1",
+      "level": 10,
+      "weight": 5,
+      "npcPrice": 2700,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "matk",
+          "value": 5
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "jade_ring"
+    },
+    {
+      "id": "sentinel_amulet",
+      "nameTh": "จี้ยามนคร",
+      "type": "accessory",
+      "slot": "accessory2",
+      "level": 10,
+      "weight": 5,
+      "npcPrice": 2400,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxSp",
+          "value": 30
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 2
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "sky_amulet"
+    },
+    {
+      "id": "relic_sword",
+      "nameTh": "ดาบศิลาโบราณ",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 15,
+      "weight": 70,
+      "npcPrice": 18000,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [],
+      "slots": 0,
+      "bind": "none",
+      "icon": "training_sword",
+      "weaponType": "sword1h",
+      "atk": 30,
+      "matk": 0,
+      "interval": 0.44
+    },
+    {
+      "id": "relic_staff",
+      "nameTh": "คทาศิลาโบราณ",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 15,
+      "weight": 55,
+      "npcPrice": 19800,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [],
+      "slots": 0,
+      "bind": "none",
+      "icon": "wood_staff",
+      "weaponType": "staff",
+      "atk": 8,
+      "matk": 42,
+      "interval": 0.65
+    },
+    {
+      "id": "relic_bow",
+      "nameTh": "ธนูศิลาโบราณ",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 15,
+      "weight": 55,
+      "npcPrice": 18000,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [],
+      "slots": 0,
+      "bind": "none",
+      "icon": "bamboo_bow",
+      "weaponType": "bow",
+      "atk": 29,
+      "interval": 0.65
+    },
+    {
+      "id": "relic_armour",
+      "nameTh": "เกราะศิลาโบราณ",
+      "type": "armour",
+      "slot": "body",
+      "level": 15,
+      "weight": 100,
+      "npcPrice": 13500,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 11
         },
         {
           "kind": "flat",
@@ -1090,13 +1328,13 @@
       "icon": "traveler_clothes"
     },
     {
-      "id": "sentinel_shield",
-      "nameTh": "โล่ยามนคร",
+      "id": "relic_shield",
+      "nameTh": "โล่ศิลาโบราณ",
       "type": "shield",
       "slot": "shield",
-      "level": 20,
+      "level": 15,
       "weight": 60,
-      "npcPrice": 2400,
+      "npcPrice": 7200,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1104,7 +1342,7 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 8
+          "value": 7
         },
         {
           "kind": "flat",
@@ -1117,13 +1355,13 @@
       "icon": "wood_shield"
     },
     {
-      "id": "sentinel_cloak",
-      "nameTh": "ผ้าคลุมยามนคร",
+      "id": "relic_cloak",
+      "nameTh": "ผ้าคลุมศิลาโบราณ",
       "type": "garment",
       "slot": "garment",
-      "level": 20,
+      "level": 15,
       "weight": 25,
-      "npcPrice": 2100,
+      "npcPrice": 6300,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1131,7 +1369,7 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 7
+          "value": 6
         },
         {
           "kind": "flat",
@@ -1144,13 +1382,13 @@
       "icon": "leaf_cloak"
     },
     {
-      "id": "sentinel_boots",
-      "nameTh": "รองเท้ายามนคร",
+      "id": "relic_boots",
+      "nameTh": "รองเท้าศิลาโบราณ",
       "type": "footgear",
       "slot": "footgear",
-      "level": 20,
+      "level": 15,
       "weight": 30,
-      "npcPrice": 1800,
+      "npcPrice": 5400,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1158,12 +1396,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 45
+          "value": 44
         }
       ],
       "slots": 0,
@@ -1171,13 +1409,13 @@
       "icon": "trail_boots"
     },
     {
-      "id": "sentinel_ring",
-      "nameTh": "แหวนพลังยามนคร",
+      "id": "relic_ring",
+      "nameTh": "แหวนพลังศิลาโบราณ",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 20,
+      "level": 15,
       "weight": 5,
-      "npcPrice": 2700,
+      "npcPrice": 8100,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1185,7 +1423,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 6
+          "value": 5
         }
       ],
       "slots": 0,
@@ -1193,13 +1431,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "sentinel_arcane_ring",
-      "nameTh": "แหวนเวทยามนคร",
+      "id": "relic_arcane_ring",
+      "nameTh": "แหวนเวทศิลาโบราณ",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 20,
+      "level": 15,
       "weight": 5,
-      "npcPrice": 2700,
+      "npcPrice": 8100,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1207,7 +1445,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 8
+          "value": 7
         }
       ],
       "slots": 0,
@@ -1215,13 +1453,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "sentinel_amulet",
-      "nameTh": "จี้ยามนคร",
+      "id": "relic_amulet",
+      "nameTh": "จี้ศิลาโบราณ",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 20,
+      "level": 15,
       "weight": 5,
-      "npcPrice": 2400,
+      "npcPrice": 7200,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1229,7 +1467,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 45
+          "value": 41
         },
         {
           "kind": "flat",
@@ -1242,13 +1480,13 @@
       "icon": "sky_amulet"
     },
     {
-      "id": "relic_sword",
-      "nameTh": "ดาบศิลาโบราณ",
+      "id": "silver_sword",
+      "nameTh": "ดาบเงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 25,
       "weight": 70,
-      "npcPrice": 18000,
+      "npcPrice": 42500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1257,18 +1495,18 @@
       "bind": "none",
       "icon": "training_sword",
       "weaponType": "sword1h",
-      "atk": 48,
+      "atk": 45,
       "matk": 0,
       "interval": 0.44
     },
     {
-      "id": "relic_staff",
-      "nameTh": "คทาศิลาโบราณ",
+      "id": "silver_staff",
+      "nameTh": "คทาเงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 25,
       "weight": 55,
-      "npcPrice": 19800,
+      "npcPrice": 46750,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1277,18 +1515,18 @@
       "bind": "none",
       "icon": "wood_staff",
       "weaponType": "staff",
-      "atk": 12,
-      "matk": 67,
+      "atk": 11,
+      "matk": 63,
       "interval": 0.65
     },
     {
-      "id": "relic_bow",
-      "nameTh": "ธนูศิลาโบราณ",
+      "id": "silver_bow",
+      "nameTh": "ธนูเงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 25,
       "weight": 55,
-      "npcPrice": 18000,
+      "npcPrice": 42500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1297,17 +1535,17 @@
       "bind": "none",
       "icon": "bamboo_bow",
       "weaponType": "bow",
-      "atk": 46,
+      "atk": 43,
       "interval": 0.65
     },
     {
-      "id": "relic_armour",
-      "nameTh": "เกราะศิลาโบราณ",
+      "id": "silver_armour",
+      "nameTh": "เกราะเงินจันทรา",
       "type": "armour",
       "slot": "body",
-      "level": 30,
+      "level": 25,
       "weight": 100,
-      "npcPrice": 13500,
+      "npcPrice": 31875,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1315,12 +1553,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 18
+          "value": 17
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 120
+          "value": 115
         }
       ],
       "slots": 0,
@@ -1328,13 +1566,13 @@
       "icon": "traveler_clothes"
     },
     {
-      "id": "relic_shield",
-      "nameTh": "โล่ศิลาโบราณ",
+      "id": "silver_shield",
+      "nameTh": "โล่เงินจันทรา",
       "type": "shield",
       "slot": "shield",
-      "level": 30,
+      "level": 25,
       "weight": 60,
-      "npcPrice": 7200,
+      "npcPrice": 17000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1342,7 +1580,7 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 11
+          "value": 10
         },
         {
           "kind": "flat",
@@ -1355,13 +1593,13 @@
       "icon": "wood_shield"
     },
     {
-      "id": "relic_cloak",
-      "nameTh": "ผ้าคลุมศิลาโบราณ",
+      "id": "silver_cloak",
+      "nameTh": "ผ้าคลุมเงินจันทรา",
       "type": "garment",
       "slot": "garment",
-      "level": 30,
+      "level": 25,
       "weight": 25,
-      "npcPrice": 6300,
+      "npcPrice": 14875,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1369,7 +1607,7 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 9
+          "value": 8
         },
         {
           "kind": "flat",
@@ -1382,13 +1620,13 @@
       "icon": "leaf_cloak"
     },
     {
-      "id": "relic_boots",
-      "nameTh": "รองเท้าศิลาโบราณ",
+      "id": "silver_boots",
+      "nameTh": "รองเท้าเงินจันทรา",
       "type": "footgear",
       "slot": "footgear",
-      "level": 30,
+      "level": 25,
       "weight": 30,
-      "npcPrice": 5400,
+      "npcPrice": 12750,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1396,12 +1634,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 7
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 70
+          "value": 67
         }
       ],
       "slots": 0,
@@ -1409,13 +1647,13 @@
       "icon": "trail_boots"
     },
     {
-      "id": "relic_ring",
-      "nameTh": "แหวนพลังศิลาโบราณ",
+      "id": "silver_ring",
+      "nameTh": "แหวนพลังเงินจันทรา",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 30,
+      "level": 25,
       "weight": 5,
-      "npcPrice": 8100,
+      "npcPrice": 19125,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1423,7 +1661,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 8
+          "value": 7
         }
       ],
       "slots": 0,
@@ -1431,13 +1669,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "relic_arcane_ring",
-      "nameTh": "แหวนเวทศิลาโบราณ",
+      "id": "silver_arcane_ring",
+      "nameTh": "แหวนเวทเงินจันทรา",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 30,
+      "level": 25,
       "weight": 5,
-      "npcPrice": 8100,
+      "npcPrice": 19125,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1445,7 +1683,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 11
+          "value": 10
         }
       ],
       "slots": 0,
@@ -1453,13 +1691,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "relic_amulet",
-      "nameTh": "จี้ศิลาโบราณ",
+      "id": "silver_amulet",
+      "nameTh": "จี้เงินจันทรา",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 30,
+      "level": 25,
       "weight": 5,
-      "npcPrice": 7200,
+      "npcPrice": 17000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1467,7 +1705,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 65
+          "value": 59
         },
         {
           "kind": "flat",
@@ -1480,13 +1718,13 @@
       "icon": "sky_amulet"
     },
     {
-      "id": "silver_sword",
-      "nameTh": "ดาบเงินจันทรา",
+      "id": "sunsteel_sword",
+      "nameTh": "ดาบเหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 35,
       "weight": 70,
-      "npcPrice": 42500,
+      "npcPrice": 90000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1495,18 +1733,18 @@
       "bind": "none",
       "icon": "training_sword",
       "weaponType": "sword1h",
-      "atk": 64,
+      "atk": 62,
       "matk": 0,
       "interval": 0.44
     },
     {
-      "id": "silver_staff",
-      "nameTh": "คทาเงินจันทรา",
+      "id": "sunsteel_staff",
+      "nameTh": "คทาเหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 35,
       "weight": 55,
-      "npcPrice": 46750,
+      "npcPrice": 99000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1515,18 +1753,18 @@
       "bind": "none",
       "icon": "wood_staff",
       "weaponType": "staff",
-      "atk": 16,
-      "matk": 90,
+      "atk": 15,
+      "matk": 86,
       "interval": 0.65
     },
     {
-      "id": "silver_bow",
-      "nameTh": "ธนูเงินจันทรา",
+      "id": "sunsteel_bow",
+      "nameTh": "ธนูเหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 35,
       "weight": 55,
-      "npcPrice": 42500,
+      "npcPrice": 90000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1535,17 +1773,17 @@
       "bind": "none",
       "icon": "bamboo_bow",
       "weaponType": "bow",
-      "atk": 61,
+      "atk": 59,
       "interval": 0.65
     },
     {
-      "id": "silver_armour",
-      "nameTh": "เกราะเงินจันทรา",
+      "id": "sunsteel_armour",
+      "nameTh": "เกราะเหล็กสุริยัน",
       "type": "armour",
       "slot": "body",
-      "level": 40,
+      "level": 35,
       "weight": 100,
-      "npcPrice": 31875,
+      "npcPrice": 67500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1553,12 +1791,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 24
+          "value": 23
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 165
+          "value": 158
         }
       ],
       "slots": 0,
@@ -1566,13 +1804,13 @@
       "icon": "traveler_clothes"
     },
     {
-      "id": "silver_shield",
-      "nameTh": "โล่เงินจันทรา",
+      "id": "sunsteel_shield",
+      "nameTh": "โล่เหล็กสุริยัน",
       "type": "shield",
       "slot": "shield",
-      "level": 40,
+      "level": 35,
       "weight": 60,
-      "npcPrice": 17000,
+      "npcPrice": 36000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1580,7 +1818,7 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 14
+          "value": 13
         },
         {
           "kind": "flat",
@@ -1593,13 +1831,13 @@
       "icon": "wood_shield"
     },
     {
-      "id": "silver_cloak",
-      "nameTh": "ผ้าคลุมเงินจันทรา",
+      "id": "sunsteel_cloak",
+      "nameTh": "ผ้าคลุมเหล็กสุริยัน",
       "type": "garment",
       "slot": "garment",
-      "level": 40,
+      "level": 35,
       "weight": 25,
-      "npcPrice": 14875,
+      "npcPrice": 31500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1607,7 +1845,7 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 11
+          "value": 10
         },
         {
           "kind": "flat",
@@ -1620,13 +1858,13 @@
       "icon": "leaf_cloak"
     },
     {
-      "id": "silver_boots",
-      "nameTh": "รองเท้าเงินจันทรา",
+      "id": "sunsteel_boots",
+      "nameTh": "รองเท้าเหล็กสุริยัน",
       "type": "footgear",
       "slot": "footgear",
-      "level": 40,
+      "level": 35,
       "weight": 30,
-      "npcPrice": 12750,
+      "npcPrice": 27000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1634,12 +1872,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 9
+          "value": 8
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 95
+          "value": 90
         }
       ],
       "slots": 0,
@@ -1647,13 +1885,13 @@
       "icon": "trail_boots"
     },
     {
-      "id": "silver_ring",
-      "nameTh": "แหวนพลังเงินจันทรา",
+      "id": "sunsteel_ring",
+      "nameTh": "แหวนพลังเหล็กสุริยัน",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 40,
+      "level": 35,
       "weight": 5,
-      "npcPrice": 19125,
+      "npcPrice": 40500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1661,7 +1899,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 10
+          "value": 9
         }
       ],
       "slots": 0,
@@ -1669,13 +1907,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "silver_arcane_ring",
-      "nameTh": "แหวนเวทเงินจันทรา",
+      "id": "sunsteel_arcane_ring",
+      "nameTh": "แหวนเวทเหล็กสุริยัน",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 40,
+      "level": 35,
       "weight": 5,
-      "npcPrice": 19125,
+      "npcPrice": 40500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1683,7 +1921,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 14
+          "value": 13
         }
       ],
       "slots": 0,
@@ -1691,13 +1929,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "silver_amulet",
-      "nameTh": "จี้เงินจันทรา",
+      "id": "sunsteel_amulet",
+      "nameTh": "จี้เหล็กสุริยัน",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 40,
+      "level": 35,
       "weight": 5,
-      "npcPrice": 17000,
+      "npcPrice": 36000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1705,7 +1943,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 85
+          "value": 79
         },
         {
           "kind": "flat",
@@ -1718,13 +1956,13 @@
       "icon": "sky_amulet"
     },
     {
-      "id": "sunsteel_sword",
-      "nameTh": "ดาบเหล็กสุริยัน",
+      "id": "naga_sword",
+      "nameTh": "ดาบเกล็ดนาคา",
       "type": "weapon",
       "slot": "weapon",
       "level": 50,
       "weight": 70,
-      "npcPrice": 90000,
+      "npcPrice": 175000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1733,18 +1971,18 @@
       "bind": "none",
       "icon": "training_sword",
       "weaponType": "sword1h",
-      "atk": 82,
+      "atk": 87,
       "matk": 0,
       "interval": 0.44
     },
     {
-      "id": "sunsteel_staff",
-      "nameTh": "คทาเหล็กสุริยัน",
+      "id": "naga_staff",
+      "nameTh": "คทาเกล็ดนาคา",
       "type": "weapon",
       "slot": "weapon",
       "level": 50,
       "weight": 55,
-      "npcPrice": 99000,
+      "npcPrice": 192500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1753,18 +1991,18 @@
       "bind": "none",
       "icon": "wood_staff",
       "weaponType": "staff",
-      "atk": 20,
-      "matk": 115,
+      "atk": 22,
+      "matk": 123,
       "interval": 0.65
     },
     {
-      "id": "sunsteel_bow",
-      "nameTh": "ธนูเหล็กสุริยัน",
+      "id": "naga_bow",
+      "nameTh": "ธนูเกล็ดนาคา",
       "type": "weapon",
       "slot": "weapon",
       "level": 50,
       "weight": 55,
-      "npcPrice": 90000,
+      "npcPrice": 175000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1773,17 +2011,17 @@
       "bind": "none",
       "icon": "bamboo_bow",
       "weaponType": "bow",
-      "atk": 78,
+      "atk": 83,
       "interval": 0.65
     },
     {
-      "id": "sunsteel_armour",
-      "nameTh": "เกราะเหล็กสุริยัน",
+      "id": "naga_armour",
+      "nameTh": "เกราะเกล็ดนาคา",
       "type": "armour",
       "slot": "body",
       "level": 50,
       "weight": 100,
-      "npcPrice": 67500,
+      "npcPrice": 131250,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1791,12 +2029,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 30
+          "value": 31
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 210
+          "value": 219
         }
       ],
       "slots": 0,
@@ -1804,13 +2042,13 @@
       "icon": "traveler_clothes"
     },
     {
-      "id": "sunsteel_shield",
-      "nameTh": "โล่เหล็กสุริยัน",
+      "id": "naga_shield",
+      "nameTh": "โล่เกล็ดนาคา",
       "type": "shield",
       "slot": "shield",
       "level": 50,
       "weight": 60,
-      "npcPrice": 36000,
+      "npcPrice": 70000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1831,13 +2069,13 @@
       "icon": "wood_shield"
     },
     {
-      "id": "sunsteel_cloak",
-      "nameTh": "ผ้าคลุมเหล็กสุริยัน",
+      "id": "naga_cloak",
+      "nameTh": "ผ้าคลุมเกล็ดนาคา",
       "type": "garment",
       "slot": "garment",
       "level": 50,
       "weight": 25,
-      "npcPrice": 31500,
+      "npcPrice": 61250,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1858,13 +2096,13 @@
       "icon": "leaf_cloak"
     },
     {
-      "id": "sunsteel_boots",
-      "nameTh": "รองเท้าเหล็กสุริยัน",
+      "id": "naga_boots",
+      "nameTh": "รองเท้าเกล็ดนาคา",
       "type": "footgear",
       "slot": "footgear",
       "level": 50,
       "weight": 30,
-      "npcPrice": 27000,
+      "npcPrice": 52500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1877,7 +2115,7 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 120
+          "value": 124
         }
       ],
       "slots": 0,
@@ -1885,13 +2123,13 @@
       "icon": "trail_boots"
     },
     {
-      "id": "sunsteel_ring",
-      "nameTh": "แหวนพลังเหล็กสุริยัน",
+      "id": "naga_ring",
+      "nameTh": "แหวนพลังเกล็ดนาคา",
       "type": "accessory",
       "slot": "accessory1",
       "level": 50,
       "weight": 5,
-      "npcPrice": 40500,
+      "npcPrice": 78750,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1907,13 +2145,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "sunsteel_arcane_ring",
-      "nameTh": "แหวนเวทเหล็กสุริยัน",
+      "id": "naga_arcane_ring",
+      "nameTh": "แหวนเวทเกล็ดนาคา",
       "type": "accessory",
       "slot": "accessory1",
       "level": 50,
       "weight": 5,
-      "npcPrice": 40500,
+      "npcPrice": 78750,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1929,13 +2167,13 @@
       "icon": "jade_ring"
     },
     {
-      "id": "sunsteel_amulet",
-      "nameTh": "จี้เหล็กสุริยัน",
+      "id": "naga_amulet",
+      "nameTh": "จี้เกล็ดนาคา",
       "type": "accessory",
       "slot": "accessory2",
       "level": 50,
       "weight": 5,
-      "npcPrice": 36000,
+      "npcPrice": 70000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -1943,250 +2181,12 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 105
+          "value": 107
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
           "value": 6
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "sky_amulet"
-    },
-    {
-      "id": "naga_sword",
-      "nameTh": "ดาบเกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 70,
-      "npcPrice": 175000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [],
-      "slots": 0,
-      "bind": "none",
-      "icon": "training_sword",
-      "weaponType": "sword1h",
-      "atk": 102,
-      "matk": 0,
-      "interval": 0.44
-    },
-    {
-      "id": "naga_staff",
-      "nameTh": "คทาเกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 55,
-      "npcPrice": 192500,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [],
-      "slots": 0,
-      "bind": "none",
-      "icon": "wood_staff",
-      "weaponType": "staff",
-      "atk": 26,
-      "matk": 143,
-      "interval": 0.65
-    },
-    {
-      "id": "naga_bow",
-      "nameTh": "ธนูเกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 55,
-      "npcPrice": 175000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [],
-      "slots": 0,
-      "bind": "none",
-      "icon": "bamboo_bow",
-      "weaponType": "bow",
-      "atk": 97,
-      "interval": 0.65
-    },
-    {
-      "id": "naga_armour",
-      "nameTh": "เกราะเกล็ดนาคา",
-      "type": "armour",
-      "slot": "body",
-      "level": 60,
-      "weight": 100,
-      "npcPrice": 131250,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 36
-        },
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 255
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "traveler_clothes"
-    },
-    {
-      "id": "naga_shield",
-      "nameTh": "โล่เกล็ดนาคา",
-      "type": "shield",
-      "slot": "shield",
-      "level": 60,
-      "weight": 60,
-      "npcPrice": 70000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 20
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 12
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "wood_shield"
-    },
-    {
-      "id": "naga_cloak",
-      "nameTh": "ผ้าคลุมเกล็ดนาคา",
-      "type": "garment",
-      "slot": "garment",
-      "level": 60,
-      "weight": 25,
-      "npcPrice": 61250,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 15
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 12
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "leaf_cloak"
-    },
-    {
-      "id": "naga_boots",
-      "nameTh": "รองเท้าเกล็ดนาคา",
-      "type": "footgear",
-      "slot": "footgear",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 52500,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 13
-        },
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 145
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "trail_boots"
-    },
-    {
-      "id": "naga_ring",
-      "nameTh": "แหวนพลังเกล็ดนาคา",
-      "type": "accessory",
-      "slot": "accessory1",
-      "level": 60,
-      "weight": 5,
-      "npcPrice": 78750,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "atk",
-          "value": 14
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "jade_ring"
-    },
-    {
-      "id": "naga_arcane_ring",
-      "nameTh": "แหวนเวทเกล็ดนาคา",
-      "type": "accessory",
-      "slot": "accessory1",
-      "level": 60,
-      "weight": 5,
-      "npcPrice": 78750,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "matk",
-          "value": 20
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "jade_ring"
-    },
-    {
-      "id": "naga_amulet",
-      "nameTh": "จี้เกล็ดนาคา",
-      "type": "accessory",
-      "slot": "accessory2",
-      "level": 60,
-      "weight": 5,
-      "npcPrice": 70000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "maxSp",
-          "value": 125
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 7
         }
       ],
       "slots": 0,
@@ -4401,7 +4401,7 @@
       "nameTh": "หยดนาคาคราม",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 59,
+      "level": 40,
       "weight": 2,
       "npcPrice": 500,
       "rarity": "legendary",
@@ -4715,7 +4715,7 @@
       "nameTh": "ตราสุริยคราส",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 59,
+      "level": 49,
       "weight": 2,
       "npcPrice": 500,
       "rarity": "legendary",
@@ -4742,7 +4742,7 @@
       "nameTh": "ม้วนตราสุริยัน",
       "type": "consumable",
       "slot": null,
-      "level": 50,
+      "level": 40,
       "weight": 0.2,
       "npcPrice": 180,
       "rarity": "fine",
@@ -5016,7 +5016,7 @@
       "nameTh": "หัวใจฟยอร์ด",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 69,
+      "level": 59,
       "weight": 2,
       "npcPrice": 500,
       "rarity": "legendary",
@@ -5316,6 +5316,195 @@
       "nameTh": "ดาบเหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
+      "level": 35,
+      "weight": 70,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sword",
+      "weaponType": "sword1h",
+      "atk": 62,
+      "matk": 0,
+      "interval": 0.44
+    },
+    {
+      "id": "field_sunsteel_staff",
+      "nameTh": "คทาเหล็กสุริยัน",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 35,
+      "weight": 55,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_staff",
+      "weaponType": "staff",
+      "atk": 15,
+      "matk": 86,
+      "interval": 0.65
+    },
+    {
+      "id": "field_sunsteel_bow",
+      "nameTh": "ธนูเหล็กสุริยัน",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 35,
+      "weight": 55,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_bow",
+      "weaponType": "bow",
+      "atk": 59,
+      "interval": 0.65
+    },
+    {
+      "id": "field_sunsteel_armour",
+      "nameTh": "เกราะเหล็กสุริยัน",
+      "type": "armour",
+      "slot": "body",
+      "level": 35,
+      "weight": 100,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 23
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 158
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_armour"
+    },
+    {
+      "id": "field_sunsteel_shield",
+      "nameTh": "โล่เหล็กสุริยัน",
+      "type": "shield",
+      "slot": "shield",
+      "level": 35,
+      "weight": 60,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 13
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 8
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_shield"
+    },
+    {
+      "id": "field_sunsteel_cloak",
+      "nameTh": "ผ้าคลุมเหล็กสุริยัน",
+      "type": "garment",
+      "slot": "garment",
+      "level": 35,
+      "weight": 25,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 10
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 8
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_cloak"
+    },
+    {
+      "id": "field_sunsteel_boots",
+      "nameTh": "รองเท้าเหล็กสุริยัน",
+      "type": "footgear",
+      "slot": "footgear",
+      "level": 35,
+      "weight": 30,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 8
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 90
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_boots"
+    },
+    {
+      "id": "field_sunsteel_ring",
+      "nameTh": "แหวนพลังเหล็กสุริยัน",
+      "type": "accessory",
+      "slot": "accessory1",
+      "level": 35,
+      "weight": 5,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "atk",
+          "value": 9
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_ring"
+    },
+    {
+      "id": "field_naga_sword",
+      "nameTh": "ดาบเกล็ดนาคา",
+      "type": "weapon",
+      "slot": "weapon",
       "level": 50,
       "weight": 70,
       "npcPrice": 9000,
@@ -5327,13 +5516,13 @@
       "bind": "none",
       "icon": "field_sword",
       "weaponType": "sword1h",
-      "atk": 82,
+      "atk": 87,
       "matk": 0,
       "interval": 0.44
     },
     {
-      "id": "field_sunsteel_staff",
-      "nameTh": "คทาเหล็กสุริยัน",
+      "id": "field_naga_staff",
+      "nameTh": "คทาเกล็ดนาคา",
       "type": "weapon",
       "slot": "weapon",
       "level": 50,
@@ -5347,13 +5536,13 @@
       "bind": "none",
       "icon": "field_staff",
       "weaponType": "staff",
-      "atk": 20,
-      "matk": 115,
+      "atk": 22,
+      "matk": 123,
       "interval": 0.65
     },
     {
-      "id": "field_sunsteel_bow",
-      "nameTh": "ธนูเหล็กสุริยัน",
+      "id": "field_naga_bow",
+      "nameTh": "ธนูเกล็ดนาคา",
       "type": "weapon",
       "slot": "weapon",
       "level": 50,
@@ -5367,12 +5556,12 @@
       "bind": "none",
       "icon": "field_bow",
       "weaponType": "bow",
-      "atk": 78,
+      "atk": 83,
       "interval": 0.65
     },
     {
-      "id": "field_sunsteel_armour",
-      "nameTh": "เกราะเหล็กสุริยัน",
+      "id": "field_naga_armour",
+      "nameTh": "เกราะเกล็ดนาคา",
       "type": "armour",
       "slot": "body",
       "level": 50,
@@ -5385,12 +5574,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 30
+          "value": 31
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 210
+          "value": 219
         }
       ],
       "slots": 1,
@@ -5398,8 +5587,8 @@
       "icon": "field_armour"
     },
     {
-      "id": "field_sunsteel_shield",
-      "nameTh": "โล่เหล็กสุริยัน",
+      "id": "field_naga_shield",
+      "nameTh": "โล่เกล็ดนาคา",
       "type": "shield",
       "slot": "shield",
       "level": 50,
@@ -5425,8 +5614,8 @@
       "icon": "field_shield"
     },
     {
-      "id": "field_sunsteel_cloak",
-      "nameTh": "ผ้าคลุมเหล็กสุริยัน",
+      "id": "field_naga_cloak",
+      "nameTh": "ผ้าคลุมเกล็ดนาคา",
       "type": "garment",
       "slot": "garment",
       "level": 50,
@@ -5452,8 +5641,8 @@
       "icon": "field_cloak"
     },
     {
-      "id": "field_sunsteel_boots",
-      "nameTh": "รองเท้าเหล็กสุริยัน",
+      "id": "field_naga_boots",
+      "nameTh": "รองเท้าเกล็ดนาคา",
       "type": "footgear",
       "slot": "footgear",
       "level": 50,
@@ -5471,7 +5660,7 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 120
+          "value": 124
         }
       ],
       "slots": 1,
@@ -5479,8 +5668,8 @@
       "icon": "field_boots"
     },
     {
-      "id": "field_sunsteel_ring",
-      "nameTh": "แหวนพลังเหล็กสุริยัน",
+      "id": "field_naga_ring",
+      "nameTh": "แหวนพลังเกล็ดนาคา",
       "type": "accessory",
       "slot": "accessory1",
       "level": 50,
@@ -5494,195 +5683,6 @@
           "kind": "flat",
           "stat": "atk",
           "value": 12
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_ring"
-    },
-    {
-      "id": "field_naga_sword",
-      "nameTh": "ดาบเกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 70,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_sword",
-      "weaponType": "sword1h",
-      "atk": 102,
-      "matk": 0,
-      "interval": 0.44
-    },
-    {
-      "id": "field_naga_staff",
-      "nameTh": "คทาเกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 55,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_staff",
-      "weaponType": "staff",
-      "atk": 26,
-      "matk": 143,
-      "interval": 0.65
-    },
-    {
-      "id": "field_naga_bow",
-      "nameTh": "ธนูเกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 55,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_bow",
-      "weaponType": "bow",
-      "atk": 97,
-      "interval": 0.65
-    },
-    {
-      "id": "field_naga_armour",
-      "nameTh": "เกราะเกล็ดนาคา",
-      "type": "armour",
-      "slot": "body",
-      "level": 60,
-      "weight": 100,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 36
-        },
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 255
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_armour"
-    },
-    {
-      "id": "field_naga_shield",
-      "nameTh": "โล่เกล็ดนาคา",
-      "type": "shield",
-      "slot": "shield",
-      "level": 60,
-      "weight": 60,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 20
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 12
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_shield"
-    },
-    {
-      "id": "field_naga_cloak",
-      "nameTh": "ผ้าคลุมเกล็ดนาคา",
-      "type": "garment",
-      "slot": "garment",
-      "level": 60,
-      "weight": 25,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 15
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 12
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_cloak"
-    },
-    {
-      "id": "field_naga_boots",
-      "nameTh": "รองเท้าเกล็ดนาคา",
-      "type": "footgear",
-      "slot": "footgear",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 13
-        },
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 145
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_boots"
-    },
-    {
-      "id": "field_naga_ring",
-      "nameTh": "แหวนพลังเกล็ดนาคา",
-      "type": "accessory",
-      "slot": "accessory1",
-      "level": 60,
-      "weight": 5,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "atk",
-          "value": 14
         }
       ],
       "slots": 1,
@@ -8576,9 +8576,9 @@
       "nameTh": "ดาบเหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 70,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8587,7 +8587,7 @@
       "bind": "none",
       "icon": "field_iron_sword",
       "weaponType": "sword1h",
-      "atk": 22,
+      "atk": 17,
       "matk": 0,
       "interval": 0.44
     },
@@ -8596,9 +8596,9 @@
       "nameTh": "คทาเหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 55,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8607,8 +8607,8 @@
       "bind": "none",
       "icon": "field_iron_staff",
       "weaponType": "staff",
-      "atk": 6,
-      "matk": 31,
+      "atk": 5,
+      "matk": 23,
       "interval": 0.65
     },
     {
@@ -8616,9 +8616,9 @@
       "nameTh": "ธนูเหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 55,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8627,7 +8627,7 @@
       "bind": "none",
       "icon": "field_iron_bow",
       "weaponType": "bow",
-      "atk": 21,
+      "atk": 16,
       "interval": 0.65
     },
     {
@@ -8635,9 +8635,9 @@
       "nameTh": "เกราะเหล็กกล้า",
       "type": "armour",
       "slot": "body",
-      "level": 10,
+      "level": 5,
       "weight": 100,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8645,12 +8645,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 10
+          "value": 8
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 30
+          "value": 23
         }
       ],
       "slots": 1,
@@ -8662,9 +8662,9 @@
       "nameTh": "โล่เหล็กกล้า",
       "type": "shield",
       "slot": "shield",
-      "level": 10,
+      "level": 5,
       "weight": 60,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8672,7 +8672,7 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
+          "value": 4
         },
         {
           "kind": "flat",
@@ -8689,9 +8689,9 @@
       "nameTh": "ผ้าคลุมเหล็กกล้า",
       "type": "garment",
       "slot": "garment",
-      "level": 10,
+      "level": 5,
       "weight": 25,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8699,7 +8699,7 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 5
+          "value": 4
         },
         {
           "kind": "flat",
@@ -8716,9 +8716,9 @@
       "nameTh": "รองเท้าเหล็กกล้า",
       "type": "footgear",
       "slot": "footgear",
-      "level": 10,
+      "level": 5,
       "weight": 30,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8726,12 +8726,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 20
+          "value": 15
         }
       ],
       "slots": 1,
@@ -8743,9 +8743,9 @@
       "nameTh": "แหวนพลังเหล็กกล้า",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 10,
+      "level": 5,
       "weight": 5,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8753,7 +8753,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 1,
@@ -8765,7 +8765,7 @@
       "nameTh": "ดาบใหญ่ เหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 100,
       "npcPrice": 1500,
       "rarity": "fine",
@@ -8775,14 +8775,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 30
+          "value": 23
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "iron_greatsword",
       "weaponType": "sword2h",
-      "atk": 32,
+      "atk": 24,
       "matk": 0,
       "interval": 0.65
     },
@@ -8791,9 +8791,9 @@
       "nameTh": "ดาบใหญ่ เหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 100,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8801,14 +8801,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 30
+          "value": 23
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_iron_greatsword",
       "weaponType": "sword2h",
-      "atk": 32,
+      "atk": 24,
       "matk": 0,
       "interval": 0.65
     },
@@ -8817,7 +8817,7 @@
       "nameTh": "กริช เหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 35,
       "npcPrice": 1500,
       "rarity": "fine",
@@ -8827,14 +8827,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 3
+          "value": 2
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "iron_dagger",
       "weaponType": "dagger",
-      "atk": 18,
+      "atk": 14,
       "matk": 0,
       "interval": 0.36
     },
@@ -8843,9 +8843,9 @@
       "nameTh": "กริช เหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 35,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8853,14 +8853,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 3
+          "value": 2
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_iron_dagger",
       "weaponType": "dagger",
-      "atk": 18,
+      "atk": 14,
       "matk": 0,
       "interval": 0.36
     },
@@ -8869,7 +8869,7 @@
       "nameTh": "ผ้าพันหมัด เหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 30,
       "npcPrice": 1500,
       "rarity": "fine",
@@ -8879,14 +8879,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 15
+          "value": 11
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "iron_knuckles",
       "weaponType": "unarmed",
-      "atk": 19,
+      "atk": 14,
       "matk": 0,
       "interval": 0.44
     },
@@ -8895,9 +8895,9 @@
       "nameTh": "ผ้าพันหมัด เหล็กกล้า",
       "type": "weapon",
       "slot": "weapon",
-      "level": 10,
+      "level": 5,
       "weight": 30,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8905,14 +8905,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 15
+          "value": 11
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_iron_knuckles",
       "weaponType": "unarmed",
-      "atk": 19,
+      "atk": 14,
       "matk": 0,
       "interval": 0.44
     },
@@ -8921,7 +8921,7 @@
       "nameTh": "อาภรณ์อาคม เหล็กกล้า",
       "type": "armour",
       "slot": "body",
-      "level": 10,
+      "level": 5,
       "weight": 50,
       "npcPrice": 1125,
       "rarity": "fine",
@@ -8931,17 +8931,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
           "value": 4
         },
         {
           "kind": "flat",
+          "stat": "hardMdef",
+          "value": 3
+        },
+        {
+          "kind": "flat",
           "stat": "maxSp",
-          "value": 30
+          "value": 23
         },
         {
           "kind": "percent",
@@ -8958,9 +8958,9 @@
       "nameTh": "อาภรณ์อาคม เหล็กกล้า",
       "type": "armour",
       "slot": "body",
-      "level": 10,
+      "level": 5,
       "weight": 50,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -8968,17 +8968,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
           "value": 4
         },
         {
           "kind": "flat",
+          "stat": "hardMdef",
+          "value": 3
+        },
+        {
+          "kind": "flat",
           "stat": "maxSp",
-          "value": 30
+          "value": 23
         },
         {
           "kind": "percent",
@@ -8995,7 +8995,7 @@
       "nameTh": "โล่อาคม เหล็กกล้า",
       "type": "shield",
       "slot": "shield",
-      "level": 10,
+      "level": 5,
       "weight": 30,
       "npcPrice": 600,
       "rarity": "fine",
@@ -9005,17 +9005,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 5
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 3
+          "value": 2
         }
       ],
       "slots": 0,
@@ -9027,9 +9027,9 @@
       "nameTh": "โล่อาคม เหล็กกล้า",
       "type": "shield",
       "slot": "shield",
-      "level": 10,
+      "level": 5,
       "weight": 30,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9037,17 +9037,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 5
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 3
+          "value": 2
         }
       ],
       "slots": 1,
@@ -9059,7 +9059,7 @@
       "nameTh": "ผ้าคลุมผู้เรียก เหล็กกล้า",
       "type": "garment",
       "slot": "garment",
-      "level": 10,
+      "level": 5,
       "weight": 25,
       "npcPrice": 525,
       "rarity": "fine",
@@ -9074,12 +9074,12 @@
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 30
+          "value": 23
         },
         {
           "kind": "flat",
@@ -9096,9 +9096,9 @@
       "nameTh": "ผ้าคลุมผู้เรียก เหล็กกล้า",
       "type": "garment",
       "slot": "garment",
-      "level": 10,
+      "level": 5,
       "weight": 25,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9111,12 +9111,12 @@
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 30
+          "value": 23
         },
         {
           "kind": "flat",
@@ -9133,7 +9133,7 @@
       "nameTh": "รองเท้าลอบล่า เหล็กกล้า",
       "type": "footgear",
       "slot": "footgear",
-      "level": 10,
+      "level": 5,
       "weight": 30,
       "npcPrice": 450,
       "rarity": "fine",
@@ -9148,7 +9148,7 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "percent",
@@ -9165,9 +9165,9 @@
       "nameTh": "รองเท้าลอบล่า เหล็กกล้า",
       "type": "footgear",
       "slot": "footgear",
-      "level": 10,
+      "level": 5,
       "weight": 30,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9180,7 +9180,7 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "percent",
@@ -9197,9 +9197,9 @@
       "nameTh": "แหวนอาคม เหล็กกล้า",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 10,
+      "level": 5,
       "weight": 5,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9207,7 +9207,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 5
+          "value": 4
         }
       ],
       "slots": 1,
@@ -9219,9 +9219,9 @@
       "nameTh": "จี้ฟื้นจิต เหล็กกล้า",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 10,
+      "level": 5,
       "weight": 5,
-      "npcPrice": 1800,
+      "npcPrice": 900,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9229,7 +9229,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 30
+          "value": 23
         },
         {
           "kind": "percent",
@@ -9246,9 +9246,9 @@
       "nameTh": "ดาบยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 70,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9257,7 +9257,7 @@
       "bind": "none",
       "icon": "field_sentinel_sword",
       "weaponType": "sword1h",
-      "atk": 34,
+      "atk": 23,
       "matk": 0,
       "interval": 0.44
     },
@@ -9266,9 +9266,9 @@
       "nameTh": "คทายามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 55,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9277,8 +9277,8 @@
       "bind": "none",
       "icon": "field_sentinel_staff",
       "weaponType": "staff",
-      "atk": 8,
-      "matk": 48,
+      "atk": 5,
+      "matk": 32,
       "interval": 0.65
     },
     {
@@ -9286,9 +9286,9 @@
       "nameTh": "ธนูยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 55,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9297,7 +9297,7 @@
       "bind": "none",
       "icon": "field_sentinel_bow",
       "weaponType": "bow",
-      "atk": 32,
+      "atk": 21,
       "interval": 0.65
     },
     {
@@ -9305,9 +9305,9 @@
       "nameTh": "เกราะยามนคร",
       "type": "armour",
       "slot": "body",
-      "level": 20,
+      "level": 10,
       "weight": 100,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9315,12 +9315,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 13
+          "value": 9
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 75
+          "value": 50
         }
       ],
       "slots": 1,
@@ -9332,63 +9332,9 @@
       "nameTh": "โล่ยามนคร",
       "type": "shield",
       "slot": "shield",
-      "level": 20,
+      "level": 10,
       "weight": 60,
-      "npcPrice": 3600,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 8
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 4
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_sentinel_shield"
-    },
-    {
-      "id": "field_sentinel_cloak",
-      "nameTh": "ผ้าคลุมยามนคร",
-      "type": "garment",
-      "slot": "garment",
-      "level": 20,
-      "weight": 25,
-      "npcPrice": 3600,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 7
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 4
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_sentinel_cloak"
-    },
-    {
-      "id": "field_sentinel_boots",
-      "nameTh": "รองเท้ายามนคร",
-      "type": "footgear",
-      "slot": "footgear",
-      "level": 20,
-      "weight": 30,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9400,8 +9346,62 @@
         },
         {
           "kind": "flat",
+          "stat": "hardMdef",
+          "value": 3
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sentinel_shield"
+    },
+    {
+      "id": "field_sentinel_cloak",
+      "nameTh": "ผ้าคลุมยามนคร",
+      "type": "garment",
+      "slot": "garment",
+      "level": 10,
+      "weight": 25,
+      "npcPrice": 1800,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 5
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 3
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sentinel_cloak"
+    },
+    {
+      "id": "field_sentinel_boots",
+      "nameTh": "รองเท้ายามนคร",
+      "type": "footgear",
+      "slot": "footgear",
+      "level": 10,
+      "weight": 30,
+      "npcPrice": 1800,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 3
+        },
+        {
+          "kind": "flat",
           "stat": "maxHp",
-          "value": 45
+          "value": 30
         }
       ],
       "slots": 1,
@@ -9413,9 +9413,9 @@
       "nameTh": "แหวนพลังยามนคร",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 20,
+      "level": 10,
       "weight": 5,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9423,7 +9423,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 6
+          "value": 4
         }
       ],
       "slots": 1,
@@ -9435,7 +9435,7 @@
       "nameTh": "ดาบใหญ่ ยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 100,
       "npcPrice": 6000,
       "rarity": "fine",
@@ -9445,14 +9445,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 50
+          "value": 33
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "sentinel_greatsword",
       "weaponType": "sword2h",
-      "atk": 49,
+      "atk": 33,
       "matk": 0,
       "interval": 0.65
     },
@@ -9461,9 +9461,9 @@
       "nameTh": "ดาบใหญ่ ยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 100,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9471,14 +9471,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 50
+          "value": 33
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_sentinel_greatsword",
       "weaponType": "sword2h",
-      "atk": 49,
+      "atk": 33,
       "matk": 0,
       "interval": 0.65
     },
@@ -9487,7 +9487,7 @@
       "nameTh": "กริช ยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 35,
       "npcPrice": 6000,
       "rarity": "fine",
@@ -9497,14 +9497,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "sentinel_dagger",
       "weaponType": "dagger",
-      "atk": 27,
+      "atk": 18,
       "matk": 0,
       "interval": 0.36
     },
@@ -9513,9 +9513,9 @@
       "nameTh": "กริช ยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 35,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9523,14 +9523,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_sentinel_dagger",
       "weaponType": "dagger",
-      "atk": 27,
+      "atk": 18,
       "matk": 0,
       "interval": 0.36
     },
@@ -9539,7 +9539,7 @@
       "nameTh": "ผ้าพันหมัด ยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 30,
       "npcPrice": 6000,
       "rarity": "fine",
@@ -9549,14 +9549,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 25
+          "value": 17
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "sentinel_knuckles",
       "weaponType": "unarmed",
-      "atk": 29,
+      "atk": 19,
       "matk": 0,
       "interval": 0.44
     },
@@ -9565,9 +9565,9 @@
       "nameTh": "ผ้าพันหมัด ยามนคร",
       "type": "weapon",
       "slot": "weapon",
-      "level": 20,
+      "level": 10,
       "weight": 30,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9575,14 +9575,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 25
+          "value": 17
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_sentinel_knuckles",
       "weaponType": "unarmed",
-      "atk": 29,
+      "atk": 19,
       "matk": 0,
       "interval": 0.44
     },
@@ -9591,7 +9591,7 @@
       "nameTh": "อาภรณ์อาคม ยามนคร",
       "type": "armour",
       "slot": "body",
-      "level": 20,
+      "level": 10,
       "weight": 50,
       "npcPrice": 4500,
       "rarity": "fine",
@@ -9601,17 +9601,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 7
+          "value": 5
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 50
+          "value": 33
         },
         {
           "kind": "percent",
@@ -9628,9 +9628,9 @@
       "nameTh": "อาภรณ์อาคม ยามนคร",
       "type": "armour",
       "slot": "body",
-      "level": 20,
+      "level": 10,
       "weight": 50,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9638,17 +9638,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 7
+          "value": 5
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 50
+          "value": 33
         },
         {
           "kind": "percent",
@@ -9665,7 +9665,7 @@
       "nameTh": "โล่อาคม ยามนคร",
       "type": "shield",
       "slot": "shield",
-      "level": 20,
+      "level": 10,
       "weight": 30,
       "npcPrice": 2400,
       "rarity": "fine",
@@ -9675,17 +9675,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 5
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 0,
@@ -9697,9 +9697,9 @@
       "nameTh": "โล่อาคม ยามนคร",
       "type": "shield",
       "slot": "shield",
-      "level": 20,
+      "level": 10,
       "weight": 30,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9707,17 +9707,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 5
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 1,
@@ -9729,7 +9729,7 @@
       "nameTh": "ผ้าคลุมผู้เรียก ยามนคร",
       "type": "garment",
       "slot": "garment",
-      "level": 20,
+      "level": 10,
       "weight": 25,
       "npcPrice": 2100,
       "rarity": "fine",
@@ -9739,22 +9739,22 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 2
+          "value": 1
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 50
+          "value": 33
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 2
+          "value": 1
         }
       ],
       "slots": 0,
@@ -9766,9 +9766,9 @@
       "nameTh": "ผ้าคลุมผู้เรียก ยามนคร",
       "type": "garment",
       "slot": "garment",
-      "level": 20,
+      "level": 10,
       "weight": 25,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9776,22 +9776,22 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 2
+          "value": 1
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 50
+          "value": 33
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 2
+          "value": 1
         }
       ],
       "slots": 1,
@@ -9803,7 +9803,7 @@
       "nameTh": "รองเท้าลอบล่า ยามนคร",
       "type": "footgear",
       "slot": "footgear",
-      "level": 20,
+      "level": 10,
       "weight": 30,
       "npcPrice": 1800,
       "rarity": "fine",
@@ -9813,12 +9813,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 4
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 4
+          "value": 3
         },
         {
           "kind": "percent",
@@ -9835,9 +9835,9 @@
       "nameTh": "รองเท้าลอบล่า ยามนคร",
       "type": "footgear",
       "slot": "footgear",
-      "level": 20,
+      "level": 10,
       "weight": 30,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9845,12 +9845,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 4
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 4
+          "value": 3
         },
         {
           "kind": "percent",
@@ -9867,9 +9867,9 @@
       "nameTh": "แหวนอาคม ยามนคร",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 20,
+      "level": 10,
       "weight": 5,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9877,7 +9877,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 8
+          "value": 5
         }
       ],
       "slots": 1,
@@ -9889,9 +9889,9 @@
       "nameTh": "จี้ฟื้นจิต ยามนคร",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 20,
+      "level": 10,
       "weight": 5,
-      "npcPrice": 3600,
+      "npcPrice": 1800,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9899,7 +9899,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 50
+          "value": 33
         },
         {
           "kind": "percent",
@@ -9916,9 +9916,9 @@
       "nameTh": "ดาบศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 70,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9927,7 +9927,7 @@
       "bind": "none",
       "icon": "field_relic_sword",
       "weaponType": "sword1h",
-      "atk": 48,
+      "atk": 30,
       "matk": 0,
       "interval": 0.44
     },
@@ -9936,9 +9936,9 @@
       "nameTh": "คทาศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 55,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9947,8 +9947,8 @@
       "bind": "none",
       "icon": "field_relic_staff",
       "weaponType": "staff",
-      "atk": 12,
-      "matk": 67,
+      "atk": 8,
+      "matk": 42,
       "interval": 0.65
     },
     {
@@ -9956,9 +9956,9 @@
       "nameTh": "ธนูศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 55,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -9967,7 +9967,7 @@
       "bind": "none",
       "icon": "field_relic_bow",
       "weaponType": "bow",
-      "atk": 46,
+      "atk": 29,
       "interval": 0.65
     },
     {
@@ -9975,36 +9975,9 @@
       "nameTh": "เกราะศิลาโบราณ",
       "type": "armour",
       "slot": "body",
-      "level": 30,
+      "level": 15,
       "weight": 100,
-      "npcPrice": 5400,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 18
-        },
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 120
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_relic_armour"
-    },
-    {
-      "id": "field_relic_shield",
-      "nameTh": "โล่ศิลาโบราณ",
-      "type": "shield",
-      "slot": "shield",
-      "level": 30,
-      "weight": 60,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10016,49 +9989,22 @@
         },
         {
           "kind": "flat",
-          "stat": "hardMdef",
-          "value": 6
+          "stat": "maxHp",
+          "value": 75
         }
       ],
       "slots": 1,
       "bind": "none",
-      "icon": "field_relic_shield"
+      "icon": "field_relic_armour"
     },
     {
-      "id": "field_relic_cloak",
-      "nameTh": "ผ้าคลุมศิลาโบราณ",
-      "type": "garment",
-      "slot": "garment",
-      "level": 30,
-      "weight": 25,
-      "npcPrice": 5400,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 9
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 6
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_relic_cloak"
-    },
-    {
-      "id": "field_relic_boots",
-      "nameTh": "รองเท้าศิลาโบราณ",
-      "type": "footgear",
-      "slot": "footgear",
-      "level": 30,
-      "weight": 30,
-      "npcPrice": 5400,
+      "id": "field_relic_shield",
+      "nameTh": "โล่ศิลาโบราณ",
+      "type": "shield",
+      "slot": "shield",
+      "level": 15,
+      "weight": 60,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10070,8 +10016,62 @@
         },
         {
           "kind": "flat",
+          "stat": "hardMdef",
+          "value": 4
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_relic_shield"
+    },
+    {
+      "id": "field_relic_cloak",
+      "nameTh": "ผ้าคลุมศิลาโบราณ",
+      "type": "garment",
+      "slot": "garment",
+      "level": 15,
+      "weight": 25,
+      "npcPrice": 2700,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 6
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 4
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_relic_cloak"
+    },
+    {
+      "id": "field_relic_boots",
+      "nameTh": "รองเท้าศิลาโบราณ",
+      "type": "footgear",
+      "slot": "footgear",
+      "level": 15,
+      "weight": 30,
+      "npcPrice": 2700,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 4
+        },
+        {
+          "kind": "flat",
           "stat": "maxHp",
-          "value": 70
+          "value": 44
         }
       ],
       "slots": 1,
@@ -10083,9 +10083,9 @@
       "nameTh": "แหวนพลังศิลาโบราณ",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 30,
+      "level": 15,
       "weight": 5,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10093,7 +10093,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 8
+          "value": 5
         }
       ],
       "slots": 1,
@@ -10105,7 +10105,7 @@
       "nameTh": "ดาบใหญ่ ศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 100,
       "npcPrice": 18000,
       "rarity": "fine",
@@ -10115,14 +10115,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 70
+          "value": 44
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "relic_greatsword",
       "weaponType": "sword2h",
-      "atk": 70,
+      "atk": 44,
       "matk": 0,
       "interval": 0.65
     },
@@ -10131,9 +10131,9 @@
       "nameTh": "ดาบใหญ่ ศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 100,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10141,14 +10141,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 70
+          "value": 44
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_relic_greatsword",
       "weaponType": "sword2h",
-      "atk": 70,
+      "atk": 44,
       "matk": 0,
       "interval": 0.65
     },
@@ -10157,7 +10157,7 @@
       "nameTh": "กริช ศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 35,
       "npcPrice": 18000,
       "rarity": "fine",
@@ -10167,14 +10167,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 5
+          "value": 3
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "relic_dagger",
       "weaponType": "dagger",
-      "atk": 38,
+      "atk": 24,
       "matk": 0,
       "interval": 0.36
     },
@@ -10183,9 +10183,9 @@
       "nameTh": "กริช ศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 35,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10193,14 +10193,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 5
+          "value": 3
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_relic_dagger",
       "weaponType": "dagger",
-      "atk": 38,
+      "atk": 24,
       "matk": 0,
       "interval": 0.36
     },
@@ -10209,7 +10209,7 @@
       "nameTh": "ผ้าพันหมัด ศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 30,
       "npcPrice": 18000,
       "rarity": "fine",
@@ -10219,14 +10219,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 35
+          "value": 22
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "relic_knuckles",
       "weaponType": "unarmed",
-      "atk": 41,
+      "atk": 26,
       "matk": 0,
       "interval": 0.44
     },
@@ -10235,9 +10235,9 @@
       "nameTh": "ผ้าพันหมัด ศิลาโบราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 15,
       "weight": 30,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10245,14 +10245,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 35
+          "value": 22
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_relic_knuckles",
       "weaponType": "unarmed",
-      "atk": 41,
+      "atk": 26,
       "matk": 0,
       "interval": 0.44
     },
@@ -10261,7 +10261,7 @@
       "nameTh": "อาภรณ์อาคม ศิลาโบราณ",
       "type": "armour",
       "slot": "body",
-      "level": 30,
+      "level": 15,
       "weight": 50,
       "npcPrice": 13500,
       "rarity": "fine",
@@ -10271,17 +10271,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 9
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 5
         },
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 70
+          "value": 44
         },
         {
           "kind": "percent",
@@ -10298,9 +10298,9 @@
       "nameTh": "อาภรณ์อาคม ศิลาโบราณ",
       "type": "armour",
       "slot": "body",
-      "level": 30,
+      "level": 15,
       "weight": 50,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10308,17 +10308,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 9
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 5
         },
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 70
+          "value": 44
         },
         {
           "kind": "percent",
@@ -10335,7 +10335,7 @@
       "nameTh": "โล่อาคม ศิลาโบราณ",
       "type": "shield",
       "slot": "shield",
-      "level": 30,
+      "level": 15,
       "weight": 30,
       "npcPrice": 7200,
       "rarity": "fine",
@@ -10345,17 +10345,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 7
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 10
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 5
+          "value": 3
         }
       ],
       "slots": 0,
@@ -10367,9 +10367,9 @@
       "nameTh": "โล่อาคม ศิลาโบราณ",
       "type": "shield",
       "slot": "shield",
-      "level": 30,
+      "level": 15,
       "weight": 30,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10377,17 +10377,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 7
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 10
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 5
+          "value": 3
         }
       ],
       "slots": 1,
@@ -10399,7 +10399,7 @@
       "nameTh": "ผ้าคลุมผู้เรียก ศิลาโบราณ",
       "type": "garment",
       "slot": "garment",
-      "level": 30,
+      "level": 15,
       "weight": 25,
       "npcPrice": 6300,
       "rarity": "fine",
@@ -10409,22 +10409,22 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 2
+          "value": 1
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 70
+          "value": 44
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 3
+          "value": 2
         }
       ],
       "slots": 0,
@@ -10436,9 +10436,9 @@
       "nameTh": "ผ้าคลุมผู้เรียก ศิลาโบราณ",
       "type": "garment",
       "slot": "garment",
-      "level": 30,
+      "level": 15,
       "weight": 25,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10446,22 +10446,22 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 2
+          "value": 1
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 70
+          "value": 44
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 3
+          "value": 2
         }
       ],
       "slots": 1,
@@ -10473,7 +10473,7 @@
       "nameTh": "รองเท้าลอบล่า ศิลาโบราณ",
       "type": "footgear",
       "slot": "footgear",
-      "level": 30,
+      "level": 15,
       "weight": 30,
       "npcPrice": 5400,
       "rarity": "fine",
@@ -10483,12 +10483,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "percent",
@@ -10505,9 +10505,9 @@
       "nameTh": "รองเท้าลอบล่า ศิลาโบราณ",
       "type": "footgear",
       "slot": "footgear",
-      "level": 30,
+      "level": 15,
       "weight": 30,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10515,12 +10515,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 5
+          "value": 3
         },
         {
           "kind": "percent",
@@ -10537,9 +10537,9 @@
       "nameTh": "แหวนอาคม ศิลาโบราณ",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 30,
+      "level": 15,
       "weight": 5,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10547,7 +10547,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 11
+          "value": 7
         }
       ],
       "slots": 1,
@@ -10559,9 +10559,9 @@
       "nameTh": "จี้ฟื้นจิต ศิลาโบราณ",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 30,
+      "level": 15,
       "weight": 5,
-      "npcPrice": 5400,
+      "npcPrice": 2700,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10569,7 +10569,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 70
+          "value": 44
         },
         {
           "kind": "percent",
@@ -10586,9 +10586,9 @@
       "nameTh": "ดาบเงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 70,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10597,7 +10597,7 @@
       "bind": "none",
       "icon": "field_silver_sword",
       "weaponType": "sword1h",
-      "atk": 64,
+      "atk": 45,
       "matk": 0,
       "interval": 0.44
     },
@@ -10606,9 +10606,9 @@
       "nameTh": "คทาเงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 55,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10617,8 +10617,8 @@
       "bind": "none",
       "icon": "field_silver_staff",
       "weaponType": "staff",
-      "atk": 16,
-      "matk": 90,
+      "atk": 11,
+      "matk": 63,
       "interval": 0.65
     },
     {
@@ -10626,9 +10626,9 @@
       "nameTh": "ธนูเงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 55,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10637,7 +10637,7 @@
       "bind": "none",
       "icon": "field_silver_bow",
       "weaponType": "bow",
-      "atk": 61,
+      "atk": 43,
       "interval": 0.65
     },
     {
@@ -10645,9 +10645,9 @@
       "nameTh": "เกราะเงินจันทรา",
       "type": "armour",
       "slot": "body",
-      "level": 40,
+      "level": 25,
       "weight": 100,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10655,12 +10655,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 24
+          "value": 17
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 165
+          "value": 115
         }
       ],
       "slots": 1,
@@ -10672,9 +10672,9 @@
       "nameTh": "โล่เงินจันทรา",
       "type": "shield",
       "slot": "shield",
-      "level": 40,
+      "level": 25,
       "weight": 60,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10682,12 +10682,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 14
+          "value": 10
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 6
         }
       ],
       "slots": 1,
@@ -10699,9 +10699,9 @@
       "nameTh": "ผ้าคลุมเงินจันทรา",
       "type": "garment",
       "slot": "garment",
-      "level": 40,
+      "level": 25,
       "weight": 25,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10709,12 +10709,12 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 11
+          "value": 8
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 6
         }
       ],
       "slots": 1,
@@ -10726,9 +10726,9 @@
       "nameTh": "รองเท้าเงินจันทรา",
       "type": "footgear",
       "slot": "footgear",
-      "level": 40,
+      "level": 25,
       "weight": 30,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10736,12 +10736,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 9
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 95
+          "value": 67
         }
       ],
       "slots": 1,
@@ -10753,9 +10753,9 @@
       "nameTh": "แหวนพลังเงินจันทรา",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 40,
+      "level": 25,
       "weight": 5,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10763,7 +10763,7 @@
         {
           "kind": "flat",
           "stat": "atk",
-          "value": 10
+          "value": 7
         }
       ],
       "slots": 1,
@@ -10775,7 +10775,7 @@
       "nameTh": "ดาบใหญ่ เงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 100,
       "npcPrice": 42500,
       "rarity": "fine",
@@ -10785,14 +10785,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 90
+          "value": 63
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "silver_greatsword",
       "weaponType": "sword2h",
-      "atk": 93,
+      "atk": 65,
       "matk": 0,
       "interval": 0.65
     },
@@ -10801,9 +10801,9 @@
       "nameTh": "ดาบใหญ่ เงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 100,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10811,14 +10811,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 90
+          "value": 63
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_silver_greatsword",
       "weaponType": "sword2h",
-      "atk": 93,
+      "atk": 65,
       "matk": 0,
       "interval": 0.65
     },
@@ -10827,7 +10827,7 @@
       "nameTh": "กริช เงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 35,
       "npcPrice": 42500,
       "rarity": "fine",
@@ -10837,14 +10837,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 6
+          "value": 4
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "silver_dagger",
       "weaponType": "dagger",
-      "atk": 51,
+      "atk": 36,
       "matk": 0,
       "interval": 0.36
     },
@@ -10853,9 +10853,9 @@
       "nameTh": "กริช เงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 35,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10863,14 +10863,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 6
+          "value": 4
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_silver_dagger",
       "weaponType": "dagger",
-      "atk": 51,
+      "atk": 36,
       "matk": 0,
       "interval": 0.36
     },
@@ -10879,7 +10879,7 @@
       "nameTh": "ผ้าพันหมัด เงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 30,
       "npcPrice": 42500,
       "rarity": "fine",
@@ -10889,14 +10889,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 45
+          "value": 31
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "silver_knuckles",
       "weaponType": "unarmed",
-      "atk": 54,
+      "atk": 38,
       "matk": 0,
       "interval": 0.44
     },
@@ -10905,9 +10905,9 @@
       "nameTh": "ผ้าพันหมัด เงินจันทรา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 40,
+      "level": 25,
       "weight": 30,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10915,14 +10915,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 45
+          "value": 31
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_silver_knuckles",
       "weaponType": "unarmed",
-      "atk": 54,
+      "atk": 38,
       "matk": 0,
       "interval": 0.44
     },
@@ -10931,7 +10931,7 @@
       "nameTh": "อาภรณ์อาคม เงินจันทรา",
       "type": "armour",
       "slot": "body",
-      "level": 40,
+      "level": 25,
       "weight": 50,
       "npcPrice": 31875,
       "rarity": "fine",
@@ -10941,17 +10941,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 12
+          "value": 8
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 10
+          "value": 7
         },
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 90
+          "value": 63
         },
         {
           "kind": "percent",
@@ -10968,9 +10968,9 @@
       "nameTh": "อาภรณ์อาคม เงินจันทรา",
       "type": "armour",
       "slot": "body",
-      "level": 40,
+      "level": 25,
       "weight": 50,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -10978,17 +10978,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 12
+          "value": 8
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 10
+          "value": 7
         },
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 90
+          "value": 63
         },
         {
           "kind": "percent",
@@ -11005,7 +11005,7 @@
       "nameTh": "โล่อาคม เงินจันทรา",
       "type": "shield",
       "slot": "shield",
-      "level": 40,
+      "level": 25,
       "weight": 30,
       "npcPrice": 17000,
       "rarity": "fine",
@@ -11015,17 +11015,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 8
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 13
+          "value": 9
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 6
+          "value": 4
         }
       ],
       "slots": 0,
@@ -11037,9 +11037,9 @@
       "nameTh": "โล่อาคม เงินจันทรา",
       "type": "shield",
       "slot": "shield",
-      "level": 40,
+      "level": 25,
       "weight": 30,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11047,17 +11047,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 8
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 13
+          "value": 9
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 6
+          "value": 4
         }
       ],
       "slots": 1,
@@ -11069,7 +11069,7 @@
       "nameTh": "ผ้าคลุมผู้เรียก เงินจันทรา",
       "type": "garment",
       "slot": "garment",
-      "level": 40,
+      "level": 25,
       "weight": 25,
       "npcPrice": 14875,
       "rarity": "fine",
@@ -11079,22 +11079,22 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 90
+          "value": 63
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 0,
@@ -11106,9 +11106,9 @@
       "nameTh": "ผ้าคลุมผู้เรียก เงินจันทรา",
       "type": "garment",
       "slot": "garment",
-      "level": 40,
+      "level": 25,
       "weight": 25,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11116,22 +11116,22 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 3
+          "value": 2
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 8
+          "value": 6
         },
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 90
+          "value": 63
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 4
+          "value": 3
         }
       ],
       "slots": 1,
@@ -11143,7 +11143,7 @@
       "nameTh": "รองเท้าลอบล่า เงินจันทรา",
       "type": "footgear",
       "slot": "footgear",
-      "level": 40,
+      "level": 25,
       "weight": 30,
       "npcPrice": 12750,
       "rarity": "fine",
@@ -11153,12 +11153,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "percent",
@@ -11175,9 +11175,9 @@
       "nameTh": "รองเท้าลอบล่า เงินจันทรา",
       "type": "footgear",
       "slot": "footgear",
-      "level": 40,
+      "level": 25,
       "weight": 30,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11185,12 +11185,12 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 6
+          "value": 4
         },
         {
           "kind": "percent",
@@ -11207,9 +11207,9 @@
       "nameTh": "แหวนอาคม เงินจันทรา",
       "type": "accessory",
       "slot": "accessory1",
-      "level": 40,
+      "level": 25,
       "weight": 5,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11217,7 +11217,7 @@
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 14
+          "value": 10
         }
       ],
       "slots": 1,
@@ -11229,9 +11229,9 @@
       "nameTh": "จี้ฟื้นจิต เงินจันทรา",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 40,
+      "level": 25,
       "weight": 5,
-      "npcPrice": 7200,
+      "npcPrice": 4500,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11239,7 +11239,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 90
+          "value": 63
         },
         {
           "kind": "percent",
@@ -11256,7 +11256,7 @@
       "nameTh": "ดาบใหญ่ เหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 50,
+      "level": 35,
       "weight": 100,
       "npcPrice": 90000,
       "rarity": "fine",
@@ -11266,14 +11266,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 110
+          "value": 83
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "sunsteel_greatsword",
       "weaponType": "sword2h",
-      "atk": 119,
+      "atk": 89,
       "matk": 0,
       "interval": 0.65
     },
@@ -11282,9 +11282,9 @@
       "nameTh": "ดาบใหญ่ เหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 50,
+      "level": 35,
       "weight": 100,
-      "npcPrice": 9000,
+      "npcPrice": 6300,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11292,14 +11292,14 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 110
+          "value": 83
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_sunsteel_greatsword",
       "weaponType": "sword2h",
-      "atk": 119,
+      "atk": 89,
       "matk": 0,
       "interval": 0.65
     },
@@ -11308,7 +11308,7 @@
       "nameTh": "กริช เหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 50,
+      "level": 35,
       "weight": 35,
       "npcPrice": 90000,
       "rarity": "fine",
@@ -11318,14 +11318,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 7
+          "value": 5
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "sunsteel_dagger",
       "weaponType": "dagger",
-      "atk": 66,
+      "atk": 50,
       "matk": 0,
       "interval": 0.36
     },
@@ -11334,9 +11334,9 @@
       "nameTh": "กริช เหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 50,
+      "level": 35,
       "weight": 35,
-      "npcPrice": 9000,
+      "npcPrice": 6300,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11344,14 +11344,14 @@
         {
           "kind": "flat",
           "stat": "flee",
-          "value": 7
+          "value": 5
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_sunsteel_dagger",
       "weaponType": "dagger",
-      "atk": 66,
+      "atk": 50,
       "matk": 0,
       "interval": 0.36
     },
@@ -11360,7 +11360,7 @@
       "nameTh": "ผ้าพันหมัด เหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 50,
+      "level": 35,
       "weight": 30,
       "npcPrice": 90000,
       "rarity": "fine",
@@ -11370,14 +11370,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 55
+          "value": 41
         }
       ],
       "slots": 0,
       "bind": "none",
       "icon": "sunsteel_knuckles",
       "weaponType": "unarmed",
-      "atk": 70,
+      "atk": 53,
       "matk": 0,
       "interval": 0.44
     },
@@ -11386,9 +11386,9 @@
       "nameTh": "ผ้าพันหมัด เหล็กสุริยัน",
       "type": "weapon",
       "slot": "weapon",
-      "level": 50,
+      "level": 35,
       "weight": 30,
-      "npcPrice": 9000,
+      "npcPrice": 6300,
       "rarity": "rare",
       "stackable": false,
       "maxStack": 1,
@@ -11396,14 +11396,14 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 55
+          "value": 41
         }
       ],
       "slots": 2,
       "bind": "none",
       "icon": "field_sunsteel_knuckles",
       "weaponType": "unarmed",
-      "atk": 70,
+      "atk": 53,
       "matk": 0,
       "interval": 0.44
     },
@@ -11412,7 +11412,7 @@
       "nameTh": "อาภรณ์อาคม เหล็กสุริยัน",
       "type": "armour",
       "slot": "body",
-      "level": 50,
+      "level": 35,
       "weight": 50,
       "npcPrice": 67500,
       "rarity": "fine",
@@ -11422,17 +11422,17 @@
         {
           "kind": "flat",
           "stat": "hardDef",
-          "value": 15
+          "value": 11
         },
         {
           "kind": "flat",
           "stat": "hardMdef",
-          "value": 12
+          "value": 9
         },
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 110
+          "value": 83
         },
         {
           "kind": "percent",
@@ -11449,6 +11449,487 @@
       "nameTh": "อาภรณ์อาคม เหล็กสุริยัน",
       "type": "armour",
       "slot": "body",
+      "level": 35,
+      "weight": 50,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 11
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 9
+        },
+        {
+          "kind": "flat",
+          "stat": "maxSp",
+          "value": 83
+        },
+        {
+          "kind": "percent",
+          "stat": "castMul",
+          "value": -0.03
+        }
+      ],
+      "slots": 2,
+      "bind": "none",
+      "icon": "field_sunsteel_robe"
+    },
+    {
+      "id": "sunsteel_focus_shield",
+      "nameTh": "โล่อาคม เหล็กสุริยัน",
+      "type": "shield",
+      "slot": "shield",
+      "level": 35,
+      "weight": 30,
+      "npcPrice": 36000,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 8
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 11
+        },
+        {
+          "kind": "flat",
+          "stat": "matk",
+          "value": 6
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "sunsteel_focus_shield"
+    },
+    {
+      "id": "field_sunsteel_focus_shield",
+      "nameTh": "โล่อาคม เหล็กสุริยัน",
+      "type": "shield",
+      "slot": "shield",
+      "level": 35,
+      "weight": 30,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 8
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 11
+        },
+        {
+          "kind": "flat",
+          "stat": "matk",
+          "value": 6
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sunsteel_focus_shield"
+    },
+    {
+      "id": "sunsteel_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เหล็กสุริยัน",
+      "type": "garment",
+      "slot": "garment",
+      "level": 35,
+      "weight": 25,
+      "npcPrice": 31500,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 2
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 7
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 83
+        },
+        {
+          "kind": "flat",
+          "stat": "matk",
+          "value": 4
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "sunsteel_spirit_cloak"
+    },
+    {
+      "id": "field_sunsteel_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เหล็กสุริยัน",
+      "type": "garment",
+      "slot": "garment",
+      "level": 35,
+      "weight": 25,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 2
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 7
+        },
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 83
+        },
+        {
+          "kind": "flat",
+          "stat": "matk",
+          "value": 4
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sunsteel_spirit_cloak"
+    },
+    {
+      "id": "sunsteel_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เหล็กสุริยัน",
+      "type": "footgear",
+      "slot": "footgear",
+      "level": 35,
+      "weight": 30,
+      "npcPrice": 27000,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 6
+        },
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 5
+        },
+        {
+          "kind": "percent",
+          "stat": "moveSpeed",
+          "value": 0.02
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "sunsteel_swift_boots"
+    },
+    {
+      "id": "field_sunsteel_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เหล็กสุริยัน",
+      "type": "footgear",
+      "slot": "footgear",
+      "level": 35,
+      "weight": 30,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 6
+        },
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 5
+        },
+        {
+          "kind": "percent",
+          "stat": "moveSpeed",
+          "value": 0.02
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sunsteel_swift_boots"
+    },
+    {
+      "id": "field_sunsteel_arcane_ring",
+      "nameTh": "แหวนอาคม เหล็กสุริยัน",
+      "type": "accessory",
+      "slot": "accessory1",
+      "level": 35,
+      "weight": 5,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "matk",
+          "value": 13
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sunsteel_arcane_ring"
+    },
+    {
+      "id": "field_sunsteel_amulet",
+      "nameTh": "จี้ฟื้นจิต เหล็กสุริยัน",
+      "type": "accessory",
+      "slot": "accessory2",
+      "level": 35,
+      "weight": 5,
+      "npcPrice": 6300,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxSp",
+          "value": 83
+        },
+        {
+          "kind": "percent",
+          "stat": "spRegen",
+          "value": 0.08
+        }
+      ],
+      "slots": 1,
+      "bind": "none",
+      "icon": "field_sunsteel_amulet"
+    },
+    {
+      "id": "naga_greatsword",
+      "nameTh": "ดาบใหญ่ เกล็ดนาคา",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 50,
+      "weight": 100,
+      "npcPrice": 175000,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 111
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "naga_greatsword",
+      "weaponType": "sword2h",
+      "atk": 127,
+      "matk": 0,
+      "interval": 0.65
+    },
+    {
+      "id": "field_naga_greatsword",
+      "nameTh": "ดาบใหญ่ เกล็ดนาคา",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 50,
+      "weight": 100,
+      "npcPrice": 9000,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 111
+        }
+      ],
+      "slots": 2,
+      "bind": "none",
+      "icon": "field_naga_greatsword",
+      "weaponType": "sword2h",
+      "atk": 127,
+      "matk": 0,
+      "interval": 0.65
+    },
+    {
+      "id": "naga_dagger",
+      "nameTh": "กริช เกล็ดนาคา",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 50,
+      "weight": 35,
+      "npcPrice": 175000,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 7
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "naga_dagger",
+      "weaponType": "dagger",
+      "atk": 70,
+      "matk": 0,
+      "interval": 0.36
+    },
+    {
+      "id": "field_naga_dagger",
+      "nameTh": "กริช เกล็ดนาคา",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 50,
+      "weight": 35,
+      "npcPrice": 9000,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "flee",
+          "value": 7
+        }
+      ],
+      "slots": 2,
+      "bind": "none",
+      "icon": "field_naga_dagger",
+      "weaponType": "dagger",
+      "atk": 70,
+      "matk": 0,
+      "interval": 0.36
+    },
+    {
+      "id": "naga_knuckles",
+      "nameTh": "ผ้าพันหมัด เกล็ดนาคา",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 50,
+      "weight": 30,
+      "npcPrice": 175000,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxSp",
+          "value": 56
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "naga_knuckles",
+      "weaponType": "unarmed",
+      "atk": 75,
+      "matk": 0,
+      "interval": 0.44
+    },
+    {
+      "id": "field_naga_knuckles",
+      "nameTh": "ผ้าพันหมัด เกล็ดนาคา",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 50,
+      "weight": 30,
+      "npcPrice": 9000,
+      "rarity": "rare",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxSp",
+          "value": 56
+        }
+      ],
+      "slots": 2,
+      "bind": "none",
+      "icon": "field_naga_knuckles",
+      "weaponType": "unarmed",
+      "atk": 75,
+      "matk": 0,
+      "interval": 0.44
+    },
+    {
+      "id": "naga_robe",
+      "nameTh": "อาภรณ์อาคม เกล็ดนาคา",
+      "type": "armour",
+      "slot": "body",
+      "level": 50,
+      "weight": 50,
+      "npcPrice": 131250,
+      "rarity": "fine",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "hardDef",
+          "value": 15
+        },
+        {
+          "kind": "flat",
+          "stat": "hardMdef",
+          "value": 12
+        },
+        {
+          "kind": "flat",
+          "stat": "maxSp",
+          "value": 111
+        },
+        {
+          "kind": "percent",
+          "stat": "castMul",
+          "value": -0.03
+        }
+      ],
+      "slots": 0,
+      "bind": "none",
+      "icon": "naga_robe"
+    },
+    {
+      "id": "field_naga_robe",
+      "nameTh": "อาภรณ์อาคม เกล็ดนาคา",
+      "type": "armour",
+      "slot": "body",
       "level": 50,
       "weight": 50,
       "npcPrice": 9000,
@@ -11469,7 +11950,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 110
+          "value": 111
         },
         {
           "kind": "percent",
@@ -11479,16 +11960,16 @@
       ],
       "slots": 2,
       "bind": "none",
-      "icon": "field_sunsteel_robe"
+      "icon": "field_naga_robe"
     },
     {
-      "id": "sunsteel_focus_shield",
-      "nameTh": "โล่อาคม เหล็กสุริยัน",
+      "id": "naga_focus_shield",
+      "nameTh": "โล่อาคม เกล็ดนาคา",
       "type": "shield",
       "slot": "shield",
       "level": 50,
       "weight": 30,
-      "npcPrice": 36000,
+      "npcPrice": 70000,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -11511,11 +11992,11 @@
       ],
       "slots": 0,
       "bind": "none",
-      "icon": "sunsteel_focus_shield"
+      "icon": "naga_focus_shield"
     },
     {
-      "id": "field_sunsteel_focus_shield",
-      "nameTh": "โล่อาคม เหล็กสุริยัน",
+      "id": "field_naga_focus_shield",
+      "nameTh": "โล่อาคม เกล็ดนาคา",
       "type": "shield",
       "slot": "shield",
       "level": 50,
@@ -11543,16 +12024,16 @@
       ],
       "slots": 1,
       "bind": "none",
-      "icon": "field_sunsteel_focus_shield"
+      "icon": "field_naga_focus_shield"
     },
     {
-      "id": "sunsteel_spirit_cloak",
-      "nameTh": "ผ้าคลุมผู้เรียก เหล็กสุริยัน",
+      "id": "naga_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เกล็ดนาคา",
       "type": "garment",
       "slot": "garment",
       "level": 50,
       "weight": 25,
-      "npcPrice": 31500,
+      "npcPrice": 61250,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -11570,21 +12051,21 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 110
+          "value": 111
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 5
+          "value": 4
         }
       ],
       "slots": 0,
       "bind": "none",
-      "icon": "sunsteel_spirit_cloak"
+      "icon": "naga_spirit_cloak"
     },
     {
-      "id": "field_sunsteel_spirit_cloak",
-      "nameTh": "ผ้าคลุมผู้เรียก เหล็กสุริยัน",
+      "id": "field_naga_spirit_cloak",
+      "nameTh": "ผ้าคลุมผู้เรียก เกล็ดนาคา",
       "type": "garment",
       "slot": "garment",
       "level": 50,
@@ -11607,26 +12088,26 @@
         {
           "kind": "flat",
           "stat": "maxHp",
-          "value": 110
+          "value": 111
         },
         {
           "kind": "flat",
           "stat": "matk",
-          "value": 5
+          "value": 4
         }
       ],
       "slots": 1,
       "bind": "none",
-      "icon": "field_sunsteel_spirit_cloak"
+      "icon": "field_naga_spirit_cloak"
     },
     {
-      "id": "sunsteel_swift_boots",
-      "nameTh": "รองเท้าลอบล่า เหล็กสุริยัน",
+      "id": "naga_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เกล็ดนาคา",
       "type": "footgear",
       "slot": "footgear",
       "level": 50,
       "weight": 30,
-      "npcPrice": 27000,
+      "npcPrice": 52500,
       "rarity": "fine",
       "stackable": false,
       "maxStack": 1,
@@ -11649,11 +12130,11 @@
       ],
       "slots": 0,
       "bind": "none",
-      "icon": "sunsteel_swift_boots"
+      "icon": "naga_swift_boots"
     },
     {
-      "id": "field_sunsteel_swift_boots",
-      "nameTh": "รองเท้าลอบล่า เหล็กสุริยัน",
+      "id": "field_naga_swift_boots",
+      "nameTh": "รองเท้าลอบล่า เกล็ดนาคา",
       "type": "footgear",
       "slot": "footgear",
       "level": 50,
@@ -11681,11 +12162,11 @@
       ],
       "slots": 1,
       "bind": "none",
-      "icon": "field_sunsteel_swift_boots"
+      "icon": "field_naga_swift_boots"
     },
     {
-      "id": "field_sunsteel_arcane_ring",
-      "nameTh": "แหวนอาคม เหล็กสุริยัน",
+      "id": "field_naga_arcane_ring",
+      "nameTh": "แหวนอาคม เกล็ดนาคา",
       "type": "accessory",
       "slot": "accessory1",
       "level": 50,
@@ -11703,11 +12184,11 @@
       ],
       "slots": 1,
       "bind": "none",
-      "icon": "field_sunsteel_arcane_ring"
+      "icon": "field_naga_arcane_ring"
     },
     {
-      "id": "field_sunsteel_amulet",
-      "nameTh": "จี้ฟื้นจิต เหล็กสุริยัน",
+      "id": "field_naga_amulet",
+      "nameTh": "จี้ฟื้นจิต เกล็ดนาคา",
       "type": "accessory",
       "slot": "accessory2",
       "level": 50,
@@ -11720,488 +12201,7 @@
         {
           "kind": "flat",
           "stat": "maxSp",
-          "value": 110
-        },
-        {
-          "kind": "percent",
-          "stat": "spRegen",
-          "value": 0.08
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_sunsteel_amulet"
-    },
-    {
-      "id": "naga_greatsword",
-      "nameTh": "ดาบใหญ่ เกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 100,
-      "npcPrice": 175000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 130
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "naga_greatsword",
-      "weaponType": "sword2h",
-      "atk": 148,
-      "matk": 0,
-      "interval": 0.65
-    },
-    {
-      "id": "field_naga_greatsword",
-      "nameTh": "ดาบใหญ่ เกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 100,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 130
-        }
-      ],
-      "slots": 2,
-      "bind": "none",
-      "icon": "field_naga_greatsword",
-      "weaponType": "sword2h",
-      "atk": 148,
-      "matk": 0,
-      "interval": 0.65
-    },
-    {
-      "id": "naga_dagger",
-      "nameTh": "กริช เกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 35,
-      "npcPrice": 175000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 8
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "naga_dagger",
-      "weaponType": "dagger",
-      "atk": 82,
-      "matk": 0,
-      "interval": 0.36
-    },
-    {
-      "id": "field_naga_dagger",
-      "nameTh": "กริช เกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 35,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 8
-        }
-      ],
-      "slots": 2,
-      "bind": "none",
-      "icon": "field_naga_dagger",
-      "weaponType": "dagger",
-      "atk": 82,
-      "matk": 0,
-      "interval": 0.36
-    },
-    {
-      "id": "naga_knuckles",
-      "nameTh": "ผ้าพันหมัด เกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 175000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "maxSp",
-          "value": 65
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "naga_knuckles",
-      "weaponType": "unarmed",
-      "atk": 87,
-      "matk": 0,
-      "interval": 0.44
-    },
-    {
-      "id": "field_naga_knuckles",
-      "nameTh": "ผ้าพันหมัด เกล็ดนาคา",
-      "type": "weapon",
-      "slot": "weapon",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "maxSp",
-          "value": 65
-        }
-      ],
-      "slots": 2,
-      "bind": "none",
-      "icon": "field_naga_knuckles",
-      "weaponType": "unarmed",
-      "atk": 87,
-      "matk": 0,
-      "interval": 0.44
-    },
-    {
-      "id": "naga_robe",
-      "nameTh": "อาภรณ์อาคม เกล็ดนาคา",
-      "type": "armour",
-      "slot": "body",
-      "level": 60,
-      "weight": 50,
-      "npcPrice": 131250,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 18
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 14
-        },
-        {
-          "kind": "flat",
-          "stat": "maxSp",
-          "value": 130
-        },
-        {
-          "kind": "percent",
-          "stat": "castMul",
-          "value": -0.03
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "naga_robe"
-    },
-    {
-      "id": "field_naga_robe",
-      "nameTh": "อาภรณ์อาคม เกล็ดนาคา",
-      "type": "armour",
-      "slot": "body",
-      "level": 60,
-      "weight": 50,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 18
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 14
-        },
-        {
-          "kind": "flat",
-          "stat": "maxSp",
-          "value": 130
-        },
-        {
-          "kind": "percent",
-          "stat": "castMul",
-          "value": -0.03
-        }
-      ],
-      "slots": 2,
-      "bind": "none",
-      "icon": "field_naga_robe"
-    },
-    {
-      "id": "naga_focus_shield",
-      "nameTh": "โล่อาคม เกล็ดนาคา",
-      "type": "shield",
-      "slot": "shield",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 70000,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 12
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 18
-        },
-        {
-          "kind": "flat",
-          "stat": "matk",
-          "value": 9
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "naga_focus_shield"
-    },
-    {
-      "id": "field_naga_focus_shield",
-      "nameTh": "โล่อาคม เกล็ดนาคา",
-      "type": "shield",
-      "slot": "shield",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 12
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 18
-        },
-        {
-          "kind": "flat",
-          "stat": "matk",
-          "value": 9
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_naga_focus_shield"
-    },
-    {
-      "id": "naga_spirit_cloak",
-      "nameTh": "ผ้าคลุมผู้เรียก เกล็ดนาคา",
-      "type": "garment",
-      "slot": "garment",
-      "level": 60,
-      "weight": 25,
-      "npcPrice": 61250,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 4
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 11
-        },
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 130
-        },
-        {
-          "kind": "flat",
-          "stat": "matk",
-          "value": 5
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "naga_spirit_cloak"
-    },
-    {
-      "id": "field_naga_spirit_cloak",
-      "nameTh": "ผ้าคลุมผู้เรียก เกล็ดนาคา",
-      "type": "garment",
-      "slot": "garment",
-      "level": 60,
-      "weight": 25,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 4
-        },
-        {
-          "kind": "flat",
-          "stat": "hardMdef",
-          "value": 11
-        },
-        {
-          "kind": "flat",
-          "stat": "maxHp",
-          "value": 130
-        },
-        {
-          "kind": "flat",
-          "stat": "matk",
-          "value": 5
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_naga_spirit_cloak"
-    },
-    {
-      "id": "naga_swift_boots",
-      "nameTh": "รองเท้าลอบล่า เกล็ดนาคา",
-      "type": "footgear",
-      "slot": "footgear",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 52500,
-      "rarity": "fine",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 9
-        },
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 8
-        },
-        {
-          "kind": "percent",
-          "stat": "moveSpeed",
-          "value": 0.02
-        }
-      ],
-      "slots": 0,
-      "bind": "none",
-      "icon": "naga_swift_boots"
-    },
-    {
-      "id": "field_naga_swift_boots",
-      "nameTh": "รองเท้าลอบล่า เกล็ดนาคา",
-      "type": "footgear",
-      "slot": "footgear",
-      "level": 60,
-      "weight": 30,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "hardDef",
-          "value": 9
-        },
-        {
-          "kind": "flat",
-          "stat": "flee",
-          "value": 8
-        },
-        {
-          "kind": "percent",
-          "stat": "moveSpeed",
-          "value": 0.02
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_naga_swift_boots"
-    },
-    {
-      "id": "field_naga_arcane_ring",
-      "nameTh": "แหวนอาคม เกล็ดนาคา",
-      "type": "accessory",
-      "slot": "accessory1",
-      "level": 60,
-      "weight": 5,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "matk",
-          "value": 20
-        }
-      ],
-      "slots": 1,
-      "bind": "none",
-      "icon": "field_naga_arcane_ring"
-    },
-    {
-      "id": "field_naga_amulet",
-      "nameTh": "จี้ฟื้นจิต เกล็ดนาคา",
-      "type": "accessory",
-      "slot": "accessory2",
-      "level": 60,
-      "weight": 5,
-      "npcPrice": 10800,
-      "rarity": "rare",
-      "stackable": false,
-      "maxStack": 1,
-      "modifiers": [
-        {
-          "kind": "flat",
-          "stat": "maxSp",
-          "value": 130
+          "value": 111
         },
         {
           "kind": "percent",
@@ -14142,7 +14142,7 @@
       "nameTh": "ดาบสัตย์พิทักษ์",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 20,
       "weight": 70,
       "npcPrice": 5400,
       "rarity": "legendary",
@@ -14198,7 +14198,7 @@
       "nameTh": "อาภรณ์อัคคีสงบ",
       "type": "armour",
       "slot": "body",
-      "level": 30,
+      "level": 20,
       "weight": 50,
       "npcPrice": 5400,
       "rarity": "legendary",
@@ -14235,7 +14235,7 @@
       "nameTh": "จี้สัตย์บัวขาว",
       "type": "accessory",
       "slot": "accessory2",
-      "level": 30,
+      "level": 20,
       "weight": 5,
       "npcPrice": 5400,
       "rarity": "legendary",
@@ -14262,7 +14262,7 @@
       "nameTh": "ผ้าคลุมพันธะวิญญาณ",
       "type": "garment",
       "slot": "garment",
-      "level": 30,
+      "level": 25,
       "weight": 25,
       "npcPrice": 5400,
       "rarity": "legendary",
@@ -14304,7 +14304,7 @@
       "nameTh": "กริชเขี้ยวเงา",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 20,
       "weight": 35,
       "npcPrice": 5400,
       "rarity": "legendary",
@@ -14335,7 +14335,7 @@
       "nameTh": "ผ้าพันหมัดธารปราณ",
       "type": "weapon",
       "slot": "weapon",
-      "level": 30,
+      "level": 20,
       "weight": 30,
       "npcPrice": 5400,
       "rarity": "legendary",

@@ -21,15 +21,15 @@ const regionRecord=<T>(get:(id:BiomeMapId)=>T)=>Object.fromEntries(BIOME_IDS.map
 export const isField=(m:MapId|undefined):m is FieldMapId=>m!==undefined&&m!=='city_plaza'&&(MAP_IDS as readonly string[]).includes(m);
 export const MAP_INFO:Record<MapId,{name:string;levels:string;hint:string}>={
  ...regionRecord(id=>({name:exploration[id].name,levels:exploration[id].levels,hint:exploration[id].exploration?'พื้นที่สำรวจ · มอนสเตอร์และรางวัลยังไม่เปิด':'พื้นที่ล่า Lv.'+exploration[id].levels+' · ระวังกลไกเฉพาะตัว'})),
- himmapan:{name:'ป่าหิมพานต์และธารนาคา',levels:'50–59',hint:'กินรี Lv.50 → มกร Lv.52 → สิงห์ Lv.56 → ครุฑ Lv.57 → นาคา Lv.59'},
- temple:{name:'วิหารกรีกหลงกาล',levels:'40–49',hint:'ซาเทอร์ Lv.40 → ฮาร์ปี Lv.43 → กอร์กอน Lv.46 → มิโนทอร์ Lv.49'},
- grove:{name:'ป่าอรุณอำพัน',levels:'31–35',hint:'ตั๊กแตนอำพัน Lv.31 → นกฮูกอรุณ Lv.33 → ราชันพฤกษา Lv.35'},
- summit:{name:'ผาผลึกจันทรา',levels:'36–40',hint:'ปูผลึก Lv.36 → แมวป่าหิมะ Lv.38 → ไททันจันทรา Lv.40'},
+ himmapan:{name:'ป่าหิมพานต์และธารนาคา',levels:'35–40',hint:'พื้นที่ล่า Lv.35–40 · มอนสเตอร์เรียงจากทางเข้าถึงลานบอส'},
+ temple:{name:'วิหารกรีกหลงกาล',levels:'30–35',hint:'พื้นที่ล่า Lv.30–35 · มอนสเตอร์เรียงจากทางเข้าถึงลานบอส'},
+ grove:{name:'ป่าอรุณอำพัน',levels:'20–25',hint:'พื้นที่ล่า Lv.20–25 · มอนสเตอร์เรียงจากทางเข้าถึงลานบอส'},
+ summit:{name:'ผาผลึกจันทรา',levels:'25–30',hint:'พื้นที่ล่า Lv.25–30 · มอนสเตอร์เรียงจากทางเข้าถึงลานบอส'},
  city_plaza:{name:'นครที่ถูกลืมเลือน',levels:'เขตปลอดภัย',hint:'เตรียมเสบียงก่อนออกเดินทาง'},
  meadow:{name:'ทุ่งวุ้นจิ๋ว',levels:'1–5',hint:'วุ้น Lv.1 · กระต่าย Lv.3 · ด้วง Elite Lv.4 · ราชาวุ้น Lv.5'},
- forest:{name:'ป่าหมอก',levels:'1–15',hint:'ชายป่า Lv.1–4 → พงหนาม Lv.6–10 → ป่าลึก Lv.11–15'},
- ruins:{name:'ซากนครโบราณ',levels:'1–22',hint:'ลานดินเผา Lv.1–4 → ถนนผ่าน → ซากนคร Lv.16–22'},
- canyon:{name:'หุบเขาหิน',levels:'1–30',hint:'ลำธารกรวด Lv.1–4 → ทางแร่ Lv.16–20 → ผาลึก Lv.23–30'},
+ forest:{name:'ป่าหมอก',levels:'5–10',hint:'พื้นที่ล่า Lv.5–10 · มอนสเตอร์เรียงจากทางเข้าถึงลานบอส'},
+ ruins:{name:'ซากนครโบราณ',levels:'10–15',hint:'พื้นที่ล่า Lv.10–15 · มอนสเตอร์เรียงจากทางเข้าถึงลานบอส'},
+ canyon:{name:'หุบเขาหิน',levels:'15–20',hint:'พื้นที่ล่า Lv.15–20 · มอนสเตอร์เรียงจากทางเข้าถึงลานบอส'},
 };
 
 /*
@@ -165,7 +165,7 @@ export function meadowWalkable(x: number, z: number, r: number) {
 	return r <= GRID_MAX_R ? !meadowHits(x,z,r) : !meadowWideHits(x,z,r);
 }
 
-/* ---------------------------------------------------------------- forest: ป่าหมอก, 120 x 96 m, Lv 6-15 */
+/* ---------------------------------------------------------------- forest: ป่าหมอก, 120 x 96 m, Lv 5-10 */
 export const FOREST = {halfX:forest.halfX,halfZ:forest.halfZ};
 export const FOREST_ENTRY = forest.entry;
 export const FOREST_CAMP = forest.camps[0];
@@ -245,7 +245,7 @@ export const FIELD_BOSS: Record<HuntingMapId,FieldBossRule> & Partial<Record<Exp
  canyon:{dataId:'crag_titan',x:canyon.arena.x,z:canyon.arena.z,minion:'crag_slime',respawnMinutes:30},
 };
 export const BOSS_RESPAWN_MS = (m: FieldMapId) => (FIELD_BOSS[m]?.respawnMinutes ?? 30) * 60000;
-/** Optional Lv.10 arena, independent of the forest's Lv.15 boss. */
+/** Optional forest arena, independent of the field boss. */
 export const THORN_NEST={dataId:'thorn_nest_mother',x:-24,z:30,minion:'mist_weaver',respawnMinutes:30};
 
 const explorationHits=regionRecord(id=>circleIndex(exploration[id].obstacles));

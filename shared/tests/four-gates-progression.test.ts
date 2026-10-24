@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {createGame,loadGameData,step,action} from '../src/index.node.js';
+import {createGame,loadGameData,step,action,buildForLevel} from '../src/index.node.js';
 import {GATES,GATE_LINKS,FIELD_HABITATS,FIELD_BOSS,LAYOUTS,MAP_ENTRY,travelDestination,type FieldMapId} from '../src/game/maps.js';
 import {walkable} from '../src/game/collision.js';
 import {createPathfinder} from '../src/game/pathfinding.js';
@@ -16,10 +16,11 @@ test('all four city gates lead directly out and back through the facing regional
  }
 });
 for(const map of ['meadow','forest','ruins','canyon'] as const){
- test(`${map}: arrival is quiet, level 1 is nearby, and high monsters stay in deep spawn areas`,()=>{
+ const entryLevel={meadow:1,forest:5,ruins:10,canyon:15}[map];
+ test(`${map}: arrival is quiet, entry-level monsters are nearby, and high monsters stay in deep spawn areas`,()=>{
   const entry=MAP_ENTRY[map],spawns=LAYOUTS[map].spawns,distance=(p:{x:number;z:number})=>Math.hypot(p.x-entry.x,p.z-entry.z);
-  assert.ok(spawns.filter(s=>monster(s.dataId).level===1).some(s=>distance(s)<30));
-  for(const s of spawns){assert.ok(distance(s)>8);if(map!=='meadow'&&monster(s.dataId).level>4)assert.ok(distance(s)>40,s.dataId);}
+  assert.ok(spawns.filter(s=>monster(s.dataId).level===entryLevel).some(s=>distance(s)<30));
+  for(const s of spawns){assert.ok(distance(s)>8);if(map!=='meadow'&&monster(s.dataId).level>entryLevel+1)assert.ok(distance(s)>40,s.dataId);}
   assert.ok(distance(FIELD_BOSS[map])>70);
   const path=createPathfinder((x,z)=>walkable(x,z,.4,map),LAYOUTS[map]);
   for(const h of FIELD_HABITATS[map])assert.ok(path.findPath(entry,h).length,`no route to ${h.name}`);
@@ -28,9 +29,9 @@ for(const map of ['meadow','forest','ruins','canyon'] as const){
    for(let i=1;i<ordered.length;i++)if(monster(ordered[i].dataId).level>monster(ordered[i-1].dataId).level)assert.ok(distance(ordered[i])>distance(ordered[i-1]),'habitat tiers deepen away from the city');
   }
  });
- test(`${map}: a default level-1 character can defeat its first small monster`,()=>{
-  const g=createGame(42,undefined,'starter-test',data,map),enemy=g.enemies.find(e=>monster(e.dataId).level===1)!;
-  assert.equal(g.p.level,1);g.random=()=>.5;g.enemies=[enemy];g.p.x=enemy.x;g.p.z=enemy.z+1.2;
+ test(`${map}: an appropriately equipped entry-level character can defeat its first small monster`,()=>{
+  const g=createGame(42,buildForLevel('swordsman',entryLevel,data),'starter-test',data,map),enemy=g.enemies.find(e=>monster(e.dataId).level===entryLevel)!;
+  assert.equal(g.p.level,entryLevel);g.random=()=>.5;g.enemies=[enemy];g.p.x=enemy.x;g.p.z=enemy.z+1.2;
   for(let i=0;i<800&&!enemy.dead&&!g.p.dead;i++){action(g,'attack');step(g,.05);}
   assert.ok(enemy.dead,'first enemy is killable with starter equipment');assert.equal(g.p.dead,false);assert.ok(g.kills>=1);
  });

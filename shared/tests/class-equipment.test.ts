@@ -45,7 +45,7 @@ test('seven Unique builds equip, persist and trade through real inventory rules,
   assert.ok(data.monsters.monsters.some(m=>live.has(m.id)&&m.level>=t.level&&m.drops.some(d=>d.item===id)));
   const roll=rollEquipment(id,100,data,()=>.5)!;let state=applyInventory({inventory:starterInventory(0,randomUUID),gold:0},{op:'admin',loot:[{template:id,qty:1,roll}]},profile,data,randomUUID).state;
   const item=state.inventory.items.find(i=>i.template===id)!;
-  assert.throws(()=>applyInventory(state,{op:'equip',id:item.id},{...profile,level:29},data,randomUUID));
+  assert.throws(()=>applyInventory(state,{op:'equip',id:item.id},{...profile,level:t.level-1},data,randomUUID));
   state=applyInventory(state,{op:'equip',id:item.id},profile,data,randomUUID).state;const stats=deriveStats(inventoryProfile(profile,state.inventory,data),data);assert.ok(Number.isFinite(stats.atk)&&stats.matk>0);
   assert.throws(()=>applyInventory(state,{op:'socket',id:item.id},profile,data,randomUUID));
   for(const op of ['unequip','store','retrieve'] as const)state=applyInventory(state,{op,id:item.id},profile,data,randomUUID).state;

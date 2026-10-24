@@ -669,7 +669,7 @@ function attackingStats(p: Player, e: Enemy) {
 }
 /** Consumable spell: available to the current swordsman without unlocking an unfinished job. */
 export function sunScrollTarget(g:Game,p:Player,id:number|null=p.target){
- if(p.dead||p.level<50||p.mapId!==g.mapId||!isField(g.mapId)||p.statuses.some(v=>v.id==='stun'||v.id==='knockup'))return null;
+ if(p.dead||p.level<40||p.mapId!==g.mapId||!isField(g.mapId)||p.statuses.some(v=>v.id==='stun'||v.id==='knockup'))return null;
  const e=g.enemies.find(e=>e.id===id&&!e.dead);return e&&Math.hypot(p.x-e.x,p.z-e.z)<=6&&pathSegmentWalkable(p,e,(x,z)=>walkable(x,z,.15,g.mapId))?e:null;
 }
 function defendingStats(g:Game,e:Enemy){

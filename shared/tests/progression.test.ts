@@ -39,9 +39,9 @@ test('regular same-level hunting remains bounded through Lv99',()=>{
 
 
 test('a disconnected high-level damage owner cannot launder a low-level finisher EXP',()=>{
- const g=createGame(2269,{...data.stats.defaultBuild,level:60},'finisher',data,'desert');g.enemies=[];const p=g.p;p.god=true;p.stats.hit=10000;p.stats.atk=100000;g.random=()=>0;
+ const g=createGame(2269,{...data.stats.defaultBuild,level:data.monsters.monsters.find(m=>m.id==='desert_01')!.level},'finisher',data,'desert');g.enemies=[];const p=g.p;p.god=true;p.stats.hit=10000;p.stats.atk=100000;g.random=()=>0;
  const e=spawn(g,p.x,p.z+1,false,'pink',false,'desert_01');e.hp=1;e.maxHp=1000000;e.damageBy={offline:900000};e.damageLevels={offline:100};
  p.target=e.id;assert.ok(action(g,'attack'));assert.ok(e.dead);assert.equal(e.rewardSource!.ownerLevel,100);
  for(let i=0;i<50;i++)step(g,.05);const drop=g.drops.find(d=>d.source);assert.ok(drop);assert.equal(drop.source!.ownerLevel,100);
- const shares=expShares(g,p,1000,500,{...drop.source!,recipients:[{id:p.id,level:60}]});assert.equal(shares[0].xp,0);assert.equal(shares[0].jobExp,0);
+ const shares=expShares(g,p,1000,500,{...drop.source!,recipients:[{id:p.id,level:p.level}]});assert.equal(shares[0].xp,0);assert.equal(shares[0].jobExp,0);
 });
