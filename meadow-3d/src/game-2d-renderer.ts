@@ -22,6 +22,8 @@ import {HERO_METRES,HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
 import type {CombatFeel} from './combat-feel';
 import type {SwordVfxPixi} from './sword-vfx-pixi';
 import {SkillVfx2D} from './skill-vfx-2d';
+// Registers boss telegraph/blast effects into the shared skill VFX layer.
+import './boss-vfx-2d';
 import {MasteryVfx2D} from './mastery-vfx-2d';
 import {masteryMotion,summonPose} from './mastery-visuals';
 import {SHIELD_BASH_ART} from './shield-bash-art';
@@ -44,7 +46,7 @@ export class GameCanvas2D{
  combatFeel?:CombatFeel;private shakeOffset={x:0,y:0};private monsterFrames=new Map<number,{motion:string;time:number}>();
  private heroStates=new Map<string,{motion:string;clock:number;skill?:SkillMotion;elapsed:number;swing?:number}>();
  private effects:any[]=[];private hits:{id:number;left:number;top:number;right:number;bottom:number}[]=[];
- private swordVfx?:SwordVfxPixi;private swordAttempted=false;readonly skillVfx=new SkillVfx2D();readonly masteryVfx=new MasteryVfx2D();
+ private swordVfx?:SwordVfxPixi;private swordAttempted=false;readonly skillVfx=new SkillVfx2D();private enemyData=new Map<number,string>();readonly masteryVfx=new MasteryVfx2D();
  private width=1;private height=1;private dpr=1;
  /** Static ground (backdrop, roads, map plane) rendered once with a margin, then blitted; redrawn on zoom, resize or after the camera moves past the margin. */
  private groundCache:{canvas:HTMLCanvasElement;ctx:CanvasRenderingContext2D;key:string;ox:number;oy:number}|null=null;
@@ -89,7 +91,7 @@ export class GameCanvas2D{
   // every previous-map monster (including meadow/forest, not just hunting art).
   for(const path of this.monsterImages)if(!neededMonsters.has(path)&&!this.companionImages.has(path))this.assets.release(path);
   this.monsterImages=neededMonsters;
-  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.masteryVfx.clear();this.heroStates.clear();this.remoteHeroes.clear();this.monsterFrames.clear();
+  this.map=id;this.effects.length=0;this.swordVfx?.clear();this.skillVfx.clear();this.enemyData.clear();this.masteryVfx.clear();this.heroStates.clear();this.remoteHeroes.clear();this.monsterFrames.clear();
   // Each baked region plane is about 25–35 MB; retain only the current region
   // and two recent regions while travelling across the expanded world.
   for(const cache of [this.fields,this.backdrops])while(cache.size>3){const old=[...cache.keys()].find(key=>key!==id);if(old===undefined)break;cache.delete(old);}
@@ -104,6 +106,8 @@ export class GameCanvas2D{
   // A basic swing plays the attack motion from its own event, in step with the slash VFX.
   if(e.type==='slash'&&e.playerId){const s=this.heroStates.get(e.playerId)??{motion:'idle',clock:0,elapsed:0};s.swing=0;this.heroStates.set(e.playerId,s);}
   if(this.masteryVfx.event(e))return;
+  // Boss events carry only the enemy id; the VFX pick each boss's look from its data id.
+  if(e.id!=null&&!e.dataId&&['warning','bossBlast','slam','sweep','spit'].includes(e.type)){const dataId=this.enemyData.get(e.id);if(dataId)e={...e,dataId};}
   if(this.skillVfx.event(e))return;
   if(this.swordVfx?.event(e))return;
   if(e.type==='yokai_decoy_break'){this.effects=this.effects.filter(v=>v.type!=='yokai_decoy'||v.playerId!==e.playerId);return;}
@@ -246,8 +250,9 @@ export class GameCanvas2D{
   for(const p of [game.p,...others])if(p.summon&&visible(this.screen(p.summon.x,p.summon.z),100))add(p.summon.x,p.summon.z,()=>this.companion(p.summon,p,time));
   for(const p of [game.p,...others]){const pose=this.skillVfx.heroPose(p.id,p.x,p.z);let drawn=pose?{...p,x:pose.x,z:pose.z,lift:pose.lift,ghosts:pose.ghosts,ghostTint:pose.tint}:p;if(p.decoy&&!p.decoy.dead)drawn={...drawn,ghosts:[...(drawn.ghosts??[]),{x:p.decoy.x,z:p.decoy.z,lift:0,alpha:.5,tint:'#b3a0d2'}]};if(visible(this.screen(drawn.x,drawn.z),100))add(drawn.x,drawn.z,()=>this.hero(drawn,this.combatFeel?.frozen(p.id,now)?0:dt,time,p===game.p));}
   const liveIds=new Set<number>();
-  for(const e of game.enemies){liveIds.add(e.id);const last=this.monsterFrames.get(e.id),frozen=this.combatFeel?.frozen('monster:'+e.id,now)&&last?.motion===e.motion,motionTime=frozen?last!.time:e.motionTime;this.monsterFrames.set(e.id,{motion:e.motion,time:motionTime});if(visible(this.screen(e.x,e.z),160)){const n=this.combatFeel?.nudge(e.id,now)??{x:0,z:0};add(e.x,e.z,()=>this.monster({...e,x:e.x+n.x,z:e.z+n.z,motionTime,hurt:Math.max(e.hurt,this.combatFeel?.flash(e.id,now)??0)},e.id===game.target));}}
+  for(const e of game.enemies){liveIds.add(e.id);this.enemyData.set(e.id,e.dataId);const last=this.monsterFrames.get(e.id),frozen=this.combatFeel?.frozen('monster:'+e.id,now)&&last?.motion===e.motion,motionTime=frozen?last!.time:e.motionTime;this.monsterFrames.set(e.id,{motion:e.motion,time:motionTime});if(visible(this.screen(e.x,e.z),160)){const n=this.combatFeel?.nudge(e.id,now)??{x:0,z:0};add(e.x,e.z,()=>this.monster({...e,x:e.x+n.x,z:e.z+n.z,motionTime,hurt:Math.max(e.hurt,this.combatFeel?.flash(e.id,now)??0)},e.id===game.target));}}
   for(const id of this.monsterFrames.keys())if(!liveIds.has(id))this.monsterFrames.delete(id);
+  for(const id of this.enemyData.keys())if(!liveIds.has(id))this.enemyData.delete(id);
   const vfxFrame={ctx:c,width:this.width,height:this.height,dpr:this.dpr,scale:s,screen:(x:number,z:number,h?:number)=>this.screen(x,z,h),locate:(id:string)=>[game.p,...others].find(p=>p.id===id),highQuality:this.highQuality,reducedMotion:this.atmosphere.reducedMotion,enemy:(id:number)=>game.enemies.find((e:any)=>e.id===id)};
   this.masteryVfx.advance(dt);this.masteryVfx.pre(vfxFrame,[game.p,...others],game.smokeFields??[],game.time);
   this.skillVfx.pre(vfxFrame,dt);
