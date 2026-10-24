@@ -32,7 +32,6 @@ import{ShadowHero,parseShadowManifest}from'./shadow-hero';
 
 import './shadow-combat.css';
 import {TOWN_NPCS,nearbyTownNpc} from './city-2d-locations';
-import {cityNpcWorldHeight} from './city-npc-sprite';
 import {paintMinimapLayer} from './minimap-view';
 import {MEADOW_LANDMARKS,FIELD_HABITATS} from '@the-beginning-online/shared/maps';
 type TextureManifest=Record<string,{webp:string}>;
@@ -156,8 +155,7 @@ function mapInteractions(){
  }
  if(closed&&closed!==closedGate)notice('หมอกหนาเกินไป ยังผ่านไม่ได้');closedGate=closed;
 }
-// head: on-screen height of each NPC sprite's head top (city NPCs ~2 m, gate captain 2.1 m, angel sprite 3.9 tall).
-const npcLabels=TOWN_NPCS.map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.icon+' '+n.name;el.querySelector('span')!.style.color=n.color;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,head:n.art==='angel'?3.75:(cityNpcWorldHeight(n.art)+.1)/.82-.3,el};});
+const npcLabels=TOWN_NPCS.map(n=>{const el=document.createElement('div');el.className='npc-world-label';el.dataset.npc=n.id;el.innerHTML='<span></span><small></small>';el.querySelector('span')!.textContent=n.icon+' '+n.name;el.querySelector('span')!.style.color=n.color;el.querySelector('small')!.textContent=n.role;$('#ui').append(el);return {...n,el};});
 const statusLabels=new Map<number,HTMLElement>();
 const numbers:any[]=[];let markerTime=0;const marker={x:0,z:0};const encounterLog:any[]=[];
 const JELLY_IDS=new Set(['jelly_pink','jelly_mint','jelly_sky','jelly_summon','king_jelly']);
@@ -367,10 +365,10 @@ function hud(){if(game.p.dead&&deathReveal<=0&&$('#overlay').hidden)showDeath();
  sound.updateMusic({mapId:activeMap,dead:game.p.dead,bossAlive:!!boss&&!boss.dead,bossTargeted:!!boss&&game.target===boss.id,bossBarActive:!!boss&&!$('#boss-hud').hidden,bossAggro:!!boss?.engaged});
  if(activeMap==='city_plaza'){$('#quest-name').textContent='นครที่ถูกลืมเลือน';$('#quest-line').textContent='ใต้: ทุ่ง · ออก: ป่า · เหนือ: ซากนคร · ตก: หุบเขา · ใกล้เมือง Lv.1–3';$('#quest-progress').style.width='0';$('#quest-note').textContent=CITY.empty?'พื้นที่เมืองว่าง · ไม่มี NPC หรือสิ่งปลูกสร้าง':'คุยกับทูตสวรรค์ หรือพักฟื้นข้างน้ำพุ';}else if(isField(activeMap)){fieldQuest(boss);}
  const target=game.enemies.find(e=>e.id===game.target&&!e.dead);$('#target').hidden=!target||target.boss;if(target){$('#target-name').textContent=enemyLabel(target);$('#target-lv').textContent=`ระดับ ${monsterSpec(target)?.level??1}`;$('#target-hp').style.width=`${target.hp/target.maxHp*100}%`;}
- for(const b of $$('[data-action]')){if(b.matches('[data-potion]'))continue;const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game);combatBar.update(p);guide?.update();}
+ for(const b of $$('[data-action]')){if(b.matches('[data-potion]'))continue;const a=b.dataset.action as Action,cd=p.cd[a];b.style.setProperty('--cooldown-angle',`${Math.min(1,cd/CD[a])*360}deg`);let n=b.querySelector<HTMLElement>('.cooldown');if(cd>.15){if(!n){n=document.createElement('span');n.className='cooldown';b.appendChild(n);}n.textContent=cd>=1?String(Math.ceil(cd)):cd.toFixed(1);}else n?.remove();const unavailable=(a==='spin'&&p.mp<20)||(a==='meteor'&&p.mp<30)||(a==='potion'&&p.potions===0);b.classList.toggle('empty',unavailable);b.classList.toggle('ready',!unavailable&&cd<=.15);b.setAttribute('aria-disabled',String(unavailable||cd>0));}minimap();qol?.update(game,worldState.authoritativePosition);combatBar.update(p);guide?.update();}
 function render(dt:number){sound.setListener(game.p);renderer.overview=overviewOn&&activeMap==='city_plaza';renderer.zoomHeight=zoomHeight;renderer.render(game,worldState.others,dt,time);
  if(deathReveal>0){deathReveal=Math.max(0,deathReveal-dt);if(!deathReveal&&game.p.dead)showDeath();}
- for(const n of npcLabels){const q=renderer.screen(n.x,n.z,n.head+.3);n.el.hidden=activeMap!=='city_plaza'||Math.hypot(n.x-game.p.x,n.z-game.p.z)>10;n.el.style.left=q.x+'px';n.el.style.top=q.y+'px';}
+ for(const n of npcLabels){const q=renderer.npcHead(n.x,n.z,n.art);n.el.hidden=activeMap!=='city_plaza'||q.x<-150||q.x>innerWidth+150||q.y<0||q.y>innerHeight;n.el.style.left=q.x+'px';n.el.style.top=(q.y-8)+'px';}
  for(let i=numbers.length-1;i>=0;i--){const n=numbers[i];n.life-=dt;if(n.life<=0){n.el.remove();numbers.splice(i,1);continue;}const t=1-n.life/n.max,q=renderer.screen(n.x,n.z,n.height);n.el.style.left=(q.x+n.jx+n.drift*t)+'px';n.el.style.top=(q.y-45*t-n.stack*16)+'px';n.el.style.opacity=String(Math.min(1,n.life/.25));}
 }
 function resize(_updateRenderer=true){renderer.zoomHeight=zoomHeight;renderer.resize();}window.addEventListener('resize',()=>resize());

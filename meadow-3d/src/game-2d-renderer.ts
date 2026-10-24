@@ -94,6 +94,7 @@ export class GameCanvas2D{
   for(const cache of [this.fields,this.backdrops])while(cache.size>3){const old=[...cache.keys()].find(key=>key!==id);if(old===undefined)break;cache.delete(old);}
  }
  screen(x:number,z:number,h=0){const p=project2D(x,z,h);return{x:this.width/2+(p.x-this.focus.x)*this.scale+this.shakeOffset.x,y:this.height/2+(p.y-this.focus.y)*this.scale+this.shakeOffset.y};}
+ npcHead(x:number,z:number,art:string){const sprite=this.city?.npcSprites.get(art);return this.screen(x,z,sprite?sprite.height*(sprite.anchor?.[1]??1):0);}
  ground(x:number,y:number){const b=this.canvas.getBoundingClientRect();return unproject2D((x-b.left-this.width/2-this.shakeOffset.x)/this.scale+this.focus.x,(y-b.top-this.height/2-this.shakeOffset.y)/this.scale+this.focus.y);}
  pickEnemy(x:number,y:number){return [...this.hits].reverse().find(p=>x>=p.left&&x<=p.right&&y>=p.top&&y<=p.bottom)?.id??null;}
  event(e:any){

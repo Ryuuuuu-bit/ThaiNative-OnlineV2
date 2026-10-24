@@ -92,7 +92,7 @@ export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;t
  get goal(){return goalMap;},attacked(enemy:any){lastTarget=enemy;targetUntil=performance.now()+4000;},key(code:string){const keys=resolveKeys(settings.keys,(o.player().hotbar??[]).map((s:any)=>s.key));if(code===keys.returnCity){returnCity();return true;}return false;},
  clickNPC(project:(x:number,z:number,y:number)=>{x:number;y:number},x:number,y:number){const candidates=npcs().map(n=>({...n,screen:project(n.x,n.z,1.5)})).filter(n=>Math.hypot(n.screen.x-x,n.screen.y-y)<32).sort((a,b)=>Math.hypot(a.screen.x-x,a.screen.y-y)-Math.hypot(b.screen.x-x,b.screen.y-y));if(candidates[0]){cancel();navigate(candidates[0]);return true;}return false;},
  receive(m:any){if(m.t==='welcome'){saving=false;if(dirty)save();}if(m.t==='uiSettings'){if(saving){saving=false;if(signature(m.settings)!==signature(settings)){save();return;}dirty=false;}if(!dirty){confirmed=structuredClone(m.settings);settings=structuredClone(m.settings);apply();$('#hud-save').textContent='บันทึกแล้ว';}}if(m.t==='uiSettingsError'){saving=false;dirty=false;settings=structuredClone(confirmed);apply();$('#hud-save').textContent=m.text;}},
- update(game:any){const p=game.p;const barKeys=(p.hotbar??[]).map((s:any)=>s.key).join();if(barKeys!==lastBarKeys){lastBarKeys=barKeys;apply();}
+ update(game:any,position=game.p){const p=game.p;const barKeys=(p.hotbar??[]).map((s:any)=>s.key).join();if(barKeys!==lastBarKeys){lastBarKeys=barKeys;apply();}
  const huntingMap=o.map();huntingArea.hidden=!isField(huntingMap);
  if(isField(huntingMap)){const h=fieldHabitatAt(huntingMap,p.x,p.z),nest=huntingMap==='forest'&&Math.hypot(p.x-THORN_NEST.x,p.z-THORN_NEST.z)<7,boss=nest?THORN_NEST:FIELD_BOSS[huntingMap],nearBoss=!!boss&&(nest||Math.hypot(p.x-boss.x,p.z-boss.z)<LAYOUTS[huntingMap].arena!.r+3);
   huntingArea.dataset.variant=nearBoss?'boss':h?(huntingMap==='meadow'?h.variant:huntingMap):'road';
@@ -100,7 +100,7 @@ export function mountHUDQOL(o:{send:(m:any)=>void;map:()=>MapId;player:()=>any;t
   text('#hunting-area',nearBoss?`ลาน${monster!.nameTh} · Lv.${monster!.level}`:h?`${h.name} · Lv.${monster!.level}`:LAYOUTS[huntingMap].exploration?'แมปสำรวจ · มอนและของดรอปยังไม่เปิด':'ทางเดินเชื่อมพื้นที่ล่า');
  }
  if(routeMap!==o.map()||routeMap!==p.mapId||p.dead)cancel(!p.dead);
- const previousWaypoint=journey.points[0],routeState=journey.update(p,performance.now());
+ const previousWaypoint=journey.points[0],routeState=journey.update(position,performance.now());
  if(previousWaypoint!==journey.points[0])nextWaypoint=0;
  if(routeState==='blocked'){cancel();o.send({t:'auto',on:false});o.notice('เดินต่อไม่ได้ ระบบหยุดนำทางแล้ว ลองเลือกจุดหมายใหม่');}
  if(goalMap&&!journey.points.length&&!arrival&&p.mapId===o.map()){

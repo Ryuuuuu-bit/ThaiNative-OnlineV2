@@ -70,9 +70,13 @@ export class NetworkWorld {
 	ready = false;
 	lastTick = 0;
 	ack = 0;
+	authoritativePosition = { x: CITY_SPAWN.x, z: CITY_SPAWN.z };
 	private previous: any;
 	private latest: any;
 	private received = 0;
+	private samples: { time: number; player: Player }[] = [];
+	private sampleClock = 0;
+	private clickWalking = false;
 	private prediction = { x: -1, z: 6 };
 	private pending: PendingMovement[] = [];
 	private correction = { x: 0, z: 0 };
@@ -84,8 +88,16 @@ export class NetworkWorld {
 	receive(snap: any, you: string, now: number) {
 		const own = snap.players.find((p: any) => p.id === you);
 		if (!own) return;
+		this.authoritativePosition = { x: own.x, z: own.z };
         if(this.latest?.mapId!==snap.mapId){this.pending=[];this.ready=false;this.latest=undefined;this.flash=null;}
         this.game.p.mapId=snap.mapId;
+		if (!this.ready || now - this.received > 1000) {
+			this.samples = [];
+			this.sampleClock = now - snap.time * 1000;
+			this.clickWalking = false;
+		}
+		this.samples.push({ time: snap.time, player: { ...own } });
+		if (this.samples.length > 16) this.samples.shift();
 		const result = reconcileMovement(
 			own,
 			this.prediction,
@@ -93,6 +105,8 @@ export class NetworkWorld {
 			this.pending,
 		);
 		if (!this.ready || result.snap) {
+			this.samples = [{ time: snap.time, player: { ...own } }];
+			this.sampleClock = now - snap.time * 1000;
 			this.prediction = { ...result.position };
 			this.correction = { x: 0, z: 0 };
 		} else {
@@ -194,6 +208,28 @@ export class NetworkWorld {
 		const fade = Math.max(0, 1 - this.correctionAge / 0.15);
 		this.game.p.x = this.prediction.x + this.correction.x * fade;
 		this.game.p.z = this.prediction.z + this.correction.z * fade;
+		if (Math.hypot(input.x, input.z) >= 0.05 || p.auto || p.dead || p.dash > 0)
+			this.clickWalking = false;
+		else if (p.destination) this.clickWalking = true;
+		if (this.clickWalking) {
+			// Keep a 150 ms server timeline through packet jitter; never predict past a waypoint.
+			const time = (now - this.sampleClock - 150) / 1000;
+			let from = this.samples[0], to = from;
+			for (const sample of this.samples) {
+				to = sample;
+				if (sample.time >= time) break;
+				from = sample;
+			}
+			const continuous = !from.player.dead && !to.player.dead &&
+				Math.hypot(to.player.x - from.player.x, to.player.z - from.player.z) <= 1.5;
+			const blend = continuous && to.time > from.time
+				? Math.max(0, Math.min(1, (time - from.time) / (to.time - from.time))) : 1;
+			this.game.p.x = lerp(from.player.x, to.player.x, blend);
+			this.game.p.z = lerp(from.player.z, to.player.z, blend);
+			this.prediction = { x: this.game.p.x, z: this.game.p.z };
+			this.pending = [];
+			this.correction = { x: 0, z: 0 };
+		}
 		if (p.auto) {
 			// AUTO is server-driven: interpolate the same snapshot interval as monsters.
 			// Prediction correction restarted every snapshot used to cause slow/fast pulses.
