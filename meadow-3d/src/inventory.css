@@ -286,8 +286,8 @@ body #inventory-window[data-mode=bag] .inv-doll-slot{display:flex;flex-direction
 body #inventory-window[data-mode=bag] .inv-doll-slot .inv-cell,body #inventory-window[data-mode=bag] .inv-doll-slot .inv-doll-empty{width:56px;height:56px;border-radius:12px}
 body #inventory-window[data-mode=bag] .inv-doll-slot .inv-cell .item-icon{width:46px;height:46px}
 body #inventory-window[data-mode=bag] .inv-doll-slot>span:last-child{margin:0;font-size:11px!important;white-space:nowrap}
-body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-figure{margin:0;min-height:300px;background-size:760% auto;background-position:3.2% 60%;position:relative}
-body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-figure::after{content:"";position:absolute;left:50%;bottom:34px;width:130px;height:24px;margin-left:-65px;border-radius:50%;z-index:-1;
+body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-figure{margin:0;min-height:300px;background-size:auto 100%;background-position:50% 100%;position:relative}
+body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-figure::after{content:"";position:absolute;left:50%;bottom:4px;width:130px;height:24px;margin-left:-65px;border-radius:50%;z-index:-1;
 	border:1px solid rgba(230,201,143,.4);box-shadow:0 0 18px rgba(230,201,143,.3),inset 0 0 12px rgba(230,201,143,.2)}
 body #inventory-window[data-mode=bag] .inv-paperdoll>.inv-doll-who{bottom:12px}
 body #inventory-window[data-mode=bag] .inv-bonus{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin-top:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--g-line);background:rgba(255,255,255,.025)}

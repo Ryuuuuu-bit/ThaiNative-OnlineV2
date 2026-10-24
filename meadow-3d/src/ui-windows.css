@@ -103,7 +103,7 @@ dialog .caption{margin:2px 0 8px}
 	background:radial-gradient(ellipse 140px 22px at 50% 86%,rgba(0,0,0,.4),transparent 70%),radial-gradient(circle at 50% 45%,rgba(230,201,143,.13),transparent 58%),rgba(0,0,0,.16)}
 #inventory-window .inv-paperdoll>div{display:flex;background:none;padding:0}
 #inventory-window .inv-paperdoll>.inv-doll-col{flex-direction:column;gap:10px}
-#inventory-window .inv-paperdoll>.inv-doll-figure{display:block;align-self:stretch;margin:0 6px 40px;background:url('/assets/hero-painted/preview/hero-idle-v1.png') no-repeat;background-size:600% auto;background-position:4% 70%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.4))}
+#inventory-window .inv-paperdoll>.inv-doll-figure{display:block;align-self:stretch;margin:0 6px 40px;background:var(--hero-full,url('/assets/hero-portraits-v1/male-full.webp')) no-repeat;background-size:auto 100%;background-position:50% 100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.4))}
 .inv-doll-slot{display:flex;flex-direction:column;align-items:center;width:64px}
 .inv-doll-slot>:first-child{display:grid;place-items:center;width:64px;height:64px!important;border-radius:12px!important}
 #inventory-window .inv-doll-slot .inv-cell{width:64px}

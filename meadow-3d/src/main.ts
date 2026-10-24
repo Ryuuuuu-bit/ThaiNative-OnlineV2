@@ -115,6 +115,7 @@ let assetFailure=false,activeMap:MapId=selected.character.mapId||'city_plaza';
 try{await renderer.init(activeMap);sceneReady=true;window.tnBoot.stage(1);net.ready();$('#load-state').textContent='พร้อมแล้ว · เดินด้วย WASD หรือคลิกที่พื้น';}catch(error){assetFailure=true;window.tnBoot.fail('โหลดภาพเมืองไม่สำเร็จ กรุณาลองใหม่','texture');throw error;}
 sound.setMap(activeMap);
 document.documentElement.style.setProperty('--portrait','url("'+`/assets/hero-portraits-v1/${hero.outfit}-portrait.webp`+'")');
+document.documentElement.style.setProperty('--hero-full','url("'+`/assets/hero-portraits-v1/${hero.outfit}-full.webp`+'")');
 document.documentElement.style.setProperty('--skill-atlas','url("'+renderer.assets.url('/assets/skills-painted/skills-v2.png')+'")');
 const right={x:13/Math.hypot(13,9),z:-9/Math.hypot(13,9)},up={x:-9/Math.hypot(13,9),z:-13/Math.hypot(13,9)};
 let point={x:0,z:0};
