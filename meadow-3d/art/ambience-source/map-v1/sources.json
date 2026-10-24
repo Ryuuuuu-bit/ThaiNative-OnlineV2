@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "sampleRate": 48000,
+  "crossfadeSeconds": 1.5,
+  "targetLufs": -30,
+  "truePeakDbtp": -6,
+  "tracks": {
+    "city": {
+      "source": "art/ambience-source/map-v1/amb_city.mp3",
+      "sha256": "94de98e6f925f95c7b2d733254b2763dafc4a3543a41f609fc7c9f615d2b7ffc",
+      "map": "city_plaza",
+      "name_th": "นครที่ถูกลืมเลือน",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet old stone plaza with a soft distant fountain, subtle unvoiced market movement and gentle leaves. Continuous natural environmental texture. No music or voices. Stable density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "forest": {
+      "source": "art/ambience-source/map-v1/amb_forest.mp3",
+      "sha256": "9ac5a25da70e3a03107255dc34c511640179f73b1bbc7f5f9621095dd740d7dc",
+      "map": "forest",
+      "name_th": "ป่าหมอก",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of damp forest air with sparse low birds and soft leaves under a thin mist. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "ruins": {
+      "source": "art/ambience-source/map-v1/amb_ruins.mp3",
+      "sha256": "200da104c0f512773858307abdb8f66dd467b5ebbfd5ce55da4e4213f03291eb",
+      "map": "ruins",
+      "name_th": "ซากนครโบราณ",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of soft wind passing through old stone arches with sparse dusty leaf movement. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "canyon": {
+      "source": "art/ambience-source/map-v1/amb_canyon.mp3",
+      "sha256": "6f16b7ecfb0c9be2739fedbc08835dbcbafdfd25801958b11588e63faa5b5695",
+      "map": "canyon",
+      "name_th": "หุบเขาหิน",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of dry canyon wind with tiny loose grit and distant soft water. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "grove": {
+      "source": "art/ambience-source/map-v1/amb_grove.mp3",
+      "sha256": "9cb694124639b206e520760c08310f4ded116f5a2ae02d55f39ae346a1c9c460",
+      "map": "grove",
+      "name_th": "ป่าอรุณอำพัน",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of warm grove wind with gentle canopy leaves and sparse rounded bird calls. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "summit": {
+      "source": "art/ambience-source/map-v1/amb_summit.mp3",
+      "sha256": "8740569cb0499077beb4c5497198641d257008fa15d75231fe97ad4e2ea7b669",
+      "map": "summit",
+      "name_th": "ผาผลึกจันทรา",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of cold high cliff air with faint mineral ticks and sparse snow grit. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "temple": {
+      "source": "art/ambience-source/map-v1/amb_temple.mp3",
+      "sha256": "11c72ec79e46823b41c67f810893a1221dcbf5b73d818e08177501b42ce51605",
+      "map": "temple",
+      "name_th": "วิหารกรีกหลงกาล",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of light wind through marble columns with faint olive leaf rustle. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "himmapan": {
+      "source": "art/ambience-source/map-v1/amb_himmapan.mp3",
+      "sha256": "a66569737dcafb90420fa68832ba8a26e8f2e93f07d68b844f7862d84d523260",
+      "map": "himmapan",
+      "name_th": "ป่าหิมพานต์และธารนาคา",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of lush sacred forest with low insects and a distant flowing water bed. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "desert": {
+      "source": "art/ambience-source/map-v1/amb_desert.mp3",
+      "sha256": "d115fdd4e71287e29c6a3494a29ab86ec0b46a661572513ab683e099a01eb27d",
+      "map": "desert",
+      "name_th": "ทะเลทราย",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of soft dry sand wind with sparse granular movement and distant hot air. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "frost": {
+      "source": "art/ambience-source/map-v1/amb_frost.mp3",
+      "sha256": "2d7a6e06901339f27f73babb262e7d0cf1ef2ac43de6df011024bcdb1bb33895",
+      "map": "frost",
+      "name_th": "แดนเหมันต์",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of low cold fjord wind with very sparse dark ice creaks and soft drifting snow. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "yokai": {
+      "source": "art/ambience-source/map-v1/amb_yokai.mp3",
+      "sha256": "5b1c2d765da24eaf466a61d0b89108009c84af84883efe633182f7ed987cb7a1",
+      "map": "yokai",
+      "name_th": "แดนโยไค",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of soft bamboo leaves with gentle stream air and sparse distant insects. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "dragon": {
+      "source": "art/ambience-source/map-v1/amb_dragon.mp3",
+      "sha256": "5a5fbc40c3b340c2c364d5b4413872d688501ce38525cd8501cd6407205a3abe",
+      "map": "dragon",
+      "name_th": "ทะเลเมฆมังกร",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of soft high cloud wind with faint hanging bamboo movement. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "volcano": {
+      "source": "art/ambience-source/map-v1/amb_volcano.mp3",
+      "sha256": "d510705521b15a69d492a2a36d4a9f8f4e31454d2787ad50383071412a89f1cd",
+      "map": "volcano",
+      "name_th": "แดนภูเขาไฟ",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of low restrained lava air with tiny ember crackles and sparse distant rock shifts. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "fae": {
+      "source": "art/ambience-source/map-v1/amb_fae.mp3",
+      "sha256": "517cc92e32c37fa12f91973835833326f66835de4c6a818b4b5f53bc16e46cb0",
+      "map": "fae",
+      "name_th": "แดนภูตสนธยา",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of soft twilight forest air with sparse moth wings and faint leaf whispers. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "ocean": {
+      "source": "art/ambience-source/map-v1/amb_ocean.mp3",
+      "sha256": "00cafbeb627cd1525b748d485783755d278c0ae988912e0294a34ddd6a5430f1",
+      "map": "ocean",
+      "name_th": "หมู่เกาะมหาสมุทร",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of gentle coast wash with soft sea wind and very sparse distant seabirds. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "astral": {
+      "source": "art/ambience-source/map-v1/amb_astral.mp3",
+      "sha256": "0e4f6044bd05b49fdfb1fe989f81c73d8a56392446d4215b5eb874b26218d39b",
+      "map": "astral",
+      "name_th": "แดนดารา",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of quiet airy astral pressure with sparse dark nonmelodic glass dust. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "abyss": {
+      "source": "art/ambience-source/map-v1/amb_abyss.mp3",
+      "sha256": "d297849313b334a982393dfa544f3d984a2ed02cda80948345ea64b04fa5a855",
+      "map": "abyss",
+      "name_th": "แดนบาดาล",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of low dark coastal wind with restrained water pressure and sparse stone grains. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "confluence": {
+      "source": "art/ambience-source/map-v1/amb_confluence.mp3",
+      "sha256": "648d60cb9ba66d2cadb7523b3655ac9fe7f3cca6ffcfd46d1d4c5a92e98a4bc5",
+      "map": "confluence",
+      "name_th": "จุดบรรจบแกนโลก",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "prompt": "A quiet environmental bed of steady deep earth air with sparse water breath and quiet granular crystal movement. Continuous natural environmental texture. No music or intelligible speech. Stable level and density across a seamless loop. No intro or outro. No close combat sounds. Soft distant textures and mellow highs. No piercing insects, loud bird calls or sudden sharp events."
+    },
+    "meadow": {
+      "source": "art/ambience-source/map-v1/amb_meadow.wav",
+      "sha256": "b3f2480ab5ad40e2f2451cf5ae06453f183c90125e64314a65be708c3294ebf4",
+      "map": "meadow",
+      "name_th": "ทุ่งวุ้นจิ๋ว",
+      "provider": "ElevenLabs",
+      "model": "eleven_text_to_sound_v2",
+      "take": 1,
+      "reusedApprovedSfx": true
+    }
+  }
+}

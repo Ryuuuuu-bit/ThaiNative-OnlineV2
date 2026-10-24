@@ -15,9 +15,12 @@ export class MusicPlayer {
   private hidden = false;
   private ctx: AudioContext;
   private bus: GainNode;
-  constructor(ctx: AudioContext, bus: GainNode) { this.ctx = ctx; this.bus = bus; }
+  private manifestPath: string;
+  constructor(ctx: AudioContext, bus: GainNode, manifestPath = '/assets/audio/bgm.json') {
+    this.ctx = ctx; this.bus = bus; this.manifestPath = manifestPath;
+  }
   private warn() {
-    if (!this.warned) { this.warned = true; console.warn('Background music unavailable; continuing silently.'); }
+    if (!this.warned) { this.warned = true; console.warn('Background audio unavailable; continuing silently.'); }
   }
   select(track: MusicTrack | null) {
     this.desired = track;
@@ -63,7 +66,7 @@ export class MusicPlayer {
     try {
       let voice: Voice | undefined;
       if (target) {
-        this.manifest ??= fetch('/assets/audio/bgm.json?v=' + import.meta.env?.VITE_BUILD_ID,
+        this.manifest ??= fetch(this.manifestPath + '?v=' + import.meta.env?.VITE_BUILD_ID,
           { priority: 'low' }).then(r => { if (!r.ok) throw Error('BGM manifest'); return r.json(); })
           .catch(() => { this.warn(); return undefined; });
         const manifest = await this.manifest;

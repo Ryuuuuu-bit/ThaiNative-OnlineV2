@@ -1,6 +1,6 @@
 import { AudioSettingsSchema, DEFAULT_AUDIO, type AudioSettings } from '@the-beginning-online/shared';
 import { assetFetch, reportDeferred } from './asset-request';
-import { MusicSelection, musicDuckGain, type MusicState } from './music-state';
+import { MAP_MUSIC, MusicSelection, musicDuckGain, type MusicState } from './music-state';
 import { MusicPlayer } from './music';
 type Position = { x: number; z: number };
 type Sprite = { group: string; start: number; duration: number; pitch: number; cooldown: number; voices: number };
@@ -24,7 +24,7 @@ export class AudioEngine {
   private last = new Map<string, number>();
   private recent = new Map<string, number[]>();
   private playable = false;
-  private city = false;
+  private mapId = '';
   private music?: MusicPlayer;
   private musicSelection = new MusicSelection();
   private musicState: MusicState = { mapId: '', dead: false, bossAlive: false, bossTargeted: false, bossBarActive: false, bossAggro: false };
@@ -49,8 +49,14 @@ export class AudioEngine {
     clearTimeout(this.impactTimer); this.apply();
     this.impactTimer = setTimeout(() => this.apply(), 260);
   }
-  setMap(mapId: string) { this.city = mapId === "city_plaza"; this.apply(); }
-  private ambient?: AudioBufferSourceNode;
+  setMap(mapId: string) { this.mapId = mapId; this.syncAmbience(); }
+  private ambient?: MusicPlayer;
+  private syncAmbience() {
+    if (!this.playable || !this.ctx) return;
+    this.ambient ??= new MusicPlayer(this.ctx, this.buses.ambience, '/assets/audio/ambience.json');
+    this.ambient.visibility(document.hidden);
+    this.ambient.select(Object.hasOwn(MAP_MUSIC, this.mapId) ? MAP_MUSIC[this.mapId] : null);
+  }
   private listener: Position = { x: 0, z: 0 };
   private storageKey: string;
   constructor(characterId: string) {
@@ -59,7 +65,7 @@ export class AudioEngine {
     const unlock = () => this.start();
     for (const event of ['pointerdown', 'click', 'keydown', 'touchstart'])
       window.addEventListener(event, unlock, { capture: true, passive: true });
-    document.addEventListener('visibilitychange', () => { this.apply(); this.syncMusic(); });
+    document.addEventListener('visibilitychange', () => { this.apply(); this.syncMusic(); this.syncAmbience(); });
   }
   restore(value: unknown) {
     const parsed = AudioSettingsSchema.safeParse(value);
@@ -90,16 +96,17 @@ export class AudioEngine {
         for (const group of this.encoded.keys()) void this.decode(group);
       }
       if (this.ctx.state === 'suspended') void this.ctx.resume().catch(() => {});
-      this.ambience();
+      this.syncAmbience();
       this.syncMusic();
       this.music?.gesture();
+      this.ambient?.gesture();
     } catch { /* Unsupported audio remains silent. */ }
   }
   private apply() {
     if (!this.ctx || !this.master) return;
     this.master.gain.setTargetAtTime(this.settings.muted || document.hidden ? 0 : 1, this.ctx.currentTime, .08);
     for (const bus of ['sfx', 'music', 'ambience'] as const)
-            this.buses[bus].gain.setTargetAtTime(this.settings[bus] * SOFT_TRIM[bus] * (bus === "ambience" && this.city ? .45 : 1) *
+            this.buses[bus].gain.setTargetAtTime(this.settings[bus] * SOFT_TRIM[bus] *
         (bus === 'music' ? musicDuckGain(this.musicState.dead, this.ctx.currentTime < this.impactUntil) : 1), this.ctx.currentTime, .02);
   }
   setListener(position: Position) { this.listener = { x: position.x, z: position.z }; }
@@ -124,22 +131,15 @@ export class AudioEngine {
   private async decode(group: string) {
     const bytes = this.encoded.get(group); if (!this.ctx || !bytes) return;
     this.encoded.delete(group);
-    try { this.buffers.set(group, await this.ctx.decodeAudioData(bytes)); this.ambience(); }
+    try { this.buffers.set(group, await this.ctx.decodeAudioData(bytes)); }
     catch { reportDeferred(); }
   }
   afterPlayable() {
     if (this.playable) return;
     this.playable = true;
     this.syncMusic();
-    void this.load('sfx-core').then(() => this.load('sfx-skills')).then(() => this.load('amb-meadow'));
-  }
-  private ambience() {
-    const sprite = this.manifest?.sounds.amb_meadow, buffer = this.buffers.get('amb-meadow');
-    if (!this.playable || !this.ctx || !sprite || !buffer || this.ambient) return;
-    const source = this.ctx.createBufferSource(), fade = this.ctx.createGain();
-    source.buffer = buffer; source.loop = true; source.loopStart = sprite.start; source.loopEnd = Math.min(buffer.duration, sprite.start + sprite.duration);
-    fade.gain.setValueAtTime(0, this.ctx.currentTime); fade.gain.linearRampToValueAtTime(1, this.ctx.currentTime + 2);
-    source.connect(fade); fade.connect(this.buses.ambience); source.start(0, sprite.start); this.ambient = source;
+    this.syncAmbience();
+    void this.load('sfx-core').then(() => this.load('sfx-skills'));
   }
     play(id: string, position?: Position, bus: Bus = 'sfx', other = false) {
     const ctx = this.ctx, sprite = this.manifest?.sounds[id], buffer = sprite && this.buffers.get(sprite.group);

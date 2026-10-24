@@ -1,0 +1,805 @@
+{
+  "version": 1,
+  "sampleRate": 48000,
+  "channels": 2,
+  "tracks": {
+    "city": {
+      "map": "city_plaza",
+      "source": "art/ambience-source/map-v1/amb_city.mp3",
+      "sourceSha256": "94de98e6f925f95c7b2d733254b2763dafc4a3543a41f609fc7c9f615d2b7ffc",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.08419256657361984,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-city-9f0c5b042cd1.ogg",
+        "bytes": 346242,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00009548400885250885,
+          "maxAdjacentStep": 0.08514843136072159,
+          "passed": true
+        },
+        "lufs": -30.01,
+        "truePeakDbtp": -13.31
+      },
+      "aac": {
+        "url": "/assets/audio/amb-city-e77216ccfb34.m4a",
+        "bytes": 349233,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0002411132700217422,
+          "maxAdjacentStep": 0.0767112448811531,
+          "passed": true
+        },
+        "lufs": -29.99,
+        "truePeakDbtp": -12.22
+      }
+    },
+    "forest": {
+      "map": "forest",
+      "source": "art/ambience-source/map-v1/amb_forest.mp3",
+      "sourceSha256": "9ac5a25da70e3a03107255dc34c511640179f73b1bbc7f5f9621095dd740d7dc",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.28506820648908615,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-forest-4be9b363d237.ogg",
+        "bytes": 346250,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.000006178755349139919,
+          "maxAdjacentStep": 0.2972041890025139,
+          "passed": true
+        },
+        "lufs": -29.97,
+        "truePeakDbtp": -9.08
+      },
+      "aac": {
+        "url": "/assets/audio/amb-forest-17388e9309e3.m4a",
+        "bytes": 349605,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0002516791489597381,
+          "maxAdjacentStep": 0.29305917024612427,
+          "passed": true
+        },
+        "lufs": -29.87,
+        "truePeakDbtp": -9.11
+      }
+    },
+    "ruins": {
+      "map": "ruins",
+      "source": "art/ambience-source/map-v1/amb_ruins.mp3",
+      "sourceSha256": "200da104c0f512773858307abdb8f66dd467b5ebbfd5ce55da4e4213f03291eb",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.1978088542819023,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-ruins-6bdfb6d4f51d.ogg",
+        "bytes": 346256,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.000037811463698744774,
+          "maxAdjacentStep": 0.1968788281083107,
+          "passed": true
+        },
+        "lufs": -29.88,
+        "truePeakDbtp": -17.1
+      },
+      "aac": {
+        "url": "/assets/audio/amb-ruins-5e7c5db5c977.m4a",
+        "bytes": 350152,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00027384569693822414,
+          "maxAdjacentStep": 0.1741083413362503,
+          "passed": true
+        },
+        "lufs": -30.14,
+        "truePeakDbtp": -18.04
+      }
+    },
+    "canyon": {
+      "map": "canyon",
+      "source": "art/ambience-source/map-v1/amb_canyon.mp3",
+      "sourceSha256": "6f16b7ecfb0c9be2739fedbc08835dbcbafdfd25801958b11588e63faa5b5695",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.08929461985826492,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-canyon-7b60bb35640d.ogg",
+        "bytes": 346240,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00010509429148441995,
+          "maxAdjacentStep": 0.08844206109642982,
+          "passed": true
+        },
+        "lufs": -29.95,
+        "truePeakDbtp": -16.14
+      },
+      "aac": {
+        "url": "/assets/audio/amb-canyon-41b3c93cf790.m4a",
+        "bytes": 349272,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00034912408591480926,
+          "maxAdjacentStep": 0.08617356047034264,
+          "passed": true
+        },
+        "lufs": -30.05,
+        "truePeakDbtp": -16
+      }
+    },
+    "grove": {
+      "map": "grove",
+      "source": "art/ambience-source/map-v1/amb_grove.mp3",
+      "sourceSha256": "9cb694124639b206e520760c08310f4ded116f5a2ae02d55f39ae346a1c9c460",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.3180626928806305,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-grove-6924b37bdb2b.ogg",
+        "bytes": 346280,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00003420554730837466,
+          "maxAdjacentStep": 0.29730305820703506,
+          "passed": true
+        },
+        "lufs": -30.05,
+        "truePeakDbtp": -9.58
+      },
+      "aac": {
+        "url": "/assets/audio/amb-grove-2584c82f301c.m4a",
+        "bytes": 349461,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0002713324356591329,
+          "maxAdjacentStep": 0.30995383858680725,
+          "passed": true
+        },
+        "lufs": -30.23,
+        "truePeakDbtp": -9.44
+      }
+    },
+    "summit": {
+      "map": "summit",
+      "source": "art/ambience-source/map-v1/amb_summit.mp3",
+      "sourceSha256": "8740569cb0499077beb4c5497198641d257008fa15d75231fe97ad4e2ea7b669",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.20957442000508308,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-summit-60cd740647bb.ogg",
+        "bytes": 346254,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00000652707950621334,
+          "maxAdjacentStep": 0.21948626264929771,
+          "passed": true
+        },
+        "lufs": -29.92,
+        "truePeakDbtp": -8.56
+      },
+      "aac": {
+        "url": "/assets/audio/amb-summit-1460cdf16862.m4a",
+        "bytes": 349451,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0002106783358613029,
+          "maxAdjacentStep": 0.2019585631787777,
+          "passed": true
+        },
+        "lufs": -29.76,
+        "truePeakDbtp": -9.08
+      }
+    },
+    "temple": {
+      "map": "temple",
+      "source": "art/ambience-source/map-v1/amb_temple.mp3",
+      "sourceSha256": "11c72ec79e46823b41c67f810893a1221dcbf5b73d818e08177501b42ce51605",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.09542026743292809,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-temple-42efdf5f4590.ogg",
+        "bytes": 346289,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00002147250961570535,
+          "maxAdjacentStep": 0.1062071155756712,
+          "passed": true
+        },
+        "lufs": -29.84,
+        "truePeakDbtp": -19.69
+      },
+      "aac": {
+        "url": "/assets/audio/amb-temple-8319d884801e.m4a",
+        "bytes": 349205,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00038399950426537544,
+          "maxAdjacentStep": 0.09102394804358482,
+          "passed": true
+        },
+        "lufs": -29.86,
+        "truePeakDbtp": -20.54
+      }
+    },
+    "himmapan": {
+      "map": "himmapan",
+      "source": "art/ambience-source/map-v1/amb_himmapan.mp3",
+      "sourceSha256": "a66569737dcafb90420fa68832ba8a26e8f2e93f07d68b844f7862d84d523260",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.14139048010110855,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-himmapan-12179bc57667.ogg",
+        "bytes": 346244,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.000022480408233604976,
+          "maxAdjacentStep": 0.14109621569514275,
+          "passed": true
+        },
+        "lufs": -30.1,
+        "truePeakDbtp": -13.1
+      },
+      "aac": {
+        "url": "/assets/audio/amb-himmapan-f85d45c989ac.m4a",
+        "bytes": 348795,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00020945650612702593,
+          "maxAdjacentStep": 0.12423373758792877,
+          "passed": true
+        },
+        "lufs": -30.41,
+        "truePeakDbtp": -13.23
+      }
+    },
+    "desert": {
+      "map": "desert",
+      "source": "art/ambience-source/map-v1/amb_desert.mp3",
+      "sourceSha256": "d115fdd4e71287e29c6a3494a29ab86ec0b46a661572513ab683e099a01eb27d",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.23087649047374725,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-desert-c33451feba92.ogg",
+        "bytes": 346239,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00002736760325205978,
+          "maxAdjacentStep": 0.27512843161821365,
+          "passed": true
+        },
+        "lufs": -30.02,
+        "truePeakDbtp": -13.04
+      },
+      "aac": {
+        "url": "/assets/audio/amb-desert-227893954c99.m4a",
+        "bytes": 350041,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0004472578948480077,
+          "maxAdjacentStep": 0.24063780158758163,
+          "passed": true
+        },
+        "lufs": -30.09,
+        "truePeakDbtp": -14.12
+      }
+    },
+    "frost": {
+      "map": "frost",
+      "source": "art/ambience-source/map-v1/amb_frost.mp3",
+      "sourceSha256": "2d7a6e06901339f27f73babb262e7d0cf1ef2ac43de6df011024bcdb1bb33895",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.33029504120349884,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-frost-fcf99d966d8a.ogg",
+        "bytes": 346152,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.0000059770026723526826,
+          "maxAdjacentStep": 0.3609417751431465,
+          "passed": true
+        },
+        "lufs": -30.19,
+        "truePeakDbtp": -5.85
+      },
+      "aac": {
+        "url": "/assets/audio/amb-frost-12ba1bf5f387.m4a",
+        "bytes": 350073,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0006633625162066892,
+          "maxAdjacentStep": 0.3203350454568863,
+          "passed": true
+        },
+        "lufs": -30.07,
+        "truePeakDbtp": -6.22
+      }
+    },
+    "yokai": {
+      "map": "yokai",
+      "source": "art/ambience-source/map-v1/amb_yokai.mp3",
+      "sourceSha256": "5b1c2d765da24eaf466a61d0b89108009c84af84883efe633182f7ed987cb7a1",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.10047272779047489,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-yokai-64040ca8e606.ogg",
+        "bytes": 346308,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00001129715565184597,
+          "maxAdjacentStep": 0.1383298747241497,
+          "passed": true
+        },
+        "lufs": -29.78,
+        "truePeakDbtp": -12.91
+      },
+      "aac": {
+        "url": "/assets/audio/amb-yokai-0bc83eb6e2ea.m4a",
+        "bytes": 349316,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.000375032308511436,
+          "maxAdjacentStep": 0.10169348772615194,
+          "passed": true
+        },
+        "lufs": -30.16,
+        "truePeakDbtp": -13.23
+      }
+    },
+    "dragon": {
+      "map": "dragon",
+      "source": "art/ambience-source/map-v1/amb_dragon.mp3",
+      "sourceSha256": "5a5fbc40c3b340c2c364d5b4413872d688501ce38525cd8501cd6407205a3abe",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.1434369832277298,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-dragon-2635dfe91c95.ogg",
+        "bytes": 346149,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.000037198954487394076,
+          "maxAdjacentStep": 0.2402767539024353,
+          "passed": true
+        },
+        "lufs": -29.98,
+        "truePeakDbtp": -16.54
+      },
+      "aac": {
+        "url": "/assets/audio/amb-dragon-037c1c5773e8.m4a",
+        "bytes": 349874,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0003577650641091168,
+          "maxAdjacentStep": 0.12085322290658951,
+          "passed": true
+        },
+        "lufs": -30.39,
+        "truePeakDbtp": -19.41
+      }
+    },
+    "volcano": {
+      "map": "volcano",
+      "source": "art/ambience-source/map-v1/amb_volcano.mp3",
+      "sourceSha256": "d510705521b15a69d492a2a36d4a9f8f4e31454d2787ad50383071412a89f1cd",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.2515699304640293,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-volcano-5639eecf6ef7.ogg",
+        "bytes": 346280,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.000007877379232468229,
+          "maxAdjacentStep": 0.24324877373874187,
+          "passed": true
+        },
+        "lufs": -29.74,
+        "truePeakDbtp": -10.43
+      },
+      "aac": {
+        "url": "/assets/audio/amb-volcano-ddd7224908f7.m4a",
+        "bytes": 349430,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00013633291018777527,
+          "maxAdjacentStep": 0.24727235361933708,
+          "passed": true
+        },
+        "lufs": -29.99,
+        "truePeakDbtp": -10.17
+      }
+    },
+    "fae": {
+      "map": "fae",
+      "source": "art/ambience-source/map-v1/amb_fae.mp3",
+      "sourceSha256": "517cc92e32c37fa12f91973835833326f66835de4c6a818b4b5f53bc16e46cb0",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.1803218424320221,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-fae-7521c90eb1eb.ogg",
+        "bytes": 346252,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00004675921104535519,
+          "maxAdjacentStep": 0.17099805176258087,
+          "passed": true
+        },
+        "lufs": -30.05,
+        "truePeakDbtp": -9.43
+      },
+      "aac": {
+        "url": "/assets/audio/amb-fae-6878a8f9b328.m4a",
+        "bytes": 349906,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00020458642347875866,
+          "maxAdjacentStep": 0.1762610301375389,
+          "passed": true
+        },
+        "lufs": -30.18,
+        "truePeakDbtp": -9.47
+      }
+    },
+    "ocean": {
+      "map": "ocean",
+      "source": "art/ambience-source/map-v1/amb_ocean.mp3",
+      "sourceSha256": "00cafbeb627cd1525b748d485783755d278c0ae988912e0294a34ddd6a5430f1",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.34554196894168854,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-ocean-4ccc1b497d7c.ogg",
+        "bytes": 346179,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.0000639985142356636,
+          "maxAdjacentStep": 0.34109093248844147,
+          "passed": true
+        },
+        "lufs": -30.02,
+        "truePeakDbtp": -6.62
+      },
+      "aac": {
+        "url": "/assets/audio/amb-ocean-49e870c3e881.m4a",
+        "bytes": 349551,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00010274933538312325,
+          "maxAdjacentStep": 0.34068216383457184,
+          "passed": true
+        },
+        "lufs": -30.05,
+        "truePeakDbtp": -7.06
+      }
+    },
+    "astral": {
+      "map": "astral",
+      "source": "art/ambience-source/map-v1/amb_astral.mp3",
+      "sourceSha256": "0e4f6044bd05b49fdfb1fe989f81c73d8a56392446d4215b5eb874b26218d39b",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.12026765197515488,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-astral-f615981542ee.ogg",
+        "bytes": 346250,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 3.7336542391130934e-7,
+          "maxAdjacentStep": 0.12812514975667,
+          "passed": true
+        },
+        "lufs": -30.01,
+        "truePeakDbtp": -19.15
+      },
+      "aac": {
+        "url": "/assets/audio/amb-astral-f3408093f33f.m4a",
+        "bytes": 349571,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.0000757014950067969,
+          "maxAdjacentStep": 0.12898145243525505,
+          "passed": true
+        },
+        "lufs": -30.32,
+        "truePeakDbtp": -19.31
+      }
+    },
+    "abyss": {
+      "map": "abyss",
+      "source": "art/ambience-source/map-v1/amb_abyss.mp3",
+      "sourceSha256": "d297849313b334a982393dfa544f3d984a2ed02cda80948345ea64b04fa5a855",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.09425744414329529,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-abyss-6807e06a5b9f.ogg",
+        "bytes": 346248,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.0018270529019446258,
+          "maxAdjacentStep": 0.1113821528851986,
+          "passed": true
+        },
+        "lufs": -29.9,
+        "truePeakDbtp": -10.67
+      },
+      "aac": {
+        "url": "/assets/audio/amb-abyss-b47b5fe2de87.m4a",
+        "bytes": 349467,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00007171673132688738,
+          "maxAdjacentStep": 0.09239230304956436,
+          "passed": true
+        },
+        "lufs": -29.91,
+        "truePeakDbtp": -10.89
+      }
+    },
+    "confluence": {
+      "map": "confluence",
+      "source": "art/ambience-source/map-v1/amb_confluence.mp3",
+      "sourceSha256": "648d60cb9ba66d2cadb7523b3655ac9fe7f3cca6ffcfd46d1d4c5a92e98a4bc5",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.44858507812023163,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-confluence-c166da3535a5.ogg",
+        "bytes": 346230,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.00013708679762203246,
+          "maxAdjacentStep": 0.4261462986469269,
+          "passed": true
+        },
+        "lufs": -30,
+        "truePeakDbtp": -7.55
+      },
+      "aac": {
+        "url": "/assets/audio/amb-confluence-8d94b1722138.m4a",
+        "bytes": 350313,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.00020801403752557235,
+          "maxAdjacentStep": 0.44333767890930176,
+          "passed": true
+        },
+        "lufs": -30.18,
+        "truePeakDbtp": -7.87
+      }
+    },
+    "meadow": {
+      "map": "meadow",
+      "source": "art/ambience-source/map-v1/amb_meadow.wav",
+      "sourceSha256": "b3f2480ab5ad40e2f2451cf5ae06453f183c90125e64314a65be708c3294ebf4",
+      "sourceDuration": 30,
+      "loopStart": 0,
+      "loopEnd": 28.5,
+      "loopCrossfade": 1.5,
+      "boundaryFadeSeconds": 0.05,
+      "targetLufs": -30,
+      "truePeakCeilingDbtp": -6,
+      "highpassHz": 30,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.0885915756225586,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/amb-meadow-dbbb39b3f551.ogg",
+        "bytes": 346195,
+        "decodedDuration": 28.5,
+        "seam": {
+          "wrapJump": 0.0000017925920872130519,
+          "maxAdjacentStep": 0.09190713986754417,
+          "passed": true
+        },
+        "lufs": -29.95,
+        "truePeakDbtp": -15.17
+      },
+      "aac": {
+        "url": "/assets/audio/amb-meadow-9a9a22f459df.m4a",
+        "bytes": 349066,
+        "decodedDuration": 28.501333333333335,
+        "seam": {
+          "wrapJump": 0.000013040271824138472,
+          "maxAdjacentStep": 0.08885651081800461,
+          "passed": true
+        },
+        "lufs": -29.97,
+        "truePeakDbtp": -15.23
+      }
+    }
+  }
+}
