@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createGame,spawn,step,action,revive,KING_PATTERN} from '@the-beginning-online/shared';
-import {monsterFrame,monsterCell,monsterOpacity,VARIANT_HUE} from '../src/monster-animation.ts';
+import {monsterFrame,monsterCell,monsterOpacity,monsterHue,VARIANT_HUE} from '../src/monster-animation.ts';
 const tick=(g,seconds)=>{for(let t=0;t<seconds;t+=1/120)step(g,1/120);};
 function encounter(){const g=createGame();g.random=()=>.5;g.enemies=[];g.p.x=0;g.p.z=0;g.p.invulnerable=100;const e=spawn(g,0,2,true);return{g,e};}
 test('small jelly warns before one lunge and holds its final death puddle before loot',()=>{
@@ -27,6 +27,13 @@ test('king death finishes before victory and summoned jellies never respawn',()=
 test('monster cells use independent timing, four facings and distinct material variants',()=>{
  assert.equal(monsterFrame('king','slam',.54),0);assert.equal(monsterFrame('king','slam',.56),1);assert.equal(monsterFrame('king','slam',.86),2);assert.equal(monsterFrame('king','slam',1.1),3);assert.equal(monsterFrame('slime','idle',1.66),0);
  assert.equal(new Set([[1,0],[-1,0],[0,1],[0,-1]].map(([x,z])=>monsterCell('slime','hop',x,z,0).row)).size,4);assert.equal(new Set(Object.values(VARIANT_HUE)).size,3);
+});
+
+test('all little jellies keep the approved pink appearance, including summoned variants',()=>{
+ for(const id of ['jelly_pink','jelly_mint','jelly_sky','jelly_summon'])for(const variant of ['pink','mint','sky'])assert.equal(monsterHue(id,variant,.5),0);
+ assert.equal(monsterHue('clay_puff','mint'),VARIANT_HUE.mint);
+ assert.equal(monsterHue('pebble_puff','sky'),VARIANT_HUE.sky);
+ assert.equal(monsterHue('king_jelly','pink',-.045),-.045);
 });
 test('replacement jelly atlases use original sources with complete four-frame facings',()=>{
  const root=new URL('../public/assets/monsters-painted/',import.meta.url),manifest=JSON.parse(readFileSync(new URL('manifest.json',root)));

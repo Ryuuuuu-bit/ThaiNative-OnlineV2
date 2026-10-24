@@ -50,6 +50,8 @@ def add(name,im,axis,target,source):
  pixels=np.asarray(normalized.getchannel('A'));ys,xs=np.nonzero(pixels>24);bottom=int(ys.max())
  band=(pixels>24)&(np.indices(pixels.shape)[0]>=bottom-sh*.15)
  anchor_x=float(np.median(np.nonzero(band)[1]))+.5;anchor_y=bottom+1
+ # The hearth sits at the centre of the stone footprint, not its frontmost edge.
+ if name=='campfire':anchor_x=sw*.5;anchor_y=sh*.6
  runtime=normalized.resize((max(1,round(sw*DOWNSAMPLE)),max(1,round(sh*DOWNSAMPLE))),Image.Resampling.LANCZOS)
  item={'name':name,'image':runtime,'sourcePixelSize':[sw,sh],'worldSize':[sw/PPU,sh/PPU],'anchor':[anchor_x/sw,anchor_y/sh],'source':source,'flat':name in ['stone-circle','bridge']}
  items.append(item);report['sources'][name]={'file':source,'trimBounds':bbox,'originalAlphaExtrema':im.getchannel('A').getextrema(),'normalizeScale':factor,'sourcePixelSize':[sw,sh]}

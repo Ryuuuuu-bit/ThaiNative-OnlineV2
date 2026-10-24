@@ -16,7 +16,7 @@ import {loadMapBackdrop} from './game-2d-backdrop';
 import {project2D,unproject2D} from './game-2d-projection';
 import {MOTION_DURATION,motionFor,facingFor,facing8For,WALK_DIRECTIONS} from './sprite-animation';
 import {BORROWED_MOTION,shownMotion,SKILL_DURATION,SKILL_FRAMES,SKILL_V2,skillFrame,isSkillMotion,type SkillMotion} from './skill-motions';
-import {monsterSpecies,monsterVisual,monsterCell,monsterOpacity,SPECIES_SCALE} from './monster-animation';
+import {monsterSpecies,monsterVisual,monsterCell,monsterOpacity,monsterHue,SPECIES_SCALE} from './monster-animation';
 import {huntingCell,HUNTING_ASSET_ROOT,EXPANSION_ASSET_ROOT} from './hunting-monster-animation';
 import {HERO_METRES,HERO_PIXEL_METRES,BOSS_METRES} from './world-scale';
 import type {CombatFeel} from './combat-feel';
@@ -26,6 +26,7 @@ import {MasteryVfx2D} from './mastery-vfx-2d';
 import {masteryMotion,summonPose} from './mastery-visuals';
 import {SHIELD_BASH_ART} from './shield-bash-art';
 import {sceneryOpacity,placeWorldLabel,type Rect} from './world-labels';
+import {drawAreaRing,drawAreaTag} from './world-area';
 
 const tint:Record<string,string>={ruin_shroom:'hue-rotate(40deg) saturate(.65)',relic_hound:'sepia(.45)',relic_wisp:'hue-rotate(125deg)',ruin_guard:'saturate(.65)',relic_warden:'sepia(.3)',crag_slime:'sepia(.8) saturate(.7)',crag_wolf:'sepia(.75)',dust_wisp:'saturate(.7)',crag_guard:'sepia(.8)',crag_titan:'sepia(.8) saturate(1.2)'};
 
@@ -190,7 +191,7 @@ export class GameCanvas2D{
   if(selected)this.circle(e.x,e.z,e.boss?1.6:.7,'#a66e3322','#eec68b');
   if(!e.illusion&&!(e.dataId==='yokai_06'&&e.summoned))this.atmosphere.actorShadow(this.ctx,q,this.scale,e.boss?1.3:.55);
 
-  const c=this.ctx,src=fresh?image:tint[e.dataId]?this.tinted(image as HTMLImageElement,tint[e.dataId]):species==='slime'&&e.variant!=='pink'?this.tinted(image as HTMLImageElement,`hue-rotate(${e.variant==='mint'?162:220}deg)`):image,alpha=monsterOpacity(e),sx=cell.column*image.width/info.columns,sy=cell.row*image.height/info.rows,sw=image.width/info.columns,sh=image.height/info.rows;
+  const c=this.ctx,hue=monsterHue(e.dataId,e.variant),src=fresh?image:tint[e.dataId]?this.tinted(image as HTMLImageElement,tint[e.dataId]):species==='slime'&&hue?this.tinted(image as HTMLImageElement,`hue-rotate(${hue*360}deg)`):image,alpha=monsterOpacity(e),sx=cell.column*image.width/info.columns,sy=cell.row*image.height/info.rows,sw=image.width/info.columns,sh=image.height/info.rows;
   const anticipation=bossAnticipation(e,info.file===def.motions.attack?.file);
   c.save();if(anticipation){c.translate(q.x,q.y);c.transform(anticipation.x,0,anticipation.skew,anticipation.y,0,0);c.translate(-q.x,-q.y);}
   c.globalAlpha=alpha*(e.illusion?.55:1)*(e.dataId==='desert_03'&&e.motion==='attack'&&e.windup>0&&e.motionTime>.3?.3:1);c.drawImage(src,sx,sy,sw,sh,x,y,w,h);this.drawCalls++;
@@ -213,6 +214,14 @@ export class GameCanvas2D{
    return{left:q.x-width/2,top:q.y-height,right:q.x+width/2,bottom:q.y,footY:q.y};
   });
   const backdrop=this.backdrops.get(this.map);this.drawGround(c,backdrop,s);
+  if(this.map!=='city_plaza'){
+   for(const [gate,p] of Object.entries(GATES[this.map])){
+    const destination=travelDestination(this.map,gate,p),q=this.screen(p.x,p.z);if(!destination||!visible(q,100))continue;
+    const to=destination.mapId,explore=LAYOUTS[to].exploration,high=to!=='city_plaza'&&!explore&&parseInt(MAP_INFO[to].levels,10)>game.p.level+2;
+    drawAreaRing(c,q,1.1,s,high?'#edae88':explore?'#a8d7d0':'#dfca88',Math.hypot(p.x-game.p.x,p.z-game.p.z)<1.6);
+   }
+   for(const p of LAYOUTS[this.map].camps){const q=this.screen(p.x,p.z);if(visible(q,2*s))drawAreaRing(c,q,2,s,'#a9d3b4',Math.hypot(p.x-game.p.x,p.z-game.p.z)<2);}
+  }
   if(this.map==='city_plaza')this.cityLighting.draw(c,CITY_LAYOUT.items,(x,z)=>this.screen(x,z),s,this.width,this.height,true);
   const sceneryTrees:AtmosphereTree[]=[];this.atmosphere.water(c,this.map,(x,z,h)=>this.screen(x,z,h),s,time,this.width,this.height,this.highQuality);
   for(const p of backdrop?.props??[]){const q=this.screen(p.x,p.z);if(!visible(q,p.h*s))continue;if(p.tree)sceneryTrees.push(p);add(p.x,p.z,()=>{c.save();if(p.tree){const sway=this.atmosphere.sway(p.x,p.z,time);c.transform(1,0,sway,1,-sway*q.y,0);}const x=q.x-p.w*p.anchor[0]*s,y=q.y-p.h*p.anchor[1]*s;c.globalAlpha=sceneryOpacity({left:x,top:y,right:x+p.w*s,bottom:y+p.h*s},q.y,protectedActors);c.drawImage(p.image,...p.rect as [number,number,number,number],x,y,p.w*s,p.h*s);c.restore();this.drawCalls++;});}
@@ -258,11 +267,10 @@ export class GameCanvas2D{
   if(this.map!=='city_plaza')for(const [gate,p] of Object.entries(GATES[this.map])){
    const destination=travelDestination(this.map,gate,p),q=this.screen(p.x,p.z);if(!destination||!visible(q,100))continue;
    const to=destination.mapId,explore=LAYOUTS[to].exploration,high=to!=='city_plaza'&&!explore&&parseInt(MAP_INFO[to].levels,10)>game.p.level+2,color=high?'#ffb48d':explore?'#a8d7d0':'#dfca88';
-   this.circle(p.x,p.z,1.1,high?'#c4714422':'#d5c58222',color);label('◇ ไป'+MAP_INFO[to].name+(to==='city_plaza'?' · เขตปลอดภัย':' · Lv.'+MAP_INFO[to].levels)+(explore?' · สำรวจ':high?' · ระดับสูง':''),p.x,p.z,color);
+   const r=drawAreaTag(c,{x:q.x,y:q.y-1.1*s*.71-14},'ไป'+MAP_INFO[to].name,to==='city_plaza'?'เดินทางกลับเมือง · เขตปลอดภัย':`Lv.${MAP_INFO[to].levels} · ${explore?'เส้นทางสำรวจ':high?'พื้นที่ระดับสูง':'เส้นทางผจญภัย'}`,'travel',color,labelSpace);if(r)labelSpace.push(r);
   }
   if(this.map!=='city_plaza')for(const [i,p] of LAYOUTS[this.map].camps.entries()){
-   this.circle(p.x,p.z,2,'#8bd9ba12','#a9d9bd88');
-   if(Math.hypot(p.x-game.p.x,p.z-game.p.z)<12)label(`△ แคมป์ ${i+1} · ฟื้น HP · ยังมีอันตราย`,p.x,p.z);
+   const q=this.screen(p.x,p.z);if(visible(q,2*s)&&Math.hypot(p.x-game.p.x,p.z-game.p.z)<12){const r=drawAreaTag(c,{x:q.x,y:q.y-2*s*.71-14},`แคมป์พักฟื้น ${i+1}`,'ฟื้น HP · ยังมีอันตราย','camp','#a9d3b4',labelSpace);if(r)labelSpace.push(r);}
   }
   if(isField(this.map))for(const p of FIELD_PLACES[this.map])if(p.kind!=='boss'&&Math.hypot(p.x-game.p.x,p.z-game.p.z)<(p.kind==='sign'?10:14))label((p.kind==='sign'?'':'⌖ ')+p.name,p.x,p.z);
   for(const e of this.effects){if(['yokai_echo','yokai_puddle','yokai_stance','yokai_decoy','warning','sand_patch','frost_tracks','frost_ward','frost_signal'].includes(e.type))continue;const ratio=e.age/e.life,r=e.r??(e.type==='hit'?.3:1.6);this.circle(e.x??game.p.x,e.z??game.p.z,r*(.4+ratio),'transparent',e.type==='heal'?'#b9e49e':e.type==='bossBlast'?'#f3a67a':'#e8d4a4');

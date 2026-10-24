@@ -3,7 +3,7 @@ import * as T from 'three';import type{PaintedLoader}from'./assets';
 import type { Enemy, MonsterMotion, SlimeVariant } from './sim';
 import { makeMonsterFallback } from './actors';
 import { uprightSprite } from './upright-depth.ts';
-import { monsterCell, monsterOpacity, VARIANT_HUE, monsterSpecies, SPECIES_SCALE } from './monster-animation';
+import { monsterCell, monsterOpacity, monsterHue, monsterSpecies, SPECIES_SCALE } from './monster-animation';
 import {huntingCell} from './hunting-monster-animation';
 import {DIRECTIONS} from './sprite-animation';
 import type { MonsterSpecies } from './monster-animation';
@@ -95,7 +95,7 @@ export function makePaintedMonster(loader:PaintedLoader,boss=false,options:Monst
   const cell=native?{...native,direction:DIRECTIONS[native.row]}:monsterCell(species,actual as MonsterMotion,e.fx,e.fz,visualTime);const info=definition.motions[actual];
   uniforms.uJellyCell.value.set(cell.column/info.columns,1-(cell.row+1)/4,1/info.columns,.25);
   if(material.map!==texture){material.map=texture;material.needsUpdate=true;}
-  uniforms.uJellyHue.value=species==='slime'||species==='king'?(options.hueShift??VARIANT_HUE[options.variant||e.variant]):0;uniforms.uJellyPhase.value=species==='king'&&e.bossPhase===2?1:0;uniforms.uForestPhase.value=species==='warden'&&e.bossPhase===2&&!e.dead?1:0;uniforms.uJellyFlash.value=e.dead?0:Math.min(1,e.hurt/.18)*.8;uniforms.uJellyTime.value=time;
+  uniforms.uJellyHue.value=species==='slime'||species==='king'?monsterHue(e.dataId,options.variant||e.variant,options.hueShift):0;uniforms.uJellyPhase.value=species==='king'&&e.bossPhase===2?1:0;uniforms.uForestPhase.value=species==='warden'&&e.bossPhase===2&&!e.dead?1:0;uniforms.uJellyFlash.value=e.dead?0:Math.min(1,e.hurt/.18)*.8;uniforms.uJellyTime.value=time;
   portrait.center.set(...definition.anchor);const sizeScale=SPECIES_SCALE[species]*((species==='king'||species==='warden')?BOSS_METRES/(definition.bodyWorldHeight||6.9):1);portrait.scale.set(definition.quadWorldSize[0]*sizeScale,definition.quadWorldSize[1]*sizeScale,1);
   shadowMaterial.opacity=.16*opacity*((e.motion==='hop'||e.motion==='move'||e.motion==='slam')&&cell.column===1?.5:1);
   const face=info.directions[cell.row][cell.column].faceRect;

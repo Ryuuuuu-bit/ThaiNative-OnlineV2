@@ -10,6 +10,7 @@ export function monsterSpecies(dataId?:string,boss=false):MonsterSpecies{return 
 export const SPECIES_SCALE:Record<MonsterSpecies,number>={slime:.72,king:1,shroom:.72,wolf:.85,wisp:.7,stump:1,warden:1};
 export const SPECIES_HIT_COLOUR:Record<MonsterSpecies,string>={slime:'#e1b0c1',king:'#ddb0c2',shroom:'#c6b1dc',wolf:'#8097b9',wisp:'#f5bf69',stump:'#a1b77e',warden:'#bbd2bc'};
 export const VARIANT_HUE:Record<SlimeVariant,number>={pink:0,mint:.45,sky:.61};
+export function monsterHue(dataId:string|undefined,variant:SlimeVariant,override?:number){return dataId?.startsWith('jelly_')?0:override??VARIANT_HUE[variant];}
 export function monsterFrame(species:MonsterSpecies,motion:MonsterMotion,elapsed:number){
  const def=(MONSTER_MOTIONS[species] as any)[motion]||(MONSTER_MOTIONS[species] as any).idle;
  let t=Math.max(0,elapsed);if(def.loop)t%=def.duration;
