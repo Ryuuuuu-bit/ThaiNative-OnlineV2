@@ -5,7 +5,7 @@ import {loadGameData,rollEquipment,validateItemRoll,STARTER_AFFIXES,rollDrops,ap
 const data=loadGameData(),profile={...data.stats.defaultBuild,level:10};
 function rng(seed=31){let n=seed;return()=>((n=(Math.imul(n,1664525)+1013904223)>>>0)/4294967296);}
 const owned=(template:string,slot:string|null='accessory1'):OwnedItem=>({id:randomUUID(),template,qty:1,location:'equip',slot,refine:0,cards:[],source:'test',bound:false,roll:rollEquipment(template,10,data,rng())});
-function fixture(){const g=createGame(1,profile,'loot-test',data);g.enemies=[];g.p.inventory=starterInventory(5,randomUUID);g.p.level=10;refreshStats(g,g.p);return g;}
+function fixture(){const g=createGame(1,profile,'loot-test',data);g.enemies=[];const inventory=starterInventory(5,randomUUID);g.p.inventory=applyInventory({inventory,gold:0},{op:'equip',id:inventory.items.find(i=>i.template==='training_sword')!.id},profile,data,randomUUID).state.inventory;g.p.level=10;refreshStats(g,g.p);return g;}
 
 test('rolled loot has bounded, distinct families and prefix/suffix limits; numeric rolls vary across copies',()=>{
  const random=rng(),seen=new Set<string>();

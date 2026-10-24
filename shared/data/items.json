@@ -14360,6 +14360,58 @@
       "atk": 41,
       "matk": 0,
       "interval": 0.44
+    },
+    {
+      "id": "training_greatsword",
+      "nameTh": "ดาบใหญ่ฝึกหัด",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 1,
+      "weight": 100,
+      "npcPrice": 180,
+      "rarity": "common",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxHp",
+          "value": 12
+        }
+      ],
+      "slots": 2,
+      "bind": "none",
+      "icon": "field_greatsword",
+      "weaponType": "sword2h",
+      "atk": 7,
+      "matk": 0,
+      "interval": 0.65
+    },
+    {
+      "id": "training_knuckles",
+      "nameTh": "ผ้าพันหมัดฝึกหัด",
+      "type": "weapon",
+      "slot": "weapon",
+      "level": 1,
+      "weight": 30,
+      "npcPrice": 180,
+      "rarity": "common",
+      "stackable": false,
+      "maxStack": 1,
+      "modifiers": [
+        {
+          "kind": "flat",
+          "stat": "maxSp",
+          "value": 6
+        }
+      ],
+      "slots": 2,
+      "bind": "none",
+      "icon": "field_knuckles",
+      "weaponType": "unarmed",
+      "atk": 5,
+      "matk": 0,
+      "interval": 0.44
     }
   ]
 }

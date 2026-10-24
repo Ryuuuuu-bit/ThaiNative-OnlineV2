@@ -13,8 +13,8 @@ test('two separate copies of the same ring fill both slots and contribute both b
  assert.equal(f.state.inventory.items.find(i=>i.id===f.rings[0])!.slot,'accessory1');
  assert.equal(f.state.inventory.items.find(i=>i.id===f.rings[1])!.slot,'ring2');
  assert.equal(f.state.inventory.items.find(i=>i.id===f.amulet)!.slot,'accessory2');
- const stats=deriveStats({...profile,equipment:equipped(f.state.inventory)},data);assert.equal(stats.atk-base.atk,4);assert.equal(stats.maxSp-base.maxSp,15);
- f.run({op:'unequip',id:f.rings[0]});assert.equal(deriveStats({...profile,equipment:equipped(f.state.inventory)},data).atk-base.atk,2);
+ const stats=deriveStats({...profile,equipment:equipped(f.state.inventory)},data);assert.ok(Math.abs(stats.atk-base.atk-4)<1e-9);assert.equal(stats.maxSp-base.maxSp,15);
+ f.run({op:'unequip',id:f.rings[0]});assert.ok(Math.abs(deriveStats({...profile,equipment:equipped(f.state.inventory)},data).atk-base.atk-2)<1e-9);
  assert.equal(f.state.inventory.items.find(i=>i.id===f.rings[1])!.slot,'ring2');
 });
 test('explicit replacement changes only the selected ring; third ring cannot create a third equipped slot',()=>{

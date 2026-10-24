@@ -191,17 +191,6 @@ export function starterInventory(
 		items: [
 			{
 				id: uuid(),
-				template: "training_sword",
-				qty: 1,
-				location: "equip",
-				slot: "weapon",
-				refine: 0,
-				cards: [],
-				bound: false,
-				source: "migration",
-			},
-			{
-				id: uuid(),
 				template: "traveler_clothes",
 				qty: 1,
 				location: "equip",
@@ -211,7 +200,7 @@ export function starterInventory(
 				bound: false,
 				source: "migration",
 			},
-			...['training_sword', 'field_greatsword', 'reed_dagger', 'wood_staff', 'bamboo_bow', 'field_knuckles'].map((template): OwnedItem => ({
+			...['training_sword', 'training_greatsword', 'reed_dagger', 'wood_staff', 'bamboo_bow', 'training_knuckles'].map((template): OwnedItem => ({
 				id: uuid(), template, qty: 1, location: 'bag', slot: null,
 				refine: 0, cards: [], bound: false, source: 'migration',
 			})),

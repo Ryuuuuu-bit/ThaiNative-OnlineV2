@@ -20,15 +20,20 @@ test('starter weapons cover every weapon type in the bag and are granted only on
 	const { store, a, c, run } = await fixture();
 	const first = await store.inventory(a.id, c.id);
 	const weapons = first.inventory.items.filter(i => i.location === 'bag' && data.items.items.find(t => t.id === i.template)?.type === 'weapon');
-	assert.deepEqual(weapons.map(i => i.template), ['training_sword', 'field_greatsword', 'reed_dagger', 'wood_staff', 'bamboo_bow', 'field_knuckles']);
+	assert.deepEqual(weapons.map(i => i.template), ['training_sword', 'training_greatsword', 'reed_dagger', 'wood_staff', 'bamboo_bow', 'training_knuckles']);
+	assert.ok(!first.inventory.items.some(i => i.location === 'equip' && i.slot === 'weapon'));
 	assert.equal(new Set(weapons.map(i => data.items.items.find(t => t.id === i.template)!.weaponType)).size, 6);
 	for (const item of weapons) {
 		assert.equal(item.qty, 1);
 		assert.equal(item.slot, null);
 		assert.equal(data.items.items.find(t => t.id === item.template)!.level, 1);
+		assert.equal(data.items.items.find(t => t.id === item.template)!.rarity, 'common');
 	}
 	assert.equal(new Set(first.inventory.items.map(i => i.id)).size, first.inventory.items.length);
 	assert.deepEqual(await store.inventory(a.id, c.id), first);
+	await run({ op: 'equip', id: weapons[0].id });
+	assert.equal((await store.inventory(a.id, c.id)).inventory.items.find(i => i.id === weapons[0].id)!.slot, 'weapon');
+	await run({ op: 'unequip', id: weapons[0].id });
 	await run({ op: 'discard', id: weapons[0].id, qty: 1 });
 	assert.ok(!(await store.inventory(a.id, c.id)).inventory.items.some(i => i.id === weapons[0].id));
 	assert.ok((await store.integrity()).ok);
@@ -74,7 +79,7 @@ test("100 different concurrent buys with gold for exactly 3 produce exactly 3", 
 	assert.equal(state.gold, 0);
 	assert.equal(
 		state.inventory.items.filter((i) => i.template === "training_sword").length,
-		5,
+		4,
 	);
 	assert.ok((await store.integrity()).ok);
 });

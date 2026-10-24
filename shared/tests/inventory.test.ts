@@ -167,6 +167,7 @@ test("storage: deposit/withdraw stacks and gear, equipped gear stays out, capaci
 	const profile = { ...data.stats.defaultBuild, level: 5 };
 	let state = { gold: 100, inventory: starterInventory(10, uuid) };
 	const sword = state.inventory.items.find(i => i.template === "training_sword")!;
+	state = applyInventory(state, { op: "equip", id: sword.id }, profile, data, uuid).state;
 	assert.throws(() => applyInventory(state, { op: "store", id: sword.id }, profile, data, uuid), /ถอดอุปกรณ์/);
 	let out = applyInventory(state, { op: "store", id: "stack:red_small", qty: 4 }, profile, data, uuid);
 	state = out.state;
