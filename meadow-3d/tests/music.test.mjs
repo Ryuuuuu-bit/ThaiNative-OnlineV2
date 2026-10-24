@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, statSync } from 'node:fs';
-import { MusicSelection, musicDuckGain, MUSIC_CROSSFADE, MUSIC_RELEASE } from '../src/music-state.ts';
+import { createHash } from 'node:crypto';
+import { MAP_IDS } from '@the-beginning-online/shared/maps';
+import { MusicSelection, MAP_MUSIC, musicDuckGain, MUSIC_CROSSFADE, MUSIC_RELEASE } from '../src/music-state.ts';
 import { MusicPlayer } from '../src/music.ts';
 
 const field = { mapId: 'meadow', dead: false, bossAlive: true, bossTargeted: false, bossBarActive: false, bossAggro: false };
@@ -38,6 +40,24 @@ test('reengagement cancels release; map exit clears stale combat memory', () => 
   assert.equal(selection.select(field, 8), 'king');
   assert.equal(selection.select({ ...field, mapId: 'city_plaza' }, 9), 'city');
   assert.equal(selection.select(field, 10), 'meadow');
+});
+test('every map has its own theme, and all map-to-map transitions clear the previous boss release', () => {
+  assert.deepEqual(Object.keys(MAP_MUSIC), [...MAP_IDS]);
+  assert.equal(new Set(Object.values(MAP_MUSIC)).size, MAP_IDS.length);
+  for (const from of MAP_IDS) for (const to of MAP_IDS) {
+    const selection = new MusicSelection();
+    assert.equal(selection.select({ ...field, mapId: from }, 0), MAP_MUSIC[from]);
+    selection.select({ ...field, mapId: from, bossAggro: true }, 1);
+    selection.select({ ...field, mapId: from }, 2);
+    if (from !== to) assert.equal(selection.select({ ...field, mapId: to }, 2.1), MAP_MUSIC[to], `${from} -> ${to}`);
+    assert.equal(selection.select({ ...field, mapId: to }, 7), MAP_MUSIC[to]);
+    if (to !== 'city_plaza') {
+      assert.equal(selection.select({ ...field, mapId: to, bossAggro: true }, 8), 'king');
+      assert.equal(selection.select({ ...field, mapId: to }, 9), 'king');
+      assert.equal(selection.select({ ...field, mapId: to }, 13), MAP_MUSIC[to]);
+    }
+  }
+  assert.equal(new MusicSelection().select({ ...field, mapId: 'toString' }, 0), null);
 });
 
 const flush = () => new Promise(resolve => setImmediate(resolve));
@@ -99,21 +119,71 @@ test('manifest failure stays silent and logs once across repeated selections', a
   music.select('king'); await flush();
   assert.equal(warnings, 1); assert.equal(requests, 1);
 });
+test('rapid travel keeps the last requested map and retires stale streams in both codecs', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const manifest = JSON.parse(readFileSync(new URL('../public/assets/audio/bgm.json', import.meta.url)));
+  t.mock.method(globalThis, 'fetch', async () => ({ ok: true, json: async () => manifest }));
+  const originalAudio = globalThis.Audio;
+  t.after(() => { globalThis.Audio = originalAudio; });
+  for (const codec of ['opus', 'aac']) {
+    const media = []; let release;
+    globalThis.Audio = class {
+      paused = true;
+      constructor() { media.push(this); }
+      canPlayType() { return codec === 'opus' ? 'probably' : ''; }
+      play() {
+        this.paused = false;
+        return this.src.includes('bgm-forest-') ? new Promise(resolve => { release = resolve; }) : Promise.resolve();
+      }
+      pause() { this.paused = true; }
+      addEventListener() {} removeAttribute() {} load() {}
+    };
+    const ctx = { currentTime: 10, createGain: () => ({ connect() {}, disconnect() {}, gain: {
+      value: 0, cancelAndHoldAtTime() {}, linearRampToValueAtTime() {} } }),
+      createMediaElementSource: () => ({ connect() {}, disconnect() {} }) };
+    const player = new MusicPlayer(ctx, {});
+    player.select('city'); await flush();
+    player.select('forest'); await flush();
+    player.select('desert'); player.select('ruins');
+    release(); await flush(); await flush();
+    t.mock.timers.tick(3000);
+    assert.deepEqual(media.filter(m => !m.paused).map(m => m.src), [manifest.tracks.ruins[codec].url]);
+    for (const track of Object.values(MAP_MUSIC)) {
+      player.select(track); await flush();
+      if (track === 'forest') { release(); await flush(); }
+      t.mock.timers.tick(3000);
+      assert.deepEqual(media.filter(m => !m.paused).map(m => m.src), [manifest.tracks[track][codec].url]);
+    }
+    player.select(null); await flush(); t.mock.timers.tick(3000);
+    assert.ok(media.every(m => m.paused));
+  }
+});
 test('packed tracks have both hashed codecs, stereo loops, and verified decoded seams', () => {
   const manifest = JSON.parse(readFileSync(new URL('../public/assets/audio/bgm.json', import.meta.url)));
   assert.equal(manifest.channels, 2);
-  assert.deepEqual(Object.keys(manifest.tracks), ['city', 'meadow', 'forest', 'king']);
+  const approved = JSON.parse(readFileSync(new URL('../art/bgm-source/map-v2/sources.json', import.meta.url))).tracks;
+  assert.deepEqual(Object.keys(manifest.tracks), [...Object.keys(approved), 'king']);
+  assert.deepEqual(new Set(Object.keys(approved)), new Set(Object.values(MAP_MUSIC)));
   for (const [id, track] of Object.entries(manifest.tracks)) {
-    assert.equal(track.loopCrossfade, 1.5); assert.equal(track.loopStart, 0);
-    // Loops are the source minus the 1.5 s overlap and any trimmed fade (at most a few seconds).
-    assert.ok(Math.abs(track.loopEnd - (track.sourceDuration - 1.5 - (track.trimmedStart ?? 0) - (track.trimmedEnd ?? 0))) < .01);
-    assert.ok(track.loopEnd > track.sourceDuration - 8);
+    assert.equal(track.loopStart, 0);
+    assert.ok(Math.abs(track.loopEnd - (track.sourceDuration - track.loopCrossfade - track.trimmedStart - track.trimmedEnd)) < .01);
+    if (approved[id]) {
+      const source = approved[id];
+      assert.equal(createHash('sha256').update(readFileSync(new URL('../'+source.source,import.meta.url))).digest('hex'), source.sha256);
+      assert.equal(track.sourceSha256, source.sha256);
+      assert.equal(track.loopBars, 20);
+      assert.ok(Math.abs(track.loopEnd - 20 * 4 * 60 / source.requestedBpm) < .001);
+      assert.ok(Math.abs(track.loopCrossfade - 4 * 60 / source.requestedBpm) < .001);
+    } else assert.equal(track.loopCrossfade, 1.5);
     assert.ok(track.pcmSeam.passed);
     for (const codec of ['opus', 'aac']) {
       const file = track[codec];
-      assert.match(file.url, /bgm-(city|meadow|forest|king)-[a-f0-9]{12}\.(ogg|m4a)$/);
+      assert.match(file.url, new RegExp(`bgm-${id}-[a-f0-9]{12}\\.(ogg|m4a)$`));
       assert.equal(statSync(new URL('../public' + file.url, import.meta.url)).size, file.bytes);
       assert.ok(file.seam.passed); assert.ok(file.seam.wrapJump < .02);
+      assert.ok(Math.abs(file.lufs + 22) < 1); assert.ok(file.truePeakDbtp <= -2.8);
+      const hash = createHash('sha256').update(readFileSync(new URL('../public'+file.url,import.meta.url))).digest('hex').slice(0,12);
+      assert.ok(file.url.includes(hash));
     }
   }
 });

@@ -4,126 +4,927 @@
   "channels": 2,
   "tracks": {
     "city": {
-      "source": "art/bgm-source/bgm_city.mp3",
-      "sourceDuration": 120,
+      "source": "art/bgm-source/map-v2/bgm_city.mp3",
+      "sourceSha256": "0c636e62340f5cbbc78ec47d2a15f6fc00c74eb58f6479cb04bd8d4f51dafae2",
+      "map": "city_plaza",
+      "requestedBpm": 96,
+      "loopBars": 20,
+      "sourceDuration": 60.024,
       "trimmedStart": 0,
-      "trimmedEnd": 0,
+      "trimmedEnd": 7.524,
       "loopStart": 0,
-      "loopEnd": 118.5,
-      "tailStart": 118.5,
-      "loopCrossfade": 1.5,
+      "loopEnd": 50,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 50,
+      "loopCrossfade": 2.5,
       "boundaryFadeSeconds": 0.004,
       "pcmSeam": {
         "wrapJump": 0,
-        "maxAdjacentStep": 0.02986353635787964,
+        "maxAdjacentStep": 0.06259937211871147,
         "passed": true
       },
       "opus": {
-        "url": "/assets/audio/bgm-city-eac02515ccb2.ogg",
-        "bytes": 1438638,
-        "sizeKB": 1404.919921875,
-        "decodedDuration": 118.5,
+        "url": "/assets/audio/bgm-city-8cd4e896ceb7.ogg",
+        "bytes": 607273,
+        "sizeKB": 593.0400390625,
+        "decodedDuration": 50,
         "seam": {
-          "wrapJump": 0.0025283529539592564,
-          "maxAdjacentStep": 0.02938681561499834,
+          "wrapJump": 0.001333466171672626,
+          "maxAdjacentStep": 0.06378241069614887,
           "passed": true
-        }
+        },
+        "lufs": -21.99,
+        "truePeakDbtp": -10.26
       },
       "aac": {
-        "url": "/assets/audio/bgm-city-75d96b26b742.m4a",
-        "bytes": 1451025,
-        "sizeKB": 1417.0166015625,
-        "decodedDuration": 118.50666666666666,
+        "url": "/assets/audio/bgm-city-ae06d2e01e48.m4a",
+        "bytes": 616175,
+        "sizeKB": 601.7333984375,
+        "decodedDuration": 50.00533333333333,
         "seam": {
-          "wrapJump": 0.0019336392870172858,
-          "maxAdjacentStep": 0.030213793739676476,
+          "wrapJump": 0.0007028928666841239,
+          "maxAdjacentStep": 0.06344760581851006,
           "passed": true
-        }
+        },
+        "lufs": -22.02,
+        "truePeakDbtp": -10.49
       }
     },
     "meadow": {
-      "source": "art/bgm-source/bgm_meadow.mp3",
-      "sourceDuration": 120,
-      "trimmedStart": 0.3,
-      "trimmedEnd": 0,
+      "source": "art/bgm-source/map-v2/bgm_meadow.mp3",
+      "sourceSha256": "5f3df6e5c82638fda4d62c8fb01f7f65b3dc06efda99ebde051ae41694fd7e33",
+      "map": "meadow",
+      "requestedBpm": 104,
+      "loopBars": 20,
+      "sourceDuration": 55.464,
+      "trimmedStart": 2.3076875,
+      "trimmedEnd": 4.694770833333333,
       "loopStart": 0,
-      "loopEnd": 118.2,
-      "tailStart": 118.2,
-      "loopCrossfade": 1.5,
+      "loopEnd": 46.15385416666667,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 46.15385416666667,
+      "loopCrossfade": 2.3076875,
       "boundaryFadeSeconds": 0.004,
       "pcmSeam": {
         "wrapJump": 0,
-        "maxAdjacentStep": 0.1912140091881156,
+        "maxAdjacentStep": 0.1755082830786705,
         "passed": true
       },
       "opus": {
-        "url": "/assets/audio/bgm-meadow-6e3c90c9ae50.ogg",
-        "bytes": 1434648,
-        "sizeKB": 1401.0234375,
-        "decodedDuration": 118.2,
+        "url": "/assets/audio/bgm-meadow-ed60db259410.ogg",
+        "bytes": 560982,
+        "sizeKB": 547.833984375,
+        "decodedDuration": 46.15385416666667,
         "seam": {
-          "wrapJump": 0.001100393128581345,
-          "maxAdjacentStep": 0.202882987447083,
+          "wrapJump": 0.004896674421615899,
+          "maxAdjacentStep": 0.17438500374555588,
           "passed": true
-        }
+        },
+        "lufs": -22,
+        "truePeakDbtp": -9.66
       },
       "aac": {
-        "url": "/assets/audio/bgm-meadow-e3c72e76ca85.m4a",
-        "bytes": 1448158,
-        "sizeKB": 1414.216796875,
-        "decodedDuration": 118.208,
+        "url": "/assets/audio/bgm-meadow-bd468177d048.m4a",
+        "bytes": 566616,
+        "sizeKB": 553.3359375,
+        "decodedDuration": 46.165333333333336,
         "seam": {
-          "wrapJump": 0.0017599647107999772,
-          "maxAdjacentStep": 0.17267248407006264,
+          "wrapJump": 0.0010325893963454291,
+          "maxAdjacentStep": 0.18375583738088608,
           "passed": true
-        }
+        },
+        "lufs": -22.04,
+        "truePeakDbtp": -9.45
       }
     },
     "forest": {
-      "source": "art/bgm-source/bgm_forest.mp3",
-      "sourceDuration": 120,
-      "trimmedStart": 0,
-      "trimmedEnd": 2.2,
+      "source": "art/bgm-source/map-v2/bgm_forest.mp3",
+      "sourceSha256": "ecf69dd83a9cfdb8f69d2252c2ca2fd548bb7f43df359e0229c1e6699d989d93",
+      "map": "forest",
+      "requestedBpm": 84,
+      "loopBars": 20,
+      "sourceDuration": 68.544,
+      "trimmedStart": 2.8571458333333335,
+      "trimmedEnd": 5.6868541666666665,
       "loopStart": 0,
-      "loopEnd": 116.3,
-      "tailStart": 116.3,
-      "loopCrossfade": 1.5,
+      "loopEnd": 57.142854166666666,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 57.142854166666666,
+      "loopCrossfade": 2.8571458333333335,
       "boundaryFadeSeconds": 0.004,
       "pcmSeam": {
         "wrapJump": 0,
-        "maxAdjacentStep": 0.0252003725618124,
+        "maxAdjacentStep": 0.10883894935250282,
         "passed": true
       },
       "opus": {
-        "url": "/assets/audio/bgm-forest-3ab793d2ead0.ogg",
-        "bytes": 1411634,
-        "sizeKB": 1378.548828125,
-        "decodedDuration": 116.3,
+        "url": "/assets/audio/bgm-forest-7b19699cc417.ogg",
+        "bytes": 693700,
+        "sizeKB": 677.44140625,
+        "decodedDuration": 57.142854166666666,
         "seam": {
-          "wrapJump": 0.0009450149191252422,
-          "maxAdjacentStep": 0.026271434500813484,
+          "wrapJump": 0.0028132933657616377,
+          "maxAdjacentStep": 0.12424797005951405,
           "passed": true
-        }
+        },
+        "lufs": -22,
+        "truePeakDbtp": -5.4
       },
       "aac": {
-        "url": "/assets/audio/bgm-forest-d13901e84421.m4a",
-        "bytes": 1424211,
-        "sizeKB": 1390.8310546875,
-        "decodedDuration": 116.30933333333333,
+        "url": "/assets/audio/bgm-forest-423e777d4458.m4a",
+        "bytes": 701878,
+        "sizeKB": 685.427734375,
+        "decodedDuration": 57.152,
         "seam": {
-          "wrapJump": 0.001012396842270391,
-          "maxAdjacentStep": 0.024679705500602722,
+          "wrapJump": 0.0007828150482964702,
+          "maxAdjacentStep": 0.09481682442128658,
           "passed": true
-        }
+        },
+        "lufs": -22.04,
+        "truePeakDbtp": -5.47
+      }
+    },
+    "ruins": {
+      "source": "art/bgm-source/map-v2/bgm_ruins.mp3",
+      "sourceSha256": "f5bf5dc757c9e4da87a552977ace2be4a42e12eebcaf02a6c1b39e31ff497836",
+      "map": "ruins",
+      "requestedBpm": 80,
+      "loopBars": 20,
+      "sourceDuration": 72.024,
+      "trimmedStart": 0,
+      "trimmedEnd": 9.024,
+      "loopStart": 0,
+      "loopEnd": 60,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 60,
+      "loopCrossfade": 3,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.052850738167762756,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-ruins-127ad693b603.ogg",
+        "bytes": 728606,
+        "sizeKB": 711.529296875,
+        "decodedDuration": 60,
+        "seam": {
+          "wrapJump": 0.0003013440145878121,
+          "maxAdjacentStep": 0.05691564455628395,
+          "passed": true
+        },
+        "lufs": -22.01,
+        "truePeakDbtp": -9
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-ruins-2bbeccca2250.m4a",
+        "bytes": 738589,
+        "sizeKB": 721.2783203125,
+        "decodedDuration": 60.010666666666665,
+        "seam": {
+          "wrapJump": 0.00039966798431123607,
+          "maxAdjacentStep": 0.06043068692088127,
+          "passed": true
+        },
+        "lufs": -22.04,
+        "truePeakDbtp": -8.99
+      }
+    },
+    "canyon": {
+      "source": "art/bgm-source/map-v2/bgm_canyon.mp3",
+      "sourceSha256": "48920bf32def505855a873ac0ba105fc8e31e43a82274d74ebd92d7850cf5568",
+      "map": "canyon",
+      "requestedBpm": 92,
+      "loopBars": 20,
+      "sourceDuration": 62.664,
+      "trimmedStart": 5.217395833333334,
+      "trimmedEnd": 2.664,
+      "loopStart": 0,
+      "loopEnd": 52.17391666666666,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 52.17391666666666,
+      "loopCrossfade": 2.6086875,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.08057649899274111,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-canyon-9c60a78aa2fe.ogg",
+        "bytes": 633915,
+        "sizeKB": 619.0576171875,
+        "decodedDuration": 52.17391666666666,
+        "seam": {
+          "wrapJump": 0.0008200620068237185,
+          "maxAdjacentStep": 0.07938042283058167,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -10.55
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-canyon-5cfc72cdc08a.m4a",
+        "bytes": 643881,
+        "sizeKB": 628.7900390625,
+        "decodedDuration": 52.181333333333335,
+        "seam": {
+          "wrapJump": 0.0008545896998839453,
+          "maxAdjacentStep": 0.07787320762872696,
+          "passed": true
+        },
+        "lufs": -22.04,
+        "truePeakDbtp": -10.54
+      }
+    },
+    "grove": {
+      "source": "art/bgm-source/map-v2/bgm_grove.mp3",
+      "sourceSha256": "fa674cc90fed5fa8e45d91b3d429d0db1dd8f23d94b5fc79594c025ef72b869c",
+      "map": "grove",
+      "requestedBpm": 96,
+      "loopBars": 20,
+      "sourceDuration": 60.024,
+      "trimmedStart": 5,
+      "trimmedEnd": 2.524,
+      "loopStart": 0,
+      "loopEnd": 50,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 50,
+      "loopCrossfade": 2.5,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.07951094768941402,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-grove-1f0d028b50b5.ogg",
+        "bytes": 607216,
+        "sizeKB": 592.984375,
+        "decodedDuration": 50,
+        "seam": {
+          "wrapJump": 0.0008619013096904382,
+          "maxAdjacentStep": 0.08193202316761017,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -9.69
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-grove-0a5af7c517e3.m4a",
+        "bytes": 613687,
+        "sizeKB": 599.3037109375,
+        "decodedDuration": 50.00533333333333,
+        "seam": {
+          "wrapJump": 0.0006610151031054556,
+          "maxAdjacentStep": 0.08001489192247391,
+          "passed": true
+        },
+        "lufs": -22.03,
+        "truePeakDbtp": -9.72
+      }
+    },
+    "summit": {
+      "source": "art/bgm-source/map-v2/bgm_summit.mp3",
+      "sourceSha256": "48a5884e7745ac3b84ee7d496e7902f775a51f0e425f7ebfb5012c590d5f0d43",
+      "map": "summit",
+      "requestedBpm": 80,
+      "loopBars": 20,
+      "sourceDuration": 72.024,
+      "trimmedStart": 6,
+      "trimmedEnd": 3.024,
+      "loopStart": 0,
+      "loopEnd": 60,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 60,
+      "loopCrossfade": 3,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.10041174665093422,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-summit-a43ebd85aa53.ogg",
+        "bytes": 728562,
+        "sizeKB": 711.486328125,
+        "decodedDuration": 60,
+        "seam": {
+          "wrapJump": 0.000826844188850373,
+          "maxAdjacentStep": 0.09531850321218371,
+          "passed": true
+        },
+        "lufs": -21.99,
+        "truePeakDbtp": -8.54
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-summit-0b1d6fdcb1e7.m4a",
+        "bytes": 735557,
+        "sizeKB": 718.3173828125,
+        "decodedDuration": 60.010666666666665,
+        "seam": {
+          "wrapJump": 0.000686608487740159,
+          "maxAdjacentStep": 0.09460467845201492,
+          "passed": true
+        },
+        "lufs": -22.05,
+        "truePeakDbtp": -8.79
+      }
+    },
+    "temple": {
+      "source": "art/bgm-source/map-v2/bgm_temple.mp3",
+      "sourceSha256": "d3f8f8fe05ca1c38d453675405f624091390af448e003fd80c83a183ce82c506",
+      "map": "temple",
+      "requestedBpm": 88,
+      "loopBars": 20,
+      "sourceDuration": 65.424,
+      "trimmedStart": 5.454541666666667,
+      "trimmedEnd": 2.6967291666666666,
+      "loopStart": 0,
+      "loopEnd": 54.545458333333336,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 54.545458333333336,
+      "loopCrossfade": 2.7272708333333333,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.042411600588820875,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-temple-5b56412a3914.ogg",
+        "bytes": 662269,
+        "sizeKB": 646.7470703125,
+        "decodedDuration": 54.545458333333336,
+        "seam": {
+          "wrapJump": 0.0003918897855328396,
+          "maxAdjacentStep": 0.04026329261250794,
+          "passed": true
+        },
+        "lufs": -22.01,
+        "truePeakDbtp": -7.44
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-temple-9fb2b0dbf373.m4a",
+        "bytes": 669118,
+        "sizeKB": 653.435546875,
+        "decodedDuration": 54.54933333333334,
+        "seam": {
+          "wrapJump": 0.0008318590989802033,
+          "maxAdjacentStep": 0.0400842884555459,
+          "passed": true
+        },
+        "lufs": -22.04,
+        "truePeakDbtp": -7.39
+      }
+    },
+    "himmapan": {
+      "source": "art/bgm-source/map-v2/bgm_himmapan.mp3",
+      "sourceSha256": "f58b289a13161904b3d7b8766ec40232d80c18b4f618b55c58ec5c1cf41aa8b9",
+      "map": "himmapan",
+      "requestedBpm": 88,
+      "loopBars": 20,
+      "sourceDuration": 65.424,
+      "trimmedStart": 5.454541666666667,
+      "trimmedEnd": 2.6967291666666666,
+      "loopStart": 0,
+      "loopEnd": 54.545458333333336,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 54.545458333333336,
+      "loopCrossfade": 2.7272708333333333,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.1015416868031025,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-himmapan-7d8c38119065.ogg",
+        "bytes": 662430,
+        "sizeKB": 646.904296875,
+        "decodedDuration": 54.545458333333336,
+        "seam": {
+          "wrapJump": 0.0012295445194467902,
+          "maxAdjacentStep": 0.10376186482608318,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -10.12
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-himmapan-36bf2b35bc06.m4a",
+        "bytes": 675301,
+        "sizeKB": 659.4736328125,
+        "decodedDuration": 54.54933333333334,
+        "seam": {
+          "wrapJump": 0.0013653708738274872,
+          "maxAdjacentStep": 0.08042165637016296,
+          "passed": true
+        },
+        "lufs": -22.03,
+        "truePeakDbtp": -9.82
+      }
+    },
+    "desert": {
+      "source": "art/bgm-source/map-v2/bgm_desert.mp3",
+      "sourceSha256": "5a46f32fd2d574c5c546e625715133887901c0df9fdba1c1e6c926e9ba9b6fc5",
+      "map": "desert",
+      "requestedBpm": 92,
+      "loopBars": 20,
+      "sourceDuration": 62.664,
+      "trimmedStart": 0,
+      "trimmedEnd": 7.881395833333333,
+      "loopStart": 0,
+      "loopEnd": 52.17391666666666,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 52.17391666666666,
+      "loopCrossfade": 2.6086875,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.1284067202359438,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-desert-1b2455b2fb51.ogg",
+        "bytes": 633774,
+        "sizeKB": 618.919921875,
+        "decodedDuration": 52.17391666666666,
+        "seam": {
+          "wrapJump": 0.006312170182354748,
+          "maxAdjacentStep": 0.14062956720590591,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -8.9
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-desert-c4951b561080.m4a",
+        "bytes": 641365,
+        "sizeKB": 626.3330078125,
+        "decodedDuration": 52.181333333333335,
+        "seam": {
+          "wrapJump": 0.0009893840178847313,
+          "maxAdjacentStep": 0.10272245667874813,
+          "passed": true
+        },
+        "lufs": -22.03,
+        "truePeakDbtp": -8.98
+      }
+    },
+    "frost": {
+      "source": "art/bgm-source/map-v2/bgm_frost.mp3",
+      "sourceSha256": "28daac02800592385bb36b16a8f6e5096b1e159d507e33c6a3736db2bea1f740",
+      "map": "frost",
+      "requestedBpm": 76,
+      "loopBars": 20,
+      "sourceDuration": 75.864,
+      "trimmedStart": 6.315791666666667,
+      "trimmedEnd": 3.2324166666666665,
+      "loopStart": 0,
+      "loopEnd": 63.157895833333335,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 63.157895833333335,
+      "loopCrossfade": 3.1578958333333333,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.0542124230414629,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-frost-caa6d72fbd41.ogg",
+        "bytes": 766759,
+        "sizeKB": 748.7880859375,
+        "decodedDuration": 63.157895833333335,
+        "seam": {
+          "wrapJump": 0.0005414664192358032,
+          "maxAdjacentStep": 0.0535921985283494,
+          "passed": true
+        },
+        "lufs": -21.99,
+        "truePeakDbtp": -8.46
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-frost-d116da336863.m4a",
+        "bytes": 773545,
+        "sizeKB": 755.4150390625,
+        "decodedDuration": 63.168,
+        "seam": {
+          "wrapJump": 0.0028242358821444213,
+          "maxAdjacentStep": 0.04811247996985912,
+          "passed": true
+        },
+        "lufs": -22.06,
+        "truePeakDbtp": -8.43
+      }
+    },
+    "yokai": {
+      "source": "art/bgm-source/map-v2/bgm_yokai.mp3",
+      "sourceSha256": "2b2cad096ac38eb2d9dddbb12c5429be6e68160d0879b38714ebd8cd53b74ad5",
+      "map": "yokai",
+      "requestedBpm": 88,
+      "loopBars": 20,
+      "sourceDuration": 65.424,
+      "trimmedStart": 2.7272708333333333,
+      "trimmedEnd": 5.424,
+      "loopStart": 0,
+      "loopEnd": 54.545458333333336,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 54.545458333333336,
+      "loopCrossfade": 2.7272708333333333,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.1521296687424183,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-yokai-f6ce9e1c102d.ogg",
+        "bytes": 662504,
+        "sizeKB": 646.9765625,
+        "decodedDuration": 54.545458333333336,
+        "seam": {
+          "wrapJump": 0.0013866131193935871,
+          "maxAdjacentStep": 0.15112153068184853,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -9.77
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-yokai-640972b3b7b8.m4a",
+        "bytes": 675314,
+        "sizeKB": 659.486328125,
+        "decodedDuration": 54.54933333333334,
+        "seam": {
+          "wrapJump": 0.0026663313328754157,
+          "maxAdjacentStep": 0.14666853472590446,
+          "passed": true
+        },
+        "lufs": -22.01,
+        "truePeakDbtp": -8.74
+      }
+    },
+    "dragon": {
+      "source": "art/bgm-source/map-v2/bgm_dragon.mp3",
+      "sourceSha256": "1cab1e43b4d32bf64468d3bdbf4cbcd9ab87e5bc1560de120f52216f4e9de70f",
+      "map": "dragon",
+      "requestedBpm": 92,
+      "loopBars": 20,
+      "sourceDuration": 62.664,
+      "trimmedStart": 0,
+      "trimmedEnd": 7.881395833333333,
+      "loopStart": 0,
+      "loopEnd": 52.17391666666666,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 52.17391666666666,
+      "loopCrossfade": 2.6086875,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.1267489269375801,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-dragon-a048f7dc2cc9.ogg",
+        "bytes": 633842,
+        "sizeKB": 618.986328125,
+        "decodedDuration": 52.17391666666666,
+        "seam": {
+          "wrapJump": 0.0037195668555796146,
+          "maxAdjacentStep": 0.12312322854995728,
+          "passed": true
+        },
+        "lufs": -21.99,
+        "truePeakDbtp": -7.47
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-dragon-a23e1cf09a80.m4a",
+        "bytes": 642871,
+        "sizeKB": 627.8037109375,
+        "decodedDuration": 52.181333333333335,
+        "seam": {
+          "wrapJump": 0.0006598907930310816,
+          "maxAdjacentStep": 0.10416608303785324,
+          "passed": true
+        },
+        "lufs": -22.03,
+        "truePeakDbtp": -7.41
+      }
+    },
+    "volcano": {
+      "source": "art/bgm-source/map-v2/bgm_volcano.mp3",
+      "sourceSha256": "f908496ad439bf01149dcf7cb43f13caed8ccbe8b55562392eceb7f074f9e2ba",
+      "map": "volcano",
+      "requestedBpm": 108,
+      "loopBars": 20,
+      "sourceDuration": 53.304,
+      "trimmedStart": 4.4444375,
+      "trimmedEnd": 2.1928958333333335,
+      "loopStart": 0,
+      "loopEnd": 44.4444375,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 44.4444375,
+      "loopCrossfade": 2.2222291666666667,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.08600972592830658,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-volcano-68dc81d4a66b.ogg",
+        "bytes": 539898,
+        "sizeKB": 527.244140625,
+        "decodedDuration": 44.4444375,
+        "seam": {
+          "wrapJump": 0.0007551081653218716,
+          "maxAdjacentStep": 0.09494373947381973,
+          "passed": true
+        },
+        "lufs": -22.01,
+        "truePeakDbtp": -9.08
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-volcano-49e28073bc10.m4a",
+        "bytes": 547701,
+        "sizeKB": 534.8642578125,
+        "decodedDuration": 44.458666666666666,
+        "seam": {
+          "wrapJump": 0.00011293135321466252,
+          "maxAdjacentStep": 0.07248333841562271,
+          "passed": true
+        },
+        "lufs": -22.04,
+        "truePeakDbtp": -9.26
+      }
+    },
+    "fae": {
+      "source": "art/bgm-source/map-v2/bgm_fae.mp3",
+      "sourceSha256": "b7a2bd2c1f613949363ba7311e0635b2bc21b9dc9424abb8006c512292c48bf4",
+      "map": "fae",
+      "requestedBpm": 84,
+      "loopBars": 20,
+      "sourceDuration": 68.544,
+      "trimmedStart": 5.714291666666667,
+      "trimmedEnd": 2.8297083333333335,
+      "loopStart": 0,
+      "loopEnd": 57.142854166666666,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 57.142854166666666,
+      "loopCrossfade": 2.8571458333333335,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.03732289932668209,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-fae-e6d28cf1b69f.ogg",
+        "bytes": 693914,
+        "sizeKB": 677.650390625,
+        "decodedDuration": 57.142854166666666,
+        "seam": {
+          "wrapJump": 0.0008542141003999859,
+          "maxAdjacentStep": 0.03491188585758209,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -10.06
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-fae-14ebe8110f86.m4a",
+        "bytes": 701425,
+        "sizeKB": 684.9853515625,
+        "decodedDuration": 57.152,
+        "seam": {
+          "wrapJump": 0.0024135593557730317,
+          "maxAdjacentStep": 0.03678734600543976,
+          "passed": true
+        },
+        "lufs": -22.05,
+        "truePeakDbtp": -9.99
+      }
+    },
+    "ocean": {
+      "source": "art/bgm-source/map-v2/bgm_ocean.mp3",
+      "sourceSha256": "30082124b7f03d3212922e702c88f35f732cf2c84da860f8e597a72de84ba355",
+      "map": "ocean",
+      "requestedBpm": 96,
+      "loopBars": 20,
+      "sourceDuration": 60.024,
+      "trimmedStart": 0,
+      "trimmedEnd": 7.524,
+      "loopStart": 0,
+      "loopEnd": 50,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 50,
+      "loopCrossfade": 2.5,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.07651737472042441,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-ocean-7012a313d84f.ogg",
+        "bytes": 607214,
+        "sizeKB": 592.982421875,
+        "decodedDuration": 50,
+        "seam": {
+          "wrapJump": 0.0023886143462732434,
+          "maxAdjacentStep": 0.07723291544243693,
+          "passed": true
+        },
+        "lufs": -21.99,
+        "truePeakDbtp": -10.44
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-ocean-f9db165d111e.m4a",
+        "bytes": 612733,
+        "sizeKB": 598.3720703125,
+        "decodedDuration": 50.00533333333333,
+        "seam": {
+          "wrapJump": 0.0022525837121065706,
+          "maxAdjacentStep": 0.06723212264478207,
+          "passed": true
+        },
+        "lufs": -22.05,
+        "truePeakDbtp": -10.59
+      }
+    },
+    "astral": {
+      "source": "art/bgm-source/map-v2/bgm_astral.mp3",
+      "sourceSha256": "d0e2235630b2e99449f5e3d311e23f3b47d6025ed5d52ba8bdd92edf16fe33f6",
+      "map": "astral",
+      "requestedBpm": 80,
+      "loopBars": 20,
+      "sourceDuration": 72.024,
+      "trimmedStart": 3,
+      "trimmedEnd": 6.024,
+      "loopStart": 0,
+      "loopEnd": 60,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 60,
+      "loopCrossfade": 3,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.07472230307757854,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-astral-660e0f301546.ogg",
+        "bytes": 728812,
+        "sizeKB": 711.73046875,
+        "decodedDuration": 60,
+        "seam": {
+          "wrapJump": 0.0025544353993609548,
+          "maxAdjacentStep": 0.07407841086387634,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -10.1
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-astral-2421f00b13bd.m4a",
+        "bytes": 741187,
+        "sizeKB": 723.8154296875,
+        "decodedDuration": 60.010666666666665,
+        "seam": {
+          "wrapJump": 0.0015520378728979267,
+          "maxAdjacentStep": 0.06605080887675285,
+          "passed": true
+        },
+        "lufs": -22.03,
+        "truePeakDbtp": -9.39
+      }
+    },
+    "abyss": {
+      "source": "art/bgm-source/map-v2/bgm_abyss.mp3",
+      "sourceSha256": "cd98b1408364958d16df038317703962c76fd272a33a8555e5507949f907811e",
+      "map": "abyss",
+      "requestedBpm": 76,
+      "loopBars": 20,
+      "sourceDuration": 75.864,
+      "trimmedStart": 3.1578958333333333,
+      "trimmedEnd": 6.3903125,
+      "loopStart": 0,
+      "loopEnd": 63.157895833333335,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 63.157895833333335,
+      "loopCrossfade": 3.1578958333333333,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.0548422634601593,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-abyss-401f05b5ad7b.ogg",
+        "bytes": 766939,
+        "sizeKB": 748.9638671875,
+        "decodedDuration": 63.157895833333335,
+        "seam": {
+          "wrapJump": 0.0012747008295264095,
+          "maxAdjacentStep": 0.05696326121687889,
+          "passed": true
+        },
+        "lufs": -22,
+        "truePeakDbtp": -4.13
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-abyss-c90de3900477.m4a",
+        "bytes": 774282,
+        "sizeKB": 756.134765625,
+        "decodedDuration": 63.168,
+        "seam": {
+          "wrapJump": 0.000747255515307188,
+          "maxAdjacentStep": 0.05885717272758484,
+          "passed": true
+        },
+        "lufs": -22.02,
+        "truePeakDbtp": -3.85
+      }
+    },
+    "confluence": {
+      "source": "art/bgm-source/map-v2/bgm_confluence.mp3",
+      "sourceSha256": "686b71e5317c0b6478a7187090a07fc8ba0680169a9b2bad717c103e09908450",
+      "map": "confluence",
+      "requestedBpm": 104,
+      "loopBars": 20,
+      "sourceDuration": 55.464,
+      "trimmedStart": 4.615375,
+      "trimmedEnd": 2.3870833333333334,
+      "loopStart": 0,
+      "loopEnd": 46.15385416666667,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
+      "tailStart": 46.15385416666667,
+      "loopCrossfade": 2.3076875,
+      "boundaryFadeSeconds": 0.004,
+      "pcmSeam": {
+        "wrapJump": 0,
+        "maxAdjacentStep": 0.05919008841738105,
+        "passed": true
+      },
+      "opus": {
+        "url": "/assets/audio/bgm-confluence-008460878a5a.ogg",
+        "bytes": 560757,
+        "sizeKB": 547.6142578125,
+        "decodedDuration": 46.15385416666667,
+        "seam": {
+          "wrapJump": 0.00255771103547886,
+          "maxAdjacentStep": 0.06161832716315985,
+          "passed": true
+        },
+        "lufs": -21.99,
+        "truePeakDbtp": -9.34
+      },
+      "aac": {
+        "url": "/assets/audio/bgm-confluence-e1720dd5b47a.m4a",
+        "bytes": 566509,
+        "sizeKB": 553.2314453125,
+        "decodedDuration": 46.165333333333336,
+        "seam": {
+          "wrapJump": 0.0019147825660184026,
+          "maxAdjacentStep": 0.056288402527570724,
+          "passed": true
+        },
+        "lufs": -22.04,
+        "truePeakDbtp": -9.21
       }
     },
     "king": {
       "source": "art/bgm-source/bgm_king.mp3",
+      "sourceSha256": "c35a58f70b5da04ffd1f74b1fe260fe86566e32d00633cc89a3b51a77717eab9",
       "sourceDuration": 90,
       "trimmedStart": 0,
       "trimmedEnd": 0,
       "loopStart": 0,
       "loopEnd": 88.5,
+      "targetLufs": -22,
+      "truePeakCeilingDbtp": -3,
       "tailStart": 88.5,
       "loopCrossfade": 1.5,
       "boundaryFadeSeconds": 0.004,
@@ -141,7 +942,9 @@
           "wrapJump": 0.001998271320189815,
           "maxAdjacentStep": 0.06254469440318644,
           "passed": true
-        }
+        },
+        "lufs": -21.03,
+        "truePeakDbtp": -7.36
       },
       "aac": {
         "url": "/assets/audio/bgm-king-122a418a702a.m4a",
@@ -152,7 +955,9 @@
           "wrapJump": 0.0018236419127788395,
           "maxAdjacentStep": 0.060077935457229614,
           "passed": true
-        }
+        },
+        "lufs": -21.1,
+        "truePeakDbtp": -7.77
       }
     }
   }

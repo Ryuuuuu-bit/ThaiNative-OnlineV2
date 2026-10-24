@@ -1,5 +1,7 @@
-import {BIOME_IDS} from '@the-beginning-online/shared/maps';
-export type MusicTrack = 'city' | 'meadow' | 'forest' | 'king';
+import {MAP_IDS, type FieldMapId} from '@the-beginning-online/shared/maps';
+export type MusicTrack = 'city' | FieldMapId | 'king';
+export const MAP_MUSIC: Readonly<Record<string, MusicTrack>> = Object.fromEntries(
+  MAP_IDS.map(id => [id, id === 'city_plaza' ? 'city' : id]));
 export type MusicState = {
   mapId: string;
   dead: boolean;
@@ -17,16 +19,19 @@ export function musicDuckGain(dead: boolean, impact: boolean) {
 export class MusicSelection {
   private wasFighting = false;
   private releaseAt = -Infinity;
+  private mapId = '';
   select(state: MusicState, seconds: number): MusicTrack | null {
-    if (!['meadow','forest','ruins','canyon','grove','summit','temple','himmapan',...BIOME_IDS].includes(state.mapId)) {
+    if (state.mapId !== this.mapId) {
+      this.mapId = state.mapId;
       this.wasFighting = false; this.releaseAt = -Infinity;
-      return state.mapId === 'city_plaza' ? 'city' : null;
     }
+    const theme = Object.hasOwn(MAP_MUSIC, state.mapId) ? MAP_MUSIC[state.mapId] : null;
+    if (!theme || theme === 'city') return theme;
     const fighting = !state.dead && state.bossAlive &&
       (state.bossTargeted || state.bossBarActive || state.bossAggro);
     if (fighting) this.releaseAt = Infinity;
     else if (this.wasFighting) this.releaseAt = seconds + MUSIC_RELEASE;
     this.wasFighting = fighting;
-    return fighting || seconds < this.releaseAt ? 'king' : state.mapId==='meadow' ? 'meadow' : 'forest';
+    return fighting || seconds < this.releaseAt ? 'king' : theme;
   }
 }
