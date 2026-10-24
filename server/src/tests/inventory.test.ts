@@ -16,6 +16,19 @@ async function fixture() {
 		store.inventoryOp(a.id, c.id, req, op, ctx);
 	return { store, a, c, run };
 }
+test('partial shop sale persists current stock and gold once when its request is retried',async()=>{
+ const {store,a,c,run}=await fixture();
+ const before=await store.inventory(a.id,c.id),potion=before.inventory.items.find(i=>i.template==='red_small')!;
+ const req=randomUUID(),op={op:'sell',shop:'market',items:[{id:potion.id,qty:2}]};
+ const first=await run(op,req);assert.ok(!first.error);
+ const retried=await run(op,req);assert.ok(retried.duplicate);
+ const saved=await store.inventory(a.id,c.id);
+ assert.equal(saved.inventory.items.find(i=>i.id===potion.id)!.qty,potion.qty-2);
+ assert.equal(saved.gold,before.gold+2*Math.floor(data.items.items.find(t=>t.id==='red_small')!.npcPrice*data.economy.sellMultiplier));
+ const invalid=await run({...op,items:[{id:potion.id,qty:9999}]});assert.ok(invalid.error);
+ assert.deepEqual(await store.inventory(a.id,c.id),saved);
+});
+
 test('starter weapons cover every weapon type in the bag and are granted only once', async () => {
 	const { store, a, c, run } = await fixture();
 	const first = await store.inventory(a.id, c.id);

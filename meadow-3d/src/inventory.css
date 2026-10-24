@@ -406,7 +406,7 @@ body #inventory-window .shop-lv button[aria-pressed=true]{border-color:rgba(143,
 body #inventory-window .shop-own{margin-left:auto;font-size:12px;color:var(--g-muted)}
 body #inventory-window .shop-note{margin-left:auto}
 body #inventory-window[data-mode=shop] .inv-content{flex:1;min-height:0;margin-top:10px;overflow:auto;overscroll-behavior:contain;padding-right:4px}
-body #inventory-window .ware-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start}
+body #inventory-window .ware-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start;max-height:none;overflow:visible}
 body #inventory-window .ware-list.sell{grid-template-columns:repeat(3,minmax(0,1fr))}
 body #inventory-window .ware-list .inv-empty{grid-column:1/-1}
 body #inventory-window .shop-group{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-top:4px;font-size:11px;letter-spacing:.16em;color:var(--g-faint)}
@@ -493,3 +493,17 @@ body #inventory-window[data-mode=shop] .inv-cart .cart-go.sell{background:linear
 .tip-affixes.prefix p{color:#c9b4ff}.tip-affixes.suffix p{color:#9cdbb4}
 .tip-milestones .active{color:#f1cf86}.tip-milestones .locked{color:#a1a7aa}
 .tip-cards{white-space:pre-line;font-size:12px;color:#9ed4eb}
+
+/* Sale filters and per-stack quantities share the merchant layout. */
+body #inventory-window .shop-select{display:flex;align-items:center;gap:8px;color:var(--g-muted);font-size:12px}
+body #inventory-window .shop-select select{width:auto;max-width:210px;padding:6px 9px;border:1px solid var(--g-line);border-radius:8px;background:#142521;color:var(--g-text)}
+body #inventory-window .sale-quantity{display:flex;align-items:center;gap:5px;margin-top:5px}
+body #inventory-window .sale-quantity input{width:68px;min-width:0;padding:4px 6px;border:1px solid var(--g-line);border-radius:6px;background:#142521;color:var(--g-text)}
+body #inventory-window .sale-quantity button{padding:4px 6px;min-height:0;font-size:11px}
+@media(min-width:901px){
+ body #inventory-window[data-mode=shop][open]{height:min(760px,88dvh);display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+ body #inventory-window[data-mode=shop] .inv-body,body #inventory-window[data-mode=shop] .inv-main{min-height:0;overflow:hidden}
+ body #inventory-window[data-mode=shop] .inv-body{align-items:stretch}
+ body #inventory-window[data-mode=shop] .inv-cart{margin:0;min-width:0}
+ body #inventory-window[data-mode=shop] .cart-go,body #inventory-window[data-mode=shop] .inv-cart dl{flex-shrink:0}
+}

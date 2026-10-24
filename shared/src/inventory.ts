@@ -57,6 +57,8 @@ export interface InventoryOp {
 	slot?: string;
 	qty?: number;
 	ids?: string[];
+	/** An atomic sale with a separate quantity for each owned item. */
+	items?: {id:string;qty:number}[];
 	shop?: string;
 	gold?: number;
 		loot?: LootItem[];
@@ -328,14 +330,16 @@ export function applyInventory(
 		log("npc_buy", undefined, count, -cost);
 	}
 	if (op.op === "sell" || op.op === "discard") {
-		const ids = op.ids ?? [op.id!];
+		if (op.items && (op.op !== "sell" || op.ids || op.id)) throw Error("รายการขายไม่ถูกต้อง");
+		const ids = op.items?.map(i=>i.id) ?? op.ids ?? [op.id!];
 		if (!ids.length || ids.length > 100 || new Set(ids).size !== ids.length)
 			throw Error("รายการซ้ำหรือไม่ถูกต้อง");
 		for (const id of ids) {
 			const i = owned(id),
 				t = template(i.template);
 			if (i.bound && op.op === "sell") throw Error("ขายของผูกมัดไม่ได้");
-			const qty = op.ids ? i.qty : count;
+			const qty = op.items ? op.items.find(row=>row.id===id)!.qty : op.ids ? i.qty : count;
+			if (!Number.isSafeInteger(qty) || qty < 1 || (!op.ids && qty > 9999)) throw Error("จำนวนไม่ถูกต้อง");
 			const value =
 				op.op === "sell"
 					? Math.floor(t.npcPrice * data.economy.sellMultiplier) * qty
